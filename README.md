@@ -9,6 +9,7 @@
 - [Runtime](src/objc.zig)
 - [CoreFoundation](src/cf.zig)
 - [Foundation](src/ns.zig)
+- [AppKit](src/app_kit.zig)
 - [Metal](src/metal.zig)
 
 ## Contributing
