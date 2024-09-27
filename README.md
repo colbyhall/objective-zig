@@ -1,4 +1,4 @@
-# Generated Objective-C bindings in Zig (objective-zig)
+# Objective-C bindings to Zig 
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
