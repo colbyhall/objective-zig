@@ -1,9 +1,9 @@
-# Objective-C bindings to Zig 
+# Objective-C bindings to Zig (objective-zig)
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 
-`objective-zig` is a work-in-progress Objective-C runtime and auto generated collection of Objective-C frameworks in zig. You can find the bindings generator at [zigobjcgen](https://github.com/colbyhall/zigobjcgen/tree/main). These bindings are not ready. See the notice at the bottom of the README.
+`objective-zig` is a work-in-progress Objective-C runtime and auto generated collection of Objective-C frameworks in zig. You can find the bindings generator at [objective-zig-gen](https://github.com/colbyhall/objective-zig-gen/tree/main). These bindings are not ready. See the notice at the bottom of the README.
 
 ## Frameworks
 - [Runtime](src/objc.zig)
