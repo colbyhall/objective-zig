@@ -4,143 +4,35 @@ const std = @import("std");
 const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 const cf = @import("cf.zig"); // Framework dependency CoreFoundation.
 
-pub const FastEnumerationState = extern struct {
-    state: u64,
-    itemsPtr: ?**objc.Id,
-    mutationsPtr: ?*u64,
-    extra: [5] u64,
-};
+pub const ExceptionName = ?*String;
 
-pub const _NSRange = extern struct {
-    location: objc.NSUInteger,
-    length: objc.NSUInteger,
-};
+pub const RunLoopMode = ?*String;
 
-pub const anon335 = extern struct {
-    _hasSingleRange: objc.NSUInteger,
-    _hasBitfield: objc.NSUInteger,
-    _reservedArrayBinderController: objc.NSUInteger,
-};
+pub extern "Foundation" fn StringFromSelector(aSelector: *objc.SEL) callconv(.C) ?*String;
 
-pub const anon399 = extern struct {
-    _range: Range,
-};
+pub extern "Foundation" fn SelectorFromString(aSelectorName: ?*String) callconv(.C) *objc.SEL;
 
-pub const anon429 = extern struct {
-    _data: ?*anyopaque,
-    _reserved: ?*anyopaque,
-};
+pub extern "Foundation" fn StringFromClass(aClass: *objc.Class) callconv(.C) ?*String;
 
-pub const anon469 = extern struct {
-    _bitfield: objc.uint64_t,
-};
+pub extern "Foundation" fn ClassFromString(aClassName: ?*String) callconv(.C) *objc.Class;
 
-pub const SwappedFloat = extern struct {
-    v: u32,
-};
+pub extern "Foundation" fn StringFromProtocol(proto: ?*Protocol) callconv(.C) ?*String;
 
-pub const SwappedDouble = extern struct {
-    v: u64,
-};
+pub extern "Foundation" fn ProtocolFromString(namestr: ?*String) callconv(.C) ?*Protocol;
 
-pub const Decimal = extern struct {
-    _exponent: i32,
-    _length: u32,
-    _isNegative: u32,
-    _isCompact: u32,
-    _reserved: u32,
-    _mantissa: [8] u16,
-};
+pub extern "Foundation" fn GetSizeAndAlignment(typePtr: ?*i8, sizep: ?*objc.NSUInteger, alignp: ?*objc.NSUInteger) callconv(.C) ?*i8;
 
-pub const HashEnumerator = extern struct {
-    _pi: objc.NSUInteger,
-    _si: objc.NSUInteger,
-    _bs: ?*anyopaque,
-};
+pub extern "Foundation" fn Log(format: ?*String) callconv(.C) void;
 
-pub const HashTableCallBacks = extern struct {
-    hash: ?*const fn(?*HashTable, ?*anyopaque) callconv(.C) objc.NSUInteger,
-    isEqual: ?*const fn(?*HashTable, ?*anyopaque, ?*anyopaque) callconv(.C) objc.BOOL,
-    retain: ?*const fn(?*HashTable, ?*anyopaque) callconv(.C) void,
-    release: ?*const fn(?*HashTable, ?*anyopaque) callconv(.C) void,
-    describe: ?*const fn(?*HashTable, ?*anyopaque) callconv(.C) ?*String,
-};
-
-pub const EdgeInsets = extern struct {
-    top: cf.CGFloat,
-    left: cf.CGFloat,
-    bottom: cf.CGFloat,
-    right: cf.CGFloat,
-};
-
-pub const MapEnumerator = extern struct {
-    _pi: objc.NSUInteger,
-    _si: objc.NSUInteger,
-    _bs: ?*anyopaque,
-};
-
-pub const MapTableKeyCallBacks = extern struct {
-    hash: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) objc.NSUInteger,
-    isEqual: ?*const fn(?*MapTable, ?*anyopaque, ?*anyopaque) callconv(.C) objc.BOOL,
-    retain: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) void,
-    release: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) void,
-    describe: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) ?*String,
-    notAKeyMarker: ?*anyopaque,
-};
-
-pub const MapTableValueCallBacks = extern struct {
-    retain: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) void,
-    release: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) void,
-    describe: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) ?*String,
-};
-
-pub const OperatingSystemVersion = extern struct {
-    majorVersion: objc.NSInteger,
-    minorVersion: objc.NSInteger,
-    patchVersion: objc.NSInteger,
-};
-
-pub const _predicateFlags = extern struct {
-    _evaluationBlocked: u32,
-    _reservedPredicateFlags: u32,
-};
-
-pub const _expressionFlags = extern struct {
-    _evaluationBlocked: u32,
-    _usesKVC: u32,
-    _validatedExpression: u32,
-    _validatedKeys: u32,
-    _reservedExpressionFlags: u32,
-};
-
-pub const AffineTransformStruct = extern struct {
-    m11: cf.CGFloat,
-    m12: cf.CGFloat,
-    m21: cf.CGFloat,
-    m22: cf.CGFloat,
-    tX: cf.CGFloat,
-    tY: cf.CGFloat,
-};
-
-pub const __NSAppleEventManagerSuspension = extern struct {};
-
-pub const anon375 = extern struct {
-    hasEvaluatedReceivers: u32,
-    hasEvaluatedArguments: u32,
-    RESERVED: u32,
-};
-
-pub const anon385 = extern union {
-    _singleRange: anon399,
-    _multipleRanges: anon429,
-    _singleBitfield: anon469,
-};
+pub extern "Foundation" fn Logv(format: ?*String, args: objc.va_list) callconv(.C) void;
 
 pub const ComparisonResult = enum(objc.NSInteger) {
     OrderedAscending = -1,
     OrderedSame = 0,
     OrderedDescending = 1,
 };
+
+pub const Comparator = *const fn(*objc.Id, *objc.Id) callconv(.C) ComparisonResult;
 
 pub const EnumerationOptions = enum(objc.NSUInteger) {
     Concurrent = 1,
@@ -160,1665 +52,47 @@ pub const QualityOfService = enum(objc.NSInteger) {
     Default = -1,
 };
 
-pub const CollectionChangeType = enum(objc.NSInteger) {
-    Insert = 0,
-    Remove = 1,
-};
+pub extern "Foundation" fn DefaultMallocZone() callconv(.C) ?*Zone;
 
-pub const OrderedCollectionDifferenceCalculationOptions = enum(objc.NSUInteger) {
-    OmitInsertedObjects = 1,
-    OmitRemovedObjects = 2,
-    InferMoves = 4,
-};
+pub extern "Foundation" fn CreateZone(startSize: objc.NSUInteger, granularity: objc.NSUInteger, canFree: objc.BOOL) callconv(.C) ?*Zone;
 
-pub const BinarySearchingOptions = enum(objc.NSUInteger) {
-    FirstEqual = 256,
-    LastEqual = 512,
-    InsertionIndex = 1024,
-};
+pub extern "Foundation" fn RecycleZone(zone: ?*Zone) callconv(.C) void;
 
-pub const ItemProviderRepresentationVisibility = enum(objc.NSInteger) {
-    All = 0,
-    Team = 1,
-    Group = 2,
-    OwnProcess = 3,
-};
+pub extern "Foundation" fn SetZoneName(zone: ?*Zone, name: ?*String) callconv(.C) void;
 
-pub const ItemProviderFileOptions = enum(objc.NSInteger) {
-    OpenInPlace = 1,
-};
+pub extern "Foundation" fn ZoneName(zone: ?*Zone) callconv(.C) ?*String;
 
-pub const ItemProviderErrorCode = enum(objc.NSInteger) {
-    UnknownError = -1,
-    ItemUnavailableError = -1000,
-    UnexpectedValueClassError = -1100,
-    UnavailableCoercionError = -1200,
-};
+pub extern "Foundation" fn ZoneFromPointer(ptr: ?*anyopaque) callconv(.C) ?*Zone;
 
-pub const StringCompareOptions = enum(objc.NSUInteger) {
-    CaseInsensitiveSearch = 1,
-    LiteralSearch = 2,
-    BackwardsSearch = 4,
-    AnchoredSearch = 8,
-    NumericSearch = 64,
-    DiacriticInsensitiveSearch = 128,
-    WidthInsensitiveSearch = 256,
-    ForcedOrderingSearch = 512,
-    RegularExpressionSearch = 1024,
-};
+pub extern "Foundation" fn ZoneMalloc(zone: ?*Zone, size: objc.NSUInteger) callconv(.C) ?*anyopaque;
 
-pub const StringEncodingConversionOptions = enum(objc.NSUInteger) {
-    AllowLossy = 1,
-    ExternalRepresentation = 2,
-};
+pub extern "Foundation" fn ZoneCalloc(zone: ?*Zone, numElems: objc.NSUInteger, byteSize: objc.NSUInteger) callconv(.C) ?*anyopaque;
 
-pub const StringEnumerationOptions = enum(objc.NSUInteger) {
-    ByLines = 0,
-    ByParagraphs = 1,
-    ByComposedCharacterSequences = 2,
-    ByWords = 3,
-    BySentences = 4,
-    ByCaretPositions = 5,
-    ByDeletionClusters = 6,
-    Reverse = 256,
-    SubstringNotRequired = 512,
-    Localized = 1024,
-};
+pub extern "Foundation" fn ZoneRealloc(zone: ?*Zone, ptr: ?*anyopaque, size: objc.NSUInteger) callconv(.C) ?*anyopaque;
 
-pub const anon5481 = enum(StringEncoding) {
-    NSProprietaryStringEncoding = 65536,
-};
+pub extern "Foundation" fn ZoneFree(zone: ?*Zone, ptr: ?*anyopaque) callconv(.C) void;
 
-pub const anon101 = enum(u32) {
-    NS_UnknownByteOrder = 0,
-    NS_LittleEndian = 1,
-    NS_BigEndian = 2,
-};
+pub extern "Foundation" fn AllocateCollectable(size: objc.NSUInteger, options: objc.NSUInteger) callconv(.C) ?*anyopaque;
 
-pub const CalendarUnit = enum(objc.NSUInteger) {
-    Era = 2,
-    Year = 4,
-    Month = 8,
-    Day = 16,
-    Hour = 32,
-    Minute = 64,
-    Second = 128,
-    Weekday = 512,
-    WeekdayOrdinal = 1024,
-    Quarter = 2048,
-    WeekOfMonth = 4096,
-    WeekOfYear = 8192,
-    YearForWeekOfYear = 16384,
-    Nanosecond = 32768,
-    DayOfYear = 65536,
-    Calendar = 1048576,
-    TimeZone = 2097152,
-    EraCalendarUnit = 2,
-    YearCalendarUnit = 4,
-    MonthCalendarUnit = 8,
-    DayCalendarUnit = 16,
-    HourCalendarUnit = 32,
-    MinuteCalendarUnit = 64,
-    SecondCalendarUnit = 128,
-    WeekCalendarUnit = 256,
-    WeekdayCalendarUnit = 512,
-    WeekdayOrdinalCalendarUnit = 1024,
-    QuarterCalendarUnit = 2048,
-    WeekOfMonthCalendarUnit = 4096,
-    WeekOfYearCalendarUnit = 8192,
-    YearForWeekOfYearCalendarUnit = 16384,
-    CalendarUnit = 1048576,
-    TimeZoneCalendarUnit = 2097152,
-};
+pub extern "Foundation" fn ReallocateCollectable(ptr: ?*anyopaque, size: objc.NSUInteger, options: objc.NSUInteger) callconv(.C) ?*anyopaque;
 
-pub const CalendarOptions = enum(objc.NSUInteger) {
-    WrapComponents = 1,
-    MatchStrictly = 2,
-    SearchBackwards = 4,
-    MatchPreviousTimePreservingSmallerUnits = 256,
-    MatchNextTimePreservingSmallerUnits = 512,
-    MatchNextTime = 1024,
-    MatchFirst = 4096,
-    MatchLast = 8192,
-};
+pub extern "Foundation" fn MakeCollectable(cf: cf.TypeRef) callconv(.C) *objc.Id;
 
-pub const anon4111 = enum(objc.NSInteger) {
-    NSDateComponentUndefined = 9223372036854775807,
-    NSUndefinedDateComponent = 9223372036854775807,
-};
+pub extern "Foundation" fn PageSize() callconv(.C) objc.NSUInteger;
 
-pub const anon141 = enum(u32) {
-    NSOpenStepUnicodeReservedBase = 62464,
-};
+pub extern "Foundation" fn LogPageSize() callconv(.C) objc.NSUInteger;
 
-pub const DecodingFailurePolicy = enum(objc.NSInteger) {
-    RaiseException = 0,
-    SetErrorAndReturn = 1,
-};
+pub extern "Foundation" fn RoundUpToMultipleOfPageSize(bytes: objc.NSUInteger) callconv(.C) objc.NSUInteger;
 
-pub const DataReadingOptions = enum(objc.NSUInteger) {
-    MappedIfSafe = 1,
-    Uncached = 2,
-    MappedAlways = 8,
-    Mapped = 1,
-    MappedRead = 1,
-    UncachedRead = 2,
-};
+pub extern "Foundation" fn RoundDownToMultipleOfPageSize(bytes: objc.NSUInteger) callconv(.C) objc.NSUInteger;
 
-pub const DataWritingOptions = enum(objc.NSUInteger) {
-    Atomic = 1,
-    WithoutOverwriting = 2,
-    FileProtectionNone = 268435456,
-    FileProtectionComplete = 536870912,
-    FileProtectionCompleteUnlessOpen = 805306368,
-    FileProtectionCompleteUntilFirstUserAuthentication = 1073741824,
-    FileProtectionCompleteWhenUserInactive = 1342177280,
-    FileProtectionMask = 4026531840,
-    AtomicWrite = 1,
-};
+pub extern "Foundation" fn AllocateMemoryPages(bytes: objc.NSUInteger) callconv(.C) ?*anyopaque;
 
-pub const DataSearchOptions = enum(objc.NSUInteger) {
-    Backwards = 1,
-    Anchored = 2,
-};
+pub extern "Foundation" fn DeallocateMemoryPages(ptr: ?*anyopaque, bytes: objc.NSUInteger) callconv(.C) void;
 
-pub const DataBase64EncodingOptions = enum(objc.NSUInteger) {
-    Encoding64CharacterLineLength = 1,
-    Encoding76CharacterLineLength = 2,
-    EndLineWithCarriageReturn = 16,
-    EndLineWithLineFeed = 32,
-};
+pub extern "Foundation" fn CopyMemoryPages(source: ?*anyopaque, dest: ?*anyopaque, bytes: objc.NSUInteger) callconv(.C) void;
 
-pub const DataBase64DecodingOptions = enum(objc.NSUInteger) {
-    IgnoreUnknownCharacters = 1,
-};
-
-pub const DataCompressionAlgorithm = enum(objc.NSInteger) {
-    LZFSE = 0,
-    LZ4 = 1,
-    LZMA = 2,
-    Zlib = 3,
-};
-
-pub const AttributedStringEnumerationOptions = enum(objc.NSUInteger) {
-    Reverse = 2,
-    LongestEffectiveRangeNotRequired = 1048576,
-};
-
-pub const InlinePresentationIntent = enum(objc.NSUInteger) {
-    Emphasized = 1,
-    StronglyEmphasized = 2,
-    Code = 4,
-    Strikethrough = 32,
-    SoftBreak = 64,
-    LineBreak = 128,
-    InlineHTML = 256,
-    BlockHTML = 512,
-};
-
-pub const AttributedStringMarkdownParsingFailurePolicy = enum(objc.NSInteger) {
-    ReturnError = 0,
-    ReturnPartiallyParsedIfPossible = 1,
-};
-
-pub const AttributedStringMarkdownInterpretedSyntax = enum(objc.NSInteger) {
-    Full = 0,
-    InlineOnly = 1,
-    InlineOnlyPreservingWhitespace = 2,
-};
-
-pub const AttributedStringFormattingOptions = enum(objc.NSUInteger) {
-    InsertArgumentAttributesWithoutMerging = 1,
-    ApplyReplacementIndexAttribute = 2,
-};
-
-pub const PresentationIntentKind = enum(objc.NSInteger) {
-    Paragraph = 0,
-    Header = 1,
-    OrderedList = 2,
-    UnorderedList = 3,
-    ListItem = 4,
-    CodeBlock = 5,
-    BlockQuote = 6,
-    ThematicBreak = 7,
-    Table = 8,
-    TableHeaderRow = 9,
-    TableRow = 10,
-    TableCell = 11,
-};
-
-pub const PresentationIntentTableColumnAlignment = enum(objc.NSInteger) {
-    Left = 0,
-    Center = 1,
-    Right = 2,
-};
-
-pub const FormattingContext = enum(objc.NSInteger) {
-    Unknown = 0,
-    Dynamic = 1,
-    Standalone = 2,
-    ListItem = 3,
-    BeginningOfSentence = 4,
-    MiddleOfSentence = 5,
-};
-
-pub const FormattingUnitStyle = enum(objc.NSInteger) {
-    Short = 1,
-    Medium = 2,
-    Long = 3,
-};
-
-pub const DateFormatterStyle = enum(objc.NSUInteger) {
-    NoStyle = 0,
-    ShortStyle = 1,
-    MediumStyle = 2,
-    LongStyle = 3,
-    FullStyle = 4,
-};
-
-pub const DateFormatterBehavior = enum(objc.NSUInteger) {
-    Default = 0,
-    10_0 = 1000,
-    10_4 = 1040,
-};
-
-pub const DateIntervalFormatterStyle = enum(objc.NSUInteger) {
-    NoStyle = 0,
-    ShortStyle = 1,
-    MediumStyle = 2,
-    LongStyle = 3,
-    FullStyle = 4,
-};
-
-pub const ISO8601DateFormatOptions = enum(objc.NSUInteger) {
-    WithYear = 1,
-    WithMonth = 2,
-    WithWeekOfYear = 4,
-    WithDay = 16,
-    WithTime = 32,
-    WithTimeZone = 64,
-    WithSpaceBetweenDateAndTime = 128,
-    WithDashSeparatorInDate = 256,
-    WithColonSeparatorInTime = 512,
-    WithColonSeparatorInTimeZone = 1024,
-    WithFractionalSeconds = 2048,
-    WithFullDate = 275,
-    WithFullTime = 1632,
-    WithInternetDateTime = 1907,
-};
-
-pub const MassFormatterUnit = enum(objc.NSInteger) {
-    Gram = 11,
-    Kilogram = 14,
-    Ounce = 1537,
-    Pound = 1538,
-    Stone = 1539,
-};
-
-pub const LengthFormatterUnit = enum(objc.NSInteger) {
-    Millimeter = 8,
-    Centimeter = 9,
-    Meter = 11,
-    Kilometer = 14,
-    Inch = 1281,
-    Foot = 1282,
-    Yard = 1283,
-    Mile = 1284,
-};
-
-pub const EnergyFormatterUnit = enum(objc.NSInteger) {
-    Joule = 11,
-    Kilojoule = 14,
-    Calorie = 1793,
-    Kilocalorie = 1794,
-};
-
-pub const NumberFormatterBehavior = enum(objc.NSUInteger) {
-    Default = 0,
-    10_0 = 1000,
-    10_4 = 1040,
-};
-
-pub const NumberFormatterStyle = enum(objc.NSUInteger) {
-    NoStyle = 0,
-    DecimalStyle = 1,
-    CurrencyStyle = 2,
-    PercentStyle = 3,
-    ScientificStyle = 4,
-    SpellOutStyle = 5,
-    OrdinalStyle = 6,
-    CurrencyISOCodeStyle = 8,
-    CurrencyPluralStyle = 9,
-    CurrencyAccountingStyle = 10,
-};
-
-pub const NumberFormatterPadPosition = enum(objc.NSUInteger) {
-    BeforePrefix = 0,
-    AfterPrefix = 1,
-    BeforeSuffix = 2,
-    AfterSuffix = 3,
-};
-
-pub const NumberFormatterRoundingMode = enum(objc.NSUInteger) {
-    Ceiling = 0,
-    Floor = 1,
-    Down = 2,
-    Up = 3,
-    HalfEven = 4,
-    HalfDown = 5,
-    HalfUp = 6,
-};
-
-pub const LocaleLanguageDirection = enum(objc.NSUInteger) {
-    Unknown = 0,
-    LeftToRight = 1,
-    RightToLeft = 2,
-    TopToBottom = 3,
-    BottomToTop = 4,
-};
-
-pub const MeasurementFormatterUnitOptions = enum(objc.NSUInteger) {
-    ProvidedUnit = 1,
-    NaturalScale = 2,
-    TemperatureWithoutUnit = 4,
-};
-
-pub const PersonNameComponentsFormatterStyle = enum(objc.NSInteger) {
-    Default = 0,
-    Short = 1,
-    Medium = 2,
-    Long = 3,
-    Abbreviated = 4,
-};
-
-pub const PersonNameComponentsFormatterOptions = enum(objc.NSUInteger) {
-    Phonetic = 2,
-};
-
-pub const RelativeDateTimeFormatterStyle = enum(objc.NSInteger) {
-    Numeric = 0,
-    Named = 1,
-};
-
-pub const RelativeDateTimeFormatterUnitsStyle = enum(objc.NSInteger) {
-    Full = 0,
-    SpellOut = 1,
-    Short = 2,
-    Abbreviated = 3,
-};
-
-pub const RoundingMode = enum(objc.NSUInteger) {
-    Plain = 0,
-    Down = 1,
-    Up = 2,
-    Bankers = 3,
-};
-
-pub const CalculationError = enum(objc.NSUInteger) {
-    NoError = 0,
-    LossOfPrecision = 1,
-    Underflow = 2,
-    Overflow = 3,
-    DivideByZero = 4,
-};
-
-pub const SearchPathDirectory = enum(objc.NSUInteger) {
-    ApplicationDirectory = 1,
-    DemoApplicationDirectory = 2,
-    DeveloperApplicationDirectory = 3,
-    AdminApplicationDirectory = 4,
-    LibraryDirectory = 5,
-    DeveloperDirectory = 6,
-    UserDirectory = 7,
-    DocumentationDirectory = 8,
-    DocumentDirectory = 9,
-    CoreServiceDirectory = 10,
-    AutosavedInformationDirectory = 11,
-    DesktopDirectory = 12,
-    CachesDirectory = 13,
-    ApplicationSupportDirectory = 14,
-    DownloadsDirectory = 15,
-    InputMethodsDirectory = 16,
-    MoviesDirectory = 17,
-    MusicDirectory = 18,
-    PicturesDirectory = 19,
-    PrinterDescriptionDirectory = 20,
-    SharedPublicDirectory = 21,
-    PreferencePanesDirectory = 22,
-    ApplicationScriptsDirectory = 23,
-    ItemReplacementDirectory = 99,
-    AllApplicationsDirectory = 100,
-    AllLibrariesDirectory = 101,
-    TrashDirectory = 102,
-};
-
-pub const SearchPathDomainMask = enum(objc.NSUInteger) {
-    UserDomainMask = 1,
-    LocalDomainMask = 2,
-    NetworkDomainMask = 4,
-    SystemDomainMask = 8,
-    AllDomainsMask = 65535,
-};
-
-pub const URLHandleStatus = enum(objc.NSUInteger) {
-    NotLoaded = 0,
-    LoadSucceeded = 1,
-    LoadInProgress = 2,
-    LoadFailed = 3,
-};
-
-pub const URLBookmarkCreationOptions = enum(objc.NSUInteger) {
-    PreferFileIDResolution = 256,
-    MinimalBookmark = 512,
-    SuitableForBookmarkFile = 1024,
-    WithSecurityScope = 2048,
-    SecurityScopeAllowOnlyReadAccess = 4096,
-    WithoutImplicitSecurityScope = 536870912,
-};
-
-pub const URLBookmarkResolutionOptions = enum(objc.NSUInteger) {
-    WithoutUI = 256,
-    WithoutMounting = 512,
-    WithSecurityScope = 1024,
-    WithoutImplicitStartAccessing = 32768,
-};
-
-pub const VolumeEnumerationOptions = enum(objc.NSUInteger) {
-    SkipHiddenVolumes = 2,
-    ProduceFileReferenceURLs = 4,
-};
-
-pub const DirectoryEnumerationOptions = enum(objc.NSUInteger) {
-    SkipsSubdirectoryDescendants = 1,
-    SkipsPackageDescendants = 2,
-    SkipsHiddenFiles = 4,
-    IncludesDirectoriesPostOrder = 8,
-    ProducesRelativePathURLs = 16,
-};
-
-pub const FileManagerItemReplacementOptions = enum(objc.NSUInteger) {
-    UsingNewMetadataOnly = 1,
-    WithoutDeletingBackupItem = 2,
-};
-
-pub const URLRelationship = enum(objc.NSInteger) {
-    Contains = 0,
-    Same = 1,
-    Other = 2,
-};
-
-pub const FileManagerUnmountOptions = enum(objc.NSUInteger) {
-    AllPartitionsAndEjectDisk = 1,
-    WithoutUI = 2,
-};
-
-pub const PointerFunctionsOptions = enum(objc.NSUInteger) {
-    StrongMemory = 0,
-    ZeroingWeakMemory = 1,
-    OpaqueMemory = 2,
-    MallocMemory = 3,
-    MachVirtualMemory = 4,
-    WeakMemory = 5,
-    ObjectPersonality = 0,
-    OpaquePersonality = 256,
-    ObjectPointerPersonality = 512,
-    CStringPersonality = 768,
-    StructPersonality = 1024,
-    IntegerPersonality = 1280,
-    CopyIn = 65536,
-};
-
-pub const HTTPCookieAcceptPolicy = enum(objc.NSUInteger) {
-    Always = 0,
-    Never = 1,
-    OnlyFromMainDocumentDomain = 2,
-};
-
-pub const JSONReadingOptions = enum(objc.NSUInteger) {
-    MutableContainers = 1,
-    MutableLeaves = 2,
-    FragmentsAllowed = 4,
-    JSON5Allowed = 8,
-    TopLevelDictionaryAssumed = 16,
-    AllowFragments = 4,
-};
-
-pub const JSONWritingOptions = enum(objc.NSUInteger) {
-    PrettyPrinted = 1,
-    SortedKeys = 2,
-    FragmentsAllowed = 4,
-    WithoutEscapingSlashes = 8,
-};
-
-pub const KeyValueObservingOptions = enum(objc.NSUInteger) {
-    New = 1,
-    Old = 2,
-    Initial = 4,
-    Prior = 8,
-};
-
-pub const KeyValueChange = enum(objc.NSUInteger) {
-    Setting = 1,
-    Insertion = 2,
-    Removal = 3,
-    Replacement = 4,
-};
-
-pub const KeyValueSetMutationKind = enum(objc.NSUInteger) {
-    UnionSetMutation = 1,
-    MinusSetMutation = 2,
-    IntersectSetMutation = 3,
-    SetMutation = 4,
-};
-
-pub const PropertyListMutabilityOptions = enum(objc.NSUInteger) {
-    Immutable = 0,
-    MutableContainers = 1,
-    MutableContainersAndLeaves = 2,
-};
-
-pub const PropertyListFormat = enum(objc.NSUInteger) {
-    OpenStepFormat = 1,
-    XMLFormat_v1_0 = 100,
-    BinaryFormat_v1_0 = 200,
-};
-
-pub const RectEdge = enum(objc.NSUInteger) {
-    MinX = 0,
-    MinY = 1,
-    MaxX = 2,
-    MaxY = 3,
-    MinXEdge = 0,
-    MinYEdge = 1,
-    MaxXEdge = 2,
-    MaxYEdge = 3,
-};
-
-pub const AlignmentOptions = enum(u64) {
-    MinXInward = 1,
-    MinYInward = 2,
-    MaxXInward = 4,
-    MaxYInward = 8,
-    WidthInward = 16,
-    HeightInward = 32,
-    MinXOutward = 256,
-    MinYOutward = 512,
-    MaxXOutward = 1024,
-    MaxYOutward = 2048,
-    WidthOutward = 4096,
-    HeightOutward = 8192,
-    MinXNearest = 65536,
-    MinYNearest = 131072,
-    MaxXNearest = 262144,
-    MaxYNearest = 524288,
-    WidthNearest = 1048576,
-    HeightNearest = 2097152,
-    RectFlipped = -9223372036854775808,
-    AllEdgesInward = 15,
-    AllEdgesOutward = 3840,
-    AllEdgesNearest = 983040,
-};
-
-pub const GrammaticalGender = enum(objc.NSInteger) {
-    NotSet = 0,
-    Feminine = 1,
-    Masculine = 2,
-    Neuter = 3,
-};
-
-pub const GrammaticalPartOfSpeech = enum(objc.NSInteger) {
-    NotSet = 0,
-    Determiner = 1,
-    Pronoun = 2,
-    Letter = 3,
-    Adverb = 4,
-    Particle = 5,
-    Adjective = 6,
-    Adposition = 7,
-    Verb = 8,
-    Noun = 9,
-    Conjunction = 10,
-    Numeral = 11,
-    Interjection = 12,
-    Preposition = 13,
-    Abbreviation = 14,
-};
-
-pub const GrammaticalNumber = enum(objc.NSInteger) {
-    NotSet = 0,
-    Singular = 1,
-    Zero = 2,
-    Plural = 3,
-    PluralTwo = 4,
-    PluralFew = 5,
-    PluralMany = 6,
-};
-
-pub const GrammaticalCase = enum(objc.NSInteger) {
-    NotSet = 0,
-    Nominative = 1,
-    Accusative = 2,
-    Dative = 3,
-    Genitive = 4,
-    Prepositional = 5,
-    Ablative = 6,
-    Adessive = 7,
-    Allative = 8,
-    Elative = 9,
-    Illative = 10,
-    Essive = 11,
-    Inessive = 12,
-    Locative = 13,
-    Translative = 14,
-};
-
-pub const GrammaticalPronounType = enum(objc.NSInteger) {
-    NotSet = 0,
-    Personal = 1,
-    Reflexive = 2,
-    Possessive = 3,
-};
-
-pub const GrammaticalPerson = enum(objc.NSInteger) {
-    NotSet = 0,
-    First = 1,
-    Second = 2,
-    Third = 3,
-};
-
-pub const GrammaticalDetermination = enum(objc.NSInteger) {
-    NotSet = 0,
-    Independent = 1,
-    Dependent = 2,
-};
-
-pub const GrammaticalDefiniteness = enum(objc.NSInteger) {
-    NotSet = 0,
-    Indefinite = 1,
-    Definite = 2,
-};
-
-pub const PostingStyle = enum(objc.NSUInteger) {
-    WhenIdle = 1,
-    ASAP = 2,
-    Now = 3,
-};
-
-pub const NotificationCoalescing = enum(objc.NSUInteger) {
-    NoCoalescing = 0,
-    OnName = 1,
-    OnSender = 2,
-};
-
-pub const OperationQueuePriority = enum(objc.NSInteger) {
-    VeryLow = -8,
-    Low = -4,
-    Normal = 0,
-    High = 4,
-    VeryHigh = 8,
-};
-
-pub const MachPortOptions = enum(objc.NSUInteger) {
-    DeallocateNone = 0,
-    DeallocateSendRight = 1,
-    DeallocateReceiveRight = 2,
-};
-
-pub const anon111 = enum(objc.NSInteger) {
-    NSFileNoSuchFileError = 4,
-    NSFileLockingError = 255,
-    NSFileReadUnknownError = 256,
-    NSFileReadNoPermissionError = 257,
-    NSFileReadInvalidFileNameError = 258,
-    NSFileReadCorruptFileError = 259,
-    NSFileReadNoSuchFileError = 260,
-    NSFileReadInapplicableStringEncodingError = 261,
-    NSFileReadUnsupportedSchemeError = 262,
-    NSFileReadTooLargeError = 263,
-    NSFileReadUnknownStringEncodingError = 264,
-    NSFileWriteUnknownError = 512,
-    NSFileWriteNoPermissionError = 513,
-    NSFileWriteInvalidFileNameError = 514,
-    NSFileWriteFileExistsError = 516,
-    NSFileWriteInapplicableStringEncodingError = 517,
-    NSFileWriteUnsupportedSchemeError = 518,
-    NSFileWriteOutOfSpaceError = 640,
-    NSFileWriteVolumeReadOnlyError = 642,
-    NSFileManagerUnmountUnknownError = 768,
-    NSFileManagerUnmountBusyError = 769,
-    NSKeyValueValidationError = 1024,
-    NSFormattingError = 2048,
-    NSUserCancelledError = 3072,
-    NSFeatureUnsupportedError = 3328,
-    NSExecutableNotLoadableError = 3584,
-    NSExecutableArchitectureMismatchError = 3585,
-    NSExecutableRuntimeMismatchError = 3586,
-    NSExecutableLoadError = 3587,
-    NSExecutableLinkError = 3588,
-    NSFileErrorMinimum = 0,
-    NSFileErrorMaximum = 1023,
-    NSValidationErrorMinimum = 1024,
-    NSValidationErrorMaximum = 2047,
-    NSExecutableErrorMinimum = 3584,
-    NSExecutableErrorMaximum = 3839,
-    NSFormattingErrorMinimum = 2048,
-    NSFormattingErrorMaximum = 2559,
-    NSPropertyListReadCorruptError = 3840,
-    NSPropertyListReadUnknownVersionError = 3841,
-    NSPropertyListReadStreamError = 3842,
-    NSPropertyListWriteStreamError = 3851,
-    NSPropertyListWriteInvalidError = 3852,
-    NSPropertyListErrorMinimum = 3840,
-    NSPropertyListErrorMaximum = 4095,
-    NSXPCConnectionInterrupted = 4097,
-    NSXPCConnectionInvalid = 4099,
-    NSXPCConnectionReplyInvalid = 4101,
-    NSXPCConnectionCodeSigningRequirementFailure = 4102,
-    NSXPCConnectionErrorMinimum = 4096,
-    NSXPCConnectionErrorMaximum = 4224,
-    NSUbiquitousFileUnavailableError = 4353,
-    NSUbiquitousFileNotUploadedDueToQuotaError = 4354,
-    NSUbiquitousFileUbiquityServerNotAvailable = 4355,
-    NSUbiquitousFileErrorMinimum = 4352,
-    NSUbiquitousFileErrorMaximum = 4607,
-    NSUserActivityHandoffFailedError = 4608,
-    NSUserActivityConnectionUnavailableError = 4609,
-    NSUserActivityRemoteApplicationTimedOutError = 4610,
-    NSUserActivityHandoffUserInfoTooLargeError = 4611,
-    NSUserActivityErrorMinimum = 4608,
-    NSUserActivityErrorMaximum = 4863,
-    NSCoderReadCorruptError = 4864,
-    NSCoderValueNotFoundError = 4865,
-    NSCoderInvalidValueError = 4866,
-    NSCoderErrorMinimum = 4864,
-    NSCoderErrorMaximum = 4991,
-    NSBundleErrorMinimum = 4992,
-    NSBundleErrorMaximum = 5119,
-    NSBundleOnDemandResourceOutOfSpaceError = 4992,
-    NSBundleOnDemandResourceExceededMaximumSizeError = 4993,
-    NSBundleOnDemandResourceInvalidTagError = 4994,
-    NSCloudSharingNetworkFailureError = 5120,
-    NSCloudSharingQuotaExceededError = 5121,
-    NSCloudSharingTooManyParticipantsError = 5122,
-    NSCloudSharingConflictError = 5123,
-    NSCloudSharingNoPermissionError = 5124,
-    NSCloudSharingOtherError = 5375,
-    NSCloudSharingErrorMinimum = 5120,
-    NSCloudSharingErrorMaximum = 5375,
-    NSCompressionFailedError = 5376,
-    NSDecompressionFailedError = 5377,
-    NSCompressionErrorMinimum = 5376,
-    NSCompressionErrorMaximum = 5503,
-};
-
-pub const ActivityOptions = enum(objc.uint64_t) {
-    IdleDisplaySleepDisabled = 1099511627776,
-    IdleSystemSleepDisabled = 1048576,
-    SuddenTerminationDisabled = 16384,
-    AutomaticTerminationDisabled = 32768,
-    AnimationTrackingEnabled = 35184372088832,
-    TrackingEnabled = 70368744177664,
-    UserInitiated = 16777215,
-    UserInitiatedAllowingIdleSystemSleep = 15728639,
-    Background = 255,
-    LatencyCritical = 1095216660480,
-    UserInteractive = 1095233437695,
-};
-
-pub const ProcessInfoThermalState = enum(objc.NSInteger) {
-    Nominal = 0,
-    Fair = 1,
-    Serious = 2,
-    Critical = 3,
-};
-
-pub const TextCheckingType = enum(objc.uint64_t) {
-    Orthography = 1,
-    Spelling = 2,
-    Grammar = 4,
-    Date = 8,
-    Address = 16,
-    Link = 32,
-    Quote = 64,
-    Dash = 128,
-    Replacement = 256,
-    Correction = 512,
-    RegularExpression = 1024,
-    PhoneNumber = 2048,
-    TransitInformation = 4096,
-};
-
-pub const RegularExpressionOptions = enum(objc.NSUInteger) {
-    CaseInsensitive = 1,
-    AllowCommentsAndWhitespace = 2,
-    IgnoreMetacharacters = 4,
-    DotMatchesLineSeparators = 8,
-    AnchorsMatchLines = 16,
-    UseUnixLineSeparators = 32,
-    UseUnicodeWordBoundaries = 64,
-};
-
-pub const MatchingOptions = enum(objc.NSUInteger) {
-    ReportProgress = 1,
-    ReportCompletion = 2,
-    Anchored = 4,
-    WithTransparentBounds = 8,
-    WithoutAnchoringBounds = 16,
-};
-
-pub const MatchingFlags = enum(objc.NSUInteger) {
-    Progress = 1,
-    Completed = 2,
-    HitEnd = 4,
-    RequiredEnd = 8,
-    InternalError = 16,
-};
-
-pub const StreamStatus = enum(objc.NSUInteger) {
-    NotOpen = 0,
-    Opening = 1,
-    Open = 2,
-    Reading = 3,
-    Writing = 4,
-    AtEnd = 5,
-    Closed = 6,
-    Error = 7,
-};
-
-pub const StreamEvent = enum(objc.NSUInteger) {
-    None = 0,
-    OpenCompleted = 1,
-    HasBytesAvailable = 2,
-    HasSpaceAvailable = 4,
-    ErrorOccurred = 8,
-    EndEncountered = 16,
-};
-
-pub const TimeZoneNameStyle = enum(objc.NSInteger) {
-    Standard = 0,
-    ShortStandard = 1,
-    DaylightSaving = 2,
-    ShortDaylightSaving = 3,
-    Generic = 4,
-    ShortGeneric = 5,
-};
-
-pub const URLCacheStoragePolicy = enum(objc.NSUInteger) {
-    Allowed = 0,
-    AllowedInMemoryOnly = 1,
-    NotAllowed = 2,
-};
-
-pub const anon471 = enum(objc.NSInteger) {
-    NSUbiquitousKeyValueStoreServerChange = 0,
-    NSUbiquitousKeyValueStoreInitialSyncChange = 1,
-    NSUbiquitousKeyValueStoreQuotaViolationChange = 2,
-    NSUbiquitousKeyValueStoreAccountChange = 3,
-};
-
-pub const URLCredentialPersistence = enum(objc.NSUInteger) {
-    None = 0,
-    ForSession = 1,
-    Permanent = 2,
-    Synchronizable = 3,
-};
-
-pub const anon691 = enum(objc.NSInteger) {
-    NSURLErrorCancelledReasonUserForceQuitApplication = 0,
-    NSURLErrorCancelledReasonBackgroundUpdatesDisabled = 1,
-    NSURLErrorCancelledReasonInsufficientSystemResources = 2,
-};
-
-pub const URLErrorNetworkUnavailableReason = enum(objc.NSInteger) {
-    Cellular = 0,
-    Expensive = 1,
-    Constrained = 2,
-};
-
-pub const anon1001 = enum(objc.NSInteger) {
-    NSURLErrorUnknown = -1,
-    NSURLErrorCancelled = -999,
-    NSURLErrorBadURL = -1000,
-    NSURLErrorTimedOut = -1001,
-    NSURLErrorUnsupportedURL = -1002,
-    NSURLErrorCannotFindHost = -1003,
-    NSURLErrorCannotConnectToHost = -1004,
-    NSURLErrorNetworkConnectionLost = -1005,
-    NSURLErrorDNSLookupFailed = -1006,
-    NSURLErrorHTTPTooManyRedirects = -1007,
-    NSURLErrorResourceUnavailable = -1008,
-    NSURLErrorNotConnectedToInternet = -1009,
-    NSURLErrorRedirectToNonExistentLocation = -1010,
-    NSURLErrorBadServerResponse = -1011,
-    NSURLErrorUserCancelledAuthentication = -1012,
-    NSURLErrorUserAuthenticationRequired = -1013,
-    NSURLErrorZeroByteResource = -1014,
-    NSURLErrorCannotDecodeRawData = -1015,
-    NSURLErrorCannotDecodeContentData = -1016,
-    NSURLErrorCannotParseResponse = -1017,
-    NSURLErrorAppTransportSecurityRequiresSecureConnection = -1022,
-    NSURLErrorFileDoesNotExist = -1100,
-    NSURLErrorFileIsDirectory = -1101,
-    NSURLErrorNoPermissionsToReadFile = -1102,
-    NSURLErrorDataLengthExceedsMaximum = -1103,
-    NSURLErrorFileOutsideSafeArea = -1104,
-    NSURLErrorSecureConnectionFailed = -1200,
-    NSURLErrorServerCertificateHasBadDate = -1201,
-    NSURLErrorServerCertificateUntrusted = -1202,
-    NSURLErrorServerCertificateHasUnknownRoot = -1203,
-    NSURLErrorServerCertificateNotYetValid = -1204,
-    NSURLErrorClientCertificateRejected = -1205,
-    NSURLErrorClientCertificateRequired = -1206,
-    NSURLErrorCannotLoadFromNetwork = -2000,
-    NSURLErrorCannotCreateFile = -3000,
-    NSURLErrorCannotOpenFile = -3001,
-    NSURLErrorCannotCloseFile = -3002,
-    NSURLErrorCannotWriteToFile = -3003,
-    NSURLErrorCannotRemoveFile = -3004,
-    NSURLErrorCannotMoveFile = -3005,
-    NSURLErrorDownloadDecodingFailedMidStream = -3006,
-    NSURLErrorDownloadDecodingFailedToComplete = -3007,
-    NSURLErrorInternationalRoamingOff = -1018,
-    NSURLErrorCallIsActive = -1019,
-    NSURLErrorDataNotAllowed = -1020,
-    NSURLErrorRequestBodyStreamExhausted = -1021,
-    NSURLErrorBackgroundSessionRequiresSharedContainer = -995,
-    NSURLErrorBackgroundSessionInUseByAnotherProcess = -996,
-    NSURLErrorBackgroundSessionWasDisconnected = -997,
-};
-
-pub const URLRequestCachePolicy = enum(objc.NSUInteger) {
-    UseProtocolCachePolicy = 0,
-    ReloadIgnoringLocalCacheData = 1,
-    ReloadIgnoringLocalAndRemoteCacheData = 4,
-    ReloadIgnoringCacheData = 1,
-    ReturnCacheDataElseLoad = 2,
-    ReturnCacheDataDontLoad = 3,
-    ReloadRevalidatingCacheData = 5,
-};
-
-pub const URLRequestNetworkServiceType = enum(objc.NSUInteger) {
-    NetworkServiceTypeDefault = 0,
-    NetworkServiceTypeVoIP = 1,
-    NetworkServiceTypeVideo = 2,
-    NetworkServiceTypeBackground = 3,
-    NetworkServiceTypeVoice = 4,
-    NetworkServiceTypeResponsiveData = 6,
-    NetworkServiceTypeAVStreaming = 8,
-    NetworkServiceTypeResponsiveAV = 9,
-    NetworkServiceTypeCallSignaling = 11,
-};
-
-pub const URLRequestAttribution = enum(objc.NSUInteger) {
-    Developer = 0,
-    User = 1,
-};
-
-pub const XMLParserExternalEntityResolvingPolicy = enum(objc.NSUInteger) {
-    ResolveExternalEntitiesNever = 0,
-    ResolveExternalEntitiesNoNetwork = 1,
-    ResolveExternalEntitiesSameOriginOnly = 2,
-    ResolveExternalEntitiesAlways = 3,
-};
-
-pub const XMLParserError = enum(objc.NSInteger) {
-    InternalError = 1,
-    OutOfMemoryError = 2,
-    DocumentStartError = 3,
-    EmptyDocumentError = 4,
-    PrematureDocumentEndError = 5,
-    InvalidHexCharacterRefError = 6,
-    InvalidDecimalCharacterRefError = 7,
-    InvalidCharacterRefError = 8,
-    InvalidCharacterError = 9,
-    CharacterRefAtEOFError = 10,
-    CharacterRefInPrologError = 11,
-    CharacterRefInEpilogError = 12,
-    CharacterRefInDTDError = 13,
-    EntityRefAtEOFError = 14,
-    EntityRefInPrologError = 15,
-    EntityRefInEpilogError = 16,
-    EntityRefInDTDError = 17,
-    ParsedEntityRefAtEOFError = 18,
-    ParsedEntityRefInPrologError = 19,
-    ParsedEntityRefInEpilogError = 20,
-    ParsedEntityRefInInternalSubsetError = 21,
-    EntityReferenceWithoutNameError = 22,
-    EntityReferenceMissingSemiError = 23,
-    ParsedEntityRefNoNameError = 24,
-    ParsedEntityRefMissingSemiError = 25,
-    UndeclaredEntityError = 26,
-    UnparsedEntityError = 28,
-    EntityIsExternalError = 29,
-    EntityIsParameterError = 30,
-    UnknownEncodingError = 31,
-    EncodingNotSupportedError = 32,
-    StringNotStartedError = 33,
-    StringNotClosedError = 34,
-    NamespaceDeclarationError = 35,
-    EntityNotStartedError = 36,
-    EntityNotFinishedError = 37,
-    LessThanSymbolInAttributeError = 38,
-    AttributeNotStartedError = 39,
-    AttributeNotFinishedError = 40,
-    AttributeHasNoValueError = 41,
-    AttributeRedefinedError = 42,
-    LiteralNotStartedError = 43,
-    LiteralNotFinishedError = 44,
-    CommentNotFinishedError = 45,
-    ProcessingInstructionNotStartedError = 46,
-    ProcessingInstructionNotFinishedError = 47,
-    NotationNotStartedError = 48,
-    NotationNotFinishedError = 49,
-    AttributeListNotStartedError = 50,
-    AttributeListNotFinishedError = 51,
-    MixedContentDeclNotStartedError = 52,
-    MixedContentDeclNotFinishedError = 53,
-    ElementContentDeclNotStartedError = 54,
-    ElementContentDeclNotFinishedError = 55,
-    XMLDeclNotStartedError = 56,
-    XMLDeclNotFinishedError = 57,
-    ConditionalSectionNotStartedError = 58,
-    ConditionalSectionNotFinishedError = 59,
-    ExternalSubsetNotFinishedError = 60,
-    DOCTYPEDeclNotFinishedError = 61,
-    MisplacedCDATAEndStringError = 62,
-    CDATANotFinishedError = 63,
-    MisplacedXMLDeclarationError = 64,
-    SpaceRequiredError = 65,
-    SeparatorRequiredError = 66,
-    NMTOKENRequiredError = 67,
-    NAMERequiredError = 68,
-    PCDATARequiredError = 69,
-    URIRequiredError = 70,
-    PublicIdentifierRequiredError = 71,
-    LTRequiredError = 72,
-    GTRequiredError = 73,
-    LTSlashRequiredError = 74,
-    EqualExpectedError = 75,
-    TagNameMismatchError = 76,
-    UnfinishedTagError = 77,
-    StandaloneValueError = 78,
-    InvalidEncodingNameError = 79,
-    CommentContainsDoubleHyphenError = 80,
-    InvalidEncodingError = 81,
-    ExternalStandaloneEntityError = 82,
-    InvalidConditionalSectionError = 83,
-    EntityValueRequiredError = 84,
-    NotWellBalancedError = 85,
-    ExtraContentError = 86,
-    InvalidCharacterInEntityError = 87,
-    ParsedEntityRefInInternalError = 88,
-    EntityRefLoopError = 89,
-    EntityBoundaryError = 90,
-    InvalidURIError = 91,
-    URIFragmentError = 92,
-    NoDTDError = 94,
-    DelegateAbortedParseError = 512,
-};
-
-pub const XPCConnectionOptions = enum(objc.NSUInteger) {
-    Privileged = 4096,
-};
-
-pub const ByteCountFormatterUnits = enum(objc.NSUInteger) {
-    UseDefault = 0,
-    UseBytes = 1,
-    UseKB = 2,
-    UseMB = 4,
-    UseGB = 8,
-    UseTB = 16,
-    UsePB = 32,
-    UseEB = 64,
-    UseZB = 128,
-    UseYBOrHigher = 65280,
-    UseAll = 65535,
-};
-
-pub const ByteCountFormatterCountStyle = enum(objc.NSInteger) {
-    File = 0,
-    Memory = 1,
-    Decimal = 2,
-    Binary = 3,
-};
-
-pub const ComparisonPredicateOptions = enum(objc.NSUInteger) {
-    CaseInsensitivePredicateOption = 1,
-    DiacriticInsensitivePredicateOption = 2,
-    NormalizedPredicateOption = 4,
-};
-
-pub const ComparisonPredicateModifier = enum(objc.NSUInteger) {
-    DirectPredicateModifier = 0,
-    AllPredicateModifier = 1,
-    AnyPredicateModifier = 2,
-};
-
-pub const PredicateOperatorType = enum(objc.NSUInteger) {
-    LessThanPredicateOperatorType = 0,
-    LessThanOrEqualToPredicateOperatorType = 1,
-    GreaterThanPredicateOperatorType = 2,
-    GreaterThanOrEqualToPredicateOperatorType = 3,
-    EqualToPredicateOperatorType = 4,
-    NotEqualToPredicateOperatorType = 5,
-    MatchesPredicateOperatorType = 6,
-    LikePredicateOperatorType = 7,
-    BeginsWithPredicateOperatorType = 8,
-    EndsWithPredicateOperatorType = 9,
-    InPredicateOperatorType = 10,
-    CustomSelectorPredicateOperatorType = 11,
-    ContainsPredicateOperatorType = 99,
-    BetweenPredicateOperatorType = 100,
-};
-
-pub const CompoundPredicateType = enum(objc.NSUInteger) {
-    NotPredicateType = 0,
-    AndPredicateType = 1,
-    OrPredicateType = 2,
-};
-
-pub const DateComponentsFormatterUnitsStyle = enum(objc.NSInteger) {
-    Positional = 0,
-    Abbreviated = 1,
-    Short = 2,
-    Full = 3,
-    SpellOut = 4,
-    Brief = 5,
-};
-
-pub const DateComponentsFormatterZeroFormattingBehavior = enum(objc.NSUInteger) {
-    None = 0,
-    Default = 1,
-    DropLeading = 2,
-    DropMiddle = 4,
-    DropTrailing = 8,
-    DropAll = 14,
-    Pad = 65536,
-};
-
-pub const ExpressionType = enum(objc.NSUInteger) {
-    ConstantValueExpressionType = 0,
-    EvaluatedObjectExpressionType = 1,
-    VariableExpressionType = 2,
-    KeyPathExpressionType = 3,
-    FunctionExpressionType = 4,
-    UnionSetExpressionType = 5,
-    IntersectSetExpressionType = 6,
-    MinusSetExpressionType = 7,
-    SubqueryExpressionType = 13,
-    AggregateExpressionType = 14,
-    AnyKeyExpressionType = 15,
-    BlockExpressionType = 19,
-    ConditionalExpressionType = 20,
-};
-
-pub const FileCoordinatorReadingOptions = enum(objc.NSUInteger) {
-    WithoutChanges = 1,
-    ResolvesSymbolicLink = 2,
-    ImmediatelyAvailableMetadataOnly = 4,
-    ForUploading = 8,
-};
-
-pub const FileCoordinatorWritingOptions = enum(objc.NSUInteger) {
-    ForDeleting = 1,
-    ForMoving = 2,
-    ForMerging = 4,
-    ForReplacing = 8,
-    ContentIndependentMetadataOnly = 16,
-};
-
-pub const FileVersionAddingOptions = enum(objc.NSUInteger) {
-    ByMoving = 1,
-};
-
-pub const FileVersionReplacingOptions = enum(objc.NSUInteger) {
-    ByMoving = 1,
-};
-
-pub const FileWrapperReadingOptions = enum(objc.NSUInteger) {
-    Immediate = 1,
-    WithoutMapping = 2,
-};
-
-pub const FileWrapperWritingOptions = enum(objc.NSUInteger) {
-    Atomic = 1,
-    WithNameUpdating = 2,
-};
-
-pub const LinguisticTaggerUnit = enum(objc.NSInteger) {
-    Word = 0,
-    Sentence = 1,
-    Paragraph = 2,
-    Document = 3,
-};
-
-pub const LinguisticTaggerOptions = enum(objc.NSUInteger) {
-    OmitWords = 1,
-    OmitPunctuation = 2,
-    OmitWhitespace = 4,
-    OmitOther = 8,
-    JoinNames = 16,
-};
-
-pub const NetServicesError = enum(objc.NSInteger) {
-    UnknownError = -72000,
-    CollisionError = -72001,
-    NotFoundError = -72002,
-    ActivityInProgress = -72003,
-    BadArgumentError = -72004,
-    CancelledError = -72005,
-    InvalidError = -72006,
-    TimeoutError = -72007,
-    MissingRequiredConfigurationError = -72008,
-};
-
-pub const NetServiceOptions = enum(objc.NSUInteger) {
-    NoAutoRename = 1,
-    ListenForConnections = 2,
-};
-
-pub const URLSessionTaskState = enum(objc.NSInteger) {
-    Running = 0,
-    Suspended = 1,
-    Canceling = 2,
-    Completed = 3,
-};
-
-pub const URLSessionWebSocketMessageType = enum(objc.NSInteger) {
-    Data = 0,
-    String = 1,
-};
-
-pub const URLSessionWebSocketCloseCode = enum(objc.NSInteger) {
-    Invalid = 0,
-    NormalClosure = 1000,
-    GoingAway = 1001,
-    ProtocolError = 1002,
-    UnsupportedData = 1003,
-    NoStatusReceived = 1005,
-    AbnormalClosure = 1006,
-    InvalidFramePayloadData = 1007,
-    PolicyViolation = 1008,
-    MessageTooBig = 1009,
-    MandatoryExtensionMissing = 1010,
-    InternalServerError = 1011,
-    TLSHandshakeFailure = 1015,
-};
-
-pub const URLSessionMultipathServiceType = enum(objc.NSInteger) {
-    None = 0,
-    Handover = 1,
-    Interactive = 2,
-    Aggregate = 3,
-};
-
-pub const URLSessionDelayedRequestDisposition = enum(objc.NSInteger) {
-    ContinueLoading = 0,
-    UseNewRequest = 1,
-    Cancel = 2,
-};
-
-pub const URLSessionAuthChallengeDisposition = enum(objc.NSInteger) {
-    UseCredential = 0,
-    PerformDefaultHandling = 1,
-    CancelAuthenticationChallenge = 2,
-    RejectProtectionSpace = 3,
-};
-
-pub const URLSessionResponseDisposition = enum(objc.NSInteger) {
-    Cancel = 0,
-    Allow = 1,
-    BecomeDownload = 2,
-    BecomeStream = 3,
-};
-
-pub const URLSessionTaskMetricsResourceFetchType = enum(objc.NSInteger) {
-    Unknown = 0,
-    NetworkLoad = 1,
-    ServerPush = 2,
-    LocalCache = 3,
-};
-
-pub const URLSessionTaskMetricsDomainResolutionProtocol = enum(objc.NSInteger) {
-    Unknown = 0,
-    UDP = 1,
-    TCP = 2,
-    TLS = 3,
-    HTTPS = 4,
-};
-
-pub const BackgroundActivityResult = enum(objc.NSInteger) {
-    Finished = 1,
-    Deferred = 2,
-};
-
-pub const NotificationSuspensionBehavior = enum(objc.NSUInteger) {
-    Drop = 1,
-    Coalesce = 2,
-    Hold = 3,
-    DeliverImmediately = 4,
-};
-
-pub const DistributedNotificationOptions = enum(objc.NSUInteger) {
-    DeliverImmediately = 1,
-    PostToAllSessions = 2,
-};
-
-pub const TaskTerminationReason = enum(objc.NSInteger) {
-    Exit = 1,
-    UncaughtSignal = 2,
-};
-
-pub const XMLNodeOptions = enum(objc.NSUInteger) {
-    None = 0,
-    IsCDATA = 1,
-    ExpandEmptyElement = 2,
-    CompactEmptyElement = 4,
-    UseSingleQuotes = 8,
-    UseDoubleQuotes = 16,
-    NeverEscapeContents = 32,
-    DocumentTidyHTML = 512,
-    DocumentTidyXML = 1024,
-    DocumentValidate = 8192,
-    LoadExternalEntitiesAlways = 16384,
-    LoadExternalEntitiesSameOriginOnly = 32768,
-    LoadExternalEntitiesNever = 524288,
-    DocumentXInclude = 65536,
-    PrettyPrint = 131072,
-    DocumentIncludeContentTypeDeclaration = 262144,
-    PreserveNamespaceOrder = 1048576,
-    PreserveAttributeOrder = 2097152,
-    PreserveEntities = 4194304,
-    PreservePrefixes = 8388608,
-    PreserveCDATA = 16777216,
-    PreserveWhitespace = 33554432,
-    PreserveDTD = 67108864,
-    PreserveCharacterReferences = 134217728,
-    PromoteSignificantWhitespace = 268435456,
-    PreserveEmptyElements = 6,
-    PreserveQuotes = 24,
-    PreserveAll = 4293918750,
-};
-
-pub const XMLNodeKind = enum(objc.NSUInteger) {
-    InvalidKind = 0,
-    DocumentKind = 1,
-    ElementKind = 2,
-    AttributeKind = 3,
-    NamespaceKind = 4,
-    ProcessingInstructionKind = 5,
-    CommentKind = 6,
-    TextKind = 7,
-    DTDKind = 8,
-    EntityDeclarationKind = 9,
-    AttributeDeclarationKind = 10,
-    ElementDeclarationKind = 11,
-    NotationDeclarationKind = 12,
-};
-
-pub const XMLDTDNodeKind = enum(objc.NSUInteger) {
-    EntityGeneralKind = 1,
-    EntityParsedKind = 2,
-    EntityUnparsedKind = 3,
-    EntityParameterKind = 4,
-    EntityPredefined = 5,
-    AttributeCDATAKind = 6,
-    AttributeIDKind = 7,
-    AttributeIDRefKind = 8,
-    AttributeIDRefsKind = 9,
-    AttributeEntityKind = 10,
-    AttributeEntitiesKind = 11,
-    AttributeNMTokenKind = 12,
-    AttributeNMTokensKind = 13,
-    AttributeEnumerationKind = 14,
-    AttributeNotationKind = 15,
-    ElementDeclarationUndefinedKind = 16,
-    ElementDeclarationEmptyKind = 17,
-    ElementDeclarationAnyKind = 18,
-    ElementDeclarationMixedKind = 19,
-    ElementDeclarationElementKind = 20,
-};
-
-pub const XMLDocumentContentKind = enum(objc.NSUInteger) {
-    XMLKind = 0,
-    XHTMLKind = 1,
-    HTMLKind = 2,
-    TextKind = 3,
-};
-
-pub const AppleEventSendOptions = enum(objc.NSUInteger) {
-    NoReply = 1,
-    QueueReply = 2,
-    WaitForReply = 3,
-    NeverInteract = 16,
-    CanInteract = 32,
-    AlwaysInteract = 48,
-    CanSwitchLayer = 64,
-    DontRecord = 4096,
-    DontExecute = 8192,
-    DontAnnotate = 65536,
-    DefaultOptions = 35,
-};
-
-pub const anon131 = enum(objc.NSInteger) {
-    NSNoSpecifierError = 0,
-    NSNoTopLevelContainersSpecifierError = 1,
-    NSContainerSpecifierError = 2,
-    NSUnknownKeySpecifierError = 3,
-    NSInvalidIndexSpecifierError = 4,
-    NSInternalSpecifierError = 5,
-    NSOperationNotSupportedForKeySpecifierError = 6,
-};
-
-pub const InsertionPosition = enum(objc.NSUInteger) {
-    PositionAfter = 0,
-    PositionBefore = 1,
-    PositionBeginning = 2,
-    PositionEnd = 3,
-    PositionReplace = 4,
-};
-
-pub const RelativePosition = enum(objc.NSUInteger) {
-    After = 0,
-    Before = 1,
-};
-
-pub const WhoseSubelementIdentifier = enum(objc.NSUInteger) {
-    IndexSubelement = 0,
-    EverySubelement = 1,
-    MiddleSubelement = 2,
-    RandomSubelement = 3,
-    NoSubelement = 4,
-};
-
-pub const SaveOptions = enum(objc.NSUInteger) {
-    Yes = 0,
-    No = 1,
-    Ask = 2,
-};
-
-pub const TestComparisonOperation = enum(objc.NSUInteger) {
-    EqualToComparison = 0,
-    LessThanOrEqualToComparison = 1,
-    LessThanComparison = 2,
-    GreaterThanOrEqualToComparison = 3,
-    GreaterThanComparison = 4,
-    BeginsWithComparison = 5,
-    EndsWithComparison = 6,
-    ContainsComparison = 7,
-};
-
-pub const UserNotificationActivationType = enum(objc.NSInteger) {
-    None = 0,
-    ContentsClicked = 1,
-    ActionButtonClicked = 2,
-    Replied = 3,
-    AdditionalActionClicked = 4,
-};
-
-pub const ExceptionName = ?*String;
-
-pub const RunLoopMode = ?*String;
-
-pub const Comparator = *const fn(*objc.Id, *objc.Id) callconv(.C) ComparisonResult;
-
-pub const RangePointer = ?*Range;
-
-pub const unichar = u16;
-
-pub const ItemProviderCompletionHandler = *const fn(?*anyopaque, ?*cf.NSError) callconv(.C) void;
-
-pub const ItemProviderLoadHandler = *const fn(ItemProviderCompletionHandler, *objc.Class, ?*Dictionary) callconv(.C) void;
-
-pub const StringEncoding = objc.NSUInteger;
-
-pub const StringTransform = ?*String;
-
-pub const StringEncodingDetectionOptionsKey = ?*String;
-
-pub const ProgressKind = ?*String;
-
-pub const ProgressUserInfoKey = ?*String;
-
-pub const ProgressFileOperationKind = ?*String;
-
-pub const ProgressUnpublishingHandler = *const fn() callconv(.C) void;
-
-pub const ProgressPublishingHandler = *const fn(?*Progress) callconv(.C) ProgressUnpublishingHandler;
-
-pub const NotificationName = ?*String;
-
-pub const TimeInterval = f64;
-
-pub const CalendarIdentifier = ?*String;
-
-pub const AttributedStringKey = ?*String;
-
-pub const AttributedStringFormattingContextKey = ?*String;
-
-pub const DateFormatterStyle = enum NSDateFormatterStyle;
-
-pub const DateFormatterBehavior = enum NSDateFormatterBehavior;
-
-pub const NumberFormatterStyle = enum NSNumberFormatterStyle;
-
-pub const NumberFormatterPadPosition = enum NSNumberFormatterPadPosition;
-
-pub const NumberFormatterRoundingMode = enum NSNumberFormatterRoundingMode;
-
-pub const LocaleKey = ?*String;
-
-pub const UncaughtExceptionHandler = fn(?*Exception) callconv(.C) void;
-
-pub const ErrorDomain = ?*String;
-
-pub const ErrorUserInfoKey = ?*String;
-
-pub const URLResourceKey = ?*String;
-
-pub const URLFileResourceType = ?*String;
-
-pub const URLThumbnailDictionaryItem = ?*String;
-
-pub const URLFileProtectionType = ?*String;
-
-pub const URLUbiquitousItemDownloadingStatus = ?*String;
-
-pub const URLUbiquitousSharedItemRole = ?*String;
-
-pub const URLUbiquitousSharedItemPermissions = ?*String;
-
-pub const URLBookmarkCreationOptions = enum NSURLBookmarkCreationOptions;
-
-pub const URLBookmarkResolutionOptions = enum NSURLBookmarkResolutionOptions;
-
-pub const URLBookmarkFileCreationOptions = objc.NSUInteger;
-
-pub const FileAttributeKey = ?*String;
-
-pub const FileAttributeType = ?*String;
-
-pub const FileProtectionType = ?*String;
-
-pub const FileProviderServiceName = ?*String;
-
-pub const HashTableOptions = objc.NSUInteger;
-
-pub const HTTPCookiePropertyKey = ?*String;
-
-pub const HTTPCookieStringPolicy = ?*String;
-
-pub const KeyValueOperator = ?*String;
-
-pub const KeyValueChangeKey = ?*String;
-
-pub const PropertyListReadOptions = PropertyListMutabilityOptions;
-
-pub const PropertyListWriteOptions = objc.NSUInteger;
-
-pub const Point = cf.CGPoint;
-
-pub const PointPointer = ?*Point;
-
-pub const PointArray = ?*Point;
-
-pub const Size = cf.CGSize;
-
-pub const SizePointer = ?*Size;
-
-pub const SizeArray = ?*Size;
-
-pub const Rect = cf.CGRect;
-
-pub const RectPointer = ?*Rect;
-
-pub const RectArray = ?*Rect;
-
-pub const MapTableOptions = objc.NSUInteger;
-
-pub const OperationQueuePriority = enum NSOperationQueuePriority;
-
-pub const SocketNativeHandle = i32;
-
-pub const MachPortOptions = enum NSMachPortOptions;
-
-pub const TextCheckingTypes = objc.uint64_t;
-
-pub const TextCheckingKey = ?*String;
-
-pub const StreamPropertyKey = ?*String;
-
-pub const StreamSocketSecurityLevel = ?*String;
-
-pub const StreamSOCKSProxyConfiguration = ?*String;
-
-pub const StreamSOCKSProxyVersion = ?*String;
-
-pub const StreamNetworkServiceTypeValue = ?*String;
-
-pub const ValueTransformerName = ?*String;
-
-pub const LinguisticTagScheme = ?*String;
-
-pub const LinguisticTag = ?*String;
-
-pub const UndoManagerUserInfoKey = ?*String;
-
-pub const UserActivityPersistentIdentifier = ?*String;
-
-pub const BackgroundActivityCompletionHandler = *const fn(BackgroundActivityResult) callconv(.C) void;
-
-pub const DistributedNotificationCenterType = ?*String;
-
-pub const AppleEventManagerSuspensionID = ?*__NSAppleEventManagerSuspension;
-
-pub const UserScriptTaskCompletionHandler = *const fn(?*Error) callconv(.C) void;
-
-pub const UserUnixTaskCompletionHandler = *const fn(?*Error) callconv(.C) void;
-
-pub const UserAppleScriptTaskCompletionHandler = *const fn(?*AppleEventDescriptor, ?*Error) callconv(.C) void;
-
-pub const UserAutomatorTaskCompletionHandler = *const fn(*objc.Id, ?*Error) callconv(.C) void;
+pub extern "Foundation" fn RealMemoryAvailable() callconv(.C) objc.NSUInteger;
 
 /// https://developer.apple.com/documentation/Foundation/NSCopying?language=objc
 pub const Copying = opaque {
@@ -1906,6 +180,31 @@ pub const DiscardableContent = opaque {
 
 };
 
+pub extern "Foundation" fn AllocateObject(aClass: *objc.Class, extraBytes: objc.NSUInteger, zone: ?*Zone) callconv(.C) *objc.Id;
+
+pub extern "Foundation" fn DeallocateObject(object: *objc.Id) callconv(.C) void;
+
+pub extern "Foundation" fn CopyObject(object: *objc.Id, extraBytes: objc.NSUInteger, zone: ?*Zone) callconv(.C) *objc.Id;
+
+pub extern "Foundation" fn ShouldRetainWithZone(anObject: *objc.Id, requestedZone: ?*Zone) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn IncrementExtraRefCount(object: *objc.Id) callconv(.C) void;
+
+pub extern "Foundation" fn DecrementExtraRefCountWasZero(object: *objc.Id) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn ExtraRefCount(object: *objc.Id) callconv(.C) objc.NSUInteger;
+
+pub extern "Foundation" fn CFBridgingRetain(X: *objc.Id) callconv(.C) cf.TypeRef;
+
+pub extern "Foundation" fn CFBridgingRelease(X: cf.TypeRef) callconv(.C) *objc.Id;
+
+pub const FastEnumerationState = extern struct {
+    state: u64,
+    itemsPtr: ?**objc.Id,
+    mutationsPtr: ?*u64,
+    extra: [5] u64,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSFastEnumeration?language=objc
 pub const FastEnumeration = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
@@ -1916,1192 +215,6 @@ pub const FastEnumeration = opaque {
 
     pub fn countByEnumeratingWithStateObjectsCount(self: *@This(), state: ?*FastEnumerationState, buffer: ?**objc.Id, len: objc.NSUInteger) objc.NSUInteger {
         return objc.msgSend(self, "countByEnumeratingWithState:objects:count:", objc.NSUInteger, .{state, buffer, len});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSItemProviderWriting?language=objc
-pub const ItemProviderWriting = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn itemProviderVisibilityForRepresentationWithTypeIdentifier(self: *@This(), typeIdentifier: ?*String) ItemProviderRepresentationVisibility {
-        return objc.msgSend(self, "itemProviderVisibilityForRepresentationWithTypeIdentifier:", ItemProviderRepresentationVisibility, .{typeIdentifier});
-    }
-
-    pub fn itemProviderVisibilityForRepresentationWithTypeIdentifier(self: *@This(), typeIdentifier: ?*String) ItemProviderRepresentationVisibility {
-        return objc.msgSend(self, "itemProviderVisibilityForRepresentationWithTypeIdentifier:", ItemProviderRepresentationVisibility, .{typeIdentifier});
-    }
-
-    pub fn loadDataWithTypeIdentifierForItemProviderCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*Data, ?*cf.NSError) callconv(.C) void) ?*Progress {
-        return objc.msgSend(self, "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:", ?*Progress, .{typeIdentifier, completionHandler});
-    }
-
-    pub fn writableTypeIdentifiersForItemProvider(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "writableTypeIdentifiersForItemProvider", ?*anyopaque, .{});
-    }
-
-    pub fn writableTypeIdentifiersForItemProvider(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "writableTypeIdentifiersForItemProvider", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSItemProviderReading?language=objc
-pub const ItemProviderReading = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn objectWithItemProviderDataTypeIdentifierError(self: *@This(), data: ?*Data, typeIdentifier: ?*String, outError: ?*?*cf.NSError) *@This() {
-        return objc.msgSend(self, "objectWithItemProviderData:typeIdentifier:error:", *@This(), .{data, typeIdentifier, outError});
-    }
-
-    pub fn readableTypeIdentifiersForItemProvider(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "readableTypeIdentifiersForItemProvider", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSProgressReporting?language=objc
-pub const ProgressReporting = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn progress(self: *@This()) ?*Progress {
-        return objc.msgSend(self, "progress", ?*Progress, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSDecimalNumberBehaviors?language=objc
-pub const DecimalNumberBehaviors = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn roundingMode(self: *@This()) RoundingMode {
-        return objc.msgSend(self, "roundingMode", RoundingMode, .{});
-    }
-
-    pub fn scale(self: *@This()) i16 {
-        return objc.msgSend(self, "scale", i16, .{});
-    }
-
-    pub fn exceptionDuringOperationErrorLeftOperandRightOperand(self: *@This(), operation: *objc.SEL, @"error": CalculationError, leftOperand: ?*DecimalNumber, rightOperand: ?*DecimalNumber, ) ?*DecimalNumber {
-        return objc.msgSend(self, "exceptionDuringOperation:error:leftOperand:rightOperand:", ?*DecimalNumber, .{operation, @"error", leftOperand, rightOperand, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLHandleClient?language=objc
-pub const URLHandleClient = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn URLHandleResourceDataDidBecomeAvailable(self: *@This(), sender: ?*URLHandle, newBytes: ?*Data) void {
-        return objc.msgSend(self, "URLHandle:resourceDataDidBecomeAvailable:", void, .{sender, newBytes});
-    }
-
-    pub fn URLHandleResourceDidBeginLoading(self: *@This(), sender: ?*URLHandle) void {
-        return objc.msgSend(self, "URLHandleResourceDidBeginLoading:", void, .{sender});
-    }
-
-    pub fn URLHandleResourceDidFinishLoading(self: *@This(), sender: ?*URLHandle) void {
-        return objc.msgSend(self, "URLHandleResourceDidFinishLoading:", void, .{sender});
-    }
-
-    pub fn URLHandleResourceDidCancelLoading(self: *@This(), sender: ?*URLHandle) void {
-        return objc.msgSend(self, "URLHandleResourceDidCancelLoading:", void, .{sender});
-    }
-
-    pub fn URLHandleResourceDidFailLoadingWithReason(self: *@This(), sender: ?*URLHandle, reason: ?*String) void {
-        return objc.msgSend(self, "URLHandle:resourceDidFailLoadingWithReason:", void, .{sender, reason});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSFileManagerDelegate?language=objc
-pub const FileManagerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn fileManagerShouldCopyItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, srcPath: ?*String, dstPath: ?*String) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldCopyItemAtPath:toPath:", objc.BOOL, .{fileManager, srcPath, dstPath});
-    }
-
-    pub fn fileManagerShouldCopyItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, srcURL: ?*URL, dstURL: ?*URL) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldCopyItemAtURL:toURL:", objc.BOOL, .{fileManager, srcURL, dstURL});
-    }
-
-    pub fn fileManagerShouldProceedAfterErrorCopyingItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcPath: ?*String, dstPath: ?*String, ) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldProceedAfterError:copyingItemAtPath:toPath:", objc.BOOL, .{fileManager, @"error", srcPath, dstPath, });
-    }
-
-    pub fn fileManagerShouldProceedAfterErrorCopyingItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcURL: ?*URL, dstURL: ?*URL, ) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldProceedAfterError:copyingItemAtURL:toURL:", objc.BOOL, .{fileManager, @"error", srcURL, dstURL, });
-    }
-
-    pub fn fileManagerShouldMoveItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, srcPath: ?*String, dstPath: ?*String) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldMoveItemAtPath:toPath:", objc.BOOL, .{fileManager, srcPath, dstPath});
-    }
-
-    pub fn fileManagerShouldMoveItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, srcURL: ?*URL, dstURL: ?*URL) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldMoveItemAtURL:toURL:", objc.BOOL, .{fileManager, srcURL, dstURL});
-    }
-
-    pub fn fileManagerShouldProceedAfterErrorMovingItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcPath: ?*String, dstPath: ?*String, ) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldProceedAfterError:movingItemAtPath:toPath:", objc.BOOL, .{fileManager, @"error", srcPath, dstPath, });
-    }
-
-    pub fn fileManagerShouldProceedAfterErrorMovingItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcURL: ?*URL, dstURL: ?*URL, ) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldProceedAfterError:movingItemAtURL:toURL:", objc.BOOL, .{fileManager, @"error", srcURL, dstURL, });
-    }
-
-    pub fn fileManagerShouldLinkItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, srcPath: ?*String, dstPath: ?*String) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldLinkItemAtPath:toPath:", objc.BOOL, .{fileManager, srcPath, dstPath});
-    }
-
-    pub fn fileManagerShouldLinkItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, srcURL: ?*URL, dstURL: ?*URL) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldLinkItemAtURL:toURL:", objc.BOOL, .{fileManager, srcURL, dstURL});
-    }
-
-    pub fn fileManagerShouldProceedAfterErrorLinkingItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcPath: ?*String, dstPath: ?*String, ) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldProceedAfterError:linkingItemAtPath:toPath:", objc.BOOL, .{fileManager, @"error", srcPath, dstPath, });
-    }
-
-    pub fn fileManagerShouldProceedAfterErrorLinkingItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcURL: ?*URL, dstURL: ?*URL, ) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldProceedAfterError:linkingItemAtURL:toURL:", objc.BOOL, .{fileManager, @"error", srcURL, dstURL, });
-    }
-
-    pub fn fileManagerShouldRemoveItemAtPath(self: *@This(), fileManager: ?*FileManager, path: ?*String) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldRemoveItemAtPath:", objc.BOOL, .{fileManager, path});
-    }
-
-    pub fn fileManagerShouldRemoveItemAtURL(self: *@This(), fileManager: ?*FileManager, URL: ?*URL) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldRemoveItemAtURL:", objc.BOOL, .{fileManager, URL});
-    }
-
-    pub fn fileManagerShouldProceedAfterErrorRemovingItemAtPath(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, path: ?*String) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldProceedAfterError:removingItemAtPath:", objc.BOOL, .{fileManager, @"error", path});
-    }
-
-    pub fn fileManagerShouldProceedAfterErrorRemovingItemAtURL(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, URL: ?*URL) objc.BOOL {
-        return objc.msgSend(self, "fileManager:shouldProceedAfterError:removingItemAtURL:", objc.BOOL, .{fileManager, @"error", URL});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSKeyedArchiverDelegate?language=objc
-pub const KeyedArchiverDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn archiverWillEncodeObject(self: *@This(), archiver: ?*KeyedArchiver, object: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "archiver:willEncodeObject:", *objc.Id, .{archiver, object});
-    }
-
-    pub fn archiverDidEncodeObject(self: *@This(), archiver: ?*KeyedArchiver, object: *objc.Id) void {
-        return objc.msgSend(self, "archiver:didEncodeObject:", void, .{archiver, object});
-    }
-
-    pub fn archiverWillReplaceObjectWithObject(self: *@This(), archiver: ?*KeyedArchiver, object: *objc.Id, newObject: *objc.Id) void {
-        return objc.msgSend(self, "archiver:willReplaceObject:withObject:", void, .{archiver, object, newObject});
-    }
-
-    pub fn archiverWillFinish(self: *@This(), archiver: ?*KeyedArchiver) void {
-        return objc.msgSend(self, "archiverWillFinish:", void, .{archiver});
-    }
-
-    pub fn archiverDidFinish(self: *@This(), archiver: ?*KeyedArchiver) void {
-        return objc.msgSend(self, "archiverDidFinish:", void, .{archiver});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiverDelegate?language=objc
-pub const KeyedUnarchiverDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn unarchiverCannotDecodeObjectOfClassNameOriginalClasses(self: *@This(), unarchiver: ?*KeyedUnarchiver, name: ?*String, classNames: ?*anyopaque) *objc.Class {
-        return objc.msgSend(self, "unarchiver:cannotDecodeObjectOfClassName:originalClasses:", *objc.Class, .{unarchiver, name, classNames});
-    }
-
-    pub fn unarchiverDidDecodeObject(self: *@This(), unarchiver: ?*KeyedUnarchiver, object: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "unarchiver:didDecodeObject:", *objc.Id, .{unarchiver, object});
-    }
-
-    pub fn unarchiverWillReplaceObjectWithObject(self: *@This(), unarchiver: ?*KeyedUnarchiver, object: *objc.Id, newObject: *objc.Id) void {
-        return objc.msgSend(self, "unarchiver:willReplaceObject:withObject:", void, .{unarchiver, object, newObject});
-    }
-
-    pub fn unarchiverWillFinish(self: *@This(), unarchiver: ?*KeyedUnarchiver) void {
-        return objc.msgSend(self, "unarchiverWillFinish:", void, .{unarchiver});
-    }
-
-    pub fn unarchiverDidFinish(self: *@This(), unarchiver: ?*KeyedUnarchiver) void {
-        return objc.msgSend(self, "unarchiverDidFinish:", void, .{unarchiver});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSLocking?language=objc
-pub const Locking = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn lock(self: *@This()) void {
-        return objc.msgSend(self, "lock", void, .{});
-    }
-
-    pub fn unlock(self: *@This()) void {
-        return objc.msgSend(self, "unlock", void, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSPortDelegate?language=objc
-pub const PortDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn handlePortMessage(self: *@This(), message: ?*PortMessage) void {
-        return objc.msgSend(self, "handlePortMessage:", void, .{message});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSMachPortDelegate?language=objc
-pub const MachPortDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{PortDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn handleMachMessage(self: *@This(), msg: ?*anyopaque) void {
-        return objc.msgSend(self, "handleMachMessage:", void, .{msg});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSStreamDelegate?language=objc
-pub const StreamDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn streamHandleEvent(self: *@This(), aStream: ?*Stream, eventCode: StreamEvent) void {
-        return objc.msgSend(self, "stream:handleEvent:", void, .{aStream, eventCode});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLAuthenticationChallengeSender?language=objc
-pub const URLAuthenticationChallengeSender = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn useCredentialForAuthenticationChallenge(self: *@This(), credential: ?*URLCredential, challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "useCredential:forAuthenticationChallenge:", void, .{credential, challenge});
-    }
-
-    pub fn continueWithoutCredentialForAuthenticationChallenge(self: *@This(), challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "continueWithoutCredentialForAuthenticationChallenge:", void, .{challenge});
-    }
-
-    pub fn cancelAuthenticationChallenge(self: *@This(), challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "cancelAuthenticationChallenge:", void, .{challenge});
-    }
-
-    pub fn performDefaultHandlingForAuthenticationChallenge(self: *@This(), challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "performDefaultHandlingForAuthenticationChallenge:", void, .{challenge});
-    }
-
-    pub fn rejectProtectionSpaceAndContinueWithChallenge(self: *@This(), challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "rejectProtectionSpaceAndContinueWithChallenge:", void, .{challenge});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLConnectionDelegate?language=objc
-pub const URLConnectionDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn connectionDidFailWithError(self: *@This(), connection: ?*URLConnection, @"error": ?*Error) void {
-        return objc.msgSend(self, "connection:didFailWithError:", void, .{connection, @"error"});
-    }
-
-    pub fn connectionShouldUseCredentialStorage(self: *@This(), connection: ?*URLConnection) objc.BOOL {
-        return objc.msgSend(self, "connectionShouldUseCredentialStorage:", objc.BOOL, .{connection});
-    }
-
-    pub fn connectionWillSendRequestForAuthenticationChallenge(self: *@This(), connection: ?*URLConnection, challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "connection:willSendRequestForAuthenticationChallenge:", void, .{connection, challenge});
-    }
-
-    pub fn connectionCanAuthenticateAgainstProtectionSpace(self: *@This(), connection: ?*URLConnection, protectionSpace: ?*URLProtectionSpace) objc.BOOL {
-        return objc.msgSend(self, "connection:canAuthenticateAgainstProtectionSpace:", objc.BOOL, .{connection, protectionSpace});
-    }
-
-    pub fn connectionDidReceiveAuthenticationChallenge(self: *@This(), connection: ?*URLConnection, challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "connection:didReceiveAuthenticationChallenge:", void, .{connection, challenge});
-    }
-
-    pub fn connectionDidCancelAuthenticationChallenge(self: *@This(), connection: ?*URLConnection, challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "connection:didCancelAuthenticationChallenge:", void, .{connection, challenge});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLConnectionDataDelegate?language=objc
-pub const URLConnectionDataDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLConnectionDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn connectionWillSendRequestRedirectResponse(self: *@This(), connection: ?*URLConnection, request: ?*URLRequest, response: ?*URLResponse) ?*URLRequest {
-        return objc.msgSend(self, "connection:willSendRequest:redirectResponse:", ?*URLRequest, .{connection, request, response});
-    }
-
-    pub fn connectionDidReceiveResponse(self: *@This(), connection: ?*URLConnection, response: ?*URLResponse) void {
-        return objc.msgSend(self, "connection:didReceiveResponse:", void, .{connection, response});
-    }
-
-    pub fn connectionDidReceiveData(self: *@This(), connection: ?*URLConnection, data: ?*Data) void {
-        return objc.msgSend(self, "connection:didReceiveData:", void, .{connection, data});
-    }
-
-    pub fn connectionNeedNewBodyStream(self: *@This(), connection: ?*URLConnection, request: ?*URLRequest) ?*InputStream {
-        return objc.msgSend(self, "connection:needNewBodyStream:", ?*InputStream, .{connection, request});
-    }
-
-    pub fn connectionDidSendBodyDataTotalBytesWrittenTotalBytesExpectedToWrite(self: *@This(), connection: ?*URLConnection, bytesWritten: objc.NSInteger, totalBytesWritten: objc.NSInteger, totalBytesExpectedToWrite: objc.NSInteger, ) void {
-        return objc.msgSend(self, "connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:", void, .{connection, bytesWritten, totalBytesWritten, totalBytesExpectedToWrite, });
-    }
-
-    pub fn connectionWillCacheResponse(self: *@This(), connection: ?*URLConnection, cachedResponse: ?*CachedURLResponse) ?*CachedURLResponse {
-        return objc.msgSend(self, "connection:willCacheResponse:", ?*CachedURLResponse, .{connection, cachedResponse});
-    }
-
-    pub fn connectionDidFinishLoading(self: *@This(), connection: ?*URLConnection) void {
-        return objc.msgSend(self, "connectionDidFinishLoading:", void, .{connection});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLConnectionDownloadDelegate?language=objc
-pub const URLConnectionDownloadDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLConnectionDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn connectionDidWriteDataTotalBytesWrittenExpectedTotalBytes(self: *@This(), connection: ?*URLConnection, bytesWritten: i64, totalBytesWritten: i64, expectedTotalBytes: i64, ) void {
-        return objc.msgSend(self, "connection:didWriteData:totalBytesWritten:expectedTotalBytes:", void, .{connection, bytesWritten, totalBytesWritten, expectedTotalBytes, });
-    }
-
-    pub fn connectionDidResumeDownloadingTotalBytesWrittenExpectedTotalBytes(self: *@This(), connection: ?*URLConnection, totalBytesWritten: i64, expectedTotalBytes: i64) void {
-        return objc.msgSend(self, "connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:", void, .{connection, totalBytesWritten, expectedTotalBytes});
-    }
-
-    pub fn connectionDidFinishDownloadingDestinationURL(self: *@This(), connection: ?*URLConnection, destinationURL: ?*URL) void {
-        return objc.msgSend(self, "connectionDidFinishDownloading:destinationURL:", void, .{connection, destinationURL});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLProtocolClient?language=objc
-pub const URLProtocolClient = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn URLProtocolWasRedirectedToRequestRedirectResponse(self: *@This(), protocol: ?*URLProtocol, request: ?*URLRequest, redirectResponse: ?*URLResponse) void {
-        return objc.msgSend(self, "URLProtocol:wasRedirectedToRequest:redirectResponse:", void, .{protocol, request, redirectResponse});
-    }
-
-    pub fn URLProtocolCachedResponseIsValid(self: *@This(), protocol: ?*URLProtocol, cachedResponse: ?*CachedURLResponse) void {
-        return objc.msgSend(self, "URLProtocol:cachedResponseIsValid:", void, .{protocol, cachedResponse});
-    }
-
-    pub fn URLProtocolDidReceiveResponseCacheStoragePolicy(self: *@This(), protocol: ?*URLProtocol, response: ?*URLResponse, policy: URLCacheStoragePolicy) void {
-        return objc.msgSend(self, "URLProtocol:didReceiveResponse:cacheStoragePolicy:", void, .{protocol, response, policy});
-    }
-
-    pub fn URLProtocolDidLoadData(self: *@This(), protocol: ?*URLProtocol, data: ?*Data) void {
-        return objc.msgSend(self, "URLProtocol:didLoadData:", void, .{protocol, data});
-    }
-
-    pub fn URLProtocolDidFinishLoading(self: *@This(), protocol: ?*URLProtocol) void {
-        return objc.msgSend(self, "URLProtocolDidFinishLoading:", void, .{protocol});
-    }
-
-    pub fn URLProtocolDidFailWithError(self: *@This(), protocol: ?*URLProtocol, @"error": ?*Error) void {
-        return objc.msgSend(self, "URLProtocol:didFailWithError:", void, .{protocol, @"error"});
-    }
-
-    pub fn URLProtocolDidReceiveAuthenticationChallenge(self: *@This(), protocol: ?*URLProtocol, challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "URLProtocol:didReceiveAuthenticationChallenge:", void, .{protocol, challenge});
-    }
-
-    pub fn URLProtocolDidCancelAuthenticationChallenge(self: *@This(), protocol: ?*URLProtocol, challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "URLProtocol:didCancelAuthenticationChallenge:", void, .{protocol, challenge});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSXMLParserDelegate?language=objc
-pub const XMLParserDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn parserDidStartDocument(self: *@This(), parser: ?*XMLParser) void {
-        return objc.msgSend(self, "parserDidStartDocument:", void, .{parser});
-    }
-
-    pub fn parserDidEndDocument(self: *@This(), parser: ?*XMLParser) void {
-        return objc.msgSend(self, "parserDidEndDocument:", void, .{parser});
-    }
-
-    pub fn parserFoundNotationDeclarationWithNamePublicIDSystemID(self: *@This(), parser: ?*XMLParser, name: ?*String, publicID: ?*String, systemID: ?*String, ) void {
-        return objc.msgSend(self, "parser:foundNotationDeclarationWithName:publicID:systemID:", void, .{parser, name, publicID, systemID, });
-    }
-
-    pub fn parserFoundUnparsedEntityDeclarationWithNamePublicIDSystemIDNotationName(self: *@This(), parser: ?*XMLParser, name: ?*String, publicID: ?*String, systemID: ?*String, notationName: ?*String, ) void {
-        return objc.msgSend(self, "parser:foundUnparsedEntityDeclarationWithName:publicID:systemID:notationName:", void, .{parser, name, publicID, systemID, notationName, });
-    }
-
-    pub fn parserFoundAttributeDeclarationWithNameForElementTypeDefaultValue(self: *@This(), parser: ?*XMLParser, attributeName: ?*String, elementName: ?*String, @"type": ?*String, defaultValue: ?*String, ) void {
-        return objc.msgSend(self, "parser:foundAttributeDeclarationWithName:forElement:type:defaultValue:", void, .{parser, attributeName, elementName, @"type", defaultValue, });
-    }
-
-    pub fn parserFoundElementDeclarationWithNameModel(self: *@This(), parser: ?*XMLParser, elementName: ?*String, model: ?*String) void {
-        return objc.msgSend(self, "parser:foundElementDeclarationWithName:model:", void, .{parser, elementName, model});
-    }
-
-    pub fn parserFoundInternalEntityDeclarationWithNameValue(self: *@This(), parser: ?*XMLParser, name: ?*String, value: ?*String) void {
-        return objc.msgSend(self, "parser:foundInternalEntityDeclarationWithName:value:", void, .{parser, name, value});
-    }
-
-    pub fn parserFoundExternalEntityDeclarationWithNamePublicIDSystemID(self: *@This(), parser: ?*XMLParser, name: ?*String, publicID: ?*String, systemID: ?*String, ) void {
-        return objc.msgSend(self, "parser:foundExternalEntityDeclarationWithName:publicID:systemID:", void, .{parser, name, publicID, systemID, });
-    }
-
-    pub fn parserDidStartElementNamespaceURIQualifiedNameAttributes(self: *@This(), parser: ?*XMLParser, elementName: ?*String, namespaceURI: ?*String, qName: ?*String, attributeDict: ?*anyopaque, ) void {
-        return objc.msgSend(self, "parser:didStartElement:namespaceURI:qualifiedName:attributes:", void, .{parser, elementName, namespaceURI, qName, attributeDict, });
-    }
-
-    pub fn parserDidEndElementNamespaceURIQualifiedName(self: *@This(), parser: ?*XMLParser, elementName: ?*String, namespaceURI: ?*String, qName: ?*String, ) void {
-        return objc.msgSend(self, "parser:didEndElement:namespaceURI:qualifiedName:", void, .{parser, elementName, namespaceURI, qName, });
-    }
-
-    pub fn parserDidStartMappingPrefixToURI(self: *@This(), parser: ?*XMLParser, prefix: ?*String, namespaceURI: ?*String) void {
-        return objc.msgSend(self, "parser:didStartMappingPrefix:toURI:", void, .{parser, prefix, namespaceURI});
-    }
-
-    pub fn parserDidEndMappingPrefix(self: *@This(), parser: ?*XMLParser, prefix: ?*String) void {
-        return objc.msgSend(self, "parser:didEndMappingPrefix:", void, .{parser, prefix});
-    }
-
-    pub fn parserFoundCharacters(self: *@This(), parser: ?*XMLParser, string: ?*String) void {
-        return objc.msgSend(self, "parser:foundCharacters:", void, .{parser, string});
-    }
-
-    pub fn parserFoundIgnorableWhitespace(self: *@This(), parser: ?*XMLParser, whitespaceString: ?*String) void {
-        return objc.msgSend(self, "parser:foundIgnorableWhitespace:", void, .{parser, whitespaceString});
-    }
-
-    pub fn parserFoundProcessingInstructionWithTargetData(self: *@This(), parser: ?*XMLParser, target: ?*String, data: ?*String) void {
-        return objc.msgSend(self, "parser:foundProcessingInstructionWithTarget:data:", void, .{parser, target, data});
-    }
-
-    pub fn parserFoundComment(self: *@This(), parser: ?*XMLParser, comment: ?*String) void {
-        return objc.msgSend(self, "parser:foundComment:", void, .{parser, comment});
-    }
-
-    pub fn parserFoundCDATA(self: *@This(), parser: ?*XMLParser, CDATABlock: ?*Data) void {
-        return objc.msgSend(self, "parser:foundCDATA:", void, .{parser, CDATABlock});
-    }
-
-    pub fn parserResolveExternalEntityNameSystemID(self: *@This(), parser: ?*XMLParser, name: ?*String, systemID: ?*String) ?*Data {
-        return objc.msgSend(self, "parser:resolveExternalEntityName:systemID:", ?*Data, .{parser, name, systemID});
-    }
-
-    pub fn parserParseErrorOccurred(self: *@This(), parser: ?*XMLParser, parseError: ?*Error) void {
-        return objc.msgSend(self, "parser:parseErrorOccurred:", void, .{parser, parseError});
-    }
-
-    pub fn parserValidationErrorOccurred(self: *@This(), parser: ?*XMLParser, validationError: ?*Error) void {
-        return objc.msgSend(self, "parser:validationErrorOccurred:", void, .{parser, validationError});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSXPCProxyCreating?language=objc
-pub const XPCProxyCreating = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn remoteObjectProxy(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "remoteObjectProxy", *objc.Id, .{});
-    }
-
-    pub fn remoteObjectProxyWithErrorHandler(self: *@This(), handler: *const fn(?*Error) callconv(.C) void) *objc.Id {
-        return objc.msgSend(self, "remoteObjectProxyWithErrorHandler:", *objc.Id, .{handler});
-    }
-
-    pub fn synchronousRemoteObjectProxyWithErrorHandler(self: *@This(), handler: *const fn(?*Error) callconv(.C) void) *objc.Id {
-        return objc.msgSend(self, "synchronousRemoteObjectProxyWithErrorHandler:", *objc.Id, .{handler});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSXPCListenerDelegate?language=objc
-pub const XPCListenerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn listenerShouldAcceptNewConnection(self: *@This(), listener: ?*XPCListener, newConnection: ?*XPCConnection) objc.BOOL {
-        return objc.msgSend(self, "listener:shouldAcceptNewConnection:", objc.BOOL, .{listener, newConnection});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSCacheDelegate?language=objc
-pub const CacheDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn cacheWillEvictObject(self: *@This(), cache: ?*Cache, obj: *objc.Id) void {
-        return objc.msgSend(self, "cache:willEvictObject:", void, .{cache, obj});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSExtensionRequestHandling?language=objc
-pub const ExtensionRequestHandling = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn beginRequestWithExtensionContext(self: *@This(), context: ?*ExtensionContext) void {
-        return objc.msgSend(self, "beginRequestWithExtensionContext:", void, .{context});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSFilePresenter?language=objc
-pub const FilePresenter = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn relinquishPresentedItemToReader(self: *@This(), reader: *const fn(*const fn() callconv(.C) void) callconv(.C) void) void {
-        return objc.msgSend(self, "relinquishPresentedItemToReader:", void, .{reader});
-    }
-
-    pub fn relinquishPresentedItemToWriter(self: *@This(), writer: *const fn(*const fn() callconv(.C) void) callconv(.C) void) void {
-        return objc.msgSend(self, "relinquishPresentedItemToWriter:", void, .{writer});
-    }
-
-    pub fn savePresentedItemChangesWithCompletionHandler(self: *@This(), completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "savePresentedItemChangesWithCompletionHandler:", void, .{completionHandler});
-    }
-
-    pub fn accommodatePresentedItemDeletionWithCompletionHandler(self: *@This(), completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "accommodatePresentedItemDeletionWithCompletionHandler:", void, .{completionHandler});
-    }
-
-    pub fn accommodatePresentedItemEvictionWithCompletionHandler(self: *@This(), completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "accommodatePresentedItemEvictionWithCompletionHandler:", void, .{completionHandler});
-    }
-
-    pub fn presentedItemDidMoveToURL(self: *@This(), newURL: ?*URL) void {
-        return objc.msgSend(self, "presentedItemDidMoveToURL:", void, .{newURL});
-    }
-
-    pub fn presentedItemDidChange(self: *@This()) void {
-        return objc.msgSend(self, "presentedItemDidChange", void, .{});
-    }
-
-    pub fn presentedItemDidChangeUbiquityAttributes(self: *@This(), attributes: ?*anyopaque) void {
-        return objc.msgSend(self, "presentedItemDidChangeUbiquityAttributes:", void, .{attributes});
-    }
-
-    pub fn presentedItemDidGainVersion(self: *@This(), version: ?*FileVersion) void {
-        return objc.msgSend(self, "presentedItemDidGainVersion:", void, .{version});
-    }
-
-    pub fn presentedItemDidLoseVersion(self: *@This(), version: ?*FileVersion) void {
-        return objc.msgSend(self, "presentedItemDidLoseVersion:", void, .{version});
-    }
-
-    pub fn presentedItemDidResolveConflictVersion(self: *@This(), version: ?*FileVersion) void {
-        return objc.msgSend(self, "presentedItemDidResolveConflictVersion:", void, .{version});
-    }
-
-    pub fn accommodatePresentedSubitemDeletionAtURLCompletionHandler(self: *@This(), url: ?*URL, completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "accommodatePresentedSubitemDeletionAtURL:completionHandler:", void, .{url, completionHandler});
-    }
-
-    pub fn presentedSubitemDidAppearAtURL(self: *@This(), url: ?*URL) void {
-        return objc.msgSend(self, "presentedSubitemDidAppearAtURL:", void, .{url});
-    }
-
-    pub fn presentedSubitemAtURLDidMoveToURL(self: *@This(), oldURL: ?*URL, newURL: ?*URL) void {
-        return objc.msgSend(self, "presentedSubitemAtURL:didMoveToURL:", void, .{oldURL, newURL});
-    }
-
-    pub fn presentedSubitemDidChangeAtURL(self: *@This(), url: ?*URL) void {
-        return objc.msgSend(self, "presentedSubitemDidChangeAtURL:", void, .{url});
-    }
-
-    pub fn presentedSubitemAtURLDidGainVersion(self: *@This(), url: ?*URL, version: ?*FileVersion) void {
-        return objc.msgSend(self, "presentedSubitemAtURL:didGainVersion:", void, .{url, version});
-    }
-
-    pub fn presentedSubitemAtURLDidLoseVersion(self: *@This(), url: ?*URL, version: ?*FileVersion) void {
-        return objc.msgSend(self, "presentedSubitemAtURL:didLoseVersion:", void, .{url, version});
-    }
-
-    pub fn presentedSubitemAtURLDidResolveConflictVersion(self: *@This(), url: ?*URL, version: ?*FileVersion) void {
-        return objc.msgSend(self, "presentedSubitemAtURL:didResolveConflictVersion:", void, .{url, version});
-    }
-
-    pub fn presentedItemURL(self: *@This()) ?*URL {
-        return objc.msgSend(self, "presentedItemURL", ?*URL, .{});
-    }
-
-    pub fn presentedItemOperationQueue(self: *@This()) ?*OperationQueue {
-        return objc.msgSend(self, "presentedItemOperationQueue", ?*OperationQueue, .{});
-    }
-
-    pub fn primaryPresentedItemURL(self: *@This()) ?*URL {
-        return objc.msgSend(self, "primaryPresentedItemURL", ?*URL, .{});
-    }
-
-    pub fn observedPresentedItemUbiquityAttributes(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "observedPresentedItemUbiquityAttributes", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSMetadataQueryDelegate?language=objc
-pub const MetadataQueryDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn metadataQueryReplacementObjectForResultObject(self: *@This(), query: ?*MetadataQuery, result: ?*MetadataItem) *objc.Id {
-        return objc.msgSend(self, "metadataQuery:replacementObjectForResultObject:", *objc.Id, .{query, result});
-    }
-
-    pub fn metadataQueryReplacementValueForAttributeValue(self: *@This(), query: ?*MetadataQuery, attrName: ?*String, attrValue: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "metadataQuery:replacementValueForAttribute:value:", *objc.Id, .{query, attrName, attrValue});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSNetServiceDelegate?language=objc
-pub const NetServiceDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn netServiceWillPublish(self: *@This(), sender: ?*NetService) void {
-        return objc.msgSend(self, "netServiceWillPublish:", void, .{sender});
-    }
-
-    pub fn netServiceDidPublish(self: *@This(), sender: ?*NetService) void {
-        return objc.msgSend(self, "netServiceDidPublish:", void, .{sender});
-    }
-
-    pub fn netServiceDidNotPublish(self: *@This(), sender: ?*NetService, errorDict: ?*anyopaque) void {
-        return objc.msgSend(self, "netService:didNotPublish:", void, .{sender, errorDict});
-    }
-
-    pub fn netServiceWillResolve(self: *@This(), sender: ?*NetService) void {
-        return objc.msgSend(self, "netServiceWillResolve:", void, .{sender});
-    }
-
-    pub fn netServiceDidResolveAddress(self: *@This(), sender: ?*NetService) void {
-        return objc.msgSend(self, "netServiceDidResolveAddress:", void, .{sender});
-    }
-
-    pub fn netServiceDidNotResolve(self: *@This(), sender: ?*NetService, errorDict: ?*anyopaque) void {
-        return objc.msgSend(self, "netService:didNotResolve:", void, .{sender, errorDict});
-    }
-
-    pub fn netServiceDidStop(self: *@This(), sender: ?*NetService) void {
-        return objc.msgSend(self, "netServiceDidStop:", void, .{sender});
-    }
-
-    pub fn netServiceDidUpdateTXTRecordData(self: *@This(), sender: ?*NetService, data: ?*Data) void {
-        return objc.msgSend(self, "netService:didUpdateTXTRecordData:", void, .{sender, data});
-    }
-
-    pub fn netServiceDidAcceptConnectionWithInputStreamOutputStream(self: *@This(), sender: ?*NetService, inputStream: ?*InputStream, outputStream: ?*OutputStream) void {
-        return objc.msgSend(self, "netService:didAcceptConnectionWithInputStream:outputStream:", void, .{sender, inputStream, outputStream});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSNetServiceBrowserDelegate?language=objc
-pub const NetServiceBrowserDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn netServiceBrowserWillSearch(self: *@This(), browser: ?*NetServiceBrowser) void {
-        return objc.msgSend(self, "netServiceBrowserWillSearch:", void, .{browser});
-    }
-
-    pub fn netServiceBrowserDidStopSearch(self: *@This(), browser: ?*NetServiceBrowser) void {
-        return objc.msgSend(self, "netServiceBrowserDidStopSearch:", void, .{browser});
-    }
-
-    pub fn netServiceBrowserDidNotSearch(self: *@This(), browser: ?*NetServiceBrowser, errorDict: ?*anyopaque) void {
-        return objc.msgSend(self, "netServiceBrowser:didNotSearch:", void, .{browser, errorDict});
-    }
-
-    pub fn netServiceBrowserDidFindDomainMoreComing(self: *@This(), browser: ?*NetServiceBrowser, domainString: ?*String, moreComing: objc.BOOL) void {
-        return objc.msgSend(self, "netServiceBrowser:didFindDomain:moreComing:", void, .{browser, domainString, moreComing});
-    }
-
-    pub fn netServiceBrowserDidFindServiceMoreComing(self: *@This(), browser: ?*NetServiceBrowser, service: ?*NetService, moreComing: objc.BOOL) void {
-        return objc.msgSend(self, "netServiceBrowser:didFindService:moreComing:", void, .{browser, service, moreComing});
-    }
-
-    pub fn netServiceBrowserDidRemoveDomainMoreComing(self: *@This(), browser: ?*NetServiceBrowser, domainString: ?*String, moreComing: objc.BOOL) void {
-        return objc.msgSend(self, "netServiceBrowser:didRemoveDomain:moreComing:", void, .{browser, domainString, moreComing});
-    }
-
-    pub fn netServiceBrowserDidRemoveServiceMoreComing(self: *@This(), browser: ?*NetServiceBrowser, service: ?*NetService, moreComing: objc.BOOL) void {
-        return objc.msgSend(self, "netServiceBrowser:didRemoveService:moreComing:", void, .{browser, service, moreComing});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLSessionDelegate?language=objc
-pub const URLSessionDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn URLSessionDidBecomeInvalidWithError(self: *@This(), session: ?*URLSession, @"error": ?*Error) void {
-        return objc.msgSend(self, "URLSession:didBecomeInvalidWithError:", void, .{session, @"error"});
-    }
-
-    pub fn URLSessionDidReceiveChallengeCompletionHandler(self: *@This(), session: ?*URLSession, challenge: ?*URLAuthenticationChallenge, completionHandler: *const fn(URLSessionAuthChallengeDisposition, ?*URLCredential) callconv(.C) void) void {
-        return objc.msgSend(self, "URLSession:didReceiveChallenge:completionHandler:", void, .{session, challenge, completionHandler});
-    }
-
-    pub fn URLSessionDidFinishEventsForBackgroundURLSession(self: *@This(), session: ?*URLSession) void {
-        return objc.msgSend(self, "URLSessionDidFinishEventsForBackgroundURLSession:", void, .{session});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLSessionTaskDelegate?language=objc
-pub const URLSessionTaskDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn URLSessionDidCreateTask(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask) void {
-        return objc.msgSend(self, "URLSession:didCreateTask:", void, .{session, task});
-    }
-
-    pub fn URLSessionTaskWillBeginDelayedRequestCompletionHandler(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, request: ?*URLRequest, completionHandler: *const fn(URLSessionDelayedRequestDisposition, ?*URLRequest) callconv(.C) void, ) void {
-        return objc.msgSend(self, "URLSession:task:willBeginDelayedRequest:completionHandler:", void, .{session, task, request, completionHandler, });
-    }
-
-    pub fn URLSessionTaskIsWaitingForConnectivity(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask) void {
-        return objc.msgSend(self, "URLSession:taskIsWaitingForConnectivity:", void, .{session, task});
-    }
-
-    pub fn URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, response: ?*HTTPURLResponse, request: ?*URLRequest, completionHandler: *const fn(?*URLRequest) callconv(.C) void, ) void {
-        return objc.msgSend(self, "URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:", void, .{session, task, response, request, completionHandler, });
-    }
-
-    pub fn URLSessionTaskDidReceiveChallengeCompletionHandler(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, challenge: ?*URLAuthenticationChallenge, completionHandler: *const fn(URLSessionAuthChallengeDisposition, ?*URLCredential) callconv(.C) void, ) void {
-        return objc.msgSend(self, "URLSession:task:didReceiveChallenge:completionHandler:", void, .{session, task, challenge, completionHandler, });
-    }
-
-    pub fn URLSessionTaskNeedNewBodyStream(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, completionHandler: *const fn(?*InputStream) callconv(.C) void) void {
-        return objc.msgSend(self, "URLSession:task:needNewBodyStream:", void, .{session, task, completionHandler});
-    }
-
-    pub fn URLSessionTaskNeedNewBodyStreamFromOffsetCompletionHandler(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, offset: objc.int64_t, completionHandler: *const fn(?*InputStream) callconv(.C) void, ) void {
-        return objc.msgSend(self, "URLSession:task:needNewBodyStreamFromOffset:completionHandler:", void, .{session, task, offset, completionHandler, });
-    }
-
-    pub fn URLSessionTaskDidSendBodyDataTotalBytesSentTotalBytesExpectedToSend(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, bytesSent: objc.int64_t, totalBytesSent: objc.int64_t, totalBytesExpectedToSend: objc.int64_t, ) void {
-        return objc.msgSend(self, "URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:", void, .{session, task, bytesSent, totalBytesSent, totalBytesExpectedToSend, });
-    }
-
-    pub fn URLSessionTaskDidReceiveInformationalResponse(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, response: ?*HTTPURLResponse) void {
-        return objc.msgSend(self, "URLSession:task:didReceiveInformationalResponse:", void, .{session, task, response});
-    }
-
-    pub fn URLSessionTaskDidFinishCollectingMetrics(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, metrics: ?*URLSessionTaskMetrics) void {
-        return objc.msgSend(self, "URLSession:task:didFinishCollectingMetrics:", void, .{session, task, metrics});
-    }
-
-    pub fn URLSessionTaskDidCompleteWithError(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, @"error": ?*Error) void {
-        return objc.msgSend(self, "URLSession:task:didCompleteWithError:", void, .{session, task, @"error"});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLSessionDataDelegate?language=objc
-pub const URLSessionDataDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionTaskDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn URLSessionDataTaskDidReceiveResponseCompletionHandler(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, response: ?*URLResponse, completionHandler: *const fn(URLSessionResponseDisposition) callconv(.C) void, ) void {
-        return objc.msgSend(self, "URLSession:dataTask:didReceiveResponse:completionHandler:", void, .{session, dataTask, response, completionHandler, });
-    }
-
-    pub fn URLSessionDataTaskDidBecomeDownloadTask(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, downloadTask: ?*URLSessionDownloadTask) void {
-        return objc.msgSend(self, "URLSession:dataTask:didBecomeDownloadTask:", void, .{session, dataTask, downloadTask});
-    }
-
-    pub fn URLSessionDataTaskDidBecomeStreamTask(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, streamTask: ?*URLSessionStreamTask) void {
-        return objc.msgSend(self, "URLSession:dataTask:didBecomeStreamTask:", void, .{session, dataTask, streamTask});
-    }
-
-    pub fn URLSessionDataTaskDidReceiveData(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, data: ?*Data) void {
-        return objc.msgSend(self, "URLSession:dataTask:didReceiveData:", void, .{session, dataTask, data});
-    }
-
-    pub fn URLSessionDataTaskWillCacheResponseCompletionHandler(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, proposedResponse: ?*CachedURLResponse, completionHandler: *const fn(?*CachedURLResponse) callconv(.C) void, ) void {
-        return objc.msgSend(self, "URLSession:dataTask:willCacheResponse:completionHandler:", void, .{session, dataTask, proposedResponse, completionHandler, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLSessionDownloadDelegate?language=objc
-pub const URLSessionDownloadDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionTaskDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn URLSessionDownloadTaskDidFinishDownloadingToURL(self: *@This(), session: ?*URLSession, downloadTask: ?*URLSessionDownloadTask, location: ?*URL) void {
-        return objc.msgSend(self, "URLSession:downloadTask:didFinishDownloadingToURL:", void, .{session, downloadTask, location});
-    }
-
-    pub fn URLSessionDownloadTaskDidWriteDataTotalBytesWrittenTotalBytesExpectedToWrite(self: *@This(), session: ?*URLSession, downloadTask: ?*URLSessionDownloadTask, bytesWritten: objc.int64_t, totalBytesWritten: objc.int64_t, totalBytesExpectedToWrite: objc.int64_t, ) void {
-        return objc.msgSend(self, "URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:", void, .{session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExpectedToWrite, });
-    }
-
-    pub fn URLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes(self: *@This(), session: ?*URLSession, downloadTask: ?*URLSessionDownloadTask, fileOffset: objc.int64_t, expectedTotalBytes: objc.int64_t, ) void {
-        return objc.msgSend(self, "URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:", void, .{session, downloadTask, fileOffset, expectedTotalBytes, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLSessionStreamDelegate?language=objc
-pub const URLSessionStreamDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionTaskDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn URLSessionReadClosedForStreamTask(self: *@This(), session: ?*URLSession, streamTask: ?*URLSessionStreamTask) void {
-        return objc.msgSend(self, "URLSession:readClosedForStreamTask:", void, .{session, streamTask});
-    }
-
-    pub fn URLSessionWriteClosedForStreamTask(self: *@This(), session: ?*URLSession, streamTask: ?*URLSessionStreamTask) void {
-        return objc.msgSend(self, "URLSession:writeClosedForStreamTask:", void, .{session, streamTask});
-    }
-
-    pub fn URLSessionBetterRouteDiscoveredForStreamTask(self: *@This(), session: ?*URLSession, streamTask: ?*URLSessionStreamTask) void {
-        return objc.msgSend(self, "URLSession:betterRouteDiscoveredForStreamTask:", void, .{session, streamTask});
-    }
-
-    pub fn URLSessionStreamTaskDidBecomeInputStreamOutputStream(self: *@This(), session: ?*URLSession, streamTask: ?*URLSessionStreamTask, inputStream: ?*InputStream, outputStream: ?*OutputStream, ) void {
-        return objc.msgSend(self, "URLSession:streamTask:didBecomeInputStream:outputStream:", void, .{session, streamTask, inputStream, outputStream, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketDelegate?language=objc
-pub const URLSessionWebSocketDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionTaskDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn URLSessionWebSocketTaskDidOpenWithProtocol(self: *@This(), session: ?*URLSession, webSocketTask: ?*URLSessionWebSocketTask, protocol: ?*String) void {
-        return objc.msgSend(self, "URLSession:webSocketTask:didOpenWithProtocol:", void, .{session, webSocketTask, protocol});
-    }
-
-    pub fn URLSessionWebSocketTaskDidCloseWithCodeReason(self: *@This(), session: ?*URLSession, webSocketTask: ?*URLSessionWebSocketTask, closeCode: URLSessionWebSocketCloseCode, reason: ?*Data, ) void {
-        return objc.msgSend(self, "URLSession:webSocketTask:didCloseWithCode:reason:", void, .{session, webSocketTask, closeCode, reason, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSUserActivityDelegate?language=objc
-pub const UserActivityDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn userActivityWillSave(self: *@This(), userActivity: ?*UserActivity) void {
-        return objc.msgSend(self, "userActivityWillSave:", void, .{userActivity});
-    }
-
-    pub fn userActivityWasContinued(self: *@This(), userActivity: ?*UserActivity) void {
-        return objc.msgSend(self, "userActivityWasContinued:", void, .{userActivity});
-    }
-
-    pub fn userActivityDidReceiveInputStreamOutputStream(self: *@This(), userActivity: ?*UserActivity, inputStream: ?*InputStream, outputStream: ?*OutputStream) void {
-        return objc.msgSend(self, "userActivity:didReceiveInputStream:outputStream:", void, .{userActivity, inputStream, outputStream});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSConnectionDelegate?language=objc
-pub const ConnectionDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn makeNewConnectionSender(self: *@This(), conn: ?*Connection, ancestor: ?*Connection) objc.BOOL {
-        return objc.msgSend(self, "makeNewConnection:sender:", objc.BOOL, .{conn, ancestor});
-    }
-
-    pub fn connectionShouldMakeNewConnection(self: *@This(), ancestor: ?*Connection, conn: ?*Connection) objc.BOOL {
-        return objc.msgSend(self, "connection:shouldMakeNewConnection:", objc.BOOL, .{ancestor, conn});
-    }
-
-    pub fn authenticationDataForComponents(self: *@This(), components: ?*Array) ?*Data {
-        return objc.msgSend(self, "authenticationDataForComponents:", ?*Data, .{components});
-    }
-
-    pub fn authenticateComponentsWithData(self: *@This(), components: ?*Array, signature: ?*Data) objc.BOOL {
-        return objc.msgSend(self, "authenticateComponents:withData:", objc.BOOL, .{components, signature});
-    }
-
-    pub fn createConversationForConnection(self: *@This(), conn: ?*Connection) *objc.Id {
-        return objc.msgSend(self, "createConversationForConnection:", *objc.Id, .{conn});
-    }
-
-    pub fn connectionHandleRequest(self: *@This(), connection: ?*Connection, doreq: ?*DistantObjectRequest) objc.BOOL {
-        return objc.msgSend(self, "connection:handleRequest:", objc.BOOL, .{connection, doreq});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSURLDownloadDelegate?language=objc
-pub const URLDownloadDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn downloadDidBegin(self: *@This(), download: ?*URLDownload) void {
-        return objc.msgSend(self, "downloadDidBegin:", void, .{download});
-    }
-
-    pub fn downloadWillSendRequestRedirectResponse(self: *@This(), download: ?*URLDownload, request: ?*URLRequest, redirectResponse: ?*URLResponse) ?*URLRequest {
-        return objc.msgSend(self, "download:willSendRequest:redirectResponse:", ?*URLRequest, .{download, request, redirectResponse});
-    }
-
-    pub fn downloadCanAuthenticateAgainstProtectionSpace(self: *@This(), connection: ?*URLDownload, protectionSpace: ?*URLProtectionSpace) objc.BOOL {
-        return objc.msgSend(self, "download:canAuthenticateAgainstProtectionSpace:", objc.BOOL, .{connection, protectionSpace});
-    }
-
-    pub fn downloadDidReceiveAuthenticationChallenge(self: *@This(), download: ?*URLDownload, challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "download:didReceiveAuthenticationChallenge:", void, .{download, challenge});
-    }
-
-    pub fn downloadDidCancelAuthenticationChallenge(self: *@This(), download: ?*URLDownload, challenge: ?*URLAuthenticationChallenge) void {
-        return objc.msgSend(self, "download:didCancelAuthenticationChallenge:", void, .{download, challenge});
-    }
-
-    pub fn downloadShouldUseCredentialStorage(self: *@This(), download: ?*URLDownload) objc.BOOL {
-        return objc.msgSend(self, "downloadShouldUseCredentialStorage:", objc.BOOL, .{download});
-    }
-
-    pub fn downloadDidReceiveResponse(self: *@This(), download: ?*URLDownload, response: ?*URLResponse) void {
-        return objc.msgSend(self, "download:didReceiveResponse:", void, .{download, response});
-    }
-
-    pub fn downloadWillResumeWithResponseFromByte(self: *@This(), download: ?*URLDownload, response: ?*URLResponse, startingByte: i64) void {
-        return objc.msgSend(self, "download:willResumeWithResponse:fromByte:", void, .{download, response, startingByte});
-    }
-
-    pub fn downloadDidReceiveDataOfLength(self: *@This(), download: ?*URLDownload, length: objc.NSUInteger) void {
-        return objc.msgSend(self, "download:didReceiveDataOfLength:", void, .{download, length});
-    }
-
-    pub fn downloadShouldDecodeSourceDataOfMIMEType(self: *@This(), download: ?*URLDownload, encodingType: ?*String) objc.BOOL {
-        return objc.msgSend(self, "download:shouldDecodeSourceDataOfMIMEType:", objc.BOOL, .{download, encodingType});
-    }
-
-    pub fn downloadDecideDestinationWithSuggestedFilename(self: *@This(), download: ?*URLDownload, filename: ?*String) void {
-        return objc.msgSend(self, "download:decideDestinationWithSuggestedFilename:", void, .{download, filename});
-    }
-
-    pub fn downloadDidCreateDestination(self: *@This(), download: ?*URLDownload, path: ?*String) void {
-        return objc.msgSend(self, "download:didCreateDestination:", void, .{download, path});
-    }
-
-    pub fn downloadDidFinish(self: *@This(), download: ?*URLDownload) void {
-        return objc.msgSend(self, "downloadDidFinish:", void, .{download});
-    }
-
-    pub fn downloadDidFailWithError(self: *@This(), download: ?*URLDownload, @"error": ?*Error) void {
-        return objc.msgSend(self, "download:didFailWithError:", void, .{download, @"error"});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSSpellServerDelegate?language=objc
-pub const SpellServerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn spellServerFindMisspelledWordInStringLanguageWordCountCountOnly(self: *@This(), sender: ?*SpellServer, stringToCheck: ?*String, language: ?*String, wordCount: ?*objc.NSInteger, countOnly: objc.BOOL, ) Range {
-        return objc.msgSend(self, "spellServer:findMisspelledWordInString:language:wordCount:countOnly:", Range, .{sender, stringToCheck, language, wordCount, countOnly, });
-    }
-
-    pub fn spellServerSuggestGuessesForWordInLanguage(self: *@This(), sender: ?*SpellServer, word: ?*String, language: ?*String) ?*anyopaque {
-        return objc.msgSend(self, "spellServer:suggestGuessesForWord:inLanguage:", ?*anyopaque, .{sender, word, language});
-    }
-
-    pub fn spellServerDidLearnWordInLanguage(self: *@This(), sender: ?*SpellServer, word: ?*String, language: ?*String) void {
-        return objc.msgSend(self, "spellServer:didLearnWord:inLanguage:", void, .{sender, word, language});
-    }
-
-    pub fn spellServerDidForgetWordInLanguage(self: *@This(), sender: ?*SpellServer, word: ?*String, language: ?*String) void {
-        return objc.msgSend(self, "spellServer:didForgetWord:inLanguage:", void, .{sender, word, language});
-    }
-
-    pub fn spellServerSuggestCompletionsForPartialWordRangeInStringLanguage(self: *@This(), sender: ?*SpellServer, range: Range, string: ?*String, language: ?*String, ) ?*anyopaque {
-        return objc.msgSend(self, "spellServer:suggestCompletionsForPartialWordRange:inString:language:", ?*anyopaque, .{sender, range, string, language, });
-    }
-
-    pub fn spellServerCheckGrammarInStringLanguageDetails(self: *@This(), sender: ?*SpellServer, stringToCheck: ?*String, language: ?*String, details: ?*?*anyopaque, ) Range {
-        return objc.msgSend(self, "spellServer:checkGrammarInString:language:details:", Range, .{sender, stringToCheck, language, details, });
-    }
-
-    pub fn spellServerCheckStringOffsetTypesOptionsOrthographyWordCount(self: *@This(), sender: ?*SpellServer, stringToCheck: ?*String, offset: objc.NSUInteger, checkingTypes: TextCheckingTypes, options: ?*anyopaque, orthography: ?*Orthography, wordCount: ?*objc.NSInteger, ) ?*anyopaque {
-        return objc.msgSend(self, "spellServer:checkString:offset:types:options:orthography:wordCount:", ?*anyopaque, .{sender, stringToCheck, offset, checkingTypes, options, orthography, wordCount, });
-    }
-
-    pub fn spellServerRecordResponseToCorrectionForWordLanguage(self: *@This(), sender: ?*SpellServer, response: objc.NSUInteger, correction: ?*String, word: ?*String, language: ?*String, ) void {
-        return objc.msgSend(self, "spellServer:recordResponse:toCorrection:forWord:language:", void, .{sender, response, correction, word, language, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Foundation/NSUserNotificationCenterDelegate?language=objc
-pub const UserNotificationCenterDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn userNotificationCenterDidDeliverNotification(self: *@This(), center: ?*UserNotificationCenter, notification: ?*UserNotification) void {
-        return objc.msgSend(self, "userNotificationCenter:didDeliverNotification:", void, .{center, notification});
-    }
-
-    pub fn userNotificationCenterDidActivateNotification(self: *@This(), center: ?*UserNotificationCenter, notification: ?*UserNotification) void {
-        return objc.msgSend(self, "userNotificationCenter:didActivateNotification:", void, .{center, notification});
-    }
-
-    pub fn userNotificationCenterShouldPresentNotification(self: *@This(), center: ?*UserNotificationCenter, notification: ?*UserNotification) objc.BOOL {
-        return objc.msgSend(self, "userNotificationCenter:shouldPresentNotification:", objc.BOOL, .{center, notification});
     }
 
 };
@@ -3305,6 +418,34 @@ pub const Number = opaque {
 
 };
 
+pub const _NSRange = extern struct {
+    location: objc.NSUInteger,
+    length: objc.NSUInteger,
+};
+
+pub const RangePointer = ?*Range;
+
+pub extern "Foundation" fn MakeRange(loc: objc.NSUInteger, len: objc.NSUInteger) callconv(.C) Range;
+
+pub extern "Foundation" fn MaxRange(range: Range) callconv(.C) objc.NSUInteger;
+
+pub extern "Foundation" fn LocationInRange(loc: objc.NSUInteger, range: Range) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn EqualRanges(range1: Range, range2: Range) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn UnionRange(range1: Range, range2: Range) callconv(.C) Range;
+
+pub extern "Foundation" fn IntersectionRange(range1: Range, range2: Range) callconv(.C) Range;
+
+pub extern "Foundation" fn StringFromRange(range: Range) callconv(.C) ?*String;
+
+pub extern "Foundation" fn RangeFromString(aString: ?*String) callconv(.C) Range;
+
+pub const CollectionChangeType = enum(objc.NSInteger) {
+    Insert = 0,
+    Remove = 1,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSOrderedCollectionChange?language=objc
 pub const OrderedCollectionChange = opaque {
     pub const InternalInfo = objc.ExternalClass("NSOrderedCollectionChange", @This(), Object, &.{});
@@ -3495,6 +636,31 @@ pub const IndexSet = opaque {
 
 };
 
+pub const anon335 = extern struct {
+    _hasSingleRange: objc.NSUInteger,
+    _hasBitfield: objc.NSUInteger,
+    _reservedArrayBinderController: objc.NSUInteger,
+};
+
+pub const anon385 = extern union {
+    _singleRange: anon399,
+    _multipleRanges: anon429,
+    _singleBitfield: anon469,
+};
+
+pub const anon399 = extern struct {
+    _range: Range,
+};
+
+pub const anon429 = extern struct {
+    _data: ?*anyopaque,
+    _reserved: ?*anyopaque,
+};
+
+pub const anon469 = extern struct {
+    _bitfield: objc.uint64_t,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSMutableIndexSet?language=objc
 pub const MutableIndexSet = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMutableIndexSet", @This(), IndexSet, &.{});
@@ -3538,6 +704,12 @@ pub const MutableIndexSet = opaque {
         return objc.msgSend(self, "shiftIndexesStartingAtIndex:by:", void, .{index, delta});
     }
 
+};
+
+pub const OrderedCollectionDifferenceCalculationOptions = enum(objc.NSUInteger) {
+    OmitInsertedObjects = 1,
+    OmitRemovedObjects = 2,
+    InferMoves = 4,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference?language=objc
@@ -3618,6 +790,12 @@ pub const Array = opaque {
 
 };
 
+pub const BinarySearchingOptions = enum(objc.NSUInteger) {
+    FirstEqual = 256,
+    LastEqual = 512,
+    InsertionIndex = 1024,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSMutableArray?language=objc
 pub const MutableArray = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMutableArray", @This(), Array, &.{});
@@ -3687,6 +865,71 @@ pub const AutoreleasePool = opaque {
     }
 
 };
+
+pub const unichar = u16;
+
+pub const ItemProviderRepresentationVisibility = enum(objc.NSInteger) {
+    All = 0,
+    Team = 1,
+    Group = 2,
+    OwnProcess = 3,
+};
+
+pub const ItemProviderFileOptions = enum(objc.NSInteger) {
+    OpenInPlace = 1,
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSItemProviderWriting?language=objc
+pub const ItemProviderWriting = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn itemProviderVisibilityForRepresentationWithTypeIdentifier(self: *@This(), typeIdentifier: ?*String) ItemProviderRepresentationVisibility {
+        return objc.msgSend(self, "itemProviderVisibilityForRepresentationWithTypeIdentifier:", ItemProviderRepresentationVisibility, .{typeIdentifier});
+    }
+
+    pub fn itemProviderVisibilityForRepresentationWithTypeIdentifier(self: *@This(), typeIdentifier: ?*String) ItemProviderRepresentationVisibility {
+        return objc.msgSend(self, "itemProviderVisibilityForRepresentationWithTypeIdentifier:", ItemProviderRepresentationVisibility, .{typeIdentifier});
+    }
+
+    pub fn loadDataWithTypeIdentifierForItemProviderCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*Data, ?*cf.NSError) callconv(.C) void) ?*Progress {
+        return objc.msgSend(self, "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:", ?*Progress, .{typeIdentifier, completionHandler});
+    }
+
+    pub fn writableTypeIdentifiersForItemProvider(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "writableTypeIdentifiersForItemProvider", ?*anyopaque, .{});
+    }
+
+    pub fn writableTypeIdentifiersForItemProvider(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "writableTypeIdentifiersForItemProvider", ?*anyopaque, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSItemProviderReading?language=objc
+pub const ItemProviderReading = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn objectWithItemProviderDataTypeIdentifierError(self: *@This(), data: ?*Data, typeIdentifier: ?*String, outError: ?*?*cf.NSError) *@This() {
+        return objc.msgSend(self, "objectWithItemProviderData:typeIdentifier:error:", *@This(), .{data, typeIdentifier, outError});
+    }
+
+    pub fn readableTypeIdentifiersForItemProvider(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "readableTypeIdentifiersForItemProvider", ?*anyopaque, .{});
+    }
+
+};
+
+pub const ItemProviderCompletionHandler = *const fn(?*anyopaque, ?*cf.NSError) callconv(.C) void;
+
+pub const ItemProviderLoadHandler = *const fn(ItemProviderCompletionHandler, *objc.Class, ?*Dictionary) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/Foundation/NSItemProvider?language=objc
 pub const ItemProvider = opaque {
@@ -3785,6 +1028,32 @@ pub const ItemProvider = opaque {
 
 };
 
+pub const ItemProviderErrorCode = enum(objc.NSInteger) {
+    UnknownError = -1,
+    ItemUnavailableError = -1000,
+    UnexpectedValueClassError = -1100,
+    UnavailableCoercionError = -1200,
+};
+
+pub const StringCompareOptions = enum(objc.NSUInteger) {
+    CaseInsensitiveSearch = 1,
+    LiteralSearch = 2,
+    BackwardsSearch = 4,
+    AnchoredSearch = 8,
+    NumericSearch = 64,
+    DiacriticInsensitiveSearch = 128,
+    WidthInsensitiveSearch = 256,
+    ForcedOrderingSearch = 512,
+    RegularExpressionSearch = 1024,
+};
+
+pub const StringEncoding = objc.NSUInteger;
+
+pub const StringEncodingConversionOptions = enum(objc.NSUInteger) {
+    AllowLossy = 1,
+    ExternalRepresentation = 2,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSString?language=objc
 pub const String = opaque {
     pub const InternalInfo = objc.ExternalClass("NSString", @This(), Object, &.{});
@@ -3814,6 +1083,23 @@ pub const String = opaque {
 
 };
 
+pub const StringEnumerationOptions = enum(objc.NSUInteger) {
+    ByLines = 0,
+    ByParagraphs = 1,
+    ByComposedCharacterSequences = 2,
+    ByWords = 3,
+    BySentences = 4,
+    ByCaretPositions = 5,
+    ByDeletionClusters = 6,
+    Reverse = 256,
+    SubstringNotRequired = 512,
+    Localized = 1024,
+};
+
+pub const StringTransform = ?*String;
+
+pub const StringEncodingDetectionOptionsKey = ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSMutableString?language=objc
 pub const MutableString = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMutableString", @This(), String, &.{});
@@ -3829,6 +1115,10 @@ pub const MutableString = opaque {
         return objc.msgSend(self, "replaceCharactersInRange:withString:", void, .{range, aString});
     }
 
+};
+
+pub const anon5481 = enum(StringEncoding) {
+    NSProprietaryStringEncoding = 65536,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSSimpleCString?language=objc
@@ -4035,6 +1325,12 @@ pub const CountedSet = opaque {
     }
 
 };
+
+pub const ProgressKind = ?*String;
+
+pub const ProgressUserInfoKey = ?*String;
+
+pub const ProgressFileOperationKind = ?*String;
 
 /// https://developer.apple.com/documentation/Foundation/NSProgress?language=objc
 pub const Progress = opaque {
@@ -4272,6 +1568,26 @@ pub const Progress = opaque {
     }
 
 };
+
+pub const ProgressUnpublishingHandler = *const fn() callconv(.C) void;
+
+pub const ProgressPublishingHandler = *const fn(?*Progress) callconv(.C) ProgressUnpublishingHandler;
+
+/// https://developer.apple.com/documentation/Foundation/NSProgressReporting?language=objc
+pub const ProgressReporting = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn progress(self: *@This()) ?*Progress {
+        return objc.msgSend(self, "progress", ?*Progress, .{});
+    }
+
+};
+
+pub const NotificationName = ?*String;
 
 /// https://developer.apple.com/documentation/Foundation/NSNotification?language=objc
 pub const Notification = opaque {
@@ -4657,6 +1973,92 @@ pub const BundleResourceRequest = opaque {
 
 };
 
+pub const anon101 = enum(u32) {
+    NS_UnknownByteOrder = 0,
+    NS_LittleEndian = 1,
+    NS_BigEndian = 2,
+};
+
+pub extern "Foundation" fn HostByteOrder() callconv(.C) i64;
+
+pub extern "Foundation" fn SwapShort(inv: u16) callconv(.C) u16;
+
+pub extern "Foundation" fn SwapInt(inv: u32) callconv(.C) u32;
+
+pub extern "Foundation" fn SwapLong(inv: u64) callconv(.C) u64;
+
+pub extern "Foundation" fn SwapLongLong(inv: u64) callconv(.C) u64;
+
+pub extern "Foundation" fn SwapBigShortToHost(x: u16) callconv(.C) u16;
+
+pub extern "Foundation" fn SwapBigIntToHost(x: u32) callconv(.C) u32;
+
+pub extern "Foundation" fn SwapBigLongToHost(x: u64) callconv(.C) u64;
+
+pub extern "Foundation" fn SwapBigLongLongToHost(x: u64) callconv(.C) u64;
+
+pub extern "Foundation" fn SwapHostShortToBig(x: u16) callconv(.C) u16;
+
+pub extern "Foundation" fn SwapHostIntToBig(x: u32) callconv(.C) u32;
+
+pub extern "Foundation" fn SwapHostLongToBig(x: u64) callconv(.C) u64;
+
+pub extern "Foundation" fn SwapHostLongLongToBig(x: u64) callconv(.C) u64;
+
+pub extern "Foundation" fn SwapLittleShortToHost(x: u16) callconv(.C) u16;
+
+pub extern "Foundation" fn SwapLittleIntToHost(x: u32) callconv(.C) u32;
+
+pub extern "Foundation" fn SwapLittleLongToHost(x: u64) callconv(.C) u64;
+
+pub extern "Foundation" fn SwapLittleLongLongToHost(x: u64) callconv(.C) u64;
+
+pub extern "Foundation" fn SwapHostShortToLittle(x: u16) callconv(.C) u16;
+
+pub extern "Foundation" fn SwapHostIntToLittle(x: u32) callconv(.C) u32;
+
+pub extern "Foundation" fn SwapHostLongToLittle(x: u64) callconv(.C) u64;
+
+pub extern "Foundation" fn SwapHostLongLongToLittle(x: u64) callconv(.C) u64;
+
+pub const SwappedFloat = extern struct {
+    v: u32,
+};
+
+pub const SwappedDouble = extern struct {
+    v: u64,
+};
+
+pub extern "Foundation" fn ConvertHostFloatToSwapped(x: f32) callconv(.C) SwappedFloat;
+
+pub extern "Foundation" fn ConvertSwappedFloatToHost(x: SwappedFloat) callconv(.C) f32;
+
+pub extern "Foundation" fn ConvertHostDoubleToSwapped(x: f64) callconv(.C) SwappedDouble;
+
+pub extern "Foundation" fn ConvertSwappedDoubleToHost(x: SwappedDouble) callconv(.C) f64;
+
+pub extern "Foundation" fn SwapFloat(x: SwappedFloat) callconv(.C) SwappedFloat;
+
+pub extern "Foundation" fn SwapDouble(x: SwappedDouble) callconv(.C) SwappedDouble;
+
+pub extern "Foundation" fn SwapBigDoubleToHost(x: SwappedDouble) callconv(.C) f64;
+
+pub extern "Foundation" fn SwapBigFloatToHost(x: SwappedFloat) callconv(.C) f32;
+
+pub extern "Foundation" fn SwapHostDoubleToBig(x: f64) callconv(.C) SwappedDouble;
+
+pub extern "Foundation" fn SwapHostFloatToBig(x: f32) callconv(.C) SwappedFloat;
+
+pub extern "Foundation" fn SwapLittleDoubleToHost(x: SwappedDouble) callconv(.C) f64;
+
+pub extern "Foundation" fn SwapLittleFloatToHost(x: SwappedFloat) callconv(.C) f32;
+
+pub extern "Foundation" fn SwapHostDoubleToLittle(x: f64) callconv(.C) SwappedDouble;
+
+pub extern "Foundation" fn SwapHostFloatToLittle(x: f32) callconv(.C) SwappedFloat;
+
+pub const TimeInterval = f64;
+
 /// https://developer.apple.com/documentation/Foundation/NSDate?language=objc
 pub const Date = opaque {
     pub const InternalInfo = objc.ExternalClass("NSDate", @This(), Object, &.{});
@@ -4684,6 +2086,55 @@ pub const Date = opaque {
         return objc.msgSend(self, "timeIntervalSinceReferenceDate", TimeInterval, .{});
     }
 
+};
+
+pub const CalendarIdentifier = ?*String;
+
+pub const CalendarUnit = enum(objc.NSUInteger) {
+    Era = 2,
+    Year = 4,
+    Month = 8,
+    Day = 16,
+    Hour = 32,
+    Minute = 64,
+    Second = 128,
+    Weekday = 512,
+    WeekdayOrdinal = 1024,
+    Quarter = 2048,
+    WeekOfMonth = 4096,
+    WeekOfYear = 8192,
+    YearForWeekOfYear = 16384,
+    Nanosecond = 32768,
+    DayOfYear = 65536,
+    Calendar = 1048576,
+    TimeZone = 2097152,
+    EraCalendarUnit = 2,
+    YearCalendarUnit = 4,
+    MonthCalendarUnit = 8,
+    DayCalendarUnit = 16,
+    HourCalendarUnit = 32,
+    MinuteCalendarUnit = 64,
+    SecondCalendarUnit = 128,
+    WeekCalendarUnit = 256,
+    WeekdayCalendarUnit = 512,
+    WeekdayOrdinalCalendarUnit = 1024,
+    QuarterCalendarUnit = 2048,
+    WeekOfMonthCalendarUnit = 4096,
+    WeekOfYearCalendarUnit = 8192,
+    YearForWeekOfYearCalendarUnit = 16384,
+    CalendarUnit = 1048576,
+    TimeZoneCalendarUnit = 2097152,
+};
+
+pub const CalendarOptions = enum(objc.NSUInteger) {
+    WrapComponents = 1,
+    MatchStrictly = 2,
+    SearchBackwards = 4,
+    MatchPreviousTimePreservingSmallerUnits = 256,
+    MatchNextTimePreservingSmallerUnits = 512,
+    MatchNextTime = 1024,
+    MatchFirst = 4096,
+    MatchLast = 8192,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSCalendar?language=objc
@@ -4975,6 +2426,11 @@ pub const Calendar = opaque {
 
 };
 
+pub const anon4111 = enum(objc.NSInteger) {
+    NSDateComponentUndefined = 9223372036854775807,
+    NSUndefinedDateComponent = 9223372036854775807,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSDateComponents?language=objc
 pub const DateComponents = opaque {
     pub const InternalInfo = objc.ExternalClass("NSDateComponents", @This(), Object, &.{});
@@ -5158,6 +2614,10 @@ pub const DateComponents = opaque {
         return objc.msgSend(self, "isValidDate", objc.BOOL, .{});
     }
 
+};
+
+pub const anon141 = enum(u32) {
+    NSOpenStepUnicodeReservedBase = 62464,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSCharacterSet?language=objc
@@ -5394,6 +2854,11 @@ pub const MutableCharacterSet = opaque {
 
 };
 
+pub const DecodingFailurePolicy = enum(objc.NSInteger) {
+    RaiseException = 0,
+    SetErrorAndReturn = 1,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSCoder?language=objc
 pub const Coder = opaque {
     pub const InternalInfo = objc.ExternalClass("NSCoder", @This(), Object, &.{});
@@ -5427,6 +2892,45 @@ pub const Coder = opaque {
 
 };
 
+pub extern "Foundation" fn NXReadNSObjectFromCoder(decoder: ?*Coder) callconv(.C) ?*objc.NSObject;
+
+pub const DataReadingOptions = enum(objc.NSUInteger) {
+    MappedIfSafe = 1,
+    Uncached = 2,
+    MappedAlways = 8,
+    Mapped = 1,
+    MappedRead = 1,
+    UncachedRead = 2,
+};
+
+pub const DataWritingOptions = enum(objc.NSUInteger) {
+    Atomic = 1,
+    WithoutOverwriting = 2,
+    FileProtectionNone = 268435456,
+    FileProtectionComplete = 536870912,
+    FileProtectionCompleteUnlessOpen = 805306368,
+    FileProtectionCompleteUntilFirstUserAuthentication = 1073741824,
+    FileProtectionCompleteWhenUserInactive = 1342177280,
+    FileProtectionMask = 4026531840,
+    AtomicWrite = 1,
+};
+
+pub const DataSearchOptions = enum(objc.NSUInteger) {
+    Backwards = 1,
+    Anchored = 2,
+};
+
+pub const DataBase64EncodingOptions = enum(objc.NSUInteger) {
+    Encoding64CharacterLineLength = 1,
+    Encoding76CharacterLineLength = 2,
+    EndLineWithCarriageReturn = 16,
+    EndLineWithLineFeed = 32,
+};
+
+pub const DataBase64DecodingOptions = enum(objc.NSUInteger) {
+    IgnoreUnknownCharacters = 1,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSData?language=objc
 pub const Data = opaque {
     pub const InternalInfo = objc.ExternalClass("NSData", @This(), Object, &.{});
@@ -5446,6 +2950,13 @@ pub const Data = opaque {
         return objc.msgSend(self, "bytes", ?*anyopaque, .{});
     }
 
+};
+
+pub const DataCompressionAlgorithm = enum(objc.NSInteger) {
+    LZFSE = 0,
+    LZ4 = 1,
+    LZMA = 2,
+    Zlib = 3,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSMutableData?language=objc
@@ -5546,6 +3057,10 @@ pub const DateInterval = opaque {
 
 };
 
+pub const AttributedStringKey = ?*String;
+
+pub const AttributedStringFormattingContextKey = ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSAttributedString?language=objc
 pub const AttributedString = opaque {
     pub const InternalInfo = objc.ExternalClass("NSAttributedString", @This(), Object, &.{});
@@ -5567,6 +3082,11 @@ pub const AttributedString = opaque {
 
 };
 
+pub const AttributedStringEnumerationOptions = enum(objc.NSUInteger) {
+    Reverse = 2,
+    LongestEffectiveRangeNotRequired = 1048576,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSMutableAttributedString?language=objc
 pub const MutableAttributedString = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMutableAttributedString", @This(), AttributedString, &.{});
@@ -5586,6 +3106,28 @@ pub const MutableAttributedString = opaque {
         return objc.msgSend(self, "setAttributes:range:", void, .{attrs, range});
     }
 
+};
+
+pub const InlinePresentationIntent = enum(objc.NSUInteger) {
+    Emphasized = 1,
+    StronglyEmphasized = 2,
+    Code = 4,
+    Strikethrough = 32,
+    SoftBreak = 64,
+    LineBreak = 128,
+    InlineHTML = 256,
+    BlockHTML = 512,
+};
+
+pub const AttributedStringMarkdownParsingFailurePolicy = enum(objc.NSInteger) {
+    ReturnError = 0,
+    ReturnPartiallyParsedIfPossible = 1,
+};
+
+pub const AttributedStringMarkdownInterpretedSyntax = enum(objc.NSInteger) {
+    Full = 0,
+    InlineOnly = 1,
+    InlineOnlyPreservingWhitespace = 2,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition?language=objc
@@ -5680,6 +3222,32 @@ pub const AttributedStringMarkdownParsingOptions = opaque {
         return objc.msgSend(self, "setAppliesSourcePositionAttributes:", void, .{appliesSourcePositionAttributes});
     }
 
+};
+
+pub const AttributedStringFormattingOptions = enum(objc.NSUInteger) {
+    InsertArgumentAttributesWithoutMerging = 1,
+    ApplyReplacementIndexAttribute = 2,
+};
+
+pub const PresentationIntentKind = enum(objc.NSInteger) {
+    Paragraph = 0,
+    Header = 1,
+    OrderedList = 2,
+    UnorderedList = 3,
+    ListItem = 4,
+    CodeBlock = 5,
+    BlockQuote = 6,
+    ThematicBreak = 7,
+    Table = 8,
+    TableHeaderRow = 9,
+    TableRow = 10,
+    TableCell = 11,
+};
+
+pub const PresentationIntentTableColumnAlignment = enum(objc.NSInteger) {
+    Left = 0,
+    Center = 1,
+    Right = 2,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSPresentationIntent?language=objc
@@ -5793,6 +3361,21 @@ pub const PresentationIntent = opaque {
         return objc.msgSend(self, "indentationLevel", objc.NSInteger, .{});
     }
 
+};
+
+pub const FormattingContext = enum(objc.NSInteger) {
+    Unknown = 0,
+    Dynamic = 1,
+    Standalone = 2,
+    ListItem = 3,
+    BeginningOfSentence = 4,
+    MiddleOfSentence = 5,
+};
+
+pub const FormattingUnitStyle = enum(objc.NSInteger) {
+    Short = 1,
+    Medium = 2,
+    Long = 3,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSFormatter?language=objc
@@ -6149,6 +3732,32 @@ pub const DateFormatter = opaque {
 
 };
 
+pub const DateFormatterStyle = enum NSDateFormatterStyle;
+
+pub const DateFormatterStyle = enum(objc.NSUInteger) {
+    NoStyle = 0,
+    ShortStyle = 1,
+    MediumStyle = 2,
+    LongStyle = 3,
+    FullStyle = 4,
+};
+
+pub const DateFormatterBehavior = enum NSDateFormatterBehavior;
+
+pub const DateFormatterBehavior = enum(objc.NSUInteger) {
+    Default = 0,
+    10_0 = 1000,
+    10_4 = 1040,
+};
+
+pub const DateIntervalFormatterStyle = enum(objc.NSUInteger) {
+    NoStyle = 0,
+    ShortStyle = 1,
+    MediumStyle = 2,
+    LongStyle = 3,
+    FullStyle = 4,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSDateIntervalFormatter?language=objc
 pub const DateIntervalFormatter = opaque {
     pub const InternalInfo = objc.ExternalClass("NSDateIntervalFormatter", @This(), Formatter, &.{});
@@ -6218,6 +3827,23 @@ pub const DateIntervalFormatter = opaque {
 
 };
 
+pub const ISO8601DateFormatOptions = enum(objc.NSUInteger) {
+    WithYear = 1,
+    WithMonth = 2,
+    WithWeekOfYear = 4,
+    WithDay = 16,
+    WithTime = 32,
+    WithTimeZone = 64,
+    WithSpaceBetweenDateAndTime = 128,
+    WithDashSeparatorInDate = 256,
+    WithColonSeparatorInTime = 512,
+    WithColonSeparatorInTimeZone = 1024,
+    WithFractionalSeconds = 2048,
+    WithFullDate = 275,
+    WithFullTime = 1632,
+    WithInternetDateTime = 1907,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSISO8601DateFormatter?language=objc
 pub const ISO8601DateFormatter = opaque {
     pub const InternalInfo = objc.ExternalClass("NSISO8601DateFormatter", @This(), Formatter, &.{});
@@ -6261,6 +3887,14 @@ pub const ISO8601DateFormatter = opaque {
         return objc.msgSend(self, "setFormatOptions:", void, .{formatOptions});
     }
 
+};
+
+pub const MassFormatterUnit = enum(objc.NSInteger) {
+    Gram = 11,
+    Kilogram = 14,
+    Ounce = 1537,
+    Pound = 1538,
+    Stone = 1539,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSMassFormatter?language=objc
@@ -6320,6 +3954,17 @@ pub const MassFormatter = opaque {
 
 };
 
+pub const LengthFormatterUnit = enum(objc.NSInteger) {
+    Millimeter = 8,
+    Centimeter = 9,
+    Meter = 11,
+    Kilometer = 14,
+    Inch = 1281,
+    Foot = 1282,
+    Yard = 1283,
+    Mile = 1284,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSLengthFormatter?language=objc
 pub const LengthFormatter = opaque {
     pub const InternalInfo = objc.ExternalClass("NSLengthFormatter", @This(), Formatter, &.{});
@@ -6375,6 +4020,13 @@ pub const LengthFormatter = opaque {
         return objc.msgSend(self, "setForPersonHeightUse:", void, .{forPersonHeightUse});
     }
 
+};
+
+pub const EnergyFormatterUnit = enum(objc.NSInteger) {
+    Joule = 11,
+    Kilojoule = 14,
+    Calorie = 1793,
+    Kilocalorie = 1794,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSEnergyFormatter?language=objc
@@ -7685,6 +5337,12 @@ pub const Measurement = opaque {
 
 };
 
+pub const NumberFormatterBehavior = enum(objc.NSUInteger) {
+    Default = 0,
+    10_0 = 1000,
+    10_4 = 1040,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSNumberFormatter?language=objc
 pub const NumberFormatter = opaque {
     pub const InternalInfo = objc.ExternalClass("NSNumberFormatter", @This(), Formatter, &.{});
@@ -8186,6 +5844,44 @@ pub const NumberFormatter = opaque {
 
 };
 
+pub const NumberFormatterStyle = enum NSNumberFormatterStyle;
+
+pub const NumberFormatterStyle = enum(objc.NSUInteger) {
+    NoStyle = 0,
+    DecimalStyle = 1,
+    CurrencyStyle = 2,
+    PercentStyle = 3,
+    ScientificStyle = 4,
+    SpellOutStyle = 5,
+    OrdinalStyle = 6,
+    CurrencyISOCodeStyle = 8,
+    CurrencyPluralStyle = 9,
+    CurrencyAccountingStyle = 10,
+};
+
+pub const NumberFormatterPadPosition = enum NSNumberFormatterPadPosition;
+
+pub const NumberFormatterPadPosition = enum(objc.NSUInteger) {
+    BeforePrefix = 0,
+    AfterPrefix = 1,
+    BeforeSuffix = 2,
+    AfterSuffix = 3,
+};
+
+pub const NumberFormatterRoundingMode = enum NSNumberFormatterRoundingMode;
+
+pub const NumberFormatterRoundingMode = enum(objc.NSUInteger) {
+    Ceiling = 0,
+    Floor = 1,
+    Down = 2,
+    Up = 3,
+    HalfEven = 4,
+    HalfDown = 5,
+    HalfUp = 6,
+};
+
+pub const LocaleKey = ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSLocale?language=objc
 pub const Locale = opaque {
     pub const InternalInfo = objc.ExternalClass("NSLocale", @This(), Object, &.{});
@@ -8213,6 +5909,20 @@ pub const Locale = opaque {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
+};
+
+pub const LocaleLanguageDirection = enum(objc.NSUInteger) {
+    Unknown = 0,
+    LeftToRight = 1,
+    RightToLeft = 2,
+    TopToBottom = 3,
+    BottomToTop = 4,
+};
+
+pub const MeasurementFormatterUnitOptions = enum(objc.NSUInteger) {
+    ProvidedUnit = 1,
+    NaturalScale = 2,
+    TemperatureWithoutUnit = 4,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSMeasurementFormatter?language=objc
@@ -8337,6 +6047,18 @@ pub const PersonNameComponents = opaque {
 
 };
 
+pub const PersonNameComponentsFormatterStyle = enum(objc.NSInteger) {
+    Default = 0,
+    Short = 1,
+    Medium = 2,
+    Long = 3,
+    Abbreviated = 4,
+};
+
+pub const PersonNameComponentsFormatterOptions = enum(objc.NSUInteger) {
+    Phonetic = 2,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSPersonNameComponentsFormatter?language=objc
 pub const PersonNameComponentsFormatter = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPersonNameComponentsFormatter", @This(), Formatter, &.{});
@@ -8392,6 +6114,18 @@ pub const PersonNameComponentsFormatter = opaque {
         return objc.msgSend(self, "setLocale:", void, .{locale});
     }
 
+};
+
+pub const RelativeDateTimeFormatterStyle = enum(objc.NSInteger) {
+    Numeric = 0,
+    Named = 1,
+};
+
+pub const RelativeDateTimeFormatterUnitsStyle = enum(objc.NSInteger) {
+    Full = 0,
+    SpellOut = 1,
+    Short = 2,
+    Abbreviated = 3,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSRelativeDateTimeFormatter?language=objc
@@ -8504,6 +6238,56 @@ pub const ListFormatter = opaque {
 
 };
 
+pub const RoundingMode = enum(objc.NSUInteger) {
+    Plain = 0,
+    Down = 1,
+    Up = 2,
+    Bankers = 3,
+};
+
+pub const CalculationError = enum(objc.NSUInteger) {
+    NoError = 0,
+    LossOfPrecision = 1,
+    Underflow = 2,
+    Overflow = 3,
+    DivideByZero = 4,
+};
+
+pub const Decimal = extern struct {
+    _exponent: i32,
+    _length: u32,
+    _isNegative: u32,
+    _isCompact: u32,
+    _reserved: u32,
+    _mantissa: [8] u16,
+};
+
+pub extern "Foundation" fn DecimalIsNotANumber(dcm: ?*Decimal) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn DecimalCopy(destination: ?*Decimal, source: ?*Decimal) callconv(.C) void;
+
+pub extern "Foundation" fn DecimalCompact(number: ?*Decimal) callconv(.C) void;
+
+pub extern "Foundation" fn DecimalCompare(leftOperand: ?*Decimal, rightOperand: ?*Decimal) callconv(.C) ComparisonResult;
+
+pub extern "Foundation" fn DecimalRound(result: ?*Decimal, number: ?*Decimal, scale: objc.NSInteger, roundingMode: RoundingMode, ) callconv(.C) void;
+
+pub extern "Foundation" fn DecimalNormalize(number1: ?*Decimal, number2: ?*Decimal, roundingMode: RoundingMode) callconv(.C) CalculationError;
+
+pub extern "Foundation" fn DecimalAdd(result: ?*Decimal, leftOperand: ?*Decimal, rightOperand: ?*Decimal, roundingMode: RoundingMode, ) callconv(.C) CalculationError;
+
+pub extern "Foundation" fn DecimalSubtract(result: ?*Decimal, leftOperand: ?*Decimal, rightOperand: ?*Decimal, roundingMode: RoundingMode, ) callconv(.C) CalculationError;
+
+pub extern "Foundation" fn DecimalMultiply(result: ?*Decimal, leftOperand: ?*Decimal, rightOperand: ?*Decimal, roundingMode: RoundingMode, ) callconv(.C) CalculationError;
+
+pub extern "Foundation" fn DecimalDivide(result: ?*Decimal, leftOperand: ?*Decimal, rightOperand: ?*Decimal, roundingMode: RoundingMode, ) callconv(.C) CalculationError;
+
+pub extern "Foundation" fn DecimalPower(result: ?*Decimal, number: ?*Decimal, power: objc.NSUInteger, roundingMode: RoundingMode, ) callconv(.C) CalculationError;
+
+pub extern "Foundation" fn DecimalMultiplyByPowerOf10(result: ?*Decimal, number: ?*Decimal, power: i16, roundingMode: RoundingMode, ) callconv(.C) CalculationError;
+
+pub extern "Foundation" fn DecimalString(dcm: ?*Decimal, locale: *objc.Id) callconv(.C) ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSScanner?language=objc
 pub const Scanner = opaque {
     pub const InternalInfo = objc.ExternalClass("NSScanner", @This(), Object, &.{});
@@ -8602,6 +6386,12 @@ pub const Exception = opaque {
 
 };
 
+pub const UncaughtExceptionHandler = fn(?*Exception) callconv(.C) void;
+
+pub extern "Foundation" fn GetUncaughtExceptionHandler() callconv(.C) ?*UncaughtExceptionHandler;
+
+pub extern "Foundation" fn SetUncaughtExceptionHandler(: ?*UncaughtExceptionHandler) callconv(.C) void;
+
 /// https://developer.apple.com/documentation/Foundation/NSAssertionHandler?language=objc
 pub const AssertionHandler = opaque {
     pub const InternalInfo = objc.ExternalClass("NSAssertionHandler", @This(), Object, &.{});
@@ -8623,6 +6413,28 @@ pub const AssertionHandler = opaque {
 
     pub fn currentHandler(self: *@This()) ?*AssertionHandler {
         return objc.msgSend(self, "currentHandler", ?*AssertionHandler, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSDecimalNumberBehaviors?language=objc
+pub const DecimalNumberBehaviors = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn roundingMode(self: *@This()) RoundingMode {
+        return objc.msgSend(self, "roundingMode", RoundingMode, .{});
+    }
+
+    pub fn scale(self: *@This()) i16 {
+        return objc.msgSend(self, "scale", i16, .{});
+    }
+
+    pub fn exceptionDuringOperationErrorLeftOperandRightOperand(self: *@This(), operation: *objc.SEL, @"error": CalculationError, leftOperand: ?*DecimalNumber, rightOperand: ?*DecimalNumber, ) ?*DecimalNumber {
+        return objc.msgSend(self, "exceptionDuringOperation:error:leftOperand:rightOperand:", ?*DecimalNumber, .{operation, @"error", leftOperand, rightOperand, });
     }
 
 };
@@ -8796,6 +6608,10 @@ pub const DecimalNumberHandler = opaque {
     }
 
 };
+
+pub const ErrorDomain = ?*String;
+
+pub const ErrorUserInfoKey = ?*String;
 
 /// https://developer.apple.com/documentation/Foundation/NSError?language=objc
 pub const Error = opaque {
@@ -9001,6 +6817,95 @@ pub const Pipe = opaque {
 
 };
 
+pub extern "Foundation" fn UserName() callconv(.C) ?*String;
+
+pub extern "Foundation" fn FullUserName() callconv(.C) ?*String;
+
+pub extern "Foundation" fn HomeDirectory() callconv(.C) ?*String;
+
+pub extern "Foundation" fn HomeDirectoryForUser(userName: ?*String) callconv(.C) ?*String;
+
+pub extern "Foundation" fn TemporaryDirectory() callconv(.C) ?*String;
+
+pub extern "Foundation" fn OpenStepRootDirectory() callconv(.C) ?*String;
+
+pub const SearchPathDirectory = enum(objc.NSUInteger) {
+    ApplicationDirectory = 1,
+    DemoApplicationDirectory = 2,
+    DeveloperApplicationDirectory = 3,
+    AdminApplicationDirectory = 4,
+    LibraryDirectory = 5,
+    DeveloperDirectory = 6,
+    UserDirectory = 7,
+    DocumentationDirectory = 8,
+    DocumentDirectory = 9,
+    CoreServiceDirectory = 10,
+    AutosavedInformationDirectory = 11,
+    DesktopDirectory = 12,
+    CachesDirectory = 13,
+    ApplicationSupportDirectory = 14,
+    DownloadsDirectory = 15,
+    InputMethodsDirectory = 16,
+    MoviesDirectory = 17,
+    MusicDirectory = 18,
+    PicturesDirectory = 19,
+    PrinterDescriptionDirectory = 20,
+    SharedPublicDirectory = 21,
+    PreferencePanesDirectory = 22,
+    ApplicationScriptsDirectory = 23,
+    ItemReplacementDirectory = 99,
+    AllApplicationsDirectory = 100,
+    AllLibrariesDirectory = 101,
+    TrashDirectory = 102,
+};
+
+pub const SearchPathDomainMask = enum(objc.NSUInteger) {
+    UserDomainMask = 1,
+    LocalDomainMask = 2,
+    NetworkDomainMask = 4,
+    SystemDomainMask = 8,
+    AllDomainsMask = 65535,
+};
+
+pub extern "Foundation" fn SearchPathForDirectoriesInDomains(directory: SearchPathDirectory, domainMask: SearchPathDomainMask, expandTilde: objc.BOOL) callconv(.C) ?*anyopaque;
+
+pub const URLHandleStatus = enum(objc.NSUInteger) {
+    NotLoaded = 0,
+    LoadSucceeded = 1,
+    LoadInProgress = 2,
+    LoadFailed = 3,
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLHandleClient?language=objc
+pub const URLHandleClient = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn URLHandleResourceDataDidBecomeAvailable(self: *@This(), sender: ?*URLHandle, newBytes: ?*Data) void {
+        return objc.msgSend(self, "URLHandle:resourceDataDidBecomeAvailable:", void, .{sender, newBytes});
+    }
+
+    pub fn URLHandleResourceDidBeginLoading(self: *@This(), sender: ?*URLHandle) void {
+        return objc.msgSend(self, "URLHandleResourceDidBeginLoading:", void, .{sender});
+    }
+
+    pub fn URLHandleResourceDidFinishLoading(self: *@This(), sender: ?*URLHandle) void {
+        return objc.msgSend(self, "URLHandleResourceDidFinishLoading:", void, .{sender});
+    }
+
+    pub fn URLHandleResourceDidCancelLoading(self: *@This(), sender: ?*URLHandle) void {
+        return objc.msgSend(self, "URLHandleResourceDidCancelLoading:", void, .{sender});
+    }
+
+    pub fn URLHandleResourceDidFailLoadingWithReason(self: *@This(), sender: ?*URLHandle, reason: ?*String) void {
+        return objc.msgSend(self, "URLHandle:resourceDidFailLoadingWithReason:", void, .{sender, reason});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSURLHandle?language=objc
 pub const URLHandle = opaque {
     pub const InternalInfo = objc.ExternalClass("NSURLHandle", @This(), Object, &.{});
@@ -9109,6 +7014,8 @@ pub const URLHandle = opaque {
     }
 
 };
+
+pub const URLResourceKey = ?*String;
 
 /// https://developer.apple.com/documentation/Foundation/NSURL?language=objc
 pub const URL = opaque {
@@ -9366,6 +7273,40 @@ pub const URL = opaque {
     }
 
 };
+
+pub const URLFileResourceType = ?*String;
+
+pub const URLThumbnailDictionaryItem = ?*String;
+
+pub const URLFileProtectionType = ?*String;
+
+pub const URLUbiquitousItemDownloadingStatus = ?*String;
+
+pub const URLUbiquitousSharedItemRole = ?*String;
+
+pub const URLUbiquitousSharedItemPermissions = ?*String;
+
+pub const URLBookmarkCreationOptions = enum NSURLBookmarkCreationOptions;
+
+pub const URLBookmarkCreationOptions = enum(objc.NSUInteger) {
+    PreferFileIDResolution = 256,
+    MinimalBookmark = 512,
+    SuitableForBookmarkFile = 1024,
+    WithSecurityScope = 2048,
+    SecurityScopeAllowOnlyReadAccess = 4096,
+    WithoutImplicitSecurityScope = 536870912,
+};
+
+pub const URLBookmarkResolutionOptions = enum NSURLBookmarkResolutionOptions;
+
+pub const URLBookmarkResolutionOptions = enum(objc.NSUInteger) {
+    WithoutUI = 256,
+    WithoutMounting = 512,
+    WithSecurityScope = 1024,
+    WithoutImplicitStartAccessing = 32768,
+};
+
+pub const URLBookmarkFileCreationOptions = objc.NSUInteger;
 
 /// https://developer.apple.com/documentation/Foundation/NSURLQueryItem?language=objc
 pub const URLQueryItem = opaque {
@@ -9632,6 +7573,43 @@ pub const FileSecurity = opaque {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
+};
+
+pub const FileAttributeKey = ?*String;
+
+pub const FileAttributeType = ?*String;
+
+pub const FileProtectionType = ?*String;
+
+pub const FileProviderServiceName = ?*String;
+
+pub const VolumeEnumerationOptions = enum(objc.NSUInteger) {
+    SkipHiddenVolumes = 2,
+    ProduceFileReferenceURLs = 4,
+};
+
+pub const DirectoryEnumerationOptions = enum(objc.NSUInteger) {
+    SkipsSubdirectoryDescendants = 1,
+    SkipsPackageDescendants = 2,
+    SkipsHiddenFiles = 4,
+    IncludesDirectoriesPostOrder = 8,
+    ProducesRelativePathURLs = 16,
+};
+
+pub const FileManagerItemReplacementOptions = enum(objc.NSUInteger) {
+    UsingNewMetadataOnly = 1,
+    WithoutDeletingBackupItem = 2,
+};
+
+pub const URLRelationship = enum(objc.NSInteger) {
+    Contains = 0,
+    Same = 1,
+    Other = 2,
+};
+
+pub const FileManagerUnmountOptions = enum(objc.NSUInteger) {
+    AllPartitionsAndEjectDisk = 1,
+    WithoutUI = 2,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSFileManager?language=objc
@@ -9919,6 +7897,80 @@ pub const FileManager = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSFileManagerDelegate?language=objc
+pub const FileManagerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn fileManagerShouldCopyItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, srcPath: ?*String, dstPath: ?*String) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldCopyItemAtPath:toPath:", objc.BOOL, .{fileManager, srcPath, dstPath});
+    }
+
+    pub fn fileManagerShouldCopyItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, srcURL: ?*URL, dstURL: ?*URL) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldCopyItemAtURL:toURL:", objc.BOOL, .{fileManager, srcURL, dstURL});
+    }
+
+    pub fn fileManagerShouldProceedAfterErrorCopyingItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcPath: ?*String, dstPath: ?*String, ) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldProceedAfterError:copyingItemAtPath:toPath:", objc.BOOL, .{fileManager, @"error", srcPath, dstPath, });
+    }
+
+    pub fn fileManagerShouldProceedAfterErrorCopyingItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcURL: ?*URL, dstURL: ?*URL, ) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldProceedAfterError:copyingItemAtURL:toURL:", objc.BOOL, .{fileManager, @"error", srcURL, dstURL, });
+    }
+
+    pub fn fileManagerShouldMoveItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, srcPath: ?*String, dstPath: ?*String) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldMoveItemAtPath:toPath:", objc.BOOL, .{fileManager, srcPath, dstPath});
+    }
+
+    pub fn fileManagerShouldMoveItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, srcURL: ?*URL, dstURL: ?*URL) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldMoveItemAtURL:toURL:", objc.BOOL, .{fileManager, srcURL, dstURL});
+    }
+
+    pub fn fileManagerShouldProceedAfterErrorMovingItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcPath: ?*String, dstPath: ?*String, ) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldProceedAfterError:movingItemAtPath:toPath:", objc.BOOL, .{fileManager, @"error", srcPath, dstPath, });
+    }
+
+    pub fn fileManagerShouldProceedAfterErrorMovingItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcURL: ?*URL, dstURL: ?*URL, ) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldProceedAfterError:movingItemAtURL:toURL:", objc.BOOL, .{fileManager, @"error", srcURL, dstURL, });
+    }
+
+    pub fn fileManagerShouldLinkItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, srcPath: ?*String, dstPath: ?*String) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldLinkItemAtPath:toPath:", objc.BOOL, .{fileManager, srcPath, dstPath});
+    }
+
+    pub fn fileManagerShouldLinkItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, srcURL: ?*URL, dstURL: ?*URL) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldLinkItemAtURL:toURL:", objc.BOOL, .{fileManager, srcURL, dstURL});
+    }
+
+    pub fn fileManagerShouldProceedAfterErrorLinkingItemAtPathToPath(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcPath: ?*String, dstPath: ?*String, ) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldProceedAfterError:linkingItemAtPath:toPath:", objc.BOOL, .{fileManager, @"error", srcPath, dstPath, });
+    }
+
+    pub fn fileManagerShouldProceedAfterErrorLinkingItemAtURLToURL(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, srcURL: ?*URL, dstURL: ?*URL, ) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldProceedAfterError:linkingItemAtURL:toURL:", objc.BOOL, .{fileManager, @"error", srcURL, dstURL, });
+    }
+
+    pub fn fileManagerShouldRemoveItemAtPath(self: *@This(), fileManager: ?*FileManager, path: ?*String) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldRemoveItemAtPath:", objc.BOOL, .{fileManager, path});
+    }
+
+    pub fn fileManagerShouldRemoveItemAtURL(self: *@This(), fileManager: ?*FileManager, URL: ?*URL) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldRemoveItemAtURL:", objc.BOOL, .{fileManager, URL});
+    }
+
+    pub fn fileManagerShouldProceedAfterErrorRemovingItemAtPath(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, path: ?*String) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldProceedAfterError:removingItemAtPath:", objc.BOOL, .{fileManager, @"error", path});
+    }
+
+    pub fn fileManagerShouldProceedAfterErrorRemovingItemAtURL(self: *@This(), fileManager: ?*FileManager, @"error": ?*Error, URL: ?*URL) objc.BOOL {
+        return objc.msgSend(self, "fileManager:shouldProceedAfterError:removingItemAtURL:", objc.BOOL, .{fileManager, @"error", URL});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSDirectoryEnumerator?language=objc
 pub const DirectoryEnumerator = opaque {
     pub const InternalInfo = objc.ExternalClass("NSDirectoryEnumerator", @This(), Enumerator, &.{});
@@ -9975,6 +8027,22 @@ pub const FileProviderService = opaque {
         return objc.msgSend(self, "name", FileProviderServiceName, .{});
     }
 
+};
+
+pub const PointerFunctionsOptions = enum(objc.NSUInteger) {
+    StrongMemory = 0,
+    ZeroingWeakMemory = 1,
+    OpaqueMemory = 2,
+    MallocMemory = 3,
+    MachVirtualMemory = 4,
+    WeakMemory = 5,
+    ObjectPersonality = 0,
+    OpaquePersonality = 256,
+    ObjectPointerPersonality = 512,
+    CStringPersonality = 768,
+    StructPersonality = 1024,
+    IntegerPersonality = 1280,
+    CopyIn = 65536,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSPointerFunctions?language=objc
@@ -10061,6 +8129,8 @@ pub const PointerFunctions = opaque {
     }
 
 };
+
+pub const HashTableOptions = objc.NSUInteger;
 
 /// https://developer.apple.com/documentation/Foundation/NSHashTable?language=objc
 pub const HashTable = opaque {
@@ -10163,6 +8233,58 @@ pub const HashTable = opaque {
 
 };
 
+pub const HashEnumerator = extern struct {
+    _pi: objc.NSUInteger,
+    _si: objc.NSUInteger,
+    _bs: ?*anyopaque,
+};
+
+pub extern "Foundation" fn FreeHashTable(table: ?*HashTable) callconv(.C) void;
+
+pub extern "Foundation" fn ResetHashTable(table: ?*HashTable) callconv(.C) void;
+
+pub extern "Foundation" fn CompareHashTables(table1: ?*HashTable, table2: ?*HashTable) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn CopyHashTableWithZone(table: ?*HashTable, zone: ?*Zone) callconv(.C) ?*HashTable;
+
+pub extern "Foundation" fn HashGet(table: ?*HashTable, pointer: ?*anyopaque) callconv(.C) ?*anyopaque;
+
+pub extern "Foundation" fn HashInsert(table: ?*HashTable, pointer: ?*anyopaque) callconv(.C) void;
+
+pub extern "Foundation" fn HashInsertKnownAbsent(table: ?*HashTable, pointer: ?*anyopaque) callconv(.C) void;
+
+pub extern "Foundation" fn HashInsertIfAbsent(table: ?*HashTable, pointer: ?*anyopaque) callconv(.C) ?*anyopaque;
+
+pub extern "Foundation" fn HashRemove(table: ?*HashTable, pointer: ?*anyopaque) callconv(.C) void;
+
+pub extern "Foundation" fn EnumerateHashTable(table: ?*HashTable) callconv(.C) HashEnumerator;
+
+pub extern "Foundation" fn NextHashEnumeratorItem(enumerator: ?*HashEnumerator) callconv(.C) ?*anyopaque;
+
+pub extern "Foundation" fn EndHashTableEnumeration(enumerator: ?*HashEnumerator) callconv(.C) void;
+
+pub extern "Foundation" fn CountHashTable(table: ?*HashTable) callconv(.C) objc.NSUInteger;
+
+pub extern "Foundation" fn StringFromHashTable(table: ?*HashTable) callconv(.C) ?*String;
+
+pub extern "Foundation" fn AllHashTableObjects(table: ?*HashTable) callconv(.C) ?*Array;
+
+pub const HashTableCallBacks = extern struct {
+    hash: ?*const fn(?*HashTable, ?*anyopaque) callconv(.C) objc.NSUInteger,
+    isEqual: ?*const fn(?*HashTable, ?*anyopaque, ?*anyopaque) callconv(.C) objc.BOOL,
+    retain: ?*const fn(?*HashTable, ?*anyopaque) callconv(.C) void,
+    release: ?*const fn(?*HashTable, ?*anyopaque) callconv(.C) void,
+    describe: ?*const fn(?*HashTable, ?*anyopaque) callconv(.C) ?*String,
+};
+
+pub extern "Foundation" fn CreateHashTableWithZone(callBacks: HashTableCallBacks, capacity: objc.NSUInteger, zone: ?*Zone) callconv(.C) ?*HashTable;
+
+pub extern "Foundation" fn CreateHashTable(callBacks: HashTableCallBacks, capacity: objc.NSUInteger) callconv(.C) ?*HashTable;
+
+pub const HTTPCookiePropertyKey = ?*String;
+
+pub const HTTPCookieStringPolicy = ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSHTTPCookie?language=objc
 pub const HTTPCookie = opaque {
     pub const InternalInfo = objc.ExternalClass("NSHTTPCookie", @This(), Object, &.{});
@@ -10246,6 +8368,12 @@ pub const HTTPCookie = opaque {
         return objc.msgSend(self, "sameSitePolicy", HTTPCookieStringPolicy, .{});
     }
 
+};
+
+pub const HTTPCookieAcceptPolicy = enum(objc.NSUInteger) {
+    Always = 0,
+    Never = 1,
+    OnlyFromMainDocumentDomain = 2,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSHTTPCookieStorage?language=objc
@@ -10473,6 +8601,22 @@ pub const Invocation = opaque {
 
 };
 
+pub const JSONReadingOptions = enum(objc.NSUInteger) {
+    MutableContainers = 1,
+    MutableLeaves = 2,
+    FragmentsAllowed = 4,
+    JSON5Allowed = 8,
+    TopLevelDictionaryAssumed = 16,
+    AllowFragments = 4,
+};
+
+pub const JSONWritingOptions = enum(objc.NSUInteger) {
+    PrettyPrinted = 1,
+    SortedKeys = 2,
+    FragmentsAllowed = 4,
+    WithoutEscapingSlashes = 8,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSJSONSerialization?language=objc
 pub const JSONSerialization = opaque {
     pub const InternalInfo = objc.ExternalClass("NSJSONSerialization", @This(), Object, &.{});
@@ -10580,6 +8724,31 @@ pub const MutableOrderedSet = opaque {
 
 };
 
+pub const KeyValueOperator = ?*String;
+
+pub const KeyValueObservingOptions = enum(objc.NSUInteger) {
+    New = 1,
+    Old = 2,
+    Initial = 4,
+    Prior = 8,
+};
+
+pub const KeyValueChange = enum(objc.NSUInteger) {
+    Setting = 1,
+    Insertion = 2,
+    Removal = 3,
+    Replacement = 4,
+};
+
+pub const KeyValueSetMutationKind = enum(objc.NSUInteger) {
+    UnionSetMutation = 1,
+    MinusSetMutation = 2,
+    IntersectSetMutation = 3,
+    SetMutation = 4,
+};
+
+pub const KeyValueChangeKey = ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSKeyValueSharedObserversSnapshot?language=objc
 pub const KeyValueSharedObserversSnapshot = opaque {
     pub const InternalInfo = objc.ExternalClass("NSKeyValueSharedObserversSnapshot", @This(), Object, &.{});
@@ -10638,6 +8807,22 @@ pub const KeyValueSharedObservers = opaque {
 
 };
 
+pub const PropertyListMutabilityOptions = enum(objc.NSUInteger) {
+    Immutable = 0,
+    MutableContainers = 1,
+    MutableContainersAndLeaves = 2,
+};
+
+pub const PropertyListFormat = enum(objc.NSUInteger) {
+    OpenStepFormat = 1,
+    XMLFormat_v1_0 = 100,
+    BinaryFormat_v1_0 = 200,
+};
+
+pub const PropertyListReadOptions = PropertyListMutabilityOptions;
+
+pub const PropertyListWriteOptions = objc.NSUInteger;
+
 /// https://developer.apple.com/documentation/Foundation/NSPropertyListSerialization?language=objc
 pub const PropertyListSerialization = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPropertyListSerialization", @This(), Object, &.{});
@@ -10678,6 +8863,147 @@ pub const PropertyListSerialization = opaque {
     }
 
 };
+
+pub const Point = cf.CGPoint;
+
+pub const PointPointer = ?*Point;
+
+pub const PointArray = ?*Point;
+
+pub const Size = cf.CGSize;
+
+pub const SizePointer = ?*Size;
+
+pub const SizeArray = ?*Size;
+
+pub const Rect = cf.CGRect;
+
+pub const RectPointer = ?*Rect;
+
+pub const RectArray = ?*Rect;
+
+pub const RectEdge = enum(objc.NSUInteger) {
+    MinX = 0,
+    MinY = 1,
+    MaxX = 2,
+    MaxY = 3,
+    MinXEdge = 0,
+    MinYEdge = 1,
+    MaxXEdge = 2,
+    MaxYEdge = 3,
+};
+
+pub const EdgeInsets = extern struct {
+    top: cf.CGFloat,
+    left: cf.CGFloat,
+    bottom: cf.CGFloat,
+    right: cf.CGFloat,
+};
+
+pub const AlignmentOptions = enum(u64) {
+    MinXInward = 1,
+    MinYInward = 2,
+    MaxXInward = 4,
+    MaxYInward = 8,
+    WidthInward = 16,
+    HeightInward = 32,
+    MinXOutward = 256,
+    MinYOutward = 512,
+    MaxXOutward = 1024,
+    MaxYOutward = 2048,
+    WidthOutward = 4096,
+    HeightOutward = 8192,
+    MinXNearest = 65536,
+    MinYNearest = 131072,
+    MaxXNearest = 262144,
+    MaxYNearest = 524288,
+    WidthNearest = 1048576,
+    HeightNearest = 2097152,
+    RectFlipped = -9223372036854775808,
+    AllEdgesInward = 15,
+    AllEdgesOutward = 3840,
+    AllEdgesNearest = 983040,
+};
+
+pub extern "Foundation" fn MakePoint(x: cf.CGFloat, y: cf.CGFloat) callconv(.C) Point;
+
+pub extern "Foundation" fn MakeSize(w: cf.CGFloat, h: cf.CGFloat) callconv(.C) Size;
+
+pub extern "Foundation" fn MakeRect(x: cf.CGFloat, y: cf.CGFloat, w: cf.CGFloat, h: cf.CGFloat, ) callconv(.C) Rect;
+
+pub extern "Foundation" fn MaxX(aRect: Rect) callconv(.C) cf.CGFloat;
+
+pub extern "Foundation" fn MaxY(aRect: Rect) callconv(.C) cf.CGFloat;
+
+pub extern "Foundation" fn MidX(aRect: Rect) callconv(.C) cf.CGFloat;
+
+pub extern "Foundation" fn MidY(aRect: Rect) callconv(.C) cf.CGFloat;
+
+pub extern "Foundation" fn MinX(aRect: Rect) callconv(.C) cf.CGFloat;
+
+pub extern "Foundation" fn MinY(aRect: Rect) callconv(.C) cf.CGFloat;
+
+pub extern "Foundation" fn Width(aRect: Rect) callconv(.C) cf.CGFloat;
+
+pub extern "Foundation" fn Height(aRect: Rect) callconv(.C) cf.CGFloat;
+
+pub extern "Foundation" fn RectFromCGRect(cgrect: cf.CGRect) callconv(.C) Rect;
+
+pub extern "Foundation" fn RectToCGRect(nsrect: Rect) callconv(.C) cf.CGRect;
+
+pub extern "Foundation" fn PointFromCGPoint(cgpoint: cf.CGPoint) callconv(.C) Point;
+
+pub extern "Foundation" fn PointToCGPoint(nspoint: Point) callconv(.C) cf.CGPoint;
+
+pub extern "Foundation" fn SizeFromCGSize(cgsize: cf.CGSize) callconv(.C) Size;
+
+pub extern "Foundation" fn SizeToCGSize(nssize: Size) callconv(.C) cf.CGSize;
+
+pub extern "Foundation" fn EdgeInsetsMake(top: cf.CGFloat, left: cf.CGFloat, bottom: cf.CGFloat, right: cf.CGFloat, ) callconv(.C) EdgeInsets;
+
+pub extern "Foundation" fn EqualPoints(aPoint: Point, bPoint: Point) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn EqualSizes(aSize: Size, bSize: Size) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn EqualRects(aRect: Rect, bRect: Rect) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn IsEmptyRect(aRect: Rect) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn EdgeInsetsEqual(aInsets: EdgeInsets, bInsets: EdgeInsets) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn InsetRect(aRect: Rect, dX: cf.CGFloat, dY: cf.CGFloat) callconv(.C) Rect;
+
+pub extern "Foundation" fn IntegralRect(aRect: Rect) callconv(.C) Rect;
+
+pub extern "Foundation" fn IntegralRectWithOptions(aRect: Rect, opts: AlignmentOptions) callconv(.C) Rect;
+
+pub extern "Foundation" fn UnionRect(aRect: Rect, bRect: Rect) callconv(.C) Rect;
+
+pub extern "Foundation" fn IntersectionRect(aRect: Rect, bRect: Rect) callconv(.C) Rect;
+
+pub extern "Foundation" fn OffsetRect(aRect: Rect, dX: cf.CGFloat, dY: cf.CGFloat) callconv(.C) Rect;
+
+pub extern "Foundation" fn DivideRect(inRect: Rect, slice: ?*Rect, rem: ?*Rect, amount: cf.CGFloat, edge: RectEdge, ) callconv(.C) void;
+
+pub extern "Foundation" fn PointInRect(aPoint: Point, aRect: Rect) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn MouseInRect(aPoint: Point, aRect: Rect, flipped: objc.BOOL) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn ContainsRect(aRect: Rect, bRect: Rect) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn IntersectsRect(aRect: Rect, bRect: Rect) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn StringFromPoint(aPoint: Point) callconv(.C) ?*String;
+
+pub extern "Foundation" fn StringFromSize(aSize: Size) callconv(.C) ?*String;
+
+pub extern "Foundation" fn StringFromRect(aRect: Rect) callconv(.C) ?*String;
+
+pub extern "Foundation" fn PointFromString(aString: ?*String) callconv(.C) Point;
+
+pub extern "Foundation" fn SizeFromString(aString: ?*String) callconv(.C) Size;
+
+pub extern "Foundation" fn RectFromString(aString: ?*String) callconv(.C) Rect;
 
 /// https://developer.apple.com/documentation/Foundation/NSKeyedArchiver?language=objc
 pub const KeyedArchiver = opaque {
@@ -10941,6 +9267,84 @@ pub const KeyedUnarchiver = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSKeyedArchiverDelegate?language=objc
+pub const KeyedArchiverDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn archiverWillEncodeObject(self: *@This(), archiver: ?*KeyedArchiver, object: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "archiver:willEncodeObject:", *objc.Id, .{archiver, object});
+    }
+
+    pub fn archiverDidEncodeObject(self: *@This(), archiver: ?*KeyedArchiver, object: *objc.Id) void {
+        return objc.msgSend(self, "archiver:didEncodeObject:", void, .{archiver, object});
+    }
+
+    pub fn archiverWillReplaceObjectWithObject(self: *@This(), archiver: ?*KeyedArchiver, object: *objc.Id, newObject: *objc.Id) void {
+        return objc.msgSend(self, "archiver:willReplaceObject:withObject:", void, .{archiver, object, newObject});
+    }
+
+    pub fn archiverWillFinish(self: *@This(), archiver: ?*KeyedArchiver) void {
+        return objc.msgSend(self, "archiverWillFinish:", void, .{archiver});
+    }
+
+    pub fn archiverDidFinish(self: *@This(), archiver: ?*KeyedArchiver) void {
+        return objc.msgSend(self, "archiverDidFinish:", void, .{archiver});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiverDelegate?language=objc
+pub const KeyedUnarchiverDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn unarchiverCannotDecodeObjectOfClassNameOriginalClasses(self: *@This(), unarchiver: ?*KeyedUnarchiver, name: ?*String, classNames: ?*anyopaque) *objc.Class {
+        return objc.msgSend(self, "unarchiver:cannotDecodeObjectOfClassName:originalClasses:", *objc.Class, .{unarchiver, name, classNames});
+    }
+
+    pub fn unarchiverDidDecodeObject(self: *@This(), unarchiver: ?*KeyedUnarchiver, object: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "unarchiver:didDecodeObject:", *objc.Id, .{unarchiver, object});
+    }
+
+    pub fn unarchiverWillReplaceObjectWithObject(self: *@This(), unarchiver: ?*KeyedUnarchiver, object: *objc.Id, newObject: *objc.Id) void {
+        return objc.msgSend(self, "unarchiver:willReplaceObject:withObject:", void, .{unarchiver, object, newObject});
+    }
+
+    pub fn unarchiverWillFinish(self: *@This(), unarchiver: ?*KeyedUnarchiver) void {
+        return objc.msgSend(self, "unarchiverWillFinish:", void, .{unarchiver});
+    }
+
+    pub fn unarchiverDidFinish(self: *@This(), unarchiver: ?*KeyedUnarchiver) void {
+        return objc.msgSend(self, "unarchiverDidFinish:", void, .{unarchiver});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSLocking?language=objc
+pub const Locking = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn lock(self: *@This()) void {
+        return objc.msgSend(self, "lock", void, .{});
+    }
+
+    pub fn unlock(self: *@This()) void {
+        return objc.msgSend(self, "unlock", void, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSLock?language=objc
 pub const Lock = opaque {
     pub const InternalInfo = objc.ExternalClass("NSLock", @This(), Object, &.{});
@@ -11089,6 +9493,8 @@ pub const Condition = opaque {
 
 };
 
+pub const MapTableOptions = objc.NSUInteger;
+
 /// https://developer.apple.com/documentation/Foundation/NSMapTable?language=objc
 pub const MapTable = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMapTable", @This(), Object, &.{});
@@ -11186,6 +9592,65 @@ pub const MapTable = opaque {
 
 };
 
+pub const MapEnumerator = extern struct {
+    _pi: objc.NSUInteger,
+    _si: objc.NSUInteger,
+    _bs: ?*anyopaque,
+};
+
+pub extern "Foundation" fn FreeMapTable(table: ?*MapTable) callconv(.C) void;
+
+pub extern "Foundation" fn ResetMapTable(table: ?*MapTable) callconv(.C) void;
+
+pub extern "Foundation" fn CompareMapTables(table1: ?*MapTable, table2: ?*MapTable) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn CopyMapTableWithZone(table: ?*MapTable, zone: ?*Zone) callconv(.C) ?*MapTable;
+
+pub extern "Foundation" fn MapMember(table: ?*MapTable, key: ?*anyopaque, originalKey: ?*?*anyopaque, value: ?*?*anyopaque, ) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn MapGet(table: ?*MapTable, key: ?*anyopaque) callconv(.C) ?*anyopaque;
+
+pub extern "Foundation" fn MapInsert(table: ?*MapTable, key: ?*anyopaque, value: ?*anyopaque) callconv(.C) void;
+
+pub extern "Foundation" fn MapInsertKnownAbsent(table: ?*MapTable, key: ?*anyopaque, value: ?*anyopaque) callconv(.C) void;
+
+pub extern "Foundation" fn MapInsertIfAbsent(table: ?*MapTable, key: ?*anyopaque, value: ?*anyopaque) callconv(.C) ?*anyopaque;
+
+pub extern "Foundation" fn MapRemove(table: ?*MapTable, key: ?*anyopaque) callconv(.C) void;
+
+pub extern "Foundation" fn EnumerateMapTable(table: ?*MapTable) callconv(.C) MapEnumerator;
+
+pub extern "Foundation" fn NextMapEnumeratorPair(enumerator: ?*MapEnumerator, key: ?*?*anyopaque, value: ?*?*anyopaque) callconv(.C) objc.BOOL;
+
+pub extern "Foundation" fn EndMapTableEnumeration(enumerator: ?*MapEnumerator) callconv(.C) void;
+
+pub extern "Foundation" fn CountMapTable(table: ?*MapTable) callconv(.C) objc.NSUInteger;
+
+pub extern "Foundation" fn StringFromMapTable(table: ?*MapTable) callconv(.C) ?*String;
+
+pub extern "Foundation" fn AllMapTableKeys(table: ?*MapTable) callconv(.C) ?*Array;
+
+pub extern "Foundation" fn AllMapTableValues(table: ?*MapTable) callconv(.C) ?*Array;
+
+pub const MapTableKeyCallBacks = extern struct {
+    hash: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) objc.NSUInteger,
+    isEqual: ?*const fn(?*MapTable, ?*anyopaque, ?*anyopaque) callconv(.C) objc.BOOL,
+    retain: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) void,
+    release: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) void,
+    describe: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) ?*String,
+    notAKeyMarker: ?*anyopaque,
+};
+
+pub const MapTableValueCallBacks = extern struct {
+    retain: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) void,
+    release: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) void,
+    describe: ?*const fn(?*MapTable, ?*anyopaque) callconv(.C) ?*String,
+};
+
+pub extern "Foundation" fn CreateMapTableWithZone(keyCallBacks: MapTableKeyCallBacks, valueCallBacks: MapTableValueCallBacks, capacity: objc.NSUInteger, zone: ?*Zone, ) callconv(.C) ?*MapTable;
+
+pub extern "Foundation" fn CreateMapTable(keyCallBacks: MapTableKeyCallBacks, valueCallBacks: MapTableValueCallBacks, capacity: objc.NSUInteger) callconv(.C) ?*MapTable;
+
 /// https://developer.apple.com/documentation/Foundation/NSMethodSignature?language=objc
 pub const MethodSignature = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMethodSignature", @This(), Object, &.{});
@@ -11225,6 +9690,85 @@ pub const MethodSignature = opaque {
         return objc.msgSend(self, "methodReturnLength", objc.NSUInteger, .{});
     }
 
+};
+
+pub const GrammaticalGender = enum(objc.NSInteger) {
+    NotSet = 0,
+    Feminine = 1,
+    Masculine = 2,
+    Neuter = 3,
+};
+
+pub const GrammaticalPartOfSpeech = enum(objc.NSInteger) {
+    NotSet = 0,
+    Determiner = 1,
+    Pronoun = 2,
+    Letter = 3,
+    Adverb = 4,
+    Particle = 5,
+    Adjective = 6,
+    Adposition = 7,
+    Verb = 8,
+    Noun = 9,
+    Conjunction = 10,
+    Numeral = 11,
+    Interjection = 12,
+    Preposition = 13,
+    Abbreviation = 14,
+};
+
+pub const GrammaticalNumber = enum(objc.NSInteger) {
+    NotSet = 0,
+    Singular = 1,
+    Zero = 2,
+    Plural = 3,
+    PluralTwo = 4,
+    PluralFew = 5,
+    PluralMany = 6,
+};
+
+pub const GrammaticalCase = enum(objc.NSInteger) {
+    NotSet = 0,
+    Nominative = 1,
+    Accusative = 2,
+    Dative = 3,
+    Genitive = 4,
+    Prepositional = 5,
+    Ablative = 6,
+    Adessive = 7,
+    Allative = 8,
+    Elative = 9,
+    Illative = 10,
+    Essive = 11,
+    Inessive = 12,
+    Locative = 13,
+    Translative = 14,
+};
+
+pub const GrammaticalPronounType = enum(objc.NSInteger) {
+    NotSet = 0,
+    Personal = 1,
+    Reflexive = 2,
+    Possessive = 3,
+};
+
+pub const GrammaticalPerson = enum(objc.NSInteger) {
+    NotSet = 0,
+    First = 1,
+    Second = 2,
+    Third = 3,
+};
+
+pub const GrammaticalDetermination = enum(objc.NSInteger) {
+    NotSet = 0,
+    Independent = 1,
+    Dependent = 2,
+};
+
+pub const GrammaticalDefiniteness = enum(objc.NSInteger) {
+    NotSet = 0,
+    Indefinite = 1,
+    Definite = 2,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSMorphology?language=objc
@@ -11451,6 +9995,18 @@ pub const TermOfAddress = opaque {
 
 };
 
+pub const PostingStyle = enum(objc.NSUInteger) {
+    WhenIdle = 1,
+    ASAP = 2,
+    Now = 3,
+};
+
+pub const NotificationCoalescing = enum(objc.NSUInteger) {
+    NoCoalescing = 0,
+    OnName = 1,
+    OnSender = 2,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSNotificationQueue?language=objc
 pub const NotificationQueue = opaque {
     pub const InternalInfo = objc.ExternalClass("NSNotificationQueue", @This(), Object, &.{});
@@ -11629,6 +10185,16 @@ pub const Operation = opaque {
         return objc.msgSend(self, "setName:", void, .{name});
     }
 
+};
+
+pub const OperationQueuePriority = enum NSOperationQueuePriority;
+
+pub const OperationQueuePriority = enum(objc.NSInteger) {
+    VeryLow = -8,
+    Low = -4,
+    Normal = 0,
+    High = 4,
+    VeryHigh = 8,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSBlockOperation?language=objc
@@ -11868,6 +10434,8 @@ pub const PointerArray = opaque {
 
 };
 
+pub const SocketNativeHandle = i32;
+
 /// https://developer.apple.com/documentation/Foundation/NSPort?language=objc
 pub const Port = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPort", @This(), Object, &.{});
@@ -11929,6 +10497,20 @@ pub const Port = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSPortDelegate?language=objc
+pub const PortDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn handlePortMessage(self: *@This(), message: ?*PortMessage) void {
+        return objc.msgSend(self, "handlePortMessage:", void, .{message});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSMachPort?language=objc
 pub const MachPort = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMachPort", @This(), Port, &.{});
@@ -11974,6 +10556,28 @@ pub const MachPort = opaque {
 
     pub fn removeFromRunLoopForMode(self: *@This(), runLoop: ?*RunLoop, mode: RunLoopMode) void {
         return objc.msgSend(self, "removeFromRunLoop:forMode:", void, .{runLoop, mode});
+    }
+
+};
+
+pub const MachPortOptions = enum NSMachPortOptions;
+
+pub const MachPortOptions = enum(objc.NSUInteger) {
+    DeallocateNone = 0,
+    DeallocateSendRight = 1,
+    DeallocateReceiveRight = 2,
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSMachPortDelegate?language=objc
+pub const MachPortDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{PortDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn handleMachMessage(self: *@This(), msg: ?*anyopaque) void {
+        return objc.msgSend(self, "handleMachMessage:", void, .{msg});
     }
 
 };
@@ -12045,6 +10649,99 @@ pub const SocketPort = opaque {
         return objc.msgSend(self, "socket", SocketNativeHandle, .{});
     }
 
+};
+
+pub const anon111 = enum(objc.NSInteger) {
+    NSFileNoSuchFileError = 4,
+    NSFileLockingError = 255,
+    NSFileReadUnknownError = 256,
+    NSFileReadNoPermissionError = 257,
+    NSFileReadInvalidFileNameError = 258,
+    NSFileReadCorruptFileError = 259,
+    NSFileReadNoSuchFileError = 260,
+    NSFileReadInapplicableStringEncodingError = 261,
+    NSFileReadUnsupportedSchemeError = 262,
+    NSFileReadTooLargeError = 263,
+    NSFileReadUnknownStringEncodingError = 264,
+    NSFileWriteUnknownError = 512,
+    NSFileWriteNoPermissionError = 513,
+    NSFileWriteInvalidFileNameError = 514,
+    NSFileWriteFileExistsError = 516,
+    NSFileWriteInapplicableStringEncodingError = 517,
+    NSFileWriteUnsupportedSchemeError = 518,
+    NSFileWriteOutOfSpaceError = 640,
+    NSFileWriteVolumeReadOnlyError = 642,
+    NSFileManagerUnmountUnknownError = 768,
+    NSFileManagerUnmountBusyError = 769,
+    NSKeyValueValidationError = 1024,
+    NSFormattingError = 2048,
+    NSUserCancelledError = 3072,
+    NSFeatureUnsupportedError = 3328,
+    NSExecutableNotLoadableError = 3584,
+    NSExecutableArchitectureMismatchError = 3585,
+    NSExecutableRuntimeMismatchError = 3586,
+    NSExecutableLoadError = 3587,
+    NSExecutableLinkError = 3588,
+    NSFileErrorMinimum = 0,
+    NSFileErrorMaximum = 1023,
+    NSValidationErrorMinimum = 1024,
+    NSValidationErrorMaximum = 2047,
+    NSExecutableErrorMinimum = 3584,
+    NSExecutableErrorMaximum = 3839,
+    NSFormattingErrorMinimum = 2048,
+    NSFormattingErrorMaximum = 2559,
+    NSPropertyListReadCorruptError = 3840,
+    NSPropertyListReadUnknownVersionError = 3841,
+    NSPropertyListReadStreamError = 3842,
+    NSPropertyListWriteStreamError = 3851,
+    NSPropertyListWriteInvalidError = 3852,
+    NSPropertyListErrorMinimum = 3840,
+    NSPropertyListErrorMaximum = 4095,
+    NSXPCConnectionInterrupted = 4097,
+    NSXPCConnectionInvalid = 4099,
+    NSXPCConnectionReplyInvalid = 4101,
+    NSXPCConnectionCodeSigningRequirementFailure = 4102,
+    NSXPCConnectionErrorMinimum = 4096,
+    NSXPCConnectionErrorMaximum = 4224,
+    NSUbiquitousFileUnavailableError = 4353,
+    NSUbiquitousFileNotUploadedDueToQuotaError = 4354,
+    NSUbiquitousFileUbiquityServerNotAvailable = 4355,
+    NSUbiquitousFileErrorMinimum = 4352,
+    NSUbiquitousFileErrorMaximum = 4607,
+    NSUserActivityHandoffFailedError = 4608,
+    NSUserActivityConnectionUnavailableError = 4609,
+    NSUserActivityRemoteApplicationTimedOutError = 4610,
+    NSUserActivityHandoffUserInfoTooLargeError = 4611,
+    NSUserActivityErrorMinimum = 4608,
+    NSUserActivityErrorMaximum = 4863,
+    NSCoderReadCorruptError = 4864,
+    NSCoderValueNotFoundError = 4865,
+    NSCoderInvalidValueError = 4866,
+    NSCoderErrorMinimum = 4864,
+    NSCoderErrorMaximum = 4991,
+    NSBundleErrorMinimum = 4992,
+    NSBundleErrorMaximum = 5119,
+    NSBundleOnDemandResourceOutOfSpaceError = 4992,
+    NSBundleOnDemandResourceExceededMaximumSizeError = 4993,
+    NSBundleOnDemandResourceInvalidTagError = 4994,
+    NSCloudSharingNetworkFailureError = 5120,
+    NSCloudSharingQuotaExceededError = 5121,
+    NSCloudSharingTooManyParticipantsError = 5122,
+    NSCloudSharingConflictError = 5123,
+    NSCloudSharingNoPermissionError = 5124,
+    NSCloudSharingOtherError = 5375,
+    NSCloudSharingErrorMinimum = 5120,
+    NSCloudSharingErrorMaximum = 5375,
+    NSCompressionFailedError = 5376,
+    NSDecompressionFailedError = 5377,
+    NSCompressionErrorMinimum = 5376,
+    NSCompressionErrorMaximum = 5503,
+};
+
+pub const OperatingSystemVersion = extern struct {
+    majorVersion: objc.NSInteger,
+    minorVersion: objc.NSInteger,
+    patchVersion: objc.NSInteger,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSProcessInfo?language=objc
@@ -12152,6 +10849,27 @@ pub const ProcessInfo = opaque {
 
 };
 
+pub const ActivityOptions = enum(objc.uint64_t) {
+    IdleDisplaySleepDisabled = 1099511627776,
+    IdleSystemSleepDisabled = 1048576,
+    SuddenTerminationDisabled = 16384,
+    AutomaticTerminationDisabled = 32768,
+    AnimationTrackingEnabled = 35184372088832,
+    TrackingEnabled = 70368744177664,
+    UserInitiated = 16777215,
+    UserInitiatedAllowingIdleSystemSleep = 15728639,
+    Background = 255,
+    LatencyCritical = 1095216660480,
+    UserInteractive = 1095233437695,
+};
+
+pub const ProcessInfoThermalState = enum(objc.NSInteger) {
+    Nominal = 0,
+    Fair = 1,
+    Serious = 2,
+    Critical = 3,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSProxy?language=objc
 pub const Proxy = opaque {
     pub const InternalInfo = objc.ExternalClass("NSProxy", @This(), objc.NSObject, &.{});
@@ -12213,6 +10931,26 @@ pub const Proxy = opaque {
 
 };
 
+pub const TextCheckingType = enum(objc.uint64_t) {
+    Orthography = 1,
+    Spelling = 2,
+    Grammar = 4,
+    Date = 8,
+    Address = 16,
+    Link = 32,
+    Quote = 64,
+    Dash = 128,
+    Replacement = 256,
+    Correction = 512,
+    RegularExpression = 1024,
+    PhoneNumber = 2048,
+    TransitInformation = 4096,
+};
+
+pub const TextCheckingTypes = objc.uint64_t;
+
+pub const TextCheckingKey = ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSTextCheckingResult?language=objc
 pub const TextCheckingResult = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextCheckingResult", @This(), Object, &.{});
@@ -12232,6 +10970,16 @@ pub const TextCheckingResult = opaque {
         return objc.msgSend(self, "range", Range, .{});
     }
 
+};
+
+pub const RegularExpressionOptions = enum(objc.NSUInteger) {
+    CaseInsensitive = 1,
+    AllowCommentsAndWhitespace = 2,
+    IgnoreMetacharacters = 4,
+    DotMatchesLineSeparators = 8,
+    AnchorsMatchLines = 16,
+    UseUnixLineSeparators = 32,
+    UseUnicodeWordBoundaries = 64,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSRegularExpression?language=objc
@@ -12269,6 +11017,22 @@ pub const RegularExpression = opaque {
         return objc.msgSend(self, "numberOfCaptureGroups", objc.NSUInteger, .{});
     }
 
+};
+
+pub const MatchingOptions = enum(objc.NSUInteger) {
+    ReportProgress = 1,
+    ReportCompletion = 2,
+    Anchored = 4,
+    WithTransparentBounds = 8,
+    WithoutAnchoringBounds = 16,
+};
+
+pub const MatchingFlags = enum(objc.NSUInteger) {
+    Progress = 1,
+    Completed = 2,
+    HitEnd = 4,
+    RequiredEnd = 8,
+    InternalError = 16,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSDataDetector?language=objc
@@ -12363,6 +11127,28 @@ pub const SortDescriptor = opaque {
         return objc.msgSend(self, "reversedSortDescriptor", *objc.Id, .{});
     }
 
+};
+
+pub const StreamPropertyKey = ?*String;
+
+pub const StreamStatus = enum(objc.NSUInteger) {
+    NotOpen = 0,
+    Opening = 1,
+    Open = 2,
+    Reading = 3,
+    Writing = 4,
+    AtEnd = 5,
+    Closed = 6,
+    Error = 7,
+};
+
+pub const StreamEvent = enum(objc.NSUInteger) {
+    None = 0,
+    OpenCompleted = 1,
+    HasBytesAvailable = 2,
+    HasSpaceAvailable = 4,
+    ErrorOccurred = 8,
+    EndEncountered = 16,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSStream?language=objc
@@ -12483,6 +11269,28 @@ pub const OutputStream = opaque {
     }
 
 };
+
+/// https://developer.apple.com/documentation/Foundation/NSStreamDelegate?language=objc
+pub const StreamDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn streamHandleEvent(self: *@This(), aStream: ?*Stream, eventCode: StreamEvent) void {
+        return objc.msgSend(self, "stream:handleEvent:", void, .{aStream, eventCode});
+    }
+
+};
+
+pub const StreamSocketSecurityLevel = ?*String;
+
+pub const StreamSOCKSProxyConfiguration = ?*String;
+
+pub const StreamSOCKSProxyVersion = ?*String;
+
+pub const StreamNetworkServiceTypeValue = ?*String;
 
 /// https://developer.apple.com/documentation/Foundation/NSThread?language=objc
 pub const Thread = opaque {
@@ -12666,6 +11474,15 @@ pub const TimeZone = opaque {
 
 };
 
+pub const TimeZoneNameStyle = enum(objc.NSInteger) {
+    Standard = 0,
+    ShortStandard = 1,
+    DaylightSaving = 2,
+    ShortDaylightSaving = 3,
+    Generic = 4,
+    ShortGeneric = 5,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSTimer?language=objc
 pub const Timer = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTimer", @This(), Object, &.{});
@@ -12747,6 +11564,36 @@ pub const Timer = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSURLAuthenticationChallengeSender?language=objc
+pub const URLAuthenticationChallengeSender = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn useCredentialForAuthenticationChallenge(self: *@This(), credential: ?*URLCredential, challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "useCredential:forAuthenticationChallenge:", void, .{credential, challenge});
+    }
+
+    pub fn continueWithoutCredentialForAuthenticationChallenge(self: *@This(), challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "continueWithoutCredentialForAuthenticationChallenge:", void, .{challenge});
+    }
+
+    pub fn cancelAuthenticationChallenge(self: *@This(), challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "cancelAuthenticationChallenge:", void, .{challenge});
+    }
+
+    pub fn performDefaultHandlingForAuthenticationChallenge(self: *@This(), challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "performDefaultHandlingForAuthenticationChallenge:", void, .{challenge});
+    }
+
+    pub fn rejectProtectionSpaceAndContinueWithChallenge(self: *@This(), challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "rejectProtectionSpaceAndContinueWithChallenge:", void, .{challenge});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSURLAuthenticationChallenge?language=objc
 pub const URLAuthenticationChallenge = opaque {
     pub const InternalInfo = objc.ExternalClass("NSURLAuthenticationChallenge", @This(), Object, &.{});
@@ -12782,7 +11629,7 @@ pub const URLAuthenticationChallenge = opaque {
         return objc.msgSend(self, "failureResponse", ?*URLResponse, .{});
     }
 
-    pub fn error(self: *@This()) ?*Error {
+    pub fn @"error"(self: *@This()) ?*Error {
         return objc.msgSend(self, "error", ?*Error, .{});
     }
 
@@ -12790,6 +11637,12 @@ pub const URLAuthenticationChallenge = opaque {
         return objc.msgSend(self, "sender", ?*anyopaque, .{});
     }
 
+};
+
+pub const URLCacheStoragePolicy = enum(objc.NSUInteger) {
+    Allowed = 0,
+    AllowedInMemoryOnly = 1,
+    NotAllowed = 2,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSCachedURLResponse?language=objc
@@ -12959,6 +11812,114 @@ pub const URLConnection = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSURLConnectionDelegate?language=objc
+pub const URLConnectionDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn connectionDidFailWithError(self: *@This(), connection: ?*URLConnection, @"error": ?*Error) void {
+        return objc.msgSend(self, "connection:didFailWithError:", void, .{connection, @"error"});
+    }
+
+    pub fn connectionShouldUseCredentialStorage(self: *@This(), connection: ?*URLConnection) objc.BOOL {
+        return objc.msgSend(self, "connectionShouldUseCredentialStorage:", objc.BOOL, .{connection});
+    }
+
+    pub fn connectionWillSendRequestForAuthenticationChallenge(self: *@This(), connection: ?*URLConnection, challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "connection:willSendRequestForAuthenticationChallenge:", void, .{connection, challenge});
+    }
+
+    pub fn connectionCanAuthenticateAgainstProtectionSpace(self: *@This(), connection: ?*URLConnection, protectionSpace: ?*URLProtectionSpace) objc.BOOL {
+        return objc.msgSend(self, "connection:canAuthenticateAgainstProtectionSpace:", objc.BOOL, .{connection, protectionSpace});
+    }
+
+    pub fn connectionDidReceiveAuthenticationChallenge(self: *@This(), connection: ?*URLConnection, challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "connection:didReceiveAuthenticationChallenge:", void, .{connection, challenge});
+    }
+
+    pub fn connectionDidCancelAuthenticationChallenge(self: *@This(), connection: ?*URLConnection, challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "connection:didCancelAuthenticationChallenge:", void, .{connection, challenge});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLConnectionDataDelegate?language=objc
+pub const URLConnectionDataDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLConnectionDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn connectionWillSendRequestRedirectResponse(self: *@This(), connection: ?*URLConnection, request: ?*URLRequest, response: ?*URLResponse) ?*URLRequest {
+        return objc.msgSend(self, "connection:willSendRequest:redirectResponse:", ?*URLRequest, .{connection, request, response});
+    }
+
+    pub fn connectionDidReceiveResponse(self: *@This(), connection: ?*URLConnection, response: ?*URLResponse) void {
+        return objc.msgSend(self, "connection:didReceiveResponse:", void, .{connection, response});
+    }
+
+    pub fn connectionDidReceiveData(self: *@This(), connection: ?*URLConnection, data: ?*Data) void {
+        return objc.msgSend(self, "connection:didReceiveData:", void, .{connection, data});
+    }
+
+    pub fn connectionNeedNewBodyStream(self: *@This(), connection: ?*URLConnection, request: ?*URLRequest) ?*InputStream {
+        return objc.msgSend(self, "connection:needNewBodyStream:", ?*InputStream, .{connection, request});
+    }
+
+    pub fn connectionDidSendBodyDataTotalBytesWrittenTotalBytesExpectedToWrite(self: *@This(), connection: ?*URLConnection, bytesWritten: objc.NSInteger, totalBytesWritten: objc.NSInteger, totalBytesExpectedToWrite: objc.NSInteger, ) void {
+        return objc.msgSend(self, "connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:", void, .{connection, bytesWritten, totalBytesWritten, totalBytesExpectedToWrite, });
+    }
+
+    pub fn connectionWillCacheResponse(self: *@This(), connection: ?*URLConnection, cachedResponse: ?*CachedURLResponse) ?*CachedURLResponse {
+        return objc.msgSend(self, "connection:willCacheResponse:", ?*CachedURLResponse, .{connection, cachedResponse});
+    }
+
+    pub fn connectionDidFinishLoading(self: *@This(), connection: ?*URLConnection) void {
+        return objc.msgSend(self, "connectionDidFinishLoading:", void, .{connection});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLConnectionDownloadDelegate?language=objc
+pub const URLConnectionDownloadDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLConnectionDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn connectionDidWriteDataTotalBytesWrittenExpectedTotalBytes(self: *@This(), connection: ?*URLConnection, bytesWritten: i64, totalBytesWritten: i64, expectedTotalBytes: i64, ) void {
+        return objc.msgSend(self, "connection:didWriteData:totalBytesWritten:expectedTotalBytes:", void, .{connection, bytesWritten, totalBytesWritten, expectedTotalBytes, });
+    }
+
+    pub fn connectionDidResumeDownloadingTotalBytesWrittenExpectedTotalBytes(self: *@This(), connection: ?*URLConnection, totalBytesWritten: i64, expectedTotalBytes: i64) void {
+        return objc.msgSend(self, "connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:", void, .{connection, totalBytesWritten, expectedTotalBytes});
+    }
+
+    pub fn connectionDidFinishDownloadingDestinationURL(self: *@This(), connection: ?*URLConnection, destinationURL: ?*URL) void {
+        return objc.msgSend(self, "connectionDidFinishDownloading:destinationURL:", void, .{connection, destinationURL});
+    }
+
+};
+
+pub const anon471 = enum(objc.NSInteger) {
+    NSUbiquitousKeyValueStoreServerChange = 0,
+    NSUbiquitousKeyValueStoreInitialSyncChange = 1,
+    NSUbiquitousKeyValueStoreQuotaViolationChange = 2,
+    NSUbiquitousKeyValueStoreAccountChange = 3,
+};
+
+pub const URLCredentialPersistence = enum(objc.NSUInteger) {
+    None = 0,
+    ForSession = 1,
+    Permanent = 2,
+    Synchronizable = 3,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSURLCredential?language=objc
 pub const URLCredential = opaque {
     pub const InternalInfo = objc.ExternalClass("NSURLCredential", @This(), Object, &.{});
@@ -13074,6 +12035,112 @@ pub const URLCredentialStorage = opaque {
 
 };
 
+pub const anon691 = enum(objc.NSInteger) {
+    NSURLErrorCancelledReasonUserForceQuitApplication = 0,
+    NSURLErrorCancelledReasonBackgroundUpdatesDisabled = 1,
+    NSURLErrorCancelledReasonInsufficientSystemResources = 2,
+};
+
+pub const URLErrorNetworkUnavailableReason = enum(objc.NSInteger) {
+    Cellular = 0,
+    Expensive = 1,
+    Constrained = 2,
+};
+
+pub const anon1001 = enum(objc.NSInteger) {
+    NSURLErrorUnknown = -1,
+    NSURLErrorCancelled = -999,
+    NSURLErrorBadURL = -1000,
+    NSURLErrorTimedOut = -1001,
+    NSURLErrorUnsupportedURL = -1002,
+    NSURLErrorCannotFindHost = -1003,
+    NSURLErrorCannotConnectToHost = -1004,
+    NSURLErrorNetworkConnectionLost = -1005,
+    NSURLErrorDNSLookupFailed = -1006,
+    NSURLErrorHTTPTooManyRedirects = -1007,
+    NSURLErrorResourceUnavailable = -1008,
+    NSURLErrorNotConnectedToInternet = -1009,
+    NSURLErrorRedirectToNonExistentLocation = -1010,
+    NSURLErrorBadServerResponse = -1011,
+    NSURLErrorUserCancelledAuthentication = -1012,
+    NSURLErrorUserAuthenticationRequired = -1013,
+    NSURLErrorZeroByteResource = -1014,
+    NSURLErrorCannotDecodeRawData = -1015,
+    NSURLErrorCannotDecodeContentData = -1016,
+    NSURLErrorCannotParseResponse = -1017,
+    NSURLErrorAppTransportSecurityRequiresSecureConnection = -1022,
+    NSURLErrorFileDoesNotExist = -1100,
+    NSURLErrorFileIsDirectory = -1101,
+    NSURLErrorNoPermissionsToReadFile = -1102,
+    NSURLErrorDataLengthExceedsMaximum = -1103,
+    NSURLErrorFileOutsideSafeArea = -1104,
+    NSURLErrorSecureConnectionFailed = -1200,
+    NSURLErrorServerCertificateHasBadDate = -1201,
+    NSURLErrorServerCertificateUntrusted = -1202,
+    NSURLErrorServerCertificateHasUnknownRoot = -1203,
+    NSURLErrorServerCertificateNotYetValid = -1204,
+    NSURLErrorClientCertificateRejected = -1205,
+    NSURLErrorClientCertificateRequired = -1206,
+    NSURLErrorCannotLoadFromNetwork = -2000,
+    NSURLErrorCannotCreateFile = -3000,
+    NSURLErrorCannotOpenFile = -3001,
+    NSURLErrorCannotCloseFile = -3002,
+    NSURLErrorCannotWriteToFile = -3003,
+    NSURLErrorCannotRemoveFile = -3004,
+    NSURLErrorCannotMoveFile = -3005,
+    NSURLErrorDownloadDecodingFailedMidStream = -3006,
+    NSURLErrorDownloadDecodingFailedToComplete = -3007,
+    NSURLErrorInternationalRoamingOff = -1018,
+    NSURLErrorCallIsActive = -1019,
+    NSURLErrorDataNotAllowed = -1020,
+    NSURLErrorRequestBodyStreamExhausted = -1021,
+    NSURLErrorBackgroundSessionRequiresSharedContainer = -995,
+    NSURLErrorBackgroundSessionInUseByAnotherProcess = -996,
+    NSURLErrorBackgroundSessionWasDisconnected = -997,
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLProtocolClient?language=objc
+pub const URLProtocolClient = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn URLProtocolWasRedirectedToRequestRedirectResponse(self: *@This(), protocol: ?*URLProtocol, request: ?*URLRequest, redirectResponse: ?*URLResponse) void {
+        return objc.msgSend(self, "URLProtocol:wasRedirectedToRequest:redirectResponse:", void, .{protocol, request, redirectResponse});
+    }
+
+    pub fn URLProtocolCachedResponseIsValid(self: *@This(), protocol: ?*URLProtocol, cachedResponse: ?*CachedURLResponse) void {
+        return objc.msgSend(self, "URLProtocol:cachedResponseIsValid:", void, .{protocol, cachedResponse});
+    }
+
+    pub fn URLProtocolDidReceiveResponseCacheStoragePolicy(self: *@This(), protocol: ?*URLProtocol, response: ?*URLResponse, policy: URLCacheStoragePolicy) void {
+        return objc.msgSend(self, "URLProtocol:didReceiveResponse:cacheStoragePolicy:", void, .{protocol, response, policy});
+    }
+
+    pub fn URLProtocolDidLoadData(self: *@This(), protocol: ?*URLProtocol, data: ?*Data) void {
+        return objc.msgSend(self, "URLProtocol:didLoadData:", void, .{protocol, data});
+    }
+
+    pub fn URLProtocolDidFinishLoading(self: *@This(), protocol: ?*URLProtocol) void {
+        return objc.msgSend(self, "URLProtocolDidFinishLoading:", void, .{protocol});
+    }
+
+    pub fn URLProtocolDidFailWithError(self: *@This(), protocol: ?*URLProtocol, @"error": ?*Error) void {
+        return objc.msgSend(self, "URLProtocol:didFailWithError:", void, .{protocol, @"error"});
+    }
+
+    pub fn URLProtocolDidReceiveAuthenticationChallenge(self: *@This(), protocol: ?*URLProtocol, challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "URLProtocol:didReceiveAuthenticationChallenge:", void, .{protocol, challenge});
+    }
+
+    pub fn URLProtocolDidCancelAuthenticationChallenge(self: *@This(), protocol: ?*URLProtocol, challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "URLProtocol:didCancelAuthenticationChallenge:", void, .{protocol, challenge});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSURLProtocol?language=objc
 pub const URLProtocol = opaque {
     pub const InternalInfo = objc.ExternalClass("NSURLProtocol", @This(), Object, &.{});
@@ -13141,6 +12208,33 @@ pub const URLProtocol = opaque {
         return objc.msgSend(self, "cachedResponse", ?*CachedURLResponse, .{});
     }
 
+};
+
+pub const URLRequestCachePolicy = enum(objc.NSUInteger) {
+    UseProtocolCachePolicy = 0,
+    ReloadIgnoringLocalCacheData = 1,
+    ReloadIgnoringLocalAndRemoteCacheData = 4,
+    ReloadIgnoringCacheData = 1,
+    ReturnCacheDataElseLoad = 2,
+    ReturnCacheDataDontLoad = 3,
+    ReloadRevalidatingCacheData = 5,
+};
+
+pub const URLRequestNetworkServiceType = enum(objc.NSUInteger) {
+    NetworkServiceTypeDefault = 0,
+    NetworkServiceTypeVoIP = 1,
+    NetworkServiceTypeVideo = 2,
+    NetworkServiceTypeBackground = 3,
+    NetworkServiceTypeVoice = 4,
+    NetworkServiceTypeResponsiveData = 6,
+    NetworkServiceTypeAVStreaming = 8,
+    NetworkServiceTypeResponsiveAV = 9,
+    NetworkServiceTypeCallSignaling = 11,
+};
+
+pub const URLRequestAttribution = enum(objc.NSUInteger) {
+    Developer = 0,
+    User = 1,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSURLRequest?language=objc
@@ -13568,6 +12662,8 @@ pub const UserDefaults = opaque {
 
 };
 
+pub const ValueTransformerName = ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSValueTransformer?language=objc
 pub const ValueTransformer = opaque {
     pub const InternalInfo = objc.ExternalClass("NSValueTransformer", @This(), Object, &.{});
@@ -13624,6 +12720,13 @@ pub const SecureUnarchiveFromDataTransformer = opaque {
         return objc.msgSend(self, "allowedTopLevelClasses", ?*anyopaque, .{});
     }
 
+};
+
+pub const XMLParserExternalEntityResolvingPolicy = enum(objc.NSUInteger) {
+    ResolveExternalEntitiesNever = 0,
+    ResolveExternalEntitiesNoNetwork = 1,
+    ResolveExternalEntitiesSameOriginOnly = 2,
+    ResolveExternalEntitiesAlways = 3,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSXMLParser?language=objc
@@ -13709,6 +12812,218 @@ pub const XMLParser = opaque {
         return objc.msgSend(self, "setShouldResolveExternalEntities:", void, .{shouldResolveExternalEntities});
     }
 
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSXMLParserDelegate?language=objc
+pub const XMLParserDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn parserDidStartDocument(self: *@This(), parser: ?*XMLParser) void {
+        return objc.msgSend(self, "parserDidStartDocument:", void, .{parser});
+    }
+
+    pub fn parserDidEndDocument(self: *@This(), parser: ?*XMLParser) void {
+        return objc.msgSend(self, "parserDidEndDocument:", void, .{parser});
+    }
+
+    pub fn parserFoundNotationDeclarationWithNamePublicIDSystemID(self: *@This(), parser: ?*XMLParser, name: ?*String, publicID: ?*String, systemID: ?*String, ) void {
+        return objc.msgSend(self, "parser:foundNotationDeclarationWithName:publicID:systemID:", void, .{parser, name, publicID, systemID, });
+    }
+
+    pub fn parserFoundUnparsedEntityDeclarationWithNamePublicIDSystemIDNotationName(self: *@This(), parser: ?*XMLParser, name: ?*String, publicID: ?*String, systemID: ?*String, notationName: ?*String, ) void {
+        return objc.msgSend(self, "parser:foundUnparsedEntityDeclarationWithName:publicID:systemID:notationName:", void, .{parser, name, publicID, systemID, notationName, });
+    }
+
+    pub fn parserFoundAttributeDeclarationWithNameForElementTypeDefaultValue(self: *@This(), parser: ?*XMLParser, attributeName: ?*String, elementName: ?*String, @"type": ?*String, defaultValue: ?*String, ) void {
+        return objc.msgSend(self, "parser:foundAttributeDeclarationWithName:forElement:type:defaultValue:", void, .{parser, attributeName, elementName, @"type", defaultValue, });
+    }
+
+    pub fn parserFoundElementDeclarationWithNameModel(self: *@This(), parser: ?*XMLParser, elementName: ?*String, model: ?*String) void {
+        return objc.msgSend(self, "parser:foundElementDeclarationWithName:model:", void, .{parser, elementName, model});
+    }
+
+    pub fn parserFoundInternalEntityDeclarationWithNameValue(self: *@This(), parser: ?*XMLParser, name: ?*String, value: ?*String) void {
+        return objc.msgSend(self, "parser:foundInternalEntityDeclarationWithName:value:", void, .{parser, name, value});
+    }
+
+    pub fn parserFoundExternalEntityDeclarationWithNamePublicIDSystemID(self: *@This(), parser: ?*XMLParser, name: ?*String, publicID: ?*String, systemID: ?*String, ) void {
+        return objc.msgSend(self, "parser:foundExternalEntityDeclarationWithName:publicID:systemID:", void, .{parser, name, publicID, systemID, });
+    }
+
+    pub fn parserDidStartElementNamespaceURIQualifiedNameAttributes(self: *@This(), parser: ?*XMLParser, elementName: ?*String, namespaceURI: ?*String, qName: ?*String, attributeDict: ?*anyopaque, ) void {
+        return objc.msgSend(self, "parser:didStartElement:namespaceURI:qualifiedName:attributes:", void, .{parser, elementName, namespaceURI, qName, attributeDict, });
+    }
+
+    pub fn parserDidEndElementNamespaceURIQualifiedName(self: *@This(), parser: ?*XMLParser, elementName: ?*String, namespaceURI: ?*String, qName: ?*String, ) void {
+        return objc.msgSend(self, "parser:didEndElement:namespaceURI:qualifiedName:", void, .{parser, elementName, namespaceURI, qName, });
+    }
+
+    pub fn parserDidStartMappingPrefixToURI(self: *@This(), parser: ?*XMLParser, prefix: ?*String, namespaceURI: ?*String) void {
+        return objc.msgSend(self, "parser:didStartMappingPrefix:toURI:", void, .{parser, prefix, namespaceURI});
+    }
+
+    pub fn parserDidEndMappingPrefix(self: *@This(), parser: ?*XMLParser, prefix: ?*String) void {
+        return objc.msgSend(self, "parser:didEndMappingPrefix:", void, .{parser, prefix});
+    }
+
+    pub fn parserFoundCharacters(self: *@This(), parser: ?*XMLParser, string: ?*String) void {
+        return objc.msgSend(self, "parser:foundCharacters:", void, .{parser, string});
+    }
+
+    pub fn parserFoundIgnorableWhitespace(self: *@This(), parser: ?*XMLParser, whitespaceString: ?*String) void {
+        return objc.msgSend(self, "parser:foundIgnorableWhitespace:", void, .{parser, whitespaceString});
+    }
+
+    pub fn parserFoundProcessingInstructionWithTargetData(self: *@This(), parser: ?*XMLParser, target: ?*String, data: ?*String) void {
+        return objc.msgSend(self, "parser:foundProcessingInstructionWithTarget:data:", void, .{parser, target, data});
+    }
+
+    pub fn parserFoundComment(self: *@This(), parser: ?*XMLParser, comment: ?*String) void {
+        return objc.msgSend(self, "parser:foundComment:", void, .{parser, comment});
+    }
+
+    pub fn parserFoundCDATA(self: *@This(), parser: ?*XMLParser, CDATABlock: ?*Data) void {
+        return objc.msgSend(self, "parser:foundCDATA:", void, .{parser, CDATABlock});
+    }
+
+    pub fn parserResolveExternalEntityNameSystemID(self: *@This(), parser: ?*XMLParser, name: ?*String, systemID: ?*String) ?*Data {
+        return objc.msgSend(self, "parser:resolveExternalEntityName:systemID:", ?*Data, .{parser, name, systemID});
+    }
+
+    pub fn parserParseErrorOccurred(self: *@This(), parser: ?*XMLParser, parseError: ?*Error) void {
+        return objc.msgSend(self, "parser:parseErrorOccurred:", void, .{parser, parseError});
+    }
+
+    pub fn parserValidationErrorOccurred(self: *@This(), parser: ?*XMLParser, validationError: ?*Error) void {
+        return objc.msgSend(self, "parser:validationErrorOccurred:", void, .{parser, validationError});
+    }
+
+};
+
+pub const XMLParserError = enum(objc.NSInteger) {
+    InternalError = 1,
+    OutOfMemoryError = 2,
+    DocumentStartError = 3,
+    EmptyDocumentError = 4,
+    PrematureDocumentEndError = 5,
+    InvalidHexCharacterRefError = 6,
+    InvalidDecimalCharacterRefError = 7,
+    InvalidCharacterRefError = 8,
+    InvalidCharacterError = 9,
+    CharacterRefAtEOFError = 10,
+    CharacterRefInPrologError = 11,
+    CharacterRefInEpilogError = 12,
+    CharacterRefInDTDError = 13,
+    EntityRefAtEOFError = 14,
+    EntityRefInPrologError = 15,
+    EntityRefInEpilogError = 16,
+    EntityRefInDTDError = 17,
+    ParsedEntityRefAtEOFError = 18,
+    ParsedEntityRefInPrologError = 19,
+    ParsedEntityRefInEpilogError = 20,
+    ParsedEntityRefInInternalSubsetError = 21,
+    EntityReferenceWithoutNameError = 22,
+    EntityReferenceMissingSemiError = 23,
+    ParsedEntityRefNoNameError = 24,
+    ParsedEntityRefMissingSemiError = 25,
+    UndeclaredEntityError = 26,
+    UnparsedEntityError = 28,
+    EntityIsExternalError = 29,
+    EntityIsParameterError = 30,
+    UnknownEncodingError = 31,
+    EncodingNotSupportedError = 32,
+    StringNotStartedError = 33,
+    StringNotClosedError = 34,
+    NamespaceDeclarationError = 35,
+    EntityNotStartedError = 36,
+    EntityNotFinishedError = 37,
+    LessThanSymbolInAttributeError = 38,
+    AttributeNotStartedError = 39,
+    AttributeNotFinishedError = 40,
+    AttributeHasNoValueError = 41,
+    AttributeRedefinedError = 42,
+    LiteralNotStartedError = 43,
+    LiteralNotFinishedError = 44,
+    CommentNotFinishedError = 45,
+    ProcessingInstructionNotStartedError = 46,
+    ProcessingInstructionNotFinishedError = 47,
+    NotationNotStartedError = 48,
+    NotationNotFinishedError = 49,
+    AttributeListNotStartedError = 50,
+    AttributeListNotFinishedError = 51,
+    MixedContentDeclNotStartedError = 52,
+    MixedContentDeclNotFinishedError = 53,
+    ElementContentDeclNotStartedError = 54,
+    ElementContentDeclNotFinishedError = 55,
+    XMLDeclNotStartedError = 56,
+    XMLDeclNotFinishedError = 57,
+    ConditionalSectionNotStartedError = 58,
+    ConditionalSectionNotFinishedError = 59,
+    ExternalSubsetNotFinishedError = 60,
+    DOCTYPEDeclNotFinishedError = 61,
+    MisplacedCDATAEndStringError = 62,
+    CDATANotFinishedError = 63,
+    MisplacedXMLDeclarationError = 64,
+    SpaceRequiredError = 65,
+    SeparatorRequiredError = 66,
+    NMTOKENRequiredError = 67,
+    NAMERequiredError = 68,
+    PCDATARequiredError = 69,
+    URIRequiredError = 70,
+    PublicIdentifierRequiredError = 71,
+    LTRequiredError = 72,
+    GTRequiredError = 73,
+    LTSlashRequiredError = 74,
+    EqualExpectedError = 75,
+    TagNameMismatchError = 76,
+    UnfinishedTagError = 77,
+    StandaloneValueError = 78,
+    InvalidEncodingNameError = 79,
+    CommentContainsDoubleHyphenError = 80,
+    InvalidEncodingError = 81,
+    ExternalStandaloneEntityError = 82,
+    InvalidConditionalSectionError = 83,
+    EntityValueRequiredError = 84,
+    NotWellBalancedError = 85,
+    ExtraContentError = 86,
+    InvalidCharacterInEntityError = 87,
+    ParsedEntityRefInInternalError = 88,
+    EntityRefLoopError = 89,
+    EntityBoundaryError = 90,
+    InvalidURIError = 91,
+    URIFragmentError = 92,
+    NoDTDError = 94,
+    DelegateAbortedParseError = 512,
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSXPCProxyCreating?language=objc
+pub const XPCProxyCreating = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn remoteObjectProxy(self: *@This()) *objc.Id {
+        return objc.msgSend(self, "remoteObjectProxy", *objc.Id, .{});
+    }
+
+    pub fn remoteObjectProxyWithErrorHandler(self: *@This(), handler: *const fn(?*Error) callconv(.C) void) *objc.Id {
+        return objc.msgSend(self, "remoteObjectProxyWithErrorHandler:", *objc.Id, .{handler});
+    }
+
+    pub fn synchronousRemoteObjectProxyWithErrorHandler(self: *@This(), handler: *const fn(?*Error) callconv(.C) void) *objc.Id {
+        return objc.msgSend(self, "synchronousRemoteObjectProxyWithErrorHandler:", *objc.Id, .{handler});
+    }
+
+};
+
+pub const XPCConnectionOptions = enum(objc.NSUInteger) {
+    Privileged = 4096,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSXPCConnection?language=objc
@@ -13897,6 +13212,20 @@ pub const XPCListener = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSXPCListenerDelegate?language=objc
+pub const XPCListenerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn listenerShouldAcceptNewConnection(self: *@This(), listener: ?*XPCListener, newConnection: ?*XPCConnection) objc.BOOL {
+        return objc.msgSend(self, "listener:shouldAcceptNewConnection:", objc.BOOL, .{listener, newConnection});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSXPCInterface?language=objc
 pub const XPCInterface = opaque {
     pub const InternalInfo = objc.ExternalClass("NSXPCInterface", @This(), Object, &.{});
@@ -13989,6 +13318,27 @@ pub const XPCCoder = opaque {
         return objc.msgSend(self, "connection", ?*XPCConnection, .{});
     }
 
+};
+
+pub const ByteCountFormatterUnits = enum(objc.NSUInteger) {
+    UseDefault = 0,
+    UseBytes = 1,
+    UseKB = 2,
+    UseMB = 4,
+    UseGB = 8,
+    UseTB = 16,
+    UsePB = 32,
+    UseEB = 64,
+    UseZB = 128,
+    UseYBOrHigher = 65280,
+    UseAll = 65535,
+};
+
+pub const ByteCountFormatterCountStyle = enum(objc.NSInteger) {
+    File = 0,
+    Memory = 1,
+    Decimal = 2,
+    Binary = 3,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSByteCountFormatter?language=objc
@@ -14169,6 +13519,20 @@ pub const Cache = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSCacheDelegate?language=objc
+pub const CacheDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn cacheWillEvictObject(self: *@This(), cache: ?*Cache, obj: *objc.Id) void {
+        return objc.msgSend(self, "cache:willEvictObject:", void, .{cache, obj});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSPredicate?language=objc
 pub const Predicate = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPredicate", @This(), Object, &.{});
@@ -14224,6 +13588,40 @@ pub const Predicate = opaque {
         return objc.msgSend(self, "predicateFormat", ?*String, .{});
     }
 
+};
+
+pub const _predicateFlags = extern struct {
+    _evaluationBlocked: u32,
+    _reservedPredicateFlags: u32,
+};
+
+pub const ComparisonPredicateOptions = enum(objc.NSUInteger) {
+    CaseInsensitivePredicateOption = 1,
+    DiacriticInsensitivePredicateOption = 2,
+    NormalizedPredicateOption = 4,
+};
+
+pub const ComparisonPredicateModifier = enum(objc.NSUInteger) {
+    DirectPredicateModifier = 0,
+    AllPredicateModifier = 1,
+    AnyPredicateModifier = 2,
+};
+
+pub const PredicateOperatorType = enum(objc.NSUInteger) {
+    LessThanPredicateOperatorType = 0,
+    LessThanOrEqualToPredicateOperatorType = 1,
+    GreaterThanPredicateOperatorType = 2,
+    GreaterThanOrEqualToPredicateOperatorType = 3,
+    EqualToPredicateOperatorType = 4,
+    NotEqualToPredicateOperatorType = 5,
+    MatchesPredicateOperatorType = 6,
+    LikePredicateOperatorType = 7,
+    BeginsWithPredicateOperatorType = 8,
+    EndsWithPredicateOperatorType = 9,
+    InPredicateOperatorType = 10,
+    CustomSelectorPredicateOperatorType = 11,
+    ContainsPredicateOperatorType = 99,
+    BetweenPredicateOperatorType = 100,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSComparisonPredicate?language=objc
@@ -14283,6 +13681,12 @@ pub const ComparisonPredicate = opaque {
 
 };
 
+pub const CompoundPredicateType = enum(objc.NSUInteger) {
+    NotPredicateType = 0,
+    AndPredicateType = 1,
+    OrPredicateType = 2,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSCompoundPredicate?language=objc
 pub const CompoundPredicate = opaque {
     pub const InternalInfo = objc.ExternalClass("NSCompoundPredicate", @This(), Predicate, &.{});
@@ -14322,6 +13726,25 @@ pub const CompoundPredicate = opaque {
         return objc.msgSend(self, "subpredicates", ?*Array, .{});
     }
 
+};
+
+pub const DateComponentsFormatterUnitsStyle = enum(objc.NSInteger) {
+    Positional = 0,
+    Abbreviated = 1,
+    Short = 2,
+    Full = 3,
+    SpellOut = 4,
+    Brief = 5,
+};
+
+pub const DateComponentsFormatterZeroFormattingBehavior = enum(objc.NSUInteger) {
+    None = 0,
+    Default = 1,
+    DropLeading = 2,
+    DropMiddle = 4,
+    DropTrailing = 8,
+    DropAll = 14,
+    Pad = 65536,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSDateComponentsFormatter?language=objc
@@ -14447,6 +13870,22 @@ pub const DateComponentsFormatter = opaque {
         return objc.msgSend(self, "setFormattingContext:", void, .{formattingContext});
     }
 
+};
+
+pub const ExpressionType = enum(objc.NSUInteger) {
+    ConstantValueExpressionType = 0,
+    EvaluatedObjectExpressionType = 1,
+    VariableExpressionType = 2,
+    KeyPathExpressionType = 3,
+    FunctionExpressionType = 4,
+    UnionSetExpressionType = 5,
+    IntersectSetExpressionType = 6,
+    MinusSetExpressionType = 7,
+    SubqueryExpressionType = 13,
+    AggregateExpressionType = 14,
+    AnyKeyExpressionType = 15,
+    BlockExpressionType = 19,
+    ConditionalExpressionType = 20,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSExpression?language=objc
@@ -14602,6 +14041,14 @@ pub const Expression = opaque {
 
 };
 
+pub const _expressionFlags = extern struct {
+    _evaluationBlocked: u32,
+    _usesKVC: u32,
+    _validatedExpression: u32,
+    _validatedKeys: u32,
+    _reservedExpressionFlags: u32,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSExtensionContext?language=objc
 pub const ExtensionContext = opaque {
     pub const InternalInfo = objc.ExternalClass("NSExtensionContext", @This(), Object, &.{});
@@ -14674,6 +14121,35 @@ pub const ExtensionItem = opaque {
         return objc.msgSend(self, "setUserInfo:", void, .{userInfo});
     }
 
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSExtensionRequestHandling?language=objc
+pub const ExtensionRequestHandling = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn beginRequestWithExtensionContext(self: *@This(), context: ?*ExtensionContext) void {
+        return objc.msgSend(self, "beginRequestWithExtensionContext:", void, .{context});
+    }
+
+};
+
+pub const FileCoordinatorReadingOptions = enum(objc.NSUInteger) {
+    WithoutChanges = 1,
+    ResolvesSymbolicLink = 2,
+    ImmediatelyAvailableMetadataOnly = 4,
+    ForUploading = 8,
+};
+
+pub const FileCoordinatorWritingOptions = enum(objc.NSUInteger) {
+    ForDeleting = 1,
+    ForMoving = 2,
+    ForMerging = 4,
+    ForReplacing = 8,
+    ContentIndependentMetadataOnly = 16,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSFileAccessIntent?language=objc
@@ -14776,6 +14252,112 @@ pub const FileCoordinator = opaque {
         return objc.msgSend(self, "setPurposeIdentifier:", void, .{purposeIdentifier});
     }
 
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSFilePresenter?language=objc
+pub const FilePresenter = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn relinquishPresentedItemToReader(self: *@This(), reader: *const fn(*const fn() callconv(.C) void) callconv(.C) void) void {
+        return objc.msgSend(self, "relinquishPresentedItemToReader:", void, .{reader});
+    }
+
+    pub fn relinquishPresentedItemToWriter(self: *@This(), writer: *const fn(*const fn() callconv(.C) void) callconv(.C) void) void {
+        return objc.msgSend(self, "relinquishPresentedItemToWriter:", void, .{writer});
+    }
+
+    pub fn savePresentedItemChangesWithCompletionHandler(self: *@This(), completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "savePresentedItemChangesWithCompletionHandler:", void, .{completionHandler});
+    }
+
+    pub fn accommodatePresentedItemDeletionWithCompletionHandler(self: *@This(), completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "accommodatePresentedItemDeletionWithCompletionHandler:", void, .{completionHandler});
+    }
+
+    pub fn accommodatePresentedItemEvictionWithCompletionHandler(self: *@This(), completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "accommodatePresentedItemEvictionWithCompletionHandler:", void, .{completionHandler});
+    }
+
+    pub fn presentedItemDidMoveToURL(self: *@This(), newURL: ?*URL) void {
+        return objc.msgSend(self, "presentedItemDidMoveToURL:", void, .{newURL});
+    }
+
+    pub fn presentedItemDidChange(self: *@This()) void {
+        return objc.msgSend(self, "presentedItemDidChange", void, .{});
+    }
+
+    pub fn presentedItemDidChangeUbiquityAttributes(self: *@This(), attributes: ?*anyopaque) void {
+        return objc.msgSend(self, "presentedItemDidChangeUbiquityAttributes:", void, .{attributes});
+    }
+
+    pub fn presentedItemDidGainVersion(self: *@This(), version: ?*FileVersion) void {
+        return objc.msgSend(self, "presentedItemDidGainVersion:", void, .{version});
+    }
+
+    pub fn presentedItemDidLoseVersion(self: *@This(), version: ?*FileVersion) void {
+        return objc.msgSend(self, "presentedItemDidLoseVersion:", void, .{version});
+    }
+
+    pub fn presentedItemDidResolveConflictVersion(self: *@This(), version: ?*FileVersion) void {
+        return objc.msgSend(self, "presentedItemDidResolveConflictVersion:", void, .{version});
+    }
+
+    pub fn accommodatePresentedSubitemDeletionAtURLCompletionHandler(self: *@This(), url: ?*URL, completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "accommodatePresentedSubitemDeletionAtURL:completionHandler:", void, .{url, completionHandler});
+    }
+
+    pub fn presentedSubitemDidAppearAtURL(self: *@This(), url: ?*URL) void {
+        return objc.msgSend(self, "presentedSubitemDidAppearAtURL:", void, .{url});
+    }
+
+    pub fn presentedSubitemAtURLDidMoveToURL(self: *@This(), oldURL: ?*URL, newURL: ?*URL) void {
+        return objc.msgSend(self, "presentedSubitemAtURL:didMoveToURL:", void, .{oldURL, newURL});
+    }
+
+    pub fn presentedSubitemDidChangeAtURL(self: *@This(), url: ?*URL) void {
+        return objc.msgSend(self, "presentedSubitemDidChangeAtURL:", void, .{url});
+    }
+
+    pub fn presentedSubitemAtURLDidGainVersion(self: *@This(), url: ?*URL, version: ?*FileVersion) void {
+        return objc.msgSend(self, "presentedSubitemAtURL:didGainVersion:", void, .{url, version});
+    }
+
+    pub fn presentedSubitemAtURLDidLoseVersion(self: *@This(), url: ?*URL, version: ?*FileVersion) void {
+        return objc.msgSend(self, "presentedSubitemAtURL:didLoseVersion:", void, .{url, version});
+    }
+
+    pub fn presentedSubitemAtURLDidResolveConflictVersion(self: *@This(), url: ?*URL, version: ?*FileVersion) void {
+        return objc.msgSend(self, "presentedSubitemAtURL:didResolveConflictVersion:", void, .{url, version});
+    }
+
+    pub fn presentedItemURL(self: *@This()) ?*URL {
+        return objc.msgSend(self, "presentedItemURL", ?*URL, .{});
+    }
+
+    pub fn presentedItemOperationQueue(self: *@This()) ?*OperationQueue {
+        return objc.msgSend(self, "presentedItemOperationQueue", ?*OperationQueue, .{});
+    }
+
+    pub fn primaryPresentedItemURL(self: *@This()) ?*URL {
+        return objc.msgSend(self, "primaryPresentedItemURL", ?*URL, .{});
+    }
+
+    pub fn observedPresentedItemUbiquityAttributes(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "observedPresentedItemUbiquityAttributes", ?*anyopaque, .{});
+    }
+
+};
+
+pub const FileVersionAddingOptions = enum(objc.NSUInteger) {
+    ByMoving = 1,
+};
+
+pub const FileVersionReplacingOptions = enum(objc.NSUInteger) {
+    ByMoving = 1,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSFileVersion?language=objc
@@ -14881,6 +14463,16 @@ pub const FileVersion = opaque {
         return objc.msgSend(self, "hasThumbnail", objc.BOOL, .{});
     }
 
+};
+
+pub const FileWrapperReadingOptions = enum(objc.NSUInteger) {
+    Immediate = 1,
+    WithoutMapping = 2,
+};
+
+pub const FileWrapperWritingOptions = enum(objc.NSUInteger) {
+    Atomic = 1,
+    WithNameUpdating = 2,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSFileWrapper?language=objc
@@ -14998,6 +14590,25 @@ pub const FileWrapper = opaque {
         return objc.msgSend(self, "symbolicLinkDestinationURL", ?*URL, .{});
     }
 
+};
+
+pub const LinguisticTagScheme = ?*String;
+
+pub const LinguisticTag = ?*String;
+
+pub const LinguisticTaggerUnit = enum(objc.NSInteger) {
+    Word = 0,
+    Sentence = 1,
+    Paragraph = 2,
+    Document = 3,
+};
+
+pub const LinguisticTaggerOptions = enum(objc.NSUInteger) {
+    OmitWords = 1,
+    OmitPunctuation = 2,
+    OmitWhitespace = 4,
+    OmitOther = 8,
+    JoinNames = 16,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSLinguisticTagger?language=objc
@@ -15254,6 +14865,24 @@ pub const MetadataQuery = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSMetadataQueryDelegate?language=objc
+pub const MetadataQueryDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn metadataQueryReplacementObjectForResultObject(self: *@This(), query: ?*MetadataQuery, result: ?*MetadataItem) *objc.Id {
+        return objc.msgSend(self, "metadataQuery:replacementObjectForResultObject:", *objc.Id, .{query, result});
+    }
+
+    pub fn metadataQueryReplacementValueForAttributeValue(self: *@This(), query: ?*MetadataQuery, attrName: ?*String, attrValue: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "metadataQuery:replacementValueForAttribute:value:", *objc.Id, .{query, attrName, attrValue});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSMetadataItem?language=objc
 pub const MetadataItem = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMetadataItem", @This(), Object, &.{});
@@ -15343,6 +14972,23 @@ pub const MetadataQueryResultGroup = opaque {
         return objc.msgSend(self, "results", ?*Array, .{});
     }
 
+};
+
+pub const NetServicesError = enum(objc.NSInteger) {
+    UnknownError = -72000,
+    CollisionError = -72001,
+    NotFoundError = -72002,
+    ActivityInProgress = -72003,
+    BadArgumentError = -72004,
+    CancelledError = -72005,
+    InvalidError = -72006,
+    TimeoutError = -72007,
+    MissingRequiredConfigurationError = -72008,
+};
+
+pub const NetServiceOptions = enum(objc.NSUInteger) {
+    NoAutoRename = 1,
+    ListenForConnections = 2,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSNetService?language=objc
@@ -15440,7 +15086,7 @@ pub const NetService = opaque {
         return objc.msgSend(self, "name", ?*String, .{});
     }
 
-    pub fn type(self: *@This()) ?*String {
+    pub fn @"type"(self: *@This()) ?*String {
         return objc.msgSend(self, "type", ?*String, .{});
     }
 
@@ -15515,6 +15161,90 @@ pub const NetServiceBrowser = opaque {
 
     pub fn setIncludesPeerToPeer(self: *@This(), includesPeerToPeer: objc.BOOL) void {
         return objc.msgSend(self, "setIncludesPeerToPeer:", void, .{includesPeerToPeer});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSNetServiceDelegate?language=objc
+pub const NetServiceDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn netServiceWillPublish(self: *@This(), sender: ?*NetService) void {
+        return objc.msgSend(self, "netServiceWillPublish:", void, .{sender});
+    }
+
+    pub fn netServiceDidPublish(self: *@This(), sender: ?*NetService) void {
+        return objc.msgSend(self, "netServiceDidPublish:", void, .{sender});
+    }
+
+    pub fn netServiceDidNotPublish(self: *@This(), sender: ?*NetService, errorDict: ?*anyopaque) void {
+        return objc.msgSend(self, "netService:didNotPublish:", void, .{sender, errorDict});
+    }
+
+    pub fn netServiceWillResolve(self: *@This(), sender: ?*NetService) void {
+        return objc.msgSend(self, "netServiceWillResolve:", void, .{sender});
+    }
+
+    pub fn netServiceDidResolveAddress(self: *@This(), sender: ?*NetService) void {
+        return objc.msgSend(self, "netServiceDidResolveAddress:", void, .{sender});
+    }
+
+    pub fn netServiceDidNotResolve(self: *@This(), sender: ?*NetService, errorDict: ?*anyopaque) void {
+        return objc.msgSend(self, "netService:didNotResolve:", void, .{sender, errorDict});
+    }
+
+    pub fn netServiceDidStop(self: *@This(), sender: ?*NetService) void {
+        return objc.msgSend(self, "netServiceDidStop:", void, .{sender});
+    }
+
+    pub fn netServiceDidUpdateTXTRecordData(self: *@This(), sender: ?*NetService, data: ?*Data) void {
+        return objc.msgSend(self, "netService:didUpdateTXTRecordData:", void, .{sender, data});
+    }
+
+    pub fn netServiceDidAcceptConnectionWithInputStreamOutputStream(self: *@This(), sender: ?*NetService, inputStream: ?*InputStream, outputStream: ?*OutputStream) void {
+        return objc.msgSend(self, "netService:didAcceptConnectionWithInputStream:outputStream:", void, .{sender, inputStream, outputStream});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSNetServiceBrowserDelegate?language=objc
+pub const NetServiceBrowserDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn netServiceBrowserWillSearch(self: *@This(), browser: ?*NetServiceBrowser) void {
+        return objc.msgSend(self, "netServiceBrowserWillSearch:", void, .{browser});
+    }
+
+    pub fn netServiceBrowserDidStopSearch(self: *@This(), browser: ?*NetServiceBrowser) void {
+        return objc.msgSend(self, "netServiceBrowserDidStopSearch:", void, .{browser});
+    }
+
+    pub fn netServiceBrowserDidNotSearch(self: *@This(), browser: ?*NetServiceBrowser, errorDict: ?*anyopaque) void {
+        return objc.msgSend(self, "netServiceBrowser:didNotSearch:", void, .{browser, errorDict});
+    }
+
+    pub fn netServiceBrowserDidFindDomainMoreComing(self: *@This(), browser: ?*NetServiceBrowser, domainString: ?*String, moreComing: objc.BOOL) void {
+        return objc.msgSend(self, "netServiceBrowser:didFindDomain:moreComing:", void, .{browser, domainString, moreComing});
+    }
+
+    pub fn netServiceBrowserDidFindServiceMoreComing(self: *@This(), browser: ?*NetServiceBrowser, service: ?*NetService, moreComing: objc.BOOL) void {
+        return objc.msgSend(self, "netServiceBrowser:didFindService:moreComing:", void, .{browser, service, moreComing});
+    }
+
+    pub fn netServiceBrowserDidRemoveDomainMoreComing(self: *@This(), browser: ?*NetServiceBrowser, domainString: ?*String, moreComing: objc.BOOL) void {
+        return objc.msgSend(self, "netServiceBrowser:didRemoveDomain:moreComing:", void, .{browser, domainString, moreComing});
+    }
+
+    pub fn netServiceBrowserDidRemoveServiceMoreComing(self: *@This(), browser: ?*NetServiceBrowser, service: ?*NetService, moreComing: objc.BOOL) void {
+        return objc.msgSend(self, "netServiceBrowser:didRemoveService:moreComing:", void, .{browser, service, moreComing});
     }
 
 };
@@ -15611,6 +15341,8 @@ pub const UbiquitousKeyValueStore = opaque {
     }
 
 };
+
+pub const UndoManagerUserInfoKey = ?*String;
 
 /// https://developer.apple.com/documentation/Foundation/NSUndoManager?language=objc
 pub const UndoManager = opaque {
@@ -15914,6 +15646,13 @@ pub const URLSession = opaque {
 
 };
 
+pub const URLSessionTaskState = enum(objc.NSInteger) {
+    Running = 0,
+    Suspended = 1,
+    Canceling = 2,
+    Completed = 3,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSURLSessionTask?language=objc
 pub const URLSessionTask = opaque {
     pub const InternalInfo = objc.ExternalClass("NSURLSessionTask", @This(), Object, &.{});
@@ -16025,7 +15764,7 @@ pub const URLSessionTask = opaque {
         return objc.msgSend(self, "state", URLSessionTaskState, .{});
     }
 
-    pub fn error(self: *@This()) ?*Error {
+    pub fn @"error"(self: *@This()) ?*Error {
         return objc.msgSend(self, "error", ?*Error, .{});
     }
 
@@ -16167,6 +15906,11 @@ pub const URLSessionStreamTask = opaque {
 
 };
 
+pub const URLSessionWebSocketMessageType = enum(objc.NSInteger) {
+    Data = 0,
+    String = 1,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage?language=objc
 pub const URLSessionWebSocketMessage = opaque {
     pub const InternalInfo = objc.ExternalClass("NSURLSessionWebSocketMessage", @This(), Object, &.{});
@@ -16194,7 +15938,7 @@ pub const URLSessionWebSocketMessage = opaque {
         return objc.msgSend(self, "new", *@This(), .{});
     }
 
-    pub fn type(self: *@This()) URLSessionWebSocketMessageType {
+    pub fn @"type"(self: *@This()) URLSessionWebSocketMessageType {
         return objc.msgSend(self, "type", URLSessionWebSocketMessageType, .{});
     }
 
@@ -16206,6 +15950,22 @@ pub const URLSessionWebSocketMessage = opaque {
         return objc.msgSend(self, "string", ?*String, .{});
     }
 
+};
+
+pub const URLSessionWebSocketCloseCode = enum(objc.NSInteger) {
+    Invalid = 0,
+    NormalClosure = 1000,
+    GoingAway = 1001,
+    ProtocolError = 1002,
+    UnsupportedData = 1003,
+    NoStatusReceived = 1005,
+    AbnormalClosure = 1006,
+    InvalidFramePayloadData = 1007,
+    PolicyViolation = 1008,
+    MessageTooBig = 1009,
+    MandatoryExtensionMissing = 1010,
+    InternalServerError = 1011,
+    TLSHandshakeFailure = 1015,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketTask?language=objc
@@ -16259,6 +16019,13 @@ pub const URLSessionWebSocketTask = opaque {
         return objc.msgSend(self, "closeReason", ?*Data, .{});
     }
 
+};
+
+pub const URLSessionMultipathServiceType = enum(objc.NSInteger) {
+    None = 0,
+    Handover = 1,
+    Interactive = 2,
+    Aggregate = 3,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration?language=objc
@@ -16522,6 +16289,213 @@ pub const URLSessionConfiguration = opaque {
 
 };
 
+pub const URLSessionDelayedRequestDisposition = enum(objc.NSInteger) {
+    ContinueLoading = 0,
+    UseNewRequest = 1,
+    Cancel = 2,
+};
+
+pub const URLSessionAuthChallengeDisposition = enum(objc.NSInteger) {
+    UseCredential = 0,
+    PerformDefaultHandling = 1,
+    CancelAuthenticationChallenge = 2,
+    RejectProtectionSpace = 3,
+};
+
+pub const URLSessionResponseDisposition = enum(objc.NSInteger) {
+    Cancel = 0,
+    Allow = 1,
+    BecomeDownload = 2,
+    BecomeStream = 3,
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLSessionDelegate?language=objc
+pub const URLSessionDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn URLSessionDidBecomeInvalidWithError(self: *@This(), session: ?*URLSession, @"error": ?*Error) void {
+        return objc.msgSend(self, "URLSession:didBecomeInvalidWithError:", void, .{session, @"error"});
+    }
+
+    pub fn URLSessionDidReceiveChallengeCompletionHandler(self: *@This(), session: ?*URLSession, challenge: ?*URLAuthenticationChallenge, completionHandler: *const fn(URLSessionAuthChallengeDisposition, ?*URLCredential) callconv(.C) void) void {
+        return objc.msgSend(self, "URLSession:didReceiveChallenge:completionHandler:", void, .{session, challenge, completionHandler});
+    }
+
+    pub fn URLSessionDidFinishEventsForBackgroundURLSession(self: *@This(), session: ?*URLSession) void {
+        return objc.msgSend(self, "URLSessionDidFinishEventsForBackgroundURLSession:", void, .{session});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLSessionTaskDelegate?language=objc
+pub const URLSessionTaskDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn URLSessionDidCreateTask(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask) void {
+        return objc.msgSend(self, "URLSession:didCreateTask:", void, .{session, task});
+    }
+
+    pub fn URLSessionTaskWillBeginDelayedRequestCompletionHandler(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, request: ?*URLRequest, completionHandler: *const fn(URLSessionDelayedRequestDisposition, ?*URLRequest) callconv(.C) void, ) void {
+        return objc.msgSend(self, "URLSession:task:willBeginDelayedRequest:completionHandler:", void, .{session, task, request, completionHandler, });
+    }
+
+    pub fn URLSessionTaskIsWaitingForConnectivity(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask) void {
+        return objc.msgSend(self, "URLSession:taskIsWaitingForConnectivity:", void, .{session, task});
+    }
+
+    pub fn URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, response: ?*HTTPURLResponse, request: ?*URLRequest, completionHandler: *const fn(?*URLRequest) callconv(.C) void, ) void {
+        return objc.msgSend(self, "URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:", void, .{session, task, response, request, completionHandler, });
+    }
+
+    pub fn URLSessionTaskDidReceiveChallengeCompletionHandler(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, challenge: ?*URLAuthenticationChallenge, completionHandler: *const fn(URLSessionAuthChallengeDisposition, ?*URLCredential) callconv(.C) void, ) void {
+        return objc.msgSend(self, "URLSession:task:didReceiveChallenge:completionHandler:", void, .{session, task, challenge, completionHandler, });
+    }
+
+    pub fn URLSessionTaskNeedNewBodyStream(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, completionHandler: *const fn(?*InputStream) callconv(.C) void) void {
+        return objc.msgSend(self, "URLSession:task:needNewBodyStream:", void, .{session, task, completionHandler});
+    }
+
+    pub fn URLSessionTaskNeedNewBodyStreamFromOffsetCompletionHandler(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, offset: objc.int64_t, completionHandler: *const fn(?*InputStream) callconv(.C) void, ) void {
+        return objc.msgSend(self, "URLSession:task:needNewBodyStreamFromOffset:completionHandler:", void, .{session, task, offset, completionHandler, });
+    }
+
+    pub fn URLSessionTaskDidSendBodyDataTotalBytesSentTotalBytesExpectedToSend(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, bytesSent: objc.int64_t, totalBytesSent: objc.int64_t, totalBytesExpectedToSend: objc.int64_t, ) void {
+        return objc.msgSend(self, "URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:", void, .{session, task, bytesSent, totalBytesSent, totalBytesExpectedToSend, });
+    }
+
+    pub fn URLSessionTaskDidReceiveInformationalResponse(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, response: ?*HTTPURLResponse) void {
+        return objc.msgSend(self, "URLSession:task:didReceiveInformationalResponse:", void, .{session, task, response});
+    }
+
+    pub fn URLSessionTaskDidFinishCollectingMetrics(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, metrics: ?*URLSessionTaskMetrics) void {
+        return objc.msgSend(self, "URLSession:task:didFinishCollectingMetrics:", void, .{session, task, metrics});
+    }
+
+    pub fn URLSessionTaskDidCompleteWithError(self: *@This(), session: ?*URLSession, task: ?*URLSessionTask, @"error": ?*Error) void {
+        return objc.msgSend(self, "URLSession:task:didCompleteWithError:", void, .{session, task, @"error"});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLSessionDataDelegate?language=objc
+pub const URLSessionDataDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionTaskDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn URLSessionDataTaskDidReceiveResponseCompletionHandler(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, response: ?*URLResponse, completionHandler: *const fn(URLSessionResponseDisposition) callconv(.C) void, ) void {
+        return objc.msgSend(self, "URLSession:dataTask:didReceiveResponse:completionHandler:", void, .{session, dataTask, response, completionHandler, });
+    }
+
+    pub fn URLSessionDataTaskDidBecomeDownloadTask(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, downloadTask: ?*URLSessionDownloadTask) void {
+        return objc.msgSend(self, "URLSession:dataTask:didBecomeDownloadTask:", void, .{session, dataTask, downloadTask});
+    }
+
+    pub fn URLSessionDataTaskDidBecomeStreamTask(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, streamTask: ?*URLSessionStreamTask) void {
+        return objc.msgSend(self, "URLSession:dataTask:didBecomeStreamTask:", void, .{session, dataTask, streamTask});
+    }
+
+    pub fn URLSessionDataTaskDidReceiveData(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, data: ?*Data) void {
+        return objc.msgSend(self, "URLSession:dataTask:didReceiveData:", void, .{session, dataTask, data});
+    }
+
+    pub fn URLSessionDataTaskWillCacheResponseCompletionHandler(self: *@This(), session: ?*URLSession, dataTask: ?*URLSessionDataTask, proposedResponse: ?*CachedURLResponse, completionHandler: *const fn(?*CachedURLResponse) callconv(.C) void, ) void {
+        return objc.msgSend(self, "URLSession:dataTask:willCacheResponse:completionHandler:", void, .{session, dataTask, proposedResponse, completionHandler, });
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLSessionDownloadDelegate?language=objc
+pub const URLSessionDownloadDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionTaskDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn URLSessionDownloadTaskDidFinishDownloadingToURL(self: *@This(), session: ?*URLSession, downloadTask: ?*URLSessionDownloadTask, location: ?*URL) void {
+        return objc.msgSend(self, "URLSession:downloadTask:didFinishDownloadingToURL:", void, .{session, downloadTask, location});
+    }
+
+    pub fn URLSessionDownloadTaskDidWriteDataTotalBytesWrittenTotalBytesExpectedToWrite(self: *@This(), session: ?*URLSession, downloadTask: ?*URLSessionDownloadTask, bytesWritten: objc.int64_t, totalBytesWritten: objc.int64_t, totalBytesExpectedToWrite: objc.int64_t, ) void {
+        return objc.msgSend(self, "URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:", void, .{session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExpectedToWrite, });
+    }
+
+    pub fn URLSessionDownloadTaskDidResumeAtOffsetExpectedTotalBytes(self: *@This(), session: ?*URLSession, downloadTask: ?*URLSessionDownloadTask, fileOffset: objc.int64_t, expectedTotalBytes: objc.int64_t, ) void {
+        return objc.msgSend(self, "URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:", void, .{session, downloadTask, fileOffset, expectedTotalBytes, });
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLSessionStreamDelegate?language=objc
+pub const URLSessionStreamDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionTaskDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn URLSessionReadClosedForStreamTask(self: *@This(), session: ?*URLSession, streamTask: ?*URLSessionStreamTask) void {
+        return objc.msgSend(self, "URLSession:readClosedForStreamTask:", void, .{session, streamTask});
+    }
+
+    pub fn URLSessionWriteClosedForStreamTask(self: *@This(), session: ?*URLSession, streamTask: ?*URLSessionStreamTask) void {
+        return objc.msgSend(self, "URLSession:writeClosedForStreamTask:", void, .{session, streamTask});
+    }
+
+    pub fn URLSessionBetterRouteDiscoveredForStreamTask(self: *@This(), session: ?*URLSession, streamTask: ?*URLSessionStreamTask) void {
+        return objc.msgSend(self, "URLSession:betterRouteDiscoveredForStreamTask:", void, .{session, streamTask});
+    }
+
+    pub fn URLSessionStreamTaskDidBecomeInputStreamOutputStream(self: *@This(), session: ?*URLSession, streamTask: ?*URLSessionStreamTask, inputStream: ?*InputStream, outputStream: ?*OutputStream, ) void {
+        return objc.msgSend(self, "URLSession:streamTask:didBecomeInputStream:outputStream:", void, .{session, streamTask, inputStream, outputStream, });
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketDelegate?language=objc
+pub const URLSessionWebSocketDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{URLSessionTaskDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn URLSessionWebSocketTaskDidOpenWithProtocol(self: *@This(), session: ?*URLSession, webSocketTask: ?*URLSessionWebSocketTask, protocol: ?*String) void {
+        return objc.msgSend(self, "URLSession:webSocketTask:didOpenWithProtocol:", void, .{session, webSocketTask, protocol});
+    }
+
+    pub fn URLSessionWebSocketTaskDidCloseWithCodeReason(self: *@This(), session: ?*URLSession, webSocketTask: ?*URLSessionWebSocketTask, closeCode: URLSessionWebSocketCloseCode, reason: ?*Data, ) void {
+        return objc.msgSend(self, "URLSession:webSocketTask:didCloseWithCode:reason:", void, .{session, webSocketTask, closeCode, reason, });
+    }
+
+};
+
+pub const URLSessionTaskMetricsResourceFetchType = enum(objc.NSInteger) {
+    Unknown = 0,
+    NetworkLoad = 1,
+    ServerPush = 2,
+    LocalCache = 3,
+};
+
+pub const URLSessionTaskMetricsDomainResolutionProtocol = enum(objc.NSInteger) {
+    Unknown = 0,
+    UDP = 1,
+    TCP = 2,
+    TLS = 3,
+    HTTPS = 4,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSURLSessionTaskTransactionMetrics?language=objc
 pub const URLSessionTaskTransactionMetrics = opaque {
     pub const InternalInfo = objc.ExternalClass("NSURLSessionTaskTransactionMetrics", @This(), Object, &.{});
@@ -16712,6 +16686,8 @@ pub const URLSessionTaskMetrics = opaque {
 
 };
 
+pub const UserActivityPersistentIdentifier = ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSUserActivity?language=objc
 pub const UserActivity = opaque {
     pub const InternalInfo = objc.ExternalClass("NSUserActivity", @This(), Object, &.{});
@@ -16893,6 +16869,28 @@ pub const UserActivity = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSUserActivityDelegate?language=objc
+pub const UserActivityDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn userActivityWillSave(self: *@This(), userActivity: ?*UserActivity) void {
+        return objc.msgSend(self, "userActivityWillSave:", void, .{userActivity});
+    }
+
+    pub fn userActivityWasContinued(self: *@This(), userActivity: ?*UserActivity) void {
+        return objc.msgSend(self, "userActivityWasContinued:", void, .{userActivity});
+    }
+
+    pub fn userActivityDidReceiveInputStreamOutputStream(self: *@This(), userActivity: ?*UserActivity, inputStream: ?*InputStream, outputStream: ?*OutputStream) void {
+        return objc.msgSend(self, "userActivity:didReceiveInputStream:outputStream:", void, .{userActivity, inputStream, outputStream});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSUUID?language=objc
 pub const UUID = opaque {
     pub const InternalInfo = objc.ExternalClass("NSUUID", @This(), Object, &.{});
@@ -16932,6 +16930,15 @@ pub const UUID = opaque {
         return objc.msgSend(self, "UUIDString", ?*String, .{});
     }
 
+};
+
+pub const AffineTransformStruct = extern struct {
+    m11: cf.CGFloat,
+    m12: cf.CGFloat,
+    m21: cf.CGFloat,
+    m22: cf.CGFloat,
+    tX: cf.CGFloat,
+    tY: cf.CGFloat,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSAffineTransform?language=objc
@@ -17157,6 +17164,13 @@ pub const Unarchiver = opaque {
     }
 
 };
+
+pub const BackgroundActivityResult = enum(objc.NSInteger) {
+    Finished = 1,
+    Deferred = 2,
+};
+
+pub const BackgroundActivityCompletionHandler = *const fn(BackgroundActivityResult) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler?language=objc
 pub const BackgroundActivityScheduler = opaque {
@@ -17521,6 +17535,40 @@ pub const Connection = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSConnectionDelegate?language=objc
+pub const ConnectionDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn makeNewConnectionSender(self: *@This(), conn: ?*Connection, ancestor: ?*Connection) objc.BOOL {
+        return objc.msgSend(self, "makeNewConnection:sender:", objc.BOOL, .{conn, ancestor});
+    }
+
+    pub fn connectionShouldMakeNewConnection(self: *@This(), ancestor: ?*Connection, conn: ?*Connection) objc.BOOL {
+        return objc.msgSend(self, "connection:shouldMakeNewConnection:", objc.BOOL, .{ancestor, conn});
+    }
+
+    pub fn authenticationDataForComponents(self: *@This(), components: ?*Array) ?*Data {
+        return objc.msgSend(self, "authenticationDataForComponents:", ?*Data, .{components});
+    }
+
+    pub fn authenticateComponentsWithData(self: *@This(), components: ?*Array, signature: ?*Data) objc.BOOL {
+        return objc.msgSend(self, "authenticateComponents:withData:", objc.BOOL, .{components, signature});
+    }
+
+    pub fn createConversationForConnection(self: *@This(), conn: ?*Connection) *objc.Id {
+        return objc.msgSend(self, "createConversationForConnection:", *objc.Id, .{conn});
+    }
+
+    pub fn connectionHandleRequest(self: *@This(), connection: ?*Connection, doreq: ?*DistantObjectRequest) objc.BOOL {
+        return objc.msgSend(self, "connection:handleRequest:", objc.BOOL, .{connection, doreq});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest?language=objc
 pub const DistantObjectRequest = opaque {
     pub const InternalInfo = objc.ExternalClass("NSDistantObjectRequest", @This(), Object, &.{});
@@ -17589,6 +17637,20 @@ pub const DistantObject = opaque {
         return objc.msgSend(self, "connectionForProxy", ?*Connection, .{});
     }
 
+};
+
+pub const DistributedNotificationCenterType = ?*String;
+
+pub const NotificationSuspensionBehavior = enum(objc.NSUInteger) {
+    Drop = 1,
+    Coalesce = 2,
+    Hold = 3,
+    DeliverImmediately = 4,
+};
+
+pub const DistributedNotificationOptions = enum(objc.NSUInteger) {
+    DeliverImmediately = 1,
+    PostToAllSessions = 2,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSDistributedNotificationCenter?language=objc
@@ -17895,6 +17957,11 @@ pub const ProtocolChecker = opaque {
 
 };
 
+pub const TaskTerminationReason = enum(objc.NSInteger) {
+    Exit = 1,
+    UncaughtSignal = 2,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSTask?language=objc
 pub const Task = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTask", @This(), Object, &.{});
@@ -18026,6 +18093,53 @@ pub const Task = opaque {
         return objc.msgSend(self, "setQualityOfService:", void, .{qualityOfService});
     }
 
+};
+
+pub const XMLNodeOptions = enum(objc.NSUInteger) {
+    None = 0,
+    IsCDATA = 1,
+    ExpandEmptyElement = 2,
+    CompactEmptyElement = 4,
+    UseSingleQuotes = 8,
+    UseDoubleQuotes = 16,
+    NeverEscapeContents = 32,
+    DocumentTidyHTML = 512,
+    DocumentTidyXML = 1024,
+    DocumentValidate = 8192,
+    LoadExternalEntitiesAlways = 16384,
+    LoadExternalEntitiesSameOriginOnly = 32768,
+    LoadExternalEntitiesNever = 524288,
+    DocumentXInclude = 65536,
+    PrettyPrint = 131072,
+    DocumentIncludeContentTypeDeclaration = 262144,
+    PreserveNamespaceOrder = 1048576,
+    PreserveAttributeOrder = 2097152,
+    PreserveEntities = 4194304,
+    PreservePrefixes = 8388608,
+    PreserveCDATA = 16777216,
+    PreserveWhitespace = 33554432,
+    PreserveDTD = 67108864,
+    PreserveCharacterReferences = 134217728,
+    PromoteSignificantWhitespace = 268435456,
+    PreserveEmptyElements = 6,
+    PreserveQuotes = 24,
+    PreserveAll = 4293918750,
+};
+
+pub const XMLNodeKind = enum(objc.NSUInteger) {
+    InvalidKind = 0,
+    DocumentKind = 1,
+    ElementKind = 2,
+    AttributeKind = 3,
+    NamespaceKind = 4,
+    ProcessingInstructionKind = 5,
+    CommentKind = 6,
+    TextKind = 7,
+    DTDKind = 8,
+    EntityDeclarationKind = 9,
+    AttributeDeclarationKind = 10,
+    ElementDeclarationKind = 11,
+    NotationDeclarationKind = 12,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSXMLNode?language=objc
@@ -18334,6 +18448,29 @@ pub const XMLDTD = opaque {
 
 };
 
+pub const XMLDTDNodeKind = enum(objc.NSUInteger) {
+    EntityGeneralKind = 1,
+    EntityParsedKind = 2,
+    EntityUnparsedKind = 3,
+    EntityParameterKind = 4,
+    EntityPredefined = 5,
+    AttributeCDATAKind = 6,
+    AttributeIDKind = 7,
+    AttributeIDRefKind = 8,
+    AttributeIDRefsKind = 9,
+    AttributeEntityKind = 10,
+    AttributeEntitiesKind = 11,
+    AttributeNMTokenKind = 12,
+    AttributeNMTokensKind = 13,
+    AttributeEnumerationKind = 14,
+    AttributeNotationKind = 15,
+    ElementDeclarationUndefinedKind = 16,
+    ElementDeclarationEmptyKind = 17,
+    ElementDeclarationAnyKind = 18,
+    ElementDeclarationMixedKind = 19,
+    ElementDeclarationElementKind = 20,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSXMLDTDNode?language=objc
 pub const XMLDTDNode = opaque {
     pub const InternalInfo = objc.ExternalClass("NSXMLDTDNode", @This(), XMLNode, &.{});
@@ -18393,6 +18530,13 @@ pub const XMLDTDNode = opaque {
         return objc.msgSend(self, "setNotationName:", void, .{notationName});
     }
 
+};
+
+pub const XMLDocumentContentKind = enum(objc.NSUInteger) {
+    XMLKind = 0,
+    XHTMLKind = 1,
+    HTMLKind = 2,
+    TextKind = 3,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSXMLDocument?language=objc
@@ -18710,6 +18854,86 @@ pub const URLDownload = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSURLDownloadDelegate?language=objc
+pub const URLDownloadDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn downloadDidBegin(self: *@This(), download: ?*URLDownload) void {
+        return objc.msgSend(self, "downloadDidBegin:", void, .{download});
+    }
+
+    pub fn downloadWillSendRequestRedirectResponse(self: *@This(), download: ?*URLDownload, request: ?*URLRequest, redirectResponse: ?*URLResponse) ?*URLRequest {
+        return objc.msgSend(self, "download:willSendRequest:redirectResponse:", ?*URLRequest, .{download, request, redirectResponse});
+    }
+
+    pub fn downloadCanAuthenticateAgainstProtectionSpace(self: *@This(), connection: ?*URLDownload, protectionSpace: ?*URLProtectionSpace) objc.BOOL {
+        return objc.msgSend(self, "download:canAuthenticateAgainstProtectionSpace:", objc.BOOL, .{connection, protectionSpace});
+    }
+
+    pub fn downloadDidReceiveAuthenticationChallenge(self: *@This(), download: ?*URLDownload, challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "download:didReceiveAuthenticationChallenge:", void, .{download, challenge});
+    }
+
+    pub fn downloadDidCancelAuthenticationChallenge(self: *@This(), download: ?*URLDownload, challenge: ?*URLAuthenticationChallenge) void {
+        return objc.msgSend(self, "download:didCancelAuthenticationChallenge:", void, .{download, challenge});
+    }
+
+    pub fn downloadShouldUseCredentialStorage(self: *@This(), download: ?*URLDownload) objc.BOOL {
+        return objc.msgSend(self, "downloadShouldUseCredentialStorage:", objc.BOOL, .{download});
+    }
+
+    pub fn downloadDidReceiveResponse(self: *@This(), download: ?*URLDownload, response: ?*URLResponse) void {
+        return objc.msgSend(self, "download:didReceiveResponse:", void, .{download, response});
+    }
+
+    pub fn downloadWillResumeWithResponseFromByte(self: *@This(), download: ?*URLDownload, response: ?*URLResponse, startingByte: i64) void {
+        return objc.msgSend(self, "download:willResumeWithResponse:fromByte:", void, .{download, response, startingByte});
+    }
+
+    pub fn downloadDidReceiveDataOfLength(self: *@This(), download: ?*URLDownload, length: objc.NSUInteger) void {
+        return objc.msgSend(self, "download:didReceiveDataOfLength:", void, .{download, length});
+    }
+
+    pub fn downloadShouldDecodeSourceDataOfMIMEType(self: *@This(), download: ?*URLDownload, encodingType: ?*String) objc.BOOL {
+        return objc.msgSend(self, "download:shouldDecodeSourceDataOfMIMEType:", objc.BOOL, .{download, encodingType});
+    }
+
+    pub fn downloadDecideDestinationWithSuggestedFilename(self: *@This(), download: ?*URLDownload, filename: ?*String) void {
+        return objc.msgSend(self, "download:decideDestinationWithSuggestedFilename:", void, .{download, filename});
+    }
+
+    pub fn downloadDidCreateDestination(self: *@This(), download: ?*URLDownload, path: ?*String) void {
+        return objc.msgSend(self, "download:didCreateDestination:", void, .{download, path});
+    }
+
+    pub fn downloadDidFinish(self: *@This(), download: ?*URLDownload) void {
+        return objc.msgSend(self, "downloadDidFinish:", void, .{download});
+    }
+
+    pub fn downloadDidFailWithError(self: *@This(), download: ?*URLDownload, @"error": ?*Error) void {
+        return objc.msgSend(self, "download:didFailWithError:", void, .{download, @"error"});
+    }
+
+};
+
+pub const AppleEventSendOptions = enum(objc.NSUInteger) {
+    NoReply = 1,
+    QueueReply = 2,
+    WaitForReply = 3,
+    NeverInteract = 16,
+    CanInteract = 32,
+    AlwaysInteract = 48,
+    CanSwitchLayer = 64,
+    DontRecord = 4096,
+    DontExecute = 8192,
+    DontAnnotate = 65536,
+    DefaultOptions = 35,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor?language=objc
 pub const AppleEventDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("NSAppleEventDescriptor", @This(), Object, &.{});
@@ -18943,6 +19167,10 @@ pub const AppleEventDescriptor = opaque {
 
 };
 
+pub const __NSAppleEventManagerSuspension = extern struct {};
+
+pub const AppleEventManagerSuspensionID = ?*__NSAppleEventManagerSuspension;
+
 /// https://developer.apple.com/documentation/Foundation/NSAppleEventManager?language=objc
 pub const AppleEventManager = opaque {
     pub const InternalInfo = objc.ExternalClass("NSAppleEventManager", @This(), Object, &.{});
@@ -19135,6 +19363,12 @@ pub const GarbageCollector = opaque {
 
 };
 
+pub extern "Foundation" fn FileTypeForHFSTypeCode(hfsFileTypeCode: objc.OSType) callconv(.C) ?*String;
+
+pub extern "Foundation" fn HFSTypeCodeFromFileType(fileTypeString: ?*String) callconv(.C) objc.OSType;
+
+pub extern "Foundation" fn HFSTypeOfFile(fullFilePath: ?*String) callconv(.C) ?*String;
+
 /// https://developer.apple.com/documentation/Foundation/NSHost?language=objc
 pub const Host = opaque {
     pub const InternalInfo = objc.ExternalClass("NSHost", @This(), Object, &.{});
@@ -19314,6 +19548,16 @@ pub const ScriptCoercionHandler = opaque {
 
 };
 
+pub const anon131 = enum(objc.NSInteger) {
+    NSNoSpecifierError = 0,
+    NSNoTopLevelContainersSpecifierError = 1,
+    NSContainerSpecifierError = 2,
+    NSUnknownKeySpecifierError = 3,
+    NSInvalidIndexSpecifierError = 4,
+    NSInternalSpecifierError = 5,
+    NSOperationNotSupportedForKeySpecifierError = 6,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSScriptCommand?language=objc
 pub const ScriptCommand = opaque {
     pub const InternalInfo = objc.ExternalClass("NSScriptCommand", @This(), Object, &.{});
@@ -19429,6 +19673,12 @@ pub const ScriptCommand = opaque {
         return objc.msgSend(self, "appleEvent", ?*AppleEventDescriptor, .{});
     }
 
+};
+
+pub const anon375 = extern struct {
+    hasEvaluatedReceivers: u32,
+    hasEvaluatedArguments: u32,
+    RESERVED: u32,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription?language=objc
@@ -19547,6 +19797,27 @@ pub const ScriptExecutionContext = opaque {
         return objc.msgSend(self, "setRangeContainerObject:", void, .{rangeContainerObject});
     }
 
+};
+
+pub const InsertionPosition = enum(objc.NSUInteger) {
+    PositionAfter = 0,
+    PositionBefore = 1,
+    PositionBeginning = 2,
+    PositionEnd = 3,
+    PositionReplace = 4,
+};
+
+pub const RelativePosition = enum(objc.NSUInteger) {
+    After = 0,
+    Before = 1,
+};
+
+pub const WhoseSubelementIdentifier = enum(objc.NSUInteger) {
+    IndexSubelement = 0,
+    EverySubelement = 1,
+    MiddleSubelement = 2,
+    RandomSubelement = 3,
+    NoSubelement = 4,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier?language=objc
@@ -19961,6 +20232,12 @@ pub const WhoseSpecifier = opaque {
 
 };
 
+pub const SaveOptions = enum(objc.NSUInteger) {
+    Yes = 0,
+    No = 1,
+    Ask = 2,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSCloneCommand?language=objc
 pub const CloneCommand = opaque {
     pub const InternalInfo = objc.ExternalClass("NSCloneCommand", @This(), ScriptCommand, &.{});
@@ -20209,6 +20486,17 @@ pub const ScriptSuiteRegistry = opaque {
 
 };
 
+pub const TestComparisonOperation = enum(objc.NSUInteger) {
+    EqualToComparison = 0,
+    LessThanOrEqualToComparison = 1,
+    LessThanComparison = 2,
+    GreaterThanOrEqualToComparison = 3,
+    GreaterThanComparison = 4,
+    BeginsWithComparison = 5,
+    EndsWithComparison = 6,
+    ContainsComparison = 7,
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest?language=objc
 pub const ScriptWhoseTest = opaque {
     pub const InternalInfo = objc.ExternalClass("NSScriptWhoseTest", @This(), Object, &.{});
@@ -20315,6 +20603,56 @@ pub const SpellServer = opaque {
         return objc.msgSend(self, "setDelegate:", void, .{delegate});
     }
 
+};
+
+/// https://developer.apple.com/documentation/Foundation/NSSpellServerDelegate?language=objc
+pub const SpellServerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn spellServerFindMisspelledWordInStringLanguageWordCountCountOnly(self: *@This(), sender: ?*SpellServer, stringToCheck: ?*String, language: ?*String, wordCount: ?*objc.NSInteger, countOnly: objc.BOOL, ) Range {
+        return objc.msgSend(self, "spellServer:findMisspelledWordInString:language:wordCount:countOnly:", Range, .{sender, stringToCheck, language, wordCount, countOnly, });
+    }
+
+    pub fn spellServerSuggestGuessesForWordInLanguage(self: *@This(), sender: ?*SpellServer, word: ?*String, language: ?*String) ?*anyopaque {
+        return objc.msgSend(self, "spellServer:suggestGuessesForWord:inLanguage:", ?*anyopaque, .{sender, word, language});
+    }
+
+    pub fn spellServerDidLearnWordInLanguage(self: *@This(), sender: ?*SpellServer, word: ?*String, language: ?*String) void {
+        return objc.msgSend(self, "spellServer:didLearnWord:inLanguage:", void, .{sender, word, language});
+    }
+
+    pub fn spellServerDidForgetWordInLanguage(self: *@This(), sender: ?*SpellServer, word: ?*String, language: ?*String) void {
+        return objc.msgSend(self, "spellServer:didForgetWord:inLanguage:", void, .{sender, word, language});
+    }
+
+    pub fn spellServerSuggestCompletionsForPartialWordRangeInStringLanguage(self: *@This(), sender: ?*SpellServer, range: Range, string: ?*String, language: ?*String, ) ?*anyopaque {
+        return objc.msgSend(self, "spellServer:suggestCompletionsForPartialWordRange:inString:language:", ?*anyopaque, .{sender, range, string, language, });
+    }
+
+    pub fn spellServerCheckGrammarInStringLanguageDetails(self: *@This(), sender: ?*SpellServer, stringToCheck: ?*String, language: ?*String, details: ?*?*anyopaque, ) Range {
+        return objc.msgSend(self, "spellServer:checkGrammarInString:language:details:", Range, .{sender, stringToCheck, language, details, });
+    }
+
+    pub fn spellServerCheckStringOffsetTypesOptionsOrthographyWordCount(self: *@This(), sender: ?*SpellServer, stringToCheck: ?*String, offset: objc.NSUInteger, checkingTypes: TextCheckingTypes, options: ?*anyopaque, orthography: ?*Orthography, wordCount: ?*objc.NSInteger, ) ?*anyopaque {
+        return objc.msgSend(self, "spellServer:checkString:offset:types:options:orthography:wordCount:", ?*anyopaque, .{sender, stringToCheck, offset, checkingTypes, options, orthography, wordCount, });
+    }
+
+    pub fn spellServerRecordResponseToCorrectionForWordLanguage(self: *@This(), sender: ?*SpellServer, response: objc.NSUInteger, correction: ?*String, word: ?*String, language: ?*String, ) void {
+        return objc.msgSend(self, "spellServer:recordResponse:toCorrection:forWord:language:", void, .{sender, response, correction, word, language, });
+    }
+
+};
+
+pub const UserNotificationActivationType = enum(objc.NSInteger) {
+    None = 0,
+    ContentsClicked = 1,
+    ActionButtonClicked = 2,
+    Replied = 3,
+    AdditionalActionClicked = 4,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSUserNotification?language=objc
@@ -20568,6 +20906,28 @@ pub const UserNotificationCenter = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Foundation/NSUserNotificationCenterDelegate?language=objc
+pub const UserNotificationCenterDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn userNotificationCenterDidDeliverNotification(self: *@This(), center: ?*UserNotificationCenter, notification: ?*UserNotification) void {
+        return objc.msgSend(self, "userNotificationCenter:didDeliverNotification:", void, .{center, notification});
+    }
+
+    pub fn userNotificationCenterDidActivateNotification(self: *@This(), center: ?*UserNotificationCenter, notification: ?*UserNotification) void {
+        return objc.msgSend(self, "userNotificationCenter:didActivateNotification:", void, .{center, notification});
+    }
+
+    pub fn userNotificationCenterShouldPresentNotification(self: *@This(), center: ?*UserNotificationCenter, notification: ?*UserNotification) objc.BOOL {
+        return objc.msgSend(self, "userNotificationCenter:shouldPresentNotification:", objc.BOOL, .{center, notification});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Foundation/NSUserScriptTask?language=objc
 pub const UserScriptTask = opaque {
     pub const InternalInfo = objc.ExternalClass("NSUserScriptTask", @This(), Object, &.{});
@@ -20592,6 +20952,8 @@ pub const UserScriptTask = opaque {
     }
 
 };
+
+pub const UserScriptTaskCompletionHandler = *const fn(?*Error) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/Foundation/NSUserUnixTask?language=objc
 pub const UserUnixTask = opaque {
@@ -20634,6 +20996,8 @@ pub const UserUnixTask = opaque {
 
 };
 
+pub const UserUnixTaskCompletionHandler = *const fn(?*Error) callconv(.C) void;
+
 /// https://developer.apple.com/documentation/Foundation/NSUserAppleScriptTask?language=objc
 pub const UserAppleScriptTask = opaque {
     pub const InternalInfo = objc.ExternalClass("NSUserAppleScriptTask", @This(), UserScriptTask, &.{});
@@ -20650,6 +21014,8 @@ pub const UserAppleScriptTask = opaque {
     }
 
 };
+
+pub const UserAppleScriptTaskCompletionHandler = *const fn(?*AppleEventDescriptor, ?*Error) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask?language=objc
 pub const UserAutomatorTask = opaque {
@@ -20675,4 +21041,6 @@ pub const UserAutomatorTask = opaque {
     }
 
 };
+
+pub const UserAutomatorTaskCompletionHandler = *const fn(*objc.Id, ?*Error) callconv(.C) void;
 

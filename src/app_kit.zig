@@ -5,15 +5,6 @@ const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 const cf = @import("cf.zig"); // Framework dependency CoreFoundation.
 const ns = @import("ns.zig"); // Framework dependency Foundation.
 
-pub const _NSModalSession = extern struct {};
-
-pub const DirectionalEdgeInsets = extern struct {
-    top: cf.CGFloat,
-    leading: cf.CGFloat,
-    bottom: cf.CGFloat,
-    trailing: cf.CGFloat,
-};
-
 pub const anon651 = enum(u32) {
     NSFontPanelFaceModeMask = 1,
     NSFontPanelSizeModeMask = 2,
@@ -376,21 +367,117 @@ pub const ColorRenderingIntent = enum(objc.NSInteger) {
     Saturation = 4,
 };
 
+pub const ColorSpaceName = ?*ns.String;
+
 pub const WindowDepth = enum(objc.int32_t) {
     TwentyfourBitRGB = 520,
     SixtyfourBitRGB = 528,
     OnehundredtwentyeightBitRGB = 544,
 };
 
+pub extern "AppKit" fn BestDepth(colorSpace: ColorSpaceName, bps: objc.NSInteger, bpp: objc.NSInteger, planar: objc.BOOL, exactMatch: ?*objc.BOOL, ) callconv(.C) WindowDepth;
+
+pub extern "AppKit" fn PlanarFromDepth(depth: WindowDepth) callconv(.C) objc.BOOL;
+
+pub extern "AppKit" fn ColorSpaceFromDepth(depth: WindowDepth) callconv(.C) ColorSpaceName;
+
+pub extern "AppKit" fn BitsPerSampleFromDepth(depth: WindowDepth) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn BitsPerPixelFromDepth(depth: WindowDepth) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn NumberOfColorComponents(colorSpaceName: ColorSpaceName) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn AvailableWindowDepths() callconv(.C) ?*WindowDepth;
+
 pub const DisplayGamut = enum(objc.NSInteger) {
     SRGB = 1,
     P3 = 2,
 };
 
+pub const DeviceDescriptionKey = ?*ns.String;
+
+pub extern "AppKit" fn RectFill(rect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn RectFillList(rects: ?*ns.Rect, count: objc.NSInteger) callconv(.C) void;
+
+pub extern "AppKit" fn RectFillListWithGrays(rects: ?*ns.Rect, grays: ?*cf.CGFloat, num: objc.NSInteger) callconv(.C) void;
+
+pub extern "AppKit" fn RectFillListWithColors(rects: ?*ns.Rect, colors: ?*?*const Color, num: objc.NSInteger) callconv(.C) void;
+
+pub extern "AppKit" fn RectFillUsingOperation(rect: ns.Rect, op: CompositingOperation) callconv(.C) void;
+
+pub extern "AppKit" fn RectFillListUsingOperation(rects: ?*ns.Rect, count: objc.NSInteger, op: CompositingOperation) callconv(.C) void;
+
+pub extern "AppKit" fn RectFillListWithColorsUsingOperation(rects: ?*ns.Rect, colors: ?*?*const Color, num: objc.NSInteger, op: CompositingOperation, ) callconv(.C) void;
+
+pub extern "AppKit" fn FrameRect(rect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn FrameRectWithWidth(rect: ns.Rect, frameWidth: cf.CGFloat) callconv(.C) void;
+
+pub extern "AppKit" fn FrameRectWithWidthUsingOperation(rect: ns.Rect, frameWidth: cf.CGFloat, op: CompositingOperation) callconv(.C) void;
+
+pub extern "AppKit" fn RectClip(rect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn RectClipList(rects: ?*ns.Rect, count: objc.NSInteger) callconv(.C) void;
+
+pub extern "AppKit" fn DrawTiledRects(boundsRect: ns.Rect, clipRect: ns.Rect, sides: ?*ns.RectEdge, grays: ?*cf.CGFloat, count: objc.NSInteger, ) callconv(.C) ns.Rect;
+
+pub extern "AppKit" fn DrawGrayBezel(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn DrawGroove(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn DrawWhiteBezel(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn DrawButton(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn EraseRect(rect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn ReadPixel(passedPoint: ns.Point) callconv(.C) ?*Color;
+
+pub extern "AppKit" fn DrawBitmap(rect: ns.Rect, width: objc.NSInteger, height: objc.NSInteger, bps: objc.NSInteger, spp: objc.NSInteger, bpp: objc.NSInteger, bpr: objc.NSInteger, isPlanar: objc.BOOL, hasAlpha: objc.BOOL, colorSpaceName: ColorSpaceName, data: ?*?*const u8, ) callconv(.C) void;
+
+pub extern "AppKit" fn HighlightRect(rect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn Beep() callconv(.C) void;
+
+pub extern "AppKit" fn GetWindowServerMemory(context: objc.NSInteger, virtualMemory: ?*objc.NSInteger, windowBackingMemory: ?*objc.NSInteger, windowDumpString: ?*?*ns.String, ) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn DrawColorTiledRects(boundsRect: ns.Rect, clipRect: ns.Rect, sides: ?*ns.RectEdge, colors: ?*?*Color, count: objc.NSInteger, ) callconv(.C) ns.Rect;
+
+pub extern "AppKit" fn DrawDarkBezel(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn DrawLightBezel(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn DottedFrameRect(rect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn DrawWindowBackground(rect: ns.Rect) callconv(.C) void;
+
+pub extern "AppKit" fn SetFocusRingStyle(placement: FocusRingPlacement) callconv(.C) void;
+
+pub extern "AppKit" fn DisableScreenUpdates() callconv(.C) void;
+
+pub extern "AppKit" fn EnableScreenUpdates() callconv(.C) void;
+
 pub const AnimationEffect = enum(objc.NSUInteger) {
     DisappearingItemDefault = 0,
     Poof = 10,
 };
+
+pub extern "AppKit" fn ShowAnimationEffect(animationEffect: AnimationEffect, centerLocation: ns.Point, size: ns.Size, animationDelegate: *objc.Id, didEndSelector: *objc.SEL, contextInfo: ?*anyopaque, ) callconv(.C) void;
+
+pub extern "AppKit" fn CountWindows(count: ?*objc.NSInteger) callconv(.C) void;
+
+pub extern "AppKit" fn WindowList(size: objc.NSInteger, list: ?*objc.NSInteger) callconv(.C) void;
+
+pub extern "AppKit" fn CountWindowsForContext(context: objc.NSInteger, count: ?*objc.NSInteger) callconv(.C) void;
+
+pub extern "AppKit" fn WindowListForContext(context: objc.NSInteger, size: objc.NSInteger, list: ?*objc.NSInteger) callconv(.C) void;
+
+pub extern "AppKit" fn CopyBits(srcGState: objc.NSInteger, srcRect: ns.Rect, destPoint: ns.Point) callconv(.C) void;
+
+pub const GraphicsContextAttributeKey = ?*String;
+
+pub const GraphicsContextRepresentationFormatName = ?*String;
 
 pub const ImageInterpolation = enum(objc.NSUInteger) {
     Default = 0,
@@ -400,11 +487,92 @@ pub const ImageInterpolation = enum(objc.NSUInteger) {
     High = 3,
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSGraphicsContext?language=objc
+pub const GraphicsContext = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSGraphicsContext", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn graphicsContextWithAttributes(self: *@This(), attributes: ?*anyopaque) ?*GraphicsContext {
+        return objc.msgSend(self, "graphicsContextWithAttributes:", ?*GraphicsContext, .{attributes});
+    }
+
+    pub fn graphicsContextWithBitmapImageRep(self: *@This(), bitmapRep: ?*BitmapImageRep) ?*GraphicsContext {
+        return objc.msgSend(self, "graphicsContextWithBitmapImageRep:", ?*GraphicsContext, .{bitmapRep});
+    }
+
+    pub fn graphicsContextWithCGContextFlipped(self: *@This(), graphicsPort: , initialFlippedState: objc.BOOL) ?*GraphicsContext {
+        return objc.msgSend(self, "graphicsContextWithCGContext:flipped:", ?*GraphicsContext, .{graphicsPort, initialFlippedState});
+    }
+
+    pub fn currentContextDrawingToScreen(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "currentContextDrawingToScreen", objc.BOOL, .{});
+    }
+
+    pub fn saveGraphicsState(self: *@This()) void {
+        return objc.msgSend(self, "saveGraphicsState", void, .{});
+    }
+
+    pub fn restoreGraphicsState(self: *@This()) void {
+        return objc.msgSend(self, "restoreGraphicsState", void, .{});
+    }
+
+    pub fn saveGraphicsState(self: *@This()) void {
+        return objc.msgSend(self, "saveGraphicsState", void, .{});
+    }
+
+    pub fn restoreGraphicsState(self: *@This()) void {
+        return objc.msgSend(self, "restoreGraphicsState", void, .{});
+    }
+
+    pub fn flushGraphics(self: *@This()) void {
+        return objc.msgSend(self, "flushGraphics", void, .{});
+    }
+
+    pub fn currentContext(self: *@This()) ?*GraphicsContext {
+        return objc.msgSend(self, "currentContext", ?*GraphicsContext, .{});
+    }
+
+    pub fn setCurrentContext(self: *@This(), currentContext: ?*GraphicsContext) void {
+        return objc.msgSend(self, "setCurrentContext:", void, .{currentContext});
+    }
+
+    pub fn attributes(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "attributes", ?*anyopaque, .{});
+    }
+
+    pub fn isDrawingToScreen(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isDrawingToScreen", objc.BOOL, .{});
+    }
+
+    pub fn CGContext(self: *@This())  {
+        return objc.msgSend(self, "CGContext", , .{});
+    }
+
+    pub fn isFlipped(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isFlipped", objc.BOOL, .{});
+    }
+
+};
+
+pub const AccessibilityAttributeName = ?*String;
+
+pub const AccessibilityParameterizedAttributeName = ?*String;
+
+pub const AccessibilityAnnotationAttributeKey = ?*String;
+
 pub const AccessibilityAnnotationPosition = enum(objc.NSInteger) {
     FullRange = 0,
     Start = 1,
     End = 2,
 };
+
+pub const AccessibilityFontAttributeKey = ?*String;
 
 pub const AccessibilityOrientation = enum(objc.NSInteger) {
     Unknown = 0,
@@ -412,11 +580,17 @@ pub const AccessibilityOrientation = enum(objc.NSInteger) {
     Horizontal = 2,
 };
 
+pub const AccessibilityOrientationValue = ?*String;
+
+pub const AccessibilitySortDirectionValue = ?*String;
+
 pub const AccessibilitySortDirection = enum(objc.NSInteger) {
     Unknown = 0,
     Ascending = 1,
     Descending = 2,
 };
+
+pub const AccessibilityRulerMarkerTypeValue = ?*String;
 
 pub const AccessibilityRulerMarkerType = enum(objc.NSInteger) {
     Unknown = 0,
@@ -429,6 +603,8 @@ pub const AccessibilityRulerMarkerType = enum(objc.NSInteger) {
     IndentFirstLine = 7,
 };
 
+pub const AccessibilityRulerUnitValue = ?*String;
+
 pub const AccessibilityUnits = enum(objc.NSInteger) {
     Unknown = 0,
     Inches = 1,
@@ -436,2237 +612,6 @@ pub const AccessibilityUnits = enum(objc.NSInteger) {
     Points = 3,
     Picas = 4,
 };
-
-pub const AccessibilityPriorityLevel = enum(objc.NSInteger) {
-    Low = 10,
-    Medium = 50,
-    High = 90,
-};
-
-pub const AccessibilityCustomRotorSearchDirection = enum(objc.NSInteger) {
-    Previous = 0,
-    Next = 1,
-};
-
-pub const AccessibilityCustomRotorType = enum(objc.NSInteger) {
-    Custom = 0,
-    Any = 1,
-    Annotation = 2,
-    BoldText = 3,
-    Heading = 4,
-    HeadingLevel1 = 5,
-    HeadingLevel2 = 6,
-    HeadingLevel3 = 7,
-    HeadingLevel4 = 8,
-    HeadingLevel5 = 9,
-    HeadingLevel6 = 10,
-    Image = 11,
-    ItalicText = 12,
-    Landmark = 13,
-    Link = 14,
-    List = 15,
-    MisspelledWord = 16,
-    Table = 17,
-    TextField = 18,
-    UnderlinedText = 19,
-    VisitedLink = 20,
-    Audiograph = 21,
-};
-
-pub const WorkspaceIconCreationOptions = enum(objc.NSUInteger) {
-    ExcludeQuickDrawElementsIconCreationOption = 2,
-    Exclude10_4ElementsIconCreationOption = 4,
-};
-
-pub const WorkspaceAuthorizationType = enum(objc.NSInteger) {
-    CreateSymbolicLink = 0,
-    SetAttributes = 1,
-    ReplaceFile = 2,
-};
-
-pub const WorkspaceLaunchOptions = enum(objc.NSUInteger) {
-    AndPrint = 2,
-    WithErrorPresentation = 64,
-    InhibitingBackgroundOnly = 128,
-    WithoutAddingToRecents = 256,
-    WithoutActivation = 512,
-    Async = 65536,
-    NewInstance = 524288,
-    AndHide = 1048576,
-    AndHideOthers = 2097152,
-    Default = 65536,
-    AllowingClassicStartup = 131072,
-    PreferringClassic = 262144,
-};
-
-pub const TouchPhase = enum(objc.NSUInteger) {
-    Began = 1,
-    Moved = 2,
-    Stationary = 4,
-    Ended = 8,
-    Cancelled = 16,
-    Touching = 7,
-    Any = -1,
-};
-
-pub const TouchType = enum(objc.NSInteger) {
-    Direct = 0,
-    Indirect = 1,
-};
-
-pub const TouchTypeMask = enum(objc.NSUInteger) {
-    Direct = 1,
-    Indirect = 2,
-};
-
-pub const anon1471 = enum(u32) {
-    NSControlGlyph = 16777215,
-    NSNullGlyph = 0,
-};
-
-pub const EventType = enum(objc.NSUInteger) {
-    LeftMouseDown = 1,
-    LeftMouseUp = 2,
-    RightMouseDown = 3,
-    RightMouseUp = 4,
-    MouseMoved = 5,
-    LeftMouseDragged = 6,
-    RightMouseDragged = 7,
-    MouseEntered = 8,
-    MouseExited = 9,
-    KeyDown = 10,
-    KeyUp = 11,
-    FlagsChanged = 12,
-    AppKitDefined = 13,
-    SystemDefined = 14,
-    ApplicationDefined = 15,
-    Periodic = 16,
-    CursorUpdate = 17,
-    ScrollWheel = 22,
-    TabletPoint = 23,
-    TabletProximity = 24,
-    OtherMouseDown = 25,
-    OtherMouseUp = 26,
-    OtherMouseDragged = 27,
-    Gesture = 29,
-    Magnify = 30,
-    Swipe = 31,
-    Rotate = 18,
-    BeginGesture = 19,
-    EndGesture = 20,
-    SmartMagnify = 32,
-    QuickLook = 33,
-    Pressure = 34,
-    DirectTouch = 37,
-    ChangeMode = 38,
-};
-
-pub const EventMask = enum(u64) {
-    LeftMouseDown = 2,
-    LeftMouseUp = 4,
-    RightMouseDown = 8,
-    RightMouseUp = 16,
-    MouseMoved = 32,
-    LeftMouseDragged = 64,
-    RightMouseDragged = 128,
-    MouseEntered = 256,
-    MouseExited = 512,
-    KeyDown = 1024,
-    KeyUp = 2048,
-    FlagsChanged = 4096,
-    AppKitDefined = 8192,
-    SystemDefined = 16384,
-    ApplicationDefined = 32768,
-    Periodic = 65536,
-    CursorUpdate = 131072,
-    ScrollWheel = 4194304,
-    TabletPoint = 8388608,
-    TabletProximity = 16777216,
-    OtherMouseDown = 33554432,
-    OtherMouseUp = 67108864,
-    OtherMouseDragged = 134217728,
-    Gesture = 536870912,
-    Magnify = 1073741824,
-    Swipe = 2147483648,
-    Rotate = 262144,
-    BeginGesture = 524288,
-    EndGesture = 1048576,
-    SmartMagnify = 4294967296,
-    Pressure = 17179869184,
-    DirectTouch = 137438953472,
-    ChangeMode = 274877906944,
-    Any = -1,
-};
-
-pub const EventModifierFlags = enum(objc.NSUInteger) {
-    CapsLock = 65536,
-    Shift = 131072,
-    Control = 262144,
-    Option = 524288,
-    Command = 1048576,
-    NumericPad = 2097152,
-    Help = 4194304,
-    Function = 8388608,
-    DeviceIndependentFlagsMask = 4294901760,
-};
-
-pub const PointingDeviceType = enum(objc.NSUInteger) {
-    Unknown = 0,
-    Pen = 1,
-    Cursor = 2,
-    Eraser = 3,
-};
-
-pub const EventButtonMask = enum(objc.NSUInteger) {
-    PenTip = 1,
-    PenLowerSide = 2,
-    PenUpperSide = 4,
-};
-
-pub const EventPhase = enum(objc.NSUInteger) {
-    None = 0,
-    Began = 1,
-    Stationary = 2,
-    Changed = 4,
-    Ended = 8,
-    Cancelled = 16,
-    MayBegin = 32,
-};
-
-pub const EventGestureAxis = enum(objc.NSInteger) {
-    None = 0,
-    Horizontal = 1,
-    Vertical = 2,
-};
-
-pub const EventSwipeTrackingOptions = enum(objc.NSUInteger) {
-    LockDirection = 1,
-    ClampGestureAmount = 2,
-};
-
-pub const EventSubtype = enum(i16) {
-    WindowExposed = 0,
-    ApplicationActivated = 1,
-    ApplicationDeactivated = 2,
-    WindowMoved = 4,
-    ScreenChanged = 8,
-    PowerOff = 1,
-    MouseEvent = 0,
-    TabletPoint = 1,
-    TabletProximity = 2,
-    Touch = 3,
-};
-
-pub const PressureBehavior = enum(objc.NSInteger) {
-    Unknown = -1,
-    PrimaryDefault = 0,
-    PrimaryClick = 1,
-    PrimaryGeneric = 2,
-    PrimaryAccelerator = 3,
-    PrimaryDeepClick = 5,
-    PrimaryDeepDrag = 6,
-};
-
-pub const PasteboardContentsOptions = enum(objc.NSUInteger) {
-    CurrentHostOnly = 1,
-};
-
-pub const PasteboardWritingOptions = enum(objc.NSUInteger) {
-    Promised = 512,
-};
-
-pub const PasteboardReadingOptions = enum(objc.NSUInteger) {
-    AsData = 0,
-    AsString = 1,
-    AsPropertyList = 2,
-    AsKeyedArchive = 4,
-};
-
-pub const ApplicationActivationOptions = enum(objc.NSUInteger) {
-    ActivateAllWindows = 1,
-    ActivateIgnoringOtherApps = 2,
-};
-
-pub const ApplicationActivationPolicy = enum(objc.NSInteger) {
-    Regular = 0,
-    Accessory = 1,
-    Prohibited = 2,
-};
-
-pub const AnimationCurve = enum(objc.NSUInteger) {
-    EaseInOut = 0,
-    EaseIn = 1,
-    EaseOut = 2,
-    Linear = 3,
-};
-
-pub const AnimationBlockingMode = enum(objc.NSUInteger) {
-    Blocking = 0,
-    Nonblocking = 1,
-    NonblockingThreaded = 2,
-};
-
-pub const DragOperation = enum(objc.NSUInteger) {
-    None = 0,
-    Copy = 1,
-    Link = 2,
-    Generic = 4,
-    Private = 8,
-    Move = 16,
-    Delete = 32,
-    Every = -1,
-    All_Obsolete = 15,
-    All = 15,
-};
-
-pub const DraggingFormation = enum(objc.NSInteger) {
-    Default = 0,
-    None = 1,
-    Pile = 2,
-    List = 3,
-    Stack = 4,
-};
-
-pub const DraggingContext = enum(objc.NSInteger) {
-    OutsideApplication = 0,
-    WithinApplication = 1,
-};
-
-pub const DraggingItemEnumerationOptions = enum(objc.NSUInteger) {
-    Concurrent = 1,
-    ClearNonenumeratedImages = 65536,
-};
-
-pub const SpringLoadingHighlight = enum(objc.NSInteger) {
-    None = 0,
-    Standard = 1,
-    Emphasized = 2,
-};
-
-pub const SpringLoadingOptions = enum(objc.NSUInteger) {
-    Disabled = 0,
-    Enabled = 1,
-    ContinuousActivation = 2,
-    NoHover = 8,
-};
-
-pub const UserInterfaceLayoutDirection = enum(objc.NSInteger) {
-    LeftToRight = 0,
-    RightToLeft = 1,
-};
-
-pub const UserInterfaceLayoutOrientation = enum(objc.NSInteger) {
-    Horizontal = 0,
-    Vertical = 1,
-};
-
-pub const AutoresizingMaskOptions = enum(objc.NSUInteger) {
-    ViewNotSizable = 0,
-    ViewMinXMargin = 1,
-    ViewWidthSizable = 2,
-    ViewMaxXMargin = 4,
-    ViewMinYMargin = 8,
-    ViewHeightSizable = 16,
-    ViewMaxYMargin = 32,
-};
-
-pub const BorderType = enum(objc.NSUInteger) {
-    NoBorder = 0,
-    LineBorder = 1,
-    BezelBorder = 2,
-    GrooveBorder = 3,
-};
-
-pub const ViewLayerContentsRedrawPolicy = enum(objc.NSInteger) {
-    Never = 0,
-    OnSetNeedsDisplay = 1,
-    DuringViewResize = 2,
-    BeforeViewResize = 3,
-    Crossfade = 4,
-};
-
-pub const ViewLayerContentsPlacement = enum(objc.NSInteger) {
-    ScaleAxesIndependently = 0,
-    ScaleProportionallyToFit = 1,
-    ScaleProportionallyToFill = 2,
-    Center = 3,
-    Top = 4,
-    TopRight = 5,
-    Right = 6,
-    BottomRight = 7,
-    Bottom = 8,
-    BottomLeft = 9,
-    Left = 10,
-    TopLeft = 11,
-};
-
-pub const WritingDirection = enum(objc.NSInteger) {
-    Natural = -1,
-    LeftToRight = 0,
-    RightToLeft = 1,
-};
-
-pub const TextAlignment = enum(objc.NSInteger) {
-    Left = 0,
-    Center = 1,
-    Right = 2,
-    Justified = 3,
-    Natural = 4,
-};
-
-pub const TextMovement = enum(objc.NSInteger) {
-    Return = 16,
-    Tab = 17,
-    Backtab = 18,
-    Left = 19,
-    Right = 20,
-    Up = 21,
-    Down = 22,
-    Cancel = 23,
-    Other = 0,
-};
-
-pub const LineBreakMode = enum(objc.NSUInteger) {
-    ByWordWrapping = 0,
-    ByCharWrapping = 1,
-    ByClipping = 2,
-    ByTruncatingHead = 3,
-    ByTruncatingTail = 4,
-    ByTruncatingMiddle = 5,
-};
-
-pub const LineBreakStrategy = enum(objc.NSUInteger) {
-    None = 0,
-    PushOut = 1,
-    HangulWordPriority = 2,
-    Standard = 65535,
-};
-
-pub const TextTabType = enum(objc.NSUInteger) {
-    LeftTabStopType = 0,
-    RightTabStopType = 1,
-    CenterTabStopType = 2,
-    DecimalTabStopType = 3,
-};
-
-pub const CellType = enum(objc.NSUInteger) {
-    NullCellType = 0,
-    TextCellType = 1,
-    ImageCellType = 2,
-};
-
-pub const CellAttribute = enum(objc.NSUInteger) {
-    Disabled = 0,
-    State = 1,
-    PushInCell = 2,
-    Editable = 3,
-    ChangeGrayCell = 4,
-    Highlighted = 5,
-    LightsByContents = 6,
-    LightsByGray = 7,
-    ChangeBackgroundCell = 8,
-    LightsByBackground = 9,
-    IsBordered = 10,
-    HasOverlappingImage = 11,
-    HasImageHorizontal = 12,
-    HasImageOnLeftOrBottom = 13,
-    ChangesContents = 14,
-    IsInsetButton = 15,
-    AllowsMixedState = 16,
-};
-
-pub const CellImagePosition = enum(objc.NSUInteger) {
-    NoImage = 0,
-    ImageOnly = 1,
-    ImageLeft = 2,
-    ImageRight = 3,
-    ImageBelow = 4,
-    ImageAbove = 5,
-    ImageOverlaps = 6,
-    ImageLeading = 7,
-    ImageTrailing = 8,
-};
-
-pub const ImageScaling = enum(objc.NSUInteger) {
-    ScaleProportionallyDown = 0,
-    ScaleAxesIndependently = 1,
-    ScaleNone = 2,
-    ScaleProportionallyUpOrDown = 3,
-    ScaleProportionally = 0,
-    ScaleToFit = 1,
-    ScaleNone = 2,
-};
-
-pub const CellStyleMask = enum(objc.NSUInteger) {
-    NoCellMask = 0,
-    ContentsCellMask = 1,
-    PushInCellMask = 2,
-    ChangeGrayCellMask = 4,
-    ChangeBackgroundCellMask = 8,
-};
-
-pub const ControlTint = enum(objc.NSUInteger) {
-    DefaultControlTint = 0,
-    BlueControlTint = 1,
-    GraphiteControlTint = 6,
-    ClearControlTint = 7,
-};
-
-pub const ControlSize = enum(objc.NSUInteger) {
-    Regular = 0,
-    Small = 1,
-    Mini = 2,
-    Large = 3,
-};
-
-pub const CellHitResult = enum(objc.NSUInteger) {
-    None = 0,
-    ContentArea = 1,
-    EditableTextArea = 2,
-    TrackableArea = 4,
-};
-
-pub const BackgroundStyle = enum(objc.NSInteger) {
-    Normal = 0,
-    Emphasized = 1,
-    Raised = 2,
-    Lowered = 3,
-};
-
-pub const MenuPresentationStyle = enum(objc.NSInteger) {
-    Regular = 0,
-    Palette = 1,
-};
-
-pub const MenuSelectionMode = enum(objc.NSInteger) {
-    Automatic = 0,
-    SelectOne = 1,
-    SelectAny = 2,
-};
-
-pub const MenuProperties = enum(objc.NSUInteger) {
-    PropertyItemTitle = 1,
-    PropertyItemAttributedTitle = 2,
-    PropertyItemKeyEquivalent = 4,
-    PropertyItemImage = 8,
-    PropertyItemEnabled = 16,
-    PropertyItemAccessibilityDescription = 32,
-};
-
-pub const PrinterTableStatus = enum(objc.NSUInteger) {
-    OK = 0,
-    NotFound = 1,
-    Error = 2,
-};
-
-pub const PaperOrientation = enum(objc.NSInteger) {
-    Portrait = 0,
-    Landscape = 1,
-};
-
-pub const PrintingPaginationMode = enum(objc.NSUInteger) {
-    Automatic = 0,
-    Fit = 1,
-    Clip = 2,
-};
-
-pub const PrintingOrientation = enum(objc.NSUInteger) {
-    PortraitOrientation = 0,
-    LandscapeOrientation = 1,
-};
-
-pub const DocumentChangeType = enum(objc.NSUInteger) {
-    ChangeDone = 0,
-    ChangeUndone = 1,
-    ChangeRedone = 5,
-    ChangeCleared = 2,
-    ChangeReadOtherContents = 3,
-    ChangeAutosaved = 4,
-    ChangeDiscardable = 256,
-};
-
-pub const SaveOperationType = enum(objc.NSUInteger) {
-    Operation = 0,
-    AsOperation = 1,
-    ToOperation = 2,
-    AutosaveInPlaceOperation = 4,
-    AutosaveElsewhereOperation = 3,
-    AutosaveAsOperation = 5,
-    AutosaveOperation = 3,
-};
-
-pub const ApplicationPresentationOptions = enum(objc.NSUInteger) {
-    Default = 0,
-    AutoHideDock = 1,
-    HideDock = 2,
-    AutoHideMenuBar = 4,
-    HideMenuBar = 8,
-    DisableAppleMenu = 16,
-    DisableProcessSwitching = 32,
-    DisableForceQuit = 64,
-    DisableSessionTermination = 128,
-    DisableHideApplication = 256,
-    DisableMenuBarTransparency = 512,
-    FullScreen = 1024,
-    AutoHideToolbar = 2048,
-    DisableCursorLocationAssistance = 4096,
-};
-
-pub const ApplicationOcclusionState = enum(objc.NSUInteger) {
-    Visible = 2,
-};
-
-pub const WindowListOptions = enum(objc.NSInteger) {
-    OrderedFrontToBack = 1,
-};
-
-pub const RequestUserAttentionType = enum(objc.NSUInteger) {
-    CriticalRequest = 0,
-    InformationalRequest = 10,
-};
-
-pub const ApplicationDelegateReply = enum(objc.NSUInteger) {
-    Success = 0,
-    Cancel = 1,
-    Failure = 2,
-};
-
-pub const ApplicationTerminateReply = enum(objc.NSUInteger) {
-    TerminateCancel = 0,
-    TerminateNow = 1,
-    TerminateLater = 2,
-};
-
-pub const ApplicationPrintReply = enum(objc.NSUInteger) {
-    PrintingCancelled = 0,
-    PrintingSuccess = 1,
-    PrintingReplyLater = 2,
-    PrintingFailure = 3,
-};
-
-pub const RemoteNotificationType = enum(objc.NSUInteger) {
-    None = 0,
-    Badge = 1,
-    Sound = 2,
-    Alert = 4,
-};
-
-pub const anon6911 = enum(i32) {
-    NSRunStoppedResponse = -1000,
-    NSRunAbortedResponse = -1001,
-    NSRunContinuesResponse = -1002,
-};
-
-pub const ColorType = enum(objc.NSInteger) {
-    ComponentBased = 0,
-    Pattern = 1,
-    Catalog = 2,
-};
-
-pub const ColorSystemEffect = enum(objc.NSInteger) {
-    None = 0,
-    Pressed = 1,
-    DeepPressed = 2,
-    Disabled = 3,
-    Rollover = 4,
-};
-
-pub const AlertStyle = enum(objc.NSUInteger) {
-    Warning = 0,
-    Informational = 1,
-    Critical = 2,
-};
-
-pub const TitlePosition = enum(objc.NSUInteger) {
-    NoTitle = 0,
-    AboveTop = 1,
-    AtTop = 2,
-    BelowTop = 3,
-    AboveBottom = 4,
-    AtBottom = 5,
-    BelowBottom = 6,
-};
-
-pub const BoxType = enum(objc.NSUInteger) {
-    Primary = 0,
-    Separator = 2,
-    Custom = 4,
-};
-
-pub const ButtonType = enum(objc.NSUInteger) {
-    MomentaryLight = 0,
-    PushOnPushOff = 1,
-    Toggle = 2,
-    Switch = 3,
-    Radio = 4,
-    MomentaryChange = 5,
-    OnOff = 6,
-    MomentaryPushIn = 7,
-    Accelerator = 8,
-    MultiLevelAccelerator = 9,
-};
-
-pub const BezelStyle = enum(objc.NSUInteger) {
-    Automatic = 0,
-    Push = 1,
-    FlexiblePush = 2,
-    Disclosure = 5,
-    Circular = 7,
-    HelpButton = 9,
-    SmallSquare = 10,
-    Toolbar = 11,
-    AccessoryBarAction = 12,
-    AccessoryBar = 13,
-    PushDisclosure = 14,
-    Badge = 15,
-    ShadowlessSquare = 6,
-    TexturedSquare = 8,
-    Rounded = 1,
-    RegularSquare = 2,
-    TexturedRounded = 11,
-    RoundRect = 12,
-    Recessed = 13,
-    RoundedDisclosure = 14,
-    Inline = 15,
-};
-
-pub const GradientType = enum(objc.NSUInteger) {
-    None = 0,
-    ConcaveWeak = 1,
-    ConcaveStrong = 2,
-    ConvexWeak = 3,
-    ConvexStrong = 4,
-};
-
-pub const PopoverAppearance = enum(objc.NSInteger) {
-    Minimal = 0,
-    HUD = 1,
-};
-
-pub const PopoverBehavior = enum(objc.NSInteger) {
-    ApplicationDefined = 0,
-    Transient = 1,
-    Semitransient = 2,
-};
-
-pub const ViewControllerTransitionOptions = enum(objc.NSUInteger) {
-    None = 0,
-    Crossfade = 1,
-    SlideUp = 16,
-    SlideDown = 32,
-    SlideLeft = 64,
-    SlideRight = 128,
-    SlideForward = 320,
-    SlideBackward = 384,
-    AllowUserInteraction = 4096,
-};
-
-pub const CollectionViewDropOperation = enum(objc.NSInteger) {
-    On = 0,
-    Before = 1,
-};
-
-pub const CollectionViewItemHighlightState = enum(objc.NSInteger) {
-    None = 0,
-    ForSelection = 1,
-    ForDeselection = 2,
-    AsDropTarget = 3,
-};
-
-pub const CollectionViewScrollPosition = enum(objc.NSUInteger) {
-    None = 0,
-    Top = 1,
-    CenteredVertically = 2,
-    Bottom = 4,
-    NearestHorizontalEdge = 512,
-    Left = 8,
-    CenteredHorizontally = 16,
-    Right = 32,
-    LeadingEdge = 64,
-    TrailingEdge = 128,
-    NearestVerticalEdge = 256,
-};
-
-pub const CollectionElementCategory = enum(objc.NSInteger) {
-    Item = 0,
-    SupplementaryView = 1,
-    DecorationView = 2,
-    InterItemGap = 3,
-};
-
-pub const CollectionUpdateAction = enum(objc.NSInteger) {
-    Insert = 0,
-    Delete = 1,
-    Reload = 2,
-    Move = 3,
-    None = 4,
-};
-
-pub const CollectionViewScrollDirection = enum(objc.NSInteger) {
-    Vertical = 0,
-    Horizontal = 1,
-};
-
-pub const DirectionalRectEdge = enum(objc.NSUInteger) {
-    None = 0,
-    Top = 1,
-    Leading = 2,
-    Bottom = 4,
-    Trailing = 8,
-    All = 15,
-};
-
-pub const RectAlignment = enum(objc.NSInteger) {
-    None = 0,
-    Top = 1,
-    TopLeading = 2,
-    Leading = 3,
-    BottomLeading = 4,
-    Bottom = 5,
-    BottomTrailing = 6,
-    Trailing = 7,
-    TopTrailing = 8,
-};
-
-pub const CollectionLayoutSectionOrthogonalScrollingBehavior = enum(objc.NSInteger) {
-    None = 0,
-    Continuous = 1,
-    ContinuousGroupLeadingBoundary = 2,
-    Paging = 3,
-    GroupPaging = 4,
-    GroupPagingCentered = 5,
-};
-
-pub const HorizontalDirections = enum(objc.NSUInteger) {
-    Left = 1,
-    Right = 2,
-    All = 3,
-};
-
-pub const VerticalDirections = enum(objc.NSUInteger) {
-    Up = 1,
-    Down = 2,
-    All = 3,
-};
-
-pub const FontDescriptorSymbolicTraits = enum(objc.uint32_t) {
-    TraitItalic = 1,
-    TraitBold = 2,
-    TraitExpanded = 32,
-    TraitCondensed = 64,
-    TraitMonoSpace = 1024,
-    TraitVertical = 2048,
-    TraitUIOptimized = 4096,
-    TraitTightLeading = 32768,
-    TraitLooseLeading = 65536,
-    TraitEmphasized = 2,
-    ClassMask = -268435456,
-    ClassUnknown = 0,
-    ClassOldStyleSerifs = 268435456,
-    ClassTransitionalSerifs = 536870912,
-    ClassModernSerifs = 805306368,
-    ClassClarendonSerifs = 1073741824,
-    ClassSlabSerifs = 1342177280,
-    ClassFreeformSerifs = 1879048192,
-    ClassSansSerif = -2147483648,
-    ClassOrnamentals = -1879048192,
-    ClassScripts = -1610612736,
-    ClassSymbolic = -1073741824,
-};
-
-pub const FontRenderingMode = enum(objc.NSUInteger) {
-    DefaultRenderingMode = 0,
-    AntialiasedRenderingMode = 1,
-    IntegerAdvancementsRenderingMode = 2,
-    AntialiasedIntegerAdvancementsRenderingMode = 3,
-};
-
-pub const MultibyteGlyphPacking = enum(objc.NSUInteger) {
-    NativeShortGlyphPacking = 5,
-};
-
-pub const FontAssetRequestOptions = enum(objc.NSUInteger) {
-    UsesStandardUI = 1,
-};
-
-pub const FontCollectionVisibility = enum(objc.NSUInteger) {
-    Process = 1,
-    User = 2,
-    Computer = 4,
-};
-
-pub const FontTraitMask = enum(objc.NSUInteger) {
-    ItalicFontMask = 1,
-    BoldFontMask = 2,
-    UnboldFontMask = 4,
-    NonStandardCharacterSetFontMask = 8,
-    NarrowFontMask = 16,
-    ExpandedFontMask = 32,
-    CondensedFontMask = 64,
-    SmallCapsFontMask = 128,
-    PosterFontMask = 256,
-    CompressedFontMask = 512,
-    FixedPitchFontMask = 1024,
-    UnitalicFontMask = 16777216,
-};
-
-pub const FontCollectionOptions = enum(objc.NSUInteger) {
-    ApplicationOnlyMask = 1,
-};
-
-pub const FontAction = enum(objc.NSUInteger) {
-    NoFontChangeAction = 0,
-    ViaPanelFontAction = 1,
-    AddTraitFontAction = 2,
-    SizeUpFontAction = 3,
-    SizeDownFontAction = 4,
-    HeavierFontAction = 5,
-    LighterFontAction = 6,
-    RemoveTraitFontAction = 7,
-};
-
-pub const WindowStyleMask = enum(objc.NSUInteger) {
-    Borderless = 0,
-    Titled = 1,
-    Closable = 2,
-    Miniaturizable = 4,
-    Resizable = 8,
-    TexturedBackground = 256,
-    UnifiedTitleAndToolbar = 4096,
-    FullScreen = 16384,
-    FullSizeContentView = 32768,
-    UtilityWindow = 16,
-    DocModalWindow = 64,
-    NonactivatingPanel = 128,
-    HUDWindow = 8192,
-};
-
-pub const WindowSharingType = enum(objc.NSUInteger) {
-    None = 0,
-    ReadOnly = 1,
-};
-
-pub const WindowCollectionBehavior = enum(objc.NSUInteger) {
-    Default = 0,
-    CanJoinAllSpaces = 1,
-    MoveToActiveSpace = 2,
-    Managed = 4,
-    Transient = 8,
-    Stationary = 16,
-    ParticipatesInCycle = 32,
-    IgnoresCycle = 64,
-    FullScreenPrimary = 128,
-    FullScreenAuxiliary = 256,
-    FullScreenNone = 512,
-    FullScreenAllowsTiling = 2048,
-    FullScreenDisallowsTiling = 4096,
-    Primary = 65536,
-    Auxiliary = 131072,
-    CanJoinAllApplications = 262144,
-};
-
-pub const WindowAnimationBehavior = enum(objc.NSInteger) {
-    Default = 0,
-    None = 2,
-    DocumentWindow = 3,
-    UtilityWindow = 4,
-    AlertPanel = 5,
-};
-
-pub const WindowNumberListOptions = enum(objc.NSUInteger) {
-    AllApplications = 1,
-    AllSpaces = 16,
-};
-
-pub const WindowOcclusionState = enum(objc.NSUInteger) {
-    Visible = 2,
-};
-
-pub const SelectionDirection = enum(objc.NSUInteger) {
-    DirectSelection = 0,
-    SelectingNext = 1,
-    SelectingPrevious = 2,
-};
-
-pub const WindowButton = enum(objc.NSUInteger) {
-    CloseButton = 0,
-    MiniaturizeButton = 1,
-    ZoomButton = 2,
-    ToolbarButton = 3,
-    DocumentIconButton = 4,
-    DocumentVersionsButton = 6,
-};
-
-pub const WindowTitleVisibility = enum(objc.NSInteger) {
-    Visible = 0,
-    Hidden = 1,
-};
-
-pub const WindowToolbarStyle = enum(objc.NSInteger) {
-    Automatic = 0,
-    Expanded = 1,
-    Preference = 2,
-    Unified = 3,
-    UnifiedCompact = 4,
-};
-
-pub const WindowUserTabbingPreference = enum(objc.NSInteger) {
-    Manual = 0,
-    Always = 1,
-    InFullScreen = 2,
-};
-
-pub const WindowTabbingMode = enum(objc.NSInteger) {
-    Automatic = 0,
-    Preferred = 1,
-    Disallowed = 2,
-};
-
-pub const TitlebarSeparatorStyle = enum(objc.NSInteger) {
-    Automatic = 0,
-    None = 1,
-    Line = 2,
-    Shadow = 3,
-};
-
-pub const WindowBackingLocation = enum(objc.NSUInteger) {
-    Default = 0,
-    VideoMemory = 1,
-    MainMemory = 2,
-};
-
-pub const FontPanelModeMask = enum(objc.NSUInteger) {
-    Face = 1,
-    Size = 2,
-    Collection = 4,
-    UnderlineEffect = 256,
-    StrikethroughEffect = 512,
-    TextColorEffect = 1024,
-    DocumentColorEffect = 2048,
-    ShadowEffect = 4096,
-    AllEffects = 1048320,
-    ModesMaskStandardModes = 65535,
-    ModesMaskAllModes = 4294967295,
-};
-
-pub const MatrixMode = enum(objc.NSUInteger) {
-    RadioModeMatrix = 0,
-    HighlightModeMatrix = 1,
-    ListModeMatrix = 2,
-    TrackModeMatrix = 3,
-};
-
-pub const MenuItemBadgeType = enum(objc.NSInteger) {
-    None = 0,
-    Updates = 1,
-    NewItems = 2,
-    Alerts = 3,
-};
-
-pub const ColorSpaceModel = enum(objc.NSInteger) {
-    Unknown = -1,
-    Gray = 0,
-    RGB = 1,
-    CMYK = 2,
-    LAB = 3,
-    DeviceN = 4,
-    Indexed = 5,
-    Patterned = 6,
-};
-
-pub const anon291 = enum(u32) {
-    NSImageRepMatchesDevice = 0,
-};
-
-pub const ImageLayoutDirection = enum(objc.NSInteger) {
-    Unspecified = -1,
-    LeftToRight = 2,
-    RightToLeft = 3,
-};
-
-pub const TIFFCompression = enum(objc.NSUInteger) {
-    None = 1,
-    CCITTFAX3 = 3,
-    CCITTFAX4 = 4,
-    LZW = 5,
-    JPEG = 6,
-    NEXT = 32766,
-    PackBits = 32773,
-    OldJPEG = 32865,
-};
-
-pub const BitmapImageFileType = enum(objc.NSUInteger) {
-    TIFF = 0,
-    BMP = 1,
-    GIF = 2,
-    JPEG = 3,
-    PNG = 4,
-    JPEG2000 = 5,
-};
-
-pub const ImageRepLoadStatus = enum(objc.NSInteger) {
-    UnknownType = -1,
-    ReadingHeader = -2,
-    WillNeedAllData = -3,
-    InvalidData = -4,
-    UnexpectedEOF = -5,
-    Completed = -6,
-};
-
-pub const BitmapFormat = enum(objc.NSUInteger) {
-    AlphaFirst = 1,
-    AlphaNonpremultiplied = 2,
-    FloatingPointSamples = 4,
-    SixteenBitLittleEndian = 256,
-    ThirtyTwoBitLittleEndian = 512,
-    SixteenBitBigEndian = 1024,
-    ThirtyTwoBitBigEndian = 2048,
-};
-
-pub const BrowserColumnResizingType = enum(objc.NSUInteger) {
-    NoColumnResizing = 0,
-    AutoColumnResizing = 1,
-    UserColumnResizing = 2,
-};
-
-pub const BrowserDropOperation = enum(objc.NSUInteger) {
-    On = 0,
-    Above = 1,
-};
-
-pub const ColorPanelMode = enum(objc.NSInteger) {
-    None = -1,
-    Gray = 0,
-    RGB = 1,
-    CMYK = 2,
-    HSB = 3,
-    CustomPalette = 4,
-    ColorList = 5,
-    Wheel = 6,
-    Crayon = 7,
-};
-
-pub const ColorPanelOptions = enum(objc.NSUInteger) {
-    GrayModeMask = 1,
-    RGBModeMask = 2,
-    CMYKModeMask = 4,
-    HSBModeMask = 8,
-    CustomPaletteModeMask = 16,
-    ColorListModeMask = 32,
-    WheelModeMask = 64,
-    CrayonModeMask = 128,
-    AllModesMask = 65535,
-};
-
-pub const ColorWellStyle = enum(objc.NSInteger) {
-    Default = 0,
-    Minimal = 1,
-    Expanded = 2,
-};
-
-pub const CursorFrameResizePosition = enum(objc.NSUInteger) {
-    Top = 1,
-    Left = 2,
-    Bottom = 4,
-    Right = 8,
-    TopLeft = 3,
-    TopRight = 9,
-    BottomLeft = 6,
-    BottomRight = 12,
-};
-
-pub const CursorFrameResizeDirections = enum(objc.NSUInteger) {
-    Inward = 1,
-    Outward = 2,
-    All = 3,
-};
-
-pub const GradientDrawingOptions = enum(objc.NSUInteger) {
-    DrawsBeforeStartingLocation = 1,
-    DrawsAfterEndingLocation = 2,
-};
-
-pub const GestureRecognizerState = enum(objc.NSInteger) {
-    Possible = 0,
-    Began = 1,
-    Changed = 2,
-    Ended = 3,
-    Cancelled = 4,
-    Failed = 5,
-    Recognized = 3,
-};
-
-pub const LayoutConstraintOrientation = enum(objc.NSInteger) {
-    Horizontal = 0,
-    Vertical = 1,
-};
-
-pub const LayoutRelation = enum(objc.NSInteger) {
-    LessThanOrEqual = -1,
-    Equal = 0,
-    GreaterThanOrEqual = 1,
-};
-
-pub const LayoutAttribute = enum(objc.NSInteger) {
-    Left = 1,
-    Right = 2,
-    Top = 3,
-    Bottom = 4,
-    Leading = 5,
-    Trailing = 6,
-    Width = 7,
-    Height = 8,
-    CenterX = 9,
-    CenterY = 10,
-    LastBaseline = 11,
-    Baseline = 11,
-    FirstBaseline = 12,
-    NotAnAttribute = 0,
-};
-
-pub const LayoutFormatOptions = enum(objc.NSUInteger) {
-    AlignAllLeft = 2,
-    AlignAllRight = 4,
-    AlignAllTop = 8,
-    AlignAllBottom = 16,
-    AlignAllLeading = 32,
-    AlignAllTrailing = 64,
-    AlignAllCenterX = 512,
-    AlignAllCenterY = 1024,
-    AlignAllLastBaseline = 2048,
-    AlignAllFirstBaseline = 4096,
-    AlignAllBaseline = 2048,
-    AlignmentMask = 65535,
-    DirectionLeadingToTrailing = 0,
-    DirectionLeftToRight = 65536,
-    DirectionRightToLeft = 131072,
-    DirectionMask = 196608,
-};
-
-pub const ImageLoadStatus = enum(objc.NSUInteger) {
-    Completed = 0,
-    Cancelled = 1,
-    InvalidData = 2,
-    UnexpectedEOF = 3,
-    ReadError = 4,
-};
-
-pub const ImageCacheMode = enum(objc.NSUInteger) {
-    Default = 0,
-    Always = 1,
-    BySize = 2,
-    Never = 3,
-};
-
-pub const ImageResizingMode = enum(objc.NSInteger) {
-    Tile = 0,
-    Stretch = 1,
-};
-
-pub const ImageSymbolScale = enum(objc.NSInteger) {
-    Small = 1,
-    Medium = 2,
-    Large = 3,
-};
-
-pub const ImageAlignment = enum(objc.NSUInteger) {
-    Center = 0,
-    Top = 1,
-    TopLeft = 2,
-    TopRight = 3,
-    Left = 4,
-    Bottom = 5,
-    BottomLeft = 6,
-    BottomRight = 7,
-    Right = 8,
-};
-
-pub const ImageFrameStyle = enum(objc.NSUInteger) {
-    None = 0,
-    Photo = 1,
-    GrayBezel = 2,
-    Groove = 3,
-    Button = 4,
-};
-
-pub const ImageDynamicRange = enum(objc.NSInteger) {
-    Unspecified = -1,
-    Standard = 0,
-    ConstrainedHigh = 1,
-    High = 2,
-};
-
-pub const ScrubberMode = enum(objc.NSInteger) {
-    Fixed = 0,
-    Free = 1,
-};
-
-pub const ScrubberAlignment = enum(objc.NSInteger) {
-    None = 0,
-    Leading = 1,
-    Trailing = 2,
-    Center = 3,
-};
-
-pub const SharingContentScope = enum(objc.NSInteger) {
-    Item = 0,
-    Partial = 1,
-    Full = 2,
-};
-
-pub const CloudKitSharingServiceOptions = enum(objc.NSUInteger) {
-    Standard = 0,
-    AllowPublic = 1,
-    AllowPrivate = 2,
-    AllowReadOnly = 16,
-    AllowReadWrite = 32,
-};
-
-pub const SpeechBoundary = enum(objc.NSUInteger) {
-    ImmediateBoundary = 0,
-    WordBoundary = 1,
-    SentenceBoundary = 2,
-};
-
-pub const CorrectionResponse = enum(objc.NSInteger) {
-    None = 0,
-    Accepted = 1,
-    Rejected = 2,
-    Ignored = 3,
-    Edited = 4,
-    Reverted = 5,
-};
-
-pub const CorrectionIndicatorType = enum(objc.NSInteger) {
-    Default = 0,
-    Reversion = 1,
-    Guesses = 2,
-};
-
-pub const SplitViewDividerStyle = enum(objc.NSInteger) {
-    Thick = 1,
-    Thin = 2,
-    PaneSplitter = 3,
-};
-
-pub const SplitViewItemBehavior = enum(objc.NSInteger) {
-    Default = 0,
-    Sidebar = 1,
-    ContentList = 2,
-    Inspector = 3,
-};
-
-pub const SplitViewItemCollapseBehavior = enum(objc.NSInteger) {
-    Default = 0,
-    PreferResizingSplitViewWithFixedSiblings = 1,
-    PreferResizingSiblingsWithFixedSplitView = 2,
-    UseConstraints = 3,
-};
-
-pub const PageLayoutResult = enum(objc.NSInteger) {
-    Cancelled = 0,
-    Changed = 1,
-};
-
-pub const PopUpArrowPosition = enum(objc.NSUInteger) {
-    NoArrow = 0,
-    AtCenter = 1,
-    AtBottom = 2,
-};
-
-pub const PrintingPageOrder = enum(objc.NSInteger) {
-    DescendingPageOrder = -1,
-    SpecialPageOrder = 0,
-    AscendingPageOrder = 1,
-    UnknownPageOrder = 2,
-};
-
-pub const PrintRenderingQuality = enum(objc.NSInteger) {
-    Best = 0,
-    Responsive = 1,
-};
-
-pub const PrintPanelResult = enum(objc.NSInteger) {
-    Cancelled = 0,
-    Printed = 1,
-};
-
-pub const PrintPanelOptions = enum(objc.NSUInteger) {
-    ShowsCopies = 1,
-    ShowsPageRange = 2,
-    ShowsPaperSize = 4,
-    ShowsOrientation = 8,
-    ShowsScaling = 16,
-    ShowsPrintSelection = 32,
-    ShowsPageSetupAccessory = 256,
-    ShowsPreview = 131072,
-};
-
-pub const PDFPanelOptions = enum(objc.NSInteger) {
-    ShowsPaperSize = 4,
-    ShowsOrientation = 8,
-    RequestsParentDirectory = 16777216,
-};
-
-pub const MediaLibrary = enum(objc.NSUInteger) {
-    Audio = 1,
-    Image = 2,
-    Movie = 4,
-};
-
-pub const UsableScrollerParts = enum(objc.NSUInteger) {
-    NoScrollerParts = 0,
-    OnlyScrollerArrows = 1,
-    AllScrollerParts = 2,
-};
-
-pub const ScrollerPart = enum(objc.NSUInteger) {
-    NoPart = 0,
-    DecrementPage = 1,
-    Knob = 2,
-    IncrementPage = 3,
-    DecrementLine = 4,
-    IncrementLine = 5,
-    KnobSlot = 6,
-};
-
-pub const ScrollerStyle = enum(objc.NSInteger) {
-    Legacy = 0,
-    Overlay = 1,
-};
-
-pub const ScrollerKnobStyle = enum(objc.NSInteger) {
-    Default = 0,
-    Dark = 1,
-    Light = 2,
-};
-
-pub const ScrollArrowPosition = enum(objc.NSUInteger) {
-    ScrollerArrowsMaxEnd = 0,
-    ScrollerArrowsMinEnd = 1,
-    ScrollerArrowsDefaultSetting = 0,
-    ScrollerArrowsNone = 2,
-};
-
-pub const ScrollerArrow = enum(objc.NSUInteger) {
-    IncrementArrow = 0,
-    DecrementArrow = 1,
-};
-
-pub const TextFinderAction = enum(objc.NSInteger) {
-    ShowFindInterface = 1,
-    NextMatch = 2,
-    PreviousMatch = 3,
-    ReplaceAll = 4,
-    Replace = 5,
-    ReplaceAndFind = 6,
-    SetSearchString = 7,
-    ReplaceAllInSelection = 8,
-    SelectAll = 9,
-    SelectAllInSelection = 10,
-    HideFindInterface = 11,
-    ShowReplaceInterface = 12,
-    HideReplaceInterface = 13,
-};
-
-pub const TextFinderMatchingType = enum(objc.NSInteger) {
-    Contains = 0,
-    StartsWith = 1,
-    FullWord = 2,
-    EndsWith = 3,
-};
-
-pub const ScrollElasticity = enum(objc.NSInteger) {
-    Automatic = 0,
-    None = 1,
-    Allowed = 2,
-};
-
-pub const ScrollViewFindBarPosition = enum(objc.NSInteger) {
-    AboveHorizontalRuler = 0,
-    AboveContent = 1,
-    BelowContent = 2,
-};
-
-pub const SegmentSwitchTracking = enum(objc.NSUInteger) {
-    SelectOne = 0,
-    SelectAny = 1,
-    Momentary = 2,
-    MomentaryAccelerator = 3,
-};
-
-pub const SegmentStyle = enum(objc.NSInteger) {
-    Automatic = 0,
-    Rounded = 1,
-    RoundRect = 3,
-    TexturedSquare = 4,
-    SmallSquare = 6,
-    Separated = 8,
-    TexturedRounded = 2,
-    Capsule = 5,
-};
-
-pub const SegmentDistribution = enum(objc.NSInteger) {
-    Fit = 0,
-    Fill = 1,
-    FillEqually = 2,
-    FillProportionally = 3,
-};
-
-pub const SharingCollaborationMode = enum(objc.NSInteger) {
-    SendCopy = 0,
-    Collaborate = 1,
-};
-
-pub const TickMarkPosition = enum(objc.NSUInteger) {
-    Below = 0,
-    Above = 1,
-    Leading = 1,
-    Trailing = 0,
-};
-
-pub const SliderType = enum(objc.NSUInteger) {
-    Linear = 0,
-    Circular = 1,
-};
-
-pub const StackViewGravity = enum(objc.NSInteger) {
-    Top = 1,
-    Leading = 1,
-    Center = 2,
-    Bottom = 3,
-    Trailing = 3,
-};
-
-pub const StackViewDistribution = enum(objc.NSInteger) {
-    GravityAreas = -1,
-    Fill = 0,
-    FillEqually = 1,
-    FillProportionally = 2,
-    EqualSpacing = 3,
-    EqualCentering = 4,
-};
-
-pub const GridCellPlacement = enum(objc.NSInteger) {
-    Inherited = 0,
-    None = 1,
-    Leading = 2,
-    Top = 2,
-    Trailing = 3,
-    Bottom = 3,
-    Center = 4,
-    Fill = 5,
-};
-
-pub const GridRowAlignment = enum(objc.NSInteger) {
-    Inherited = 0,
-    None = 1,
-    FirstBaseline = 2,
-    LastBaseline = 3,
-};
-
-pub const TextCursorAccessoryPlacement = enum(objc.NSInteger) {
-    Unspecified = 0,
-    Backward = 1,
-    Forward = 2,
-    Invisible = 3,
-    Center = 4,
-    OffscreenLeft = 5,
-    OffscreenTop = 6,
-    OffscreenRight = 7,
-    OffscreenBottom = 8,
-};
-
-pub const TextInputTraitType = enum(objc.NSInteger) {
-    Default = 0,
-    No = 1,
-    Yes = 2,
-};
-
-pub const WritingToolsBehavior = enum(objc.NSInteger) {
-    None = -1,
-    Default = 0,
-    Complete = 1,
-    Limited = 2,
-};
-
-pub const WritingToolsResultOptions = enum(objc.NSUInteger) {
-    Default = 0,
-    PlainText = 1,
-    RichText = 2,
-    List = 4,
-    Table = 8,
-};
-
-pub const WritingToolsAllowedInputOptions = enum(objc.NSUInteger) {
-    Default = 0,
-    PlainText = 1,
-    RichText = 2,
-    List = 4,
-    Table = 8,
-};
-
-pub const TextFieldBezelStyle = enum(objc.NSUInteger) {
-    SquareBezel = 0,
-    RoundedBezel = 1,
-};
-
-pub const TextInsertionIndicatorDisplayMode = enum(objc.NSInteger) {
-    Automatic = 0,
-    Hidden = 1,
-    Visible = 2,
-};
-
-pub const TextInsertionIndicatorAutomaticModeOptions = enum(objc.NSInteger) {
-    ShowEffectsView = 1,
-    ShowWhileTracking = 2,
-};
-
-pub const UnderlineStyle = enum(objc.NSInteger) {
-    None = 0,
-    Single = 1,
-    Thick = 2,
-    Double = 9,
-    PatternSolid = 0,
-    PatternDot = 256,
-    PatternDash = 512,
-    PatternDashDot = 768,
-    PatternDashDotDot = 1024,
-    ByWord = 32768,
-};
-
-pub const WritingDirectionFormatType = enum(objc.NSInteger) {
-    Embedding = 0,
-    Override = 2,
-};
-
-pub const TextScalingType = enum(objc.NSInteger) {
-    Standard = 0,
-    ScalingiOS = 1,
-};
-
-pub const SpellingState = enum(objc.NSInteger) {
-    SpellingFlag = 1,
-    GrammarFlag = 2,
-};
-
-pub const TextStorageEditActions = enum(objc.NSUInteger) {
-    EditedAttributes = 1,
-    EditedCharacters = 2,
-};
-
-pub const TextLayoutOrientation = enum(objc.NSInteger) {
-    Horizontal = 0,
-    Vertical = 1,
-};
-
-pub const GlyphProperty = enum(objc.NSInteger) {
-    Null = 1,
-    ControlCharacter = 2,
-    Elastic = 4,
-    NonBaseCharacter = 8,
-};
-
-pub const ControlCharacterAction = enum(objc.NSInteger) {
-    ZeroAdvancement = 1,
-    Whitespace = 2,
-    HorizontalTab = 4,
-    LineBreak = 8,
-    ParagraphBreak = 16,
-    ContainerBreak = 32,
-};
-
-pub const TypesetterBehavior = enum(objc.NSInteger) {
-    LatestBehavior = -1,
-    OriginalBehavior = 0,
-    _10_2_WithCompatibility = 1,
-    _10_2 = 2,
-    _10_3 = 3,
-    _10_4 = 4,
-};
-
-pub const GlyphInscription = enum(objc.NSUInteger) {
-    InscribeBase = 0,
-    InscribeBelow = 1,
-    InscribeAbove = 2,
-    InscribeOverstrike = 3,
-    InscribeOverBelow = 4,
-};
-
-pub const LineSweepDirection = enum(objc.NSUInteger) {
-    Left = 0,
-    Right = 1,
-    Down = 2,
-    Up = 3,
-};
-
-pub const LineMovementDirection = enum(objc.NSUInteger) {
-    DoesntMove = 0,
-    MovesLeft = 1,
-    MovesRight = 2,
-    MovesDown = 3,
-    MovesUp = 4,
-};
-
-pub const TokenStyle = enum(objc.NSUInteger) {
-    Default = 0,
-    None = 1,
-    Rounded = 2,
-    Squared = 3,
-    PlainSquared = 4,
-};
-
-pub const TrackingAreaOptions = enum(objc.NSUInteger) {
-    MouseEnteredAndExited = 1,
-    MouseMoved = 2,
-    CursorUpdate = 4,
-    ActiveWhenFirstResponder = 16,
-    ActiveInKeyWindow = 32,
-    ActiveInActiveApp = 64,
-    ActiveAlways = 128,
-    AssumeInside = 256,
-    InVisibleRect = 512,
-    EnabledDuringMouseDrag = 1024,
-};
-
-pub const ToolbarDisplayMode = enum(objc.NSUInteger) {
-    Default = 0,
-    IconAndLabel = 1,
-    IconOnly = 2,
-    LabelOnly = 3,
-};
-
-pub const ToolbarSizeMode = enum(objc.NSUInteger) {
-    Default = 0,
-    Regular = 1,
-    Small = 2,
-};
-
-pub const ComboButtonStyle = enum(objc.NSInteger) {
-    Split = 0,
-    Unified = 1,
-};
-
-pub const SelectionGranularity = enum(objc.NSUInteger) {
-    ByCharacter = 0,
-    ByWord = 1,
-    ByParagraph = 2,
-};
-
-pub const SelectionAffinity = enum(objc.NSUInteger) {
-    Upstream = 0,
-    Downstream = 1,
-};
-
-pub const FindPanelAction = enum(objc.NSUInteger) {
-    ShowFindPanel = 1,
-    Next = 2,
-    Previous = 3,
-    ReplaceAll = 4,
-    Replace = 5,
-    ReplaceAndFind = 6,
-    SetFindString = 7,
-    ReplaceAllInSelection = 8,
-    SelectAll = 9,
-    SelectAllInSelection = 10,
-};
-
-pub const FindPanelSubstringMatchType = enum(objc.NSUInteger) {
-    Contains = 0,
-    StartsWith = 1,
-    FullWord = 2,
-    EndsWith = 3,
-};
-
-pub const TableViewDropOperation = enum(objc.NSUInteger) {
-    On = 0,
-    Above = 1,
-};
-
-pub const TableViewColumnAutoresizingStyle = enum(objc.NSUInteger) {
-    NoColumnAutoresizing = 0,
-    UniformColumnAutoresizingStyle = 1,
-    SequentialColumnAutoresizingStyle = 2,
-    ReverseSequentialColumnAutoresizingStyle = 3,
-    LastColumnOnlyAutoresizingStyle = 4,
-    FirstColumnOnlyAutoresizingStyle = 5,
-};
-
-pub const TableViewGridLineStyle = enum(objc.NSUInteger) {
-    None = 0,
-    SolidVerticalGridLineMask = 1,
-    SolidHorizontalGridLineMask = 2,
-    DashedHorizontalGridLineMask = 8,
-};
-
-pub const TableViewRowSizeStyle = enum(objc.NSInteger) {
-    Default = -1,
-    Custom = 0,
-    Small = 1,
-    Medium = 2,
-    Large = 3,
-};
-
-pub const TableViewStyle = enum(objc.NSInteger) {
-    Automatic = 0,
-    FullWidth = 1,
-    Inset = 2,
-    SourceList = 3,
-    Plain = 4,
-};
-
-pub const TableViewSelectionHighlightStyle = enum(objc.NSInteger) {
-    None = -1,
-    Regular = 0,
-    SourceList = 1,
-};
-
-pub const TableViewDraggingDestinationFeedbackStyle = enum(objc.NSInteger) {
-    None = -1,
-    Regular = 0,
-    SourceList = 1,
-    Gap = 2,
-};
-
-pub const TableRowActionEdge = enum(objc.NSInteger) {
-    Leading = 0,
-    Trailing = 1,
-};
-
-pub const TableViewAnimationOptions = enum(objc.NSUInteger) {
-    EffectNone = 0,
-    EffectFade = 1,
-    EffectGap = 2,
-    SlideUp = 16,
-    SlideDown = 32,
-    SlideLeft = 48,
-    SlideRight = 64,
-};
-
-pub const TableColumnResizingOptions = enum(objc.NSUInteger) {
-    NoResizing = 0,
-    AutoresizingMask = 1,
-    UserResizingMask = 2,
-};
-
-pub const TableViewRowActionStyle = enum(objc.NSInteger) {
-    Regular = 0,
-    Destructive = 1,
-};
-
-pub const StringDrawingOptions = enum(objc.NSInteger) {
-    UsesLineFragmentOrigin = 1,
-    UsesFontLeading = 2,
-    UsesDeviceMetrics = 8,
-    TruncatesLastVisibleLine = 32,
-    DisableScreenFontSubstitution = 4,
-    OneShot = 16,
-};
-
-pub const RulerOrientation = enum(objc.NSUInteger) {
-    HorizontalRuler = 0,
-    VerticalRuler = 1,
-};
-
-pub const ProgressIndicatorStyle = enum(objc.NSUInteger) {
-    Bar = 0,
-    Spinning = 1,
-};
-
-pub const ProgressIndicatorThickness = enum(objc.NSUInteger) {
-    PreferredThickness = 14,
-    PreferredSmallThickness = 10,
-    PreferredLargeThickness = 18,
-    PreferredAquaThickness = 12,
-};
-
-pub const TabViewType = enum(objc.NSUInteger) {
-    TopTabsBezelBorder = 0,
-    LeftTabsBezelBorder = 1,
-    BottomTabsBezelBorder = 2,
-    RightTabsBezelBorder = 3,
-    NoTabsBezelBorder = 4,
-    NoTabsLineBorder = 5,
-    NoTabsNoBorder = 6,
-};
-
-pub const TabPosition = enum(objc.NSUInteger) {
-    None = 0,
-    Top = 1,
-    Left = 2,
-    Bottom = 3,
-    Right = 4,
-};
-
-pub const TabViewBorderType = enum(objc.NSUInteger) {
-    None = 0,
-    Line = 1,
-    Bezel = 2,
-};
-
-pub const TabViewControllerTabStyle = enum(objc.NSInteger) {
-    SegmentedControlOnTop = 0,
-    SegmentedControlOnBottom = 1,
-    Toolbar = 2,
-    Unspecified = -1,
-};
-
-pub const TabState = enum(objc.NSUInteger) {
-    SelectedTab = 0,
-    BackgroundTab = 1,
-    PressedTab = 2,
-};
-
-pub const LineCapStyle = enum(objc.NSUInteger) {
-    Butt = 0,
-    Round = 1,
-    Square = 2,
-};
-
-pub const LineJoinStyle = enum(objc.NSUInteger) {
-    Miter = 0,
-    Round = 1,
-    Bevel = 2,
-};
-
-pub const WindingRule = enum(objc.NSUInteger) {
-    NonZero = 0,
-    EvenOdd = 1,
-};
-
-pub const BezierPathElement = enum(objc.NSUInteger) {
-    MoveTo = 0,
-    LineTo = 1,
-    CubicCurveTo = 2,
-    ClosePath = 3,
-    QuadraticCurveTo = 4,
-    CurveTo = 2,
-};
-
-pub const StatusItemBehavior = enum(objc.NSUInteger) {
-    RemovalAllowed = 2,
-    TerminationOnRemoval = 4,
-};
-
-pub const DrawerState = enum(objc.NSUInteger) {
-    ClosedState = 0,
-    OpeningState = 1,
-    OpenState = 2,
-    ClosingState = 3,
-};
-
-pub const OpenGLGlobalOption = enum(objc.uint32_t) {
-    OFormatCacheSize = 501,
-    OClearFormatCache = 502,
-    ORetainRenderers = 503,
-    OUseBuildCache = 506,
-    OResetLibrary = 504,
-};
-
-pub const OpenGLContextParameter = enum(objc.NSInteger) {
-    SwapInterval = 222,
-    SurfaceOrder = 235,
-    SurfaceOpacity = 236,
-    SurfaceBackingSize = 304,
-    ReclaimResources = 308,
-    CurrentRendererID = 309,
-    GPUVertexProcessing = 310,
-    GPUFragmentProcessing = 311,
-    HasDrawable = 314,
-    MPSwapsInFlight = 315,
-    SwapRectangle = 200,
-    SwapRectangleEnable = 201,
-    RasterizationEnable = 221,
-    StateValidation = 301,
-    SurfaceSurfaceVolatile = 306,
-};
-
-pub const ToolbarItemGroupSelectionMode = enum(objc.NSInteger) {
-    SelectOne = 0,
-    SelectAny = 1,
-    Momentary = 2,
-};
-
-pub const ToolbarItemGroupControlRepresentation = enum(objc.NSInteger) {
-    Automatic = 0,
-    Expanded = 1,
-    Collapsed = 2,
-};
-
-pub const CharacterCollection = enum(objc.NSUInteger) {
-    IdentityMappingCharacterCollection = 0,
-    AdobeCNS1CharacterCollection = 1,
-    AdobeGB1CharacterCollection = 2,
-    AdobeJapan1CharacterCollection = 3,
-    AdobeJapan2CharacterCollection = 4,
-    AdobeKorea1CharacterCollection = 5,
-};
-
-pub const TypesetterControlCharacterAction = enum(objc.NSUInteger) {
-    ZeroAdvancementAction = 1,
-    WhitespaceAction = 2,
-    HorizontalTabAction = 4,
-    LineBreakAction = 8,
-    ParagraphBreakAction = 16,
-    ContainerBreakAction = 32,
-};
-
-pub const TextListOptions = enum(objc.NSUInteger) {
-    PrependEnclosingMarker = 1,
-};
-
-pub const TextBlockValueType = enum(objc.NSUInteger) {
-    AbsoluteValueType = 0,
-    PercentageValueType = 1,
-};
-
-pub const TextBlockDimension = enum(objc.NSUInteger) {
-    Width = 0,
-    MinimumWidth = 1,
-    MaximumWidth = 2,
-    Height = 4,
-    MinimumHeight = 5,
-    MaximumHeight = 6,
-};
-
-pub const TextBlockLayer = enum(objc.NSInteger) {
-    Padding = -1,
-    Border = 0,
-    Margin = 1,
-};
-
-pub const TextBlockVerticalAlignment = enum(objc.NSUInteger) {
-    TopAlignment = 0,
-    MiddleAlignment = 1,
-    BottomAlignment = 2,
-    BaselineAlignment = 3,
-};
-
-pub const TextTableLayoutAlgorithm = enum(objc.NSUInteger) {
-    AutomaticLayoutAlgorithm = 0,
-    FixedLayoutAlgorithm = 1,
-};
-
-pub const DatePickerStyle = enum(objc.NSUInteger) {
-    TextFieldAndStepper = 0,
-    ClockAndCalendar = 1,
-    TextField = 2,
-};
-
-pub const DatePickerMode = enum(objc.NSUInteger) {
-    Single = 0,
-    Range = 1,
-};
-
-pub const DatePickerElementFlags = enum(objc.NSUInteger) {
-    HourMinute = 12,
-    HourMinuteSecond = 14,
-    TimeZone = 16,
-    YearMonth = 192,
-    YearMonthDay = 224,
-    Era = 256,
-};
-
-pub const LevelIndicatorStyle = enum(objc.NSUInteger) {
-    Relevancy = 0,
-    ContinuousCapacity = 1,
-    DiscreteCapacity = 2,
-    Rating = 3,
-};
-
-pub const LevelIndicatorPlaceholderVisibility = enum(objc.NSInteger) {
-    Automatic = 0,
-    Always = 1,
-    WhileEditing = 2,
-};
-
-pub const RuleEditorNestingMode = enum(objc.NSUInteger) {
-    Single = 0,
-    List = 1,
-    Compound = 2,
-    Simple = 3,
-};
-
-pub const RuleEditorRowType = enum(objc.NSUInteger) {
-    Simple = 0,
-    Compound = 1,
-};
-
-pub const PathStyle = enum(objc.NSInteger) {
-    Standard = 0,
-    PopUp = 2,
-    NavigationBar = 1,
-};
-
-pub const PageControllerTransitionStyle = enum(objc.NSInteger) {
-    StackHistory = 0,
-    StackBook = 1,
-    HorizontalStrip = 2,
-};
-
-pub const VisualEffectMaterial = enum(objc.NSInteger) {
-    Titlebar = 3,
-    Selection = 4,
-    Menu = 5,
-    Popover = 6,
-    Sidebar = 7,
-    HeaderView = 10,
-    Sheet = 11,
-    WindowBackground = 12,
-    HUDWindow = 13,
-    FullScreenUI = 15,
-    ToolTip = 17,
-    ContentBackground = 18,
-    UnderWindowBackground = 21,
-    UnderPageBackground = 22,
-    AppearanceBased = 0,
-    Light = 1,
-    Dark = 2,
-    MediumLight = 8,
-    UltraDark = 9,
-};
-
-pub const VisualEffectBlendingMode = enum(objc.NSInteger) {
-    BehindWindow = 0,
-    WithinWindow = 1,
-};
-
-pub const VisualEffectState = enum(objc.NSInteger) {
-    FollowsWindowActiveState = 0,
-    Active = 1,
-    Inactive = 2,
-};
-
-pub const HapticFeedbackPattern = enum(objc.NSInteger) {
-    Generic = 0,
-    Alignment = 1,
-    LevelChange = 2,
-};
-
-pub const HapticFeedbackPerformanceTime = enum(objc.NSUInteger) {
-    Default = 0,
-    Now = 1,
-    DrawCompleted = 2,
-};
-
-pub const PickerTouchBarItemSelectionMode = enum(objc.NSInteger) {
-    SelectOne = 0,
-    SelectAny = 1,
-    Momentary = 2,
-};
-
-pub const PickerTouchBarItemControlRepresentation = enum(objc.NSInteger) {
-    Automatic = 0,
-    Expanded = 1,
-    Collapsed = 2,
-};
-
-pub const TextSelectionGranularity = enum(objc.NSInteger) {
-    Character = 0,
-    Word = 1,
-    Paragraph = 2,
-    Line = 3,
-    Sentence = 4,
-};
-
-pub const TextSelectionAffinity = enum(objc.NSInteger) {
-    Upstream = 0,
-    Downstream = 1,
-};
-
-pub const TextSelectionNavigationDirection = enum(objc.NSInteger) {
-    Forward = 0,
-    Backward = 1,
-    Right = 2,
-    Left = 3,
-    Up = 4,
-    Down = 5,
-};
-
-pub const TextSelectionNavigationDestination = enum(objc.NSInteger) {
-    Character = 0,
-    Word = 1,
-    Line = 2,
-    Sentence = 3,
-    Paragraph = 4,
-    Container = 5,
-    Document = 6,
-};
-
-pub const TextSelectionNavigationModifier = enum(objc.NSUInteger) {
-    Extend = 1,
-    Visual = 2,
-    Multiple = 4,
-};
-
-pub const TextSelectionNavigationWritingDirection = enum(objc.NSInteger) {
-    LeftToRight = 0,
-    RightToLeft = 1,
-};
-
-pub const TextSelectionNavigationLayoutOrientation = enum(objc.NSInteger) {
-    Horizontal = 0,
-    Vertical = 1,
-};
-
-pub const TextContentManagerEnumerationOptions = enum(objc.NSUInteger) {
-    None = 0,
-    Reverse = 1,
-};
-
-pub const TextLayoutFragmentEnumerationOptions = enum(objc.NSUInteger) {
-    None = 0,
-    Reverse = 1,
-    EstimatesSize = 2,
-    EnsuresLayout = 4,
-    EnsuresExtraLineFragment = 8,
-};
-
-pub const TextLayoutFragmentState = enum(objc.NSUInteger) {
-    None = 0,
-    EstimatedUsageBounds = 1,
-    CalculatedUsageBounds = 2,
-    LayoutAvailable = 3,
-};
-
-pub const TextLayoutManagerSegmentType = enum(objc.NSInteger) {
-    Standard = 0,
-    Selection = 1,
-    Highlight = 2,
-};
-
-pub const TextLayoutManagerSegmentOptions = enum(objc.NSUInteger) {
-    None = 0,
-    RangeNotRequired = 1,
-    MiddleFragmentsExcluded = 2,
-    HeadSegmentExtended = 4,
-    TailSegmentExtended = 8,
-    UpstreamAffinity = 16,
-};
-
-pub const ColorSpaceName = ?*ns.String;
-
-pub const DeviceDescriptionKey = ?*ns.String;
-
-pub const GraphicsContextAttributeKey = ?*String;
-
-pub const GraphicsContextRepresentationFormatName = ?*String;
-
-pub const AccessibilityAttributeName = ?*String;
-
-pub const AccessibilityParameterizedAttributeName = ?*String;
-
-pub const AccessibilityAnnotationAttributeKey = ?*String;
-
-pub const AccessibilityFontAttributeKey = ?*String;
-
-pub const AccessibilityOrientationValue = ?*String;
-
-pub const AccessibilitySortDirectionValue = ?*String;
-
-pub const AccessibilityRulerMarkerTypeValue = ?*String;
-
-pub const AccessibilityRulerUnitValue = ?*String;
 
 pub const AccessibilityActionName = ?*String;
 
@@ -2678,281 +623,68 @@ pub const AccessibilitySubrole = ?*String;
 
 pub const AccessibilityNotificationUserInfoKey = ?*String;
 
+pub extern "AppKit" fn AccessibilityPostNotificationWithUserInfo(element: *objc.Id, notification: AccessibilityNotificationName, userInfo: ?*anyopaque) callconv(.C) void;
+
+pub const AccessibilityPriorityLevel = enum(objc.NSInteger) {
+    Low = 10,
+    Medium = 50,
+    High = 90,
+};
+
 pub const AccessibilityLoadingToken = ?*anyopaque;
 
-pub const WorkspaceDesktopImageOptionKey = ?*String;
-
-pub const WorkspaceFileOperationName = ?*String;
-
-pub const WorkspaceLaunchConfigurationKey = ?*String;
-
-pub const PasteboardType = ?*String;
-
-pub const PasteboardName = ?*String;
-
-pub const PasteboardReadingOptionKey = ?*String;
-
-pub const NibName = ?*String;
-
-pub const UserInterfaceItemIdentifier = ?*String;
-
-pub const AnimationProgress = f32;
-
-pub const ViewAnimationKey = ?*String;
-
-pub const ViewAnimationEffectName = ?*String;
-
-pub const AnimatablePropertyKey = ?*String;
-
-pub const AppearanceName = ?*String;
-
-pub const TrackingRectTag = objc.NSInteger;
-
-pub const ToolTipTag = objc.NSInteger;
-
-pub const ViewFullScreenModeOptionKey = ?*String;
-
-pub const DefinitionOptionKey = ?*String;
-
-pub const DefinitionPresentationType = ?*String;
-
-pub const TextTabOptionKey = ?*String;
-
-pub const ControlStateValue = objc.NSInteger;
-
-pub const CellStateValue = ControlStateValue;
-
-pub const PrinterTypeName = ?*String;
-
-pub const PrinterPaperName = ?*String;
-
-pub const PrintInfoAttributeKey = ?*String;
-
-pub const PrintJobDispositionValue = ?*String;
-
-pub const PrintInfoSettingKey = ?*String;
-
-pub const BindingName = ?*String;
-
-pub const BindingOption = ?*String;
-
-pub const BindingInfoKey = ?*String;
-
-pub const AppKitVersion = f64;
-
-pub const ModalResponse = objc.NSInteger;
-
-pub const ModalSession = ?*_NSModalSession;
-
-pub const RequestUserAttentionType = enum NSRequestUserAttentionType;
-
-pub const ApplicationDelegateReply = enum NSApplicationDelegateReply;
-
-pub const AboutPanelOptionKey = ?*String;
-
-pub const ServiceProviderName = ?*String;
-
-pub const ColorListName = ?*String;
-
-pub const ColorName = ?*String;
-
-pub const HelpBookName = ?*String;
-
-pub const HelpAnchorName = ?*String;
-
-pub const HelpManagerContextHelpKey = ?*String;
-
-pub const TouchBarItemIdentifier = ?*String;
-
-pub const TouchBarItemPriority = f32;
-
-pub const TouchBarCustomizationIdentifier = ?*String;
-
-pub const PopoverCloseReasonValue = ?*String;
-
-pub const StoryboardName = ?*String;
-
-pub const StoryboardSceneIdentifier = ?*String;
-
-pub const StoryboardControllerCreator = *const fn(?*ns.Coder) callconv(.C) *objc.Id;
-
-pub const StoryboardSegueIdentifier = ?*String;
-
-pub const CollectionViewSupplementaryElementKind = ?*String;
-
-pub const CollectionViewDecorationElementKind = ?*String;
-
-pub const CollectionViewCompositionalLayoutSectionProvider = *const fn(objc.NSInteger, ?*anyopaque) callconv(.C) ?*CollectionLayoutSection;
-
-pub const CollectionLayoutSectionVisibleItemsInvalidationHandler = *const fn(?*anyopaque, ns.Point, ?*anyopaque) callconv(.C) void;
-
-pub const CollectionLayoutGroupCustomItemProvider = *const fn(?*anyopaque) callconv(.C) ?*anyopaque;
-
-pub const CollectionViewTransitionLayoutAnimatedKey = ?*String;
-
-pub const CollectionViewDiffableDataSourceItemProvider = *const fn(?*CollectionView, ?*IndexPath, void) callconv(.C) ?*CollectionViewItem;
-
-pub const CollectionViewDiffableDataSourceSupplementaryViewProvider = *const fn(?*CollectionView, ?*String, ?*IndexPath) callconv(.C) ?*View;
-
-pub const FontSymbolicTraits = objc.uint32_t;
-
-pub const FontDescriptorAttributeName = ?*String;
-
-pub const FontDescriptorTraitKey = ?*String;
-
-pub const FontDescriptorVariationKey = ?*String;
-
-pub const FontDescriptorFeatureKey = ?*String;
-
-pub const FontWeight = cf.CGFloat;
-
-pub const FontWidth = cf.CGFloat;
-
-pub const FontDescriptorSystemDesign = ?*String;
-
-pub const FontTextStyle = ?*String;
-
-pub const FontTextStyleOptionKey = ?*String;
-
-pub const FontFamilyClass = objc.uint32_t;
-
-pub const Glyph = u32;
-
-pub const FontCollectionMatchingOptionKey = ?*String;
-
-pub const FontCollectionName = ?*String;
-
-pub const FontCollectionUserInfoKey = ?*String;
-
-pub const FontCollectionActionTypeKey = ?*String;
-
-pub const WindowLevel = objc.NSInteger;
-
-pub const WindowFrameAutosaveName = ?*String;
-
-pub const WindowPersistableFrameDescriptor = ?*String;
-
-pub const WindowTabbingIdentifier = ?*String;
-
-pub const ImageHintKey = ?*String;
-
-pub const BitmapImageRepPropertyKey = ?*String;
-
-pub const BrowserColumnsAutosaveName = ?*String;
-
-pub const CursorFrameResizePosition = enum NSCursorFrameResizePosition;
-
-pub const CursorFrameResizeDirections = enum NSCursorFrameResizeDirections;
-
-pub const DraggingImageComponentKey = ?*String;
-
-pub const LayoutPriority = f32;
-
-pub const ImageName = ?*String;
-
-pub const SharingServiceName = ?*String;
-
-pub const SliderAccessoryWidth = cf.CGFloat;
-
-pub const SpeechSynthesizerVoiceName = ?*String;
-
-pub const VoiceAttributeKey = ?*String;
-
-pub const SpeechDictionaryKey = ?*String;
-
-pub const VoiceGenderName = ?*String;
-
-pub const SpeechPropertyKey = ?*String;
-
-pub const SpeechMode = ?*String;
-
-pub const SpeechStatusKey = ?*String;
-
-pub const SpeechErrorKey = ?*String;
-
-pub const SpeechSynthesizerInfoKey = ?*String;
-
-pub const SpeechPhonemeInfoKey = ?*String;
-
-pub const SpeechCommandDelimiterKey = ?*String;
-
-pub const TextCheckingOptionKey = ?*String;
-
-pub const CorrectionResponse = enum NSCorrectionResponse;
-
-pub const CorrectionIndicatorType = enum NSCorrectionIndicatorType;
-
-pub const SplitViewAutosaveName = ?*String;
-
-pub const PrintPanelJobStyleHint = ?*String;
-
-pub const PrintPanelAccessorySummaryKey = ?*String;
-
-pub const PasteboardTypeTextFinderOptionKey = ?*String;
-
-pub const StackViewVisibilityPriority = f32;
-
-pub const TextContentType = ?*String;
-
-pub const TextEffectStyle = ?*String;
-
-pub const TextHighlightStyle = ?*String;
-
-pub const TextHighlightColorScheme = ?*String;
-
-pub const AttributedStringDocumentType = ?*String;
-
-pub const TextLayoutSectionKey = ?*String;
-
-pub const AttributedStringDocumentAttributeKey = ?*String;
-
-pub const AttributedStringDocumentReadingOptionKey = ?*String;
-
-pub const TextStorageEditedOptions = objc.NSUInteger;
-
-pub const ToolbarIdentifier = ?*String;
-
-pub const ToolbarItemIdentifier = ?*String;
-
-pub const ToolbarUserInfoKey = ?*String;
-
-pub const ToolbarItemVisibilityPriority = objc.NSInteger;
-
-pub const PasteboardTypeFindPanelSearchOptionKey = ?*String;
-
-pub const TableViewAutosaveName = ?*String;
-
-pub const TableViewAnimationOptions = enum NSTableViewAnimationOptions;
-
-pub const TableViewDiffableDataSourceCellProvider = *const fn(?*TableView, ?*TableColumn, objc.NSInteger, *objc.Id, ) callconv(.C) ?*View;
-
-pub const TableViewDiffableDataSourceRowProvider = *const fn(?*TableView, objc.NSInteger, *objc.Id) callconv(.C) ?*TableRowView;
-
-pub const TableViewDiffableDataSourceSectionHeaderViewProvider = *const fn(?*TableView, objc.NSInteger, *objc.Id) callconv(.C) ?*View;
-
-pub const RulerViewUnitName = ?*String;
-
-pub const InterfaceStyle = objc.NSUInteger;
-
-pub const StatusItemAutosaveName = ?*String;
-
-pub const SoundName = ?*String;
-
-pub const SoundPlaybackDeviceIdentifier = ?*String;
-
-pub const OpenGLPixelFormatAttribute = objc.uint32_t;
-
-pub const SearchFieldRecentsAutosaveName = ?*String;
-
-pub const TextListMarkerFormat = ?*String;
-
-pub const RuleEditorPredicatePartKey = ?*String;
-
-pub const PageControllerObjectIdentifier = ?*String;
-
-pub const TextInputSourceIdentifier = ?*String;
-
-pub const DataAssetName = ?*String;
+/// https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction?language=objc
+pub const AccessibilityCustomAction = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSAccessibilityCustomAction", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn initWithNameHandler(self: *@This(), name: ?*String, handler: *const fn() callconv(.C) objc.BOOL) *@This() {
+        return objc.msgSend(self, "initWithName:handler:", *@This(), .{name, handler});
+    }
+
+    pub fn initWithNameTargetSelector(self: *@This(), name: ?*String, target: ?*anyopaque, selector: *objc.SEL) *@This() {
+        return objc.msgSend(self, "initWithName:target:selector:", *@This(), .{name, target, selector});
+    }
+
+    pub fn name(self: *@This()) ?*String {
+        return objc.msgSend(self, "name", ?*String, .{});
+    }
+
+    pub fn setName(self: *@This(), name: ?*String) void {
+        return objc.msgSend(self, "setName:", void, .{name});
+    }
+
+    pub fn handler(self: *@This()) *const fn() callconv(.C) objc.BOOL {
+        return objc.msgSend(self, "handler", *const fn() callconv(.C) objc.BOOL, .{});
+    }
+
+    pub fn setHandler(self: *@This(), handler: *const fn() callconv(.C) objc.BOOL) void {
+        return objc.msgSend(self, "setHandler:", void, .{handler});
+    }
+
+    pub fn target(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "target", ?*anyopaque, .{});
+    }
+
+    pub fn setTarget(self: *@This(), target: ?*anyopaque) void {
+        return objc.msgSend(self, "setTarget:", void, .{target});
+    }
+
+    pub fn selector(self: *@This()) *objc.SEL {
+        return objc.msgSend(self, "selector", *objc.SEL, .{});
+    }
+
+    pub fn setSelector(self: *@This(), selector: *objc.SEL) void {
+        return objc.msgSend(self, "setSelector:", void, .{selector});
+    }
+
+};
 
 /// https://developer.apple.com/documentation/AppKit/NSAccessibilityElement?language=objc
 pub const AccessibilityElement = opaque {
@@ -4469,6 +2201,208 @@ pub const Accessibility = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSAccessibilityElement?language=objc
+pub const AccessibilityElement = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSAccessibilityElement", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn accessibilityElementWithRoleFrameLabelParent(self: *@This(), role: AccessibilityRole, frame: ns.Rect, label: ?*String, parent: *objc.Id, ) *objc.Id {
+        return objc.msgSend(self, "accessibilityElementWithRole:frame:label:parent:", *objc.Id, .{role, frame, label, parent, });
+    }
+
+    pub fn accessibilityAddChildElement(self: *@This(), childElement: ?*AccessibilityElement) void {
+        return objc.msgSend(self, "accessibilityAddChildElement:", void, .{childElement});
+    }
+
+    pub fn accessibilityFrameInParentSpace(self: *@This()) ns.Rect {
+        return objc.msgSend(self, "accessibilityFrameInParentSpace", ns.Rect, .{});
+    }
+
+    pub fn setAccessibilityFrameInParentSpace(self: *@This(), accessibilityFrameInParentSpace: ns.Rect) void {
+        return objc.msgSend(self, "setAccessibilityFrameInParentSpace:", void, .{accessibilityFrameInParentSpace});
+    }
+
+};
+
+pub const AccessibilityCustomRotorSearchDirection = enum(objc.NSInteger) {
+    Previous = 0,
+    Next = 1,
+};
+
+pub const AccessibilityCustomRotorType = enum(objc.NSInteger) {
+    Custom = 0,
+    Any = 1,
+    Annotation = 2,
+    BoldText = 3,
+    Heading = 4,
+    HeadingLevel1 = 5,
+    HeadingLevel2 = 6,
+    HeadingLevel3 = 7,
+    HeadingLevel4 = 8,
+    HeadingLevel5 = 9,
+    HeadingLevel6 = 10,
+    Image = 11,
+    ItalicText = 12,
+    Landmark = 13,
+    Link = 14,
+    List = 15,
+    MisspelledWord = 16,
+    Table = 17,
+    TextField = 18,
+    UnderlinedText = 19,
+    VisitedLink = 20,
+    Audiograph = 21,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotor?language=objc
+pub const AccessibilityCustomRotor = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSAccessibilityCustomRotor", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn initWithLabelItemSearchDelegate(self: *@This(), label: ?*String, itemSearchDelegate: ?*anyopaque) *@This() {
+        return objc.msgSend(self, "initWithLabel:itemSearchDelegate:", *@This(), .{label, itemSearchDelegate});
+    }
+
+    pub fn initWithRotorTypeItemSearchDelegate(self: *@This(), rotorType: AccessibilityCustomRotorType, itemSearchDelegate: ?*anyopaque) *@This() {
+        return objc.msgSend(self, "initWithRotorType:itemSearchDelegate:", *@This(), .{rotorType, itemSearchDelegate});
+    }
+
+    pub fn @"type"(self: *@This()) AccessibilityCustomRotorType {
+        return objc.msgSend(self, "type", AccessibilityCustomRotorType, .{});
+    }
+
+    pub fn setType(self: *@This(), @"type": AccessibilityCustomRotorType) void {
+        return objc.msgSend(self, "setType:", void, .{@"type"});
+    }
+
+    pub fn label(self: *@This()) ?*String {
+        return objc.msgSend(self, "label", ?*String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn itemSearchDelegate(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "itemSearchDelegate", ?*anyopaque, .{});
+    }
+
+    pub fn setItemSearchDelegate(self: *@This(), itemSearchDelegate: ?*anyopaque) void {
+        return objc.msgSend(self, "setItemSearchDelegate:", void, .{itemSearchDelegate});
+    }
+
+    pub fn itemLoadingDelegate(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "itemLoadingDelegate", ?*anyopaque, .{});
+    }
+
+    pub fn setItemLoadingDelegate(self: *@This(), itemLoadingDelegate: ?*anyopaque) void {
+        return objc.msgSend(self, "setItemLoadingDelegate:", void, .{itemLoadingDelegate});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotorSearchParameters?language=objc
+pub const AccessibilityCustomRotorSearchParameters = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSAccessibilityCustomRotorSearchParameters", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn currentItem(self: *@This()) ?*AccessibilityCustomRotorItemResult {
+        return objc.msgSend(self, "currentItem", ?*AccessibilityCustomRotorItemResult, .{});
+    }
+
+    pub fn setCurrentItem(self: *@This(), currentItem: ?*AccessibilityCustomRotorItemResult) void {
+        return objc.msgSend(self, "setCurrentItem:", void, .{currentItem});
+    }
+
+    pub fn searchDirection(self: *@This()) AccessibilityCustomRotorSearchDirection {
+        return objc.msgSend(self, "searchDirection", AccessibilityCustomRotorSearchDirection, .{});
+    }
+
+    pub fn setSearchDirection(self: *@This(), searchDirection: AccessibilityCustomRotorSearchDirection) void {
+        return objc.msgSend(self, "setSearchDirection:", void, .{searchDirection});
+    }
+
+    pub fn filterString(self: *@This()) ?*String {
+        return objc.msgSend(self, "filterString", ?*String, .{});
+    }
+
+    pub fn setFilterString(self: *@This(), filterString: ?*String) void {
+        return objc.msgSend(self, "setFilterString:", void, .{filterString});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotorItemResult?language=objc
+pub const AccessibilityCustomRotorItemResult = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSAccessibilityCustomRotorItemResult", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn new(self: *@This()) *@This() {
+        return objc.msgSend(self, "new", *@This(), .{});
+    }
+
+    pub fn init(self: *@This()) *@This() {
+        return objc.msgSend(self, "init", *@This(), .{});
+    }
+
+    pub fn initWithTargetElement(self: *@This(), targetElement: ?*anyopaque) *@This() {
+        return objc.msgSend(self, "initWithTargetElement:", *@This(), .{targetElement});
+    }
+
+    pub fn initWithItemLoadingTokenCustomLabel(self: *@This(), itemLoadingToken: AccessibilityLoadingToken, customLabel: ?*String) *@This() {
+        return objc.msgSend(self, "initWithItemLoadingToken:customLabel:", *@This(), .{itemLoadingToken, customLabel});
+    }
+
+    pub fn targetElement(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "targetElement", ?*anyopaque, .{});
+    }
+
+    pub fn itemLoadingToken(self: *@This()) AccessibilityLoadingToken {
+        return objc.msgSend(self, "itemLoadingToken", AccessibilityLoadingToken, .{});
+    }
+
+    pub fn targetRange(self: *@This()) ns.Range {
+        return objc.msgSend(self, "targetRange", ns.Range, .{});
+    }
+
+    pub fn setTargetRange(self: *@This(), targetRange: ns.Range) void {
+        return objc.msgSend(self, "setTargetRange:", void, .{targetRange});
+    }
+
+    pub fn customLabel(self: *@This()) ?*String {
+        return objc.msgSend(self, "customLabel", ?*String, .{});
+    }
+
+    pub fn setCustomLabel(self: *@This(), customLabel: ?*String) void {
+        return objc.msgSend(self, "setCustomLabel:", void, .{customLabel});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotorItemSearchDelegate?language=objc
 pub const AccessibilityCustomRotorItemSearchDelegate = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -4479,6 +2413,1021 @@ pub const AccessibilityCustomRotorItemSearchDelegate = opaque {
 
     pub fn rotorResultForSearchParameters(self: *@This(), rotor: ?*AccessibilityCustomRotor, searchParameters: ?*AccessibilityCustomRotorSearchParameters) ?*AccessibilityCustomRotorItemResult {
         return objc.msgSend(self, "rotor:resultForSearchParameters:", ?*AccessibilityCustomRotorItemResult, .{rotor, searchParameters});
+    }
+
+};
+
+pub const WorkspaceIconCreationOptions = enum(objc.NSUInteger) {
+    ExcludeQuickDrawElementsIconCreationOption = 2,
+    Exclude10_4ElementsIconCreationOption = 4,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSWorkspace?language=objc
+pub const Workspace = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSWorkspace", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn openURL(self: *@This(), url: ?*URL) objc.BOOL {
+        return objc.msgSend(self, "openURL:", objc.BOOL, .{url});
+    }
+
+    pub fn openURLConfigurationCompletionHandler(self: *@This(), url: ?*URL, configuration: ?*WorkspaceOpenConfiguration, completionHandler: *const fn(?*RunningApplication, ?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "openURL:configuration:completionHandler:", void, .{url, configuration, completionHandler});
+    }
+
+    pub fn openURLsWithApplicationAtURLConfigurationCompletionHandler(self: *@This(), urls: ?*anyopaque, applicationURL: ?*URL, configuration: ?*WorkspaceOpenConfiguration, completionHandler: *const fn(?*RunningApplication, ?*Error) callconv(.C) void, ) void {
+        return objc.msgSend(self, "openURLs:withApplicationAtURL:configuration:completionHandler:", void, .{urls, applicationURL, configuration, completionHandler, });
+    }
+
+    pub fn openApplicationAtURLConfigurationCompletionHandler(self: *@This(), applicationURL: ?*URL, configuration: ?*WorkspaceOpenConfiguration, completionHandler: *const fn(?*RunningApplication, ?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "openApplicationAtURL:configuration:completionHandler:", void, .{applicationURL, configuration, completionHandler});
+    }
+
+    pub fn selectFileInFileViewerRootedAtPath(self: *@This(), fullPath: ?*String, rootFullPath: ?*String) objc.BOOL {
+        return objc.msgSend(self, "selectFile:inFileViewerRootedAtPath:", objc.BOOL, .{fullPath, rootFullPath});
+    }
+
+    pub fn activateFileViewerSelectingURLs(self: *@This(), fileURLs: ?*anyopaque) void {
+        return objc.msgSend(self, "activateFileViewerSelectingURLs:", void, .{fileURLs});
+    }
+
+    pub fn showSearchResultsForQueryString(self: *@This(), queryString: ?*String) objc.BOOL {
+        return objc.msgSend(self, "showSearchResultsForQueryString:", objc.BOOL, .{queryString});
+    }
+
+    pub fn noteFileSystemChanged(self: *@This(), path: ?*String) void {
+        return objc.msgSend(self, "noteFileSystemChanged:", void, .{path});
+    }
+
+    pub fn isFilePackageAtPath(self: *@This(), fullPath: ?*String) objc.BOOL {
+        return objc.msgSend(self, "isFilePackageAtPath:", objc.BOOL, .{fullPath});
+    }
+
+    pub fn iconForFile(self: *@This(), fullPath: ?*String) ?*Image {
+        return objc.msgSend(self, "iconForFile:", ?*Image, .{fullPath});
+    }
+
+    pub fn iconForFiles(self: *@This(), fullPaths: ?*anyopaque) ?*Image {
+        return objc.msgSend(self, "iconForFiles:", ?*Image, .{fullPaths});
+    }
+
+    pub fn iconForContentType(self: *@This(), contentType: ?*UTType) ?*Image {
+        return objc.msgSend(self, "iconForContentType:", ?*Image, .{contentType});
+    }
+
+    pub fn setIconForFileOptions(self: *@This(), image: ?*Image, fullPath: ?*String, options: WorkspaceIconCreationOptions) objc.BOOL {
+        return objc.msgSend(self, "setIcon:forFile:options:", objc.BOOL, .{image, fullPath, options});
+    }
+
+    pub fn recycleURLsCompletionHandler(self: *@This(), URLs: ?*anyopaque, handler: *const fn(?*anyopaque, ?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "recycleURLs:completionHandler:", void, .{URLs, handler});
+    }
+
+    pub fn duplicateURLsCompletionHandler(self: *@This(), URLs: ?*anyopaque, handler: *const fn(?*anyopaque, ?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "duplicateURLs:completionHandler:", void, .{URLs, handler});
+    }
+
+    pub fn getFileSystemInfoForPathIsRemovableIsWritableIsUnmountableDescriptionType(self: *@This(), fullPath: ?*String, removableFlag: ?*objc.BOOL, writableFlag: ?*objc.BOOL, unmountableFlag: ?*objc.BOOL, description: ?*?*String, fileSystemType: ?*?*String, ) objc.BOOL {
+        return objc.msgSend(self, "getFileSystemInfoForPath:isRemovable:isWritable:isUnmountable:description:type:", objc.BOOL, .{fullPath, removableFlag, writableFlag, unmountableFlag, description, fileSystemType, });
+    }
+
+    pub fn unmountAndEjectDeviceAtPath(self: *@This(), path: ?*String) objc.BOOL {
+        return objc.msgSend(self, "unmountAndEjectDeviceAtPath:", objc.BOOL, .{path});
+    }
+
+    pub fn unmountAndEjectDeviceAtURLError(self: *@This(), url: ?*URL, @"error": ?*?*Error) objc.BOOL {
+        return objc.msgSend(self, "unmountAndEjectDeviceAtURL:error:", objc.BOOL, .{url, @"error"});
+    }
+
+    pub fn extendPowerOffBy(self: *@This(), requested: objc.NSInteger) objc.NSInteger {
+        return objc.msgSend(self, "extendPowerOffBy:", objc.NSInteger, .{requested});
+    }
+
+    pub fn hideOtherApplications(self: *@This()) void {
+        return objc.msgSend(self, "hideOtherApplications", void, .{});
+    }
+
+    pub fn URLForApplicationWithBundleIdentifier(self: *@This(), bundleIdentifier: ?*String) ?*URL {
+        return objc.msgSend(self, "URLForApplicationWithBundleIdentifier:", ?*URL, .{bundleIdentifier});
+    }
+
+    pub fn URLsForApplicationsWithBundleIdentifier(self: *@This(), bundleIdentifier: ?*String) ?*anyopaque {
+        return objc.msgSend(self, "URLsForApplicationsWithBundleIdentifier:", ?*anyopaque, .{bundleIdentifier});
+    }
+
+    pub fn URLForApplicationToOpenURL(self: *@This(), url: ?*URL) ?*URL {
+        return objc.msgSend(self, "URLForApplicationToOpenURL:", ?*URL, .{url});
+    }
+
+    pub fn URLsForApplicationsToOpenURL(self: *@This(), url: ?*URL) ?*anyopaque {
+        return objc.msgSend(self, "URLsForApplicationsToOpenURL:", ?*anyopaque, .{url});
+    }
+
+    pub fn setDefaultApplicationAtURLToOpenContentTypeOfFileAtURLCompletionHandler(self: *@This(), applicationURL: ?*URL, url: ?*URL, completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "setDefaultApplicationAtURL:toOpenContentTypeOfFileAtURL:completionHandler:", void, .{applicationURL, url, completionHandler});
+    }
+
+    pub fn setDefaultApplicationAtURLToOpenURLsWithSchemeCompletionHandler(self: *@This(), applicationURL: ?*URL, urlScheme: ?*String, completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:", void, .{applicationURL, urlScheme, completionHandler});
+    }
+
+    pub fn setDefaultApplicationAtURLToOpenFileAtURLCompletionHandler(self: *@This(), applicationURL: ?*URL, url: ?*URL, completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "setDefaultApplicationAtURL:toOpenFileAtURL:completionHandler:", void, .{applicationURL, url, completionHandler});
+    }
+
+    pub fn URLForApplicationToOpenContentType(self: *@This(), contentType: ?*UTType) ?*URL {
+        return objc.msgSend(self, "URLForApplicationToOpenContentType:", ?*URL, .{contentType});
+    }
+
+    pub fn URLsForApplicationsToOpenContentType(self: *@This(), contentType: ?*UTType) ?*anyopaque {
+        return objc.msgSend(self, "URLsForApplicationsToOpenContentType:", ?*anyopaque, .{contentType});
+    }
+
+    pub fn setDefaultApplicationAtURLToOpenContentTypeCompletionHandler(self: *@This(), applicationURL: ?*URL, contentType: ?*UTType, completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "setDefaultApplicationAtURL:toOpenContentType:completionHandler:", void, .{applicationURL, contentType, completionHandler});
+    }
+
+    pub fn sharedWorkspace(self: *@This()) ?*Workspace {
+        return objc.msgSend(self, "sharedWorkspace", ?*Workspace, .{});
+    }
+
+    pub fn notificationCenter(self: *@This()) ?*NotificationCenter {
+        return objc.msgSend(self, "notificationCenter", ?*NotificationCenter, .{});
+    }
+
+    pub fn fileLabels(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "fileLabels", ?*anyopaque, .{});
+    }
+
+    pub fn fileLabelColors(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "fileLabelColors", ?*anyopaque, .{});
+    }
+
+    pub fn frontmostApplication(self: *@This()) ?*RunningApplication {
+        return objc.msgSend(self, "frontmostApplication", ?*RunningApplication, .{});
+    }
+
+    pub fn menuBarOwningApplication(self: *@This()) ?*RunningApplication {
+        return objc.msgSend(self, "menuBarOwningApplication", ?*RunningApplication, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSWorkspaceOpenConfiguration?language=objc
+pub const WorkspaceOpenConfiguration = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSWorkspaceOpenConfiguration", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn configuration(self: *@This()) *@This() {
+        return objc.msgSend(self, "configuration", *@This(), .{});
+    }
+
+    pub fn promptsUserIfNeeded(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "promptsUserIfNeeded", objc.BOOL, .{});
+    }
+
+    pub fn setPromptsUserIfNeeded(self: *@This(), promptsUserIfNeeded: objc.BOOL) void {
+        return objc.msgSend(self, "setPromptsUserIfNeeded:", void, .{promptsUserIfNeeded});
+    }
+
+    pub fn addsToRecentItems(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "addsToRecentItems", objc.BOOL, .{});
+    }
+
+    pub fn setAddsToRecentItems(self: *@This(), addsToRecentItems: objc.BOOL) void {
+        return objc.msgSend(self, "setAddsToRecentItems:", void, .{addsToRecentItems});
+    }
+
+    pub fn activates(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "activates", objc.BOOL, .{});
+    }
+
+    pub fn setActivates(self: *@This(), activates: objc.BOOL) void {
+        return objc.msgSend(self, "setActivates:", void, .{activates});
+    }
+
+    pub fn hides(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "hides", objc.BOOL, .{});
+    }
+
+    pub fn setHides(self: *@This(), hides: objc.BOOL) void {
+        return objc.msgSend(self, "setHides:", void, .{hides});
+    }
+
+    pub fn hidesOthers(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "hidesOthers", objc.BOOL, .{});
+    }
+
+    pub fn setHidesOthers(self: *@This(), hidesOthers: objc.BOOL) void {
+        return objc.msgSend(self, "setHidesOthers:", void, .{hidesOthers});
+    }
+
+    pub fn isForPrinting(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isForPrinting", objc.BOOL, .{});
+    }
+
+    pub fn setForPrinting(self: *@This(), forPrinting: objc.BOOL) void {
+        return objc.msgSend(self, "setForPrinting:", void, .{forPrinting});
+    }
+
+    pub fn createsNewApplicationInstance(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "createsNewApplicationInstance", objc.BOOL, .{});
+    }
+
+    pub fn setCreatesNewApplicationInstance(self: *@This(), createsNewApplicationInstance: objc.BOOL) void {
+        return objc.msgSend(self, "setCreatesNewApplicationInstance:", void, .{createsNewApplicationInstance});
+    }
+
+    pub fn allowsRunningApplicationSubstitution(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "allowsRunningApplicationSubstitution", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsRunningApplicationSubstitution(self: *@This(), allowsRunningApplicationSubstitution: objc.BOOL) void {
+        return objc.msgSend(self, "setAllowsRunningApplicationSubstitution:", void, .{allowsRunningApplicationSubstitution});
+    }
+
+    pub fn arguments(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "arguments", ?*anyopaque, .{});
+    }
+
+    pub fn setArguments(self: *@This(), arguments: ?*anyopaque) void {
+        return objc.msgSend(self, "setArguments:", void, .{arguments});
+    }
+
+    pub fn environment(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "environment", ?*anyopaque, .{});
+    }
+
+    pub fn setEnvironment(self: *@This(), environment: ?*anyopaque) void {
+        return objc.msgSend(self, "setEnvironment:", void, .{environment});
+    }
+
+    pub fn appleEvent(self: *@This()) ?*AppleEventDescriptor {
+        return objc.msgSend(self, "appleEvent", ?*AppleEventDescriptor, .{});
+    }
+
+    pub fn setAppleEvent(self: *@This(), appleEvent: ?*AppleEventDescriptor) void {
+        return objc.msgSend(self, "setAppleEvent:", void, .{appleEvent});
+    }
+
+    pub fn architecture(self: *@This()) objc.cpu_type_t {
+        return objc.msgSend(self, "architecture", objc.cpu_type_t, .{});
+    }
+
+    pub fn setArchitecture(self: *@This(), architecture: objc.cpu_type_t) void {
+        return objc.msgSend(self, "setArchitecture:", void, .{architecture});
+    }
+
+    pub fn requiresUniversalLinks(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "requiresUniversalLinks", objc.BOOL, .{});
+    }
+
+    pub fn setRequiresUniversalLinks(self: *@This(), requiresUniversalLinks: objc.BOOL) void {
+        return objc.msgSend(self, "setRequiresUniversalLinks:", void, .{requiresUniversalLinks});
+    }
+
+};
+
+pub const WorkspaceDesktopImageOptionKey = ?*String;
+
+pub const WorkspaceAuthorizationType = enum(objc.NSInteger) {
+    CreateSymbolicLink = 0,
+    SetAttributes = 1,
+    ReplaceFile = 2,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSWorkspaceAuthorization?language=objc
+pub const WorkspaceAuthorization = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSWorkspaceAuthorization", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+};
+
+pub const WorkspaceFileOperationName = ?*String;
+
+pub const WorkspaceLaunchOptions = enum(objc.NSUInteger) {
+    AndPrint = 2,
+    WithErrorPresentation = 64,
+    InhibitingBackgroundOnly = 128,
+    WithoutAddingToRecents = 256,
+    WithoutActivation = 512,
+    Async = 65536,
+    NewInstance = 524288,
+    AndHide = 1048576,
+    AndHideOthers = 2097152,
+    Default = 65536,
+    AllowingClassicStartup = 131072,
+    PreferringClassic = 262144,
+};
+
+pub const WorkspaceLaunchConfigurationKey = ?*String;
+
+pub extern "AppKit" fn AccessibilityFrameInView(parentView: ?*View, frame: ns.Rect) callconv(.C) ns.Rect;
+
+pub extern "AppKit" fn AccessibilityPointInView(parentView: ?*View, point: ns.Point) callconv(.C) ns.Point;
+
+pub extern "AppKit" fn AccessibilitySetMayContainProtectedContent(flag: objc.BOOL) callconv(.C) objc.BOOL;
+
+pub extern "AppKit" fn AccessibilityRoleDescription(role: AccessibilityRole, subrole: AccessibilitySubrole) callconv(.C) ?*String;
+
+pub extern "AppKit" fn AccessibilityRoleDescriptionForUIElement(element: *objc.Id) callconv(.C) ?*String;
+
+pub extern "AppKit" fn AccessibilityActionDescription(action: AccessibilityActionName) callconv(.C) ?*String;
+
+pub extern "AppKit" fn AccessibilityRaiseBadArgumentException(element: *objc.Id, attribute: AccessibilityAttributeName, value: *objc.Id) callconv(.C) void;
+
+pub extern "AppKit" fn AccessibilityUnignoredAncestor(element: *objc.Id) callconv(.C) *objc.Id;
+
+pub extern "AppKit" fn AccessibilityUnignoredDescendant(element: *objc.Id) callconv(.C) *objc.Id;
+
+pub extern "AppKit" fn AccessibilityUnignoredChildren(originalChildren: ?*Array) callconv(.C) ?*Array;
+
+pub extern "AppKit" fn AccessibilityUnignoredChildrenForOnlyChild(originalChild: *objc.Id) callconv(.C) ?*Array;
+
+pub extern "AppKit" fn AccessibilityPostNotification(element: *objc.Id, notification: AccessibilityNotificationName) callconv(.C) void;
+
+pub const TouchPhase = enum(objc.NSUInteger) {
+    Began = 1,
+    Moved = 2,
+    Stationary = 4,
+    Ended = 8,
+    Cancelled = 16,
+    Touching = 7,
+    Any = -1,
+};
+
+pub const TouchType = enum(objc.NSInteger) {
+    Direct = 0,
+    Indirect = 1,
+};
+
+pub const TouchTypeMask = enum(objc.NSUInteger) {
+    Direct = 1,
+    Indirect = 2,
+};
+
+pub extern "AppKit" fn TouchTypeMaskFromType(@"type": TouchType) callconv(.C) TouchTypeMask;
+
+/// https://developer.apple.com/documentation/AppKit/NSTouch?language=objc
+pub const Touch = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSTouch", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn identity(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "identity", ?*anyopaque, .{});
+    }
+
+    pub fn phase(self: *@This()) TouchPhase {
+        return objc.msgSend(self, "phase", TouchPhase, .{});
+    }
+
+    pub fn normalizedPosition(self: *@This()) ns.Point {
+        return objc.msgSend(self, "normalizedPosition", ns.Point, .{});
+    }
+
+    pub fn isResting(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isResting", objc.BOOL, .{});
+    }
+
+    pub fn device(self: *@This()) *objc.Id {
+        return objc.msgSend(self, "device", *objc.Id, .{});
+    }
+
+    pub fn deviceSize(self: *@This()) ns.Size {
+        return objc.msgSend(self, "deviceSize", ns.Size, .{});
+    }
+
+};
+
+pub const anon1471 = enum(u32) {
+    NSControlGlyph = 16777215,
+    NSNullGlyph = 0,
+};
+
+pub const EventType = enum(objc.NSUInteger) {
+    LeftMouseDown = 1,
+    LeftMouseUp = 2,
+    RightMouseDown = 3,
+    RightMouseUp = 4,
+    MouseMoved = 5,
+    LeftMouseDragged = 6,
+    RightMouseDragged = 7,
+    MouseEntered = 8,
+    MouseExited = 9,
+    KeyDown = 10,
+    KeyUp = 11,
+    FlagsChanged = 12,
+    AppKitDefined = 13,
+    SystemDefined = 14,
+    ApplicationDefined = 15,
+    Periodic = 16,
+    CursorUpdate = 17,
+    ScrollWheel = 22,
+    TabletPoint = 23,
+    TabletProximity = 24,
+    OtherMouseDown = 25,
+    OtherMouseUp = 26,
+    OtherMouseDragged = 27,
+    Gesture = 29,
+    Magnify = 30,
+    Swipe = 31,
+    Rotate = 18,
+    BeginGesture = 19,
+    EndGesture = 20,
+    SmartMagnify = 32,
+    QuickLook = 33,
+    Pressure = 34,
+    DirectTouch = 37,
+    ChangeMode = 38,
+};
+
+pub const EventMask = enum(u64) {
+    LeftMouseDown = 2,
+    LeftMouseUp = 4,
+    RightMouseDown = 8,
+    RightMouseUp = 16,
+    MouseMoved = 32,
+    LeftMouseDragged = 64,
+    RightMouseDragged = 128,
+    MouseEntered = 256,
+    MouseExited = 512,
+    KeyDown = 1024,
+    KeyUp = 2048,
+    FlagsChanged = 4096,
+    AppKitDefined = 8192,
+    SystemDefined = 16384,
+    ApplicationDefined = 32768,
+    Periodic = 65536,
+    CursorUpdate = 131072,
+    ScrollWheel = 4194304,
+    TabletPoint = 8388608,
+    TabletProximity = 16777216,
+    OtherMouseDown = 33554432,
+    OtherMouseUp = 67108864,
+    OtherMouseDragged = 134217728,
+    Gesture = 536870912,
+    Magnify = 1073741824,
+    Swipe = 2147483648,
+    Rotate = 262144,
+    BeginGesture = 524288,
+    EndGesture = 1048576,
+    SmartMagnify = 4294967296,
+    Pressure = 17179869184,
+    DirectTouch = 137438953472,
+    ChangeMode = 274877906944,
+    Any = -1,
+};
+
+pub extern "AppKit" fn EventMaskFromType(@"type": EventType) callconv(.C) EventMask;
+
+pub const EventModifierFlags = enum(objc.NSUInteger) {
+    CapsLock = 65536,
+    Shift = 131072,
+    Control = 262144,
+    Option = 524288,
+    Command = 1048576,
+    NumericPad = 2097152,
+    Help = 4194304,
+    Function = 8388608,
+    DeviceIndependentFlagsMask = 4294901760,
+};
+
+pub const PointingDeviceType = enum(objc.NSUInteger) {
+    Unknown = 0,
+    Pen = 1,
+    Cursor = 2,
+    Eraser = 3,
+};
+
+pub const EventButtonMask = enum(objc.NSUInteger) {
+    PenTip = 1,
+    PenLowerSide = 2,
+    PenUpperSide = 4,
+};
+
+pub const EventPhase = enum(objc.NSUInteger) {
+    None = 0,
+    Began = 1,
+    Stationary = 2,
+    Changed = 4,
+    Ended = 8,
+    Cancelled = 16,
+    MayBegin = 32,
+};
+
+pub const EventGestureAxis = enum(objc.NSInteger) {
+    None = 0,
+    Horizontal = 1,
+    Vertical = 2,
+};
+
+pub const EventSwipeTrackingOptions = enum(objc.NSUInteger) {
+    LockDirection = 1,
+    ClampGestureAmount = 2,
+};
+
+pub const EventSubtype = enum(i16) {
+    WindowExposed = 0,
+    ApplicationActivated = 1,
+    ApplicationDeactivated = 2,
+    WindowMoved = 4,
+    ScreenChanged = 8,
+    PowerOff = 1,
+    MouseEvent = 0,
+    TabletPoint = 1,
+    TabletProximity = 2,
+    Touch = 3,
+};
+
+pub const PressureBehavior = enum(objc.NSInteger) {
+    Unknown = -1,
+    PrimaryDefault = 0,
+    PrimaryClick = 1,
+    PrimaryGeneric = 2,
+    PrimaryAccelerator = 3,
+    PrimaryDeepClick = 5,
+    PrimaryDeepDrag = 6,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSEvent?language=objc
+pub const Event = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSEvent", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn charactersByApplyingModifiers(self: *@This(), modifiers: EventModifierFlags) ?* {
+        return objc.msgSend(self, "charactersByApplyingModifiers:", ?*, .{modifiers});
+    }
+
+    pub fn eventWithEventRef(self: *@This(), eventRef: ?*anyopaque) ?*Event {
+        return objc.msgSend(self, "eventWithEventRef:", ?*Event, .{eventRef});
+    }
+
+    pub fn eventWithCGEvent(self: *@This(), cgEvent: ) ?*Event {
+        return objc.msgSend(self, "eventWithCGEvent:", ?*Event, .{cgEvent});
+    }
+
+    pub fn touchesMatchingPhaseInView(self: *@This(), phase: TouchPhase, view: ?*) ?*anyopaque {
+        return objc.msgSend(self, "touchesMatchingPhase:inView:", ?*anyopaque, .{phase, view});
+    }
+
+    pub fn allTouches(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "allTouches", ?*anyopaque, .{});
+    }
+
+    pub fn touchesForView(self: *@This(), view: ?*) ?*anyopaque {
+        return objc.msgSend(self, "touchesForView:", ?*anyopaque, .{view});
+    }
+
+    pub fn coalescedTouchesForTouch(self: *@This(), touch: ?*Touch) ?*anyopaque {
+        return objc.msgSend(self, "coalescedTouchesForTouch:", ?*anyopaque, .{touch});
+    }
+
+    pub fn trackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(self: *@This(), options: EventSwipeTrackingOptions, minDampenThreshold: cf.CGFloat, maxDampenThreshold: cf.CGFloat, trackingHandler: *const fn(cf.CGFloat, EventPhase, objc.BOOL, ?*objc.BOOL, ) callconv(.C) void, ) void {
+        return objc.msgSend(self, "trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:", void, .{options, minDampenThreshold, maxDampenThreshold, trackingHandler, });
+    }
+
+    pub fn startPeriodicEventsAfterDelayWithPeriod(self: *@This(), delay: ns.TimeInterval, period: ns.TimeInterval) void {
+        return objc.msgSend(self, "startPeriodicEventsAfterDelay:withPeriod:", void, .{delay, period});
+    }
+
+    pub fn stopPeriodicEvents(self: *@This()) void {
+        return objc.msgSend(self, "stopPeriodicEvents", void, .{});
+    }
+
+    pub fn mouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, eNum: objc.NSInteger, cNum: objc.NSInteger, pressure: f32, ) ?*Event {
+        return objc.msgSend(self, "mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, eNum, cNum, pressure, });
+    }
+
+    pub fn keyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, keys: ?*String, ukeys: ?*String, flag: objc.BOOL, code: u16, ) ?*Event {
+        return objc.msgSend(self, "keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, keys, ukeys, flag, code, });
+    }
+
+    pub fn enterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, eNum: objc.NSInteger, tNum: objc.NSInteger, data: ?*anyopaque, ) ?*Event {
+        return objc.msgSend(self, "enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, eNum, tNum, data, });
+    }
+
+    pub fn otherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, subtype: i16, d1: objc.NSInteger, d2: objc.NSInteger, ) ?*Event {
+        return objc.msgSend(self, "otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, subtype, d1, d2, });
+    }
+
+    pub fn addGlobalMonitorForEventsMatchingMaskHandler(self: *@This(), mask: EventMask, block: *const fn(?*Event) callconv(.C) void) *objc.Id {
+        return objc.msgSend(self, "addGlobalMonitorForEventsMatchingMask:handler:", *objc.Id, .{mask, block});
+    }
+
+    pub fn addLocalMonitorForEventsMatchingMaskHandler(self: *@This(), mask: EventMask, block: *const fn(?*Event) callconv(.C) ?*Event) *objc.Id {
+        return objc.msgSend(self, "addLocalMonitorForEventsMatchingMask:handler:", *objc.Id, .{mask, block});
+    }
+
+    pub fn removeMonitor(self: *@This(), eventMonitor: *objc.Id) void {
+        return objc.msgSend(self, "removeMonitor:", void, .{eventMonitor});
+    }
+
+    pub fn @"type"(self: *@This()) EventType {
+        return objc.msgSend(self, "type", EventType, .{});
+    }
+
+    pub fn modifierFlags(self: *@This()) EventModifierFlags {
+        return objc.msgSend(self, "modifierFlags", EventModifierFlags, .{});
+    }
+
+    pub fn timestamp(self: *@This()) ns.TimeInterval {
+        return objc.msgSend(self, "timestamp", ns.TimeInterval, .{});
+    }
+
+    pub fn window(self: *@This()) ?*Window {
+        return objc.msgSend(self, "window", ?*Window, .{});
+    }
+
+    pub fn windowNumber(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "windowNumber", objc.NSInteger, .{});
+    }
+
+    pub fn context(self: *@This()) ?*GraphicsContext {
+        return objc.msgSend(self, "context", ?*GraphicsContext, .{});
+    }
+
+    pub fn clickCount(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "clickCount", objc.NSInteger, .{});
+    }
+
+    pub fn buttonNumber(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "buttonNumber", objc.NSInteger, .{});
+    }
+
+    pub fn eventNumber(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "eventNumber", objc.NSInteger, .{});
+    }
+
+    pub fn pressure(self: *@This()) f32 {
+        return objc.msgSend(self, "pressure", f32, .{});
+    }
+
+    pub fn locationInWindow(self: *@This()) ns.Point {
+        return objc.msgSend(self, "locationInWindow", ns.Point, .{});
+    }
+
+    pub fn deltaX(self: *@This()) cf.CGFloat {
+        return objc.msgSend(self, "deltaX", cf.CGFloat, .{});
+    }
+
+    pub fn deltaY(self: *@This()) cf.CGFloat {
+        return objc.msgSend(self, "deltaY", cf.CGFloat, .{});
+    }
+
+    pub fn deltaZ(self: *@This()) cf.CGFloat {
+        return objc.msgSend(self, "deltaZ", cf.CGFloat, .{});
+    }
+
+    pub fn hasPreciseScrollingDeltas(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "hasPreciseScrollingDeltas", objc.BOOL, .{});
+    }
+
+    pub fn scrollingDeltaX(self: *@This()) cf.CGFloat {
+        return objc.msgSend(self, "scrollingDeltaX", cf.CGFloat, .{});
+    }
+
+    pub fn scrollingDeltaY(self: *@This()) cf.CGFloat {
+        return objc.msgSend(self, "scrollingDeltaY", cf.CGFloat, .{});
+    }
+
+    pub fn momentumPhase(self: *@This()) EventPhase {
+        return objc.msgSend(self, "momentumPhase", EventPhase, .{});
+    }
+
+    pub fn isDirectionInvertedFromDevice(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isDirectionInvertedFromDevice", objc.BOOL, .{});
+    }
+
+    pub fn characters(self: *@This()) ?*String {
+        return objc.msgSend(self, "characters", ?*String, .{});
+    }
+
+    pub fn charactersIgnoringModifiers(self: *@This()) ?*String {
+        return objc.msgSend(self, "charactersIgnoringModifiers", ?*String, .{});
+    }
+
+    pub fn isARepeat(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isARepeat", objc.BOOL, .{});
+    }
+
+    pub fn keyCode(self: *@This()) u16 {
+        return objc.msgSend(self, "keyCode", u16, .{});
+    }
+
+    pub fn trackingNumber(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "trackingNumber", objc.NSInteger, .{});
+    }
+
+    pub fn userData(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "userData", ?*anyopaque, .{});
+    }
+
+    pub fn trackingArea(self: *@This()) ?*TrackingArea {
+        return objc.msgSend(self, "trackingArea", ?*TrackingArea, .{});
+    }
+
+    pub fn subtype(self: *@This()) EventSubtype {
+        return objc.msgSend(self, "subtype", EventSubtype, .{});
+    }
+
+    pub fn data1(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "data1", objc.NSInteger, .{});
+    }
+
+    pub fn data2(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "data2", objc.NSInteger, .{});
+    }
+
+    pub fn eventRef(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "eventRef", ?*anyopaque, .{});
+    }
+
+    pub fn CGEvent(self: *@This())  {
+        return objc.msgSend(self, "CGEvent", , .{});
+    }
+
+    pub fn isMouseCoalescingEnabled(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isMouseCoalescingEnabled", objc.BOOL, .{});
+    }
+
+    pub fn setMouseCoalescingEnabled(self: *@This(), mouseCoalescingEnabled: objc.BOOL) void {
+        return objc.msgSend(self, "setMouseCoalescingEnabled:", void, .{mouseCoalescingEnabled});
+    }
+
+    pub fn magnification(self: *@This()) cf.CGFloat {
+        return objc.msgSend(self, "magnification", cf.CGFloat, .{});
+    }
+
+    pub fn deviceID(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "deviceID", objc.NSUInteger, .{});
+    }
+
+    pub fn rotation(self: *@This()) f32 {
+        return objc.msgSend(self, "rotation", f32, .{});
+    }
+
+    pub fn absoluteX(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "absoluteX", objc.NSInteger, .{});
+    }
+
+    pub fn absoluteY(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "absoluteY", objc.NSInteger, .{});
+    }
+
+    pub fn absoluteZ(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "absoluteZ", objc.NSInteger, .{});
+    }
+
+    pub fn buttonMask(self: *@This()) EventButtonMask {
+        return objc.msgSend(self, "buttonMask", EventButtonMask, .{});
+    }
+
+    pub fn tilt(self: *@This()) ns.Point {
+        return objc.msgSend(self, "tilt", ns.Point, .{});
+    }
+
+    pub fn tangentialPressure(self: *@This()) f32 {
+        return objc.msgSend(self, "tangentialPressure", f32, .{});
+    }
+
+    pub fn vendorDefined(self: *@This()) *objc.Id {
+        return objc.msgSend(self, "vendorDefined", *objc.Id, .{});
+    }
+
+    pub fn vendorID(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "vendorID", objc.NSUInteger, .{});
+    }
+
+    pub fn tabletID(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "tabletID", objc.NSUInteger, .{});
+    }
+
+    pub fn pointingDeviceID(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "pointingDeviceID", objc.NSUInteger, .{});
+    }
+
+    pub fn systemTabletID(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "systemTabletID", objc.NSUInteger, .{});
+    }
+
+    pub fn vendorPointingDeviceType(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "vendorPointingDeviceType", objc.NSUInteger, .{});
+    }
+
+    pub fn pointingDeviceSerialNumber(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "pointingDeviceSerialNumber", objc.NSUInteger, .{});
+    }
+
+    pub fn uniqueID(self: *@This()) u64 {
+        return objc.msgSend(self, "uniqueID", u64, .{});
+    }
+
+    pub fn capabilityMask(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "capabilityMask", objc.NSUInteger, .{});
+    }
+
+    pub fn pointingDeviceType(self: *@This()) PointingDeviceType {
+        return objc.msgSend(self, "pointingDeviceType", PointingDeviceType, .{});
+    }
+
+    pub fn isEnteringProximity(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isEnteringProximity", objc.BOOL, .{});
+    }
+
+    pub fn phase(self: *@This()) EventPhase {
+        return objc.msgSend(self, "phase", EventPhase, .{});
+    }
+
+    pub fn stage(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "stage", objc.NSInteger, .{});
+    }
+
+    pub fn stageTransition(self: *@This()) cf.CGFloat {
+        return objc.msgSend(self, "stageTransition", cf.CGFloat, .{});
+    }
+
+    pub fn associatedEventsMask(self: *@This()) EventMask {
+        return objc.msgSend(self, "associatedEventsMask", EventMask, .{});
+    }
+
+    pub fn pressureBehavior(self: *@This()) PressureBehavior {
+        return objc.msgSend(self, "pressureBehavior", PressureBehavior, .{});
+    }
+
+    pub fn isSwipeTrackingFromScrollEventsEnabled(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isSwipeTrackingFromScrollEventsEnabled", objc.BOOL, .{});
+    }
+
+    pub fn mouseLocation(self: *@This()) ns.Point {
+        return objc.msgSend(self, "mouseLocation", ns.Point, .{});
+    }
+
+    pub fn modifierFlags(self: *@This()) EventModifierFlags {
+        return objc.msgSend(self, "modifierFlags", EventModifierFlags, .{});
+    }
+
+    pub fn pressedMouseButtons(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "pressedMouseButtons", objc.NSUInteger, .{});
+    }
+
+    pub fn doubleClickInterval(self: *@This()) ns.TimeInterval {
+        return objc.msgSend(self, "doubleClickInterval", ns.TimeInterval, .{});
+    }
+
+    pub fn keyRepeatDelay(self: *@This()) ns.TimeInterval {
+        return objc.msgSend(self, "keyRepeatDelay", ns.TimeInterval, .{});
+    }
+
+    pub fn keyRepeatInterval(self: *@This()) ns.TimeInterval {
+        return objc.msgSend(self, "keyRepeatInterval", ns.TimeInterval, .{});
+    }
+
+};
+
+pub const PasteboardType = ?*String;
+
+pub const PasteboardName = ?*String;
+
+pub const PasteboardContentsOptions = enum(objc.NSUInteger) {
+    CurrentHostOnly = 1,
+};
+
+pub const PasteboardReadingOptionKey = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSPasteboard?language=objc
+pub const Pasteboard = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSPasteboard", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn pasteboardWithName(self: *@This(), name: PasteboardName) ?*Pasteboard {
+        return objc.msgSend(self, "pasteboardWithName:", ?*Pasteboard, .{name});
+    }
+
+    pub fn pasteboardWithUniqueName(self: *@This()) ?*Pasteboard {
+        return objc.msgSend(self, "pasteboardWithUniqueName", ?*Pasteboard, .{});
+    }
+
+    pub fn releaseGlobally(self: *@This()) void {
+        return objc.msgSend(self, "releaseGlobally", void, .{});
+    }
+
+    pub fn prepareForNewContentsWithOptions(self: *@This(), options: PasteboardContentsOptions) objc.NSInteger {
+        return objc.msgSend(self, "prepareForNewContentsWithOptions:", objc.NSInteger, .{options});
+    }
+
+    pub fn clearContents(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "clearContents", objc.NSInteger, .{});
+    }
+
+    pub fn writeObjects(self: *@This(), objects: ?*anyopaque) objc.BOOL {
+        return objc.msgSend(self, "writeObjects:", objc.BOOL, .{objects});
+    }
+
+    pub fn readObjectsForClassesOptions(self: *@This(), classArray: ?*anyopaque, options: ?*anyopaque) ?*Array {
+        return objc.msgSend(self, "readObjectsForClasses:options:", ?*Array, .{classArray, options});
+    }
+
+    pub fn indexOfPasteboardItem(self: *@This(), pasteboardItem: ?*PasteboardItem) objc.NSUInteger {
+        return objc.msgSend(self, "indexOfPasteboardItem:", objc.NSUInteger, .{pasteboardItem});
+    }
+
+    pub fn canReadItemWithDataConformingToTypes(self: *@This(), types: ?*anyopaque) objc.BOOL {
+        return objc.msgSend(self, "canReadItemWithDataConformingToTypes:", objc.BOOL, .{types});
+    }
+
+    pub fn canReadObjectForClassesOptions(self: *@This(), classArray: ?*anyopaque, options: ?*anyopaque) objc.BOOL {
+        return objc.msgSend(self, "canReadObjectForClasses:options:", objc.BOOL, .{classArray, options});
+    }
+
+    pub fn declareTypesOwner(self: *@This(), newTypes: ?*anyopaque, newOwner: *objc.Id) objc.NSInteger {
+        return objc.msgSend(self, "declareTypes:owner:", objc.NSInteger, .{newTypes, newOwner});
+    }
+
+    pub fn addTypesOwner(self: *@This(), newTypes: ?*anyopaque, newOwner: *objc.Id) objc.NSInteger {
+        return objc.msgSend(self, "addTypes:owner:", objc.NSInteger, .{newTypes, newOwner});
+    }
+
+    pub fn availableTypeFromArray(self: *@This(), types: ?*anyopaque) PasteboardType {
+        return objc.msgSend(self, "availableTypeFromArray:", PasteboardType, .{types});
+    }
+
+    pub fn setDataForType(self: *@This(), data: ?*Data, dataType: PasteboardType) objc.BOOL {
+        return objc.msgSend(self, "setData:forType:", objc.BOOL, .{data, dataType});
+    }
+
+    pub fn setPropertyListForType(self: *@This(), plist: *objc.Id, dataType: PasteboardType) objc.BOOL {
+        return objc.msgSend(self, "setPropertyList:forType:", objc.BOOL, .{plist, dataType});
+    }
+
+    pub fn setStringForType(self: *@This(), string: ?*String, dataType: PasteboardType) objc.BOOL {
+        return objc.msgSend(self, "setString:forType:", objc.BOOL, .{string, dataType});
+    }
+
+    pub fn dataForType(self: *@This(), dataType: PasteboardType) ?*Data {
+        return objc.msgSend(self, "dataForType:", ?*Data, .{dataType});
+    }
+
+    pub fn propertyListForType(self: *@This(), dataType: PasteboardType) *objc.Id {
+        return objc.msgSend(self, "propertyListForType:", *objc.Id, .{dataType});
+    }
+
+    pub fn stringForType(self: *@This(), dataType: PasteboardType) ?*String {
+        return objc.msgSend(self, "stringForType:", ?*String, .{dataType});
+    }
+
+    pub fn generalPasteboard(self: *@This()) ?*Pasteboard {
+        return objc.msgSend(self, "generalPasteboard", ?*Pasteboard, .{});
+    }
+
+    pub fn name(self: *@This()) PasteboardName {
+        return objc.msgSend(self, "name", PasteboardName, .{});
+    }
+
+    pub fn changeCount(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "changeCount", objc.NSInteger, .{});
+    }
+
+    pub fn pasteboardItems(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "pasteboardItems", ?*anyopaque, .{});
+    }
+
+    pub fn types(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "types", ?*anyopaque, .{});
     }
 
 };
@@ -4499,6 +3448,10 @@ pub const PasteboardTypeOwner = opaque {
         return objc.msgSend(self, "pasteboardChangedOwner:", void, .{sender});
     }
 
+};
+
+pub const PasteboardWritingOptions = enum(objc.NSUInteger) {
+    Promised = 512,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSPasteboardWriting?language=objc
@@ -4523,6 +3476,13 @@ pub const PasteboardWriting = opaque {
 
 };
 
+pub const PasteboardReadingOptions = enum(objc.NSUInteger) {
+    AsData = 0,
+    AsString = 1,
+    AsPropertyList = 2,
+    AsKeyedArchive = 4,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPasteboardReading?language=objc
 pub const PasteboardReading = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -4541,6 +3501,243 @@ pub const PasteboardReading = opaque {
 
     pub fn initWithPasteboardPropertyListOfType(self: *@This(), propertyList: *objc.Id, @"type": PasteboardType) *objc.Id {
         return objc.msgSend(self, "initWithPasteboardPropertyList:ofType:", *objc.Id, .{propertyList, @"type"});
+    }
+
+};
+
+pub extern "AppKit" fn CreateFilenamePboardType(fileType: ?*String) callconv(.C) PasteboardType;
+
+pub extern "AppKit" fn CreateFileContentsPboardType(fileType: ?*String) callconv(.C) PasteboardType;
+
+pub extern "AppKit" fn GetFileType(pboardType: PasteboardType) callconv(.C) ?*String;
+
+pub extern "AppKit" fn GetFileTypes(pboardTypes: ?*anyopaque) callconv(.C) ?*anyopaque;
+
+/// https://developer.apple.com/documentation/AppKit/NSResponder?language=objc
+pub const Responder = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSResponder", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn init(self: *@This()) *@This() {
+        return objc.msgSend(self, "init", *@This(), .{});
+    }
+
+    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+        return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
+    }
+
+    pub fn tryToPerformWith(self: *@This(), action: *objc.SEL, object: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "tryToPerform:with:", objc.BOOL, .{action, object});
+    }
+
+    pub fn performKeyEquivalent(self: *@This(), event: ?*Event) objc.BOOL {
+        return objc.msgSend(self, "performKeyEquivalent:", objc.BOOL, .{event});
+    }
+
+    pub fn validRequestorForSendTypeReturnType(self: *@This(), sendType: PasteboardType, returnType: PasteboardType) *objc.Id {
+        return objc.msgSend(self, "validRequestorForSendType:returnType:", *objc.Id, .{sendType, returnType});
+    }
+
+    pub fn mouseDown(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "mouseDown:", void, .{event});
+    }
+
+    pub fn rightMouseDown(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "rightMouseDown:", void, .{event});
+    }
+
+    pub fn otherMouseDown(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "otherMouseDown:", void, .{event});
+    }
+
+    pub fn mouseUp(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "mouseUp:", void, .{event});
+    }
+
+    pub fn rightMouseUp(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "rightMouseUp:", void, .{event});
+    }
+
+    pub fn otherMouseUp(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "otherMouseUp:", void, .{event});
+    }
+
+    pub fn mouseMoved(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "mouseMoved:", void, .{event});
+    }
+
+    pub fn mouseDragged(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "mouseDragged:", void, .{event});
+    }
+
+    pub fn scrollWheel(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "scrollWheel:", void, .{event});
+    }
+
+    pub fn rightMouseDragged(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "rightMouseDragged:", void, .{event});
+    }
+
+    pub fn otherMouseDragged(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "otherMouseDragged:", void, .{event});
+    }
+
+    pub fn mouseEntered(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "mouseEntered:", void, .{event});
+    }
+
+    pub fn mouseExited(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "mouseExited:", void, .{event});
+    }
+
+    pub fn keyDown(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "keyDown:", void, .{event});
+    }
+
+    pub fn keyUp(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "keyUp:", void, .{event});
+    }
+
+    pub fn flagsChanged(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "flagsChanged:", void, .{event});
+    }
+
+    pub fn tabletPoint(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "tabletPoint:", void, .{event});
+    }
+
+    pub fn tabletProximity(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "tabletProximity:", void, .{event});
+    }
+
+    pub fn cursorUpdate(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "cursorUpdate:", void, .{event});
+    }
+
+    pub fn magnifyWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "magnifyWithEvent:", void, .{event});
+    }
+
+    pub fn rotateWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "rotateWithEvent:", void, .{event});
+    }
+
+    pub fn swipeWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "swipeWithEvent:", void, .{event});
+    }
+
+    pub fn beginGestureWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "beginGestureWithEvent:", void, .{event});
+    }
+
+    pub fn endGestureWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "endGestureWithEvent:", void, .{event});
+    }
+
+    pub fn smartMagnifyWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "smartMagnifyWithEvent:", void, .{event});
+    }
+
+    pub fn changeModeWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "changeModeWithEvent:", void, .{event});
+    }
+
+    pub fn touchesBeganWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "touchesBeganWithEvent:", void, .{event});
+    }
+
+    pub fn touchesMovedWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "touchesMovedWithEvent:", void, .{event});
+    }
+
+    pub fn touchesEndedWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "touchesEndedWithEvent:", void, .{event});
+    }
+
+    pub fn touchesCancelledWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "touchesCancelledWithEvent:", void, .{event});
+    }
+
+    pub fn quickLookWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "quickLookWithEvent:", void, .{event});
+    }
+
+    pub fn pressureChangeWithEvent(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "pressureChangeWithEvent:", void, .{event});
+    }
+
+    pub fn contextMenuKeyDown(self: *@This(), event: ?*Event) void {
+        return objc.msgSend(self, "contextMenuKeyDown:", void, .{event});
+    }
+
+    pub fn noResponderFor(self: *@This(), eventSelector: *objc.SEL) void {
+        return objc.msgSend(self, "noResponderFor:", void, .{eventSelector});
+    }
+
+    pub fn becomeFirstResponder(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "becomeFirstResponder", objc.BOOL, .{});
+    }
+
+    pub fn resignFirstResponder(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "resignFirstResponder", objc.BOOL, .{});
+    }
+
+    pub fn interpretKeyEvents(self: *@This(), eventArray: ?*anyopaque) void {
+        return objc.msgSend(self, "interpretKeyEvents:", void, .{eventArray});
+    }
+
+    pub fn flushBufferedKeyEvents(self: *@This()) void {
+        return objc.msgSend(self, "flushBufferedKeyEvents", void, .{});
+    }
+
+    pub fn showContextHelp(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "showContextHelp:", void, .{sender});
+    }
+
+    pub fn helpRequested(self: *@This(), eventPtr: ?*Event) void {
+        return objc.msgSend(self, "helpRequested:", void, .{eventPtr});
+    }
+
+    pub fn shouldBeTreatedAsInkEvent(self: *@This(), event: ?*Event) objc.BOOL {
+        return objc.msgSend(self, "shouldBeTreatedAsInkEvent:", objc.BOOL, .{event});
+    }
+
+    pub fn wantsScrollEventsForSwipeTrackingOnAxis(self: *@This(), axis: EventGestureAxis) objc.BOOL {
+        return objc.msgSend(self, "wantsScrollEventsForSwipeTrackingOnAxis:", objc.BOOL, .{axis});
+    }
+
+    pub fn wantsForwardedScrollEventsForAxis(self: *@This(), axis: EventGestureAxis) objc.BOOL {
+        return objc.msgSend(self, "wantsForwardedScrollEventsForAxis:", objc.BOOL, .{axis});
+    }
+
+    pub fn supplementalTargetForActionSender(self: *@This(), action: *objc.SEL, sender: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "supplementalTargetForAction:sender:", *objc.Id, .{action, sender});
+    }
+
+    pub fn nextResponder(self: *@This()) ?*Responder {
+        return objc.msgSend(self, "nextResponder", ?*Responder, .{});
+    }
+
+    pub fn setNextResponder(self: *@This(), nextResponder: ?*Responder) void {
+        return objc.msgSend(self, "setNextResponder:", void, .{nextResponder});
+    }
+
+    pub fn acceptsFirstResponder(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "acceptsFirstResponder", objc.BOOL, .{});
+    }
+
+    pub fn menu(self: *@This()) ?*Menu {
+        return objc.msgSend(self, "menu", ?*Menu, .{});
+    }
+
+    pub fn setMenu(self: *@This(), menu: ?*Menu) void {
+        return objc.msgSend(self, "setMenu:", void, .{menu});
     }
 
 };
@@ -4971,6 +4168,155 @@ pub const UserInterfaceValidations = opaque {
 
 };
 
+pub const ApplicationActivationOptions = enum(objc.NSUInteger) {
+    ActivateAllWindows = 1,
+    ActivateIgnoringOtherApps = 2,
+};
+
+pub const ApplicationActivationPolicy = enum(objc.NSInteger) {
+    Regular = 0,
+    Accessory = 1,
+    Prohibited = 2,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSRunningApplication?language=objc
+pub const RunningApplication = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSRunningApplication", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn hide(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "hide", objc.BOOL, .{});
+    }
+
+    pub fn unhide(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "unhide", objc.BOOL, .{});
+    }
+
+    pub fn activateFromApplicationOptions(self: *@This(), application: ?*RunningApplication, options: ApplicationActivationOptions) objc.BOOL {
+        return objc.msgSend(self, "activateFromApplication:options:", objc.BOOL, .{application, options});
+    }
+
+    pub fn activateWithOptions(self: *@This(), options: ApplicationActivationOptions) objc.BOOL {
+        return objc.msgSend(self, "activateWithOptions:", objc.BOOL, .{options});
+    }
+
+    pub fn terminate(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "terminate", objc.BOOL, .{});
+    }
+
+    pub fn forceTerminate(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "forceTerminate", objc.BOOL, .{});
+    }
+
+    pub fn runningApplicationsWithBundleIdentifier(self: *@This(), bundleIdentifier: ?*String) ?*anyopaque {
+        return objc.msgSend(self, "runningApplicationsWithBundleIdentifier:", ?*anyopaque, .{bundleIdentifier});
+    }
+
+    pub fn runningApplicationWithProcessIdentifier(self: *@This(), pid: objc.pid_t) *@This() {
+        return objc.msgSend(self, "runningApplicationWithProcessIdentifier:", *@This(), .{pid});
+    }
+
+    pub fn terminateAutomaticallyTerminableApplications(self: *@This()) void {
+        return objc.msgSend(self, "terminateAutomaticallyTerminableApplications", void, .{});
+    }
+
+    pub fn isTerminated(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isTerminated", objc.BOOL, .{});
+    }
+
+    pub fn isFinishedLaunching(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isFinishedLaunching", objc.BOOL, .{});
+    }
+
+    pub fn isHidden(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn isActive(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isActive", objc.BOOL, .{});
+    }
+
+    pub fn ownsMenuBar(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "ownsMenuBar", objc.BOOL, .{});
+    }
+
+    pub fn activationPolicy(self: *@This()) ApplicationActivationPolicy {
+        return objc.msgSend(self, "activationPolicy", ApplicationActivationPolicy, .{});
+    }
+
+    pub fn localizedName(self: *@This()) ?*String {
+        return objc.msgSend(self, "localizedName", ?*String, .{});
+    }
+
+    pub fn bundleIdentifier(self: *@This()) ?*String {
+        return objc.msgSend(self, "bundleIdentifier", ?*String, .{});
+    }
+
+    pub fn bundleURL(self: *@This()) ?*URL {
+        return objc.msgSend(self, "bundleURL", ?*URL, .{});
+    }
+
+    pub fn executableURL(self: *@This()) ?*URL {
+        return objc.msgSend(self, "executableURL", ?*URL, .{});
+    }
+
+    pub fn processIdentifier(self: *@This()) objc.pid_t {
+        return objc.msgSend(self, "processIdentifier", objc.pid_t, .{});
+    }
+
+    pub fn launchDate(self: *@This()) ?*Date {
+        return objc.msgSend(self, "launchDate", ?*Date, .{});
+    }
+
+    pub fn icon(self: *@This()) ?*Image {
+        return objc.msgSend(self, "icon", ?*Image, .{});
+    }
+
+    pub fn executableArchitecture(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "executableArchitecture", objc.NSInteger, .{});
+    }
+
+    pub fn currentApplication(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "currentApplication", ?*anyopaque, .{});
+    }
+
+};
+
+pub const NibName = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSNib?language=objc
+pub const Nib = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSNib", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn initWithNibNamedBundle(self: *@This(), nibName: NibName, bundle: ?*ns.Bundle) *@This() {
+        return objc.msgSend(self, "initWithNibNamed:bundle:", *@This(), .{nibName, bundle});
+    }
+
+    pub fn initWithNibDataBundle(self: *@This(), nibData: ?*Data, bundle: ?*ns.Bundle) *@This() {
+        return objc.msgSend(self, "initWithNibData:bundle:", *@This(), .{nibData, bundle});
+    }
+
+    pub fn instantiateWithOwnerTopLevelObjects(self: *@This(), owner: *objc.Id, topLevelObjects: ?*?*Array) objc.BOOL {
+        return objc.msgSend(self, "instantiateWithOwner:topLevelObjects:", objc.BOOL, .{owner, topLevelObjects});
+    }
+
+};
+
+pub const UserInterfaceItemIdentifier = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSUserInterfaceItemIdentification?language=objc
 pub const UserInterfaceItemIdentification = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
@@ -4985,6 +4331,142 @@ pub const UserInterfaceItemIdentification = opaque {
 
     pub fn setIdentifier(self: *@This(), identifier: UserInterfaceItemIdentifier) void {
         return objc.msgSend(self, "setIdentifier:", void, .{identifier});
+    }
+
+};
+
+pub const AnimationCurve = enum(objc.NSUInteger) {
+    EaseInOut = 0,
+    EaseIn = 1,
+    EaseOut = 2,
+    Linear = 3,
+};
+
+pub const AnimationBlockingMode = enum(objc.NSUInteger) {
+    Blocking = 0,
+    Nonblocking = 1,
+    NonblockingThreaded = 2,
+};
+
+pub const AnimationProgress = f32;
+
+/// https://developer.apple.com/documentation/AppKit/NSAnimation?language=objc
+pub const Animation = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSAnimation", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn initWithDurationAnimationCurve(self: *@This(), duration: ns.TimeInterval, animationCurve: AnimationCurve) *@This() {
+        return objc.msgSend(self, "initWithDuration:animationCurve:", *@This(), .{duration, animationCurve});
+    }
+
+    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+        return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
+    }
+
+    pub fn startAnimation(self: *@This()) void {
+        return objc.msgSend(self, "startAnimation", void, .{});
+    }
+
+    pub fn stopAnimation(self: *@This()) void {
+        return objc.msgSend(self, "stopAnimation", void, .{});
+    }
+
+    pub fn addProgressMark(self: *@This(), progressMark: AnimationProgress) void {
+        return objc.msgSend(self, "addProgressMark:", void, .{progressMark});
+    }
+
+    pub fn removeProgressMark(self: *@This(), progressMark: AnimationProgress) void {
+        return objc.msgSend(self, "removeProgressMark:", void, .{progressMark});
+    }
+
+    pub fn startWhenAnimationReachesProgress(self: *@This(), animation: ?*Animation, startProgress: AnimationProgress) void {
+        return objc.msgSend(self, "startWhenAnimation:reachesProgress:", void, .{animation, startProgress});
+    }
+
+    pub fn stopWhenAnimationReachesProgress(self: *@This(), animation: ?*Animation, stopProgress: AnimationProgress) void {
+        return objc.msgSend(self, "stopWhenAnimation:reachesProgress:", void, .{animation, stopProgress});
+    }
+
+    pub fn clearStartAnimation(self: *@This()) void {
+        return objc.msgSend(self, "clearStartAnimation", void, .{});
+    }
+
+    pub fn clearStopAnimation(self: *@This()) void {
+        return objc.msgSend(self, "clearStopAnimation", void, .{});
+    }
+
+    pub fn isAnimating(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isAnimating", objc.BOOL, .{});
+    }
+
+    pub fn currentProgress(self: *@This()) AnimationProgress {
+        return objc.msgSend(self, "currentProgress", AnimationProgress, .{});
+    }
+
+    pub fn setCurrentProgress(self: *@This(), currentProgress: AnimationProgress) void {
+        return objc.msgSend(self, "setCurrentProgress:", void, .{currentProgress});
+    }
+
+    pub fn duration(self: *@This()) ns.TimeInterval {
+        return objc.msgSend(self, "duration", ns.TimeInterval, .{});
+    }
+
+    pub fn setDuration(self: *@This(), duration: ns.TimeInterval) void {
+        return objc.msgSend(self, "setDuration:", void, .{duration});
+    }
+
+    pub fn animationBlockingMode(self: *@This()) AnimationBlockingMode {
+        return objc.msgSend(self, "animationBlockingMode", AnimationBlockingMode, .{});
+    }
+
+    pub fn setAnimationBlockingMode(self: *@This(), animationBlockingMode: AnimationBlockingMode) void {
+        return objc.msgSend(self, "setAnimationBlockingMode:", void, .{animationBlockingMode});
+    }
+
+    pub fn frameRate(self: *@This()) f32 {
+        return objc.msgSend(self, "frameRate", f32, .{});
+    }
+
+    pub fn setFrameRate(self: *@This(), frameRate: f32) void {
+        return objc.msgSend(self, "setFrameRate:", void, .{frameRate});
+    }
+
+    pub fn animationCurve(self: *@This()) AnimationCurve {
+        return objc.msgSend(self, "animationCurve", AnimationCurve, .{});
+    }
+
+    pub fn setAnimationCurve(self: *@This(), animationCurve: AnimationCurve) void {
+        return objc.msgSend(self, "setAnimationCurve:", void, .{animationCurve});
+    }
+
+    pub fn currentValue(self: *@This()) f32 {
+        return objc.msgSend(self, "currentValue", f32, .{});
+    }
+
+    pub fn delegate(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(self: *@This(), delegate: ?*anyopaque) void {
+        return objc.msgSend(self, "setDelegate:", void, .{delegate});
+    }
+
+    pub fn progressMarks(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "progressMarks", ?*anyopaque, .{});
+    }
+
+    pub fn setProgressMarks(self: *@This(), progressMarks: ?*anyopaque) void {
+        return objc.msgSend(self, "setProgressMarks:", void, .{progressMarks});
+    }
+
+    pub fn runLoopModesForAnimating(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "runLoopModesForAnimating", ?*anyopaque, .{});
     }
 
 };
@@ -5019,6 +4501,37 @@ pub const AnimationDelegate = opaque {
 
 };
 
+pub const ViewAnimationKey = ?*String;
+
+pub const ViewAnimationEffectName = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSViewAnimation?language=objc
+pub const ViewAnimation = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSViewAnimation", @This(), Animation, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn initWithViewAnimations(self: *@This(), viewAnimations: ?*anyopaque) *@This() {
+        return objc.msgSend(self, "initWithViewAnimations:", *@This(), .{viewAnimations});
+    }
+
+    pub fn viewAnimations(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "viewAnimations", ?*anyopaque, .{});
+    }
+
+    pub fn setViewAnimations(self: *@This(), viewAnimations: ?*anyopaque) void {
+        return objc.msgSend(self, "setViewAnimations:", void, .{viewAnimations});
+    }
+
+};
+
+pub const AnimatablePropertyKey = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSAnimatablePropertyContainer?language=objc
 pub const AnimatablePropertyContainer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
@@ -5049,6 +4562,61 @@ pub const AnimatablePropertyContainer = opaque {
 
 };
 
+pub const AppearanceName = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSAppearance?language=objc
+pub const Appearance = opaque {
+    pub const InternalInfo = objc.ExternalClass("NSAppearance", @This(), Object, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn performAsCurrentDrawingAppearance(self: *@This(), block: *const fn() callconv(.C) void) void {
+        return objc.msgSend(self, "performAsCurrentDrawingAppearance:", void, .{block});
+    }
+
+    pub fn appearanceNamed(self: *@This(), name: AppearanceName) ?*Appearance {
+        return objc.msgSend(self, "appearanceNamed:", ?*Appearance, .{name});
+    }
+
+    pub fn initWithAppearanceNamedBundle(self: *@This(), name: AppearanceName, bundle: ?*Bundle) *@This() {
+        return objc.msgSend(self, "initWithAppearanceNamed:bundle:", *@This(), .{name, bundle});
+    }
+
+    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+        return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
+    }
+
+    pub fn bestMatchFromAppearancesWithNames(self: *@This(), appearances: ?*anyopaque) AppearanceName {
+        return objc.msgSend(self, "bestMatchFromAppearancesWithNames:", AppearanceName, .{appearances});
+    }
+
+    pub fn name(self: *@This()) AppearanceName {
+        return objc.msgSend(self, "name", AppearanceName, .{});
+    }
+
+    pub fn currentAppearance(self: *@This()) ?*Appearance {
+        return objc.msgSend(self, "currentAppearance", ?*Appearance, .{});
+    }
+
+    pub fn setCurrentAppearance(self: *@This(), currentAppearance: ?*Appearance) void {
+        return objc.msgSend(self, "setCurrentAppearance:", void, .{currentAppearance});
+    }
+
+    pub fn currentDrawingAppearance(self: *@This()) ?*Appearance {
+        return objc.msgSend(self, "currentDrawingAppearance", ?*Appearance, .{});
+    }
+
+    pub fn allowsVibrancy(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "allowsVibrancy", objc.BOOL, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization?language=objc
 pub const AppearanceCustomization = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -5069,6 +4637,43 @@ pub const AppearanceCustomization = opaque {
         return objc.msgSend(self, "effectiveAppearance", ?*Appearance, .{});
     }
 
+};
+
+pub const DragOperation = enum(objc.NSUInteger) {
+    None = 0,
+    Copy = 1,
+    Link = 2,
+    Generic = 4,
+    Private = 8,
+    Move = 16,
+    Delete = 32,
+    Every = -1,
+    All_Obsolete = 15,
+    All = 15,
+};
+
+pub const DraggingFormation = enum(objc.NSInteger) {
+    Default = 0,
+    None = 1,
+    Pile = 2,
+    List = 3,
+    Stack = 4,
+};
+
+pub const DraggingContext = enum(objc.NSInteger) {
+    OutsideApplication = 0,
+    WithinApplication = 1,
+};
+
+pub const DraggingItemEnumerationOptions = enum(objc.NSUInteger) {
+    Concurrent = 1,
+    ClearNonenumeratedImages = 65536,
+};
+
+pub const SpringLoadingHighlight = enum(objc.NSInteger) {
+    None = 0,
+    Standard = 1,
+    Emphasized = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSDraggingInfo?language=objc
@@ -5233,6 +4838,13 @@ pub const DraggingSource = opaque {
 
 };
 
+pub const SpringLoadingOptions = enum(objc.NSUInteger) {
+    Disabled = 0,
+    Enabled = 1,
+    ContinuousActivation = 2,
+    NoHover = 8,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSSpringLoadingDestination?language=objc
 pub const SpringLoadingDestination = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -5267,5772 +4879,59 @@ pub const SpringLoadingDestination = opaque {
 
 };
 
-/// https://developer.apple.com/documentation/AppKit/NSViewLayerContentScaleDelegate?language=objc
-pub const ViewLayerContentScaleDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn layerShouldInheritContentsScaleFromWindow(self: *@This(), layer: ?*CALayer, newScale: cf.CGFloat, window: ?*Window) objc.BOOL {
-        return objc.msgSend(self, "layer:shouldInheritContentsScale:fromWindow:", objc.BOOL, .{layer, newScale, window});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSViewToolTipOwner?language=objc
-pub const ViewToolTipOwner = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn viewStringForToolTipPointUserData(self: *@This(), view: ?*View, tag: ToolTipTag, point: ns.Point, data: ?*anyopaque, ) ?*String {
-        return objc.msgSend(self, "view:stringForToolTip:point:userData:", ?*String, .{view, tag, point, data, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSViewContentSelectionInfo?language=objc
-pub const ViewContentSelectionInfo = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn selectionAnchorRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "selectionAnchorRect", ns.Rect, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSChangeSpelling?language=objc
-pub const ChangeSpelling = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn changeSpelling(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "changeSpelling:", void, .{sender});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSIgnoreMisspelledWords?language=objc
-pub const IgnoreMisspelledWords = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn ignoreSpelling(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "ignoreSpelling:", void, .{sender});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextDelegate?language=objc
-pub const TextDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn textShouldBeginEditing(self: *@This(), textObject: ?*Text) objc.BOOL {
-        return objc.msgSend(self, "textShouldBeginEditing:", objc.BOOL, .{textObject});
-    }
-
-    pub fn textShouldEndEditing(self: *@This(), textObject: ?*Text) objc.BOOL {
-        return objc.msgSend(self, "textShouldEndEditing:", objc.BOOL, .{textObject});
-    }
-
-    pub fn textDidBeginEditing(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "textDidBeginEditing:", void, .{notification});
-    }
-
-    pub fn textDidEndEditing(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "textDidEndEditing:", void, .{notification});
-    }
-
-    pub fn textDidChange(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "textDidChange:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSMenuItemValidation?language=objc
-pub const MenuItemValidation = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn validateMenuItem(self: *@This(), menuItem: ?*MenuItem) objc.BOOL {
-        return objc.msgSend(self, "validateMenuItem:", objc.BOOL, .{menuItem});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSMenuDelegate?language=objc
-pub const MenuDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn menuNeedsUpdate(self: *@This(), menu: ?*Menu) void {
-        return objc.msgSend(self, "menuNeedsUpdate:", void, .{menu});
-    }
-
-    pub fn numberOfItemsInMenu(self: *@This(), menu: ?*Menu) objc.NSInteger {
-        return objc.msgSend(self, "numberOfItemsInMenu:", objc.NSInteger, .{menu});
-    }
-
-    pub fn menuUpdateItemAtIndexShouldCancel(self: *@This(), menu: ?*Menu, item: ?*MenuItem, index: objc.NSInteger, shouldCancel: objc.BOOL, ) objc.BOOL {
-        return objc.msgSend(self, "menu:updateItem:atIndex:shouldCancel:", objc.BOOL, .{menu, item, index, shouldCancel, });
-    }
-
-    pub fn menuHasKeyEquivalentForEventTargetAction(self: *@This(), menu: ?*Menu, event: ?*Event, target: ?**objc.Id, action: ?**objc.SEL, ) objc.BOOL {
-        return objc.msgSend(self, "menuHasKeyEquivalent:forEvent:target:action:", objc.BOOL, .{menu, event, target, action, });
-    }
-
-    pub fn menuWillOpen(self: *@This(), menu: ?*Menu) void {
-        return objc.msgSend(self, "menuWillOpen:", void, .{menu});
-    }
-
-    pub fn menuDidClose(self: *@This(), menu: ?*Menu) void {
-        return objc.msgSend(self, "menuDidClose:", void, .{menu});
-    }
-
-    pub fn menuWillHighlightItem(self: *@This(), menu: ?*Menu, item: ?*MenuItem) void {
-        return objc.msgSend(self, "menu:willHighlightItem:", void, .{menu, item});
-    }
-
-    pub fn confinementRectForMenuOnScreen(self: *@This(), menu: ?*Menu, screen: ?*Screen) ns.Rect {
-        return objc.msgSend(self, "confinementRectForMenu:onScreen:", ns.Rect, .{menu, screen});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSEditor?language=objc
-pub const Editor = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn discardEditing(self: *@This()) void {
-        return objc.msgSend(self, "discardEditing", void, .{});
-    }
-
-    pub fn commitEditing(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "commitEditing", objc.BOOL, .{});
-    }
-
-    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(self: *@This(), delegate: *objc.Id, didCommitSelector: *objc.SEL, contextInfo: ?*anyopaque) void {
-        return objc.msgSend(self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", void, .{delegate, didCommitSelector, contextInfo});
-    }
-
-    pub fn commitEditingAndReturnError(self: *@This(), @"error": ?*?*Error) objc.BOOL {
-        return objc.msgSend(self, "commitEditingAndReturnError:", objc.BOOL, .{@"error"});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSEditorRegistration?language=objc
-pub const EditorRegistration = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn objectDidBeginEditing(self: *@This(), editor: ?*anyopaque) void {
-        return objc.msgSend(self, "objectDidBeginEditing:", void, .{editor});
-    }
-
-    pub fn objectDidEndEditing(self: *@This(), editor: ?*anyopaque) void {
-        return objc.msgSend(self, "objectDidEndEditing:", void, .{editor});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSPreviewRepresentableActivityItem?language=objc
-pub const PreviewRepresentableActivityItem = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn item(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "item", *objc.Id, .{});
-    }
-
-    pub fn title(self: *@This()) ?*String {
-        return objc.msgSend(self, "title", ?*String, .{});
-    }
-
-    pub fn imageProvider(self: *@This()) ?*ItemProvider {
-        return objc.msgSend(self, "imageProvider", ?*ItemProvider, .{});
-    }
-
-    pub fn iconProvider(self: *@This()) ?*ItemProvider {
-        return objc.msgSend(self, "iconProvider", ?*ItemProvider, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSUserActivityRestoring?language=objc
-pub const UserActivityRestoring = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn restoreUserActivityState(self: *@This(), userActivity: ?*ns.UserActivity) void {
-        return objc.msgSend(self, "restoreUserActivityState:", void, .{userActivity});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSApplicationDelegate?language=objc
-pub const ApplicationDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn applicationShouldTerminate(self: *@This(), sender: ?*Application) ApplicationTerminateReply {
-        return objc.msgSend(self, "applicationShouldTerminate:", ApplicationTerminateReply, .{sender});
-    }
-
-    pub fn applicationOpenURLs(self: *@This(), application: ?*Application, urls: ?*anyopaque) void {
-        return objc.msgSend(self, "application:openURLs:", void, .{application, urls});
-    }
-
-    pub fn applicationOpenFile(self: *@This(), sender: ?*Application, filename: ?*String) objc.BOOL {
-        return objc.msgSend(self, "application:openFile:", objc.BOOL, .{sender, filename});
-    }
-
-    pub fn applicationOpenFiles(self: *@This(), sender: ?*Application, filenames: ?*anyopaque) void {
-        return objc.msgSend(self, "application:openFiles:", void, .{sender, filenames});
-    }
-
-    pub fn applicationOpenTempFile(self: *@This(), sender: ?*Application, filename: ?*String) objc.BOOL {
-        return objc.msgSend(self, "application:openTempFile:", objc.BOOL, .{sender, filename});
-    }
-
-    pub fn applicationShouldOpenUntitledFile(self: *@This(), sender: ?*Application) objc.BOOL {
-        return objc.msgSend(self, "applicationShouldOpenUntitledFile:", objc.BOOL, .{sender});
-    }
-
-    pub fn applicationOpenUntitledFile(self: *@This(), sender: ?*Application) objc.BOOL {
-        return objc.msgSend(self, "applicationOpenUntitledFile:", objc.BOOL, .{sender});
-    }
-
-    pub fn applicationOpenFileWithoutUI(self: *@This(), sender: *objc.Id, filename: ?*String) objc.BOOL {
-        return objc.msgSend(self, "application:openFileWithoutUI:", objc.BOOL, .{sender, filename});
-    }
-
-    pub fn applicationPrintFile(self: *@This(), sender: ?*Application, filename: ?*String) objc.BOOL {
-        return objc.msgSend(self, "application:printFile:", objc.BOOL, .{sender, filename});
-    }
-
-    pub fn applicationPrintFilesWithSettingsShowPrintPanels(self: *@This(), application: ?*Application, fileNames: ?*anyopaque, printSettings: ?*anyopaque, showPrintPanels: objc.BOOL, ) ApplicationPrintReply {
-        return objc.msgSend(self, "application:printFiles:withSettings:showPrintPanels:", ApplicationPrintReply, .{application, fileNames, printSettings, showPrintPanels, });
-    }
-
-    pub fn applicationShouldTerminateAfterLastWindowClosed(self: *@This(), sender: ?*Application) objc.BOOL {
-        return objc.msgSend(self, "applicationShouldTerminateAfterLastWindowClosed:", objc.BOOL, .{sender});
-    }
-
-    pub fn applicationShouldHandleReopenHasVisibleWindows(self: *@This(), sender: ?*Application, hasVisibleWindows: objc.BOOL) objc.BOOL {
-        return objc.msgSend(self, "applicationShouldHandleReopen:hasVisibleWindows:", objc.BOOL, .{sender, hasVisibleWindows});
-    }
-
-    pub fn applicationDockMenu(self: *@This(), sender: ?*Application) ?*Menu {
-        return objc.msgSend(self, "applicationDockMenu:", ?*Menu, .{sender});
-    }
-
-    pub fn applicationWillPresentError(self: *@This(), application: ?*Application, @"error": ?*Error) ?*Error {
-        return objc.msgSend(self, "application:willPresentError:", ?*Error, .{application, @"error"});
-    }
-
-    pub fn applicationDidRegisterForRemoteNotificationsWithDeviceToken(self: *@This(), application: ?*Application, deviceToken: ?*Data) void {
-        return objc.msgSend(self, "application:didRegisterForRemoteNotificationsWithDeviceToken:", void, .{application, deviceToken});
-    }
-
-    pub fn applicationDidFailToRegisterForRemoteNotificationsWithError(self: *@This(), application: ?*Application, @"error": ?*Error) void {
-        return objc.msgSend(self, "application:didFailToRegisterForRemoteNotificationsWithError:", void, .{application, @"error"});
-    }
-
-    pub fn applicationDidReceiveRemoteNotification(self: *@This(), application: ?*Application, userInfo: ?*anyopaque) void {
-        return objc.msgSend(self, "application:didReceiveRemoteNotification:", void, .{application, userInfo});
-    }
-
-    pub fn applicationSupportsSecureRestorableState(self: *@This(), app: ?*Application) objc.BOOL {
-        return objc.msgSend(self, "applicationSupportsSecureRestorableState:", objc.BOOL, .{app});
-    }
-
-    pub fn applicationHandlerForIntent(self: *@This(), application: ?*Application, intent: ?*INIntent) *objc.Id {
-        return objc.msgSend(self, "application:handlerForIntent:", *objc.Id, .{application, intent});
-    }
-
-    pub fn applicationWillEncodeRestorableState(self: *@This(), app: ?*Application, coder: ?*ns.Coder) void {
-        return objc.msgSend(self, "application:willEncodeRestorableState:", void, .{app, coder});
-    }
-
-    pub fn applicationDidDecodeRestorableState(self: *@This(), app: ?*Application, coder: ?*ns.Coder) void {
-        return objc.msgSend(self, "application:didDecodeRestorableState:", void, .{app, coder});
-    }
-
-    pub fn applicationWillContinueUserActivityWithType(self: *@This(), application: ?*Application, userActivityType: ?*String) objc.BOOL {
-        return objc.msgSend(self, "application:willContinueUserActivityWithType:", objc.BOOL, .{application, userActivityType});
-    }
-
-    pub fn applicationContinueUserActivityRestorationHandler(self: *@This(), application: ?*Application, userActivity: ?*UserActivity, restorationHandler: *const fn(?*anyopaque) callconv(.C) void) objc.BOOL {
-        return objc.msgSend(self, "application:continueUserActivity:restorationHandler:", objc.BOOL, .{application, userActivity, restorationHandler});
-    }
-
-    pub fn applicationDidFailToContinueUserActivityWithTypeError(self: *@This(), application: ?*Application, userActivityType: ?*String, @"error": ?*Error) void {
-        return objc.msgSend(self, "application:didFailToContinueUserActivityWithType:error:", void, .{application, userActivityType, @"error"});
-    }
-
-    pub fn applicationDidUpdateUserActivity(self: *@This(), application: ?*Application, userActivity: ?*UserActivity) void {
-        return objc.msgSend(self, "application:didUpdateUserActivity:", void, .{application, userActivity});
-    }
-
-    pub fn applicationUserDidAcceptCloudKitShareWithMetadata(self: *@This(), application: ?*Application, metadata: ?*CKShareMetadata) void {
-        return objc.msgSend(self, "application:userDidAcceptCloudKitShareWithMetadata:", void, .{application, metadata});
-    }
-
-    pub fn applicationDelegateHandlesKey(self: *@This(), sender: ?*Application, key: ?*String) objc.BOOL {
-        return objc.msgSend(self, "application:delegateHandlesKey:", objc.BOOL, .{sender, key});
-    }
-
-    pub fn applicationShouldAutomaticallyLocalizeKeyEquivalents(self: *@This(), application: ?*Application) objc.BOOL {
-        return objc.msgSend(self, "applicationShouldAutomaticallyLocalizeKeyEquivalents:", objc.BOOL, .{application});
-    }
-
-    pub fn applicationWillFinishLaunching(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationWillFinishLaunching:", void, .{notification});
-    }
-
-    pub fn applicationDidFinishLaunching(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationDidFinishLaunching:", void, .{notification});
-    }
-
-    pub fn applicationWillHide(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationWillHide:", void, .{notification});
-    }
-
-    pub fn applicationDidHide(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationDidHide:", void, .{notification});
-    }
-
-    pub fn applicationWillUnhide(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationWillUnhide:", void, .{notification});
-    }
-
-    pub fn applicationDidUnhide(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationDidUnhide:", void, .{notification});
-    }
-
-    pub fn applicationWillBecomeActive(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationWillBecomeActive:", void, .{notification});
-    }
-
-    pub fn applicationDidBecomeActive(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationDidBecomeActive:", void, .{notification});
-    }
-
-    pub fn applicationWillResignActive(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationWillResignActive:", void, .{notification});
-    }
-
-    pub fn applicationDidResignActive(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationDidResignActive:", void, .{notification});
-    }
-
-    pub fn applicationWillUpdate(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationWillUpdate:", void, .{notification});
-    }
-
-    pub fn applicationDidUpdate(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationDidUpdate:", void, .{notification});
-    }
-
-    pub fn applicationWillTerminate(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationWillTerminate:", void, .{notification});
-    }
-
-    pub fn applicationDidChangeScreenParameters(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationDidChangeScreenParameters:", void, .{notification});
-    }
-
-    pub fn applicationDidChangeOcclusionState(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationDidChangeOcclusionState:", void, .{notification});
-    }
-
-    pub fn applicationProtectedDataWillBecomeUnavailable(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationProtectedDataWillBecomeUnavailable:", void, .{notification});
-    }
-
-    pub fn applicationProtectedDataDidBecomeAvailable(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "applicationProtectedDataDidBecomeAvailable:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSServicesMenuRequestor?language=objc
-pub const ServicesMenuRequestor = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn writeSelectionToPasteboardTypes(self: *@This(), pboard: ?*Pasteboard, types: ?*anyopaque) objc.BOOL {
-        return objc.msgSend(self, "writeSelectionToPasteboard:types:", objc.BOOL, .{pboard, types});
-    }
-
-    pub fn readSelectionFromPasteboard(self: *@This(), pboard: ?*Pasteboard) objc.BOOL {
-        return objc.msgSend(self, "readSelectionFromPasteboard:", objc.BOOL, .{pboard});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAccessibilityColor?language=objc
-pub const AccessibilityColor = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn accessibilityName(self: *@This()) ?*String {
-        return objc.msgSend(self, "accessibilityName", ?*String, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAlertDelegate?language=objc
-pub const AlertDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn alertShowHelp(self: *@This(), alert: ?*Alert) objc.BOOL {
-        return objc.msgSend(self, "alertShowHelp:", objc.BOOL, .{alert});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSControlTextEditingDelegate?language=objc
-pub const ControlTextEditingDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn controlTextDidBeginEditing(self: *@This(), obj: ?*Notification) void {
-        return objc.msgSend(self, "controlTextDidBeginEditing:", void, .{obj});
-    }
-
-    pub fn controlTextDidEndEditing(self: *@This(), obj: ?*Notification) void {
-        return objc.msgSend(self, "controlTextDidEndEditing:", void, .{obj});
-    }
-
-    pub fn controlTextDidChange(self: *@This(), obj: ?*Notification) void {
-        return objc.msgSend(self, "controlTextDidChange:", void, .{obj});
-    }
-
-    pub fn controlTextShouldBeginEditing(self: *@This(), control: ?*Control, fieldEditor: ?*Text) objc.BOOL {
-        return objc.msgSend(self, "control:textShouldBeginEditing:", objc.BOOL, .{control, fieldEditor});
-    }
-
-    pub fn controlTextShouldEndEditing(self: *@This(), control: ?*Control, fieldEditor: ?*Text) objc.BOOL {
-        return objc.msgSend(self, "control:textShouldEndEditing:", objc.BOOL, .{control, fieldEditor});
-    }
-
-    pub fn controlDidFailToFormatStringErrorDescription(self: *@This(), control: ?*Control, string: ?*String, @"error": ?*String) objc.BOOL {
-        return objc.msgSend(self, "control:didFailToFormatString:errorDescription:", objc.BOOL, .{control, string, @"error"});
-    }
-
-    pub fn controlDidFailToValidatePartialStringErrorDescription(self: *@This(), control: ?*Control, string: ?*String, @"error": ?*String) void {
-        return objc.msgSend(self, "control:didFailToValidatePartialString:errorDescription:", void, .{control, string, @"error"});
-    }
-
-    pub fn controlIsValidObject(self: *@This(), control: ?*Control, obj: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "control:isValidObject:", objc.BOOL, .{control, obj});
-    }
-
-    pub fn controlTextViewDoCommandBySelector(self: *@This(), control: ?*Control, textView: ?*TextView, commandSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(self, "control:textView:doCommandBySelector:", objc.BOOL, .{control, textView, commandSelector});
-    }
-
-    pub fn controlTextViewCompletionsForPartialWordRangeIndexOfSelectedItem(self: *@This(), control: ?*Control, textView: ?*TextView, words: ?*anyopaque, charRange: ns.Range, index: ?*objc.NSInteger, ) ?*anyopaque {
-        return objc.msgSend(self, "control:textView:completions:forPartialWordRange:indexOfSelectedItem:", ?*anyopaque, .{control, textView, words, charRange, index, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompression?language=objc
-pub const UserInterfaceCompression = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn compressWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) void {
-        return objc.msgSend(self, "compressWithPrioritizedCompressionOptions:", void, .{prioritizedOptions});
-    }
-
-    pub fn minimumSizeWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) ns.Size {
-        return objc.msgSend(self, "minimumSizeWithPrioritizedCompressionOptions:", ns.Size, .{prioritizedOptions});
-    }
-
-    pub fn activeCompressionOptions(self: *@This()) ?*UserInterfaceCompressionOptions {
-        return objc.msgSend(self, "activeCompressionOptions", ?*UserInterfaceCompressionOptions, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTouchBarDelegate?language=objc
-pub const TouchBarDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn touchBarMakeItemForIdentifier(self: *@This(), touchBar: ?*TouchBar, identifier: TouchBarItemIdentifier) ?*TouchBarItem {
-        return objc.msgSend(self, "touchBar:makeItemForIdentifier:", ?*TouchBarItem, .{touchBar, identifier});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTouchBarProvider?language=objc
-pub const TouchBarProvider = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn touchBar(self: *@This()) ?*TouchBar {
-        return objc.msgSend(self, "touchBar", ?*TouchBar, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItemDelegate?language=objc
-pub const CandidateListTouchBarItemDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn candidateListTouchBarItemBeginSelectingCandidateAtIndex(self: *@This(), anItem: ?*CandidateListTouchBarItem, index: objc.NSInteger) void {
-        return objc.msgSend(self, "candidateListTouchBarItem:beginSelectingCandidateAtIndex:", void, .{anItem, index});
-    }
-
-    pub fn candidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex(self: *@This(), anItem: ?*CandidateListTouchBarItem, previousIndex: objc.NSInteger, index: objc.NSInteger) void {
-        return objc.msgSend(self, "candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:", void, .{anItem, previousIndex, index});
-    }
-
-    pub fn candidateListTouchBarItemEndSelectingCandidateAtIndex(self: *@This(), anItem: ?*CandidateListTouchBarItem, index: objc.NSInteger) void {
-        return objc.msgSend(self, "candidateListTouchBarItem:endSelectingCandidateAtIndex:", void, .{anItem, index});
-    }
-
-    pub fn candidateListTouchBarItemChangedCandidateListVisibility(self: *@This(), anItem: ?*CandidateListTouchBarItem, isVisible: objc.BOOL) void {
-        return objc.msgSend(self, "candidateListTouchBarItem:changedCandidateListVisibility:", void, .{anItem, isVisible});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSPopoverDelegate?language=objc
-pub const PopoverDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn popoverShouldClose(self: *@This(), popover: ?*Popover) objc.BOOL {
-        return objc.msgSend(self, "popoverShouldClose:", objc.BOOL, .{popover});
-    }
-
-    pub fn popoverShouldDetach(self: *@This(), popover: ?*Popover) objc.BOOL {
-        return objc.msgSend(self, "popoverShouldDetach:", objc.BOOL, .{popover});
-    }
-
-    pub fn popoverDidDetach(self: *@This(), popover: ?*Popover) void {
-        return objc.msgSend(self, "popoverDidDetach:", void, .{popover});
-    }
-
-    pub fn detachableWindowForPopover(self: *@This(), popover: ?*Popover) ?*Window {
-        return objc.msgSend(self, "detachableWindowForPopover:", ?*Window, .{popover});
-    }
-
-    pub fn popoverWillShow(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "popoverWillShow:", void, .{notification});
-    }
-
-    pub fn popoverDidShow(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "popoverDidShow:", void, .{notification});
-    }
-
-    pub fn popoverWillClose(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "popoverWillClose:", void, .{notification});
-    }
-
-    pub fn popoverDidClose(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "popoverDidClose:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSeguePerforming?language=objc
-pub const SeguePerforming = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn prepareForSegueSender(self: *@This(), segue: ?*StoryboardSegue, sender: *objc.Id) void {
-        return objc.msgSend(self, "prepareForSegue:sender:", void, .{segue, sender});
-    }
-
-    pub fn performSegueWithIdentifierSender(self: *@This(), identifier: StoryboardSegueIdentifier, sender: *objc.Id) void {
-        return objc.msgSend(self, "performSegueWithIdentifier:sender:", void, .{identifier, sender});
-    }
-
-    pub fn shouldPerformSegueWithIdentifierSender(self: *@This(), identifier: StoryboardSegueIdentifier, sender: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "shouldPerformSegueWithIdentifier:sender:", objc.BOOL, .{identifier, sender});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSViewControllerPresentationAnimator?language=objc
-pub const ViewControllerPresentationAnimator = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn animatePresentationOfViewControllerFromViewController(self: *@This(), viewController: ?*ViewController, fromViewController: ?*ViewController) void {
-        return objc.msgSend(self, "animatePresentationOfViewController:fromViewController:", void, .{viewController, fromViewController});
-    }
-
-    pub fn animateDismissalOfViewControllerFromViewController(self: *@This(), viewController: ?*ViewController, fromViewController: ?*ViewController) void {
-        return objc.msgSend(self, "animateDismissalOfViewController:fromViewController:", void, .{viewController, fromViewController});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCollectionViewElement?language=objc
-pub const CollectionViewElement = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, UserInterfaceItemIdentification, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn prepareForReuse(self: *@This()) void {
-        return objc.msgSend(self, "prepareForReuse", void, .{});
-    }
-
-    pub fn applyLayoutAttributes(self: *@This(), layoutAttributes: ?*CollectionViewLayoutAttributes) void {
-        return objc.msgSend(self, "applyLayoutAttributes:", void, .{layoutAttributes});
-    }
-
-    pub fn willTransitionFromLayoutToLayout(self: *@This(), oldLayout: ?*CollectionViewLayout, newLayout: ?*CollectionViewLayout) void {
-        return objc.msgSend(self, "willTransitionFromLayout:toLayout:", void, .{oldLayout, newLayout});
-    }
-
-    pub fn didTransitionFromLayoutToLayout(self: *@This(), oldLayout: ?*CollectionViewLayout, newLayout: ?*CollectionViewLayout) void {
-        return objc.msgSend(self, "didTransitionFromLayout:toLayout:", void, .{oldLayout, newLayout});
-    }
-
-    pub fn preferredLayoutAttributesFittingAttributes(self: *@This(), layoutAttributes: ?*CollectionViewLayoutAttributes) ?*CollectionViewLayoutAttributes {
-        return objc.msgSend(self, "preferredLayoutAttributesFittingAttributes:", ?*CollectionViewLayoutAttributes, .{layoutAttributes});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCollectionViewSectionHeaderView?language=objc
-pub const CollectionViewSectionHeaderView = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CollectionViewElement, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn sectionCollapseButton(self: *@This()) ?*Button {
-        return objc.msgSend(self, "sectionCollapseButton", ?*Button, .{});
-    }
-
-    pub fn setSectionCollapseButton(self: *@This(), sectionCollapseButton: ?*Button) void {
-        return objc.msgSend(self, "setSectionCollapseButton:", void, .{sectionCollapseButton});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCollectionViewDataSource?language=objc
-pub const CollectionViewDataSource = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn collectionViewNumberOfItemsInSection(self: *@This(), collectionView: ?*CollectionView, section: objc.NSInteger) objc.NSInteger {
-        return objc.msgSend(self, "collectionView:numberOfItemsInSection:", objc.NSInteger, .{collectionView, section});
-    }
-
-    pub fn collectionViewItemForRepresentedObjectAtIndexPath(self: *@This(), collectionView: ?*CollectionView, indexPath: ?*IndexPath) ?*CollectionViewItem {
-        return objc.msgSend(self, "collectionView:itemForRepresentedObjectAtIndexPath:", ?*CollectionViewItem, .{collectionView, indexPath});
-    }
-
-    pub fn numberOfSectionsInCollectionView(self: *@This(), collectionView: ?*CollectionView) objc.NSInteger {
-        return objc.msgSend(self, "numberOfSectionsInCollectionView:", objc.NSInteger, .{collectionView});
-    }
-
-    pub fn collectionViewViewForSupplementaryElementOfKindAtIndexPath(self: *@This(), collectionView: ?*CollectionView, kind: CollectionViewSupplementaryElementKind, indexPath: ?*IndexPath) ?*View {
-        return objc.msgSend(self, "collectionView:viewForSupplementaryElementOfKind:atIndexPath:", ?*View, .{collectionView, kind, indexPath});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCollectionViewPrefetching?language=objc
-pub const CollectionViewPrefetching = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn collectionViewPrefetchItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) void {
-        return objc.msgSend(self, "collectionView:prefetchItemsAtIndexPaths:", void, .{collectionView, indexPaths});
-    }
-
-    pub fn collectionViewCancelPrefetchingForItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) void {
-        return objc.msgSend(self, "collectionView:cancelPrefetchingForItemsAtIndexPaths:", void, .{collectionView, indexPaths});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCollectionViewDelegate?language=objc
-pub const CollectionViewDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn collectionViewCanDragItemsAtIndexPathsWithEvent(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, event: ?*Event) objc.BOOL {
-        return objc.msgSend(self, "collectionView:canDragItemsAtIndexPaths:withEvent:", objc.BOOL, .{collectionView, indexPaths, event});
-    }
-
-    pub fn collectionViewCanDragItemsAtIndexesWithEvent(self: *@This(), collectionView: ?*CollectionView, indexes: ?*IndexSet, event: ?*Event) objc.BOOL {
-        return objc.msgSend(self, "collectionView:canDragItemsAtIndexes:withEvent:", objc.BOOL, .{collectionView, indexes, event});
-    }
-
-    pub fn collectionViewWriteItemsAtIndexPathsToPasteboard(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, pasteboard: ?*Pasteboard) objc.BOOL {
-        return objc.msgSend(self, "collectionView:writeItemsAtIndexPaths:toPasteboard:", objc.BOOL, .{collectionView, indexPaths, pasteboard});
-    }
-
-    pub fn collectionViewWriteItemsAtIndexesToPasteboard(self: *@This(), collectionView: ?*CollectionView, indexes: ?*IndexSet, pasteboard: ?*Pasteboard) objc.BOOL {
-        return objc.msgSend(self, "collectionView:writeItemsAtIndexes:toPasteboard:", objc.BOOL, .{collectionView, indexes, pasteboard});
-    }
-
-    pub fn collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, dropURL: ?*URL, indexPaths: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexPaths:", ?*anyopaque, .{collectionView, dropURL, indexPaths});
-    }
-
-    pub fn collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexes(self: *@This(), collectionView: ?*CollectionView, dropURL: ?*URL, indexes: ?*IndexSet) ?*anyopaque {
-        return objc.msgSend(self, "collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexes:", ?*anyopaque, .{collectionView, dropURL, indexes});
-    }
-
-    pub fn collectionViewDraggingImageForItemsAtIndexPathsWithEventOffset(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
-        return objc.msgSend(self, "collectionView:draggingImageForItemsAtIndexPaths:withEvent:offset:", ?*Image, .{collectionView, indexPaths, event, dragImageOffset, });
-    }
-
-    pub fn collectionViewDraggingImageForItemsAtIndexesWithEventOffset(self: *@This(), collectionView: ?*CollectionView, indexes: ?*IndexSet, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
-        return objc.msgSend(self, "collectionView:draggingImageForItemsAtIndexes:withEvent:offset:", ?*Image, .{collectionView, indexes, event, dragImageOffset, });
-    }
-
-    pub fn collectionViewValidateDropProposedIndexPathDropOperation(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque, proposedDropIndexPath: ?*?*IndexPath, proposedDropOperation: ?*CollectionViewDropOperation, ) DragOperation {
-        return objc.msgSend(self, "collectionView:validateDrop:proposedIndexPath:dropOperation:", DragOperation, .{collectionView, draggingInfo, proposedDropIndexPath, proposedDropOperation, });
-    }
-
-    pub fn collectionViewValidateDropProposedIndexDropOperation(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque, proposedDropIndex: ?*objc.NSInteger, proposedDropOperation: ?*CollectionViewDropOperation, ) DragOperation {
-        return objc.msgSend(self, "collectionView:validateDrop:proposedIndex:dropOperation:", DragOperation, .{collectionView, draggingInfo, proposedDropIndex, proposedDropOperation, });
-    }
-
-    pub fn collectionViewAcceptDropIndexPathDropOperation(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque, indexPath: ?*IndexPath, dropOperation: CollectionViewDropOperation, ) objc.BOOL {
-        return objc.msgSend(self, "collectionView:acceptDrop:indexPath:dropOperation:", objc.BOOL, .{collectionView, draggingInfo, indexPath, dropOperation, });
-    }
-
-    pub fn collectionViewAcceptDropIndexDropOperation(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque, index: objc.NSInteger, dropOperation: CollectionViewDropOperation, ) objc.BOOL {
-        return objc.msgSend(self, "collectionView:acceptDrop:index:dropOperation:", objc.BOOL, .{collectionView, draggingInfo, index, dropOperation, });
-    }
-
-    pub fn collectionViewPasteboardWriterForItemAtIndexPath(self: *@This(), collectionView: ?*CollectionView, indexPath: ?*IndexPath) ?*anyopaque {
-        return objc.msgSend(self, "collectionView:pasteboardWriterForItemAtIndexPath:", ?*anyopaque, .{collectionView, indexPath});
-    }
-
-    pub fn collectionViewPasteboardWriterForItemAtIndex(self: *@This(), collectionView: ?*CollectionView, index: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "collectionView:pasteboardWriterForItemAtIndex:", ?*anyopaque, .{collectionView, index});
-    }
-
-    pub fn collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: ns.Point, indexPaths: ?*anyopaque, ) void {
-        return objc.msgSend(self, "collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexPaths:", void, .{collectionView, session, screenPoint, indexPaths, });
-    }
-
-    pub fn collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: ns.Point, indexes: ?*IndexSet, ) void {
-        return objc.msgSend(self, "collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexes:", void, .{collectionView, session, screenPoint, indexes, });
-    }
-
-    pub fn collectionViewDraggingSessionEndedAtPointDragOperation(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation, ) void {
-        return objc.msgSend(self, "collectionView:draggingSession:endedAtPoint:dragOperation:", void, .{collectionView, session, screenPoint, operation, });
-    }
-
-    pub fn collectionViewUpdateDraggingItemsForDrag(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque) void {
-        return objc.msgSend(self, "collectionView:updateDraggingItemsForDrag:", void, .{collectionView, draggingInfo});
-    }
-
-    pub fn collectionViewShouldChangeItemsAtIndexPathsToHighlightState(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, highlightState: CollectionViewItemHighlightState) ?*anyopaque {
-        return objc.msgSend(self, "collectionView:shouldChangeItemsAtIndexPaths:toHighlightState:", ?*anyopaque, .{collectionView, indexPaths, highlightState});
-    }
-
-    pub fn collectionViewDidChangeItemsAtIndexPathsToHighlightState(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, highlightState: CollectionViewItemHighlightState) void {
-        return objc.msgSend(self, "collectionView:didChangeItemsAtIndexPaths:toHighlightState:", void, .{collectionView, indexPaths, highlightState});
-    }
-
-    pub fn collectionViewShouldSelectItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "collectionView:shouldSelectItemsAtIndexPaths:", ?*anyopaque, .{collectionView, indexPaths});
-    }
-
-    pub fn collectionViewShouldDeselectItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "collectionView:shouldDeselectItemsAtIndexPaths:", ?*anyopaque, .{collectionView, indexPaths});
-    }
-
-    pub fn collectionViewDidSelectItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) void {
-        return objc.msgSend(self, "collectionView:didSelectItemsAtIndexPaths:", void, .{collectionView, indexPaths});
-    }
-
-    pub fn collectionViewDidDeselectItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) void {
-        return objc.msgSend(self, "collectionView:didDeselectItemsAtIndexPaths:", void, .{collectionView, indexPaths});
-    }
-
-    pub fn collectionViewWillDisplayItemForRepresentedObjectAtIndexPath(self: *@This(), collectionView: ?*CollectionView, item: ?*CollectionViewItem, indexPath: ?*IndexPath) void {
-        return objc.msgSend(self, "collectionView:willDisplayItem:forRepresentedObjectAtIndexPath:", void, .{collectionView, item, indexPath});
-    }
-
-    pub fn collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(self: *@This(), collectionView: ?*CollectionView, view: ?*View, elementKind: CollectionViewSupplementaryElementKind, indexPath: ?*IndexPath, ) void {
-        return objc.msgSend(self, "collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:", void, .{collectionView, view, elementKind, indexPath, });
-    }
-
-    pub fn collectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath(self: *@This(), collectionView: ?*CollectionView, item: ?*CollectionViewItem, indexPath: ?*IndexPath) void {
-        return objc.msgSend(self, "collectionView:didEndDisplayingItem:forRepresentedObjectAtIndexPath:", void, .{collectionView, item, indexPath});
-    }
-
-    pub fn collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(self: *@This(), collectionView: ?*CollectionView, view: ?*View, elementKind: CollectionViewSupplementaryElementKind, indexPath: ?*IndexPath, ) void {
-        return objc.msgSend(self, "collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:", void, .{collectionView, view, elementKind, indexPath, });
-    }
-
-    pub fn collectionViewTransitionLayoutForOldLayoutNewLayout(self: *@This(), collectionView: ?*CollectionView, fromLayout: ?*CollectionViewLayout, toLayout: ?*CollectionViewLayout) ?*CollectionViewTransitionLayout {
-        return objc.msgSend(self, "collectionView:transitionLayoutForOldLayout:newLayout:", ?*CollectionViewTransitionLayout, .{collectionView, fromLayout, toLayout});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCollectionViewDelegateFlowLayout?language=objc
-pub const CollectionViewDelegateFlowLayout = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CollectionViewDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn collectionViewLayoutSizeForItemAtIndexPath(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, indexPath: ?*IndexPath) ns.Size {
-        return objc.msgSend(self, "collectionView:layout:sizeForItemAtIndexPath:", ns.Size, .{collectionView, collectionViewLayout, indexPath});
-    }
-
-    pub fn collectionViewLayoutInsetForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) ns.EdgeInsets {
-        return objc.msgSend(self, "collectionView:layout:insetForSectionAtIndex:", ns.EdgeInsets, .{collectionView, collectionViewLayout, section});
-    }
-
-    pub fn collectionViewLayoutMinimumLineSpacingForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "collectionView:layout:minimumLineSpacingForSectionAtIndex:", cf.CGFloat, .{collectionView, collectionViewLayout, section});
-    }
-
-    pub fn collectionViewLayoutMinimumInteritemSpacingForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "collectionView:layout:minimumInteritemSpacingForSectionAtIndex:", cf.CGFloat, .{collectionView, collectionViewLayout, section});
-    }
-
-    pub fn collectionViewLayoutReferenceSizeForHeaderInSection(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) ns.Size {
-        return objc.msgSend(self, "collectionView:layout:referenceSizeForHeaderInSection:", ns.Size, .{collectionView, collectionViewLayout, section});
-    }
-
-    pub fn collectionViewLayoutReferenceSizeForFooterInSection(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) ns.Size {
-        return objc.msgSend(self, "collectionView:layout:referenceSizeForFooterInSection:", ns.Size, .{collectionView, collectionViewLayout, section});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCollectionLayoutContainer?language=objc
-pub const CollectionLayoutContainer = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn contentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentSize", ns.Size, .{});
-    }
-
-    pub fn effectiveContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "effectiveContentSize", ns.Size, .{});
-    }
-
-    pub fn contentInsets(self: *@This()) DirectionalEdgeInsets {
-        return objc.msgSend(self, "contentInsets", DirectionalEdgeInsets, .{});
-    }
-
-    pub fn effectiveContentInsets(self: *@This()) DirectionalEdgeInsets {
-        return objc.msgSend(self, "effectiveContentInsets", DirectionalEdgeInsets, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEnvironment?language=objc
-pub const CollectionLayoutEnvironment = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn container(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "container", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCollectionLayoutVisibleItem?language=objc
-pub const CollectionLayoutVisibleItem = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn alpha(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "alpha", cf.CGFloat, .{});
-    }
-
-    pub fn setAlpha(self: *@This(), alpha: cf.CGFloat) void {
-        return objc.msgSend(self, "setAlpha:", void, .{alpha});
-    }
-
-    pub fn zIndex(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "zIndex", objc.NSInteger, .{});
-    }
-
-    pub fn setZIndex(self: *@This(), zIndex: objc.NSInteger) void {
-        return objc.msgSend(self, "setZIndex:", void, .{zIndex});
-    }
-
-    pub fn isHidden(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isHidden", objc.BOOL, .{});
-    }
-
-    pub fn setHidden(self: *@This(), hidden: objc.BOOL) void {
-        return objc.msgSend(self, "setHidden:", void, .{hidden});
-    }
-
-    pub fn center(self: *@This()) ns.Point {
-        return objc.msgSend(self, "center", ns.Point, .{});
-    }
-
-    pub fn setCenter(self: *@This(), center: ns.Point) void {
-        return objc.msgSend(self, "setCenter:", void, .{center});
-    }
-
-    pub fn name(self: *@This()) ?*String {
-        return objc.msgSend(self, "name", ?*String, .{});
-    }
-
-    pub fn indexPath(self: *@This()) ?*IndexPath {
-        return objc.msgSend(self, "indexPath", ?*IndexPath, .{});
-    }
-
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
-    }
-
-    pub fn bounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "bounds", ns.Rect, .{});
-    }
-
-    pub fn representedElementCategory(self: *@This()) CollectionElementCategory {
-        return objc.msgSend(self, "representedElementCategory", CollectionElementCategory, .{});
-    }
-
-    pub fn representedElementKind(self: *@This()) ?*String {
-        return objc.msgSend(self, "representedElementKind", ?*String, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSDockTilePlugIn?language=objc
-pub const DockTilePlugIn = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn setDockTile(self: *@This(), dockTile: ?*DockTile) void {
-        return objc.msgSend(self, "setDockTile:", void, .{dockTile});
-    }
-
-    pub fn dockMenu(self: *@This()) ?*Menu {
-        return objc.msgSend(self, "dockMenu", ?*Menu, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSWindowDelegate?language=objc
-pub const WindowDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn windowShouldClose(self: *@This(), sender: ?*Window) objc.BOOL {
-        return objc.msgSend(self, "windowShouldClose:", objc.BOOL, .{sender});
-    }
-
-    pub fn windowWillReturnFieldEditorToObject(self: *@This(), sender: ?*Window, client: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "windowWillReturnFieldEditor:toObject:", *objc.Id, .{sender, client});
-    }
-
-    pub fn windowWillResizeToSize(self: *@This(), sender: ?*Window, frameSize: ns.Size) ns.Size {
-        return objc.msgSend(self, "windowWillResize:toSize:", ns.Size, .{sender, frameSize});
-    }
-
-    pub fn windowWillUseStandardFrameDefaultFrame(self: *@This(), window: ?*Window, newFrame: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "windowWillUseStandardFrame:defaultFrame:", ns.Rect, .{window, newFrame});
-    }
-
-    pub fn windowShouldZoomToFrame(self: *@This(), window: ?*Window, newFrame: ns.Rect) objc.BOOL {
-        return objc.msgSend(self, "windowShouldZoom:toFrame:", objc.BOOL, .{window, newFrame});
-    }
-
-    pub fn windowWillReturnUndoManager(self: *@This(), window: ?*Window) ?*UndoManager {
-        return objc.msgSend(self, "windowWillReturnUndoManager:", ?*UndoManager, .{window});
-    }
-
-    pub fn windowWillPositionSheetUsingRect(self: *@This(), window: ?*Window, sheet: ?*Window, rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "window:willPositionSheet:usingRect:", ns.Rect, .{window, sheet, rect});
-    }
-
-    pub fn windowShouldPopUpDocumentPathMenu(self: *@This(), window: ?*Window, menu: ?*Menu) objc.BOOL {
-        return objc.msgSend(self, "window:shouldPopUpDocumentPathMenu:", objc.BOOL, .{window, menu});
-    }
-
-    pub fn windowShouldDragDocumentWithEventFromWithPasteboard(self: *@This(), window: ?*Window, event: ?*Event, dragImageLocation: ns.Point, pasteboard: ?*Pasteboard, ) objc.BOOL {
-        return objc.msgSend(self, "window:shouldDragDocumentWithEvent:from:withPasteboard:", objc.BOOL, .{window, event, dragImageLocation, pasteboard, });
-    }
-
-    pub fn windowWillUseFullScreenContentSize(self: *@This(), window: ?*Window, proposedSize: ns.Size) ns.Size {
-        return objc.msgSend(self, "window:willUseFullScreenContentSize:", ns.Size, .{window, proposedSize});
-    }
-
-    pub fn windowWillUseFullScreenPresentationOptions(self: *@This(), window: ?*Window, proposedOptions: ApplicationPresentationOptions) ApplicationPresentationOptions {
-        return objc.msgSend(self, "window:willUseFullScreenPresentationOptions:", ApplicationPresentationOptions, .{window, proposedOptions});
-    }
-
-    pub fn customWindowsToEnterFullScreenForWindow(self: *@This(), window: ?*Window) ?*anyopaque {
-        return objc.msgSend(self, "customWindowsToEnterFullScreenForWindow:", ?*anyopaque, .{window});
-    }
-
-    pub fn windowStartCustomAnimationToEnterFullScreenWithDuration(self: *@This(), window: ?*Window, duration: ns.TimeInterval) void {
-        return objc.msgSend(self, "window:startCustomAnimationToEnterFullScreenWithDuration:", void, .{window, duration});
-    }
-
-    pub fn windowDidFailToEnterFullScreen(self: *@This(), window: ?*Window) void {
-        return objc.msgSend(self, "windowDidFailToEnterFullScreen:", void, .{window});
-    }
-
-    pub fn customWindowsToExitFullScreenForWindow(self: *@This(), window: ?*Window) ?*anyopaque {
-        return objc.msgSend(self, "customWindowsToExitFullScreenForWindow:", ?*anyopaque, .{window});
-    }
-
-    pub fn windowStartCustomAnimationToExitFullScreenWithDuration(self: *@This(), window: ?*Window, duration: ns.TimeInterval) void {
-        return objc.msgSend(self, "window:startCustomAnimationToExitFullScreenWithDuration:", void, .{window, duration});
-    }
-
-    pub fn customWindowsToEnterFullScreenForWindowOnScreen(self: *@This(), window: ?*Window, screen: ?*Screen) ?*anyopaque {
-        return objc.msgSend(self, "customWindowsToEnterFullScreenForWindow:onScreen:", ?*anyopaque, .{window, screen});
-    }
-
-    pub fn windowStartCustomAnimationToEnterFullScreenOnScreenWithDuration(self: *@This(), window: ?*Window, screen: ?*Screen, duration: ns.TimeInterval) void {
-        return objc.msgSend(self, "window:startCustomAnimationToEnterFullScreenOnScreen:withDuration:", void, .{window, screen, duration});
-    }
-
-    pub fn windowDidFailToExitFullScreen(self: *@This(), window: ?*Window) void {
-        return objc.msgSend(self, "windowDidFailToExitFullScreen:", void, .{window});
-    }
-
-    pub fn windowWillResizeForVersionBrowserWithMaxPreferredSizeMaxAllowedSize(self: *@This(), window: ?*Window, maxPreferredFrameSize: ns.Size, maxAllowedFrameSize: ns.Size) ns.Size {
-        return objc.msgSend(self, "window:willResizeForVersionBrowserWithMaxPreferredSize:maxAllowedSize:", ns.Size, .{window, maxPreferredFrameSize, maxAllowedFrameSize});
-    }
-
-    pub fn windowWillEncodeRestorableState(self: *@This(), window: ?*Window, state: ?*ns.Coder) void {
-        return objc.msgSend(self, "window:willEncodeRestorableState:", void, .{window, state});
-    }
-
-    pub fn windowDidDecodeRestorableState(self: *@This(), window: ?*Window, state: ?*ns.Coder) void {
-        return objc.msgSend(self, "window:didDecodeRestorableState:", void, .{window, state});
-    }
-
-    pub fn previewRepresentableActivityItemsForWindow(self: *@This(), window: ?*Window) ?*anyopaque {
-        return objc.msgSend(self, "previewRepresentableActivityItemsForWindow:", ?*anyopaque, .{window});
-    }
-
-    pub fn windowForSharingRequestFromWindow(self: *@This(), window: ?*Window) ?*Window {
-        return objc.msgSend(self, "windowForSharingRequestFromWindow:", ?*Window, .{window});
-    }
-
-    pub fn windowDidResize(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidResize:", void, .{notification});
-    }
-
-    pub fn windowDidExpose(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidExpose:", void, .{notification});
-    }
-
-    pub fn windowWillMove(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowWillMove:", void, .{notification});
-    }
-
-    pub fn windowDidMove(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidMove:", void, .{notification});
-    }
-
-    pub fn windowDidBecomeKey(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidBecomeKey:", void, .{notification});
-    }
-
-    pub fn windowDidResignKey(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidResignKey:", void, .{notification});
-    }
-
-    pub fn windowDidBecomeMain(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidBecomeMain:", void, .{notification});
-    }
-
-    pub fn windowDidResignMain(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidResignMain:", void, .{notification});
-    }
-
-    pub fn windowWillClose(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowWillClose:", void, .{notification});
-    }
-
-    pub fn windowWillMiniaturize(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowWillMiniaturize:", void, .{notification});
-    }
-
-    pub fn windowDidMiniaturize(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidMiniaturize:", void, .{notification});
-    }
-
-    pub fn windowDidDeminiaturize(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidDeminiaturize:", void, .{notification});
-    }
-
-    pub fn windowDidUpdate(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidUpdate:", void, .{notification});
-    }
-
-    pub fn windowDidChangeScreen(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidChangeScreen:", void, .{notification});
-    }
-
-    pub fn windowDidChangeScreenProfile(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidChangeScreenProfile:", void, .{notification});
-    }
-
-    pub fn windowDidChangeBackingProperties(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidChangeBackingProperties:", void, .{notification});
-    }
-
-    pub fn windowWillBeginSheet(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowWillBeginSheet:", void, .{notification});
-    }
-
-    pub fn windowDidEndSheet(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidEndSheet:", void, .{notification});
-    }
-
-    pub fn windowWillStartLiveResize(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowWillStartLiveResize:", void, .{notification});
-    }
-
-    pub fn windowDidEndLiveResize(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidEndLiveResize:", void, .{notification});
-    }
-
-    pub fn windowWillEnterFullScreen(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowWillEnterFullScreen:", void, .{notification});
-    }
-
-    pub fn windowDidEnterFullScreen(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidEnterFullScreen:", void, .{notification});
-    }
-
-    pub fn windowWillExitFullScreen(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowWillExitFullScreen:", void, .{notification});
-    }
-
-    pub fn windowDidExitFullScreen(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidExitFullScreen:", void, .{notification});
-    }
-
-    pub fn windowWillEnterVersionBrowser(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowWillEnterVersionBrowser:", void, .{notification});
-    }
-
-    pub fn windowDidEnterVersionBrowser(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidEnterVersionBrowser:", void, .{notification});
-    }
-
-    pub fn windowWillExitVersionBrowser(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowWillExitVersionBrowser:", void, .{notification});
-    }
-
-    pub fn windowDidExitVersionBrowser(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidExitVersionBrowser:", void, .{notification});
-    }
-
-    pub fn windowDidChangeOcclusionState(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "windowDidChangeOcclusionState:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSFontChanging?language=objc
-pub const FontChanging = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn changeFont(self: *@This(), sender: ?*FontManager) void {
-        return objc.msgSend(self, "changeFont:", void, .{sender});
-    }
-
-    pub fn validModesForFontPanel(self: *@This(), fontPanel: ?*FontPanel) FontPanelModeMask {
-        return objc.msgSend(self, "validModesForFontPanel:", FontPanelModeMask, .{fontPanel});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSMatrixDelegate?language=objc
-pub const MatrixDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ControlTextEditingDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSBrowserDelegate?language=objc
-pub const BrowserDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn browserNumberOfRowsInColumn(self: *@This(), sender: ?*Browser, column: objc.NSInteger) objc.NSInteger {
-        return objc.msgSend(self, "browser:numberOfRowsInColumn:", objc.NSInteger, .{sender, column});
-    }
-
-    pub fn browserCreateRowsForColumnInMatrix(self: *@This(), sender: ?*Browser, column: objc.NSInteger, matrix: ?*Matrix) void {
-        return objc.msgSend(self, "browser:createRowsForColumn:inMatrix:", void, .{sender, column, matrix});
-    }
-
-    pub fn browserNumberOfChildrenOfItem(self: *@This(), browser: ?*Browser, item: *objc.Id) objc.NSInteger {
-        return objc.msgSend(self, "browser:numberOfChildrenOfItem:", objc.NSInteger, .{browser, item});
-    }
-
-    pub fn browserChildOfItem(self: *@This(), browser: ?*Browser, index: objc.NSInteger, item: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "browser:child:ofItem:", *objc.Id, .{browser, index, item});
-    }
-
-    pub fn browserIsLeafItem(self: *@This(), browser: ?*Browser, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "browser:isLeafItem:", objc.BOOL, .{browser, item});
-    }
-
-    pub fn browserObjectValueForItem(self: *@This(), browser: ?*Browser, item: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "browser:objectValueForItem:", *objc.Id, .{browser, item});
-    }
-
-    pub fn browserHeightOfRowInColumn(self: *@This(), browser: ?*Browser, row: objc.NSInteger, columnIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "browser:heightOfRow:inColumn:", cf.CGFloat, .{browser, row, columnIndex});
-    }
-
-    pub fn rootItemForBrowser(self: *@This(), browser: ?*Browser) *objc.Id {
-        return objc.msgSend(self, "rootItemForBrowser:", *objc.Id, .{browser});
-    }
-
-    pub fn browserSetObjectValueForItem(self: *@This(), browser: ?*Browser, object: *objc.Id, item: *objc.Id) void {
-        return objc.msgSend(self, "browser:setObjectValue:forItem:", void, .{browser, object, item});
-    }
-
-    pub fn browserShouldEditItem(self: *@This(), browser: ?*Browser, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "browser:shouldEditItem:", objc.BOOL, .{browser, item});
-    }
-
-    pub fn browserWillDisplayCellAtRowColumn(self: *@This(), sender: ?*Browser, cell: *objc.Id, row: objc.NSInteger, column: objc.NSInteger, ) void {
-        return objc.msgSend(self, "browser:willDisplayCell:atRow:column:", void, .{sender, cell, row, column, });
-    }
-
-    pub fn browserTitleOfColumn(self: *@This(), sender: ?*Browser, column: objc.NSInteger) ?*String {
-        return objc.msgSend(self, "browser:titleOfColumn:", ?*String, .{sender, column});
-    }
-
-    pub fn browserSelectCellWithStringInColumn(self: *@This(), sender: ?*Browser, title: ?*String, column: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "browser:selectCellWithString:inColumn:", objc.BOOL, .{sender, title, column});
-    }
-
-    pub fn browserSelectRowInColumn(self: *@This(), sender: ?*Browser, row: objc.NSInteger, column: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "browser:selectRow:inColumn:", objc.BOOL, .{sender, row, column});
-    }
-
-    pub fn browserIsColumnValid(self: *@This(), sender: ?*Browser, column: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "browser:isColumnValid:", objc.BOOL, .{sender, column});
-    }
-
-    pub fn browserWillScroll(self: *@This(), sender: ?*Browser) void {
-        return objc.msgSend(self, "browserWillScroll:", void, .{sender});
-    }
-
-    pub fn browserDidScroll(self: *@This(), sender: ?*Browser) void {
-        return objc.msgSend(self, "browserDidScroll:", void, .{sender});
-    }
-
-    pub fn browserShouldSizeColumnForUserResizeToWidth(self: *@This(), browser: ?*Browser, columnIndex: objc.NSInteger, forUserResize: objc.BOOL, suggestedWidth: cf.CGFloat, ) cf.CGFloat {
-        return objc.msgSend(self, "browser:shouldSizeColumn:forUserResize:toWidth:", cf.CGFloat, .{browser, columnIndex, forUserResize, suggestedWidth, });
-    }
-
-    pub fn browserSizeToFitWidthOfColumn(self: *@This(), browser: ?*Browser, columnIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "browser:sizeToFitWidthOfColumn:", cf.CGFloat, .{browser, columnIndex});
-    }
-
-    pub fn browserColumnConfigurationDidChange(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "browserColumnConfigurationDidChange:", void, .{notification});
-    }
-
-    pub fn browserShouldShowCellExpansionForRowColumn(self: *@This(), browser: ?*Browser, row: objc.NSInteger, column: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "browser:shouldShowCellExpansionForRow:column:", objc.BOOL, .{browser, row, column});
-    }
-
-    pub fn browserWriteRowsWithIndexesInColumnToPasteboard(self: *@This(), browser: ?*Browser, rowIndexes: ?*IndexSet, column: objc.NSInteger, pasteboard: ?*Pasteboard, ) objc.BOOL {
-        return objc.msgSend(self, "browser:writeRowsWithIndexes:inColumn:toPasteboard:", objc.BOOL, .{browser, rowIndexes, column, pasteboard, });
-    }
-
-    pub fn browserNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexesInColumn(self: *@This(), browser: ?*Browser, dropDestination: ?*URL, rowIndexes: ?*IndexSet, column: objc.NSInteger, ) ?*anyopaque {
-        return objc.msgSend(self, "browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:", ?*anyopaque, .{browser, dropDestination, rowIndexes, column, });
-    }
-
-    pub fn browserCanDragRowsWithIndexesInColumnWithEvent(self: *@This(), browser: ?*Browser, rowIndexes: ?*IndexSet, column: objc.NSInteger, event: ?*Event, ) objc.BOOL {
-        return objc.msgSend(self, "browser:canDragRowsWithIndexes:inColumn:withEvent:", objc.BOOL, .{browser, rowIndexes, column, event, });
-    }
-
-    pub fn browserDraggingImageForRowsWithIndexesInColumnWithEventOffset(self: *@This(), browser: ?*Browser, rowIndexes: ?*IndexSet, column: objc.NSInteger, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
-        return objc.msgSend(self, "browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:", ?*Image, .{browser, rowIndexes, column, event, dragImageOffset, });
-    }
-
-    pub fn browserValidateDropProposedRowColumnDropOperation(self: *@This(), browser: ?*Browser, info: ?*anyopaque, row: ?*objc.NSInteger, column: ?*objc.NSInteger, dropOperation: ?*BrowserDropOperation, ) DragOperation {
-        return objc.msgSend(self, "browser:validateDrop:proposedRow:column:dropOperation:", DragOperation, .{browser, info, row, column, dropOperation, });
-    }
-
-    pub fn browserAcceptDropAtRowColumnDropOperation(self: *@This(), browser: ?*Browser, info: ?*anyopaque, row: objc.NSInteger, column: objc.NSInteger, dropOperation: BrowserDropOperation, ) objc.BOOL {
-        return objc.msgSend(self, "browser:acceptDrop:atRow:column:dropOperation:", objc.BOOL, .{browser, info, row, column, dropOperation, });
-    }
-
-    pub fn browserTypeSelectStringForRowInColumn(self: *@This(), browser: ?*Browser, row: objc.NSInteger, column: objc.NSInteger) ?*String {
-        return objc.msgSend(self, "browser:typeSelectStringForRow:inColumn:", ?*String, .{browser, row, column});
-    }
-
-    pub fn browserShouldTypeSelectForEventWithCurrentSearchString(self: *@This(), browser: ?*Browser, event: ?*Event, searchString: ?*String) objc.BOOL {
-        return objc.msgSend(self, "browser:shouldTypeSelectForEvent:withCurrentSearchString:", objc.BOOL, .{browser, event, searchString});
-    }
-
-    pub fn browserNextTypeSelectMatchFromRowToRowInColumnForString(self: *@This(), browser: ?*Browser, startRow: objc.NSInteger, endRow: objc.NSInteger, column: objc.NSInteger, searchString: ?*String, ) objc.NSInteger {
-        return objc.msgSend(self, "browser:nextTypeSelectMatchFromRow:toRow:inColumn:forString:", objc.NSInteger, .{browser, startRow, endRow, column, searchString, });
-    }
-
-    pub fn browserPreviewViewControllerForLeafItem(self: *@This(), browser: ?*Browser, item: *objc.Id) ?*ViewController {
-        return objc.msgSend(self, "browser:previewViewControllerForLeafItem:", ?*ViewController, .{browser, item});
-    }
-
-    pub fn browserHeaderViewControllerForItem(self: *@This(), browser: ?*Browser, item: *objc.Id) ?*ViewController {
-        return objc.msgSend(self, "browser:headerViewControllerForItem:", ?*ViewController, .{browser, item});
-    }
-
-    pub fn browserDidChangeLastColumnToColumn(self: *@This(), browser: ?*Browser, oldLastColumn: objc.NSInteger, column: objc.NSInteger) void {
-        return objc.msgSend(self, "browser:didChangeLastColumn:toColumn:", void, .{browser, oldLastColumn, column});
-    }
-
-    pub fn browserSelectionIndexesForProposedSelectionInColumn(self: *@This(), browser: ?*Browser, proposedSelectionIndexes: ?*IndexSet, column: objc.NSInteger) ?*IndexSet {
-        return objc.msgSend(self, "browser:selectionIndexesForProposedSelection:inColumn:", ?*IndexSet, .{browser, proposedSelectionIndexes, column});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSColorChanging?language=objc
-pub const ColorChanging = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn changeColor(self: *@This(), sender: ?*ColorPanel) void {
-        return objc.msgSend(self, "changeColor:", void, .{sender});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSColorPickingDefault?language=objc
-pub const ColorPickingDefault = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn initWithPickerMaskColorPanel(self: *@This(), mask: objc.NSUInteger, owningColorPanel: ?*ColorPanel) *@This() {
-        return objc.msgSend(self, "initWithPickerMask:colorPanel:", *@This(), .{mask, owningColorPanel});
-    }
-
-    pub fn provideNewButtonImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "provideNewButtonImage", ?*Image, .{});
-    }
-
-    pub fn insertNewButtonImageIn(self: *@This(), newButtonImage: ?*Image, buttonCell: ?*ButtonCell) void {
-        return objc.msgSend(self, "insertNewButtonImage:in:", void, .{newButtonImage, buttonCell});
-    }
-
-    pub fn viewSizeChanged(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "viewSizeChanged:", void, .{sender});
-    }
-
-    pub fn alphaControlAddedOrRemoved(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "alphaControlAddedOrRemoved:", void, .{sender});
-    }
-
-    pub fn attachColorList(self: *@This(), colorList: ?*ColorList) void {
-        return objc.msgSend(self, "attachColorList:", void, .{colorList});
-    }
-
-    pub fn detachColorList(self: *@This(), colorList: ?*ColorList) void {
-        return objc.msgSend(self, "detachColorList:", void, .{colorList});
-    }
-
-    pub fn setMode(self: *@This(), mode: ColorPanelMode) void {
-        return objc.msgSend(self, "setMode:", void, .{mode});
-    }
-
-    pub fn buttonToolTip(self: *@This()) ?*String {
-        return objc.msgSend(self, "buttonToolTip", ?*String, .{});
-    }
-
-    pub fn minContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minContentSize", ns.Size, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSColorPickingCustom?language=objc
-pub const ColorPickingCustom = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ColorPickingDefault, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn supportsMode(self: *@This(), mode: ColorPanelMode) objc.BOOL {
-        return objc.msgSend(self, "supportsMode:", objc.BOOL, .{mode});
-    }
-
-    pub fn currentMode(self: *@This()) ColorPanelMode {
-        return objc.msgSend(self, "currentMode", ColorPanelMode, .{});
-    }
-
-    pub fn provideNewView(self: *@This(), initialRequest: objc.BOOL) ?*View {
-        return objc.msgSend(self, "provideNewView:", ?*View, .{initialRequest});
-    }
-
-    pub fn setColor(self: *@This(), newColor: ?*Color) void {
-        return objc.msgSend(self, "setColor:", void, .{newColor});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSFilePromiseProviderDelegate?language=objc
-pub const FilePromiseProviderDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn filePromiseProviderFileNameForType(self: *@This(), filePromiseProvider: ?*FilePromiseProvider, fileType: ?*String) ?*String {
-        return objc.msgSend(self, "filePromiseProvider:fileNameForType:", ?*String, .{filePromiseProvider, fileType});
-    }
-
-    pub fn filePromiseProviderWritePromiseToURLCompletionHandler(self: *@This(), filePromiseProvider: ?*FilePromiseProvider, url: ?*URL, completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "filePromiseProvider:writePromiseToURL:completionHandler:", void, .{filePromiseProvider, url, completionHandler});
-    }
-
-    pub fn operationQueueForFilePromiseProvider(self: *@This(), filePromiseProvider: ?*FilePromiseProvider) ?*OperationQueue {
-        return objc.msgSend(self, "operationQueueForFilePromiseProvider:", ?*OperationQueue, .{filePromiseProvider});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSGestureRecognizerDelegate?language=objc
-pub const GestureRecognizerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn gestureRecognizerShouldAttemptToRecognizeWithEvent(self: *@This(), gestureRecognizer: ?*GestureRecognizer, event: ?*Event) objc.BOOL {
-        return objc.msgSend(self, "gestureRecognizer:shouldAttemptToRecognizeWithEvent:", objc.BOOL, .{gestureRecognizer, event});
-    }
-
-    pub fn gestureRecognizerShouldBegin(self: *@This(), gestureRecognizer: ?*GestureRecognizer) objc.BOOL {
-        return objc.msgSend(self, "gestureRecognizerShouldBegin:", objc.BOOL, .{gestureRecognizer});
-    }
-
-    pub fn gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(self: *@This(), gestureRecognizer: ?*GestureRecognizer, otherGestureRecognizer: ?*GestureRecognizer) objc.BOOL {
-        return objc.msgSend(self, "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:", objc.BOOL, .{gestureRecognizer, otherGestureRecognizer});
-    }
-
-    pub fn gestureRecognizerShouldRequireFailureOfGestureRecognizer(self: *@This(), gestureRecognizer: ?*GestureRecognizer, otherGestureRecognizer: ?*GestureRecognizer) objc.BOOL {
-        return objc.msgSend(self, "gestureRecognizer:shouldRequireFailureOfGestureRecognizer:", objc.BOOL, .{gestureRecognizer, otherGestureRecognizer});
-    }
-
-    pub fn gestureRecognizerShouldBeRequiredToFailByGestureRecognizer(self: *@This(), gestureRecognizer: ?*GestureRecognizer, otherGestureRecognizer: ?*GestureRecognizer) objc.BOOL {
-        return objc.msgSend(self, "gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:", objc.BOOL, .{gestureRecognizer, otherGestureRecognizer});
-    }
-
-    pub fn gestureRecognizerShouldReceiveTouch(self: *@This(), gestureRecognizer: ?*GestureRecognizer, touch: ?*Touch) objc.BOOL {
-        return objc.msgSend(self, "gestureRecognizer:shouldReceiveTouch:", objc.BOOL, .{gestureRecognizer, touch});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSImageDelegate?language=objc
-pub const ImageDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn imageDidNotDrawInRect(self: *@This(), sender: ?*Image, rect: ns.Rect) ?*Image {
-        return objc.msgSend(self, "imageDidNotDraw:inRect:", ?*Image, .{sender, rect});
-    }
-
-    pub fn imageWillLoadRepresentation(self: *@This(), image: ?*Image, rep: ?*ImageRep) void {
-        return objc.msgSend(self, "image:willLoadRepresentation:", void, .{image, rep});
-    }
-
-    pub fn imageDidLoadRepresentationHeader(self: *@This(), image: ?*Image, rep: ?*ImageRep) void {
-        return objc.msgSend(self, "image:didLoadRepresentationHeader:", void, .{image, rep});
-    }
-
-    pub fn imageDidLoadPartOfRepresentationWithValidRows(self: *@This(), image: ?*Image, rep: ?*ImageRep, rows: objc.NSInteger) void {
-        return objc.msgSend(self, "image:didLoadPartOfRepresentation:withValidRows:", void, .{image, rep, rows});
-    }
-
-    pub fn imageDidLoadRepresentationWithStatus(self: *@This(), image: ?*Image, rep: ?*ImageRep, status: ImageLoadStatus) void {
-        return objc.msgSend(self, "image:didLoadRepresentation:withStatus:", void, .{image, rep, status});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSScrubberDataSource?language=objc
-pub const ScrubberDataSource = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn numberOfItemsForScrubber(self: *@This(), scrubber: ?*Scrubber) objc.NSInteger {
-        return objc.msgSend(self, "numberOfItemsForScrubber:", objc.NSInteger, .{scrubber});
-    }
-
-    pub fn scrubberViewForItemAtIndex(self: *@This(), scrubber: ?*Scrubber, index: objc.NSInteger) ?*anyopaque {
-        return objc.msgSend(self, "scrubber:viewForItemAtIndex:", ?*anyopaque, .{scrubber, index});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSScrubberDelegate?language=objc
-pub const ScrubberDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn scrubberDidSelectItemAtIndex(self: *@This(), scrubber: ?*Scrubber, selectedIndex: objc.NSInteger) void {
-        return objc.msgSend(self, "scrubber:didSelectItemAtIndex:", void, .{scrubber, selectedIndex});
-    }
-
-    pub fn scrubberDidHighlightItemAtIndex(self: *@This(), scrubber: ?*Scrubber, highlightedIndex: objc.NSInteger) void {
-        return objc.msgSend(self, "scrubber:didHighlightItemAtIndex:", void, .{scrubber, highlightedIndex});
-    }
-
-    pub fn scrubberDidChangeVisibleRange(self: *@This(), scrubber: ?*Scrubber, visibleRange: ns.Range) void {
-        return objc.msgSend(self, "scrubber:didChangeVisibleRange:", void, .{scrubber, visibleRange});
-    }
-
-    pub fn didBeginInteractingWithScrubber(self: *@This(), scrubber: ?*Scrubber) void {
-        return objc.msgSend(self, "didBeginInteractingWithScrubber:", void, .{scrubber});
-    }
-
-    pub fn didFinishInteractingWithScrubber(self: *@This(), scrubber: ?*Scrubber) void {
-        return objc.msgSend(self, "didFinishInteractingWithScrubber:", void, .{scrubber});
-    }
-
-    pub fn didCancelInteractingWithScrubber(self: *@This(), scrubber: ?*Scrubber) void {
-        return objc.msgSend(self, "didCancelInteractingWithScrubber:", void, .{scrubber});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayoutDelegate?language=objc
-pub const ScrubberFlowLayoutDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ScrubberDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn scrubberLayoutSizeForItemAtIndex(self: *@This(), scrubber: ?*Scrubber, layout: ?*ScrubberFlowLayout, itemIndex: objc.NSInteger) ns.Size {
-        return objc.msgSend(self, "scrubber:layout:sizeForItemAtIndex:", ns.Size, .{scrubber, layout, itemIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSharingServiceDelegate?language=objc
-pub const SharingServiceDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn sharingServiceWillShareItems(self: *@This(), sharingService: ?*SharingService, items: ?*Array) void {
-        return objc.msgSend(self, "sharingService:willShareItems:", void, .{sharingService, items});
-    }
-
-    pub fn sharingServiceDidFailToShareItemsError(self: *@This(), sharingService: ?*SharingService, items: ?*Array, @"error": ?*Error) void {
-        return objc.msgSend(self, "sharingService:didFailToShareItems:error:", void, .{sharingService, items, @"error"});
-    }
-
-    pub fn sharingServiceDidShareItems(self: *@This(), sharingService: ?*SharingService, items: ?*Array) void {
-        return objc.msgSend(self, "sharingService:didShareItems:", void, .{sharingService, items});
-    }
-
-    pub fn sharingServiceSourceFrameOnScreenForShareItem(self: *@This(), sharingService: ?*SharingService, item: *objc.Id) ns.Rect {
-        return objc.msgSend(self, "sharingService:sourceFrameOnScreenForShareItem:", ns.Rect, .{sharingService, item});
-    }
-
-    pub fn sharingServiceTransitionImageForShareItemContentRect(self: *@This(), sharingService: ?*SharingService, item: *objc.Id, contentRect: ?*ns.Rect) ?*Image {
-        return objc.msgSend(self, "sharingService:transitionImageForShareItem:contentRect:", ?*Image, .{sharingService, item, contentRect});
-    }
-
-    pub fn sharingServiceSourceWindowForShareItemsSharingContentScope(self: *@This(), sharingService: ?*SharingService, items: ?*Array, sharingContentScope: ?*SharingContentScope) ?*Window {
-        return objc.msgSend(self, "sharingService:sourceWindowForShareItems:sharingContentScope:", ?*Window, .{sharingService, items, sharingContentScope});
-    }
-
-    pub fn anchoringViewForSharingServiceShowRelativeToRectPreferredEdge(self: *@This(), sharingService: ?*SharingService, positioningRect: ?*ns.Rect, preferredEdge: ?*ns.RectEdge) ?*View {
-        return objc.msgSend(self, "anchoringViewForSharingService:showRelativeToRect:preferredEdge:", ?*View, .{sharingService, positioningRect, preferredEdge});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCloudSharingServiceDelegate?language=objc
-pub const CloudSharingServiceDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{SharingServiceDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn sharingServiceDidCompleteForItemsError(self: *@This(), sharingService: ?*SharingService, items: ?*Array, @"error": ?*Error) void {
-        return objc.msgSend(self, "sharingService:didCompleteForItems:error:", void, .{sharingService, items, @"error"});
-    }
-
-    pub fn optionsForSharingServiceShareProvider(self: *@This(), cloudKitSharingService: ?*SharingService, provider: ?*ItemProvider) CloudKitSharingServiceOptions {
-        return objc.msgSend(self, "optionsForSharingService:shareProvider:", CloudKitSharingServiceOptions, .{cloudKitSharingService, provider});
-    }
-
-    pub fn sharingServiceDidSaveShare(self: *@This(), sharingService: ?*SharingService, share: ?*CKShare) void {
-        return objc.msgSend(self, "sharingService:didSaveShare:", void, .{sharingService, share});
-    }
-
-    pub fn sharingServiceDidStopSharing(self: *@This(), sharingService: ?*SharingService, share: ?*CKShare) void {
-        return objc.msgSend(self, "sharingService:didStopSharing:", void, .{sharingService, share});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSharingServicePickerDelegate?language=objc
-pub const SharingServicePickerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn sharingServicePickerSharingServicesForItemsProposedSharingServices(self: *@This(), sharingServicePicker: ?*SharingServicePicker, items: ?*Array, proposedServices: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "sharingServicePicker:sharingServicesForItems:proposedSharingServices:", ?*anyopaque, .{sharingServicePicker, items, proposedServices});
-    }
-
-    pub fn sharingServicePickerDelegateForSharingService(self: *@This(), sharingServicePicker: ?*SharingServicePicker, sharingService: ?*SharingService) ?*anyopaque {
-        return objc.msgSend(self, "sharingServicePicker:delegateForSharingService:", ?*anyopaque, .{sharingServicePicker, sharingService});
-    }
-
-    pub fn sharingServicePickerDidChooseSharingService(self: *@This(), sharingServicePicker: ?*SharingServicePicker, service: ?*SharingService) void {
-        return objc.msgSend(self, "sharingServicePicker:didChooseSharingService:", void, .{sharingServicePicker, service});
-    }
-
-    pub fn sharingServicePickerCollaborationModeRestrictions(self: *@This(), sharingServicePicker: ?*SharingServicePicker) ?*anyopaque {
-        return objc.msgSend(self, "sharingServicePickerCollaborationModeRestrictions:", ?*anyopaque, .{sharingServicePicker});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItemDelegate?language=objc
-pub const SharingServicePickerTouchBarItemDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{SharingServicePickerDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn itemsForSharingServicePickerTouchBarItem(self: *@This(), pickerTouchBarItem: ?*SharingServicePickerTouchBarItem) ?*Array {
-        return objc.msgSend(self, "itemsForSharingServicePickerTouchBarItem:", ?*Array, .{pickerTouchBarItem});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSpeechRecognizerDelegate?language=objc
-pub const SpeechRecognizerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn speechRecognizerDidRecognizeCommand(self: *@This(), sender: ?*SpeechRecognizer, command: ?*String) void {
-        return objc.msgSend(self, "speechRecognizer:didRecognizeCommand:", void, .{sender, command});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizerDelegate?language=objc
-pub const SpeechSynthesizerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn speechSynthesizerDidFinishSpeaking(self: *@This(), sender: ?*SpeechSynthesizer, finishedSpeaking: objc.BOOL) void {
-        return objc.msgSend(self, "speechSynthesizer:didFinishSpeaking:", void, .{sender, finishedSpeaking});
-    }
-
-    pub fn speechSynthesizerWillSpeakWordOfString(self: *@This(), sender: ?*SpeechSynthesizer, characterRange: ns.Range, string: ?*String) void {
-        return objc.msgSend(self, "speechSynthesizer:willSpeakWord:ofString:", void, .{sender, characterRange, string});
-    }
-
-    pub fn speechSynthesizerWillSpeakPhoneme(self: *@This(), sender: ?*SpeechSynthesizer, phonemeOpcode: i16) void {
-        return objc.msgSend(self, "speechSynthesizer:willSpeakPhoneme:", void, .{sender, phonemeOpcode});
-    }
-
-    pub fn speechSynthesizerDidEncounterErrorAtIndexOfStringMessage(self: *@This(), sender: ?*SpeechSynthesizer, characterIndex: objc.NSUInteger, string: ?*String, message: ?*String, ) void {
-        return objc.msgSend(self, "speechSynthesizer:didEncounterErrorAtIndex:ofString:message:", void, .{sender, characterIndex, string, message, });
-    }
-
-    pub fn speechSynthesizerDidEncounterSyncMessage(self: *@This(), sender: ?*SpeechSynthesizer, message: ?*String) void {
-        return objc.msgSend(self, "speechSynthesizer:didEncounterSyncMessage:", void, .{sender, message});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSplitViewDelegate?language=objc
-pub const SplitViewDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn splitViewCanCollapseSubview(self: *@This(), splitView: ?*SplitView, subview: ?*View) objc.BOOL {
-        return objc.msgSend(self, "splitView:canCollapseSubview:", objc.BOOL, .{splitView, subview});
-    }
-
-    pub fn splitViewShouldCollapseSubviewForDoubleClickOnDividerAtIndex(self: *@This(), splitView: ?*SplitView, subview: ?*View, dividerIndex: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:", objc.BOOL, .{splitView, subview, dividerIndex});
-    }
-
-    pub fn splitViewConstrainMinCoordinateOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedMinimumPosition: cf.CGFloat, dividerIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "splitView:constrainMinCoordinate:ofSubviewAt:", cf.CGFloat, .{splitView, proposedMinimumPosition, dividerIndex});
-    }
-
-    pub fn splitViewConstrainMaxCoordinateOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedMaximumPosition: cf.CGFloat, dividerIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "splitView:constrainMaxCoordinate:ofSubviewAt:", cf.CGFloat, .{splitView, proposedMaximumPosition, dividerIndex});
-    }
-
-    pub fn splitViewConstrainSplitPositionOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedPosition: cf.CGFloat, dividerIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "splitView:constrainSplitPosition:ofSubviewAt:", cf.CGFloat, .{splitView, proposedPosition, dividerIndex});
-    }
-
-    pub fn splitViewResizeSubviewsWithOldSize(self: *@This(), splitView: ?*SplitView, oldSize: ns.Size) void {
-        return objc.msgSend(self, "splitView:resizeSubviewsWithOldSize:", void, .{splitView, oldSize});
-    }
-
-    pub fn splitViewShouldAdjustSizeOfSubview(self: *@This(), splitView: ?*SplitView, view: ?*View) objc.BOOL {
-        return objc.msgSend(self, "splitView:shouldAdjustSizeOfSubview:", objc.BOOL, .{splitView, view});
-    }
-
-    pub fn splitViewShouldHideDividerAtIndex(self: *@This(), splitView: ?*SplitView, dividerIndex: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "splitView:shouldHideDividerAtIndex:", objc.BOOL, .{splitView, dividerIndex});
-    }
-
-    pub fn splitViewEffectiveRectForDrawnRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, proposedEffectiveRect: ns.Rect, drawnRect: ns.Rect, dividerIndex: objc.NSInteger, ) ns.Rect {
-        return objc.msgSend(self, "splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:", ns.Rect, .{splitView, proposedEffectiveRect, drawnRect, dividerIndex, });
-    }
-
-    pub fn splitViewAdditionalEffectiveRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, dividerIndex: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "splitView:additionalEffectiveRectOfDividerAtIndex:", ns.Rect, .{splitView, dividerIndex});
-    }
-
-    pub fn splitViewWillResizeSubviews(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "splitViewWillResizeSubviews:", void, .{notification});
-    }
-
-    pub fn splitViewDidResizeSubviews(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "splitViewDidResizeSubviews:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSOpenSavePanelDelegate?language=objc
-pub const OpenSavePanelDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn panelShouldEnableURL(self: *@This(), sender: *objc.Id, url: ?*URL) objc.BOOL {
-        return objc.msgSend(self, "panel:shouldEnableURL:", objc.BOOL, .{sender, url});
-    }
-
-    pub fn panelValidateURLError(self: *@This(), sender: *objc.Id, url: ?*URL, outError: ?*?*Error) objc.BOOL {
-        return objc.msgSend(self, "panel:validateURL:error:", objc.BOOL, .{sender, url, outError});
-    }
-
-    pub fn panelDidChangeToDirectoryURL(self: *@This(), sender: *objc.Id, url: ?*URL) void {
-        return objc.msgSend(self, "panel:didChangeToDirectoryURL:", void, .{sender, url});
-    }
-
-    pub fn panelUserEnteredFilenameConfirmed(self: *@This(), sender: *objc.Id, filename: ?*String, okFlag: objc.BOOL) ?*String {
-        return objc.msgSend(self, "panel:userEnteredFilename:confirmed:", ?*String, .{sender, filename, okFlag});
-    }
-
-    pub fn panelWillExpand(self: *@This(), sender: *objc.Id, expanding: objc.BOOL) void {
-        return objc.msgSend(self, "panel:willExpand:", void, .{sender, expanding});
-    }
-
-    pub fn panelSelectionDidChange(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "panelSelectionDidChange:", void, .{sender});
-    }
-
-    pub fn panelDisplayNameForType(self: *@This(), sender: *objc.Id, @"type": ?*UTType) ?*String {
-        return objc.msgSend(self, "panel:displayNameForType:", ?*String, .{sender, @"type"});
-    }
-
-    pub fn panelDidSelectType(self: *@This(), sender: *objc.Id, @"type": ?*UTType) void {
-        return objc.msgSend(self, "panel:didSelectType:", void, .{sender, @"type"});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSPasteboardItemDataProvider?language=objc
-pub const PasteboardItemDataProvider = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn pasteboardItemProvideDataForType(self: *@This(), pasteboard: ?*Pasteboard, item: ?*PasteboardItem, @"type": PasteboardType) void {
-        return objc.msgSend(self, "pasteboard:item:provideDataForType:", void, .{pasteboard, item, @"type"});
-    }
-
-    pub fn pasteboardFinishedWithDataProvider(self: *@This(), pasteboard: ?*Pasteboard) void {
-        return objc.msgSend(self, "pasteboardFinishedWithDataProvider:", void, .{pasteboard});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSPrintPanelAccessorizing?language=objc
-pub const PrintPanelAccessorizing = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn localizedSummaryItems(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "localizedSummaryItems", ?*anyopaque, .{});
-    }
-
-    pub fn keyPathsForValuesAffectingPreview(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "keyPathsForValuesAffectingPreview", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextFinderClient?language=objc
-pub const TextFinderClient = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn stringAtIndexEffectiveRangeEndsWithSearchBoundary(self: *@This(), characterIndex: objc.NSUInteger, outRange: ns.RangePointer, outFlag: ?*objc.BOOL) ?*String {
-        return objc.msgSend(self, "stringAtIndex:effectiveRange:endsWithSearchBoundary:", ?*String, .{characterIndex, outRange, outFlag});
-    }
-
-    pub fn stringLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "stringLength", objc.NSUInteger, .{});
-    }
-
-    pub fn scrollRangeToVisible(self: *@This(), range: ns.Range) void {
-        return objc.msgSend(self, "scrollRangeToVisible:", void, .{range});
-    }
-
-    pub fn shouldReplaceCharactersInRangesWithStrings(self: *@This(), ranges: ?*anyopaque, strings: ?*anyopaque) objc.BOOL {
-        return objc.msgSend(self, "shouldReplaceCharactersInRanges:withStrings:", objc.BOOL, .{ranges, strings});
-    }
-
-    pub fn replaceCharactersInRangeWithString(self: *@This(), range: ns.Range, string: ?*String) void {
-        return objc.msgSend(self, "replaceCharactersInRange:withString:", void, .{range, string});
-    }
-
-    pub fn didReplaceCharacters(self: *@This()) void {
-        return objc.msgSend(self, "didReplaceCharacters", void, .{});
-    }
-
-    pub fn contentViewAtIndexEffectiveCharacterRange(self: *@This(), index: objc.NSUInteger, outRange: ns.RangePointer) ?*View {
-        return objc.msgSend(self, "contentViewAtIndex:effectiveCharacterRange:", ?*View, .{index, outRange});
-    }
-
-    pub fn rectsForCharacterRange(self: *@This(), range: ns.Range) ?*anyopaque {
-        return objc.msgSend(self, "rectsForCharacterRange:", ?*anyopaque, .{range});
-    }
-
-    pub fn drawCharactersInRangeForContentView(self: *@This(), range: ns.Range, view: ?*View) void {
-        return objc.msgSend(self, "drawCharactersInRange:forContentView:", void, .{range, view});
-    }
-
-    pub fn isSelectable(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isSelectable", objc.BOOL, .{});
-    }
-
-    pub fn allowsMultipleSelection(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowsMultipleSelection", objc.BOOL, .{});
-    }
-
-    pub fn isEditable(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isEditable", objc.BOOL, .{});
-    }
-
-    pub fn string(self: *@This()) ?*String {
-        return objc.msgSend(self, "string", ?*String, .{});
-    }
-
-    pub fn firstSelectedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "firstSelectedRange", ns.Range, .{});
-    }
-
-    pub fn selectedRanges(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "selectedRanges", ?*anyopaque, .{});
-    }
-
-    pub fn setSelectedRanges(self: *@This(), selectedRanges: ?*anyopaque) void {
-        return objc.msgSend(self, "setSelectedRanges:", void, .{selectedRanges});
-    }
-
-    pub fn visibleCharacterRanges(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "visibleCharacterRanges", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextFinderBarContainer?language=objc
-pub const TextFinderBarContainer = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn findBarViewDidChangeHeight(self: *@This()) void {
-        return objc.msgSend(self, "findBarViewDidChangeHeight", void, .{});
-    }
-
-    pub fn contentView(self: *@This()) ?*View {
-        return objc.msgSend(self, "contentView", ?*View, .{});
-    }
-
-    pub fn findBarView(self: *@This()) ?*View {
-        return objc.msgSend(self, "findBarView", ?*View, .{});
-    }
-
-    pub fn setFindBarView(self: *@This(), findBarView: ?*View) void {
-        return objc.msgSend(self, "setFindBarView:", void, .{findBarView});
-    }
-
-    pub fn isFindBarVisible(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isFindBarVisible", objc.BOOL, .{});
-    }
-
-    pub fn setFindBarVisible(self: *@This(), findBarVisible: objc.BOOL) void {
-        return objc.msgSend(self, "setFindBarVisible:", void, .{findBarVisible});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSStackViewDelegate?language=objc
-pub const StackViewDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn stackViewWillDetachViews(self: *@This(), stackView: ?*StackView, views: ?*anyopaque) void {
-        return objc.msgSend(self, "stackView:willDetachViews:", void, .{stackView, views});
-    }
-
-    pub fn stackViewDidReattachViews(self: *@This(), stackView: ?*StackView, views: ?*anyopaque) void {
-        return objc.msgSend(self, "stackView:didReattachViews:", void, .{stackView, views});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextInputClient?language=objc
-pub const TextInputClient = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn insertTextReplacementRange(self: *@This(), string: *objc.Id, replacementRange: ns.Range) void {
-        return objc.msgSend(self, "insertText:replacementRange:", void, .{string, replacementRange});
-    }
-
-    pub fn doCommandBySelector(self: *@This(), selector: *objc.SEL) void {
-        return objc.msgSend(self, "doCommandBySelector:", void, .{selector});
-    }
-
-    pub fn setMarkedTextSelectedRangeReplacementRange(self: *@This(), string: *objc.Id, selectedRange: ns.Range, replacementRange: ns.Range) void {
-        return objc.msgSend(self, "setMarkedText:selectedRange:replacementRange:", void, .{string, selectedRange, replacementRange});
-    }
-
-    pub fn unmarkText(self: *@This()) void {
-        return objc.msgSend(self, "unmarkText", void, .{});
-    }
-
-    pub fn selectedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "selectedRange", ns.Range, .{});
-    }
-
-    pub fn markedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "markedRange", ns.Range, .{});
-    }
-
-    pub fn hasMarkedText(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "hasMarkedText", objc.BOOL, .{});
-    }
-
-    pub fn attributedSubstringForProposedRangeActualRange(self: *@This(), range: ns.Range, actualRange: ns.RangePointer) ?*AttributedString {
-        return objc.msgSend(self, "attributedSubstringForProposedRange:actualRange:", ?*AttributedString, .{range, actualRange});
-    }
-
-    pub fn validAttributesForMarkedText(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "validAttributesForMarkedText", ?*anyopaque, .{});
-    }
-
-    pub fn firstRectForCharacterRangeActualRange(self: *@This(), range: ns.Range, actualRange: ns.RangePointer) ns.Rect {
-        return objc.msgSend(self, "firstRectForCharacterRange:actualRange:", ns.Rect, .{range, actualRange});
-    }
-
-    pub fn characterIndexForPoint(self: *@This(), point: ns.Point) objc.NSUInteger {
-        return objc.msgSend(self, "characterIndexForPoint:", objc.NSUInteger, .{point});
-    }
-
-    pub fn attributedString(self: *@This()) ?*AttributedString {
-        return objc.msgSend(self, "attributedString", ?*AttributedString, .{});
-    }
-
-    pub fn fractionOfDistanceThroughGlyphForPoint(self: *@This(), point: ns.Point) cf.CGFloat {
-        return objc.msgSend(self, "fractionOfDistanceThroughGlyphForPoint:", cf.CGFloat, .{point});
-    }
-
-    pub fn baselineDeltaForCharacterAtIndex(self: *@This(), anIndex: objc.NSUInteger) cf.CGFloat {
-        return objc.msgSend(self, "baselineDeltaForCharacterAtIndex:", cf.CGFloat, .{anIndex});
-    }
-
-    pub fn windowLevel(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "windowLevel", objc.NSInteger, .{});
-    }
-
-    pub fn drawsVerticallyForCharacterAtIndex(self: *@This(), charIndex: objc.NSUInteger) objc.BOOL {
-        return objc.msgSend(self, "drawsVerticallyForCharacterAtIndex:", objc.BOOL, .{charIndex});
-    }
-
-    pub fn preferredTextAccessoryPlacement(self: *@This()) TextCursorAccessoryPlacement {
-        return objc.msgSend(self, "preferredTextAccessoryPlacement", TextCursorAccessoryPlacement, .{});
-    }
-
-    pub fn insertAdaptiveImageGlyphReplacementRange(self: *@This(), adaptiveImageGlyph: ?*AdaptiveImageGlyph, replacementRange: ns.Range) void {
-        return objc.msgSend(self, "insertAdaptiveImageGlyph:replacementRange:", void, .{adaptiveImageGlyph, replacementRange});
-    }
-
-    pub fn unionRectInVisibleSelectedRange(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "unionRectInVisibleSelectedRange", ns.Rect, .{});
-    }
-
-    pub fn documentVisibleRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "documentVisibleRect", ns.Rect, .{});
-    }
-
-    pub fn supportsAdaptiveImageGlyph(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "supportsAdaptiveImageGlyph", objc.BOOL, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextInputTraits?language=objc
-pub const TextInputTraits = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn autocorrectionType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "autocorrectionType", TextInputTraitType, .{});
-    }
-
-    pub fn setAutocorrectionType(self: *@This(), autocorrectionType: TextInputTraitType) void {
-        return objc.msgSend(self, "setAutocorrectionType:", void, .{autocorrectionType});
-    }
-
-    pub fn spellCheckingType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "spellCheckingType", TextInputTraitType, .{});
-    }
-
-    pub fn setSpellCheckingType(self: *@This(), spellCheckingType: TextInputTraitType) void {
-        return objc.msgSend(self, "setSpellCheckingType:", void, .{spellCheckingType});
-    }
-
-    pub fn grammarCheckingType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "grammarCheckingType", TextInputTraitType, .{});
-    }
-
-    pub fn setGrammarCheckingType(self: *@This(), grammarCheckingType: TextInputTraitType) void {
-        return objc.msgSend(self, "setGrammarCheckingType:", void, .{grammarCheckingType});
-    }
-
-    pub fn smartQuotesType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "smartQuotesType", TextInputTraitType, .{});
-    }
-
-    pub fn setSmartQuotesType(self: *@This(), smartQuotesType: TextInputTraitType) void {
-        return objc.msgSend(self, "setSmartQuotesType:", void, .{smartQuotesType});
-    }
-
-    pub fn smartDashesType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "smartDashesType", TextInputTraitType, .{});
-    }
-
-    pub fn setSmartDashesType(self: *@This(), smartDashesType: TextInputTraitType) void {
-        return objc.msgSend(self, "setSmartDashesType:", void, .{smartDashesType});
-    }
-
-    pub fn smartInsertDeleteType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "smartInsertDeleteType", TextInputTraitType, .{});
-    }
-
-    pub fn setSmartInsertDeleteType(self: *@This(), smartInsertDeleteType: TextInputTraitType) void {
-        return objc.msgSend(self, "setSmartInsertDeleteType:", void, .{smartInsertDeleteType});
-    }
-
-    pub fn textReplacementType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "textReplacementType", TextInputTraitType, .{});
-    }
-
-    pub fn setTextReplacementType(self: *@This(), textReplacementType: TextInputTraitType) void {
-        return objc.msgSend(self, "setTextReplacementType:", void, .{textReplacementType});
-    }
-
-    pub fn dataDetectionType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "dataDetectionType", TextInputTraitType, .{});
-    }
-
-    pub fn setDataDetectionType(self: *@This(), dataDetectionType: TextInputTraitType) void {
-        return objc.msgSend(self, "setDataDetectionType:", void, .{dataDetectionType});
-    }
-
-    pub fn linkDetectionType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "linkDetectionType", TextInputTraitType, .{});
-    }
-
-    pub fn setLinkDetectionType(self: *@This(), linkDetectionType: TextInputTraitType) void {
-        return objc.msgSend(self, "setLinkDetectionType:", void, .{linkDetectionType});
-    }
-
-    pub fn textCompletionType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "textCompletionType", TextInputTraitType, .{});
-    }
-
-    pub fn setTextCompletionType(self: *@This(), textCompletionType: TextInputTraitType) void {
-        return objc.msgSend(self, "setTextCompletionType:", void, .{textCompletionType});
-    }
-
-    pub fn inlinePredictionType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "inlinePredictionType", TextInputTraitType, .{});
-    }
-
-    pub fn setInlinePredictionType(self: *@This(), inlinePredictionType: TextInputTraitType) void {
-        return objc.msgSend(self, "setInlinePredictionType:", void, .{inlinePredictionType});
-    }
-
-    pub fn mathExpressionCompletionType(self: *@This()) TextInputTraitType {
-        return objc.msgSend(self, "mathExpressionCompletionType", TextInputTraitType, .{});
-    }
-
-    pub fn setMathExpressionCompletionType(self: *@This(), mathExpressionCompletionType: TextInputTraitType) void {
-        return objc.msgSend(self, "setMathExpressionCompletionType:", void, .{mathExpressionCompletionType});
-    }
-
-    pub fn writingToolsBehavior(self: *@This()) WritingToolsBehavior {
-        return objc.msgSend(self, "writingToolsBehavior", WritingToolsBehavior, .{});
-    }
-
-    pub fn setWritingToolsBehavior(self: *@This(), writingToolsBehavior: WritingToolsBehavior) void {
-        return objc.msgSend(self, "setWritingToolsBehavior:", void, .{writingToolsBehavior});
-    }
-
-    pub fn allowedWritingToolsResultOptions(self: *@This()) WritingToolsResultOptions {
-        return objc.msgSend(self, "allowedWritingToolsResultOptions", WritingToolsResultOptions, .{});
-    }
-
-    pub fn setAllowedWritingToolsResultOptions(self: *@This(), allowedWritingToolsResultOptions: WritingToolsResultOptions) void {
-        return objc.msgSend(self, "setAllowedWritingToolsResultOptions:", void, .{allowedWritingToolsResultOptions});
-    }
-
-    pub fn writingToolsAllowedInputOptions(self: *@This()) WritingToolsAllowedInputOptions {
-        return objc.msgSend(self, "writingToolsAllowedInputOptions", WritingToolsAllowedInputOptions, .{});
-    }
-
-    pub fn setWritingToolsAllowedInputOptions(self: *@This(), writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions) void {
-        return objc.msgSend(self, "setWritingToolsAllowedInputOptions:", void, .{writingToolsAllowedInputOptions});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextCheckingClient?language=objc
-pub const TextCheckingClient = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextInputClient, TextInputTraits, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn annotatedSubstringForProposedRangeActualRange(self: *@This(), range: ns.Range, actualRange: ns.RangePointer) ?*AttributedString {
-        return objc.msgSend(self, "annotatedSubstringForProposedRange:actualRange:", ?*AttributedString, .{range, actualRange});
-    }
-
-    pub fn setAnnotationsRange(self: *@This(), annotations: ?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setAnnotations:range:", void, .{annotations, range});
-    }
-
-    pub fn addAnnotationsRange(self: *@This(), annotations: ?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "addAnnotations:range:", void, .{annotations, range});
-    }
-
-    pub fn removeAnnotationRange(self: *@This(), annotationName: ns.AttributedStringKey, range: ns.Range) void {
-        return objc.msgSend(self, "removeAnnotation:range:", void, .{annotationName, range});
-    }
-
-    pub fn replaceCharactersInRangeWithAnnotatedString(self: *@This(), range: ns.Range, annotatedString: ?*AttributedString) void {
-        return objc.msgSend(self, "replaceCharactersInRange:withAnnotatedString:", void, .{range, annotatedString});
-    }
-
-    pub fn selectAndShowRange(self: *@This(), range: ns.Range) void {
-        return objc.msgSend(self, "selectAndShowRange:", void, .{range});
-    }
-
-    pub fn viewForRangeFirstRectActualRange(self: *@This(), range: ns.Range, firstRect: ns.RectPointer, actualRange: ns.RangePointer) ?*View {
-        return objc.msgSend(self, "viewForRange:firstRect:actualRange:", ?*View, .{range, firstRect, actualRange});
-    }
-
-    pub fn candidateListTouchBarItem(self: *@This()) ?*CandidateListTouchBarItem {
-        return objc.msgSend(self, "candidateListTouchBarItem", ?*CandidateListTouchBarItem, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextContent?language=objc
-pub const TextContent = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn contentType(self: *@This()) TextContentType {
-        return objc.msgSend(self, "contentType", TextContentType, .{});
-    }
-
-    pub fn setContentType(self: *@This(), contentType: TextContentType) void {
-        return objc.msgSend(self, "setContentType:", void, .{contentType});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextFieldDelegate?language=objc
-pub const TextFieldDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ControlTextEditingDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn textFieldTextViewCandidatesForSelectedRange(self: *@This(), textField: ?*TextField, textView: ?*TextView, selectedRange: ns.Range) ?*Array {
-        return objc.msgSend(self, "textField:textView:candidatesForSelectedRange:", ?*Array, .{textField, textView, selectedRange});
-    }
-
-    pub fn textFieldTextViewCandidatesForSelectedRange(self: *@This(), textField: ?*TextField, textView: ?*TextView, candidates: ?*anyopaque, selectedRange: ns.Range, ) ?*anyopaque {
-        return objc.msgSend(self, "textField:textView:candidates:forSelectedRange:", ?*anyopaque, .{textField, textView, candidates, selectedRange, });
-    }
-
-    pub fn textFieldTextViewShouldSelectCandidateAtIndex(self: *@This(), textField: ?*TextField, textView: ?*TextView, index: objc.NSUInteger) objc.BOOL {
-        return objc.msgSend(self, "textField:textView:shouldSelectCandidateAtIndex:", objc.BOOL, .{textField, textView, index});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextStorageDelegate?language=objc
-pub const TextStorageDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn textStorageWillProcessEditingRangeChangeInLength(self: *@This(), textStorage: ?*TextStorage, editedMask: TextStorageEditActions, editedRange: ns.Range, delta: objc.NSInteger, ) void {
-        return objc.msgSend(self, "textStorage:willProcessEditing:range:changeInLength:", void, .{textStorage, editedMask, editedRange, delta, });
-    }
-
-    pub fn textStorageDidProcessEditingRangeChangeInLength(self: *@This(), textStorage: ?*TextStorage, editedMask: TextStorageEditActions, editedRange: ns.Range, delta: objc.NSInteger, ) void {
-        return objc.msgSend(self, "textStorage:didProcessEditing:range:changeInLength:", void, .{textStorage, editedMask, editedRange, delta, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextStorageObserving?language=objc
-pub const TextStorageObserving = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn processEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange(self: *@This(), textStorage: ?*TextStorage, editMask: TextStorageEditActions, newCharRange: ns.Range, delta: objc.NSInteger, invalidatedCharRange: ns.Range, ) void {
-        return objc.msgSend(self, "processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:", void, .{textStorage, editMask, newCharRange, delta, invalidatedCharRange, });
-    }
-
-    pub fn performEditingTransactionForTextStorageUsingBlock(self: *@This(), textStorage: ?*TextStorage, transaction: *const fn() callconv(.C) void) void {
-        return objc.msgSend(self, "performEditingTransactionForTextStorage:usingBlock:", void, .{textStorage, transaction});
-    }
-
-    pub fn textStorage(self: *@This()) ?*TextStorage {
-        return objc.msgSend(self, "textStorage", ?*TextStorage, .{});
-    }
-
-    pub fn setTextStorage(self: *@This(), textStorage: ?*TextStorage) void {
-        return objc.msgSend(self, "setTextStorage:", void, .{textStorage});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSGlyphStorage?language=objc
-pub const GlyphStorage = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn insertGlyphsLengthForStartingGlyphAtIndexCharacterIndex(self: *@This(), glyphs: ?*Glyph, length: objc.NSUInteger, glyphIndex: objc.NSUInteger, charIndex: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:", void, .{glyphs, length, glyphIndex, charIndex, });
-    }
-
-    pub fn setIntAttributeValueForGlyphAtIndex(self: *@This(), attributeTag: objc.NSInteger, val: objc.NSInteger, glyphIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setIntAttribute:value:forGlyphAtIndex:", void, .{attributeTag, val, glyphIndex});
-    }
-
-    pub fn attributedString(self: *@This()) ?*AttributedString {
-        return objc.msgSend(self, "attributedString", ?*AttributedString, .{});
-    }
-
-    pub fn layoutOptions(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "layoutOptions", objc.NSUInteger, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextLayoutOrientationProvider?language=objc
-pub const TextLayoutOrientationProvider = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn layoutOrientation(self: *@This()) TextLayoutOrientation {
-        return objc.msgSend(self, "layoutOrientation", TextLayoutOrientation, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSLayoutManagerDelegate?language=objc
-pub const LayoutManagerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn layoutManagerShouldGenerateGlyphsPropertiesCharacterIndexesFontForGlyphRange(self: *@This(), layoutManager: ?*LayoutManager, glyphs: ?*, props: ?*GlyphProperty, charIndexes: ?*objc.NSUInteger, aFont: ?*Font, glyphRange: ns.Range, ) objc.NSUInteger {
-        return objc.msgSend(self, "layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:", objc.NSUInteger, .{layoutManager, glyphs, props, charIndexes, aFont, glyphRange, });
-    }
-
-    pub fn layoutManagerLineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
-        return objc.msgSend(self, "layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{layoutManager, glyphIndex, rect});
-    }
-
-    pub fn layoutManagerParagraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
-        return objc.msgSend(self, "layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{layoutManager, glyphIndex, rect});
-    }
-
-    pub fn layoutManagerParagraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
-        return objc.msgSend(self, "layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{layoutManager, glyphIndex, rect});
-    }
-
-    pub fn layoutManagerShouldUseActionForControlCharacterAtIndex(self: *@This(), layoutManager: ?*LayoutManager, action: ControlCharacterAction, charIndex: objc.NSUInteger) ControlCharacterAction {
-        return objc.msgSend(self, "layoutManager:shouldUseAction:forControlCharacterAtIndex:", ControlCharacterAction, .{layoutManager, action, charIndex});
-    }
-
-    pub fn layoutManagerShouldBreakLineByWordBeforeCharacterAtIndex(self: *@This(), layoutManager: ?*LayoutManager, charIndex: objc.NSUInteger) objc.BOOL {
-        return objc.msgSend(self, "layoutManager:shouldBreakLineByWordBeforeCharacterAtIndex:", objc.BOOL, .{layoutManager, charIndex});
-    }
-
-    pub fn layoutManagerShouldBreakLineByHyphenatingBeforeCharacterAtIndex(self: *@This(), layoutManager: ?*LayoutManager, charIndex: objc.NSUInteger) objc.BOOL {
-        return objc.msgSend(self, "layoutManager:shouldBreakLineByHyphenatingBeforeCharacterAtIndex:", objc.BOOL, .{layoutManager, charIndex});
-    }
-
-    pub fn layoutManagerBoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, textContainer: ?*TextContainer, proposedRect: ns.Rect, glyphPosition: ns.Point, charIndex: objc.NSUInteger, ) ns.Rect {
-        return objc.msgSend(self, "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:", ns.Rect, .{layoutManager, glyphIndex, textContainer, proposedRect, glyphPosition, charIndex, });
-    }
-
-    pub fn layoutManagerShouldSetLineFragmentRectLineFragmentUsedRectBaselineOffsetInTextContainerForGlyphRange(self: *@This(), layoutManager: ?*LayoutManager, lineFragmentRect: ?*ns.Rect, lineFragmentUsedRect: ?*ns.Rect, baselineOffset: ?*cf.CGFloat, textContainer: ?*TextContainer, glyphRange: ns.Range, ) objc.BOOL {
-        return objc.msgSend(self, "layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:", objc.BOOL, .{layoutManager, lineFragmentRect, lineFragmentUsedRect, baselineOffset, textContainer, glyphRange, });
-    }
-
-    pub fn layoutManagerDidInvalidateLayout(self: *@This(), sender: ?*LayoutManager) void {
-        return objc.msgSend(self, "layoutManagerDidInvalidateLayout:", void, .{sender});
-    }
-
-    pub fn layoutManagerDidCompleteLayoutForTextContainerAtEnd(self: *@This(), layoutManager: ?*LayoutManager, textContainer: ?*TextContainer, layoutFinishedFlag: objc.BOOL) void {
-        return objc.msgSend(self, "layoutManager:didCompleteLayoutForTextContainer:atEnd:", void, .{layoutManager, textContainer, layoutFinishedFlag});
-    }
-
-    pub fn layoutManagerTextContainerDidChangeGeometryFromSize(self: *@This(), layoutManager: ?*LayoutManager, textContainer: ?*TextContainer, oldSize: ns.Size) void {
-        return objc.msgSend(self, "layoutManager:textContainer:didChangeGeometryFromSize:", void, .{layoutManager, textContainer, oldSize});
-    }
-
-    pub fn layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange(self: *@This(), layoutManager: ?*LayoutManager, attrs: ?*anyopaque, toScreen: objc.BOOL, charIndex: objc.NSUInteger, effectiveCharRange: ns.RangePointer, ) ?*anyopaque {
-        return objc.msgSend(self, "layoutManager:shouldUseTemporaryAttributes:forDrawingToScreen:atCharacterIndex:effectiveRange:", ?*anyopaque, .{layoutManager, attrs, toScreen, charIndex, effectiveCharRange, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTokenFieldCellDelegate?language=objc
-pub const TokenFieldCellDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem(self: *@This(), tokenFieldCell: ?*TokenFieldCell, substring: ?*String, tokenIndex: objc.NSInteger, selectedIndex: ?*objc.NSInteger, ) ?*Array {
-        return objc.msgSend(self, "tokenFieldCell:completionsForSubstring:indexOfToken:indexOfSelectedItem:", ?*Array, .{tokenFieldCell, substring, tokenIndex, selectedIndex, });
-    }
-
-    pub fn tokenFieldCellShouldAddObjectsAtIndex(self: *@This(), tokenFieldCell: ?*TokenFieldCell, tokens: ?*Array, index: objc.NSUInteger) ?*Array {
-        return objc.msgSend(self, "tokenFieldCell:shouldAddObjects:atIndex:", ?*Array, .{tokenFieldCell, tokens, index});
-    }
-
-    pub fn tokenFieldCellDisplayStringForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) ?*String {
-        return objc.msgSend(self, "tokenFieldCell:displayStringForRepresentedObject:", ?*String, .{tokenFieldCell, representedObject});
-    }
-
-    pub fn tokenFieldCellEditingStringForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) ?*String {
-        return objc.msgSend(self, "tokenFieldCell:editingStringForRepresentedObject:", ?*String, .{tokenFieldCell, representedObject});
-    }
-
-    pub fn tokenFieldCellRepresentedObjectForEditingString(self: *@This(), tokenFieldCell: ?*TokenFieldCell, editingString: ?*String) *objc.Id {
-        return objc.msgSend(self, "tokenFieldCell:representedObjectForEditingString:", *objc.Id, .{tokenFieldCell, editingString});
-    }
-
-    pub fn tokenFieldCellWriteRepresentedObjectsToPasteboard(self: *@This(), tokenFieldCell: ?*TokenFieldCell, objects: ?*Array, pboard: ?*Pasteboard) objc.BOOL {
-        return objc.msgSend(self, "tokenFieldCell:writeRepresentedObjects:toPasteboard:", objc.BOOL, .{tokenFieldCell, objects, pboard});
-    }
-
-    pub fn tokenFieldCellReadFromPasteboard(self: *@This(), tokenFieldCell: ?*TokenFieldCell, pboard: ?*Pasteboard) ?*Array {
-        return objc.msgSend(self, "tokenFieldCell:readFromPasteboard:", ?*Array, .{tokenFieldCell, pboard});
-    }
-
-    pub fn tokenFieldCellMenuForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) ?*Menu {
-        return objc.msgSend(self, "tokenFieldCell:menuForRepresentedObject:", ?*Menu, .{tokenFieldCell, representedObject});
-    }
-
-    pub fn tokenFieldCellHasMenuForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "tokenFieldCell:hasMenuForRepresentedObject:", objc.BOOL, .{tokenFieldCell, representedObject});
-    }
-
-    pub fn tokenFieldCellStyleForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) TokenStyle {
-        return objc.msgSend(self, "tokenFieldCell:styleForRepresentedObject:", TokenStyle, .{tokenFieldCell, representedObject});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTokenFieldDelegate?language=objc
-pub const TokenFieldDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextFieldDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem(self: *@This(), tokenField: ?*TokenField, substring: ?*String, tokenIndex: objc.NSInteger, selectedIndex: ?*objc.NSInteger, ) ?*Array {
-        return objc.msgSend(self, "tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:", ?*Array, .{tokenField, substring, tokenIndex, selectedIndex, });
-    }
-
-    pub fn tokenFieldShouldAddObjectsAtIndex(self: *@This(), tokenField: ?*TokenField, tokens: ?*Array, index: objc.NSUInteger) ?*Array {
-        return objc.msgSend(self, "tokenField:shouldAddObjects:atIndex:", ?*Array, .{tokenField, tokens, index});
-    }
-
-    pub fn tokenFieldDisplayStringForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) ?*String {
-        return objc.msgSend(self, "tokenField:displayStringForRepresentedObject:", ?*String, .{tokenField, representedObject});
-    }
-
-    pub fn tokenFieldEditingStringForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) ?*String {
-        return objc.msgSend(self, "tokenField:editingStringForRepresentedObject:", ?*String, .{tokenField, representedObject});
-    }
-
-    pub fn tokenFieldRepresentedObjectForEditingString(self: *@This(), tokenField: ?*TokenField, editingString: ?*String) *objc.Id {
-        return objc.msgSend(self, "tokenField:representedObjectForEditingString:", *objc.Id, .{tokenField, editingString});
-    }
-
-    pub fn tokenFieldWriteRepresentedObjectsToPasteboard(self: *@This(), tokenField: ?*TokenField, objects: ?*Array, pboard: ?*Pasteboard) objc.BOOL {
-        return objc.msgSend(self, "tokenField:writeRepresentedObjects:toPasteboard:", objc.BOOL, .{tokenField, objects, pboard});
-    }
-
-    pub fn tokenFieldReadFromPasteboard(self: *@This(), tokenField: ?*TokenField, pboard: ?*Pasteboard) ?*Array {
-        return objc.msgSend(self, "tokenField:readFromPasteboard:", ?*Array, .{tokenField, pboard});
-    }
-
-    pub fn tokenFieldMenuForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) ?*Menu {
-        return objc.msgSend(self, "tokenField:menuForRepresentedObject:", ?*Menu, .{tokenField, representedObject});
-    }
-
-    pub fn tokenFieldHasMenuForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "tokenField:hasMenuForRepresentedObject:", objc.BOOL, .{tokenField, representedObject});
-    }
-
-    pub fn tokenFieldStyleForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) TokenStyle {
-        return objc.msgSend(self, "tokenField:styleForRepresentedObject:", TokenStyle, .{tokenField, representedObject});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSToolbarDelegate?language=objc
-pub const ToolbarDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn toolbarItemForItemIdentifierWillBeInsertedIntoToolbar(self: *@This(), toolbar: ?*Toolbar, itemIdentifier: ToolbarItemIdentifier, flag: objc.BOOL) ?*ToolbarItem {
-        return objc.msgSend(self, "toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:", ?*ToolbarItem, .{toolbar, itemIdentifier, flag});
-    }
-
-    pub fn toolbarDefaultItemIdentifiers(self: *@This(), toolbar: ?*Toolbar) ?*anyopaque {
-        return objc.msgSend(self, "toolbarDefaultItemIdentifiers:", ?*anyopaque, .{toolbar});
-    }
-
-    pub fn toolbarAllowedItemIdentifiers(self: *@This(), toolbar: ?*Toolbar) ?*anyopaque {
-        return objc.msgSend(self, "toolbarAllowedItemIdentifiers:", ?*anyopaque, .{toolbar});
-    }
-
-    pub fn toolbarSelectableItemIdentifiers(self: *@This(), toolbar: ?*Toolbar) ?*anyopaque {
-        return objc.msgSend(self, "toolbarSelectableItemIdentifiers:", ?*anyopaque, .{toolbar});
-    }
-
-    pub fn toolbarImmovableItemIdentifiers(self: *@This(), toolbar: ?*Toolbar) ?*anyopaque {
-        return objc.msgSend(self, "toolbarImmovableItemIdentifiers:", ?*anyopaque, .{toolbar});
-    }
-
-    pub fn toolbarItemIdentifierCanBeInsertedAtIndex(self: *@This(), toolbar: ?*Toolbar, itemIdentifier: ToolbarItemIdentifier, index: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "toolbar:itemIdentifier:canBeInsertedAtIndex:", objc.BOOL, .{toolbar, itemIdentifier, index});
-    }
-
-    pub fn toolbarWillAddItem(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "toolbarWillAddItem:", void, .{notification});
-    }
-
-    pub fn toolbarDidRemoveItem(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "toolbarDidRemoveItem:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSToolbarItemValidation?language=objc
-pub const ToolbarItemValidation = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn validateToolbarItem(self: *@This(), item: ?*ToolbarItem) objc.BOOL {
-        return objc.msgSend(self, "validateToolbarItem:", objc.BOOL, .{item});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSCloudSharingValidation?language=objc
-pub const CloudSharingValidation = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn cloudShareForUserInterfaceItem(self: *@This(), item: ?*anyopaque) ?*CKShare {
-        return objc.msgSend(self, "cloudShareForUserInterfaceItem:", ?*CKShare, .{item});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSComboBoxDataSource?language=objc
-pub const ComboBoxDataSource = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn numberOfItemsInComboBox(self: *@This(), comboBox: ?*ComboBox) objc.NSInteger {
-        return objc.msgSend(self, "numberOfItemsInComboBox:", objc.NSInteger, .{comboBox});
-    }
-
-    pub fn comboBoxObjectValueForItemAtIndex(self: *@This(), comboBox: ?*ComboBox, index: objc.NSInteger) *objc.Id {
-        return objc.msgSend(self, "comboBox:objectValueForItemAtIndex:", *objc.Id, .{comboBox, index});
-    }
-
-    pub fn comboBoxIndexOfItemWithStringValue(self: *@This(), comboBox: ?*ComboBox, string: ?*String) objc.NSUInteger {
-        return objc.msgSend(self, "comboBox:indexOfItemWithStringValue:", objc.NSUInteger, .{comboBox, string});
-    }
-
-    pub fn comboBoxCompletedString(self: *@This(), comboBox: ?*ComboBox, string: ?*String) ?*String {
-        return objc.msgSend(self, "comboBox:completedString:", ?*String, .{comboBox, string});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSComboBoxDelegate?language=objc
-pub const ComboBoxDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextFieldDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn comboBoxWillPopUp(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "comboBoxWillPopUp:", void, .{notification});
-    }
-
-    pub fn comboBoxWillDismiss(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "comboBoxWillDismiss:", void, .{notification});
-    }
-
-    pub fn comboBoxSelectionDidChange(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "comboBoxSelectionDidChange:", void, .{notification});
-    }
-
-    pub fn comboBoxSelectionIsChanging(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "comboBoxSelectionIsChanging:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSComboBoxCellDataSource?language=objc
-pub const ComboBoxCellDataSource = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn numberOfItemsInComboBoxCell(self: *@This(), comboBoxCell: ?*ComboBoxCell) objc.NSInteger {
-        return objc.msgSend(self, "numberOfItemsInComboBoxCell:", objc.NSInteger, .{comboBoxCell});
-    }
-
-    pub fn comboBoxCellObjectValueForItemAtIndex(self: *@This(), comboBoxCell: ?*ComboBoxCell, index: objc.NSInteger) *objc.Id {
-        return objc.msgSend(self, "comboBoxCell:objectValueForItemAtIndex:", *objc.Id, .{comboBoxCell, index});
-    }
-
-    pub fn comboBoxCellIndexOfItemWithStringValue(self: *@This(), comboBoxCell: ?*ComboBoxCell, string: ?*String) objc.NSUInteger {
-        return objc.msgSend(self, "comboBoxCell:indexOfItemWithStringValue:", objc.NSUInteger, .{comboBoxCell, string});
-    }
-
-    pub fn comboBoxCellCompletedString(self: *@This(), comboBoxCell: ?*ComboBoxCell, uncompletedString: ?*String) ?*String {
-        return objc.msgSend(self, "comboBoxCell:completedString:", ?*String, .{comboBoxCell, uncompletedString});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextInput?language=objc
-pub const TextInput = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn insertText(self: *@This(), string: *objc.Id) void {
-        return objc.msgSend(self, "insertText:", void, .{string});
-    }
-
-    pub fn doCommandBySelector(self: *@This(), selector: *objc.SEL) void {
-        return objc.msgSend(self, "doCommandBySelector:", void, .{selector});
-    }
-
-    pub fn setMarkedTextSelectedRange(self: *@This(), string: *objc.Id, selRange: ns.Range) void {
-        return objc.msgSend(self, "setMarkedText:selectedRange:", void, .{string, selRange});
-    }
-
-    pub fn unmarkText(self: *@This()) void {
-        return objc.msgSend(self, "unmarkText", void, .{});
-    }
-
-    pub fn hasMarkedText(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "hasMarkedText", objc.BOOL, .{});
-    }
-
-    pub fn conversationIdentifier(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "conversationIdentifier", objc.NSInteger, .{});
-    }
-
-    pub fn attributedSubstringFromRange(self: *@This(), range: ns.Range) ?*AttributedString {
-        return objc.msgSend(self, "attributedSubstringFromRange:", ?*AttributedString, .{range});
-    }
-
-    pub fn markedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "markedRange", ns.Range, .{});
-    }
-
-    pub fn selectedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "selectedRange", ns.Range, .{});
-    }
-
-    pub fn firstRectForCharacterRange(self: *@This(), range: ns.Range) ns.Rect {
-        return objc.msgSend(self, "firstRectForCharacterRange:", ns.Rect, .{range});
-    }
-
-    pub fn characterIndexForPoint(self: *@This(), point: ns.Point) objc.NSUInteger {
-        return objc.msgSend(self, "characterIndexForPoint:", objc.NSUInteger, .{point});
-    }
-
-    pub fn validAttributesForMarkedText(self: *@This()) ?*Array {
-        return objc.msgSend(self, "validAttributesForMarkedText", ?*Array, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextAttachmentLayout?language=objc
-pub const TextAttachmentLayout = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn imageForBoundsAttributesLocationTextContainer(self: *@This(), bounds: cf.CGRect, attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, ) ?*Image {
-        return objc.msgSend(self, "imageForBounds:attributes:location:textContainer:", ?*Image, .{bounds, attributes, location, textContainer, });
-    }
-
-    pub fn attachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(self: *@This(), attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, proposedLineFragment: cf.CGRect, position: cf.CGPoint, ) cf.CGRect {
-        return objc.msgSend(self, "attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:", cf.CGRect, .{attributes, location, textContainer, proposedLineFragment, position, });
-    }
-
-    pub fn viewProviderForParentViewLocationTextContainer(self: *@This(), parentView: ?*View, location: ?*anyopaque, textContainer: ?*TextContainer) ?*TextAttachmentViewProvider {
-        return objc.msgSend(self, "viewProviderForParentView:location:textContainer:", ?*TextAttachmentViewProvider, .{parentView, location, textContainer});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextAttachmentContainer?language=objc
-pub const TextAttachmentContainer = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn imageForBoundsTextContainerCharacterIndex(self: *@This(), imageBounds: cf.CGRect, textContainer: ?*TextContainer, charIndex: objc.NSUInteger) ?*Image {
-        return objc.msgSend(self, "imageForBounds:textContainer:characterIndex:", ?*Image, .{imageBounds, textContainer, charIndex});
-    }
-
-    pub fn attachmentBoundsForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), textContainer: ?*TextContainer, lineFrag: cf.CGRect, position: cf.CGPoint, charIndex: objc.NSUInteger, ) cf.CGRect {
-        return objc.msgSend(self, "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:", cf.CGRect, .{textContainer, lineFrag, position, charIndex, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextAttachmentCell?language=objc
-pub const TextAttachmentCell = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn drawWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
-        return objc.msgSend(self, "drawWithFrame:inView:", void, .{cellFrame, controlView});
-    }
-
-    pub fn wantsToTrackMouse(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "wantsToTrackMouse", objc.BOOL, .{});
-    }
-
-    pub fn highlightWithFrameInView(self: *@This(), flag: objc.BOOL, cellFrame: ns.Rect, controlView: ?*View) void {
-        return objc.msgSend(self, "highlight:withFrame:inView:", void, .{flag, cellFrame, controlView});
-    }
-
-    pub fn trackMouseInRectOfViewUntilMouseUp(self: *@This(), theEvent: ?*Event, cellFrame: ns.Rect, controlView: ?*View, flag: objc.BOOL, ) objc.BOOL {
-        return objc.msgSend(self, "trackMouse:inRect:ofView:untilMouseUp:", objc.BOOL, .{theEvent, cellFrame, controlView, flag, });
-    }
-
-    pub fn cellSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "cellSize", ns.Size, .{});
-    }
-
-    pub fn cellBaselineOffset(self: *@This()) ns.Point {
-        return objc.msgSend(self, "cellBaselineOffset", ns.Point, .{});
-    }
-
-    pub fn drawWithFrameInViewCharacterIndex(self: *@This(), cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "drawWithFrame:inView:characterIndex:", void, .{cellFrame, controlView, charIndex});
-    }
-
-    pub fn drawWithFrameInViewCharacterIndexLayoutManager(self: *@This(), cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger, layoutManager: ?*LayoutManager, ) void {
-        return objc.msgSend(self, "drawWithFrame:inView:characterIndex:layoutManager:", void, .{cellFrame, controlView, charIndex, layoutManager, });
-    }
-
-    pub fn wantsToTrackMouseForEventInRectOfViewAtCharacterIndex(self: *@This(), theEvent: ?*Event, cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger, ) objc.BOOL {
-        return objc.msgSend(self, "wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:", objc.BOOL, .{theEvent, cellFrame, controlView, charIndex, });
-    }
-
-    pub fn trackMouseInRectOfViewAtCharacterIndexUntilMouseUp(self: *@This(), theEvent: ?*Event, cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger, flag: objc.BOOL, ) objc.BOOL {
-        return objc.msgSend(self, "trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:", objc.BOOL, .{theEvent, cellFrame, controlView, charIndex, flag, });
-    }
-
-    pub fn cellFrameForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), textContainer: ?*TextContainer, lineFrag: ns.Rect, position: ns.Point, charIndex: objc.NSUInteger, ) ns.Rect {
-        return objc.msgSend(self, "cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:", ns.Rect, .{textContainer, lineFrag, position, charIndex, });
-    }
-
-    pub fn attachment(self: *@This()) ?*TextAttachment {
-        return objc.msgSend(self, "attachment", ?*TextAttachment, .{});
-    }
-
-    pub fn setAttachment(self: *@This(), attachment: ?*TextAttachment) void {
-        return objc.msgSend(self, "setAttachment:", void, .{attachment});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextViewDelegate?language=objc
-pub const TextViewDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn textViewClickedOnLinkAtIndex(self: *@This(), textView: ?*TextView, link: *objc.Id, charIndex: objc.NSUInteger) objc.BOOL {
-        return objc.msgSend(self, "textView:clickedOnLink:atIndex:", objc.BOOL, .{textView, link, charIndex});
-    }
-
-    pub fn textViewClickedOnCellInRectAtIndex(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect, charIndex: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "textView:clickedOnCell:inRect:atIndex:", void, .{textView, cell, cellFrame, charIndex, });
-    }
-
-    pub fn textViewDoubleClickedOnCellInRectAtIndex(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect, charIndex: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "textView:doubleClickedOnCell:inRect:atIndex:", void, .{textView, cell, cellFrame, charIndex, });
-    }
-
-    pub fn textViewDraggedCellInRectEventAtIndex(self: *@This(), view: ?*TextView, cell: ?*anyopaque, rect: ns.Rect, event: ?*Event, charIndex: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "textView:draggedCell:inRect:event:atIndex:", void, .{view, cell, rect, event, charIndex, });
-    }
-
-    pub fn textViewWritablePasteboardTypesForCellAtIndex(self: *@This(), view: ?*TextView, cell: ?*anyopaque, charIndex: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "textView:writablePasteboardTypesForCell:atIndex:", ?*anyopaque, .{view, cell, charIndex});
-    }
-
-    pub fn textViewWriteCellAtIndexToPasteboardType(self: *@This(), view: ?*TextView, cell: ?*anyopaque, charIndex: objc.NSUInteger, pboard: ?*Pasteboard, @"type": PasteboardType, ) objc.BOOL {
-        return objc.msgSend(self, "textView:writeCell:atIndex:toPasteboard:type:", objc.BOOL, .{view, cell, charIndex, pboard, @"type", });
-    }
-
-    pub fn textViewWillChangeSelectionFromCharacterRangeToCharacterRange(self: *@This(), textView: ?*TextView, oldSelectedCharRange: ns.Range, newSelectedCharRange: ns.Range) ns.Range {
-        return objc.msgSend(self, "textView:willChangeSelectionFromCharacterRange:toCharacterRange:", ns.Range, .{textView, oldSelectedCharRange, newSelectedCharRange});
-    }
-
-    pub fn textViewWillChangeSelectionFromCharacterRangesToCharacterRanges(self: *@This(), textView: ?*TextView, oldSelectedCharRanges: ?*anyopaque, newSelectedCharRanges: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "textView:willChangeSelectionFromCharacterRanges:toCharacterRanges:", ?*anyopaque, .{textView, oldSelectedCharRanges, newSelectedCharRanges});
-    }
-
-    pub fn textViewShouldChangeTextInRangesReplacementStrings(self: *@This(), textView: ?*TextView, affectedRanges: ?*anyopaque, replacementStrings: ?*anyopaque) objc.BOOL {
-        return objc.msgSend(self, "textView:shouldChangeTextInRanges:replacementStrings:", objc.BOOL, .{textView, affectedRanges, replacementStrings});
-    }
-
-    pub fn textViewShouldChangeTypingAttributesToAttributes(self: *@This(), textView: ?*TextView, oldTypingAttributes: ?*anyopaque, newTypingAttributes: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "textView:shouldChangeTypingAttributes:toAttributes:", ?*anyopaque, .{textView, oldTypingAttributes, newTypingAttributes});
-    }
-
-    pub fn textViewDidChangeSelection(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "textViewDidChangeSelection:", void, .{notification});
-    }
-
-    pub fn textViewDidChangeTypingAttributes(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "textViewDidChangeTypingAttributes:", void, .{notification});
-    }
-
-    pub fn textViewWillDisplayToolTipForCharacterAtIndex(self: *@This(), textView: ?*TextView, tooltip: ?*String, characterIndex: objc.NSUInteger) ?*String {
-        return objc.msgSend(self, "textView:willDisplayToolTip:forCharacterAtIndex:", ?*String, .{textView, tooltip, characterIndex});
-    }
-
-    pub fn textViewCompletionsForPartialWordRangeIndexOfSelectedItem(self: *@This(), textView: ?*TextView, words: ?*anyopaque, charRange: ns.Range, index: ?*objc.NSInteger, ) ?*anyopaque {
-        return objc.msgSend(self, "textView:completions:forPartialWordRange:indexOfSelectedItem:", ?*anyopaque, .{textView, words, charRange, index, });
-    }
-
-    pub fn textViewShouldChangeTextInRangeReplacementString(self: *@This(), textView: ?*TextView, affectedCharRange: ns.Range, replacementString: ?*String) objc.BOOL {
-        return objc.msgSend(self, "textView:shouldChangeTextInRange:replacementString:", objc.BOOL, .{textView, affectedCharRange, replacementString});
-    }
-
-    pub fn textViewDoCommandBySelector(self: *@This(), textView: ?*TextView, commandSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(self, "textView:doCommandBySelector:", objc.BOOL, .{textView, commandSelector});
-    }
-
-    pub fn textViewShouldSetSpellingStateRange(self: *@This(), textView: ?*TextView, value: objc.NSInteger, affectedCharRange: ns.Range) objc.NSInteger {
-        return objc.msgSend(self, "textView:shouldSetSpellingState:range:", objc.NSInteger, .{textView, value, affectedCharRange});
-    }
-
-    pub fn textViewMenuForEventAtIndex(self: *@This(), view: ?*TextView, menu: ?*Menu, event: ?*Event, charIndex: objc.NSUInteger, ) ?*Menu {
-        return objc.msgSend(self, "textView:menu:forEvent:atIndex:", ?*Menu, .{view, menu, event, charIndex, });
-    }
-
-    pub fn textViewWillCheckTextInRangeOptionsTypes(self: *@This(), view: ?*TextView, range: ns.Range, options: ?*anyopaque, checkingTypes: ?*ns.TextCheckingTypes, ) ?*anyopaque {
-        return objc.msgSend(self, "textView:willCheckTextInRange:options:types:", ?*anyopaque, .{view, range, options, checkingTypes, });
-    }
-
-    pub fn textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount(self: *@This(), view: ?*TextView, range: ns.Range, checkingTypes: ns.TextCheckingTypes, options: ?*anyopaque, results: ?*anyopaque, orthography: ?*Orthography, wordCount: objc.NSInteger, ) ?*anyopaque {
-        return objc.msgSend(self, "textView:didCheckTextInRange:types:options:results:orthography:wordCount:", ?*anyopaque, .{view, range, checkingTypes, options, results, orthography, wordCount, });
-    }
-
-    pub fn textViewURLForContentsOfTextAttachmentAtIndex(self: *@This(), textView: ?*TextView, textAttachment: ?*TextAttachment, charIndex: objc.NSUInteger) ?*URL {
-        return objc.msgSend(self, "textView:URLForContentsOfTextAttachment:atIndex:", ?*URL, .{textView, textAttachment, charIndex});
-    }
-
-    pub fn textViewWillShowSharingServicePickerForItems(self: *@This(), textView: ?*TextView, servicePicker: ?*SharingServicePicker, items: ?*Array) ?*SharingServicePicker {
-        return objc.msgSend(self, "textView:willShowSharingServicePicker:forItems:", ?*SharingServicePicker, .{textView, servicePicker, items});
-    }
-
-    pub fn undoManagerForTextView(self: *@This(), view: ?*TextView) ?*UndoManager {
-        return objc.msgSend(self, "undoManagerForTextView:", ?*UndoManager, .{view});
-    }
-
-    pub fn textViewShouldUpdateTouchBarItemIdentifiers(self: *@This(), textView: ?*TextView, identifiers: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "textView:shouldUpdateTouchBarItemIdentifiers:", ?*anyopaque, .{textView, identifiers});
-    }
-
-    pub fn textViewCandidatesForSelectedRange(self: *@This(), textView: ?*TextView, selectedRange: ns.Range) ?*Array {
-        return objc.msgSend(self, "textView:candidatesForSelectedRange:", ?*Array, .{textView, selectedRange});
-    }
-
-    pub fn textViewCandidatesForSelectedRange(self: *@This(), textView: ?*TextView, candidates: ?*anyopaque, selectedRange: ns.Range) ?*anyopaque {
-        return objc.msgSend(self, "textView:candidates:forSelectedRange:", ?*anyopaque, .{textView, candidates, selectedRange});
-    }
-
-    pub fn textViewShouldSelectCandidateAtIndex(self: *@This(), textView: ?*TextView, index: objc.NSUInteger) objc.BOOL {
-        return objc.msgSend(self, "textView:shouldSelectCandidateAtIndex:", objc.BOOL, .{textView, index});
-    }
-
-    pub fn textViewWritingToolsWillBegin(self: *@This(), textView: ?*TextView) void {
-        return objc.msgSend(self, "textViewWritingToolsWillBegin:", void, .{textView});
-    }
-
-    pub fn textViewWritingToolsDidEnd(self: *@This(), textView: ?*TextView) void {
-        return objc.msgSend(self, "textViewWritingToolsDidEnd:", void, .{textView});
-    }
-
-    pub fn textViewWritingToolsIgnoredRangesInEnclosingRange(self: *@This(), textView: ?*TextView, enclosingRange: ns.Range) ?*anyopaque {
-        return objc.msgSend(self, "textView:writingToolsIgnoredRangesInEnclosingRange:", ?*anyopaque, .{textView, enclosingRange});
-    }
-
-    pub fn textViewClickedOnLink(self: *@This(), textView: ?*TextView, link: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "textView:clickedOnLink:", objc.BOOL, .{textView, link});
-    }
-
-    pub fn textViewClickedOnCellInRect(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect) void {
-        return objc.msgSend(self, "textView:clickedOnCell:inRect:", void, .{textView, cell, cellFrame});
-    }
-
-    pub fn textViewDoubleClickedOnCellInRect(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect) void {
-        return objc.msgSend(self, "textView:doubleClickedOnCell:inRect:", void, .{textView, cell, cellFrame});
-    }
-
-    pub fn textViewDraggedCellInRectEvent(self: *@This(), view: ?*TextView, cell: ?*anyopaque, rect: ns.Rect, event: ?*Event, ) void {
-        return objc.msgSend(self, "textView:draggedCell:inRect:event:", void, .{view, cell, rect, event, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTableViewDelegate?language=objc
-pub const TableViewDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ControlTextEditingDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn tableViewViewForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) ?*View {
-        return objc.msgSend(self, "tableView:viewForTableColumn:row:", ?*View, .{tableView, tableColumn, row});
-    }
-
-    pub fn tableViewRowViewForRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) ?*TableRowView {
-        return objc.msgSend(self, "tableView:rowViewForRow:", ?*TableRowView, .{tableView, row});
-    }
-
-    pub fn tableViewDidAddRowViewForRow(self: *@This(), tableView: ?*TableView, rowView: ?*TableRowView, row: objc.NSInteger) void {
-        return objc.msgSend(self, "tableView:didAddRowView:forRow:", void, .{tableView, rowView, row});
-    }
-
-    pub fn tableViewDidRemoveRowViewForRow(self: *@This(), tableView: ?*TableView, rowView: ?*TableRowView, row: objc.NSInteger) void {
-        return objc.msgSend(self, "tableView:didRemoveRowView:forRow:", void, .{tableView, rowView, row});
-    }
-
-    pub fn tableViewWillDisplayCellForTableColumnRow(self: *@This(), tableView: ?*TableView, cell: *objc.Id, tableColumn: ?*TableColumn, row: objc.NSInteger, ) void {
-        return objc.msgSend(self, "tableView:willDisplayCell:forTableColumn:row:", void, .{tableView, cell, tableColumn, row, });
-    }
-
-    pub fn tableViewShouldEditTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "tableView:shouldEditTableColumn:row:", objc.BOOL, .{tableView, tableColumn, row});
-    }
-
-    pub fn tableViewToolTipForCellRectTableColumnRowMouseLocation(self: *@This(), tableView: ?*TableView, cell: ?*Cell, rect: ns.RectPointer, tableColumn: ?*TableColumn, row: objc.NSInteger, mouseLocation: ns.Point, ) ?*String {
-        return objc.msgSend(self, "tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:", ?*String, .{tableView, cell, rect, tableColumn, row, mouseLocation, });
-    }
-
-    pub fn tableViewShouldShowCellExpansionForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "tableView:shouldShowCellExpansionForTableColumn:row:", objc.BOOL, .{tableView, tableColumn, row});
-    }
-
-    pub fn tableViewShouldTrackCellForTableColumnRow(self: *@This(), tableView: ?*TableView, cell: ?*Cell, tableColumn: ?*TableColumn, row: objc.NSInteger, ) objc.BOOL {
-        return objc.msgSend(self, "tableView:shouldTrackCell:forTableColumn:row:", objc.BOOL, .{tableView, cell, tableColumn, row, });
-    }
-
-    pub fn tableViewDataCellForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) ?*Cell {
-        return objc.msgSend(self, "tableView:dataCellForTableColumn:row:", ?*Cell, .{tableView, tableColumn, row});
-    }
-
-    pub fn selectionShouldChangeInTableView(self: *@This(), tableView: ?*TableView) objc.BOOL {
-        return objc.msgSend(self, "selectionShouldChangeInTableView:", objc.BOOL, .{tableView});
-    }
-
-    pub fn tableViewShouldSelectRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "tableView:shouldSelectRow:", objc.BOOL, .{tableView, row});
-    }
-
-    pub fn tableViewSelectionIndexesForProposedSelection(self: *@This(), tableView: ?*TableView, proposedSelectionIndexes: ?*IndexSet) ?*IndexSet {
-        return objc.msgSend(self, "tableView:selectionIndexesForProposedSelection:", ?*IndexSet, .{tableView, proposedSelectionIndexes});
-    }
-
-    pub fn tableViewShouldSelectTableColumn(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn) objc.BOOL {
-        return objc.msgSend(self, "tableView:shouldSelectTableColumn:", objc.BOOL, .{tableView, tableColumn});
-    }
-
-    pub fn tableViewMouseDownInHeaderOfTableColumn(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn) void {
-        return objc.msgSend(self, "tableView:mouseDownInHeaderOfTableColumn:", void, .{tableView, tableColumn});
-    }
-
-    pub fn tableViewDidClickTableColumn(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn) void {
-        return objc.msgSend(self, "tableView:didClickTableColumn:", void, .{tableView, tableColumn});
-    }
-
-    pub fn tableViewDidDragTableColumn(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn) void {
-        return objc.msgSend(self, "tableView:didDragTableColumn:", void, .{tableView, tableColumn});
-    }
-
-    pub fn tableViewHeightOfRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "tableView:heightOfRow:", cf.CGFloat, .{tableView, row});
-    }
-
-    pub fn tableViewTypeSelectStringForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) ?*String {
-        return objc.msgSend(self, "tableView:typeSelectStringForTableColumn:row:", ?*String, .{tableView, tableColumn, row});
-    }
-
-    pub fn tableViewNextTypeSelectMatchFromRowToRowForString(self: *@This(), tableView: ?*TableView, startRow: objc.NSInteger, endRow: objc.NSInteger, searchString: ?*String, ) objc.NSInteger {
-        return objc.msgSend(self, "tableView:nextTypeSelectMatchFromRow:toRow:forString:", objc.NSInteger, .{tableView, startRow, endRow, searchString, });
-    }
-
-    pub fn tableViewShouldTypeSelectForEventWithCurrentSearchString(self: *@This(), tableView: ?*TableView, event: ?*Event, searchString: ?*String) objc.BOOL {
-        return objc.msgSend(self, "tableView:shouldTypeSelectForEvent:withCurrentSearchString:", objc.BOOL, .{tableView, event, searchString});
-    }
-
-    pub fn tableViewIsGroupRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "tableView:isGroupRow:", objc.BOOL, .{tableView, row});
-    }
-
-    pub fn tableViewSizeToFitWidthOfColumn(self: *@This(), tableView: ?*TableView, column: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "tableView:sizeToFitWidthOfColumn:", cf.CGFloat, .{tableView, column});
-    }
-
-    pub fn tableViewShouldReorderColumnToColumn(self: *@This(), tableView: ?*TableView, columnIndex: objc.NSInteger, newColumnIndex: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "tableView:shouldReorderColumn:toColumn:", objc.BOOL, .{tableView, columnIndex, newColumnIndex});
-    }
-
-    pub fn tableViewRowActionsForRowEdge(self: *@This(), tableView: ?*TableView, row: objc.NSInteger, edge: TableRowActionEdge) ?*anyopaque {
-        return objc.msgSend(self, "tableView:rowActionsForRow:edge:", ?*anyopaque, .{tableView, row, edge});
-    }
-
-    pub fn tableViewUserCanChangeVisibilityOfTableColumn(self: *@This(), tableView: ?*TableView, column: ?*TableColumn) objc.BOOL {
-        return objc.msgSend(self, "tableView:userCanChangeVisibilityOfTableColumn:", objc.BOOL, .{tableView, column});
-    }
-
-    pub fn tableViewUserDidChangeVisibilityOfTableColumns(self: *@This(), tableView: ?*TableView, columns: ?*anyopaque) void {
-        return objc.msgSend(self, "tableView:userDidChangeVisibilityOfTableColumns:", void, .{tableView, columns});
-    }
-
-    pub fn tableViewSelectionDidChange(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "tableViewSelectionDidChange:", void, .{notification});
-    }
-
-    pub fn tableViewColumnDidMove(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "tableViewColumnDidMove:", void, .{notification});
-    }
-
-    pub fn tableViewColumnDidResize(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "tableViewColumnDidResize:", void, .{notification});
-    }
-
-    pub fn tableViewSelectionIsChanging(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "tableViewSelectionIsChanging:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTableViewDataSource?language=objc
-pub const TableViewDataSource = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn numberOfRowsInTableView(self: *@This(), tableView: ?*TableView) objc.NSInteger {
-        return objc.msgSend(self, "numberOfRowsInTableView:", objc.NSInteger, .{tableView});
-    }
-
-    pub fn tableViewObjectValueForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) *objc.Id {
-        return objc.msgSend(self, "tableView:objectValueForTableColumn:row:", *objc.Id, .{tableView, tableColumn, row});
-    }
-
-    pub fn tableViewSetObjectValueForTableColumnRow(self: *@This(), tableView: ?*TableView, object: *objc.Id, tableColumn: ?*TableColumn, row: objc.NSInteger, ) void {
-        return objc.msgSend(self, "tableView:setObjectValue:forTableColumn:row:", void, .{tableView, object, tableColumn, row, });
-    }
-
-    pub fn tableViewSortDescriptorsDidChange(self: *@This(), tableView: ?*TableView, oldDescriptors: ?*anyopaque) void {
-        return objc.msgSend(self, "tableView:sortDescriptorsDidChange:", void, .{tableView, oldDescriptors});
-    }
-
-    pub fn tableViewPasteboardWriterForRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) ?*anyopaque {
-        return objc.msgSend(self, "tableView:pasteboardWriterForRow:", ?*anyopaque, .{tableView, row});
-    }
-
-    pub fn tableViewDraggingSessionWillBeginAtPointForRowIndexes(self: *@This(), tableView: ?*TableView, session: ?*DraggingSession, screenPoint: ns.Point, rowIndexes: ?*IndexSet, ) void {
-        return objc.msgSend(self, "tableView:draggingSession:willBeginAtPoint:forRowIndexes:", void, .{tableView, session, screenPoint, rowIndexes, });
-    }
-
-    pub fn tableViewDraggingSessionEndedAtPointOperation(self: *@This(), tableView: ?*TableView, session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation, ) void {
-        return objc.msgSend(self, "tableView:draggingSession:endedAtPoint:operation:", void, .{tableView, session, screenPoint, operation, });
-    }
-
-    pub fn tableViewUpdateDraggingItemsForDrag(self: *@This(), tableView: ?*TableView, draggingInfo: ?*anyopaque) void {
-        return objc.msgSend(self, "tableView:updateDraggingItemsForDrag:", void, .{tableView, draggingInfo});
-    }
-
-    pub fn tableViewWriteRowsWithIndexesToPasteboard(self: *@This(), tableView: ?*TableView, rowIndexes: ?*IndexSet, pboard: ?*Pasteboard) objc.BOOL {
-        return objc.msgSend(self, "tableView:writeRowsWithIndexes:toPasteboard:", objc.BOOL, .{tableView, rowIndexes, pboard});
-    }
-
-    pub fn tableViewValidateDropProposedRowProposedDropOperation(self: *@This(), tableView: ?*TableView, info: ?*anyopaque, row: objc.NSInteger, dropOperation: TableViewDropOperation, ) DragOperation {
-        return objc.msgSend(self, "tableView:validateDrop:proposedRow:proposedDropOperation:", DragOperation, .{tableView, info, row, dropOperation, });
-    }
-
-    pub fn tableViewAcceptDropRowDropOperation(self: *@This(), tableView: ?*TableView, info: ?*anyopaque, row: objc.NSInteger, dropOperation: TableViewDropOperation, ) objc.BOOL {
-        return objc.msgSend(self, "tableView:acceptDrop:row:dropOperation:", objc.BOOL, .{tableView, info, row, dropOperation, });
-    }
-
-    pub fn tableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(self: *@This(), tableView: ?*TableView, dropDestination: ?*URL, indexSet: ?*IndexSet) ?*anyopaque {
-        return objc.msgSend(self, "tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:", ?*anyopaque, .{tableView, dropDestination, indexSet});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSOutlineViewDataSource?language=objc
-pub const OutlineViewDataSource = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn outlineViewNumberOfChildrenOfItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.NSInteger {
-        return objc.msgSend(self, "outlineView:numberOfChildrenOfItem:", objc.NSInteger, .{outlineView, item});
-    }
-
-    pub fn outlineViewChildOfItem(self: *@This(), outlineView: ?*OutlineView, index: objc.NSInteger, item: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "outlineView:child:ofItem:", *objc.Id, .{outlineView, index, item});
-    }
-
-    pub fn outlineViewIsItemExpandable(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "outlineView:isItemExpandable:", objc.BOOL, .{outlineView, item});
-    }
-
-    pub fn outlineViewObjectValueForTableColumnByItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "outlineView:objectValueForTableColumn:byItem:", *objc.Id, .{outlineView, tableColumn, item});
-    }
-
-    pub fn outlineViewSetObjectValueForTableColumnByItem(self: *@This(), outlineView: ?*OutlineView, object: *objc.Id, tableColumn: ?*TableColumn, item: *objc.Id, ) void {
-        return objc.msgSend(self, "outlineView:setObjectValue:forTableColumn:byItem:", void, .{outlineView, object, tableColumn, item, });
-    }
-
-    pub fn outlineViewItemForPersistentObject(self: *@This(), outlineView: ?*OutlineView, object: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "outlineView:itemForPersistentObject:", *objc.Id, .{outlineView, object});
-    }
-
-    pub fn outlineViewPersistentObjectForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "outlineView:persistentObjectForItem:", *objc.Id, .{outlineView, item});
-    }
-
-    pub fn outlineViewSortDescriptorsDidChange(self: *@This(), outlineView: ?*OutlineView, oldDescriptors: ?*anyopaque) void {
-        return objc.msgSend(self, "outlineView:sortDescriptorsDidChange:", void, .{outlineView, oldDescriptors});
-    }
-
-    pub fn outlineViewPasteboardWriterForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) ?*anyopaque {
-        return objc.msgSend(self, "outlineView:pasteboardWriterForItem:", ?*anyopaque, .{outlineView, item});
-    }
-
-    pub fn outlineViewDraggingSessionWillBeginAtPointForItems(self: *@This(), outlineView: ?*OutlineView, session: ?*DraggingSession, screenPoint: ns.Point, draggedItems: ?*Array, ) void {
-        return objc.msgSend(self, "outlineView:draggingSession:willBeginAtPoint:forItems:", void, .{outlineView, session, screenPoint, draggedItems, });
-    }
-
-    pub fn outlineViewDraggingSessionEndedAtPointOperation(self: *@This(), outlineView: ?*OutlineView, session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation, ) void {
-        return objc.msgSend(self, "outlineView:draggingSession:endedAtPoint:operation:", void, .{outlineView, session, screenPoint, operation, });
-    }
-
-    pub fn outlineViewWriteItemsToPasteboard(self: *@This(), outlineView: ?*OutlineView, items: ?*Array, pasteboard: ?*Pasteboard) objc.BOOL {
-        return objc.msgSend(self, "outlineView:writeItems:toPasteboard:", objc.BOOL, .{outlineView, items, pasteboard});
-    }
-
-    pub fn outlineViewUpdateDraggingItemsForDrag(self: *@This(), outlineView: ?*OutlineView, draggingInfo: ?*anyopaque) void {
-        return objc.msgSend(self, "outlineView:updateDraggingItemsForDrag:", void, .{outlineView, draggingInfo});
-    }
-
-    pub fn outlineViewValidateDropProposedItemProposedChildIndex(self: *@This(), outlineView: ?*OutlineView, info: ?*anyopaque, item: *objc.Id, index: objc.NSInteger, ) DragOperation {
-        return objc.msgSend(self, "outlineView:validateDrop:proposedItem:proposedChildIndex:", DragOperation, .{outlineView, info, item, index, });
-    }
-
-    pub fn outlineViewAcceptDropItemChildIndex(self: *@This(), outlineView: ?*OutlineView, info: ?*anyopaque, item: *objc.Id, index: objc.NSInteger, ) objc.BOOL {
-        return objc.msgSend(self, "outlineView:acceptDrop:item:childIndex:", objc.BOOL, .{outlineView, info, item, index, });
-    }
-
-    pub fn outlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(self: *@This(), outlineView: ?*OutlineView, dropDestination: ?*URL, items: ?*Array) ?*anyopaque {
-        return objc.msgSend(self, "outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:", ?*anyopaque, .{outlineView, dropDestination, items});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSOutlineViewDelegate?language=objc
-pub const OutlineViewDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ControlTextEditingDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn outlineViewViewForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) ?*View {
-        return objc.msgSend(self, "outlineView:viewForTableColumn:item:", ?*View, .{outlineView, tableColumn, item});
-    }
-
-    pub fn outlineViewRowViewForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) ?*TableRowView {
-        return objc.msgSend(self, "outlineView:rowViewForItem:", ?*TableRowView, .{outlineView, item});
-    }
-
-    pub fn outlineViewDidAddRowViewForRow(self: *@This(), outlineView: ?*OutlineView, rowView: ?*TableRowView, row: objc.NSInteger) void {
-        return objc.msgSend(self, "outlineView:didAddRowView:forRow:", void, .{outlineView, rowView, row});
-    }
-
-    pub fn outlineViewDidRemoveRowViewForRow(self: *@This(), outlineView: ?*OutlineView, rowView: ?*TableRowView, row: objc.NSInteger) void {
-        return objc.msgSend(self, "outlineView:didRemoveRowView:forRow:", void, .{outlineView, rowView, row});
-    }
-
-    pub fn outlineViewWillDisplayCellForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, cell: *objc.Id, tableColumn: ?*TableColumn, item: *objc.Id, ) void {
-        return objc.msgSend(self, "outlineView:willDisplayCell:forTableColumn:item:", void, .{outlineView, cell, tableColumn, item, });
-    }
-
-    pub fn outlineViewShouldEditTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldEditTableColumn:item:", objc.BOOL, .{outlineView, tableColumn, item});
-    }
-
-    pub fn selectionShouldChangeInOutlineView(self: *@This(), outlineView: ?*OutlineView) objc.BOOL {
-        return objc.msgSend(self, "selectionShouldChangeInOutlineView:", objc.BOOL, .{outlineView});
-    }
-
-    pub fn outlineViewShouldSelectItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldSelectItem:", objc.BOOL, .{outlineView, item});
-    }
-
-    pub fn outlineViewSelectionIndexesForProposedSelection(self: *@This(), outlineView: ?*OutlineView, proposedSelectionIndexes: ?*IndexSet) ?*IndexSet {
-        return objc.msgSend(self, "outlineView:selectionIndexesForProposedSelection:", ?*IndexSet, .{outlineView, proposedSelectionIndexes});
-    }
-
-    pub fn outlineViewShouldSelectTableColumn(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldSelectTableColumn:", objc.BOOL, .{outlineView, tableColumn});
-    }
-
-    pub fn outlineViewMouseDownInHeaderOfTableColumn(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn) void {
-        return objc.msgSend(self, "outlineView:mouseDownInHeaderOfTableColumn:", void, .{outlineView, tableColumn});
-    }
-
-    pub fn outlineViewDidClickTableColumn(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn) void {
-        return objc.msgSend(self, "outlineView:didClickTableColumn:", void, .{outlineView, tableColumn});
-    }
-
-    pub fn outlineViewDidDragTableColumn(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn) void {
-        return objc.msgSend(self, "outlineView:didDragTableColumn:", void, .{outlineView, tableColumn});
-    }
-
-    pub fn outlineViewToolTipForCellRectTableColumnItemMouseLocation(self: *@This(), outlineView: ?*OutlineView, cell: ?*Cell, rect: ns.RectPointer, tableColumn: ?*TableColumn, item: *objc.Id, mouseLocation: ns.Point, ) ?*String {
-        return objc.msgSend(self, "outlineView:toolTipForCell:rect:tableColumn:item:mouseLocation:", ?*String, .{outlineView, cell, rect, tableColumn, item, mouseLocation, });
-    }
-
-    pub fn outlineViewHeightOfRowByItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) cf.CGFloat {
-        return objc.msgSend(self, "outlineView:heightOfRowByItem:", cf.CGFloat, .{outlineView, item});
-    }
-
-    pub fn outlineViewTintConfigurationForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) ?*TintConfiguration {
-        return objc.msgSend(self, "outlineView:tintConfigurationForItem:", ?*TintConfiguration, .{outlineView, item});
-    }
-
-    pub fn outlineViewTypeSelectStringForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) ?*String {
-        return objc.msgSend(self, "outlineView:typeSelectStringForTableColumn:item:", ?*String, .{outlineView, tableColumn, item});
-    }
-
-    pub fn outlineViewNextTypeSelectMatchFromItemToItemForString(self: *@This(), outlineView: ?*OutlineView, startItem: *objc.Id, endItem: *objc.Id, searchString: ?*String, ) *objc.Id {
-        return objc.msgSend(self, "outlineView:nextTypeSelectMatchFromItem:toItem:forString:", *objc.Id, .{outlineView, startItem, endItem, searchString, });
-    }
-
-    pub fn outlineViewShouldTypeSelectForEventWithCurrentSearchString(self: *@This(), outlineView: ?*OutlineView, event: ?*Event, searchString: ?*String) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldTypeSelectForEvent:withCurrentSearchString:", objc.BOOL, .{outlineView, event, searchString});
-    }
-
-    pub fn outlineViewShouldShowCellExpansionForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldShowCellExpansionForTableColumn:item:", objc.BOOL, .{outlineView, tableColumn, item});
-    }
-
-    pub fn outlineViewShouldTrackCellForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, cell: ?*Cell, tableColumn: ?*TableColumn, item: *objc.Id, ) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldTrackCell:forTableColumn:item:", objc.BOOL, .{outlineView, cell, tableColumn, item, });
-    }
-
-    pub fn outlineViewDataCellForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) ?*Cell {
-        return objc.msgSend(self, "outlineView:dataCellForTableColumn:item:", ?*Cell, .{outlineView, tableColumn, item});
-    }
-
-    pub fn outlineViewIsGroupItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "outlineView:isGroupItem:", objc.BOOL, .{outlineView, item});
-    }
-
-    pub fn outlineViewShouldExpandItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldExpandItem:", objc.BOOL, .{outlineView, item});
-    }
-
-    pub fn outlineViewShouldCollapseItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldCollapseItem:", objc.BOOL, .{outlineView, item});
-    }
-
-    pub fn outlineViewWillDisplayOutlineCellForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, cell: *objc.Id, tableColumn: ?*TableColumn, item: *objc.Id, ) void {
-        return objc.msgSend(self, "outlineView:willDisplayOutlineCell:forTableColumn:item:", void, .{outlineView, cell, tableColumn, item, });
-    }
-
-    pub fn outlineViewSizeToFitWidthOfColumn(self: *@This(), outlineView: ?*OutlineView, column: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "outlineView:sizeToFitWidthOfColumn:", cf.CGFloat, .{outlineView, column});
-    }
-
-    pub fn outlineViewShouldReorderColumnToColumn(self: *@This(), outlineView: ?*OutlineView, columnIndex: objc.NSInteger, newColumnIndex: objc.NSInteger) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldReorderColumn:toColumn:", objc.BOOL, .{outlineView, columnIndex, newColumnIndex});
-    }
-
-    pub fn outlineViewShouldShowOutlineCellForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "outlineView:shouldShowOutlineCellForItem:", objc.BOOL, .{outlineView, item});
-    }
-
-    pub fn outlineViewUserCanChangeVisibilityOfTableColumn(self: *@This(), outlineView: ?*OutlineView, column: ?*TableColumn) objc.BOOL {
-        return objc.msgSend(self, "outlineView:userCanChangeVisibilityOfTableColumn:", objc.BOOL, .{outlineView, column});
-    }
-
-    pub fn outlineViewUserDidChangeVisibilityOfTableColumns(self: *@This(), outlineView: ?*OutlineView, columns: ?*anyopaque) void {
-        return objc.msgSend(self, "outlineView:userDidChangeVisibilityOfTableColumns:", void, .{outlineView, columns});
-    }
-
-    pub fn outlineViewSelectionDidChange(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "outlineViewSelectionDidChange:", void, .{notification});
-    }
-
-    pub fn outlineViewColumnDidMove(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "outlineViewColumnDidMove:", void, .{notification});
-    }
-
-    pub fn outlineViewColumnDidResize(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "outlineViewColumnDidResize:", void, .{notification});
-    }
-
-    pub fn outlineViewSelectionIsChanging(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "outlineViewSelectionIsChanging:", void, .{notification});
-    }
-
-    pub fn outlineViewItemWillExpand(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "outlineViewItemWillExpand:", void, .{notification});
-    }
-
-    pub fn outlineViewItemDidExpand(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "outlineViewItemDidExpand:", void, .{notification});
-    }
-
-    pub fn outlineViewItemWillCollapse(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "outlineViewItemWillCollapse:", void, .{notification});
-    }
-
-    pub fn outlineViewItemDidCollapse(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "outlineViewItemDidCollapse:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSInputServiceProvider?language=objc
-pub const InputServiceProvider = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn insertTextClient(self: *@This(), string: *objc.Id, sender: *objc.Id) void {
-        return objc.msgSend(self, "insertText:client:", void, .{string, sender});
-    }
-
-    pub fn doCommandBySelectorClient(self: *@This(), selector: *objc.SEL, sender: *objc.Id) void {
-        return objc.msgSend(self, "doCommandBySelector:client:", void, .{selector, sender});
-    }
-
-    pub fn markedTextAbandoned(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "markedTextAbandoned:", void, .{sender});
-    }
-
-    pub fn markedTextSelectionChangedClient(self: *@This(), newSel: ns.Range, sender: *objc.Id) void {
-        return objc.msgSend(self, "markedTextSelectionChanged:client:", void, .{newSel, sender});
-    }
-
-    pub fn terminate(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "terminate:", void, .{sender});
-    }
-
-    pub fn canBeDisabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "canBeDisabled", objc.BOOL, .{});
-    }
-
-    pub fn wantsToInterpretAllKeystrokes(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "wantsToInterpretAllKeystrokes", objc.BOOL, .{});
-    }
-
-    pub fn wantsToHandleMouseEvents(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "wantsToHandleMouseEvents", objc.BOOL, .{});
-    }
-
-    pub fn wantsToDelayTextChangeNotifications(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "wantsToDelayTextChangeNotifications", objc.BOOL, .{});
-    }
-
-    pub fn inputClientBecomeActive(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "inputClientBecomeActive:", void, .{sender});
-    }
-
-    pub fn inputClientResignActive(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "inputClientResignActive:", void, .{sender});
-    }
-
-    pub fn inputClientEnabled(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "inputClientEnabled:", void, .{sender});
-    }
-
-    pub fn inputClientDisabled(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "inputClientDisabled:", void, .{sender});
-    }
-
-    pub fn activeConversationWillChangeFromOldConversation(self: *@This(), sender: *objc.Id, oldConversation: objc.NSInteger) void {
-        return objc.msgSend(self, "activeConversationWillChange:fromOldConversation:", void, .{sender, oldConversation});
-    }
-
-    pub fn activeConversationChangedToNewConversation(self: *@This(), sender: *objc.Id, newConversation: objc.NSInteger) void {
-        return objc.msgSend(self, "activeConversationChanged:toNewConversation:", void, .{sender, newConversation});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSInputServerMouseTracker?language=objc
-pub const InputServerMouseTracker = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn mouseDownOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: ns.Point, flags: objc.NSUInteger, sender: *objc.Id, ) objc.BOOL {
-        return objc.msgSend(self, "mouseDownOnCharacterIndex:atCoordinate:withModifier:client:", objc.BOOL, .{index, point, flags, sender, });
-    }
-
-    pub fn mouseDraggedOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: ns.Point, flags: objc.NSUInteger, sender: *objc.Id, ) objc.BOOL {
-        return objc.msgSend(self, "mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:", objc.BOOL, .{index, point, flags, sender, });
-    }
-
-    pub fn mouseUpOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: ns.Point, flags: objc.NSUInteger, sender: *objc.Id, ) void {
-        return objc.msgSend(self, "mouseUpOnCharacterIndex:atCoordinate:withModifier:client:", void, .{index, point, flags, sender, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTabViewDelegate?language=objc
-pub const TabViewDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn tabViewShouldSelectTabViewItem(self: *@This(), tabView: ?*TabView, tabViewItem: ?*TabViewItem) objc.BOOL {
-        return objc.msgSend(self, "tabView:shouldSelectTabViewItem:", objc.BOOL, .{tabView, tabViewItem});
-    }
-
-    pub fn tabViewWillSelectTabViewItem(self: *@This(), tabView: ?*TabView, tabViewItem: ?*TabViewItem) void {
-        return objc.msgSend(self, "tabView:willSelectTabViewItem:", void, .{tabView, tabViewItem});
-    }
-
-    pub fn tabViewDidSelectTabViewItem(self: *@This(), tabView: ?*TabView, tabViewItem: ?*TabViewItem) void {
-        return objc.msgSend(self, "tabView:didSelectTabViewItem:", void, .{tabView, tabViewItem});
-    }
-
-    pub fn tabViewDidChangeNumberOfTabViewItems(self: *@This(), tabView: ?*TabView) void {
-        return objc.msgSend(self, "tabViewDidChangeNumberOfTabViewItems:", void, .{tabView});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSoundDelegate?language=objc
-pub const SoundDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn soundDidFinishPlaying(self: *@This(), sound: ?*Sound, flag: objc.BOOL) void {
-        return objc.msgSend(self, "sound:didFinishPlaying:", void, .{sound, flag});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSDrawerDelegate?language=objc
-pub const DrawerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn drawerShouldOpen(self: *@This(), sender: ?*Drawer) objc.BOOL {
-        return objc.msgSend(self, "drawerShouldOpen:", objc.BOOL, .{sender});
-    }
-
-    pub fn drawerShouldClose(self: *@This(), sender: ?*Drawer) objc.BOOL {
-        return objc.msgSend(self, "drawerShouldClose:", objc.BOOL, .{sender});
-    }
-
-    pub fn drawerWillResizeContentsToSize(self: *@This(), sender: ?*Drawer, contentSize: ns.Size) ns.Size {
-        return objc.msgSend(self, "drawerWillResizeContents:toSize:", ns.Size, .{sender, contentSize});
-    }
-
-    pub fn drawerWillOpen(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "drawerWillOpen:", void, .{notification});
-    }
-
-    pub fn drawerDidOpen(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "drawerDidOpen:", void, .{notification});
-    }
-
-    pub fn drawerWillClose(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "drawerWillClose:", void, .{notification});
-    }
-
-    pub fn drawerDidClose(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "drawerDidClose:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItemDelegate?language=objc
-pub const SharingServicePickerToolbarItemDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{SharingServicePickerDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn itemsForSharingServicePickerToolbarItem(self: *@This(), pickerToolbarItem: ?*SharingServicePickerToolbarItem) ?* {
-        return objc.msgSend(self, "itemsForSharingServicePickerToolbarItem:", ?*, .{pickerToolbarItem});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSSearchFieldDelegate?language=objc
-pub const SearchFieldDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextFieldDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn searchFieldDidStartSearching(self: *@This(), sender: ?*SearchField) void {
-        return objc.msgSend(self, "searchFieldDidStartSearching:", void, .{sender});
-    }
-
-    pub fn searchFieldDidEndSearching(self: *@This(), sender: ?*SearchField) void {
-        return objc.msgSend(self, "searchFieldDidEndSearching:", void, .{sender});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSDatePickerCellDelegate?language=objc
-pub const DatePickerCellDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn datePickerCellValidateProposedDateValueTimeInterval(self: *@This(), datePickerCell: ?*DatePickerCell, proposedDateValue: ?*?*Date, proposedTimeInterval: ?*ns.TimeInterval) void {
-        return objc.msgSend(self, "datePickerCell:validateProposedDateValue:timeInterval:", void, .{datePickerCell, proposedDateValue, proposedTimeInterval});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSRuleEditorDelegate?language=objc
-pub const RuleEditorDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn ruleEditorNumberOfChildrenForCriterionWithRowType(self: *@This(), editor: ?*RuleEditor, criterion: *objc.Id, rowType: RuleEditorRowType) objc.NSInteger {
-        return objc.msgSend(self, "ruleEditor:numberOfChildrenForCriterion:withRowType:", objc.NSInteger, .{editor, criterion, rowType});
-    }
-
-    pub fn ruleEditorChildForCriterionWithRowType(self: *@This(), editor: ?*RuleEditor, index: objc.NSInteger, criterion: *objc.Id, rowType: RuleEditorRowType, ) *objc.Id {
-        return objc.msgSend(self, "ruleEditor:child:forCriterion:withRowType:", *objc.Id, .{editor, index, criterion, rowType, });
-    }
-
-    pub fn ruleEditorDisplayValueForCriterionInRow(self: *@This(), editor: ?*RuleEditor, criterion: *objc.Id, row: objc.NSInteger) *objc.Id {
-        return objc.msgSend(self, "ruleEditor:displayValueForCriterion:inRow:", *objc.Id, .{editor, criterion, row});
-    }
-
-    pub fn ruleEditorPredicatePartsForCriterionWithDisplayValueInRow(self: *@This(), editor: ?*RuleEditor, criterion: *objc.Id, value: *objc.Id, row: objc.NSInteger, ) ?*anyopaque {
-        return objc.msgSend(self, "ruleEditor:predicatePartsForCriterion:withDisplayValue:inRow:", ?*anyopaque, .{editor, criterion, value, row, });
-    }
-
-    pub fn ruleEditorRowsDidChange(self: *@This(), notification: ?*Notification) void {
-        return objc.msgSend(self, "ruleEditorRowsDidChange:", void, .{notification});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSPathCellDelegate?language=objc
-pub const PathCellDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn pathCellWillDisplayOpenPanel(self: *@This(), pathCell: ?*PathCell, openPanel: ?*OpenPanel) void {
-        return objc.msgSend(self, "pathCell:willDisplayOpenPanel:", void, .{pathCell, openPanel});
-    }
-
-    pub fn pathCellWillPopUpMenu(self: *@This(), pathCell: ?*PathCell, menu: ?*Menu) void {
-        return objc.msgSend(self, "pathCell:willPopUpMenu:", void, .{pathCell, menu});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSPathControlDelegate?language=objc
-pub const PathControlDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn pathControlShouldDragItemWithPasteboard(self: *@This(), pathControl: ?*PathControl, pathItem: ?*PathControlItem, pasteboard: ?*Pasteboard) objc.BOOL {
-        return objc.msgSend(self, "pathControl:shouldDragItem:withPasteboard:", objc.BOOL, .{pathControl, pathItem, pasteboard});
-    }
-
-    pub fn pathControlShouldDragPathComponentCellWithPasteboard(self: *@This(), pathControl: ?*PathControl, pathComponentCell: ?*PathComponentCell, pasteboard: ?*Pasteboard) objc.BOOL {
-        return objc.msgSend(self, "pathControl:shouldDragPathComponentCell:withPasteboard:", objc.BOOL, .{pathControl, pathComponentCell, pasteboard});
-    }
-
-    pub fn pathControlValidateDrop(self: *@This(), pathControl: ?*PathControl, info: ?*anyopaque) DragOperation {
-        return objc.msgSend(self, "pathControl:validateDrop:", DragOperation, .{pathControl, info});
-    }
-
-    pub fn pathControlAcceptDrop(self: *@This(), pathControl: ?*PathControl, info: ?*anyopaque) objc.BOOL {
-        return objc.msgSend(self, "pathControl:acceptDrop:", objc.BOOL, .{pathControl, info});
-    }
-
-    pub fn pathControlWillDisplayOpenPanel(self: *@This(), pathControl: ?*PathControl, openPanel: ?*OpenPanel) void {
-        return objc.msgSend(self, "pathControl:willDisplayOpenPanel:", void, .{pathControl, openPanel});
-    }
-
-    pub fn pathControlWillPopUpMenu(self: *@This(), pathControl: ?*PathControl, menu: ?*Menu) void {
-        return objc.msgSend(self, "pathControl:willPopUpMenu:", void, .{pathControl, menu});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSPageControllerDelegate?language=objc
-pub const PageControllerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn pageControllerIdentifierForObject(self: *@This(), pageController: ?*PageController, object: *objc.Id) PageControllerObjectIdentifier {
-        return objc.msgSend(self, "pageController:identifierForObject:", PageControllerObjectIdentifier, .{pageController, object});
-    }
-
-    pub fn pageControllerViewControllerForIdentifier(self: *@This(), pageController: ?*PageController, identifier: PageControllerObjectIdentifier) ?*ViewController {
-        return objc.msgSend(self, "pageController:viewControllerForIdentifier:", ?*ViewController, .{pageController, identifier});
-    }
-
-    pub fn pageControllerFrameForObject(self: *@This(), pageController: ?*PageController, object: *objc.Id) ns.Rect {
-        return objc.msgSend(self, "pageController:frameForObject:", ns.Rect, .{pageController, object});
-    }
-
-    pub fn pageControllerPrepareViewControllerWithObject(self: *@This(), pageController: ?*PageController, viewController: ?*ViewController, object: *objc.Id) void {
-        return objc.msgSend(self, "pageController:prepareViewController:withObject:", void, .{pageController, viewController, object});
-    }
-
-    pub fn pageControllerDidTransitionToObject(self: *@This(), pageController: ?*PageController, object: *objc.Id) void {
-        return objc.msgSend(self, "pageController:didTransitionToObject:", void, .{pageController, object});
-    }
-
-    pub fn pageControllerWillStartLiveTransition(self: *@This(), pageController: ?*PageController) void {
-        return objc.msgSend(self, "pageControllerWillStartLiveTransition:", void, .{pageController});
-    }
-
-    pub fn pageControllerDidEndLiveTransition(self: *@This(), pageController: ?*PageController) void {
-        return objc.msgSend(self, "pageControllerDidEndLiveTransition:", void, .{pageController});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSUserInterfaceItemSearching?language=objc
-pub const UserInterfaceItemSearching = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn searchForItemsWithSearchStringResultLimitMatchedItemHandler(self: *@This(), searchString: ?*String, resultLimit: objc.NSInteger, handleMatchedItems: *const fn(?*Array) callconv(.C) void) void {
-        return objc.msgSend(self, "searchForItemsWithSearchString:resultLimit:matchedItemHandler:", void, .{searchString, resultLimit, handleMatchedItems});
-    }
-
-    pub fn localizedTitlesForItem(self: *@This(), item: *objc.Id) ?*anyopaque {
-        return objc.msgSend(self, "localizedTitlesForItem:", ?*anyopaque, .{item});
-    }
-
-    pub fn performActionForItem(self: *@This(), item: *objc.Id) void {
-        return objc.msgSend(self, "performActionForItem:", void, .{item});
-    }
-
-    pub fn showAllHelpTopicsForSearchString(self: *@This(), searchString: ?*String) void {
-        return objc.msgSend(self, "showAllHelpTopicsForSearchString:", void, .{searchString});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSWindowRestoration?language=objc
-pub const WindowRestoration = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn restoreWindowWithIdentifierStateCompletionHandler(self: *@This(), identifier: UserInterfaceItemIdentifier, state: ?*ns.Coder, completionHandler: *const fn(?*Window, ?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "restoreWindowWithIdentifier:state:completionHandler:", void, .{identifier, state, completionHandler});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSHapticFeedbackPerformer?language=objc
-pub const HapticFeedbackPerformer = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn performFeedbackPatternPerformanceTime(self: *@This(), pattern: HapticFeedbackPattern, performanceTime: HapticFeedbackPerformanceTime) void {
-        return objc.msgSend(self, "performFeedbackPattern:performanceTime:", void, .{pattern, performanceTime});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackToken?language=objc
-pub const AlignmentFeedbackToken = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextLocation?language=objc
-pub const TextLocation = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn compare(self: *@This(), location: ?*anyopaque) ns.ComparisonResult {
-        return objc.msgSend(self, "compare:", ns.ComparisonResult, .{location});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextSelectionDataSource?language=objc
-pub const TextSelectionDataSource = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn enumerateSubstringsFromLocationOptionsUsingBlock(self: *@This(), location: ?*anyopaque, options: ns.StringEnumerationOptions, block: *const fn(?*String, ?*TextRange, ?*TextRange, ?*objc.BOOL, ) callconv(.C) void) void {
-        return objc.msgSend(self, "enumerateSubstringsFromLocation:options:usingBlock:", void, .{location, options, block});
-    }
-
-    pub fn textRangeForSelectionGranularityEnclosingLocation(self: *@This(), selectionGranularity: TextSelectionGranularity, location: ?*anyopaque) ?*TextRange {
-        return objc.msgSend(self, "textRangeForSelectionGranularity:enclosingLocation:", ?*TextRange, .{selectionGranularity, location});
-    }
-
-    pub fn locationFromLocationWithOffset(self: *@This(), location: ?*anyopaque, offset: objc.NSInteger) ?*anyopaque {
-        return objc.msgSend(self, "locationFromLocation:withOffset:", ?*anyopaque, .{location, offset});
-    }
-
-    pub fn offsetFromLocationToLocation(self: *@This(), from: ?*anyopaque, to: ?*anyopaque) objc.NSInteger {
-        return objc.msgSend(self, "offsetFromLocation:toLocation:", objc.NSInteger, .{from, to});
-    }
-
-    pub fn baseWritingDirectionAtLocation(self: *@This(), location: ?*anyopaque) TextSelectionNavigationWritingDirection {
-        return objc.msgSend(self, "baseWritingDirectionAtLocation:", TextSelectionNavigationWritingDirection, .{location});
-    }
-
-    pub fn enumerateCaretOffsetsInLineFragmentAtLocationUsingBlock(self: *@This(), location: ?*anyopaque, block: *const fn(cf.CGFloat, ?*anyopaque, objc.BOOL, ?*objc.BOOL, ) callconv(.C) void) void {
-        return objc.msgSend(self, "enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:", void, .{location, block});
-    }
-
-    pub fn lineFragmentRangeForPointInContainerAtLocation(self: *@This(), point: cf.CGPoint, location: ?*anyopaque) ?*TextRange {
-        return objc.msgSend(self, "lineFragmentRangeForPoint:inContainerAtLocation:", ?*TextRange, .{point, location});
-    }
-
-    pub fn enumerateContainerBoundariesFromLocationReverseUsingBlock(self: *@This(), location: ?*anyopaque, reverse: objc.BOOL, block: *const fn(?*anyopaque, ?*objc.BOOL) callconv(.C) void) void {
-        return objc.msgSend(self, "enumerateContainerBoundariesFromLocation:reverse:usingBlock:", void, .{location, reverse, block});
-    }
-
-    pub fn textLayoutOrientationAtLocation(self: *@This(), location: ?*anyopaque) TextSelectionNavigationLayoutOrientation {
-        return objc.msgSend(self, "textLayoutOrientationAtLocation:", TextSelectionNavigationLayoutOrientation, .{location});
-    }
-
-    pub fn documentRange(self: *@This()) ?*TextRange {
-        return objc.msgSend(self, "documentRange", ?*TextRange, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextElementProvider?language=objc
-pub const TextElementProvider = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn enumerateTextElementsFromLocationOptionsUsingBlock(self: *@This(), textLocation: ?*anyopaque, options: TextContentManagerEnumerationOptions, block: *const fn(?*TextElement) callconv(.C) objc.BOOL) ?*anyopaque {
-        return objc.msgSend(self, "enumerateTextElementsFromLocation:options:usingBlock:", ?*anyopaque, .{textLocation, options, block});
-    }
-
-    pub fn replaceContentsInRangeWithTextElements(self: *@This(), range: ?*TextRange, textElements: ?*anyopaque) void {
-        return objc.msgSend(self, "replaceContentsInRange:withTextElements:", void, .{range, textElements});
-    }
-
-    pub fn synchronizeToBackingStore(self: *@This(), completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "synchronizeToBackingStore:", void, .{completionHandler});
-    }
-
-    pub fn locationFromLocationWithOffset(self: *@This(), location: ?*anyopaque, offset: objc.NSInteger) ?*anyopaque {
-        return objc.msgSend(self, "locationFromLocation:withOffset:", ?*anyopaque, .{location, offset});
-    }
-
-    pub fn offsetFromLocationToLocation(self: *@This(), from: ?*anyopaque, to: ?*anyopaque) objc.NSInteger {
-        return objc.msgSend(self, "offsetFromLocation:toLocation:", objc.NSInteger, .{from, to});
-    }
-
-    pub fn adjustedRangeFromRangeForEditingTextSelection(self: *@This(), textRange: ?*TextRange, forEditingTextSelection: objc.BOOL) ?*TextRange {
-        return objc.msgSend(self, "adjustedRangeFromRange:forEditingTextSelection:", ?*TextRange, .{textRange, forEditingTextSelection});
-    }
-
-    pub fn documentRange(self: *@This()) ?*TextRange {
-        return objc.msgSend(self, "documentRange", ?*TextRange, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextContentManagerDelegate?language=objc
-pub const TextContentManagerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn textContentManagerTextElementAtLocation(self: *@This(), textContentManager: ?*TextContentManager, location: ?*anyopaque) ?*TextElement {
-        return objc.msgSend(self, "textContentManager:textElementAtLocation:", ?*TextElement, .{textContentManager, location});
-    }
-
-    pub fn textContentManagerShouldEnumerateTextElementOptions(self: *@This(), textContentManager: ?*TextContentManager, textElement: ?*TextElement, options: TextContentManagerEnumerationOptions) objc.BOOL {
-        return objc.msgSend(self, "textContentManager:shouldEnumerateTextElement:options:", objc.BOOL, .{textContentManager, textElement, options});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextContentStorageDelegate?language=objc
-pub const TextContentStorageDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextContentManagerDelegate, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn textContentStorageTextParagraphWithRange(self: *@This(), textContentStorage: ?*TextContentStorage, range: ns.Range) ?*TextParagraph {
-        return objc.msgSend(self, "textContentStorage:textParagraphWithRange:", ?*TextParagraph, .{textContentStorage, range});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextLayoutManagerDelegate?language=objc
-pub const TextLayoutManagerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn textLayoutManagerTextLayoutFragmentForLocationInTextElement(self: *@This(), textLayoutManager: ?*TextLayoutManager, location: ?*anyopaque, textElement: ?*TextElement) ?*TextLayoutFragment {
-        return objc.msgSend(self, "textLayoutManager:textLayoutFragmentForLocation:inTextElement:", ?*TextLayoutFragment, .{textLayoutManager, location, textElement});
-    }
-
-    pub fn textLayoutManagerShouldBreakLineBeforeLocationHyphenating(self: *@This(), textLayoutManager: ?*TextLayoutManager, location: ?*anyopaque, hyphenating: objc.BOOL) objc.BOOL {
-        return objc.msgSend(self, "textLayoutManager:shouldBreakLineBeforeLocation:hyphenating:", objc.BOOL, .{textLayoutManager, location, hyphenating});
-    }
-
-    pub fn textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(self: *@This(), textLayoutManager: ?*TextLayoutManager, link: *objc.Id, location: ?*anyopaque, renderingAttributes: ?*anyopaque, ) ?*anyopaque {
-        return objc.msgSend(self, "textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:", ?*anyopaque, .{textLayoutManager, link, location, renderingAttributes, });
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTextViewportLayoutControllerDelegate?language=objc
-pub const TextViewportLayoutControllerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn viewportBoundsForTextViewportLayoutController(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController) cf.CGRect {
-        return objc.msgSend(self, "viewportBoundsForTextViewportLayoutController:", cf.CGRect, .{textViewportLayoutController});
-    }
-
-    pub fn textViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController, textLayoutFragment: ?*TextLayoutFragment) void {
-        return objc.msgSend(self, "textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:", void, .{textViewportLayoutController, textLayoutFragment});
-    }
-
-    pub fn textViewportLayoutControllerWillLayout(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController) void {
-        return objc.msgSend(self, "textViewportLayoutControllerWillLayout:", void, .{textViewportLayoutController});
-    }
-
-    pub fn textViewportLayoutControllerDidLayout(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController) void {
-        return objc.msgSend(self, "textViewportLayoutControllerDidLayout:", void, .{textViewportLayoutController});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSGraphicsContext?language=objc
-pub const GraphicsContext = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSGraphicsContext", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn graphicsContextWithAttributes(self: *@This(), attributes: ?*anyopaque) ?*GraphicsContext {
-        return objc.msgSend(self, "graphicsContextWithAttributes:", ?*GraphicsContext, .{attributes});
-    }
-
-    pub fn graphicsContextWithBitmapImageRep(self: *@This(), bitmapRep: ?*BitmapImageRep) ?*GraphicsContext {
-        return objc.msgSend(self, "graphicsContextWithBitmapImageRep:", ?*GraphicsContext, .{bitmapRep});
-    }
-
-    pub fn graphicsContextWithCGContextFlipped(self: *@This(), graphicsPort: , initialFlippedState: objc.BOOL) ?*GraphicsContext {
-        return objc.msgSend(self, "graphicsContextWithCGContext:flipped:", ?*GraphicsContext, .{graphicsPort, initialFlippedState});
-    }
-
-    pub fn currentContextDrawingToScreen(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "currentContextDrawingToScreen", objc.BOOL, .{});
-    }
-
-    pub fn saveGraphicsState(self: *@This()) void {
-        return objc.msgSend(self, "saveGraphicsState", void, .{});
-    }
-
-    pub fn restoreGraphicsState(self: *@This()) void {
-        return objc.msgSend(self, "restoreGraphicsState", void, .{});
-    }
-
-    pub fn saveGraphicsState(self: *@This()) void {
-        return objc.msgSend(self, "saveGraphicsState", void, .{});
-    }
-
-    pub fn restoreGraphicsState(self: *@This()) void {
-        return objc.msgSend(self, "restoreGraphicsState", void, .{});
-    }
-
-    pub fn flushGraphics(self: *@This()) void {
-        return objc.msgSend(self, "flushGraphics", void, .{});
-    }
-
-    pub fn currentContext(self: *@This()) ?*GraphicsContext {
-        return objc.msgSend(self, "currentContext", ?*GraphicsContext, .{});
-    }
-
-    pub fn setCurrentContext(self: *@This(), currentContext: ?*GraphicsContext) void {
-        return objc.msgSend(self, "setCurrentContext:", void, .{currentContext});
-    }
-
-    pub fn attributes(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "attributes", ?*anyopaque, .{});
-    }
-
-    pub fn isDrawingToScreen(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isDrawingToScreen", objc.BOOL, .{});
-    }
-
-    pub fn CGContext(self: *@This())  {
-        return objc.msgSend(self, "CGContext", , .{});
-    }
-
-    pub fn isFlipped(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isFlipped", objc.BOOL, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction?language=objc
-pub const AccessibilityCustomAction = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSAccessibilityCustomAction", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn initWithNameHandler(self: *@This(), name: ?*String, handler: *const fn() callconv(.C) objc.BOOL) *@This() {
-        return objc.msgSend(self, "initWithName:handler:", *@This(), .{name, handler});
-    }
-
-    pub fn initWithNameTargetSelector(self: *@This(), name: ?*String, target: ?*anyopaque, selector: *objc.SEL) *@This() {
-        return objc.msgSend(self, "initWithName:target:selector:", *@This(), .{name, target, selector});
-    }
-
-    pub fn name(self: *@This()) ?*String {
-        return objc.msgSend(self, "name", ?*String, .{});
-    }
-
-    pub fn setName(self: *@This(), name: ?*String) void {
-        return objc.msgSend(self, "setName:", void, .{name});
-    }
-
-    pub fn handler(self: *@This()) *const fn() callconv(.C) objc.BOOL {
-        return objc.msgSend(self, "handler", *const fn() callconv(.C) objc.BOOL, .{});
-    }
-
-    pub fn setHandler(self: *@This(), handler: *const fn() callconv(.C) objc.BOOL) void {
-        return objc.msgSend(self, "setHandler:", void, .{handler});
-    }
-
-    pub fn target(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "target", ?*anyopaque, .{});
-    }
-
-    pub fn setTarget(self: *@This(), target: ?*anyopaque) void {
-        return objc.msgSend(self, "setTarget:", void, .{target});
-    }
-
-    pub fn selector(self: *@This()) *objc.SEL {
-        return objc.msgSend(self, "selector", *objc.SEL, .{});
-    }
-
-    pub fn setSelector(self: *@This(), selector: *objc.SEL) void {
-        return objc.msgSend(self, "setSelector:", void, .{selector});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAccessibilityElement?language=objc
-pub const AccessibilityElement = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSAccessibilityElement", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn accessibilityElementWithRoleFrameLabelParent(self: *@This(), role: AccessibilityRole, frame: ns.Rect, label: ?*String, parent: *objc.Id, ) *objc.Id {
-        return objc.msgSend(self, "accessibilityElementWithRole:frame:label:parent:", *objc.Id, .{role, frame, label, parent, });
-    }
-
-    pub fn accessibilityAddChildElement(self: *@This(), childElement: ?*AccessibilityElement) void {
-        return objc.msgSend(self, "accessibilityAddChildElement:", void, .{childElement});
-    }
-
-    pub fn accessibilityFrameInParentSpace(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "accessibilityFrameInParentSpace", ns.Rect, .{});
-    }
-
-    pub fn setAccessibilityFrameInParentSpace(self: *@This(), accessibilityFrameInParentSpace: ns.Rect) void {
-        return objc.msgSend(self, "setAccessibilityFrameInParentSpace:", void, .{accessibilityFrameInParentSpace});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotor?language=objc
-pub const AccessibilityCustomRotor = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSAccessibilityCustomRotor", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn initWithLabelItemSearchDelegate(self: *@This(), label: ?*String, itemSearchDelegate: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithLabel:itemSearchDelegate:", *@This(), .{label, itemSearchDelegate});
-    }
-
-    pub fn initWithRotorTypeItemSearchDelegate(self: *@This(), rotorType: AccessibilityCustomRotorType, itemSearchDelegate: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithRotorType:itemSearchDelegate:", *@This(), .{rotorType, itemSearchDelegate});
-    }
-
-    pub fn type(self: *@This()) AccessibilityCustomRotorType {
-        return objc.msgSend(self, "type", AccessibilityCustomRotorType, .{});
-    }
-
-    pub fn setType(self: *@This(), @"type": AccessibilityCustomRotorType) void {
-        return objc.msgSend(self, "setType:", void, .{@"type"});
-    }
-
-    pub fn label(self: *@This()) ?*String {
-        return objc.msgSend(self, "label", ?*String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn itemSearchDelegate(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "itemSearchDelegate", ?*anyopaque, .{});
-    }
-
-    pub fn setItemSearchDelegate(self: *@This(), itemSearchDelegate: ?*anyopaque) void {
-        return objc.msgSend(self, "setItemSearchDelegate:", void, .{itemSearchDelegate});
-    }
-
-    pub fn itemLoadingDelegate(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "itemLoadingDelegate", ?*anyopaque, .{});
-    }
-
-    pub fn setItemLoadingDelegate(self: *@This(), itemLoadingDelegate: ?*anyopaque) void {
-        return objc.msgSend(self, "setItemLoadingDelegate:", void, .{itemLoadingDelegate});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotorSearchParameters?language=objc
-pub const AccessibilityCustomRotorSearchParameters = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSAccessibilityCustomRotorSearchParameters", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn currentItem(self: *@This()) ?*AccessibilityCustomRotorItemResult {
-        return objc.msgSend(self, "currentItem", ?*AccessibilityCustomRotorItemResult, .{});
-    }
-
-    pub fn setCurrentItem(self: *@This(), currentItem: ?*AccessibilityCustomRotorItemResult) void {
-        return objc.msgSend(self, "setCurrentItem:", void, .{currentItem});
-    }
-
-    pub fn searchDirection(self: *@This()) AccessibilityCustomRotorSearchDirection {
-        return objc.msgSend(self, "searchDirection", AccessibilityCustomRotorSearchDirection, .{});
-    }
-
-    pub fn setSearchDirection(self: *@This(), searchDirection: AccessibilityCustomRotorSearchDirection) void {
-        return objc.msgSend(self, "setSearchDirection:", void, .{searchDirection});
-    }
-
-    pub fn filterString(self: *@This()) ?*String {
-        return objc.msgSend(self, "filterString", ?*String, .{});
-    }
-
-    pub fn setFilterString(self: *@This(), filterString: ?*String) void {
-        return objc.msgSend(self, "setFilterString:", void, .{filterString});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotorItemResult?language=objc
-pub const AccessibilityCustomRotorItemResult = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSAccessibilityCustomRotorItemResult", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
-    }
-
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
-    }
-
-    pub fn initWithTargetElement(self: *@This(), targetElement: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithTargetElement:", *@This(), .{targetElement});
-    }
-
-    pub fn initWithItemLoadingTokenCustomLabel(self: *@This(), itemLoadingToken: AccessibilityLoadingToken, customLabel: ?*String) *@This() {
-        return objc.msgSend(self, "initWithItemLoadingToken:customLabel:", *@This(), .{itemLoadingToken, customLabel});
-    }
-
-    pub fn targetElement(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "targetElement", ?*anyopaque, .{});
-    }
-
-    pub fn itemLoadingToken(self: *@This()) AccessibilityLoadingToken {
-        return objc.msgSend(self, "itemLoadingToken", AccessibilityLoadingToken, .{});
-    }
-
-    pub fn targetRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "targetRange", ns.Range, .{});
-    }
-
-    pub fn setTargetRange(self: *@This(), targetRange: ns.Range) void {
-        return objc.msgSend(self, "setTargetRange:", void, .{targetRange});
-    }
-
-    pub fn customLabel(self: *@This()) ?*String {
-        return objc.msgSend(self, "customLabel", ?*String, .{});
-    }
-
-    pub fn setCustomLabel(self: *@This(), customLabel: ?*String) void {
-        return objc.msgSend(self, "setCustomLabel:", void, .{customLabel});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSWorkspace?language=objc
-pub const Workspace = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSWorkspace", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn openURL(self: *@This(), url: ?*URL) objc.BOOL {
-        return objc.msgSend(self, "openURL:", objc.BOOL, .{url});
-    }
-
-    pub fn openURLConfigurationCompletionHandler(self: *@This(), url: ?*URL, configuration: ?*WorkspaceOpenConfiguration, completionHandler: *const fn(?*RunningApplication, ?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "openURL:configuration:completionHandler:", void, .{url, configuration, completionHandler});
-    }
-
-    pub fn openURLsWithApplicationAtURLConfigurationCompletionHandler(self: *@This(), urls: ?*anyopaque, applicationURL: ?*URL, configuration: ?*WorkspaceOpenConfiguration, completionHandler: *const fn(?*RunningApplication, ?*Error) callconv(.C) void, ) void {
-        return objc.msgSend(self, "openURLs:withApplicationAtURL:configuration:completionHandler:", void, .{urls, applicationURL, configuration, completionHandler, });
-    }
-
-    pub fn openApplicationAtURLConfigurationCompletionHandler(self: *@This(), applicationURL: ?*URL, configuration: ?*WorkspaceOpenConfiguration, completionHandler: *const fn(?*RunningApplication, ?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "openApplicationAtURL:configuration:completionHandler:", void, .{applicationURL, configuration, completionHandler});
-    }
-
-    pub fn selectFileInFileViewerRootedAtPath(self: *@This(), fullPath: ?*String, rootFullPath: ?*String) objc.BOOL {
-        return objc.msgSend(self, "selectFile:inFileViewerRootedAtPath:", objc.BOOL, .{fullPath, rootFullPath});
-    }
-
-    pub fn activateFileViewerSelectingURLs(self: *@This(), fileURLs: ?*anyopaque) void {
-        return objc.msgSend(self, "activateFileViewerSelectingURLs:", void, .{fileURLs});
-    }
-
-    pub fn showSearchResultsForQueryString(self: *@This(), queryString: ?*String) objc.BOOL {
-        return objc.msgSend(self, "showSearchResultsForQueryString:", objc.BOOL, .{queryString});
-    }
-
-    pub fn noteFileSystemChanged(self: *@This(), path: ?*String) void {
-        return objc.msgSend(self, "noteFileSystemChanged:", void, .{path});
-    }
-
-    pub fn isFilePackageAtPath(self: *@This(), fullPath: ?*String) objc.BOOL {
-        return objc.msgSend(self, "isFilePackageAtPath:", objc.BOOL, .{fullPath});
-    }
-
-    pub fn iconForFile(self: *@This(), fullPath: ?*String) ?*Image {
-        return objc.msgSend(self, "iconForFile:", ?*Image, .{fullPath});
-    }
-
-    pub fn iconForFiles(self: *@This(), fullPaths: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "iconForFiles:", ?*Image, .{fullPaths});
-    }
-
-    pub fn iconForContentType(self: *@This(), contentType: ?*UTType) ?*Image {
-        return objc.msgSend(self, "iconForContentType:", ?*Image, .{contentType});
-    }
-
-    pub fn setIconForFileOptions(self: *@This(), image: ?*Image, fullPath: ?*String, options: WorkspaceIconCreationOptions) objc.BOOL {
-        return objc.msgSend(self, "setIcon:forFile:options:", objc.BOOL, .{image, fullPath, options});
-    }
-
-    pub fn recycleURLsCompletionHandler(self: *@This(), URLs: ?*anyopaque, handler: *const fn(?*anyopaque, ?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "recycleURLs:completionHandler:", void, .{URLs, handler});
-    }
-
-    pub fn duplicateURLsCompletionHandler(self: *@This(), URLs: ?*anyopaque, handler: *const fn(?*anyopaque, ?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "duplicateURLs:completionHandler:", void, .{URLs, handler});
-    }
-
-    pub fn getFileSystemInfoForPathIsRemovableIsWritableIsUnmountableDescriptionType(self: *@This(), fullPath: ?*String, removableFlag: ?*objc.BOOL, writableFlag: ?*objc.BOOL, unmountableFlag: ?*objc.BOOL, description: ?*?*String, fileSystemType: ?*?*String, ) objc.BOOL {
-        return objc.msgSend(self, "getFileSystemInfoForPath:isRemovable:isWritable:isUnmountable:description:type:", objc.BOOL, .{fullPath, removableFlag, writableFlag, unmountableFlag, description, fileSystemType, });
-    }
-
-    pub fn unmountAndEjectDeviceAtPath(self: *@This(), path: ?*String) objc.BOOL {
-        return objc.msgSend(self, "unmountAndEjectDeviceAtPath:", objc.BOOL, .{path});
-    }
-
-    pub fn unmountAndEjectDeviceAtURLError(self: *@This(), url: ?*URL, @"error": ?*?*Error) objc.BOOL {
-        return objc.msgSend(self, "unmountAndEjectDeviceAtURL:error:", objc.BOOL, .{url, @"error"});
-    }
-
-    pub fn extendPowerOffBy(self: *@This(), requested: objc.NSInteger) objc.NSInteger {
-        return objc.msgSend(self, "extendPowerOffBy:", objc.NSInteger, .{requested});
-    }
-
-    pub fn hideOtherApplications(self: *@This()) void {
-        return objc.msgSend(self, "hideOtherApplications", void, .{});
-    }
-
-    pub fn URLForApplicationWithBundleIdentifier(self: *@This(), bundleIdentifier: ?*String) ?*URL {
-        return objc.msgSend(self, "URLForApplicationWithBundleIdentifier:", ?*URL, .{bundleIdentifier});
-    }
-
-    pub fn URLsForApplicationsWithBundleIdentifier(self: *@This(), bundleIdentifier: ?*String) ?*anyopaque {
-        return objc.msgSend(self, "URLsForApplicationsWithBundleIdentifier:", ?*anyopaque, .{bundleIdentifier});
-    }
-
-    pub fn URLForApplicationToOpenURL(self: *@This(), url: ?*URL) ?*URL {
-        return objc.msgSend(self, "URLForApplicationToOpenURL:", ?*URL, .{url});
-    }
-
-    pub fn URLsForApplicationsToOpenURL(self: *@This(), url: ?*URL) ?*anyopaque {
-        return objc.msgSend(self, "URLsForApplicationsToOpenURL:", ?*anyopaque, .{url});
-    }
-
-    pub fn setDefaultApplicationAtURLToOpenContentTypeOfFileAtURLCompletionHandler(self: *@This(), applicationURL: ?*URL, url: ?*URL, completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setDefaultApplicationAtURL:toOpenContentTypeOfFileAtURL:completionHandler:", void, .{applicationURL, url, completionHandler});
-    }
-
-    pub fn setDefaultApplicationAtURLToOpenURLsWithSchemeCompletionHandler(self: *@This(), applicationURL: ?*URL, urlScheme: ?*String, completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:", void, .{applicationURL, urlScheme, completionHandler});
-    }
-
-    pub fn setDefaultApplicationAtURLToOpenFileAtURLCompletionHandler(self: *@This(), applicationURL: ?*URL, url: ?*URL, completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setDefaultApplicationAtURL:toOpenFileAtURL:completionHandler:", void, .{applicationURL, url, completionHandler});
-    }
-
-    pub fn URLForApplicationToOpenContentType(self: *@This(), contentType: ?*UTType) ?*URL {
-        return objc.msgSend(self, "URLForApplicationToOpenContentType:", ?*URL, .{contentType});
-    }
-
-    pub fn URLsForApplicationsToOpenContentType(self: *@This(), contentType: ?*UTType) ?*anyopaque {
-        return objc.msgSend(self, "URLsForApplicationsToOpenContentType:", ?*anyopaque, .{contentType});
-    }
-
-    pub fn setDefaultApplicationAtURLToOpenContentTypeCompletionHandler(self: *@This(), applicationURL: ?*URL, contentType: ?*UTType, completionHandler: *const fn(?*Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setDefaultApplicationAtURL:toOpenContentType:completionHandler:", void, .{applicationURL, contentType, completionHandler});
-    }
-
-    pub fn sharedWorkspace(self: *@This()) ?*Workspace {
-        return objc.msgSend(self, "sharedWorkspace", ?*Workspace, .{});
-    }
-
-    pub fn notificationCenter(self: *@This()) ?*NotificationCenter {
-        return objc.msgSend(self, "notificationCenter", ?*NotificationCenter, .{});
-    }
-
-    pub fn fileLabels(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "fileLabels", ?*anyopaque, .{});
-    }
-
-    pub fn fileLabelColors(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "fileLabelColors", ?*anyopaque, .{});
-    }
-
-    pub fn frontmostApplication(self: *@This()) ?*RunningApplication {
-        return objc.msgSend(self, "frontmostApplication", ?*RunningApplication, .{});
-    }
-
-    pub fn menuBarOwningApplication(self: *@This()) ?*RunningApplication {
-        return objc.msgSend(self, "menuBarOwningApplication", ?*RunningApplication, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSWorkspaceOpenConfiguration?language=objc
-pub const WorkspaceOpenConfiguration = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSWorkspaceOpenConfiguration", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn configuration(self: *@This()) *@This() {
-        return objc.msgSend(self, "configuration", *@This(), .{});
-    }
-
-    pub fn promptsUserIfNeeded(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "promptsUserIfNeeded", objc.BOOL, .{});
-    }
-
-    pub fn setPromptsUserIfNeeded(self: *@This(), promptsUserIfNeeded: objc.BOOL) void {
-        return objc.msgSend(self, "setPromptsUserIfNeeded:", void, .{promptsUserIfNeeded});
-    }
-
-    pub fn addsToRecentItems(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "addsToRecentItems", objc.BOOL, .{});
-    }
-
-    pub fn setAddsToRecentItems(self: *@This(), addsToRecentItems: objc.BOOL) void {
-        return objc.msgSend(self, "setAddsToRecentItems:", void, .{addsToRecentItems});
-    }
-
-    pub fn activates(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "activates", objc.BOOL, .{});
-    }
-
-    pub fn setActivates(self: *@This(), activates: objc.BOOL) void {
-        return objc.msgSend(self, "setActivates:", void, .{activates});
-    }
-
-    pub fn hides(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "hides", objc.BOOL, .{});
-    }
-
-    pub fn setHides(self: *@This(), hides: objc.BOOL) void {
-        return objc.msgSend(self, "setHides:", void, .{hides});
-    }
-
-    pub fn hidesOthers(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "hidesOthers", objc.BOOL, .{});
-    }
-
-    pub fn setHidesOthers(self: *@This(), hidesOthers: objc.BOOL) void {
-        return objc.msgSend(self, "setHidesOthers:", void, .{hidesOthers});
-    }
-
-    pub fn isForPrinting(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isForPrinting", objc.BOOL, .{});
-    }
-
-    pub fn setForPrinting(self: *@This(), forPrinting: objc.BOOL) void {
-        return objc.msgSend(self, "setForPrinting:", void, .{forPrinting});
-    }
-
-    pub fn createsNewApplicationInstance(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "createsNewApplicationInstance", objc.BOOL, .{});
-    }
-
-    pub fn setCreatesNewApplicationInstance(self: *@This(), createsNewApplicationInstance: objc.BOOL) void {
-        return objc.msgSend(self, "setCreatesNewApplicationInstance:", void, .{createsNewApplicationInstance});
-    }
-
-    pub fn allowsRunningApplicationSubstitution(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowsRunningApplicationSubstitution", objc.BOOL, .{});
-    }
-
-    pub fn setAllowsRunningApplicationSubstitution(self: *@This(), allowsRunningApplicationSubstitution: objc.BOOL) void {
-        return objc.msgSend(self, "setAllowsRunningApplicationSubstitution:", void, .{allowsRunningApplicationSubstitution});
-    }
-
-    pub fn arguments(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "arguments", ?*anyopaque, .{});
-    }
-
-    pub fn setArguments(self: *@This(), arguments: ?*anyopaque) void {
-        return objc.msgSend(self, "setArguments:", void, .{arguments});
-    }
-
-    pub fn environment(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "environment", ?*anyopaque, .{});
-    }
-
-    pub fn setEnvironment(self: *@This(), environment: ?*anyopaque) void {
-        return objc.msgSend(self, "setEnvironment:", void, .{environment});
-    }
-
-    pub fn appleEvent(self: *@This()) ?*AppleEventDescriptor {
-        return objc.msgSend(self, "appleEvent", ?*AppleEventDescriptor, .{});
-    }
-
-    pub fn setAppleEvent(self: *@This(), appleEvent: ?*AppleEventDescriptor) void {
-        return objc.msgSend(self, "setAppleEvent:", void, .{appleEvent});
-    }
-
-    pub fn architecture(self: *@This()) objc.cpu_type_t {
-        return objc.msgSend(self, "architecture", objc.cpu_type_t, .{});
-    }
-
-    pub fn setArchitecture(self: *@This(), architecture: objc.cpu_type_t) void {
-        return objc.msgSend(self, "setArchitecture:", void, .{architecture});
-    }
-
-    pub fn requiresUniversalLinks(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "requiresUniversalLinks", objc.BOOL, .{});
-    }
-
-    pub fn setRequiresUniversalLinks(self: *@This(), requiresUniversalLinks: objc.BOOL) void {
-        return objc.msgSend(self, "setRequiresUniversalLinks:", void, .{requiresUniversalLinks});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSWorkspaceAuthorization?language=objc
-pub const WorkspaceAuthorization = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSWorkspaceAuthorization", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSTouch?language=objc
-pub const Touch = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSTouch", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn identity(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "identity", ?*anyopaque, .{});
-    }
-
-    pub fn phase(self: *@This()) TouchPhase {
-        return objc.msgSend(self, "phase", TouchPhase, .{});
-    }
-
-    pub fn normalizedPosition(self: *@This()) ns.Point {
-        return objc.msgSend(self, "normalizedPosition", ns.Point, .{});
-    }
-
-    pub fn isResting(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isResting", objc.BOOL, .{});
-    }
-
-    pub fn device(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "device", *objc.Id, .{});
-    }
-
-    pub fn deviceSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "deviceSize", ns.Size, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSEvent?language=objc
-pub const Event = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSEvent", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn charactersByApplyingModifiers(self: *@This(), modifiers: EventModifierFlags) ?* {
-        return objc.msgSend(self, "charactersByApplyingModifiers:", ?*, .{modifiers});
-    }
-
-    pub fn eventWithEventRef(self: *@This(), eventRef: ?*anyopaque) ?*Event {
-        return objc.msgSend(self, "eventWithEventRef:", ?*Event, .{eventRef});
-    }
-
-    pub fn eventWithCGEvent(self: *@This(), cgEvent: ) ?*Event {
-        return objc.msgSend(self, "eventWithCGEvent:", ?*Event, .{cgEvent});
-    }
-
-    pub fn touchesMatchingPhaseInView(self: *@This(), phase: TouchPhase, view: ?*) ?*anyopaque {
-        return objc.msgSend(self, "touchesMatchingPhase:inView:", ?*anyopaque, .{phase, view});
-    }
-
-    pub fn allTouches(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "allTouches", ?*anyopaque, .{});
-    }
-
-    pub fn touchesForView(self: *@This(), view: ?*) ?*anyopaque {
-        return objc.msgSend(self, "touchesForView:", ?*anyopaque, .{view});
-    }
-
-    pub fn coalescedTouchesForTouch(self: *@This(), touch: ?*Touch) ?*anyopaque {
-        return objc.msgSend(self, "coalescedTouchesForTouch:", ?*anyopaque, .{touch});
-    }
-
-    pub fn trackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(self: *@This(), options: EventSwipeTrackingOptions, minDampenThreshold: cf.CGFloat, maxDampenThreshold: cf.CGFloat, trackingHandler: *const fn(cf.CGFloat, EventPhase, objc.BOOL, ?*objc.BOOL, ) callconv(.C) void, ) void {
-        return objc.msgSend(self, "trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:", void, .{options, minDampenThreshold, maxDampenThreshold, trackingHandler, });
-    }
-
-    pub fn startPeriodicEventsAfterDelayWithPeriod(self: *@This(), delay: ns.TimeInterval, period: ns.TimeInterval) void {
-        return objc.msgSend(self, "startPeriodicEventsAfterDelay:withPeriod:", void, .{delay, period});
-    }
-
-    pub fn stopPeriodicEvents(self: *@This()) void {
-        return objc.msgSend(self, "stopPeriodicEvents", void, .{});
-    }
-
-    pub fn mouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, eNum: objc.NSInteger, cNum: objc.NSInteger, pressure: f32, ) ?*Event {
-        return objc.msgSend(self, "mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, eNum, cNum, pressure, });
-    }
-
-    pub fn keyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, keys: ?*String, ukeys: ?*String, flag: objc.BOOL, code: u16, ) ?*Event {
-        return objc.msgSend(self, "keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, keys, ukeys, flag, code, });
-    }
-
-    pub fn enterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, eNum: objc.NSInteger, tNum: objc.NSInteger, data: ?*anyopaque, ) ?*Event {
-        return objc.msgSend(self, "enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, eNum, tNum, data, });
-    }
-
-    pub fn otherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, subtype: i16, d1: objc.NSInteger, d2: objc.NSInteger, ) ?*Event {
-        return objc.msgSend(self, "otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, subtype, d1, d2, });
-    }
-
-    pub fn addGlobalMonitorForEventsMatchingMaskHandler(self: *@This(), mask: EventMask, block: *const fn(?*Event) callconv(.C) void) *objc.Id {
-        return objc.msgSend(self, "addGlobalMonitorForEventsMatchingMask:handler:", *objc.Id, .{mask, block});
-    }
-
-    pub fn addLocalMonitorForEventsMatchingMaskHandler(self: *@This(), mask: EventMask, block: *const fn(?*Event) callconv(.C) ?*Event) *objc.Id {
-        return objc.msgSend(self, "addLocalMonitorForEventsMatchingMask:handler:", *objc.Id, .{mask, block});
-    }
-
-    pub fn removeMonitor(self: *@This(), eventMonitor: *objc.Id) void {
-        return objc.msgSend(self, "removeMonitor:", void, .{eventMonitor});
-    }
-
-    pub fn type(self: *@This()) EventType {
-        return objc.msgSend(self, "type", EventType, .{});
-    }
-
-    pub fn modifierFlags(self: *@This()) EventModifierFlags {
-        return objc.msgSend(self, "modifierFlags", EventModifierFlags, .{});
-    }
-
-    pub fn timestamp(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "timestamp", ns.TimeInterval, .{});
-    }
-
-    pub fn window(self: *@This()) ?*Window {
-        return objc.msgSend(self, "window", ?*Window, .{});
-    }
-
-    pub fn windowNumber(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "windowNumber", objc.NSInteger, .{});
-    }
-
-    pub fn context(self: *@This()) ?*GraphicsContext {
-        return objc.msgSend(self, "context", ?*GraphicsContext, .{});
-    }
-
-    pub fn clickCount(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "clickCount", objc.NSInteger, .{});
-    }
-
-    pub fn buttonNumber(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "buttonNumber", objc.NSInteger, .{});
-    }
-
-    pub fn eventNumber(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "eventNumber", objc.NSInteger, .{});
-    }
-
-    pub fn pressure(self: *@This()) f32 {
-        return objc.msgSend(self, "pressure", f32, .{});
-    }
-
-    pub fn locationInWindow(self: *@This()) ns.Point {
-        return objc.msgSend(self, "locationInWindow", ns.Point, .{});
-    }
-
-    pub fn deltaX(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "deltaX", cf.CGFloat, .{});
-    }
-
-    pub fn deltaY(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "deltaY", cf.CGFloat, .{});
-    }
-
-    pub fn deltaZ(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "deltaZ", cf.CGFloat, .{});
-    }
-
-    pub fn hasPreciseScrollingDeltas(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "hasPreciseScrollingDeltas", objc.BOOL, .{});
-    }
-
-    pub fn scrollingDeltaX(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "scrollingDeltaX", cf.CGFloat, .{});
-    }
-
-    pub fn scrollingDeltaY(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "scrollingDeltaY", cf.CGFloat, .{});
-    }
-
-    pub fn momentumPhase(self: *@This()) EventPhase {
-        return objc.msgSend(self, "momentumPhase", EventPhase, .{});
-    }
-
-    pub fn isDirectionInvertedFromDevice(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isDirectionInvertedFromDevice", objc.BOOL, .{});
-    }
-
-    pub fn characters(self: *@This()) ?*String {
-        return objc.msgSend(self, "characters", ?*String, .{});
-    }
-
-    pub fn charactersIgnoringModifiers(self: *@This()) ?*String {
-        return objc.msgSend(self, "charactersIgnoringModifiers", ?*String, .{});
-    }
-
-    pub fn isARepeat(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isARepeat", objc.BOOL, .{});
-    }
-
-    pub fn keyCode(self: *@This()) u16 {
-        return objc.msgSend(self, "keyCode", u16, .{});
-    }
-
-    pub fn trackingNumber(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "trackingNumber", objc.NSInteger, .{});
-    }
-
-    pub fn userData(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "userData", ?*anyopaque, .{});
-    }
-
-    pub fn trackingArea(self: *@This()) ?*TrackingArea {
-        return objc.msgSend(self, "trackingArea", ?*TrackingArea, .{});
-    }
-
-    pub fn subtype(self: *@This()) EventSubtype {
-        return objc.msgSend(self, "subtype", EventSubtype, .{});
-    }
-
-    pub fn data1(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "data1", objc.NSInteger, .{});
-    }
-
-    pub fn data2(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "data2", objc.NSInteger, .{});
-    }
-
-    pub fn eventRef(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "eventRef", ?*anyopaque, .{});
-    }
-
-    pub fn CGEvent(self: *@This())  {
-        return objc.msgSend(self, "CGEvent", , .{});
-    }
-
-    pub fn isMouseCoalescingEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isMouseCoalescingEnabled", objc.BOOL, .{});
-    }
-
-    pub fn setMouseCoalescingEnabled(self: *@This(), mouseCoalescingEnabled: objc.BOOL) void {
-        return objc.msgSend(self, "setMouseCoalescingEnabled:", void, .{mouseCoalescingEnabled});
-    }
-
-    pub fn magnification(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "magnification", cf.CGFloat, .{});
-    }
-
-    pub fn deviceID(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "deviceID", objc.NSUInteger, .{});
-    }
-
-    pub fn rotation(self: *@This()) f32 {
-        return objc.msgSend(self, "rotation", f32, .{});
-    }
-
-    pub fn absoluteX(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "absoluteX", objc.NSInteger, .{});
-    }
-
-    pub fn absoluteY(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "absoluteY", objc.NSInteger, .{});
-    }
-
-    pub fn absoluteZ(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "absoluteZ", objc.NSInteger, .{});
-    }
-
-    pub fn buttonMask(self: *@This()) EventButtonMask {
-        return objc.msgSend(self, "buttonMask", EventButtonMask, .{});
-    }
-
-    pub fn tilt(self: *@This()) ns.Point {
-        return objc.msgSend(self, "tilt", ns.Point, .{});
-    }
-
-    pub fn tangentialPressure(self: *@This()) f32 {
-        return objc.msgSend(self, "tangentialPressure", f32, .{});
-    }
-
-    pub fn vendorDefined(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "vendorDefined", *objc.Id, .{});
-    }
-
-    pub fn vendorID(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "vendorID", objc.NSUInteger, .{});
-    }
-
-    pub fn tabletID(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "tabletID", objc.NSUInteger, .{});
-    }
-
-    pub fn pointingDeviceID(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "pointingDeviceID", objc.NSUInteger, .{});
-    }
-
-    pub fn systemTabletID(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "systemTabletID", objc.NSUInteger, .{});
-    }
-
-    pub fn vendorPointingDeviceType(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "vendorPointingDeviceType", objc.NSUInteger, .{});
-    }
-
-    pub fn pointingDeviceSerialNumber(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "pointingDeviceSerialNumber", objc.NSUInteger, .{});
-    }
-
-    pub fn uniqueID(self: *@This()) u64 {
-        return objc.msgSend(self, "uniqueID", u64, .{});
-    }
-
-    pub fn capabilityMask(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "capabilityMask", objc.NSUInteger, .{});
-    }
-
-    pub fn pointingDeviceType(self: *@This()) PointingDeviceType {
-        return objc.msgSend(self, "pointingDeviceType", PointingDeviceType, .{});
-    }
-
-    pub fn isEnteringProximity(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isEnteringProximity", objc.BOOL, .{});
-    }
-
-    pub fn phase(self: *@This()) EventPhase {
-        return objc.msgSend(self, "phase", EventPhase, .{});
-    }
-
-    pub fn stage(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "stage", objc.NSInteger, .{});
-    }
-
-    pub fn stageTransition(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "stageTransition", cf.CGFloat, .{});
-    }
-
-    pub fn associatedEventsMask(self: *@This()) EventMask {
-        return objc.msgSend(self, "associatedEventsMask", EventMask, .{});
-    }
-
-    pub fn pressureBehavior(self: *@This()) PressureBehavior {
-        return objc.msgSend(self, "pressureBehavior", PressureBehavior, .{});
-    }
-
-    pub fn isSwipeTrackingFromScrollEventsEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isSwipeTrackingFromScrollEventsEnabled", objc.BOOL, .{});
-    }
-
-    pub fn mouseLocation(self: *@This()) ns.Point {
-        return objc.msgSend(self, "mouseLocation", ns.Point, .{});
-    }
-
-    pub fn modifierFlags(self: *@This()) EventModifierFlags {
-        return objc.msgSend(self, "modifierFlags", EventModifierFlags, .{});
-    }
-
-    pub fn pressedMouseButtons(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "pressedMouseButtons", objc.NSUInteger, .{});
-    }
-
-    pub fn doubleClickInterval(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "doubleClickInterval", ns.TimeInterval, .{});
-    }
-
-    pub fn keyRepeatDelay(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "keyRepeatDelay", ns.TimeInterval, .{});
-    }
-
-    pub fn keyRepeatInterval(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "keyRepeatInterval", ns.TimeInterval, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSPasteboard?language=objc
-pub const Pasteboard = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSPasteboard", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn pasteboardWithName(self: *@This(), name: PasteboardName) ?*Pasteboard {
-        return objc.msgSend(self, "pasteboardWithName:", ?*Pasteboard, .{name});
-    }
-
-    pub fn pasteboardWithUniqueName(self: *@This()) ?*Pasteboard {
-        return objc.msgSend(self, "pasteboardWithUniqueName", ?*Pasteboard, .{});
-    }
-
-    pub fn releaseGlobally(self: *@This()) void {
-        return objc.msgSend(self, "releaseGlobally", void, .{});
-    }
-
-    pub fn prepareForNewContentsWithOptions(self: *@This(), options: PasteboardContentsOptions) objc.NSInteger {
-        return objc.msgSend(self, "prepareForNewContentsWithOptions:", objc.NSInteger, .{options});
-    }
-
-    pub fn clearContents(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "clearContents", objc.NSInteger, .{});
-    }
-
-    pub fn writeObjects(self: *@This(), objects: ?*anyopaque) objc.BOOL {
-        return objc.msgSend(self, "writeObjects:", objc.BOOL, .{objects});
-    }
-
-    pub fn readObjectsForClassesOptions(self: *@This(), classArray: ?*anyopaque, options: ?*anyopaque) ?*Array {
-        return objc.msgSend(self, "readObjectsForClasses:options:", ?*Array, .{classArray, options});
-    }
-
-    pub fn indexOfPasteboardItem(self: *@This(), pasteboardItem: ?*PasteboardItem) objc.NSUInteger {
-        return objc.msgSend(self, "indexOfPasteboardItem:", objc.NSUInteger, .{pasteboardItem});
-    }
-
-    pub fn canReadItemWithDataConformingToTypes(self: *@This(), types: ?*anyopaque) objc.BOOL {
-        return objc.msgSend(self, "canReadItemWithDataConformingToTypes:", objc.BOOL, .{types});
-    }
-
-    pub fn canReadObjectForClassesOptions(self: *@This(), classArray: ?*anyopaque, options: ?*anyopaque) objc.BOOL {
-        return objc.msgSend(self, "canReadObjectForClasses:options:", objc.BOOL, .{classArray, options});
-    }
-
-    pub fn declareTypesOwner(self: *@This(), newTypes: ?*anyopaque, newOwner: *objc.Id) objc.NSInteger {
-        return objc.msgSend(self, "declareTypes:owner:", objc.NSInteger, .{newTypes, newOwner});
-    }
-
-    pub fn addTypesOwner(self: *@This(), newTypes: ?*anyopaque, newOwner: *objc.Id) objc.NSInteger {
-        return objc.msgSend(self, "addTypes:owner:", objc.NSInteger, .{newTypes, newOwner});
-    }
-
-    pub fn availableTypeFromArray(self: *@This(), types: ?*anyopaque) PasteboardType {
-        return objc.msgSend(self, "availableTypeFromArray:", PasteboardType, .{types});
-    }
-
-    pub fn setDataForType(self: *@This(), data: ?*Data, dataType: PasteboardType) objc.BOOL {
-        return objc.msgSend(self, "setData:forType:", objc.BOOL, .{data, dataType});
-    }
-
-    pub fn setPropertyListForType(self: *@This(), plist: *objc.Id, dataType: PasteboardType) objc.BOOL {
-        return objc.msgSend(self, "setPropertyList:forType:", objc.BOOL, .{plist, dataType});
-    }
-
-    pub fn setStringForType(self: *@This(), string: ?*String, dataType: PasteboardType) objc.BOOL {
-        return objc.msgSend(self, "setString:forType:", objc.BOOL, .{string, dataType});
-    }
-
-    pub fn dataForType(self: *@This(), dataType: PasteboardType) ?*Data {
-        return objc.msgSend(self, "dataForType:", ?*Data, .{dataType});
-    }
-
-    pub fn propertyListForType(self: *@This(), dataType: PasteboardType) *objc.Id {
-        return objc.msgSend(self, "propertyListForType:", *objc.Id, .{dataType});
-    }
-
-    pub fn stringForType(self: *@This(), dataType: PasteboardType) ?*String {
-        return objc.msgSend(self, "stringForType:", ?*String, .{dataType});
-    }
-
-    pub fn generalPasteboard(self: *@This()) ?*Pasteboard {
-        return objc.msgSend(self, "generalPasteboard", ?*Pasteboard, .{});
-    }
-
-    pub fn name(self: *@This()) PasteboardName {
-        return objc.msgSend(self, "name", PasteboardName, .{});
-    }
-
-    pub fn changeCount(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "changeCount", objc.NSInteger, .{});
-    }
-
-    pub fn pasteboardItems(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "pasteboardItems", ?*anyopaque, .{});
-    }
-
-    pub fn types(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "types", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSResponder?language=objc
-pub const Responder = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSResponder", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
-    }
-
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
-    }
-
-    pub fn tryToPerformWith(self: *@This(), action: *objc.SEL, object: *objc.Id) objc.BOOL {
-        return objc.msgSend(self, "tryToPerform:with:", objc.BOOL, .{action, object});
-    }
-
-    pub fn performKeyEquivalent(self: *@This(), event: ?*Event) objc.BOOL {
-        return objc.msgSend(self, "performKeyEquivalent:", objc.BOOL, .{event});
-    }
-
-    pub fn validRequestorForSendTypeReturnType(self: *@This(), sendType: PasteboardType, returnType: PasteboardType) *objc.Id {
-        return objc.msgSend(self, "validRequestorForSendType:returnType:", *objc.Id, .{sendType, returnType});
-    }
-
-    pub fn mouseDown(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "mouseDown:", void, .{event});
-    }
-
-    pub fn rightMouseDown(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "rightMouseDown:", void, .{event});
-    }
-
-    pub fn otherMouseDown(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "otherMouseDown:", void, .{event});
-    }
-
-    pub fn mouseUp(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "mouseUp:", void, .{event});
-    }
-
-    pub fn rightMouseUp(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "rightMouseUp:", void, .{event});
-    }
-
-    pub fn otherMouseUp(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "otherMouseUp:", void, .{event});
-    }
-
-    pub fn mouseMoved(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "mouseMoved:", void, .{event});
-    }
-
-    pub fn mouseDragged(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "mouseDragged:", void, .{event});
-    }
-
-    pub fn scrollWheel(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "scrollWheel:", void, .{event});
-    }
-
-    pub fn rightMouseDragged(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "rightMouseDragged:", void, .{event});
-    }
-
-    pub fn otherMouseDragged(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "otherMouseDragged:", void, .{event});
-    }
-
-    pub fn mouseEntered(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "mouseEntered:", void, .{event});
-    }
-
-    pub fn mouseExited(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "mouseExited:", void, .{event});
-    }
-
-    pub fn keyDown(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "keyDown:", void, .{event});
-    }
-
-    pub fn keyUp(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "keyUp:", void, .{event});
-    }
-
-    pub fn flagsChanged(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "flagsChanged:", void, .{event});
-    }
-
-    pub fn tabletPoint(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "tabletPoint:", void, .{event});
-    }
-
-    pub fn tabletProximity(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "tabletProximity:", void, .{event});
-    }
-
-    pub fn cursorUpdate(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "cursorUpdate:", void, .{event});
-    }
-
-    pub fn magnifyWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "magnifyWithEvent:", void, .{event});
-    }
-
-    pub fn rotateWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "rotateWithEvent:", void, .{event});
-    }
-
-    pub fn swipeWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "swipeWithEvent:", void, .{event});
-    }
-
-    pub fn beginGestureWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "beginGestureWithEvent:", void, .{event});
-    }
-
-    pub fn endGestureWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "endGestureWithEvent:", void, .{event});
-    }
-
-    pub fn smartMagnifyWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "smartMagnifyWithEvent:", void, .{event});
-    }
-
-    pub fn changeModeWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "changeModeWithEvent:", void, .{event});
-    }
-
-    pub fn touchesBeganWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "touchesBeganWithEvent:", void, .{event});
-    }
-
-    pub fn touchesMovedWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "touchesMovedWithEvent:", void, .{event});
-    }
-
-    pub fn touchesEndedWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "touchesEndedWithEvent:", void, .{event});
-    }
-
-    pub fn touchesCancelledWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "touchesCancelledWithEvent:", void, .{event});
-    }
-
-    pub fn quickLookWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "quickLookWithEvent:", void, .{event});
-    }
-
-    pub fn pressureChangeWithEvent(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "pressureChangeWithEvent:", void, .{event});
-    }
-
-    pub fn contextMenuKeyDown(self: *@This(), event: ?*Event) void {
-        return objc.msgSend(self, "contextMenuKeyDown:", void, .{event});
-    }
-
-    pub fn noResponderFor(self: *@This(), eventSelector: *objc.SEL) void {
-        return objc.msgSend(self, "noResponderFor:", void, .{eventSelector});
-    }
-
-    pub fn becomeFirstResponder(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "becomeFirstResponder", objc.BOOL, .{});
-    }
-
-    pub fn resignFirstResponder(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "resignFirstResponder", objc.BOOL, .{});
-    }
-
-    pub fn interpretKeyEvents(self: *@This(), eventArray: ?*anyopaque) void {
-        return objc.msgSend(self, "interpretKeyEvents:", void, .{eventArray});
-    }
-
-    pub fn flushBufferedKeyEvents(self: *@This()) void {
-        return objc.msgSend(self, "flushBufferedKeyEvents", void, .{});
-    }
-
-    pub fn showContextHelp(self: *@This(), sender: *objc.Id) void {
-        return objc.msgSend(self, "showContextHelp:", void, .{sender});
-    }
-
-    pub fn helpRequested(self: *@This(), eventPtr: ?*Event) void {
-        return objc.msgSend(self, "helpRequested:", void, .{eventPtr});
-    }
-
-    pub fn shouldBeTreatedAsInkEvent(self: *@This(), event: ?*Event) objc.BOOL {
-        return objc.msgSend(self, "shouldBeTreatedAsInkEvent:", objc.BOOL, .{event});
-    }
-
-    pub fn wantsScrollEventsForSwipeTrackingOnAxis(self: *@This(), axis: EventGestureAxis) objc.BOOL {
-        return objc.msgSend(self, "wantsScrollEventsForSwipeTrackingOnAxis:", objc.BOOL, .{axis});
-    }
-
-    pub fn wantsForwardedScrollEventsForAxis(self: *@This(), axis: EventGestureAxis) objc.BOOL {
-        return objc.msgSend(self, "wantsForwardedScrollEventsForAxis:", objc.BOOL, .{axis});
-    }
-
-    pub fn supplementalTargetForActionSender(self: *@This(), action: *objc.SEL, sender: *objc.Id) *objc.Id {
-        return objc.msgSend(self, "supplementalTargetForAction:sender:", *objc.Id, .{action, sender});
-    }
-
-    pub fn nextResponder(self: *@This()) ?*Responder {
-        return objc.msgSend(self, "nextResponder", ?*Responder, .{});
-    }
-
-    pub fn setNextResponder(self: *@This(), nextResponder: ?*Responder) void {
-        return objc.msgSend(self, "setNextResponder:", void, .{nextResponder});
-    }
-
-    pub fn acceptsFirstResponder(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "acceptsFirstResponder", objc.BOOL, .{});
-    }
-
-    pub fn menu(self: *@This()) ?*Menu {
-        return objc.msgSend(self, "menu", ?*Menu, .{});
-    }
-
-    pub fn setMenu(self: *@This(), menu: ?*Menu) void {
-        return objc.msgSend(self, "setMenu:", void, .{menu});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSRunningApplication?language=objc
-pub const RunningApplication = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSRunningApplication", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn hide(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "hide", objc.BOOL, .{});
-    }
-
-    pub fn unhide(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "unhide", objc.BOOL, .{});
-    }
-
-    pub fn activateFromApplicationOptions(self: *@This(), application: ?*RunningApplication, options: ApplicationActivationOptions) objc.BOOL {
-        return objc.msgSend(self, "activateFromApplication:options:", objc.BOOL, .{application, options});
-    }
-
-    pub fn activateWithOptions(self: *@This(), options: ApplicationActivationOptions) objc.BOOL {
-        return objc.msgSend(self, "activateWithOptions:", objc.BOOL, .{options});
-    }
-
-    pub fn terminate(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "terminate", objc.BOOL, .{});
-    }
-
-    pub fn forceTerminate(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "forceTerminate", objc.BOOL, .{});
-    }
-
-    pub fn runningApplicationsWithBundleIdentifier(self: *@This(), bundleIdentifier: ?*String) ?*anyopaque {
-        return objc.msgSend(self, "runningApplicationsWithBundleIdentifier:", ?*anyopaque, .{bundleIdentifier});
-    }
-
-    pub fn runningApplicationWithProcessIdentifier(self: *@This(), pid: objc.pid_t) *@This() {
-        return objc.msgSend(self, "runningApplicationWithProcessIdentifier:", *@This(), .{pid});
-    }
-
-    pub fn terminateAutomaticallyTerminableApplications(self: *@This()) void {
-        return objc.msgSend(self, "terminateAutomaticallyTerminableApplications", void, .{});
-    }
-
-    pub fn isTerminated(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isTerminated", objc.BOOL, .{});
-    }
-
-    pub fn isFinishedLaunching(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isFinishedLaunching", objc.BOOL, .{});
-    }
-
-    pub fn isHidden(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isHidden", objc.BOOL, .{});
-    }
-
-    pub fn isActive(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isActive", objc.BOOL, .{});
-    }
-
-    pub fn ownsMenuBar(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "ownsMenuBar", objc.BOOL, .{});
-    }
-
-    pub fn activationPolicy(self: *@This()) ApplicationActivationPolicy {
-        return objc.msgSend(self, "activationPolicy", ApplicationActivationPolicy, .{});
-    }
-
-    pub fn localizedName(self: *@This()) ?*String {
-        return objc.msgSend(self, "localizedName", ?*String, .{});
-    }
-
-    pub fn bundleIdentifier(self: *@This()) ?*String {
-        return objc.msgSend(self, "bundleIdentifier", ?*String, .{});
-    }
-
-    pub fn bundleURL(self: *@This()) ?*URL {
-        return objc.msgSend(self, "bundleURL", ?*URL, .{});
-    }
-
-    pub fn executableURL(self: *@This()) ?*URL {
-        return objc.msgSend(self, "executableURL", ?*URL, .{});
-    }
-
-    pub fn processIdentifier(self: *@This()) objc.pid_t {
-        return objc.msgSend(self, "processIdentifier", objc.pid_t, .{});
-    }
-
-    pub fn launchDate(self: *@This()) ?*Date {
-        return objc.msgSend(self, "launchDate", ?*Date, .{});
-    }
-
-    pub fn icon(self: *@This()) ?*Image {
-        return objc.msgSend(self, "icon", ?*Image, .{});
-    }
-
-    pub fn executableArchitecture(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "executableArchitecture", objc.NSInteger, .{});
-    }
-
-    pub fn currentApplication(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "currentApplication", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSNib?language=objc
-pub const Nib = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSNib", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn initWithNibNamedBundle(self: *@This(), nibName: NibName, bundle: ?*ns.Bundle) *@This() {
-        return objc.msgSend(self, "initWithNibNamed:bundle:", *@This(), .{nibName, bundle});
-    }
-
-    pub fn initWithNibDataBundle(self: *@This(), nibData: ?*Data, bundle: ?*ns.Bundle) *@This() {
-        return objc.msgSend(self, "initWithNibData:bundle:", *@This(), .{nibData, bundle});
-    }
-
-    pub fn instantiateWithOwnerTopLevelObjects(self: *@This(), owner: *objc.Id, topLevelObjects: ?*?*Array) objc.BOOL {
-        return objc.msgSend(self, "instantiateWithOwner:topLevelObjects:", objc.BOOL, .{owner, topLevelObjects});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAnimation?language=objc
-pub const Animation = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSAnimation", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn initWithDurationAnimationCurve(self: *@This(), duration: ns.TimeInterval, animationCurve: AnimationCurve) *@This() {
-        return objc.msgSend(self, "initWithDuration:animationCurve:", *@This(), .{duration, animationCurve});
-    }
-
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
-    }
-
-    pub fn startAnimation(self: *@This()) void {
-        return objc.msgSend(self, "startAnimation", void, .{});
-    }
-
-    pub fn stopAnimation(self: *@This()) void {
-        return objc.msgSend(self, "stopAnimation", void, .{});
-    }
-
-    pub fn addProgressMark(self: *@This(), progressMark: AnimationProgress) void {
-        return objc.msgSend(self, "addProgressMark:", void, .{progressMark});
-    }
-
-    pub fn removeProgressMark(self: *@This(), progressMark: AnimationProgress) void {
-        return objc.msgSend(self, "removeProgressMark:", void, .{progressMark});
-    }
-
-    pub fn startWhenAnimationReachesProgress(self: *@This(), animation: ?*Animation, startProgress: AnimationProgress) void {
-        return objc.msgSend(self, "startWhenAnimation:reachesProgress:", void, .{animation, startProgress});
-    }
-
-    pub fn stopWhenAnimationReachesProgress(self: *@This(), animation: ?*Animation, stopProgress: AnimationProgress) void {
-        return objc.msgSend(self, "stopWhenAnimation:reachesProgress:", void, .{animation, stopProgress});
-    }
-
-    pub fn clearStartAnimation(self: *@This()) void {
-        return objc.msgSend(self, "clearStartAnimation", void, .{});
-    }
-
-    pub fn clearStopAnimation(self: *@This()) void {
-        return objc.msgSend(self, "clearStopAnimation", void, .{});
-    }
-
-    pub fn isAnimating(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isAnimating", objc.BOOL, .{});
-    }
-
-    pub fn currentProgress(self: *@This()) AnimationProgress {
-        return objc.msgSend(self, "currentProgress", AnimationProgress, .{});
-    }
-
-    pub fn setCurrentProgress(self: *@This(), currentProgress: AnimationProgress) void {
-        return objc.msgSend(self, "setCurrentProgress:", void, .{currentProgress});
-    }
-
-    pub fn duration(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "duration", ns.TimeInterval, .{});
-    }
-
-    pub fn setDuration(self: *@This(), duration: ns.TimeInterval) void {
-        return objc.msgSend(self, "setDuration:", void, .{duration});
-    }
-
-    pub fn animationBlockingMode(self: *@This()) AnimationBlockingMode {
-        return objc.msgSend(self, "animationBlockingMode", AnimationBlockingMode, .{});
-    }
-
-    pub fn setAnimationBlockingMode(self: *@This(), animationBlockingMode: AnimationBlockingMode) void {
-        return objc.msgSend(self, "setAnimationBlockingMode:", void, .{animationBlockingMode});
-    }
-
-    pub fn frameRate(self: *@This()) f32 {
-        return objc.msgSend(self, "frameRate", f32, .{});
-    }
-
-    pub fn setFrameRate(self: *@This(), frameRate: f32) void {
-        return objc.msgSend(self, "setFrameRate:", void, .{frameRate});
-    }
-
-    pub fn animationCurve(self: *@This()) AnimationCurve {
-        return objc.msgSend(self, "animationCurve", AnimationCurve, .{});
-    }
-
-    pub fn setAnimationCurve(self: *@This(), animationCurve: AnimationCurve) void {
-        return objc.msgSend(self, "setAnimationCurve:", void, .{animationCurve});
-    }
-
-    pub fn currentValue(self: *@This()) f32 {
-        return objc.msgSend(self, "currentValue", f32, .{});
-    }
-
-    pub fn delegate(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "delegate", ?*anyopaque, .{});
-    }
-
-    pub fn setDelegate(self: *@This(), delegate: ?*anyopaque) void {
-        return objc.msgSend(self, "setDelegate:", void, .{delegate});
-    }
-
-    pub fn progressMarks(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "progressMarks", ?*anyopaque, .{});
-    }
-
-    pub fn setProgressMarks(self: *@This(), progressMarks: ?*anyopaque) void {
-        return objc.msgSend(self, "setProgressMarks:", void, .{progressMarks});
-    }
-
-    pub fn runLoopModesForAnimating(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "runLoopModesForAnimating", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSViewAnimation?language=objc
-pub const ViewAnimation = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSViewAnimation", @This(), Animation, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn initWithViewAnimations(self: *@This(), viewAnimations: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithViewAnimations:", *@This(), .{viewAnimations});
-    }
-
-    pub fn viewAnimations(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "viewAnimations", ?*anyopaque, .{});
-    }
-
-    pub fn setViewAnimations(self: *@This(), viewAnimations: ?*anyopaque) void {
-        return objc.msgSend(self, "setViewAnimations:", void, .{viewAnimations});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/AppKit/NSAppearance?language=objc
-pub const Appearance = opaque {
-    pub const InternalInfo = objc.ExternalClass("NSAppearance", @This(), Object, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn performAsCurrentDrawingAppearance(self: *@This(), block: *const fn() callconv(.C) void) void {
-        return objc.msgSend(self, "performAsCurrentDrawingAppearance:", void, .{block});
-    }
-
-    pub fn appearanceNamed(self: *@This(), name: AppearanceName) ?*Appearance {
-        return objc.msgSend(self, "appearanceNamed:", ?*Appearance, .{name});
-    }
-
-    pub fn initWithAppearanceNamedBundle(self: *@This(), name: AppearanceName, bundle: ?*Bundle) *@This() {
-        return objc.msgSend(self, "initWithAppearanceNamed:bundle:", *@This(), .{name, bundle});
-    }
-
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
-    }
-
-    pub fn bestMatchFromAppearancesWithNames(self: *@This(), appearances: ?*anyopaque) AppearanceName {
-        return objc.msgSend(self, "bestMatchFromAppearancesWithNames:", AppearanceName, .{appearances});
-    }
-
-    pub fn name(self: *@This()) AppearanceName {
-        return objc.msgSend(self, "name", AppearanceName, .{});
-    }
-
-    pub fn currentAppearance(self: *@This()) ?*Appearance {
-        return objc.msgSend(self, "currentAppearance", ?*Appearance, .{});
-    }
-
-    pub fn setCurrentAppearance(self: *@This(), currentAppearance: ?*Appearance) void {
-        return objc.msgSend(self, "setCurrentAppearance:", void, .{currentAppearance});
-    }
-
-    pub fn currentDrawingAppearance(self: *@This()) ?*Appearance {
-        return objc.msgSend(self, "currentDrawingAppearance", ?*Appearance, .{});
-    }
-
-    pub fn allowsVibrancy(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowsVibrancy", objc.BOOL, .{});
-    }
-
-};
+pub const UserInterfaceLayoutDirection = enum(objc.NSInteger) {
+    LeftToRight = 0,
+    RightToLeft = 1,
+};
+
+pub const UserInterfaceLayoutOrientation = enum(objc.NSInteger) {
+    Horizontal = 0,
+    Vertical = 1,
+};
+
+pub const AutoresizingMaskOptions = enum(objc.NSUInteger) {
+    ViewNotSizable = 0,
+    ViewMinXMargin = 1,
+    ViewWidthSizable = 2,
+    ViewMaxXMargin = 4,
+    ViewMinYMargin = 8,
+    ViewHeightSizable = 16,
+    ViewMaxYMargin = 32,
+};
+
+pub const BorderType = enum(objc.NSUInteger) {
+    NoBorder = 0,
+    LineBorder = 1,
+    BezelBorder = 2,
+    GrooveBorder = 3,
+};
+
+pub const ViewLayerContentsRedrawPolicy = enum(objc.NSInteger) {
+    Never = 0,
+    OnSetNeedsDisplay = 1,
+    DuringViewResize = 2,
+    BeforeViewResize = 3,
+    Crossfade = 4,
+};
+
+pub const ViewLayerContentsPlacement = enum(objc.NSInteger) {
+    ScaleAxesIndependently = 0,
+    ScaleProportionallyToFit = 1,
+    ScaleProportionallyToFill = 2,
+    Center = 3,
+    Top = 4,
+    TopRight = 5,
+    Right = 6,
+    BottomRight = 7,
+    Bottom = 8,
+    BottomLeft = 9,
+    Left = 10,
+    TopLeft = 11,
+};
+
+pub const TrackingRectTag = objc.NSInteger;
+
+pub const ToolTipTag = objc.NSInteger;
 
 /// https://developer.apple.com/documentation/AppKit/NSView?language=objc
 pub const View = opaque {
@@ -11775,6 +5674,96 @@ pub const View = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSViewLayerContentScaleDelegate?language=objc
+pub const ViewLayerContentScaleDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn layerShouldInheritContentsScaleFromWindow(self: *@This(), layer: ?*CALayer, newScale: cf.CGFloat, window: ?*Window) objc.BOOL {
+        return objc.msgSend(self, "layer:shouldInheritContentsScale:fromWindow:", objc.BOOL, .{layer, newScale, window});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSViewToolTipOwner?language=objc
+pub const ViewToolTipOwner = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn viewStringForToolTipPointUserData(self: *@This(), view: ?*View, tag: ToolTipTag, point: ns.Point, data: ?*anyopaque, ) ?*String {
+        return objc.msgSend(self, "view:stringForToolTip:point:userData:", ?*String, .{view, tag, point, data, });
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSViewContentSelectionInfo?language=objc
+pub const ViewContentSelectionInfo = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn selectionAnchorRect(self: *@This()) ns.Rect {
+        return objc.msgSend(self, "selectionAnchorRect", ns.Rect, .{});
+    }
+
+};
+
+pub const ViewFullScreenModeOptionKey = ?*String;
+
+pub const DefinitionOptionKey = ?*String;
+
+pub const DefinitionPresentationType = ?*String;
+
+pub const WritingDirection = enum(objc.NSInteger) {
+    Natural = -1,
+    LeftToRight = 0,
+    RightToLeft = 1,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSChangeSpelling?language=objc
+pub const ChangeSpelling = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn changeSpelling(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "changeSpelling:", void, .{sender});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSIgnoreMisspelledWords?language=objc
+pub const IgnoreMisspelledWords = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn ignoreSpelling(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "ignoreSpelling:", void, .{sender});
+    }
+
+};
+
+pub const TextAlignment = enum(objc.NSInteger) {
+    Left = 0,
+    Center = 1,
+    Right = 2,
+    Justified = 3,
+    Natural = 4,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSText?language=objc
 pub const Text = opaque {
     pub const InternalInfo = objc.ExternalClass("NSText", @This(), View, &.{});
@@ -12076,6 +6065,66 @@ pub const Text = opaque {
 
 };
 
+pub const TextMovement = enum(objc.NSInteger) {
+    Return = 16,
+    Tab = 17,
+    Backtab = 18,
+    Left = 19,
+    Right = 20,
+    Up = 21,
+    Down = 22,
+    Cancel = 23,
+    Other = 0,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextDelegate?language=objc
+pub const TextDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn textShouldBeginEditing(self: *@This(), textObject: ?*Text) objc.BOOL {
+        return objc.msgSend(self, "textShouldBeginEditing:", objc.BOOL, .{textObject});
+    }
+
+    pub fn textShouldEndEditing(self: *@This(), textObject: ?*Text) objc.BOOL {
+        return objc.msgSend(self, "textShouldEndEditing:", objc.BOOL, .{textObject});
+    }
+
+    pub fn textDidBeginEditing(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "textDidBeginEditing:", void, .{notification});
+    }
+
+    pub fn textDidEndEditing(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "textDidEndEditing:", void, .{notification});
+    }
+
+    pub fn textDidChange(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "textDidChange:", void, .{notification});
+    }
+
+};
+
+pub const LineBreakMode = enum(objc.NSUInteger) {
+    ByWordWrapping = 0,
+    ByCharWrapping = 1,
+    ByClipping = 2,
+    ByTruncatingHead = 3,
+    ByTruncatingTail = 4,
+    ByTruncatingMiddle = 5,
+};
+
+pub const LineBreakStrategy = enum(objc.NSUInteger) {
+    None = 0,
+    PushOut = 1,
+    HangulWordPriority = 2,
+    Standard = 65535,
+};
+
+pub const TextTabOptionKey = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSTextTab?language=objc
 pub const TextTab = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextTab", @This(), Object, &.{});
@@ -12363,6 +6412,85 @@ pub const MutableParagraphStyle = opaque {
 
 };
 
+pub const TextTabType = enum(objc.NSUInteger) {
+    LeftTabStopType = 0,
+    RightTabStopType = 1,
+    CenterTabStopType = 2,
+    DecimalTabStopType = 3,
+};
+
+pub const CellType = enum(objc.NSUInteger) {
+    NullCellType = 0,
+    TextCellType = 1,
+    ImageCellType = 2,
+};
+
+pub const CellAttribute = enum(objc.NSUInteger) {
+    Disabled = 0,
+    State = 1,
+    PushInCell = 2,
+    Editable = 3,
+    ChangeGrayCell = 4,
+    Highlighted = 5,
+    LightsByContents = 6,
+    LightsByGray = 7,
+    ChangeBackgroundCell = 8,
+    LightsByBackground = 9,
+    IsBordered = 10,
+    HasOverlappingImage = 11,
+    HasImageHorizontal = 12,
+    HasImageOnLeftOrBottom = 13,
+    ChangesContents = 14,
+    IsInsetButton = 15,
+    AllowsMixedState = 16,
+};
+
+pub const CellImagePosition = enum(objc.NSUInteger) {
+    NoImage = 0,
+    ImageOnly = 1,
+    ImageLeft = 2,
+    ImageRight = 3,
+    ImageBelow = 4,
+    ImageAbove = 5,
+    ImageOverlaps = 6,
+    ImageLeading = 7,
+    ImageTrailing = 8,
+};
+
+pub const ImageScaling = enum(objc.NSUInteger) {
+    ScaleProportionallyDown = 0,
+    ScaleAxesIndependently = 1,
+    ScaleNone = 2,
+    ScaleProportionallyUpOrDown = 3,
+    ScaleProportionally = 0,
+    ScaleToFit = 1,
+    ScaleNone = 2,
+};
+
+pub const ControlStateValue = objc.NSInteger;
+
+pub const CellStyleMask = enum(objc.NSUInteger) {
+    NoCellMask = 0,
+    ContentsCellMask = 1,
+    PushInCellMask = 2,
+    ChangeGrayCellMask = 4,
+    ChangeBackgroundCellMask = 8,
+};
+
+pub const ControlTint = enum(objc.NSUInteger) {
+    DefaultControlTint = 0,
+    BlueControlTint = 1,
+    GraphiteControlTint = 6,
+    ClearControlTint = 7,
+};
+
+pub const ControlSize = enum(objc.NSUInteger) {
+    Regular = 0,
+    Small = 1,
+    Mini = 2,
+    Large = 3,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSCell?language=objc
 pub const Cell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSCell", @This(), Object, &.{});
@@ -12530,7 +6658,7 @@ pub const Cell = opaque {
         return objc.msgSend(self, "setControlView:", void, .{controlView});
     }
 
-    pub fn type(self: *@This()) CellType {
+    pub fn @"type"(self: *@This()) CellType {
         return objc.msgSend(self, "type", CellType, .{});
     }
 
@@ -12836,6 +6964,26 @@ pub const Cell = opaque {
 
 };
 
+pub const CellHitResult = enum(objc.NSUInteger) {
+    None = 0,
+    ContentArea = 1,
+    EditableTextArea = 2,
+    TrackableArea = 4,
+};
+
+pub const BackgroundStyle = enum(objc.NSInteger) {
+    Normal = 0,
+    Emphasized = 1,
+    Raised = 2,
+    Lowered = 3,
+};
+
+pub extern "AppKit" fn DrawThreePartImage(frame: ns.Rect, startCap: ?*Image, centerFill: ?*Image, endCap: ?*Image, vertical: objc.BOOL, op: CompositingOperation, alphaFraction: cf.CGFloat, flipped: objc.BOOL, ) callconv(.C) void;
+
+pub extern "AppKit" fn DrawNinePartImage(frame: ns.Rect, topLeftCorner: ?*Image, topEdgeFill: ?*Image, topRightCorner: ?*Image, leftEdgeFill: ?*Image, centerFill: ?*Image, rightEdgeFill: ?*Image, bottomLeftCorner: ?*Image, bottomEdgeFill: ?*Image, bottomRightCorner: ?*Image, op: CompositingOperation, alphaFraction: cf.CGFloat, flipped: objc.BOOL, ) callconv(.C) void;
+
+pub const CellStateValue = ControlStateValue;
+
 /// https://developer.apple.com/documentation/AppKit/NSMenuItem?language=objc
 pub const MenuItem = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMenuItem", @This(), Object, &.{});
@@ -13109,6 +7257,17 @@ pub const MenuItem = opaque {
 
 };
 
+pub const MenuPresentationStyle = enum(objc.NSInteger) {
+    Regular = 0,
+    Palette = 1,
+};
+
+pub const MenuSelectionMode = enum(objc.NSInteger) {
+    Automatic = 0,
+    SelectOne = 1,
+    SelectAny = 2,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSMenu?language=objc
 pub const Menu = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMenu", @This(), Object, &.{});
@@ -13338,6 +7497,81 @@ pub const Menu = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSMenuItemValidation?language=objc
+pub const MenuItemValidation = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn validateMenuItem(self: *@This(), menuItem: ?*MenuItem) objc.BOOL {
+        return objc.msgSend(self, "validateMenuItem:", objc.BOOL, .{menuItem});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSMenuDelegate?language=objc
+pub const MenuDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn menuNeedsUpdate(self: *@This(), menu: ?*Menu) void {
+        return objc.msgSend(self, "menuNeedsUpdate:", void, .{menu});
+    }
+
+    pub fn numberOfItemsInMenu(self: *@This(), menu: ?*Menu) objc.NSInteger {
+        return objc.msgSend(self, "numberOfItemsInMenu:", objc.NSInteger, .{menu});
+    }
+
+    pub fn menuUpdateItemAtIndexShouldCancel(self: *@This(), menu: ?*Menu, item: ?*MenuItem, index: objc.NSInteger, shouldCancel: objc.BOOL, ) objc.BOOL {
+        return objc.msgSend(self, "menu:updateItem:atIndex:shouldCancel:", objc.BOOL, .{menu, item, index, shouldCancel, });
+    }
+
+    pub fn menuHasKeyEquivalentForEventTargetAction(self: *@This(), menu: ?*Menu, event: ?*Event, target: ?**objc.Id, action: ?**objc.SEL, ) objc.BOOL {
+        return objc.msgSend(self, "menuHasKeyEquivalent:forEvent:target:action:", objc.BOOL, .{menu, event, target, action, });
+    }
+
+    pub fn menuWillOpen(self: *@This(), menu: ?*Menu) void {
+        return objc.msgSend(self, "menuWillOpen:", void, .{menu});
+    }
+
+    pub fn menuDidClose(self: *@This(), menu: ?*Menu) void {
+        return objc.msgSend(self, "menuDidClose:", void, .{menu});
+    }
+
+    pub fn menuWillHighlightItem(self: *@This(), menu: ?*Menu, item: ?*MenuItem) void {
+        return objc.msgSend(self, "menu:willHighlightItem:", void, .{menu, item});
+    }
+
+    pub fn confinementRectForMenuOnScreen(self: *@This(), menu: ?*Menu, screen: ?*Screen) ns.Rect {
+        return objc.msgSend(self, "confinementRectForMenu:onScreen:", ns.Rect, .{menu, screen});
+    }
+
+};
+
+pub const MenuProperties = enum(objc.NSUInteger) {
+    PropertyItemTitle = 1,
+    PropertyItemAttributedTitle = 2,
+    PropertyItemKeyEquivalent = 4,
+    PropertyItemImage = 8,
+    PropertyItemEnabled = 16,
+    PropertyItemAccessibilityDescription = 32,
+};
+
+pub const PrinterTableStatus = enum(objc.NSUInteger) {
+    OK = 0,
+    NotFound = 1,
+    Error = 2,
+};
+
+pub const PrinterTypeName = ?*String;
+
+pub const PrinterPaperName = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSPrinter?language=objc
 pub const Printer = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPrinter", @This(), Object, &.{});
@@ -13373,7 +7607,7 @@ pub const Printer = opaque {
         return objc.msgSend(self, "name", ?*String, .{});
     }
 
-    pub fn type(self: *@This()) PrinterTypeName {
+    pub fn @"type"(self: *@This()) PrinterTypeName {
         return objc.msgSend(self, "type", PrinterTypeName, .{});
     }
 
@@ -13386,6 +7620,23 @@ pub const Printer = opaque {
     }
 
 };
+
+pub const PaperOrientation = enum(objc.NSInteger) {
+    Portrait = 0,
+    Landscape = 1,
+};
+
+pub const PrintingPaginationMode = enum(objc.NSUInteger) {
+    Automatic = 0,
+    Fit = 1,
+    Clip = 2,
+};
+
+pub const PrintInfoAttributeKey = ?*String;
+
+pub const PrintJobDispositionValue = ?*String;
+
+pub const PrintInfoSettingKey = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSPrintInfo?language=objc
 pub const PrintInfo = opaque {
@@ -13588,6 +7839,15 @@ pub const PrintInfo = opaque {
 
 };
 
+pub const PrintingOrientation = enum(objc.NSUInteger) {
+    PortraitOrientation = 0,
+    LandscapeOrientation = 1,
+};
+
+pub const BindingName = ?*String;
+
+pub const BindingOption = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSBindingSelectionMarker?language=objc
 pub const BindingSelectionMarker = opaque {
     pub const InternalInfo = objc.ExternalClass("NSBindingSelectionMarker", @This(), Object, &.{});
@@ -13625,6 +7885,80 @@ pub const BindingSelectionMarker = opaque {
 
 };
 
+pub extern "AppKit" fn IsControllerMarker(object: *objc.Id) callconv(.C) objc.BOOL;
+
+pub const BindingInfoKey = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSEditor?language=objc
+pub const Editor = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn discardEditing(self: *@This()) void {
+        return objc.msgSend(self, "discardEditing", void, .{});
+    }
+
+    pub fn commitEditing(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "commitEditing", objc.BOOL, .{});
+    }
+
+    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(self: *@This(), delegate: *objc.Id, didCommitSelector: *objc.SEL, contextInfo: ?*anyopaque) void {
+        return objc.msgSend(self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", void, .{delegate, didCommitSelector, contextInfo});
+    }
+
+    pub fn commitEditingAndReturnError(self: *@This(), @"error": ?*?*Error) objc.BOOL {
+        return objc.msgSend(self, "commitEditingAndReturnError:", objc.BOOL, .{@"error"});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSEditorRegistration?language=objc
+pub const EditorRegistration = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn objectDidBeginEditing(self: *@This(), editor: ?*anyopaque) void {
+        return objc.msgSend(self, "objectDidBeginEditing:", void, .{editor});
+    }
+
+    pub fn objectDidEndEditing(self: *@This(), editor: ?*anyopaque) void {
+        return objc.msgSend(self, "objectDidEndEditing:", void, .{editor});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSPreviewRepresentableActivityItem?language=objc
+pub const PreviewRepresentableActivityItem = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn item(self: *@This()) *objc.Id {
+        return objc.msgSend(self, "item", *objc.Id, .{});
+    }
+
+    pub fn title(self: *@This()) ?*String {
+        return objc.msgSend(self, "title", ?*String, .{});
+    }
+
+    pub fn imageProvider(self: *@This()) ?*ItemProvider {
+        return objc.msgSend(self, "imageProvider", ?*ItemProvider, .{});
+    }
+
+    pub fn iconProvider(self: *@This()) ?*ItemProvider {
+        return objc.msgSend(self, "iconProvider", ?*ItemProvider, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem?language=objc
 pub const PreviewRepresentingActivityItem = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPreviewRepresentingActivityItem", @This(), Object, &.{});
@@ -13652,6 +7986,26 @@ pub const PreviewRepresentingActivityItem = opaque {
         return objc.msgSend(self, "new", *@This(), .{});
     }
 
+};
+
+pub const DocumentChangeType = enum(objc.NSUInteger) {
+    ChangeDone = 0,
+    ChangeUndone = 1,
+    ChangeRedone = 5,
+    ChangeCleared = 2,
+    ChangeReadOtherContents = 3,
+    ChangeAutosaved = 4,
+    ChangeDiscardable = 256,
+};
+
+pub const SaveOperationType = enum(objc.NSUInteger) {
+    Operation = 0,
+    AsOperation = 1,
+    ToOperation = 2,
+    AutosaveInPlaceOperation = 4,
+    AutosaveElsewhereOperation = 3,
+    AutosaveAsOperation = 5,
+    AutosaveOperation = 3,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSDocument?language=objc
@@ -14227,6 +8581,53 @@ pub const Document = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSUserActivityRestoring?language=objc
+pub const UserActivityRestoring = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn restoreUserActivityState(self: *@This(), userActivity: ?*ns.UserActivity) void {
+        return objc.msgSend(self, "restoreUserActivityState:", void, .{userActivity});
+    }
+
+};
+
+pub const AppKitVersion = f64;
+
+pub const ModalResponse = objc.NSInteger;
+
+pub const ApplicationPresentationOptions = enum(objc.NSUInteger) {
+    Default = 0,
+    AutoHideDock = 1,
+    HideDock = 2,
+    AutoHideMenuBar = 4,
+    HideMenuBar = 8,
+    DisableAppleMenu = 16,
+    DisableProcessSwitching = 32,
+    DisableForceQuit = 64,
+    DisableSessionTermination = 128,
+    DisableHideApplication = 256,
+    DisableMenuBarTransparency = 512,
+    FullScreen = 1024,
+    AutoHideToolbar = 2048,
+    DisableCursorLocationAssistance = 4096,
+};
+
+pub const ApplicationOcclusionState = enum(objc.NSUInteger) {
+    Visible = 2,
+};
+
+pub const WindowListOptions = enum(objc.NSInteger) {
+    OrderedFrontToBack = 1,
+};
+
+pub const _NSModalSession = extern struct {};
+
+pub const ModalSession = ?*_NSModalSession;
+
 /// https://developer.apple.com/documentation/AppKit/NSApplication?language=objc
 pub const Application = opaque {
     pub const InternalInfo = objc.ExternalClass("NSApplication", @This(), Responder, &.{});
@@ -14468,6 +8869,279 @@ pub const Application = opaque {
 
 };
 
+pub const RequestUserAttentionType = enum NSRequestUserAttentionType;
+
+pub const RequestUserAttentionType = enum(objc.NSUInteger) {
+    CriticalRequest = 0,
+    InformationalRequest = 10,
+};
+
+pub const ApplicationDelegateReply = enum NSApplicationDelegateReply;
+
+pub const ApplicationDelegateReply = enum(objc.NSUInteger) {
+    Success = 0,
+    Cancel = 1,
+    Failure = 2,
+};
+
+pub const ApplicationTerminateReply = enum(objc.NSUInteger) {
+    TerminateCancel = 0,
+    TerminateNow = 1,
+    TerminateLater = 2,
+};
+
+pub const ApplicationPrintReply = enum(objc.NSUInteger) {
+    PrintingCancelled = 0,
+    PrintingSuccess = 1,
+    PrintingReplyLater = 2,
+    PrintingFailure = 3,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSApplicationDelegate?language=objc
+pub const ApplicationDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn applicationShouldTerminate(self: *@This(), sender: ?*Application) ApplicationTerminateReply {
+        return objc.msgSend(self, "applicationShouldTerminate:", ApplicationTerminateReply, .{sender});
+    }
+
+    pub fn applicationOpenURLs(self: *@This(), application: ?*Application, urls: ?*anyopaque) void {
+        return objc.msgSend(self, "application:openURLs:", void, .{application, urls});
+    }
+
+    pub fn applicationOpenFile(self: *@This(), sender: ?*Application, filename: ?*String) objc.BOOL {
+        return objc.msgSend(self, "application:openFile:", objc.BOOL, .{sender, filename});
+    }
+
+    pub fn applicationOpenFiles(self: *@This(), sender: ?*Application, filenames: ?*anyopaque) void {
+        return objc.msgSend(self, "application:openFiles:", void, .{sender, filenames});
+    }
+
+    pub fn applicationOpenTempFile(self: *@This(), sender: ?*Application, filename: ?*String) objc.BOOL {
+        return objc.msgSend(self, "application:openTempFile:", objc.BOOL, .{sender, filename});
+    }
+
+    pub fn applicationShouldOpenUntitledFile(self: *@This(), sender: ?*Application) objc.BOOL {
+        return objc.msgSend(self, "applicationShouldOpenUntitledFile:", objc.BOOL, .{sender});
+    }
+
+    pub fn applicationOpenUntitledFile(self: *@This(), sender: ?*Application) objc.BOOL {
+        return objc.msgSend(self, "applicationOpenUntitledFile:", objc.BOOL, .{sender});
+    }
+
+    pub fn applicationOpenFileWithoutUI(self: *@This(), sender: *objc.Id, filename: ?*String) objc.BOOL {
+        return objc.msgSend(self, "application:openFileWithoutUI:", objc.BOOL, .{sender, filename});
+    }
+
+    pub fn applicationPrintFile(self: *@This(), sender: ?*Application, filename: ?*String) objc.BOOL {
+        return objc.msgSend(self, "application:printFile:", objc.BOOL, .{sender, filename});
+    }
+
+    pub fn applicationPrintFilesWithSettingsShowPrintPanels(self: *@This(), application: ?*Application, fileNames: ?*anyopaque, printSettings: ?*anyopaque, showPrintPanels: objc.BOOL, ) ApplicationPrintReply {
+        return objc.msgSend(self, "application:printFiles:withSettings:showPrintPanels:", ApplicationPrintReply, .{application, fileNames, printSettings, showPrintPanels, });
+    }
+
+    pub fn applicationShouldTerminateAfterLastWindowClosed(self: *@This(), sender: ?*Application) objc.BOOL {
+        return objc.msgSend(self, "applicationShouldTerminateAfterLastWindowClosed:", objc.BOOL, .{sender});
+    }
+
+    pub fn applicationShouldHandleReopenHasVisibleWindows(self: *@This(), sender: ?*Application, hasVisibleWindows: objc.BOOL) objc.BOOL {
+        return objc.msgSend(self, "applicationShouldHandleReopen:hasVisibleWindows:", objc.BOOL, .{sender, hasVisibleWindows});
+    }
+
+    pub fn applicationDockMenu(self: *@This(), sender: ?*Application) ?*Menu {
+        return objc.msgSend(self, "applicationDockMenu:", ?*Menu, .{sender});
+    }
+
+    pub fn applicationWillPresentError(self: *@This(), application: ?*Application, @"error": ?*Error) ?*Error {
+        return objc.msgSend(self, "application:willPresentError:", ?*Error, .{application, @"error"});
+    }
+
+    pub fn applicationDidRegisterForRemoteNotificationsWithDeviceToken(self: *@This(), application: ?*Application, deviceToken: ?*Data) void {
+        return objc.msgSend(self, "application:didRegisterForRemoteNotificationsWithDeviceToken:", void, .{application, deviceToken});
+    }
+
+    pub fn applicationDidFailToRegisterForRemoteNotificationsWithError(self: *@This(), application: ?*Application, @"error": ?*Error) void {
+        return objc.msgSend(self, "application:didFailToRegisterForRemoteNotificationsWithError:", void, .{application, @"error"});
+    }
+
+    pub fn applicationDidReceiveRemoteNotification(self: *@This(), application: ?*Application, userInfo: ?*anyopaque) void {
+        return objc.msgSend(self, "application:didReceiveRemoteNotification:", void, .{application, userInfo});
+    }
+
+    pub fn applicationSupportsSecureRestorableState(self: *@This(), app: ?*Application) objc.BOOL {
+        return objc.msgSend(self, "applicationSupportsSecureRestorableState:", objc.BOOL, .{app});
+    }
+
+    pub fn applicationHandlerForIntent(self: *@This(), application: ?*Application, intent: ?*INIntent) *objc.Id {
+        return objc.msgSend(self, "application:handlerForIntent:", *objc.Id, .{application, intent});
+    }
+
+    pub fn applicationWillEncodeRestorableState(self: *@This(), app: ?*Application, coder: ?*ns.Coder) void {
+        return objc.msgSend(self, "application:willEncodeRestorableState:", void, .{app, coder});
+    }
+
+    pub fn applicationDidDecodeRestorableState(self: *@This(), app: ?*Application, coder: ?*ns.Coder) void {
+        return objc.msgSend(self, "application:didDecodeRestorableState:", void, .{app, coder});
+    }
+
+    pub fn applicationWillContinueUserActivityWithType(self: *@This(), application: ?*Application, userActivityType: ?*String) objc.BOOL {
+        return objc.msgSend(self, "application:willContinueUserActivityWithType:", objc.BOOL, .{application, userActivityType});
+    }
+
+    pub fn applicationContinueUserActivityRestorationHandler(self: *@This(), application: ?*Application, userActivity: ?*UserActivity, restorationHandler: *const fn(?*anyopaque) callconv(.C) void) objc.BOOL {
+        return objc.msgSend(self, "application:continueUserActivity:restorationHandler:", objc.BOOL, .{application, userActivity, restorationHandler});
+    }
+
+    pub fn applicationDidFailToContinueUserActivityWithTypeError(self: *@This(), application: ?*Application, userActivityType: ?*String, @"error": ?*Error) void {
+        return objc.msgSend(self, "application:didFailToContinueUserActivityWithType:error:", void, .{application, userActivityType, @"error"});
+    }
+
+    pub fn applicationDidUpdateUserActivity(self: *@This(), application: ?*Application, userActivity: ?*UserActivity) void {
+        return objc.msgSend(self, "application:didUpdateUserActivity:", void, .{application, userActivity});
+    }
+
+    pub fn applicationUserDidAcceptCloudKitShareWithMetadata(self: *@This(), application: ?*Application, metadata: ?*CKShareMetadata) void {
+        return objc.msgSend(self, "application:userDidAcceptCloudKitShareWithMetadata:", void, .{application, metadata});
+    }
+
+    pub fn applicationDelegateHandlesKey(self: *@This(), sender: ?*Application, key: ?*String) objc.BOOL {
+        return objc.msgSend(self, "application:delegateHandlesKey:", objc.BOOL, .{sender, key});
+    }
+
+    pub fn applicationShouldAutomaticallyLocalizeKeyEquivalents(self: *@This(), application: ?*Application) objc.BOOL {
+        return objc.msgSend(self, "applicationShouldAutomaticallyLocalizeKeyEquivalents:", objc.BOOL, .{application});
+    }
+
+    pub fn applicationWillFinishLaunching(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationWillFinishLaunching:", void, .{notification});
+    }
+
+    pub fn applicationDidFinishLaunching(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationDidFinishLaunching:", void, .{notification});
+    }
+
+    pub fn applicationWillHide(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationWillHide:", void, .{notification});
+    }
+
+    pub fn applicationDidHide(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationDidHide:", void, .{notification});
+    }
+
+    pub fn applicationWillUnhide(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationWillUnhide:", void, .{notification});
+    }
+
+    pub fn applicationDidUnhide(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationDidUnhide:", void, .{notification});
+    }
+
+    pub fn applicationWillBecomeActive(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationWillBecomeActive:", void, .{notification});
+    }
+
+    pub fn applicationDidBecomeActive(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationDidBecomeActive:", void, .{notification});
+    }
+
+    pub fn applicationWillResignActive(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationWillResignActive:", void, .{notification});
+    }
+
+    pub fn applicationDidResignActive(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationDidResignActive:", void, .{notification});
+    }
+
+    pub fn applicationWillUpdate(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationWillUpdate:", void, .{notification});
+    }
+
+    pub fn applicationDidUpdate(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationDidUpdate:", void, .{notification});
+    }
+
+    pub fn applicationWillTerminate(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationWillTerminate:", void, .{notification});
+    }
+
+    pub fn applicationDidChangeScreenParameters(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationDidChangeScreenParameters:", void, .{notification});
+    }
+
+    pub fn applicationDidChangeOcclusionState(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationDidChangeOcclusionState:", void, .{notification});
+    }
+
+    pub fn applicationProtectedDataWillBecomeUnavailable(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationProtectedDataWillBecomeUnavailable:", void, .{notification});
+    }
+
+    pub fn applicationProtectedDataDidBecomeAvailable(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "applicationProtectedDataDidBecomeAvailable:", void, .{notification});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSServicesMenuRequestor?language=objc
+pub const ServicesMenuRequestor = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn writeSelectionToPasteboardTypes(self: *@This(), pboard: ?*Pasteboard, types: ?*anyopaque) objc.BOOL {
+        return objc.msgSend(self, "writeSelectionToPasteboard:types:", objc.BOOL, .{pboard, types});
+    }
+
+    pub fn readSelectionFromPasteboard(self: *@This(), pboard: ?*Pasteboard) objc.BOOL {
+        return objc.msgSend(self, "readSelectionFromPasteboard:", objc.BOOL, .{pboard});
+    }
+
+};
+
+pub const AboutPanelOptionKey = ?*String;
+
+pub const RemoteNotificationType = enum(objc.NSUInteger) {
+    None = 0,
+    Badge = 1,
+    Sound = 2,
+    Alert = 4,
+};
+
+pub extern "AppKit" fn ApplicationMain(argc: i32, argv: ?*?*i8) callconv(.C) i32;
+
+pub extern "AppKit" fn ApplicationLoad() callconv(.C) objc.BOOL;
+
+pub extern "AppKit" fn ShowsServicesMenuItem(itemName: ?*String) callconv(.C) objc.BOOL;
+
+pub extern "AppKit" fn SetShowsServicesMenuItem(itemName: ?*String, enabled: objc.BOOL) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn UpdateDynamicServices() callconv(.C) void;
+
+pub extern "AppKit" fn PerformService(itemName: ?*String, pboard: ?*Pasteboard) callconv(.C) objc.BOOL;
+
+pub const ServiceProviderName = ?*String;
+
+pub extern "AppKit" fn RegisterServicesProvider(provider: *objc.Id, name: ServiceProviderName) callconv(.C) void;
+
+pub extern "AppKit" fn UnregisterServicesProvider(name: ServiceProviderName) callconv(.C) void;
+
+pub const anon6911 = enum(i32) {
+    NSRunStoppedResponse = -1000,
+    NSRunAbortedResponse = -1001,
+    NSRunContinuesResponse = -1002,
+};
+
+pub const ColorListName = ?*String;
+
+pub const ColorName = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSColorList?language=objc
 pub const ColorList = opaque {
     pub const InternalInfo = objc.ExternalClass("NSColorList", @This(), Object, &.{});
@@ -14535,6 +9209,20 @@ pub const ColorList = opaque {
         return objc.msgSend(self, "isEditable", objc.BOOL, .{});
     }
 
+};
+
+pub const ColorType = enum(objc.NSInteger) {
+    ComponentBased = 0,
+    Pattern = 1,
+    Catalog = 2,
+};
+
+pub const ColorSystemEffect = enum(objc.NSInteger) {
+    None = 0,
+    Pressed = 1,
+    DeepPressed = 2,
+    Disabled = 3,
+    Rollover = 4,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSColor?language=objc
@@ -14716,7 +9404,7 @@ pub const Color = opaque {
         return objc.msgSend(self, "colorWithCGColor:", ?*Color, .{cgColor});
     }
 
-    pub fn type(self: *@This()) ColorType {
+    pub fn @"type"(self: *@This()) ColorType {
         return objc.msgSend(self, "type", ColorType, .{});
     }
 
@@ -15094,6 +9782,20 @@ pub const Color = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSAccessibilityColor?language=objc
+pub const AccessibilityColor = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn accessibilityName(self: *@This()) ?*String {
+        return objc.msgSend(self, "accessibilityName", ?*String, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSActionCell?language=objc
 pub const ActionCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSActionCell", @This(), Cell, &.{});
@@ -15130,6 +9832,12 @@ pub const ActionCell = opaque {
     }
 
 };
+
+pub const HelpBookName = ?*String;
+
+pub const HelpAnchorName = ?*String;
+
+pub const HelpManagerContextHelpKey = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSHelpManager?language=objc
 pub const HelpManager = opaque {
@@ -15182,6 +9890,12 @@ pub const HelpManager = opaque {
         return objc.msgSend(self, "setContextHelpModeActive:", void, .{contextHelpModeActive});
     }
 
+};
+
+pub const AlertStyle = enum(objc.NSUInteger) {
+    Warning = 0,
+    Informational = 1,
+    Critical = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSAlert?language=objc
@@ -15301,6 +10015,20 @@ pub const Alert = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSAlertDelegate?language=objc
+pub const AlertDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn alertShowHelp(self: *@This(), alert: ?*Alert) objc.BOOL {
+        return objc.msgSend(self, "alertShowHelp:", objc.BOOL, .{alert});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSAnimationContext?language=objc
 pub const AnimationContext = opaque {
     pub const InternalInfo = objc.ExternalClass("NSAnimationContext", @This(), Object, &.{});
@@ -15364,6 +10092,22 @@ pub const AnimationContext = opaque {
         return objc.msgSend(self, "setAllowsImplicitAnimation:", void, .{allowsImplicitAnimation});
     }
 
+};
+
+pub const TitlePosition = enum(objc.NSUInteger) {
+    NoTitle = 0,
+    AboveTop = 1,
+    AtTop = 2,
+    BelowTop = 3,
+    AboveBottom = 4,
+    AtBottom = 5,
+    BelowBottom = 6,
+};
+
+pub const BoxType = enum(objc.NSUInteger) {
+    Primary = 0,
+    Separator = 2,
+    Custom = 4,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSBox?language=objc
@@ -15748,6 +10492,93 @@ pub const Control = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSControlTextEditingDelegate?language=objc
+pub const ControlTextEditingDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn controlTextDidBeginEditing(self: *@This(), obj: ?*Notification) void {
+        return objc.msgSend(self, "controlTextDidBeginEditing:", void, .{obj});
+    }
+
+    pub fn controlTextDidEndEditing(self: *@This(), obj: ?*Notification) void {
+        return objc.msgSend(self, "controlTextDidEndEditing:", void, .{obj});
+    }
+
+    pub fn controlTextDidChange(self: *@This(), obj: ?*Notification) void {
+        return objc.msgSend(self, "controlTextDidChange:", void, .{obj});
+    }
+
+    pub fn controlTextShouldBeginEditing(self: *@This(), control: ?*Control, fieldEditor: ?*Text) objc.BOOL {
+        return objc.msgSend(self, "control:textShouldBeginEditing:", objc.BOOL, .{control, fieldEditor});
+    }
+
+    pub fn controlTextShouldEndEditing(self: *@This(), control: ?*Control, fieldEditor: ?*Text) objc.BOOL {
+        return objc.msgSend(self, "control:textShouldEndEditing:", objc.BOOL, .{control, fieldEditor});
+    }
+
+    pub fn controlDidFailToFormatStringErrorDescription(self: *@This(), control: ?*Control, string: ?*String, @"error": ?*String) objc.BOOL {
+        return objc.msgSend(self, "control:didFailToFormatString:errorDescription:", objc.BOOL, .{control, string, @"error"});
+    }
+
+    pub fn controlDidFailToValidatePartialStringErrorDescription(self: *@This(), control: ?*Control, string: ?*String, @"error": ?*String) void {
+        return objc.msgSend(self, "control:didFailToValidatePartialString:errorDescription:", void, .{control, string, @"error"});
+    }
+
+    pub fn controlIsValidObject(self: *@This(), control: ?*Control, obj: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "control:isValidObject:", objc.BOOL, .{control, obj});
+    }
+
+    pub fn controlTextViewDoCommandBySelector(self: *@This(), control: ?*Control, textView: ?*TextView, commandSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(self, "control:textView:doCommandBySelector:", objc.BOOL, .{control, textView, commandSelector});
+    }
+
+    pub fn controlTextViewCompletionsForPartialWordRangeIndexOfSelectedItem(self: *@This(), control: ?*Control, textView: ?*TextView, words: ?*anyopaque, charRange: ns.Range, index: ?*objc.NSInteger, ) ?*anyopaque {
+        return objc.msgSend(self, "control:textView:completions:forPartialWordRange:indexOfSelectedItem:", ?*anyopaque, .{control, textView, words, charRange, index, });
+    }
+
+};
+
+pub const ButtonType = enum(objc.NSUInteger) {
+    MomentaryLight = 0,
+    PushOnPushOff = 1,
+    Toggle = 2,
+    Switch = 3,
+    Radio = 4,
+    MomentaryChange = 5,
+    OnOff = 6,
+    MomentaryPushIn = 7,
+    Accelerator = 8,
+    MultiLevelAccelerator = 9,
+};
+
+pub const BezelStyle = enum(objc.NSUInteger) {
+    Automatic = 0,
+    Push = 1,
+    FlexiblePush = 2,
+    Disclosure = 5,
+    Circular = 7,
+    HelpButton = 9,
+    SmallSquare = 10,
+    Toolbar = 11,
+    AccessoryBarAction = 12,
+    AccessoryBar = 13,
+    PushDisclosure = 14,
+    Badge = 15,
+    ShadowlessSquare = 6,
+    TexturedSquare = 8,
+    Rounded = 1,
+    RegularSquare = 2,
+    TexturedRounded = 11,
+    RoundRect = 12,
+    Recessed = 13,
+    RoundedDisclosure = 14,
+    Inline = 15,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSButtonCell?language=objc
 pub const ButtonCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSButtonCell", @This(), ActionCell, &.{});
@@ -15949,6 +10780,14 @@ pub const ButtonCell = opaque {
 
 };
 
+pub const GradientType = enum(objc.NSUInteger) {
+    None = 0,
+    ConcaveWeak = 1,
+    ConcaveStrong = 2,
+    ConvexWeak = 3,
+    ConvexStrong = 4,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions?language=objc
 pub const UserInterfaceCompressionOptions = opaque {
     pub const InternalInfo = objc.ExternalClass("NSUserInterfaceCompressionOptions", @This(), Object, &.{});
@@ -16014,6 +10853,28 @@ pub const UserInterfaceCompressionOptions = opaque {
 
     pub fn standardOptions(self: *@This()) ?*UserInterfaceCompressionOptions {
         return objc.msgSend(self, "standardOptions", ?*UserInterfaceCompressionOptions, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompression?language=objc
+pub const UserInterfaceCompression = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn compressWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) void {
+        return objc.msgSend(self, "compressWithPrioritizedCompressionOptions:", void, .{prioritizedOptions});
+    }
+
+    pub fn minimumSizeWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) ns.Size {
+        return objc.msgSend(self, "minimumSizeWithPrioritizedCompressionOptions:", ns.Size, .{prioritizedOptions});
+    }
+
+    pub fn activeCompressionOptions(self: *@This()) ?*UserInterfaceCompressionOptions {
+        return objc.msgSend(self, "activeCompressionOptions", ?*UserInterfaceCompressionOptions, .{});
     }
 
 };
@@ -16279,6 +11140,10 @@ pub const Button = opaque {
 
 };
 
+pub const TouchBarItemIdentifier = ?*String;
+
+pub const TouchBarItemPriority = f32;
+
 /// https://developer.apple.com/documentation/AppKit/NSTouchBarItem?language=objc
 pub const TouchBarItem = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTouchBarItem", @This(), Object, &.{});
@@ -16331,6 +11196,8 @@ pub const TouchBarItem = opaque {
     }
 
 };
+
+pub const TouchBarCustomizationIdentifier = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSTouchBar?language=objc
 pub const TouchBar = opaque {
@@ -16437,6 +11304,34 @@ pub const TouchBar = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSTouchBarDelegate?language=objc
+pub const TouchBarDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn touchBarMakeItemForIdentifier(self: *@This(), touchBar: ?*TouchBar, identifier: TouchBarItemIdentifier) ?*TouchBarItem {
+        return objc.msgSend(self, "touchBar:makeItemForIdentifier:", ?*TouchBarItem, .{touchBar, identifier});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTouchBarProvider?language=objc
+pub const TouchBarProvider = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn touchBar(self: *@This()) ?*TouchBar {
+        return objc.msgSend(self, "touchBar", ?*TouchBar, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem?language=objc
 pub const CandidateListTouchBarItem = opaque {
     pub const InternalInfo = objc.ExternalClass("NSCandidateListTouchBarItem", @This(), TouchBarItem, &.{});
@@ -16518,6 +11413,32 @@ pub const CandidateListTouchBarItem = opaque {
 
     pub fn setCustomizationLabel(self: *@This(), customizationLabel: ?*String) void {
         return objc.msgSend(self, "setCustomizationLabel:", void, .{customizationLabel});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItemDelegate?language=objc
+pub const CandidateListTouchBarItemDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn candidateListTouchBarItemBeginSelectingCandidateAtIndex(self: *@This(), anItem: ?*CandidateListTouchBarItem, index: objc.NSInteger) void {
+        return objc.msgSend(self, "candidateListTouchBarItem:beginSelectingCandidateAtIndex:", void, .{anItem, index});
+    }
+
+    pub fn candidateListTouchBarItemChangeSelectionFromCandidateAtIndexToIndex(self: *@This(), anItem: ?*CandidateListTouchBarItem, previousIndex: objc.NSInteger, index: objc.NSInteger) void {
+        return objc.msgSend(self, "candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:", void, .{anItem, previousIndex, index});
+    }
+
+    pub fn candidateListTouchBarItemEndSelectingCandidateAtIndex(self: *@This(), anItem: ?*CandidateListTouchBarItem, index: objc.NSInteger) void {
+        return objc.msgSend(self, "candidateListTouchBarItem:endSelectingCandidateAtIndex:", void, .{anItem, index});
+    }
+
+    pub fn candidateListTouchBarItemChangedCandidateListVisibility(self: *@This(), anItem: ?*CandidateListTouchBarItem, isVisible: objc.BOOL) void {
+        return objc.msgSend(self, "candidateListTouchBarItem:changedCandidateListVisibility:", void, .{anItem, isVisible});
     }
 
 };
@@ -16609,6 +11530,17 @@ pub const ClipView = opaque {
         return objc.msgSend(self, "setAutomaticallyAdjustsContentInsets:", void, .{automaticallyAdjustsContentInsets});
     }
 
+};
+
+pub const PopoverAppearance = enum(objc.NSInteger) {
+    Minimal = 0,
+    HUD = 1,
+};
+
+pub const PopoverBehavior = enum(objc.NSInteger) {
+    ApplicationDefined = 0,
+    Transient = 1,
+    Semitransient = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSPopover?language=objc
@@ -16724,6 +11656,56 @@ pub const Popover = opaque {
 
 };
 
+pub const PopoverCloseReasonValue = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSPopoverDelegate?language=objc
+pub const PopoverDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn popoverShouldClose(self: *@This(), popover: ?*Popover) objc.BOOL {
+        return objc.msgSend(self, "popoverShouldClose:", objc.BOOL, .{popover});
+    }
+
+    pub fn popoverShouldDetach(self: *@This(), popover: ?*Popover) objc.BOOL {
+        return objc.msgSend(self, "popoverShouldDetach:", objc.BOOL, .{popover});
+    }
+
+    pub fn popoverDidDetach(self: *@This(), popover: ?*Popover) void {
+        return objc.msgSend(self, "popoverDidDetach:", void, .{popover});
+    }
+
+    pub fn detachableWindowForPopover(self: *@This(), popover: ?*Popover) ?*Window {
+        return objc.msgSend(self, "detachableWindowForPopover:", ?*Window, .{popover});
+    }
+
+    pub fn popoverWillShow(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "popoverWillShow:", void, .{notification});
+    }
+
+    pub fn popoverDidShow(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "popoverDidShow:", void, .{notification});
+    }
+
+    pub fn popoverWillClose(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "popoverWillClose:", void, .{notification});
+    }
+
+    pub fn popoverDidClose(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "popoverDidClose:", void, .{notification});
+    }
+
+};
+
+pub const StoryboardName = ?*String;
+
+pub const StoryboardSceneIdentifier = ?*String;
+
+pub const StoryboardControllerCreator = *const fn(?*ns.Coder) callconv(.C) *objc.Id;
+
 /// https://developer.apple.com/documentation/AppKit/NSStoryboard?language=objc
 pub const Storyboard = opaque {
     pub const InternalInfo = objc.ExternalClass("NSStoryboard", @This(), Object, &.{});
@@ -16761,6 +11743,8 @@ pub const Storyboard = opaque {
 
 };
 
+pub const StoryboardSegueIdentifier = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSStoryboardSegue?language=objc
 pub const StoryboardSegue = opaque {
     pub const InternalInfo = objc.ExternalClass("NSStoryboardSegue", @This(), Object, &.{});
@@ -16796,6 +11780,40 @@ pub const StoryboardSegue = opaque {
         return objc.msgSend(self, "destinationController", *objc.Id, .{});
     }
 
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSSeguePerforming?language=objc
+pub const SeguePerforming = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn prepareForSegueSender(self: *@This(), segue: ?*StoryboardSegue, sender: *objc.Id) void {
+        return objc.msgSend(self, "prepareForSegue:sender:", void, .{segue, sender});
+    }
+
+    pub fn performSegueWithIdentifierSender(self: *@This(), identifier: StoryboardSegueIdentifier, sender: *objc.Id) void {
+        return objc.msgSend(self, "performSegueWithIdentifier:sender:", void, .{identifier, sender});
+    }
+
+    pub fn shouldPerformSegueWithIdentifierSender(self: *@This(), identifier: StoryboardSegueIdentifier, sender: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "shouldPerformSegueWithIdentifier:sender:", objc.BOOL, .{identifier, sender});
+    }
+
+};
+
+pub const ViewControllerTransitionOptions = enum(objc.NSUInteger) {
+    None = 0,
+    Crossfade = 1,
+    SlideUp = 16,
+    SlideDown = 32,
+    SlideLeft = 64,
+    SlideRight = 128,
+    SlideForward = 320,
+    SlideBackward = 384,
+    AllowUserInteraction = 4096,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSViewController?language=objc
@@ -16915,6 +11933,100 @@ pub const ViewController = opaque {
 
     pub fn setPreferredContentSize(self: *@This(), preferredContentSize: ns.Size) void {
         return objc.msgSend(self, "setPreferredContentSize:", void, .{preferredContentSize});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSViewControllerPresentationAnimator?language=objc
+pub const ViewControllerPresentationAnimator = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn animatePresentationOfViewControllerFromViewController(self: *@This(), viewController: ?*ViewController, fromViewController: ?*ViewController) void {
+        return objc.msgSend(self, "animatePresentationOfViewController:fromViewController:", void, .{viewController, fromViewController});
+    }
+
+    pub fn animateDismissalOfViewControllerFromViewController(self: *@This(), viewController: ?*ViewController, fromViewController: ?*ViewController) void {
+        return objc.msgSend(self, "animateDismissalOfViewController:fromViewController:", void, .{viewController, fromViewController});
+    }
+
+};
+
+pub const CollectionViewDropOperation = enum(objc.NSInteger) {
+    On = 0,
+    Before = 1,
+};
+
+pub const CollectionViewItemHighlightState = enum(objc.NSInteger) {
+    None = 0,
+    ForSelection = 1,
+    ForDeselection = 2,
+    AsDropTarget = 3,
+};
+
+pub const CollectionViewScrollPosition = enum(objc.NSUInteger) {
+    None = 0,
+    Top = 1,
+    CenteredVertically = 2,
+    Bottom = 4,
+    NearestHorizontalEdge = 512,
+    Left = 8,
+    CenteredHorizontally = 16,
+    Right = 32,
+    LeadingEdge = 64,
+    TrailingEdge = 128,
+    NearestVerticalEdge = 256,
+};
+
+pub const CollectionViewSupplementaryElementKind = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSCollectionViewElement?language=objc
+pub const CollectionViewElement = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, UserInterfaceItemIdentification, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn prepareForReuse(self: *@This()) void {
+        return objc.msgSend(self, "prepareForReuse", void, .{});
+    }
+
+    pub fn applyLayoutAttributes(self: *@This(), layoutAttributes: ?*CollectionViewLayoutAttributes) void {
+        return objc.msgSend(self, "applyLayoutAttributes:", void, .{layoutAttributes});
+    }
+
+    pub fn willTransitionFromLayoutToLayout(self: *@This(), oldLayout: ?*CollectionViewLayout, newLayout: ?*CollectionViewLayout) void {
+        return objc.msgSend(self, "willTransitionFromLayout:toLayout:", void, .{oldLayout, newLayout});
+    }
+
+    pub fn didTransitionFromLayoutToLayout(self: *@This(), oldLayout: ?*CollectionViewLayout, newLayout: ?*CollectionViewLayout) void {
+        return objc.msgSend(self, "didTransitionFromLayout:toLayout:", void, .{oldLayout, newLayout});
+    }
+
+    pub fn preferredLayoutAttributesFittingAttributes(self: *@This(), layoutAttributes: ?*CollectionViewLayoutAttributes) ?*CollectionViewLayoutAttributes {
+        return objc.msgSend(self, "preferredLayoutAttributesFittingAttributes:", ?*CollectionViewLayoutAttributes, .{layoutAttributes});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSCollectionViewSectionHeaderView?language=objc
+pub const CollectionViewSectionHeaderView = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CollectionViewElement, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn sectionCollapseButton(self: *@This()) ?*Button {
+        return objc.msgSend(self, "sectionCollapseButton", ?*Button, .{});
+    }
+
+    pub fn setSectionCollapseButton(self: *@This(), sectionCollapseButton: ?*Button) void {
+        return objc.msgSend(self, "setSectionCollapseButton:", void, .{sectionCollapseButton});
     }
 
 };
@@ -17253,6 +12365,185 @@ pub const CollectionView = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSCollectionViewDataSource?language=objc
+pub const CollectionViewDataSource = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn collectionViewNumberOfItemsInSection(self: *@This(), collectionView: ?*CollectionView, section: objc.NSInteger) objc.NSInteger {
+        return objc.msgSend(self, "collectionView:numberOfItemsInSection:", objc.NSInteger, .{collectionView, section});
+    }
+
+    pub fn collectionViewItemForRepresentedObjectAtIndexPath(self: *@This(), collectionView: ?*CollectionView, indexPath: ?*IndexPath) ?*CollectionViewItem {
+        return objc.msgSend(self, "collectionView:itemForRepresentedObjectAtIndexPath:", ?*CollectionViewItem, .{collectionView, indexPath});
+    }
+
+    pub fn numberOfSectionsInCollectionView(self: *@This(), collectionView: ?*CollectionView) objc.NSInteger {
+        return objc.msgSend(self, "numberOfSectionsInCollectionView:", objc.NSInteger, .{collectionView});
+    }
+
+    pub fn collectionViewViewForSupplementaryElementOfKindAtIndexPath(self: *@This(), collectionView: ?*CollectionView, kind: CollectionViewSupplementaryElementKind, indexPath: ?*IndexPath) ?*View {
+        return objc.msgSend(self, "collectionView:viewForSupplementaryElementOfKind:atIndexPath:", ?*View, .{collectionView, kind, indexPath});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSCollectionViewPrefetching?language=objc
+pub const CollectionViewPrefetching = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn collectionViewPrefetchItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) void {
+        return objc.msgSend(self, "collectionView:prefetchItemsAtIndexPaths:", void, .{collectionView, indexPaths});
+    }
+
+    pub fn collectionViewCancelPrefetchingForItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) void {
+        return objc.msgSend(self, "collectionView:cancelPrefetchingForItemsAtIndexPaths:", void, .{collectionView, indexPaths});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSCollectionViewDelegate?language=objc
+pub const CollectionViewDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn collectionViewCanDragItemsAtIndexPathsWithEvent(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, event: ?*Event) objc.BOOL {
+        return objc.msgSend(self, "collectionView:canDragItemsAtIndexPaths:withEvent:", objc.BOOL, .{collectionView, indexPaths, event});
+    }
+
+    pub fn collectionViewCanDragItemsAtIndexesWithEvent(self: *@This(), collectionView: ?*CollectionView, indexes: ?*IndexSet, event: ?*Event) objc.BOOL {
+        return objc.msgSend(self, "collectionView:canDragItemsAtIndexes:withEvent:", objc.BOOL, .{collectionView, indexes, event});
+    }
+
+    pub fn collectionViewWriteItemsAtIndexPathsToPasteboard(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, pasteboard: ?*Pasteboard) objc.BOOL {
+        return objc.msgSend(self, "collectionView:writeItemsAtIndexPaths:toPasteboard:", objc.BOOL, .{collectionView, indexPaths, pasteboard});
+    }
+
+    pub fn collectionViewWriteItemsAtIndexesToPasteboard(self: *@This(), collectionView: ?*CollectionView, indexes: ?*IndexSet, pasteboard: ?*Pasteboard) objc.BOOL {
+        return objc.msgSend(self, "collectionView:writeItemsAtIndexes:toPasteboard:", objc.BOOL, .{collectionView, indexes, pasteboard});
+    }
+
+    pub fn collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, dropURL: ?*URL, indexPaths: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(self, "collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexPaths:", ?*anyopaque, .{collectionView, dropURL, indexPaths});
+    }
+
+    pub fn collectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexes(self: *@This(), collectionView: ?*CollectionView, dropURL: ?*URL, indexes: ?*IndexSet) ?*anyopaque {
+        return objc.msgSend(self, "collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexes:", ?*anyopaque, .{collectionView, dropURL, indexes});
+    }
+
+    pub fn collectionViewDraggingImageForItemsAtIndexPathsWithEventOffset(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
+        return objc.msgSend(self, "collectionView:draggingImageForItemsAtIndexPaths:withEvent:offset:", ?*Image, .{collectionView, indexPaths, event, dragImageOffset, });
+    }
+
+    pub fn collectionViewDraggingImageForItemsAtIndexesWithEventOffset(self: *@This(), collectionView: ?*CollectionView, indexes: ?*IndexSet, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
+        return objc.msgSend(self, "collectionView:draggingImageForItemsAtIndexes:withEvent:offset:", ?*Image, .{collectionView, indexes, event, dragImageOffset, });
+    }
+
+    pub fn collectionViewValidateDropProposedIndexPathDropOperation(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque, proposedDropIndexPath: ?*?*IndexPath, proposedDropOperation: ?*CollectionViewDropOperation, ) DragOperation {
+        return objc.msgSend(self, "collectionView:validateDrop:proposedIndexPath:dropOperation:", DragOperation, .{collectionView, draggingInfo, proposedDropIndexPath, proposedDropOperation, });
+    }
+
+    pub fn collectionViewValidateDropProposedIndexDropOperation(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque, proposedDropIndex: ?*objc.NSInteger, proposedDropOperation: ?*CollectionViewDropOperation, ) DragOperation {
+        return objc.msgSend(self, "collectionView:validateDrop:proposedIndex:dropOperation:", DragOperation, .{collectionView, draggingInfo, proposedDropIndex, proposedDropOperation, });
+    }
+
+    pub fn collectionViewAcceptDropIndexPathDropOperation(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque, indexPath: ?*IndexPath, dropOperation: CollectionViewDropOperation, ) objc.BOOL {
+        return objc.msgSend(self, "collectionView:acceptDrop:indexPath:dropOperation:", objc.BOOL, .{collectionView, draggingInfo, indexPath, dropOperation, });
+    }
+
+    pub fn collectionViewAcceptDropIndexDropOperation(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque, index: objc.NSInteger, dropOperation: CollectionViewDropOperation, ) objc.BOOL {
+        return objc.msgSend(self, "collectionView:acceptDrop:index:dropOperation:", objc.BOOL, .{collectionView, draggingInfo, index, dropOperation, });
+    }
+
+    pub fn collectionViewPasteboardWriterForItemAtIndexPath(self: *@This(), collectionView: ?*CollectionView, indexPath: ?*IndexPath) ?*anyopaque {
+        return objc.msgSend(self, "collectionView:pasteboardWriterForItemAtIndexPath:", ?*anyopaque, .{collectionView, indexPath});
+    }
+
+    pub fn collectionViewPasteboardWriterForItemAtIndex(self: *@This(), collectionView: ?*CollectionView, index: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "collectionView:pasteboardWriterForItemAtIndex:", ?*anyopaque, .{collectionView, index});
+    }
+
+    pub fn collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: ns.Point, indexPaths: ?*anyopaque, ) void {
+        return objc.msgSend(self, "collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexPaths:", void, .{collectionView, session, screenPoint, indexPaths, });
+    }
+
+    pub fn collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: ns.Point, indexes: ?*IndexSet, ) void {
+        return objc.msgSend(self, "collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexes:", void, .{collectionView, session, screenPoint, indexes, });
+    }
+
+    pub fn collectionViewDraggingSessionEndedAtPointDragOperation(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation, ) void {
+        return objc.msgSend(self, "collectionView:draggingSession:endedAtPoint:dragOperation:", void, .{collectionView, session, screenPoint, operation, });
+    }
+
+    pub fn collectionViewUpdateDraggingItemsForDrag(self: *@This(), collectionView: ?*CollectionView, draggingInfo: ?*anyopaque) void {
+        return objc.msgSend(self, "collectionView:updateDraggingItemsForDrag:", void, .{collectionView, draggingInfo});
+    }
+
+    pub fn collectionViewShouldChangeItemsAtIndexPathsToHighlightState(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, highlightState: CollectionViewItemHighlightState) ?*anyopaque {
+        return objc.msgSend(self, "collectionView:shouldChangeItemsAtIndexPaths:toHighlightState:", ?*anyopaque, .{collectionView, indexPaths, highlightState});
+    }
+
+    pub fn collectionViewDidChangeItemsAtIndexPathsToHighlightState(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, highlightState: CollectionViewItemHighlightState) void {
+        return objc.msgSend(self, "collectionView:didChangeItemsAtIndexPaths:toHighlightState:", void, .{collectionView, indexPaths, highlightState});
+    }
+
+    pub fn collectionViewShouldSelectItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(self, "collectionView:shouldSelectItemsAtIndexPaths:", ?*anyopaque, .{collectionView, indexPaths});
+    }
+
+    pub fn collectionViewShouldDeselectItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(self, "collectionView:shouldDeselectItemsAtIndexPaths:", ?*anyopaque, .{collectionView, indexPaths});
+    }
+
+    pub fn collectionViewDidSelectItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) void {
+        return objc.msgSend(self, "collectionView:didSelectItemsAtIndexPaths:", void, .{collectionView, indexPaths});
+    }
+
+    pub fn collectionViewDidDeselectItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque) void {
+        return objc.msgSend(self, "collectionView:didDeselectItemsAtIndexPaths:", void, .{collectionView, indexPaths});
+    }
+
+    pub fn collectionViewWillDisplayItemForRepresentedObjectAtIndexPath(self: *@This(), collectionView: ?*CollectionView, item: ?*CollectionViewItem, indexPath: ?*IndexPath) void {
+        return objc.msgSend(self, "collectionView:willDisplayItem:forRepresentedObjectAtIndexPath:", void, .{collectionView, item, indexPath});
+    }
+
+    pub fn collectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(self: *@This(), collectionView: ?*CollectionView, view: ?*View, elementKind: CollectionViewSupplementaryElementKind, indexPath: ?*IndexPath, ) void {
+        return objc.msgSend(self, "collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:", void, .{collectionView, view, elementKind, indexPath, });
+    }
+
+    pub fn collectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath(self: *@This(), collectionView: ?*CollectionView, item: ?*CollectionViewItem, indexPath: ?*IndexPath) void {
+        return objc.msgSend(self, "collectionView:didEndDisplayingItem:forRepresentedObjectAtIndexPath:", void, .{collectionView, item, indexPath});
+    }
+
+    pub fn collectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(self: *@This(), collectionView: ?*CollectionView, view: ?*View, elementKind: CollectionViewSupplementaryElementKind, indexPath: ?*IndexPath, ) void {
+        return objc.msgSend(self, "collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:", void, .{collectionView, view, elementKind, indexPath, });
+    }
+
+    pub fn collectionViewTransitionLayoutForOldLayoutNewLayout(self: *@This(), collectionView: ?*CollectionView, fromLayout: ?*CollectionViewLayout, toLayout: ?*CollectionViewLayout) ?*CollectionViewTransitionLayout {
+        return objc.msgSend(self, "collectionView:transitionLayoutForOldLayout:newLayout:", ?*CollectionViewTransitionLayout, .{collectionView, fromLayout, toLayout});
+    }
+
+};
+
+pub const CollectionElementCategory = enum(objc.NSInteger) {
+    Item = 0,
+    SupplementaryView = 1,
+    DecorationView = 2,
+    InterItemGap = 3,
+};
+
+pub const CollectionViewDecorationElementKind = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutAttributes?language=objc
 pub const CollectionViewLayoutAttributes = opaque {
     pub const InternalInfo = objc.ExternalClass("NSCollectionViewLayoutAttributes", @This(), Object, &.{});
@@ -17336,6 +12627,14 @@ pub const CollectionViewLayoutAttributes = opaque {
         return objc.msgSend(self, "representedElementKind", ?*String, .{});
     }
 
+};
+
+pub const CollectionUpdateAction = enum(objc.NSInteger) {
+    Insert = 0,
+    Delete = 1,
+    Reload = 2,
+    Move = 3,
+    None = 4,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSCollectionViewUpdateItem?language=objc
@@ -17457,6 +12756,11 @@ pub const CollectionViewLayout = opaque {
 
 };
 
+pub const CollectionViewScrollDirection = enum(objc.NSInteger) {
+    Vertical = 0,
+    Horizontal = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSCollectionViewFlowLayoutInvalidationContext?language=objc
 pub const CollectionViewFlowLayoutInvalidationContext = opaque {
     pub const InternalInfo = objc.ExternalClass("NSCollectionViewFlowLayoutInvalidationContext", @This(), CollectionViewLayoutInvalidationContext, &.{});
@@ -17482,6 +12786,40 @@ pub const CollectionViewFlowLayoutInvalidationContext = opaque {
 
     pub fn setInvalidateFlowLayoutAttributes(self: *@This(), invalidateFlowLayoutAttributes: objc.BOOL) void {
         return objc.msgSend(self, "setInvalidateFlowLayoutAttributes:", void, .{invalidateFlowLayoutAttributes});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSCollectionViewDelegateFlowLayout?language=objc
+pub const CollectionViewDelegateFlowLayout = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CollectionViewDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn collectionViewLayoutSizeForItemAtIndexPath(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, indexPath: ?*IndexPath) ns.Size {
+        return objc.msgSend(self, "collectionView:layout:sizeForItemAtIndexPath:", ns.Size, .{collectionView, collectionViewLayout, indexPath});
+    }
+
+    pub fn collectionViewLayoutInsetForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) ns.EdgeInsets {
+        return objc.msgSend(self, "collectionView:layout:insetForSectionAtIndex:", ns.EdgeInsets, .{collectionView, collectionViewLayout, section});
+    }
+
+    pub fn collectionViewLayoutMinimumLineSpacingForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "collectionView:layout:minimumLineSpacingForSectionAtIndex:", cf.CGFloat, .{collectionView, collectionViewLayout, section});
+    }
+
+    pub fn collectionViewLayoutMinimumInteritemSpacingForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "collectionView:layout:minimumInteritemSpacingForSectionAtIndex:", cf.CGFloat, .{collectionView, collectionViewLayout, section});
+    }
+
+    pub fn collectionViewLayoutReferenceSizeForHeaderInSection(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) ns.Size {
+        return objc.msgSend(self, "collectionView:layout:referenceSizeForHeaderInSection:", ns.Size, .{collectionView, collectionViewLayout, section});
+    }
+
+    pub fn collectionViewLayoutReferenceSizeForFooterInSection(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) ns.Size {
+        return objc.msgSend(self, "collectionView:layout:referenceSizeForFooterInSection:", ns.Size, .{collectionView, collectionViewLayout, section});
     }
 
 };
@@ -17591,6 +12929,36 @@ pub const CollectionViewFlowLayout = opaque {
 
 };
 
+pub const DirectionalRectEdge = enum(objc.NSUInteger) {
+    None = 0,
+    Top = 1,
+    Leading = 2,
+    Bottom = 4,
+    Trailing = 8,
+    All = 15,
+};
+
+pub const DirectionalEdgeInsets = extern struct {
+    top: cf.CGFloat,
+    leading: cf.CGFloat,
+    bottom: cf.CGFloat,
+    trailing: cf.CGFloat,
+};
+
+pub const RectAlignment = enum(objc.NSInteger) {
+    None = 0,
+    Top = 1,
+    TopLeading = 2,
+    Leading = 3,
+    BottomLeading = 4,
+    Bottom = 5,
+    BottomTrailing = 6,
+    Trailing = 7,
+    TopTrailing = 8,
+};
+
+pub extern "AppKit" fn DirectionalEdgeInsetsMake(top: cf.CGFloat, leading: cf.CGFloat, bottom: cf.CGFloat, trailing: cf.CGFloat, ) callconv(.C) DirectionalEdgeInsets;
+
 /// https://developer.apple.com/documentation/AppKit/NSCollectionViewCompositionalLayoutConfiguration?language=objc
 pub const CollectionViewCompositionalLayoutConfiguration = opaque {
     pub const InternalInfo = objc.ExternalClass("NSCollectionViewCompositionalLayoutConfiguration", @This(), Object, &.{});
@@ -17627,6 +12995,8 @@ pub const CollectionViewCompositionalLayoutConfiguration = opaque {
     }
 
 };
+
+pub const CollectionViewCompositionalLayoutSectionProvider = *const fn(objc.NSInteger, ?*anyopaque) callconv(.C) ?*CollectionLayoutSection;
 
 /// https://developer.apple.com/documentation/AppKit/NSCollectionViewCompositionalLayout?language=objc
 pub const CollectionViewCompositionalLayout = opaque {
@@ -17672,6 +13042,17 @@ pub const CollectionViewCompositionalLayout = opaque {
     }
 
 };
+
+pub const CollectionLayoutSectionOrthogonalScrollingBehavior = enum(objc.NSInteger) {
+    None = 0,
+    Continuous = 1,
+    ContinuousGroupLeadingBoundary = 2,
+    Paging = 3,
+    GroupPaging = 4,
+    GroupPagingCentered = 5,
+};
+
+pub const CollectionLayoutSectionVisibleItemsInvalidationHandler = *const fn(?*anyopaque, ns.Point, ?*anyopaque) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/AppKit/NSCollectionLayoutSection?language=objc
 pub const CollectionLayoutSection = opaque {
@@ -17843,6 +13224,8 @@ pub const CollectionLayoutGroupCustomItem = opaque {
     }
 
 };
+
+pub const CollectionLayoutGroupCustomItemProvider = *const fn(?*anyopaque) callconv(.C) ?*anyopaque;
 
 /// https://developer.apple.com/documentation/AppKit/NSCollectionLayoutGroup?language=objc
 pub const CollectionLayoutGroup = opaque {
@@ -18269,6 +13652,112 @@ pub const CollectionLayoutAnchor = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSCollectionLayoutContainer?language=objc
+pub const CollectionLayoutContainer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn contentSize(self: *@This()) ns.Size {
+        return objc.msgSend(self, "contentSize", ns.Size, .{});
+    }
+
+    pub fn effectiveContentSize(self: *@This()) ns.Size {
+        return objc.msgSend(self, "effectiveContentSize", ns.Size, .{});
+    }
+
+    pub fn contentInsets(self: *@This()) DirectionalEdgeInsets {
+        return objc.msgSend(self, "contentInsets", DirectionalEdgeInsets, .{});
+    }
+
+    pub fn effectiveContentInsets(self: *@This()) DirectionalEdgeInsets {
+        return objc.msgSend(self, "effectiveContentInsets", DirectionalEdgeInsets, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEnvironment?language=objc
+pub const CollectionLayoutEnvironment = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn container(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "container", ?*anyopaque, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSCollectionLayoutVisibleItem?language=objc
+pub const CollectionLayoutVisibleItem = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn alpha(self: *@This()) cf.CGFloat {
+        return objc.msgSend(self, "alpha", cf.CGFloat, .{});
+    }
+
+    pub fn setAlpha(self: *@This(), alpha: cf.CGFloat) void {
+        return objc.msgSend(self, "setAlpha:", void, .{alpha});
+    }
+
+    pub fn zIndex(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "zIndex", objc.NSInteger, .{});
+    }
+
+    pub fn setZIndex(self: *@This(), zIndex: objc.NSInteger) void {
+        return objc.msgSend(self, "setZIndex:", void, .{zIndex});
+    }
+
+    pub fn isHidden(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(self: *@This(), hidden: objc.BOOL) void {
+        return objc.msgSend(self, "setHidden:", void, .{hidden});
+    }
+
+    pub fn center(self: *@This()) ns.Point {
+        return objc.msgSend(self, "center", ns.Point, .{});
+    }
+
+    pub fn setCenter(self: *@This(), center: ns.Point) void {
+        return objc.msgSend(self, "setCenter:", void, .{center});
+    }
+
+    pub fn name(self: *@This()) ?*String {
+        return objc.msgSend(self, "name", ?*String, .{});
+    }
+
+    pub fn indexPath(self: *@This()) ?*IndexPath {
+        return objc.msgSend(self, "indexPath", ?*IndexPath, .{});
+    }
+
+    pub fn frame(self: *@This()) ns.Rect {
+        return objc.msgSend(self, "frame", ns.Rect, .{});
+    }
+
+    pub fn bounds(self: *@This()) ns.Rect {
+        return objc.msgSend(self, "bounds", ns.Rect, .{});
+    }
+
+    pub fn representedElementCategory(self: *@This()) CollectionElementCategory {
+        return objc.msgSend(self, "representedElementCategory", CollectionElementCategory, .{});
+    }
+
+    pub fn representedElementKind(self: *@This()) ?*String {
+        return objc.msgSend(self, "representedElementKind", ?*String, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSCollectionViewGridLayout?language=objc
 pub const CollectionViewGridLayout = opaque {
     pub const InternalInfo = objc.ExternalClass("NSCollectionViewGridLayout", @This(), CollectionViewLayout, &.{});
@@ -18345,6 +13834,8 @@ pub const CollectionViewGridLayout = opaque {
     }
 
 };
+
+pub const CollectionViewTransitionLayoutAnimatedKey = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSCollectionViewTransitionLayout?language=objc
 pub const CollectionViewTransitionLayout = opaque {
@@ -18566,6 +14057,22 @@ pub const CollectionViewDiffableDataSource = opaque {
 
 };
 
+pub const CollectionViewDiffableDataSourceItemProvider = *const fn(?*CollectionView, ?*IndexPath, void) callconv(.C) ?*CollectionViewItem;
+
+pub const CollectionViewDiffableDataSourceSupplementaryViewProvider = *const fn(?*CollectionView, ?*String, ?*IndexPath) callconv(.C) ?*View;
+
+pub const HorizontalDirections = enum(objc.NSUInteger) {
+    Left = 1,
+    Right = 2,
+    All = 3,
+};
+
+pub const VerticalDirections = enum(objc.NSUInteger) {
+    Up = 1,
+    Down = 2,
+    All = 3,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSDockTile?language=objc
 pub const DockTile = opaque {
     pub const InternalInfo = objc.ExternalClass("NSDockTile", @This(), Object, &.{});
@@ -18614,6 +14121,69 @@ pub const DockTile = opaque {
     }
 
 };
+
+/// https://developer.apple.com/documentation/AppKit/NSDockTilePlugIn?language=objc
+pub const DockTilePlugIn = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn setDockTile(self: *@This(), dockTile: ?*DockTile) void {
+        return objc.msgSend(self, "setDockTile:", void, .{dockTile});
+    }
+
+    pub fn dockMenu(self: *@This()) ?*Menu {
+        return objc.msgSend(self, "dockMenu", ?*Menu, .{});
+    }
+
+};
+
+pub const FontSymbolicTraits = objc.uint32_t;
+
+pub const FontDescriptorSymbolicTraits = enum(objc.uint32_t) {
+    TraitItalic = 1,
+    TraitBold = 2,
+    TraitExpanded = 32,
+    TraitCondensed = 64,
+    TraitMonoSpace = 1024,
+    TraitVertical = 2048,
+    TraitUIOptimized = 4096,
+    TraitTightLeading = 32768,
+    TraitLooseLeading = 65536,
+    TraitEmphasized = 2,
+    ClassMask = -268435456,
+    ClassUnknown = 0,
+    ClassOldStyleSerifs = 268435456,
+    ClassTransitionalSerifs = 536870912,
+    ClassModernSerifs = 805306368,
+    ClassClarendonSerifs = 1073741824,
+    ClassSlabSerifs = 1342177280,
+    ClassFreeformSerifs = 1879048192,
+    ClassSansSerif = -2147483648,
+    ClassOrnamentals = -1879048192,
+    ClassScripts = -1610612736,
+    ClassSymbolic = -1073741824,
+};
+
+pub const FontDescriptorAttributeName = ?*String;
+
+pub const FontDescriptorTraitKey = ?*String;
+
+pub const FontDescriptorVariationKey = ?*String;
+
+pub const FontDescriptorFeatureKey = ?*String;
+
+pub const FontWeight = cf.CGFloat;
+
+pub const FontWidth = cf.CGFloat;
+
+pub const FontDescriptorSystemDesign = ?*String;
+
+pub const FontTextStyle = ?*String;
+
+pub const FontTextStyleOptionKey = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSFontDescriptor?language=objc
 pub const FontDescriptor = opaque {
@@ -18707,6 +14277,8 @@ pub const FontDescriptor = opaque {
     }
 
 };
+
+pub const FontFamilyClass = objc.uint32_t;
 
 /// https://developer.apple.com/documentation/AppKit/NSFont?language=objc
 pub const Font = opaque {
@@ -18945,6 +14517,25 @@ pub const Font = opaque {
 
 };
 
+pub const Glyph = u32;
+
+pub const FontRenderingMode = enum(objc.NSUInteger) {
+    DefaultRenderingMode = 0,
+    AntialiasedRenderingMode = 1,
+    IntegerAdvancementsRenderingMode = 2,
+    AntialiasedIntegerAdvancementsRenderingMode = 3,
+};
+
+pub const MultibyteGlyphPacking = enum(objc.NSUInteger) {
+    NativeShortGlyphPacking = 5,
+};
+
+pub extern "AppKit" fn ConvertGlyphsToPackedGlyphs(glBuf: ?*Glyph, count: objc.NSInteger, packing: MultibyteGlyphPacking, packedGlyphs: ?*i8, ) callconv(.C) objc.NSInteger;
+
+pub const FontAssetRequestOptions = enum(objc.NSUInteger) {
+    UsesStandardUI = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSFontAssetRequest?language=objc
 pub const FontAssetRequest = opaque {
     pub const InternalInfo = objc.ExternalClass("NSFontAssetRequest", @This(), Object, &.{});
@@ -18977,6 +14568,16 @@ pub const FontAssetRequest = opaque {
     }
 
 };
+
+pub const FontCollectionVisibility = enum(objc.NSUInteger) {
+    Process = 1,
+    User = 2,
+    Computer = 4,
+};
+
+pub const FontCollectionMatchingOptionKey = ?*String;
+
+pub const FontCollectionName = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSFontCollection?language=objc
 pub const FontCollection = opaque {
@@ -19106,6 +14707,40 @@ pub const MutableFontCollection = opaque {
         return objc.msgSend(self, "setExclusionDescriptors:", void, .{exclusionDescriptors});
     }
 
+};
+
+pub const FontCollectionUserInfoKey = ?*String;
+
+pub const FontCollectionActionTypeKey = ?*String;
+
+pub const FontTraitMask = enum(objc.NSUInteger) {
+    ItalicFontMask = 1,
+    BoldFontMask = 2,
+    UnboldFontMask = 4,
+    NonStandardCharacterSetFontMask = 8,
+    NarrowFontMask = 16,
+    ExpandedFontMask = 32,
+    CondensedFontMask = 64,
+    SmallCapsFontMask = 128,
+    PosterFontMask = 256,
+    CompressedFontMask = 512,
+    FixedPitchFontMask = 1024,
+    UnitalicFontMask = 16777216,
+};
+
+pub const FontCollectionOptions = enum(objc.NSUInteger) {
+    ApplicationOnlyMask = 1,
+};
+
+pub const FontAction = enum(objc.NSUInteger) {
+    NoFontChangeAction = 0,
+    ViaPanelFontAction = 1,
+    AddTraitFontAction = 2,
+    SizeUpFontAction = 3,
+    SizeDownFontAction = 4,
+    HeavierFontAction = 5,
+    LighterFontAction = 6,
+    RemoveTraitFontAction = 7,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSFontManager?language=objc
@@ -19292,6 +14927,118 @@ pub const FontManager = opaque {
     }
 
 };
+
+pub const WindowStyleMask = enum(objc.NSUInteger) {
+    Borderless = 0,
+    Titled = 1,
+    Closable = 2,
+    Miniaturizable = 4,
+    Resizable = 8,
+    TexturedBackground = 256,
+    UnifiedTitleAndToolbar = 4096,
+    FullScreen = 16384,
+    FullSizeContentView = 32768,
+    UtilityWindow = 16,
+    DocModalWindow = 64,
+    NonactivatingPanel = 128,
+    HUDWindow = 8192,
+};
+
+pub const WindowSharingType = enum(objc.NSUInteger) {
+    None = 0,
+    ReadOnly = 1,
+};
+
+pub const WindowCollectionBehavior = enum(objc.NSUInteger) {
+    Default = 0,
+    CanJoinAllSpaces = 1,
+    MoveToActiveSpace = 2,
+    Managed = 4,
+    Transient = 8,
+    Stationary = 16,
+    ParticipatesInCycle = 32,
+    IgnoresCycle = 64,
+    FullScreenPrimary = 128,
+    FullScreenAuxiliary = 256,
+    FullScreenNone = 512,
+    FullScreenAllowsTiling = 2048,
+    FullScreenDisallowsTiling = 4096,
+    Primary = 65536,
+    Auxiliary = 131072,
+    CanJoinAllApplications = 262144,
+};
+
+pub const WindowAnimationBehavior = enum(objc.NSInteger) {
+    Default = 0,
+    None = 2,
+    DocumentWindow = 3,
+    UtilityWindow = 4,
+    AlertPanel = 5,
+};
+
+pub const WindowNumberListOptions = enum(objc.NSUInteger) {
+    AllApplications = 1,
+    AllSpaces = 16,
+};
+
+pub const WindowOcclusionState = enum(objc.NSUInteger) {
+    Visible = 2,
+};
+
+pub const WindowLevel = objc.NSInteger;
+
+pub const SelectionDirection = enum(objc.NSUInteger) {
+    DirectSelection = 0,
+    SelectingNext = 1,
+    SelectingPrevious = 2,
+};
+
+pub const WindowButton = enum(objc.NSUInteger) {
+    CloseButton = 0,
+    MiniaturizeButton = 1,
+    ZoomButton = 2,
+    ToolbarButton = 3,
+    DocumentIconButton = 4,
+    DocumentVersionsButton = 6,
+};
+
+pub const WindowTitleVisibility = enum(objc.NSInteger) {
+    Visible = 0,
+    Hidden = 1,
+};
+
+pub const WindowToolbarStyle = enum(objc.NSInteger) {
+    Automatic = 0,
+    Expanded = 1,
+    Preference = 2,
+    Unified = 3,
+    UnifiedCompact = 4,
+};
+
+pub const WindowUserTabbingPreference = enum(objc.NSInteger) {
+    Manual = 0,
+    Always = 1,
+    InFullScreen = 2,
+};
+
+pub const WindowTabbingMode = enum(objc.NSInteger) {
+    Automatic = 0,
+    Preferred = 1,
+    Disallowed = 2,
+};
+
+pub const TitlebarSeparatorStyle = enum(objc.NSInteger) {
+    Automatic = 0,
+    None = 1,
+    Line = 2,
+    Shadow = 3,
+};
+
+pub const WindowFrameAutosaveName = ?*String;
+
+pub const WindowPersistableFrameDescriptor = ?*String;
+
+pub const WindowTabbingIdentifier = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSWindow?language=objc
 pub const Window = opaque {
@@ -20370,6 +16117,234 @@ pub const Window = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSWindowDelegate?language=objc
+pub const WindowDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn windowShouldClose(self: *@This(), sender: ?*Window) objc.BOOL {
+        return objc.msgSend(self, "windowShouldClose:", objc.BOOL, .{sender});
+    }
+
+    pub fn windowWillReturnFieldEditorToObject(self: *@This(), sender: ?*Window, client: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "windowWillReturnFieldEditor:toObject:", *objc.Id, .{sender, client});
+    }
+
+    pub fn windowWillResizeToSize(self: *@This(), sender: ?*Window, frameSize: ns.Size) ns.Size {
+        return objc.msgSend(self, "windowWillResize:toSize:", ns.Size, .{sender, frameSize});
+    }
+
+    pub fn windowWillUseStandardFrameDefaultFrame(self: *@This(), window: ?*Window, newFrame: ns.Rect) ns.Rect {
+        return objc.msgSend(self, "windowWillUseStandardFrame:defaultFrame:", ns.Rect, .{window, newFrame});
+    }
+
+    pub fn windowShouldZoomToFrame(self: *@This(), window: ?*Window, newFrame: ns.Rect) objc.BOOL {
+        return objc.msgSend(self, "windowShouldZoom:toFrame:", objc.BOOL, .{window, newFrame});
+    }
+
+    pub fn windowWillReturnUndoManager(self: *@This(), window: ?*Window) ?*UndoManager {
+        return objc.msgSend(self, "windowWillReturnUndoManager:", ?*UndoManager, .{window});
+    }
+
+    pub fn windowWillPositionSheetUsingRect(self: *@This(), window: ?*Window, sheet: ?*Window, rect: ns.Rect) ns.Rect {
+        return objc.msgSend(self, "window:willPositionSheet:usingRect:", ns.Rect, .{window, sheet, rect});
+    }
+
+    pub fn windowShouldPopUpDocumentPathMenu(self: *@This(), window: ?*Window, menu: ?*Menu) objc.BOOL {
+        return objc.msgSend(self, "window:shouldPopUpDocumentPathMenu:", objc.BOOL, .{window, menu});
+    }
+
+    pub fn windowShouldDragDocumentWithEventFromWithPasteboard(self: *@This(), window: ?*Window, event: ?*Event, dragImageLocation: ns.Point, pasteboard: ?*Pasteboard, ) objc.BOOL {
+        return objc.msgSend(self, "window:shouldDragDocumentWithEvent:from:withPasteboard:", objc.BOOL, .{window, event, dragImageLocation, pasteboard, });
+    }
+
+    pub fn windowWillUseFullScreenContentSize(self: *@This(), window: ?*Window, proposedSize: ns.Size) ns.Size {
+        return objc.msgSend(self, "window:willUseFullScreenContentSize:", ns.Size, .{window, proposedSize});
+    }
+
+    pub fn windowWillUseFullScreenPresentationOptions(self: *@This(), window: ?*Window, proposedOptions: ApplicationPresentationOptions) ApplicationPresentationOptions {
+        return objc.msgSend(self, "window:willUseFullScreenPresentationOptions:", ApplicationPresentationOptions, .{window, proposedOptions});
+    }
+
+    pub fn customWindowsToEnterFullScreenForWindow(self: *@This(), window: ?*Window) ?*anyopaque {
+        return objc.msgSend(self, "customWindowsToEnterFullScreenForWindow:", ?*anyopaque, .{window});
+    }
+
+    pub fn windowStartCustomAnimationToEnterFullScreenWithDuration(self: *@This(), window: ?*Window, duration: ns.TimeInterval) void {
+        return objc.msgSend(self, "window:startCustomAnimationToEnterFullScreenWithDuration:", void, .{window, duration});
+    }
+
+    pub fn windowDidFailToEnterFullScreen(self: *@This(), window: ?*Window) void {
+        return objc.msgSend(self, "windowDidFailToEnterFullScreen:", void, .{window});
+    }
+
+    pub fn customWindowsToExitFullScreenForWindow(self: *@This(), window: ?*Window) ?*anyopaque {
+        return objc.msgSend(self, "customWindowsToExitFullScreenForWindow:", ?*anyopaque, .{window});
+    }
+
+    pub fn windowStartCustomAnimationToExitFullScreenWithDuration(self: *@This(), window: ?*Window, duration: ns.TimeInterval) void {
+        return objc.msgSend(self, "window:startCustomAnimationToExitFullScreenWithDuration:", void, .{window, duration});
+    }
+
+    pub fn customWindowsToEnterFullScreenForWindowOnScreen(self: *@This(), window: ?*Window, screen: ?*Screen) ?*anyopaque {
+        return objc.msgSend(self, "customWindowsToEnterFullScreenForWindow:onScreen:", ?*anyopaque, .{window, screen});
+    }
+
+    pub fn windowStartCustomAnimationToEnterFullScreenOnScreenWithDuration(self: *@This(), window: ?*Window, screen: ?*Screen, duration: ns.TimeInterval) void {
+        return objc.msgSend(self, "window:startCustomAnimationToEnterFullScreenOnScreen:withDuration:", void, .{window, screen, duration});
+    }
+
+    pub fn windowDidFailToExitFullScreen(self: *@This(), window: ?*Window) void {
+        return objc.msgSend(self, "windowDidFailToExitFullScreen:", void, .{window});
+    }
+
+    pub fn windowWillResizeForVersionBrowserWithMaxPreferredSizeMaxAllowedSize(self: *@This(), window: ?*Window, maxPreferredFrameSize: ns.Size, maxAllowedFrameSize: ns.Size) ns.Size {
+        return objc.msgSend(self, "window:willResizeForVersionBrowserWithMaxPreferredSize:maxAllowedSize:", ns.Size, .{window, maxPreferredFrameSize, maxAllowedFrameSize});
+    }
+
+    pub fn windowWillEncodeRestorableState(self: *@This(), window: ?*Window, state: ?*ns.Coder) void {
+        return objc.msgSend(self, "window:willEncodeRestorableState:", void, .{window, state});
+    }
+
+    pub fn windowDidDecodeRestorableState(self: *@This(), window: ?*Window, state: ?*ns.Coder) void {
+        return objc.msgSend(self, "window:didDecodeRestorableState:", void, .{window, state});
+    }
+
+    pub fn previewRepresentableActivityItemsForWindow(self: *@This(), window: ?*Window) ?*anyopaque {
+        return objc.msgSend(self, "previewRepresentableActivityItemsForWindow:", ?*anyopaque, .{window});
+    }
+
+    pub fn windowForSharingRequestFromWindow(self: *@This(), window: ?*Window) ?*Window {
+        return objc.msgSend(self, "windowForSharingRequestFromWindow:", ?*Window, .{window});
+    }
+
+    pub fn windowDidResize(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidResize:", void, .{notification});
+    }
+
+    pub fn windowDidExpose(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidExpose:", void, .{notification});
+    }
+
+    pub fn windowWillMove(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowWillMove:", void, .{notification});
+    }
+
+    pub fn windowDidMove(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidMove:", void, .{notification});
+    }
+
+    pub fn windowDidBecomeKey(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidBecomeKey:", void, .{notification});
+    }
+
+    pub fn windowDidResignKey(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidResignKey:", void, .{notification});
+    }
+
+    pub fn windowDidBecomeMain(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidBecomeMain:", void, .{notification});
+    }
+
+    pub fn windowDidResignMain(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidResignMain:", void, .{notification});
+    }
+
+    pub fn windowWillClose(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowWillClose:", void, .{notification});
+    }
+
+    pub fn windowWillMiniaturize(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowWillMiniaturize:", void, .{notification});
+    }
+
+    pub fn windowDidMiniaturize(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidMiniaturize:", void, .{notification});
+    }
+
+    pub fn windowDidDeminiaturize(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidDeminiaturize:", void, .{notification});
+    }
+
+    pub fn windowDidUpdate(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidUpdate:", void, .{notification});
+    }
+
+    pub fn windowDidChangeScreen(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidChangeScreen:", void, .{notification});
+    }
+
+    pub fn windowDidChangeScreenProfile(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidChangeScreenProfile:", void, .{notification});
+    }
+
+    pub fn windowDidChangeBackingProperties(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidChangeBackingProperties:", void, .{notification});
+    }
+
+    pub fn windowWillBeginSheet(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowWillBeginSheet:", void, .{notification});
+    }
+
+    pub fn windowDidEndSheet(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidEndSheet:", void, .{notification});
+    }
+
+    pub fn windowWillStartLiveResize(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowWillStartLiveResize:", void, .{notification});
+    }
+
+    pub fn windowDidEndLiveResize(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidEndLiveResize:", void, .{notification});
+    }
+
+    pub fn windowWillEnterFullScreen(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowWillEnterFullScreen:", void, .{notification});
+    }
+
+    pub fn windowDidEnterFullScreen(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidEnterFullScreen:", void, .{notification});
+    }
+
+    pub fn windowWillExitFullScreen(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowWillExitFullScreen:", void, .{notification});
+    }
+
+    pub fn windowDidExitFullScreen(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidExitFullScreen:", void, .{notification});
+    }
+
+    pub fn windowWillEnterVersionBrowser(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowWillEnterVersionBrowser:", void, .{notification});
+    }
+
+    pub fn windowDidEnterVersionBrowser(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidEnterVersionBrowser:", void, .{notification});
+    }
+
+    pub fn windowWillExitVersionBrowser(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowWillExitVersionBrowser:", void, .{notification});
+    }
+
+    pub fn windowDidExitVersionBrowser(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidExitVersionBrowser:", void, .{notification});
+    }
+
+    pub fn windowDidChangeOcclusionState(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "windowDidChangeOcclusionState:", void, .{notification});
+    }
+
+};
+
+pub const WindowBackingLocation = enum(objc.NSUInteger) {
+    Default = 0,
+    VideoMemory = 1,
+    MainMemory = 2,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPanel?language=objc
 pub const Panel = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPanel", @This(), Window, &.{});
@@ -20403,6 +16378,64 @@ pub const Panel = opaque {
 
     pub fn setWorksWhenModal(self: *@This(), worksWhenModal: objc.BOOL) void {
         return objc.msgSend(self, "setWorksWhenModal:", void, .{worksWhenModal});
+    }
+
+};
+
+pub extern "AppKit" fn RunAlertPanelRelativeToWindow(title: ?*String, msgFormat: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, docWindow: ?*Window, ) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn RunInformationalAlertPanelRelativeToWindow(title: ?*String, msgFormat: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, docWindow: ?*Window, ) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn RunCriticalAlertPanelRelativeToWindow(title: ?*String, msgFormat: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, docWindow: ?*Window, ) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn RunAlertPanel(title: ?*String, msgFormat: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, ) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn RunInformationalAlertPanel(title: ?*String, msgFormat: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, ) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn RunCriticalAlertPanel(title: ?*String, msgFormat: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, ) callconv(.C) objc.NSInteger;
+
+pub extern "AppKit" fn BeginAlertSheet(title: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, docWindow: ?*Window, modalDelegate: *objc.Id, didEndSelector: *objc.SEL, didDismissSelector: *objc.SEL, contextInfo: ?*anyopaque, msgFormat: ?*String, ) callconv(.C) void;
+
+pub extern "AppKit" fn BeginInformationalAlertSheet(title: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, docWindow: ?*Window, modalDelegate: *objc.Id, didEndSelector: *objc.SEL, didDismissSelector: *objc.SEL, contextInfo: ?*anyopaque, msgFormat: ?*String, ) callconv(.C) void;
+
+pub extern "AppKit" fn BeginCriticalAlertSheet(title: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, docWindow: ?*Window, modalDelegate: *objc.Id, didEndSelector: *objc.SEL, didDismissSelector: *objc.SEL, contextInfo: ?*anyopaque, msgFormat: ?*String, ) callconv(.C) void;
+
+pub extern "AppKit" fn GetAlertPanel(title: ?*String, msgFormat: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, ) callconv(.C) *objc.Id;
+
+pub extern "AppKit" fn GetInformationalAlertPanel(title: ?*String, msgFormat: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, ) callconv(.C) *objc.Id;
+
+pub extern "AppKit" fn GetCriticalAlertPanel(title: ?*String, msgFormat: ?*String, defaultButton: ?*String, alternateButton: ?*String, otherButton: ?*String, ) callconv(.C) *objc.Id;
+
+pub extern "AppKit" fn ReleaseAlertPanel(panel: *objc.Id) callconv(.C) void;
+
+pub const FontPanelModeMask = enum(objc.NSUInteger) {
+    Face = 1,
+    Size = 2,
+    Collection = 4,
+    UnderlineEffect = 256,
+    StrikethroughEffect = 512,
+    TextColorEffect = 1024,
+    DocumentColorEffect = 2048,
+    ShadowEffect = 4096,
+    AllEffects = 1048320,
+    ModesMaskStandardModes = 65535,
+    ModesMaskAllModes = 4294967295,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSFontChanging?language=objc
+pub const FontChanging = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn changeFont(self: *@This(), sender: ?*FontManager) void {
+        return objc.msgSend(self, "changeFont:", void, .{sender});
+    }
+
+    pub fn validModesForFontPanel(self: *@This(), fontPanel: ?*FontPanel) FontPanelModeMask {
+        return objc.msgSend(self, "validModesForFontPanel:", FontPanelModeMask, .{fontPanel});
     }
 
 };
@@ -20462,6 +16495,13 @@ pub const FontPanel = opaque {
         return objc.msgSend(self, "setEnabled:", void, .{enabled});
     }
 
+};
+
+pub const MatrixMode = enum(objc.NSUInteger) {
+    RadioModeMatrix = 0,
+    HighlightModeMatrix = 1,
+    ListModeMatrix = 2,
+    TrackModeMatrix = 3,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSMatrix?language=objc
@@ -20849,6 +16889,15 @@ pub const Matrix = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSMatrixDelegate?language=objc
+pub const MatrixDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ControlTextEditingDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSForm?language=objc
 pub const Form = opaque {
     pub const InternalInfo = objc.ExternalClass("NSForm", @This(), Matrix, &.{});
@@ -21043,6 +17092,13 @@ pub const FormCell = opaque {
 
 };
 
+pub const MenuItemBadgeType = enum(objc.NSInteger) {
+    None = 0,
+    Updates = 1,
+    NewItems = 2,
+    Alerts = 3,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSMenuItemBadge?language=objc
 pub const MenuItemBadge = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMenuItemBadge", @This(), Object, &.{});
@@ -21086,7 +17142,7 @@ pub const MenuItemBadge = opaque {
         return objc.msgSend(self, "itemCount", objc.NSInteger, .{});
     }
 
-    pub fn type(self: *@This()) MenuItemBadgeType {
+    pub fn @"type"(self: *@This()) MenuItemBadgeType {
         return objc.msgSend(self, "type", MenuItemBadgeType, .{});
     }
 
@@ -21094,6 +17150,17 @@ pub const MenuItemBadge = opaque {
         return objc.msgSend(self, "stringValue", ?*String, .{});
     }
 
+};
+
+pub const ColorSpaceModel = enum(objc.NSInteger) {
+    Unknown = -1,
+    Gray = 0,
+    RGB = 1,
+    CMYK = 2,
+    LAB = 3,
+    DeviceN = 4,
+    Indexed = 5,
+    Patterned = 6,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSColorSpace?language=objc
@@ -21195,6 +17262,18 @@ pub const ColorSpace = opaque {
         return objc.msgSend(self, "deviceCMYKColorSpace", ?*ColorSpace, .{});
     }
 
+};
+
+pub const ImageHintKey = ?*String;
+
+pub const anon291 = enum(u32) {
+    NSImageRepMatchesDevice = 0,
+};
+
+pub const ImageLayoutDirection = enum(objc.NSInteger) {
+    Unspecified = -1,
+    LeftToRight = 2,
+    RightToLeft = 3,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSImageRep?language=objc
@@ -21386,6 +17465,47 @@ pub const ImageRep = opaque {
 
 };
 
+pub const TIFFCompression = enum(objc.NSUInteger) {
+    None = 1,
+    CCITTFAX3 = 3,
+    CCITTFAX4 = 4,
+    LZW = 5,
+    JPEG = 6,
+    NEXT = 32766,
+    PackBits = 32773,
+    OldJPEG = 32865,
+};
+
+pub const BitmapImageFileType = enum(objc.NSUInteger) {
+    TIFF = 0,
+    BMP = 1,
+    GIF = 2,
+    JPEG = 3,
+    PNG = 4,
+    JPEG2000 = 5,
+};
+
+pub const ImageRepLoadStatus = enum(objc.NSInteger) {
+    UnknownType = -1,
+    ReadingHeader = -2,
+    WillNeedAllData = -3,
+    InvalidData = -4,
+    UnexpectedEOF = -5,
+    Completed = -6,
+};
+
+pub const BitmapFormat = enum(objc.NSUInteger) {
+    AlphaFirst = 1,
+    AlphaNonpremultiplied = 2,
+    FloatingPointSamples = 4,
+    SixteenBitLittleEndian = 256,
+    ThirtyTwoBitLittleEndian = 512,
+    SixteenBitBigEndian = 1024,
+    ThirtyTwoBitBigEndian = 2048,
+};
+
+pub const BitmapImageRepPropertyKey = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSBitmapImageRep?language=objc
 pub const BitmapImageRep = opaque {
     pub const InternalInfo = objc.ExternalClass("NSBitmapImageRep", @This(), ImageRep, &.{});
@@ -21545,6 +17665,19 @@ pub const BitmapImageRep = opaque {
         return objc.msgSend(self, "colorSpace", ?*ColorSpace, .{});
     }
 
+};
+
+pub const BrowserColumnsAutosaveName = ?*String;
+
+pub const BrowserColumnResizingType = enum(objc.NSUInteger) {
+    NoColumnResizing = 0,
+    AutoColumnResizing = 1,
+    UserColumnResizing = 2,
+};
+
+pub const BrowserDropOperation = enum(objc.NSUInteger) {
+    On = 0,
+    Above = 1,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSBrowser?language=objc
@@ -22000,6 +18133,152 @@ pub const Browser = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSBrowserDelegate?language=objc
+pub const BrowserDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn browserNumberOfRowsInColumn(self: *@This(), sender: ?*Browser, column: objc.NSInteger) objc.NSInteger {
+        return objc.msgSend(self, "browser:numberOfRowsInColumn:", objc.NSInteger, .{sender, column});
+    }
+
+    pub fn browserCreateRowsForColumnInMatrix(self: *@This(), sender: ?*Browser, column: objc.NSInteger, matrix: ?*Matrix) void {
+        return objc.msgSend(self, "browser:createRowsForColumn:inMatrix:", void, .{sender, column, matrix});
+    }
+
+    pub fn browserNumberOfChildrenOfItem(self: *@This(), browser: ?*Browser, item: *objc.Id) objc.NSInteger {
+        return objc.msgSend(self, "browser:numberOfChildrenOfItem:", objc.NSInteger, .{browser, item});
+    }
+
+    pub fn browserChildOfItem(self: *@This(), browser: ?*Browser, index: objc.NSInteger, item: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "browser:child:ofItem:", *objc.Id, .{browser, index, item});
+    }
+
+    pub fn browserIsLeafItem(self: *@This(), browser: ?*Browser, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "browser:isLeafItem:", objc.BOOL, .{browser, item});
+    }
+
+    pub fn browserObjectValueForItem(self: *@This(), browser: ?*Browser, item: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "browser:objectValueForItem:", *objc.Id, .{browser, item});
+    }
+
+    pub fn browserHeightOfRowInColumn(self: *@This(), browser: ?*Browser, row: objc.NSInteger, columnIndex: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "browser:heightOfRow:inColumn:", cf.CGFloat, .{browser, row, columnIndex});
+    }
+
+    pub fn rootItemForBrowser(self: *@This(), browser: ?*Browser) *objc.Id {
+        return objc.msgSend(self, "rootItemForBrowser:", *objc.Id, .{browser});
+    }
+
+    pub fn browserSetObjectValueForItem(self: *@This(), browser: ?*Browser, object: *objc.Id, item: *objc.Id) void {
+        return objc.msgSend(self, "browser:setObjectValue:forItem:", void, .{browser, object, item});
+    }
+
+    pub fn browserShouldEditItem(self: *@This(), browser: ?*Browser, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "browser:shouldEditItem:", objc.BOOL, .{browser, item});
+    }
+
+    pub fn browserWillDisplayCellAtRowColumn(self: *@This(), sender: ?*Browser, cell: *objc.Id, row: objc.NSInteger, column: objc.NSInteger, ) void {
+        return objc.msgSend(self, "browser:willDisplayCell:atRow:column:", void, .{sender, cell, row, column, });
+    }
+
+    pub fn browserTitleOfColumn(self: *@This(), sender: ?*Browser, column: objc.NSInteger) ?*String {
+        return objc.msgSend(self, "browser:titleOfColumn:", ?*String, .{sender, column});
+    }
+
+    pub fn browserSelectCellWithStringInColumn(self: *@This(), sender: ?*Browser, title: ?*String, column: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "browser:selectCellWithString:inColumn:", objc.BOOL, .{sender, title, column});
+    }
+
+    pub fn browserSelectRowInColumn(self: *@This(), sender: ?*Browser, row: objc.NSInteger, column: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "browser:selectRow:inColumn:", objc.BOOL, .{sender, row, column});
+    }
+
+    pub fn browserIsColumnValid(self: *@This(), sender: ?*Browser, column: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "browser:isColumnValid:", objc.BOOL, .{sender, column});
+    }
+
+    pub fn browserWillScroll(self: *@This(), sender: ?*Browser) void {
+        return objc.msgSend(self, "browserWillScroll:", void, .{sender});
+    }
+
+    pub fn browserDidScroll(self: *@This(), sender: ?*Browser) void {
+        return objc.msgSend(self, "browserDidScroll:", void, .{sender});
+    }
+
+    pub fn browserShouldSizeColumnForUserResizeToWidth(self: *@This(), browser: ?*Browser, columnIndex: objc.NSInteger, forUserResize: objc.BOOL, suggestedWidth: cf.CGFloat, ) cf.CGFloat {
+        return objc.msgSend(self, "browser:shouldSizeColumn:forUserResize:toWidth:", cf.CGFloat, .{browser, columnIndex, forUserResize, suggestedWidth, });
+    }
+
+    pub fn browserSizeToFitWidthOfColumn(self: *@This(), browser: ?*Browser, columnIndex: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "browser:sizeToFitWidthOfColumn:", cf.CGFloat, .{browser, columnIndex});
+    }
+
+    pub fn browserColumnConfigurationDidChange(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "browserColumnConfigurationDidChange:", void, .{notification});
+    }
+
+    pub fn browserShouldShowCellExpansionForRowColumn(self: *@This(), browser: ?*Browser, row: objc.NSInteger, column: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "browser:shouldShowCellExpansionForRow:column:", objc.BOOL, .{browser, row, column});
+    }
+
+    pub fn browserWriteRowsWithIndexesInColumnToPasteboard(self: *@This(), browser: ?*Browser, rowIndexes: ?*IndexSet, column: objc.NSInteger, pasteboard: ?*Pasteboard, ) objc.BOOL {
+        return objc.msgSend(self, "browser:writeRowsWithIndexes:inColumn:toPasteboard:", objc.BOOL, .{browser, rowIndexes, column, pasteboard, });
+    }
+
+    pub fn browserNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexesInColumn(self: *@This(), browser: ?*Browser, dropDestination: ?*URL, rowIndexes: ?*IndexSet, column: objc.NSInteger, ) ?*anyopaque {
+        return objc.msgSend(self, "browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:", ?*anyopaque, .{browser, dropDestination, rowIndexes, column, });
+    }
+
+    pub fn browserCanDragRowsWithIndexesInColumnWithEvent(self: *@This(), browser: ?*Browser, rowIndexes: ?*IndexSet, column: objc.NSInteger, event: ?*Event, ) objc.BOOL {
+        return objc.msgSend(self, "browser:canDragRowsWithIndexes:inColumn:withEvent:", objc.BOOL, .{browser, rowIndexes, column, event, });
+    }
+
+    pub fn browserDraggingImageForRowsWithIndexesInColumnWithEventOffset(self: *@This(), browser: ?*Browser, rowIndexes: ?*IndexSet, column: objc.NSInteger, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
+        return objc.msgSend(self, "browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:", ?*Image, .{browser, rowIndexes, column, event, dragImageOffset, });
+    }
+
+    pub fn browserValidateDropProposedRowColumnDropOperation(self: *@This(), browser: ?*Browser, info: ?*anyopaque, row: ?*objc.NSInteger, column: ?*objc.NSInteger, dropOperation: ?*BrowserDropOperation, ) DragOperation {
+        return objc.msgSend(self, "browser:validateDrop:proposedRow:column:dropOperation:", DragOperation, .{browser, info, row, column, dropOperation, });
+    }
+
+    pub fn browserAcceptDropAtRowColumnDropOperation(self: *@This(), browser: ?*Browser, info: ?*anyopaque, row: objc.NSInteger, column: objc.NSInteger, dropOperation: BrowserDropOperation, ) objc.BOOL {
+        return objc.msgSend(self, "browser:acceptDrop:atRow:column:dropOperation:", objc.BOOL, .{browser, info, row, column, dropOperation, });
+    }
+
+    pub fn browserTypeSelectStringForRowInColumn(self: *@This(), browser: ?*Browser, row: objc.NSInteger, column: objc.NSInteger) ?*String {
+        return objc.msgSend(self, "browser:typeSelectStringForRow:inColumn:", ?*String, .{browser, row, column});
+    }
+
+    pub fn browserShouldTypeSelectForEventWithCurrentSearchString(self: *@This(), browser: ?*Browser, event: ?*Event, searchString: ?*String) objc.BOOL {
+        return objc.msgSend(self, "browser:shouldTypeSelectForEvent:withCurrentSearchString:", objc.BOOL, .{browser, event, searchString});
+    }
+
+    pub fn browserNextTypeSelectMatchFromRowToRowInColumnForString(self: *@This(), browser: ?*Browser, startRow: objc.NSInteger, endRow: objc.NSInteger, column: objc.NSInteger, searchString: ?*String, ) objc.NSInteger {
+        return objc.msgSend(self, "browser:nextTypeSelectMatchFromRow:toRow:inColumn:forString:", objc.NSInteger, .{browser, startRow, endRow, column, searchString, });
+    }
+
+    pub fn browserPreviewViewControllerForLeafItem(self: *@This(), browser: ?*Browser, item: *objc.Id) ?*ViewController {
+        return objc.msgSend(self, "browser:previewViewControllerForLeafItem:", ?*ViewController, .{browser, item});
+    }
+
+    pub fn browserHeaderViewControllerForItem(self: *@This(), browser: ?*Browser, item: *objc.Id) ?*ViewController {
+        return objc.msgSend(self, "browser:headerViewControllerForItem:", ?*ViewController, .{browser, item});
+    }
+
+    pub fn browserDidChangeLastColumnToColumn(self: *@This(), browser: ?*Browser, oldLastColumn: objc.NSInteger, column: objc.NSInteger) void {
+        return objc.msgSend(self, "browser:didChangeLastColumn:toColumn:", void, .{browser, oldLastColumn, column});
+    }
+
+    pub fn browserSelectionIndexesForProposedSelectionInColumn(self: *@This(), browser: ?*Browser, proposedSelectionIndexes: ?*IndexSet, column: objc.NSInteger) ?*IndexSet {
+        return objc.msgSend(self, "browser:selectionIndexesForProposedSelection:inColumn:", ?*IndexSet, .{browser, proposedSelectionIndexes, column});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSBrowserCell?language=objc
 pub const BrowserCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSBrowserCell", @This(), Cell, &.{});
@@ -22131,6 +18410,30 @@ pub const CIImageRep = opaque {
 
 };
 
+pub const ColorPanelMode = enum(objc.NSInteger) {
+    None = -1,
+    Gray = 0,
+    RGB = 1,
+    CMYK = 2,
+    HSB = 3,
+    CustomPalette = 4,
+    ColorList = 5,
+    Wheel = 6,
+    Crayon = 7,
+};
+
+pub const ColorPanelOptions = enum(objc.NSUInteger) {
+    GrayModeMask = 1,
+    RGBModeMask = 2,
+    CMYKModeMask = 4,
+    HSBModeMask = 8,
+    CustomPaletteModeMask = 16,
+    ColorListModeMask = 32,
+    WheelModeMask = 64,
+    CrayonModeMask = 128,
+    AllModesMask = 65535,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSColorPanel?language=objc
 pub const ColorPanel = opaque {
     pub const InternalInfo = objc.ExternalClass("NSColorPanel", @This(), Panel, &.{});
@@ -22220,6 +18523,96 @@ pub const ColorPanel = opaque {
 
     pub fn alpha(self: *@This()) cf.CGFloat {
         return objc.msgSend(self, "alpha", cf.CGFloat, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSColorChanging?language=objc
+pub const ColorChanging = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn changeColor(self: *@This(), sender: ?*ColorPanel) void {
+        return objc.msgSend(self, "changeColor:", void, .{sender});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSColorPickingDefault?language=objc
+pub const ColorPickingDefault = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn initWithPickerMaskColorPanel(self: *@This(), mask: objc.NSUInteger, owningColorPanel: ?*ColorPanel) *@This() {
+        return objc.msgSend(self, "initWithPickerMask:colorPanel:", *@This(), .{mask, owningColorPanel});
+    }
+
+    pub fn provideNewButtonImage(self: *@This()) ?*Image {
+        return objc.msgSend(self, "provideNewButtonImage", ?*Image, .{});
+    }
+
+    pub fn insertNewButtonImageIn(self: *@This(), newButtonImage: ?*Image, buttonCell: ?*ButtonCell) void {
+        return objc.msgSend(self, "insertNewButtonImage:in:", void, .{newButtonImage, buttonCell});
+    }
+
+    pub fn viewSizeChanged(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "viewSizeChanged:", void, .{sender});
+    }
+
+    pub fn alphaControlAddedOrRemoved(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "alphaControlAddedOrRemoved:", void, .{sender});
+    }
+
+    pub fn attachColorList(self: *@This(), colorList: ?*ColorList) void {
+        return objc.msgSend(self, "attachColorList:", void, .{colorList});
+    }
+
+    pub fn detachColorList(self: *@This(), colorList: ?*ColorList) void {
+        return objc.msgSend(self, "detachColorList:", void, .{colorList});
+    }
+
+    pub fn setMode(self: *@This(), mode: ColorPanelMode) void {
+        return objc.msgSend(self, "setMode:", void, .{mode});
+    }
+
+    pub fn buttonToolTip(self: *@This()) ?*String {
+        return objc.msgSend(self, "buttonToolTip", ?*String, .{});
+    }
+
+    pub fn minContentSize(self: *@This()) ns.Size {
+        return objc.msgSend(self, "minContentSize", ns.Size, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSColorPickingCustom?language=objc
+pub const ColorPickingCustom = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ColorPickingDefault, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn supportsMode(self: *@This(), mode: ColorPanelMode) objc.BOOL {
+        return objc.msgSend(self, "supportsMode:", objc.BOOL, .{mode});
+    }
+
+    pub fn currentMode(self: *@This()) ColorPanelMode {
+        return objc.msgSend(self, "currentMode", ColorPanelMode, .{});
+    }
+
+    pub fn provideNewView(self: *@This(), initialRequest: objc.BOOL) ?*View {
+        return objc.msgSend(self, "provideNewView:", ?*View, .{initialRequest});
+    }
+
+    pub fn setColor(self: *@This(), newColor: ?*Color) void {
+        return objc.msgSend(self, "setColor:", void, .{newColor});
     }
 
 };
@@ -22368,6 +18761,12 @@ pub const ColorPickerTouchBarItem = opaque {
         return objc.msgSend(self, "setEnabled:", void, .{enabled});
     }
 
+};
+
+pub const ColorWellStyle = enum(objc.NSInteger) {
+    Default = 0,
+    Minimal = 1,
+    Expanded = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSColorWell?language=objc
@@ -22598,6 +18997,27 @@ pub const Cursor = opaque {
         return objc.msgSend(self, "frameResizeCursorFromPosition:inDirections:", ?*Cursor, .{position, directions});
     }
 
+};
+
+pub const CursorFrameResizePosition = enum NSCursorFrameResizePosition;
+
+pub const CursorFrameResizePosition = enum(objc.NSUInteger) {
+    Top = 1,
+    Left = 2,
+    Bottom = 4,
+    Right = 8,
+    TopLeft = 3,
+    TopRight = 9,
+    BottomLeft = 6,
+    BottomRight = 12,
+};
+
+pub const CursorFrameResizeDirections = enum NSCursorFrameResizeDirections;
+
+pub const CursorFrameResizeDirections = enum(objc.NSUInteger) {
+    Inward = 1,
+    Outward = 2,
+    All = 3,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSCustomImageRep?language=objc
@@ -22863,6 +19283,8 @@ pub const DocumentController = opaque {
 
 };
 
+pub const DraggingImageComponentKey = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent?language=objc
 pub const DraggingImageComponent = opaque {
     pub const InternalInfo = objc.ExternalClass("NSDraggingImageComponent", @This(), Object, &.{});
@@ -23059,6 +19481,28 @@ pub const FilePromiseProvider = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSFilePromiseProviderDelegate?language=objc
+pub const FilePromiseProviderDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn filePromiseProviderFileNameForType(self: *@This(), filePromiseProvider: ?*FilePromiseProvider, fileType: ?*String) ?*String {
+        return objc.msgSend(self, "filePromiseProvider:fileNameForType:", ?*String, .{filePromiseProvider, fileType});
+    }
+
+    pub fn filePromiseProviderWritePromiseToURLCompletionHandler(self: *@This(), filePromiseProvider: ?*FilePromiseProvider, url: ?*URL, completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "filePromiseProvider:writePromiseToURL:completionHandler:", void, .{filePromiseProvider, url, completionHandler});
+    }
+
+    pub fn operationQueueForFilePromiseProvider(self: *@This(), filePromiseProvider: ?*FilePromiseProvider) ?*OperationQueue {
+        return objc.msgSend(self, "operationQueueForFilePromiseProvider:", ?*OperationQueue, .{filePromiseProvider});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver?language=objc
 pub const FilePromiseReceiver = opaque {
     pub const InternalInfo = objc.ExternalClass("NSFilePromiseReceiver", @This(), Object, &.{});
@@ -23119,6 +19563,11 @@ pub const EPSImageRep = opaque {
         return objc.msgSend(self, "EPSRepresentation", ?*Data, .{});
     }
 
+};
+
+pub const GradientDrawingOptions = enum(objc.NSUInteger) {
+    DrawsBeforeStartingLocation = 1,
+    DrawsAfterEndingLocation = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSGradient?language=objc
@@ -23271,6 +19720,16 @@ pub const GroupTouchBarItem = opaque {
 
 };
 
+pub const GestureRecognizerState = enum(objc.NSInteger) {
+    Possible = 0,
+    Began = 1,
+    Changed = 2,
+    Ended = 3,
+    Cancelled = 4,
+    Failed = 5,
+    Recognized = 3,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSGestureRecognizer?language=objc
 pub const GestureRecognizer = opaque {
     pub const InternalInfo = objc.ExternalClass("NSGestureRecognizer", @This(), Object, &.{});
@@ -23388,6 +19847,40 @@ pub const GestureRecognizer = opaque {
 
     pub fn setDelaysRotationEvents(self: *@This(), delaysRotationEvents: objc.BOOL) void {
         return objc.msgSend(self, "setDelaysRotationEvents:", void, .{delaysRotationEvents});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSGestureRecognizerDelegate?language=objc
+pub const GestureRecognizerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn gestureRecognizerShouldAttemptToRecognizeWithEvent(self: *@This(), gestureRecognizer: ?*GestureRecognizer, event: ?*Event) objc.BOOL {
+        return objc.msgSend(self, "gestureRecognizer:shouldAttemptToRecognizeWithEvent:", objc.BOOL, .{gestureRecognizer, event});
+    }
+
+    pub fn gestureRecognizerShouldBegin(self: *@This(), gestureRecognizer: ?*GestureRecognizer) objc.BOOL {
+        return objc.msgSend(self, "gestureRecognizerShouldBegin:", objc.BOOL, .{gestureRecognizer});
+    }
+
+    pub fn gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(self: *@This(), gestureRecognizer: ?*GestureRecognizer, otherGestureRecognizer: ?*GestureRecognizer) objc.BOOL {
+        return objc.msgSend(self, "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:", objc.BOOL, .{gestureRecognizer, otherGestureRecognizer});
+    }
+
+    pub fn gestureRecognizerShouldRequireFailureOfGestureRecognizer(self: *@This(), gestureRecognizer: ?*GestureRecognizer, otherGestureRecognizer: ?*GestureRecognizer) objc.BOOL {
+        return objc.msgSend(self, "gestureRecognizer:shouldRequireFailureOfGestureRecognizer:", objc.BOOL, .{gestureRecognizer, otherGestureRecognizer});
+    }
+
+    pub fn gestureRecognizerShouldBeRequiredToFailByGestureRecognizer(self: *@This(), gestureRecognizer: ?*GestureRecognizer, otherGestureRecognizer: ?*GestureRecognizer) objc.BOOL {
+        return objc.msgSend(self, "gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:", objc.BOOL, .{gestureRecognizer, otherGestureRecognizer});
+    }
+
+    pub fn gestureRecognizerShouldReceiveTouch(self: *@This(), gestureRecognizer: ?*GestureRecognizer, touch: ?*Touch) objc.BOOL {
+        return objc.msgSend(self, "gestureRecognizer:shouldReceiveTouch:", objc.BOOL, .{gestureRecognizer, touch});
     }
 
 };
@@ -23725,6 +20218,55 @@ pub const LayoutDimension = opaque {
 
 };
 
+pub const LayoutPriority = f32;
+
+pub const LayoutConstraintOrientation = enum(objc.NSInteger) {
+    Horizontal = 0,
+    Vertical = 1,
+};
+
+pub const LayoutRelation = enum(objc.NSInteger) {
+    LessThanOrEqual = -1,
+    Equal = 0,
+    GreaterThanOrEqual = 1,
+};
+
+pub const LayoutAttribute = enum(objc.NSInteger) {
+    Left = 1,
+    Right = 2,
+    Top = 3,
+    Bottom = 4,
+    Leading = 5,
+    Trailing = 6,
+    Width = 7,
+    Height = 8,
+    CenterX = 9,
+    CenterY = 10,
+    LastBaseline = 11,
+    Baseline = 11,
+    FirstBaseline = 12,
+    NotAnAttribute = 0,
+};
+
+pub const LayoutFormatOptions = enum(objc.NSUInteger) {
+    AlignAllLeft = 2,
+    AlignAllRight = 4,
+    AlignAllTop = 8,
+    AlignAllBottom = 16,
+    AlignAllLeading = 32,
+    AlignAllTrailing = 64,
+    AlignAllCenterX = 512,
+    AlignAllCenterY = 1024,
+    AlignAllLastBaseline = 2048,
+    AlignAllFirstBaseline = 4096,
+    AlignAllBaseline = 2048,
+    AlignmentMask = 65535,
+    DirectionLeadingToTrailing = 0,
+    DirectionLeftToRight = 65536,
+    DirectionRightToLeft = 131072,
+    DirectionMask = 196608,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSLayoutConstraint?language=objc
 pub const LayoutConstraint = opaque {
     pub const InternalInfo = objc.ExternalClass("NSLayoutConstraint", @This(), Object, &.{});
@@ -23818,6 +20360,8 @@ pub const LayoutConstraint = opaque {
 
 };
 
+pub extern "AppKit" fn _NSDictionaryOfVariableBindings(commaSeparatedKeysString: ?*String, firstValue: *objc.Id) callconv(.C) ?*anyopaque;
+
 /// https://developer.apple.com/documentation/AppKit/NSLayoutGuide?language=objc
 pub const LayoutGuide = opaque {
     pub const InternalInfo = objc.ExternalClass("NSLayoutGuide", @This(), Object, &.{});
@@ -23897,6 +20441,28 @@ pub const LayoutGuide = opaque {
         return objc.msgSend(self, "hasAmbiguousLayout", objc.BOOL, .{});
     }
 
+};
+
+pub const ImageName = ?*String;
+
+pub const ImageLoadStatus = enum(objc.NSUInteger) {
+    Completed = 0,
+    Cancelled = 1,
+    InvalidData = 2,
+    UnexpectedEOF = 3,
+    ReadError = 4,
+};
+
+pub const ImageCacheMode = enum(objc.NSUInteger) {
+    Default = 0,
+    Always = 1,
+    BySize = 2,
+    Never = 3,
+};
+
+pub const ImageResizingMode = enum(objc.NSInteger) {
+    Tile = 0,
+    Stretch = 1,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSImage?language=objc
@@ -24188,6 +20754,42 @@ pub const Image = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSImageDelegate?language=objc
+pub const ImageDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn imageDidNotDrawInRect(self: *@This(), sender: ?*Image, rect: ns.Rect) ?*Image {
+        return objc.msgSend(self, "imageDidNotDraw:inRect:", ?*Image, .{sender, rect});
+    }
+
+    pub fn imageWillLoadRepresentation(self: *@This(), image: ?*Image, rep: ?*ImageRep) void {
+        return objc.msgSend(self, "image:willLoadRepresentation:", void, .{image, rep});
+    }
+
+    pub fn imageDidLoadRepresentationHeader(self: *@This(), image: ?*Image, rep: ?*ImageRep) void {
+        return objc.msgSend(self, "image:didLoadRepresentationHeader:", void, .{image, rep});
+    }
+
+    pub fn imageDidLoadPartOfRepresentationWithValidRows(self: *@This(), image: ?*Image, rep: ?*ImageRep, rows: objc.NSInteger) void {
+        return objc.msgSend(self, "image:didLoadPartOfRepresentation:withValidRows:", void, .{image, rep, rows});
+    }
+
+    pub fn imageDidLoadRepresentationWithStatus(self: *@This(), image: ?*Image, rep: ?*ImageRep, status: ImageLoadStatus) void {
+        return objc.msgSend(self, "image:didLoadRepresentation:withStatus:", void, .{image, rep, status});
+    }
+
+};
+
+pub const ImageSymbolScale = enum(objc.NSInteger) {
+    Small = 1,
+    Medium = 2,
+    Large = 3,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSImageSymbolConfiguration?language=objc
 pub const ImageSymbolConfiguration = opaque {
     pub const InternalInfo = objc.ExternalClass("NSImageSymbolConfiguration", @This(), Object, &.{});
@@ -24245,6 +20847,26 @@ pub const ImageSymbolConfiguration = opaque {
 
 };
 
+pub const ImageAlignment = enum(objc.NSUInteger) {
+    Center = 0,
+    Top = 1,
+    TopLeft = 2,
+    TopRight = 3,
+    Left = 4,
+    Bottom = 5,
+    BottomLeft = 6,
+    BottomRight = 7,
+    Right = 8,
+};
+
+pub const ImageFrameStyle = enum(objc.NSUInteger) {
+    None = 0,
+    Photo = 1,
+    GrayBezel = 2,
+    Groove = 3,
+    Button = 4,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSImageCell?language=objc
 pub const ImageCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSImageCell", @This(), Cell, &.{});
@@ -24280,6 +20902,13 @@ pub const ImageCell = opaque {
         return objc.msgSend(self, "setImageFrameStyle:", void, .{imageFrameStyle});
     }
 
+};
+
+pub const ImageDynamicRange = enum(objc.NSInteger) {
+    Unspecified = -1,
+    Standard = 0,
+    ConstrainedHigh = 1,
+    High = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSImageView?language=objc
@@ -24389,6 +21018,70 @@ pub const ImageView = opaque {
         return objc.msgSend(self, "imageDynamicRange", ImageDynamicRange, .{});
     }
 
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSScrubberDataSource?language=objc
+pub const ScrubberDataSource = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn numberOfItemsForScrubber(self: *@This(), scrubber: ?*Scrubber) objc.NSInteger {
+        return objc.msgSend(self, "numberOfItemsForScrubber:", objc.NSInteger, .{scrubber});
+    }
+
+    pub fn scrubberViewForItemAtIndex(self: *@This(), scrubber: ?*Scrubber, index: objc.NSInteger) ?*anyopaque {
+        return objc.msgSend(self, "scrubber:viewForItemAtIndex:", ?*anyopaque, .{scrubber, index});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSScrubberDelegate?language=objc
+pub const ScrubberDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn scrubberDidSelectItemAtIndex(self: *@This(), scrubber: ?*Scrubber, selectedIndex: objc.NSInteger) void {
+        return objc.msgSend(self, "scrubber:didSelectItemAtIndex:", void, .{scrubber, selectedIndex});
+    }
+
+    pub fn scrubberDidHighlightItemAtIndex(self: *@This(), scrubber: ?*Scrubber, highlightedIndex: objc.NSInteger) void {
+        return objc.msgSend(self, "scrubber:didHighlightItemAtIndex:", void, .{scrubber, highlightedIndex});
+    }
+
+    pub fn scrubberDidChangeVisibleRange(self: *@This(), scrubber: ?*Scrubber, visibleRange: ns.Range) void {
+        return objc.msgSend(self, "scrubber:didChangeVisibleRange:", void, .{scrubber, visibleRange});
+    }
+
+    pub fn didBeginInteractingWithScrubber(self: *@This(), scrubber: ?*Scrubber) void {
+        return objc.msgSend(self, "didBeginInteractingWithScrubber:", void, .{scrubber});
+    }
+
+    pub fn didFinishInteractingWithScrubber(self: *@This(), scrubber: ?*Scrubber) void {
+        return objc.msgSend(self, "didFinishInteractingWithScrubber:", void, .{scrubber});
+    }
+
+    pub fn didCancelInteractingWithScrubber(self: *@This(), scrubber: ?*Scrubber) void {
+        return objc.msgSend(self, "didCancelInteractingWithScrubber:", void, .{scrubber});
+    }
+
+};
+
+pub const ScrubberMode = enum(objc.NSInteger) {
+    Fixed = 0,
+    Free = 1,
+};
+
+pub const ScrubberAlignment = enum(objc.NSInteger) {
+    None = 0,
+    Leading = 1,
+    Trailing = 2,
+    Center = 3,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle?language=objc
@@ -24834,6 +21527,20 @@ pub const ScrubberLayout = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayoutDelegate?language=objc
+pub const ScrubberFlowLayoutDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ScrubberDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn scrubberLayoutSizeForItemAtIndex(self: *@This(), scrubber: ?*Scrubber, layout: ?*ScrubberFlowLayout, itemIndex: objc.NSInteger) ns.Size {
+        return objc.msgSend(self, "scrubber:layout:sizeForItemAtIndex:", ns.Size, .{scrubber, layout, itemIndex});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout?language=objc
 pub const ScrubberFlowLayout = opaque {
     pub const InternalInfo = objc.ExternalClass("NSScrubberFlowLayout", @This(), ScrubberLayout, &.{});
@@ -24895,6 +21602,8 @@ pub const ScrubberProportionalLayout = opaque {
     }
 
 };
+
+pub const SharingServiceName = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSSharingService?language=objc
 pub const SharingService = opaque {
@@ -24993,6 +21702,84 @@ pub const SharingService = opaque {
 
 };
 
+pub const SharingContentScope = enum(objc.NSInteger) {
+    Item = 0,
+    Partial = 1,
+    Full = 2,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSSharingServiceDelegate?language=objc
+pub const SharingServiceDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn sharingServiceWillShareItems(self: *@This(), sharingService: ?*SharingService, items: ?*Array) void {
+        return objc.msgSend(self, "sharingService:willShareItems:", void, .{sharingService, items});
+    }
+
+    pub fn sharingServiceDidFailToShareItemsError(self: *@This(), sharingService: ?*SharingService, items: ?*Array, @"error": ?*Error) void {
+        return objc.msgSend(self, "sharingService:didFailToShareItems:error:", void, .{sharingService, items, @"error"});
+    }
+
+    pub fn sharingServiceDidShareItems(self: *@This(), sharingService: ?*SharingService, items: ?*Array) void {
+        return objc.msgSend(self, "sharingService:didShareItems:", void, .{sharingService, items});
+    }
+
+    pub fn sharingServiceSourceFrameOnScreenForShareItem(self: *@This(), sharingService: ?*SharingService, item: *objc.Id) ns.Rect {
+        return objc.msgSend(self, "sharingService:sourceFrameOnScreenForShareItem:", ns.Rect, .{sharingService, item});
+    }
+
+    pub fn sharingServiceTransitionImageForShareItemContentRect(self: *@This(), sharingService: ?*SharingService, item: *objc.Id, contentRect: ?*ns.Rect) ?*Image {
+        return objc.msgSend(self, "sharingService:transitionImageForShareItem:contentRect:", ?*Image, .{sharingService, item, contentRect});
+    }
+
+    pub fn sharingServiceSourceWindowForShareItemsSharingContentScope(self: *@This(), sharingService: ?*SharingService, items: ?*Array, sharingContentScope: ?*SharingContentScope) ?*Window {
+        return objc.msgSend(self, "sharingService:sourceWindowForShareItems:sharingContentScope:", ?*Window, .{sharingService, items, sharingContentScope});
+    }
+
+    pub fn anchoringViewForSharingServiceShowRelativeToRectPreferredEdge(self: *@This(), sharingService: ?*SharingService, positioningRect: ?*ns.Rect, preferredEdge: ?*ns.RectEdge) ?*View {
+        return objc.msgSend(self, "anchoringViewForSharingService:showRelativeToRect:preferredEdge:", ?*View, .{sharingService, positioningRect, preferredEdge});
+    }
+
+};
+
+pub const CloudKitSharingServiceOptions = enum(objc.NSUInteger) {
+    Standard = 0,
+    AllowPublic = 1,
+    AllowPrivate = 2,
+    AllowReadOnly = 16,
+    AllowReadWrite = 32,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSCloudSharingServiceDelegate?language=objc
+pub const CloudSharingServiceDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{SharingServiceDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn sharingServiceDidCompleteForItemsError(self: *@This(), sharingService: ?*SharingService, items: ?*Array, @"error": ?*Error) void {
+        return objc.msgSend(self, "sharingService:didCompleteForItems:error:", void, .{sharingService, items, @"error"});
+    }
+
+    pub fn optionsForSharingServiceShareProvider(self: *@This(), cloudKitSharingService: ?*SharingService, provider: ?*ItemProvider) CloudKitSharingServiceOptions {
+        return objc.msgSend(self, "optionsForSharingService:shareProvider:", CloudKitSharingServiceOptions, .{cloudKitSharingService, provider});
+    }
+
+    pub fn sharingServiceDidSaveShare(self: *@This(), sharingService: ?*SharingService, share: ?*CKShare) void {
+        return objc.msgSend(self, "sharingService:didSaveShare:", void, .{sharingService, share});
+    }
+
+    pub fn sharingServiceDidStopSharing(self: *@This(), sharingService: ?*SharingService, share: ?*CKShare) void {
+        return objc.msgSend(self, "sharingService:didStopSharing:", void, .{sharingService, share});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSSharingServicePicker?language=objc
 pub const SharingServicePicker = opaque {
     pub const InternalInfo = objc.ExternalClass("NSSharingServicePicker", @This(), Object, &.{});
@@ -25030,6 +21817,32 @@ pub const SharingServicePicker = opaque {
 
     pub fn standardShareMenuItem(self: *@This()) ?*MenuItem {
         return objc.msgSend(self, "standardShareMenuItem", ?*MenuItem, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSSharingServicePickerDelegate?language=objc
+pub const SharingServicePickerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn sharingServicePickerSharingServicesForItemsProposedSharingServices(self: *@This(), sharingServicePicker: ?*SharingServicePicker, items: ?*Array, proposedServices: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(self, "sharingServicePicker:sharingServicesForItems:proposedSharingServices:", ?*anyopaque, .{sharingServicePicker, items, proposedServices});
+    }
+
+    pub fn sharingServicePickerDelegateForSharingService(self: *@This(), sharingServicePicker: ?*SharingServicePicker, sharingService: ?*SharingService) ?*anyopaque {
+        return objc.msgSend(self, "sharingServicePicker:delegateForSharingService:", ?*anyopaque, .{sharingServicePicker, sharingService});
+    }
+
+    pub fn sharingServicePickerDidChooseSharingService(self: *@This(), sharingServicePicker: ?*SharingServicePicker, service: ?*SharingService) void {
+        return objc.msgSend(self, "sharingServicePicker:didChooseSharingService:", void, .{sharingServicePicker, service});
+    }
+
+    pub fn sharingServicePickerCollaborationModeRestrictions(self: *@This(), sharingServicePicker: ?*SharingServicePicker) ?*anyopaque {
+        return objc.msgSend(self, "sharingServicePickerCollaborationModeRestrictions:", ?*anyopaque, .{sharingServicePicker});
     }
 
 };
@@ -25075,6 +21888,20 @@ pub const SharingServicePickerTouchBarItem = opaque {
 
     pub fn setButtonImage(self: *@This(), buttonImage: ?*Image) void {
         return objc.msgSend(self, "setButtonImage:", void, .{buttonImage});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItemDelegate?language=objc
+pub const SharingServicePickerTouchBarItemDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{SharingServicePickerDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn itemsForSharingServicePickerTouchBarItem(self: *@This(), pickerTouchBarItem: ?*SharingServicePickerTouchBarItem) ?*Array {
+        return objc.msgSend(self, "itemsForSharingServicePickerTouchBarItem:", ?*Array, .{pickerTouchBarItem});
     }
 
 };
@@ -25148,6 +21975,8 @@ pub const SliderAccessoryBehavior = opaque {
     }
 
 };
+
+pub const SliderAccessoryWidth = cf.CGFloat;
 
 /// https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem?language=objc
 pub const SliderTouchBarItem = opaque {
@@ -25319,6 +22148,36 @@ pub const SpeechRecognizer = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSSpeechRecognizerDelegate?language=objc
+pub const SpeechRecognizerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn speechRecognizerDidRecognizeCommand(self: *@This(), sender: ?*SpeechRecognizer, command: ?*String) void {
+        return objc.msgSend(self, "speechRecognizer:didRecognizeCommand:", void, .{sender, command});
+    }
+
+};
+
+pub const SpeechSynthesizerVoiceName = ?*String;
+
+pub const VoiceAttributeKey = ?*String;
+
+pub const SpeechDictionaryKey = ?*String;
+
+pub const VoiceGenderName = ?*String;
+
+pub const SpeechPropertyKey = ?*String;
+
+pub const SpeechBoundary = enum(objc.NSUInteger) {
+    ImmediateBoundary = 0,
+    WordBoundary = 1,
+    SentenceBoundary = 2,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer?language=objc
 pub const SpeechSynthesizer = opaque {
     pub const InternalInfo = objc.ExternalClass("NSSpeechSynthesizer", @This(), Object, &.{});
@@ -25435,6 +22294,50 @@ pub const SpeechSynthesizer = opaque {
     }
 
 };
+
+/// https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizerDelegate?language=objc
+pub const SpeechSynthesizerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn speechSynthesizerDidFinishSpeaking(self: *@This(), sender: ?*SpeechSynthesizer, finishedSpeaking: objc.BOOL) void {
+        return objc.msgSend(self, "speechSynthesizer:didFinishSpeaking:", void, .{sender, finishedSpeaking});
+    }
+
+    pub fn speechSynthesizerWillSpeakWordOfString(self: *@This(), sender: ?*SpeechSynthesizer, characterRange: ns.Range, string: ?*String) void {
+        return objc.msgSend(self, "speechSynthesizer:willSpeakWord:ofString:", void, .{sender, characterRange, string});
+    }
+
+    pub fn speechSynthesizerWillSpeakPhoneme(self: *@This(), sender: ?*SpeechSynthesizer, phonemeOpcode: i16) void {
+        return objc.msgSend(self, "speechSynthesizer:willSpeakPhoneme:", void, .{sender, phonemeOpcode});
+    }
+
+    pub fn speechSynthesizerDidEncounterErrorAtIndexOfStringMessage(self: *@This(), sender: ?*SpeechSynthesizer, characterIndex: objc.NSUInteger, string: ?*String, message: ?*String, ) void {
+        return objc.msgSend(self, "speechSynthesizer:didEncounterErrorAtIndex:ofString:message:", void, .{sender, characterIndex, string, message, });
+    }
+
+    pub fn speechSynthesizerDidEncounterSyncMessage(self: *@This(), sender: ?*SpeechSynthesizer, message: ?*String) void {
+        return objc.msgSend(self, "speechSynthesizer:didEncounterSyncMessage:", void, .{sender, message});
+    }
+
+};
+
+pub const SpeechMode = ?*String;
+
+pub const SpeechStatusKey = ?*String;
+
+pub const SpeechErrorKey = ?*String;
+
+pub const SpeechSynthesizerInfoKey = ?*String;
+
+pub const SpeechPhonemeInfoKey = ?*String;
+
+pub const SpeechCommandDelimiterKey = ?*String;
+
+pub const TextCheckingOptionKey = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSSpellChecker?language=objc
 pub const SpellChecker = opaque {
@@ -25665,6 +22568,33 @@ pub const SpellChecker = opaque {
 
 };
 
+pub const CorrectionResponse = enum NSCorrectionResponse;
+
+pub const CorrectionResponse = enum(objc.NSInteger) {
+    None = 0,
+    Accepted = 1,
+    Rejected = 2,
+    Ignored = 3,
+    Edited = 4,
+    Reverted = 5,
+};
+
+pub const CorrectionIndicatorType = enum NSCorrectionIndicatorType;
+
+pub const CorrectionIndicatorType = enum(objc.NSInteger) {
+    Default = 0,
+    Reversion = 1,
+    Guesses = 2,
+};
+
+pub const SplitViewAutosaveName = ?*String;
+
+pub const SplitViewDividerStyle = enum(objc.NSInteger) {
+    Thick = 1,
+    Thin = 2,
+    PaneSplitter = 3,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSSplitView?language=objc
 pub const SplitView = opaque {
     pub const InternalInfo = objc.ExternalClass("NSSplitView", @This(), View, &.{});
@@ -25748,6 +22678,78 @@ pub const SplitView = opaque {
         return objc.msgSend(self, "dividerThickness", cf.CGFloat, .{});
     }
 
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSSplitViewDelegate?language=objc
+pub const SplitViewDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn splitViewCanCollapseSubview(self: *@This(), splitView: ?*SplitView, subview: ?*View) objc.BOOL {
+        return objc.msgSend(self, "splitView:canCollapseSubview:", objc.BOOL, .{splitView, subview});
+    }
+
+    pub fn splitViewShouldCollapseSubviewForDoubleClickOnDividerAtIndex(self: *@This(), splitView: ?*SplitView, subview: ?*View, dividerIndex: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:", objc.BOOL, .{splitView, subview, dividerIndex});
+    }
+
+    pub fn splitViewConstrainMinCoordinateOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedMinimumPosition: cf.CGFloat, dividerIndex: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "splitView:constrainMinCoordinate:ofSubviewAt:", cf.CGFloat, .{splitView, proposedMinimumPosition, dividerIndex});
+    }
+
+    pub fn splitViewConstrainMaxCoordinateOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedMaximumPosition: cf.CGFloat, dividerIndex: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "splitView:constrainMaxCoordinate:ofSubviewAt:", cf.CGFloat, .{splitView, proposedMaximumPosition, dividerIndex});
+    }
+
+    pub fn splitViewConstrainSplitPositionOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedPosition: cf.CGFloat, dividerIndex: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "splitView:constrainSplitPosition:ofSubviewAt:", cf.CGFloat, .{splitView, proposedPosition, dividerIndex});
+    }
+
+    pub fn splitViewResizeSubviewsWithOldSize(self: *@This(), splitView: ?*SplitView, oldSize: ns.Size) void {
+        return objc.msgSend(self, "splitView:resizeSubviewsWithOldSize:", void, .{splitView, oldSize});
+    }
+
+    pub fn splitViewShouldAdjustSizeOfSubview(self: *@This(), splitView: ?*SplitView, view: ?*View) objc.BOOL {
+        return objc.msgSend(self, "splitView:shouldAdjustSizeOfSubview:", objc.BOOL, .{splitView, view});
+    }
+
+    pub fn splitViewShouldHideDividerAtIndex(self: *@This(), splitView: ?*SplitView, dividerIndex: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "splitView:shouldHideDividerAtIndex:", objc.BOOL, .{splitView, dividerIndex});
+    }
+
+    pub fn splitViewEffectiveRectForDrawnRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, proposedEffectiveRect: ns.Rect, drawnRect: ns.Rect, dividerIndex: objc.NSInteger, ) ns.Rect {
+        return objc.msgSend(self, "splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:", ns.Rect, .{splitView, proposedEffectiveRect, drawnRect, dividerIndex, });
+    }
+
+    pub fn splitViewAdditionalEffectiveRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, dividerIndex: objc.NSInteger) ns.Rect {
+        return objc.msgSend(self, "splitView:additionalEffectiveRectOfDividerAtIndex:", ns.Rect, .{splitView, dividerIndex});
+    }
+
+    pub fn splitViewWillResizeSubviews(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "splitViewWillResizeSubviews:", void, .{notification});
+    }
+
+    pub fn splitViewDidResizeSubviews(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "splitViewDidResizeSubviews:", void, .{notification});
+    }
+
+};
+
+pub const SplitViewItemBehavior = enum(objc.NSInteger) {
+    Default = 0,
+    Sidebar = 1,
+    ContentList = 2,
+    Inspector = 3,
+};
+
+pub const SplitViewItemCollapseBehavior = enum(objc.NSInteger) {
+    Default = 0,
+    PreferResizingSplitViewWithFixedSiblings = 1,
+    PreferResizingSiblingsWithFixedSplitView = 2,
+    UseConstraints = 3,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSSplitViewItem?language=objc
@@ -26177,6 +23179,48 @@ pub const SavePanel = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSOpenSavePanelDelegate?language=objc
+pub const OpenSavePanelDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn panelShouldEnableURL(self: *@This(), sender: *objc.Id, url: ?*URL) objc.BOOL {
+        return objc.msgSend(self, "panel:shouldEnableURL:", objc.BOOL, .{sender, url});
+    }
+
+    pub fn panelValidateURLError(self: *@This(), sender: *objc.Id, url: ?*URL, outError: ?*?*Error) objc.BOOL {
+        return objc.msgSend(self, "panel:validateURL:error:", objc.BOOL, .{sender, url, outError});
+    }
+
+    pub fn panelDidChangeToDirectoryURL(self: *@This(), sender: *objc.Id, url: ?*URL) void {
+        return objc.msgSend(self, "panel:didChangeToDirectoryURL:", void, .{sender, url});
+    }
+
+    pub fn panelUserEnteredFilenameConfirmed(self: *@This(), sender: *objc.Id, filename: ?*String, okFlag: objc.BOOL) ?*String {
+        return objc.msgSend(self, "panel:userEnteredFilename:confirmed:", ?*String, .{sender, filename, okFlag});
+    }
+
+    pub fn panelWillExpand(self: *@This(), sender: *objc.Id, expanding: objc.BOOL) void {
+        return objc.msgSend(self, "panel:willExpand:", void, .{sender, expanding});
+    }
+
+    pub fn panelSelectionDidChange(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "panelSelectionDidChange:", void, .{sender});
+    }
+
+    pub fn panelDisplayNameForType(self: *@This(), sender: *objc.Id, @"type": ?*UTType) ?*String {
+        return objc.msgSend(self, "panel:displayNameForType:", ?*String, .{sender, @"type"});
+    }
+
+    pub fn panelDidSelectType(self: *@This(), sender: *objc.Id, @"type": ?*UTType) void {
+        return objc.msgSend(self, "panel:didSelectType:", void, .{sender, @"type"});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSOpenPanel?language=objc
 pub const OpenPanel = opaque {
     pub const InternalInfo = objc.ExternalClass("NSOpenPanel", @This(), SavePanel, &.{});
@@ -26252,6 +23296,11 @@ pub const OpenPanel = opaque {
         return objc.msgSend(self, "setAccessoryViewDisclosed:", void, .{accessoryViewDisclosed});
     }
 
+};
+
+pub const PageLayoutResult = enum(objc.NSInteger) {
+    Cancelled = 0,
+    Changed = 1,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSPageLayout?language=objc
@@ -26348,6 +23397,24 @@ pub const PasteboardItem = opaque {
 
     pub fn types(self: *@This()) ?*anyopaque {
         return objc.msgSend(self, "types", ?*anyopaque, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSPasteboardItemDataProvider?language=objc
+pub const PasteboardItemDataProvider = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn pasteboardItemProvideDataForType(self: *@This(), pasteboard: ?*Pasteboard, item: ?*PasteboardItem, @"type": PasteboardType) void {
+        return objc.msgSend(self, "pasteboard:item:provideDataForType:", void, .{pasteboard, item, @"type"});
+    }
+
+    pub fn pasteboardFinishedWithDataProvider(self: *@This(), pasteboard: ?*Pasteboard) void {
+        return objc.msgSend(self, "pasteboardFinishedWithDataProvider:", void, .{pasteboard});
     }
 
 };
@@ -26540,6 +23607,12 @@ pub const MenuItemCell = opaque {
         return objc.msgSend(self, "setTag:", void, .{tag});
     }
 
+};
+
+pub const PopUpArrowPosition = enum(objc.NSUInteger) {
+    NoArrow = 0,
+    AtCenter = 1,
+    AtBottom = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSPopUpButtonCell?language=objc
@@ -26932,6 +24005,18 @@ pub const PopUpButton = opaque {
 
 };
 
+pub const PrintingPageOrder = enum(objc.NSInteger) {
+    DescendingPageOrder = -1,
+    SpecialPageOrder = 0,
+    AscendingPageOrder = 1,
+    UnknownPageOrder = 2,
+};
+
+pub const PrintRenderingQuality = enum(objc.NSInteger) {
+    Best = 0,
+    Responsive = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPrintOperation?language=objc
 pub const PrintOperation = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPrintOperation", @This(), Object, &.{});
@@ -27097,6 +24182,44 @@ pub const PrintOperation = opaque {
 
 };
 
+pub const PrintPanelResult = enum(objc.NSInteger) {
+    Cancelled = 0,
+    Printed = 1,
+};
+
+pub const PrintPanelOptions = enum(objc.NSUInteger) {
+    ShowsCopies = 1,
+    ShowsPageRange = 2,
+    ShowsPaperSize = 4,
+    ShowsOrientation = 8,
+    ShowsScaling = 16,
+    ShowsPrintSelection = 32,
+    ShowsPageSetupAccessory = 256,
+    ShowsPreview = 131072,
+};
+
+pub const PrintPanelJobStyleHint = ?*String;
+
+pub const PrintPanelAccessorySummaryKey = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSPrintPanelAccessorizing?language=objc
+pub const PrintPanelAccessorizing = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn localizedSummaryItems(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "localizedSummaryItems", ?*anyopaque, .{});
+    }
+
+    pub fn keyPathsForValuesAffectingPreview(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "keyPathsForValuesAffectingPreview", ?*anyopaque, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPrintPanel?language=objc
 pub const PrintPanel = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPrintPanel", @This(), Object, &.{});
@@ -27235,6 +24358,12 @@ pub const PDFInfo = opaque {
 
 };
 
+pub const PDFPanelOptions = enum(objc.NSInteger) {
+    ShowsPaperSize = 4,
+    ShowsOrientation = 8,
+    RequestsParentDirectory = 16777216,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPDFPanel?language=objc
 pub const PDFPanel = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPDFPanel", @This(), Object, &.{});
@@ -27278,6 +24407,12 @@ pub const PDFPanel = opaque {
         return objc.msgSend(self, "setDefaultFileName:", void, .{defaultFileName});
     }
 
+};
+
+pub const MediaLibrary = enum(objc.NSUInteger) {
+    Audio = 1,
+    Image = 2,
+    Movie = 4,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController?language=objc
@@ -27414,6 +24549,33 @@ pub const Screen = opaque {
 
 };
 
+pub const UsableScrollerParts = enum(objc.NSUInteger) {
+    NoScrollerParts = 0,
+    OnlyScrollerArrows = 1,
+    AllScrollerParts = 2,
+};
+
+pub const ScrollerPart = enum(objc.NSUInteger) {
+    NoPart = 0,
+    DecrementPage = 1,
+    Knob = 2,
+    IncrementPage = 3,
+    DecrementLine = 4,
+    IncrementLine = 5,
+    KnobSlot = 6,
+};
+
+pub const ScrollerStyle = enum(objc.NSInteger) {
+    Legacy = 0,
+    Overlay = 1,
+};
+
+pub const ScrollerKnobStyle = enum(objc.NSInteger) {
+    Default = 0,
+    Dark = 1,
+    Light = 2,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSScroller?language=objc
 pub const Scroller = opaque {
     pub const InternalInfo = objc.ExternalClass("NSScroller", @This(), Control, &.{});
@@ -27503,6 +24665,43 @@ pub const Scroller = opaque {
 
 };
 
+pub const ScrollArrowPosition = enum(objc.NSUInteger) {
+    ScrollerArrowsMaxEnd = 0,
+    ScrollerArrowsMinEnd = 1,
+    ScrollerArrowsDefaultSetting = 0,
+    ScrollerArrowsNone = 2,
+};
+
+pub const ScrollerArrow = enum(objc.NSUInteger) {
+    IncrementArrow = 0,
+    DecrementArrow = 1,
+};
+
+pub const TextFinderAction = enum(objc.NSInteger) {
+    ShowFindInterface = 1,
+    NextMatch = 2,
+    PreviousMatch = 3,
+    ReplaceAll = 4,
+    Replace = 5,
+    ReplaceAndFind = 6,
+    SetSearchString = 7,
+    ReplaceAllInSelection = 8,
+    SelectAll = 9,
+    SelectAllInSelection = 10,
+    HideFindInterface = 11,
+    ShowReplaceInterface = 12,
+    HideReplaceInterface = 13,
+};
+
+pub const PasteboardTypeTextFinderOptionKey = ?*String;
+
+pub const TextFinderMatchingType = enum(objc.NSInteger) {
+    Contains = 0,
+    StartsWith = 1,
+    FullWord = 2,
+    EndsWith = 3,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextFinder?language=objc
 pub const TextFinder = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextFinder", @This(), Object, &.{});
@@ -27586,6 +24785,124 @@ pub const TextFinder = opaque {
         return objc.msgSend(self, "incrementalMatchRanges", ?*anyopaque, .{});
     }
 
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextFinderClient?language=objc
+pub const TextFinderClient = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn stringAtIndexEffectiveRangeEndsWithSearchBoundary(self: *@This(), characterIndex: objc.NSUInteger, outRange: ns.RangePointer, outFlag: ?*objc.BOOL) ?*String {
+        return objc.msgSend(self, "stringAtIndex:effectiveRange:endsWithSearchBoundary:", ?*String, .{characterIndex, outRange, outFlag});
+    }
+
+    pub fn stringLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "stringLength", objc.NSUInteger, .{});
+    }
+
+    pub fn scrollRangeToVisible(self: *@This(), range: ns.Range) void {
+        return objc.msgSend(self, "scrollRangeToVisible:", void, .{range});
+    }
+
+    pub fn shouldReplaceCharactersInRangesWithStrings(self: *@This(), ranges: ?*anyopaque, strings: ?*anyopaque) objc.BOOL {
+        return objc.msgSend(self, "shouldReplaceCharactersInRanges:withStrings:", objc.BOOL, .{ranges, strings});
+    }
+
+    pub fn replaceCharactersInRangeWithString(self: *@This(), range: ns.Range, string: ?*String) void {
+        return objc.msgSend(self, "replaceCharactersInRange:withString:", void, .{range, string});
+    }
+
+    pub fn didReplaceCharacters(self: *@This()) void {
+        return objc.msgSend(self, "didReplaceCharacters", void, .{});
+    }
+
+    pub fn contentViewAtIndexEffectiveCharacterRange(self: *@This(), index: objc.NSUInteger, outRange: ns.RangePointer) ?*View {
+        return objc.msgSend(self, "contentViewAtIndex:effectiveCharacterRange:", ?*View, .{index, outRange});
+    }
+
+    pub fn rectsForCharacterRange(self: *@This(), range: ns.Range) ?*anyopaque {
+        return objc.msgSend(self, "rectsForCharacterRange:", ?*anyopaque, .{range});
+    }
+
+    pub fn drawCharactersInRangeForContentView(self: *@This(), range: ns.Range, view: ?*View) void {
+        return objc.msgSend(self, "drawCharactersInRange:forContentView:", void, .{range, view});
+    }
+
+    pub fn isSelectable(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isSelectable", objc.BOOL, .{});
+    }
+
+    pub fn allowsMultipleSelection(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "allowsMultipleSelection", objc.BOOL, .{});
+    }
+
+    pub fn isEditable(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isEditable", objc.BOOL, .{});
+    }
+
+    pub fn string(self: *@This()) ?*String {
+        return objc.msgSend(self, "string", ?*String, .{});
+    }
+
+    pub fn firstSelectedRange(self: *@This()) ns.Range {
+        return objc.msgSend(self, "firstSelectedRange", ns.Range, .{});
+    }
+
+    pub fn selectedRanges(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "selectedRanges", ?*anyopaque, .{});
+    }
+
+    pub fn setSelectedRanges(self: *@This(), selectedRanges: ?*anyopaque) void {
+        return objc.msgSend(self, "setSelectedRanges:", void, .{selectedRanges});
+    }
+
+    pub fn visibleCharacterRanges(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "visibleCharacterRanges", ?*anyopaque, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextFinderBarContainer?language=objc
+pub const TextFinderBarContainer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn findBarViewDidChangeHeight(self: *@This()) void {
+        return objc.msgSend(self, "findBarViewDidChangeHeight", void, .{});
+    }
+
+    pub fn contentView(self: *@This()) ?*View {
+        return objc.msgSend(self, "contentView", ?*View, .{});
+    }
+
+    pub fn findBarView(self: *@This()) ?*View {
+        return objc.msgSend(self, "findBarView", ?*View, .{});
+    }
+
+    pub fn setFindBarView(self: *@This(), findBarView: ?*View) void {
+        return objc.msgSend(self, "setFindBarView:", void, .{findBarView});
+    }
+
+    pub fn isFindBarVisible(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isFindBarVisible", objc.BOOL, .{});
+    }
+
+    pub fn setFindBarVisible(self: *@This(), findBarVisible: objc.BOOL) void {
+        return objc.msgSend(self, "setFindBarVisible:", void, .{findBarVisible});
+    }
+
+};
+
+pub const ScrollElasticity = enum(objc.NSInteger) {
+    Automatic = 0,
+    None = 1,
+    Allowed = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSScrollView?language=objc
@@ -27899,6 +25216,37 @@ pub const ScrollView = opaque {
         return objc.msgSend(self, "setScrollerInsets:", void, .{scrollerInsets});
     }
 
+};
+
+pub const ScrollViewFindBarPosition = enum(objc.NSInteger) {
+    AboveHorizontalRuler = 0,
+    AboveContent = 1,
+    BelowContent = 2,
+};
+
+pub const SegmentSwitchTracking = enum(objc.NSUInteger) {
+    SelectOne = 0,
+    SelectAny = 1,
+    Momentary = 2,
+    MomentaryAccelerator = 3,
+};
+
+pub const SegmentStyle = enum(objc.NSInteger) {
+    Automatic = 0,
+    Rounded = 1,
+    RoundRect = 3,
+    TexturedSquare = 4,
+    SmallSquare = 6,
+    Separated = 8,
+    TexturedRounded = 2,
+    Capsule = 5,
+};
+
+pub const SegmentDistribution = enum(objc.NSInteger) {
+    Fit = 0,
+    Fill = 1,
+    FillEqually = 2,
+    FillProportionally = 3,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSSegmentedControl?language=objc
@@ -28215,6 +25563,11 @@ pub const SegmentedCell = opaque {
 
 };
 
+pub const SharingCollaborationMode = enum(objc.NSInteger) {
+    SendCopy = 0,
+    Collaborate = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSSharingCollaborationModeRestriction?language=objc
 pub const SharingCollaborationModeRestriction = opaque {
     pub const InternalInfo = objc.ExternalClass("NSSharingCollaborationModeRestriction", @This(), Object, &.{});
@@ -28274,6 +25627,18 @@ pub const SharingCollaborationModeRestriction = opaque {
         return objc.msgSend(self, "alertRecoverySuggestionButtonLaunchURL", ?*URL, .{});
     }
 
+};
+
+pub const TickMarkPosition = enum(objc.NSUInteger) {
+    Below = 0,
+    Above = 1,
+    Leading = 1,
+    Trailing = 0,
+};
+
+pub const SliderType = enum(objc.NSUInteger) {
+    Linear = 0,
+    Circular = 1,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSSliderCell?language=objc
@@ -28430,6 +25795,25 @@ pub const Slider = opaque {
 
 };
 
+pub const StackViewGravity = enum(objc.NSInteger) {
+    Top = 1,
+    Leading = 1,
+    Center = 2,
+    Bottom = 3,
+    Trailing = 3,
+};
+
+pub const StackViewDistribution = enum(objc.NSInteger) {
+    GravityAreas = -1,
+    Fill = 0,
+    FillEqually = 1,
+    FillProportionally = 2,
+    EqualSpacing = 3,
+    EqualCentering = 4,
+};
+
+pub const StackViewVisibilityPriority = f32;
+
 /// https://developer.apple.com/documentation/AppKit/NSStackView?language=objc
 pub const StackView = opaque {
     pub const InternalInfo = objc.ExternalClass("NSStackView", @This(), View, &.{});
@@ -28555,6 +25939,24 @@ pub const StackView = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSStackViewDelegate?language=objc
+pub const StackViewDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn stackViewWillDetachViews(self: *@This(), stackView: ?*StackView, views: ?*anyopaque) void {
+        return objc.msgSend(self, "stackView:willDetachViews:", void, .{stackView, views});
+    }
+
+    pub fn stackViewDidReattachViews(self: *@This(), stackView: ?*StackView, views: ?*anyopaque) void {
+        return objc.msgSend(self, "stackView:didReattachViews:", void, .{stackView, views});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSSwitch?language=objc
 pub const Switch = opaque {
     pub const InternalInfo = objc.ExternalClass("NSSwitch", @This(), Control, &.{});
@@ -28574,6 +25976,24 @@ pub const Switch = opaque {
         return objc.msgSend(self, "setState:", void, .{state});
     }
 
+};
+
+pub const GridCellPlacement = enum(objc.NSInteger) {
+    Inherited = 0,
+    None = 1,
+    Leading = 2,
+    Top = 2,
+    Trailing = 3,
+    Bottom = 3,
+    Center = 4,
+    Fill = 5,
+};
+
+pub const GridRowAlignment = enum(objc.NSInteger) {
+    Inherited = 0,
+    None = 1,
+    FirstBaseline = 2,
+    LastBaseline = 3,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSGridView?language=objc
@@ -28924,6 +26344,313 @@ pub const GridCell = opaque {
 
 };
 
+pub const TextCursorAccessoryPlacement = enum(objc.NSInteger) {
+    Unspecified = 0,
+    Backward = 1,
+    Forward = 2,
+    Invisible = 3,
+    Center = 4,
+    OffscreenLeft = 5,
+    OffscreenTop = 6,
+    OffscreenRight = 7,
+    OffscreenBottom = 8,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextInputClient?language=objc
+pub const TextInputClient = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn insertTextReplacementRange(self: *@This(), string: *objc.Id, replacementRange: ns.Range) void {
+        return objc.msgSend(self, "insertText:replacementRange:", void, .{string, replacementRange});
+    }
+
+    pub fn doCommandBySelector(self: *@This(), selector: *objc.SEL) void {
+        return objc.msgSend(self, "doCommandBySelector:", void, .{selector});
+    }
+
+    pub fn setMarkedTextSelectedRangeReplacementRange(self: *@This(), string: *objc.Id, selectedRange: ns.Range, replacementRange: ns.Range) void {
+        return objc.msgSend(self, "setMarkedText:selectedRange:replacementRange:", void, .{string, selectedRange, replacementRange});
+    }
+
+    pub fn unmarkText(self: *@This()) void {
+        return objc.msgSend(self, "unmarkText", void, .{});
+    }
+
+    pub fn selectedRange(self: *@This()) ns.Range {
+        return objc.msgSend(self, "selectedRange", ns.Range, .{});
+    }
+
+    pub fn markedRange(self: *@This()) ns.Range {
+        return objc.msgSend(self, "markedRange", ns.Range, .{});
+    }
+
+    pub fn hasMarkedText(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "hasMarkedText", objc.BOOL, .{});
+    }
+
+    pub fn attributedSubstringForProposedRangeActualRange(self: *@This(), range: ns.Range, actualRange: ns.RangePointer) ?*AttributedString {
+        return objc.msgSend(self, "attributedSubstringForProposedRange:actualRange:", ?*AttributedString, .{range, actualRange});
+    }
+
+    pub fn validAttributesForMarkedText(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "validAttributesForMarkedText", ?*anyopaque, .{});
+    }
+
+    pub fn firstRectForCharacterRangeActualRange(self: *@This(), range: ns.Range, actualRange: ns.RangePointer) ns.Rect {
+        return objc.msgSend(self, "firstRectForCharacterRange:actualRange:", ns.Rect, .{range, actualRange});
+    }
+
+    pub fn characterIndexForPoint(self: *@This(), point: ns.Point) objc.NSUInteger {
+        return objc.msgSend(self, "characterIndexForPoint:", objc.NSUInteger, .{point});
+    }
+
+    pub fn attributedString(self: *@This()) ?*AttributedString {
+        return objc.msgSend(self, "attributedString", ?*AttributedString, .{});
+    }
+
+    pub fn fractionOfDistanceThroughGlyphForPoint(self: *@This(), point: ns.Point) cf.CGFloat {
+        return objc.msgSend(self, "fractionOfDistanceThroughGlyphForPoint:", cf.CGFloat, .{point});
+    }
+
+    pub fn baselineDeltaForCharacterAtIndex(self: *@This(), anIndex: objc.NSUInteger) cf.CGFloat {
+        return objc.msgSend(self, "baselineDeltaForCharacterAtIndex:", cf.CGFloat, .{anIndex});
+    }
+
+    pub fn windowLevel(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "windowLevel", objc.NSInteger, .{});
+    }
+
+    pub fn drawsVerticallyForCharacterAtIndex(self: *@This(), charIndex: objc.NSUInteger) objc.BOOL {
+        return objc.msgSend(self, "drawsVerticallyForCharacterAtIndex:", objc.BOOL, .{charIndex});
+    }
+
+    pub fn preferredTextAccessoryPlacement(self: *@This()) TextCursorAccessoryPlacement {
+        return objc.msgSend(self, "preferredTextAccessoryPlacement", TextCursorAccessoryPlacement, .{});
+    }
+
+    pub fn insertAdaptiveImageGlyphReplacementRange(self: *@This(), adaptiveImageGlyph: ?*AdaptiveImageGlyph, replacementRange: ns.Range) void {
+        return objc.msgSend(self, "insertAdaptiveImageGlyph:replacementRange:", void, .{adaptiveImageGlyph, replacementRange});
+    }
+
+    pub fn unionRectInVisibleSelectedRange(self: *@This()) ns.Rect {
+        return objc.msgSend(self, "unionRectInVisibleSelectedRange", ns.Rect, .{});
+    }
+
+    pub fn documentVisibleRect(self: *@This()) ns.Rect {
+        return objc.msgSend(self, "documentVisibleRect", ns.Rect, .{});
+    }
+
+    pub fn supportsAdaptiveImageGlyph(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "supportsAdaptiveImageGlyph", objc.BOOL, .{});
+    }
+
+};
+
+pub const TextInputTraitType = enum(objc.NSInteger) {
+    Default = 0,
+    No = 1,
+    Yes = 2,
+};
+
+pub const WritingToolsBehavior = enum(objc.NSInteger) {
+    None = -1,
+    Default = 0,
+    Complete = 1,
+    Limited = 2,
+};
+
+pub const WritingToolsResultOptions = enum(objc.NSUInteger) {
+    Default = 0,
+    PlainText = 1,
+    RichText = 2,
+    List = 4,
+    Table = 8,
+};
+
+pub const WritingToolsAllowedInputOptions = enum(objc.NSUInteger) {
+    Default = 0,
+    PlainText = 1,
+    RichText = 2,
+    List = 4,
+    Table = 8,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextInputTraits?language=objc
+pub const TextInputTraits = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn autocorrectionType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "autocorrectionType", TextInputTraitType, .{});
+    }
+
+    pub fn setAutocorrectionType(self: *@This(), autocorrectionType: TextInputTraitType) void {
+        return objc.msgSend(self, "setAutocorrectionType:", void, .{autocorrectionType});
+    }
+
+    pub fn spellCheckingType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "spellCheckingType", TextInputTraitType, .{});
+    }
+
+    pub fn setSpellCheckingType(self: *@This(), spellCheckingType: TextInputTraitType) void {
+        return objc.msgSend(self, "setSpellCheckingType:", void, .{spellCheckingType});
+    }
+
+    pub fn grammarCheckingType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "grammarCheckingType", TextInputTraitType, .{});
+    }
+
+    pub fn setGrammarCheckingType(self: *@This(), grammarCheckingType: TextInputTraitType) void {
+        return objc.msgSend(self, "setGrammarCheckingType:", void, .{grammarCheckingType});
+    }
+
+    pub fn smartQuotesType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "smartQuotesType", TextInputTraitType, .{});
+    }
+
+    pub fn setSmartQuotesType(self: *@This(), smartQuotesType: TextInputTraitType) void {
+        return objc.msgSend(self, "setSmartQuotesType:", void, .{smartQuotesType});
+    }
+
+    pub fn smartDashesType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "smartDashesType", TextInputTraitType, .{});
+    }
+
+    pub fn setSmartDashesType(self: *@This(), smartDashesType: TextInputTraitType) void {
+        return objc.msgSend(self, "setSmartDashesType:", void, .{smartDashesType});
+    }
+
+    pub fn smartInsertDeleteType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "smartInsertDeleteType", TextInputTraitType, .{});
+    }
+
+    pub fn setSmartInsertDeleteType(self: *@This(), smartInsertDeleteType: TextInputTraitType) void {
+        return objc.msgSend(self, "setSmartInsertDeleteType:", void, .{smartInsertDeleteType});
+    }
+
+    pub fn textReplacementType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "textReplacementType", TextInputTraitType, .{});
+    }
+
+    pub fn setTextReplacementType(self: *@This(), textReplacementType: TextInputTraitType) void {
+        return objc.msgSend(self, "setTextReplacementType:", void, .{textReplacementType});
+    }
+
+    pub fn dataDetectionType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "dataDetectionType", TextInputTraitType, .{});
+    }
+
+    pub fn setDataDetectionType(self: *@This(), dataDetectionType: TextInputTraitType) void {
+        return objc.msgSend(self, "setDataDetectionType:", void, .{dataDetectionType});
+    }
+
+    pub fn linkDetectionType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "linkDetectionType", TextInputTraitType, .{});
+    }
+
+    pub fn setLinkDetectionType(self: *@This(), linkDetectionType: TextInputTraitType) void {
+        return objc.msgSend(self, "setLinkDetectionType:", void, .{linkDetectionType});
+    }
+
+    pub fn textCompletionType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "textCompletionType", TextInputTraitType, .{});
+    }
+
+    pub fn setTextCompletionType(self: *@This(), textCompletionType: TextInputTraitType) void {
+        return objc.msgSend(self, "setTextCompletionType:", void, .{textCompletionType});
+    }
+
+    pub fn inlinePredictionType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "inlinePredictionType", TextInputTraitType, .{});
+    }
+
+    pub fn setInlinePredictionType(self: *@This(), inlinePredictionType: TextInputTraitType) void {
+        return objc.msgSend(self, "setInlinePredictionType:", void, .{inlinePredictionType});
+    }
+
+    pub fn mathExpressionCompletionType(self: *@This()) TextInputTraitType {
+        return objc.msgSend(self, "mathExpressionCompletionType", TextInputTraitType, .{});
+    }
+
+    pub fn setMathExpressionCompletionType(self: *@This(), mathExpressionCompletionType: TextInputTraitType) void {
+        return objc.msgSend(self, "setMathExpressionCompletionType:", void, .{mathExpressionCompletionType});
+    }
+
+    pub fn writingToolsBehavior(self: *@This()) WritingToolsBehavior {
+        return objc.msgSend(self, "writingToolsBehavior", WritingToolsBehavior, .{});
+    }
+
+    pub fn setWritingToolsBehavior(self: *@This(), writingToolsBehavior: WritingToolsBehavior) void {
+        return objc.msgSend(self, "setWritingToolsBehavior:", void, .{writingToolsBehavior});
+    }
+
+    pub fn allowedWritingToolsResultOptions(self: *@This()) WritingToolsResultOptions {
+        return objc.msgSend(self, "allowedWritingToolsResultOptions", WritingToolsResultOptions, .{});
+    }
+
+    pub fn setAllowedWritingToolsResultOptions(self: *@This(), allowedWritingToolsResultOptions: WritingToolsResultOptions) void {
+        return objc.msgSend(self, "setAllowedWritingToolsResultOptions:", void, .{allowedWritingToolsResultOptions});
+    }
+
+    pub fn writingToolsAllowedInputOptions(self: *@This()) WritingToolsAllowedInputOptions {
+        return objc.msgSend(self, "writingToolsAllowedInputOptions", WritingToolsAllowedInputOptions, .{});
+    }
+
+    pub fn setWritingToolsAllowedInputOptions(self: *@This(), writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions) void {
+        return objc.msgSend(self, "setWritingToolsAllowedInputOptions:", void, .{writingToolsAllowedInputOptions});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextCheckingClient?language=objc
+pub const TextCheckingClient = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextInputClient, TextInputTraits, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn annotatedSubstringForProposedRangeActualRange(self: *@This(), range: ns.Range, actualRange: ns.RangePointer) ?*AttributedString {
+        return objc.msgSend(self, "annotatedSubstringForProposedRange:actualRange:", ?*AttributedString, .{range, actualRange});
+    }
+
+    pub fn setAnnotationsRange(self: *@This(), annotations: ?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setAnnotations:range:", void, .{annotations, range});
+    }
+
+    pub fn addAnnotationsRange(self: *@This(), annotations: ?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "addAnnotations:range:", void, .{annotations, range});
+    }
+
+    pub fn removeAnnotationRange(self: *@This(), annotationName: ns.AttributedStringKey, range: ns.Range) void {
+        return objc.msgSend(self, "removeAnnotation:range:", void, .{annotationName, range});
+    }
+
+    pub fn replaceCharactersInRangeWithAnnotatedString(self: *@This(), range: ns.Range, annotatedString: ?*AttributedString) void {
+        return objc.msgSend(self, "replaceCharactersInRange:withAnnotatedString:", void, .{range, annotatedString});
+    }
+
+    pub fn selectAndShowRange(self: *@This(), range: ns.Range) void {
+        return objc.msgSend(self, "selectAndShowRange:", void, .{range});
+    }
+
+    pub fn viewForRangeFirstRectActualRange(self: *@This(), range: ns.Range, firstRect: ns.RectPointer, actualRange: ns.RangePointer) ?*View {
+        return objc.msgSend(self, "viewForRange:firstRect:actualRange:", ?*View, .{range, firstRect, actualRange});
+    }
+
+    pub fn candidateListTouchBarItem(self: *@This()) ?*CandidateListTouchBarItem {
+        return objc.msgSend(self, "candidateListTouchBarItem", ?*CandidateListTouchBarItem, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextCheckingController?language=objc
 pub const TextCheckingController = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextCheckingController", @This(), Object, &.{});
@@ -29021,6 +26748,11 @@ pub const TextCheckingController = opaque {
 
 };
 
+pub const TextFieldBezelStyle = enum(objc.NSUInteger) {
+    SquareBezel = 0,
+    RoundedBezel = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextFieldCell?language=objc
 pub const TextFieldCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextFieldCell", @This(), ActionCell, &.{});
@@ -29106,6 +26838,26 @@ pub const TextFieldCell = opaque {
 
     pub fn setAllowedInputSourceLocales(self: *@This(), allowedInputSourceLocales: ?*anyopaque) void {
         return objc.msgSend(self, "setAllowedInputSourceLocales:", void, .{allowedInputSourceLocales});
+    }
+
+};
+
+pub const TextContentType = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSTextContent?language=objc
+pub const TextContent = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn contentType(self: *@This()) TextContentType {
+        return objc.msgSend(self, "contentType", TextContentType, .{});
+    }
+
+    pub fn setContentType(self: *@This(), contentType: TextContentType) void {
+        return objc.msgSend(self, "setContentType:", void, .{contentType});
     }
 
 };
@@ -29271,6 +27023,39 @@ pub const TextField = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSTextFieldDelegate?language=objc
+pub const TextFieldDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ControlTextEditingDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn textFieldTextViewCandidatesForSelectedRange(self: *@This(), textField: ?*TextField, textView: ?*TextView, selectedRange: ns.Range) ?*Array {
+        return objc.msgSend(self, "textField:textView:candidatesForSelectedRange:", ?*Array, .{textField, textView, selectedRange});
+    }
+
+    pub fn textFieldTextViewCandidatesForSelectedRange(self: *@This(), textField: ?*TextField, textView: ?*TextView, candidates: ?*anyopaque, selectedRange: ns.Range, ) ?*anyopaque {
+        return objc.msgSend(self, "textField:textView:candidates:forSelectedRange:", ?*anyopaque, .{textField, textView, candidates, selectedRange, });
+    }
+
+    pub fn textFieldTextViewShouldSelectCandidateAtIndex(self: *@This(), textField: ?*TextField, textView: ?*TextView, index: objc.NSUInteger) objc.BOOL {
+        return objc.msgSend(self, "textField:textView:shouldSelectCandidateAtIndex:", objc.BOOL, .{textField, textView, index});
+    }
+
+};
+
+pub const TextInsertionIndicatorDisplayMode = enum(objc.NSInteger) {
+    Automatic = 0,
+    Hidden = 1,
+    Visible = 2,
+};
+
+pub const TextInsertionIndicatorAutomaticModeOptions = enum(objc.NSInteger) {
+    ShowEffectsView = 1,
+    ShowWhileTracking = 2,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator?language=objc
 pub const TextInsertionIndicator = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextInsertionIndicator", @This(), View, &.{});
@@ -29397,6 +27182,53 @@ pub const TextContainer = opaque {
 
 };
 
+pub const UnderlineStyle = enum(objc.NSInteger) {
+    None = 0,
+    Single = 1,
+    Thick = 2,
+    Double = 9,
+    PatternSolid = 0,
+    PatternDot = 256,
+    PatternDash = 512,
+    PatternDashDot = 768,
+    PatternDashDotDot = 1024,
+    ByWord = 32768,
+};
+
+pub const WritingDirectionFormatType = enum(objc.NSInteger) {
+    Embedding = 0,
+    Override = 2,
+};
+
+pub const TextEffectStyle = ?*String;
+
+pub const TextHighlightStyle = ?*String;
+
+pub const TextHighlightColorScheme = ?*String;
+
+pub const AttributedStringDocumentType = ?*String;
+
+pub const TextLayoutSectionKey = ?*String;
+
+pub const TextScalingType = enum(objc.NSInteger) {
+    Standard = 0,
+    ScalingiOS = 1,
+};
+
+pub const AttributedStringDocumentAttributeKey = ?*String;
+
+pub const AttributedStringDocumentReadingOptionKey = ?*String;
+
+pub const SpellingState = enum(objc.NSInteger) {
+    SpellingFlag = 1,
+    GrammarFlag = 2,
+};
+
+pub const TextStorageEditActions = enum(objc.NSUInteger) {
+    EditedAttributes = 1,
+    EditedCharacters = 2,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextStorage?language=objc
 pub const TextStorage = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextStorage", @This(), MutableAttributedString, &.{});
@@ -29470,6 +27302,78 @@ pub const TextStorage = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSTextStorageDelegate?language=objc
+pub const TextStorageDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn textStorageWillProcessEditingRangeChangeInLength(self: *@This(), textStorage: ?*TextStorage, editedMask: TextStorageEditActions, editedRange: ns.Range, delta: objc.NSInteger, ) void {
+        return objc.msgSend(self, "textStorage:willProcessEditing:range:changeInLength:", void, .{textStorage, editedMask, editedRange, delta, });
+    }
+
+    pub fn textStorageDidProcessEditingRangeChangeInLength(self: *@This(), textStorage: ?*TextStorage, editedMask: TextStorageEditActions, editedRange: ns.Range, delta: objc.NSInteger, ) void {
+        return objc.msgSend(self, "textStorage:didProcessEditing:range:changeInLength:", void, .{textStorage, editedMask, editedRange, delta, });
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextStorageObserving?language=objc
+pub const TextStorageObserving = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn processEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange(self: *@This(), textStorage: ?*TextStorage, editMask: TextStorageEditActions, newCharRange: ns.Range, delta: objc.NSInteger, invalidatedCharRange: ns.Range, ) void {
+        return objc.msgSend(self, "processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:", void, .{textStorage, editMask, newCharRange, delta, invalidatedCharRange, });
+    }
+
+    pub fn performEditingTransactionForTextStorageUsingBlock(self: *@This(), textStorage: ?*TextStorage, transaction: *const fn() callconv(.C) void) void {
+        return objc.msgSend(self, "performEditingTransactionForTextStorage:usingBlock:", void, .{textStorage, transaction});
+    }
+
+    pub fn textStorage(self: *@This()) ?*TextStorage {
+        return objc.msgSend(self, "textStorage", ?*TextStorage, .{});
+    }
+
+    pub fn setTextStorage(self: *@This(), textStorage: ?*TextStorage) void {
+        return objc.msgSend(self, "setTextStorage:", void, .{textStorage});
+    }
+
+};
+
+pub const TextStorageEditedOptions = objc.NSUInteger;
+
+/// https://developer.apple.com/documentation/AppKit/NSGlyphStorage?language=objc
+pub const GlyphStorage = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn insertGlyphsLengthForStartingGlyphAtIndexCharacterIndex(self: *@This(), glyphs: ?*Glyph, length: objc.NSUInteger, glyphIndex: objc.NSUInteger, charIndex: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:", void, .{glyphs, length, glyphIndex, charIndex, });
+    }
+
+    pub fn setIntAttributeValueForGlyphAtIndex(self: *@This(), attributeTag: objc.NSInteger, val: objc.NSInteger, glyphIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setIntAttribute:value:forGlyphAtIndex:", void, .{attributeTag, val, glyphIndex});
+    }
+
+    pub fn attributedString(self: *@This()) ?*AttributedString {
+        return objc.msgSend(self, "attributedString", ?*AttributedString, .{});
+    }
+
+    pub fn layoutOptions(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "layoutOptions", objc.NSUInteger, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSGlyphGenerator?language=objc
 pub const GlyphGenerator = opaque {
     pub const InternalInfo = objc.ExternalClass("NSGlyphGenerator", @This(), Object, &.{});
@@ -29489,6 +27393,50 @@ pub const GlyphGenerator = opaque {
         return objc.msgSend(self, "sharedGlyphGenerator", ?*GlyphGenerator, .{});
     }
 
+};
+
+pub const TextLayoutOrientation = enum(objc.NSInteger) {
+    Horizontal = 0,
+    Vertical = 1,
+};
+
+pub const GlyphProperty = enum(objc.NSInteger) {
+    Null = 1,
+    ControlCharacter = 2,
+    Elastic = 4,
+    NonBaseCharacter = 8,
+};
+
+pub const ControlCharacterAction = enum(objc.NSInteger) {
+    ZeroAdvancement = 1,
+    Whitespace = 2,
+    HorizontalTab = 4,
+    LineBreak = 8,
+    ParagraphBreak = 16,
+    ContainerBreak = 32,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextLayoutOrientationProvider?language=objc
+pub const TextLayoutOrientationProvider = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn layoutOrientation(self: *@This()) TextLayoutOrientation {
+        return objc.msgSend(self, "layoutOrientation", TextLayoutOrientation, .{});
+    }
+
+};
+
+pub const TypesetterBehavior = enum(objc.NSInteger) {
+    LatestBehavior = -1,
+    OriginalBehavior = 0,
+    _10_2_WithCompatibility = 1,
+    _10_2 = 2,
+    _10_3 = 3,
+    _10_4 = 4,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSLayoutManager?language=objc
@@ -29976,6 +27924,99 @@ pub const LayoutManager = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSLayoutManagerDelegate?language=objc
+pub const LayoutManagerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn layoutManagerShouldGenerateGlyphsPropertiesCharacterIndexesFontForGlyphRange(self: *@This(), layoutManager: ?*LayoutManager, glyphs: ?*, props: ?*GlyphProperty, charIndexes: ?*objc.NSUInteger, aFont: ?*Font, glyphRange: ns.Range, ) objc.NSUInteger {
+        return objc.msgSend(self, "layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:", objc.NSUInteger, .{layoutManager, glyphs, props, charIndexes, aFont, glyphRange, });
+    }
+
+    pub fn layoutManagerLineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
+        return objc.msgSend(self, "layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{layoutManager, glyphIndex, rect});
+    }
+
+    pub fn layoutManagerParagraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
+        return objc.msgSend(self, "layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{layoutManager, glyphIndex, rect});
+    }
+
+    pub fn layoutManagerParagraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
+        return objc.msgSend(self, "layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{layoutManager, glyphIndex, rect});
+    }
+
+    pub fn layoutManagerShouldUseActionForControlCharacterAtIndex(self: *@This(), layoutManager: ?*LayoutManager, action: ControlCharacterAction, charIndex: objc.NSUInteger) ControlCharacterAction {
+        return objc.msgSend(self, "layoutManager:shouldUseAction:forControlCharacterAtIndex:", ControlCharacterAction, .{layoutManager, action, charIndex});
+    }
+
+    pub fn layoutManagerShouldBreakLineByWordBeforeCharacterAtIndex(self: *@This(), layoutManager: ?*LayoutManager, charIndex: objc.NSUInteger) objc.BOOL {
+        return objc.msgSend(self, "layoutManager:shouldBreakLineByWordBeforeCharacterAtIndex:", objc.BOOL, .{layoutManager, charIndex});
+    }
+
+    pub fn layoutManagerShouldBreakLineByHyphenatingBeforeCharacterAtIndex(self: *@This(), layoutManager: ?*LayoutManager, charIndex: objc.NSUInteger) objc.BOOL {
+        return objc.msgSend(self, "layoutManager:shouldBreakLineByHyphenatingBeforeCharacterAtIndex:", objc.BOOL, .{layoutManager, charIndex});
+    }
+
+    pub fn layoutManagerBoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, textContainer: ?*TextContainer, proposedRect: ns.Rect, glyphPosition: ns.Point, charIndex: objc.NSUInteger, ) ns.Rect {
+        return objc.msgSend(self, "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:", ns.Rect, .{layoutManager, glyphIndex, textContainer, proposedRect, glyphPosition, charIndex, });
+    }
+
+    pub fn layoutManagerShouldSetLineFragmentRectLineFragmentUsedRectBaselineOffsetInTextContainerForGlyphRange(self: *@This(), layoutManager: ?*LayoutManager, lineFragmentRect: ?*ns.Rect, lineFragmentUsedRect: ?*ns.Rect, baselineOffset: ?*cf.CGFloat, textContainer: ?*TextContainer, glyphRange: ns.Range, ) objc.BOOL {
+        return objc.msgSend(self, "layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:", objc.BOOL, .{layoutManager, lineFragmentRect, lineFragmentUsedRect, baselineOffset, textContainer, glyphRange, });
+    }
+
+    pub fn layoutManagerDidInvalidateLayout(self: *@This(), sender: ?*LayoutManager) void {
+        return objc.msgSend(self, "layoutManagerDidInvalidateLayout:", void, .{sender});
+    }
+
+    pub fn layoutManagerDidCompleteLayoutForTextContainerAtEnd(self: *@This(), layoutManager: ?*LayoutManager, textContainer: ?*TextContainer, layoutFinishedFlag: objc.BOOL) void {
+        return objc.msgSend(self, "layoutManager:didCompleteLayoutForTextContainer:atEnd:", void, .{layoutManager, textContainer, layoutFinishedFlag});
+    }
+
+    pub fn layoutManagerTextContainerDidChangeGeometryFromSize(self: *@This(), layoutManager: ?*LayoutManager, textContainer: ?*TextContainer, oldSize: ns.Size) void {
+        return objc.msgSend(self, "layoutManager:textContainer:didChangeGeometryFromSize:", void, .{layoutManager, textContainer, oldSize});
+    }
+
+    pub fn layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange(self: *@This(), layoutManager: ?*LayoutManager, attrs: ?*anyopaque, toScreen: objc.BOOL, charIndex: objc.NSUInteger, effectiveCharRange: ns.RangePointer, ) ?*anyopaque {
+        return objc.msgSend(self, "layoutManager:shouldUseTemporaryAttributes:forDrawingToScreen:atCharacterIndex:effectiveRange:", ?*anyopaque, .{layoutManager, attrs, toScreen, charIndex, effectiveCharRange, });
+    }
+
+};
+
+pub const GlyphInscription = enum(objc.NSUInteger) {
+    InscribeBase = 0,
+    InscribeBelow = 1,
+    InscribeAbove = 2,
+    InscribeOverstrike = 3,
+    InscribeOverBelow = 4,
+};
+
+pub const LineSweepDirection = enum(objc.NSUInteger) {
+    Left = 0,
+    Right = 1,
+    Down = 2,
+    Up = 3,
+};
+
+pub const LineMovementDirection = enum(objc.NSUInteger) {
+    DoesntMove = 0,
+    MovesLeft = 1,
+    MovesRight = 2,
+    MovesDown = 3,
+    MovesUp = 4,
+};
+
+pub const TokenStyle = enum(objc.NSUInteger) {
+    Default = 0,
+    None = 1,
+    Rounded = 2,
+    Squared = 3,
+    PlainSquared = 4,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTokenFieldCell?language=objc
 pub const TokenFieldCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTokenFieldCell", @This(), TextFieldCell, &.{});
@@ -30025,6 +28066,106 @@ pub const TokenFieldCell = opaque {
 
     pub fn setDelegate(self: *@This(), delegate: ?*anyopaque) void {
         return objc.msgSend(self, "setDelegate:", void, .{delegate});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTokenFieldCellDelegate?language=objc
+pub const TokenFieldCellDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn tokenFieldCellCompletionsForSubstringIndexOfTokenIndexOfSelectedItem(self: *@This(), tokenFieldCell: ?*TokenFieldCell, substring: ?*String, tokenIndex: objc.NSInteger, selectedIndex: ?*objc.NSInteger, ) ?*Array {
+        return objc.msgSend(self, "tokenFieldCell:completionsForSubstring:indexOfToken:indexOfSelectedItem:", ?*Array, .{tokenFieldCell, substring, tokenIndex, selectedIndex, });
+    }
+
+    pub fn tokenFieldCellShouldAddObjectsAtIndex(self: *@This(), tokenFieldCell: ?*TokenFieldCell, tokens: ?*Array, index: objc.NSUInteger) ?*Array {
+        return objc.msgSend(self, "tokenFieldCell:shouldAddObjects:atIndex:", ?*Array, .{tokenFieldCell, tokens, index});
+    }
+
+    pub fn tokenFieldCellDisplayStringForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) ?*String {
+        return objc.msgSend(self, "tokenFieldCell:displayStringForRepresentedObject:", ?*String, .{tokenFieldCell, representedObject});
+    }
+
+    pub fn tokenFieldCellEditingStringForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) ?*String {
+        return objc.msgSend(self, "tokenFieldCell:editingStringForRepresentedObject:", ?*String, .{tokenFieldCell, representedObject});
+    }
+
+    pub fn tokenFieldCellRepresentedObjectForEditingString(self: *@This(), tokenFieldCell: ?*TokenFieldCell, editingString: ?*String) *objc.Id {
+        return objc.msgSend(self, "tokenFieldCell:representedObjectForEditingString:", *objc.Id, .{tokenFieldCell, editingString});
+    }
+
+    pub fn tokenFieldCellWriteRepresentedObjectsToPasteboard(self: *@This(), tokenFieldCell: ?*TokenFieldCell, objects: ?*Array, pboard: ?*Pasteboard) objc.BOOL {
+        return objc.msgSend(self, "tokenFieldCell:writeRepresentedObjects:toPasteboard:", objc.BOOL, .{tokenFieldCell, objects, pboard});
+    }
+
+    pub fn tokenFieldCellReadFromPasteboard(self: *@This(), tokenFieldCell: ?*TokenFieldCell, pboard: ?*Pasteboard) ?*Array {
+        return objc.msgSend(self, "tokenFieldCell:readFromPasteboard:", ?*Array, .{tokenFieldCell, pboard});
+    }
+
+    pub fn tokenFieldCellMenuForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) ?*Menu {
+        return objc.msgSend(self, "tokenFieldCell:menuForRepresentedObject:", ?*Menu, .{tokenFieldCell, representedObject});
+    }
+
+    pub fn tokenFieldCellHasMenuForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "tokenFieldCell:hasMenuForRepresentedObject:", objc.BOOL, .{tokenFieldCell, representedObject});
+    }
+
+    pub fn tokenFieldCellStyleForRepresentedObject(self: *@This(), tokenFieldCell: ?*TokenFieldCell, representedObject: *objc.Id) TokenStyle {
+        return objc.msgSend(self, "tokenFieldCell:styleForRepresentedObject:", TokenStyle, .{tokenFieldCell, representedObject});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTokenFieldDelegate?language=objc
+pub const TokenFieldDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextFieldDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn tokenFieldCompletionsForSubstringIndexOfTokenIndexOfSelectedItem(self: *@This(), tokenField: ?*TokenField, substring: ?*String, tokenIndex: objc.NSInteger, selectedIndex: ?*objc.NSInteger, ) ?*Array {
+        return objc.msgSend(self, "tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:", ?*Array, .{tokenField, substring, tokenIndex, selectedIndex, });
+    }
+
+    pub fn tokenFieldShouldAddObjectsAtIndex(self: *@This(), tokenField: ?*TokenField, tokens: ?*Array, index: objc.NSUInteger) ?*Array {
+        return objc.msgSend(self, "tokenField:shouldAddObjects:atIndex:", ?*Array, .{tokenField, tokens, index});
+    }
+
+    pub fn tokenFieldDisplayStringForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) ?*String {
+        return objc.msgSend(self, "tokenField:displayStringForRepresentedObject:", ?*String, .{tokenField, representedObject});
+    }
+
+    pub fn tokenFieldEditingStringForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) ?*String {
+        return objc.msgSend(self, "tokenField:editingStringForRepresentedObject:", ?*String, .{tokenField, representedObject});
+    }
+
+    pub fn tokenFieldRepresentedObjectForEditingString(self: *@This(), tokenField: ?*TokenField, editingString: ?*String) *objc.Id {
+        return objc.msgSend(self, "tokenField:representedObjectForEditingString:", *objc.Id, .{tokenField, editingString});
+    }
+
+    pub fn tokenFieldWriteRepresentedObjectsToPasteboard(self: *@This(), tokenField: ?*TokenField, objects: ?*Array, pboard: ?*Pasteboard) objc.BOOL {
+        return objc.msgSend(self, "tokenField:writeRepresentedObjects:toPasteboard:", objc.BOOL, .{tokenField, objects, pboard});
+    }
+
+    pub fn tokenFieldReadFromPasteboard(self: *@This(), tokenField: ?*TokenField, pboard: ?*Pasteboard) ?*Array {
+        return objc.msgSend(self, "tokenField:readFromPasteboard:", ?*Array, .{tokenField, pboard});
+    }
+
+    pub fn tokenFieldMenuForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) ?*Menu {
+        return objc.msgSend(self, "tokenField:menuForRepresentedObject:", ?*Menu, .{tokenField, representedObject});
+    }
+
+    pub fn tokenFieldHasMenuForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "tokenField:hasMenuForRepresentedObject:", objc.BOOL, .{tokenField, representedObject});
+    }
+
+    pub fn tokenFieldStyleForRepresentedObject(self: *@This(), tokenField: ?*TokenField, representedObject: *objc.Id) TokenStyle {
+        return objc.msgSend(self, "tokenField:styleForRepresentedObject:", TokenStyle, .{tokenField, representedObject});
     }
 
 };
@@ -30082,6 +28223,19 @@ pub const TokenField = opaque {
 
 };
 
+pub const TrackingAreaOptions = enum(objc.NSUInteger) {
+    MouseEnteredAndExited = 1,
+    MouseMoved = 2,
+    CursorUpdate = 4,
+    ActiveWhenFirstResponder = 16,
+    ActiveInKeyWindow = 32,
+    ActiveInActiveApp = 64,
+    ActiveAlways = 128,
+    AssumeInside = 256,
+    InVisibleRect = 512,
+    EnabledDuringMouseDrag = 1024,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTrackingArea?language=objc
 pub const TrackingArea = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTrackingArea", @This(), Object, &.{});
@@ -30113,6 +28267,25 @@ pub const TrackingArea = opaque {
         return objc.msgSend(self, "userInfo", ?*anyopaque, .{});
     }
 
+};
+
+pub const ToolbarIdentifier = ?*String;
+
+pub const ToolbarItemIdentifier = ?*String;
+
+pub const ToolbarUserInfoKey = ?*String;
+
+pub const ToolbarDisplayMode = enum(objc.NSUInteger) {
+    Default = 0,
+    IconAndLabel = 1,
+    IconOnly = 2,
+    LabelOnly = 3,
+};
+
+pub const ToolbarSizeMode = enum(objc.NSUInteger) {
+    Default = 0,
+    Regular = 1,
+    Small = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSToolbar?language=objc
@@ -30251,6 +28424,50 @@ pub const Toolbar = opaque {
     }
 
 };
+
+/// https://developer.apple.com/documentation/AppKit/NSToolbarDelegate?language=objc
+pub const ToolbarDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn toolbarItemForItemIdentifierWillBeInsertedIntoToolbar(self: *@This(), toolbar: ?*Toolbar, itemIdentifier: ToolbarItemIdentifier, flag: objc.BOOL) ?*ToolbarItem {
+        return objc.msgSend(self, "toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:", ?*ToolbarItem, .{toolbar, itemIdentifier, flag});
+    }
+
+    pub fn toolbarDefaultItemIdentifiers(self: *@This(), toolbar: ?*Toolbar) ?*anyopaque {
+        return objc.msgSend(self, "toolbarDefaultItemIdentifiers:", ?*anyopaque, .{toolbar});
+    }
+
+    pub fn toolbarAllowedItemIdentifiers(self: *@This(), toolbar: ?*Toolbar) ?*anyopaque {
+        return objc.msgSend(self, "toolbarAllowedItemIdentifiers:", ?*anyopaque, .{toolbar});
+    }
+
+    pub fn toolbarSelectableItemIdentifiers(self: *@This(), toolbar: ?*Toolbar) ?*anyopaque {
+        return objc.msgSend(self, "toolbarSelectableItemIdentifiers:", ?*anyopaque, .{toolbar});
+    }
+
+    pub fn toolbarImmovableItemIdentifiers(self: *@This(), toolbar: ?*Toolbar) ?*anyopaque {
+        return objc.msgSend(self, "toolbarImmovableItemIdentifiers:", ?*anyopaque, .{toolbar});
+    }
+
+    pub fn toolbarItemIdentifierCanBeInsertedAtIndex(self: *@This(), toolbar: ?*Toolbar, itemIdentifier: ToolbarItemIdentifier, index: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "toolbar:itemIdentifier:canBeInsertedAtIndex:", objc.BOOL, .{toolbar, itemIdentifier, index});
+    }
+
+    pub fn toolbarWillAddItem(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "toolbarWillAddItem:", void, .{notification});
+    }
+
+    pub fn toolbarDidRemoveItem(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "toolbarDidRemoveItem:", void, .{notification});
+    }
+
+};
+
+pub const ToolbarItemVisibilityPriority = objc.NSInteger;
 
 /// https://developer.apple.com/documentation/AppKit/NSToolbarItem?language=objc
 pub const ToolbarItem = opaque {
@@ -30437,6 +28654,34 @@ pub const ToolbarItem = opaque {
 
     pub fn allowsDuplicatesInToolbar(self: *@This()) objc.BOOL {
         return objc.msgSend(self, "allowsDuplicatesInToolbar", objc.BOOL, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSToolbarItemValidation?language=objc
+pub const ToolbarItemValidation = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn validateToolbarItem(self: *@This(), item: ?*ToolbarItem) objc.BOOL {
+        return objc.msgSend(self, "validateToolbarItem:", objc.BOOL, .{item});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSCloudSharingValidation?language=objc
+pub const CloudSharingValidation = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn cloudShareForUserInterfaceItem(self: *@This(), item: ?*anyopaque) ?*CKShare {
+        return objc.msgSend(self, "cloudShareForUserInterfaceItem:", ?*CKShare, .{item});
     }
 
 };
@@ -30705,6 +28950,58 @@ pub const WindowController = opaque {
 
     pub fn isWindowLoaded(self: *@This()) objc.BOOL {
         return objc.msgSend(self, "isWindowLoaded", objc.BOOL, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSComboBoxDataSource?language=objc
+pub const ComboBoxDataSource = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn numberOfItemsInComboBox(self: *@This(), comboBox: ?*ComboBox) objc.NSInteger {
+        return objc.msgSend(self, "numberOfItemsInComboBox:", objc.NSInteger, .{comboBox});
+    }
+
+    pub fn comboBoxObjectValueForItemAtIndex(self: *@This(), comboBox: ?*ComboBox, index: objc.NSInteger) *objc.Id {
+        return objc.msgSend(self, "comboBox:objectValueForItemAtIndex:", *objc.Id, .{comboBox, index});
+    }
+
+    pub fn comboBoxIndexOfItemWithStringValue(self: *@This(), comboBox: ?*ComboBox, string: ?*String) objc.NSUInteger {
+        return objc.msgSend(self, "comboBox:indexOfItemWithStringValue:", objc.NSUInteger, .{comboBox, string});
+    }
+
+    pub fn comboBoxCompletedString(self: *@This(), comboBox: ?*ComboBox, string: ?*String) ?*String {
+        return objc.msgSend(self, "comboBox:completedString:", ?*String, .{comboBox, string});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSComboBoxDelegate?language=objc
+pub const ComboBoxDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextFieldDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn comboBoxWillPopUp(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "comboBoxWillPopUp:", void, .{notification});
+    }
+
+    pub fn comboBoxWillDismiss(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "comboBoxWillDismiss:", void, .{notification});
+    }
+
+    pub fn comboBoxSelectionDidChange(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "comboBoxSelectionDidChange:", void, .{notification});
+    }
+
+    pub fn comboBoxSelectionIsChanging(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "comboBoxSelectionIsChanging:", void, .{notification});
     }
 
 };
@@ -31027,6 +29324,37 @@ pub const ComboBoxCell = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSComboBoxCellDataSource?language=objc
+pub const ComboBoxCellDataSource = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn numberOfItemsInComboBoxCell(self: *@This(), comboBoxCell: ?*ComboBoxCell) objc.NSInteger {
+        return objc.msgSend(self, "numberOfItemsInComboBoxCell:", objc.NSInteger, .{comboBoxCell});
+    }
+
+    pub fn comboBoxCellObjectValueForItemAtIndex(self: *@This(), comboBoxCell: ?*ComboBoxCell, index: objc.NSInteger) *objc.Id {
+        return objc.msgSend(self, "comboBoxCell:objectValueForItemAtIndex:", *objc.Id, .{comboBoxCell, index});
+    }
+
+    pub fn comboBoxCellIndexOfItemWithStringValue(self: *@This(), comboBoxCell: ?*ComboBoxCell, string: ?*String) objc.NSUInteger {
+        return objc.msgSend(self, "comboBoxCell:indexOfItemWithStringValue:", objc.NSUInteger, .{comboBoxCell, string});
+    }
+
+    pub fn comboBoxCellCompletedString(self: *@This(), comboBoxCell: ?*ComboBoxCell, uncompletedString: ?*String) ?*String {
+        return objc.msgSend(self, "comboBoxCell:completedString:", ?*String, .{comboBoxCell, uncompletedString});
+    }
+
+};
+
+pub const ComboButtonStyle = enum(objc.NSInteger) {
+    Split = 0,
+    Unified = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSComboButton?language=objc
 pub const ComboButton = opaque {
     pub const InternalInfo = objc.ExternalClass("NSComboButton", @This(), Control, &.{});
@@ -31088,6 +29416,64 @@ pub const ComboButton = opaque {
 
     pub fn setStyle(self: *@This(), style: ComboButtonStyle) void {
         return objc.msgSend(self, "setStyle:", void, .{style});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextInput?language=objc
+pub const TextInput = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn insertText(self: *@This(), string: *objc.Id) void {
+        return objc.msgSend(self, "insertText:", void, .{string});
+    }
+
+    pub fn doCommandBySelector(self: *@This(), selector: *objc.SEL) void {
+        return objc.msgSend(self, "doCommandBySelector:", void, .{selector});
+    }
+
+    pub fn setMarkedTextSelectedRange(self: *@This(), string: *objc.Id, selRange: ns.Range) void {
+        return objc.msgSend(self, "setMarkedText:selectedRange:", void, .{string, selRange});
+    }
+
+    pub fn unmarkText(self: *@This()) void {
+        return objc.msgSend(self, "unmarkText", void, .{});
+    }
+
+    pub fn hasMarkedText(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "hasMarkedText", objc.BOOL, .{});
+    }
+
+    pub fn conversationIdentifier(self: *@This()) objc.NSInteger {
+        return objc.msgSend(self, "conversationIdentifier", objc.NSInteger, .{});
+    }
+
+    pub fn attributedSubstringFromRange(self: *@This(), range: ns.Range) ?*AttributedString {
+        return objc.msgSend(self, "attributedSubstringFromRange:", ?*AttributedString, .{range});
+    }
+
+    pub fn markedRange(self: *@This()) ns.Range {
+        return objc.msgSend(self, "markedRange", ns.Range, .{});
+    }
+
+    pub fn selectedRange(self: *@This()) ns.Range {
+        return objc.msgSend(self, "selectedRange", ns.Range, .{});
+    }
+
+    pub fn firstRectForCharacterRange(self: *@This(), range: ns.Range) ns.Rect {
+        return objc.msgSend(self, "firstRectForCharacterRange:", ns.Rect, .{range});
+    }
+
+    pub fn characterIndexForPoint(self: *@This(), point: ns.Point) objc.NSUInteger {
+        return objc.msgSend(self, "characterIndexForPoint:", objc.NSUInteger, .{point});
+    }
+
+    pub fn validAttributesForMarkedText(self: *@This()) ?*Array {
+        return objc.msgSend(self, "validAttributesForMarkedText", ?*Array, .{});
     }
 
 };
@@ -31157,6 +29543,28 @@ pub const InputManager = opaque {
 
     pub fn wantsToDelayTextChangeNotifications(self: *@This()) objc.BOOL {
         return objc.msgSend(self, "wantsToDelayTextChangeNotifications", objc.BOOL, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextAttachmentLayout?language=objc
+pub const TextAttachmentLayout = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn imageForBoundsAttributesLocationTextContainer(self: *@This(), bounds: cf.CGRect, attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, ) ?*Image {
+        return objc.msgSend(self, "imageForBounds:attributes:location:textContainer:", ?*Image, .{bounds, attributes, location, textContainer, });
+    }
+
+    pub fn attachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(self: *@This(), attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, proposedLineFragment: cf.CGRect, position: cf.CGPoint, ) cf.CGRect {
+        return objc.msgSend(self, "attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:", cf.CGRect, .{attributes, location, textContainer, proposedLineFragment, position, });
+    }
+
+    pub fn viewProviderForParentViewLocationTextContainer(self: *@This(), parentView: ?*View, location: ?*anyopaque, textContainer: ?*TextContainer) ?*TextAttachmentViewProvider {
+        return objc.msgSend(self, "viewProviderForParentView:location:textContainer:", ?*TextAttachmentViewProvider, .{parentView, location, textContainer});
     }
 
 };
@@ -31319,6 +29727,86 @@ pub const TextAttachmentViewProvider = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSTextAttachmentContainer?language=objc
+pub const TextAttachmentContainer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn imageForBoundsTextContainerCharacterIndex(self: *@This(), imageBounds: cf.CGRect, textContainer: ?*TextContainer, charIndex: objc.NSUInteger) ?*Image {
+        return objc.msgSend(self, "imageForBounds:textContainer:characterIndex:", ?*Image, .{imageBounds, textContainer, charIndex});
+    }
+
+    pub fn attachmentBoundsForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), textContainer: ?*TextContainer, lineFrag: cf.CGRect, position: cf.CGPoint, charIndex: objc.NSUInteger, ) cf.CGRect {
+        return objc.msgSend(self, "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:", cf.CGRect, .{textContainer, lineFrag, position, charIndex, });
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextAttachmentCell?language=objc
+pub const TextAttachmentCell = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn drawWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+        return objc.msgSend(self, "drawWithFrame:inView:", void, .{cellFrame, controlView});
+    }
+
+    pub fn wantsToTrackMouse(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "wantsToTrackMouse", objc.BOOL, .{});
+    }
+
+    pub fn highlightWithFrameInView(self: *@This(), flag: objc.BOOL, cellFrame: ns.Rect, controlView: ?*View) void {
+        return objc.msgSend(self, "highlight:withFrame:inView:", void, .{flag, cellFrame, controlView});
+    }
+
+    pub fn trackMouseInRectOfViewUntilMouseUp(self: *@This(), theEvent: ?*Event, cellFrame: ns.Rect, controlView: ?*View, flag: objc.BOOL, ) objc.BOOL {
+        return objc.msgSend(self, "trackMouse:inRect:ofView:untilMouseUp:", objc.BOOL, .{theEvent, cellFrame, controlView, flag, });
+    }
+
+    pub fn cellSize(self: *@This()) ns.Size {
+        return objc.msgSend(self, "cellSize", ns.Size, .{});
+    }
+
+    pub fn cellBaselineOffset(self: *@This()) ns.Point {
+        return objc.msgSend(self, "cellBaselineOffset", ns.Point, .{});
+    }
+
+    pub fn drawWithFrameInViewCharacterIndex(self: *@This(), cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "drawWithFrame:inView:characterIndex:", void, .{cellFrame, controlView, charIndex});
+    }
+
+    pub fn drawWithFrameInViewCharacterIndexLayoutManager(self: *@This(), cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger, layoutManager: ?*LayoutManager, ) void {
+        return objc.msgSend(self, "drawWithFrame:inView:characterIndex:layoutManager:", void, .{cellFrame, controlView, charIndex, layoutManager, });
+    }
+
+    pub fn wantsToTrackMouseForEventInRectOfViewAtCharacterIndex(self: *@This(), theEvent: ?*Event, cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger, ) objc.BOOL {
+        return objc.msgSend(self, "wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:", objc.BOOL, .{theEvent, cellFrame, controlView, charIndex, });
+    }
+
+    pub fn trackMouseInRectOfViewAtCharacterIndexUntilMouseUp(self: *@This(), theEvent: ?*Event, cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger, flag: objc.BOOL, ) objc.BOOL {
+        return objc.msgSend(self, "trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:", objc.BOOL, .{theEvent, cellFrame, controlView, charIndex, flag, });
+    }
+
+    pub fn cellFrameForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), textContainer: ?*TextContainer, lineFrag: ns.Rect, position: ns.Point, charIndex: objc.NSUInteger, ) ns.Rect {
+        return objc.msgSend(self, "cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:", ns.Rect, .{textContainer, lineFrag, position, charIndex, });
+    }
+
+    pub fn attachment(self: *@This()) ?*TextAttachment {
+        return objc.msgSend(self, "attachment", ?*TextAttachment, .{});
+    }
+
+    pub fn setAttachment(self: *@This(), attachment: ?*TextAttachment) void {
+        return objc.msgSend(self, "setAttachment:", void, .{attachment});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextAttachmentCell?language=objc
 pub const TextAttachmentCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextAttachmentCell", @This(), Cell, &.{});
@@ -31329,6 +29817,17 @@ pub const TextAttachmentCell = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
+};
+
+pub const SelectionGranularity = enum(objc.NSUInteger) {
+    ByCharacter = 0,
+    ByWord = 1,
+    ByParagraph = 2,
+};
+
+pub const SelectionAffinity = enum(objc.NSUInteger) {
+    Upstream = 0,
+    Downstream = 1,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSTextView?language=objc
@@ -31611,6 +30110,231 @@ pub const TextView = opaque {
     }
 
 };
+
+/// https://developer.apple.com/documentation/AppKit/NSTextViewDelegate?language=objc
+pub const TextViewDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn textViewClickedOnLinkAtIndex(self: *@This(), textView: ?*TextView, link: *objc.Id, charIndex: objc.NSUInteger) objc.BOOL {
+        return objc.msgSend(self, "textView:clickedOnLink:atIndex:", objc.BOOL, .{textView, link, charIndex});
+    }
+
+    pub fn textViewClickedOnCellInRectAtIndex(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect, charIndex: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "textView:clickedOnCell:inRect:atIndex:", void, .{textView, cell, cellFrame, charIndex, });
+    }
+
+    pub fn textViewDoubleClickedOnCellInRectAtIndex(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect, charIndex: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "textView:doubleClickedOnCell:inRect:atIndex:", void, .{textView, cell, cellFrame, charIndex, });
+    }
+
+    pub fn textViewDraggedCellInRectEventAtIndex(self: *@This(), view: ?*TextView, cell: ?*anyopaque, rect: ns.Rect, event: ?*Event, charIndex: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "textView:draggedCell:inRect:event:atIndex:", void, .{view, cell, rect, event, charIndex, });
+    }
+
+    pub fn textViewWritablePasteboardTypesForCellAtIndex(self: *@This(), view: ?*TextView, cell: ?*anyopaque, charIndex: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "textView:writablePasteboardTypesForCell:atIndex:", ?*anyopaque, .{view, cell, charIndex});
+    }
+
+    pub fn textViewWriteCellAtIndexToPasteboardType(self: *@This(), view: ?*TextView, cell: ?*anyopaque, charIndex: objc.NSUInteger, pboard: ?*Pasteboard, @"type": PasteboardType, ) objc.BOOL {
+        return objc.msgSend(self, "textView:writeCell:atIndex:toPasteboard:type:", objc.BOOL, .{view, cell, charIndex, pboard, @"type", });
+    }
+
+    pub fn textViewWillChangeSelectionFromCharacterRangeToCharacterRange(self: *@This(), textView: ?*TextView, oldSelectedCharRange: ns.Range, newSelectedCharRange: ns.Range) ns.Range {
+        return objc.msgSend(self, "textView:willChangeSelectionFromCharacterRange:toCharacterRange:", ns.Range, .{textView, oldSelectedCharRange, newSelectedCharRange});
+    }
+
+    pub fn textViewWillChangeSelectionFromCharacterRangesToCharacterRanges(self: *@This(), textView: ?*TextView, oldSelectedCharRanges: ?*anyopaque, newSelectedCharRanges: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(self, "textView:willChangeSelectionFromCharacterRanges:toCharacterRanges:", ?*anyopaque, .{textView, oldSelectedCharRanges, newSelectedCharRanges});
+    }
+
+    pub fn textViewShouldChangeTextInRangesReplacementStrings(self: *@This(), textView: ?*TextView, affectedRanges: ?*anyopaque, replacementStrings: ?*anyopaque) objc.BOOL {
+        return objc.msgSend(self, "textView:shouldChangeTextInRanges:replacementStrings:", objc.BOOL, .{textView, affectedRanges, replacementStrings});
+    }
+
+    pub fn textViewShouldChangeTypingAttributesToAttributes(self: *@This(), textView: ?*TextView, oldTypingAttributes: ?*anyopaque, newTypingAttributes: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(self, "textView:shouldChangeTypingAttributes:toAttributes:", ?*anyopaque, .{textView, oldTypingAttributes, newTypingAttributes});
+    }
+
+    pub fn textViewDidChangeSelection(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "textViewDidChangeSelection:", void, .{notification});
+    }
+
+    pub fn textViewDidChangeTypingAttributes(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "textViewDidChangeTypingAttributes:", void, .{notification});
+    }
+
+    pub fn textViewWillDisplayToolTipForCharacterAtIndex(self: *@This(), textView: ?*TextView, tooltip: ?*String, characterIndex: objc.NSUInteger) ?*String {
+        return objc.msgSend(self, "textView:willDisplayToolTip:forCharacterAtIndex:", ?*String, .{textView, tooltip, characterIndex});
+    }
+
+    pub fn textViewCompletionsForPartialWordRangeIndexOfSelectedItem(self: *@This(), textView: ?*TextView, words: ?*anyopaque, charRange: ns.Range, index: ?*objc.NSInteger, ) ?*anyopaque {
+        return objc.msgSend(self, "textView:completions:forPartialWordRange:indexOfSelectedItem:", ?*anyopaque, .{textView, words, charRange, index, });
+    }
+
+    pub fn textViewShouldChangeTextInRangeReplacementString(self: *@This(), textView: ?*TextView, affectedCharRange: ns.Range, replacementString: ?*String) objc.BOOL {
+        return objc.msgSend(self, "textView:shouldChangeTextInRange:replacementString:", objc.BOOL, .{textView, affectedCharRange, replacementString});
+    }
+
+    pub fn textViewDoCommandBySelector(self: *@This(), textView: ?*TextView, commandSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(self, "textView:doCommandBySelector:", objc.BOOL, .{textView, commandSelector});
+    }
+
+    pub fn textViewShouldSetSpellingStateRange(self: *@This(), textView: ?*TextView, value: objc.NSInteger, affectedCharRange: ns.Range) objc.NSInteger {
+        return objc.msgSend(self, "textView:shouldSetSpellingState:range:", objc.NSInteger, .{textView, value, affectedCharRange});
+    }
+
+    pub fn textViewMenuForEventAtIndex(self: *@This(), view: ?*TextView, menu: ?*Menu, event: ?*Event, charIndex: objc.NSUInteger, ) ?*Menu {
+        return objc.msgSend(self, "textView:menu:forEvent:atIndex:", ?*Menu, .{view, menu, event, charIndex, });
+    }
+
+    pub fn textViewWillCheckTextInRangeOptionsTypes(self: *@This(), view: ?*TextView, range: ns.Range, options: ?*anyopaque, checkingTypes: ?*ns.TextCheckingTypes, ) ?*anyopaque {
+        return objc.msgSend(self, "textView:willCheckTextInRange:options:types:", ?*anyopaque, .{view, range, options, checkingTypes, });
+    }
+
+    pub fn textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount(self: *@This(), view: ?*TextView, range: ns.Range, checkingTypes: ns.TextCheckingTypes, options: ?*anyopaque, results: ?*anyopaque, orthography: ?*Orthography, wordCount: objc.NSInteger, ) ?*anyopaque {
+        return objc.msgSend(self, "textView:didCheckTextInRange:types:options:results:orthography:wordCount:", ?*anyopaque, .{view, range, checkingTypes, options, results, orthography, wordCount, });
+    }
+
+    pub fn textViewURLForContentsOfTextAttachmentAtIndex(self: *@This(), textView: ?*TextView, textAttachment: ?*TextAttachment, charIndex: objc.NSUInteger) ?*URL {
+        return objc.msgSend(self, "textView:URLForContentsOfTextAttachment:atIndex:", ?*URL, .{textView, textAttachment, charIndex});
+    }
+
+    pub fn textViewWillShowSharingServicePickerForItems(self: *@This(), textView: ?*TextView, servicePicker: ?*SharingServicePicker, items: ?*Array) ?*SharingServicePicker {
+        return objc.msgSend(self, "textView:willShowSharingServicePicker:forItems:", ?*SharingServicePicker, .{textView, servicePicker, items});
+    }
+
+    pub fn undoManagerForTextView(self: *@This(), view: ?*TextView) ?*UndoManager {
+        return objc.msgSend(self, "undoManagerForTextView:", ?*UndoManager, .{view});
+    }
+
+    pub fn textViewShouldUpdateTouchBarItemIdentifiers(self: *@This(), textView: ?*TextView, identifiers: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(self, "textView:shouldUpdateTouchBarItemIdentifiers:", ?*anyopaque, .{textView, identifiers});
+    }
+
+    pub fn textViewCandidatesForSelectedRange(self: *@This(), textView: ?*TextView, selectedRange: ns.Range) ?*Array {
+        return objc.msgSend(self, "textView:candidatesForSelectedRange:", ?*Array, .{textView, selectedRange});
+    }
+
+    pub fn textViewCandidatesForSelectedRange(self: *@This(), textView: ?*TextView, candidates: ?*anyopaque, selectedRange: ns.Range) ?*anyopaque {
+        return objc.msgSend(self, "textView:candidates:forSelectedRange:", ?*anyopaque, .{textView, candidates, selectedRange});
+    }
+
+    pub fn textViewShouldSelectCandidateAtIndex(self: *@This(), textView: ?*TextView, index: objc.NSUInteger) objc.BOOL {
+        return objc.msgSend(self, "textView:shouldSelectCandidateAtIndex:", objc.BOOL, .{textView, index});
+    }
+
+    pub fn textViewWritingToolsWillBegin(self: *@This(), textView: ?*TextView) void {
+        return objc.msgSend(self, "textViewWritingToolsWillBegin:", void, .{textView});
+    }
+
+    pub fn textViewWritingToolsDidEnd(self: *@This(), textView: ?*TextView) void {
+        return objc.msgSend(self, "textViewWritingToolsDidEnd:", void, .{textView});
+    }
+
+    pub fn textViewWritingToolsIgnoredRangesInEnclosingRange(self: *@This(), textView: ?*TextView, enclosingRange: ns.Range) ?*anyopaque {
+        return objc.msgSend(self, "textView:writingToolsIgnoredRangesInEnclosingRange:", ?*anyopaque, .{textView, enclosingRange});
+    }
+
+    pub fn textViewClickedOnLink(self: *@This(), textView: ?*TextView, link: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "textView:clickedOnLink:", objc.BOOL, .{textView, link});
+    }
+
+    pub fn textViewClickedOnCellInRect(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect) void {
+        return objc.msgSend(self, "textView:clickedOnCell:inRect:", void, .{textView, cell, cellFrame});
+    }
+
+    pub fn textViewDoubleClickedOnCellInRect(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect) void {
+        return objc.msgSend(self, "textView:doubleClickedOnCell:inRect:", void, .{textView, cell, cellFrame});
+    }
+
+    pub fn textViewDraggedCellInRectEvent(self: *@This(), view: ?*TextView, cell: ?*anyopaque, rect: ns.Rect, event: ?*Event, ) void {
+        return objc.msgSend(self, "textView:draggedCell:inRect:event:", void, .{view, cell, rect, event, });
+    }
+
+};
+
+pub const FindPanelAction = enum(objc.NSUInteger) {
+    ShowFindPanel = 1,
+    Next = 2,
+    Previous = 3,
+    ReplaceAll = 4,
+    Replace = 5,
+    ReplaceAndFind = 6,
+    SetFindString = 7,
+    ReplaceAllInSelection = 8,
+    SelectAll = 9,
+    SelectAllInSelection = 10,
+};
+
+pub const PasteboardTypeFindPanelSearchOptionKey = ?*String;
+
+pub const FindPanelSubstringMatchType = enum(objc.NSUInteger) {
+    Contains = 0,
+    StartsWith = 1,
+    FullWord = 2,
+    EndsWith = 3,
+};
+
+pub const TableViewDropOperation = enum(objc.NSUInteger) {
+    On = 0,
+    Above = 1,
+};
+
+pub const TableViewColumnAutoresizingStyle = enum(objc.NSUInteger) {
+    NoColumnAutoresizing = 0,
+    UniformColumnAutoresizingStyle = 1,
+    SequentialColumnAutoresizingStyle = 2,
+    ReverseSequentialColumnAutoresizingStyle = 3,
+    LastColumnOnlyAutoresizingStyle = 4,
+    FirstColumnOnlyAutoresizingStyle = 5,
+};
+
+pub const TableViewGridLineStyle = enum(objc.NSUInteger) {
+    None = 0,
+    SolidVerticalGridLineMask = 1,
+    SolidHorizontalGridLineMask = 2,
+    DashedHorizontalGridLineMask = 8,
+};
+
+pub const TableViewRowSizeStyle = enum(objc.NSInteger) {
+    Default = -1,
+    Custom = 0,
+    Small = 1,
+    Medium = 2,
+    Large = 3,
+};
+
+pub const TableViewStyle = enum(objc.NSInteger) {
+    Automatic = 0,
+    FullWidth = 1,
+    Inset = 2,
+    SourceList = 3,
+    Plain = 4,
+};
+
+pub const TableViewSelectionHighlightStyle = enum(objc.NSInteger) {
+    None = -1,
+    Regular = 0,
+    SourceList = 1,
+};
+
+pub const TableViewDraggingDestinationFeedbackStyle = enum(objc.NSInteger) {
+    None = -1,
+    Regular = 0,
+    SourceList = 1,
+    Gap = 2,
+};
+
+pub const TableRowActionEdge = enum(objc.NSInteger) {
+    Leading = 0,
+    Trailing = 1,
+};
+
+pub const TableViewAutosaveName = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSTableView?language=objc
 pub const TableView = opaque {
@@ -32181,6 +30905,210 @@ pub const TableView = opaque {
 
 };
 
+pub const TableViewAnimationOptions = enum NSTableViewAnimationOptions;
+
+pub const TableViewAnimationOptions = enum(objc.NSUInteger) {
+    EffectNone = 0,
+    EffectFade = 1,
+    EffectGap = 2,
+    SlideUp = 16,
+    SlideDown = 32,
+    SlideLeft = 48,
+    SlideRight = 64,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTableViewDelegate?language=objc
+pub const TableViewDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ControlTextEditingDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn tableViewViewForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) ?*View {
+        return objc.msgSend(self, "tableView:viewForTableColumn:row:", ?*View, .{tableView, tableColumn, row});
+    }
+
+    pub fn tableViewRowViewForRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) ?*TableRowView {
+        return objc.msgSend(self, "tableView:rowViewForRow:", ?*TableRowView, .{tableView, row});
+    }
+
+    pub fn tableViewDidAddRowViewForRow(self: *@This(), tableView: ?*TableView, rowView: ?*TableRowView, row: objc.NSInteger) void {
+        return objc.msgSend(self, "tableView:didAddRowView:forRow:", void, .{tableView, rowView, row});
+    }
+
+    pub fn tableViewDidRemoveRowViewForRow(self: *@This(), tableView: ?*TableView, rowView: ?*TableRowView, row: objc.NSInteger) void {
+        return objc.msgSend(self, "tableView:didRemoveRowView:forRow:", void, .{tableView, rowView, row});
+    }
+
+    pub fn tableViewWillDisplayCellForTableColumnRow(self: *@This(), tableView: ?*TableView, cell: *objc.Id, tableColumn: ?*TableColumn, row: objc.NSInteger, ) void {
+        return objc.msgSend(self, "tableView:willDisplayCell:forTableColumn:row:", void, .{tableView, cell, tableColumn, row, });
+    }
+
+    pub fn tableViewShouldEditTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "tableView:shouldEditTableColumn:row:", objc.BOOL, .{tableView, tableColumn, row});
+    }
+
+    pub fn tableViewToolTipForCellRectTableColumnRowMouseLocation(self: *@This(), tableView: ?*TableView, cell: ?*Cell, rect: ns.RectPointer, tableColumn: ?*TableColumn, row: objc.NSInteger, mouseLocation: ns.Point, ) ?*String {
+        return objc.msgSend(self, "tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:", ?*String, .{tableView, cell, rect, tableColumn, row, mouseLocation, });
+    }
+
+    pub fn tableViewShouldShowCellExpansionForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "tableView:shouldShowCellExpansionForTableColumn:row:", objc.BOOL, .{tableView, tableColumn, row});
+    }
+
+    pub fn tableViewShouldTrackCellForTableColumnRow(self: *@This(), tableView: ?*TableView, cell: ?*Cell, tableColumn: ?*TableColumn, row: objc.NSInteger, ) objc.BOOL {
+        return objc.msgSend(self, "tableView:shouldTrackCell:forTableColumn:row:", objc.BOOL, .{tableView, cell, tableColumn, row, });
+    }
+
+    pub fn tableViewDataCellForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) ?*Cell {
+        return objc.msgSend(self, "tableView:dataCellForTableColumn:row:", ?*Cell, .{tableView, tableColumn, row});
+    }
+
+    pub fn selectionShouldChangeInTableView(self: *@This(), tableView: ?*TableView) objc.BOOL {
+        return objc.msgSend(self, "selectionShouldChangeInTableView:", objc.BOOL, .{tableView});
+    }
+
+    pub fn tableViewShouldSelectRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "tableView:shouldSelectRow:", objc.BOOL, .{tableView, row});
+    }
+
+    pub fn tableViewSelectionIndexesForProposedSelection(self: *@This(), tableView: ?*TableView, proposedSelectionIndexes: ?*IndexSet) ?*IndexSet {
+        return objc.msgSend(self, "tableView:selectionIndexesForProposedSelection:", ?*IndexSet, .{tableView, proposedSelectionIndexes});
+    }
+
+    pub fn tableViewShouldSelectTableColumn(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn) objc.BOOL {
+        return objc.msgSend(self, "tableView:shouldSelectTableColumn:", objc.BOOL, .{tableView, tableColumn});
+    }
+
+    pub fn tableViewMouseDownInHeaderOfTableColumn(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn) void {
+        return objc.msgSend(self, "tableView:mouseDownInHeaderOfTableColumn:", void, .{tableView, tableColumn});
+    }
+
+    pub fn tableViewDidClickTableColumn(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn) void {
+        return objc.msgSend(self, "tableView:didClickTableColumn:", void, .{tableView, tableColumn});
+    }
+
+    pub fn tableViewDidDragTableColumn(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn) void {
+        return objc.msgSend(self, "tableView:didDragTableColumn:", void, .{tableView, tableColumn});
+    }
+
+    pub fn tableViewHeightOfRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "tableView:heightOfRow:", cf.CGFloat, .{tableView, row});
+    }
+
+    pub fn tableViewTypeSelectStringForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) ?*String {
+        return objc.msgSend(self, "tableView:typeSelectStringForTableColumn:row:", ?*String, .{tableView, tableColumn, row});
+    }
+
+    pub fn tableViewNextTypeSelectMatchFromRowToRowForString(self: *@This(), tableView: ?*TableView, startRow: objc.NSInteger, endRow: objc.NSInteger, searchString: ?*String, ) objc.NSInteger {
+        return objc.msgSend(self, "tableView:nextTypeSelectMatchFromRow:toRow:forString:", objc.NSInteger, .{tableView, startRow, endRow, searchString, });
+    }
+
+    pub fn tableViewShouldTypeSelectForEventWithCurrentSearchString(self: *@This(), tableView: ?*TableView, event: ?*Event, searchString: ?*String) objc.BOOL {
+        return objc.msgSend(self, "tableView:shouldTypeSelectForEvent:withCurrentSearchString:", objc.BOOL, .{tableView, event, searchString});
+    }
+
+    pub fn tableViewIsGroupRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "tableView:isGroupRow:", objc.BOOL, .{tableView, row});
+    }
+
+    pub fn tableViewSizeToFitWidthOfColumn(self: *@This(), tableView: ?*TableView, column: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "tableView:sizeToFitWidthOfColumn:", cf.CGFloat, .{tableView, column});
+    }
+
+    pub fn tableViewShouldReorderColumnToColumn(self: *@This(), tableView: ?*TableView, columnIndex: objc.NSInteger, newColumnIndex: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "tableView:shouldReorderColumn:toColumn:", objc.BOOL, .{tableView, columnIndex, newColumnIndex});
+    }
+
+    pub fn tableViewRowActionsForRowEdge(self: *@This(), tableView: ?*TableView, row: objc.NSInteger, edge: TableRowActionEdge) ?*anyopaque {
+        return objc.msgSend(self, "tableView:rowActionsForRow:edge:", ?*anyopaque, .{tableView, row, edge});
+    }
+
+    pub fn tableViewUserCanChangeVisibilityOfTableColumn(self: *@This(), tableView: ?*TableView, column: ?*TableColumn) objc.BOOL {
+        return objc.msgSend(self, "tableView:userCanChangeVisibilityOfTableColumn:", objc.BOOL, .{tableView, column});
+    }
+
+    pub fn tableViewUserDidChangeVisibilityOfTableColumns(self: *@This(), tableView: ?*TableView, columns: ?*anyopaque) void {
+        return objc.msgSend(self, "tableView:userDidChangeVisibilityOfTableColumns:", void, .{tableView, columns});
+    }
+
+    pub fn tableViewSelectionDidChange(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "tableViewSelectionDidChange:", void, .{notification});
+    }
+
+    pub fn tableViewColumnDidMove(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "tableViewColumnDidMove:", void, .{notification});
+    }
+
+    pub fn tableViewColumnDidResize(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "tableViewColumnDidResize:", void, .{notification});
+    }
+
+    pub fn tableViewSelectionIsChanging(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "tableViewSelectionIsChanging:", void, .{notification});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTableViewDataSource?language=objc
+pub const TableViewDataSource = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn numberOfRowsInTableView(self: *@This(), tableView: ?*TableView) objc.NSInteger {
+        return objc.msgSend(self, "numberOfRowsInTableView:", objc.NSInteger, .{tableView});
+    }
+
+    pub fn tableViewObjectValueForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) *objc.Id {
+        return objc.msgSend(self, "tableView:objectValueForTableColumn:row:", *objc.Id, .{tableView, tableColumn, row});
+    }
+
+    pub fn tableViewSetObjectValueForTableColumnRow(self: *@This(), tableView: ?*TableView, object: *objc.Id, tableColumn: ?*TableColumn, row: objc.NSInteger, ) void {
+        return objc.msgSend(self, "tableView:setObjectValue:forTableColumn:row:", void, .{tableView, object, tableColumn, row, });
+    }
+
+    pub fn tableViewSortDescriptorsDidChange(self: *@This(), tableView: ?*TableView, oldDescriptors: ?*anyopaque) void {
+        return objc.msgSend(self, "tableView:sortDescriptorsDidChange:", void, .{tableView, oldDescriptors});
+    }
+
+    pub fn tableViewPasteboardWriterForRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) ?*anyopaque {
+        return objc.msgSend(self, "tableView:pasteboardWriterForRow:", ?*anyopaque, .{tableView, row});
+    }
+
+    pub fn tableViewDraggingSessionWillBeginAtPointForRowIndexes(self: *@This(), tableView: ?*TableView, session: ?*DraggingSession, screenPoint: ns.Point, rowIndexes: ?*IndexSet, ) void {
+        return objc.msgSend(self, "tableView:draggingSession:willBeginAtPoint:forRowIndexes:", void, .{tableView, session, screenPoint, rowIndexes, });
+    }
+
+    pub fn tableViewDraggingSessionEndedAtPointOperation(self: *@This(), tableView: ?*TableView, session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation, ) void {
+        return objc.msgSend(self, "tableView:draggingSession:endedAtPoint:operation:", void, .{tableView, session, screenPoint, operation, });
+    }
+
+    pub fn tableViewUpdateDraggingItemsForDrag(self: *@This(), tableView: ?*TableView, draggingInfo: ?*anyopaque) void {
+        return objc.msgSend(self, "tableView:updateDraggingItemsForDrag:", void, .{tableView, draggingInfo});
+    }
+
+    pub fn tableViewWriteRowsWithIndexesToPasteboard(self: *@This(), tableView: ?*TableView, rowIndexes: ?*IndexSet, pboard: ?*Pasteboard) objc.BOOL {
+        return objc.msgSend(self, "tableView:writeRowsWithIndexes:toPasteboard:", objc.BOOL, .{tableView, rowIndexes, pboard});
+    }
+
+    pub fn tableViewValidateDropProposedRowProposedDropOperation(self: *@This(), tableView: ?*TableView, info: ?*anyopaque, row: objc.NSInteger, dropOperation: TableViewDropOperation, ) DragOperation {
+        return objc.msgSend(self, "tableView:validateDrop:proposedRow:proposedDropOperation:", DragOperation, .{tableView, info, row, dropOperation, });
+    }
+
+    pub fn tableViewAcceptDropRowDropOperation(self: *@This(), tableView: ?*TableView, info: ?*anyopaque, row: objc.NSInteger, dropOperation: TableViewDropOperation, ) objc.BOOL {
+        return objc.msgSend(self, "tableView:acceptDrop:row:dropOperation:", objc.BOOL, .{tableView, info, row, dropOperation, });
+    }
+
+    pub fn tableViewNamesOfPromisedFilesDroppedAtDestinationForDraggedRowsWithIndexes(self: *@This(), tableView: ?*TableView, dropDestination: ?*URL, indexSet: ?*IndexSet) ?*anyopaque {
+        return objc.msgSend(self, "tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:", ?*anyopaque, .{tableView, dropDestination, indexSet});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTableCellView?language=objc
 pub const TableCellView = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTableCellView", @This(), View, &.{});
@@ -32236,6 +31164,12 @@ pub const TableCellView = opaque {
         return objc.msgSend(self, "draggingImageComponents", ?*anyopaque, .{});
     }
 
+};
+
+pub const TableColumnResizingOptions = enum(objc.NSUInteger) {
+    NoResizing = 0,
+    AutoresizingMask = 1,
+    UserResizingMask = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSTableColumn?language=objc
@@ -32627,6 +31561,17 @@ pub const TableViewDiffableDataSource = opaque {
 
 };
 
+pub const TableViewDiffableDataSourceCellProvider = *const fn(?*TableView, ?*TableColumn, objc.NSInteger, *objc.Id, ) callconv(.C) ?*View;
+
+pub const TableViewDiffableDataSourceRowProvider = *const fn(?*TableView, objc.NSInteger, *objc.Id) callconv(.C) ?*TableRowView;
+
+pub const TableViewDiffableDataSourceSectionHeaderViewProvider = *const fn(?*TableView, objc.NSInteger, *objc.Id) callconv(.C) ?*View;
+
+pub const TableViewRowActionStyle = enum(objc.NSInteger) {
+    Regular = 0,
+    Destructive = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTableViewRowAction?language=objc
 pub const TableViewRowAction = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTableViewRowAction", @This(), Object, &.{});
@@ -32857,6 +31802,338 @@ pub const OutlineView = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSOutlineViewDataSource?language=objc
+pub const OutlineViewDataSource = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn outlineViewNumberOfChildrenOfItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.NSInteger {
+        return objc.msgSend(self, "outlineView:numberOfChildrenOfItem:", objc.NSInteger, .{outlineView, item});
+    }
+
+    pub fn outlineViewChildOfItem(self: *@This(), outlineView: ?*OutlineView, index: objc.NSInteger, item: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "outlineView:child:ofItem:", *objc.Id, .{outlineView, index, item});
+    }
+
+    pub fn outlineViewIsItemExpandable(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "outlineView:isItemExpandable:", objc.BOOL, .{outlineView, item});
+    }
+
+    pub fn outlineViewObjectValueForTableColumnByItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "outlineView:objectValueForTableColumn:byItem:", *objc.Id, .{outlineView, tableColumn, item});
+    }
+
+    pub fn outlineViewSetObjectValueForTableColumnByItem(self: *@This(), outlineView: ?*OutlineView, object: *objc.Id, tableColumn: ?*TableColumn, item: *objc.Id, ) void {
+        return objc.msgSend(self, "outlineView:setObjectValue:forTableColumn:byItem:", void, .{outlineView, object, tableColumn, item, });
+    }
+
+    pub fn outlineViewItemForPersistentObject(self: *@This(), outlineView: ?*OutlineView, object: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "outlineView:itemForPersistentObject:", *objc.Id, .{outlineView, object});
+    }
+
+    pub fn outlineViewPersistentObjectForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) *objc.Id {
+        return objc.msgSend(self, "outlineView:persistentObjectForItem:", *objc.Id, .{outlineView, item});
+    }
+
+    pub fn outlineViewSortDescriptorsDidChange(self: *@This(), outlineView: ?*OutlineView, oldDescriptors: ?*anyopaque) void {
+        return objc.msgSend(self, "outlineView:sortDescriptorsDidChange:", void, .{outlineView, oldDescriptors});
+    }
+
+    pub fn outlineViewPasteboardWriterForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) ?*anyopaque {
+        return objc.msgSend(self, "outlineView:pasteboardWriterForItem:", ?*anyopaque, .{outlineView, item});
+    }
+
+    pub fn outlineViewDraggingSessionWillBeginAtPointForItems(self: *@This(), outlineView: ?*OutlineView, session: ?*DraggingSession, screenPoint: ns.Point, draggedItems: ?*Array, ) void {
+        return objc.msgSend(self, "outlineView:draggingSession:willBeginAtPoint:forItems:", void, .{outlineView, session, screenPoint, draggedItems, });
+    }
+
+    pub fn outlineViewDraggingSessionEndedAtPointOperation(self: *@This(), outlineView: ?*OutlineView, session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation, ) void {
+        return objc.msgSend(self, "outlineView:draggingSession:endedAtPoint:operation:", void, .{outlineView, session, screenPoint, operation, });
+    }
+
+    pub fn outlineViewWriteItemsToPasteboard(self: *@This(), outlineView: ?*OutlineView, items: ?*Array, pasteboard: ?*Pasteboard) objc.BOOL {
+        return objc.msgSend(self, "outlineView:writeItems:toPasteboard:", objc.BOOL, .{outlineView, items, pasteboard});
+    }
+
+    pub fn outlineViewUpdateDraggingItemsForDrag(self: *@This(), outlineView: ?*OutlineView, draggingInfo: ?*anyopaque) void {
+        return objc.msgSend(self, "outlineView:updateDraggingItemsForDrag:", void, .{outlineView, draggingInfo});
+    }
+
+    pub fn outlineViewValidateDropProposedItemProposedChildIndex(self: *@This(), outlineView: ?*OutlineView, info: ?*anyopaque, item: *objc.Id, index: objc.NSInteger, ) DragOperation {
+        return objc.msgSend(self, "outlineView:validateDrop:proposedItem:proposedChildIndex:", DragOperation, .{outlineView, info, item, index, });
+    }
+
+    pub fn outlineViewAcceptDropItemChildIndex(self: *@This(), outlineView: ?*OutlineView, info: ?*anyopaque, item: *objc.Id, index: objc.NSInteger, ) objc.BOOL {
+        return objc.msgSend(self, "outlineView:acceptDrop:item:childIndex:", objc.BOOL, .{outlineView, info, item, index, });
+    }
+
+    pub fn outlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems(self: *@This(), outlineView: ?*OutlineView, dropDestination: ?*URL, items: ?*Array) ?*anyopaque {
+        return objc.msgSend(self, "outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:", ?*anyopaque, .{outlineView, dropDestination, items});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSOutlineViewDelegate?language=objc
+pub const OutlineViewDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ControlTextEditingDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn outlineViewViewForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) ?*View {
+        return objc.msgSend(self, "outlineView:viewForTableColumn:item:", ?*View, .{outlineView, tableColumn, item});
+    }
+
+    pub fn outlineViewRowViewForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) ?*TableRowView {
+        return objc.msgSend(self, "outlineView:rowViewForItem:", ?*TableRowView, .{outlineView, item});
+    }
+
+    pub fn outlineViewDidAddRowViewForRow(self: *@This(), outlineView: ?*OutlineView, rowView: ?*TableRowView, row: objc.NSInteger) void {
+        return objc.msgSend(self, "outlineView:didAddRowView:forRow:", void, .{outlineView, rowView, row});
+    }
+
+    pub fn outlineViewDidRemoveRowViewForRow(self: *@This(), outlineView: ?*OutlineView, rowView: ?*TableRowView, row: objc.NSInteger) void {
+        return objc.msgSend(self, "outlineView:didRemoveRowView:forRow:", void, .{outlineView, rowView, row});
+    }
+
+    pub fn outlineViewWillDisplayCellForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, cell: *objc.Id, tableColumn: ?*TableColumn, item: *objc.Id, ) void {
+        return objc.msgSend(self, "outlineView:willDisplayCell:forTableColumn:item:", void, .{outlineView, cell, tableColumn, item, });
+    }
+
+    pub fn outlineViewShouldEditTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldEditTableColumn:item:", objc.BOOL, .{outlineView, tableColumn, item});
+    }
+
+    pub fn selectionShouldChangeInOutlineView(self: *@This(), outlineView: ?*OutlineView) objc.BOOL {
+        return objc.msgSend(self, "selectionShouldChangeInOutlineView:", objc.BOOL, .{outlineView});
+    }
+
+    pub fn outlineViewShouldSelectItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldSelectItem:", objc.BOOL, .{outlineView, item});
+    }
+
+    pub fn outlineViewSelectionIndexesForProposedSelection(self: *@This(), outlineView: ?*OutlineView, proposedSelectionIndexes: ?*IndexSet) ?*IndexSet {
+        return objc.msgSend(self, "outlineView:selectionIndexesForProposedSelection:", ?*IndexSet, .{outlineView, proposedSelectionIndexes});
+    }
+
+    pub fn outlineViewShouldSelectTableColumn(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldSelectTableColumn:", objc.BOOL, .{outlineView, tableColumn});
+    }
+
+    pub fn outlineViewMouseDownInHeaderOfTableColumn(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn) void {
+        return objc.msgSend(self, "outlineView:mouseDownInHeaderOfTableColumn:", void, .{outlineView, tableColumn});
+    }
+
+    pub fn outlineViewDidClickTableColumn(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn) void {
+        return objc.msgSend(self, "outlineView:didClickTableColumn:", void, .{outlineView, tableColumn});
+    }
+
+    pub fn outlineViewDidDragTableColumn(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn) void {
+        return objc.msgSend(self, "outlineView:didDragTableColumn:", void, .{outlineView, tableColumn});
+    }
+
+    pub fn outlineViewToolTipForCellRectTableColumnItemMouseLocation(self: *@This(), outlineView: ?*OutlineView, cell: ?*Cell, rect: ns.RectPointer, tableColumn: ?*TableColumn, item: *objc.Id, mouseLocation: ns.Point, ) ?*String {
+        return objc.msgSend(self, "outlineView:toolTipForCell:rect:tableColumn:item:mouseLocation:", ?*String, .{outlineView, cell, rect, tableColumn, item, mouseLocation, });
+    }
+
+    pub fn outlineViewHeightOfRowByItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) cf.CGFloat {
+        return objc.msgSend(self, "outlineView:heightOfRowByItem:", cf.CGFloat, .{outlineView, item});
+    }
+
+    pub fn outlineViewTintConfigurationForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) ?*TintConfiguration {
+        return objc.msgSend(self, "outlineView:tintConfigurationForItem:", ?*TintConfiguration, .{outlineView, item});
+    }
+
+    pub fn outlineViewTypeSelectStringForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) ?*String {
+        return objc.msgSend(self, "outlineView:typeSelectStringForTableColumn:item:", ?*String, .{outlineView, tableColumn, item});
+    }
+
+    pub fn outlineViewNextTypeSelectMatchFromItemToItemForString(self: *@This(), outlineView: ?*OutlineView, startItem: *objc.Id, endItem: *objc.Id, searchString: ?*String, ) *objc.Id {
+        return objc.msgSend(self, "outlineView:nextTypeSelectMatchFromItem:toItem:forString:", *objc.Id, .{outlineView, startItem, endItem, searchString, });
+    }
+
+    pub fn outlineViewShouldTypeSelectForEventWithCurrentSearchString(self: *@This(), outlineView: ?*OutlineView, event: ?*Event, searchString: ?*String) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldTypeSelectForEvent:withCurrentSearchString:", objc.BOOL, .{outlineView, event, searchString});
+    }
+
+    pub fn outlineViewShouldShowCellExpansionForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldShowCellExpansionForTableColumn:item:", objc.BOOL, .{outlineView, tableColumn, item});
+    }
+
+    pub fn outlineViewShouldTrackCellForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, cell: ?*Cell, tableColumn: ?*TableColumn, item: *objc.Id, ) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldTrackCell:forTableColumn:item:", objc.BOOL, .{outlineView, cell, tableColumn, item, });
+    }
+
+    pub fn outlineViewDataCellForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, tableColumn: ?*TableColumn, item: *objc.Id) ?*Cell {
+        return objc.msgSend(self, "outlineView:dataCellForTableColumn:item:", ?*Cell, .{outlineView, tableColumn, item});
+    }
+
+    pub fn outlineViewIsGroupItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "outlineView:isGroupItem:", objc.BOOL, .{outlineView, item});
+    }
+
+    pub fn outlineViewShouldExpandItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldExpandItem:", objc.BOOL, .{outlineView, item});
+    }
+
+    pub fn outlineViewShouldCollapseItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldCollapseItem:", objc.BOOL, .{outlineView, item});
+    }
+
+    pub fn outlineViewWillDisplayOutlineCellForTableColumnItem(self: *@This(), outlineView: ?*OutlineView, cell: *objc.Id, tableColumn: ?*TableColumn, item: *objc.Id, ) void {
+        return objc.msgSend(self, "outlineView:willDisplayOutlineCell:forTableColumn:item:", void, .{outlineView, cell, tableColumn, item, });
+    }
+
+    pub fn outlineViewSizeToFitWidthOfColumn(self: *@This(), outlineView: ?*OutlineView, column: objc.NSInteger) cf.CGFloat {
+        return objc.msgSend(self, "outlineView:sizeToFitWidthOfColumn:", cf.CGFloat, .{outlineView, column});
+    }
+
+    pub fn outlineViewShouldReorderColumnToColumn(self: *@This(), outlineView: ?*OutlineView, columnIndex: objc.NSInteger, newColumnIndex: objc.NSInteger) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldReorderColumn:toColumn:", objc.BOOL, .{outlineView, columnIndex, newColumnIndex});
+    }
+
+    pub fn outlineViewShouldShowOutlineCellForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) objc.BOOL {
+        return objc.msgSend(self, "outlineView:shouldShowOutlineCellForItem:", objc.BOOL, .{outlineView, item});
+    }
+
+    pub fn outlineViewUserCanChangeVisibilityOfTableColumn(self: *@This(), outlineView: ?*OutlineView, column: ?*TableColumn) objc.BOOL {
+        return objc.msgSend(self, "outlineView:userCanChangeVisibilityOfTableColumn:", objc.BOOL, .{outlineView, column});
+    }
+
+    pub fn outlineViewUserDidChangeVisibilityOfTableColumns(self: *@This(), outlineView: ?*OutlineView, columns: ?*anyopaque) void {
+        return objc.msgSend(self, "outlineView:userDidChangeVisibilityOfTableColumns:", void, .{outlineView, columns});
+    }
+
+    pub fn outlineViewSelectionDidChange(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "outlineViewSelectionDidChange:", void, .{notification});
+    }
+
+    pub fn outlineViewColumnDidMove(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "outlineViewColumnDidMove:", void, .{notification});
+    }
+
+    pub fn outlineViewColumnDidResize(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "outlineViewColumnDidResize:", void, .{notification});
+    }
+
+    pub fn outlineViewSelectionIsChanging(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "outlineViewSelectionIsChanging:", void, .{notification});
+    }
+
+    pub fn outlineViewItemWillExpand(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "outlineViewItemWillExpand:", void, .{notification});
+    }
+
+    pub fn outlineViewItemDidExpand(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "outlineViewItemDidExpand:", void, .{notification});
+    }
+
+    pub fn outlineViewItemWillCollapse(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "outlineViewItemWillCollapse:", void, .{notification});
+    }
+
+    pub fn outlineViewItemDidCollapse(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "outlineViewItemDidCollapse:", void, .{notification});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSInputServiceProvider?language=objc
+pub const InputServiceProvider = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn insertTextClient(self: *@This(), string: *objc.Id, sender: *objc.Id) void {
+        return objc.msgSend(self, "insertText:client:", void, .{string, sender});
+    }
+
+    pub fn doCommandBySelectorClient(self: *@This(), selector: *objc.SEL, sender: *objc.Id) void {
+        return objc.msgSend(self, "doCommandBySelector:client:", void, .{selector, sender});
+    }
+
+    pub fn markedTextAbandoned(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "markedTextAbandoned:", void, .{sender});
+    }
+
+    pub fn markedTextSelectionChangedClient(self: *@This(), newSel: ns.Range, sender: *objc.Id) void {
+        return objc.msgSend(self, "markedTextSelectionChanged:client:", void, .{newSel, sender});
+    }
+
+    pub fn terminate(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "terminate:", void, .{sender});
+    }
+
+    pub fn canBeDisabled(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "canBeDisabled", objc.BOOL, .{});
+    }
+
+    pub fn wantsToInterpretAllKeystrokes(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "wantsToInterpretAllKeystrokes", objc.BOOL, .{});
+    }
+
+    pub fn wantsToHandleMouseEvents(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "wantsToHandleMouseEvents", objc.BOOL, .{});
+    }
+
+    pub fn wantsToDelayTextChangeNotifications(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "wantsToDelayTextChangeNotifications", objc.BOOL, .{});
+    }
+
+    pub fn inputClientBecomeActive(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "inputClientBecomeActive:", void, .{sender});
+    }
+
+    pub fn inputClientResignActive(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "inputClientResignActive:", void, .{sender});
+    }
+
+    pub fn inputClientEnabled(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "inputClientEnabled:", void, .{sender});
+    }
+
+    pub fn inputClientDisabled(self: *@This(), sender: *objc.Id) void {
+        return objc.msgSend(self, "inputClientDisabled:", void, .{sender});
+    }
+
+    pub fn activeConversationWillChangeFromOldConversation(self: *@This(), sender: *objc.Id, oldConversation: objc.NSInteger) void {
+        return objc.msgSend(self, "activeConversationWillChange:fromOldConversation:", void, .{sender, oldConversation});
+    }
+
+    pub fn activeConversationChangedToNewConversation(self: *@This(), sender: *objc.Id, newConversation: objc.NSInteger) void {
+        return objc.msgSend(self, "activeConversationChanged:toNewConversation:", void, .{sender, newConversation});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSInputServerMouseTracker?language=objc
+pub const InputServerMouseTracker = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn mouseDownOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: ns.Point, flags: objc.NSUInteger, sender: *objc.Id, ) objc.BOOL {
+        return objc.msgSend(self, "mouseDownOnCharacterIndex:atCoordinate:withModifier:client:", objc.BOOL, .{index, point, flags, sender, });
+    }
+
+    pub fn mouseDraggedOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: ns.Point, flags: objc.NSUInteger, sender: *objc.Id, ) objc.BOOL {
+        return objc.msgSend(self, "mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:", objc.BOOL, .{index, point, flags, sender, });
+    }
+
+    pub fn mouseUpOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: ns.Point, flags: objc.NSUInteger, sender: *objc.Id, ) void {
+        return objc.msgSend(self, "mouseUpOnCharacterIndex:atCoordinate:withModifier:client:", void, .{index, point, flags, sender, });
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSInputServer?language=objc
 pub const InputServer = opaque {
     pub const InternalInfo = objc.ExternalClass("NSInputServer", @This(), Object, &.{});
@@ -32901,6 +32178,15 @@ pub const StringDrawingContext = opaque {
         return objc.msgSend(self, "totalBounds", cf.CGRect, .{});
     }
 
+};
+
+pub const StringDrawingOptions = enum(objc.NSInteger) {
+    UsesLineFragmentOrigin = 1,
+    UsesFontLeading = 2,
+    UsesDeviceMetrics = 8,
+    TruncatesLastVisibleLine = 32,
+    DisableScreenFontSubstitution = 4,
+    OneShot = 16,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSRulerMarker?language=objc
@@ -32999,6 +32285,13 @@ pub const RulerMarker = opaque {
     }
 
 };
+
+pub const RulerOrientation = enum(objc.NSUInteger) {
+    HorizontalRuler = 0,
+    VerticalRuler = 1,
+};
+
+pub const RulerViewUnitName = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSRulerView?language=objc
 pub const RulerView = opaque {
@@ -33178,6 +32471,15 @@ pub const SecureTextFieldCell = opaque {
 
 };
 
+pub const InterfaceStyle = objc.NSUInteger;
+
+pub extern "AppKit" fn InterfaceStyleForKey(key: ?*String, responder: ?*Responder) callconv(.C) InterfaceStyle;
+
+pub const ProgressIndicatorStyle = enum(objc.NSUInteger) {
+    Bar = 0,
+    Spinning = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSProgressIndicator?language=objc
 pub const ProgressIndicator = opaque {
     pub const InternalInfo = objc.ExternalClass("NSProgressIndicator", @This(), View, &.{});
@@ -33277,6 +32579,37 @@ pub const ProgressIndicator = opaque {
         return objc.msgSend(self, "setDisplayedWhenStopped:", void, .{displayedWhenStopped});
     }
 
+};
+
+pub const ProgressIndicatorThickness = enum(objc.NSUInteger) {
+    PreferredThickness = 14,
+    PreferredSmallThickness = 10,
+    PreferredLargeThickness = 18,
+    PreferredAquaThickness = 12,
+};
+
+pub const TabViewType = enum(objc.NSUInteger) {
+    TopTabsBezelBorder = 0,
+    LeftTabsBezelBorder = 1,
+    BottomTabsBezelBorder = 2,
+    RightTabsBezelBorder = 3,
+    NoTabsBezelBorder = 4,
+    NoTabsLineBorder = 5,
+    NoTabsNoBorder = 6,
+};
+
+pub const TabPosition = enum(objc.NSUInteger) {
+    None = 0,
+    Top = 1,
+    Left = 2,
+    Bottom = 3,
+    Right = 4,
+};
+
+pub const TabViewBorderType = enum(objc.NSUInteger) {
+    None = 0,
+    Line = 1,
+    Bezel = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSTabView?language=objc
@@ -33448,6 +32781,39 @@ pub const TabView = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSTabViewDelegate?language=objc
+pub const TabViewDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn tabViewShouldSelectTabViewItem(self: *@This(), tabView: ?*TabView, tabViewItem: ?*TabViewItem) objc.BOOL {
+        return objc.msgSend(self, "tabView:shouldSelectTabViewItem:", objc.BOOL, .{tabView, tabViewItem});
+    }
+
+    pub fn tabViewWillSelectTabViewItem(self: *@This(), tabView: ?*TabView, tabViewItem: ?*TabViewItem) void {
+        return objc.msgSend(self, "tabView:willSelectTabViewItem:", void, .{tabView, tabViewItem});
+    }
+
+    pub fn tabViewDidSelectTabViewItem(self: *@This(), tabView: ?*TabView, tabViewItem: ?*TabViewItem) void {
+        return objc.msgSend(self, "tabView:didSelectTabViewItem:", void, .{tabView, tabViewItem});
+    }
+
+    pub fn tabViewDidChangeNumberOfTabViewItems(self: *@This(), tabView: ?*TabView) void {
+        return objc.msgSend(self, "tabViewDidChangeNumberOfTabViewItems:", void, .{tabView});
+    }
+
+};
+
+pub const TabViewControllerTabStyle = enum(objc.NSInteger) {
+    SegmentedControlOnTop = 0,
+    SegmentedControlOnBottom = 1,
+    Toolbar = 2,
+    Unspecified = -1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTabViewController?language=objc
 pub const TabViewController = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTabViewController", @This(), ViewController, &.{});
@@ -33557,6 +32923,12 @@ pub const TabViewController = opaque {
 
 };
 
+pub const TabState = enum(objc.NSUInteger) {
+    SelectedTab = 0,
+    BackgroundTab = 1,
+    PressedTab = 2,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTabViewItem?language=objc
 pub const TabViewItem = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTabViewItem", @This(), Object, &.{});
@@ -33656,6 +33028,32 @@ pub const TabViewItem = opaque {
         return objc.msgSend(self, "setToolTip:", void, .{toolTip});
     }
 
+};
+
+pub const LineCapStyle = enum(objc.NSUInteger) {
+    Butt = 0,
+    Round = 1,
+    Square = 2,
+};
+
+pub const LineJoinStyle = enum(objc.NSUInteger) {
+    Miter = 0,
+    Round = 1,
+    Bevel = 2,
+};
+
+pub const WindingRule = enum(objc.NSUInteger) {
+    NonZero = 0,
+    EvenOdd = 1,
+};
+
+pub const BezierPathElement = enum(objc.NSUInteger) {
+    MoveTo = 0,
+    LineTo = 1,
+    CubicCurveTo = 2,
+    ClosePath = 3,
+    QuadraticCurveTo = 4,
+    CurveTo = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSBezierPath?language=objc
@@ -34050,6 +33448,13 @@ pub const StatusBarButton = opaque {
 
 };
 
+pub const StatusItemAutosaveName = ?*String;
+
+pub const StatusItemBehavior = enum(objc.NSUInteger) {
+    RemovalAllowed = 2,
+    TerminationOnRemoval = 4,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSStatusItem?language=objc
 pub const StatusItem = opaque {
     pub const InternalInfo = objc.ExternalClass("NSStatusItem", @This(), Object, &.{});
@@ -34110,6 +33515,10 @@ pub const StatusItem = opaque {
     }
 
 };
+
+pub const SoundName = ?*String;
+
+pub const SoundPlaybackDeviceIdentifier = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSSound?language=objc
 pub const Sound = opaque {
@@ -34236,6 +33645,20 @@ pub const Sound = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSSoundDelegate?language=objc
+pub const SoundDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn soundDidFinishPlaying(self: *@This(), sound: ?*Sound, flag: objc.BOOL) void {
+        return objc.msgSend(self, "sound:didFinishPlaying:", void, .{sound, flag});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSMovie?language=objc
 pub const Movie = opaque {
     pub const InternalInfo = objc.ExternalClass("NSMovie", @This(), Object, &.{});
@@ -34304,6 +33727,13 @@ pub const PDFImageRep = opaque {
         return objc.msgSend(self, "pageCount", objc.NSInteger, .{});
     }
 
+};
+
+pub const DrawerState = enum(objc.NSUInteger) {
+    ClosedState = 0,
+    OpeningState = 1,
+    OpenState = 2,
+    ClosingState = 3,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSDrawer?language=objc
@@ -34427,6 +33857,60 @@ pub const Drawer = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSDrawerDelegate?language=objc
+pub const DrawerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn drawerShouldOpen(self: *@This(), sender: ?*Drawer) objc.BOOL {
+        return objc.msgSend(self, "drawerShouldOpen:", objc.BOOL, .{sender});
+    }
+
+    pub fn drawerShouldClose(self: *@This(), sender: ?*Drawer) objc.BOOL {
+        return objc.msgSend(self, "drawerShouldClose:", objc.BOOL, .{sender});
+    }
+
+    pub fn drawerWillResizeContentsToSize(self: *@This(), sender: ?*Drawer, contentSize: ns.Size) ns.Size {
+        return objc.msgSend(self, "drawerWillResizeContents:toSize:", ns.Size, .{sender, contentSize});
+    }
+
+    pub fn drawerWillOpen(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "drawerWillOpen:", void, .{notification});
+    }
+
+    pub fn drawerDidOpen(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "drawerDidOpen:", void, .{notification});
+    }
+
+    pub fn drawerWillClose(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "drawerWillClose:", void, .{notification});
+    }
+
+    pub fn drawerDidClose(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "drawerDidClose:", void, .{notification});
+    }
+
+};
+
+pub const OpenGLGlobalOption = enum(objc.uint32_t) {
+    OFormatCacheSize = 501,
+    OClearFormatCache = 502,
+    ORetainRenderers = 503,
+    OUseBuildCache = 506,
+    OResetLibrary = 504,
+};
+
+pub extern "AppKit" fn OpenGLSetOption(pname: OpenGLGlobalOption, param: ) callconv(.C) void;
+
+pub extern "AppKit" fn OpenGLGetOption(pname: OpenGLGlobalOption, param: ?*) callconv(.C) void;
+
+pub extern "AppKit" fn OpenGLGetVersion(major: ?*, minor: ?*) callconv(.C) void;
+
+pub const OpenGLPixelFormatAttribute = objc.uint32_t;
+
 /// https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat?language=objc
 pub const OpenGLPixelFormat = opaque {
     pub const InternalInfo = objc.ExternalClass("NSOpenGLPixelFormat", @This(), Object, &.{});
@@ -34515,6 +33999,24 @@ pub const OpenGLPixelBuffer = opaque {
         return objc.msgSend(self, "textureMaxMipMapLevel", , .{});
     }
 
+};
+
+pub const OpenGLContextParameter = enum(objc.NSInteger) {
+    SwapInterval = 222,
+    SurfaceOrder = 235,
+    SurfaceOpacity = 236,
+    SurfaceBackingSize = 304,
+    ReclaimResources = 308,
+    CurrentRendererID = 309,
+    GPUVertexProcessing = 310,
+    GPUFragmentProcessing = 311,
+    HasDrawable = 314,
+    MPSwapsInFlight = 315,
+    SwapRectangle = 200,
+    SwapRectangleEnable = 201,
+    RasterizationEnable = 221,
+    StateValidation = 301,
+    SurfaceSurfaceVolatile = 306,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSOpenGLContext?language=objc
@@ -34732,6 +34234,18 @@ pub const OpenGLView = opaque {
 
 };
 
+pub const ToolbarItemGroupSelectionMode = enum(objc.NSInteger) {
+    SelectOne = 0,
+    SelectAny = 1,
+    Momentary = 2,
+};
+
+pub const ToolbarItemGroupControlRepresentation = enum(objc.NSInteger) {
+    Automatic = 0,
+    Expanded = 1,
+    Collapsed = 2,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup?language=objc
 pub const ToolbarItemGroup = opaque {
     pub const InternalInfo = objc.ExternalClass("NSToolbarItemGroup", @This(), ToolbarItem, &.{});
@@ -34839,6 +34353,20 @@ pub const SharingServicePickerToolbarItem = opaque {
 
     pub fn setDelegate(self: *@This(), delegate: ?*anyopaque) void {
         return objc.msgSend(self, "setDelegate:", void, .{delegate});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItemDelegate?language=objc
+pub const SharingServicePickerToolbarItemDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{SharingServicePickerDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn itemsForSharingServicePickerToolbarItem(self: *@This(), pickerToolbarItem: ?*SharingServicePickerToolbarItem) ?* {
+        return objc.msgSend(self, "itemsForSharingServicePickerToolbarItem:", ?*, .{pickerToolbarItem});
     }
 
 };
@@ -34972,6 +34500,15 @@ pub const GlyphInfo = opaque {
         return objc.msgSend(self, "baseString", ?*String, .{});
     }
 
+};
+
+pub const CharacterCollection = enum(objc.NSUInteger) {
+    IdentityMappingCharacterCollection = 0,
+    AdobeCNS1CharacterCollection = 1,
+    AdobeGB1CharacterCollection = 2,
+    AdobeJapan1CharacterCollection = 3,
+    AdobeJapan2CharacterCollection = 4,
+    AdobeKorea1CharacterCollection = 5,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSShadow?language=objc
@@ -35196,6 +34733,15 @@ pub const Typesetter = opaque {
 
 };
 
+pub const TypesetterControlCharacterAction = enum(objc.NSUInteger) {
+    ZeroAdvancementAction = 1,
+    WhitespaceAction = 2,
+    HorizontalTabAction = 4,
+    LineBreakAction = 8,
+    ParagraphBreakAction = 16,
+    ContainerBreakAction = 32,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSATSTypesetter?language=objc
 pub const ATSTypesetter = opaque {
     pub const InternalInfo = objc.ExternalClass("NSATSTypesetter", @This(), Typesetter, &.{});
@@ -35209,6 +34755,26 @@ pub const ATSTypesetter = opaque {
 
     pub fn sharedTypesetter(self: *@This()) ?*ATSTypesetter {
         return objc.msgSend(self, "sharedTypesetter", ?*ATSTypesetter, .{});
+    }
+
+};
+
+pub const SearchFieldRecentsAutosaveName = ?*String;
+
+/// https://developer.apple.com/documentation/AppKit/NSSearchFieldDelegate?language=objc
+pub const SearchFieldDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextFieldDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn searchFieldDidStartSearching(self: *@This(), sender: ?*SearchField) void {
+        return objc.msgSend(self, "searchFieldDidStartSearching:", void, .{sender});
+    }
+
+    pub fn searchFieldDidEndSearching(self: *@This(), sender: ?*SearchField) void {
+        return objc.msgSend(self, "searchFieldDidEndSearching:", void, .{sender});
     }
 
 };
@@ -36167,6 +35733,12 @@ pub const UserDefaultsController = opaque {
 
 };
 
+pub const TextListOptions = enum(objc.NSUInteger) {
+    PrependEnclosingMarker = 1,
+};
+
+pub const TextListMarkerFormat = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSTextList?language=objc
 pub const TextList = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextList", @This(), Object, &.{});
@@ -36214,6 +35786,38 @@ pub const TextList = opaque {
         return objc.msgSend(self, "isOrdered", objc.BOOL, .{});
     }
 
+};
+
+pub const TextBlockValueType = enum(objc.NSUInteger) {
+    AbsoluteValueType = 0,
+    PercentageValueType = 1,
+};
+
+pub const TextBlockDimension = enum(objc.NSUInteger) {
+    Width = 0,
+    MinimumWidth = 1,
+    MaximumWidth = 2,
+    Height = 4,
+    MinimumHeight = 5,
+    MaximumHeight = 6,
+};
+
+pub const TextBlockLayer = enum(objc.NSInteger) {
+    Padding = -1,
+    Border = 0,
+    Margin = 1,
+};
+
+pub const TextBlockVerticalAlignment = enum(objc.NSUInteger) {
+    TopAlignment = 0,
+    MiddleAlignment = 1,
+    BottomAlignment = 2,
+    BaselineAlignment = 3,
+};
+
+pub const TextTableLayoutAlgorithm = enum(objc.NSUInteger) {
+    AutomaticLayoutAlgorithm = 0,
+    FixedLayoutAlgorithm = 1,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSTextBlock?language=objc
@@ -36407,6 +36011,26 @@ pub const TextTable = opaque {
 
 };
 
+pub const DatePickerStyle = enum(objc.NSUInteger) {
+    TextFieldAndStepper = 0,
+    ClockAndCalendar = 1,
+    TextField = 2,
+};
+
+pub const DatePickerMode = enum(objc.NSUInteger) {
+    Single = 0,
+    Range = 1,
+};
+
+pub const DatePickerElementFlags = enum(objc.NSUInteger) {
+    HourMinute = 12,
+    HourMinuteSecond = 14,
+    TimeZone = 16,
+    YearMonth = 192,
+    YearMonthDay = 224,
+    Era = 256,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSDatePickerCell?language=objc
 pub const DatePickerCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSDatePickerCell", @This(), ActionCell, &.{});
@@ -36540,6 +36164,20 @@ pub const DatePickerCell = opaque {
 
     pub fn setDelegate(self: *@This(), delegate: ?*anyopaque) void {
         return objc.msgSend(self, "setDelegate:", void, .{delegate});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSDatePickerCellDelegate?language=objc
+pub const DatePickerCellDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn datePickerCellValidateProposedDateValueTimeInterval(self: *@This(), datePickerCell: ?*DatePickerCell, proposedDateValue: ?*?*Date, proposedTimeInterval: ?*ns.TimeInterval) void {
+        return objc.msgSend(self, "datePickerCell:validateProposedDateValue:timeInterval:", void, .{datePickerCell, proposedDateValue, proposedTimeInterval});
     }
 
 };
@@ -36693,6 +36331,13 @@ pub const DatePicker = opaque {
 
 };
 
+pub const LevelIndicatorStyle = enum(objc.NSUInteger) {
+    Relevancy = 0,
+    ContinuousCapacity = 1,
+    DiscreteCapacity = 2,
+    Rating = 3,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSLevelIndicatorCell?language=objc
 pub const LevelIndicatorCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSLevelIndicatorCell", @This(), ActionCell, &.{});
@@ -36780,6 +36425,12 @@ pub const LevelIndicatorCell = opaque {
         return objc.msgSend(self, "setNumberOfMajorTickMarks:", void, .{numberOfMajorTickMarks});
     }
 
+};
+
+pub const LevelIndicatorPlaceholderVisibility = enum(objc.NSInteger) {
+    Automatic = 0,
+    Always = 1,
+    WhileEditing = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSLevelIndicator?language=objc
@@ -36976,6 +36627,20 @@ pub const PersistentDocument = opaque {
 
 };
 
+pub const RuleEditorPredicatePartKey = ?*String;
+
+pub const RuleEditorNestingMode = enum(objc.NSUInteger) {
+    Single = 0,
+    List = 1,
+    Compound = 2,
+    Simple = 3,
+};
+
+pub const RuleEditorRowType = enum(objc.NSUInteger) {
+    Simple = 0,
+    Compound = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSRuleEditor?language=objc
 pub const RuleEditor = opaque {
     pub const InternalInfo = objc.ExternalClass("NSRuleEditor", @This(), Control, &.{});
@@ -37157,6 +36822,36 @@ pub const RuleEditor = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSRuleEditorDelegate?language=objc
+pub const RuleEditorDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn ruleEditorNumberOfChildrenForCriterionWithRowType(self: *@This(), editor: ?*RuleEditor, criterion: *objc.Id, rowType: RuleEditorRowType) objc.NSInteger {
+        return objc.msgSend(self, "ruleEditor:numberOfChildrenForCriterion:withRowType:", objc.NSInteger, .{editor, criterion, rowType});
+    }
+
+    pub fn ruleEditorChildForCriterionWithRowType(self: *@This(), editor: ?*RuleEditor, index: objc.NSInteger, criterion: *objc.Id, rowType: RuleEditorRowType, ) *objc.Id {
+        return objc.msgSend(self, "ruleEditor:child:forCriterion:withRowType:", *objc.Id, .{editor, index, criterion, rowType, });
+    }
+
+    pub fn ruleEditorDisplayValueForCriterionInRow(self: *@This(), editor: ?*RuleEditor, criterion: *objc.Id, row: objc.NSInteger) *objc.Id {
+        return objc.msgSend(self, "ruleEditor:displayValueForCriterion:inRow:", *objc.Id, .{editor, criterion, row});
+    }
+
+    pub fn ruleEditorPredicatePartsForCriterionWithDisplayValueInRow(self: *@This(), editor: ?*RuleEditor, criterion: *objc.Id, value: *objc.Id, row: objc.NSInteger, ) ?*anyopaque {
+        return objc.msgSend(self, "ruleEditor:predicatePartsForCriterion:withDisplayValue:inRow:", ?*anyopaque, .{editor, criterion, value, row, });
+    }
+
+    pub fn ruleEditorRowsDidChange(self: *@This(), notification: ?*Notification) void {
+        return objc.msgSend(self, "ruleEditorRowsDidChange:", void, .{notification});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPredicateEditor?language=objc
 pub const PredicateEditor = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPredicateEditor", @This(), RuleEditor, &.{});
@@ -37253,6 +36948,12 @@ pub const PredicateEditorRowTemplate = opaque {
         return objc.msgSend(self, "compoundTypes", ?*anyopaque, .{});
     }
 
+};
+
+pub const PathStyle = enum(objc.NSInteger) {
+    Standard = 0,
+    PopUp = 2,
+    NavigationBar = 1,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSPathCell?language=objc
@@ -37368,6 +37069,24 @@ pub const PathCell = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSPathCellDelegate?language=objc
+pub const PathCellDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn pathCellWillDisplayOpenPanel(self: *@This(), pathCell: ?*PathCell, openPanel: ?*OpenPanel) void {
+        return objc.msgSend(self, "pathCell:willDisplayOpenPanel:", void, .{pathCell, openPanel});
+    }
+
+    pub fn pathCellWillPopUpMenu(self: *@This(), pathCell: ?*PathCell, menu: ?*Menu) void {
+        return objc.msgSend(self, "pathCell:willPopUpMenu:", void, .{pathCell, menu});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPathControl?language=objc
 pub const PathControl = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPathControl", @This(), Control, &.{});
@@ -37477,6 +37196,40 @@ pub const PathControl = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSPathControlDelegate?language=objc
+pub const PathControlDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn pathControlShouldDragItemWithPasteboard(self: *@This(), pathControl: ?*PathControl, pathItem: ?*PathControlItem, pasteboard: ?*Pasteboard) objc.BOOL {
+        return objc.msgSend(self, "pathControl:shouldDragItem:withPasteboard:", objc.BOOL, .{pathControl, pathItem, pasteboard});
+    }
+
+    pub fn pathControlShouldDragPathComponentCellWithPasteboard(self: *@This(), pathControl: ?*PathControl, pathComponentCell: ?*PathComponentCell, pasteboard: ?*Pasteboard) objc.BOOL {
+        return objc.msgSend(self, "pathControl:shouldDragPathComponentCell:withPasteboard:", objc.BOOL, .{pathControl, pathComponentCell, pasteboard});
+    }
+
+    pub fn pathControlValidateDrop(self: *@This(), pathControl: ?*PathControl, info: ?*anyopaque) DragOperation {
+        return objc.msgSend(self, "pathControl:validateDrop:", DragOperation, .{pathControl, info});
+    }
+
+    pub fn pathControlAcceptDrop(self: *@This(), pathControl: ?*PathControl, info: ?*anyopaque) objc.BOOL {
+        return objc.msgSend(self, "pathControl:acceptDrop:", objc.BOOL, .{pathControl, info});
+    }
+
+    pub fn pathControlWillDisplayOpenPanel(self: *@This(), pathControl: ?*PathControl, openPanel: ?*OpenPanel) void {
+        return objc.msgSend(self, "pathControl:willDisplayOpenPanel:", void, .{pathControl, openPanel});
+    }
+
+    pub fn pathControlWillPopUpMenu(self: *@This(), pathControl: ?*PathControl, menu: ?*Menu) void {
+        return objc.msgSend(self, "pathControl:willPopUpMenu:", void, .{pathControl, menu});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPathComponentCell?language=objc
 pub const PathComponentCell = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPathComponentCell", @This(), TextFieldCell, &.{});
@@ -37547,6 +37300,14 @@ pub const PathControlItem = opaque {
 
 };
 
+pub const PageControllerObjectIdentifier = ?*String;
+
+pub const PageControllerTransitionStyle = enum(objc.NSInteger) {
+    StackHistory = 0,
+    StackBook = 1,
+    HorizontalStrip = 2,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSPageController?language=objc
 pub const PageController = opaque {
     pub const InternalInfo = objc.ExternalClass("NSPageController", @This(), ViewController, &.{});
@@ -37615,6 +37376,46 @@ pub const PageController = opaque {
     }
 
 };
+
+/// https://developer.apple.com/documentation/AppKit/NSPageControllerDelegate?language=objc
+pub const PageControllerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn pageControllerIdentifierForObject(self: *@This(), pageController: ?*PageController, object: *objc.Id) PageControllerObjectIdentifier {
+        return objc.msgSend(self, "pageController:identifierForObject:", PageControllerObjectIdentifier, .{pageController, object});
+    }
+
+    pub fn pageControllerViewControllerForIdentifier(self: *@This(), pageController: ?*PageController, identifier: PageControllerObjectIdentifier) ?*ViewController {
+        return objc.msgSend(self, "pageController:viewControllerForIdentifier:", ?*ViewController, .{pageController, identifier});
+    }
+
+    pub fn pageControllerFrameForObject(self: *@This(), pageController: ?*PageController, object: *objc.Id) ns.Rect {
+        return objc.msgSend(self, "pageController:frameForObject:", ns.Rect, .{pageController, object});
+    }
+
+    pub fn pageControllerPrepareViewControllerWithObject(self: *@This(), pageController: ?*PageController, viewController: ?*ViewController, object: *objc.Id) void {
+        return objc.msgSend(self, "pageController:prepareViewController:withObject:", void, .{pageController, viewController, object});
+    }
+
+    pub fn pageControllerDidTransitionToObject(self: *@This(), pageController: ?*PageController, object: *objc.Id) void {
+        return objc.msgSend(self, "pageController:didTransitionToObject:", void, .{pageController, object});
+    }
+
+    pub fn pageControllerWillStartLiveTransition(self: *@This(), pageController: ?*PageController) void {
+        return objc.msgSend(self, "pageControllerWillStartLiveTransition:", void, .{pageController});
+    }
+
+    pub fn pageControllerDidEndLiveTransition(self: *@This(), pageController: ?*PageController) void {
+        return objc.msgSend(self, "pageControllerDidEndLiveTransition:", void, .{pageController});
+    }
+
+};
+
+pub const TextInputSourceIdentifier = ?*String;
 
 /// https://developer.apple.com/documentation/AppKit/NSTextInputContext?language=objc
 pub const TextInputContext = opaque {
@@ -37705,6 +37506,46 @@ pub const TextInputContext = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSUserInterfaceItemSearching?language=objc
+pub const UserInterfaceItemSearching = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn searchForItemsWithSearchStringResultLimitMatchedItemHandler(self: *@This(), searchString: ?*String, resultLimit: objc.NSInteger, handleMatchedItems: *const fn(?*Array) callconv(.C) void) void {
+        return objc.msgSend(self, "searchForItemsWithSearchString:resultLimit:matchedItemHandler:", void, .{searchString, resultLimit, handleMatchedItems});
+    }
+
+    pub fn localizedTitlesForItem(self: *@This(), item: *objc.Id) ?*anyopaque {
+        return objc.msgSend(self, "localizedTitlesForItem:", ?*anyopaque, .{item});
+    }
+
+    pub fn performActionForItem(self: *@This(), item: *objc.Id) void {
+        return objc.msgSend(self, "performActionForItem:", void, .{item});
+    }
+
+    pub fn showAllHelpTopicsForSearchString(self: *@This(), searchString: ?*String) void {
+        return objc.msgSend(self, "showAllHelpTopicsForSearchString:", void, .{searchString});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSWindowRestoration?language=objc
+pub const WindowRestoration = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn restoreWindowWithIdentifierStateCompletionHandler(self: *@This(), identifier: UserInterfaceItemIdentifier, state: ?*ns.Coder, completionHandler: *const fn(?*Window, ?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "restoreWindowWithIdentifier:state:completionHandler:", void, .{identifier, state, completionHandler});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextAlternatives?language=objc
 pub const TextAlternatives = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextAlternatives", @This(), Object, &.{});
@@ -37732,6 +37573,39 @@ pub const TextAlternatives = opaque {
         return objc.msgSend(self, "alternativeStrings", ?*anyopaque, .{});
     }
 
+};
+
+pub const VisualEffectMaterial = enum(objc.NSInteger) {
+    Titlebar = 3,
+    Selection = 4,
+    Menu = 5,
+    Popover = 6,
+    Sidebar = 7,
+    HeaderView = 10,
+    Sheet = 11,
+    WindowBackground = 12,
+    HUDWindow = 13,
+    FullScreenUI = 15,
+    ToolTip = 17,
+    ContentBackground = 18,
+    UnderWindowBackground = 21,
+    UnderPageBackground = 22,
+    AppearanceBased = 0,
+    Light = 1,
+    Dark = 2,
+    MediumLight = 8,
+    UltraDark = 9,
+};
+
+pub const VisualEffectBlendingMode = enum(objc.NSInteger) {
+    BehindWindow = 0,
+    WithinWindow = 1,
+};
+
+pub const VisualEffectState = enum(objc.NSInteger) {
+    FollowsWindowActiveState = 0,
+    Active = 1,
+    Inactive = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSVisualEffectView?language=objc
@@ -37856,6 +37730,8 @@ pub const TitlebarAccessoryViewController = opaque {
 
 };
 
+pub const DataAssetName = ?*String;
+
 /// https://developer.apple.com/documentation/AppKit/NSDataAsset?language=objc
 pub const DataAsset = opaque {
     pub const InternalInfo = objc.ExternalClass("NSDataAsset", @This(), Object, &.{});
@@ -37893,6 +37769,32 @@ pub const DataAsset = opaque {
 
 };
 
+pub const HapticFeedbackPattern = enum(objc.NSInteger) {
+    Generic = 0,
+    Alignment = 1,
+    LevelChange = 2,
+};
+
+pub const HapticFeedbackPerformanceTime = enum(objc.NSUInteger) {
+    Default = 0,
+    Now = 1,
+    DrawCompleted = 2,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSHapticFeedbackPerformer?language=objc
+pub const HapticFeedbackPerformer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn performFeedbackPatternPerformanceTime(self: *@This(), pattern: HapticFeedbackPattern, performanceTime: HapticFeedbackPerformanceTime) void {
+        return objc.msgSend(self, "performFeedbackPattern:performanceTime:", void, .{pattern, performanceTime});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager?language=objc
 pub const HapticFeedbackManager = opaque {
     pub const InternalInfo = objc.ExternalClass("NSHapticFeedbackManager", @This(), Object, &.{});
@@ -37908,6 +37810,15 @@ pub const HapticFeedbackManager = opaque {
         return objc.msgSend(self, "defaultPerformer", ?*anyopaque, .{});
     }
 
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackToken?language=objc
+pub const AlignmentFeedbackToken = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter?language=objc
@@ -38055,6 +37966,18 @@ pub const ButtonTouchBarItem = opaque {
         return objc.msgSend(self, "setCustomizationLabel:", void, .{customizationLabel});
     }
 
+};
+
+pub const PickerTouchBarItemSelectionMode = enum(objc.NSInteger) {
+    SelectOne = 0,
+    SelectAny = 1,
+    Momentary = 2,
+};
+
+pub const PickerTouchBarItemControlRepresentation = enum(objc.NSInteger) {
+    Automatic = 0,
+    Expanded = 1,
+    Collapsed = 2,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem?language=objc
@@ -38361,6 +38284,20 @@ pub const SearchToolbarItem = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSTextLocation?language=objc
+pub const TextLocation = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn compare(self: *@This(), location: ?*anyopaque) ns.ComparisonResult {
+        return objc.msgSend(self, "compare:", ns.ComparisonResult, .{location});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextRange?language=objc
 pub const TextRange = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextRange", @This(), Object, &.{});
@@ -38424,6 +38361,19 @@ pub const TextRange = opaque {
         return objc.msgSend(self, "endLocation", ?*anyopaque, .{});
     }
 
+};
+
+pub const TextSelectionGranularity = enum(objc.NSInteger) {
+    Character = 0,
+    Word = 1,
+    Paragraph = 2,
+    Line = 3,
+    Sentence = 4,
+};
+
+pub const TextSelectionAffinity = enum(objc.NSInteger) {
+    Upstream = 0,
+    Downstream = 1,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSTextSelection?language=objc
@@ -38511,6 +38461,41 @@ pub const TextSelection = opaque {
 
 };
 
+pub const TextSelectionNavigationDirection = enum(objc.NSInteger) {
+    Forward = 0,
+    Backward = 1,
+    Right = 2,
+    Left = 3,
+    Up = 4,
+    Down = 5,
+};
+
+pub const TextSelectionNavigationDestination = enum(objc.NSInteger) {
+    Character = 0,
+    Word = 1,
+    Line = 2,
+    Sentence = 3,
+    Paragraph = 4,
+    Container = 5,
+    Document = 6,
+};
+
+pub const TextSelectionNavigationModifier = enum(objc.NSUInteger) {
+    Extend = 1,
+    Visual = 2,
+    Multiple = 4,
+};
+
+pub const TextSelectionNavigationWritingDirection = enum(objc.NSInteger) {
+    LeftToRight = 0,
+    RightToLeft = 1,
+};
+
+pub const TextSelectionNavigationLayoutOrientation = enum(objc.NSInteger) {
+    Horizontal = 0,
+    Vertical = 1,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextSelectionNavigation?language=objc
 pub const TextSelectionNavigation = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextSelectionNavigation", @This(), Object, &.{});
@@ -38580,6 +38565,99 @@ pub const TextSelectionNavigation = opaque {
 
     pub fn setRotatesCoordinateSystemForLayoutOrientation(self: *@This(), rotatesCoordinateSystemForLayoutOrientation: objc.BOOL) void {
         return objc.msgSend(self, "setRotatesCoordinateSystemForLayoutOrientation:", void, .{rotatesCoordinateSystemForLayoutOrientation});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextSelectionDataSource?language=objc
+pub const TextSelectionDataSource = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn enumerateSubstringsFromLocationOptionsUsingBlock(self: *@This(), location: ?*anyopaque, options: ns.StringEnumerationOptions, block: *const fn(?*String, ?*TextRange, ?*TextRange, ?*objc.BOOL, ) callconv(.C) void) void {
+        return objc.msgSend(self, "enumerateSubstringsFromLocation:options:usingBlock:", void, .{location, options, block});
+    }
+
+    pub fn textRangeForSelectionGranularityEnclosingLocation(self: *@This(), selectionGranularity: TextSelectionGranularity, location: ?*anyopaque) ?*TextRange {
+        return objc.msgSend(self, "textRangeForSelectionGranularity:enclosingLocation:", ?*TextRange, .{selectionGranularity, location});
+    }
+
+    pub fn locationFromLocationWithOffset(self: *@This(), location: ?*anyopaque, offset: objc.NSInteger) ?*anyopaque {
+        return objc.msgSend(self, "locationFromLocation:withOffset:", ?*anyopaque, .{location, offset});
+    }
+
+    pub fn offsetFromLocationToLocation(self: *@This(), from: ?*anyopaque, to: ?*anyopaque) objc.NSInteger {
+        return objc.msgSend(self, "offsetFromLocation:toLocation:", objc.NSInteger, .{from, to});
+    }
+
+    pub fn baseWritingDirectionAtLocation(self: *@This(), location: ?*anyopaque) TextSelectionNavigationWritingDirection {
+        return objc.msgSend(self, "baseWritingDirectionAtLocation:", TextSelectionNavigationWritingDirection, .{location});
+    }
+
+    pub fn enumerateCaretOffsetsInLineFragmentAtLocationUsingBlock(self: *@This(), location: ?*anyopaque, block: *const fn(cf.CGFloat, ?*anyopaque, objc.BOOL, ?*objc.BOOL, ) callconv(.C) void) void {
+        return objc.msgSend(self, "enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:", void, .{location, block});
+    }
+
+    pub fn lineFragmentRangeForPointInContainerAtLocation(self: *@This(), point: cf.CGPoint, location: ?*anyopaque) ?*TextRange {
+        return objc.msgSend(self, "lineFragmentRangeForPoint:inContainerAtLocation:", ?*TextRange, .{point, location});
+    }
+
+    pub fn enumerateContainerBoundariesFromLocationReverseUsingBlock(self: *@This(), location: ?*anyopaque, reverse: objc.BOOL, block: *const fn(?*anyopaque, ?*objc.BOOL) callconv(.C) void) void {
+        return objc.msgSend(self, "enumerateContainerBoundariesFromLocation:reverse:usingBlock:", void, .{location, reverse, block});
+    }
+
+    pub fn textLayoutOrientationAtLocation(self: *@This(), location: ?*anyopaque) TextSelectionNavigationLayoutOrientation {
+        return objc.msgSend(self, "textLayoutOrientationAtLocation:", TextSelectionNavigationLayoutOrientation, .{location});
+    }
+
+    pub fn documentRange(self: *@This()) ?*TextRange {
+        return objc.msgSend(self, "documentRange", ?*TextRange, .{});
+    }
+
+};
+
+pub const TextContentManagerEnumerationOptions = enum(objc.NSUInteger) {
+    None = 0,
+    Reverse = 1,
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextElementProvider?language=objc
+pub const TextElementProvider = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn enumerateTextElementsFromLocationOptionsUsingBlock(self: *@This(), textLocation: ?*anyopaque, options: TextContentManagerEnumerationOptions, block: *const fn(?*TextElement) callconv(.C) objc.BOOL) ?*anyopaque {
+        return objc.msgSend(self, "enumerateTextElementsFromLocation:options:usingBlock:", ?*anyopaque, .{textLocation, options, block});
+    }
+
+    pub fn replaceContentsInRangeWithTextElements(self: *@This(), range: ?*TextRange, textElements: ?*anyopaque) void {
+        return objc.msgSend(self, "replaceContentsInRange:withTextElements:", void, .{range, textElements});
+    }
+
+    pub fn synchronizeToBackingStore(self: *@This(), completionHandler: *const fn(?*Error) callconv(.C) void) void {
+        return objc.msgSend(self, "synchronizeToBackingStore:", void, .{completionHandler});
+    }
+
+    pub fn locationFromLocationWithOffset(self: *@This(), location: ?*anyopaque, offset: objc.NSInteger) ?*anyopaque {
+        return objc.msgSend(self, "locationFromLocation:withOffset:", ?*anyopaque, .{location, offset});
+    }
+
+    pub fn offsetFromLocationToLocation(self: *@This(), from: ?*anyopaque, to: ?*anyopaque) objc.NSInteger {
+        return objc.msgSend(self, "offsetFromLocation:toLocation:", objc.NSInteger, .{from, to});
+    }
+
+    pub fn adjustedRangeFromRangeForEditingTextSelection(self: *@This(), textRange: ?*TextRange, forEditingTextSelection: objc.BOOL) ?*TextRange {
+        return objc.msgSend(self, "adjustedRangeFromRange:forEditingTextSelection:", ?*TextRange, .{textRange, forEditingTextSelection});
+    }
+
+    pub fn documentRange(self: *@This()) ?*TextRange {
+        return objc.msgSend(self, "documentRange", ?*TextRange, .{});
     }
 
 };
@@ -38665,6 +38743,38 @@ pub const TextContentManager = opaque {
 
     pub fn setAutomaticallySynchronizesToBackingStore(self: *@This(), automaticallySynchronizesToBackingStore: objc.BOOL) void {
         return objc.msgSend(self, "setAutomaticallySynchronizesToBackingStore:", void, .{automaticallySynchronizesToBackingStore});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextContentManagerDelegate?language=objc
+pub const TextContentManagerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn textContentManagerTextElementAtLocation(self: *@This(), textContentManager: ?*TextContentManager, location: ?*anyopaque) ?*TextElement {
+        return objc.msgSend(self, "textContentManager:textElementAtLocation:", ?*TextElement, .{textContentManager, location});
+    }
+
+    pub fn textContentManagerShouldEnumerateTextElementOptions(self: *@This(), textContentManager: ?*TextContentManager, textElement: ?*TextElement, options: TextContentManagerEnumerationOptions) objc.BOOL {
+        return objc.msgSend(self, "textContentManager:shouldEnumerateTextElement:options:", objc.BOOL, .{textContentManager, textElement, options});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextContentStorageDelegate?language=objc
+pub const TextContentStorageDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{TextContentManagerDelegate, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn textContentStorageTextParagraphWithRange(self: *@This(), textContentStorage: ?*TextContentStorage, range: ns.Range) ?*TextParagraph {
+        return objc.msgSend(self, "textContentStorage:textParagraphWithRange:", ?*TextParagraph, .{textContentStorage, range});
     }
 
 };
@@ -38845,6 +38955,21 @@ pub const TextListElement = opaque {
 
 };
 
+pub const TextLayoutFragmentEnumerationOptions = enum(objc.NSUInteger) {
+    None = 0,
+    Reverse = 1,
+    EstimatesSize = 2,
+    EnsuresLayout = 4,
+    EnsuresExtraLineFragment = 8,
+};
+
+pub const TextLayoutFragmentState = enum(objc.NSUInteger) {
+    None = 0,
+    EstimatedUsageBounds = 1,
+    CalculatedUsageBounds = 2,
+    LayoutAvailable = 3,
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextLayoutFragment?language=objc
 pub const TextLayoutFragment = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextLayoutFragment", @This(), Object, &.{});
@@ -38944,6 +39069,21 @@ pub const TextLayoutFragment = opaque {
         return objc.msgSend(self, "textAttachmentViewProviders", ?*anyopaque, .{});
     }
 
+};
+
+pub const TextLayoutManagerSegmentType = enum(objc.NSInteger) {
+    Standard = 0,
+    Selection = 1,
+    Highlight = 2,
+};
+
+pub const TextLayoutManagerSegmentOptions = enum(objc.NSUInteger) {
+    None = 0,
+    RangeNotRequired = 1,
+    MiddleFragmentsExcluded = 2,
+    HeadSegmentExtended = 4,
+    TailSegmentExtended = 8,
+    UpstreamAffinity = 16,
 };
 
 /// https://developer.apple.com/documentation/AppKit/NSTextLayoutManager?language=objc
@@ -39119,6 +39259,28 @@ pub const TextLayoutManager = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/AppKit/NSTextLayoutManagerDelegate?language=objc
+pub const TextLayoutManagerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn textLayoutManagerTextLayoutFragmentForLocationInTextElement(self: *@This(), textLayoutManager: ?*TextLayoutManager, location: ?*anyopaque, textElement: ?*TextElement) ?*TextLayoutFragment {
+        return objc.msgSend(self, "textLayoutManager:textLayoutFragmentForLocation:inTextElement:", ?*TextLayoutFragment, .{textLayoutManager, location, textElement});
+    }
+
+    pub fn textLayoutManagerShouldBreakLineBeforeLocationHyphenating(self: *@This(), textLayoutManager: ?*TextLayoutManager, location: ?*anyopaque, hyphenating: objc.BOOL) objc.BOOL {
+        return objc.msgSend(self, "textLayoutManager:shouldBreakLineBeforeLocation:hyphenating:", objc.BOOL, .{textLayoutManager, location, hyphenating});
+    }
+
+    pub fn textLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(self: *@This(), textLayoutManager: ?*TextLayoutManager, link: *objc.Id, location: ?*anyopaque, renderingAttributes: ?*anyopaque, ) ?*anyopaque {
+        return objc.msgSend(self, "textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:", ?*anyopaque, .{textLayoutManager, link, location, renderingAttributes, });
+    }
+
+};
+
 /// https://developer.apple.com/documentation/AppKit/NSTextLineFragment?language=objc
 pub const TextLineFragment = opaque {
     pub const InternalInfo = objc.ExternalClass("NSTextLineFragment", @This(), Object, &.{});
@@ -39176,6 +39338,32 @@ pub const TextLineFragment = opaque {
 
     pub fn glyphOrigin(self: *@This()) cf.CGPoint {
         return objc.msgSend(self, "glyphOrigin", cf.CGPoint, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/AppKit/NSTextViewportLayoutControllerDelegate?language=objc
+pub const TextViewportLayoutControllerDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn viewportBoundsForTextViewportLayoutController(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController) cf.CGRect {
+        return objc.msgSend(self, "viewportBoundsForTextViewportLayoutController:", cf.CGRect, .{textViewportLayoutController});
+    }
+
+    pub fn textViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController, textLayoutFragment: ?*TextLayoutFragment) void {
+        return objc.msgSend(self, "textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:", void, .{textViewportLayoutController, textLayoutFragment});
+    }
+
+    pub fn textViewportLayoutControllerWillLayout(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController) void {
+        return objc.msgSend(self, "textViewportLayoutControllerWillLayout:", void, .{textViewportLayoutController});
+    }
+
+    pub fn textViewportLayoutControllerDidLayout(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController) void {
+        return objc.msgSend(self, "textViewportLayoutControllerDidLayout:", void, .{textViewportLayoutController});
     }
 
 };

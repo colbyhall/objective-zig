@@ -11,245 +11,40 @@ pub const Origin = extern struct {
     z: objc.NSUInteger,
 };
 
+pub extern "Metal" fn OriginMake(x: objc.NSUInteger, y: objc.NSUInteger, z: objc.NSUInteger) callconv(.C) Origin;
+
 pub const Size = extern struct {
     width: objc.NSUInteger,
     height: objc.NSUInteger,
     depth: objc.NSUInteger,
 };
 
+pub extern "Metal" fn SizeMake(width: objc.NSUInteger, height: objc.NSUInteger, depth: objc.NSUInteger) callconv(.C) Size;
+
 pub const Region = extern struct {
     origin: Origin,
     size: Size,
 };
+
+pub extern "Metal" fn RegionMake1D(x: objc.NSUInteger, width: objc.NSUInteger) callconv(.C) Region;
+
+pub extern "Metal" fn RegionMake2D(x: objc.NSUInteger, y: objc.NSUInteger, width: objc.NSUInteger, height: objc.NSUInteger, ) callconv(.C) Region;
+
+pub extern "Metal" fn RegionMake3D(x: objc.NSUInteger, y: objc.NSUInteger, z: objc.NSUInteger, width: objc.NSUInteger, height: objc.NSUInteger, depth: objc.NSUInteger, ) callconv(.C) Region;
 
 pub const SamplePosition = extern struct {
     x: f32,
     y: f32,
 };
 
+pub extern "Metal" fn SamplePositionMake(x: f32, y: f32) callconv(.C) SamplePosition;
+
+pub const Coordinate2D = SamplePosition;
+
+pub extern "Metal" fn Coordinate2DMake(x: f32, y: f32) callconv(.C) Coordinate2D;
+
 pub const ResourceID = extern struct {
     _impl: objc.uint64_t,
-};
-
-pub const TextureSwizzleChannels = extern struct {
-    red: TextureSwizzle,
-    green: TextureSwizzle,
-    blue: TextureSwizzle,
-    alpha: TextureSwizzle,
-};
-
-pub const SharedTextureHandlePrivate = extern struct {};
-
-pub const CounterResultTimestamp = extern struct {
-    timestamp: objc.uint64_t,
-};
-
-pub const CounterResultStageUtilization = extern struct {
-    totalCycles: objc.uint64_t,
-    vertexCycles: objc.uint64_t,
-    tessellationCycles: objc.uint64_t,
-    postTessellationVertexCycles: objc.uint64_t,
-    fragmentCycles: objc.uint64_t,
-    renderTargetCycles: objc.uint64_t,
-};
-
-pub const CounterResultStatistic = extern struct {
-    tessellationInputPatches: objc.uint64_t,
-    vertexInvocations: objc.uint64_t,
-    postTessellationVertexInvocations: objc.uint64_t,
-    clipperInvocations: objc.uint64_t,
-    clipperPrimitivesOut: objc.uint64_t,
-    fragmentInvocations: objc.uint64_t,
-    fragmentsPassed: objc.uint64_t,
-    computeKernelInvocations: objc.uint64_t,
-};
-
-pub const AccelerationStructureSizes = extern struct {
-    accelerationStructureSize: objc.NSUInteger,
-    buildScratchBufferSize: objc.NSUInteger,
-    refitScratchBufferSize: objc.NSUInteger,
-};
-
-pub const SizeAndAlign = extern struct {
-    size: objc.NSUInteger,
-    @"align": objc.NSUInteger,
-};
-
-pub const MapIndirectArguments = extern struct {
-    regionOriginX: objc.uint32_t,
-    regionOriginY: objc.uint32_t,
-    regionOriginZ: objc.uint32_t,
-    regionSizeWidth: objc.uint32_t,
-    regionSizeHeight: objc.uint32_t,
-    regionSizeDepth: objc.uint32_t,
-    mipMapLevel: objc.uint32_t,
-    sliceId: objc.uint32_t,
-};
-
-pub const ClearColor = extern struct {
-    red: f64,
-    green: f64,
-    blue: f64,
-    alpha: f64,
-};
-
-pub const DispatchThreadgroupsIndirectArguments = extern struct {
-    threadgroupsPerGrid: [3] objc.uint32_t,
-};
-
-pub const StageInRegionIndirectArguments = extern struct {
-    stageInOrigin: [3] objc.uint32_t,
-    stageInSize: [3] objc.uint32_t,
-};
-
-pub const ScissorRect = extern struct {
-    x: objc.NSUInteger,
-    y: objc.NSUInteger,
-    width: objc.NSUInteger,
-    height: objc.NSUInteger,
-};
-
-pub const Viewport = extern struct {
-    originX: f64,
-    originY: f64,
-    width: f64,
-    height: f64,
-    znear: f64,
-    zfar: f64,
-};
-
-pub const DrawPrimitivesIndirectArguments = extern struct {
-    vertexCount: objc.uint32_t,
-    instanceCount: objc.uint32_t,
-    vertexStart: objc.uint32_t,
-    baseInstance: objc.uint32_t,
-};
-
-pub const DrawIndexedPrimitivesIndirectArguments = extern struct {
-    indexCount: objc.uint32_t,
-    instanceCount: objc.uint32_t,
-    indexStart: objc.uint32_t,
-    baseVertex: objc.int32_t,
-    baseInstance: objc.uint32_t,
-};
-
-pub const VertexAmplificationViewMapping = extern struct {
-    viewportArrayIndexOffset: objc.uint32_t,
-    renderTargetArrayIndexOffset: objc.uint32_t,
-};
-
-pub const DrawPatchIndirectArguments = extern struct {
-    patchCount: objc.uint32_t,
-    instanceCount: objc.uint32_t,
-    patchStart: objc.uint32_t,
-    baseInstance: objc.uint32_t,
-};
-
-pub const QuadTessellationFactorsHalf = extern struct {
-    edgeTessellationFactor: [4] objc.uint16_t,
-    insideTessellationFactor: [2] objc.uint16_t,
-};
-
-pub const TriangleTessellationFactorsHalf = extern struct {
-    edgeTessellationFactor: [3] objc.uint16_t,
-    insideTessellationFactor: objc.uint16_t,
-};
-
-pub const _MTLPackedFloat3 = extern struct {};
-
-pub const anon129 = extern struct {
-    x: f32,
-    y: f32,
-    z: f32,
-};
-
-pub const PackedFloatQuaternion = extern struct {
-    x: f32,
-    y: f32,
-    z: f32,
-    w: f32,
-};
-
-pub const _MTLPackedFloat4x3 = extern struct {
-    columns: [4] PackedFloat3,
-};
-
-pub const _MTLAxisAlignedBoundingBox = extern struct {
-    min: PackedFloat3,
-    max: PackedFloat3,
-};
-
-pub const ComponentTransform = extern struct {
-    scale: PackedFloat3,
-    shear: PackedFloat3,
-    pivot: PackedFloat3,
-    rotation: PackedFloatQuaternion,
-    translation: PackedFloat3,
-};
-
-pub const AccelerationStructureInstanceDescriptor = extern struct {
-    transformationMatrix: PackedFloat4x3,
-    options: AccelerationStructureInstanceOptions,
-    mask: objc.uint32_t,
-    intersectionFunctionTableOffset: objc.uint32_t,
-    accelerationStructureIndex: objc.uint32_t,
-};
-
-pub const AccelerationStructureUserIDInstanceDescriptor = extern struct {
-    transformationMatrix: PackedFloat4x3,
-    options: AccelerationStructureInstanceOptions,
-    mask: objc.uint32_t,
-    intersectionFunctionTableOffset: objc.uint32_t,
-    accelerationStructureIndex: objc.uint32_t,
-    userID: objc.uint32_t,
-};
-
-pub const AccelerationStructureMotionInstanceDescriptor = extern struct {
-    options: AccelerationStructureInstanceOptions,
-    mask: objc.uint32_t,
-    intersectionFunctionTableOffset: objc.uint32_t,
-    accelerationStructureIndex: objc.uint32_t,
-    userID: objc.uint32_t,
-    motionTransformsStartIndex: objc.uint32_t,
-    motionTransformsCount: objc.uint32_t,
-    motionStartBorderMode: MotionBorderMode,
-    motionEndBorderMode: MotionBorderMode,
-    motionStartTime: f32,
-    motionEndTime: f32,
-};
-
-pub const IndirectAccelerationStructureInstanceDescriptor = extern struct {
-    transformationMatrix: PackedFloat4x3,
-    options: AccelerationStructureInstanceOptions,
-    mask: objc.uint32_t,
-    intersectionFunctionTableOffset: objc.uint32_t,
-    userID: objc.uint32_t,
-    accelerationStructureID: ResourceID,
-};
-
-pub const IndirectAccelerationStructureMotionInstanceDescriptor = extern struct {
-    options: AccelerationStructureInstanceOptions,
-    mask: objc.uint32_t,
-    intersectionFunctionTableOffset: objc.uint32_t,
-    userID: objc.uint32_t,
-    accelerationStructureID: ResourceID,
-    motionTransformsStartIndex: objc.uint32_t,
-    motionTransformsCount: objc.uint32_t,
-    motionStartBorderMode: MotionBorderMode,
-    motionEndBorderMode: MotionBorderMode,
-    motionStartTime: f32,
-    motionEndTime: f32,
-};
-
-pub const IndirectCommandBufferExecutionRange = extern struct {
-    location: objc.uint32_t,
-    length: objc.uint32_t,
-};
-
-pub const SharedEventHandlePrivate = extern struct {};
-
-pub const anon115 = extern union {
-    elements: [3] f32,
 };
 
 pub const ResourceUsage = enum(objc.NSUInteger) {
@@ -262,6 +57,58 @@ pub const BarrierScope = enum(objc.NSUInteger) {
     Buffers = 1,
     Textures = 2,
     RenderTargets = 4,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLCommandEncoder?language=objc
+pub const CommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn endEncoding(self: *@This()) void {
+        return objc.msgSend(self, "endEncoding", void, .{});
+    }
+
+    pub fn insertDebugSignpost(self: *@This(), string: ?*ns.String) void {
+        return objc.msgSend(self, "insertDebugSignpost:", void, .{string});
+    }
+
+    pub fn pushDebugGroup(self: *@This(), string: ?*ns.String) void {
+        return objc.msgSend(self, "pushDebugGroup:", void, .{string});
+    }
+
+    pub fn popDebugGroup(self: *@This()) void {
+        return objc.msgSend(self, "popDebugGroup", void, .{});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLAllocation?language=objc
+pub const Allocation = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn allocatedSize(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "allocatedSize", objc.NSUInteger, .{});
+    }
+
 };
 
 pub const PurgeableState = enum(objc.NSUInteger) {
@@ -301,6 +148,72 @@ pub const ResourceOptions = enum(objc.NSUInteger) {
     HazardTrackingModeTracked = 512,
     CPUCacheModeDefault = 0,
     CPUCacheModeWriteCombined = 1,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLResource?language=objc
+pub const Resource = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Allocation, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn setPurgeableState(self: *@This(), state: PurgeableState) PurgeableState {
+        return objc.msgSend(self, "setPurgeableState:", PurgeableState, .{state});
+    }
+
+    pub fn makeAliasable(self: *@This()) void {
+        return objc.msgSend(self, "makeAliasable", void, .{});
+    }
+
+    pub fn isAliasable(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isAliasable", objc.BOOL, .{});
+    }
+
+    pub fn setOwnerWithIdentity(self: *@This(), task_id_token: objc.task_id_token_t) objc.kern_return_t {
+        return objc.msgSend(self, "setOwnerWithIdentity:", objc.kern_return_t, .{task_id_token});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn cpuCacheMode(self: *@This()) CPUCacheMode {
+        return objc.msgSend(self, "cpuCacheMode", CPUCacheMode, .{});
+    }
+
+    pub fn storageMode(self: *@This()) StorageMode {
+        return objc.msgSend(self, "storageMode", StorageMode, .{});
+    }
+
+    pub fn hazardTrackingMode(self: *@This()) HazardTrackingMode {
+        return objc.msgSend(self, "hazardTrackingMode", HazardTrackingMode, .{});
+    }
+
+    pub fn resourceOptions(self: *@This()) ResourceOptions {
+        return objc.msgSend(self, "resourceOptions", ResourceOptions, .{});
+    }
+
+    pub fn heap(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "heap", ?*anyopaque, .{});
+    }
+
+    pub fn heapOffset(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "heapOffset", objc.NSUInteger, .{});
+    }
+
+    pub fn allocatedSize(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "allocatedSize", objc.NSUInteger, .{});
+    }
+
 };
 
 pub const PixelFormat = enum(objc.NSUInteger) {
@@ -445,1093 +358,6 @@ pub const PixelFormat = enum(objc.NSUInteger) {
     X24_Stencil8 = 262,
 };
 
-pub const TextureType = enum(objc.NSUInteger) {
-    1D = 0,
-    1DArray = 1,
-    2D = 2,
-    2DArray = 3,
-    2DMultisample = 4,
-    Cube = 5,
-    CubeArray = 6,
-    3D = 7,
-    2DMultisampleArray = 8,
-    TextureBuffer = 9,
-};
-
-pub const TextureSwizzle = enum(objc.uint8_t) {
-    Zero = 0,
-    One = 1,
-    Red = 2,
-    Green = 3,
-    Blue = 4,
-    Alpha = 5,
-};
-
-pub const TextureUsage = enum(objc.NSUInteger) {
-    Unknown = 0,
-    ShaderRead = 1,
-    ShaderWrite = 2,
-    RenderTarget = 4,
-    PixelFormatView = 16,
-    ShaderAtomic = 32,
-};
-
-pub const TextureCompressionType = enum(objc.NSInteger) {
-    Lossless = 0,
-    Lossy = 1,
-};
-
-pub const DataType = enum(objc.NSUInteger) {
-    None = 0,
-    Struct = 1,
-    Array = 2,
-    Float = 3,
-    Float2 = 4,
-    Float3 = 5,
-    Float4 = 6,
-    Float2x2 = 7,
-    Float2x3 = 8,
-    Float2x4 = 9,
-    Float3x2 = 10,
-    Float3x3 = 11,
-    Float3x4 = 12,
-    Float4x2 = 13,
-    Float4x3 = 14,
-    Float4x4 = 15,
-    Half = 16,
-    Half2 = 17,
-    Half3 = 18,
-    Half4 = 19,
-    Half2x2 = 20,
-    Half2x3 = 21,
-    Half2x4 = 22,
-    Half3x2 = 23,
-    Half3x3 = 24,
-    Half3x4 = 25,
-    Half4x2 = 26,
-    Half4x3 = 27,
-    Half4x4 = 28,
-    Int = 29,
-    Int2 = 30,
-    Int3 = 31,
-    Int4 = 32,
-    UInt = 33,
-    UInt2 = 34,
-    UInt3 = 35,
-    UInt4 = 36,
-    Short = 37,
-    Short2 = 38,
-    Short3 = 39,
-    Short4 = 40,
-    UShort = 41,
-    UShort2 = 42,
-    UShort3 = 43,
-    UShort4 = 44,
-    Char = 45,
-    Char2 = 46,
-    Char3 = 47,
-    Char4 = 48,
-    UChar = 49,
-    UChar2 = 50,
-    UChar3 = 51,
-    UChar4 = 52,
-    Bool = 53,
-    Bool2 = 54,
-    Bool3 = 55,
-    Bool4 = 56,
-    Texture = 58,
-    Sampler = 59,
-    Pointer = 60,
-    R8Unorm = 62,
-    R8Snorm = 63,
-    R16Unorm = 64,
-    R16Snorm = 65,
-    RG8Unorm = 66,
-    RG8Snorm = 67,
-    RG16Unorm = 68,
-    RG16Snorm = 69,
-    RGBA8Unorm = 70,
-    RGBA8Unorm_sRGB = 71,
-    RGBA8Snorm = 72,
-    RGBA16Unorm = 73,
-    RGBA16Snorm = 74,
-    RGB10A2Unorm = 75,
-    RG11B10Float = 76,
-    RGB9E5Float = 77,
-    RenderPipeline = 78,
-    ComputePipeline = 79,
-    IndirectCommandBuffer = 80,
-    Long = 81,
-    Long2 = 82,
-    Long3 = 83,
-    Long4 = 84,
-    ULong = 85,
-    ULong2 = 86,
-    ULong3 = 87,
-    ULong4 = 88,
-    VisibleFunctionTable = 115,
-    IntersectionFunctionTable = 116,
-    PrimitiveAccelerationStructure = 117,
-    InstanceAccelerationStructure = 118,
-    BFloat = 121,
-    BFloat2 = 122,
-    BFloat3 = 123,
-    BFloat4 = 124,
-};
-
-pub const BindingType = enum(objc.NSInteger) {
-    Buffer = 0,
-    ThreadgroupMemory = 1,
-    Texture = 2,
-    Sampler = 3,
-    ImageblockData = 16,
-    Imageblock = 17,
-    VisibleFunctionTable = 24,
-    PrimitiveAccelerationStructure = 25,
-    InstanceAccelerationStructure = 26,
-    IntersectionFunctionTable = 27,
-    ObjectPayload = 34,
-};
-
-pub const ArgumentType = enum(objc.NSUInteger) {
-    Buffer = 0,
-    ThreadgroupMemory = 1,
-    Texture = 2,
-    Sampler = 3,
-    ImageblockData = 16,
-    Imageblock = 17,
-    VisibleFunctionTable = 24,
-    PrimitiveAccelerationStructure = 25,
-    InstanceAccelerationStructure = 26,
-    IntersectionFunctionTable = 27,
-};
-
-pub const BindingAccess = enum(objc.NSUInteger) {
-    ReadOnly = 0,
-    ReadWrite = 1,
-    WriteOnly = 2,
-    ArgumentAccessReadOnly = 0,
-    ArgumentAccessReadWrite = 1,
-    ArgumentAccessWriteOnly = 2,
-};
-
-pub const FunctionOptions = enum(objc.NSUInteger) {
-    None = 0,
-    CompileToBinary = 1,
-    StoreFunctionInMetalPipelinesScript = 2,
-    StoreFunctionInMetalScript = 2,
-    FailOnBinaryArchiveMiss = 4,
-};
-
-pub const PatchType = enum(objc.NSUInteger) {
-    None = 0,
-    Triangle = 1,
-    Quad = 2,
-};
-
-pub const FunctionType = enum(objc.NSUInteger) {
-    Vertex = 1,
-    Fragment = 2,
-    Kernel = 3,
-    Visible = 5,
-    Intersection = 6,
-    Mesh = 7,
-    Object = 8,
-};
-
-pub const LanguageVersion = enum(objc.NSUInteger) {
-    1_0 = 65536,
-    1_1 = 65537,
-    1_2 = 65538,
-    2_0 = 131072,
-    2_1 = 131073,
-    2_2 = 131074,
-    2_3 = 131075,
-    2_4 = 131076,
-    3_0 = 196608,
-    3_1 = 196609,
-    3_2 = 196610,
-};
-
-pub const LibraryType = enum(objc.NSInteger) {
-    Executable = 0,
-    Dynamic = 1,
-};
-
-pub const LibraryOptimizationLevel = enum(objc.NSInteger) {
-    Default = 0,
-    Size = 1,
-};
-
-pub const CompileSymbolVisibility = enum(objc.NSInteger) {
-    Default = 0,
-    Hidden = 1,
-};
-
-pub const MathMode = enum(objc.NSInteger) {
-    Safe = 0,
-    Relaxed = 1,
-    Fast = 2,
-};
-
-pub const MathFloatingPointFunctions = enum(objc.NSInteger) {
-    Fast = 0,
-    Precise = 1,
-};
-
-pub const LibraryError = enum(objc.NSUInteger) {
-    Unsupported = 1,
-    Internal = 2,
-    CompileFailure = 3,
-    CompileWarning = 4,
-    FunctionNotFound = 5,
-    FileNotFound = 6,
-};
-
-pub const CounterSampleBufferError = enum(objc.NSInteger) {
-    OutOfMemory = 0,
-    Invalid = 1,
-    Internal = 2,
-};
-
-pub const IOCompressionMethod = enum(objc.NSInteger) {
-    Zlib = 0,
-    LZFSE = 1,
-    LZ4 = 2,
-    LZMA = 3,
-    LZBitmap = 4,
-};
-
-pub const FeatureSet = enum(objc.NSUInteger) {
-    _iOS_GPUFamily1_v1 = 0,
-    _iOS_GPUFamily2_v1 = 1,
-    _iOS_GPUFamily1_v2 = 2,
-    _iOS_GPUFamily2_v2 = 3,
-    _iOS_GPUFamily3_v1 = 4,
-    _iOS_GPUFamily1_v3 = 5,
-    _iOS_GPUFamily2_v3 = 6,
-    _iOS_GPUFamily3_v2 = 7,
-    _iOS_GPUFamily1_v4 = 8,
-    _iOS_GPUFamily2_v4 = 9,
-    _iOS_GPUFamily3_v3 = 10,
-    _iOS_GPUFamily4_v1 = 11,
-    _iOS_GPUFamily1_v5 = 12,
-    _iOS_GPUFamily2_v5 = 13,
-    _iOS_GPUFamily3_v4 = 14,
-    _iOS_GPUFamily4_v2 = 15,
-    _iOS_GPUFamily5_v1 = 16,
-    _macOS_GPUFamily1_v1 = 10000,
-    _OSX_GPUFamily1_v1 = 10000,
-    _macOS_GPUFamily1_v2 = 10001,
-    _OSX_GPUFamily1_v2 = 10001,
-    _macOS_ReadWriteTextureTier2 = 10002,
-    _OSX_ReadWriteTextureTier2 = 10002,
-    _macOS_GPUFamily1_v3 = 10003,
-    _macOS_GPUFamily1_v4 = 10004,
-    _macOS_GPUFamily2_v1 = 10005,
-    _tvOS_GPUFamily1_v1 = 30000,
-    _TVOS_GPUFamily1_v1 = 30000,
-    _tvOS_GPUFamily1_v2 = 30001,
-    _tvOS_GPUFamily1_v3 = 30002,
-    _tvOS_GPUFamily2_v1 = 30003,
-    _tvOS_GPUFamily1_v4 = 30004,
-    _tvOS_GPUFamily2_v2 = 30005,
-};
-
-pub const GPUFamily = enum(objc.NSInteger) {
-    Apple1 = 1001,
-    Apple2 = 1002,
-    Apple3 = 1003,
-    Apple4 = 1004,
-    Apple5 = 1005,
-    Apple6 = 1006,
-    Apple7 = 1007,
-    Apple8 = 1008,
-    Apple9 = 1009,
-    Mac1 = 2001,
-    Mac2 = 2002,
-    Common1 = 3001,
-    Common2 = 3002,
-    Common3 = 3003,
-    MacCatalyst1 = 4001,
-    MacCatalyst2 = 4002,
-    Metal3 = 5001,
-};
-
-pub const DeviceLocation = enum(objc.NSUInteger) {
-    BuiltIn = 0,
-    Slot = 1,
-    External = 2,
-    Unspecified = -1,
-};
-
-pub const PipelineOption = enum(objc.NSUInteger) {
-    None = 0,
-    ArgumentInfo = 1,
-    BindingInfo = 1,
-    BufferTypeInfo = 2,
-    FailOnBinaryArchiveMiss = 4,
-};
-
-pub const ReadWriteTextureTier = enum(objc.NSUInteger) {
-    None = 0,
-    1 = 1,
-    2 = 2,
-};
-
-pub const ArgumentBuffersTier = enum(objc.NSUInteger) {
-    1 = 0,
-    2 = 1,
-};
-
-pub const SparseTextureRegionAlignmentMode = enum(objc.NSUInteger) {
-    Outward = 0,
-    Inward = 1,
-};
-
-pub const SparsePageSize = enum(objc.NSInteger) {
-    16 = 101,
-    64 = 102,
-    256 = 103,
-};
-
-pub const CounterSamplingPoint = enum(objc.NSUInteger) {
-    AtStageBoundary = 0,
-    AtDrawBoundary = 1,
-    AtDispatchBoundary = 2,
-    AtTileDispatchBoundary = 3,
-    AtBlitBoundary = 4,
-};
-
-pub const SparseTextureMappingMode = enum(objc.NSUInteger) {
-    Map = 0,
-    Unmap = 1,
-};
-
-pub const LoadAction = enum(objc.NSUInteger) {
-    DontCare = 0,
-    Load = 1,
-    Clear = 2,
-};
-
-pub const StoreAction = enum(objc.NSUInteger) {
-    DontCare = 0,
-    Store = 1,
-    MultisampleResolve = 2,
-    StoreAndMultisampleResolve = 3,
-    Unknown = 4,
-    CustomSampleDepthStore = 5,
-};
-
-pub const StoreActionOptions = enum(objc.NSUInteger) {
-    None = 0,
-    CustomSamplePositions = 1,
-};
-
-pub const MultisampleDepthResolveFilter = enum(objc.NSUInteger) {
-    Sample0 = 0,
-    Min = 1,
-    Max = 2,
-};
-
-pub const MultisampleStencilResolveFilter = enum(objc.NSUInteger) {
-    Sample0 = 0,
-    DepthResolvedSample = 1,
-};
-
-pub const BlitOption = enum(objc.NSUInteger) {
-    None = 0,
-    DepthFromDepthStencil = 1,
-    StencilFromDepthStencil = 2,
-    RowLinearPVRTC = 4,
-};
-
-pub const CommandBufferStatus = enum(objc.NSUInteger) {
-    NotEnqueued = 0,
-    Enqueued = 1,
-    Committed = 2,
-    Scheduled = 3,
-    Completed = 4,
-    Error = 5,
-};
-
-pub const CommandBufferError = enum(objc.NSUInteger) {
-    None = 0,
-    Internal = 1,
-    Timeout = 2,
-    PageFault = 3,
-    Blacklisted = 4,
-    AccessRevoked = 4,
-    NotPermitted = 7,
-    OutOfMemory = 8,
-    InvalidResource = 9,
-    Memoryless = 10,
-    DeviceRemoved = 11,
-    StackOverflow = 12,
-};
-
-pub const CommandBufferErrorOption = enum(objc.NSUInteger) {
-    None = 0,
-    EncoderExecutionStatus = 1,
-};
-
-pub const CommandEncoderErrorState = enum(objc.NSInteger) {
-    Unknown = 0,
-    Completed = 1,
-    Affected = 2,
-    Pending = 3,
-    Faulted = 4,
-};
-
-pub const DispatchType = enum(objc.NSUInteger) {
-    Serial = 0,
-    Concurrent = 1,
-};
-
-pub const CompareFunction = enum(objc.NSUInteger) {
-    Never = 0,
-    Less = 1,
-    Equal = 2,
-    LessEqual = 3,
-    Greater = 4,
-    NotEqual = 5,
-    GreaterEqual = 6,
-    Always = 7,
-};
-
-pub const StencilOperation = enum(objc.NSUInteger) {
-    Keep = 0,
-    Zero = 1,
-    Replace = 2,
-    IncrementClamp = 3,
-    DecrementClamp = 4,
-    Invert = 5,
-    IncrementWrap = 6,
-    DecrementWrap = 7,
-};
-
-pub const VertexFormat = enum(objc.NSUInteger) {
-    Invalid = 0,
-    UChar2 = 1,
-    UChar3 = 2,
-    UChar4 = 3,
-    Char2 = 4,
-    Char3 = 5,
-    Char4 = 6,
-    UChar2Normalized = 7,
-    UChar3Normalized = 8,
-    UChar4Normalized = 9,
-    Char2Normalized = 10,
-    Char3Normalized = 11,
-    Char4Normalized = 12,
-    UShort2 = 13,
-    UShort3 = 14,
-    UShort4 = 15,
-    Short2 = 16,
-    Short3 = 17,
-    Short4 = 18,
-    UShort2Normalized = 19,
-    UShort3Normalized = 20,
-    UShort4Normalized = 21,
-    Short2Normalized = 22,
-    Short3Normalized = 23,
-    Short4Normalized = 24,
-    Half2 = 25,
-    Half3 = 26,
-    Half4 = 27,
-    Float = 28,
-    Float2 = 29,
-    Float3 = 30,
-    Float4 = 31,
-    Int = 32,
-    Int2 = 33,
-    Int3 = 34,
-    Int4 = 35,
-    UInt = 36,
-    UInt2 = 37,
-    UInt3 = 38,
-    UInt4 = 39,
-    Int1010102Normalized = 40,
-    UInt1010102Normalized = 41,
-    UChar4Normalized_BGRA = 42,
-    UChar = 45,
-    Char = 46,
-    UCharNormalized = 47,
-    CharNormalized = 48,
-    UShort = 49,
-    Short = 50,
-    UShortNormalized = 51,
-    ShortNormalized = 52,
-    Half = 53,
-    FloatRG11B10 = 54,
-    FloatRGB9E5 = 55,
-};
-
-pub const VertexStepFunction = enum(objc.NSUInteger) {
-    Constant = 0,
-    PerVertex = 1,
-    PerInstance = 2,
-    PerPatch = 3,
-    PerPatchControlPoint = 4,
-};
-
-pub const AttributeFormat = enum(objc.NSUInteger) {
-    Invalid = 0,
-    UChar2 = 1,
-    UChar3 = 2,
-    UChar4 = 3,
-    Char2 = 4,
-    Char3 = 5,
-    Char4 = 6,
-    UChar2Normalized = 7,
-    UChar3Normalized = 8,
-    UChar4Normalized = 9,
-    Char2Normalized = 10,
-    Char3Normalized = 11,
-    Char4Normalized = 12,
-    UShort2 = 13,
-    UShort3 = 14,
-    UShort4 = 15,
-    Short2 = 16,
-    Short3 = 17,
-    Short4 = 18,
-    UShort2Normalized = 19,
-    UShort3Normalized = 20,
-    UShort4Normalized = 21,
-    Short2Normalized = 22,
-    Short3Normalized = 23,
-    Short4Normalized = 24,
-    Half2 = 25,
-    Half3 = 26,
-    Half4 = 27,
-    Float = 28,
-    Float2 = 29,
-    Float3 = 30,
-    Float4 = 31,
-    Int = 32,
-    Int2 = 33,
-    Int3 = 34,
-    Int4 = 35,
-    UInt = 36,
-    UInt2 = 37,
-    UInt3 = 38,
-    UInt4 = 39,
-    Int1010102Normalized = 40,
-    UInt1010102Normalized = 41,
-    UChar4Normalized_BGRA = 42,
-    UChar = 45,
-    Char = 46,
-    UCharNormalized = 47,
-    CharNormalized = 48,
-    UShort = 49,
-    Short = 50,
-    UShortNormalized = 51,
-    ShortNormalized = 52,
-    Half = 53,
-    FloatRG11B10 = 54,
-    FloatRGB9E5 = 55,
-};
-
-pub const IndexType = enum(objc.NSUInteger) {
-    UInt16 = 0,
-    UInt32 = 1,
-};
-
-pub const StepFunction = enum(objc.NSUInteger) {
-    Constant = 0,
-    PerVertex = 1,
-    PerInstance = 2,
-    PerPatch = 3,
-    PerPatchControlPoint = 4,
-    ThreadPositionInGridX = 5,
-    ThreadPositionInGridY = 6,
-    ThreadPositionInGridXIndexed = 7,
-    ThreadPositionInGridYIndexed = 8,
-};
-
-pub const Mutability = enum(objc.NSUInteger) {
-    Default = 0,
-    Mutable = 1,
-    Immutable = 2,
-};
-
-pub const ShaderValidation = enum(objc.NSInteger) {
-    Default = 0,
-    Enabled = 1,
-    Disabled = 2,
-};
-
-pub const PrimitiveType = enum(objc.NSUInteger) {
-    Point = 0,
-    Line = 1,
-    LineStrip = 2,
-    Triangle = 3,
-    TriangleStrip = 4,
-};
-
-pub const VisibilityResultMode = enum(objc.NSUInteger) {
-    Disabled = 0,
-    Boolean = 1,
-    Counting = 2,
-};
-
-pub const CullMode = enum(objc.NSUInteger) {
-    None = 0,
-    Front = 1,
-    Back = 2,
-};
-
-pub const Winding = enum(objc.NSUInteger) {
-    Clockwise = 0,
-    CounterClockwise = 1,
-};
-
-pub const DepthClipMode = enum(objc.NSUInteger) {
-    Clip = 0,
-    Clamp = 1,
-};
-
-pub const TriangleFillMode = enum(objc.NSUInteger) {
-    Fill = 0,
-    Lines = 1,
-};
-
-pub const RenderStages = enum(objc.NSUInteger) {
-    Vertex = 1,
-    Fragment = 2,
-    Tile = 4,
-    Object = 8,
-    Mesh = 16,
-};
-
-pub const BlendFactor = enum(objc.NSUInteger) {
-    Zero = 0,
-    One = 1,
-    SourceColor = 2,
-    OneMinusSourceColor = 3,
-    SourceAlpha = 4,
-    OneMinusSourceAlpha = 5,
-    DestinationColor = 6,
-    OneMinusDestinationColor = 7,
-    DestinationAlpha = 8,
-    OneMinusDestinationAlpha = 9,
-    SourceAlphaSaturated = 10,
-    BlendColor = 11,
-    OneMinusBlendColor = 12,
-    BlendAlpha = 13,
-    OneMinusBlendAlpha = 14,
-    Source1Color = 15,
-    OneMinusSource1Color = 16,
-    Source1Alpha = 17,
-    OneMinusSource1Alpha = 18,
-};
-
-pub const BlendOperation = enum(objc.NSUInteger) {
-    Add = 0,
-    Subtract = 1,
-    ReverseSubtract = 2,
-    Min = 3,
-    Max = 4,
-};
-
-pub const ColorWriteMask = enum(objc.NSUInteger) {
-    None = 0,
-    Red = 8,
-    Green = 4,
-    Blue = 2,
-    Alpha = 1,
-    All = 15,
-};
-
-pub const PrimitiveTopologyClass = enum(objc.NSUInteger) {
-    Unspecified = 0,
-    Point = 1,
-    Line = 2,
-    Triangle = 3,
-};
-
-pub const TessellationPartitionMode = enum(objc.NSUInteger) {
-    Pow2 = 0,
-    Integer = 1,
-    FractionalOdd = 2,
-    FractionalEven = 3,
-};
-
-pub const TessellationFactorStepFunction = enum(objc.NSUInteger) {
-    Constant = 0,
-    PerPatch = 1,
-    PerInstance = 2,
-    PerPatchAndPerInstance = 3,
-};
-
-pub const TessellationFactorFormat = enum(objc.NSUInteger) {
-    Half = 0,
-};
-
-pub const TessellationControlPointIndexType = enum(objc.NSUInteger) {
-    None = 0,
-    UInt16 = 1,
-    UInt32 = 2,
-};
-
-pub const SamplerMinMagFilter = enum(objc.NSUInteger) {
-    Nearest = 0,
-    Linear = 1,
-};
-
-pub const SamplerMipFilter = enum(objc.NSUInteger) {
-    NotMipmapped = 0,
-    Nearest = 1,
-    Linear = 2,
-};
-
-pub const SamplerAddressMode = enum(objc.NSUInteger) {
-    ClampToEdge = 0,
-    MirrorClampToEdge = 1,
-    Repeat = 2,
-    MirrorRepeat = 3,
-    ClampToZero = 4,
-    ClampToBorderColor = 5,
-};
-
-pub const SamplerBorderColor = enum(objc.NSUInteger) {
-    TransparentBlack = 0,
-    OpaqueBlack = 1,
-    OpaqueWhite = 2,
-};
-
-pub const AccelerationStructureUsage = enum(objc.NSUInteger) {
-    None = 0,
-    Refit = 1,
-    PreferFastBuild = 2,
-    ExtendedLimits = 4,
-};
-
-pub const AccelerationStructureInstanceOptions = enum(objc.uint32_t) {
-    None = 0,
-    DisableTriangleCulling = 1,
-    TriangleFrontFacingWindingCounterClockwise = 2,
-    Opaque = 4,
-    NonOpaque = 8,
-};
-
-pub const MatrixLayout = enum(objc.NSInteger) {
-    ColumnMajor = 0,
-    RowMajor = 1,
-};
-
-pub const MotionBorderMode = enum(objc.uint32_t) {
-    Clamp = 0,
-    Vanish = 1,
-};
-
-pub const CurveType = enum(objc.NSInteger) {
-    Round = 0,
-    Flat = 1,
-};
-
-pub const CurveBasis = enum(objc.NSInteger) {
-    BSpline = 0,
-    CatmullRom = 1,
-    Linear = 2,
-    Bezier = 3,
-};
-
-pub const CurveEndCaps = enum(objc.NSInteger) {
-    None = 0,
-    Disk = 1,
-    Sphere = 2,
-};
-
-pub const AccelerationStructureInstanceDescriptorType = enum(objc.NSUInteger) {
-    Default = 0,
-    UserID = 1,
-    Motion = 2,
-    Indirect = 3,
-    IndirectMotion = 4,
-};
-
-pub const TransformType = enum(objc.NSInteger) {
-    PackedFloat4x3 = 0,
-    Component = 1,
-};
-
-pub const HeapType = enum(objc.NSInteger) {
-    Automatic = 0,
-    Placement = 1,
-    Sparse = 2,
-};
-
-pub const CaptureError = enum(objc.NSInteger) {
-    NotSupported = 1,
-    AlreadyCapturing = 2,
-    InvalidDescriptor = 3,
-};
-
-pub const CaptureDestination = enum(objc.NSInteger) {
-    DeveloperTools = 1,
-    GPUTraceDocument = 2,
-};
-
-pub const IndirectCommandType = enum(objc.NSUInteger) {
-    Draw = 1,
-    DrawIndexed = 2,
-    DrawPatches = 4,
-    DrawIndexedPatches = 8,
-    ConcurrentDispatch = 32,
-    ConcurrentDispatchThreads = 64,
-    DrawMeshThreadgroups = 128,
-    DrawMeshThreads = 256,
-};
-
-pub const FunctionLogType = enum(objc.NSUInteger) {
-    Validation = 0,
-};
-
-pub const AccelerationStructureRefitOptions = enum(objc.NSUInteger) {
-    VertexData = 1,
-    PerPrimitiveData = 2,
-};
-
-pub const DynamicLibraryError = enum(objc.NSUInteger) {
-    None = 0,
-    InvalidFile = 1,
-    CompilationFailure = 2,
-    UnresolvedInstallName = 3,
-    DependencyLoadFailure = 4,
-    Unsupported = 5,
-};
-
-pub const LogLevel = enum(objc.NSInteger) {
-    Undefined = 0,
-    Debug = 1,
-    Info = 2,
-    Notice = 3,
-    Error = 4,
-    Fault = 5,
-};
-
-pub const LogStateError = enum(objc.NSUInteger) {
-    InvalidSize = 1,
-    Invalid = 2,
-};
-
-pub const BinaryArchiveError = enum(objc.NSUInteger) {
-    None = 0,
-    InvalidFile = 1,
-    UnexpectedElement = 2,
-    CompilationFailure = 3,
-    InternalError = 4,
-};
-
-pub const IntersectionFunctionSignature = enum(objc.NSUInteger) {
-    None = 0,
-    Instancing = 1,
-    TriangleData = 2,
-    WorldSpaceData = 4,
-    InstanceMotion = 8,
-    PrimitiveMotion = 16,
-    ExtendedLimits = 32,
-    MaxLevels = 64,
-    CurveData = 128,
-};
-
-pub const StitchedLibraryOptions = enum(objc.NSUInteger) {
-    None = 0,
-    FailOnBinaryArchiveMiss = 1,
-    StoreLibraryInMetalPipelinesScript = 2,
-};
-
-pub const IOPriority = enum(objc.NSInteger) {
-    High = 0,
-    Normal = 1,
-    Low = 2,
-};
-
-pub const IOCommandQueueType = enum(objc.NSInteger) {
-    Concurrent = 0,
-    Serial = 1,
-};
-
-pub const IOError = enum(objc.NSInteger) {
-    URLInvalid = 1,
-    Internal = 2,
-};
-
-pub const IOStatus = enum(objc.NSInteger) {
-    Pending = 0,
-    Cancelled = 1,
-    Error = 2,
-    Complete = 3,
-};
-
-pub const IOCompressionStatus = enum(objc.NSInteger) {
-    Complete = 0,
-    Error = 1,
-};
-
-pub const Coordinate2D = SamplePosition;
-
-pub const ArgumentAccess = BindingAccess;
-
-pub const AutoreleasedArgument = ?*Argument;
-
-pub const CommonCounter = ?*const ns.String;
-
-pub const CommonCounterSet = ?*const ns.String;
-
-pub const DeviceNotificationName = ?*ns.String;
-
-pub const DeviceNotificationHandler = *const fn(?*anyopaque, DeviceNotificationName) callconv(.C) void;
-
-pub const AutoreleasedRenderPipelineReflection = ?*RenderPipelineReflection;
-
-pub const AutoreleasedComputePipelineReflection = ?*ComputePipelineReflection;
-
-pub const NewLibraryCompletionHandler = *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void;
-
-pub const NewRenderPipelineStateCompletionHandler = *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void;
-
-pub const NewRenderPipelineStateWithReflectionCompletionHandler = *const fn(?*anyopaque, ?*RenderPipelineReflection, ?*ns.Error) callconv(.C) void;
-
-pub const NewComputePipelineStateCompletionHandler = *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void;
-
-pub const NewComputePipelineStateWithReflectionCompletionHandler = *const fn(?*anyopaque, ?*ComputePipelineReflection, ?*ns.Error) callconv(.C) void;
-
-pub const Timestamp = objc.uint64_t;
-
-pub const CommandBufferHandler = *const fn(?*anyopaque) callconv(.C) void;
-
-pub const NSDeviceCertification = objc.NSInteger;
-
-pub const NSProcessPerformanceProfile = objc.NSInteger;
-
-pub const DrawablePresentedHandler = *const fn(?*anyopaque) callconv(.C) void;
-
-pub const SharedEventNotificationBlock = *const fn(?*anyopaque, objc.uint64_t) callconv(.C) void;
-
-pub const IOCommandBufferHandler = *const fn(?*anyopaque) callconv(.C) void;
-
-pub const IOCompressionContext = ?*anyopaque;
-
-/// https://developer.apple.com/documentation/Metal/MTLCommandEncoder?language=objc
-pub const CommandEncoder = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn endEncoding(self: *@This()) void {
-        return objc.msgSend(self, "endEncoding", void, .{});
-    }
-
-    pub fn insertDebugSignpost(self: *@This(), string: ?*ns.String) void {
-        return objc.msgSend(self, "insertDebugSignpost:", void, .{string});
-    }
-
-    pub fn pushDebugGroup(self: *@This(), string: ?*ns.String) void {
-        return objc.msgSend(self, "pushDebugGroup:", void, .{string});
-    }
-
-    pub fn popDebugGroup(self: *@This()) void {
-        return objc.msgSend(self, "popDebugGroup", void, .{});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLAllocation?language=objc
-pub const Allocation = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn allocatedSize(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "allocatedSize", objc.NSUInteger, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLResource?language=objc
-pub const Resource = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Allocation, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn setPurgeableState(self: *@This(), state: PurgeableState) PurgeableState {
-        return objc.msgSend(self, "setPurgeableState:", PurgeableState, .{state});
-    }
-
-    pub fn makeAliasable(self: *@This()) void {
-        return objc.msgSend(self, "makeAliasable", void, .{});
-    }
-
-    pub fn isAliasable(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isAliasable", objc.BOOL, .{});
-    }
-
-    pub fn setOwnerWithIdentity(self: *@This(), task_id_token: objc.task_id_token_t) objc.kern_return_t {
-        return objc.msgSend(self, "setOwnerWithIdentity:", objc.kern_return_t, .{task_id_token});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn cpuCacheMode(self: *@This()) CPUCacheMode {
-        return objc.msgSend(self, "cpuCacheMode", CPUCacheMode, .{});
-    }
-
-    pub fn storageMode(self: *@This()) StorageMode {
-        return objc.msgSend(self, "storageMode", StorageMode, .{});
-    }
-
-    pub fn hazardTrackingMode(self: *@This()) HazardTrackingMode {
-        return objc.msgSend(self, "hazardTrackingMode", HazardTrackingMode, .{});
-    }
-
-    pub fn resourceOptions(self: *@This()) ResourceOptions {
-        return objc.msgSend(self, "resourceOptions", ResourceOptions, .{});
-    }
-
-    pub fn heap(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "heap", ?*anyopaque, .{});
-    }
-
-    pub fn heapOffset(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "heapOffset", objc.NSUInteger, .{});
-    }
-
-    pub fn allocatedSize(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "allocatedSize", objc.NSUInteger, .{});
-    }
-
-};
-
 /// https://developer.apple.com/documentation/Metal/MTLBuffer?language=objc
 pub const Buffer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource, });
@@ -1574,6 +400,227 @@ pub const Buffer = opaque {
 
     pub fn gpuAddress(self: *@This()) objc.uint64_t {
         return objc.msgSend(self, "gpuAddress", objc.uint64_t, .{});
+    }
+
+};
+
+pub const TextureType = enum(objc.NSUInteger) {
+    1D = 0,
+    1DArray = 1,
+    2D = 2,
+    2DArray = 3,
+    2DMultisample = 4,
+    Cube = 5,
+    CubeArray = 6,
+    3D = 7,
+    2DMultisampleArray = 8,
+    TextureBuffer = 9,
+};
+
+pub const TextureSwizzle = enum(objc.uint8_t) {
+    Zero = 0,
+    One = 1,
+    Red = 2,
+    Green = 3,
+    Blue = 4,
+    Alpha = 5,
+};
+
+pub const TextureSwizzleChannels = extern struct {
+    red: TextureSwizzle,
+    green: TextureSwizzle,
+    blue: TextureSwizzle,
+    alpha: TextureSwizzle,
+};
+
+pub extern "Metal" fn TextureSwizzleChannelsMake(r: TextureSwizzle, g: TextureSwizzle, b: TextureSwizzle, a: TextureSwizzle, ) callconv(.C) TextureSwizzleChannels;
+
+/// https://developer.apple.com/documentation/Metal/MTLSharedTextureHandle?language=objc
+pub const SharedTextureHandle = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLSharedTextureHandle", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+};
+
+pub const SharedTextureHandlePrivate = extern struct {};
+
+pub const TextureUsage = enum(objc.NSUInteger) {
+    Unknown = 0,
+    ShaderRead = 1,
+    ShaderWrite = 2,
+    RenderTarget = 4,
+    PixelFormatView = 16,
+    ShaderAtomic = 32,
+};
+
+pub const TextureCompressionType = enum(objc.NSInteger) {
+    Lossless = 0,
+    Lossy = 1,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLTextureDescriptor?language=objc
+pub const TextureDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLTextureDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn texture2DDescriptorWithPixelFormatWidthHeightMipmapped(self: *@This(), pixelFormat: PixelFormat, width: objc.NSUInteger, height: objc.NSUInteger, mipmapped: objc.BOOL, ) ?*TextureDescriptor {
+        return objc.msgSend(self, "texture2DDescriptorWithPixelFormat:width:height:mipmapped:", ?*TextureDescriptor, .{pixelFormat, width, height, mipmapped, });
+    }
+
+    pub fn textureCubeDescriptorWithPixelFormatSizeMipmapped(self: *@This(), pixelFormat: PixelFormat, size: objc.NSUInteger, mipmapped: objc.BOOL) ?*TextureDescriptor {
+        return objc.msgSend(self, "textureCubeDescriptorWithPixelFormat:size:mipmapped:", ?*TextureDescriptor, .{pixelFormat, size, mipmapped});
+    }
+
+    pub fn textureBufferDescriptorWithPixelFormatWidthResourceOptionsUsage(self: *@This(), pixelFormat: PixelFormat, width: objc.NSUInteger, resourceOptions: ResourceOptions, usage: TextureUsage, ) ?*TextureDescriptor {
+        return objc.msgSend(self, "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:", ?*TextureDescriptor, .{pixelFormat, width, resourceOptions, usage, });
+    }
+
+    pub fn textureType(self: *@This()) TextureType {
+        return objc.msgSend(self, "textureType", TextureType, .{});
+    }
+
+    pub fn setTextureType(self: *@This(), textureType: TextureType) void {
+        return objc.msgSend(self, "setTextureType:", void, .{textureType});
+    }
+
+    pub fn pixelFormat(self: *@This()) PixelFormat {
+        return objc.msgSend(self, "pixelFormat", PixelFormat, .{});
+    }
+
+    pub fn setPixelFormat(self: *@This(), pixelFormat: PixelFormat) void {
+        return objc.msgSend(self, "setPixelFormat:", void, .{pixelFormat});
+    }
+
+    pub fn width(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "width", objc.NSUInteger, .{});
+    }
+
+    pub fn setWidth(self: *@This(), width: objc.NSUInteger) void {
+        return objc.msgSend(self, "setWidth:", void, .{width});
+    }
+
+    pub fn height(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "height", objc.NSUInteger, .{});
+    }
+
+    pub fn setHeight(self: *@This(), height: objc.NSUInteger) void {
+        return objc.msgSend(self, "setHeight:", void, .{height});
+    }
+
+    pub fn depth(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "depth", objc.NSUInteger, .{});
+    }
+
+    pub fn setDepth(self: *@This(), depth: objc.NSUInteger) void {
+        return objc.msgSend(self, "setDepth:", void, .{depth});
+    }
+
+    pub fn mipmapLevelCount(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "mipmapLevelCount", objc.NSUInteger, .{});
+    }
+
+    pub fn setMipmapLevelCount(self: *@This(), mipmapLevelCount: objc.NSUInteger) void {
+        return objc.msgSend(self, "setMipmapLevelCount:", void, .{mipmapLevelCount});
+    }
+
+    pub fn sampleCount(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "sampleCount", objc.NSUInteger, .{});
+    }
+
+    pub fn setSampleCount(self: *@This(), sampleCount: objc.NSUInteger) void {
+        return objc.msgSend(self, "setSampleCount:", void, .{sampleCount});
+    }
+
+    pub fn arrayLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "arrayLength", objc.NSUInteger, .{});
+    }
+
+    pub fn setArrayLength(self: *@This(), arrayLength: objc.NSUInteger) void {
+        return objc.msgSend(self, "setArrayLength:", void, .{arrayLength});
+    }
+
+    pub fn resourceOptions(self: *@This()) ResourceOptions {
+        return objc.msgSend(self, "resourceOptions", ResourceOptions, .{});
+    }
+
+    pub fn setResourceOptions(self: *@This(), resourceOptions: ResourceOptions) void {
+        return objc.msgSend(self, "setResourceOptions:", void, .{resourceOptions});
+    }
+
+    pub fn cpuCacheMode(self: *@This()) CPUCacheMode {
+        return objc.msgSend(self, "cpuCacheMode", CPUCacheMode, .{});
+    }
+
+    pub fn setCpuCacheMode(self: *@This(), cpuCacheMode: CPUCacheMode) void {
+        return objc.msgSend(self, "setCpuCacheMode:", void, .{cpuCacheMode});
+    }
+
+    pub fn storageMode(self: *@This()) StorageMode {
+        return objc.msgSend(self, "storageMode", StorageMode, .{});
+    }
+
+    pub fn setStorageMode(self: *@This(), storageMode: StorageMode) void {
+        return objc.msgSend(self, "setStorageMode:", void, .{storageMode});
+    }
+
+    pub fn hazardTrackingMode(self: *@This()) HazardTrackingMode {
+        return objc.msgSend(self, "hazardTrackingMode", HazardTrackingMode, .{});
+    }
+
+    pub fn setHazardTrackingMode(self: *@This(), hazardTrackingMode: HazardTrackingMode) void {
+        return objc.msgSend(self, "setHazardTrackingMode:", void, .{hazardTrackingMode});
+    }
+
+    pub fn usage(self: *@This()) TextureUsage {
+        return objc.msgSend(self, "usage", TextureUsage, .{});
+    }
+
+    pub fn setUsage(self: *@This(), usage: TextureUsage) void {
+        return objc.msgSend(self, "setUsage:", void, .{usage});
+    }
+
+    pub fn allowGPUOptimizedContents(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "allowGPUOptimizedContents", objc.BOOL, .{});
+    }
+
+    pub fn setAllowGPUOptimizedContents(self: *@This(), allowGPUOptimizedContents: objc.BOOL) void {
+        return objc.msgSend(self, "setAllowGPUOptimizedContents:", void, .{allowGPUOptimizedContents});
+    }
+
+    pub fn compressionType(self: *@This()) TextureCompressionType {
+        return objc.msgSend(self, "compressionType", TextureCompressionType, .{});
+    }
+
+    pub fn setCompressionType(self: *@This(), compressionType: TextureCompressionType) void {
+        return objc.msgSend(self, "setCompressionType:", void, .{compressionType});
+    }
+
+    pub fn swizzle(self: *@This()) TextureSwizzleChannels {
+        return objc.msgSend(self, "swizzle", TextureSwizzleChannels, .{});
+    }
+
+    pub fn setSwizzle(self: *@This(), swizzle: TextureSwizzleChannels) void {
+        return objc.msgSend(self, "setSwizzle:", void, .{swizzle});
     }
 
 };
@@ -1736,6 +783,417 @@ pub const Texture = opaque {
 
 };
 
+pub const DataType = enum(objc.NSUInteger) {
+    None = 0,
+    Struct = 1,
+    Array = 2,
+    Float = 3,
+    Float2 = 4,
+    Float3 = 5,
+    Float4 = 6,
+    Float2x2 = 7,
+    Float2x3 = 8,
+    Float2x4 = 9,
+    Float3x2 = 10,
+    Float3x3 = 11,
+    Float3x4 = 12,
+    Float4x2 = 13,
+    Float4x3 = 14,
+    Float4x4 = 15,
+    Half = 16,
+    Half2 = 17,
+    Half3 = 18,
+    Half4 = 19,
+    Half2x2 = 20,
+    Half2x3 = 21,
+    Half2x4 = 22,
+    Half3x2 = 23,
+    Half3x3 = 24,
+    Half3x4 = 25,
+    Half4x2 = 26,
+    Half4x3 = 27,
+    Half4x4 = 28,
+    Int = 29,
+    Int2 = 30,
+    Int3 = 31,
+    Int4 = 32,
+    UInt = 33,
+    UInt2 = 34,
+    UInt3 = 35,
+    UInt4 = 36,
+    Short = 37,
+    Short2 = 38,
+    Short3 = 39,
+    Short4 = 40,
+    UShort = 41,
+    UShort2 = 42,
+    UShort3 = 43,
+    UShort4 = 44,
+    Char = 45,
+    Char2 = 46,
+    Char3 = 47,
+    Char4 = 48,
+    UChar = 49,
+    UChar2 = 50,
+    UChar3 = 51,
+    UChar4 = 52,
+    Bool = 53,
+    Bool2 = 54,
+    Bool3 = 55,
+    Bool4 = 56,
+    Texture = 58,
+    Sampler = 59,
+    Pointer = 60,
+    R8Unorm = 62,
+    R8Snorm = 63,
+    R16Unorm = 64,
+    R16Snorm = 65,
+    RG8Unorm = 66,
+    RG8Snorm = 67,
+    RG16Unorm = 68,
+    RG16Snorm = 69,
+    RGBA8Unorm = 70,
+    RGBA8Unorm_sRGB = 71,
+    RGBA8Snorm = 72,
+    RGBA16Unorm = 73,
+    RGBA16Snorm = 74,
+    RGB10A2Unorm = 75,
+    RG11B10Float = 76,
+    RGB9E5Float = 77,
+    RenderPipeline = 78,
+    ComputePipeline = 79,
+    IndirectCommandBuffer = 80,
+    Long = 81,
+    Long2 = 82,
+    Long3 = 83,
+    Long4 = 84,
+    ULong = 85,
+    ULong2 = 86,
+    ULong3 = 87,
+    ULong4 = 88,
+    VisibleFunctionTable = 115,
+    IntersectionFunctionTable = 116,
+    PrimitiveAccelerationStructure = 117,
+    InstanceAccelerationStructure = 118,
+    BFloat = 121,
+    BFloat2 = 122,
+    BFloat3 = 123,
+    BFloat4 = 124,
+};
+
+pub const BindingType = enum(objc.NSInteger) {
+    Buffer = 0,
+    ThreadgroupMemory = 1,
+    Texture = 2,
+    Sampler = 3,
+    ImageblockData = 16,
+    Imageblock = 17,
+    VisibleFunctionTable = 24,
+    PrimitiveAccelerationStructure = 25,
+    InstanceAccelerationStructure = 26,
+    IntersectionFunctionTable = 27,
+    ObjectPayload = 34,
+};
+
+pub const ArgumentType = enum(objc.NSUInteger) {
+    Buffer = 0,
+    ThreadgroupMemory = 1,
+    Texture = 2,
+    Sampler = 3,
+    ImageblockData = 16,
+    Imageblock = 17,
+    VisibleFunctionTable = 24,
+    PrimitiveAccelerationStructure = 25,
+    InstanceAccelerationStructure = 26,
+    IntersectionFunctionTable = 27,
+};
+
+pub const BindingAccess = enum(objc.NSUInteger) {
+    ReadOnly = 0,
+    ReadWrite = 1,
+    WriteOnly = 2,
+    ArgumentAccessReadOnly = 0,
+    ArgumentAccessReadWrite = 1,
+    ArgumentAccessWriteOnly = 2,
+};
+
+pub const ArgumentAccess = BindingAccess;
+
+/// https://developer.apple.com/documentation/Metal/MTLType?language=objc
+pub const Type = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLType", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn dataType(self: *@This()) DataType {
+        return objc.msgSend(self, "dataType", DataType, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLStructMember?language=objc
+pub const StructMember = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLStructMember", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn structType(self: *@This()) ?*StructType {
+        return objc.msgSend(self, "structType", ?*StructType, .{});
+    }
+
+    pub fn arrayType(self: *@This()) ?*ArrayType {
+        return objc.msgSend(self, "arrayType", ?*ArrayType, .{});
+    }
+
+    pub fn textureReferenceType(self: *@This()) ?*TextureReferenceType {
+        return objc.msgSend(self, "textureReferenceType", ?*TextureReferenceType, .{});
+    }
+
+    pub fn pointerType(self: *@This()) ?*PointerType {
+        return objc.msgSend(self, "pointerType", ?*PointerType, .{});
+    }
+
+    pub fn name(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "name", ?*ns.String, .{});
+    }
+
+    pub fn offset(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "offset", objc.NSUInteger, .{});
+    }
+
+    pub fn dataType(self: *@This()) DataType {
+        return objc.msgSend(self, "dataType", DataType, .{});
+    }
+
+    pub fn argumentIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "argumentIndex", objc.NSUInteger, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLStructType?language=objc
+pub const StructType = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLStructType", @This(), Type, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn memberByName(self: *@This(), name: ?*ns.String) ?*StructMember {
+        return objc.msgSend(self, "memberByName:", ?*StructMember, .{name});
+    }
+
+    pub fn members(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "members", ?*anyopaque, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLArrayType?language=objc
+pub const ArrayType = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLArrayType", @This(), Type, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn elementStructType(self: *@This()) ?*StructType {
+        return objc.msgSend(self, "elementStructType", ?*StructType, .{});
+    }
+
+    pub fn elementArrayType(self: *@This()) ?*ArrayType {
+        return objc.msgSend(self, "elementArrayType", ?*ArrayType, .{});
+    }
+
+    pub fn elementTextureReferenceType(self: *@This()) ?*TextureReferenceType {
+        return objc.msgSend(self, "elementTextureReferenceType", ?*TextureReferenceType, .{});
+    }
+
+    pub fn elementPointerType(self: *@This()) ?*PointerType {
+        return objc.msgSend(self, "elementPointerType", ?*PointerType, .{});
+    }
+
+    pub fn elementType(self: *@This()) DataType {
+        return objc.msgSend(self, "elementType", DataType, .{});
+    }
+
+    pub fn arrayLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "arrayLength", objc.NSUInteger, .{});
+    }
+
+    pub fn stride(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "stride", objc.NSUInteger, .{});
+    }
+
+    pub fn argumentIndexStride(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "argumentIndexStride", objc.NSUInteger, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLPointerType?language=objc
+pub const PointerType = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLPointerType", @This(), Type, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn elementStructType(self: *@This()) ?*StructType {
+        return objc.msgSend(self, "elementStructType", ?*StructType, .{});
+    }
+
+    pub fn elementArrayType(self: *@This()) ?*ArrayType {
+        return objc.msgSend(self, "elementArrayType", ?*ArrayType, .{});
+    }
+
+    pub fn elementType(self: *@This()) DataType {
+        return objc.msgSend(self, "elementType", DataType, .{});
+    }
+
+    pub fn access(self: *@This()) BindingAccess {
+        return objc.msgSend(self, "access", BindingAccess, .{});
+    }
+
+    pub fn alignment(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "alignment", objc.NSUInteger, .{});
+    }
+
+    pub fn dataSize(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "dataSize", objc.NSUInteger, .{});
+    }
+
+    pub fn elementIsArgumentBuffer(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "elementIsArgumentBuffer", objc.BOOL, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLTextureReferenceType?language=objc
+pub const TextureReferenceType = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLTextureReferenceType", @This(), Type, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn textureDataType(self: *@This()) DataType {
+        return objc.msgSend(self, "textureDataType", DataType, .{});
+    }
+
+    pub fn textureType(self: *@This()) TextureType {
+        return objc.msgSend(self, "textureType", TextureType, .{});
+    }
+
+    pub fn access(self: *@This()) BindingAccess {
+        return objc.msgSend(self, "access", BindingAccess, .{});
+    }
+
+    pub fn isDepthTexture(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isDepthTexture", objc.BOOL, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLArgument?language=objc
+pub const Argument = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLArgument", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn name(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "name", ?*ns.String, .{});
+    }
+
+    pub fn @"type"(self: *@This()) ArgumentType {
+        return objc.msgSend(self, "type", ArgumentType, .{});
+    }
+
+    pub fn access(self: *@This()) BindingAccess {
+        return objc.msgSend(self, "access", BindingAccess, .{});
+    }
+
+    pub fn index(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "index", objc.NSUInteger, .{});
+    }
+
+    pub fn isActive(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isActive", objc.BOOL, .{});
+    }
+
+    pub fn bufferAlignment(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "bufferAlignment", objc.NSUInteger, .{});
+    }
+
+    pub fn bufferDataSize(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "bufferDataSize", objc.NSUInteger, .{});
+    }
+
+    pub fn bufferDataType(self: *@This()) DataType {
+        return objc.msgSend(self, "bufferDataType", DataType, .{});
+    }
+
+    pub fn bufferStructType(self: *@This()) ?*StructType {
+        return objc.msgSend(self, "bufferStructType", ?*StructType, .{});
+    }
+
+    pub fn bufferPointerType(self: *@This()) ?*PointerType {
+        return objc.msgSend(self, "bufferPointerType", ?*PointerType, .{});
+    }
+
+    pub fn threadgroupMemoryAlignment(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "threadgroupMemoryAlignment", objc.NSUInteger, .{});
+    }
+
+    pub fn threadgroupMemoryDataSize(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "threadgroupMemoryDataSize", objc.NSUInteger, .{});
+    }
+
+    pub fn textureType(self: *@This()) TextureType {
+        return objc.msgSend(self, "textureType", TextureType, .{});
+    }
+
+    pub fn textureDataType(self: *@This()) DataType {
+        return objc.msgSend(self, "textureDataType", DataType, .{});
+    }
+
+    pub fn isDepthTexture(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isDepthTexture", objc.BOOL, .{});
+    }
+
+    pub fn arrayLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "arrayLength", objc.NSUInteger, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLBinding?language=objc
 pub const Binding = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -1748,7 +1206,7 @@ pub const Binding = opaque {
         return objc.msgSend(self, "name", ?*ns.String, .{});
     }
 
-    pub fn type(self: *@This()) BindingType {
+    pub fn @"type"(self: *@This()) BindingType {
         return objc.msgSend(self, "type", BindingType, .{});
     }
 
@@ -1862,6 +1320,233 @@ pub const ObjectPayloadBinding = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLFunctionConstantValues?language=objc
+pub const FunctionConstantValues = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLFunctionConstantValues", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn setConstantValueTypeAtIndex(self: *@This(), value: ?*anyopaque, @"type": DataType, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setConstantValue:type:atIndex:", void, .{value, @"type", index});
+    }
+
+    pub fn setConstantValuesTypeWithRange(self: *@This(), values: ?*anyopaque, @"type": DataType, range: ns.Range) void {
+        return objc.msgSend(self, "setConstantValues:type:withRange:", void, .{values, @"type", range});
+    }
+
+    pub fn setConstantValueTypeWithName(self: *@This(), value: ?*anyopaque, @"type": DataType, name: ?*ns.String) void {
+        return objc.msgSend(self, "setConstantValue:type:withName:", void, .{value, @"type", name});
+    }
+
+    pub fn reset(self: *@This()) void {
+        return objc.msgSend(self, "reset", void, .{});
+    }
+
+};
+
+pub const FunctionOptions = enum(objc.NSUInteger) {
+    None = 0,
+    CompileToBinary = 1,
+    StoreFunctionInMetalPipelinesScript = 2,
+    StoreFunctionInMetalScript = 2,
+    FailOnBinaryArchiveMiss = 4,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLFunctionDescriptor?language=objc
+pub const FunctionDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLFunctionDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn functionDescriptor(self: *@This()) ?*FunctionDescriptor {
+        return objc.msgSend(self, "functionDescriptor", ?*FunctionDescriptor, .{});
+    }
+
+    pub fn name(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "name", ?*ns.String, .{});
+    }
+
+    pub fn setName(self: *@This(), name: ?*ns.String) void {
+        return objc.msgSend(self, "setName:", void, .{name});
+    }
+
+    pub fn specializedName(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "specializedName", ?*ns.String, .{});
+    }
+
+    pub fn setSpecializedName(self: *@This(), specializedName: ?*ns.String) void {
+        return objc.msgSend(self, "setSpecializedName:", void, .{specializedName});
+    }
+
+    pub fn constantValues(self: *@This()) ?*FunctionConstantValues {
+        return objc.msgSend(self, "constantValues", ?*FunctionConstantValues, .{});
+    }
+
+    pub fn setConstantValues(self: *@This(), constantValues: ?*FunctionConstantValues) void {
+        return objc.msgSend(self, "setConstantValues:", void, .{constantValues});
+    }
+
+    pub fn options(self: *@This()) FunctionOptions {
+        return objc.msgSend(self, "options", FunctionOptions, .{});
+    }
+
+    pub fn setOptions(self: *@This(), options: FunctionOptions) void {
+        return objc.msgSend(self, "setOptions:", void, .{options});
+    }
+
+    pub fn binaryArchives(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "binaryArchives", ?*anyopaque, .{});
+    }
+
+    pub fn setBinaryArchives(self: *@This(), binaryArchives: ?*anyopaque) void {
+        return objc.msgSend(self, "setBinaryArchives:", void, .{binaryArchives});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLIntersectionFunctionDescriptor?language=objc
+pub const IntersectionFunctionDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLIntersectionFunctionDescriptor", @This(), FunctionDescriptor, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+};
+
+pub const AutoreleasedArgument = ?*Argument;
+
+pub const PatchType = enum(objc.NSUInteger) {
+    None = 0,
+    Triangle = 1,
+    Quad = 2,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLVertexAttribute?language=objc
+pub const VertexAttribute = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLVertexAttribute", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn name(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "name", ?*ns.String, .{});
+    }
+
+    pub fn attributeIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "attributeIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn attributeType(self: *@This()) DataType {
+        return objc.msgSend(self, "attributeType", DataType, .{});
+    }
+
+    pub fn isActive(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isActive", objc.BOOL, .{});
+    }
+
+    pub fn isPatchData(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isPatchData", objc.BOOL, .{});
+    }
+
+    pub fn isPatchControlPointData(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isPatchControlPointData", objc.BOOL, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLAttribute?language=objc
+pub const Attribute = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLAttribute", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn name(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "name", ?*ns.String, .{});
+    }
+
+    pub fn attributeIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "attributeIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn attributeType(self: *@This()) DataType {
+        return objc.msgSend(self, "attributeType", DataType, .{});
+    }
+
+    pub fn isActive(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isActive", objc.BOOL, .{});
+    }
+
+    pub fn isPatchData(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isPatchData", objc.BOOL, .{});
+    }
+
+    pub fn isPatchControlPointData(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isPatchControlPointData", objc.BOOL, .{});
+    }
+
+};
+
+pub const FunctionType = enum(objc.NSUInteger) {
+    Vertex = 1,
+    Fragment = 2,
+    Kernel = 3,
+    Visible = 5,
+    Intersection = 6,
+    Mesh = 7,
+    Object = 8,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLFunctionConstant?language=objc
+pub const FunctionConstant = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLFunctionConstant", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn name(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "name", ?*ns.String, .{});
+    }
+
+    pub fn @"type"(self: *@This()) DataType {
+        return objc.msgSend(self, "type", DataType, .{});
+    }
+
+    pub fn index(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "index", objc.NSUInteger, .{});
+    }
+
+    pub fn required(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "required", objc.BOOL, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLFunction?language=objc
 pub const Function = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -1924,6 +1609,180 @@ pub const Function = opaque {
 
 };
 
+pub const LanguageVersion = enum(objc.NSUInteger) {
+    1_0 = 65536,
+    1_1 = 65537,
+    1_2 = 65538,
+    2_0 = 131072,
+    2_1 = 131073,
+    2_2 = 131074,
+    2_3 = 131075,
+    2_4 = 131076,
+    3_0 = 196608,
+    3_1 = 196609,
+    3_2 = 196610,
+};
+
+pub const LibraryType = enum(objc.NSInteger) {
+    Executable = 0,
+    Dynamic = 1,
+};
+
+pub const LibraryOptimizationLevel = enum(objc.NSInteger) {
+    Default = 0,
+    Size = 1,
+};
+
+pub const CompileSymbolVisibility = enum(objc.NSInteger) {
+    Default = 0,
+    Hidden = 1,
+};
+
+pub const MathMode = enum(objc.NSInteger) {
+    Safe = 0,
+    Relaxed = 1,
+    Fast = 2,
+};
+
+pub const MathFloatingPointFunctions = enum(objc.NSInteger) {
+    Fast = 0,
+    Precise = 1,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLCompileOptions?language=objc
+pub const CompileOptions = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLCompileOptions", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn preprocessorMacros(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "preprocessorMacros", ?*anyopaque, .{});
+    }
+
+    pub fn setPreprocessorMacros(self: *@This(), preprocessorMacros: ?*anyopaque) void {
+        return objc.msgSend(self, "setPreprocessorMacros:", void, .{preprocessorMacros});
+    }
+
+    pub fn fastMathEnabled(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "fastMathEnabled", objc.BOOL, .{});
+    }
+
+    pub fn setFastMathEnabled(self: *@This(), fastMathEnabled: objc.BOOL) void {
+        return objc.msgSend(self, "setFastMathEnabled:", void, .{fastMathEnabled});
+    }
+
+    pub fn mathMode(self: *@This()) MathMode {
+        return objc.msgSend(self, "mathMode", MathMode, .{});
+    }
+
+    pub fn setMathMode(self: *@This(), mathMode: MathMode) void {
+        return objc.msgSend(self, "setMathMode:", void, .{mathMode});
+    }
+
+    pub fn mathFloatingPointFunctions(self: *@This()) MathFloatingPointFunctions {
+        return objc.msgSend(self, "mathFloatingPointFunctions", MathFloatingPointFunctions, .{});
+    }
+
+    pub fn setMathFloatingPointFunctions(self: *@This(), mathFloatingPointFunctions: MathFloatingPointFunctions) void {
+        return objc.msgSend(self, "setMathFloatingPointFunctions:", void, .{mathFloatingPointFunctions});
+    }
+
+    pub fn languageVersion(self: *@This()) LanguageVersion {
+        return objc.msgSend(self, "languageVersion", LanguageVersion, .{});
+    }
+
+    pub fn setLanguageVersion(self: *@This(), languageVersion: LanguageVersion) void {
+        return objc.msgSend(self, "setLanguageVersion:", void, .{languageVersion});
+    }
+
+    pub fn libraryType(self: *@This()) LibraryType {
+        return objc.msgSend(self, "libraryType", LibraryType, .{});
+    }
+
+    pub fn setLibraryType(self: *@This(), libraryType: LibraryType) void {
+        return objc.msgSend(self, "setLibraryType:", void, .{libraryType});
+    }
+
+    pub fn installName(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "installName", ?*ns.String, .{});
+    }
+
+    pub fn setInstallName(self: *@This(), installName: ?*ns.String) void {
+        return objc.msgSend(self, "setInstallName:", void, .{installName});
+    }
+
+    pub fn libraries(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "libraries", ?*anyopaque, .{});
+    }
+
+    pub fn setLibraries(self: *@This(), libraries: ?*anyopaque) void {
+        return objc.msgSend(self, "setLibraries:", void, .{libraries});
+    }
+
+    pub fn preserveInvariance(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "preserveInvariance", objc.BOOL, .{});
+    }
+
+    pub fn setPreserveInvariance(self: *@This(), preserveInvariance: objc.BOOL) void {
+        return objc.msgSend(self, "setPreserveInvariance:", void, .{preserveInvariance});
+    }
+
+    pub fn optimizationLevel(self: *@This()) LibraryOptimizationLevel {
+        return objc.msgSend(self, "optimizationLevel", LibraryOptimizationLevel, .{});
+    }
+
+    pub fn setOptimizationLevel(self: *@This(), optimizationLevel: LibraryOptimizationLevel) void {
+        return objc.msgSend(self, "setOptimizationLevel:", void, .{optimizationLevel});
+    }
+
+    pub fn compileSymbolVisibility(self: *@This()) CompileSymbolVisibility {
+        return objc.msgSend(self, "compileSymbolVisibility", CompileSymbolVisibility, .{});
+    }
+
+    pub fn setCompileSymbolVisibility(self: *@This(), compileSymbolVisibility: CompileSymbolVisibility) void {
+        return objc.msgSend(self, "setCompileSymbolVisibility:", void, .{compileSymbolVisibility});
+    }
+
+    pub fn allowReferencingUndefinedSymbols(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "allowReferencingUndefinedSymbols", objc.BOOL, .{});
+    }
+
+    pub fn setAllowReferencingUndefinedSymbols(self: *@This(), allowReferencingUndefinedSymbols: objc.BOOL) void {
+        return objc.msgSend(self, "setAllowReferencingUndefinedSymbols:", void, .{allowReferencingUndefinedSymbols});
+    }
+
+    pub fn maxTotalThreadsPerThreadgroup(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "maxTotalThreadsPerThreadgroup", objc.NSUInteger, .{});
+    }
+
+    pub fn setMaxTotalThreadsPerThreadgroup(self: *@This(), maxTotalThreadsPerThreadgroup: objc.NSUInteger) void {
+        return objc.msgSend(self, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup});
+    }
+
+    pub fn enableLogging(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "enableLogging", objc.BOOL, .{});
+    }
+
+    pub fn setEnableLogging(self: *@This(), enableLogging: objc.BOOL) void {
+        return objc.msgSend(self, "setEnableLogging:", void, .{enableLogging});
+    }
+
+};
+
+pub const LibraryError = enum(objc.NSUInteger) {
+    Unsupported = 1,
+    Internal = 2,
+    CompileFailure = 3,
+    CompileWarning = 4,
+    FunctionNotFound = 5,
+    FileNotFound = 6,
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLLibrary?language=objc
 pub const Library = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -1976,7 +1835,7 @@ pub const Library = opaque {
         return objc.msgSend(self, "functionNames", ?*anyopaque, .{});
     }
 
-    pub fn type(self: *@This()) LibraryType {
+    pub fn @"type"(self: *@This()) LibraryType {
         return objc.msgSend(self, "type", LibraryType, .{});
     }
 
@@ -1984,6 +1843,34 @@ pub const Library = opaque {
         return objc.msgSend(self, "installName", ?*ns.String, .{});
     }
 
+};
+
+pub const CommonCounter = ?*const ns.String;
+
+pub const CommonCounterSet = ?*const ns.String;
+
+pub const CounterResultTimestamp = extern struct {
+    timestamp: objc.uint64_t,
+};
+
+pub const CounterResultStageUtilization = extern struct {
+    totalCycles: objc.uint64_t,
+    vertexCycles: objc.uint64_t,
+    tessellationCycles: objc.uint64_t,
+    postTessellationVertexCycles: objc.uint64_t,
+    fragmentCycles: objc.uint64_t,
+    renderTargetCycles: objc.uint64_t,
+};
+
+pub const CounterResultStatistic = extern struct {
+    tessellationInputPatches: objc.uint64_t,
+    vertexInvocations: objc.uint64_t,
+    postTessellationVertexInvocations: objc.uint64_t,
+    clipperInvocations: objc.uint64_t,
+    clipperPrimitivesOut: objc.uint64_t,
+    fragmentInvocations: objc.uint64_t,
+    fragmentsPassed: objc.uint64_t,
+    computeKernelInvocations: objc.uint64_t,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLCounter?language=objc
@@ -2018,6 +1905,51 @@ pub const CounterSet = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLCounterSampleBufferDescriptor?language=objc
+pub const CounterSampleBufferDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLCounterSampleBufferDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn counterSet(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "counterSet", ?*anyopaque, .{});
+    }
+
+    pub fn setCounterSet(self: *@This(), counterSet: ?*anyopaque) void {
+        return objc.msgSend(self, "setCounterSet:", void, .{counterSet});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn storageMode(self: *@This()) StorageMode {
+        return objc.msgSend(self, "storageMode", StorageMode, .{});
+    }
+
+    pub fn setStorageMode(self: *@This(), storageMode: StorageMode) void {
+        return objc.msgSend(self, "setStorageMode:", void, .{storageMode});
+    }
+
+    pub fn sampleCount(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "sampleCount", objc.NSUInteger, .{});
+    }
+
+    pub fn setSampleCount(self: *@This(), sampleCount: objc.NSUInteger) void {
+        return objc.msgSend(self, "setSampleCount:", void, .{sampleCount});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLCounterSampleBuffer?language=objc
 pub const CounterSampleBuffer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -2040,6 +1972,240 @@ pub const CounterSampleBuffer = opaque {
 
     pub fn sampleCount(self: *@This()) objc.NSUInteger {
         return objc.msgSend(self, "sampleCount", objc.NSUInteger, .{});
+    }
+
+};
+
+pub const CounterSampleBufferError = enum(objc.NSInteger) {
+    OutOfMemory = 0,
+    Invalid = 1,
+    Internal = 2,
+};
+
+pub const IOCompressionMethod = enum(objc.NSInteger) {
+    Zlib = 0,
+    LZFSE = 1,
+    LZ4 = 2,
+    LZMA = 3,
+    LZBitmap = 4,
+};
+
+pub extern "Metal" fn CreateSystemDefaultDevice() callconv(.C) ?*anyopaque;
+
+pub extern "Metal" fn CopyAllDevices() callconv(.C) ?*anyopaque;
+
+pub const DeviceNotificationName = ?*ns.String;
+
+pub const DeviceNotificationHandler = *const fn(?*anyopaque, DeviceNotificationName) callconv(.C) void;
+
+pub extern "Metal" fn CopyAllDevicesWithObserver(observer: ?*?*anyopaque, handler: DeviceNotificationHandler) callconv(.C) ?*anyopaque;
+
+pub extern "Metal" fn RemoveDeviceObserver(observer: ?*anyopaque) callconv(.C) void;
+
+pub const FeatureSet = enum(objc.NSUInteger) {
+    _iOS_GPUFamily1_v1 = 0,
+    _iOS_GPUFamily2_v1 = 1,
+    _iOS_GPUFamily1_v2 = 2,
+    _iOS_GPUFamily2_v2 = 3,
+    _iOS_GPUFamily3_v1 = 4,
+    _iOS_GPUFamily1_v3 = 5,
+    _iOS_GPUFamily2_v3 = 6,
+    _iOS_GPUFamily3_v2 = 7,
+    _iOS_GPUFamily1_v4 = 8,
+    _iOS_GPUFamily2_v4 = 9,
+    _iOS_GPUFamily3_v3 = 10,
+    _iOS_GPUFamily4_v1 = 11,
+    _iOS_GPUFamily1_v5 = 12,
+    _iOS_GPUFamily2_v5 = 13,
+    _iOS_GPUFamily3_v4 = 14,
+    _iOS_GPUFamily4_v2 = 15,
+    _iOS_GPUFamily5_v1 = 16,
+    _macOS_GPUFamily1_v1 = 10000,
+    _OSX_GPUFamily1_v1 = 10000,
+    _macOS_GPUFamily1_v2 = 10001,
+    _OSX_GPUFamily1_v2 = 10001,
+    _macOS_ReadWriteTextureTier2 = 10002,
+    _OSX_ReadWriteTextureTier2 = 10002,
+    _macOS_GPUFamily1_v3 = 10003,
+    _macOS_GPUFamily1_v4 = 10004,
+    _macOS_GPUFamily2_v1 = 10005,
+    _tvOS_GPUFamily1_v1 = 30000,
+    _TVOS_GPUFamily1_v1 = 30000,
+    _tvOS_GPUFamily1_v2 = 30001,
+    _tvOS_GPUFamily1_v3 = 30002,
+    _tvOS_GPUFamily2_v1 = 30003,
+    _tvOS_GPUFamily1_v4 = 30004,
+    _tvOS_GPUFamily2_v2 = 30005,
+};
+
+pub const GPUFamily = enum(objc.NSInteger) {
+    Apple1 = 1001,
+    Apple2 = 1002,
+    Apple3 = 1003,
+    Apple4 = 1004,
+    Apple5 = 1005,
+    Apple6 = 1006,
+    Apple7 = 1007,
+    Apple8 = 1008,
+    Apple9 = 1009,
+    Mac1 = 2001,
+    Mac2 = 2002,
+    Common1 = 3001,
+    Common2 = 3002,
+    Common3 = 3003,
+    MacCatalyst1 = 4001,
+    MacCatalyst2 = 4002,
+    Metal3 = 5001,
+};
+
+pub const DeviceLocation = enum(objc.NSUInteger) {
+    BuiltIn = 0,
+    Slot = 1,
+    External = 2,
+    Unspecified = -1,
+};
+
+pub const PipelineOption = enum(objc.NSUInteger) {
+    None = 0,
+    ArgumentInfo = 1,
+    BindingInfo = 1,
+    BufferTypeInfo = 2,
+    FailOnBinaryArchiveMiss = 4,
+};
+
+pub const ReadWriteTextureTier = enum(objc.NSUInteger) {
+    None = 0,
+    1 = 1,
+    2 = 2,
+};
+
+pub const ArgumentBuffersTier = enum(objc.NSUInteger) {
+    1 = 0,
+    2 = 1,
+};
+
+pub const SparseTextureRegionAlignmentMode = enum(objc.NSUInteger) {
+    Outward = 0,
+    Inward = 1,
+};
+
+pub const SparsePageSize = enum(objc.NSInteger) {
+    16 = 101,
+    64 = 102,
+    256 = 103,
+};
+
+pub const AccelerationStructureSizes = extern struct {
+    accelerationStructureSize: objc.NSUInteger,
+    buildScratchBufferSize: objc.NSUInteger,
+    refitScratchBufferSize: objc.NSUInteger,
+};
+
+pub const CounterSamplingPoint = enum(objc.NSUInteger) {
+    AtStageBoundary = 0,
+    AtDrawBoundary = 1,
+    AtDispatchBoundary = 2,
+    AtTileDispatchBoundary = 3,
+    AtBlitBoundary = 4,
+};
+
+pub const SizeAndAlign = extern struct {
+    size: objc.NSUInteger,
+    @"align": objc.NSUInteger,
+};
+
+pub const AutoreleasedRenderPipelineReflection = ?*RenderPipelineReflection;
+
+pub const AutoreleasedComputePipelineReflection = ?*ComputePipelineReflection;
+
+pub const NewLibraryCompletionHandler = *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void;
+
+pub const NewRenderPipelineStateCompletionHandler = *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void;
+
+pub const NewRenderPipelineStateWithReflectionCompletionHandler = *const fn(?*anyopaque, ?*RenderPipelineReflection, ?*ns.Error) callconv(.C) void;
+
+pub const NewComputePipelineStateCompletionHandler = *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void;
+
+pub const NewComputePipelineStateWithReflectionCompletionHandler = *const fn(?*anyopaque, ?*ComputePipelineReflection, ?*ns.Error) callconv(.C) void;
+
+/// https://developer.apple.com/documentation/Metal/MTLArgumentDescriptor?language=objc
+pub const ArgumentDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLArgumentDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn argumentDescriptor(self: *@This()) ?*ArgumentDescriptor {
+        return objc.msgSend(self, "argumentDescriptor", ?*ArgumentDescriptor, .{});
+    }
+
+    pub fn dataType(self: *@This()) DataType {
+        return objc.msgSend(self, "dataType", DataType, .{});
+    }
+
+    pub fn setDataType(self: *@This(), dataType: DataType) void {
+        return objc.msgSend(self, "setDataType:", void, .{dataType});
+    }
+
+    pub fn index(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "index", objc.NSUInteger, .{});
+    }
+
+    pub fn setIndex(self: *@This(), index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setIndex:", void, .{index});
+    }
+
+    pub fn arrayLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "arrayLength", objc.NSUInteger, .{});
+    }
+
+    pub fn setArrayLength(self: *@This(), arrayLength: objc.NSUInteger) void {
+        return objc.msgSend(self, "setArrayLength:", void, .{arrayLength});
+    }
+
+    pub fn access(self: *@This()) BindingAccess {
+        return objc.msgSend(self, "access", BindingAccess, .{});
+    }
+
+    pub fn setAccess(self: *@This(), access: BindingAccess) void {
+        return objc.msgSend(self, "setAccess:", void, .{access});
+    }
+
+    pub fn textureType(self: *@This()) TextureType {
+        return objc.msgSend(self, "textureType", TextureType, .{});
+    }
+
+    pub fn setTextureType(self: *@This(), textureType: TextureType) void {
+        return objc.msgSend(self, "setTextureType:", void, .{textureType});
+    }
+
+    pub fn constantBlockAlignment(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "constantBlockAlignment", objc.NSUInteger, .{});
+    }
+
+    pub fn setConstantBlockAlignment(self: *@This(), constantBlockAlignment: objc.NSUInteger) void {
+        return objc.msgSend(self, "setConstantBlockAlignment:", void, .{constantBlockAlignment});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLArchitecture?language=objc
+pub const Architecture = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLArchitecture", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn name(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "name", ?*ns.String, .{});
     }
 
 };
@@ -2534,6 +2700,8 @@ pub const Device = opaque {
 
 };
 
+pub const Timestamp = objc.uint64_t;
+
 /// https://developer.apple.com/documentation/Metal/MTLFence?language=objc
 pub const Fence = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -2554,6 +2722,101 @@ pub const Fence = opaque {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor?language=objc
+pub const ResourceStatePassSampleBufferAttachmentDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLResourceStatePassSampleBufferAttachmentDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn sampleBuffer(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "sampleBuffer", ?*anyopaque, .{});
+    }
+
+    pub fn setSampleBuffer(self: *@This(), sampleBuffer: ?*anyopaque) void {
+        return objc.msgSend(self, "setSampleBuffer:", void, .{sampleBuffer});
+    }
+
+    pub fn startOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "startOfEncoderSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setStartOfEncoderSampleIndex(self: *@This(), startOfEncoderSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex});
+    }
+
+    pub fn endOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "endOfEncoderSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setEndOfEncoderSampleIndex(self: *@This(), endOfEncoderSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray?language=objc
+pub const ResourceStatePassSampleBufferAttachmentDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLResourceStatePassSampleBufferAttachmentDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*ResourceStatePassSampleBufferAttachmentDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*ResourceStatePassSampleBufferAttachmentDescriptor, .{attachmentIndex});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*ResourceStatePassSampleBufferAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLResourceStatePassDescriptor?language=objc
+pub const ResourceStatePassDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLResourceStatePassDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn resourceStatePassDescriptor(self: *@This()) ?*ResourceStatePassDescriptor {
+        return objc.msgSend(self, "resourceStatePassDescriptor", ?*ResourceStatePassDescriptor, .{});
+    }
+
+    pub fn sampleBufferAttachments(self: *@This()) ?*ResourceStatePassSampleBufferAttachmentDescriptorArray {
+        return objc.msgSend(self, "sampleBufferAttachments", ?*ResourceStatePassSampleBufferAttachmentDescriptorArray, .{});
+    }
+
+};
+
+pub const SparseTextureMappingMode = enum(objc.NSUInteger) {
+    Map = 0,
+    Unmap = 1,
+};
+
+pub const MapIndirectArguments = extern struct {
+    regionOriginX: objc.uint32_t,
+    regionOriginY: objc.uint32_t,
+    regionOriginZ: objc.uint32_t,
+    regionSizeWidth: objc.uint32_t,
+    regionSizeHeight: objc.uint32_t,
+    regionSizeDepth: objc.uint32_t,
+    mipMapLevel: objc.uint32_t,
+    sliceId: objc.uint32_t,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLResourceStateCommandEncoder?language=objc
@@ -2588,6 +2851,536 @@ pub const ResourceStateCommandEncoder = opaque {
         return objc.msgSend(self, "moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{sourceTexture, sourceSlice, sourceLevel, sourceOrigin, sourceSize, destinationTexture, destinationSlice, destinationLevel, destinationOrigin, });
     }
 
+};
+
+pub const ClearColor = extern struct {
+    red: f64,
+    green: f64,
+    blue: f64,
+    alpha: f64,
+};
+
+pub extern "Metal" fn ClearColorMake(red: f64, green: f64, blue: f64, alpha: f64, ) callconv(.C) ClearColor;
+
+pub const LoadAction = enum(objc.NSUInteger) {
+    DontCare = 0,
+    Load = 1,
+    Clear = 2,
+};
+
+pub const StoreAction = enum(objc.NSUInteger) {
+    DontCare = 0,
+    Store = 1,
+    MultisampleResolve = 2,
+    StoreAndMultisampleResolve = 3,
+    Unknown = 4,
+    CustomSampleDepthStore = 5,
+};
+
+pub const StoreActionOptions = enum(objc.NSUInteger) {
+    None = 0,
+    CustomSamplePositions = 1,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor?language=objc
+pub const RenderPassAttachmentDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLRenderPassAttachmentDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn texture(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "texture", ?*anyopaque, .{});
+    }
+
+    pub fn setTexture(self: *@This(), texture: ?*anyopaque) void {
+        return objc.msgSend(self, "setTexture:", void, .{texture});
+    }
+
+    pub fn level(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "level", objc.NSUInteger, .{});
+    }
+
+    pub fn setLevel(self: *@This(), level: objc.NSUInteger) void {
+        return objc.msgSend(self, "setLevel:", void, .{level});
+    }
+
+    pub fn slice(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "slice", objc.NSUInteger, .{});
+    }
+
+    pub fn setSlice(self: *@This(), slice: objc.NSUInteger) void {
+        return objc.msgSend(self, "setSlice:", void, .{slice});
+    }
+
+    pub fn depthPlane(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "depthPlane", objc.NSUInteger, .{});
+    }
+
+    pub fn setDepthPlane(self: *@This(), depthPlane: objc.NSUInteger) void {
+        return objc.msgSend(self, "setDepthPlane:", void, .{depthPlane});
+    }
+
+    pub fn resolveTexture(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "resolveTexture", ?*anyopaque, .{});
+    }
+
+    pub fn setResolveTexture(self: *@This(), resolveTexture: ?*anyopaque) void {
+        return objc.msgSend(self, "setResolveTexture:", void, .{resolveTexture});
+    }
+
+    pub fn resolveLevel(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "resolveLevel", objc.NSUInteger, .{});
+    }
+
+    pub fn setResolveLevel(self: *@This(), resolveLevel: objc.NSUInteger) void {
+        return objc.msgSend(self, "setResolveLevel:", void, .{resolveLevel});
+    }
+
+    pub fn resolveSlice(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "resolveSlice", objc.NSUInteger, .{});
+    }
+
+    pub fn setResolveSlice(self: *@This(), resolveSlice: objc.NSUInteger) void {
+        return objc.msgSend(self, "setResolveSlice:", void, .{resolveSlice});
+    }
+
+    pub fn resolveDepthPlane(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "resolveDepthPlane", objc.NSUInteger, .{});
+    }
+
+    pub fn setResolveDepthPlane(self: *@This(), resolveDepthPlane: objc.NSUInteger) void {
+        return objc.msgSend(self, "setResolveDepthPlane:", void, .{resolveDepthPlane});
+    }
+
+    pub fn loadAction(self: *@This()) LoadAction {
+        return objc.msgSend(self, "loadAction", LoadAction, .{});
+    }
+
+    pub fn setLoadAction(self: *@This(), loadAction: LoadAction) void {
+        return objc.msgSend(self, "setLoadAction:", void, .{loadAction});
+    }
+
+    pub fn storeAction(self: *@This()) StoreAction {
+        return objc.msgSend(self, "storeAction", StoreAction, .{});
+    }
+
+    pub fn setStoreAction(self: *@This(), storeAction: StoreAction) void {
+        return objc.msgSend(self, "setStoreAction:", void, .{storeAction});
+    }
+
+    pub fn storeActionOptions(self: *@This()) StoreActionOptions {
+        return objc.msgSend(self, "storeActionOptions", StoreActionOptions, .{});
+    }
+
+    pub fn setStoreActionOptions(self: *@This(), storeActionOptions: StoreActionOptions) void {
+        return objc.msgSend(self, "setStoreActionOptions:", void, .{storeActionOptions});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLRenderPassColorAttachmentDescriptor?language=objc
+pub const RenderPassColorAttachmentDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLRenderPassColorAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn clearColor(self: *@This()) ClearColor {
+        return objc.msgSend(self, "clearColor", ClearColor, .{});
+    }
+
+    pub fn setClearColor(self: *@This(), clearColor: ClearColor) void {
+        return objc.msgSend(self, "setClearColor:", void, .{clearColor});
+    }
+
+};
+
+pub const MultisampleDepthResolveFilter = enum(objc.NSUInteger) {
+    Sample0 = 0,
+    Min = 1,
+    Max = 2,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor?language=objc
+pub const RenderPassDepthAttachmentDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLRenderPassDepthAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn clearDepth(self: *@This()) f64 {
+        return objc.msgSend(self, "clearDepth", f64, .{});
+    }
+
+    pub fn setClearDepth(self: *@This(), clearDepth: f64) void {
+        return objc.msgSend(self, "setClearDepth:", void, .{clearDepth});
+    }
+
+    pub fn depthResolveFilter(self: *@This()) MultisampleDepthResolveFilter {
+        return objc.msgSend(self, "depthResolveFilter", MultisampleDepthResolveFilter, .{});
+    }
+
+    pub fn setDepthResolveFilter(self: *@This(), depthResolveFilter: MultisampleDepthResolveFilter) void {
+        return objc.msgSend(self, "setDepthResolveFilter:", void, .{depthResolveFilter});
+    }
+
+};
+
+pub const MultisampleStencilResolveFilter = enum(objc.NSUInteger) {
+    Sample0 = 0,
+    DepthResolvedSample = 1,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLRenderPassStencilAttachmentDescriptor?language=objc
+pub const RenderPassStencilAttachmentDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLRenderPassStencilAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn clearStencil(self: *@This()) objc.uint32_t {
+        return objc.msgSend(self, "clearStencil", objc.uint32_t, .{});
+    }
+
+    pub fn setClearStencil(self: *@This(), clearStencil: objc.uint32_t) void {
+        return objc.msgSend(self, "setClearStencil:", void, .{clearStencil});
+    }
+
+    pub fn stencilResolveFilter(self: *@This()) MultisampleStencilResolveFilter {
+        return objc.msgSend(self, "stencilResolveFilter", MultisampleStencilResolveFilter, .{});
+    }
+
+    pub fn setStencilResolveFilter(self: *@This(), stencilResolveFilter: MultisampleStencilResolveFilter) void {
+        return objc.msgSend(self, "setStencilResolveFilter:", void, .{stencilResolveFilter});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLRenderPassColorAttachmentDescriptorArray?language=objc
+pub const RenderPassColorAttachmentDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLRenderPassColorAttachmentDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*RenderPassColorAttachmentDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*RenderPassColorAttachmentDescriptor, .{attachmentIndex});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*RenderPassColorAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor?language=objc
+pub const RenderPassSampleBufferAttachmentDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLRenderPassSampleBufferAttachmentDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn sampleBuffer(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "sampleBuffer", ?*anyopaque, .{});
+    }
+
+    pub fn setSampleBuffer(self: *@This(), sampleBuffer: ?*anyopaque) void {
+        return objc.msgSend(self, "setSampleBuffer:", void, .{sampleBuffer});
+    }
+
+    pub fn startOfVertexSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "startOfVertexSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setStartOfVertexSampleIndex(self: *@This(), startOfVertexSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setStartOfVertexSampleIndex:", void, .{startOfVertexSampleIndex});
+    }
+
+    pub fn endOfVertexSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "endOfVertexSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setEndOfVertexSampleIndex(self: *@This(), endOfVertexSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setEndOfVertexSampleIndex:", void, .{endOfVertexSampleIndex});
+    }
+
+    pub fn startOfFragmentSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "startOfFragmentSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setStartOfFragmentSampleIndex(self: *@This(), startOfFragmentSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setStartOfFragmentSampleIndex:", void, .{startOfFragmentSampleIndex});
+    }
+
+    pub fn endOfFragmentSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "endOfFragmentSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setEndOfFragmentSampleIndex(self: *@This(), endOfFragmentSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setEndOfFragmentSampleIndex:", void, .{endOfFragmentSampleIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptorArray?language=objc
+pub const RenderPassSampleBufferAttachmentDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLRenderPassSampleBufferAttachmentDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*RenderPassSampleBufferAttachmentDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*RenderPassSampleBufferAttachmentDescriptor, .{attachmentIndex});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*RenderPassSampleBufferAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor?language=objc
+pub const RenderPassDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLRenderPassDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn renderPassDescriptor(self: *@This()) ?*RenderPassDescriptor {
+        return objc.msgSend(self, "renderPassDescriptor", ?*RenderPassDescriptor, .{});
+    }
+
+    pub fn setSamplePositionsCount(self: *@This(), positions: ?*SamplePosition, count: objc.NSUInteger) void {
+        return objc.msgSend(self, "setSamplePositions:count:", void, .{positions, count});
+    }
+
+    pub fn getSamplePositionsCount(self: *@This(), positions: ?*SamplePosition, count: objc.NSUInteger) objc.NSUInteger {
+        return objc.msgSend(self, "getSamplePositions:count:", objc.NSUInteger, .{positions, count});
+    }
+
+    pub fn colorAttachments(self: *@This()) ?*RenderPassColorAttachmentDescriptorArray {
+        return objc.msgSend(self, "colorAttachments", ?*RenderPassColorAttachmentDescriptorArray, .{});
+    }
+
+    pub fn depthAttachment(self: *@This()) ?*RenderPassDepthAttachmentDescriptor {
+        return objc.msgSend(self, "depthAttachment", ?*RenderPassDepthAttachmentDescriptor, .{});
+    }
+
+    pub fn setDepthAttachment(self: *@This(), depthAttachment: ?*RenderPassDepthAttachmentDescriptor) void {
+        return objc.msgSend(self, "setDepthAttachment:", void, .{depthAttachment});
+    }
+
+    pub fn stencilAttachment(self: *@This()) ?*RenderPassStencilAttachmentDescriptor {
+        return objc.msgSend(self, "stencilAttachment", ?*RenderPassStencilAttachmentDescriptor, .{});
+    }
+
+    pub fn setStencilAttachment(self: *@This(), stencilAttachment: ?*RenderPassStencilAttachmentDescriptor) void {
+        return objc.msgSend(self, "setStencilAttachment:", void, .{stencilAttachment});
+    }
+
+    pub fn visibilityResultBuffer(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "visibilityResultBuffer", ?*anyopaque, .{});
+    }
+
+    pub fn setVisibilityResultBuffer(self: *@This(), visibilityResultBuffer: ?*anyopaque) void {
+        return objc.msgSend(self, "setVisibilityResultBuffer:", void, .{visibilityResultBuffer});
+    }
+
+    pub fn renderTargetArrayLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "renderTargetArrayLength", objc.NSUInteger, .{});
+    }
+
+    pub fn setRenderTargetArrayLength(self: *@This(), renderTargetArrayLength: objc.NSUInteger) void {
+        return objc.msgSend(self, "setRenderTargetArrayLength:", void, .{renderTargetArrayLength});
+    }
+
+    pub fn imageblockSampleLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "imageblockSampleLength", objc.NSUInteger, .{});
+    }
+
+    pub fn setImageblockSampleLength(self: *@This(), imageblockSampleLength: objc.NSUInteger) void {
+        return objc.msgSend(self, "setImageblockSampleLength:", void, .{imageblockSampleLength});
+    }
+
+    pub fn threadgroupMemoryLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "threadgroupMemoryLength", objc.NSUInteger, .{});
+    }
+
+    pub fn setThreadgroupMemoryLength(self: *@This(), threadgroupMemoryLength: objc.NSUInteger) void {
+        return objc.msgSend(self, "setThreadgroupMemoryLength:", void, .{threadgroupMemoryLength});
+    }
+
+    pub fn tileWidth(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "tileWidth", objc.NSUInteger, .{});
+    }
+
+    pub fn setTileWidth(self: *@This(), tileWidth: objc.NSUInteger) void {
+        return objc.msgSend(self, "setTileWidth:", void, .{tileWidth});
+    }
+
+    pub fn tileHeight(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "tileHeight", objc.NSUInteger, .{});
+    }
+
+    pub fn setTileHeight(self: *@This(), tileHeight: objc.NSUInteger) void {
+        return objc.msgSend(self, "setTileHeight:", void, .{tileHeight});
+    }
+
+    pub fn defaultRasterSampleCount(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "defaultRasterSampleCount", objc.NSUInteger, .{});
+    }
+
+    pub fn setDefaultRasterSampleCount(self: *@This(), defaultRasterSampleCount: objc.NSUInteger) void {
+        return objc.msgSend(self, "setDefaultRasterSampleCount:", void, .{defaultRasterSampleCount});
+    }
+
+    pub fn renderTargetWidth(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "renderTargetWidth", objc.NSUInteger, .{});
+    }
+
+    pub fn setRenderTargetWidth(self: *@This(), renderTargetWidth: objc.NSUInteger) void {
+        return objc.msgSend(self, "setRenderTargetWidth:", void, .{renderTargetWidth});
+    }
+
+    pub fn renderTargetHeight(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "renderTargetHeight", objc.NSUInteger, .{});
+    }
+
+    pub fn setRenderTargetHeight(self: *@This(), renderTargetHeight: objc.NSUInteger) void {
+        return objc.msgSend(self, "setRenderTargetHeight:", void, .{renderTargetHeight});
+    }
+
+    pub fn rasterizationRateMap(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "rasterizationRateMap", ?*anyopaque, .{});
+    }
+
+    pub fn setRasterizationRateMap(self: *@This(), rasterizationRateMap: ?*anyopaque) void {
+        return objc.msgSend(self, "setRasterizationRateMap:", void, .{rasterizationRateMap});
+    }
+
+    pub fn sampleBufferAttachments(self: *@This()) ?*RenderPassSampleBufferAttachmentDescriptorArray {
+        return objc.msgSend(self, "sampleBufferAttachments", ?*RenderPassSampleBufferAttachmentDescriptorArray, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLBlitPassSampleBufferAttachmentDescriptor?language=objc
+pub const BlitPassSampleBufferAttachmentDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLBlitPassSampleBufferAttachmentDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn sampleBuffer(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "sampleBuffer", ?*anyopaque, .{});
+    }
+
+    pub fn setSampleBuffer(self: *@This(), sampleBuffer: ?*anyopaque) void {
+        return objc.msgSend(self, "setSampleBuffer:", void, .{sampleBuffer});
+    }
+
+    pub fn startOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "startOfEncoderSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setStartOfEncoderSampleIndex(self: *@This(), startOfEncoderSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex});
+    }
+
+    pub fn endOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "endOfEncoderSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setEndOfEncoderSampleIndex(self: *@This(), endOfEncoderSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLBlitPassSampleBufferAttachmentDescriptorArray?language=objc
+pub const BlitPassSampleBufferAttachmentDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLBlitPassSampleBufferAttachmentDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*BlitPassSampleBufferAttachmentDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*BlitPassSampleBufferAttachmentDescriptor, .{attachmentIndex});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*BlitPassSampleBufferAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLBlitPassDescriptor?language=objc
+pub const BlitPassDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLBlitPassDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn blitPassDescriptor(self: *@This()) ?*BlitPassDescriptor {
+        return objc.msgSend(self, "blitPassDescriptor", ?*BlitPassDescriptor, .{});
+    }
+
+    pub fn sampleBufferAttachments(self: *@This()) ?*BlitPassSampleBufferAttachmentDescriptorArray {
+        return objc.msgSend(self, "sampleBufferAttachments", ?*BlitPassSampleBufferAttachmentDescriptorArray, .{});
+    }
+
+};
+
+pub const BlitOption = enum(objc.NSUInteger) {
+    None = 0,
+    DepthFromDepthStencil = 1,
+    StencilFromDepthStencil = 2,
+    RowLinearPVRTC = 4,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLBlitCommandEncoder?language=objc
@@ -2700,6 +3493,80 @@ pub const BlitCommandEncoder = opaque {
 
 };
 
+pub const CommandBufferStatus = enum(objc.NSUInteger) {
+    NotEnqueued = 0,
+    Enqueued = 1,
+    Committed = 2,
+    Scheduled = 3,
+    Completed = 4,
+    Error = 5,
+};
+
+pub const CommandBufferError = enum(objc.NSUInteger) {
+    None = 0,
+    Internal = 1,
+    Timeout = 2,
+    PageFault = 3,
+    Blacklisted = 4,
+    AccessRevoked = 4,
+    NotPermitted = 7,
+    OutOfMemory = 8,
+    InvalidResource = 9,
+    Memoryless = 10,
+    DeviceRemoved = 11,
+    StackOverflow = 12,
+};
+
+pub const CommandBufferErrorOption = enum(objc.NSUInteger) {
+    None = 0,
+    EncoderExecutionStatus = 1,
+};
+
+pub const CommandEncoderErrorState = enum(objc.NSInteger) {
+    Unknown = 0,
+    Completed = 1,
+    Affected = 2,
+    Pending = 3,
+    Faulted = 4,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor?language=objc
+pub const CommandBufferDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLCommandBufferDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn retainedReferences(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "retainedReferences", objc.BOOL, .{});
+    }
+
+    pub fn setRetainedReferences(self: *@This(), retainedReferences: objc.BOOL) void {
+        return objc.msgSend(self, "setRetainedReferences:", void, .{retainedReferences});
+    }
+
+    pub fn errorOptions(self: *@This()) CommandBufferErrorOption {
+        return objc.msgSend(self, "errorOptions", CommandBufferErrorOption, .{});
+    }
+
+    pub fn setErrorOptions(self: *@This(), errorOptions: CommandBufferErrorOption) void {
+        return objc.msgSend(self, "setErrorOptions:", void, .{errorOptions});
+    }
+
+    pub fn logState(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "logState", ?*anyopaque, .{});
+    }
+
+    pub fn setLogState(self: *@This(), logState: ?*anyopaque) void {
+        return objc.msgSend(self, "setLogState:", void, .{logState});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLCommandBufferEncoderInfo?language=objc
 pub const CommandBufferEncoderInfo = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -2720,6 +3587,13 @@ pub const CommandBufferEncoderInfo = opaque {
         return objc.msgSend(self, "errorState", CommandEncoderErrorState, .{});
     }
 
+};
+
+pub const CommandBufferHandler = *const fn(?*anyopaque) callconv(.C) void;
+
+pub const DispatchType = enum(objc.NSUInteger) {
+    Serial = 0,
+    Concurrent = 1,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLCommandBuffer?language=objc
@@ -2882,10 +3756,106 @@ pub const CommandBuffer = opaque {
         return objc.msgSend(self, "status", CommandBufferStatus, .{});
     }
 
-    pub fn error(self: *@This()) ?*ns.Error {
+    pub fn @"error"(self: *@This()) ?*ns.Error {
         return objc.msgSend(self, "error", ?*ns.Error, .{});
     }
 
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor?language=objc
+pub const ComputePassSampleBufferAttachmentDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLComputePassSampleBufferAttachmentDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn sampleBuffer(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "sampleBuffer", ?*anyopaque, .{});
+    }
+
+    pub fn setSampleBuffer(self: *@This(), sampleBuffer: ?*anyopaque) void {
+        return objc.msgSend(self, "setSampleBuffer:", void, .{sampleBuffer});
+    }
+
+    pub fn startOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "startOfEncoderSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setStartOfEncoderSampleIndex(self: *@This(), startOfEncoderSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex});
+    }
+
+    pub fn endOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "endOfEncoderSampleIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setEndOfEncoderSampleIndex(self: *@This(), endOfEncoderSampleIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptorArray?language=objc
+pub const ComputePassSampleBufferAttachmentDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLComputePassSampleBufferAttachmentDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*ComputePassSampleBufferAttachmentDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*ComputePassSampleBufferAttachmentDescriptor, .{attachmentIndex});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*ComputePassSampleBufferAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLComputePassDescriptor?language=objc
+pub const ComputePassDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLComputePassDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn computePassDescriptor(self: *@This()) ?*ComputePassDescriptor {
+        return objc.msgSend(self, "computePassDescriptor", ?*ComputePassDescriptor, .{});
+    }
+
+    pub fn dispatchType(self: *@This()) DispatchType {
+        return objc.msgSend(self, "dispatchType", DispatchType, .{});
+    }
+
+    pub fn setDispatchType(self: *@This(), dispatchType: DispatchType) void {
+        return objc.msgSend(self, "setDispatchType:", void, .{dispatchType});
+    }
+
+    pub fn sampleBufferAttachments(self: *@This()) ?*ComputePassSampleBufferAttachmentDescriptorArray {
+        return objc.msgSend(self, "sampleBufferAttachments", ?*ComputePassSampleBufferAttachmentDescriptorArray, .{});
+    }
+
+};
+
+pub const DispatchThreadgroupsIndirectArguments = extern struct {
+    threadgroupsPerGrid: [3] objc.uint32_t,
+};
+
+pub const StageInRegionIndirectArguments = extern struct {
+    stageInOrigin: [3] objc.uint32_t,
+    stageInSize: [3] objc.uint32_t,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLComputeCommandEncoder?language=objc
@@ -3108,6 +4078,175 @@ pub const CommandQueue = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLCommandQueueDescriptor?language=objc
+pub const CommandQueueDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLCommandQueueDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn maxCommandBufferCount(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "maxCommandBufferCount", objc.NSUInteger, .{});
+    }
+
+    pub fn setMaxCommandBufferCount(self: *@This(), maxCommandBufferCount: objc.NSUInteger) void {
+        return objc.msgSend(self, "setMaxCommandBufferCount:", void, .{maxCommandBufferCount});
+    }
+
+    pub fn logState(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "logState", ?*anyopaque, .{});
+    }
+
+    pub fn setLogState(self: *@This(), logState: ?*anyopaque) void {
+        return objc.msgSend(self, "setLogState:", void, .{logState});
+    }
+
+};
+
+pub const NSDeviceCertification = objc.NSInteger;
+
+pub const NSProcessPerformanceProfile = objc.NSInteger;
+
+pub const CompareFunction = enum(objc.NSUInteger) {
+    Never = 0,
+    Less = 1,
+    Equal = 2,
+    LessEqual = 3,
+    Greater = 4,
+    NotEqual = 5,
+    GreaterEqual = 6,
+    Always = 7,
+};
+
+pub const StencilOperation = enum(objc.NSUInteger) {
+    Keep = 0,
+    Zero = 1,
+    Replace = 2,
+    IncrementClamp = 3,
+    DecrementClamp = 4,
+    Invert = 5,
+    IncrementWrap = 6,
+    DecrementWrap = 7,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLStencilDescriptor?language=objc
+pub const StencilDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLStencilDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn stencilCompareFunction(self: *@This()) CompareFunction {
+        return objc.msgSend(self, "stencilCompareFunction", CompareFunction, .{});
+    }
+
+    pub fn setStencilCompareFunction(self: *@This(), stencilCompareFunction: CompareFunction) void {
+        return objc.msgSend(self, "setStencilCompareFunction:", void, .{stencilCompareFunction});
+    }
+
+    pub fn stencilFailureOperation(self: *@This()) StencilOperation {
+        return objc.msgSend(self, "stencilFailureOperation", StencilOperation, .{});
+    }
+
+    pub fn setStencilFailureOperation(self: *@This(), stencilFailureOperation: StencilOperation) void {
+        return objc.msgSend(self, "setStencilFailureOperation:", void, .{stencilFailureOperation});
+    }
+
+    pub fn depthFailureOperation(self: *@This()) StencilOperation {
+        return objc.msgSend(self, "depthFailureOperation", StencilOperation, .{});
+    }
+
+    pub fn setDepthFailureOperation(self: *@This(), depthFailureOperation: StencilOperation) void {
+        return objc.msgSend(self, "setDepthFailureOperation:", void, .{depthFailureOperation});
+    }
+
+    pub fn depthStencilPassOperation(self: *@This()) StencilOperation {
+        return objc.msgSend(self, "depthStencilPassOperation", StencilOperation, .{});
+    }
+
+    pub fn setDepthStencilPassOperation(self: *@This(), depthStencilPassOperation: StencilOperation) void {
+        return objc.msgSend(self, "setDepthStencilPassOperation:", void, .{depthStencilPassOperation});
+    }
+
+    pub fn readMask(self: *@This()) objc.uint32_t {
+        return objc.msgSend(self, "readMask", objc.uint32_t, .{});
+    }
+
+    pub fn setReadMask(self: *@This(), readMask: objc.uint32_t) void {
+        return objc.msgSend(self, "setReadMask:", void, .{readMask});
+    }
+
+    pub fn writeMask(self: *@This()) objc.uint32_t {
+        return objc.msgSend(self, "writeMask", objc.uint32_t, .{});
+    }
+
+    pub fn setWriteMask(self: *@This(), writeMask: objc.uint32_t) void {
+        return objc.msgSend(self, "setWriteMask:", void, .{writeMask});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor?language=objc
+pub const DepthStencilDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLDepthStencilDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn depthCompareFunction(self: *@This()) CompareFunction {
+        return objc.msgSend(self, "depthCompareFunction", CompareFunction, .{});
+    }
+
+    pub fn setDepthCompareFunction(self: *@This(), depthCompareFunction: CompareFunction) void {
+        return objc.msgSend(self, "setDepthCompareFunction:", void, .{depthCompareFunction});
+    }
+
+    pub fn isDepthWriteEnabled(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "isDepthWriteEnabled", objc.BOOL, .{});
+    }
+
+    pub fn setDepthWriteEnabled(self: *@This(), depthWriteEnabled: objc.BOOL) void {
+        return objc.msgSend(self, "setDepthWriteEnabled:", void, .{depthWriteEnabled});
+    }
+
+    pub fn frontFaceStencil(self: *@This()) ?*StencilDescriptor {
+        return objc.msgSend(self, "frontFaceStencil", ?*StencilDescriptor, .{});
+    }
+
+    pub fn setFrontFaceStencil(self: *@This(), frontFaceStencil: ?*StencilDescriptor) void {
+        return objc.msgSend(self, "setFrontFaceStencil:", void, .{frontFaceStencil});
+    }
+
+    pub fn backFaceStencil(self: *@This()) ?*StencilDescriptor {
+        return objc.msgSend(self, "backFaceStencil", ?*StencilDescriptor, .{});
+    }
+
+    pub fn setBackFaceStencil(self: *@This(), backFaceStencil: ?*StencilDescriptor) void {
+        return objc.msgSend(self, "setBackFaceStencil:", void, .{backFaceStencil});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLDepthStencilState?language=objc
 pub const DepthStencilState = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
@@ -3125,6 +4264,8 @@ pub const DepthStencilState = opaque {
     }
 
 };
+
+pub const DrawablePresentedHandler = *const fn(?*anyopaque) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/Metal/MTLDrawable?language=objc
 pub const Drawable = opaque {
@@ -3156,6 +4297,700 @@ pub const Drawable = opaque {
 
     pub fn drawableID(self: *@This()) objc.NSUInteger {
         return objc.msgSend(self, "drawableID", objc.NSUInteger, .{});
+    }
+
+};
+
+pub const VertexFormat = enum(objc.NSUInteger) {
+    Invalid = 0,
+    UChar2 = 1,
+    UChar3 = 2,
+    UChar4 = 3,
+    Char2 = 4,
+    Char3 = 5,
+    Char4 = 6,
+    UChar2Normalized = 7,
+    UChar3Normalized = 8,
+    UChar4Normalized = 9,
+    Char2Normalized = 10,
+    Char3Normalized = 11,
+    Char4Normalized = 12,
+    UShort2 = 13,
+    UShort3 = 14,
+    UShort4 = 15,
+    Short2 = 16,
+    Short3 = 17,
+    Short4 = 18,
+    UShort2Normalized = 19,
+    UShort3Normalized = 20,
+    UShort4Normalized = 21,
+    Short2Normalized = 22,
+    Short3Normalized = 23,
+    Short4Normalized = 24,
+    Half2 = 25,
+    Half3 = 26,
+    Half4 = 27,
+    Float = 28,
+    Float2 = 29,
+    Float3 = 30,
+    Float4 = 31,
+    Int = 32,
+    Int2 = 33,
+    Int3 = 34,
+    Int4 = 35,
+    UInt = 36,
+    UInt2 = 37,
+    UInt3 = 38,
+    UInt4 = 39,
+    Int1010102Normalized = 40,
+    UInt1010102Normalized = 41,
+    UChar4Normalized_BGRA = 42,
+    UChar = 45,
+    Char = 46,
+    UCharNormalized = 47,
+    CharNormalized = 48,
+    UShort = 49,
+    Short = 50,
+    UShortNormalized = 51,
+    ShortNormalized = 52,
+    Half = 53,
+    FloatRG11B10 = 54,
+    FloatRGB9E5 = 55,
+};
+
+pub const VertexStepFunction = enum(objc.NSUInteger) {
+    Constant = 0,
+    PerVertex = 1,
+    PerInstance = 2,
+    PerPatch = 3,
+    PerPatchControlPoint = 4,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptor?language=objc
+pub const VertexBufferLayoutDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLVertexBufferLayoutDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn stride(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "stride", objc.NSUInteger, .{});
+    }
+
+    pub fn setStride(self: *@This(), stride: objc.NSUInteger) void {
+        return objc.msgSend(self, "setStride:", void, .{stride});
+    }
+
+    pub fn stepFunction(self: *@This()) VertexStepFunction {
+        return objc.msgSend(self, "stepFunction", VertexStepFunction, .{});
+    }
+
+    pub fn setStepFunction(self: *@This(), stepFunction: VertexStepFunction) void {
+        return objc.msgSend(self, "setStepFunction:", void, .{stepFunction});
+    }
+
+    pub fn stepRate(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "stepRate", objc.NSUInteger, .{});
+    }
+
+    pub fn setStepRate(self: *@This(), stepRate: objc.NSUInteger) void {
+        return objc.msgSend(self, "setStepRate:", void, .{stepRate});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptorArray?language=objc
+pub const VertexBufferLayoutDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLVertexBufferLayoutDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*VertexBufferLayoutDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*VertexBufferLayoutDescriptor, .{index});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), bufferDesc: ?*VertexBufferLayoutDescriptor, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{bufferDesc, index});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptor?language=objc
+pub const VertexAttributeDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLVertexAttributeDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn format(self: *@This()) VertexFormat {
+        return objc.msgSend(self, "format", VertexFormat, .{});
+    }
+
+    pub fn setFormat(self: *@This(), format: VertexFormat) void {
+        return objc.msgSend(self, "setFormat:", void, .{format});
+    }
+
+    pub fn offset(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "offset", objc.NSUInteger, .{});
+    }
+
+    pub fn setOffset(self: *@This(), offset: objc.NSUInteger) void {
+        return objc.msgSend(self, "setOffset:", void, .{offset});
+    }
+
+    pub fn bufferIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "bufferIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setBufferIndex(self: *@This(), bufferIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setBufferIndex:", void, .{bufferIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptorArray?language=objc
+pub const VertexAttributeDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLVertexAttributeDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*VertexAttributeDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*VertexAttributeDescriptor, .{index});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), attributeDesc: ?*VertexAttributeDescriptor, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attributeDesc, index});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLVertexDescriptor?language=objc
+pub const VertexDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLVertexDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn vertexDescriptor(self: *@This()) ?*VertexDescriptor {
+        return objc.msgSend(self, "vertexDescriptor", ?*VertexDescriptor, .{});
+    }
+
+    pub fn reset(self: *@This()) void {
+        return objc.msgSend(self, "reset", void, .{});
+    }
+
+    pub fn layouts(self: *@This()) ?*VertexBufferLayoutDescriptorArray {
+        return objc.msgSend(self, "layouts", ?*VertexBufferLayoutDescriptorArray, .{});
+    }
+
+    pub fn attributes(self: *@This()) ?*VertexAttributeDescriptorArray {
+        return objc.msgSend(self, "attributes", ?*VertexAttributeDescriptorArray, .{});
+    }
+
+};
+
+pub const AttributeFormat = enum(objc.NSUInteger) {
+    Invalid = 0,
+    UChar2 = 1,
+    UChar3 = 2,
+    UChar4 = 3,
+    Char2 = 4,
+    Char3 = 5,
+    Char4 = 6,
+    UChar2Normalized = 7,
+    UChar3Normalized = 8,
+    UChar4Normalized = 9,
+    Char2Normalized = 10,
+    Char3Normalized = 11,
+    Char4Normalized = 12,
+    UShort2 = 13,
+    UShort3 = 14,
+    UShort4 = 15,
+    Short2 = 16,
+    Short3 = 17,
+    Short4 = 18,
+    UShort2Normalized = 19,
+    UShort3Normalized = 20,
+    UShort4Normalized = 21,
+    Short2Normalized = 22,
+    Short3Normalized = 23,
+    Short4Normalized = 24,
+    Half2 = 25,
+    Half3 = 26,
+    Half4 = 27,
+    Float = 28,
+    Float2 = 29,
+    Float3 = 30,
+    Float4 = 31,
+    Int = 32,
+    Int2 = 33,
+    Int3 = 34,
+    Int4 = 35,
+    UInt = 36,
+    UInt2 = 37,
+    UInt3 = 38,
+    UInt4 = 39,
+    Int1010102Normalized = 40,
+    UInt1010102Normalized = 41,
+    UChar4Normalized_BGRA = 42,
+    UChar = 45,
+    Char = 46,
+    UCharNormalized = 47,
+    CharNormalized = 48,
+    UShort = 49,
+    Short = 50,
+    UShortNormalized = 51,
+    ShortNormalized = 52,
+    Half = 53,
+    FloatRG11B10 = 54,
+    FloatRGB9E5 = 55,
+};
+
+pub const IndexType = enum(objc.NSUInteger) {
+    UInt16 = 0,
+    UInt32 = 1,
+};
+
+pub const StepFunction = enum(objc.NSUInteger) {
+    Constant = 0,
+    PerVertex = 1,
+    PerInstance = 2,
+    PerPatch = 3,
+    PerPatchControlPoint = 4,
+    ThreadPositionInGridX = 5,
+    ThreadPositionInGridY = 6,
+    ThreadPositionInGridXIndexed = 7,
+    ThreadPositionInGridYIndexed = 8,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLBufferLayoutDescriptor?language=objc
+pub const BufferLayoutDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLBufferLayoutDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn stride(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "stride", objc.NSUInteger, .{});
+    }
+
+    pub fn setStride(self: *@This(), stride: objc.NSUInteger) void {
+        return objc.msgSend(self, "setStride:", void, .{stride});
+    }
+
+    pub fn stepFunction(self: *@This()) StepFunction {
+        return objc.msgSend(self, "stepFunction", StepFunction, .{});
+    }
+
+    pub fn setStepFunction(self: *@This(), stepFunction: StepFunction) void {
+        return objc.msgSend(self, "setStepFunction:", void, .{stepFunction});
+    }
+
+    pub fn stepRate(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "stepRate", objc.NSUInteger, .{});
+    }
+
+    pub fn setStepRate(self: *@This(), stepRate: objc.NSUInteger) void {
+        return objc.msgSend(self, "setStepRate:", void, .{stepRate});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLBufferLayoutDescriptorArray?language=objc
+pub const BufferLayoutDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLBufferLayoutDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*BufferLayoutDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*BufferLayoutDescriptor, .{index});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), bufferDesc: ?*BufferLayoutDescriptor, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{bufferDesc, index});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLAttributeDescriptor?language=objc
+pub const AttributeDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLAttributeDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn format(self: *@This()) AttributeFormat {
+        return objc.msgSend(self, "format", AttributeFormat, .{});
+    }
+
+    pub fn setFormat(self: *@This(), format: AttributeFormat) void {
+        return objc.msgSend(self, "setFormat:", void, .{format});
+    }
+
+    pub fn offset(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "offset", objc.NSUInteger, .{});
+    }
+
+    pub fn setOffset(self: *@This(), offset: objc.NSUInteger) void {
+        return objc.msgSend(self, "setOffset:", void, .{offset});
+    }
+
+    pub fn bufferIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "bufferIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setBufferIndex(self: *@This(), bufferIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setBufferIndex:", void, .{bufferIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLAttributeDescriptorArray?language=objc
+pub const AttributeDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLAttributeDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*AttributeDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*AttributeDescriptor, .{index});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), attributeDesc: ?*AttributeDescriptor, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attributeDesc, index});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLStageInputOutputDescriptor?language=objc
+pub const StageInputOutputDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLStageInputOutputDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn stageInputOutputDescriptor(self: *@This()) ?*StageInputOutputDescriptor {
+        return objc.msgSend(self, "stageInputOutputDescriptor", ?*StageInputOutputDescriptor, .{});
+    }
+
+    pub fn reset(self: *@This()) void {
+        return objc.msgSend(self, "reset", void, .{});
+    }
+
+    pub fn layouts(self: *@This()) ?*BufferLayoutDescriptorArray {
+        return objc.msgSend(self, "layouts", ?*BufferLayoutDescriptorArray, .{});
+    }
+
+    pub fn attributes(self: *@This()) ?*AttributeDescriptorArray {
+        return objc.msgSend(self, "attributes", ?*AttributeDescriptorArray, .{});
+    }
+
+    pub fn indexType(self: *@This()) IndexType {
+        return objc.msgSend(self, "indexType", IndexType, .{});
+    }
+
+    pub fn setIndexType(self: *@This(), indexType: IndexType) void {
+        return objc.msgSend(self, "setIndexType:", void, .{indexType});
+    }
+
+    pub fn indexBufferIndex(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "indexBufferIndex", objc.NSUInteger, .{});
+    }
+
+    pub fn setIndexBufferIndex(self: *@This(), indexBufferIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setIndexBufferIndex:", void, .{indexBufferIndex});
+    }
+
+};
+
+pub const Mutability = enum(objc.NSUInteger) {
+    Default = 0,
+    Mutable = 1,
+    Immutable = 2,
+};
+
+pub const ShaderValidation = enum(objc.NSInteger) {
+    Default = 0,
+    Enabled = 1,
+    Disabled = 2,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLPipelineBufferDescriptor?language=objc
+pub const PipelineBufferDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLPipelineBufferDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn mutability(self: *@This()) Mutability {
+        return objc.msgSend(self, "mutability", Mutability, .{});
+    }
+
+    pub fn setMutability(self: *@This(), mutability: Mutability) void {
+        return objc.msgSend(self, "setMutability:", void, .{mutability});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLPipelineBufferDescriptorArray?language=objc
+pub const PipelineBufferDescriptorArray = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLPipelineBufferDescriptorArray", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn objectAtIndexedSubscript(self: *@This(), bufferIndex: objc.NSUInteger) ?*PipelineBufferDescriptor {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*PipelineBufferDescriptor, .{bufferIndex});
+    }
+
+    pub fn setObjectAtIndexedSubscript(self: *@This(), buffer: ?*PipelineBufferDescriptor, bufferIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{buffer, bufferIndex});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLLinkedFunctions?language=objc
+pub const LinkedFunctions = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLLinkedFunctions", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn linkedFunctions(self: *@This()) ?*LinkedFunctions {
+        return objc.msgSend(self, "linkedFunctions", ?*LinkedFunctions, .{});
+    }
+
+    pub fn functions(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "functions", ?*anyopaque, .{});
+    }
+
+    pub fn setFunctions(self: *@This(), functions: ?*anyopaque) void {
+        return objc.msgSend(self, "setFunctions:", void, .{functions});
+    }
+
+    pub fn binaryFunctions(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "binaryFunctions", ?*anyopaque, .{});
+    }
+
+    pub fn setBinaryFunctions(self: *@This(), binaryFunctions: ?*anyopaque) void {
+        return objc.msgSend(self, "setBinaryFunctions:", void, .{binaryFunctions});
+    }
+
+    pub fn groups(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "groups", ?*anyopaque, .{});
+    }
+
+    pub fn setGroups(self: *@This(), groups: ?*anyopaque) void {
+        return objc.msgSend(self, "setGroups:", void, .{groups});
+    }
+
+    pub fn privateFunctions(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "privateFunctions", ?*anyopaque, .{});
+    }
+
+    pub fn setPrivateFunctions(self: *@This(), privateFunctions: ?*anyopaque) void {
+        return objc.msgSend(self, "setPrivateFunctions:", void, .{privateFunctions});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLComputePipelineReflection?language=objc
+pub const ComputePipelineReflection = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLComputePipelineReflection", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn bindings(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "bindings", ?*anyopaque, .{});
+    }
+
+    pub fn arguments(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "arguments", ?*anyopaque, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor?language=objc
+pub const ComputePipelineDescriptor = opaque {
+    pub const InternalInfo = objc.ExternalClass("MTLComputePipelineDescriptor", @This(), NSObject, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn reset(self: *@This()) void {
+        return objc.msgSend(self, "reset", void, .{});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn computeFunction(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "computeFunction", ?*anyopaque, .{});
+    }
+
+    pub fn setComputeFunction(self: *@This(), computeFunction: ?*anyopaque) void {
+        return objc.msgSend(self, "setComputeFunction:", void, .{computeFunction});
+    }
+
+    pub fn threadGroupSizeIsMultipleOfThreadExecutionWidth(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "threadGroupSizeIsMultipleOfThreadExecutionWidth", objc.BOOL, .{});
+    }
+
+    pub fn setThreadGroupSizeIsMultipleOfThreadExecutionWidth(self: *@This(), threadGroupSizeIsMultipleOfThreadExecutionWidth: objc.BOOL) void {
+        return objc.msgSend(self, "setThreadGroupSizeIsMultipleOfThreadExecutionWidth:", void, .{threadGroupSizeIsMultipleOfThreadExecutionWidth});
+    }
+
+    pub fn maxTotalThreadsPerThreadgroup(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "maxTotalThreadsPerThreadgroup", objc.NSUInteger, .{});
+    }
+
+    pub fn setMaxTotalThreadsPerThreadgroup(self: *@This(), maxTotalThreadsPerThreadgroup: objc.NSUInteger) void {
+        return objc.msgSend(self, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup});
+    }
+
+    pub fn stageInputDescriptor(self: *@This()) ?*StageInputOutputDescriptor {
+        return objc.msgSend(self, "stageInputDescriptor", ?*StageInputOutputDescriptor, .{});
+    }
+
+    pub fn setStageInputDescriptor(self: *@This(), stageInputDescriptor: ?*StageInputOutputDescriptor) void {
+        return objc.msgSend(self, "setStageInputDescriptor:", void, .{stageInputDescriptor});
+    }
+
+    pub fn buffers(self: *@This()) ?*PipelineBufferDescriptorArray {
+        return objc.msgSend(self, "buffers", ?*PipelineBufferDescriptorArray, .{});
+    }
+
+    pub fn supportIndirectCommandBuffers(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "supportIndirectCommandBuffers", objc.BOOL, .{});
+    }
+
+    pub fn setSupportIndirectCommandBuffers(self: *@This(), supportIndirectCommandBuffers: objc.BOOL) void {
+        return objc.msgSend(self, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers});
+    }
+
+    pub fn insertLibraries(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "insertLibraries", ?*anyopaque, .{});
+    }
+
+    pub fn setInsertLibraries(self: *@This(), insertLibraries: ?*anyopaque) void {
+        return objc.msgSend(self, "setInsertLibraries:", void, .{insertLibraries});
+    }
+
+    pub fn preloadedLibraries(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "preloadedLibraries", ?*anyopaque, .{});
+    }
+
+    pub fn setPreloadedLibraries(self: *@This(), preloadedLibraries: ?*anyopaque) void {
+        return objc.msgSend(self, "setPreloadedLibraries:", void, .{preloadedLibraries});
+    }
+
+    pub fn binaryArchives(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "binaryArchives", ?*anyopaque, .{});
+    }
+
+    pub fn setBinaryArchives(self: *@This(), binaryArchives: ?*anyopaque) void {
+        return objc.msgSend(self, "setBinaryArchives:", void, .{binaryArchives});
+    }
+
+    pub fn linkedFunctions(self: *@This()) ?*LinkedFunctions {
+        return objc.msgSend(self, "linkedFunctions", ?*LinkedFunctions, .{});
+    }
+
+    pub fn setLinkedFunctions(self: *@This(), linkedFunctions: ?*LinkedFunctions) void {
+        return objc.msgSend(self, "setLinkedFunctions:", void, .{linkedFunctions});
+    }
+
+    pub fn supportAddingBinaryFunctions(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "supportAddingBinaryFunctions", objc.BOOL, .{});
+    }
+
+    pub fn setSupportAddingBinaryFunctions(self: *@This(), supportAddingBinaryFunctions: objc.BOOL) void {
+        return objc.msgSend(self, "setSupportAddingBinaryFunctions:", void, .{supportAddingBinaryFunctions});
+    }
+
+    pub fn maxCallStackDepth(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "maxCallStackDepth", objc.NSUInteger, .{});
+    }
+
+    pub fn setMaxCallStackDepth(self: *@This(), maxCallStackDepth: objc.NSUInteger) void {
+        return objc.msgSend(self, "setMaxCallStackDepth:", void, .{maxCallStackDepth});
+    }
+
+    pub fn shaderValidation(self: *@This()) ShaderValidation {
+        return objc.msgSend(self, "shaderValidation", ShaderValidation, .{});
+    }
+
+    pub fn setShaderValidation(self: *@This(), shaderValidation: ShaderValidation) void {
+        return objc.msgSend(self, "setShaderValidation:", void, .{shaderValidation});
     }
 
 };
@@ -3220,6 +5055,102 @@ pub const ComputePipelineState = opaque {
         return objc.msgSend(self, "shaderValidation", ShaderValidation, .{});
     }
 
+};
+
+pub const PrimitiveType = enum(objc.NSUInteger) {
+    Point = 0,
+    Line = 1,
+    LineStrip = 2,
+    Triangle = 3,
+    TriangleStrip = 4,
+};
+
+pub const VisibilityResultMode = enum(objc.NSUInteger) {
+    Disabled = 0,
+    Boolean = 1,
+    Counting = 2,
+};
+
+pub const ScissorRect = extern struct {
+    x: objc.NSUInteger,
+    y: objc.NSUInteger,
+    width: objc.NSUInteger,
+    height: objc.NSUInteger,
+};
+
+pub const Viewport = extern struct {
+    originX: f64,
+    originY: f64,
+    width: f64,
+    height: f64,
+    znear: f64,
+    zfar: f64,
+};
+
+pub const CullMode = enum(objc.NSUInteger) {
+    None = 0,
+    Front = 1,
+    Back = 2,
+};
+
+pub const Winding = enum(objc.NSUInteger) {
+    Clockwise = 0,
+    CounterClockwise = 1,
+};
+
+pub const DepthClipMode = enum(objc.NSUInteger) {
+    Clip = 0,
+    Clamp = 1,
+};
+
+pub const TriangleFillMode = enum(objc.NSUInteger) {
+    Fill = 0,
+    Lines = 1,
+};
+
+pub const DrawPrimitivesIndirectArguments = extern struct {
+    vertexCount: objc.uint32_t,
+    instanceCount: objc.uint32_t,
+    vertexStart: objc.uint32_t,
+    baseInstance: objc.uint32_t,
+};
+
+pub const DrawIndexedPrimitivesIndirectArguments = extern struct {
+    indexCount: objc.uint32_t,
+    instanceCount: objc.uint32_t,
+    indexStart: objc.uint32_t,
+    baseVertex: objc.int32_t,
+    baseInstance: objc.uint32_t,
+};
+
+pub const VertexAmplificationViewMapping = extern struct {
+    viewportArrayIndexOffset: objc.uint32_t,
+    renderTargetArrayIndexOffset: objc.uint32_t,
+};
+
+pub const DrawPatchIndirectArguments = extern struct {
+    patchCount: objc.uint32_t,
+    instanceCount: objc.uint32_t,
+    patchStart: objc.uint32_t,
+    baseInstance: objc.uint32_t,
+};
+
+pub const QuadTessellationFactorsHalf = extern struct {
+    edgeTessellationFactor: [4] objc.uint16_t,
+    insideTessellationFactor: [2] objc.uint16_t,
+};
+
+pub const TriangleTessellationFactorsHalf = extern struct {
+    edgeTessellationFactor: [3] objc.uint16_t,
+    insideTessellationFactor: objc.uint16_t,
+};
+
+pub const RenderStages = enum(objc.NSUInteger) {
+    Vertex = 1,
+    Fragment = 2,
+    Tile = 4,
+    Object = 8,
+    Mesh = 16,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLRenderCommandEncoder?language=objc
@@ -3770,3481 +5701,6 @@ pub const FunctionHandle = opaque {
 
 };
 
-/// https://developer.apple.com/documentation/Metal/MTLVisibleFunctionTable?language=objc
-pub const VisibleFunctionTable = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn setFunctionAtIndex(self: *@This(), function: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setFunction:atIndex:", void, .{function, index});
-    }
-
-    pub fn setFunctionsWithRange(self: *@This(), functions: ?*?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setFunctions:withRange:", void, .{functions, range});
-    }
-
-    pub fn gpuResourceID(self: *@This()) ResourceID {
-        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRenderPipelineState?language=objc
-pub const RenderPipelineState = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn imageblockMemoryLengthForDimensions(self: *@This(), imageblockDimensions: Size) objc.NSUInteger {
-        return objc.msgSend(self, "imageblockMemoryLengthForDimensions:", objc.NSUInteger, .{imageblockDimensions});
-    }
-
-    pub fn functionHandleWithFunctionStage(self: *@This(), function: ?*anyopaque, stage: RenderStages) ?*anyopaque {
-        return objc.msgSend(self, "functionHandleWithFunction:stage:", ?*anyopaque, .{function, stage});
-    }
-
-    pub fn newVisibleFunctionTableWithDescriptorStage(self: *@This(), descriptor: ?*VisibleFunctionTableDescriptor, stage: RenderStages) ?*anyopaque {
-        return objc.msgSend(self, "newVisibleFunctionTableWithDescriptor:stage:", ?*anyopaque, .{descriptor, stage});
-    }
-
-    pub fn newIntersectionFunctionTableWithDescriptorStage(self: *@This(), descriptor: ?*IntersectionFunctionTableDescriptor, stage: RenderStages) ?*anyopaque {
-        return objc.msgSend(self, "newIntersectionFunctionTableWithDescriptor:stage:", ?*anyopaque, .{descriptor, stage});
-    }
-
-    pub fn newRenderPipelineStateWithAdditionalBinaryFunctionsError(self: *@This(), additionalBinaryFunctions: ?*RenderPipelineFunctionsDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
-        return objc.msgSend(self, "newRenderPipelineStateWithAdditionalBinaryFunctions:error:", ?*anyopaque, .{additionalBinaryFunctions, @"error"});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn maxTotalThreadsPerThreadgroup(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "maxTotalThreadsPerThreadgroup", objc.NSUInteger, .{});
-    }
-
-    pub fn threadgroupSizeMatchesTileSize(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "threadgroupSizeMatchesTileSize", objc.BOOL, .{});
-    }
-
-    pub fn imageblockSampleLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "imageblockSampleLength", objc.NSUInteger, .{});
-    }
-
-    pub fn supportIndirectCommandBuffers(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "supportIndirectCommandBuffers", objc.BOOL, .{});
-    }
-
-    pub fn maxTotalThreadsPerObjectThreadgroup(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "maxTotalThreadsPerObjectThreadgroup", objc.NSUInteger, .{});
-    }
-
-    pub fn maxTotalThreadsPerMeshThreadgroup(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "maxTotalThreadsPerMeshThreadgroup", objc.NSUInteger, .{});
-    }
-
-    pub fn objectThreadExecutionWidth(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "objectThreadExecutionWidth", objc.NSUInteger, .{});
-    }
-
-    pub fn meshThreadExecutionWidth(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "meshThreadExecutionWidth", objc.NSUInteger, .{});
-    }
-
-    pub fn maxTotalThreadgroupsPerMeshGrid(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "maxTotalThreadgroupsPerMeshGrid", objc.NSUInteger, .{});
-    }
-
-    pub fn gpuResourceID(self: *@This()) ResourceID {
-        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
-    }
-
-    pub fn shaderValidation(self: *@This()) ShaderValidation {
-        return objc.msgSend(self, "shaderValidation", ShaderValidation, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLParallelRenderCommandEncoder?language=objc
-pub const ParallelRenderCommandEncoder = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn renderCommandEncoder(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "renderCommandEncoder", ?*anyopaque, .{});
-    }
-
-    pub fn setColorStoreActionAtIndex(self: *@This(), storeAction: StoreAction, colorAttachmentIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setColorStoreAction:atIndex:", void, .{storeAction, colorAttachmentIndex});
-    }
-
-    pub fn setDepthStoreAction(self: *@This(), storeAction: StoreAction) void {
-        return objc.msgSend(self, "setDepthStoreAction:", void, .{storeAction});
-    }
-
-    pub fn setStencilStoreAction(self: *@This(), storeAction: StoreAction) void {
-        return objc.msgSend(self, "setStencilStoreAction:", void, .{storeAction});
-    }
-
-    pub fn setColorStoreActionOptionsAtIndex(self: *@This(), storeActionOptions: StoreActionOptions, colorAttachmentIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setColorStoreActionOptions:atIndex:", void, .{storeActionOptions, colorAttachmentIndex});
-    }
-
-    pub fn setDepthStoreActionOptions(self: *@This(), storeActionOptions: StoreActionOptions) void {
-        return objc.msgSend(self, "setDepthStoreActionOptions:", void, .{storeActionOptions});
-    }
-
-    pub fn setStencilStoreActionOptions(self: *@This(), storeActionOptions: StoreActionOptions) void {
-        return objc.msgSend(self, "setStencilStoreActionOptions:", void, .{storeActionOptions});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLSamplerState?language=objc
-pub const SamplerState = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn gpuResourceID(self: *@This()) ResourceID {
-        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLAccelerationStructure?language=objc
-pub const AccelerationStructure = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn size(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "size", objc.NSUInteger, .{});
-    }
-
-    pub fn gpuResourceID(self: *@This()) ResourceID {
-        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLHeap?language=objc
-pub const Heap = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Allocation, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn maxAvailableSizeWithAlignment(self: *@This(), alignment: objc.NSUInteger) objc.NSUInteger {
-        return objc.msgSend(self, "maxAvailableSizeWithAlignment:", objc.NSUInteger, .{alignment});
-    }
-
-    pub fn newBufferWithLengthOptions(self: *@This(), length: objc.NSUInteger, options: ResourceOptions) ?*anyopaque {
-        return objc.msgSend(self, "newBufferWithLength:options:", ?*anyopaque, .{length, options});
-    }
-
-    pub fn newTextureWithDescriptor(self: *@This(), descriptor: ?*TextureDescriptor) ?*anyopaque {
-        return objc.msgSend(self, "newTextureWithDescriptor:", ?*anyopaque, .{descriptor});
-    }
-
-    pub fn setPurgeableState(self: *@This(), state: PurgeableState) PurgeableState {
-        return objc.msgSend(self, "setPurgeableState:", PurgeableState, .{state});
-    }
-
-    pub fn newBufferWithLengthOptionsOffset(self: *@This(), length: objc.NSUInteger, options: ResourceOptions, offset: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "newBufferWithLength:options:offset:", ?*anyopaque, .{length, options, offset});
-    }
-
-    pub fn newTextureWithDescriptorOffset(self: *@This(), descriptor: ?*TextureDescriptor, offset: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "newTextureWithDescriptor:offset:", ?*anyopaque, .{descriptor, offset});
-    }
-
-    pub fn newAccelerationStructureWithSize(self: *@This(), size: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "newAccelerationStructureWithSize:", ?*anyopaque, .{size});
-    }
-
-    pub fn newAccelerationStructureWithDescriptor(self: *@This(), descriptor: ?*AccelerationStructureDescriptor) ?*anyopaque {
-        return objc.msgSend(self, "newAccelerationStructureWithDescriptor:", ?*anyopaque, .{descriptor});
-    }
-
-    pub fn newAccelerationStructureWithSizeOffset(self: *@This(), size: objc.NSUInteger, offset: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "newAccelerationStructureWithSize:offset:", ?*anyopaque, .{size, offset});
-    }
-
-    pub fn newAccelerationStructureWithDescriptorOffset(self: *@This(), descriptor: ?*AccelerationStructureDescriptor, offset: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "newAccelerationStructureWithDescriptor:offset:", ?*anyopaque, .{descriptor, offset});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn storageMode(self: *@This()) StorageMode {
-        return objc.msgSend(self, "storageMode", StorageMode, .{});
-    }
-
-    pub fn cpuCacheMode(self: *@This()) CPUCacheMode {
-        return objc.msgSend(self, "cpuCacheMode", CPUCacheMode, .{});
-    }
-
-    pub fn hazardTrackingMode(self: *@This()) HazardTrackingMode {
-        return objc.msgSend(self, "hazardTrackingMode", HazardTrackingMode, .{});
-    }
-
-    pub fn resourceOptions(self: *@This()) ResourceOptions {
-        return objc.msgSend(self, "resourceOptions", ResourceOptions, .{});
-    }
-
-    pub fn size(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "size", objc.NSUInteger, .{});
-    }
-
-    pub fn usedSize(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "usedSize", objc.NSUInteger, .{});
-    }
-
-    pub fn currentAllocatedSize(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "currentAllocatedSize", objc.NSUInteger, .{});
-    }
-
-    pub fn type(self: *@This()) HeapType {
-        return objc.msgSend(self, "type", HeapType, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLArgumentEncoder?language=objc
-pub const ArgumentEncoder = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn setArgumentBufferOffset(self: *@This(), argumentBuffer: ?*anyopaque, offset: objc.NSUInteger) void {
-        return objc.msgSend(self, "setArgumentBuffer:offset:", void, .{argumentBuffer, offset});
-    }
-
-    pub fn setArgumentBufferStartOffsetArrayElement(self: *@This(), argumentBuffer: ?*anyopaque, startOffset: objc.NSUInteger, arrayElement: objc.NSUInteger) void {
-        return objc.msgSend(self, "setArgumentBuffer:startOffset:arrayElement:", void, .{argumentBuffer, startOffset, arrayElement});
-    }
-
-    pub fn setBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setBuffer:offset:atIndex:", void, .{buffer, offset, index});
-    }
-
-    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
-        return objc.msgSend(self, "setBuffers:offsets:withRange:", void, .{buffers, offsets, range});
-    }
-
-    pub fn setTextureAtIndex(self: *@This(), texture: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setTexture:atIndex:", void, .{texture, index});
-    }
-
-    pub fn setTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setTextures:withRange:", void, .{textures, range});
-    }
-
-    pub fn setSamplerStateAtIndex(self: *@This(), sampler: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setSamplerState:atIndex:", void, .{sampler, index});
-    }
-
-    pub fn setSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setSamplerStates:withRange:", void, .{samplers, range});
-    }
-
-    pub fn constantDataAtIndex(self: *@This(), index: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "constantDataAtIndex:", ?*anyopaque, .{index});
-    }
-
-    pub fn setRenderPipelineStateAtIndex(self: *@This(), pipeline: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setRenderPipelineState:atIndex:", void, .{pipeline, index});
-    }
-
-    pub fn setRenderPipelineStatesWithRange(self: *@This(), pipelines: ?*?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setRenderPipelineStates:withRange:", void, .{pipelines, range});
-    }
-
-    pub fn setComputePipelineStateAtIndex(self: *@This(), pipeline: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setComputePipelineState:atIndex:", void, .{pipeline, index});
-    }
-
-    pub fn setComputePipelineStatesWithRange(self: *@This(), pipelines: ?*?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setComputePipelineStates:withRange:", void, .{pipelines, range});
-    }
-
-    pub fn setIndirectCommandBufferAtIndex(self: *@This(), indirectCommandBuffer: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setIndirectCommandBuffer:atIndex:", void, .{indirectCommandBuffer, index});
-    }
-
-    pub fn setIndirectCommandBuffersWithRange(self: *@This(), buffers: ?*?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setIndirectCommandBuffers:withRange:", void, .{buffers, range});
-    }
-
-    pub fn setAccelerationStructureAtIndex(self: *@This(), accelerationStructure: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setAccelerationStructure:atIndex:", void, .{accelerationStructure, index});
-    }
-
-    pub fn newArgumentEncoderForBufferAtIndex(self: *@This(), index: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "newArgumentEncoderForBufferAtIndex:", ?*anyopaque, .{index});
-    }
-
-    pub fn setVisibleFunctionTableAtIndex(self: *@This(), visibleFunctionTable: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setVisibleFunctionTable:atIndex:", void, .{visibleFunctionTable, index});
-    }
-
-    pub fn setVisibleFunctionTablesWithRange(self: *@This(), visibleFunctionTables: ?*?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setVisibleFunctionTables:withRange:", void, .{visibleFunctionTables, range});
-    }
-
-    pub fn setIntersectionFunctionTableAtIndex(self: *@This(), intersectionFunctionTable: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setIntersectionFunctionTable:atIndex:", void, .{intersectionFunctionTable, index});
-    }
-
-    pub fn setIntersectionFunctionTablesWithRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setIntersectionFunctionTables:withRange:", void, .{intersectionFunctionTables, range});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn encodedLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "encodedLength", objc.NSUInteger, .{});
-    }
-
-    pub fn alignment(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "alignment", objc.NSUInteger, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLCaptureScope?language=objc
-pub const CaptureScope = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn beginScope(self: *@This()) void {
-        return objc.msgSend(self, "beginScope", void, .{});
-    }
-
-    pub fn endScope(self: *@This()) void {
-        return objc.msgSend(self, "endScope", void, .{});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn commandQueue(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "commandQueue", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIndirectRenderCommand?language=objc
-pub const IndirectRenderCommand = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn setRenderPipelineState(self: *@This(), pipelineState: ?*anyopaque) void {
-        return objc.msgSend(self, "setRenderPipelineState:", void, .{pipelineState});
-    }
-
-    pub fn setVertexBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setVertexBuffer:offset:atIndex:", void, .{buffer, offset, index});
-    }
-
-    pub fn setFragmentBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setFragmentBuffer:offset:atIndex:", void, .{buffer, offset, index});
-    }
-
-    pub fn setVertexBufferOffsetAttributeStrideAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, stride: objc.NSUInteger, index: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "setVertexBuffer:offset:attributeStride:atIndex:", void, .{buffer, offset, stride, index, });
-    }
-
-    pub fn drawPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride(self: *@This(), numberOfPatchControlPoints: objc.NSUInteger, patchStart: objc.NSUInteger, patchCount: objc.NSUInteger, patchIndexBuffer: ?*anyopaque, patchIndexBufferOffset: objc.NSUInteger, instanceCount: objc.NSUInteger, baseInstance: objc.NSUInteger, buffer: ?*anyopaque, offset: objc.NSUInteger, instanceStride: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{numberOfPatchControlPoints, patchStart, patchCount, patchIndexBuffer, patchIndexBufferOffset, instanceCount, baseInstance, buffer, offset, instanceStride, });
-    }
-
-    pub fn drawIndexedPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetControlPointIndexBufferControlPointIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride(self: *@This(), numberOfPatchControlPoints: objc.NSUInteger, patchStart: objc.NSUInteger, patchCount: objc.NSUInteger, patchIndexBuffer: ?*anyopaque, patchIndexBufferOffset: objc.NSUInteger, controlPointIndexBuffer: ?*anyopaque, controlPointIndexBufferOffset: objc.NSUInteger, instanceCount: objc.NSUInteger, baseInstance: objc.NSUInteger, buffer: ?*anyopaque, offset: objc.NSUInteger, instanceStride: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{numberOfPatchControlPoints, patchStart, patchCount, patchIndexBuffer, patchIndexBufferOffset, controlPointIndexBuffer, controlPointIndexBufferOffset, instanceCount, baseInstance, buffer, offset, instanceStride, });
-    }
-
-    pub fn drawPrimitivesVertexStartVertexCountInstanceCountBaseInstance(self: *@This(), primitiveType: PrimitiveType, vertexStart: objc.NSUInteger, vertexCount: objc.NSUInteger, instanceCount: objc.NSUInteger, baseInstance: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", void, .{primitiveType, vertexStart, vertexCount, instanceCount, baseInstance, });
-    }
-
-    pub fn drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffsetInstanceCountBaseVertexBaseInstance(self: *@This(), primitiveType: PrimitiveType, indexCount: objc.NSUInteger, indexType: IndexType, indexBuffer: ?*anyopaque, indexBufferOffset: objc.NSUInteger, instanceCount: objc.NSUInteger, baseVertex: objc.NSInteger, baseInstance: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", void, .{primitiveType, indexCount, indexType, indexBuffer, indexBufferOffset, instanceCount, baseVertex, baseInstance, });
-    }
-
-    pub fn setObjectThreadgroupMemoryLengthAtIndex(self: *@This(), length: objc.NSUInteger, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObjectThreadgroupMemoryLength:atIndex:", void, .{length, index});
-    }
-
-    pub fn setObjectBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObjectBuffer:offset:atIndex:", void, .{buffer, offset, index});
-    }
-
-    pub fn setMeshBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setMeshBuffer:offset:atIndex:", void, .{buffer, offset, index});
-    }
-
-    pub fn drawMeshThreadgroupsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup(self: *@This(), threadgroupsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) void {
-        return objc.msgSend(self, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{threadgroupsPerGrid, threadsPerObjectThreadgroup, threadsPerMeshThreadgroup});
-    }
-
-    pub fn drawMeshThreadsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup(self: *@This(), threadsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) void {
-        return objc.msgSend(self, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{threadsPerGrid, threadsPerObjectThreadgroup, threadsPerMeshThreadgroup});
-    }
-
-    pub fn setBarrier(self: *@This()) void {
-        return objc.msgSend(self, "setBarrier", void, .{});
-    }
-
-    pub fn clearBarrier(self: *@This()) void {
-        return objc.msgSend(self, "clearBarrier", void, .{});
-    }
-
-    pub fn reset(self: *@This()) void {
-        return objc.msgSend(self, "reset", void, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIndirectComputeCommand?language=objc
-pub const IndirectComputeCommand = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn setComputePipelineState(self: *@This(), pipelineState: ?*anyopaque) void {
-        return objc.msgSend(self, "setComputePipelineState:", void, .{pipelineState});
-    }
-
-    pub fn setKernelBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setKernelBuffer:offset:atIndex:", void, .{buffer, offset, index});
-    }
-
-    pub fn setKernelBufferOffsetAttributeStrideAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, stride: objc.NSUInteger, index: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "setKernelBuffer:offset:attributeStride:atIndex:", void, .{buffer, offset, stride, index, });
-    }
-
-    pub fn concurrentDispatchThreadgroupsThreadsPerThreadgroup(self: *@This(), threadgroupsPerGrid: Size, threadsPerThreadgroup: Size) void {
-        return objc.msgSend(self, "concurrentDispatchThreadgroups:threadsPerThreadgroup:", void, .{threadgroupsPerGrid, threadsPerThreadgroup});
-    }
-
-    pub fn concurrentDispatchThreadsThreadsPerThreadgroup(self: *@This(), threadsPerGrid: Size, threadsPerThreadgroup: Size) void {
-        return objc.msgSend(self, "concurrentDispatchThreads:threadsPerThreadgroup:", void, .{threadsPerGrid, threadsPerThreadgroup});
-    }
-
-    pub fn setBarrier(self: *@This()) void {
-        return objc.msgSend(self, "setBarrier", void, .{});
-    }
-
-    pub fn clearBarrier(self: *@This()) void {
-        return objc.msgSend(self, "clearBarrier", void, .{});
-    }
-
-    pub fn setImageblockWidthHeight(self: *@This(), width: objc.NSUInteger, height: objc.NSUInteger) void {
-        return objc.msgSend(self, "setImageblockWidth:height:", void, .{width, height});
-    }
-
-    pub fn reset(self: *@This()) void {
-        return objc.msgSend(self, "reset", void, .{});
-    }
-
-    pub fn setThreadgroupMemoryLengthAtIndex(self: *@This(), length: objc.NSUInteger, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setThreadgroupMemoryLength:atIndex:", void, .{length, index});
-    }
-
-    pub fn setStageInRegion(self: *@This(), region: Region) void {
-        return objc.msgSend(self, "setStageInRegion:", void, .{region});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIndirectCommandBuffer?language=objc
-pub const IndirectCommandBuffer = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn resetWithRange(self: *@This(), range: ns.Range) void {
-        return objc.msgSend(self, "resetWithRange:", void, .{range});
-    }
-
-    pub fn indirectRenderCommandAtIndex(self: *@This(), commandIndex: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "indirectRenderCommandAtIndex:", ?*anyopaque, .{commandIndex});
-    }
-
-    pub fn indirectComputeCommandAtIndex(self: *@This(), commandIndex: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "indirectComputeCommandAtIndex:", ?*anyopaque, .{commandIndex});
-    }
-
-    pub fn size(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "size", objc.NSUInteger, .{});
-    }
-
-    pub fn gpuResourceID(self: *@This()) ResourceID {
-        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLEvent?language=objc
-pub const Event = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLSharedEvent?language=objc
-pub const SharedEvent = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Event, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn notifyListenerAtValueBlock(self: *@This(), listener: ?*SharedEventListener, value: objc.uint64_t, block: SharedEventNotificationBlock) void {
-        return objc.msgSend(self, "notifyListener:atValue:block:", void, .{listener, value, block});
-    }
-
-    pub fn newSharedEventHandle(self: *@This()) ?*SharedEventHandle {
-        return objc.msgSend(self, "newSharedEventHandle", ?*SharedEventHandle, .{});
-    }
-
-    pub fn waitUntilSignaledValueTimeoutMS(self: *@This(), value: objc.uint64_t, milliseconds: objc.uint64_t) objc.BOOL {
-        return objc.msgSend(self, "waitUntilSignaledValue:timeoutMS:", objc.BOOL, .{value, milliseconds});
-    }
-
-    pub fn signaledValue(self: *@This()) objc.uint64_t {
-        return objc.msgSend(self, "signaledValue", objc.uint64_t, .{});
-    }
-
-    pub fn setSignaledValue(self: *@This(), signaledValue: objc.uint64_t) void {
-        return objc.msgSend(self, "setSignaledValue:", void, .{signaledValue});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLLogContainer?language=objc
-pub const LogContainer = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, ns.FastEnumeration, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLFunctionLogDebugLocation?language=objc
-pub const FunctionLogDebugLocation = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn functionName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "functionName", ?*ns.String, .{});
-    }
-
-    pub fn URL(self: *@This()) ?*ns.URL {
-        return objc.msgSend(self, "URL", ?*ns.URL, .{});
-    }
-
-    pub fn line(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "line", objc.NSUInteger, .{});
-    }
-
-    pub fn column(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "column", objc.NSUInteger, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLFunctionLog?language=objc
-pub const FunctionLog = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn type(self: *@This()) FunctionLogType {
-        return objc.msgSend(self, "type", FunctionLogType, .{});
-    }
-
-    pub fn encoderLabel(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "encoderLabel", ?*ns.String, .{});
-    }
-
-    pub fn function(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "function", ?*anyopaque, .{});
-    }
-
-    pub fn debugLocation(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "debugLocation", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCommandEncoder?language=objc
-pub const AccelerationStructureCommandEncoder = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn buildAccelerationStructureDescriptorScratchBufferScratchBufferOffset(self: *@This(), accelerationStructure: ?*anyopaque, descriptor: ?*AccelerationStructureDescriptor, scratchBuffer: ?*anyopaque, scratchBufferOffset: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:", void, .{accelerationStructure, descriptor, scratchBuffer, scratchBufferOffset, });
-    }
-
-    pub fn refitAccelerationStructureDescriptorDestinationScratchBufferScratchBufferOffset(self: *@This(), sourceAccelerationStructure: ?*anyopaque, descriptor: ?*AccelerationStructureDescriptor, destinationAccelerationStructure: ?*anyopaque, scratchBuffer: ?*anyopaque, scratchBufferOffset: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:", void, .{sourceAccelerationStructure, descriptor, destinationAccelerationStructure, scratchBuffer, scratchBufferOffset, });
-    }
-
-    pub fn refitAccelerationStructureDescriptorDestinationScratchBufferScratchBufferOffsetOptions(self: *@This(), sourceAccelerationStructure: ?*anyopaque, descriptor: ?*AccelerationStructureDescriptor, destinationAccelerationStructure: ?*anyopaque, scratchBuffer: ?*anyopaque, scratchBufferOffset: objc.NSUInteger, options: AccelerationStructureRefitOptions, ) void {
-        return objc.msgSend(self, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:", void, .{sourceAccelerationStructure, descriptor, destinationAccelerationStructure, scratchBuffer, scratchBufferOffset, options, });
-    }
-
-    pub fn copyAccelerationStructureToAccelerationStructure(self: *@This(), sourceAccelerationStructure: ?*anyopaque, destinationAccelerationStructure: ?*anyopaque) void {
-        return objc.msgSend(self, "copyAccelerationStructure:toAccelerationStructure:", void, .{sourceAccelerationStructure, destinationAccelerationStructure});
-    }
-
-    pub fn writeCompactedAccelerationStructureSizeToBufferOffset(self: *@This(), accelerationStructure: ?*anyopaque, buffer: ?*anyopaque, offset: objc.NSUInteger) void {
-        return objc.msgSend(self, "writeCompactedAccelerationStructureSize:toBuffer:offset:", void, .{accelerationStructure, buffer, offset});
-    }
-
-    pub fn writeCompactedAccelerationStructureSizeToBufferOffsetSizeDataType(self: *@This(), accelerationStructure: ?*anyopaque, buffer: ?*anyopaque, offset: objc.NSUInteger, sizeDataType: DataType, ) void {
-        return objc.msgSend(self, "writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:", void, .{accelerationStructure, buffer, offset, sizeDataType, });
-    }
-
-    pub fn copyAndCompactAccelerationStructureToAccelerationStructure(self: *@This(), sourceAccelerationStructure: ?*anyopaque, destinationAccelerationStructure: ?*anyopaque) void {
-        return objc.msgSend(self, "copyAndCompactAccelerationStructure:toAccelerationStructure:", void, .{sourceAccelerationStructure, destinationAccelerationStructure});
-    }
-
-    pub fn updateFence(self: *@This(), fence: ?*anyopaque) void {
-        return objc.msgSend(self, "updateFence:", void, .{fence});
-    }
-
-    pub fn waitForFence(self: *@This(), fence: ?*anyopaque) void {
-        return objc.msgSend(self, "waitForFence:", void, .{fence});
-    }
-
-    pub fn useResourceUsage(self: *@This(), resource: ?*anyopaque, usage: ResourceUsage) void {
-        return objc.msgSend(self, "useResource:usage:", void, .{resource, usage});
-    }
-
-    pub fn useResourcesCountUsage(self: *@This(), resources: ?*?*anyopaque, count: objc.NSUInteger, usage: ResourceUsage) void {
-        return objc.msgSend(self, "useResources:count:usage:", void, .{resources, count, usage});
-    }
-
-    pub fn useHeap(self: *@This(), heap: ?*anyopaque) void {
-        return objc.msgSend(self, "useHeap:", void, .{heap});
-    }
-
-    pub fn useHeapsCount(self: *@This(), heaps: ?*?*anyopaque, count: objc.NSUInteger) void {
-        return objc.msgSend(self, "useHeaps:count:", void, .{heaps, count});
-    }
-
-    pub fn sampleCountersInBufferAtSampleIndexWithBarrier(self: *@This(), sampleBuffer: ?*anyopaque, sampleIndex: objc.NSUInteger, barrier: objc.BOOL) void {
-        return objc.msgSend(self, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{sampleBuffer, sampleIndex, barrier});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRasterizationRateMap?language=objc
-pub const RasterizationRateMap = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn copyParameterDataToBufferOffset(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger) void {
-        return objc.msgSend(self, "copyParameterDataToBuffer:offset:", void, .{buffer, offset});
-    }
-
-    pub fn physicalSizeForLayer(self: *@This(), layerIndex: objc.NSUInteger) Size {
-        return objc.msgSend(self, "physicalSizeForLayer:", Size, .{layerIndex});
-    }
-
-    pub fn mapScreenToPhysicalCoordinatesForLayer(self: *@This(), screenCoordinates: Coordinate2D, layerIndex: objc.NSUInteger) Coordinate2D {
-        return objc.msgSend(self, "mapScreenToPhysicalCoordinates:forLayer:", Coordinate2D, .{screenCoordinates, layerIndex});
-    }
-
-    pub fn mapPhysicalToScreenCoordinatesForLayer(self: *@This(), physicalCoordinates: Coordinate2D, layerIndex: objc.NSUInteger) Coordinate2D {
-        return objc.msgSend(self, "mapPhysicalToScreenCoordinates:forLayer:", Coordinate2D, .{physicalCoordinates, layerIndex});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn screenSize(self: *@This()) Size {
-        return objc.msgSend(self, "screenSize", Size, .{});
-    }
-
-    pub fn physicalGranularity(self: *@This()) Size {
-        return objc.msgSend(self, "physicalGranularity", Size, .{});
-    }
-
-    pub fn layerCount(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "layerCount", objc.NSUInteger, .{});
-    }
-
-    pub fn parameterBufferSizeAndAlign(self: *@This()) SizeAndAlign {
-        return objc.msgSend(self, "parameterBufferSizeAndAlign", SizeAndAlign, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLDynamicLibrary?language=objc
-pub const DynamicLibrary = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn serializeToURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) objc.BOOL {
-        return objc.msgSend(self, "serializeToURL:error:", objc.BOOL, .{url, @"error"});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn installName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "installName", ?*ns.String, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLLogState?language=objc
-pub const LogState = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn addLogHandler(self: *@This(), block: *const fn(?*ns.String, ?*ns.String, LogLevel, ?*ns.String, ) callconv(.C) void) void {
-        return objc.msgSend(self, "addLogHandler:", void, .{block});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLBinaryArchive?language=objc
-pub const BinaryArchive = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn addComputePipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*ComputePipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
-        return objc.msgSend(self, "addComputePipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
-    }
-
-    pub fn addRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*RenderPipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
-        return objc.msgSend(self, "addRenderPipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
-    }
-
-    pub fn addTileRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*TileRenderPipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
-        return objc.msgSend(self, "addTileRenderPipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
-    }
-
-    pub fn addMeshRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*MeshRenderPipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
-        return objc.msgSend(self, "addMeshRenderPipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
-    }
-
-    pub fn addLibraryWithDescriptorError(self: *@This(), descriptor: ?*StitchedLibraryDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
-        return objc.msgSend(self, "addLibraryWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
-    }
-
-    pub fn serializeToURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) objc.BOOL {
-        return objc.msgSend(self, "serializeToURL:error:", objc.BOOL, .{url, @"error"});
-    }
-
-    pub fn addFunctionWithDescriptorLibraryError(self: *@This(), descriptor: ?*FunctionDescriptor, library: ?*anyopaque, @"error": ?*?*ns.Error) objc.BOOL {
-        return objc.msgSend(self, "addFunctionWithDescriptor:library:error:", objc.BOOL, .{descriptor, library, @"error"});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIntersectionFunctionTable?language=objc
-pub const IntersectionFunctionTable = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn setBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setBuffer:offset:atIndex:", void, .{buffer, offset, index});
-    }
-
-    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
-        return objc.msgSend(self, "setBuffers:offsets:withRange:", void, .{buffers, offsets, range});
-    }
-
-    pub fn setFunctionAtIndex(self: *@This(), function: ?*anyopaque, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setFunction:atIndex:", void, .{function, index});
-    }
-
-    pub fn setFunctionsWithRange(self: *@This(), functions: ?*?*anyopaque, range: ns.Range) void {
-        return objc.msgSend(self, "setFunctions:withRange:", void, .{functions, range});
-    }
-
-    pub fn setOpaqueTriangleIntersectionFunctionWithSignatureAtIndex(self: *@This(), signature: IntersectionFunctionSignature, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:", void, .{signature, index});
-    }
-
-    pub fn setOpaqueTriangleIntersectionFunctionWithSignatureWithRange(self: *@This(), signature: IntersectionFunctionSignature, range: ns.Range) void {
-        return objc.msgSend(self, "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:", void, .{signature, range});
-    }
-
-    pub fn setOpaqueCurveIntersectionFunctionWithSignatureAtIndex(self: *@This(), signature: IntersectionFunctionSignature, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:", void, .{signature, index});
-    }
-
-    pub fn setOpaqueCurveIntersectionFunctionWithSignatureWithRange(self: *@This(), signature: IntersectionFunctionSignature, range: ns.Range) void {
-        return objc.msgSend(self, "setOpaqueCurveIntersectionFunctionWithSignature:withRange:", void, .{signature, range});
-    }
-
-    pub fn setVisibleFunctionTableAtBufferIndex(self: *@This(), functionTable: ?*anyopaque, bufferIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setVisibleFunctionTable:atBufferIndex:", void, .{functionTable, bufferIndex});
-    }
-
-    pub fn setVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, bufferRange: ns.Range) void {
-        return objc.msgSend(self, "setVisibleFunctionTables:withBufferRange:", void, .{functionTables, bufferRange});
-    }
-
-    pub fn gpuResourceID(self: *@This()) ResourceID {
-        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLFunctionStitchingAttribute?language=objc
-pub const FunctionStitchingAttribute = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLFunctionStitchingNode?language=objc
-pub const FunctionStitchingNode = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, ns.Copying, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIOCommandQueue?language=objc
-pub const IOCommandQueue = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn enqueueBarrier(self: *@This()) void {
-        return objc.msgSend(self, "enqueueBarrier", void, .{});
-    }
-
-    pub fn commandBuffer(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "commandBuffer", ?*anyopaque, .{});
-    }
-
-    pub fn commandBufferWithUnretainedReferences(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "commandBufferWithUnretainedReferences", ?*anyopaque, .{});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIOScratchBuffer?language=objc
-pub const IOScratchBuffer = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn buffer(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "buffer", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIOScratchBufferAllocator?language=objc
-pub const IOScratchBufferAllocator = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn newScratchBufferWithMinimumSize(self: *@This(), minimumSize: objc.NSUInteger) ?*anyopaque {
-        return objc.msgSend(self, "newScratchBufferWithMinimumSize:", ?*anyopaque, .{minimumSize});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIOFileHandle?language=objc
-pub const IOFileHandle = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIOCommandBuffer?language=objc
-pub const IOCommandBuffer = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn addCompletedHandler(self: *@This(), block: IOCommandBufferHandler) void {
-        return objc.msgSend(self, "addCompletedHandler:", void, .{block});
-    }
-
-    pub fn loadBytesSizeSourceHandleSourceHandleOffset(self: *@This(), pointer: ?*anyopaque, size: objc.NSUInteger, sourceHandle: ?*anyopaque, sourceHandleOffset: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "loadBytes:size:sourceHandle:sourceHandleOffset:", void, .{pointer, size, sourceHandle, sourceHandleOffset, });
-    }
-
-    pub fn loadBufferOffsetSizeSourceHandleSourceHandleOffset(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, size: objc.NSUInteger, sourceHandle: ?*anyopaque, sourceHandleOffset: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "loadBuffer:offset:size:sourceHandle:sourceHandleOffset:", void, .{buffer, offset, size, sourceHandle, sourceHandleOffset, });
-    }
-
-    pub fn loadTextureSliceLevelSizeSourceBytesPerRowSourceBytesPerImageDestinationOriginSourceHandleSourceHandleOffset(self: *@This(), texture: ?*anyopaque, slice: objc.NSUInteger, level: objc.NSUInteger, size: Size, sourceBytesPerRow: objc.NSUInteger, sourceBytesPerImage: objc.NSUInteger, destinationOrigin: Origin, sourceHandle: ?*anyopaque, sourceHandleOffset: objc.NSUInteger, ) void {
-        return objc.msgSend(self, "loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:", void, .{texture, slice, level, size, sourceBytesPerRow, sourceBytesPerImage, destinationOrigin, sourceHandle, sourceHandleOffset, });
-    }
-
-    pub fn copyStatusToBufferOffset(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger) void {
-        return objc.msgSend(self, "copyStatusToBuffer:offset:", void, .{buffer, offset});
-    }
-
-    pub fn commit(self: *@This()) void {
-        return objc.msgSend(self, "commit", void, .{});
-    }
-
-    pub fn waitUntilCompleted(self: *@This()) void {
-        return objc.msgSend(self, "waitUntilCompleted", void, .{});
-    }
-
-    pub fn tryCancel(self: *@This()) void {
-        return objc.msgSend(self, "tryCancel", void, .{});
-    }
-
-    pub fn addBarrier(self: *@This()) void {
-        return objc.msgSend(self, "addBarrier", void, .{});
-    }
-
-    pub fn pushDebugGroup(self: *@This(), string: ?*ns.String) void {
-        return objc.msgSend(self, "pushDebugGroup:", void, .{string});
-    }
-
-    pub fn popDebugGroup(self: *@This()) void {
-        return objc.msgSend(self, "popDebugGroup", void, .{});
-    }
-
-    pub fn enqueue(self: *@This()) void {
-        return objc.msgSend(self, "enqueue", void, .{});
-    }
-
-    pub fn waitForEventValue(self: *@This(), event: ?*anyopaque, value: objc.uint64_t) void {
-        return objc.msgSend(self, "waitForEvent:value:", void, .{event, value});
-    }
-
-    pub fn signalEventValue(self: *@This(), event: ?*anyopaque, value: objc.uint64_t) void {
-        return objc.msgSend(self, "signalEvent:value:", void, .{event, value});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn status(self: *@This()) IOStatus {
-        return objc.msgSend(self, "status", IOStatus, .{});
-    }
-
-    pub fn error(self: *@This()) ?*ns.Error {
-        return objc.msgSend(self, "error", ?*ns.Error, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLResidencySet?language=objc
-pub const ResidencySet = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn requestResidency(self: *@This()) void {
-        return objc.msgSend(self, "requestResidency", void, .{});
-    }
-
-    pub fn endResidency(self: *@This()) void {
-        return objc.msgSend(self, "endResidency", void, .{});
-    }
-
-    pub fn addAllocation(self: *@This(), allocation: ?*anyopaque) void {
-        return objc.msgSend(self, "addAllocation:", void, .{allocation});
-    }
-
-    pub fn addAllocationsCount(self: *@This(), allocations: ?*?*anyopaque, count: objc.NSUInteger) void {
-        return objc.msgSend(self, "addAllocations:count:", void, .{allocations, count});
-    }
-
-    pub fn removeAllocation(self: *@This(), allocation: ?*anyopaque) void {
-        return objc.msgSend(self, "removeAllocation:", void, .{allocation});
-    }
-
-    pub fn removeAllocationsCount(self: *@This(), allocations: ?*?*anyopaque, count: objc.NSUInteger) void {
-        return objc.msgSend(self, "removeAllocations:count:", void, .{allocations, count});
-    }
-
-    pub fn removeAllAllocations(self: *@This()) void {
-        return objc.msgSend(self, "removeAllAllocations", void, .{});
-    }
-
-    pub fn containsAllocation(self: *@This(), anAllocation: ?*anyopaque) objc.BOOL {
-        return objc.msgSend(self, "containsAllocation:", objc.BOOL, .{anAllocation});
-    }
-
-    pub fn commit(self: *@This()) void {
-        return objc.msgSend(self, "commit", void, .{});
-    }
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn allocatedSize(self: *@This()) objc.uint64_t {
-        return objc.msgSend(self, "allocatedSize", objc.uint64_t, .{});
-    }
-
-    pub fn allAllocations(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "allAllocations", ?*anyopaque, .{});
-    }
-
-    pub fn allocationCount(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "allocationCount", objc.NSUInteger, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLSharedTextureHandle?language=objc
-pub const SharedTextureHandle = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLSharedTextureHandle", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLTextureDescriptor?language=objc
-pub const TextureDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLTextureDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn texture2DDescriptorWithPixelFormatWidthHeightMipmapped(self: *@This(), pixelFormat: PixelFormat, width: objc.NSUInteger, height: objc.NSUInteger, mipmapped: objc.BOOL, ) ?*TextureDescriptor {
-        return objc.msgSend(self, "texture2DDescriptorWithPixelFormat:width:height:mipmapped:", ?*TextureDescriptor, .{pixelFormat, width, height, mipmapped, });
-    }
-
-    pub fn textureCubeDescriptorWithPixelFormatSizeMipmapped(self: *@This(), pixelFormat: PixelFormat, size: objc.NSUInteger, mipmapped: objc.BOOL) ?*TextureDescriptor {
-        return objc.msgSend(self, "textureCubeDescriptorWithPixelFormat:size:mipmapped:", ?*TextureDescriptor, .{pixelFormat, size, mipmapped});
-    }
-
-    pub fn textureBufferDescriptorWithPixelFormatWidthResourceOptionsUsage(self: *@This(), pixelFormat: PixelFormat, width: objc.NSUInteger, resourceOptions: ResourceOptions, usage: TextureUsage, ) ?*TextureDescriptor {
-        return objc.msgSend(self, "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:", ?*TextureDescriptor, .{pixelFormat, width, resourceOptions, usage, });
-    }
-
-    pub fn textureType(self: *@This()) TextureType {
-        return objc.msgSend(self, "textureType", TextureType, .{});
-    }
-
-    pub fn setTextureType(self: *@This(), textureType: TextureType) void {
-        return objc.msgSend(self, "setTextureType:", void, .{textureType});
-    }
-
-    pub fn pixelFormat(self: *@This()) PixelFormat {
-        return objc.msgSend(self, "pixelFormat", PixelFormat, .{});
-    }
-
-    pub fn setPixelFormat(self: *@This(), pixelFormat: PixelFormat) void {
-        return objc.msgSend(self, "setPixelFormat:", void, .{pixelFormat});
-    }
-
-    pub fn width(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "width", objc.NSUInteger, .{});
-    }
-
-    pub fn setWidth(self: *@This(), width: objc.NSUInteger) void {
-        return objc.msgSend(self, "setWidth:", void, .{width});
-    }
-
-    pub fn height(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "height", objc.NSUInteger, .{});
-    }
-
-    pub fn setHeight(self: *@This(), height: objc.NSUInteger) void {
-        return objc.msgSend(self, "setHeight:", void, .{height});
-    }
-
-    pub fn depth(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "depth", objc.NSUInteger, .{});
-    }
-
-    pub fn setDepth(self: *@This(), depth: objc.NSUInteger) void {
-        return objc.msgSend(self, "setDepth:", void, .{depth});
-    }
-
-    pub fn mipmapLevelCount(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "mipmapLevelCount", objc.NSUInteger, .{});
-    }
-
-    pub fn setMipmapLevelCount(self: *@This(), mipmapLevelCount: objc.NSUInteger) void {
-        return objc.msgSend(self, "setMipmapLevelCount:", void, .{mipmapLevelCount});
-    }
-
-    pub fn sampleCount(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "sampleCount", objc.NSUInteger, .{});
-    }
-
-    pub fn setSampleCount(self: *@This(), sampleCount: objc.NSUInteger) void {
-        return objc.msgSend(self, "setSampleCount:", void, .{sampleCount});
-    }
-
-    pub fn arrayLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "arrayLength", objc.NSUInteger, .{});
-    }
-
-    pub fn setArrayLength(self: *@This(), arrayLength: objc.NSUInteger) void {
-        return objc.msgSend(self, "setArrayLength:", void, .{arrayLength});
-    }
-
-    pub fn resourceOptions(self: *@This()) ResourceOptions {
-        return objc.msgSend(self, "resourceOptions", ResourceOptions, .{});
-    }
-
-    pub fn setResourceOptions(self: *@This(), resourceOptions: ResourceOptions) void {
-        return objc.msgSend(self, "setResourceOptions:", void, .{resourceOptions});
-    }
-
-    pub fn cpuCacheMode(self: *@This()) CPUCacheMode {
-        return objc.msgSend(self, "cpuCacheMode", CPUCacheMode, .{});
-    }
-
-    pub fn setCpuCacheMode(self: *@This(), cpuCacheMode: CPUCacheMode) void {
-        return objc.msgSend(self, "setCpuCacheMode:", void, .{cpuCacheMode});
-    }
-
-    pub fn storageMode(self: *@This()) StorageMode {
-        return objc.msgSend(self, "storageMode", StorageMode, .{});
-    }
-
-    pub fn setStorageMode(self: *@This(), storageMode: StorageMode) void {
-        return objc.msgSend(self, "setStorageMode:", void, .{storageMode});
-    }
-
-    pub fn hazardTrackingMode(self: *@This()) HazardTrackingMode {
-        return objc.msgSend(self, "hazardTrackingMode", HazardTrackingMode, .{});
-    }
-
-    pub fn setHazardTrackingMode(self: *@This(), hazardTrackingMode: HazardTrackingMode) void {
-        return objc.msgSend(self, "setHazardTrackingMode:", void, .{hazardTrackingMode});
-    }
-
-    pub fn usage(self: *@This()) TextureUsage {
-        return objc.msgSend(self, "usage", TextureUsage, .{});
-    }
-
-    pub fn setUsage(self: *@This(), usage: TextureUsage) void {
-        return objc.msgSend(self, "setUsage:", void, .{usage});
-    }
-
-    pub fn allowGPUOptimizedContents(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowGPUOptimizedContents", objc.BOOL, .{});
-    }
-
-    pub fn setAllowGPUOptimizedContents(self: *@This(), allowGPUOptimizedContents: objc.BOOL) void {
-        return objc.msgSend(self, "setAllowGPUOptimizedContents:", void, .{allowGPUOptimizedContents});
-    }
-
-    pub fn compressionType(self: *@This()) TextureCompressionType {
-        return objc.msgSend(self, "compressionType", TextureCompressionType, .{});
-    }
-
-    pub fn setCompressionType(self: *@This(), compressionType: TextureCompressionType) void {
-        return objc.msgSend(self, "setCompressionType:", void, .{compressionType});
-    }
-
-    pub fn swizzle(self: *@This()) TextureSwizzleChannels {
-        return objc.msgSend(self, "swizzle", TextureSwizzleChannels, .{});
-    }
-
-    pub fn setSwizzle(self: *@This(), swizzle: TextureSwizzleChannels) void {
-        return objc.msgSend(self, "setSwizzle:", void, .{swizzle});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLType?language=objc
-pub const Type = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLType", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn dataType(self: *@This()) DataType {
-        return objc.msgSend(self, "dataType", DataType, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLStructMember?language=objc
-pub const StructMember = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLStructMember", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn structType(self: *@This()) ?*StructType {
-        return objc.msgSend(self, "structType", ?*StructType, .{});
-    }
-
-    pub fn arrayType(self: *@This()) ?*ArrayType {
-        return objc.msgSend(self, "arrayType", ?*ArrayType, .{});
-    }
-
-    pub fn textureReferenceType(self: *@This()) ?*TextureReferenceType {
-        return objc.msgSend(self, "textureReferenceType", ?*TextureReferenceType, .{});
-    }
-
-    pub fn pointerType(self: *@This()) ?*PointerType {
-        return objc.msgSend(self, "pointerType", ?*PointerType, .{});
-    }
-
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
-    }
-
-    pub fn offset(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "offset", objc.NSUInteger, .{});
-    }
-
-    pub fn dataType(self: *@This()) DataType {
-        return objc.msgSend(self, "dataType", DataType, .{});
-    }
-
-    pub fn argumentIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "argumentIndex", objc.NSUInteger, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLStructType?language=objc
-pub const StructType = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLStructType", @This(), Type, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn memberByName(self: *@This(), name: ?*ns.String) ?*StructMember {
-        return objc.msgSend(self, "memberByName:", ?*StructMember, .{name});
-    }
-
-    pub fn members(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "members", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLArrayType?language=objc
-pub const ArrayType = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLArrayType", @This(), Type, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn elementStructType(self: *@This()) ?*StructType {
-        return objc.msgSend(self, "elementStructType", ?*StructType, .{});
-    }
-
-    pub fn elementArrayType(self: *@This()) ?*ArrayType {
-        return objc.msgSend(self, "elementArrayType", ?*ArrayType, .{});
-    }
-
-    pub fn elementTextureReferenceType(self: *@This()) ?*TextureReferenceType {
-        return objc.msgSend(self, "elementTextureReferenceType", ?*TextureReferenceType, .{});
-    }
-
-    pub fn elementPointerType(self: *@This()) ?*PointerType {
-        return objc.msgSend(self, "elementPointerType", ?*PointerType, .{});
-    }
-
-    pub fn elementType(self: *@This()) DataType {
-        return objc.msgSend(self, "elementType", DataType, .{});
-    }
-
-    pub fn arrayLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "arrayLength", objc.NSUInteger, .{});
-    }
-
-    pub fn stride(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "stride", objc.NSUInteger, .{});
-    }
-
-    pub fn argumentIndexStride(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "argumentIndexStride", objc.NSUInteger, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLPointerType?language=objc
-pub const PointerType = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLPointerType", @This(), Type, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn elementStructType(self: *@This()) ?*StructType {
-        return objc.msgSend(self, "elementStructType", ?*StructType, .{});
-    }
-
-    pub fn elementArrayType(self: *@This()) ?*ArrayType {
-        return objc.msgSend(self, "elementArrayType", ?*ArrayType, .{});
-    }
-
-    pub fn elementType(self: *@This()) DataType {
-        return objc.msgSend(self, "elementType", DataType, .{});
-    }
-
-    pub fn access(self: *@This()) BindingAccess {
-        return objc.msgSend(self, "access", BindingAccess, .{});
-    }
-
-    pub fn alignment(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "alignment", objc.NSUInteger, .{});
-    }
-
-    pub fn dataSize(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "dataSize", objc.NSUInteger, .{});
-    }
-
-    pub fn elementIsArgumentBuffer(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "elementIsArgumentBuffer", objc.BOOL, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLTextureReferenceType?language=objc
-pub const TextureReferenceType = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLTextureReferenceType", @This(), Type, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn textureDataType(self: *@This()) DataType {
-        return objc.msgSend(self, "textureDataType", DataType, .{});
-    }
-
-    pub fn textureType(self: *@This()) TextureType {
-        return objc.msgSend(self, "textureType", TextureType, .{});
-    }
-
-    pub fn access(self: *@This()) BindingAccess {
-        return objc.msgSend(self, "access", BindingAccess, .{});
-    }
-
-    pub fn isDepthTexture(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isDepthTexture", objc.BOOL, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLArgument?language=objc
-pub const Argument = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLArgument", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
-    }
-
-    pub fn type(self: *@This()) ArgumentType {
-        return objc.msgSend(self, "type", ArgumentType, .{});
-    }
-
-    pub fn access(self: *@This()) BindingAccess {
-        return objc.msgSend(self, "access", BindingAccess, .{});
-    }
-
-    pub fn index(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "index", objc.NSUInteger, .{});
-    }
-
-    pub fn isActive(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isActive", objc.BOOL, .{});
-    }
-
-    pub fn bufferAlignment(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "bufferAlignment", objc.NSUInteger, .{});
-    }
-
-    pub fn bufferDataSize(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "bufferDataSize", objc.NSUInteger, .{});
-    }
-
-    pub fn bufferDataType(self: *@This()) DataType {
-        return objc.msgSend(self, "bufferDataType", DataType, .{});
-    }
-
-    pub fn bufferStructType(self: *@This()) ?*StructType {
-        return objc.msgSend(self, "bufferStructType", ?*StructType, .{});
-    }
-
-    pub fn bufferPointerType(self: *@This()) ?*PointerType {
-        return objc.msgSend(self, "bufferPointerType", ?*PointerType, .{});
-    }
-
-    pub fn threadgroupMemoryAlignment(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "threadgroupMemoryAlignment", objc.NSUInteger, .{});
-    }
-
-    pub fn threadgroupMemoryDataSize(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "threadgroupMemoryDataSize", objc.NSUInteger, .{});
-    }
-
-    pub fn textureType(self: *@This()) TextureType {
-        return objc.msgSend(self, "textureType", TextureType, .{});
-    }
-
-    pub fn textureDataType(self: *@This()) DataType {
-        return objc.msgSend(self, "textureDataType", DataType, .{});
-    }
-
-    pub fn isDepthTexture(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isDepthTexture", objc.BOOL, .{});
-    }
-
-    pub fn arrayLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "arrayLength", objc.NSUInteger, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLFunctionConstantValues?language=objc
-pub const FunctionConstantValues = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLFunctionConstantValues", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn setConstantValueTypeAtIndex(self: *@This(), value: ?*anyopaque, @"type": DataType, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setConstantValue:type:atIndex:", void, .{value, @"type", index});
-    }
-
-    pub fn setConstantValuesTypeWithRange(self: *@This(), values: ?*anyopaque, @"type": DataType, range: ns.Range) void {
-        return objc.msgSend(self, "setConstantValues:type:withRange:", void, .{values, @"type", range});
-    }
-
-    pub fn setConstantValueTypeWithName(self: *@This(), value: ?*anyopaque, @"type": DataType, name: ?*ns.String) void {
-        return objc.msgSend(self, "setConstantValue:type:withName:", void, .{value, @"type", name});
-    }
-
-    pub fn reset(self: *@This()) void {
-        return objc.msgSend(self, "reset", void, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLFunctionDescriptor?language=objc
-pub const FunctionDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLFunctionDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn functionDescriptor(self: *@This()) ?*FunctionDescriptor {
-        return objc.msgSend(self, "functionDescriptor", ?*FunctionDescriptor, .{});
-    }
-
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
-    }
-
-    pub fn setName(self: *@This(), name: ?*ns.String) void {
-        return objc.msgSend(self, "setName:", void, .{name});
-    }
-
-    pub fn specializedName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "specializedName", ?*ns.String, .{});
-    }
-
-    pub fn setSpecializedName(self: *@This(), specializedName: ?*ns.String) void {
-        return objc.msgSend(self, "setSpecializedName:", void, .{specializedName});
-    }
-
-    pub fn constantValues(self: *@This()) ?*FunctionConstantValues {
-        return objc.msgSend(self, "constantValues", ?*FunctionConstantValues, .{});
-    }
-
-    pub fn setConstantValues(self: *@This(), constantValues: ?*FunctionConstantValues) void {
-        return objc.msgSend(self, "setConstantValues:", void, .{constantValues});
-    }
-
-    pub fn options(self: *@This()) FunctionOptions {
-        return objc.msgSend(self, "options", FunctionOptions, .{});
-    }
-
-    pub fn setOptions(self: *@This(), options: FunctionOptions) void {
-        return objc.msgSend(self, "setOptions:", void, .{options});
-    }
-
-    pub fn binaryArchives(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "binaryArchives", ?*anyopaque, .{});
-    }
-
-    pub fn setBinaryArchives(self: *@This(), binaryArchives: ?*anyopaque) void {
-        return objc.msgSend(self, "setBinaryArchives:", void, .{binaryArchives});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLIntersectionFunctionDescriptor?language=objc
-pub const IntersectionFunctionDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLIntersectionFunctionDescriptor", @This(), FunctionDescriptor, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLVertexAttribute?language=objc
-pub const VertexAttribute = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLVertexAttribute", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
-    }
-
-    pub fn attributeIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "attributeIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn attributeType(self: *@This()) DataType {
-        return objc.msgSend(self, "attributeType", DataType, .{});
-    }
-
-    pub fn isActive(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isActive", objc.BOOL, .{});
-    }
-
-    pub fn isPatchData(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isPatchData", objc.BOOL, .{});
-    }
-
-    pub fn isPatchControlPointData(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isPatchControlPointData", objc.BOOL, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLAttribute?language=objc
-pub const Attribute = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLAttribute", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
-    }
-
-    pub fn attributeIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "attributeIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn attributeType(self: *@This()) DataType {
-        return objc.msgSend(self, "attributeType", DataType, .{});
-    }
-
-    pub fn isActive(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isActive", objc.BOOL, .{});
-    }
-
-    pub fn isPatchData(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isPatchData", objc.BOOL, .{});
-    }
-
-    pub fn isPatchControlPointData(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isPatchControlPointData", objc.BOOL, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLFunctionConstant?language=objc
-pub const FunctionConstant = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLFunctionConstant", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
-    }
-
-    pub fn type(self: *@This()) DataType {
-        return objc.msgSend(self, "type", DataType, .{});
-    }
-
-    pub fn index(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "index", objc.NSUInteger, .{});
-    }
-
-    pub fn required(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "required", objc.BOOL, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLCompileOptions?language=objc
-pub const CompileOptions = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLCompileOptions", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn preprocessorMacros(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "preprocessorMacros", ?*anyopaque, .{});
-    }
-
-    pub fn setPreprocessorMacros(self: *@This(), preprocessorMacros: ?*anyopaque) void {
-        return objc.msgSend(self, "setPreprocessorMacros:", void, .{preprocessorMacros});
-    }
-
-    pub fn fastMathEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "fastMathEnabled", objc.BOOL, .{});
-    }
-
-    pub fn setFastMathEnabled(self: *@This(), fastMathEnabled: objc.BOOL) void {
-        return objc.msgSend(self, "setFastMathEnabled:", void, .{fastMathEnabled});
-    }
-
-    pub fn mathMode(self: *@This()) MathMode {
-        return objc.msgSend(self, "mathMode", MathMode, .{});
-    }
-
-    pub fn setMathMode(self: *@This(), mathMode: MathMode) void {
-        return objc.msgSend(self, "setMathMode:", void, .{mathMode});
-    }
-
-    pub fn mathFloatingPointFunctions(self: *@This()) MathFloatingPointFunctions {
-        return objc.msgSend(self, "mathFloatingPointFunctions", MathFloatingPointFunctions, .{});
-    }
-
-    pub fn setMathFloatingPointFunctions(self: *@This(), mathFloatingPointFunctions: MathFloatingPointFunctions) void {
-        return objc.msgSend(self, "setMathFloatingPointFunctions:", void, .{mathFloatingPointFunctions});
-    }
-
-    pub fn languageVersion(self: *@This()) LanguageVersion {
-        return objc.msgSend(self, "languageVersion", LanguageVersion, .{});
-    }
-
-    pub fn setLanguageVersion(self: *@This(), languageVersion: LanguageVersion) void {
-        return objc.msgSend(self, "setLanguageVersion:", void, .{languageVersion});
-    }
-
-    pub fn libraryType(self: *@This()) LibraryType {
-        return objc.msgSend(self, "libraryType", LibraryType, .{});
-    }
-
-    pub fn setLibraryType(self: *@This(), libraryType: LibraryType) void {
-        return objc.msgSend(self, "setLibraryType:", void, .{libraryType});
-    }
-
-    pub fn installName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "installName", ?*ns.String, .{});
-    }
-
-    pub fn setInstallName(self: *@This(), installName: ?*ns.String) void {
-        return objc.msgSend(self, "setInstallName:", void, .{installName});
-    }
-
-    pub fn libraries(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "libraries", ?*anyopaque, .{});
-    }
-
-    pub fn setLibraries(self: *@This(), libraries: ?*anyopaque) void {
-        return objc.msgSend(self, "setLibraries:", void, .{libraries});
-    }
-
-    pub fn preserveInvariance(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "preserveInvariance", objc.BOOL, .{});
-    }
-
-    pub fn setPreserveInvariance(self: *@This(), preserveInvariance: objc.BOOL) void {
-        return objc.msgSend(self, "setPreserveInvariance:", void, .{preserveInvariance});
-    }
-
-    pub fn optimizationLevel(self: *@This()) LibraryOptimizationLevel {
-        return objc.msgSend(self, "optimizationLevel", LibraryOptimizationLevel, .{});
-    }
-
-    pub fn setOptimizationLevel(self: *@This(), optimizationLevel: LibraryOptimizationLevel) void {
-        return objc.msgSend(self, "setOptimizationLevel:", void, .{optimizationLevel});
-    }
-
-    pub fn compileSymbolVisibility(self: *@This()) CompileSymbolVisibility {
-        return objc.msgSend(self, "compileSymbolVisibility", CompileSymbolVisibility, .{});
-    }
-
-    pub fn setCompileSymbolVisibility(self: *@This(), compileSymbolVisibility: CompileSymbolVisibility) void {
-        return objc.msgSend(self, "setCompileSymbolVisibility:", void, .{compileSymbolVisibility});
-    }
-
-    pub fn allowReferencingUndefinedSymbols(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowReferencingUndefinedSymbols", objc.BOOL, .{});
-    }
-
-    pub fn setAllowReferencingUndefinedSymbols(self: *@This(), allowReferencingUndefinedSymbols: objc.BOOL) void {
-        return objc.msgSend(self, "setAllowReferencingUndefinedSymbols:", void, .{allowReferencingUndefinedSymbols});
-    }
-
-    pub fn maxTotalThreadsPerThreadgroup(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "maxTotalThreadsPerThreadgroup", objc.NSUInteger, .{});
-    }
-
-    pub fn setMaxTotalThreadsPerThreadgroup(self: *@This(), maxTotalThreadsPerThreadgroup: objc.NSUInteger) void {
-        return objc.msgSend(self, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup});
-    }
-
-    pub fn enableLogging(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "enableLogging", objc.BOOL, .{});
-    }
-
-    pub fn setEnableLogging(self: *@This(), enableLogging: objc.BOOL) void {
-        return objc.msgSend(self, "setEnableLogging:", void, .{enableLogging});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLCounterSampleBufferDescriptor?language=objc
-pub const CounterSampleBufferDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLCounterSampleBufferDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn counterSet(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "counterSet", ?*anyopaque, .{});
-    }
-
-    pub fn setCounterSet(self: *@This(), counterSet: ?*anyopaque) void {
-        return objc.msgSend(self, "setCounterSet:", void, .{counterSet});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn storageMode(self: *@This()) StorageMode {
-        return objc.msgSend(self, "storageMode", StorageMode, .{});
-    }
-
-    pub fn setStorageMode(self: *@This(), storageMode: StorageMode) void {
-        return objc.msgSend(self, "setStorageMode:", void, .{storageMode});
-    }
-
-    pub fn sampleCount(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "sampleCount", objc.NSUInteger, .{});
-    }
-
-    pub fn setSampleCount(self: *@This(), sampleCount: objc.NSUInteger) void {
-        return objc.msgSend(self, "setSampleCount:", void, .{sampleCount});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLArgumentDescriptor?language=objc
-pub const ArgumentDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLArgumentDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn argumentDescriptor(self: *@This()) ?*ArgumentDescriptor {
-        return objc.msgSend(self, "argumentDescriptor", ?*ArgumentDescriptor, .{});
-    }
-
-    pub fn dataType(self: *@This()) DataType {
-        return objc.msgSend(self, "dataType", DataType, .{});
-    }
-
-    pub fn setDataType(self: *@This(), dataType: DataType) void {
-        return objc.msgSend(self, "setDataType:", void, .{dataType});
-    }
-
-    pub fn index(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "index", objc.NSUInteger, .{});
-    }
-
-    pub fn setIndex(self: *@This(), index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setIndex:", void, .{index});
-    }
-
-    pub fn arrayLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "arrayLength", objc.NSUInteger, .{});
-    }
-
-    pub fn setArrayLength(self: *@This(), arrayLength: objc.NSUInteger) void {
-        return objc.msgSend(self, "setArrayLength:", void, .{arrayLength});
-    }
-
-    pub fn access(self: *@This()) BindingAccess {
-        return objc.msgSend(self, "access", BindingAccess, .{});
-    }
-
-    pub fn setAccess(self: *@This(), access: BindingAccess) void {
-        return objc.msgSend(self, "setAccess:", void, .{access});
-    }
-
-    pub fn textureType(self: *@This()) TextureType {
-        return objc.msgSend(self, "textureType", TextureType, .{});
-    }
-
-    pub fn setTextureType(self: *@This(), textureType: TextureType) void {
-        return objc.msgSend(self, "setTextureType:", void, .{textureType});
-    }
-
-    pub fn constantBlockAlignment(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "constantBlockAlignment", objc.NSUInteger, .{});
-    }
-
-    pub fn setConstantBlockAlignment(self: *@This(), constantBlockAlignment: objc.NSUInteger) void {
-        return objc.msgSend(self, "setConstantBlockAlignment:", void, .{constantBlockAlignment});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLArchitecture?language=objc
-pub const Architecture = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLArchitecture", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor?language=objc
-pub const ResourceStatePassSampleBufferAttachmentDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLResourceStatePassSampleBufferAttachmentDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn sampleBuffer(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "sampleBuffer", ?*anyopaque, .{});
-    }
-
-    pub fn setSampleBuffer(self: *@This(), sampleBuffer: ?*anyopaque) void {
-        return objc.msgSend(self, "setSampleBuffer:", void, .{sampleBuffer});
-    }
-
-    pub fn startOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "startOfEncoderSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setStartOfEncoderSampleIndex(self: *@This(), startOfEncoderSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex});
-    }
-
-    pub fn endOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "endOfEncoderSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setEndOfEncoderSampleIndex(self: *@This(), endOfEncoderSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray?language=objc
-pub const ResourceStatePassSampleBufferAttachmentDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLResourceStatePassSampleBufferAttachmentDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*ResourceStatePassSampleBufferAttachmentDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*ResourceStatePassSampleBufferAttachmentDescriptor, .{attachmentIndex});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*ResourceStatePassSampleBufferAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLResourceStatePassDescriptor?language=objc
-pub const ResourceStatePassDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLResourceStatePassDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn resourceStatePassDescriptor(self: *@This()) ?*ResourceStatePassDescriptor {
-        return objc.msgSend(self, "resourceStatePassDescriptor", ?*ResourceStatePassDescriptor, .{});
-    }
-
-    pub fn sampleBufferAttachments(self: *@This()) ?*ResourceStatePassSampleBufferAttachmentDescriptorArray {
-        return objc.msgSend(self, "sampleBufferAttachments", ?*ResourceStatePassSampleBufferAttachmentDescriptorArray, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRenderPassAttachmentDescriptor?language=objc
-pub const RenderPassAttachmentDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLRenderPassAttachmentDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn texture(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "texture", ?*anyopaque, .{});
-    }
-
-    pub fn setTexture(self: *@This(), texture: ?*anyopaque) void {
-        return objc.msgSend(self, "setTexture:", void, .{texture});
-    }
-
-    pub fn level(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "level", objc.NSUInteger, .{});
-    }
-
-    pub fn setLevel(self: *@This(), level: objc.NSUInteger) void {
-        return objc.msgSend(self, "setLevel:", void, .{level});
-    }
-
-    pub fn slice(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "slice", objc.NSUInteger, .{});
-    }
-
-    pub fn setSlice(self: *@This(), slice: objc.NSUInteger) void {
-        return objc.msgSend(self, "setSlice:", void, .{slice});
-    }
-
-    pub fn depthPlane(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "depthPlane", objc.NSUInteger, .{});
-    }
-
-    pub fn setDepthPlane(self: *@This(), depthPlane: objc.NSUInteger) void {
-        return objc.msgSend(self, "setDepthPlane:", void, .{depthPlane});
-    }
-
-    pub fn resolveTexture(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "resolveTexture", ?*anyopaque, .{});
-    }
-
-    pub fn setResolveTexture(self: *@This(), resolveTexture: ?*anyopaque) void {
-        return objc.msgSend(self, "setResolveTexture:", void, .{resolveTexture});
-    }
-
-    pub fn resolveLevel(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "resolveLevel", objc.NSUInteger, .{});
-    }
-
-    pub fn setResolveLevel(self: *@This(), resolveLevel: objc.NSUInteger) void {
-        return objc.msgSend(self, "setResolveLevel:", void, .{resolveLevel});
-    }
-
-    pub fn resolveSlice(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "resolveSlice", objc.NSUInteger, .{});
-    }
-
-    pub fn setResolveSlice(self: *@This(), resolveSlice: objc.NSUInteger) void {
-        return objc.msgSend(self, "setResolveSlice:", void, .{resolveSlice});
-    }
-
-    pub fn resolveDepthPlane(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "resolveDepthPlane", objc.NSUInteger, .{});
-    }
-
-    pub fn setResolveDepthPlane(self: *@This(), resolveDepthPlane: objc.NSUInteger) void {
-        return objc.msgSend(self, "setResolveDepthPlane:", void, .{resolveDepthPlane});
-    }
-
-    pub fn loadAction(self: *@This()) LoadAction {
-        return objc.msgSend(self, "loadAction", LoadAction, .{});
-    }
-
-    pub fn setLoadAction(self: *@This(), loadAction: LoadAction) void {
-        return objc.msgSend(self, "setLoadAction:", void, .{loadAction});
-    }
-
-    pub fn storeAction(self: *@This()) StoreAction {
-        return objc.msgSend(self, "storeAction", StoreAction, .{});
-    }
-
-    pub fn setStoreAction(self: *@This(), storeAction: StoreAction) void {
-        return objc.msgSend(self, "setStoreAction:", void, .{storeAction});
-    }
-
-    pub fn storeActionOptions(self: *@This()) StoreActionOptions {
-        return objc.msgSend(self, "storeActionOptions", StoreActionOptions, .{});
-    }
-
-    pub fn setStoreActionOptions(self: *@This(), storeActionOptions: StoreActionOptions) void {
-        return objc.msgSend(self, "setStoreActionOptions:", void, .{storeActionOptions});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRenderPassColorAttachmentDescriptor?language=objc
-pub const RenderPassColorAttachmentDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLRenderPassColorAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn clearColor(self: *@This()) ClearColor {
-        return objc.msgSend(self, "clearColor", ClearColor, .{});
-    }
-
-    pub fn setClearColor(self: *@This(), clearColor: ClearColor) void {
-        return objc.msgSend(self, "setClearColor:", void, .{clearColor});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor?language=objc
-pub const RenderPassDepthAttachmentDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLRenderPassDepthAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn clearDepth(self: *@This()) f64 {
-        return objc.msgSend(self, "clearDepth", f64, .{});
-    }
-
-    pub fn setClearDepth(self: *@This(), clearDepth: f64) void {
-        return objc.msgSend(self, "setClearDepth:", void, .{clearDepth});
-    }
-
-    pub fn depthResolveFilter(self: *@This()) MultisampleDepthResolveFilter {
-        return objc.msgSend(self, "depthResolveFilter", MultisampleDepthResolveFilter, .{});
-    }
-
-    pub fn setDepthResolveFilter(self: *@This(), depthResolveFilter: MultisampleDepthResolveFilter) void {
-        return objc.msgSend(self, "setDepthResolveFilter:", void, .{depthResolveFilter});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRenderPassStencilAttachmentDescriptor?language=objc
-pub const RenderPassStencilAttachmentDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLRenderPassStencilAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn clearStencil(self: *@This()) objc.uint32_t {
-        return objc.msgSend(self, "clearStencil", objc.uint32_t, .{});
-    }
-
-    pub fn setClearStencil(self: *@This(), clearStencil: objc.uint32_t) void {
-        return objc.msgSend(self, "setClearStencil:", void, .{clearStencil});
-    }
-
-    pub fn stencilResolveFilter(self: *@This()) MultisampleStencilResolveFilter {
-        return objc.msgSend(self, "stencilResolveFilter", MultisampleStencilResolveFilter, .{});
-    }
-
-    pub fn setStencilResolveFilter(self: *@This(), stencilResolveFilter: MultisampleStencilResolveFilter) void {
-        return objc.msgSend(self, "setStencilResolveFilter:", void, .{stencilResolveFilter});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRenderPassColorAttachmentDescriptorArray?language=objc
-pub const RenderPassColorAttachmentDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLRenderPassColorAttachmentDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*RenderPassColorAttachmentDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*RenderPassColorAttachmentDescriptor, .{attachmentIndex});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*RenderPassColorAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor?language=objc
-pub const RenderPassSampleBufferAttachmentDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLRenderPassSampleBufferAttachmentDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn sampleBuffer(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "sampleBuffer", ?*anyopaque, .{});
-    }
-
-    pub fn setSampleBuffer(self: *@This(), sampleBuffer: ?*anyopaque) void {
-        return objc.msgSend(self, "setSampleBuffer:", void, .{sampleBuffer});
-    }
-
-    pub fn startOfVertexSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "startOfVertexSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setStartOfVertexSampleIndex(self: *@This(), startOfVertexSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setStartOfVertexSampleIndex:", void, .{startOfVertexSampleIndex});
-    }
-
-    pub fn endOfVertexSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "endOfVertexSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setEndOfVertexSampleIndex(self: *@This(), endOfVertexSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setEndOfVertexSampleIndex:", void, .{endOfVertexSampleIndex});
-    }
-
-    pub fn startOfFragmentSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "startOfFragmentSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setStartOfFragmentSampleIndex(self: *@This(), startOfFragmentSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setStartOfFragmentSampleIndex:", void, .{startOfFragmentSampleIndex});
-    }
-
-    pub fn endOfFragmentSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "endOfFragmentSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setEndOfFragmentSampleIndex(self: *@This(), endOfFragmentSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setEndOfFragmentSampleIndex:", void, .{endOfFragmentSampleIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptorArray?language=objc
-pub const RenderPassSampleBufferAttachmentDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLRenderPassSampleBufferAttachmentDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*RenderPassSampleBufferAttachmentDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*RenderPassSampleBufferAttachmentDescriptor, .{attachmentIndex});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*RenderPassSampleBufferAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor?language=objc
-pub const RenderPassDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLRenderPassDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn renderPassDescriptor(self: *@This()) ?*RenderPassDescriptor {
-        return objc.msgSend(self, "renderPassDescriptor", ?*RenderPassDescriptor, .{});
-    }
-
-    pub fn setSamplePositionsCount(self: *@This(), positions: ?*SamplePosition, count: objc.NSUInteger) void {
-        return objc.msgSend(self, "setSamplePositions:count:", void, .{positions, count});
-    }
-
-    pub fn getSamplePositionsCount(self: *@This(), positions: ?*SamplePosition, count: objc.NSUInteger) objc.NSUInteger {
-        return objc.msgSend(self, "getSamplePositions:count:", objc.NSUInteger, .{positions, count});
-    }
-
-    pub fn colorAttachments(self: *@This()) ?*RenderPassColorAttachmentDescriptorArray {
-        return objc.msgSend(self, "colorAttachments", ?*RenderPassColorAttachmentDescriptorArray, .{});
-    }
-
-    pub fn depthAttachment(self: *@This()) ?*RenderPassDepthAttachmentDescriptor {
-        return objc.msgSend(self, "depthAttachment", ?*RenderPassDepthAttachmentDescriptor, .{});
-    }
-
-    pub fn setDepthAttachment(self: *@This(), depthAttachment: ?*RenderPassDepthAttachmentDescriptor) void {
-        return objc.msgSend(self, "setDepthAttachment:", void, .{depthAttachment});
-    }
-
-    pub fn stencilAttachment(self: *@This()) ?*RenderPassStencilAttachmentDescriptor {
-        return objc.msgSend(self, "stencilAttachment", ?*RenderPassStencilAttachmentDescriptor, .{});
-    }
-
-    pub fn setStencilAttachment(self: *@This(), stencilAttachment: ?*RenderPassStencilAttachmentDescriptor) void {
-        return objc.msgSend(self, "setStencilAttachment:", void, .{stencilAttachment});
-    }
-
-    pub fn visibilityResultBuffer(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "visibilityResultBuffer", ?*anyopaque, .{});
-    }
-
-    pub fn setVisibilityResultBuffer(self: *@This(), visibilityResultBuffer: ?*anyopaque) void {
-        return objc.msgSend(self, "setVisibilityResultBuffer:", void, .{visibilityResultBuffer});
-    }
-
-    pub fn renderTargetArrayLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "renderTargetArrayLength", objc.NSUInteger, .{});
-    }
-
-    pub fn setRenderTargetArrayLength(self: *@This(), renderTargetArrayLength: objc.NSUInteger) void {
-        return objc.msgSend(self, "setRenderTargetArrayLength:", void, .{renderTargetArrayLength});
-    }
-
-    pub fn imageblockSampleLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "imageblockSampleLength", objc.NSUInteger, .{});
-    }
-
-    pub fn setImageblockSampleLength(self: *@This(), imageblockSampleLength: objc.NSUInteger) void {
-        return objc.msgSend(self, "setImageblockSampleLength:", void, .{imageblockSampleLength});
-    }
-
-    pub fn threadgroupMemoryLength(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "threadgroupMemoryLength", objc.NSUInteger, .{});
-    }
-
-    pub fn setThreadgroupMemoryLength(self: *@This(), threadgroupMemoryLength: objc.NSUInteger) void {
-        return objc.msgSend(self, "setThreadgroupMemoryLength:", void, .{threadgroupMemoryLength});
-    }
-
-    pub fn tileWidth(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "tileWidth", objc.NSUInteger, .{});
-    }
-
-    pub fn setTileWidth(self: *@This(), tileWidth: objc.NSUInteger) void {
-        return objc.msgSend(self, "setTileWidth:", void, .{tileWidth});
-    }
-
-    pub fn tileHeight(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "tileHeight", objc.NSUInteger, .{});
-    }
-
-    pub fn setTileHeight(self: *@This(), tileHeight: objc.NSUInteger) void {
-        return objc.msgSend(self, "setTileHeight:", void, .{tileHeight});
-    }
-
-    pub fn defaultRasterSampleCount(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "defaultRasterSampleCount", objc.NSUInteger, .{});
-    }
-
-    pub fn setDefaultRasterSampleCount(self: *@This(), defaultRasterSampleCount: objc.NSUInteger) void {
-        return objc.msgSend(self, "setDefaultRasterSampleCount:", void, .{defaultRasterSampleCount});
-    }
-
-    pub fn renderTargetWidth(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "renderTargetWidth", objc.NSUInteger, .{});
-    }
-
-    pub fn setRenderTargetWidth(self: *@This(), renderTargetWidth: objc.NSUInteger) void {
-        return objc.msgSend(self, "setRenderTargetWidth:", void, .{renderTargetWidth});
-    }
-
-    pub fn renderTargetHeight(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "renderTargetHeight", objc.NSUInteger, .{});
-    }
-
-    pub fn setRenderTargetHeight(self: *@This(), renderTargetHeight: objc.NSUInteger) void {
-        return objc.msgSend(self, "setRenderTargetHeight:", void, .{renderTargetHeight});
-    }
-
-    pub fn rasterizationRateMap(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "rasterizationRateMap", ?*anyopaque, .{});
-    }
-
-    pub fn setRasterizationRateMap(self: *@This(), rasterizationRateMap: ?*anyopaque) void {
-        return objc.msgSend(self, "setRasterizationRateMap:", void, .{rasterizationRateMap});
-    }
-
-    pub fn sampleBufferAttachments(self: *@This()) ?*RenderPassSampleBufferAttachmentDescriptorArray {
-        return objc.msgSend(self, "sampleBufferAttachments", ?*RenderPassSampleBufferAttachmentDescriptorArray, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLBlitPassSampleBufferAttachmentDescriptor?language=objc
-pub const BlitPassSampleBufferAttachmentDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLBlitPassSampleBufferAttachmentDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn sampleBuffer(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "sampleBuffer", ?*anyopaque, .{});
-    }
-
-    pub fn setSampleBuffer(self: *@This(), sampleBuffer: ?*anyopaque) void {
-        return objc.msgSend(self, "setSampleBuffer:", void, .{sampleBuffer});
-    }
-
-    pub fn startOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "startOfEncoderSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setStartOfEncoderSampleIndex(self: *@This(), startOfEncoderSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex});
-    }
-
-    pub fn endOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "endOfEncoderSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setEndOfEncoderSampleIndex(self: *@This(), endOfEncoderSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLBlitPassSampleBufferAttachmentDescriptorArray?language=objc
-pub const BlitPassSampleBufferAttachmentDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLBlitPassSampleBufferAttachmentDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*BlitPassSampleBufferAttachmentDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*BlitPassSampleBufferAttachmentDescriptor, .{attachmentIndex});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*BlitPassSampleBufferAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLBlitPassDescriptor?language=objc
-pub const BlitPassDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLBlitPassDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn blitPassDescriptor(self: *@This()) ?*BlitPassDescriptor {
-        return objc.msgSend(self, "blitPassDescriptor", ?*BlitPassDescriptor, .{});
-    }
-
-    pub fn sampleBufferAttachments(self: *@This()) ?*BlitPassSampleBufferAttachmentDescriptorArray {
-        return objc.msgSend(self, "sampleBufferAttachments", ?*BlitPassSampleBufferAttachmentDescriptorArray, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor?language=objc
-pub const CommandBufferDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLCommandBufferDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn retainedReferences(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "retainedReferences", objc.BOOL, .{});
-    }
-
-    pub fn setRetainedReferences(self: *@This(), retainedReferences: objc.BOOL) void {
-        return objc.msgSend(self, "setRetainedReferences:", void, .{retainedReferences});
-    }
-
-    pub fn errorOptions(self: *@This()) CommandBufferErrorOption {
-        return objc.msgSend(self, "errorOptions", CommandBufferErrorOption, .{});
-    }
-
-    pub fn setErrorOptions(self: *@This(), errorOptions: CommandBufferErrorOption) void {
-        return objc.msgSend(self, "setErrorOptions:", void, .{errorOptions});
-    }
-
-    pub fn logState(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "logState", ?*anyopaque, .{});
-    }
-
-    pub fn setLogState(self: *@This(), logState: ?*anyopaque) void {
-        return objc.msgSend(self, "setLogState:", void, .{logState});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptor?language=objc
-pub const ComputePassSampleBufferAttachmentDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLComputePassSampleBufferAttachmentDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn sampleBuffer(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "sampleBuffer", ?*anyopaque, .{});
-    }
-
-    pub fn setSampleBuffer(self: *@This(), sampleBuffer: ?*anyopaque) void {
-        return objc.msgSend(self, "setSampleBuffer:", void, .{sampleBuffer});
-    }
-
-    pub fn startOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "startOfEncoderSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setStartOfEncoderSampleIndex(self: *@This(), startOfEncoderSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex});
-    }
-
-    pub fn endOfEncoderSampleIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "endOfEncoderSampleIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setEndOfEncoderSampleIndex(self: *@This(), endOfEncoderSampleIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptorArray?language=objc
-pub const ComputePassSampleBufferAttachmentDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLComputePassSampleBufferAttachmentDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), attachmentIndex: objc.NSUInteger) ?*ComputePassSampleBufferAttachmentDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*ComputePassSampleBufferAttachmentDescriptor, .{attachmentIndex});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), attachment: ?*ComputePassSampleBufferAttachmentDescriptor, attachmentIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attachment, attachmentIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLComputePassDescriptor?language=objc
-pub const ComputePassDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLComputePassDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn computePassDescriptor(self: *@This()) ?*ComputePassDescriptor {
-        return objc.msgSend(self, "computePassDescriptor", ?*ComputePassDescriptor, .{});
-    }
-
-    pub fn dispatchType(self: *@This()) DispatchType {
-        return objc.msgSend(self, "dispatchType", DispatchType, .{});
-    }
-
-    pub fn setDispatchType(self: *@This(), dispatchType: DispatchType) void {
-        return objc.msgSend(self, "setDispatchType:", void, .{dispatchType});
-    }
-
-    pub fn sampleBufferAttachments(self: *@This()) ?*ComputePassSampleBufferAttachmentDescriptorArray {
-        return objc.msgSend(self, "sampleBufferAttachments", ?*ComputePassSampleBufferAttachmentDescriptorArray, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLCommandQueueDescriptor?language=objc
-pub const CommandQueueDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLCommandQueueDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn maxCommandBufferCount(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "maxCommandBufferCount", objc.NSUInteger, .{});
-    }
-
-    pub fn setMaxCommandBufferCount(self: *@This(), maxCommandBufferCount: objc.NSUInteger) void {
-        return objc.msgSend(self, "setMaxCommandBufferCount:", void, .{maxCommandBufferCount});
-    }
-
-    pub fn logState(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "logState", ?*anyopaque, .{});
-    }
-
-    pub fn setLogState(self: *@This(), logState: ?*anyopaque) void {
-        return objc.msgSend(self, "setLogState:", void, .{logState});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLStencilDescriptor?language=objc
-pub const StencilDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLStencilDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn stencilCompareFunction(self: *@This()) CompareFunction {
-        return objc.msgSend(self, "stencilCompareFunction", CompareFunction, .{});
-    }
-
-    pub fn setStencilCompareFunction(self: *@This(), stencilCompareFunction: CompareFunction) void {
-        return objc.msgSend(self, "setStencilCompareFunction:", void, .{stencilCompareFunction});
-    }
-
-    pub fn stencilFailureOperation(self: *@This()) StencilOperation {
-        return objc.msgSend(self, "stencilFailureOperation", StencilOperation, .{});
-    }
-
-    pub fn setStencilFailureOperation(self: *@This(), stencilFailureOperation: StencilOperation) void {
-        return objc.msgSend(self, "setStencilFailureOperation:", void, .{stencilFailureOperation});
-    }
-
-    pub fn depthFailureOperation(self: *@This()) StencilOperation {
-        return objc.msgSend(self, "depthFailureOperation", StencilOperation, .{});
-    }
-
-    pub fn setDepthFailureOperation(self: *@This(), depthFailureOperation: StencilOperation) void {
-        return objc.msgSend(self, "setDepthFailureOperation:", void, .{depthFailureOperation});
-    }
-
-    pub fn depthStencilPassOperation(self: *@This()) StencilOperation {
-        return objc.msgSend(self, "depthStencilPassOperation", StencilOperation, .{});
-    }
-
-    pub fn setDepthStencilPassOperation(self: *@This(), depthStencilPassOperation: StencilOperation) void {
-        return objc.msgSend(self, "setDepthStencilPassOperation:", void, .{depthStencilPassOperation});
-    }
-
-    pub fn readMask(self: *@This()) objc.uint32_t {
-        return objc.msgSend(self, "readMask", objc.uint32_t, .{});
-    }
-
-    pub fn setReadMask(self: *@This(), readMask: objc.uint32_t) void {
-        return objc.msgSend(self, "setReadMask:", void, .{readMask});
-    }
-
-    pub fn writeMask(self: *@This()) objc.uint32_t {
-        return objc.msgSend(self, "writeMask", objc.uint32_t, .{});
-    }
-
-    pub fn setWriteMask(self: *@This(), writeMask: objc.uint32_t) void {
-        return objc.msgSend(self, "setWriteMask:", void, .{writeMask});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor?language=objc
-pub const DepthStencilDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLDepthStencilDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn depthCompareFunction(self: *@This()) CompareFunction {
-        return objc.msgSend(self, "depthCompareFunction", CompareFunction, .{});
-    }
-
-    pub fn setDepthCompareFunction(self: *@This(), depthCompareFunction: CompareFunction) void {
-        return objc.msgSend(self, "setDepthCompareFunction:", void, .{depthCompareFunction});
-    }
-
-    pub fn isDepthWriteEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isDepthWriteEnabled", objc.BOOL, .{});
-    }
-
-    pub fn setDepthWriteEnabled(self: *@This(), depthWriteEnabled: objc.BOOL) void {
-        return objc.msgSend(self, "setDepthWriteEnabled:", void, .{depthWriteEnabled});
-    }
-
-    pub fn frontFaceStencil(self: *@This()) ?*StencilDescriptor {
-        return objc.msgSend(self, "frontFaceStencil", ?*StencilDescriptor, .{});
-    }
-
-    pub fn setFrontFaceStencil(self: *@This(), frontFaceStencil: ?*StencilDescriptor) void {
-        return objc.msgSend(self, "setFrontFaceStencil:", void, .{frontFaceStencil});
-    }
-
-    pub fn backFaceStencil(self: *@This()) ?*StencilDescriptor {
-        return objc.msgSend(self, "backFaceStencil", ?*StencilDescriptor, .{});
-    }
-
-    pub fn setBackFaceStencil(self: *@This(), backFaceStencil: ?*StencilDescriptor) void {
-        return objc.msgSend(self, "setBackFaceStencil:", void, .{backFaceStencil});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptor?language=objc
-pub const VertexBufferLayoutDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLVertexBufferLayoutDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn stride(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "stride", objc.NSUInteger, .{});
-    }
-
-    pub fn setStride(self: *@This(), stride: objc.NSUInteger) void {
-        return objc.msgSend(self, "setStride:", void, .{stride});
-    }
-
-    pub fn stepFunction(self: *@This()) VertexStepFunction {
-        return objc.msgSend(self, "stepFunction", VertexStepFunction, .{});
-    }
-
-    pub fn setStepFunction(self: *@This(), stepFunction: VertexStepFunction) void {
-        return objc.msgSend(self, "setStepFunction:", void, .{stepFunction});
-    }
-
-    pub fn stepRate(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "stepRate", objc.NSUInteger, .{});
-    }
-
-    pub fn setStepRate(self: *@This(), stepRate: objc.NSUInteger) void {
-        return objc.msgSend(self, "setStepRate:", void, .{stepRate});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptorArray?language=objc
-pub const VertexBufferLayoutDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLVertexBufferLayoutDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*VertexBufferLayoutDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*VertexBufferLayoutDescriptor, .{index});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), bufferDesc: ?*VertexBufferLayoutDescriptor, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{bufferDesc, index});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptor?language=objc
-pub const VertexAttributeDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLVertexAttributeDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn format(self: *@This()) VertexFormat {
-        return objc.msgSend(self, "format", VertexFormat, .{});
-    }
-
-    pub fn setFormat(self: *@This(), format: VertexFormat) void {
-        return objc.msgSend(self, "setFormat:", void, .{format});
-    }
-
-    pub fn offset(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "offset", objc.NSUInteger, .{});
-    }
-
-    pub fn setOffset(self: *@This(), offset: objc.NSUInteger) void {
-        return objc.msgSend(self, "setOffset:", void, .{offset});
-    }
-
-    pub fn bufferIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "bufferIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setBufferIndex(self: *@This(), bufferIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setBufferIndex:", void, .{bufferIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptorArray?language=objc
-pub const VertexAttributeDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLVertexAttributeDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*VertexAttributeDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*VertexAttributeDescriptor, .{index});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), attributeDesc: ?*VertexAttributeDescriptor, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attributeDesc, index});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLVertexDescriptor?language=objc
-pub const VertexDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLVertexDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn vertexDescriptor(self: *@This()) ?*VertexDescriptor {
-        return objc.msgSend(self, "vertexDescriptor", ?*VertexDescriptor, .{});
-    }
-
-    pub fn reset(self: *@This()) void {
-        return objc.msgSend(self, "reset", void, .{});
-    }
-
-    pub fn layouts(self: *@This()) ?*VertexBufferLayoutDescriptorArray {
-        return objc.msgSend(self, "layouts", ?*VertexBufferLayoutDescriptorArray, .{});
-    }
-
-    pub fn attributes(self: *@This()) ?*VertexAttributeDescriptorArray {
-        return objc.msgSend(self, "attributes", ?*VertexAttributeDescriptorArray, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLBufferLayoutDescriptor?language=objc
-pub const BufferLayoutDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLBufferLayoutDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn stride(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "stride", objc.NSUInteger, .{});
-    }
-
-    pub fn setStride(self: *@This(), stride: objc.NSUInteger) void {
-        return objc.msgSend(self, "setStride:", void, .{stride});
-    }
-
-    pub fn stepFunction(self: *@This()) StepFunction {
-        return objc.msgSend(self, "stepFunction", StepFunction, .{});
-    }
-
-    pub fn setStepFunction(self: *@This(), stepFunction: StepFunction) void {
-        return objc.msgSend(self, "setStepFunction:", void, .{stepFunction});
-    }
-
-    pub fn stepRate(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "stepRate", objc.NSUInteger, .{});
-    }
-
-    pub fn setStepRate(self: *@This(), stepRate: objc.NSUInteger) void {
-        return objc.msgSend(self, "setStepRate:", void, .{stepRate});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLBufferLayoutDescriptorArray?language=objc
-pub const BufferLayoutDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLBufferLayoutDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*BufferLayoutDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*BufferLayoutDescriptor, .{index});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), bufferDesc: ?*BufferLayoutDescriptor, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{bufferDesc, index});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLAttributeDescriptor?language=objc
-pub const AttributeDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLAttributeDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn format(self: *@This()) AttributeFormat {
-        return objc.msgSend(self, "format", AttributeFormat, .{});
-    }
-
-    pub fn setFormat(self: *@This(), format: AttributeFormat) void {
-        return objc.msgSend(self, "setFormat:", void, .{format});
-    }
-
-    pub fn offset(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "offset", objc.NSUInteger, .{});
-    }
-
-    pub fn setOffset(self: *@This(), offset: objc.NSUInteger) void {
-        return objc.msgSend(self, "setOffset:", void, .{offset});
-    }
-
-    pub fn bufferIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "bufferIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setBufferIndex(self: *@This(), bufferIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setBufferIndex:", void, .{bufferIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLAttributeDescriptorArray?language=objc
-pub const AttributeDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLAttributeDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*AttributeDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*AttributeDescriptor, .{index});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), attributeDesc: ?*AttributeDescriptor, index: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{attributeDesc, index});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLStageInputOutputDescriptor?language=objc
-pub const StageInputOutputDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLStageInputOutputDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn stageInputOutputDescriptor(self: *@This()) ?*StageInputOutputDescriptor {
-        return objc.msgSend(self, "stageInputOutputDescriptor", ?*StageInputOutputDescriptor, .{});
-    }
-
-    pub fn reset(self: *@This()) void {
-        return objc.msgSend(self, "reset", void, .{});
-    }
-
-    pub fn layouts(self: *@This()) ?*BufferLayoutDescriptorArray {
-        return objc.msgSend(self, "layouts", ?*BufferLayoutDescriptorArray, .{});
-    }
-
-    pub fn attributes(self: *@This()) ?*AttributeDescriptorArray {
-        return objc.msgSend(self, "attributes", ?*AttributeDescriptorArray, .{});
-    }
-
-    pub fn indexType(self: *@This()) IndexType {
-        return objc.msgSend(self, "indexType", IndexType, .{});
-    }
-
-    pub fn setIndexType(self: *@This(), indexType: IndexType) void {
-        return objc.msgSend(self, "setIndexType:", void, .{indexType});
-    }
-
-    pub fn indexBufferIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "indexBufferIndex", objc.NSUInteger, .{});
-    }
-
-    pub fn setIndexBufferIndex(self: *@This(), indexBufferIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setIndexBufferIndex:", void, .{indexBufferIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLPipelineBufferDescriptor?language=objc
-pub const PipelineBufferDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLPipelineBufferDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn mutability(self: *@This()) Mutability {
-        return objc.msgSend(self, "mutability", Mutability, .{});
-    }
-
-    pub fn setMutability(self: *@This(), mutability: Mutability) void {
-        return objc.msgSend(self, "setMutability:", void, .{mutability});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLPipelineBufferDescriptorArray?language=objc
-pub const PipelineBufferDescriptorArray = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLPipelineBufferDescriptorArray", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn objectAtIndexedSubscript(self: *@This(), bufferIndex: objc.NSUInteger) ?*PipelineBufferDescriptor {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*PipelineBufferDescriptor, .{bufferIndex});
-    }
-
-    pub fn setObjectAtIndexedSubscript(self: *@This(), buffer: ?*PipelineBufferDescriptor, bufferIndex: objc.NSUInteger) void {
-        return objc.msgSend(self, "setObject:atIndexedSubscript:", void, .{buffer, bufferIndex});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLLinkedFunctions?language=objc
-pub const LinkedFunctions = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLLinkedFunctions", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn linkedFunctions(self: *@This()) ?*LinkedFunctions {
-        return objc.msgSend(self, "linkedFunctions", ?*LinkedFunctions, .{});
-    }
-
-    pub fn functions(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "functions", ?*anyopaque, .{});
-    }
-
-    pub fn setFunctions(self: *@This(), functions: ?*anyopaque) void {
-        return objc.msgSend(self, "setFunctions:", void, .{functions});
-    }
-
-    pub fn binaryFunctions(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "binaryFunctions", ?*anyopaque, .{});
-    }
-
-    pub fn setBinaryFunctions(self: *@This(), binaryFunctions: ?*anyopaque) void {
-        return objc.msgSend(self, "setBinaryFunctions:", void, .{binaryFunctions});
-    }
-
-    pub fn groups(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "groups", ?*anyopaque, .{});
-    }
-
-    pub fn setGroups(self: *@This(), groups: ?*anyopaque) void {
-        return objc.msgSend(self, "setGroups:", void, .{groups});
-    }
-
-    pub fn privateFunctions(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "privateFunctions", ?*anyopaque, .{});
-    }
-
-    pub fn setPrivateFunctions(self: *@This(), privateFunctions: ?*anyopaque) void {
-        return objc.msgSend(self, "setPrivateFunctions:", void, .{privateFunctions});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLComputePipelineReflection?language=objc
-pub const ComputePipelineReflection = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLComputePipelineReflection", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn bindings(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "bindings", ?*anyopaque, .{});
-    }
-
-    pub fn arguments(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "arguments", ?*anyopaque, .{});
-    }
-
-};
-
-/// https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor?language=objc
-pub const ComputePipelineDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("MTLComputePipelineDescriptor", @This(), NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-    pub fn reset(self: *@This()) void {
-        return objc.msgSend(self, "reset", void, .{});
-    }
-
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
-    }
-
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
-        return objc.msgSend(self, "setLabel:", void, .{label});
-    }
-
-    pub fn computeFunction(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "computeFunction", ?*anyopaque, .{});
-    }
-
-    pub fn setComputeFunction(self: *@This(), computeFunction: ?*anyopaque) void {
-        return objc.msgSend(self, "setComputeFunction:", void, .{computeFunction});
-    }
-
-    pub fn threadGroupSizeIsMultipleOfThreadExecutionWidth(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "threadGroupSizeIsMultipleOfThreadExecutionWidth", objc.BOOL, .{});
-    }
-
-    pub fn setThreadGroupSizeIsMultipleOfThreadExecutionWidth(self: *@This(), threadGroupSizeIsMultipleOfThreadExecutionWidth: objc.BOOL) void {
-        return objc.msgSend(self, "setThreadGroupSizeIsMultipleOfThreadExecutionWidth:", void, .{threadGroupSizeIsMultipleOfThreadExecutionWidth});
-    }
-
-    pub fn maxTotalThreadsPerThreadgroup(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "maxTotalThreadsPerThreadgroup", objc.NSUInteger, .{});
-    }
-
-    pub fn setMaxTotalThreadsPerThreadgroup(self: *@This(), maxTotalThreadsPerThreadgroup: objc.NSUInteger) void {
-        return objc.msgSend(self, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup});
-    }
-
-    pub fn stageInputDescriptor(self: *@This()) ?*StageInputOutputDescriptor {
-        return objc.msgSend(self, "stageInputDescriptor", ?*StageInputOutputDescriptor, .{});
-    }
-
-    pub fn setStageInputDescriptor(self: *@This(), stageInputDescriptor: ?*StageInputOutputDescriptor) void {
-        return objc.msgSend(self, "setStageInputDescriptor:", void, .{stageInputDescriptor});
-    }
-
-    pub fn buffers(self: *@This()) ?*PipelineBufferDescriptorArray {
-        return objc.msgSend(self, "buffers", ?*PipelineBufferDescriptorArray, .{});
-    }
-
-    pub fn supportIndirectCommandBuffers(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "supportIndirectCommandBuffers", objc.BOOL, .{});
-    }
-
-    pub fn setSupportIndirectCommandBuffers(self: *@This(), supportIndirectCommandBuffers: objc.BOOL) void {
-        return objc.msgSend(self, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers});
-    }
-
-    pub fn insertLibraries(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "insertLibraries", ?*anyopaque, .{});
-    }
-
-    pub fn setInsertLibraries(self: *@This(), insertLibraries: ?*anyopaque) void {
-        return objc.msgSend(self, "setInsertLibraries:", void, .{insertLibraries});
-    }
-
-    pub fn preloadedLibraries(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "preloadedLibraries", ?*anyopaque, .{});
-    }
-
-    pub fn setPreloadedLibraries(self: *@This(), preloadedLibraries: ?*anyopaque) void {
-        return objc.msgSend(self, "setPreloadedLibraries:", void, .{preloadedLibraries});
-    }
-
-    pub fn binaryArchives(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "binaryArchives", ?*anyopaque, .{});
-    }
-
-    pub fn setBinaryArchives(self: *@This(), binaryArchives: ?*anyopaque) void {
-        return objc.msgSend(self, "setBinaryArchives:", void, .{binaryArchives});
-    }
-
-    pub fn linkedFunctions(self: *@This()) ?*LinkedFunctions {
-        return objc.msgSend(self, "linkedFunctions", ?*LinkedFunctions, .{});
-    }
-
-    pub fn setLinkedFunctions(self: *@This(), linkedFunctions: ?*LinkedFunctions) void {
-        return objc.msgSend(self, "setLinkedFunctions:", void, .{linkedFunctions});
-    }
-
-    pub fn supportAddingBinaryFunctions(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "supportAddingBinaryFunctions", objc.BOOL, .{});
-    }
-
-    pub fn setSupportAddingBinaryFunctions(self: *@This(), supportAddingBinaryFunctions: objc.BOOL) void {
-        return objc.msgSend(self, "setSupportAddingBinaryFunctions:", void, .{supportAddingBinaryFunctions});
-    }
-
-    pub fn maxCallStackDepth(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "maxCallStackDepth", objc.NSUInteger, .{});
-    }
-
-    pub fn setMaxCallStackDepth(self: *@This(), maxCallStackDepth: objc.NSUInteger) void {
-        return objc.msgSend(self, "setMaxCallStackDepth:", void, .{maxCallStackDepth});
-    }
-
-    pub fn shaderValidation(self: *@This()) ShaderValidation {
-        return objc.msgSend(self, "shaderValidation", ShaderValidation, .{});
-    }
-
-    pub fn setShaderValidation(self: *@This(), shaderValidation: ShaderValidation) void {
-        return objc.msgSend(self, "setShaderValidation:", void, .{shaderValidation});
-    }
-
-};
-
 /// https://developer.apple.com/documentation/Metal/MTLVisibleFunctionTableDescriptor?language=objc
 pub const VisibleFunctionTableDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLVisibleFunctionTableDescriptor", @This(), NSObject, &.{});
@@ -7268,6 +5724,98 @@ pub const VisibleFunctionTableDescriptor = opaque {
         return objc.msgSend(self, "setFunctionCount:", void, .{functionCount});
     }
 
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLVisibleFunctionTable?language=objc
+pub const VisibleFunctionTable = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn setFunctionAtIndex(self: *@This(), function: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setFunction:atIndex:", void, .{function, index});
+    }
+
+    pub fn setFunctionsWithRange(self: *@This(), functions: ?*?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setFunctions:withRange:", void, .{functions, range});
+    }
+
+    pub fn gpuResourceID(self: *@This()) ResourceID {
+        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
+    }
+
+};
+
+pub const BlendFactor = enum(objc.NSUInteger) {
+    Zero = 0,
+    One = 1,
+    SourceColor = 2,
+    OneMinusSourceColor = 3,
+    SourceAlpha = 4,
+    OneMinusSourceAlpha = 5,
+    DestinationColor = 6,
+    OneMinusDestinationColor = 7,
+    DestinationAlpha = 8,
+    OneMinusDestinationAlpha = 9,
+    SourceAlphaSaturated = 10,
+    BlendColor = 11,
+    OneMinusBlendColor = 12,
+    BlendAlpha = 13,
+    OneMinusBlendAlpha = 14,
+    Source1Color = 15,
+    OneMinusSource1Color = 16,
+    Source1Alpha = 17,
+    OneMinusSource1Alpha = 18,
+};
+
+pub const BlendOperation = enum(objc.NSUInteger) {
+    Add = 0,
+    Subtract = 1,
+    ReverseSubtract = 2,
+    Min = 3,
+    Max = 4,
+};
+
+pub const ColorWriteMask = enum(objc.NSUInteger) {
+    None = 0,
+    Red = 8,
+    Green = 4,
+    Blue = 2,
+    Alpha = 1,
+    All = 15,
+};
+
+pub const PrimitiveTopologyClass = enum(objc.NSUInteger) {
+    Unspecified = 0,
+    Point = 1,
+    Line = 2,
+    Triangle = 3,
+};
+
+pub const TessellationPartitionMode = enum(objc.NSUInteger) {
+    Pow2 = 0,
+    Integer = 1,
+    FractionalOdd = 2,
+    FractionalEven = 3,
+};
+
+pub const TessellationFactorStepFunction = enum(objc.NSUInteger) {
+    Constant = 0,
+    PerPatch = 1,
+    PerInstance = 2,
+    PerPatchAndPerInstance = 3,
+};
+
+pub const TessellationFactorFormat = enum(objc.NSUInteger) {
+    Half = 0,
+};
+
+pub const TessellationControlPointIndexType = enum(objc.NSUInteger) {
+    None = 0,
+    UInt16 = 1,
+    UInt32 = 2,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptor?language=objc
@@ -7714,6 +6262,88 @@ pub const RenderPipelineFunctionsDescriptor = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLRenderPipelineState?language=objc
+pub const RenderPipelineState = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn imageblockMemoryLengthForDimensions(self: *@This(), imageblockDimensions: Size) objc.NSUInteger {
+        return objc.msgSend(self, "imageblockMemoryLengthForDimensions:", objc.NSUInteger, .{imageblockDimensions});
+    }
+
+    pub fn functionHandleWithFunctionStage(self: *@This(), function: ?*anyopaque, stage: RenderStages) ?*anyopaque {
+        return objc.msgSend(self, "functionHandleWithFunction:stage:", ?*anyopaque, .{function, stage});
+    }
+
+    pub fn newVisibleFunctionTableWithDescriptorStage(self: *@This(), descriptor: ?*VisibleFunctionTableDescriptor, stage: RenderStages) ?*anyopaque {
+        return objc.msgSend(self, "newVisibleFunctionTableWithDescriptor:stage:", ?*anyopaque, .{descriptor, stage});
+    }
+
+    pub fn newIntersectionFunctionTableWithDescriptorStage(self: *@This(), descriptor: ?*IntersectionFunctionTableDescriptor, stage: RenderStages) ?*anyopaque {
+        return objc.msgSend(self, "newIntersectionFunctionTableWithDescriptor:stage:", ?*anyopaque, .{descriptor, stage});
+    }
+
+    pub fn newRenderPipelineStateWithAdditionalBinaryFunctionsError(self: *@This(), additionalBinaryFunctions: ?*RenderPipelineFunctionsDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+        return objc.msgSend(self, "newRenderPipelineStateWithAdditionalBinaryFunctions:error:", ?*anyopaque, .{additionalBinaryFunctions, @"error"});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn maxTotalThreadsPerThreadgroup(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "maxTotalThreadsPerThreadgroup", objc.NSUInteger, .{});
+    }
+
+    pub fn threadgroupSizeMatchesTileSize(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "threadgroupSizeMatchesTileSize", objc.BOOL, .{});
+    }
+
+    pub fn imageblockSampleLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "imageblockSampleLength", objc.NSUInteger, .{});
+    }
+
+    pub fn supportIndirectCommandBuffers(self: *@This()) objc.BOOL {
+        return objc.msgSend(self, "supportIndirectCommandBuffers", objc.BOOL, .{});
+    }
+
+    pub fn maxTotalThreadsPerObjectThreadgroup(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "maxTotalThreadsPerObjectThreadgroup", objc.NSUInteger, .{});
+    }
+
+    pub fn maxTotalThreadsPerMeshThreadgroup(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "maxTotalThreadsPerMeshThreadgroup", objc.NSUInteger, .{});
+    }
+
+    pub fn objectThreadExecutionWidth(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "objectThreadExecutionWidth", objc.NSUInteger, .{});
+    }
+
+    pub fn meshThreadExecutionWidth(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "meshThreadExecutionWidth", objc.NSUInteger, .{});
+    }
+
+    pub fn maxTotalThreadgroupsPerMeshGrid(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "maxTotalThreadgroupsPerMeshGrid", objc.NSUInteger, .{});
+    }
+
+    pub fn gpuResourceID(self: *@This()) ResourceID {
+        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
+    }
+
+    pub fn shaderValidation(self: *@This()) ShaderValidation {
+        return objc.msgSend(self, "shaderValidation", ShaderValidation, .{});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptorArray?language=objc
 pub const RenderPipelineColorAttachmentDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLRenderPipelineColorAttachmentDescriptorArray", @This(), NSObject, &.{});
@@ -8107,6 +6737,70 @@ pub const MeshRenderPipelineDescriptor = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLParallelRenderCommandEncoder?language=objc
+pub const ParallelRenderCommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn renderCommandEncoder(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "renderCommandEncoder", ?*anyopaque, .{});
+    }
+
+    pub fn setColorStoreActionAtIndex(self: *@This(), storeAction: StoreAction, colorAttachmentIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setColorStoreAction:atIndex:", void, .{storeAction, colorAttachmentIndex});
+    }
+
+    pub fn setDepthStoreAction(self: *@This(), storeAction: StoreAction) void {
+        return objc.msgSend(self, "setDepthStoreAction:", void, .{storeAction});
+    }
+
+    pub fn setStencilStoreAction(self: *@This(), storeAction: StoreAction) void {
+        return objc.msgSend(self, "setStencilStoreAction:", void, .{storeAction});
+    }
+
+    pub fn setColorStoreActionOptionsAtIndex(self: *@This(), storeActionOptions: StoreActionOptions, colorAttachmentIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setColorStoreActionOptions:atIndex:", void, .{storeActionOptions, colorAttachmentIndex});
+    }
+
+    pub fn setDepthStoreActionOptions(self: *@This(), storeActionOptions: StoreActionOptions) void {
+        return objc.msgSend(self, "setDepthStoreActionOptions:", void, .{storeActionOptions});
+    }
+
+    pub fn setStencilStoreActionOptions(self: *@This(), storeActionOptions: StoreActionOptions) void {
+        return objc.msgSend(self, "setStencilStoreActionOptions:", void, .{storeActionOptions});
+    }
+
+};
+
+pub const SamplerMinMagFilter = enum(objc.NSUInteger) {
+    Nearest = 0,
+    Linear = 1,
+};
+
+pub const SamplerMipFilter = enum(objc.NSUInteger) {
+    NotMipmapped = 0,
+    Nearest = 1,
+    Linear = 2,
+};
+
+pub const SamplerAddressMode = enum(objc.NSUInteger) {
+    ClampToEdge = 0,
+    MirrorClampToEdge = 1,
+    Repeat = 2,
+    MirrorRepeat = 3,
+    ClampToZero = 4,
+    ClampToBorderColor = 5,
+};
+
+pub const SamplerBorderColor = enum(objc.NSUInteger) {
+    TransparentBlack = 0,
+    OpaqueBlack = 1,
+    OpaqueWhite = 2,
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor?language=objc
 pub const SamplerDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLSamplerDescriptor", @This(), NSObject, &.{});
@@ -8240,6 +6934,88 @@ pub const SamplerDescriptor = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLSamplerState?language=objc
+pub const SamplerState = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn gpuResourceID(self: *@This()) ResourceID {
+        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
+    }
+
+};
+
+pub const _MTLPackedFloat3 = extern struct {};
+
+pub const anon115 = extern union {
+    elements: [3] f32,
+};
+
+pub const anon129 = extern struct {
+    x: f32,
+    y: f32,
+    z: f32,
+};
+
+pub extern "Metal" fn PackedFloat3Make(x: f32, y: f32, z: f32) callconv(.C) PackedFloat3;
+
+pub const PackedFloatQuaternion = extern struct {
+    x: f32,
+    y: f32,
+    z: f32,
+    w: f32,
+};
+
+pub extern "Metal" fn PackedFloatQuaternionMake(x: f32, y: f32, z: f32, w: f32, ) callconv(.C) PackedFloatQuaternion;
+
+pub const _MTLPackedFloat4x3 = extern struct {
+    columns: [4] PackedFloat3,
+};
+
+pub const _MTLAxisAlignedBoundingBox = extern struct {
+    min: PackedFloat3,
+    max: PackedFloat3,
+};
+
+pub const ComponentTransform = extern struct {
+    scale: PackedFloat3,
+    shear: PackedFloat3,
+    pivot: PackedFloat3,
+    rotation: PackedFloatQuaternion,
+    translation: PackedFloat3,
+};
+
+pub const AccelerationStructureUsage = enum(objc.NSUInteger) {
+    None = 0,
+    Refit = 1,
+    PreferFastBuild = 2,
+    ExtendedLimits = 4,
+};
+
+pub const AccelerationStructureInstanceOptions = enum(objc.uint32_t) {
+    None = 0,
+    DisableTriangleCulling = 1,
+    TriangleFrontFacingWindingCounterClockwise = 2,
+    Opaque = 4,
+    NonOpaque = 8,
+};
+
+pub const MatrixLayout = enum(objc.NSInteger) {
+    ColumnMajor = 0,
+    RowMajor = 1,
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLAccelerationStructureDescriptor?language=objc
 pub const AccelerationStructureDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLAccelerationStructureDescriptor", @This(), NSObject, &.{});
@@ -8336,6 +7112,11 @@ pub const AccelerationStructureGeometryDescriptor = opaque {
         return objc.msgSend(self, "setPrimitiveDataElementSize:", void, .{primitiveDataElementSize});
     }
 
+};
+
+pub const MotionBorderMode = enum(objc.uint32_t) {
+    Clamp = 0,
+    Vanish = 1,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor?language=objc
@@ -8728,6 +7509,24 @@ pub const AccelerationStructureMotionBoundingBoxGeometryDescriptor = opaque {
 
 };
 
+pub const CurveType = enum(objc.NSInteger) {
+    Round = 0,
+    Flat = 1,
+};
+
+pub const CurveBasis = enum(objc.NSInteger) {
+    BSpline = 0,
+    CatmullRom = 1,
+    Linear = 2,
+    Bezier = 3,
+};
+
+pub const CurveEndCaps = enum(objc.NSInteger) {
+    None = 0,
+    Disk = 1,
+    Sphere = 2,
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor?language=objc
 pub const AccelerationStructureCurveGeometryDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLAccelerationStructureCurveGeometryDescriptor", @This(), AccelerationStructureGeometryDescriptor, &.{});
@@ -9018,6 +7817,73 @@ pub const AccelerationStructureMotionCurveGeometryDescriptor = opaque {
 
 };
 
+pub const AccelerationStructureInstanceDescriptor = extern struct {
+    transformationMatrix: PackedFloat4x3,
+    options: AccelerationStructureInstanceOptions,
+    mask: objc.uint32_t,
+    intersectionFunctionTableOffset: objc.uint32_t,
+    accelerationStructureIndex: objc.uint32_t,
+};
+
+pub const AccelerationStructureUserIDInstanceDescriptor = extern struct {
+    transformationMatrix: PackedFloat4x3,
+    options: AccelerationStructureInstanceOptions,
+    mask: objc.uint32_t,
+    intersectionFunctionTableOffset: objc.uint32_t,
+    accelerationStructureIndex: objc.uint32_t,
+    userID: objc.uint32_t,
+};
+
+pub const AccelerationStructureInstanceDescriptorType = enum(objc.NSUInteger) {
+    Default = 0,
+    UserID = 1,
+    Motion = 2,
+    Indirect = 3,
+    IndirectMotion = 4,
+};
+
+pub const AccelerationStructureMotionInstanceDescriptor = extern struct {
+    options: AccelerationStructureInstanceOptions,
+    mask: objc.uint32_t,
+    intersectionFunctionTableOffset: objc.uint32_t,
+    accelerationStructureIndex: objc.uint32_t,
+    userID: objc.uint32_t,
+    motionTransformsStartIndex: objc.uint32_t,
+    motionTransformsCount: objc.uint32_t,
+    motionStartBorderMode: MotionBorderMode,
+    motionEndBorderMode: MotionBorderMode,
+    motionStartTime: f32,
+    motionEndTime: f32,
+};
+
+pub const IndirectAccelerationStructureInstanceDescriptor = extern struct {
+    transformationMatrix: PackedFloat4x3,
+    options: AccelerationStructureInstanceOptions,
+    mask: objc.uint32_t,
+    intersectionFunctionTableOffset: objc.uint32_t,
+    userID: objc.uint32_t,
+    accelerationStructureID: ResourceID,
+};
+
+pub const IndirectAccelerationStructureMotionInstanceDescriptor = extern struct {
+    options: AccelerationStructureInstanceOptions,
+    mask: objc.uint32_t,
+    intersectionFunctionTableOffset: objc.uint32_t,
+    userID: objc.uint32_t,
+    accelerationStructureID: ResourceID,
+    motionTransformsStartIndex: objc.uint32_t,
+    motionTransformsCount: objc.uint32_t,
+    motionStartBorderMode: MotionBorderMode,
+    motionEndBorderMode: MotionBorderMode,
+    motionStartTime: f32,
+    motionEndTime: f32,
+};
+
+pub const TransformType = enum(objc.NSInteger) {
+    PackedFloat4x3 = 0,
+    Component = 1,
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLInstanceAccelerationStructureDescriptor?language=objc
 pub const InstanceAccelerationStructureDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLInstanceAccelerationStructureDescriptor", @This(), AccelerationStructureDescriptor, &.{});
@@ -9268,6 +8134,30 @@ pub const IndirectInstanceAccelerationStructureDescriptor = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLAccelerationStructure?language=objc
+pub const AccelerationStructure = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn size(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "size", objc.NSUInteger, .{});
+    }
+
+    pub fn gpuResourceID(self: *@This()) ResourceID {
+        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
+    }
+
+};
+
+pub const HeapType = enum(objc.NSInteger) {
+    Automatic = 0,
+    Placement = 1,
+    Sparse = 2,
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLHeapDescriptor?language=objc
 pub const HeapDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLHeapDescriptor", @This(), NSObject, &.{});
@@ -9327,7 +8217,7 @@ pub const HeapDescriptor = opaque {
         return objc.msgSend(self, "setResourceOptions:", void, .{resourceOptions});
     }
 
-    pub fn type(self: *@This()) HeapType {
+    pub fn @"type"(self: *@This()) HeapType {
         return objc.msgSend(self, "type", HeapType, .{});
     }
 
@@ -9335,6 +8225,225 @@ pub const HeapDescriptor = opaque {
         return objc.msgSend(self, "setType:", void, .{@"type"});
     }
 
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLHeap?language=objc
+pub const Heap = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Allocation, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn maxAvailableSizeWithAlignment(self: *@This(), alignment: objc.NSUInteger) objc.NSUInteger {
+        return objc.msgSend(self, "maxAvailableSizeWithAlignment:", objc.NSUInteger, .{alignment});
+    }
+
+    pub fn newBufferWithLengthOptions(self: *@This(), length: objc.NSUInteger, options: ResourceOptions) ?*anyopaque {
+        return objc.msgSend(self, "newBufferWithLength:options:", ?*anyopaque, .{length, options});
+    }
+
+    pub fn newTextureWithDescriptor(self: *@This(), descriptor: ?*TextureDescriptor) ?*anyopaque {
+        return objc.msgSend(self, "newTextureWithDescriptor:", ?*anyopaque, .{descriptor});
+    }
+
+    pub fn setPurgeableState(self: *@This(), state: PurgeableState) PurgeableState {
+        return objc.msgSend(self, "setPurgeableState:", PurgeableState, .{state});
+    }
+
+    pub fn newBufferWithLengthOptionsOffset(self: *@This(), length: objc.NSUInteger, options: ResourceOptions, offset: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "newBufferWithLength:options:offset:", ?*anyopaque, .{length, options, offset});
+    }
+
+    pub fn newTextureWithDescriptorOffset(self: *@This(), descriptor: ?*TextureDescriptor, offset: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "newTextureWithDescriptor:offset:", ?*anyopaque, .{descriptor, offset});
+    }
+
+    pub fn newAccelerationStructureWithSize(self: *@This(), size: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "newAccelerationStructureWithSize:", ?*anyopaque, .{size});
+    }
+
+    pub fn newAccelerationStructureWithDescriptor(self: *@This(), descriptor: ?*AccelerationStructureDescriptor) ?*anyopaque {
+        return objc.msgSend(self, "newAccelerationStructureWithDescriptor:", ?*anyopaque, .{descriptor});
+    }
+
+    pub fn newAccelerationStructureWithSizeOffset(self: *@This(), size: objc.NSUInteger, offset: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "newAccelerationStructureWithSize:offset:", ?*anyopaque, .{size, offset});
+    }
+
+    pub fn newAccelerationStructureWithDescriptorOffset(self: *@This(), descriptor: ?*AccelerationStructureDescriptor, offset: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "newAccelerationStructureWithDescriptor:offset:", ?*anyopaque, .{descriptor, offset});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn storageMode(self: *@This()) StorageMode {
+        return objc.msgSend(self, "storageMode", StorageMode, .{});
+    }
+
+    pub fn cpuCacheMode(self: *@This()) CPUCacheMode {
+        return objc.msgSend(self, "cpuCacheMode", CPUCacheMode, .{});
+    }
+
+    pub fn hazardTrackingMode(self: *@This()) HazardTrackingMode {
+        return objc.msgSend(self, "hazardTrackingMode", HazardTrackingMode, .{});
+    }
+
+    pub fn resourceOptions(self: *@This()) ResourceOptions {
+        return objc.msgSend(self, "resourceOptions", ResourceOptions, .{});
+    }
+
+    pub fn size(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "size", objc.NSUInteger, .{});
+    }
+
+    pub fn usedSize(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "usedSize", objc.NSUInteger, .{});
+    }
+
+    pub fn currentAllocatedSize(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "currentAllocatedSize", objc.NSUInteger, .{});
+    }
+
+    pub fn @"type"(self: *@This()) HeapType {
+        return objc.msgSend(self, "type", HeapType, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLArgumentEncoder?language=objc
+pub const ArgumentEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn setArgumentBufferOffset(self: *@This(), argumentBuffer: ?*anyopaque, offset: objc.NSUInteger) void {
+        return objc.msgSend(self, "setArgumentBuffer:offset:", void, .{argumentBuffer, offset});
+    }
+
+    pub fn setArgumentBufferStartOffsetArrayElement(self: *@This(), argumentBuffer: ?*anyopaque, startOffset: objc.NSUInteger, arrayElement: objc.NSUInteger) void {
+        return objc.msgSend(self, "setArgumentBuffer:startOffset:arrayElement:", void, .{argumentBuffer, startOffset, arrayElement});
+    }
+
+    pub fn setBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setBuffer:offset:atIndex:", void, .{buffer, offset, index});
+    }
+
+    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+        return objc.msgSend(self, "setBuffers:offsets:withRange:", void, .{buffers, offsets, range});
+    }
+
+    pub fn setTextureAtIndex(self: *@This(), texture: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setTexture:atIndex:", void, .{texture, index});
+    }
+
+    pub fn setTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setTextures:withRange:", void, .{textures, range});
+    }
+
+    pub fn setSamplerStateAtIndex(self: *@This(), sampler: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setSamplerState:atIndex:", void, .{sampler, index});
+    }
+
+    pub fn setSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setSamplerStates:withRange:", void, .{samplers, range});
+    }
+
+    pub fn constantDataAtIndex(self: *@This(), index: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "constantDataAtIndex:", ?*anyopaque, .{index});
+    }
+
+    pub fn setRenderPipelineStateAtIndex(self: *@This(), pipeline: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setRenderPipelineState:atIndex:", void, .{pipeline, index});
+    }
+
+    pub fn setRenderPipelineStatesWithRange(self: *@This(), pipelines: ?*?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setRenderPipelineStates:withRange:", void, .{pipelines, range});
+    }
+
+    pub fn setComputePipelineStateAtIndex(self: *@This(), pipeline: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setComputePipelineState:atIndex:", void, .{pipeline, index});
+    }
+
+    pub fn setComputePipelineStatesWithRange(self: *@This(), pipelines: ?*?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setComputePipelineStates:withRange:", void, .{pipelines, range});
+    }
+
+    pub fn setIndirectCommandBufferAtIndex(self: *@This(), indirectCommandBuffer: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setIndirectCommandBuffer:atIndex:", void, .{indirectCommandBuffer, index});
+    }
+
+    pub fn setIndirectCommandBuffersWithRange(self: *@This(), buffers: ?*?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setIndirectCommandBuffers:withRange:", void, .{buffers, range});
+    }
+
+    pub fn setAccelerationStructureAtIndex(self: *@This(), accelerationStructure: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setAccelerationStructure:atIndex:", void, .{accelerationStructure, index});
+    }
+
+    pub fn newArgumentEncoderForBufferAtIndex(self: *@This(), index: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "newArgumentEncoderForBufferAtIndex:", ?*anyopaque, .{index});
+    }
+
+    pub fn setVisibleFunctionTableAtIndex(self: *@This(), visibleFunctionTable: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setVisibleFunctionTable:atIndex:", void, .{visibleFunctionTable, index});
+    }
+
+    pub fn setVisibleFunctionTablesWithRange(self: *@This(), visibleFunctionTables: ?*?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setVisibleFunctionTables:withRange:", void, .{visibleFunctionTables, range});
+    }
+
+    pub fn setIntersectionFunctionTableAtIndex(self: *@This(), intersectionFunctionTable: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setIntersectionFunctionTable:atIndex:", void, .{intersectionFunctionTable, index});
+    }
+
+    pub fn setIntersectionFunctionTablesWithRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setIntersectionFunctionTables:withRange:", void, .{intersectionFunctionTables, range});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn encodedLength(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "encodedLength", objc.NSUInteger, .{});
+    }
+
+    pub fn alignment(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "alignment", objc.NSUInteger, .{});
+    }
+
+};
+
+pub const CaptureError = enum(objc.NSInteger) {
+    NotSupported = 1,
+    AlreadyCapturing = 2,
+    InvalidDescriptor = 3,
+};
+
+pub const CaptureDestination = enum(objc.NSInteger) {
+    DeveloperTools = 1,
+    GPUTraceDocument = 2,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLCaptureDescriptor?language=objc
@@ -9438,6 +8547,186 @@ pub const CaptureManager = opaque {
     }
 
 };
+
+/// https://developer.apple.com/documentation/Metal/MTLCaptureScope?language=objc
+pub const CaptureScope = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn beginScope(self: *@This()) void {
+        return objc.msgSend(self, "beginScope", void, .{});
+    }
+
+    pub fn endScope(self: *@This()) void {
+        return objc.msgSend(self, "endScope", void, .{});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn commandQueue(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "commandQueue", ?*anyopaque, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLIndirectRenderCommand?language=objc
+pub const IndirectRenderCommand = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn setRenderPipelineState(self: *@This(), pipelineState: ?*anyopaque) void {
+        return objc.msgSend(self, "setRenderPipelineState:", void, .{pipelineState});
+    }
+
+    pub fn setVertexBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setVertexBuffer:offset:atIndex:", void, .{buffer, offset, index});
+    }
+
+    pub fn setFragmentBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setFragmentBuffer:offset:atIndex:", void, .{buffer, offset, index});
+    }
+
+    pub fn setVertexBufferOffsetAttributeStrideAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, stride: objc.NSUInteger, index: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "setVertexBuffer:offset:attributeStride:atIndex:", void, .{buffer, offset, stride, index, });
+    }
+
+    pub fn drawPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride(self: *@This(), numberOfPatchControlPoints: objc.NSUInteger, patchStart: objc.NSUInteger, patchCount: objc.NSUInteger, patchIndexBuffer: ?*anyopaque, patchIndexBufferOffset: objc.NSUInteger, instanceCount: objc.NSUInteger, baseInstance: objc.NSUInteger, buffer: ?*anyopaque, offset: objc.NSUInteger, instanceStride: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{numberOfPatchControlPoints, patchStart, patchCount, patchIndexBuffer, patchIndexBufferOffset, instanceCount, baseInstance, buffer, offset, instanceStride, });
+    }
+
+    pub fn drawIndexedPatchesPatchStartPatchCountPatchIndexBufferPatchIndexBufferOffsetControlPointIndexBufferControlPointIndexBufferOffsetInstanceCountBaseInstanceTessellationFactorBufferTessellationFactorBufferOffsetTessellationFactorBufferInstanceStride(self: *@This(), numberOfPatchControlPoints: objc.NSUInteger, patchStart: objc.NSUInteger, patchCount: objc.NSUInteger, patchIndexBuffer: ?*anyopaque, patchIndexBufferOffset: objc.NSUInteger, controlPointIndexBuffer: ?*anyopaque, controlPointIndexBufferOffset: objc.NSUInteger, instanceCount: objc.NSUInteger, baseInstance: objc.NSUInteger, buffer: ?*anyopaque, offset: objc.NSUInteger, instanceStride: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{numberOfPatchControlPoints, patchStart, patchCount, patchIndexBuffer, patchIndexBufferOffset, controlPointIndexBuffer, controlPointIndexBufferOffset, instanceCount, baseInstance, buffer, offset, instanceStride, });
+    }
+
+    pub fn drawPrimitivesVertexStartVertexCountInstanceCountBaseInstance(self: *@This(), primitiveType: PrimitiveType, vertexStart: objc.NSUInteger, vertexCount: objc.NSUInteger, instanceCount: objc.NSUInteger, baseInstance: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", void, .{primitiveType, vertexStart, vertexCount, instanceCount, baseInstance, });
+    }
+
+    pub fn drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffsetInstanceCountBaseVertexBaseInstance(self: *@This(), primitiveType: PrimitiveType, indexCount: objc.NSUInteger, indexType: IndexType, indexBuffer: ?*anyopaque, indexBufferOffset: objc.NSUInteger, instanceCount: objc.NSUInteger, baseVertex: objc.NSInteger, baseInstance: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", void, .{primitiveType, indexCount, indexType, indexBuffer, indexBufferOffset, instanceCount, baseVertex, baseInstance, });
+    }
+
+    pub fn setObjectThreadgroupMemoryLengthAtIndex(self: *@This(), length: objc.NSUInteger, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObjectThreadgroupMemoryLength:atIndex:", void, .{length, index});
+    }
+
+    pub fn setObjectBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setObjectBuffer:offset:atIndex:", void, .{buffer, offset, index});
+    }
+
+    pub fn setMeshBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setMeshBuffer:offset:atIndex:", void, .{buffer, offset, index});
+    }
+
+    pub fn drawMeshThreadgroupsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup(self: *@This(), threadgroupsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) void {
+        return objc.msgSend(self, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{threadgroupsPerGrid, threadsPerObjectThreadgroup, threadsPerMeshThreadgroup});
+    }
+
+    pub fn drawMeshThreadsThreadsPerObjectThreadgroupThreadsPerMeshThreadgroup(self: *@This(), threadsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) void {
+        return objc.msgSend(self, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{threadsPerGrid, threadsPerObjectThreadgroup, threadsPerMeshThreadgroup});
+    }
+
+    pub fn setBarrier(self: *@This()) void {
+        return objc.msgSend(self, "setBarrier", void, .{});
+    }
+
+    pub fn clearBarrier(self: *@This()) void {
+        return objc.msgSend(self, "clearBarrier", void, .{});
+    }
+
+    pub fn reset(self: *@This()) void {
+        return objc.msgSend(self, "reset", void, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLIndirectComputeCommand?language=objc
+pub const IndirectComputeCommand = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn setComputePipelineState(self: *@This(), pipelineState: ?*anyopaque) void {
+        return objc.msgSend(self, "setComputePipelineState:", void, .{pipelineState});
+    }
+
+    pub fn setKernelBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setKernelBuffer:offset:atIndex:", void, .{buffer, offset, index});
+    }
+
+    pub fn setKernelBufferOffsetAttributeStrideAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, stride: objc.NSUInteger, index: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "setKernelBuffer:offset:attributeStride:atIndex:", void, .{buffer, offset, stride, index, });
+    }
+
+    pub fn concurrentDispatchThreadgroupsThreadsPerThreadgroup(self: *@This(), threadgroupsPerGrid: Size, threadsPerThreadgroup: Size) void {
+        return objc.msgSend(self, "concurrentDispatchThreadgroups:threadsPerThreadgroup:", void, .{threadgroupsPerGrid, threadsPerThreadgroup});
+    }
+
+    pub fn concurrentDispatchThreadsThreadsPerThreadgroup(self: *@This(), threadsPerGrid: Size, threadsPerThreadgroup: Size) void {
+        return objc.msgSend(self, "concurrentDispatchThreads:threadsPerThreadgroup:", void, .{threadsPerGrid, threadsPerThreadgroup});
+    }
+
+    pub fn setBarrier(self: *@This()) void {
+        return objc.msgSend(self, "setBarrier", void, .{});
+    }
+
+    pub fn clearBarrier(self: *@This()) void {
+        return objc.msgSend(self, "clearBarrier", void, .{});
+    }
+
+    pub fn setImageblockWidthHeight(self: *@This(), width: objc.NSUInteger, height: objc.NSUInteger) void {
+        return objc.msgSend(self, "setImageblockWidth:height:", void, .{width, height});
+    }
+
+    pub fn reset(self: *@This()) void {
+        return objc.msgSend(self, "reset", void, .{});
+    }
+
+    pub fn setThreadgroupMemoryLengthAtIndex(self: *@This(), length: objc.NSUInteger, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setThreadgroupMemoryLength:atIndex:", void, .{length, index});
+    }
+
+    pub fn setStageInRegion(self: *@This(), region: Region) void {
+        return objc.msgSend(self, "setStageInRegion:", void, .{region});
+    }
+
+};
+
+pub const IndirectCommandType = enum(objc.NSUInteger) {
+    Draw = 1,
+    DrawIndexed = 2,
+    DrawPatches = 4,
+    DrawIndexedPatches = 8,
+    ConcurrentDispatch = 32,
+    ConcurrentDispatchThreads = 64,
+    DrawMeshThreadgroups = 128,
+    DrawMeshThreads = 256,
+};
+
+pub const IndirectCommandBufferExecutionRange = extern struct {
+    location: objc.uint32_t,
+    length: objc.uint32_t,
+};
+
+pub extern "Metal" fn IndirectCommandBufferExecutionRangeMake(location: objc.uint32_t, length: objc.uint32_t) callconv(.C) IndirectCommandBufferExecutionRange;
 
 /// https://developer.apple.com/documentation/Metal/MTLIndirectCommandBufferDescriptor?language=objc
 pub const IndirectCommandBufferDescriptor = opaque {
@@ -9548,6 +8837,58 @@ pub const IndirectCommandBufferDescriptor = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLIndirectCommandBuffer?language=objc
+pub const IndirectCommandBuffer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn resetWithRange(self: *@This(), range: ns.Range) void {
+        return objc.msgSend(self, "resetWithRange:", void, .{range});
+    }
+
+    pub fn indirectRenderCommandAtIndex(self: *@This(), commandIndex: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "indirectRenderCommandAtIndex:", ?*anyopaque, .{commandIndex});
+    }
+
+    pub fn indirectComputeCommandAtIndex(self: *@This(), commandIndex: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "indirectComputeCommandAtIndex:", ?*anyopaque, .{commandIndex});
+    }
+
+    pub fn size(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "size", objc.NSUInteger, .{});
+    }
+
+    pub fn gpuResourceID(self: *@This()) ResourceID {
+        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLEvent?language=objc
+pub const Event = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLSharedEventListener?language=objc
 pub const SharedEventListener = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLSharedEventListener", @This(), NSObject, &.{});
@@ -9573,6 +8914,38 @@ pub const SharedEventListener = opaque {
 
 };
 
+pub const SharedEventNotificationBlock = *const fn(?*anyopaque, objc.uint64_t) callconv(.C) void;
+
+/// https://developer.apple.com/documentation/Metal/MTLSharedEvent?language=objc
+pub const SharedEvent = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Event, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn notifyListenerAtValueBlock(self: *@This(), listener: ?*SharedEventListener, value: objc.uint64_t, block: SharedEventNotificationBlock) void {
+        return objc.msgSend(self, "notifyListener:atValue:block:", void, .{listener, value, block});
+    }
+
+    pub fn newSharedEventHandle(self: *@This()) ?*SharedEventHandle {
+        return objc.msgSend(self, "newSharedEventHandle", ?*SharedEventHandle, .{});
+    }
+
+    pub fn waitUntilSignaledValueTimeoutMS(self: *@This(), value: objc.uint64_t, milliseconds: objc.uint64_t) objc.BOOL {
+        return objc.msgSend(self, "waitUntilSignaledValue:timeoutMS:", objc.BOOL, .{value, milliseconds});
+    }
+
+    pub fn signaledValue(self: *@This()) objc.uint64_t {
+        return objc.msgSend(self, "signaledValue", objc.uint64_t, .{});
+    }
+
+    pub fn setSignaledValue(self: *@This(), signaledValue: objc.uint64_t) void {
+        return objc.msgSend(self, "setSignaledValue:", void, .{signaledValue});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLSharedEventHandle?language=objc
 pub const SharedEventHandle = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLSharedEventHandle", @This(), NSObject, &.{});
@@ -9586,6 +8959,144 @@ pub const SharedEventHandle = opaque {
 
     pub fn label(self: *@This()) ?*ns.String {
         return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+};
+
+pub const SharedEventHandlePrivate = extern struct {};
+
+pub const FunctionLogType = enum(objc.NSUInteger) {
+    Validation = 0,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLLogContainer?language=objc
+pub const LogContainer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, ns.FastEnumeration, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLFunctionLogDebugLocation?language=objc
+pub const FunctionLogDebugLocation = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn functionName(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "functionName", ?*ns.String, .{});
+    }
+
+    pub fn URL(self: *@This()) ?*ns.URL {
+        return objc.msgSend(self, "URL", ?*ns.URL, .{});
+    }
+
+    pub fn line(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "line", objc.NSUInteger, .{});
+    }
+
+    pub fn column(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "column", objc.NSUInteger, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLFunctionLog?language=objc
+pub const FunctionLog = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn @"type"(self: *@This()) FunctionLogType {
+        return objc.msgSend(self, "type", FunctionLogType, .{});
+    }
+
+    pub fn encoderLabel(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "encoderLabel", ?*ns.String, .{});
+    }
+
+    pub fn function(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "function", ?*anyopaque, .{});
+    }
+
+    pub fn debugLocation(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "debugLocation", ?*anyopaque, .{});
+    }
+
+};
+
+pub const AccelerationStructureRefitOptions = enum(objc.NSUInteger) {
+    VertexData = 1,
+    PerPrimitiveData = 2,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCommandEncoder?language=objc
+pub const AccelerationStructureCommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn buildAccelerationStructureDescriptorScratchBufferScratchBufferOffset(self: *@This(), accelerationStructure: ?*anyopaque, descriptor: ?*AccelerationStructureDescriptor, scratchBuffer: ?*anyopaque, scratchBufferOffset: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:", void, .{accelerationStructure, descriptor, scratchBuffer, scratchBufferOffset, });
+    }
+
+    pub fn refitAccelerationStructureDescriptorDestinationScratchBufferScratchBufferOffset(self: *@This(), sourceAccelerationStructure: ?*anyopaque, descriptor: ?*AccelerationStructureDescriptor, destinationAccelerationStructure: ?*anyopaque, scratchBuffer: ?*anyopaque, scratchBufferOffset: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:", void, .{sourceAccelerationStructure, descriptor, destinationAccelerationStructure, scratchBuffer, scratchBufferOffset, });
+    }
+
+    pub fn refitAccelerationStructureDescriptorDestinationScratchBufferScratchBufferOffsetOptions(self: *@This(), sourceAccelerationStructure: ?*anyopaque, descriptor: ?*AccelerationStructureDescriptor, destinationAccelerationStructure: ?*anyopaque, scratchBuffer: ?*anyopaque, scratchBufferOffset: objc.NSUInteger, options: AccelerationStructureRefitOptions, ) void {
+        return objc.msgSend(self, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:", void, .{sourceAccelerationStructure, descriptor, destinationAccelerationStructure, scratchBuffer, scratchBufferOffset, options, });
+    }
+
+    pub fn copyAccelerationStructureToAccelerationStructure(self: *@This(), sourceAccelerationStructure: ?*anyopaque, destinationAccelerationStructure: ?*anyopaque) void {
+        return objc.msgSend(self, "copyAccelerationStructure:toAccelerationStructure:", void, .{sourceAccelerationStructure, destinationAccelerationStructure});
+    }
+
+    pub fn writeCompactedAccelerationStructureSizeToBufferOffset(self: *@This(), accelerationStructure: ?*anyopaque, buffer: ?*anyopaque, offset: objc.NSUInteger) void {
+        return objc.msgSend(self, "writeCompactedAccelerationStructureSize:toBuffer:offset:", void, .{accelerationStructure, buffer, offset});
+    }
+
+    pub fn writeCompactedAccelerationStructureSizeToBufferOffsetSizeDataType(self: *@This(), accelerationStructure: ?*anyopaque, buffer: ?*anyopaque, offset: objc.NSUInteger, sizeDataType: DataType, ) void {
+        return objc.msgSend(self, "writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:", void, .{accelerationStructure, buffer, offset, sizeDataType, });
+    }
+
+    pub fn copyAndCompactAccelerationStructureToAccelerationStructure(self: *@This(), sourceAccelerationStructure: ?*anyopaque, destinationAccelerationStructure: ?*anyopaque) void {
+        return objc.msgSend(self, "copyAndCompactAccelerationStructure:toAccelerationStructure:", void, .{sourceAccelerationStructure, destinationAccelerationStructure});
+    }
+
+    pub fn updateFence(self: *@This(), fence: ?*anyopaque) void {
+        return objc.msgSend(self, "updateFence:", void, .{fence});
+    }
+
+    pub fn waitForFence(self: *@This(), fence: ?*anyopaque) void {
+        return objc.msgSend(self, "waitForFence:", void, .{fence});
+    }
+
+    pub fn useResourceUsage(self: *@This(), resource: ?*anyopaque, usage: ResourceUsage) void {
+        return objc.msgSend(self, "useResource:usage:", void, .{resource, usage});
+    }
+
+    pub fn useResourcesCountUsage(self: *@This(), resources: ?*?*anyopaque, count: objc.NSUInteger, usage: ResourceUsage) void {
+        return objc.msgSend(self, "useResources:count:usage:", void, .{resources, count, usage});
+    }
+
+    pub fn useHeap(self: *@This(), heap: ?*anyopaque) void {
+        return objc.msgSend(self, "useHeap:", void, .{heap});
+    }
+
+    pub fn useHeapsCount(self: *@This(), heaps: ?*?*anyopaque, count: objc.NSUInteger) void {
+        return objc.msgSend(self, "useHeaps:count:", void, .{heaps, count});
+    }
+
+    pub fn sampleCountersInBufferAtSampleIndexWithBarrier(self: *@This(), sampleBuffer: ?*anyopaque, sampleIndex: objc.NSUInteger, barrier: objc.BOOL) void {
+        return objc.msgSend(self, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{sampleBuffer, sampleIndex, barrier});
     }
 
 };
@@ -9817,6 +9328,118 @@ pub const RasterizationRateMapDescriptor = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLRasterizationRateMap?language=objc
+pub const RasterizationRateMap = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn copyParameterDataToBufferOffset(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger) void {
+        return objc.msgSend(self, "copyParameterDataToBuffer:offset:", void, .{buffer, offset});
+    }
+
+    pub fn physicalSizeForLayer(self: *@This(), layerIndex: objc.NSUInteger) Size {
+        return objc.msgSend(self, "physicalSizeForLayer:", Size, .{layerIndex});
+    }
+
+    pub fn mapScreenToPhysicalCoordinatesForLayer(self: *@This(), screenCoordinates: Coordinate2D, layerIndex: objc.NSUInteger) Coordinate2D {
+        return objc.msgSend(self, "mapScreenToPhysicalCoordinates:forLayer:", Coordinate2D, .{screenCoordinates, layerIndex});
+    }
+
+    pub fn mapPhysicalToScreenCoordinatesForLayer(self: *@This(), physicalCoordinates: Coordinate2D, layerIndex: objc.NSUInteger) Coordinate2D {
+        return objc.msgSend(self, "mapPhysicalToScreenCoordinates:forLayer:", Coordinate2D, .{physicalCoordinates, layerIndex});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn screenSize(self: *@This()) Size {
+        return objc.msgSend(self, "screenSize", Size, .{});
+    }
+
+    pub fn physicalGranularity(self: *@This()) Size {
+        return objc.msgSend(self, "physicalGranularity", Size, .{});
+    }
+
+    pub fn layerCount(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "layerCount", objc.NSUInteger, .{});
+    }
+
+    pub fn parameterBufferSizeAndAlign(self: *@This()) SizeAndAlign {
+        return objc.msgSend(self, "parameterBufferSizeAndAlign", SizeAndAlign, .{});
+    }
+
+};
+
+pub const DynamicLibraryError = enum(objc.NSUInteger) {
+    None = 0,
+    InvalidFile = 1,
+    CompilationFailure = 2,
+    UnresolvedInstallName = 3,
+    DependencyLoadFailure = 4,
+    Unsupported = 5,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLDynamicLibrary?language=objc
+pub const DynamicLibrary = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn serializeToURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) objc.BOOL {
+        return objc.msgSend(self, "serializeToURL:error:", objc.BOOL, .{url, @"error"});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn installName(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "installName", ?*ns.String, .{});
+    }
+
+};
+
+pub const LogLevel = enum(objc.NSInteger) {
+    Undefined = 0,
+    Debug = 1,
+    Info = 2,
+    Notice = 3,
+    Error = 4,
+    Fault = 5,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLLogState?language=objc
+pub const LogState = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn addLogHandler(self: *@This(), block: *const fn(?*ns.String, ?*ns.String, LogLevel, ?*ns.String, ) callconv(.C) void) void {
+        return objc.msgSend(self, "addLogHandler:", void, .{block});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLLogStateDescriptor?language=objc
 pub const LogStateDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLLogStateDescriptor", @This(), NSObject, &.{});
@@ -9846,6 +9469,19 @@ pub const LogStateDescriptor = opaque {
 
 };
 
+pub const LogStateError = enum(objc.NSUInteger) {
+    InvalidSize = 1,
+    Invalid = 2,
+};
+
+pub const BinaryArchiveError = enum(objc.NSUInteger) {
+    None = 0,
+    InvalidFile = 1,
+    UnexpectedElement = 2,
+    CompilationFailure = 3,
+    InternalError = 4,
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLBinaryArchiveDescriptor?language=objc
 pub const BinaryArchiveDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLBinaryArchiveDescriptor", @This(), NSObject, &.{});
@@ -9865,6 +9501,68 @@ pub const BinaryArchiveDescriptor = opaque {
         return objc.msgSend(self, "setUrl:", void, .{url});
     }
 
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLBinaryArchive?language=objc
+pub const BinaryArchive = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn addComputePipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*ComputePipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+        return objc.msgSend(self, "addComputePipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
+    }
+
+    pub fn addRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*RenderPipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+        return objc.msgSend(self, "addRenderPipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
+    }
+
+    pub fn addTileRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*TileRenderPipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+        return objc.msgSend(self, "addTileRenderPipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
+    }
+
+    pub fn addMeshRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*MeshRenderPipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+        return objc.msgSend(self, "addMeshRenderPipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
+    }
+
+    pub fn addLibraryWithDescriptorError(self: *@This(), descriptor: ?*StitchedLibraryDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+        return objc.msgSend(self, "addLibraryWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
+    }
+
+    pub fn serializeToURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) objc.BOOL {
+        return objc.msgSend(self, "serializeToURL:error:", objc.BOOL, .{url, @"error"});
+    }
+
+    pub fn addFunctionWithDescriptorLibraryError(self: *@This(), descriptor: ?*FunctionDescriptor, library: ?*anyopaque, @"error": ?*?*ns.Error) objc.BOOL {
+        return objc.msgSend(self, "addFunctionWithDescriptor:library:error:", objc.BOOL, .{descriptor, library, @"error"});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+};
+
+pub const IntersectionFunctionSignature = enum(objc.NSUInteger) {
+    None = 0,
+    Instancing = 1,
+    TriangleData = 2,
+    WorldSpaceData = 4,
+    InstanceMotion = 8,
+    PrimitiveMotion = 16,
+    ExtendedLimits = 32,
+    MaxLevels = 64,
+    CurveData = 128,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLIntersectionFunctionTableDescriptor?language=objc
@@ -9892,6 +9590,75 @@ pub const IntersectionFunctionTableDescriptor = opaque {
 
 };
 
+/// https://developer.apple.com/documentation/Metal/MTLIntersectionFunctionTable?language=objc
+pub const IntersectionFunctionTable = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn setBufferOffsetAtIndex(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setBuffer:offset:atIndex:", void, .{buffer, offset, index});
+    }
+
+    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+        return objc.msgSend(self, "setBuffers:offsets:withRange:", void, .{buffers, offsets, range});
+    }
+
+    pub fn setFunctionAtIndex(self: *@This(), function: ?*anyopaque, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setFunction:atIndex:", void, .{function, index});
+    }
+
+    pub fn setFunctionsWithRange(self: *@This(), functions: ?*?*anyopaque, range: ns.Range) void {
+        return objc.msgSend(self, "setFunctions:withRange:", void, .{functions, range});
+    }
+
+    pub fn setOpaqueTriangleIntersectionFunctionWithSignatureAtIndex(self: *@This(), signature: IntersectionFunctionSignature, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:", void, .{signature, index});
+    }
+
+    pub fn setOpaqueTriangleIntersectionFunctionWithSignatureWithRange(self: *@This(), signature: IntersectionFunctionSignature, range: ns.Range) void {
+        return objc.msgSend(self, "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:", void, .{signature, range});
+    }
+
+    pub fn setOpaqueCurveIntersectionFunctionWithSignatureAtIndex(self: *@This(), signature: IntersectionFunctionSignature, index: objc.NSUInteger) void {
+        return objc.msgSend(self, "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:", void, .{signature, index});
+    }
+
+    pub fn setOpaqueCurveIntersectionFunctionWithSignatureWithRange(self: *@This(), signature: IntersectionFunctionSignature, range: ns.Range) void {
+        return objc.msgSend(self, "setOpaqueCurveIntersectionFunctionWithSignature:withRange:", void, .{signature, range});
+    }
+
+    pub fn setVisibleFunctionTableAtBufferIndex(self: *@This(), functionTable: ?*anyopaque, bufferIndex: objc.NSUInteger) void {
+        return objc.msgSend(self, "setVisibleFunctionTable:atBufferIndex:", void, .{functionTable, bufferIndex});
+    }
+
+    pub fn setVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, bufferRange: ns.Range) void {
+        return objc.msgSend(self, "setVisibleFunctionTables:withBufferRange:", void, .{functionTables, bufferRange});
+    }
+
+    pub fn gpuResourceID(self: *@This()) ResourceID {
+        return objc.msgSend(self, "gpuResourceID", ResourceID, .{});
+    }
+
+};
+
+pub const StitchedLibraryOptions = enum(objc.NSUInteger) {
+    None = 0,
+    FailOnBinaryArchiveMiss = 1,
+    StoreLibraryInMetalPipelinesScript = 2,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLFunctionStitchingAttribute?language=objc
+pub const FunctionStitchingAttribute = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLFunctionStitchingAttributeAlwaysInline?language=objc
 pub const FunctionStitchingAttributeAlwaysInline = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLFunctionStitchingAttributeAlwaysInline", @This(), NSObject, &.{});
@@ -9902,6 +9669,15 @@ pub const FunctionStitchingAttributeAlwaysInline = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLFunctionStitchingNode?language=objc
+pub const FunctionStitchingNode = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, ns.Copying, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLFunctionStitchingInputNode?language=objc
@@ -10064,6 +9840,80 @@ pub const StitchedLibraryDescriptor = opaque {
 
 };
 
+pub const IOPriority = enum(objc.NSInteger) {
+    High = 0,
+    Normal = 1,
+    Low = 2,
+};
+
+pub const IOCommandQueueType = enum(objc.NSInteger) {
+    Concurrent = 0,
+    Serial = 1,
+};
+
+pub const IOError = enum(objc.NSInteger) {
+    URLInvalid = 1,
+    Internal = 2,
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLIOCommandQueue?language=objc
+pub const IOCommandQueue = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn enqueueBarrier(self: *@This()) void {
+        return objc.msgSend(self, "enqueueBarrier", void, .{});
+    }
+
+    pub fn commandBuffer(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "commandBuffer", ?*anyopaque, .{});
+    }
+
+    pub fn commandBufferWithUnretainedReferences(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "commandBufferWithUnretainedReferences", ?*anyopaque, .{});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLIOScratchBuffer?language=objc
+pub const IOScratchBuffer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn buffer(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "buffer", ?*anyopaque, .{});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLIOScratchBufferAllocator?language=objc
+pub const IOScratchBufferAllocator = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn newScratchBufferWithMinimumSize(self: *@This(), minimumSize: objc.NSUInteger) ?*anyopaque {
+        return objc.msgSend(self, "newScratchBufferWithMinimumSize:", ?*anyopaque, .{minimumSize});
+    }
+
+};
+
 /// https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor?language=objc
 pub const IOCommandQueueDescriptor = opaque {
     pub const InternalInfo = objc.ExternalClass("MTLIOCommandQueueDescriptor", @This(), NSObject, &.{});
@@ -10091,7 +9941,7 @@ pub const IOCommandQueueDescriptor = opaque {
         return objc.msgSend(self, "setPriority:", void, .{priority});
     }
 
-    pub fn type(self: *@This()) IOCommandQueueType {
+    pub fn @"type"(self: *@This()) IOCommandQueueType {
         return objc.msgSend(self, "type", IOCommandQueueType, .{});
     }
 
@@ -10116,6 +9966,130 @@ pub const IOCommandQueueDescriptor = opaque {
     }
 
 };
+
+/// https://developer.apple.com/documentation/Metal/MTLIOFileHandle?language=objc
+pub const IOFileHandle = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+};
+
+pub const IOStatus = enum(objc.NSInteger) {
+    Pending = 0,
+    Cancelled = 1,
+    Error = 2,
+    Complete = 3,
+};
+
+pub const IOCommandBufferHandler = *const fn(?*anyopaque) callconv(.C) void;
+
+/// https://developer.apple.com/documentation/Metal/MTLIOCommandBuffer?language=objc
+pub const IOCommandBuffer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn addCompletedHandler(self: *@This(), block: IOCommandBufferHandler) void {
+        return objc.msgSend(self, "addCompletedHandler:", void, .{block});
+    }
+
+    pub fn loadBytesSizeSourceHandleSourceHandleOffset(self: *@This(), pointer: ?*anyopaque, size: objc.NSUInteger, sourceHandle: ?*anyopaque, sourceHandleOffset: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "loadBytes:size:sourceHandle:sourceHandleOffset:", void, .{pointer, size, sourceHandle, sourceHandleOffset, });
+    }
+
+    pub fn loadBufferOffsetSizeSourceHandleSourceHandleOffset(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger, size: objc.NSUInteger, sourceHandle: ?*anyopaque, sourceHandleOffset: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "loadBuffer:offset:size:sourceHandle:sourceHandleOffset:", void, .{buffer, offset, size, sourceHandle, sourceHandleOffset, });
+    }
+
+    pub fn loadTextureSliceLevelSizeSourceBytesPerRowSourceBytesPerImageDestinationOriginSourceHandleSourceHandleOffset(self: *@This(), texture: ?*anyopaque, slice: objc.NSUInteger, level: objc.NSUInteger, size: Size, sourceBytesPerRow: objc.NSUInteger, sourceBytesPerImage: objc.NSUInteger, destinationOrigin: Origin, sourceHandle: ?*anyopaque, sourceHandleOffset: objc.NSUInteger, ) void {
+        return objc.msgSend(self, "loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:", void, .{texture, slice, level, size, sourceBytesPerRow, sourceBytesPerImage, destinationOrigin, sourceHandle, sourceHandleOffset, });
+    }
+
+    pub fn copyStatusToBufferOffset(self: *@This(), buffer: ?*anyopaque, offset: objc.NSUInteger) void {
+        return objc.msgSend(self, "copyStatusToBuffer:offset:", void, .{buffer, offset});
+    }
+
+    pub fn commit(self: *@This()) void {
+        return objc.msgSend(self, "commit", void, .{});
+    }
+
+    pub fn waitUntilCompleted(self: *@This()) void {
+        return objc.msgSend(self, "waitUntilCompleted", void, .{});
+    }
+
+    pub fn tryCancel(self: *@This()) void {
+        return objc.msgSend(self, "tryCancel", void, .{});
+    }
+
+    pub fn addBarrier(self: *@This()) void {
+        return objc.msgSend(self, "addBarrier", void, .{});
+    }
+
+    pub fn pushDebugGroup(self: *@This(), string: ?*ns.String) void {
+        return objc.msgSend(self, "pushDebugGroup:", void, .{string});
+    }
+
+    pub fn popDebugGroup(self: *@This()) void {
+        return objc.msgSend(self, "popDebugGroup", void, .{});
+    }
+
+    pub fn enqueue(self: *@This()) void {
+        return objc.msgSend(self, "enqueue", void, .{});
+    }
+
+    pub fn waitForEventValue(self: *@This(), event: ?*anyopaque, value: objc.uint64_t) void {
+        return objc.msgSend(self, "waitForEvent:value:", void, .{event, value});
+    }
+
+    pub fn signalEventValue(self: *@This(), event: ?*anyopaque, value: objc.uint64_t) void {
+        return objc.msgSend(self, "signalEvent:value:", void, .{event, value});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+        return objc.msgSend(self, "setLabel:", void, .{label});
+    }
+
+    pub fn status(self: *@This()) IOStatus {
+        return objc.msgSend(self, "status", IOStatus, .{});
+    }
+
+    pub fn @"error"(self: *@This()) ?*ns.Error {
+        return objc.msgSend(self, "error", ?*ns.Error, .{});
+    }
+
+};
+
+pub const IOCompressionStatus = enum(objc.NSInteger) {
+    Complete = 0,
+    Error = 1,
+};
+
+pub const IOCompressionContext = ?*anyopaque;
+
+pub extern "Metal" fn IOCompressionContextDefaultChunkSize() callconv(.C) objc.size_t;
+
+pub extern "Metal" fn IOCreateCompressionContext(path: ?*i8, @"type": IOCompressionMethod, chunkSize: objc.size_t) callconv(.C) IOCompressionContext;
+
+pub extern "Metal" fn IOCompressionContextAppendData(context: IOCompressionContext, data: ?*anyopaque, size: objc.size_t) callconv(.C) void;
+
+pub extern "Metal" fn IOFlushAndDestroyCompressionContext(context: IOCompressionContext) callconv(.C) IOCompressionStatus;
 
 /// https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor?language=objc
 pub const ResidencySetDescriptor = opaque {
@@ -10142,6 +10116,72 @@ pub const ResidencySetDescriptor = opaque {
 
     pub fn setInitialCapacity(self: *@This(), initialCapacity: objc.NSUInteger) void {
         return objc.msgSend(self, "setInitialCapacity:", void, .{initialCapacity});
+    }
+
+};
+
+/// https://developer.apple.com/documentation/Metal/MTLResidencySet?language=objc
+pub const ResidencySet = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn requestResidency(self: *@This()) void {
+        return objc.msgSend(self, "requestResidency", void, .{});
+    }
+
+    pub fn endResidency(self: *@This()) void {
+        return objc.msgSend(self, "endResidency", void, .{});
+    }
+
+    pub fn addAllocation(self: *@This(), allocation: ?*anyopaque) void {
+        return objc.msgSend(self, "addAllocation:", void, .{allocation});
+    }
+
+    pub fn addAllocationsCount(self: *@This(), allocations: ?*?*anyopaque, count: objc.NSUInteger) void {
+        return objc.msgSend(self, "addAllocations:count:", void, .{allocations, count});
+    }
+
+    pub fn removeAllocation(self: *@This(), allocation: ?*anyopaque) void {
+        return objc.msgSend(self, "removeAllocation:", void, .{allocation});
+    }
+
+    pub fn removeAllocationsCount(self: *@This(), allocations: ?*?*anyopaque, count: objc.NSUInteger) void {
+        return objc.msgSend(self, "removeAllocations:count:", void, .{allocations, count});
+    }
+
+    pub fn removeAllAllocations(self: *@This()) void {
+        return objc.msgSend(self, "removeAllAllocations", void, .{});
+    }
+
+    pub fn containsAllocation(self: *@This(), anAllocation: ?*anyopaque) objc.BOOL {
+        return objc.msgSend(self, "containsAllocation:", objc.BOOL, .{anAllocation});
+    }
+
+    pub fn commit(self: *@This()) void {
+        return objc.msgSend(self, "commit", void, .{});
+    }
+
+    pub fn device(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn label(self: *@This()) ?*ns.String {
+        return objc.msgSend(self, "label", ?*ns.String, .{});
+    }
+
+    pub fn allocatedSize(self: *@This()) objc.uint64_t {
+        return objc.msgSend(self, "allocatedSize", objc.uint64_t, .{});
+    }
+
+    pub fn allAllocations(self: *@This()) ?*anyopaque {
+        return objc.msgSend(self, "allAllocations", ?*anyopaque, .{});
+    }
+
+    pub fn allocationCount(self: *@This()) objc.NSUInteger {
+        return objc.msgSend(self, "allocationCount", objc.NSUInteger, .{});
     }
 
 };
