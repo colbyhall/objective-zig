@@ -6,9 +6,10 @@
 `objective-zig` is a work-in-progress Objective-C runtime and auto generated collection of Objective-C frameworks in zig. You can find the bindings generator at [zigobjcgen](https://github.com/colbyhall/zigobjcgen/tree/main). These bindings are not ready. See the notice at the bottom of the README.
 
 ## Frameworks
-- CoreFoundation
-- Foundation
-- Metal
+- [Runtime](src/objc.zig)
+- [CoreFoundation](src/cf.zig)
+- [Foundation](src/ns.zig)
+- [Metal](src/metal.zig)
 
 ## Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests if you want to help improve the project.
