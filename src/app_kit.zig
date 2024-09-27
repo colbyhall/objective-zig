@@ -15,462 +15,462 @@ pub const DirectionalEdgeInsets = extern struct {
 };
 
 pub const anon651 = enum(u32) {
-    FontPanelFaceModeMask = 1,
-    FontPanelSizeModeMask = 2,
-    FontPanelCollectionModeMask = 4,
-    FontPanelUnderlineEffectModeMask = 256,
-    FontPanelStrikethroughEffectModeMask = 512,
-    FontPanelTextColorEffectModeMask = 1024,
-    FontPanelDocumentColorEffectModeMask = 2048,
-    FontPanelShadowEffectModeMask = 4096,
-    FontPanelAllEffectsModeMask = 1048320,
-    FontPanelStandardModesMask = 65535,
-    FontPanelAllModesMask = -1,
+    NSFontPanelFaceModeMask = 1,
+    NSFontPanelSizeModeMask = 2,
+    NSFontPanelCollectionModeMask = 4,
+    NSFontPanelUnderlineEffectModeMask = 256,
+    NSFontPanelStrikethroughEffectModeMask = 512,
+    NSFontPanelTextColorEffectModeMask = 1024,
+    NSFontPanelDocumentColorEffectModeMask = 2048,
+    NSFontPanelShadowEffectModeMask = 4096,
+    NSFontPanelAllEffectsModeMask = 1048320,
+    NSFontPanelStandardModesMask = 65535,
+    NSFontPanelAllModesMask = -1,
 };
 
 pub const anon181 = enum(u32) {
-    AttachmentCharacter = 65532,
+    NSAttachmentCharacter = 65532,
 };
 
 pub const anon2041 = enum(u32) {
-    TextWritingDirectionEmbedding = 0,
-    TextWritingDirectionOverride = 2,
+    NSTextWritingDirectionEmbedding = 0,
+    NSTextWritingDirectionOverride = 2,
 };
 
 pub const anon821 = enum(u32) {
-    FPPreviewButton = 131,
-    FPRevertButton = 130,
-    FPSetButton = 132,
-    FPPreviewField = 128,
-    FPSizeField = 129,
-    FPSizeTitle = 133,
-    FPCurrentField = 134,
+    NSFPPreviewButton = 131,
+    NSFPRevertButton = 130,
+    NSFPSetButton = 132,
+    NSFPPreviewField = 128,
+    NSFPSizeField = 129,
+    NSFPSizeTitle = 133,
+    NSFPCurrentField = 134,
 };
 
 pub const anon271 = enum(i32) {
-    OutlineViewDropOnItemIndex = -1,
+    NSOutlineViewDropOnItemIndex = -1,
 };
 
 pub const anon1271 = enum(u32) {
-    UpdateWindowsRunLoopOrdering = 500000,
+    NSUpdateWindowsRunLoopOrdering = 500000,
 };
 
 pub const anon441 = enum(i32) {
-    AlertDefaultReturn = 1,
-    AlertAlternateReturn = 0,
-    AlertOtherReturn = -1,
-    AlertErrorReturn = -2,
+    NSAlertDefaultReturn = 1,
+    NSAlertAlternateReturn = 0,
+    NSAlertOtherReturn = -1,
+    NSAlertErrorReturn = -2,
 };
 
 pub const anon501 = enum(u32) {
-    OKButton = 1,
-    CancelButton = 0,
+    NSOKButton = 1,
+    NSCancelButton = 0,
 };
 
 pub const anon2891 = enum(u32) {
-    FileHandlingPanelCancelButton = 0,
-    FileHandlingPanelOKButton = 1,
+    NSFileHandlingPanelCancelButton = 0,
+    NSFileHandlingPanelOKButton = 1,
 };
 
 pub const anon3611 = enum(u32) {
-    AnyType = 0,
-    IntType = 1,
-    PositiveIntType = 2,
-    FloatType = 3,
-    PositiveFloatType = 4,
-    DoubleType = 6,
-    PositiveDoubleType = 7,
+    NSAnyType = 0,
+    NSIntType = 1,
+    NSPositiveIntType = 2,
+    NSFloatType = 3,
+    NSPositiveFloatType = 4,
+    NSDoubleType = 6,
+    NSPositiveDoubleType = 7,
 };
 
 pub const anon2241 = enum(u32) {
-    FontItalicTrait = 1,
-    FontBoldTrait = 2,
-    FontExpandedTrait = 32,
-    FontCondensedTrait = 64,
-    FontMonoSpaceTrait = 1024,
-    FontVerticalTrait = 2048,
-    FontUIOptimizedTrait = 4096,
+    NSFontItalicTrait = 1,
+    NSFontBoldTrait = 2,
+    NSFontExpandedTrait = 32,
+    NSFontCondensedTrait = 64,
+    NSFontMonoSpaceTrait = 1024,
+    NSFontVerticalTrait = 2048,
+    NSFontUIOptimizedTrait = 4096,
 };
 
 pub const anon3761 = enum(u32) {
-    NoUnderlineStyle = 0,
-    SingleUnderlineStyle = 1,
+    NSNoUnderlineStyle = 0,
+    NSSingleUnderlineStyle = 1,
 };
 
 pub const anon751 = enum(u32) {
-    DisplayWindowRunLoopOrdering = 600000,
-    ResetCursorRectsRunLoopOrdering = 700000,
+    NSDisplayWindowRunLoopOrdering = 600000,
+    NSResetCursorRectsRunLoopOrdering = 700000,
 };
 
 pub const anon1441 = enum(u32) {
-    EnterCharacter = 3,
-    BackspaceCharacter = 8,
-    TabCharacter = 9,
-    NewlineCharacter = 10,
-    FormFeedCharacter = 12,
-    CarriageReturnCharacter = 13,
-    BackTabCharacter = 25,
-    DeleteCharacter = 127,
-    LineSeparatorCharacter = 8232,
-    ParagraphSeparatorCharacter = 8233,
+    NSEnterCharacter = 3,
+    NSBackspaceCharacter = 8,
+    NSTabCharacter = 9,
+    NSNewlineCharacter = 10,
+    NSFormFeedCharacter = 12,
+    NSCarriageReturnCharacter = 13,
+    NSBackTabCharacter = 25,
+    NSDeleteCharacter = 127,
+    NSLineSeparatorCharacter = 8232,
+    NSParagraphSeparatorCharacter = 8233,
 };
 
 pub const anon5531 = enum(u32) {
-    UpArrowFunctionKey = 63232,
-    DownArrowFunctionKey = 63233,
-    LeftArrowFunctionKey = 63234,
-    RightArrowFunctionKey = 63235,
-    F1FunctionKey = 63236,
-    F2FunctionKey = 63237,
-    F3FunctionKey = 63238,
-    F4FunctionKey = 63239,
-    F5FunctionKey = 63240,
-    F6FunctionKey = 63241,
-    F7FunctionKey = 63242,
-    F8FunctionKey = 63243,
-    F9FunctionKey = 63244,
-    F10FunctionKey = 63245,
-    F11FunctionKey = 63246,
-    F12FunctionKey = 63247,
-    F13FunctionKey = 63248,
-    F14FunctionKey = 63249,
-    F15FunctionKey = 63250,
-    F16FunctionKey = 63251,
-    F17FunctionKey = 63252,
-    F18FunctionKey = 63253,
-    F19FunctionKey = 63254,
-    F20FunctionKey = 63255,
-    F21FunctionKey = 63256,
-    F22FunctionKey = 63257,
-    F23FunctionKey = 63258,
-    F24FunctionKey = 63259,
-    F25FunctionKey = 63260,
-    F26FunctionKey = 63261,
-    F27FunctionKey = 63262,
-    F28FunctionKey = 63263,
-    F29FunctionKey = 63264,
-    F30FunctionKey = 63265,
-    F31FunctionKey = 63266,
-    F32FunctionKey = 63267,
-    F33FunctionKey = 63268,
-    F34FunctionKey = 63269,
-    F35FunctionKey = 63270,
-    InsertFunctionKey = 63271,
-    DeleteFunctionKey = 63272,
-    HomeFunctionKey = 63273,
-    BeginFunctionKey = 63274,
-    EndFunctionKey = 63275,
-    PageUpFunctionKey = 63276,
-    PageDownFunctionKey = 63277,
-    PrintScreenFunctionKey = 63278,
-    ScrollLockFunctionKey = 63279,
-    PauseFunctionKey = 63280,
-    SysReqFunctionKey = 63281,
-    BreakFunctionKey = 63282,
-    ResetFunctionKey = 63283,
-    StopFunctionKey = 63284,
-    MenuFunctionKey = 63285,
-    UserFunctionKey = 63286,
-    SystemFunctionKey = 63287,
-    PrintFunctionKey = 63288,
-    ClearLineFunctionKey = 63289,
-    ClearDisplayFunctionKey = 63290,
-    InsertLineFunctionKey = 63291,
-    DeleteLineFunctionKey = 63292,
-    InsertCharFunctionKey = 63293,
-    DeleteCharFunctionKey = 63294,
-    PrevFunctionKey = 63295,
-    NextFunctionKey = 63296,
-    SelectFunctionKey = 63297,
-    ExecuteFunctionKey = 63298,
-    UndoFunctionKey = 63299,
-    RedoFunctionKey = 63300,
-    FindFunctionKey = 63301,
-    HelpFunctionKey = 63302,
-    ModeSwitchFunctionKey = 63303,
+    NSUpArrowFunctionKey = 63232,
+    NSDownArrowFunctionKey = 63233,
+    NSLeftArrowFunctionKey = 63234,
+    NSRightArrowFunctionKey = 63235,
+    NSF1FunctionKey = 63236,
+    NSF2FunctionKey = 63237,
+    NSF3FunctionKey = 63238,
+    NSF4FunctionKey = 63239,
+    NSF5FunctionKey = 63240,
+    NSF6FunctionKey = 63241,
+    NSF7FunctionKey = 63242,
+    NSF8FunctionKey = 63243,
+    NSF9FunctionKey = 63244,
+    NSF10FunctionKey = 63245,
+    NSF11FunctionKey = 63246,
+    NSF12FunctionKey = 63247,
+    NSF13FunctionKey = 63248,
+    NSF14FunctionKey = 63249,
+    NSF15FunctionKey = 63250,
+    NSF16FunctionKey = 63251,
+    NSF17FunctionKey = 63252,
+    NSF18FunctionKey = 63253,
+    NSF19FunctionKey = 63254,
+    NSF20FunctionKey = 63255,
+    NSF21FunctionKey = 63256,
+    NSF22FunctionKey = 63257,
+    NSF23FunctionKey = 63258,
+    NSF24FunctionKey = 63259,
+    NSF25FunctionKey = 63260,
+    NSF26FunctionKey = 63261,
+    NSF27FunctionKey = 63262,
+    NSF28FunctionKey = 63263,
+    NSF29FunctionKey = 63264,
+    NSF30FunctionKey = 63265,
+    NSF31FunctionKey = 63266,
+    NSF32FunctionKey = 63267,
+    NSF33FunctionKey = 63268,
+    NSF34FunctionKey = 63269,
+    NSF35FunctionKey = 63270,
+    NSInsertFunctionKey = 63271,
+    NSDeleteFunctionKey = 63272,
+    NSHomeFunctionKey = 63273,
+    NSBeginFunctionKey = 63274,
+    NSEndFunctionKey = 63275,
+    NSPageUpFunctionKey = 63276,
+    NSPageDownFunctionKey = 63277,
+    NSPrintScreenFunctionKey = 63278,
+    NSScrollLockFunctionKey = 63279,
+    NSPauseFunctionKey = 63280,
+    NSSysReqFunctionKey = 63281,
+    NSBreakFunctionKey = 63282,
+    NSResetFunctionKey = 63283,
+    NSStopFunctionKey = 63284,
+    NSMenuFunctionKey = 63285,
+    NSUserFunctionKey = 63286,
+    NSSystemFunctionKey = 63287,
+    NSPrintFunctionKey = 63288,
+    NSClearLineFunctionKey = 63289,
+    NSClearDisplayFunctionKey = 63290,
+    NSInsertLineFunctionKey = 63291,
+    NSDeleteLineFunctionKey = 63292,
+    NSInsertCharFunctionKey = 63293,
+    NSDeleteCharFunctionKey = 63294,
+    NSPrevFunctionKey = 63295,
+    NSNextFunctionKey = 63296,
+    NSSelectFunctionKey = 63297,
+    NSExecuteFunctionKey = 63298,
+    NSUndoFunctionKey = 63299,
+    NSRedoFunctionKey = 63300,
+    NSFindFunctionKey = 63301,
+    NSHelpFunctionKey = 63302,
+    NSModeSwitchFunctionKey = 63303,
 };
 
 pub const anon1041 = enum(u32) {
-    OpenGLProfileVersionLegacy = 4096,
-    OpenGLProfileVersion3_2Core = 12800,
-    OpenGLProfileVersion4_1Core = 16640,
+    NSOpenGLProfileVersionLegacy = 4096,
+    NSOpenGLProfileVersion3_2Core = 12800,
+    NSOpenGLProfileVersion4_1Core = 16640,
 };
 
 pub const anon4381 = enum(u32) {
-    GlyphAttributeSoft = 0,
-    GlyphAttributeElastic = 1,
-    GlyphAttributeBidiLevel = 2,
-    GlyphAttributeInscribe = 5,
+    NSGlyphAttributeSoft = 0,
+    NSGlyphAttributeElastic = 1,
+    NSGlyphAttributeBidiLevel = 2,
+    NSGlyphAttributeInscribe = 5,
 };
 
 pub const anon1811 = enum(u32) {
-    IllegalTextMovement = 0,
-    ReturnTextMovement = 16,
-    TabTextMovement = 17,
-    BacktabTextMovement = 18,
-    LeftTextMovement = 19,
-    RightTextMovement = 20,
-    UpTextMovement = 21,
-    DownTextMovement = 22,
-    CancelTextMovement = 23,
-    OtherTextMovement = 0,
+    NSIllegalTextMovement = 0,
+    NSReturnTextMovement = 16,
+    NSTabTextMovement = 17,
+    NSBacktabTextMovement = 18,
+    NSLeftTextMovement = 19,
+    NSRightTextMovement = 20,
+    NSUpTextMovement = 21,
+    NSDownTextMovement = 22,
+    NSCancelTextMovement = 23,
+    NSOtherTextMovement = 0,
 };
 
 pub const anon2201 = enum(u32) {
-    FontFamilyClassMask = -268435456,
+    NSFontFamilyClassMask = -268435456,
 };
 
 pub const anon591 = enum(u32) {
-    OpenGLPFAAllRenderers = 1,
-    OpenGLPFATripleBuffer = 3,
-    OpenGLPFADoubleBuffer = 5,
-    OpenGLPFAAuxBuffers = 7,
-    OpenGLPFAColorSize = 8,
-    OpenGLPFAAlphaSize = 11,
-    OpenGLPFADepthSize = 12,
-    OpenGLPFAStencilSize = 13,
-    OpenGLPFAAccumSize = 14,
-    OpenGLPFAMinimumPolicy = 51,
-    OpenGLPFAMaximumPolicy = 52,
-    OpenGLPFASampleBuffers = 55,
-    OpenGLPFASamples = 56,
-    OpenGLPFAAuxDepthStencil = 57,
-    OpenGLPFAColorFloat = 58,
-    OpenGLPFAMultisample = 59,
-    OpenGLPFASupersample = 60,
-    OpenGLPFASampleAlpha = 61,
-    OpenGLPFARendererID = 70,
-    OpenGLPFANoRecovery = 72,
-    OpenGLPFAAccelerated = 73,
-    OpenGLPFAClosestPolicy = 74,
-    OpenGLPFABackingStore = 76,
-    OpenGLPFAScreenMask = 84,
-    OpenGLPFAAllowOfflineRenderers = 96,
-    OpenGLPFAAcceleratedCompute = 97,
-    OpenGLPFAOpenGLProfile = 99,
-    OpenGLPFAVirtualScreenCount = 128,
-    OpenGLPFAStereo = 6,
-    OpenGLPFAOffScreen = 53,
-    OpenGLPFAFullScreen = 54,
-    OpenGLPFASingleRenderer = 71,
-    OpenGLPFARobust = 75,
-    OpenGLPFAMPSafe = 78,
-    OpenGLPFAWindow = 80,
-    OpenGLPFAMultiScreen = 81,
-    OpenGLPFACompliant = 83,
-    OpenGLPFAPixelBuffer = 90,
-    OpenGLPFARemotePixelBuffer = 91,
+    NSOpenGLPFAAllRenderers = 1,
+    NSOpenGLPFATripleBuffer = 3,
+    NSOpenGLPFADoubleBuffer = 5,
+    NSOpenGLPFAAuxBuffers = 7,
+    NSOpenGLPFAColorSize = 8,
+    NSOpenGLPFAAlphaSize = 11,
+    NSOpenGLPFADepthSize = 12,
+    NSOpenGLPFAStencilSize = 13,
+    NSOpenGLPFAAccumSize = 14,
+    NSOpenGLPFAMinimumPolicy = 51,
+    NSOpenGLPFAMaximumPolicy = 52,
+    NSOpenGLPFASampleBuffers = 55,
+    NSOpenGLPFASamples = 56,
+    NSOpenGLPFAAuxDepthStencil = 57,
+    NSOpenGLPFAColorFloat = 58,
+    NSOpenGLPFAMultisample = 59,
+    NSOpenGLPFASupersample = 60,
+    NSOpenGLPFASampleAlpha = 61,
+    NSOpenGLPFARendererID = 70,
+    NSOpenGLPFANoRecovery = 72,
+    NSOpenGLPFAAccelerated = 73,
+    NSOpenGLPFAClosestPolicy = 74,
+    NSOpenGLPFABackingStore = 76,
+    NSOpenGLPFAScreenMask = 84,
+    NSOpenGLPFAAllowOfflineRenderers = 96,
+    NSOpenGLPFAAcceleratedCompute = 97,
+    NSOpenGLPFAOpenGLProfile = 99,
+    NSOpenGLPFAVirtualScreenCount = 128,
+    NSOpenGLPFAStereo = 6,
+    NSOpenGLPFAOffScreen = 53,
+    NSOpenGLPFAFullScreen = 54,
+    NSOpenGLPFASingleRenderer = 71,
+    NSOpenGLPFARobust = 75,
+    NSOpenGLPFAMPSafe = 78,
+    NSOpenGLPFAWindow = 80,
+    NSOpenGLPFAMultiScreen = 81,
+    NSOpenGLPFACompliant = 83,
+    NSOpenGLPFAPixelBuffer = 90,
+    NSOpenGLPFARemotePixelBuffer = 91,
 };
 
 pub const anon2061 = enum(i32) {
-    FontUnknownClass = 0,
-    FontOldStyleSerifsClass = 268435456,
-    FontTransitionalSerifsClass = 536870912,
-    FontModernSerifsClass = 805306368,
-    FontClarendonSerifsClass = 1073741824,
-    FontSlabSerifsClass = 1342177280,
-    FontFreeformSerifsClass = 1879048192,
-    FontSansSerifClass = -2147483648,
-    FontOrnamentalsClass = -1879048192,
-    FontScriptsClass = -1610612736,
-    FontSymbolicClass = -1073741824,
+    NSFontUnknownClass = 0,
+    NSFontOldStyleSerifsClass = 268435456,
+    NSFontTransitionalSerifsClass = 536870912,
+    NSFontModernSerifsClass = 805306368,
+    NSFontClarendonSerifsClass = 1073741824,
+    NSFontSlabSerifsClass = 1342177280,
+    NSFontFreeformSerifsClass = 1879048192,
+    NSFontSansSerifClass = -2147483648,
+    NSFontOrnamentalsClass = -1879048192,
+    NSFontScriptsClass = -1610612736,
+    NSFontSymbolicClass = -1073741824,
 };
 
 pub const anon131 = enum(u32) {
-    NoInterfaceStyle = 0,
-    NextStepInterfaceStyle = 1,
-    Windows95InterfaceStyle = 2,
-    MacintoshInterfaceStyle = 3,
+    NSNoInterfaceStyle = 0,
+    NSNextStepInterfaceStyle = 1,
+    NSWindows95InterfaceStyle = 2,
+    NSMacintoshInterfaceStyle = 3,
 };
 
 pub const anon151 = enum(u32) {
-    TextReadInapplicableDocumentTypeError = 65806,
-    TextWriteInapplicableDocumentTypeError = 66062,
-    TextReadWriteErrorMinimum = 65792,
-    TextReadWriteErrorMaximum = 66303,
-    FontAssetDownloadError = 66304,
-    FontErrorMinimum = 66304,
-    FontErrorMaximum = 66335,
-    ServiceApplicationNotFoundError = 66560,
-    ServiceApplicationLaunchFailedError = 66561,
-    ServiceRequestTimedOutError = 66562,
-    ServiceInvalidPasteboardDataError = 66563,
-    ServiceMalformedServiceDictionaryError = 66564,
-    ServiceMiscellaneousError = 66800,
-    ServiceErrorMinimum = 66560,
-    ServiceErrorMaximum = 66817,
-    SharingServiceNotConfiguredError = 67072,
-    SharingServiceErrorMinimum = 67072,
-    SharingServiceErrorMaximum = 67327,
-    WorkspaceAuthorizationInvalidError = 67328,
-    WorkspaceErrorMinimum = 67328,
-    WorkspaceErrorMaximum = 67455,
-    WindowSharingRequestAlreadyRequested = 67456,
-    WindowSharingRequestNoEligibleSession = 67457,
-    WindowSharingRequestUnspecifiedError = 67458,
-    WindowSharingErrorMinimum = 67456,
-    WindowSharingErrorMaximum = 67466,
+    NSTextReadInapplicableDocumentTypeError = 65806,
+    NSTextWriteInapplicableDocumentTypeError = 66062,
+    NSTextReadWriteErrorMinimum = 65792,
+    NSTextReadWriteErrorMaximum = 66303,
+    NSFontAssetDownloadError = 66304,
+    NSFontErrorMinimum = 66304,
+    NSFontErrorMaximum = 66335,
+    NSServiceApplicationNotFoundError = 66560,
+    NSServiceApplicationLaunchFailedError = 66561,
+    NSServiceRequestTimedOutError = 66562,
+    NSServiceInvalidPasteboardDataError = 66563,
+    NSServiceMalformedServiceDictionaryError = 66564,
+    NSServiceMiscellaneousError = 66800,
+    NSServiceErrorMinimum = 66560,
+    NSServiceErrorMaximum = 66817,
+    NSSharingServiceNotConfiguredError = 67072,
+    NSSharingServiceErrorMinimum = 67072,
+    NSSharingServiceErrorMaximum = 67327,
+    NSWorkspaceAuthorizationInvalidError = 67328,
+    NSWorkspaceErrorMinimum = 67328,
+    NSWorkspaceErrorMaximum = 67455,
+    NSWindowSharingRequestAlreadyRequested = 67456,
+    NSWindowSharingRequestNoEligibleSession = 67457,
+    NSWindowSharingRequestUnspecifiedError = 67458,
+    NSWindowSharingErrorMinimum = 67456,
+    NSWindowSharingErrorMaximum = 67466,
 };
 
 pub const CompositingOperation = enum(objc.NSUInteger) {
-    CompositingOperationClear = 0,
-    CompositingOperationCopy = 1,
-    CompositingOperationSourceOver = 2,
-    CompositingOperationSourceIn = 3,
-    CompositingOperationSourceOut = 4,
-    CompositingOperationSourceAtop = 5,
-    CompositingOperationDestinationOver = 6,
-    CompositingOperationDestinationIn = 7,
-    CompositingOperationDestinationOut = 8,
-    CompositingOperationDestinationAtop = 9,
-    CompositingOperationXOR = 10,
-    CompositingOperationPlusDarker = 11,
-    CompositingOperationHighlight = 12,
-    CompositingOperationPlusLighter = 13,
-    CompositingOperationMultiply = 14,
-    CompositingOperationScreen = 15,
-    CompositingOperationOverlay = 16,
-    CompositingOperationDarken = 17,
-    CompositingOperationLighten = 18,
-    CompositingOperationColorDodge = 19,
-    CompositingOperationColorBurn = 20,
-    CompositingOperationSoftLight = 21,
-    CompositingOperationHardLight = 22,
-    CompositingOperationDifference = 23,
-    CompositingOperationExclusion = 24,
-    CompositingOperationHue = 25,
-    CompositingOperationSaturation = 26,
-    CompositingOperationColor = 27,
-    CompositingOperationLuminosity = 28,
+    Clear = 0,
+    Copy = 1,
+    SourceOver = 2,
+    SourceIn = 3,
+    SourceOut = 4,
+    SourceAtop = 5,
+    DestinationOver = 6,
+    DestinationIn = 7,
+    DestinationOut = 8,
+    DestinationAtop = 9,
+    XOR = 10,
+    PlusDarker = 11,
+    Highlight = 12,
+    PlusLighter = 13,
+    Multiply = 14,
+    Screen = 15,
+    Overlay = 16,
+    Darken = 17,
+    Lighten = 18,
+    ColorDodge = 19,
+    ColorBurn = 20,
+    SoftLight = 21,
+    HardLight = 22,
+    Difference = 23,
+    Exclusion = 24,
+    Hue = 25,
+    Saturation = 26,
+    Color = 27,
+    Luminosity = 28,
 };
 
 pub const BackingStoreType = enum(objc.NSUInteger) {
-    BackingStoreRetained = 0,
-    BackingStoreNonretained = 1,
-    BackingStoreBuffered = 2,
+    Retained = 0,
+    Nonretained = 1,
+    Buffered = 2,
 };
 
 pub const WindowOrderingMode = enum(objc.NSInteger) {
-    WindowAbove = 1,
-    WindowBelow = -1,
-    WindowOut = 0,
+    Above = 1,
+    Below = -1,
+    Out = 0,
 };
 
 pub const FocusRingPlacement = enum(objc.NSUInteger) {
-    FocusRingOnly = 0,
-    FocusRingBelow = 1,
-    FocusRingAbove = 2,
+    Only = 0,
+    Below = 1,
+    Above = 2,
 };
 
 pub const FocusRingType = enum(objc.NSUInteger) {
-    FocusRingTypeDefault = 0,
-    FocusRingTypeNone = 1,
-    FocusRingTypeExterior = 2,
+    Default = 0,
+    None = 1,
+    Exterior = 2,
 };
 
 pub const ColorRenderingIntent = enum(objc.NSInteger) {
-    ColorRenderingIntentDefault = 0,
-    ColorRenderingIntentAbsoluteColorimetric = 1,
-    ColorRenderingIntentRelativeColorimetric = 2,
-    ColorRenderingIntentPerceptual = 3,
-    ColorRenderingIntentSaturation = 4,
+    Default = 0,
+    AbsoluteColorimetric = 1,
+    RelativeColorimetric = 2,
+    Perceptual = 3,
+    Saturation = 4,
 };
 
 pub const WindowDepth = enum(objc.int32_t) {
-    WindowDepthTwentyfourBitRGB = 520,
-    WindowDepthSixtyfourBitRGB = 528,
-    WindowDepthOnehundredtwentyeightBitRGB = 544,
+    TwentyfourBitRGB = 520,
+    SixtyfourBitRGB = 528,
+    OnehundredtwentyeightBitRGB = 544,
 };
 
 pub const DisplayGamut = enum(objc.NSInteger) {
-    DisplayGamutSRGB = 1,
-    DisplayGamutP3 = 2,
+    SRGB = 1,
+    P3 = 2,
 };
 
 pub const AnimationEffect = enum(objc.NSUInteger) {
-    AnimationEffectDisappearingItemDefault = 0,
-    AnimationEffectPoof = 10,
+    DisappearingItemDefault = 0,
+    Poof = 10,
 };
 
 pub const ImageInterpolation = enum(objc.NSUInteger) {
-    ImageInterpolationDefault = 0,
-    ImageInterpolationNone = 1,
-    ImageInterpolationLow = 2,
-    ImageInterpolationMedium = 4,
-    ImageInterpolationHigh = 3,
+    Default = 0,
+    None = 1,
+    Low = 2,
+    Medium = 4,
+    High = 3,
 };
 
 pub const AccessibilityAnnotationPosition = enum(objc.NSInteger) {
-    AccessibilityAnnotationPositionFullRange = 0,
-    AccessibilityAnnotationPositionStart = 1,
-    AccessibilityAnnotationPositionEnd = 2,
+    FullRange = 0,
+    Start = 1,
+    End = 2,
 };
 
 pub const AccessibilityOrientation = enum(objc.NSInteger) {
-    AccessibilityOrientationUnknown = 0,
-    AccessibilityOrientationVertical = 1,
-    AccessibilityOrientationHorizontal = 2,
+    Unknown = 0,
+    Vertical = 1,
+    Horizontal = 2,
 };
 
 pub const AccessibilitySortDirection = enum(objc.NSInteger) {
-    AccessibilitySortDirectionUnknown = 0,
-    AccessibilitySortDirectionAscending = 1,
-    AccessibilitySortDirectionDescending = 2,
+    Unknown = 0,
+    Ascending = 1,
+    Descending = 2,
 };
 
 pub const AccessibilityRulerMarkerType = enum(objc.NSInteger) {
-    AccessibilityRulerMarkerTypeUnknown = 0,
-    AccessibilityRulerMarkerTypeTabStopLeft = 1,
-    AccessibilityRulerMarkerTypeTabStopRight = 2,
-    AccessibilityRulerMarkerTypeTabStopCenter = 3,
-    AccessibilityRulerMarkerTypeTabStopDecimal = 4,
-    AccessibilityRulerMarkerTypeIndentHead = 5,
-    AccessibilityRulerMarkerTypeIndentTail = 6,
-    AccessibilityRulerMarkerTypeIndentFirstLine = 7,
+    Unknown = 0,
+    TabStopLeft = 1,
+    TabStopRight = 2,
+    TabStopCenter = 3,
+    TabStopDecimal = 4,
+    IndentHead = 5,
+    IndentTail = 6,
+    IndentFirstLine = 7,
 };
 
 pub const AccessibilityUnits = enum(objc.NSInteger) {
-    AccessibilityUnitsUnknown = 0,
-    AccessibilityUnitsInches = 1,
-    AccessibilityUnitsCentimeters = 2,
-    AccessibilityUnitsPoints = 3,
-    AccessibilityUnitsPicas = 4,
+    Unknown = 0,
+    Inches = 1,
+    Centimeters = 2,
+    Points = 3,
+    Picas = 4,
 };
 
 pub const AccessibilityPriorityLevel = enum(objc.NSInteger) {
-    AccessibilityPriorityLow = 10,
-    AccessibilityPriorityMedium = 50,
-    AccessibilityPriorityHigh = 90,
+    Low = 10,
+    Medium = 50,
+    High = 90,
 };
 
 pub const AccessibilityCustomRotorSearchDirection = enum(objc.NSInteger) {
-    AccessibilityCustomRotorSearchDirectionPrevious = 0,
-    AccessibilityCustomRotorSearchDirectionNext = 1,
+    Previous = 0,
+    Next = 1,
 };
 
 pub const AccessibilityCustomRotorType = enum(objc.NSInteger) {
-    AccessibilityCustomRotorTypeCustom = 0,
-    AccessibilityCustomRotorTypeAny = 1,
-    AccessibilityCustomRotorTypeAnnotation = 2,
-    AccessibilityCustomRotorTypeBoldText = 3,
-    AccessibilityCustomRotorTypeHeading = 4,
-    AccessibilityCustomRotorTypeHeadingLevel1 = 5,
-    AccessibilityCustomRotorTypeHeadingLevel2 = 6,
-    AccessibilityCustomRotorTypeHeadingLevel3 = 7,
-    AccessibilityCustomRotorTypeHeadingLevel4 = 8,
-    AccessibilityCustomRotorTypeHeadingLevel5 = 9,
-    AccessibilityCustomRotorTypeHeadingLevel6 = 10,
-    AccessibilityCustomRotorTypeImage = 11,
-    AccessibilityCustomRotorTypeItalicText = 12,
-    AccessibilityCustomRotorTypeLandmark = 13,
-    AccessibilityCustomRotorTypeLink = 14,
-    AccessibilityCustomRotorTypeList = 15,
-    AccessibilityCustomRotorTypeMisspelledWord = 16,
-    AccessibilityCustomRotorTypeTable = 17,
-    AccessibilityCustomRotorTypeTextField = 18,
-    AccessibilityCustomRotorTypeUnderlinedText = 19,
-    AccessibilityCustomRotorTypeVisitedLink = 20,
-    AccessibilityCustomRotorTypeAudiograph = 21,
+    Custom = 0,
+    Any = 1,
+    Annotation = 2,
+    BoldText = 3,
+    Heading = 4,
+    HeadingLevel1 = 5,
+    HeadingLevel2 = 6,
+    HeadingLevel3 = 7,
+    HeadingLevel4 = 8,
+    HeadingLevel5 = 9,
+    HeadingLevel6 = 10,
+    Image = 11,
+    ItalicText = 12,
+    Landmark = 13,
+    Link = 14,
+    List = 15,
+    MisspelledWord = 16,
+    Table = 17,
+    TextField = 18,
+    UnderlinedText = 19,
+    VisitedLink = 20,
+    Audiograph = 21,
 };
 
 pub const WorkspaceIconCreationOptions = enum(objc.NSUInteger) {
@@ -479,285 +479,285 @@ pub const WorkspaceIconCreationOptions = enum(objc.NSUInteger) {
 };
 
 pub const WorkspaceAuthorizationType = enum(objc.NSInteger) {
-    WorkspaceAuthorizationTypeCreateSymbolicLink = 0,
-    WorkspaceAuthorizationTypeSetAttributes = 1,
-    WorkspaceAuthorizationTypeReplaceFile = 2,
+    CreateSymbolicLink = 0,
+    SetAttributes = 1,
+    ReplaceFile = 2,
 };
 
 pub const WorkspaceLaunchOptions = enum(objc.NSUInteger) {
-    WorkspaceLaunchAndPrint = 2,
-    WorkspaceLaunchWithErrorPresentation = 64,
-    WorkspaceLaunchInhibitingBackgroundOnly = 128,
-    WorkspaceLaunchWithoutAddingToRecents = 256,
-    WorkspaceLaunchWithoutActivation = 512,
-    WorkspaceLaunchAsync = 65536,
-    WorkspaceLaunchNewInstance = 524288,
-    WorkspaceLaunchAndHide = 1048576,
-    WorkspaceLaunchAndHideOthers = 2097152,
-    WorkspaceLaunchDefault = 65536,
-    WorkspaceLaunchAllowingClassicStartup = 131072,
-    WorkspaceLaunchPreferringClassic = 262144,
+    AndPrint = 2,
+    WithErrorPresentation = 64,
+    InhibitingBackgroundOnly = 128,
+    WithoutAddingToRecents = 256,
+    WithoutActivation = 512,
+    Async = 65536,
+    NewInstance = 524288,
+    AndHide = 1048576,
+    AndHideOthers = 2097152,
+    Default = 65536,
+    AllowingClassicStartup = 131072,
+    PreferringClassic = 262144,
 };
 
 pub const TouchPhase = enum(objc.NSUInteger) {
-    TouchPhaseBegan = 1,
-    TouchPhaseMoved = 2,
-    TouchPhaseStationary = 4,
-    TouchPhaseEnded = 8,
-    TouchPhaseCancelled = 16,
-    TouchPhaseTouching = 7,
-    TouchPhaseAny = -1,
+    Began = 1,
+    Moved = 2,
+    Stationary = 4,
+    Ended = 8,
+    Cancelled = 16,
+    Touching = 7,
+    Any = -1,
 };
 
 pub const TouchType = enum(objc.NSInteger) {
-    TouchTypeDirect = 0,
-    TouchTypeIndirect = 1,
+    Direct = 0,
+    Indirect = 1,
 };
 
 pub const TouchTypeMask = enum(objc.NSUInteger) {
-    TouchTypeMaskDirect = 1,
-    TouchTypeMaskIndirect = 2,
+    Direct = 1,
+    Indirect = 2,
 };
 
 pub const anon1471 = enum(u32) {
-    ControlGlyph = 16777215,
-    NullGlyph = 0,
+    NSControlGlyph = 16777215,
+    NSNullGlyph = 0,
 };
 
 pub const EventType = enum(objc.NSUInteger) {
-    EventTypeLeftMouseDown = 1,
-    EventTypeLeftMouseUp = 2,
-    EventTypeRightMouseDown = 3,
-    EventTypeRightMouseUp = 4,
-    EventTypeMouseMoved = 5,
-    EventTypeLeftMouseDragged = 6,
-    EventTypeRightMouseDragged = 7,
-    EventTypeMouseEntered = 8,
-    EventTypeMouseExited = 9,
-    EventTypeKeyDown = 10,
-    EventTypeKeyUp = 11,
-    EventTypeFlagsChanged = 12,
-    EventTypeAppKitDefined = 13,
-    EventTypeSystemDefined = 14,
-    EventTypeApplicationDefined = 15,
-    EventTypePeriodic = 16,
-    EventTypeCursorUpdate = 17,
-    EventTypeScrollWheel = 22,
-    EventTypeTabletPoint = 23,
-    EventTypeTabletProximity = 24,
-    EventTypeOtherMouseDown = 25,
-    EventTypeOtherMouseUp = 26,
-    EventTypeOtherMouseDragged = 27,
-    EventTypeGesture = 29,
-    EventTypeMagnify = 30,
-    EventTypeSwipe = 31,
-    EventTypeRotate = 18,
-    EventTypeBeginGesture = 19,
-    EventTypeEndGesture = 20,
-    EventTypeSmartMagnify = 32,
-    EventTypeQuickLook = 33,
-    EventTypePressure = 34,
-    EventTypeDirectTouch = 37,
-    EventTypeChangeMode = 38,
+    LeftMouseDown = 1,
+    LeftMouseUp = 2,
+    RightMouseDown = 3,
+    RightMouseUp = 4,
+    MouseMoved = 5,
+    LeftMouseDragged = 6,
+    RightMouseDragged = 7,
+    MouseEntered = 8,
+    MouseExited = 9,
+    KeyDown = 10,
+    KeyUp = 11,
+    FlagsChanged = 12,
+    AppKitDefined = 13,
+    SystemDefined = 14,
+    ApplicationDefined = 15,
+    Periodic = 16,
+    CursorUpdate = 17,
+    ScrollWheel = 22,
+    TabletPoint = 23,
+    TabletProximity = 24,
+    OtherMouseDown = 25,
+    OtherMouseUp = 26,
+    OtherMouseDragged = 27,
+    Gesture = 29,
+    Magnify = 30,
+    Swipe = 31,
+    Rotate = 18,
+    BeginGesture = 19,
+    EndGesture = 20,
+    SmartMagnify = 32,
+    QuickLook = 33,
+    Pressure = 34,
+    DirectTouch = 37,
+    ChangeMode = 38,
 };
 
 pub const EventMask = enum(u64) {
-    EventMaskLeftMouseDown = 2,
-    EventMaskLeftMouseUp = 4,
-    EventMaskRightMouseDown = 8,
-    EventMaskRightMouseUp = 16,
-    EventMaskMouseMoved = 32,
-    EventMaskLeftMouseDragged = 64,
-    EventMaskRightMouseDragged = 128,
-    EventMaskMouseEntered = 256,
-    EventMaskMouseExited = 512,
-    EventMaskKeyDown = 1024,
-    EventMaskKeyUp = 2048,
-    EventMaskFlagsChanged = 4096,
-    EventMaskAppKitDefined = 8192,
-    EventMaskSystemDefined = 16384,
-    EventMaskApplicationDefined = 32768,
-    EventMaskPeriodic = 65536,
-    EventMaskCursorUpdate = 131072,
-    EventMaskScrollWheel = 4194304,
-    EventMaskTabletPoint = 8388608,
-    EventMaskTabletProximity = 16777216,
-    EventMaskOtherMouseDown = 33554432,
-    EventMaskOtherMouseUp = 67108864,
-    EventMaskOtherMouseDragged = 134217728,
-    EventMaskGesture = 536870912,
-    EventMaskMagnify = 1073741824,
-    EventMaskSwipe = 2147483648,
-    EventMaskRotate = 262144,
-    EventMaskBeginGesture = 524288,
-    EventMaskEndGesture = 1048576,
-    EventMaskSmartMagnify = 4294967296,
-    EventMaskPressure = 17179869184,
-    EventMaskDirectTouch = 137438953472,
-    EventMaskChangeMode = 274877906944,
-    EventMaskAny = -1,
+    LeftMouseDown = 2,
+    LeftMouseUp = 4,
+    RightMouseDown = 8,
+    RightMouseUp = 16,
+    MouseMoved = 32,
+    LeftMouseDragged = 64,
+    RightMouseDragged = 128,
+    MouseEntered = 256,
+    MouseExited = 512,
+    KeyDown = 1024,
+    KeyUp = 2048,
+    FlagsChanged = 4096,
+    AppKitDefined = 8192,
+    SystemDefined = 16384,
+    ApplicationDefined = 32768,
+    Periodic = 65536,
+    CursorUpdate = 131072,
+    ScrollWheel = 4194304,
+    TabletPoint = 8388608,
+    TabletProximity = 16777216,
+    OtherMouseDown = 33554432,
+    OtherMouseUp = 67108864,
+    OtherMouseDragged = 134217728,
+    Gesture = 536870912,
+    Magnify = 1073741824,
+    Swipe = 2147483648,
+    Rotate = 262144,
+    BeginGesture = 524288,
+    EndGesture = 1048576,
+    SmartMagnify = 4294967296,
+    Pressure = 17179869184,
+    DirectTouch = 137438953472,
+    ChangeMode = 274877906944,
+    Any = -1,
 };
 
 pub const EventModifierFlags = enum(objc.NSUInteger) {
-    EventModifierFlagCapsLock = 65536,
-    EventModifierFlagShift = 131072,
-    EventModifierFlagControl = 262144,
-    EventModifierFlagOption = 524288,
-    EventModifierFlagCommand = 1048576,
-    EventModifierFlagNumericPad = 2097152,
-    EventModifierFlagHelp = 4194304,
-    EventModifierFlagFunction = 8388608,
-    EventModifierFlagDeviceIndependentFlagsMask = 4294901760,
+    CapsLock = 65536,
+    Shift = 131072,
+    Control = 262144,
+    Option = 524288,
+    Command = 1048576,
+    NumericPad = 2097152,
+    Help = 4194304,
+    Function = 8388608,
+    DeviceIndependentFlagsMask = 4294901760,
 };
 
 pub const PointingDeviceType = enum(objc.NSUInteger) {
-    PointingDeviceTypeUnknown = 0,
-    PointingDeviceTypePen = 1,
-    PointingDeviceTypeCursor = 2,
-    PointingDeviceTypeEraser = 3,
+    Unknown = 0,
+    Pen = 1,
+    Cursor = 2,
+    Eraser = 3,
 };
 
 pub const EventButtonMask = enum(objc.NSUInteger) {
-    EventButtonMaskPenTip = 1,
-    EventButtonMaskPenLowerSide = 2,
-    EventButtonMaskPenUpperSide = 4,
+    PenTip = 1,
+    PenLowerSide = 2,
+    PenUpperSide = 4,
 };
 
 pub const EventPhase = enum(objc.NSUInteger) {
-    EventPhaseNone = 0,
-    EventPhaseBegan = 1,
-    EventPhaseStationary = 2,
-    EventPhaseChanged = 4,
-    EventPhaseEnded = 8,
-    EventPhaseCancelled = 16,
-    EventPhaseMayBegin = 32,
+    None = 0,
+    Began = 1,
+    Stationary = 2,
+    Changed = 4,
+    Ended = 8,
+    Cancelled = 16,
+    MayBegin = 32,
 };
 
 pub const EventGestureAxis = enum(objc.NSInteger) {
-    EventGestureAxisNone = 0,
-    EventGestureAxisHorizontal = 1,
-    EventGestureAxisVertical = 2,
+    None = 0,
+    Horizontal = 1,
+    Vertical = 2,
 };
 
 pub const EventSwipeTrackingOptions = enum(objc.NSUInteger) {
-    EventSwipeTrackingLockDirection = 1,
-    EventSwipeTrackingClampGestureAmount = 2,
+    LockDirection = 1,
+    ClampGestureAmount = 2,
 };
 
 pub const EventSubtype = enum(i16) {
-    EventSubtypeWindowExposed = 0,
-    EventSubtypeApplicationActivated = 1,
-    EventSubtypeApplicationDeactivated = 2,
-    EventSubtypeWindowMoved = 4,
-    EventSubtypeScreenChanged = 8,
-    EventSubtypePowerOff = 1,
-    EventSubtypeMouseEvent = 0,
-    EventSubtypeTabletPoint = 1,
-    EventSubtypeTabletProximity = 2,
-    EventSubtypeTouch = 3,
+    WindowExposed = 0,
+    ApplicationActivated = 1,
+    ApplicationDeactivated = 2,
+    WindowMoved = 4,
+    ScreenChanged = 8,
+    PowerOff = 1,
+    MouseEvent = 0,
+    TabletPoint = 1,
+    TabletProximity = 2,
+    Touch = 3,
 };
 
 pub const PressureBehavior = enum(objc.NSInteger) {
-    PressureBehaviorUnknown = -1,
-    PressureBehaviorPrimaryDefault = 0,
-    PressureBehaviorPrimaryClick = 1,
-    PressureBehaviorPrimaryGeneric = 2,
-    PressureBehaviorPrimaryAccelerator = 3,
-    PressureBehaviorPrimaryDeepClick = 5,
-    PressureBehaviorPrimaryDeepDrag = 6,
+    Unknown = -1,
+    PrimaryDefault = 0,
+    PrimaryClick = 1,
+    PrimaryGeneric = 2,
+    PrimaryAccelerator = 3,
+    PrimaryDeepClick = 5,
+    PrimaryDeepDrag = 6,
 };
 
 pub const PasteboardContentsOptions = enum(objc.NSUInteger) {
-    PasteboardContentsCurrentHostOnly = 1,
+    CurrentHostOnly = 1,
 };
 
 pub const PasteboardWritingOptions = enum(objc.NSUInteger) {
-    PasteboardWritingPromised = 512,
+    Promised = 512,
 };
 
 pub const PasteboardReadingOptions = enum(objc.NSUInteger) {
-    PasteboardReadingAsData = 0,
-    PasteboardReadingAsString = 1,
-    PasteboardReadingAsPropertyList = 2,
-    PasteboardReadingAsKeyedArchive = 4,
+    AsData = 0,
+    AsString = 1,
+    AsPropertyList = 2,
+    AsKeyedArchive = 4,
 };
 
 pub const ApplicationActivationOptions = enum(objc.NSUInteger) {
-    ApplicationActivateAllWindows = 1,
-    ApplicationActivateIgnoringOtherApps = 2,
+    ActivateAllWindows = 1,
+    ActivateIgnoringOtherApps = 2,
 };
 
 pub const ApplicationActivationPolicy = enum(objc.NSInteger) {
-    ApplicationActivationPolicyRegular = 0,
-    ApplicationActivationPolicyAccessory = 1,
-    ApplicationActivationPolicyProhibited = 2,
+    Regular = 0,
+    Accessory = 1,
+    Prohibited = 2,
 };
 
 pub const AnimationCurve = enum(objc.NSUInteger) {
-    AnimationEaseInOut = 0,
-    AnimationEaseIn = 1,
-    AnimationEaseOut = 2,
-    AnimationLinear = 3,
+    EaseInOut = 0,
+    EaseIn = 1,
+    EaseOut = 2,
+    Linear = 3,
 };
 
 pub const AnimationBlockingMode = enum(objc.NSUInteger) {
-    AnimationBlocking = 0,
-    AnimationNonblocking = 1,
-    AnimationNonblockingThreaded = 2,
+    Blocking = 0,
+    Nonblocking = 1,
+    NonblockingThreaded = 2,
 };
 
 pub const DragOperation = enum(objc.NSUInteger) {
-    DragOperationNone = 0,
-    DragOperationCopy = 1,
-    DragOperationLink = 2,
-    DragOperationGeneric = 4,
-    DragOperationPrivate = 8,
-    DragOperationMove = 16,
-    DragOperationDelete = 32,
-    DragOperationEvery = -1,
-    DragOperationAll_Obsolete = 15,
-    DragOperationAll = 15,
+    None = 0,
+    Copy = 1,
+    Link = 2,
+    Generic = 4,
+    Private = 8,
+    Move = 16,
+    Delete = 32,
+    Every = -1,
+    All_Obsolete = 15,
+    All = 15,
 };
 
 pub const DraggingFormation = enum(objc.NSInteger) {
-    DraggingFormationDefault = 0,
-    DraggingFormationNone = 1,
-    DraggingFormationPile = 2,
-    DraggingFormationList = 3,
-    DraggingFormationStack = 4,
+    Default = 0,
+    None = 1,
+    Pile = 2,
+    List = 3,
+    Stack = 4,
 };
 
 pub const DraggingContext = enum(objc.NSInteger) {
-    DraggingContextOutsideApplication = 0,
-    DraggingContextWithinApplication = 1,
+    OutsideApplication = 0,
+    WithinApplication = 1,
 };
 
 pub const DraggingItemEnumerationOptions = enum(objc.NSUInteger) {
-    DraggingItemEnumerationConcurrent = 1,
-    DraggingItemEnumerationClearNonenumeratedImages = 65536,
+    Concurrent = 1,
+    ClearNonenumeratedImages = 65536,
 };
 
 pub const SpringLoadingHighlight = enum(objc.NSInteger) {
-    SpringLoadingHighlightNone = 0,
-    SpringLoadingHighlightStandard = 1,
-    SpringLoadingHighlightEmphasized = 2,
+    None = 0,
+    Standard = 1,
+    Emphasized = 2,
 };
 
 pub const SpringLoadingOptions = enum(objc.NSUInteger) {
-    SpringLoadingDisabled = 0,
-    SpringLoadingEnabled = 1,
-    SpringLoadingContinuousActivation = 2,
-    SpringLoadingNoHover = 8,
+    Disabled = 0,
+    Enabled = 1,
+    ContinuousActivation = 2,
+    NoHover = 8,
 };
 
 pub const UserInterfaceLayoutDirection = enum(objc.NSInteger) {
-    UserInterfaceLayoutDirectionLeftToRight = 0,
-    UserInterfaceLayoutDirectionRightToLeft = 1,
+    LeftToRight = 0,
+    RightToLeft = 1,
 };
 
 pub const UserInterfaceLayoutOrientation = enum(objc.NSInteger) {
-    UserInterfaceLayoutOrientationHorizontal = 0,
-    UserInterfaceLayoutOrientationVertical = 1,
+    Horizontal = 0,
+    Vertical = 1,
 };
 
 pub const AutoresizingMaskOptions = enum(objc.NSUInteger) {
@@ -778,68 +778,68 @@ pub const BorderType = enum(objc.NSUInteger) {
 };
 
 pub const ViewLayerContentsRedrawPolicy = enum(objc.NSInteger) {
-    ViewLayerContentsRedrawNever = 0,
-    ViewLayerContentsRedrawOnSetNeedsDisplay = 1,
-    ViewLayerContentsRedrawDuringViewResize = 2,
-    ViewLayerContentsRedrawBeforeViewResize = 3,
-    ViewLayerContentsRedrawCrossfade = 4,
+    Never = 0,
+    OnSetNeedsDisplay = 1,
+    DuringViewResize = 2,
+    BeforeViewResize = 3,
+    Crossfade = 4,
 };
 
 pub const ViewLayerContentsPlacement = enum(objc.NSInteger) {
-    ViewLayerContentsPlacementScaleAxesIndependently = 0,
-    ViewLayerContentsPlacementScaleProportionallyToFit = 1,
-    ViewLayerContentsPlacementScaleProportionallyToFill = 2,
-    ViewLayerContentsPlacementCenter = 3,
-    ViewLayerContentsPlacementTop = 4,
-    ViewLayerContentsPlacementTopRight = 5,
-    ViewLayerContentsPlacementRight = 6,
-    ViewLayerContentsPlacementBottomRight = 7,
-    ViewLayerContentsPlacementBottom = 8,
-    ViewLayerContentsPlacementBottomLeft = 9,
-    ViewLayerContentsPlacementLeft = 10,
-    ViewLayerContentsPlacementTopLeft = 11,
+    ScaleAxesIndependently = 0,
+    ScaleProportionallyToFit = 1,
+    ScaleProportionallyToFill = 2,
+    Center = 3,
+    Top = 4,
+    TopRight = 5,
+    Right = 6,
+    BottomRight = 7,
+    Bottom = 8,
+    BottomLeft = 9,
+    Left = 10,
+    TopLeft = 11,
 };
 
 pub const WritingDirection = enum(objc.NSInteger) {
-    WritingDirectionNatural = -1,
-    WritingDirectionLeftToRight = 0,
-    WritingDirectionRightToLeft = 1,
+    Natural = -1,
+    LeftToRight = 0,
+    RightToLeft = 1,
 };
 
 pub const TextAlignment = enum(objc.NSInteger) {
-    TextAlignmentLeft = 0,
-    TextAlignmentCenter = 1,
-    TextAlignmentRight = 2,
-    TextAlignmentJustified = 3,
-    TextAlignmentNatural = 4,
+    Left = 0,
+    Center = 1,
+    Right = 2,
+    Justified = 3,
+    Natural = 4,
 };
 
 pub const TextMovement = enum(objc.NSInteger) {
-    TextMovementReturn = 16,
-    TextMovementTab = 17,
-    TextMovementBacktab = 18,
-    TextMovementLeft = 19,
-    TextMovementRight = 20,
-    TextMovementUp = 21,
-    TextMovementDown = 22,
-    TextMovementCancel = 23,
-    TextMovementOther = 0,
+    Return = 16,
+    Tab = 17,
+    Backtab = 18,
+    Left = 19,
+    Right = 20,
+    Up = 21,
+    Down = 22,
+    Cancel = 23,
+    Other = 0,
 };
 
 pub const LineBreakMode = enum(objc.NSUInteger) {
-    LineBreakByWordWrapping = 0,
-    LineBreakByCharWrapping = 1,
-    LineBreakByClipping = 2,
-    LineBreakByTruncatingHead = 3,
-    LineBreakByTruncatingTail = 4,
-    LineBreakByTruncatingMiddle = 5,
+    ByWordWrapping = 0,
+    ByCharWrapping = 1,
+    ByClipping = 2,
+    ByTruncatingHead = 3,
+    ByTruncatingTail = 4,
+    ByTruncatingMiddle = 5,
 };
 
 pub const LineBreakStrategy = enum(objc.NSUInteger) {
-    LineBreakStrategyNone = 0,
-    LineBreakStrategyPushOut = 1,
-    LineBreakStrategyHangulWordPriority = 2,
-    LineBreakStrategyStandard = 65535,
+    None = 0,
+    PushOut = 1,
+    HangulWordPriority = 2,
+    Standard = 65535,
 };
 
 pub const TextTabType = enum(objc.NSUInteger) {
@@ -856,23 +856,23 @@ pub const CellType = enum(objc.NSUInteger) {
 };
 
 pub const CellAttribute = enum(objc.NSUInteger) {
-    CellDisabled = 0,
-    CellState = 1,
+    Disabled = 0,
+    State = 1,
     PushInCell = 2,
-    CellEditable = 3,
+    Editable = 3,
     ChangeGrayCell = 4,
-    CellHighlighted = 5,
-    CellLightsByContents = 6,
-    CellLightsByGray = 7,
+    Highlighted = 5,
+    LightsByContents = 6,
+    LightsByGray = 7,
     ChangeBackgroundCell = 8,
-    CellLightsByBackground = 9,
-    CellIsBordered = 10,
-    CellHasOverlappingImage = 11,
-    CellHasImageHorizontal = 12,
-    CellHasImageOnLeftOrBottom = 13,
-    CellChangesContents = 14,
-    CellIsInsetButton = 15,
-    CellAllowsMixedState = 16,
+    LightsByBackground = 9,
+    IsBordered = 10,
+    HasOverlappingImage = 11,
+    HasImageHorizontal = 12,
+    HasImageOnLeftOrBottom = 13,
+    ChangesContents = 14,
+    IsInsetButton = 15,
+    AllowsMixedState = 16,
 };
 
 pub const CellImagePosition = enum(objc.NSUInteger) {
@@ -888,10 +888,10 @@ pub const CellImagePosition = enum(objc.NSUInteger) {
 };
 
 pub const ImageScaling = enum(objc.NSUInteger) {
-    ImageScaleProportionallyDown = 0,
-    ImageScaleAxesIndependently = 1,
-    ImageScaleNone = 2,
-    ImageScaleProportionallyUpOrDown = 3,
+    ScaleProportionallyDown = 0,
+    ScaleAxesIndependently = 1,
+    ScaleNone = 2,
+    ScaleProportionallyUpOrDown = 3,
     ScaleProportionally = 0,
     ScaleToFit = 1,
     ScaleNone = 2,
@@ -913,61 +913,61 @@ pub const ControlTint = enum(objc.NSUInteger) {
 };
 
 pub const ControlSize = enum(objc.NSUInteger) {
-    ControlSizeRegular = 0,
-    ControlSizeSmall = 1,
-    ControlSizeMini = 2,
-    ControlSizeLarge = 3,
+    Regular = 0,
+    Small = 1,
+    Mini = 2,
+    Large = 3,
 };
 
 pub const CellHitResult = enum(objc.NSUInteger) {
-    CellHitNone = 0,
-    CellHitContentArea = 1,
-    CellHitEditableTextArea = 2,
-    CellHitTrackableArea = 4,
+    None = 0,
+    ContentArea = 1,
+    EditableTextArea = 2,
+    TrackableArea = 4,
 };
 
 pub const BackgroundStyle = enum(objc.NSInteger) {
-    BackgroundStyleNormal = 0,
-    BackgroundStyleEmphasized = 1,
-    BackgroundStyleRaised = 2,
-    BackgroundStyleLowered = 3,
+    Normal = 0,
+    Emphasized = 1,
+    Raised = 2,
+    Lowered = 3,
 };
 
 pub const MenuPresentationStyle = enum(objc.NSInteger) {
-    MenuPresentationStyleRegular = 0,
-    MenuPresentationStylePalette = 1,
+    Regular = 0,
+    Palette = 1,
 };
 
 pub const MenuSelectionMode = enum(objc.NSInteger) {
-    MenuSelectionModeAutomatic = 0,
-    MenuSelectionModeSelectOne = 1,
-    MenuSelectionModeSelectAny = 2,
+    Automatic = 0,
+    SelectOne = 1,
+    SelectAny = 2,
 };
 
 pub const MenuProperties = enum(objc.NSUInteger) {
-    MenuPropertyItemTitle = 1,
-    MenuPropertyItemAttributedTitle = 2,
-    MenuPropertyItemKeyEquivalent = 4,
-    MenuPropertyItemImage = 8,
-    MenuPropertyItemEnabled = 16,
-    MenuPropertyItemAccessibilityDescription = 32,
+    PropertyItemTitle = 1,
+    PropertyItemAttributedTitle = 2,
+    PropertyItemKeyEquivalent = 4,
+    PropertyItemImage = 8,
+    PropertyItemEnabled = 16,
+    PropertyItemAccessibilityDescription = 32,
 };
 
 pub const PrinterTableStatus = enum(objc.NSUInteger) {
-    PrinterTableOK = 0,
-    PrinterTableNotFound = 1,
-    PrinterTableError = 2,
+    OK = 0,
+    NotFound = 1,
+    Error = 2,
 };
 
 pub const PaperOrientation = enum(objc.NSInteger) {
-    PaperOrientationPortrait = 0,
-    PaperOrientationLandscape = 1,
+    Portrait = 0,
+    Landscape = 1,
 };
 
 pub const PrintingPaginationMode = enum(objc.NSUInteger) {
-    PrintingPaginationModeAutomatic = 0,
-    PrintingPaginationModeFit = 1,
-    PrintingPaginationModeClip = 2,
+    Automatic = 0,
+    Fit = 1,
+    Clip = 2,
 };
 
 pub const PrintingOrientation = enum(objc.NSUInteger) {
@@ -986,9 +986,9 @@ pub const DocumentChangeType = enum(objc.NSUInteger) {
 };
 
 pub const SaveOperationType = enum(objc.NSUInteger) {
-    SaveOperation = 0,
-    SaveAsOperation = 1,
-    SaveToOperation = 2,
+    Operation = 0,
+    AsOperation = 1,
+    ToOperation = 2,
     AutosaveInPlaceOperation = 4,
     AutosaveElsewhereOperation = 3,
     AutosaveAsOperation = 5,
@@ -996,28 +996,28 @@ pub const SaveOperationType = enum(objc.NSUInteger) {
 };
 
 pub const ApplicationPresentationOptions = enum(objc.NSUInteger) {
-    ApplicationPresentationDefault = 0,
-    ApplicationPresentationAutoHideDock = 1,
-    ApplicationPresentationHideDock = 2,
-    ApplicationPresentationAutoHideMenuBar = 4,
-    ApplicationPresentationHideMenuBar = 8,
-    ApplicationPresentationDisableAppleMenu = 16,
-    ApplicationPresentationDisableProcessSwitching = 32,
-    ApplicationPresentationDisableForceQuit = 64,
-    ApplicationPresentationDisableSessionTermination = 128,
-    ApplicationPresentationDisableHideApplication = 256,
-    ApplicationPresentationDisableMenuBarTransparency = 512,
-    ApplicationPresentationFullScreen = 1024,
-    ApplicationPresentationAutoHideToolbar = 2048,
-    ApplicationPresentationDisableCursorLocationAssistance = 4096,
+    Default = 0,
+    AutoHideDock = 1,
+    HideDock = 2,
+    AutoHideMenuBar = 4,
+    HideMenuBar = 8,
+    DisableAppleMenu = 16,
+    DisableProcessSwitching = 32,
+    DisableForceQuit = 64,
+    DisableSessionTermination = 128,
+    DisableHideApplication = 256,
+    DisableMenuBarTransparency = 512,
+    FullScreen = 1024,
+    AutoHideToolbar = 2048,
+    DisableCursorLocationAssistance = 4096,
 };
 
 pub const ApplicationOcclusionState = enum(objc.NSUInteger) {
-    ApplicationOcclusionStateVisible = 2,
+    Visible = 2,
 };
 
 pub const WindowListOptions = enum(objc.NSInteger) {
-    WindowListOrderedFrontToBack = 1,
+    OrderedFrontToBack = 1,
 };
 
 pub const RequestUserAttentionType = enum(objc.NSUInteger) {
@@ -1026,9 +1026,9 @@ pub const RequestUserAttentionType = enum(objc.NSUInteger) {
 };
 
 pub const ApplicationDelegateReply = enum(objc.NSUInteger) {
-    ApplicationDelegateReplySuccess = 0,
-    ApplicationDelegateReplyCancel = 1,
-    ApplicationDelegateReplyFailure = 2,
+    Success = 0,
+    Cancel = 1,
+    Failure = 2,
 };
 
 pub const ApplicationTerminateReply = enum(objc.NSUInteger) {
@@ -1045,36 +1045,36 @@ pub const ApplicationPrintReply = enum(objc.NSUInteger) {
 };
 
 pub const RemoteNotificationType = enum(objc.NSUInteger) {
-    RemoteNotificationTypeNone = 0,
-    RemoteNotificationTypeBadge = 1,
-    RemoteNotificationTypeSound = 2,
-    RemoteNotificationTypeAlert = 4,
+    None = 0,
+    Badge = 1,
+    Sound = 2,
+    Alert = 4,
 };
 
 pub const anon6911 = enum(i32) {
-    RunStoppedResponse = -1000,
-    RunAbortedResponse = -1001,
-    RunContinuesResponse = -1002,
+    NSRunStoppedResponse = -1000,
+    NSRunAbortedResponse = -1001,
+    NSRunContinuesResponse = -1002,
 };
 
 pub const ColorType = enum(objc.NSInteger) {
-    ColorTypeComponentBased = 0,
-    ColorTypePattern = 1,
-    ColorTypeCatalog = 2,
+    ComponentBased = 0,
+    Pattern = 1,
+    Catalog = 2,
 };
 
 pub const ColorSystemEffect = enum(objc.NSInteger) {
-    ColorSystemEffectNone = 0,
-    ColorSystemEffectPressed = 1,
-    ColorSystemEffectDeepPressed = 2,
-    ColorSystemEffectDisabled = 3,
-    ColorSystemEffectRollover = 4,
+    None = 0,
+    Pressed = 1,
+    DeepPressed = 2,
+    Disabled = 3,
+    Rollover = 4,
 };
 
 pub const AlertStyle = enum(objc.NSUInteger) {
-    AlertStyleWarning = 0,
-    AlertStyleInformational = 1,
-    AlertStyleCritical = 2,
+    Warning = 0,
+    Informational = 1,
+    Critical = 2,
 };
 
 pub const TitlePosition = enum(objc.NSUInteger) {
@@ -1088,197 +1088,197 @@ pub const TitlePosition = enum(objc.NSUInteger) {
 };
 
 pub const BoxType = enum(objc.NSUInteger) {
-    BoxPrimary = 0,
-    BoxSeparator = 2,
-    BoxCustom = 4,
+    Primary = 0,
+    Separator = 2,
+    Custom = 4,
 };
 
 pub const ButtonType = enum(objc.NSUInteger) {
-    ButtonTypeMomentaryLight = 0,
-    ButtonTypePushOnPushOff = 1,
-    ButtonTypeToggle = 2,
-    ButtonTypeSwitch = 3,
-    ButtonTypeRadio = 4,
-    ButtonTypeMomentaryChange = 5,
-    ButtonTypeOnOff = 6,
-    ButtonTypeMomentaryPushIn = 7,
-    ButtonTypeAccelerator = 8,
-    ButtonTypeMultiLevelAccelerator = 9,
+    MomentaryLight = 0,
+    PushOnPushOff = 1,
+    Toggle = 2,
+    Switch = 3,
+    Radio = 4,
+    MomentaryChange = 5,
+    OnOff = 6,
+    MomentaryPushIn = 7,
+    Accelerator = 8,
+    MultiLevelAccelerator = 9,
 };
 
 pub const BezelStyle = enum(objc.NSUInteger) {
-    BezelStyleAutomatic = 0,
-    BezelStylePush = 1,
-    BezelStyleFlexiblePush = 2,
-    BezelStyleDisclosure = 5,
-    BezelStyleCircular = 7,
-    BezelStyleHelpButton = 9,
-    BezelStyleSmallSquare = 10,
-    BezelStyleToolbar = 11,
-    BezelStyleAccessoryBarAction = 12,
-    BezelStyleAccessoryBar = 13,
-    BezelStylePushDisclosure = 14,
-    BezelStyleBadge = 15,
-    BezelStyleShadowlessSquare = 6,
-    BezelStyleTexturedSquare = 8,
-    BezelStyleRounded = 1,
-    BezelStyleRegularSquare = 2,
-    BezelStyleTexturedRounded = 11,
-    BezelStyleRoundRect = 12,
-    BezelStyleRecessed = 13,
-    BezelStyleRoundedDisclosure = 14,
-    BezelStyleInline = 15,
+    Automatic = 0,
+    Push = 1,
+    FlexiblePush = 2,
+    Disclosure = 5,
+    Circular = 7,
+    HelpButton = 9,
+    SmallSquare = 10,
+    Toolbar = 11,
+    AccessoryBarAction = 12,
+    AccessoryBar = 13,
+    PushDisclosure = 14,
+    Badge = 15,
+    ShadowlessSquare = 6,
+    TexturedSquare = 8,
+    Rounded = 1,
+    RegularSquare = 2,
+    TexturedRounded = 11,
+    RoundRect = 12,
+    Recessed = 13,
+    RoundedDisclosure = 14,
+    Inline = 15,
 };
 
 pub const GradientType = enum(objc.NSUInteger) {
-    GradientNone = 0,
-    GradientConcaveWeak = 1,
-    GradientConcaveStrong = 2,
-    GradientConvexWeak = 3,
-    GradientConvexStrong = 4,
+    None = 0,
+    ConcaveWeak = 1,
+    ConcaveStrong = 2,
+    ConvexWeak = 3,
+    ConvexStrong = 4,
 };
 
 pub const PopoverAppearance = enum(objc.NSInteger) {
-    PopoverAppearanceMinimal = 0,
-    PopoverAppearanceHUD = 1,
+    Minimal = 0,
+    HUD = 1,
 };
 
 pub const PopoverBehavior = enum(objc.NSInteger) {
-    PopoverBehaviorApplicationDefined = 0,
-    PopoverBehaviorTransient = 1,
-    PopoverBehaviorSemitransient = 2,
+    ApplicationDefined = 0,
+    Transient = 1,
+    Semitransient = 2,
 };
 
 pub const ViewControllerTransitionOptions = enum(objc.NSUInteger) {
-    ViewControllerTransitionNone = 0,
-    ViewControllerTransitionCrossfade = 1,
-    ViewControllerTransitionSlideUp = 16,
-    ViewControllerTransitionSlideDown = 32,
-    ViewControllerTransitionSlideLeft = 64,
-    ViewControllerTransitionSlideRight = 128,
-    ViewControllerTransitionSlideForward = 320,
-    ViewControllerTransitionSlideBackward = 384,
-    ViewControllerTransitionAllowUserInteraction = 4096,
+    None = 0,
+    Crossfade = 1,
+    SlideUp = 16,
+    SlideDown = 32,
+    SlideLeft = 64,
+    SlideRight = 128,
+    SlideForward = 320,
+    SlideBackward = 384,
+    AllowUserInteraction = 4096,
 };
 
 pub const CollectionViewDropOperation = enum(objc.NSInteger) {
-    CollectionViewDropOn = 0,
-    CollectionViewDropBefore = 1,
+    On = 0,
+    Before = 1,
 };
 
 pub const CollectionViewItemHighlightState = enum(objc.NSInteger) {
-    CollectionViewItemHighlightNone = 0,
-    CollectionViewItemHighlightForSelection = 1,
-    CollectionViewItemHighlightForDeselection = 2,
-    CollectionViewItemHighlightAsDropTarget = 3,
+    None = 0,
+    ForSelection = 1,
+    ForDeselection = 2,
+    AsDropTarget = 3,
 };
 
 pub const CollectionViewScrollPosition = enum(objc.NSUInteger) {
-    CollectionViewScrollPositionNone = 0,
-    CollectionViewScrollPositionTop = 1,
-    CollectionViewScrollPositionCenteredVertically = 2,
-    CollectionViewScrollPositionBottom = 4,
-    CollectionViewScrollPositionNearestHorizontalEdge = 512,
-    CollectionViewScrollPositionLeft = 8,
-    CollectionViewScrollPositionCenteredHorizontally = 16,
-    CollectionViewScrollPositionRight = 32,
-    CollectionViewScrollPositionLeadingEdge = 64,
-    CollectionViewScrollPositionTrailingEdge = 128,
-    CollectionViewScrollPositionNearestVerticalEdge = 256,
+    None = 0,
+    Top = 1,
+    CenteredVertically = 2,
+    Bottom = 4,
+    NearestHorizontalEdge = 512,
+    Left = 8,
+    CenteredHorizontally = 16,
+    Right = 32,
+    LeadingEdge = 64,
+    TrailingEdge = 128,
+    NearestVerticalEdge = 256,
 };
 
 pub const CollectionElementCategory = enum(objc.NSInteger) {
-    CollectionElementCategoryItem = 0,
-    CollectionElementCategorySupplementaryView = 1,
-    CollectionElementCategoryDecorationView = 2,
-    CollectionElementCategoryInterItemGap = 3,
+    Item = 0,
+    SupplementaryView = 1,
+    DecorationView = 2,
+    InterItemGap = 3,
 };
 
 pub const CollectionUpdateAction = enum(objc.NSInteger) {
-    CollectionUpdateActionInsert = 0,
-    CollectionUpdateActionDelete = 1,
-    CollectionUpdateActionReload = 2,
-    CollectionUpdateActionMove = 3,
-    CollectionUpdateActionNone = 4,
+    Insert = 0,
+    Delete = 1,
+    Reload = 2,
+    Move = 3,
+    None = 4,
 };
 
 pub const CollectionViewScrollDirection = enum(objc.NSInteger) {
-    CollectionViewScrollDirectionVertical = 0,
-    CollectionViewScrollDirectionHorizontal = 1,
+    Vertical = 0,
+    Horizontal = 1,
 };
 
 pub const DirectionalRectEdge = enum(objc.NSUInteger) {
-    DirectionalRectEdgeNone = 0,
-    DirectionalRectEdgeTop = 1,
-    DirectionalRectEdgeLeading = 2,
-    DirectionalRectEdgeBottom = 4,
-    DirectionalRectEdgeTrailing = 8,
-    DirectionalRectEdgeAll = 15,
+    None = 0,
+    Top = 1,
+    Leading = 2,
+    Bottom = 4,
+    Trailing = 8,
+    All = 15,
 };
 
 pub const RectAlignment = enum(objc.NSInteger) {
-    RectAlignmentNone = 0,
-    RectAlignmentTop = 1,
-    RectAlignmentTopLeading = 2,
-    RectAlignmentLeading = 3,
-    RectAlignmentBottomLeading = 4,
-    RectAlignmentBottom = 5,
-    RectAlignmentBottomTrailing = 6,
-    RectAlignmentTrailing = 7,
-    RectAlignmentTopTrailing = 8,
+    None = 0,
+    Top = 1,
+    TopLeading = 2,
+    Leading = 3,
+    BottomLeading = 4,
+    Bottom = 5,
+    BottomTrailing = 6,
+    Trailing = 7,
+    TopTrailing = 8,
 };
 
 pub const CollectionLayoutSectionOrthogonalScrollingBehavior = enum(objc.NSInteger) {
-    CollectionLayoutSectionOrthogonalScrollingBehaviorNone = 0,
-    CollectionLayoutSectionOrthogonalScrollingBehaviorContinuous = 1,
-    CollectionLayoutSectionOrthogonalScrollingBehaviorContinuousGroupLeadingBoundary = 2,
-    CollectionLayoutSectionOrthogonalScrollingBehaviorPaging = 3,
-    CollectionLayoutSectionOrthogonalScrollingBehaviorGroupPaging = 4,
-    CollectionLayoutSectionOrthogonalScrollingBehaviorGroupPagingCentered = 5,
+    None = 0,
+    Continuous = 1,
+    ContinuousGroupLeadingBoundary = 2,
+    Paging = 3,
+    GroupPaging = 4,
+    GroupPagingCentered = 5,
 };
 
 pub const HorizontalDirections = enum(objc.NSUInteger) {
-    HorizontalDirectionsLeft = 1,
-    HorizontalDirectionsRight = 2,
-    HorizontalDirectionsAll = 3,
+    Left = 1,
+    Right = 2,
+    All = 3,
 };
 
 pub const VerticalDirections = enum(objc.NSUInteger) {
-    VerticalDirectionsUp = 1,
-    VerticalDirectionsDown = 2,
-    VerticalDirectionsAll = 3,
+    Up = 1,
+    Down = 2,
+    All = 3,
 };
 
 pub const FontDescriptorSymbolicTraits = enum(objc.uint32_t) {
-    FontDescriptorTraitItalic = 1,
-    FontDescriptorTraitBold = 2,
-    FontDescriptorTraitExpanded = 32,
-    FontDescriptorTraitCondensed = 64,
-    FontDescriptorTraitMonoSpace = 1024,
-    FontDescriptorTraitVertical = 2048,
-    FontDescriptorTraitUIOptimized = 4096,
-    FontDescriptorTraitTightLeading = 32768,
-    FontDescriptorTraitLooseLeading = 65536,
-    FontDescriptorTraitEmphasized = 2,
-    FontDescriptorClassMask = -268435456,
-    FontDescriptorClassUnknown = 0,
-    FontDescriptorClassOldStyleSerifs = 268435456,
-    FontDescriptorClassTransitionalSerifs = 536870912,
-    FontDescriptorClassModernSerifs = 805306368,
-    FontDescriptorClassClarendonSerifs = 1073741824,
-    FontDescriptorClassSlabSerifs = 1342177280,
-    FontDescriptorClassFreeformSerifs = 1879048192,
-    FontDescriptorClassSansSerif = -2147483648,
-    FontDescriptorClassOrnamentals = -1879048192,
-    FontDescriptorClassScripts = -1610612736,
-    FontDescriptorClassSymbolic = -1073741824,
+    TraitItalic = 1,
+    TraitBold = 2,
+    TraitExpanded = 32,
+    TraitCondensed = 64,
+    TraitMonoSpace = 1024,
+    TraitVertical = 2048,
+    TraitUIOptimized = 4096,
+    TraitTightLeading = 32768,
+    TraitLooseLeading = 65536,
+    TraitEmphasized = 2,
+    ClassMask = -268435456,
+    ClassUnknown = 0,
+    ClassOldStyleSerifs = 268435456,
+    ClassTransitionalSerifs = 536870912,
+    ClassModernSerifs = 805306368,
+    ClassClarendonSerifs = 1073741824,
+    ClassSlabSerifs = 1342177280,
+    ClassFreeformSerifs = 1879048192,
+    ClassSansSerif = -2147483648,
+    ClassOrnamentals = -1879048192,
+    ClassScripts = -1610612736,
+    ClassSymbolic = -1073741824,
 };
 
 pub const FontRenderingMode = enum(objc.NSUInteger) {
-    FontDefaultRenderingMode = 0,
-    FontAntialiasedRenderingMode = 1,
-    FontIntegerAdvancementsRenderingMode = 2,
-    FontAntialiasedIntegerAdvancementsRenderingMode = 3,
+    DefaultRenderingMode = 0,
+    AntialiasedRenderingMode = 1,
+    IntegerAdvancementsRenderingMode = 2,
+    AntialiasedIntegerAdvancementsRenderingMode = 3,
 };
 
 pub const MultibyteGlyphPacking = enum(objc.NSUInteger) {
@@ -1286,13 +1286,13 @@ pub const MultibyteGlyphPacking = enum(objc.NSUInteger) {
 };
 
 pub const FontAssetRequestOptions = enum(objc.NSUInteger) {
-    FontAssetRequestOptionUsesStandardUI = 1,
+    UsesStandardUI = 1,
 };
 
 pub const FontCollectionVisibility = enum(objc.NSUInteger) {
-    FontCollectionVisibilityProcess = 1,
-    FontCollectionVisibilityUser = 2,
-    FontCollectionVisibilityComputer = 4,
+    Process = 1,
+    User = 2,
+    Computer = 4,
 };
 
 pub const FontTraitMask = enum(objc.NSUInteger) {
@@ -1311,7 +1311,7 @@ pub const FontTraitMask = enum(objc.NSUInteger) {
 };
 
 pub const FontCollectionOptions = enum(objc.NSUInteger) {
-    FontCollectionApplicationOnlyMask = 1,
+    ApplicationOnlyMask = 1,
 };
 
 pub const FontAction = enum(objc.NSUInteger) {
@@ -1326,60 +1326,60 @@ pub const FontAction = enum(objc.NSUInteger) {
 };
 
 pub const WindowStyleMask = enum(objc.NSUInteger) {
-    WindowStyleMaskBorderless = 0,
-    WindowStyleMaskTitled = 1,
-    WindowStyleMaskClosable = 2,
-    WindowStyleMaskMiniaturizable = 4,
-    WindowStyleMaskResizable = 8,
-    WindowStyleMaskTexturedBackground = 256,
-    WindowStyleMaskUnifiedTitleAndToolbar = 4096,
-    WindowStyleMaskFullScreen = 16384,
-    WindowStyleMaskFullSizeContentView = 32768,
-    WindowStyleMaskUtilityWindow = 16,
-    WindowStyleMaskDocModalWindow = 64,
-    WindowStyleMaskNonactivatingPanel = 128,
-    WindowStyleMaskHUDWindow = 8192,
+    Borderless = 0,
+    Titled = 1,
+    Closable = 2,
+    Miniaturizable = 4,
+    Resizable = 8,
+    TexturedBackground = 256,
+    UnifiedTitleAndToolbar = 4096,
+    FullScreen = 16384,
+    FullSizeContentView = 32768,
+    UtilityWindow = 16,
+    DocModalWindow = 64,
+    NonactivatingPanel = 128,
+    HUDWindow = 8192,
 };
 
 pub const WindowSharingType = enum(objc.NSUInteger) {
-    WindowSharingNone = 0,
-    WindowSharingReadOnly = 1,
+    None = 0,
+    ReadOnly = 1,
 };
 
 pub const WindowCollectionBehavior = enum(objc.NSUInteger) {
-    WindowCollectionBehaviorDefault = 0,
-    WindowCollectionBehaviorCanJoinAllSpaces = 1,
-    WindowCollectionBehaviorMoveToActiveSpace = 2,
-    WindowCollectionBehaviorManaged = 4,
-    WindowCollectionBehaviorTransient = 8,
-    WindowCollectionBehaviorStationary = 16,
-    WindowCollectionBehaviorParticipatesInCycle = 32,
-    WindowCollectionBehaviorIgnoresCycle = 64,
-    WindowCollectionBehaviorFullScreenPrimary = 128,
-    WindowCollectionBehaviorFullScreenAuxiliary = 256,
-    WindowCollectionBehaviorFullScreenNone = 512,
-    WindowCollectionBehaviorFullScreenAllowsTiling = 2048,
-    WindowCollectionBehaviorFullScreenDisallowsTiling = 4096,
-    WindowCollectionBehaviorPrimary = 65536,
-    WindowCollectionBehaviorAuxiliary = 131072,
-    WindowCollectionBehaviorCanJoinAllApplications = 262144,
+    Default = 0,
+    CanJoinAllSpaces = 1,
+    MoveToActiveSpace = 2,
+    Managed = 4,
+    Transient = 8,
+    Stationary = 16,
+    ParticipatesInCycle = 32,
+    IgnoresCycle = 64,
+    FullScreenPrimary = 128,
+    FullScreenAuxiliary = 256,
+    FullScreenNone = 512,
+    FullScreenAllowsTiling = 2048,
+    FullScreenDisallowsTiling = 4096,
+    Primary = 65536,
+    Auxiliary = 131072,
+    CanJoinAllApplications = 262144,
 };
 
 pub const WindowAnimationBehavior = enum(objc.NSInteger) {
-    WindowAnimationBehaviorDefault = 0,
-    WindowAnimationBehaviorNone = 2,
-    WindowAnimationBehaviorDocumentWindow = 3,
-    WindowAnimationBehaviorUtilityWindow = 4,
-    WindowAnimationBehaviorAlertPanel = 5,
+    Default = 0,
+    None = 2,
+    DocumentWindow = 3,
+    UtilityWindow = 4,
+    AlertPanel = 5,
 };
 
 pub const WindowNumberListOptions = enum(objc.NSUInteger) {
-    WindowNumberListAllApplications = 1,
-    WindowNumberListAllSpaces = 16,
+    AllApplications = 1,
+    AllSpaces = 16,
 };
 
 pub const WindowOcclusionState = enum(objc.NSUInteger) {
-    WindowOcclusionStateVisible = 2,
+    Visible = 2,
 };
 
 pub const SelectionDirection = enum(objc.NSUInteger) {
@@ -1389,64 +1389,64 @@ pub const SelectionDirection = enum(objc.NSUInteger) {
 };
 
 pub const WindowButton = enum(objc.NSUInteger) {
-    WindowCloseButton = 0,
-    WindowMiniaturizeButton = 1,
-    WindowZoomButton = 2,
-    WindowToolbarButton = 3,
-    WindowDocumentIconButton = 4,
-    WindowDocumentVersionsButton = 6,
+    CloseButton = 0,
+    MiniaturizeButton = 1,
+    ZoomButton = 2,
+    ToolbarButton = 3,
+    DocumentIconButton = 4,
+    DocumentVersionsButton = 6,
 };
 
 pub const WindowTitleVisibility = enum(objc.NSInteger) {
-    WindowTitleVisible = 0,
-    WindowTitleHidden = 1,
+    Visible = 0,
+    Hidden = 1,
 };
 
 pub const WindowToolbarStyle = enum(objc.NSInteger) {
-    WindowToolbarStyleAutomatic = 0,
-    WindowToolbarStyleExpanded = 1,
-    WindowToolbarStylePreference = 2,
-    WindowToolbarStyleUnified = 3,
-    WindowToolbarStyleUnifiedCompact = 4,
+    Automatic = 0,
+    Expanded = 1,
+    Preference = 2,
+    Unified = 3,
+    UnifiedCompact = 4,
 };
 
 pub const WindowUserTabbingPreference = enum(objc.NSInteger) {
-    WindowUserTabbingPreferenceManual = 0,
-    WindowUserTabbingPreferenceAlways = 1,
-    WindowUserTabbingPreferenceInFullScreen = 2,
+    Manual = 0,
+    Always = 1,
+    InFullScreen = 2,
 };
 
 pub const WindowTabbingMode = enum(objc.NSInteger) {
-    WindowTabbingModeAutomatic = 0,
-    WindowTabbingModePreferred = 1,
-    WindowTabbingModeDisallowed = 2,
+    Automatic = 0,
+    Preferred = 1,
+    Disallowed = 2,
 };
 
 pub const TitlebarSeparatorStyle = enum(objc.NSInteger) {
-    TitlebarSeparatorStyleAutomatic = 0,
-    TitlebarSeparatorStyleNone = 1,
-    TitlebarSeparatorStyleLine = 2,
-    TitlebarSeparatorStyleShadow = 3,
+    Automatic = 0,
+    None = 1,
+    Line = 2,
+    Shadow = 3,
 };
 
 pub const WindowBackingLocation = enum(objc.NSUInteger) {
-    WindowBackingLocationDefault = 0,
-    WindowBackingLocationVideoMemory = 1,
-    WindowBackingLocationMainMemory = 2,
+    Default = 0,
+    VideoMemory = 1,
+    MainMemory = 2,
 };
 
 pub const FontPanelModeMask = enum(objc.NSUInteger) {
-    FontPanelModeMaskFace = 1,
-    FontPanelModeMaskSize = 2,
-    FontPanelModeMaskCollection = 4,
-    FontPanelModeMaskUnderlineEffect = 256,
-    FontPanelModeMaskStrikethroughEffect = 512,
-    FontPanelModeMaskTextColorEffect = 1024,
-    FontPanelModeMaskDocumentColorEffect = 2048,
-    FontPanelModeMaskShadowEffect = 4096,
-    FontPanelModeMaskAllEffects = 1048320,
-    FontPanelModesMaskStandardModes = 65535,
-    FontPanelModesMaskAllModes = 4294967295,
+    Face = 1,
+    Size = 2,
+    Collection = 4,
+    UnderlineEffect = 256,
+    StrikethroughEffect = 512,
+    TextColorEffect = 1024,
+    DocumentColorEffect = 2048,
+    ShadowEffect = 4096,
+    AllEffects = 1048320,
+    ModesMaskStandardModes = 65535,
+    ModesMaskAllModes = 4294967295,
 };
 
 pub const MatrixMode = enum(objc.NSUInteger) {
@@ -1457,321 +1457,321 @@ pub const MatrixMode = enum(objc.NSUInteger) {
 };
 
 pub const MenuItemBadgeType = enum(objc.NSInteger) {
-    MenuItemBadgeTypeNone = 0,
-    MenuItemBadgeTypeUpdates = 1,
-    MenuItemBadgeTypeNewItems = 2,
-    MenuItemBadgeTypeAlerts = 3,
+    None = 0,
+    Updates = 1,
+    NewItems = 2,
+    Alerts = 3,
 };
 
 pub const ColorSpaceModel = enum(objc.NSInteger) {
-    ColorSpaceModelUnknown = -1,
-    ColorSpaceModelGray = 0,
-    ColorSpaceModelRGB = 1,
-    ColorSpaceModelCMYK = 2,
-    ColorSpaceModelLAB = 3,
-    ColorSpaceModelDeviceN = 4,
-    ColorSpaceModelIndexed = 5,
-    ColorSpaceModelPatterned = 6,
+    Unknown = -1,
+    Gray = 0,
+    RGB = 1,
+    CMYK = 2,
+    LAB = 3,
+    DeviceN = 4,
+    Indexed = 5,
+    Patterned = 6,
 };
 
 pub const anon291 = enum(u32) {
-    ImageRepMatchesDevice = 0,
+    NSImageRepMatchesDevice = 0,
 };
 
 pub const ImageLayoutDirection = enum(objc.NSInteger) {
-    ImageLayoutDirectionUnspecified = -1,
-    ImageLayoutDirectionLeftToRight = 2,
-    ImageLayoutDirectionRightToLeft = 3,
+    Unspecified = -1,
+    LeftToRight = 2,
+    RightToLeft = 3,
 };
 
 pub const TIFFCompression = enum(objc.NSUInteger) {
-    TIFFCompressionNone = 1,
-    TIFFCompressionCCITTFAX3 = 3,
-    TIFFCompressionCCITTFAX4 = 4,
-    TIFFCompressionLZW = 5,
-    TIFFCompressionJPEG = 6,
-    TIFFCompressionNEXT = 32766,
-    TIFFCompressionPackBits = 32773,
-    TIFFCompressionOldJPEG = 32865,
+    None = 1,
+    CCITTFAX3 = 3,
+    CCITTFAX4 = 4,
+    LZW = 5,
+    JPEG = 6,
+    NEXT = 32766,
+    PackBits = 32773,
+    OldJPEG = 32865,
 };
 
 pub const BitmapImageFileType = enum(objc.NSUInteger) {
-    BitmapImageFileTypeTIFF = 0,
-    BitmapImageFileTypeBMP = 1,
-    BitmapImageFileTypeGIF = 2,
-    BitmapImageFileTypeJPEG = 3,
-    BitmapImageFileTypePNG = 4,
-    BitmapImageFileTypeJPEG2000 = 5,
+    TIFF = 0,
+    BMP = 1,
+    GIF = 2,
+    JPEG = 3,
+    PNG = 4,
+    JPEG2000 = 5,
 };
 
 pub const ImageRepLoadStatus = enum(objc.NSInteger) {
-    ImageRepLoadStatusUnknownType = -1,
-    ImageRepLoadStatusReadingHeader = -2,
-    ImageRepLoadStatusWillNeedAllData = -3,
-    ImageRepLoadStatusInvalidData = -4,
-    ImageRepLoadStatusUnexpectedEOF = -5,
-    ImageRepLoadStatusCompleted = -6,
+    UnknownType = -1,
+    ReadingHeader = -2,
+    WillNeedAllData = -3,
+    InvalidData = -4,
+    UnexpectedEOF = -5,
+    Completed = -6,
 };
 
 pub const BitmapFormat = enum(objc.NSUInteger) {
-    BitmapFormatAlphaFirst = 1,
-    BitmapFormatAlphaNonpremultiplied = 2,
-    BitmapFormatFloatingPointSamples = 4,
-    BitmapFormatSixteenBitLittleEndian = 256,
-    BitmapFormatThirtyTwoBitLittleEndian = 512,
-    BitmapFormatSixteenBitBigEndian = 1024,
-    BitmapFormatThirtyTwoBitBigEndian = 2048,
+    AlphaFirst = 1,
+    AlphaNonpremultiplied = 2,
+    FloatingPointSamples = 4,
+    SixteenBitLittleEndian = 256,
+    ThirtyTwoBitLittleEndian = 512,
+    SixteenBitBigEndian = 1024,
+    ThirtyTwoBitBigEndian = 2048,
 };
 
 pub const BrowserColumnResizingType = enum(objc.NSUInteger) {
-    BrowserNoColumnResizing = 0,
-    BrowserAutoColumnResizing = 1,
-    BrowserUserColumnResizing = 2,
+    NoColumnResizing = 0,
+    AutoColumnResizing = 1,
+    UserColumnResizing = 2,
 };
 
 pub const BrowserDropOperation = enum(objc.NSUInteger) {
-    BrowserDropOn = 0,
-    BrowserDropAbove = 1,
+    On = 0,
+    Above = 1,
 };
 
 pub const ColorPanelMode = enum(objc.NSInteger) {
-    ColorPanelModeNone = -1,
-    ColorPanelModeGray = 0,
-    ColorPanelModeRGB = 1,
-    ColorPanelModeCMYK = 2,
-    ColorPanelModeHSB = 3,
-    ColorPanelModeCustomPalette = 4,
-    ColorPanelModeColorList = 5,
-    ColorPanelModeWheel = 6,
-    ColorPanelModeCrayon = 7,
+    None = -1,
+    Gray = 0,
+    RGB = 1,
+    CMYK = 2,
+    HSB = 3,
+    CustomPalette = 4,
+    ColorList = 5,
+    Wheel = 6,
+    Crayon = 7,
 };
 
 pub const ColorPanelOptions = enum(objc.NSUInteger) {
-    ColorPanelGrayModeMask = 1,
-    ColorPanelRGBModeMask = 2,
-    ColorPanelCMYKModeMask = 4,
-    ColorPanelHSBModeMask = 8,
-    ColorPanelCustomPaletteModeMask = 16,
-    ColorPanelColorListModeMask = 32,
-    ColorPanelWheelModeMask = 64,
-    ColorPanelCrayonModeMask = 128,
-    ColorPanelAllModesMask = 65535,
+    GrayModeMask = 1,
+    RGBModeMask = 2,
+    CMYKModeMask = 4,
+    HSBModeMask = 8,
+    CustomPaletteModeMask = 16,
+    ColorListModeMask = 32,
+    WheelModeMask = 64,
+    CrayonModeMask = 128,
+    AllModesMask = 65535,
 };
 
 pub const ColorWellStyle = enum(objc.NSInteger) {
-    ColorWellStyleDefault = 0,
-    ColorWellStyleMinimal = 1,
-    ColorWellStyleExpanded = 2,
+    Default = 0,
+    Minimal = 1,
+    Expanded = 2,
 };
 
 pub const CursorFrameResizePosition = enum(objc.NSUInteger) {
-    CursorFrameResizePositionTop = 1,
-    CursorFrameResizePositionLeft = 2,
-    CursorFrameResizePositionBottom = 4,
-    CursorFrameResizePositionRight = 8,
-    CursorFrameResizePositionTopLeft = 3,
-    CursorFrameResizePositionTopRight = 9,
-    CursorFrameResizePositionBottomLeft = 6,
-    CursorFrameResizePositionBottomRight = 12,
+    Top = 1,
+    Left = 2,
+    Bottom = 4,
+    Right = 8,
+    TopLeft = 3,
+    TopRight = 9,
+    BottomLeft = 6,
+    BottomRight = 12,
 };
 
 pub const CursorFrameResizeDirections = enum(objc.NSUInteger) {
-    CursorFrameResizeDirectionsInward = 1,
-    CursorFrameResizeDirectionsOutward = 2,
-    CursorFrameResizeDirectionsAll = 3,
+    Inward = 1,
+    Outward = 2,
+    All = 3,
 };
 
 pub const GradientDrawingOptions = enum(objc.NSUInteger) {
-    GradientDrawsBeforeStartingLocation = 1,
-    GradientDrawsAfterEndingLocation = 2,
+    DrawsBeforeStartingLocation = 1,
+    DrawsAfterEndingLocation = 2,
 };
 
 pub const GestureRecognizerState = enum(objc.NSInteger) {
-    GestureRecognizerStatePossible = 0,
-    GestureRecognizerStateBegan = 1,
-    GestureRecognizerStateChanged = 2,
-    GestureRecognizerStateEnded = 3,
-    GestureRecognizerStateCancelled = 4,
-    GestureRecognizerStateFailed = 5,
-    GestureRecognizerStateRecognized = 3,
+    Possible = 0,
+    Began = 1,
+    Changed = 2,
+    Ended = 3,
+    Cancelled = 4,
+    Failed = 5,
+    Recognized = 3,
 };
 
 pub const LayoutConstraintOrientation = enum(objc.NSInteger) {
-    LayoutConstraintOrientationHorizontal = 0,
-    LayoutConstraintOrientationVertical = 1,
+    Horizontal = 0,
+    Vertical = 1,
 };
 
 pub const LayoutRelation = enum(objc.NSInteger) {
-    LayoutRelationLessThanOrEqual = -1,
-    LayoutRelationEqual = 0,
-    LayoutRelationGreaterThanOrEqual = 1,
+    LessThanOrEqual = -1,
+    Equal = 0,
+    GreaterThanOrEqual = 1,
 };
 
 pub const LayoutAttribute = enum(objc.NSInteger) {
-    LayoutAttributeLeft = 1,
-    LayoutAttributeRight = 2,
-    LayoutAttributeTop = 3,
-    LayoutAttributeBottom = 4,
-    LayoutAttributeLeading = 5,
-    LayoutAttributeTrailing = 6,
-    LayoutAttributeWidth = 7,
-    LayoutAttributeHeight = 8,
-    LayoutAttributeCenterX = 9,
-    LayoutAttributeCenterY = 10,
-    LayoutAttributeLastBaseline = 11,
-    LayoutAttributeBaseline = 11,
-    LayoutAttributeFirstBaseline = 12,
-    LayoutAttributeNotAnAttribute = 0,
+    Left = 1,
+    Right = 2,
+    Top = 3,
+    Bottom = 4,
+    Leading = 5,
+    Trailing = 6,
+    Width = 7,
+    Height = 8,
+    CenterX = 9,
+    CenterY = 10,
+    LastBaseline = 11,
+    Baseline = 11,
+    FirstBaseline = 12,
+    NotAnAttribute = 0,
 };
 
 pub const LayoutFormatOptions = enum(objc.NSUInteger) {
-    LayoutFormatAlignAllLeft = 2,
-    LayoutFormatAlignAllRight = 4,
-    LayoutFormatAlignAllTop = 8,
-    LayoutFormatAlignAllBottom = 16,
-    LayoutFormatAlignAllLeading = 32,
-    LayoutFormatAlignAllTrailing = 64,
-    LayoutFormatAlignAllCenterX = 512,
-    LayoutFormatAlignAllCenterY = 1024,
-    LayoutFormatAlignAllLastBaseline = 2048,
-    LayoutFormatAlignAllFirstBaseline = 4096,
-    LayoutFormatAlignAllBaseline = 2048,
-    LayoutFormatAlignmentMask = 65535,
-    LayoutFormatDirectionLeadingToTrailing = 0,
-    LayoutFormatDirectionLeftToRight = 65536,
-    LayoutFormatDirectionRightToLeft = 131072,
-    LayoutFormatDirectionMask = 196608,
+    AlignAllLeft = 2,
+    AlignAllRight = 4,
+    AlignAllTop = 8,
+    AlignAllBottom = 16,
+    AlignAllLeading = 32,
+    AlignAllTrailing = 64,
+    AlignAllCenterX = 512,
+    AlignAllCenterY = 1024,
+    AlignAllLastBaseline = 2048,
+    AlignAllFirstBaseline = 4096,
+    AlignAllBaseline = 2048,
+    AlignmentMask = 65535,
+    DirectionLeadingToTrailing = 0,
+    DirectionLeftToRight = 65536,
+    DirectionRightToLeft = 131072,
+    DirectionMask = 196608,
 };
 
 pub const ImageLoadStatus = enum(objc.NSUInteger) {
-    ImageLoadStatusCompleted = 0,
-    ImageLoadStatusCancelled = 1,
-    ImageLoadStatusInvalidData = 2,
-    ImageLoadStatusUnexpectedEOF = 3,
-    ImageLoadStatusReadError = 4,
+    Completed = 0,
+    Cancelled = 1,
+    InvalidData = 2,
+    UnexpectedEOF = 3,
+    ReadError = 4,
 };
 
 pub const ImageCacheMode = enum(objc.NSUInteger) {
-    ImageCacheDefault = 0,
-    ImageCacheAlways = 1,
-    ImageCacheBySize = 2,
-    ImageCacheNever = 3,
+    Default = 0,
+    Always = 1,
+    BySize = 2,
+    Never = 3,
 };
 
 pub const ImageResizingMode = enum(objc.NSInteger) {
-    ImageResizingModeTile = 0,
-    ImageResizingModeStretch = 1,
+    Tile = 0,
+    Stretch = 1,
 };
 
 pub const ImageSymbolScale = enum(objc.NSInteger) {
-    ImageSymbolScaleSmall = 1,
-    ImageSymbolScaleMedium = 2,
-    ImageSymbolScaleLarge = 3,
+    Small = 1,
+    Medium = 2,
+    Large = 3,
 };
 
 pub const ImageAlignment = enum(objc.NSUInteger) {
-    ImageAlignCenter = 0,
-    ImageAlignTop = 1,
-    ImageAlignTopLeft = 2,
-    ImageAlignTopRight = 3,
-    ImageAlignLeft = 4,
-    ImageAlignBottom = 5,
-    ImageAlignBottomLeft = 6,
-    ImageAlignBottomRight = 7,
-    ImageAlignRight = 8,
+    Center = 0,
+    Top = 1,
+    TopLeft = 2,
+    TopRight = 3,
+    Left = 4,
+    Bottom = 5,
+    BottomLeft = 6,
+    BottomRight = 7,
+    Right = 8,
 };
 
 pub const ImageFrameStyle = enum(objc.NSUInteger) {
-    ImageFrameNone = 0,
-    ImageFramePhoto = 1,
-    ImageFrameGrayBezel = 2,
-    ImageFrameGroove = 3,
-    ImageFrameButton = 4,
+    None = 0,
+    Photo = 1,
+    GrayBezel = 2,
+    Groove = 3,
+    Button = 4,
 };
 
 pub const ImageDynamicRange = enum(objc.NSInteger) {
-    ImageDynamicRangeUnspecified = -1,
-    ImageDynamicRangeStandard = 0,
-    ImageDynamicRangeConstrainedHigh = 1,
-    ImageDynamicRangeHigh = 2,
+    Unspecified = -1,
+    Standard = 0,
+    ConstrainedHigh = 1,
+    High = 2,
 };
 
 pub const ScrubberMode = enum(objc.NSInteger) {
-    ScrubberModeFixed = 0,
-    ScrubberModeFree = 1,
+    Fixed = 0,
+    Free = 1,
 };
 
 pub const ScrubberAlignment = enum(objc.NSInteger) {
-    ScrubberAlignmentNone = 0,
-    ScrubberAlignmentLeading = 1,
-    ScrubberAlignmentTrailing = 2,
-    ScrubberAlignmentCenter = 3,
+    None = 0,
+    Leading = 1,
+    Trailing = 2,
+    Center = 3,
 };
 
 pub const SharingContentScope = enum(objc.NSInteger) {
-    SharingContentScopeItem = 0,
-    SharingContentScopePartial = 1,
-    SharingContentScopeFull = 2,
+    Item = 0,
+    Partial = 1,
+    Full = 2,
 };
 
 pub const CloudKitSharingServiceOptions = enum(objc.NSUInteger) {
-    CloudKitSharingServiceStandard = 0,
-    CloudKitSharingServiceAllowPublic = 1,
-    CloudKitSharingServiceAllowPrivate = 2,
-    CloudKitSharingServiceAllowReadOnly = 16,
-    CloudKitSharingServiceAllowReadWrite = 32,
+    Standard = 0,
+    AllowPublic = 1,
+    AllowPrivate = 2,
+    AllowReadOnly = 16,
+    AllowReadWrite = 32,
 };
 
 pub const SpeechBoundary = enum(objc.NSUInteger) {
-    SpeechImmediateBoundary = 0,
-    SpeechWordBoundary = 1,
-    SpeechSentenceBoundary = 2,
+    ImmediateBoundary = 0,
+    WordBoundary = 1,
+    SentenceBoundary = 2,
 };
 
 pub const CorrectionResponse = enum(objc.NSInteger) {
-    CorrectionResponseNone = 0,
-    CorrectionResponseAccepted = 1,
-    CorrectionResponseRejected = 2,
-    CorrectionResponseIgnored = 3,
-    CorrectionResponseEdited = 4,
-    CorrectionResponseReverted = 5,
+    None = 0,
+    Accepted = 1,
+    Rejected = 2,
+    Ignored = 3,
+    Edited = 4,
+    Reverted = 5,
 };
 
 pub const CorrectionIndicatorType = enum(objc.NSInteger) {
-    CorrectionIndicatorTypeDefault = 0,
-    CorrectionIndicatorTypeReversion = 1,
-    CorrectionIndicatorTypeGuesses = 2,
+    Default = 0,
+    Reversion = 1,
+    Guesses = 2,
 };
 
 pub const SplitViewDividerStyle = enum(objc.NSInteger) {
-    SplitViewDividerStyleThick = 1,
-    SplitViewDividerStyleThin = 2,
-    SplitViewDividerStylePaneSplitter = 3,
+    Thick = 1,
+    Thin = 2,
+    PaneSplitter = 3,
 };
 
 pub const SplitViewItemBehavior = enum(objc.NSInteger) {
-    SplitViewItemBehaviorDefault = 0,
-    SplitViewItemBehaviorSidebar = 1,
-    SplitViewItemBehaviorContentList = 2,
-    SplitViewItemBehaviorInspector = 3,
+    Default = 0,
+    Sidebar = 1,
+    ContentList = 2,
+    Inspector = 3,
 };
 
 pub const SplitViewItemCollapseBehavior = enum(objc.NSInteger) {
-    SplitViewItemCollapseBehaviorDefault = 0,
-    SplitViewItemCollapseBehaviorPreferResizingSplitViewWithFixedSiblings = 1,
-    SplitViewItemCollapseBehaviorPreferResizingSiblingsWithFixedSplitView = 2,
-    SplitViewItemCollapseBehaviorUseConstraints = 3,
+    Default = 0,
+    PreferResizingSplitViewWithFixedSiblings = 1,
+    PreferResizingSiblingsWithFixedSplitView = 2,
+    UseConstraints = 3,
 };
 
 pub const PageLayoutResult = enum(objc.NSInteger) {
-    PageLayoutResultCancelled = 0,
-    PageLayoutResultChanged = 1,
+    Cancelled = 0,
+    Changed = 1,
 };
 
 pub const PopUpArrowPosition = enum(objc.NSUInteger) {
-    PopUpNoArrow = 0,
-    PopUpArrowAtCenter = 1,
-    PopUpArrowAtBottom = 2,
+    NoArrow = 0,
+    AtCenter = 1,
+    AtBottom = 2,
 };
 
 pub const PrintingPageOrder = enum(objc.NSInteger) {
@@ -1782,36 +1782,36 @@ pub const PrintingPageOrder = enum(objc.NSInteger) {
 };
 
 pub const PrintRenderingQuality = enum(objc.NSInteger) {
-    PrintRenderingQualityBest = 0,
-    PrintRenderingQualityResponsive = 1,
+    Best = 0,
+    Responsive = 1,
 };
 
 pub const PrintPanelResult = enum(objc.NSInteger) {
-    PrintPanelResultCancelled = 0,
-    PrintPanelResultPrinted = 1,
+    Cancelled = 0,
+    Printed = 1,
 };
 
 pub const PrintPanelOptions = enum(objc.NSUInteger) {
-    PrintPanelShowsCopies = 1,
-    PrintPanelShowsPageRange = 2,
-    PrintPanelShowsPaperSize = 4,
-    PrintPanelShowsOrientation = 8,
-    PrintPanelShowsScaling = 16,
-    PrintPanelShowsPrintSelection = 32,
-    PrintPanelShowsPageSetupAccessory = 256,
-    PrintPanelShowsPreview = 131072,
+    ShowsCopies = 1,
+    ShowsPageRange = 2,
+    ShowsPaperSize = 4,
+    ShowsOrientation = 8,
+    ShowsScaling = 16,
+    ShowsPrintSelection = 32,
+    ShowsPageSetupAccessory = 256,
+    ShowsPreview = 131072,
 };
 
 pub const PDFPanelOptions = enum(objc.NSInteger) {
-    PDFPanelShowsPaperSize = 4,
-    PDFPanelShowsOrientation = 8,
-    PDFPanelRequestsParentDirectory = 16777216,
+    ShowsPaperSize = 4,
+    ShowsOrientation = 8,
+    RequestsParentDirectory = 16777216,
 };
 
 pub const MediaLibrary = enum(objc.NSUInteger) {
-    MediaLibraryAudio = 1,
-    MediaLibraryImage = 2,
-    MediaLibraryMovie = 4,
+    Audio = 1,
+    Image = 2,
+    Movie = 4,
 };
 
 pub const UsableScrollerParts = enum(objc.NSUInteger) {
@@ -1821,24 +1821,24 @@ pub const UsableScrollerParts = enum(objc.NSUInteger) {
 };
 
 pub const ScrollerPart = enum(objc.NSUInteger) {
-    ScrollerNoPart = 0,
-    ScrollerDecrementPage = 1,
-    ScrollerKnob = 2,
-    ScrollerIncrementPage = 3,
-    ScrollerDecrementLine = 4,
-    ScrollerIncrementLine = 5,
-    ScrollerKnobSlot = 6,
+    NoPart = 0,
+    DecrementPage = 1,
+    Knob = 2,
+    IncrementPage = 3,
+    DecrementLine = 4,
+    IncrementLine = 5,
+    KnobSlot = 6,
 };
 
 pub const ScrollerStyle = enum(objc.NSInteger) {
-    ScrollerStyleLegacy = 0,
-    ScrollerStyleOverlay = 1,
+    Legacy = 0,
+    Overlay = 1,
 };
 
 pub const ScrollerKnobStyle = enum(objc.NSInteger) {
-    ScrollerKnobStyleDefault = 0,
-    ScrollerKnobStyleDark = 1,
-    ScrollerKnobStyleLight = 2,
+    Default = 0,
+    Dark = 1,
+    Light = 2,
 };
 
 pub const ScrollArrowPosition = enum(objc.NSUInteger) {
@@ -1849,418 +1849,418 @@ pub const ScrollArrowPosition = enum(objc.NSUInteger) {
 };
 
 pub const ScrollerArrow = enum(objc.NSUInteger) {
-    ScrollerIncrementArrow = 0,
-    ScrollerDecrementArrow = 1,
+    IncrementArrow = 0,
+    DecrementArrow = 1,
 };
 
 pub const TextFinderAction = enum(objc.NSInteger) {
-    TextFinderActionShowFindInterface = 1,
-    TextFinderActionNextMatch = 2,
-    TextFinderActionPreviousMatch = 3,
-    TextFinderActionReplaceAll = 4,
-    TextFinderActionReplace = 5,
-    TextFinderActionReplaceAndFind = 6,
-    TextFinderActionSetSearchString = 7,
-    TextFinderActionReplaceAllInSelection = 8,
-    TextFinderActionSelectAll = 9,
-    TextFinderActionSelectAllInSelection = 10,
-    TextFinderActionHideFindInterface = 11,
-    TextFinderActionShowReplaceInterface = 12,
-    TextFinderActionHideReplaceInterface = 13,
+    ShowFindInterface = 1,
+    NextMatch = 2,
+    PreviousMatch = 3,
+    ReplaceAll = 4,
+    Replace = 5,
+    ReplaceAndFind = 6,
+    SetSearchString = 7,
+    ReplaceAllInSelection = 8,
+    SelectAll = 9,
+    SelectAllInSelection = 10,
+    HideFindInterface = 11,
+    ShowReplaceInterface = 12,
+    HideReplaceInterface = 13,
 };
 
 pub const TextFinderMatchingType = enum(objc.NSInteger) {
-    TextFinderMatchingTypeContains = 0,
-    TextFinderMatchingTypeStartsWith = 1,
-    TextFinderMatchingTypeFullWord = 2,
-    TextFinderMatchingTypeEndsWith = 3,
+    Contains = 0,
+    StartsWith = 1,
+    FullWord = 2,
+    EndsWith = 3,
 };
 
 pub const ScrollElasticity = enum(objc.NSInteger) {
-    ScrollElasticityAutomatic = 0,
-    ScrollElasticityNone = 1,
-    ScrollElasticityAllowed = 2,
+    Automatic = 0,
+    None = 1,
+    Allowed = 2,
 };
 
 pub const ScrollViewFindBarPosition = enum(objc.NSInteger) {
-    ScrollViewFindBarPositionAboveHorizontalRuler = 0,
-    ScrollViewFindBarPositionAboveContent = 1,
-    ScrollViewFindBarPositionBelowContent = 2,
+    AboveHorizontalRuler = 0,
+    AboveContent = 1,
+    BelowContent = 2,
 };
 
 pub const SegmentSwitchTracking = enum(objc.NSUInteger) {
-    SegmentSwitchTrackingSelectOne = 0,
-    SegmentSwitchTrackingSelectAny = 1,
-    SegmentSwitchTrackingMomentary = 2,
-    SegmentSwitchTrackingMomentaryAccelerator = 3,
+    SelectOne = 0,
+    SelectAny = 1,
+    Momentary = 2,
+    MomentaryAccelerator = 3,
 };
 
 pub const SegmentStyle = enum(objc.NSInteger) {
-    SegmentStyleAutomatic = 0,
-    SegmentStyleRounded = 1,
-    SegmentStyleRoundRect = 3,
-    SegmentStyleTexturedSquare = 4,
-    SegmentStyleSmallSquare = 6,
-    SegmentStyleSeparated = 8,
-    SegmentStyleTexturedRounded = 2,
-    SegmentStyleCapsule = 5,
+    Automatic = 0,
+    Rounded = 1,
+    RoundRect = 3,
+    TexturedSquare = 4,
+    SmallSquare = 6,
+    Separated = 8,
+    TexturedRounded = 2,
+    Capsule = 5,
 };
 
 pub const SegmentDistribution = enum(objc.NSInteger) {
-    SegmentDistributionFit = 0,
-    SegmentDistributionFill = 1,
-    SegmentDistributionFillEqually = 2,
-    SegmentDistributionFillProportionally = 3,
+    Fit = 0,
+    Fill = 1,
+    FillEqually = 2,
+    FillProportionally = 3,
 };
 
 pub const SharingCollaborationMode = enum(objc.NSInteger) {
-    SharingCollaborationModeSendCopy = 0,
-    SharingCollaborationModeCollaborate = 1,
+    SendCopy = 0,
+    Collaborate = 1,
 };
 
 pub const TickMarkPosition = enum(objc.NSUInteger) {
-    TickMarkPositionBelow = 0,
-    TickMarkPositionAbove = 1,
-    TickMarkPositionLeading = 1,
-    TickMarkPositionTrailing = 0,
+    Below = 0,
+    Above = 1,
+    Leading = 1,
+    Trailing = 0,
 };
 
 pub const SliderType = enum(objc.NSUInteger) {
-    SliderTypeLinear = 0,
-    SliderTypeCircular = 1,
+    Linear = 0,
+    Circular = 1,
 };
 
 pub const StackViewGravity = enum(objc.NSInteger) {
-    StackViewGravityTop = 1,
-    StackViewGravityLeading = 1,
-    StackViewGravityCenter = 2,
-    StackViewGravityBottom = 3,
-    StackViewGravityTrailing = 3,
+    Top = 1,
+    Leading = 1,
+    Center = 2,
+    Bottom = 3,
+    Trailing = 3,
 };
 
 pub const StackViewDistribution = enum(objc.NSInteger) {
-    StackViewDistributionGravityAreas = -1,
-    StackViewDistributionFill = 0,
-    StackViewDistributionFillEqually = 1,
-    StackViewDistributionFillProportionally = 2,
-    StackViewDistributionEqualSpacing = 3,
-    StackViewDistributionEqualCentering = 4,
+    GravityAreas = -1,
+    Fill = 0,
+    FillEqually = 1,
+    FillProportionally = 2,
+    EqualSpacing = 3,
+    EqualCentering = 4,
 };
 
 pub const GridCellPlacement = enum(objc.NSInteger) {
-    GridCellPlacementInherited = 0,
-    GridCellPlacementNone = 1,
-    GridCellPlacementLeading = 2,
-    GridCellPlacementTop = 2,
-    GridCellPlacementTrailing = 3,
-    GridCellPlacementBottom = 3,
-    GridCellPlacementCenter = 4,
-    GridCellPlacementFill = 5,
+    Inherited = 0,
+    None = 1,
+    Leading = 2,
+    Top = 2,
+    Trailing = 3,
+    Bottom = 3,
+    Center = 4,
+    Fill = 5,
 };
 
 pub const GridRowAlignment = enum(objc.NSInteger) {
-    GridRowAlignmentInherited = 0,
-    GridRowAlignmentNone = 1,
-    GridRowAlignmentFirstBaseline = 2,
-    GridRowAlignmentLastBaseline = 3,
+    Inherited = 0,
+    None = 1,
+    FirstBaseline = 2,
+    LastBaseline = 3,
 };
 
 pub const TextCursorAccessoryPlacement = enum(objc.NSInteger) {
-    TextCursorAccessoryPlacementUnspecified = 0,
-    TextCursorAccessoryPlacementBackward = 1,
-    TextCursorAccessoryPlacementForward = 2,
-    TextCursorAccessoryPlacementInvisible = 3,
-    TextCursorAccessoryPlacementCenter = 4,
-    TextCursorAccessoryPlacementOffscreenLeft = 5,
-    TextCursorAccessoryPlacementOffscreenTop = 6,
-    TextCursorAccessoryPlacementOffscreenRight = 7,
-    TextCursorAccessoryPlacementOffscreenBottom = 8,
+    Unspecified = 0,
+    Backward = 1,
+    Forward = 2,
+    Invisible = 3,
+    Center = 4,
+    OffscreenLeft = 5,
+    OffscreenTop = 6,
+    OffscreenRight = 7,
+    OffscreenBottom = 8,
 };
 
 pub const TextInputTraitType = enum(objc.NSInteger) {
-    TextInputTraitTypeDefault = 0,
-    TextInputTraitTypeNo = 1,
-    TextInputTraitTypeYes = 2,
+    Default = 0,
+    No = 1,
+    Yes = 2,
 };
 
 pub const WritingToolsBehavior = enum(objc.NSInteger) {
-    WritingToolsBehaviorNone = -1,
-    WritingToolsBehaviorDefault = 0,
-    WritingToolsBehaviorComplete = 1,
-    WritingToolsBehaviorLimited = 2,
+    None = -1,
+    Default = 0,
+    Complete = 1,
+    Limited = 2,
 };
 
 pub const WritingToolsResultOptions = enum(objc.NSUInteger) {
-    WritingToolsResultDefault = 0,
-    WritingToolsResultPlainText = 1,
-    WritingToolsResultRichText = 2,
-    WritingToolsResultList = 4,
-    WritingToolsResultTable = 8,
+    Default = 0,
+    PlainText = 1,
+    RichText = 2,
+    List = 4,
+    Table = 8,
 };
 
 pub const WritingToolsAllowedInputOptions = enum(objc.NSUInteger) {
-    WritingToolsAllowedInputOptionsDefault = 0,
-    WritingToolsAllowedInputOptionsPlainText = 1,
-    WritingToolsAllowedInputOptionsRichText = 2,
-    WritingToolsAllowedInputOptionsList = 4,
-    WritingToolsAllowedInputOptionsTable = 8,
+    Default = 0,
+    PlainText = 1,
+    RichText = 2,
+    List = 4,
+    Table = 8,
 };
 
 pub const TextFieldBezelStyle = enum(objc.NSUInteger) {
-    TextFieldSquareBezel = 0,
-    TextFieldRoundedBezel = 1,
+    SquareBezel = 0,
+    RoundedBezel = 1,
 };
 
 pub const TextInsertionIndicatorDisplayMode = enum(objc.NSInteger) {
-    TextInsertionIndicatorDisplayModeAutomatic = 0,
-    TextInsertionIndicatorDisplayModeHidden = 1,
-    TextInsertionIndicatorDisplayModeVisible = 2,
+    Automatic = 0,
+    Hidden = 1,
+    Visible = 2,
 };
 
 pub const TextInsertionIndicatorAutomaticModeOptions = enum(objc.NSInteger) {
-    TextInsertionIndicatorAutomaticModeOptionsShowEffectsView = 1,
-    TextInsertionIndicatorAutomaticModeOptionsShowWhileTracking = 2,
+    ShowEffectsView = 1,
+    ShowWhileTracking = 2,
 };
 
 pub const UnderlineStyle = enum(objc.NSInteger) {
-    UnderlineStyleNone = 0,
-    UnderlineStyleSingle = 1,
-    UnderlineStyleThick = 2,
-    UnderlineStyleDouble = 9,
-    UnderlineStylePatternSolid = 0,
-    UnderlineStylePatternDot = 256,
-    UnderlineStylePatternDash = 512,
-    UnderlineStylePatternDashDot = 768,
-    UnderlineStylePatternDashDotDot = 1024,
-    UnderlineStyleByWord = 32768,
+    None = 0,
+    Single = 1,
+    Thick = 2,
+    Double = 9,
+    PatternSolid = 0,
+    PatternDot = 256,
+    PatternDash = 512,
+    PatternDashDot = 768,
+    PatternDashDotDot = 1024,
+    ByWord = 32768,
 };
 
 pub const WritingDirectionFormatType = enum(objc.NSInteger) {
-    WritingDirectionEmbedding = 0,
-    WritingDirectionOverride = 2,
+    Embedding = 0,
+    Override = 2,
 };
 
 pub const TextScalingType = enum(objc.NSInteger) {
-    TextScalingStandard = 0,
-    TextScalingiOS = 1,
+    Standard = 0,
+    ScalingiOS = 1,
 };
 
 pub const SpellingState = enum(objc.NSInteger) {
-    SpellingStateSpellingFlag = 1,
-    SpellingStateGrammarFlag = 2,
+    SpellingFlag = 1,
+    GrammarFlag = 2,
 };
 
 pub const TextStorageEditActions = enum(objc.NSUInteger) {
-    TextStorageEditedAttributes = 1,
-    TextStorageEditedCharacters = 2,
+    EditedAttributes = 1,
+    EditedCharacters = 2,
 };
 
 pub const TextLayoutOrientation = enum(objc.NSInteger) {
-    TextLayoutOrientationHorizontal = 0,
-    TextLayoutOrientationVertical = 1,
+    Horizontal = 0,
+    Vertical = 1,
 };
 
 pub const GlyphProperty = enum(objc.NSInteger) {
-    GlyphPropertyNull = 1,
-    GlyphPropertyControlCharacter = 2,
-    GlyphPropertyElastic = 4,
-    GlyphPropertyNonBaseCharacter = 8,
+    Null = 1,
+    ControlCharacter = 2,
+    Elastic = 4,
+    NonBaseCharacter = 8,
 };
 
 pub const ControlCharacterAction = enum(objc.NSInteger) {
-    ControlCharacterActionZeroAdvancement = 1,
-    ControlCharacterActionWhitespace = 2,
-    ControlCharacterActionHorizontalTab = 4,
-    ControlCharacterActionLineBreak = 8,
-    ControlCharacterActionParagraphBreak = 16,
-    ControlCharacterActionContainerBreak = 32,
+    ZeroAdvancement = 1,
+    Whitespace = 2,
+    HorizontalTab = 4,
+    LineBreak = 8,
+    ParagraphBreak = 16,
+    ContainerBreak = 32,
 };
 
 pub const TypesetterBehavior = enum(objc.NSInteger) {
-    TypesetterLatestBehavior = -1,
-    TypesetterOriginalBehavior = 0,
-    TypesetterBehavior_10_2_WithCompatibility = 1,
-    TypesetterBehavior_10_2 = 2,
-    TypesetterBehavior_10_3 = 3,
-    TypesetterBehavior_10_4 = 4,
+    LatestBehavior = -1,
+    OriginalBehavior = 0,
+    _10_2_WithCompatibility = 1,
+    _10_2 = 2,
+    _10_3 = 3,
+    _10_4 = 4,
 };
 
 pub const GlyphInscription = enum(objc.NSUInteger) {
-    GlyphInscribeBase = 0,
-    GlyphInscribeBelow = 1,
-    GlyphInscribeAbove = 2,
-    GlyphInscribeOverstrike = 3,
-    GlyphInscribeOverBelow = 4,
+    InscribeBase = 0,
+    InscribeBelow = 1,
+    InscribeAbove = 2,
+    InscribeOverstrike = 3,
+    InscribeOverBelow = 4,
 };
 
 pub const LineSweepDirection = enum(objc.NSUInteger) {
-    LineSweepLeft = 0,
-    LineSweepRight = 1,
-    LineSweepDown = 2,
-    LineSweepUp = 3,
+    Left = 0,
+    Right = 1,
+    Down = 2,
+    Up = 3,
 };
 
 pub const LineMovementDirection = enum(objc.NSUInteger) {
-    LineDoesntMove = 0,
-    LineMovesLeft = 1,
-    LineMovesRight = 2,
-    LineMovesDown = 3,
-    LineMovesUp = 4,
+    DoesntMove = 0,
+    MovesLeft = 1,
+    MovesRight = 2,
+    MovesDown = 3,
+    MovesUp = 4,
 };
 
 pub const TokenStyle = enum(objc.NSUInteger) {
-    TokenStyleDefault = 0,
-    TokenStyleNone = 1,
-    TokenStyleRounded = 2,
-    TokenStyleSquared = 3,
-    TokenStylePlainSquared = 4,
+    Default = 0,
+    None = 1,
+    Rounded = 2,
+    Squared = 3,
+    PlainSquared = 4,
 };
 
 pub const TrackingAreaOptions = enum(objc.NSUInteger) {
-    TrackingMouseEnteredAndExited = 1,
-    TrackingMouseMoved = 2,
-    TrackingCursorUpdate = 4,
-    TrackingActiveWhenFirstResponder = 16,
-    TrackingActiveInKeyWindow = 32,
-    TrackingActiveInActiveApp = 64,
-    TrackingActiveAlways = 128,
-    TrackingAssumeInside = 256,
-    TrackingInVisibleRect = 512,
-    TrackingEnabledDuringMouseDrag = 1024,
+    MouseEnteredAndExited = 1,
+    MouseMoved = 2,
+    CursorUpdate = 4,
+    ActiveWhenFirstResponder = 16,
+    ActiveInKeyWindow = 32,
+    ActiveInActiveApp = 64,
+    ActiveAlways = 128,
+    AssumeInside = 256,
+    InVisibleRect = 512,
+    EnabledDuringMouseDrag = 1024,
 };
 
 pub const ToolbarDisplayMode = enum(objc.NSUInteger) {
-    ToolbarDisplayModeDefault = 0,
-    ToolbarDisplayModeIconAndLabel = 1,
-    ToolbarDisplayModeIconOnly = 2,
-    ToolbarDisplayModeLabelOnly = 3,
+    Default = 0,
+    IconAndLabel = 1,
+    IconOnly = 2,
+    LabelOnly = 3,
 };
 
 pub const ToolbarSizeMode = enum(objc.NSUInteger) {
-    ToolbarSizeModeDefault = 0,
-    ToolbarSizeModeRegular = 1,
-    ToolbarSizeModeSmall = 2,
+    Default = 0,
+    Regular = 1,
+    Small = 2,
 };
 
 pub const ComboButtonStyle = enum(objc.NSInteger) {
-    ComboButtonStyleSplit = 0,
-    ComboButtonStyleUnified = 1,
+    Split = 0,
+    Unified = 1,
 };
 
 pub const SelectionGranularity = enum(objc.NSUInteger) {
-    SelectByCharacter = 0,
-    SelectByWord = 1,
-    SelectByParagraph = 2,
+    ByCharacter = 0,
+    ByWord = 1,
+    ByParagraph = 2,
 };
 
 pub const SelectionAffinity = enum(objc.NSUInteger) {
-    SelectionAffinityUpstream = 0,
-    SelectionAffinityDownstream = 1,
+    Upstream = 0,
+    Downstream = 1,
 };
 
 pub const FindPanelAction = enum(objc.NSUInteger) {
-    FindPanelActionShowFindPanel = 1,
-    FindPanelActionNext = 2,
-    FindPanelActionPrevious = 3,
-    FindPanelActionReplaceAll = 4,
-    FindPanelActionReplace = 5,
-    FindPanelActionReplaceAndFind = 6,
-    FindPanelActionSetFindString = 7,
-    FindPanelActionReplaceAllInSelection = 8,
-    FindPanelActionSelectAll = 9,
-    FindPanelActionSelectAllInSelection = 10,
+    ShowFindPanel = 1,
+    Next = 2,
+    Previous = 3,
+    ReplaceAll = 4,
+    Replace = 5,
+    ReplaceAndFind = 6,
+    SetFindString = 7,
+    ReplaceAllInSelection = 8,
+    SelectAll = 9,
+    SelectAllInSelection = 10,
 };
 
 pub const FindPanelSubstringMatchType = enum(objc.NSUInteger) {
-    FindPanelSubstringMatchTypeContains = 0,
-    FindPanelSubstringMatchTypeStartsWith = 1,
-    FindPanelSubstringMatchTypeFullWord = 2,
-    FindPanelSubstringMatchTypeEndsWith = 3,
+    Contains = 0,
+    StartsWith = 1,
+    FullWord = 2,
+    EndsWith = 3,
 };
 
 pub const TableViewDropOperation = enum(objc.NSUInteger) {
-    TableViewDropOn = 0,
-    TableViewDropAbove = 1,
+    On = 0,
+    Above = 1,
 };
 
 pub const TableViewColumnAutoresizingStyle = enum(objc.NSUInteger) {
-    TableViewNoColumnAutoresizing = 0,
-    TableViewUniformColumnAutoresizingStyle = 1,
-    TableViewSequentialColumnAutoresizingStyle = 2,
-    TableViewReverseSequentialColumnAutoresizingStyle = 3,
-    TableViewLastColumnOnlyAutoresizingStyle = 4,
-    TableViewFirstColumnOnlyAutoresizingStyle = 5,
+    NoColumnAutoresizing = 0,
+    UniformColumnAutoresizingStyle = 1,
+    SequentialColumnAutoresizingStyle = 2,
+    ReverseSequentialColumnAutoresizingStyle = 3,
+    LastColumnOnlyAutoresizingStyle = 4,
+    FirstColumnOnlyAutoresizingStyle = 5,
 };
 
 pub const TableViewGridLineStyle = enum(objc.NSUInteger) {
-    TableViewGridNone = 0,
-    TableViewSolidVerticalGridLineMask = 1,
-    TableViewSolidHorizontalGridLineMask = 2,
-    TableViewDashedHorizontalGridLineMask = 8,
+    None = 0,
+    SolidVerticalGridLineMask = 1,
+    SolidHorizontalGridLineMask = 2,
+    DashedHorizontalGridLineMask = 8,
 };
 
 pub const TableViewRowSizeStyle = enum(objc.NSInteger) {
-    TableViewRowSizeStyleDefault = -1,
-    TableViewRowSizeStyleCustom = 0,
-    TableViewRowSizeStyleSmall = 1,
-    TableViewRowSizeStyleMedium = 2,
-    TableViewRowSizeStyleLarge = 3,
+    Default = -1,
+    Custom = 0,
+    Small = 1,
+    Medium = 2,
+    Large = 3,
 };
 
 pub const TableViewStyle = enum(objc.NSInteger) {
-    TableViewStyleAutomatic = 0,
-    TableViewStyleFullWidth = 1,
-    TableViewStyleInset = 2,
-    TableViewStyleSourceList = 3,
-    TableViewStylePlain = 4,
+    Automatic = 0,
+    FullWidth = 1,
+    Inset = 2,
+    SourceList = 3,
+    Plain = 4,
 };
 
 pub const TableViewSelectionHighlightStyle = enum(objc.NSInteger) {
-    TableViewSelectionHighlightStyleNone = -1,
-    TableViewSelectionHighlightStyleRegular = 0,
-    TableViewSelectionHighlightStyleSourceList = 1,
+    None = -1,
+    Regular = 0,
+    SourceList = 1,
 };
 
 pub const TableViewDraggingDestinationFeedbackStyle = enum(objc.NSInteger) {
-    TableViewDraggingDestinationFeedbackStyleNone = -1,
-    TableViewDraggingDestinationFeedbackStyleRegular = 0,
-    TableViewDraggingDestinationFeedbackStyleSourceList = 1,
-    TableViewDraggingDestinationFeedbackStyleGap = 2,
+    None = -1,
+    Regular = 0,
+    SourceList = 1,
+    Gap = 2,
 };
 
 pub const TableRowActionEdge = enum(objc.NSInteger) {
-    TableRowActionEdgeLeading = 0,
-    TableRowActionEdgeTrailing = 1,
+    Leading = 0,
+    Trailing = 1,
 };
 
 pub const TableViewAnimationOptions = enum(objc.NSUInteger) {
-    TableViewAnimationEffectNone = 0,
-    TableViewAnimationEffectFade = 1,
-    TableViewAnimationEffectGap = 2,
-    TableViewAnimationSlideUp = 16,
-    TableViewAnimationSlideDown = 32,
-    TableViewAnimationSlideLeft = 48,
-    TableViewAnimationSlideRight = 64,
+    EffectNone = 0,
+    EffectFade = 1,
+    EffectGap = 2,
+    SlideUp = 16,
+    SlideDown = 32,
+    SlideLeft = 48,
+    SlideRight = 64,
 };
 
 pub const TableColumnResizingOptions = enum(objc.NSUInteger) {
-    TableColumnNoResizing = 0,
-    TableColumnAutoresizingMask = 1,
-    TableColumnUserResizingMask = 2,
+    NoResizing = 0,
+    AutoresizingMask = 1,
+    UserResizingMask = 2,
 };
 
 pub const TableViewRowActionStyle = enum(objc.NSInteger) {
-    TableViewRowActionStyleRegular = 0,
-    TableViewRowActionStyleDestructive = 1,
+    Regular = 0,
+    Destructive = 1,
 };
 
 pub const StringDrawingOptions = enum(objc.NSInteger) {
-    StringDrawingUsesLineFragmentOrigin = 1,
-    StringDrawingUsesFontLeading = 2,
-    StringDrawingUsesDeviceMetrics = 8,
-    StringDrawingTruncatesLastVisibleLine = 32,
-    StringDrawingDisableScreenFontSubstitution = 4,
-    StringDrawingOneShot = 16,
+    UsesLineFragmentOrigin = 1,
+    UsesFontLeading = 2,
+    UsesDeviceMetrics = 8,
+    TruncatesLastVisibleLine = 32,
+    DisableScreenFontSubstitution = 4,
+    OneShot = 16,
 };
 
 pub const RulerOrientation = enum(objc.NSUInteger) {
@@ -2269,15 +2269,15 @@ pub const RulerOrientation = enum(objc.NSUInteger) {
 };
 
 pub const ProgressIndicatorStyle = enum(objc.NSUInteger) {
-    ProgressIndicatorStyleBar = 0,
-    ProgressIndicatorStyleSpinning = 1,
+    Bar = 0,
+    Spinning = 1,
 };
 
 pub const ProgressIndicatorThickness = enum(objc.NSUInteger) {
-    ProgressIndicatorPreferredThickness = 14,
-    ProgressIndicatorPreferredSmallThickness = 10,
-    ProgressIndicatorPreferredLargeThickness = 18,
-    ProgressIndicatorPreferredAquaThickness = 12,
+    PreferredThickness = 14,
+    PreferredSmallThickness = 10,
+    PreferredLargeThickness = 18,
+    PreferredAquaThickness = 12,
 };
 
 pub const TabViewType = enum(objc.NSUInteger) {
@@ -2291,24 +2291,24 @@ pub const TabViewType = enum(objc.NSUInteger) {
 };
 
 pub const TabPosition = enum(objc.NSUInteger) {
-    TabPositionNone = 0,
-    TabPositionTop = 1,
-    TabPositionLeft = 2,
-    TabPositionBottom = 3,
-    TabPositionRight = 4,
+    None = 0,
+    Top = 1,
+    Left = 2,
+    Bottom = 3,
+    Right = 4,
 };
 
 pub const TabViewBorderType = enum(objc.NSUInteger) {
-    TabViewBorderTypeNone = 0,
-    TabViewBorderTypeLine = 1,
-    TabViewBorderTypeBezel = 2,
+    None = 0,
+    Line = 1,
+    Bezel = 2,
 };
 
 pub const TabViewControllerTabStyle = enum(objc.NSInteger) {
-    TabViewControllerTabStyleSegmentedControlOnTop = 0,
-    TabViewControllerTabStyleSegmentedControlOnBottom = 1,
-    TabViewControllerTabStyleToolbar = 2,
-    TabViewControllerTabStyleUnspecified = -1,
+    SegmentedControlOnTop = 0,
+    SegmentedControlOnBottom = 1,
+    Toolbar = 2,
+    Unspecified = -1,
 };
 
 pub const TabState = enum(objc.NSUInteger) {
@@ -2318,79 +2318,79 @@ pub const TabState = enum(objc.NSUInteger) {
 };
 
 pub const LineCapStyle = enum(objc.NSUInteger) {
-    LineCapStyleButt = 0,
-    LineCapStyleRound = 1,
-    LineCapStyleSquare = 2,
+    Butt = 0,
+    Round = 1,
+    Square = 2,
 };
 
 pub const LineJoinStyle = enum(objc.NSUInteger) {
-    LineJoinStyleMiter = 0,
-    LineJoinStyleRound = 1,
-    LineJoinStyleBevel = 2,
+    Miter = 0,
+    Round = 1,
+    Bevel = 2,
 };
 
 pub const WindingRule = enum(objc.NSUInteger) {
-    WindingRuleNonZero = 0,
-    WindingRuleEvenOdd = 1,
+    NonZero = 0,
+    EvenOdd = 1,
 };
 
 pub const BezierPathElement = enum(objc.NSUInteger) {
-    BezierPathElementMoveTo = 0,
-    BezierPathElementLineTo = 1,
-    BezierPathElementCubicCurveTo = 2,
-    BezierPathElementClosePath = 3,
-    BezierPathElementQuadraticCurveTo = 4,
-    BezierPathElementCurveTo = 2,
+    MoveTo = 0,
+    LineTo = 1,
+    CubicCurveTo = 2,
+    ClosePath = 3,
+    QuadraticCurveTo = 4,
+    CurveTo = 2,
 };
 
 pub const StatusItemBehavior = enum(objc.NSUInteger) {
-    StatusItemBehaviorRemovalAllowed = 2,
-    StatusItemBehaviorTerminationOnRemoval = 4,
+    RemovalAllowed = 2,
+    TerminationOnRemoval = 4,
 };
 
 pub const DrawerState = enum(objc.NSUInteger) {
-    DrawerClosedState = 0,
-    DrawerOpeningState = 1,
-    DrawerOpenState = 2,
-    DrawerClosingState = 3,
+    ClosedState = 0,
+    OpeningState = 1,
+    OpenState = 2,
+    ClosingState = 3,
 };
 
 pub const OpenGLGlobalOption = enum(objc.uint32_t) {
-    OpenGLGOFormatCacheSize = 501,
-    OpenGLGOClearFormatCache = 502,
-    OpenGLGORetainRenderers = 503,
-    OpenGLGOUseBuildCache = 506,
-    OpenGLGOResetLibrary = 504,
+    OFormatCacheSize = 501,
+    OClearFormatCache = 502,
+    ORetainRenderers = 503,
+    OUseBuildCache = 506,
+    OResetLibrary = 504,
 };
 
 pub const OpenGLContextParameter = enum(objc.NSInteger) {
-    OpenGLContextParameterSwapInterval = 222,
-    OpenGLContextParameterSurfaceOrder = 235,
-    OpenGLContextParameterSurfaceOpacity = 236,
-    OpenGLContextParameterSurfaceBackingSize = 304,
-    OpenGLContextParameterReclaimResources = 308,
-    OpenGLContextParameterCurrentRendererID = 309,
-    OpenGLContextParameterGPUVertexProcessing = 310,
-    OpenGLContextParameterGPUFragmentProcessing = 311,
-    OpenGLContextParameterHasDrawable = 314,
-    OpenGLContextParameterMPSwapsInFlight = 315,
-    OpenGLContextParameterSwapRectangle = 200,
-    OpenGLContextParameterSwapRectangleEnable = 201,
-    OpenGLContextParameterRasterizationEnable = 221,
-    OpenGLContextParameterStateValidation = 301,
-    OpenGLContextParameterSurfaceSurfaceVolatile = 306,
+    SwapInterval = 222,
+    SurfaceOrder = 235,
+    SurfaceOpacity = 236,
+    SurfaceBackingSize = 304,
+    ReclaimResources = 308,
+    CurrentRendererID = 309,
+    GPUVertexProcessing = 310,
+    GPUFragmentProcessing = 311,
+    HasDrawable = 314,
+    MPSwapsInFlight = 315,
+    SwapRectangle = 200,
+    SwapRectangleEnable = 201,
+    RasterizationEnable = 221,
+    StateValidation = 301,
+    SurfaceSurfaceVolatile = 306,
 };
 
 pub const ToolbarItemGroupSelectionMode = enum(objc.NSInteger) {
-    ToolbarItemGroupSelectionModeSelectOne = 0,
-    ToolbarItemGroupSelectionModeSelectAny = 1,
-    ToolbarItemGroupSelectionModeMomentary = 2,
+    SelectOne = 0,
+    SelectAny = 1,
+    Momentary = 2,
 };
 
 pub const ToolbarItemGroupControlRepresentation = enum(objc.NSInteger) {
-    ToolbarItemGroupControlRepresentationAutomatic = 0,
-    ToolbarItemGroupControlRepresentationExpanded = 1,
-    ToolbarItemGroupControlRepresentationCollapsed = 2,
+    Automatic = 0,
+    Expanded = 1,
+    Collapsed = 2,
 };
 
 pub const CharacterCollection = enum(objc.NSUInteger) {
@@ -2403,245 +2403,245 @@ pub const CharacterCollection = enum(objc.NSUInteger) {
 };
 
 pub const TypesetterControlCharacterAction = enum(objc.NSUInteger) {
-    TypesetterZeroAdvancementAction = 1,
-    TypesetterWhitespaceAction = 2,
-    TypesetterHorizontalTabAction = 4,
-    TypesetterLineBreakAction = 8,
-    TypesetterParagraphBreakAction = 16,
-    TypesetterContainerBreakAction = 32,
+    ZeroAdvancementAction = 1,
+    WhitespaceAction = 2,
+    HorizontalTabAction = 4,
+    LineBreakAction = 8,
+    ParagraphBreakAction = 16,
+    ContainerBreakAction = 32,
 };
 
 pub const TextListOptions = enum(objc.NSUInteger) {
-    TextListPrependEnclosingMarker = 1,
+    PrependEnclosingMarker = 1,
 };
 
 pub const TextBlockValueType = enum(objc.NSUInteger) {
-    TextBlockAbsoluteValueType = 0,
-    TextBlockPercentageValueType = 1,
+    AbsoluteValueType = 0,
+    PercentageValueType = 1,
 };
 
 pub const TextBlockDimension = enum(objc.NSUInteger) {
-    TextBlockWidth = 0,
-    TextBlockMinimumWidth = 1,
-    TextBlockMaximumWidth = 2,
-    TextBlockHeight = 4,
-    TextBlockMinimumHeight = 5,
-    TextBlockMaximumHeight = 6,
+    Width = 0,
+    MinimumWidth = 1,
+    MaximumWidth = 2,
+    Height = 4,
+    MinimumHeight = 5,
+    MaximumHeight = 6,
 };
 
 pub const TextBlockLayer = enum(objc.NSInteger) {
-    TextBlockPadding = -1,
-    TextBlockBorder = 0,
-    TextBlockMargin = 1,
+    Padding = -1,
+    Border = 0,
+    Margin = 1,
 };
 
 pub const TextBlockVerticalAlignment = enum(objc.NSUInteger) {
-    TextBlockTopAlignment = 0,
-    TextBlockMiddleAlignment = 1,
-    TextBlockBottomAlignment = 2,
-    TextBlockBaselineAlignment = 3,
+    TopAlignment = 0,
+    MiddleAlignment = 1,
+    BottomAlignment = 2,
+    BaselineAlignment = 3,
 };
 
 pub const TextTableLayoutAlgorithm = enum(objc.NSUInteger) {
-    TextTableAutomaticLayoutAlgorithm = 0,
-    TextTableFixedLayoutAlgorithm = 1,
+    AutomaticLayoutAlgorithm = 0,
+    FixedLayoutAlgorithm = 1,
 };
 
 pub const DatePickerStyle = enum(objc.NSUInteger) {
-    DatePickerStyleTextFieldAndStepper = 0,
-    DatePickerStyleClockAndCalendar = 1,
-    DatePickerStyleTextField = 2,
+    TextFieldAndStepper = 0,
+    ClockAndCalendar = 1,
+    TextField = 2,
 };
 
 pub const DatePickerMode = enum(objc.NSUInteger) {
-    DatePickerModeSingle = 0,
-    DatePickerModeRange = 1,
+    Single = 0,
+    Range = 1,
 };
 
 pub const DatePickerElementFlags = enum(objc.NSUInteger) {
-    DatePickerElementFlagHourMinute = 12,
-    DatePickerElementFlagHourMinuteSecond = 14,
-    DatePickerElementFlagTimeZone = 16,
-    DatePickerElementFlagYearMonth = 192,
-    DatePickerElementFlagYearMonthDay = 224,
-    DatePickerElementFlagEra = 256,
+    HourMinute = 12,
+    HourMinuteSecond = 14,
+    TimeZone = 16,
+    YearMonth = 192,
+    YearMonthDay = 224,
+    Era = 256,
 };
 
 pub const LevelIndicatorStyle = enum(objc.NSUInteger) {
-    LevelIndicatorStyleRelevancy = 0,
-    LevelIndicatorStyleContinuousCapacity = 1,
-    LevelIndicatorStyleDiscreteCapacity = 2,
-    LevelIndicatorStyleRating = 3,
+    Relevancy = 0,
+    ContinuousCapacity = 1,
+    DiscreteCapacity = 2,
+    Rating = 3,
 };
 
 pub const LevelIndicatorPlaceholderVisibility = enum(objc.NSInteger) {
-    LevelIndicatorPlaceholderVisibilityAutomatic = 0,
-    LevelIndicatorPlaceholderVisibilityAlways = 1,
-    LevelIndicatorPlaceholderVisibilityWhileEditing = 2,
+    Automatic = 0,
+    Always = 1,
+    WhileEditing = 2,
 };
 
 pub const RuleEditorNestingMode = enum(objc.NSUInteger) {
-    RuleEditorNestingModeSingle = 0,
-    RuleEditorNestingModeList = 1,
-    RuleEditorNestingModeCompound = 2,
-    RuleEditorNestingModeSimple = 3,
+    Single = 0,
+    List = 1,
+    Compound = 2,
+    Simple = 3,
 };
 
 pub const RuleEditorRowType = enum(objc.NSUInteger) {
-    RuleEditorRowTypeSimple = 0,
-    RuleEditorRowTypeCompound = 1,
+    Simple = 0,
+    Compound = 1,
 };
 
 pub const PathStyle = enum(objc.NSInteger) {
-    PathStyleStandard = 0,
-    PathStylePopUp = 2,
-    PathStyleNavigationBar = 1,
+    Standard = 0,
+    PopUp = 2,
+    NavigationBar = 1,
 };
 
 pub const PageControllerTransitionStyle = enum(objc.NSInteger) {
-    PageControllerTransitionStyleStackHistory = 0,
-    PageControllerTransitionStyleStackBook = 1,
-    PageControllerTransitionStyleHorizontalStrip = 2,
+    StackHistory = 0,
+    StackBook = 1,
+    HorizontalStrip = 2,
 };
 
 pub const VisualEffectMaterial = enum(objc.NSInteger) {
-    VisualEffectMaterialTitlebar = 3,
-    VisualEffectMaterialSelection = 4,
-    VisualEffectMaterialMenu = 5,
-    VisualEffectMaterialPopover = 6,
-    VisualEffectMaterialSidebar = 7,
-    VisualEffectMaterialHeaderView = 10,
-    VisualEffectMaterialSheet = 11,
-    VisualEffectMaterialWindowBackground = 12,
-    VisualEffectMaterialHUDWindow = 13,
-    VisualEffectMaterialFullScreenUI = 15,
-    VisualEffectMaterialToolTip = 17,
-    VisualEffectMaterialContentBackground = 18,
-    VisualEffectMaterialUnderWindowBackground = 21,
-    VisualEffectMaterialUnderPageBackground = 22,
-    VisualEffectMaterialAppearanceBased = 0,
-    VisualEffectMaterialLight = 1,
-    VisualEffectMaterialDark = 2,
-    VisualEffectMaterialMediumLight = 8,
-    VisualEffectMaterialUltraDark = 9,
+    Titlebar = 3,
+    Selection = 4,
+    Menu = 5,
+    Popover = 6,
+    Sidebar = 7,
+    HeaderView = 10,
+    Sheet = 11,
+    WindowBackground = 12,
+    HUDWindow = 13,
+    FullScreenUI = 15,
+    ToolTip = 17,
+    ContentBackground = 18,
+    UnderWindowBackground = 21,
+    UnderPageBackground = 22,
+    AppearanceBased = 0,
+    Light = 1,
+    Dark = 2,
+    MediumLight = 8,
+    UltraDark = 9,
 };
 
 pub const VisualEffectBlendingMode = enum(objc.NSInteger) {
-    VisualEffectBlendingModeBehindWindow = 0,
-    VisualEffectBlendingModeWithinWindow = 1,
+    BehindWindow = 0,
+    WithinWindow = 1,
 };
 
 pub const VisualEffectState = enum(objc.NSInteger) {
-    VisualEffectStateFollowsWindowActiveState = 0,
-    VisualEffectStateActive = 1,
-    VisualEffectStateInactive = 2,
+    FollowsWindowActiveState = 0,
+    Active = 1,
+    Inactive = 2,
 };
 
 pub const HapticFeedbackPattern = enum(objc.NSInteger) {
-    HapticFeedbackPatternGeneric = 0,
-    HapticFeedbackPatternAlignment = 1,
-    HapticFeedbackPatternLevelChange = 2,
+    Generic = 0,
+    Alignment = 1,
+    LevelChange = 2,
 };
 
 pub const HapticFeedbackPerformanceTime = enum(objc.NSUInteger) {
-    HapticFeedbackPerformanceTimeDefault = 0,
-    HapticFeedbackPerformanceTimeNow = 1,
-    HapticFeedbackPerformanceTimeDrawCompleted = 2,
+    Default = 0,
+    Now = 1,
+    DrawCompleted = 2,
 };
 
 pub const PickerTouchBarItemSelectionMode = enum(objc.NSInteger) {
-    PickerTouchBarItemSelectionModeSelectOne = 0,
-    PickerTouchBarItemSelectionModeSelectAny = 1,
-    PickerTouchBarItemSelectionModeMomentary = 2,
+    SelectOne = 0,
+    SelectAny = 1,
+    Momentary = 2,
 };
 
 pub const PickerTouchBarItemControlRepresentation = enum(objc.NSInteger) {
-    PickerTouchBarItemControlRepresentationAutomatic = 0,
-    PickerTouchBarItemControlRepresentationExpanded = 1,
-    PickerTouchBarItemControlRepresentationCollapsed = 2,
+    Automatic = 0,
+    Expanded = 1,
+    Collapsed = 2,
 };
 
 pub const TextSelectionGranularity = enum(objc.NSInteger) {
-    TextSelectionGranularityCharacter = 0,
-    TextSelectionGranularityWord = 1,
-    TextSelectionGranularityParagraph = 2,
-    TextSelectionGranularityLine = 3,
-    TextSelectionGranularitySentence = 4,
+    Character = 0,
+    Word = 1,
+    Paragraph = 2,
+    Line = 3,
+    Sentence = 4,
 };
 
 pub const TextSelectionAffinity = enum(objc.NSInteger) {
-    TextSelectionAffinityUpstream = 0,
-    TextSelectionAffinityDownstream = 1,
+    Upstream = 0,
+    Downstream = 1,
 };
 
 pub const TextSelectionNavigationDirection = enum(objc.NSInteger) {
-    TextSelectionNavigationDirectionForward = 0,
-    TextSelectionNavigationDirectionBackward = 1,
-    TextSelectionNavigationDirectionRight = 2,
-    TextSelectionNavigationDirectionLeft = 3,
-    TextSelectionNavigationDirectionUp = 4,
-    TextSelectionNavigationDirectionDown = 5,
+    Forward = 0,
+    Backward = 1,
+    Right = 2,
+    Left = 3,
+    Up = 4,
+    Down = 5,
 };
 
 pub const TextSelectionNavigationDestination = enum(objc.NSInteger) {
-    TextSelectionNavigationDestinationCharacter = 0,
-    TextSelectionNavigationDestinationWord = 1,
-    TextSelectionNavigationDestinationLine = 2,
-    TextSelectionNavigationDestinationSentence = 3,
-    TextSelectionNavigationDestinationParagraph = 4,
-    TextSelectionNavigationDestinationContainer = 5,
-    TextSelectionNavigationDestinationDocument = 6,
+    Character = 0,
+    Word = 1,
+    Line = 2,
+    Sentence = 3,
+    Paragraph = 4,
+    Container = 5,
+    Document = 6,
 };
 
 pub const TextSelectionNavigationModifier = enum(objc.NSUInteger) {
-    TextSelectionNavigationModifierExtend = 1,
-    TextSelectionNavigationModifierVisual = 2,
-    TextSelectionNavigationModifierMultiple = 4,
+    Extend = 1,
+    Visual = 2,
+    Multiple = 4,
 };
 
 pub const TextSelectionNavigationWritingDirection = enum(objc.NSInteger) {
-    TextSelectionNavigationWritingDirectionLeftToRight = 0,
-    TextSelectionNavigationWritingDirectionRightToLeft = 1,
+    LeftToRight = 0,
+    RightToLeft = 1,
 };
 
 pub const TextSelectionNavigationLayoutOrientation = enum(objc.NSInteger) {
-    TextSelectionNavigationLayoutOrientationHorizontal = 0,
-    TextSelectionNavigationLayoutOrientationVertical = 1,
+    Horizontal = 0,
+    Vertical = 1,
 };
 
 pub const TextContentManagerEnumerationOptions = enum(objc.NSUInteger) {
-    TextContentManagerEnumerationOptionsNone = 0,
-    TextContentManagerEnumerationOptionsReverse = 1,
+    None = 0,
+    Reverse = 1,
 };
 
 pub const TextLayoutFragmentEnumerationOptions = enum(objc.NSUInteger) {
-    TextLayoutFragmentEnumerationOptionsNone = 0,
-    TextLayoutFragmentEnumerationOptionsReverse = 1,
-    TextLayoutFragmentEnumerationOptionsEstimatesSize = 2,
-    TextLayoutFragmentEnumerationOptionsEnsuresLayout = 4,
-    TextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment = 8,
+    None = 0,
+    Reverse = 1,
+    EstimatesSize = 2,
+    EnsuresLayout = 4,
+    EnsuresExtraLineFragment = 8,
 };
 
 pub const TextLayoutFragmentState = enum(objc.NSUInteger) {
-    TextLayoutFragmentStateNone = 0,
-    TextLayoutFragmentStateEstimatedUsageBounds = 1,
-    TextLayoutFragmentStateCalculatedUsageBounds = 2,
-    TextLayoutFragmentStateLayoutAvailable = 3,
+    None = 0,
+    EstimatedUsageBounds = 1,
+    CalculatedUsageBounds = 2,
+    LayoutAvailable = 3,
 };
 
 pub const TextLayoutManagerSegmentType = enum(objc.NSInteger) {
-    TextLayoutManagerSegmentTypeStandard = 0,
-    TextLayoutManagerSegmentTypeSelection = 1,
-    TextLayoutManagerSegmentTypeHighlight = 2,
+    Standard = 0,
+    Selection = 1,
+    Highlight = 2,
 };
 
 pub const TextLayoutManagerSegmentOptions = enum(objc.NSUInteger) {
-    TextLayoutManagerSegmentOptionsNone = 0,
-    TextLayoutManagerSegmentOptionsRangeNotRequired = 1,
-    TextLayoutManagerSegmentOptionsMiddleFragmentsExcluded = 2,
-    TextLayoutManagerSegmentOptionsHeadSegmentExtended = 4,
-    TextLayoutManagerSegmentOptionsTailSegmentExtended = 8,
-    TextLayoutManagerSegmentOptionsUpstreamAffinity = 16,
+    None = 0,
+    RangeNotRequired = 1,
+    MiddleFragmentsExcluded = 2,
+    HeadSegmentExtended = 4,
+    TailSegmentExtended = 8,
+    UpstreamAffinity = 16,
 };
 
 pub const ColorSpaceName = ?*ns.String;

@@ -431,16 +431,16 @@ pub const anon701 = enum(OptionFlags) {
 };
 
 pub const __CFByteOrder = enum(u32) {
-    ByteOrderUnknown = 0,
-    ByteOrderLittleEndian = 1,
-    ByteOrderBigEndian = 2,
+    CFByteOrderUnknown = 0,
+    CFByteOrderLittleEndian = 1,
+    CFByteOrderBigEndian = 2,
 };
 
 pub const NotificationSuspensionBehavior = enum(Index) {
-    NotificationSuspensionBehaviorDrop = 1,
-    NotificationSuspensionBehaviorCoalesce = 2,
-    NotificationSuspensionBehaviorHold = 3,
-    NotificationSuspensionBehaviorDeliverImmediately = 4,
+    Drop = 1,
+    Coalesce = 2,
+    Hold = 3,
+    DeliverImmediately = 4,
 };
 
 pub const LocaleLanguageDirection = enum(Index) {
@@ -552,10 +552,10 @@ pub const anon1061 = enum(OptionFlags) {
 };
 
 pub const CGRectEdge = enum(objc.uint32_t) {
-    CGRectMinXEdge = 0,
-    CGRectMinYEdge = 1,
-    CGRectMaxXEdge = 2,
-    CGRectMaxYEdge = 3,
+    MinXEdge = 0,
+    MinYEdge = 1,
+    MaxXEdge = 2,
+    MaxYEdge = 3,
 };
 
 pub const DateFormatterStyle = enum(Index) {
