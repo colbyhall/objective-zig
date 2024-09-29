@@ -5,6 +5,7 @@ const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 const core_foundation = @import("core_foundation.zig"); // Framework dependency CoreFoundation.
 const foundation = @import("foundation.zig"); // Framework dependency Foundation.
 const cloud_kit = @import("cloud_kit.zig"); // Framework dependency CloudKit.
+const core_spotlight = @import("core_spotlight.zig"); // Framework dependency CoreSpotlight.
 
 pub const anon321 = enum(objc.NSInteger) {
     NSManagedObjectValidationError = 1550,
@@ -13516,8 +13517,8 @@ pub const PersistentCloudKitContainer = opaque {
         return objc.msgSend(_self, "recordsForManagedObjectIDs:", ?*anyopaque, .{_managedObjectIDs});
     }
 
-    pub fn recordIDForManagedObjectID(_self: *@This(), _managedObjectID: ?*ManagedObjectID) ?*anyopaque {
-        return objc.msgSend(_self, "recordIDForManagedObjectID:", ?*anyopaque, .{_managedObjectID});
+    pub fn recordIDForManagedObjectID(_self: *@This(), _managedObjectID: ?*ManagedObjectID) ?*cloud_kit.RecordID {
+        return objc.msgSend(_self, "recordIDForManagedObjectID:", ?*cloud_kit.RecordID, .{_managedObjectID});
     }
 
     pub fn recordIDsForManagedObjectIDs(_self: *@This(), _managedObjectIDs: ?*anyopaque) ?*anyopaque {
@@ -15294,15 +15295,15 @@ pub const CoreDataCoreSpotlightDelegate = opaque {
         return objc.msgSend(_self, "deleteSpotlightIndexWithCompletionHandler:", void, .{_completionHandler});
     }
 
-    pub fn attributeSetForObject(_self: *@This(), _object: ?*ManagedObject) ?*anyopaque {
-        return objc.msgSend(_self, "attributeSetForObject:", ?*anyopaque, .{_object});
+    pub fn attributeSetForObject(_self: *@This(), _object: ?*ManagedObject) ?*core_spotlight.SearchableItemAttributeSet {
+        return objc.msgSend(_self, "attributeSetForObject:", ?*core_spotlight.SearchableItemAttributeSet, .{_object});
     }
 
-    pub fn searchableIndexReindexAllSearchableItemsWithAcknowledgementHandler(_self: *@This(), _searchableIndex: ?*anyopaque, _acknowledgementHandler: *const fn () callconv(.C) void) void {
+    pub fn searchableIndexReindexAllSearchableItemsWithAcknowledgementHandler(_self: *@This(), _searchableIndex: ?*core_spotlight.SearchableIndex, _acknowledgementHandler: *const fn () callconv(.C) void) void {
         return objc.msgSend(_self, "searchableIndex:reindexAllSearchableItemsWithAcknowledgementHandler:", void, .{ _searchableIndex, _acknowledgementHandler });
     }
 
-    pub fn searchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler(_self: *@This(), _searchableIndex: ?*anyopaque, _identifiers: ?*anyopaque, _acknowledgementHandler: *const fn () callconv(.C) void) void {
+    pub fn searchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler(_self: *@This(), _searchableIndex: ?*core_spotlight.SearchableIndex, _identifiers: ?*anyopaque, _acknowledgementHandler: *const fn () callconv(.C) void) void {
         return objc.msgSend(_self, "searchableIndex:reindexSearchableItemsWithIdentifiers:acknowledgementHandler:", void, .{ _searchableIndex, _identifiers, _acknowledgementHandler });
     }
 

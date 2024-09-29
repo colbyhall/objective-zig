@@ -7,34 +7,34 @@ const core_foundation = @import("core_foundation.zig"); // Framework dependency 
 pub const ID = objc.uint32_t;
 
 pub const LockOptions = enum(objc.uint32_t) {
-    kIOSurfaceLockReadOnly = 1,
-    kIOSurfaceLockAvoidSync = 2,
+    ReadOnly = 1,
+    AvoidSync = 2,
 };
 
 pub const PurgeabilityState = enum(objc.uint32_t) {
-    kIOSurfacePurgeableNonVolatile = 0,
-    kIOSurfacePurgeableVolatile = 1,
-    kIOSurfacePurgeableEmpty = 2,
-    kIOSurfacePurgeableKeepCurrent = 3,
+    PurgeableNonVolatile = 0,
+    PurgeableVolatile = 1,
+    PurgeableEmpty = 2,
+    PurgeableKeepCurrent = 3,
 };
 
 pub const anon431 = enum(u32) {
-    kIOSurfaceDefaultCache = 0,
-    kIOSurfaceInhibitCache = 1,
-    kIOSurfaceWriteThruCache = 2,
-    kIOSurfaceCopybackCache = 3,
-    kIOSurfaceWriteCombineCache = 4,
-    kIOSurfaceCopybackInnerCache = 5,
+    IOSurfaceDefaultCache = 0,
+    IOSurfaceInhibitCache = 1,
+    IOSurfaceWriteThruCache = 2,
+    IOSurfaceCopybackCache = 3,
+    IOSurfaceWriteCombineCache = 4,
+    IOSurfaceCopybackInnerCache = 5,
 };
 
 pub const anon531 = enum(u32) {
-    kIOSurfaceMapCacheShift = 8,
-    kIOSurfaceMapDefaultCache = 0,
-    kIOSurfaceMapInhibitCache = 256,
-    kIOSurfaceMapWriteThruCache = 512,
-    kIOSurfaceMapCopybackCache = 768,
-    kIOSurfaceMapWriteCombineCache = 1024,
-    kIOSurfaceMapCopybackInnerCache = 1280,
+    IOSurfaceMapCacheShift = 8,
+    IOSurfaceMapDefaultCache = 0,
+    IOSurfaceMapInhibitCache = 256,
+    IOSurfaceMapWriteThruCache = 512,
+    IOSurfaceMapCopybackCache = 768,
+    IOSurfaceMapWriteCombineCache = 1024,
+    IOSurfaceMapCopybackInnerCache = 1280,
 };
 
 pub const __IOSurface = extern struct {};
@@ -42,37 +42,37 @@ pub const __IOSurface = extern struct {};
 pub const Ref = ?*__IOSurface;
 
 pub const ComponentName = enum(objc.int32_t) {
-    kIOSurfaceComponentNameUnknown = 0,
-    kIOSurfaceComponentNameAlpha = 1,
-    kIOSurfaceComponentNameRed = 2,
-    kIOSurfaceComponentNameGreen = 3,
-    kIOSurfaceComponentNameBlue = 4,
-    kIOSurfaceComponentNameLuma = 5,
-    kIOSurfaceComponentNameChromaRed = 6,
-    kIOSurfaceComponentNameChromaBlue = 7,
+    Unknown = 0,
+    Alpha = 1,
+    Red = 2,
+    Green = 3,
+    Blue = 4,
+    Luma = 5,
+    ChromaRed = 6,
+    ChromaBlue = 7,
 };
 
 pub const ComponentType = enum(objc.int32_t) {
-    kIOSurfaceComponentTypeUnknown = 0,
-    kIOSurfaceComponentTypeUnsignedInteger = 1,
-    kIOSurfaceComponentTypeSignedInteger = 2,
-    kIOSurfaceComponentTypeFloat = 3,
-    kIOSurfaceComponentTypeSignedNormalized = 4,
+    Unknown = 0,
+    UnsignedInteger = 1,
+    SignedInteger = 2,
+    Float = 3,
+    SignedNormalized = 4,
 };
 
 pub const ComponentRange = enum(objc.int32_t) {
-    kIOSurfaceComponentRangeUnknown = 0,
-    kIOSurfaceComponentRangeFullRange = 1,
-    kIOSurfaceComponentRangeVideoRange = 2,
-    kIOSurfaceComponentRangeWideRange = 3,
+    Unknown = 0,
+    FullRange = 1,
+    VideoRange = 2,
+    WideRange = 3,
 };
 
 pub const Subsampling = enum(objc.int32_t) {
-    kIOSurfaceSubsamplingUnknown = 0,
-    kIOSurfaceSubsamplingNone = 1,
-    kIOSurfaceSubsampling422 = 2,
-    kIOSurfaceSubsampling420 = 3,
-    kIOSurfaceSubsampling411 = 4,
+    Unknown = 0,
+    None = 1,
+    _422 = 2,
+    _420 = 3,
+    _411 = 4,
 };
 
 extern "IOSurface" fn IOSurfaceGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -220,15 +220,15 @@ extern "IOSurface" fn IOSurfaceSetPurgeable(buffer: Ref, newState: objc.uint32_t
 pub const setPurgeable = IOSurfaceSetPurgeable;
 
 pub const MemoryLedgerTags = enum(i32) {
-    kIOSurfaceMemoryLedgerTagDefault = 1,
-    kIOSurfaceMemoryLedgerTagNetwork = 2,
-    kIOSurfaceMemoryLedgerTagMedia = 3,
-    kIOSurfaceMemoryLedgerTagGraphics = 4,
-    kIOSurfaceMemoryLedgerTagNeural = 5,
+    Default = 1,
+    Network = 2,
+    Media = 3,
+    Graphics = 4,
+    Neural = 5,
 };
 
 pub const MemoryLedgerFlags = enum(objc.uint32_t) {
-    kIOSurfaceMemoryLedgerFlagNoFootprint = 1,
+    NoFootprint = 1,
 };
 
 extern "IOSurface" fn IOSurfaceSetOwnershipIdentity(

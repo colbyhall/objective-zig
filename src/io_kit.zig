@@ -74,115 +74,115 @@ pub const io_service_t = io_object_t;
 pub const uext_object_t = io_object_t;
 
 pub const anon331 = enum(u32) {
-    kIODefaultMemoryType = 0,
+    IODefaultMemoryType = 0,
 };
 
 pub const anon371 = enum(u32) {
-    kIODefaultCache = 0,
-    kIOInhibitCache = 1,
-    kIOWriteThruCache = 2,
-    kIOCopybackCache = 3,
-    kIOWriteCombineCache = 4,
-    kIOCopybackInnerCache = 5,
-    kIOPostedWrite = 6,
-    kIORealTimeCache = 7,
-    kIOPostedReordered = 8,
-    kIOPostedCombinedReordered = 9,
+    IODefaultCache = 0,
+    IOInhibitCache = 1,
+    IOWriteThruCache = 2,
+    IOCopybackCache = 3,
+    IOWriteCombineCache = 4,
+    IOCopybackInnerCache = 5,
+    IOPostedWrite = 6,
+    IORealTimeCache = 7,
+    IOPostedReordered = 8,
+    IOPostedCombinedReordered = 9,
 };
 
 pub const anon511 = enum(u32) {
-    kIOMapAnywhere = 1,
-    kIOMapCacheMask = 3840,
-    kIOMapCacheShift = 8,
-    kIOMapDefaultCache = 0,
-    kIOMapInhibitCache = 256,
-    kIOMapWriteThruCache = 512,
-    kIOMapCopybackCache = 768,
-    kIOMapWriteCombineCache = 1024,
-    kIOMapCopybackInnerCache = 1280,
-    kIOMapPostedWrite = 1536,
-    kIOMapRealTimeCache = 1792,
-    kIOMapPostedReordered = 2048,
-    kIOMapPostedCombinedReordered = 2304,
-    kIOMapUserOptionsMask = 4095,
-    kIOMapReadOnly = 4096,
-    kIOMapStatic = 16777216,
-    kIOMapReference = 33554432,
-    kIOMapUnique = 67108864,
-    kIOMapPrefault = 268435456,
-    kIOMapOverwrite = 536870912,
-    kIOMapGuardedMask = -1073741824,
-    kIOMapGuardedSmall = 1073741824,
-    kIOMapGuardedLarge = -2147483648,
+    IOMapAnywhere = 1,
+    IOMapCacheMask = 3840,
+    IOMapCacheShift = 8,
+    IOMapDefaultCache = 0,
+    IOMapInhibitCache = 256,
+    IOMapWriteThruCache = 512,
+    IOMapCopybackCache = 768,
+    IOMapWriteCombineCache = 1024,
+    IOMapCopybackInnerCache = 1280,
+    IOMapPostedWrite = 1536,
+    IOMapRealTimeCache = 1792,
+    IOMapPostedReordered = 2048,
+    IOMapPostedCombinedReordered = 2304,
+    IOMapUserOptionsMask = 4095,
+    IOMapReadOnly = 4096,
+    IOMapStatic = 16777216,
+    IOMapReference = 33554432,
+    IOMapUnique = 67108864,
+    IOMapPrefault = 268435456,
+    IOMapOverwrite = 536870912,
+    IOMapGuardedMask = -1073741824,
+    IOMapGuardedSmall = 1073741824,
+    IOMapGuardedLarge = -2147483648,
 };
 
 pub const anon2001 = enum(u32) {
-    kNanosecondScale = 1,
-    kMicrosecondScale = 1000,
-    kMillisecondScale = 1000000,
-    kSecondScale = 1000000000,
-    kTickScale = 10000000,
+    NanosecondScale = 1,
+    MicrosecondScale = 1000,
+    MillisecondScale = 1000000,
+    SecondScale = 1000000000,
+    TickScale = 10000000,
 };
 
 pub const anon2081 = enum(i32) {
-    kIOConnectMethodVarOutputSize = -3,
+    IOConnectMethodVarOutputSize = -3,
 };
 
 pub const DeviceNumber = u32;
 
 pub const anon2231 = enum(u32) {
-    kIOMaxBusStall40usec = 40000,
-    kIOMaxBusStall30usec = 30000,
-    kIOMaxBusStall25usec = 25000,
-    kIOMaxBusStall20usec = 20000,
-    kIOMaxBusStall10usec = 10000,
-    kIOMaxBusStall5usec = 5000,
-    kIOMaxBusStallNone = 0,
+    IOMaxBusStall40usec = 40000,
+    IOMaxBusStall30usec = 30000,
+    IOMaxBusStall25usec = 25000,
+    IOMaxBusStall20usec = 20000,
+    IOMaxBusStall10usec = 10000,
+    IOMaxBusStall5usec = 5000,
+    IOMaxBusStallNone = 0,
 };
 
 pub const anon2931 = enum(u32) {
-    kIOSystemStateSleepDescriptionHibernateStateInactive = 0,
-    kIOSystemStateSleepDescriptionHibernateStateHibernating = 1,
-    kIOSystemStateSleepDescriptionHibernateStateWakingFromHibernate = 2,
+    IOSystemStateSleepDescriptionHibernateStateInactive = 0,
+    IOSystemStateSleepDescriptionHibernateStateHibernating = 1,
+    IOSystemStateSleepDescriptionHibernateStateWakingFromHibernate = 2,
 };
 
 pub const anon461 = enum(u32) {
-    kFirstIOKitNotificationType = 100,
-    kIOServicePublishNotificationType = 100,
-    kIOServiceMatchedNotificationType = 101,
-    kIOServiceTerminatedNotificationType = 102,
-    kIOAsyncCompletionNotificationType = 150,
-    kIOServiceMessageNotificationType = 160,
-    kLastIOKitNotificationType = 199,
-    kIOKitNoticationTypeMask = 4095,
-    kIOKitNoticationTypeSizeAdjShift = 30,
-    kIOKitNoticationMsgSizeMask = 3,
+    FirstIOKitNotificationType = 100,
+    IOServicePublishNotificationType = 100,
+    IOServiceMatchedNotificationType = 101,
+    IOServiceTerminatedNotificationType = 102,
+    IOAsyncCompletionNotificationType = 150,
+    IOServiceMessageNotificationType = 160,
+    LastIOKitNotificationType = 199,
+    IOKitNoticationTypeMask = 4095,
+    IOKitNoticationTypeSizeAdjShift = 30,
+    IOKitNoticationMsgSizeMask = 3,
 };
 
 pub const anon611 = enum(u32) {
-    kOSNotificationMessageID = 53,
-    kOSAsyncCompleteMessageID = 57,
-    kMaxAsyncArgs = 16,
+    OSNotificationMessageID = 53,
+    OSAsyncCompleteMessageID = 57,
+    MaxAsyncArgs = 16,
 };
 
 pub const anon671 = enum(u32) {
-    kIOAsyncReservedIndex = 0,
-    kIOAsyncReservedCount = 1,
-    kIOAsyncCalloutFuncIndex = 1,
-    kIOAsyncCalloutRefconIndex = 2,
-    kIOAsyncCalloutCount = 3,
-    kIOMatchingCalloutFuncIndex = 1,
-    kIOMatchingCalloutRefconIndex = 2,
-    kIOMatchingCalloutCount = 3,
-    kIOInterestCalloutFuncIndex = 1,
-    kIOInterestCalloutRefconIndex = 2,
-    kIOInterestCalloutServiceIndex = 3,
-    kIOInterestCalloutCount = 4,
+    IOAsyncReservedIndex = 0,
+    IOAsyncReservedCount = 1,
+    IOAsyncCalloutFuncIndex = 1,
+    IOAsyncCalloutRefconIndex = 2,
+    IOAsyncCalloutCount = 3,
+    IOMatchingCalloutFuncIndex = 1,
+    IOMatchingCalloutRefconIndex = 2,
+    IOMatchingCalloutCount = 3,
+    IOInterestCalloutFuncIndex = 1,
+    IOInterestCalloutRefconIndex = 2,
+    IOInterestCalloutServiceIndex = 3,
+    IOInterestCalloutCount = 4,
 };
 
 pub const anon881 = enum(u32) {
-    kOSAsyncRef64Count = 8,
-    kOSAsyncRef64Size = 64,
+    OSAsyncRef64Count = 8,
+    OSAsyncRef64Size = 64,
 };
 
 pub const OSAsyncReference64 = [8]objc.io_user_reference_t;
@@ -200,8 +200,8 @@ pub const ServiceInterestContent64 = extern struct {
 };
 
 pub const anon1161 = enum(u32) {
-    kOSAsyncRefCount = 8,
-    kOSAsyncRefSize = 32,
+    OSAsyncRefCount = 8,
+    OSAsyncRefSize = 32,
 };
 
 pub const OSAsyncReference = [8]objc.natural_t;
@@ -374,7 +374,7 @@ extern "IOKit" fn IOServiceRequestProbe(service: io_service_t, options: objc.uin
 pub const serviceRequestProbe = IOServiceRequestProbe;
 
 pub const anon6101 = enum(u32) {
-    kIOServiceInteractionAllowed = 1,
+    IOServiceInteractionAllowed = 1,
 };
 
 extern "IOKit" fn IOServiceAuthorize(service: io_service_t, options: objc.uint32_t) callconv(.C) objc.kern_return_t;
@@ -591,8 +591,8 @@ extern "IOKit" fn IORegistryEntryCopyFromPath(mainPort: objc.mach_port_t, path: 
 pub const registryEntryCopyFromPath = IORegistryEntryCopyFromPath;
 
 pub const anon10121 = enum(u32) {
-    kIORegistryIterateRecursively = 1,
-    kIORegistryIterateParents = 2,
+    IORegistryIterateRecursively = 1,
+    IORegistryIterateParents = 2,
 };
 
 extern "IOKit" fn IORegistryCreateIterator(

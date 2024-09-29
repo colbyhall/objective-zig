@@ -5,6 +5,7 @@ const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 const core_foundation = @import("core_foundation.zig"); // Framework dependency CoreFoundation.
 const security = @import("security.zig"); // Framework dependency Security.
 const core_services = @import("core_services.zig"); // Framework dependency CoreServices.
+const app_kit = @import("app_kit.zig"); // Framework dependency AppKit.
 
 pub const ExceptionName = ?*String;
 
@@ -74311,11 +74312,11 @@ pub const UserNotification = opaque {
         return objc.msgSend(_self, "setIdentifier:", void, .{_identifier});
     }
 
-    pub fn contentImage(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "contentImage", ?*anyopaque, .{});
+    pub fn contentImage(_self: *@This()) ?*app_kit.Image {
+        return objc.msgSend(_self, "contentImage", ?*app_kit.Image, .{});
     }
 
-    pub fn setContentImage(_self: *@This(), _contentImage: ?*anyopaque) void {
+    pub fn setContentImage(_self: *@This(), _contentImage: ?*app_kit.Image) void {
         return objc.msgSend(_self, "setContentImage:", void, .{_contentImage});
     }
 

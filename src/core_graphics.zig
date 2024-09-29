@@ -291,23 +291,23 @@ extern "CoreGraphics" fn CGDataProviderGetInfo(provider: DataProviderRef) callco
 pub const dataProviderGetInfo = CGDataProviderGetInfo;
 
 pub const ColorRenderingIntent = enum(objc.int32_t) {
-    kCGRenderingIntentDefault = 0,
-    kCGRenderingIntentAbsoluteColorimetric = 1,
-    kCGRenderingIntentRelativeColorimetric = 2,
-    kCGRenderingIntentPerceptual = 3,
-    kCGRenderingIntentSaturation = 4,
+    RenderingIntentDefault = 0,
+    RenderingIntentAbsoluteColorimetric = 1,
+    RenderingIntentRelativeColorimetric = 2,
+    RenderingIntentPerceptual = 3,
+    RenderingIntentSaturation = 4,
 };
 
 pub const ColorSpaceModel = enum(objc.int32_t) {
-    kCGColorSpaceModelUnknown = -1,
-    kCGColorSpaceModelMonochrome = 0,
-    kCGColorSpaceModelRGB = 1,
-    kCGColorSpaceModelCMYK = 2,
-    kCGColorSpaceModelLab = 3,
-    kCGColorSpaceModelDeviceN = 4,
-    kCGColorSpaceModelIndexed = 5,
-    kCGColorSpaceModelPattern = 6,
-    kCGColorSpaceModelXYZ = 7,
+    Unknown = -1,
+    Monochrome = 0,
+    RGB = 1,
+    CMYK = 2,
+    Lab = 3,
+    DeviceN = 4,
+    Indexed = 5,
+    Pattern = 6,
+    XYZ = 7,
 };
 
 extern "CoreGraphics" fn CGColorSpaceCreateDeviceGray() callconv(.C) ColorSpaceRef;
@@ -449,9 +449,9 @@ pub const Pattern = extern struct {};
 pub const PatternRef = ?*Pattern;
 
 pub const PatternTiling = enum(objc.int32_t) {
-    kCGPatternTilingNoDistortion = 0,
-    kCGPatternTilingConstantSpacingMinimalDistortion = 1,
-    kCGPatternTilingConstantSpacing = 2,
+    NoDistortion = 0,
+    ConstantSpacingMinimalDistortion = 1,
+    ConstantSpacing = 2,
 };
 
 pub const PatternDrawPatternCallback = ?*const fn (?*anyopaque, ContextRef) callconv(.C) void;
@@ -575,9 +575,9 @@ pub const FontIndex = u16;
 pub const Glyph = FontIndex;
 
 pub const FontPostScriptFormat = enum(objc.int32_t) {
-    kCGFontPostScriptFormatType1 = 1,
-    kCGFontPostScriptFormatType3 = 3,
-    kCGFontPostScriptFormatType42 = 42,
+    Type1 = 1,
+    Type3 = 3,
+    Type42 = 42,
 };
 
 extern "CoreGraphics" fn CGFontGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -697,8 +697,8 @@ pub const Gradient = extern struct {};
 pub const GradientRef = ?*Gradient;
 
 pub const GradientDrawingOptions = enum(objc.uint32_t) {
-    kCGGradientDrawsBeforeStartLocation = 1,
-    kCGGradientDrawsAfterEndLocation = 2,
+    DrawsBeforeStartLocation = 1,
+    DrawsAfterEndLocation = 2,
 };
 
 extern "CoreGraphics" fn CGGradientGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -726,44 +726,44 @@ pub const Image = extern struct {};
 pub const ImageRef = ?*Image;
 
 pub const ImageAlphaInfo = enum(objc.uint32_t) {
-    kCGImageAlphaNone = 0,
-    kCGImageAlphaPremultipliedLast = 1,
-    kCGImageAlphaPremultipliedFirst = 2,
-    kCGImageAlphaLast = 3,
-    kCGImageAlphaFirst = 4,
-    kCGImageAlphaNoneSkipLast = 5,
-    kCGImageAlphaNoneSkipFirst = 6,
-    kCGImageAlphaOnly = 7,
+    None = 0,
+    PremultipliedLast = 1,
+    PremultipliedFirst = 2,
+    Last = 3,
+    First = 4,
+    NoneSkipLast = 5,
+    NoneSkipFirst = 6,
+    Only = 7,
 };
 
 pub const ImageByteOrderInfo = enum(objc.uint32_t) {
-    kCGImageByteOrderMask = 28672,
-    kCGImageByteOrderDefault = 0,
-    kCGImageByteOrder16Little = 4096,
-    kCGImageByteOrder32Little = 8192,
-    kCGImageByteOrder16Big = 12288,
-    kCGImageByteOrder32Big = 16384,
+    Mask = 28672,
+    Default = 0,
+    Order16Little = 4096,
+    Order32Little = 8192,
+    Order16Big = 12288,
+    Order32Big = 16384,
 };
 
 pub const ImagePixelFormatInfo = enum(objc.uint32_t) {
-    kCGImagePixelFormatMask = 983040,
-    kCGImagePixelFormatPacked = 0,
-    kCGImagePixelFormatRGB555 = 65536,
-    kCGImagePixelFormatRGB565 = 131072,
-    kCGImagePixelFormatRGB101010 = 196608,
-    kCGImagePixelFormatRGBCIF10 = 262144,
+    Mask = 983040,
+    Packed = 0,
+    RGB555 = 65536,
+    RGB565 = 131072,
+    RGB101010 = 196608,
+    RGBCIF10 = 262144,
 };
 
 pub const BitmapInfo = enum(objc.uint32_t) {
-    kCGBitmapAlphaInfoMask = 31,
-    kCGBitmapFloatInfoMask = 3840,
-    kCGBitmapFloatComponents = 256,
-    kCGBitmapByteOrderMask = 28672,
-    kCGBitmapByteOrderDefault = 0,
-    kCGBitmapByteOrder16Little = 4096,
-    kCGBitmapByteOrder32Little = 8192,
-    kCGBitmapByteOrder16Big = 12288,
-    kCGBitmapByteOrder32Big = 16384,
+    AlphaInfoMask = 31,
+    FloatInfoMask = 3840,
+    FloatComponents = 256,
+    ByteOrderMask = 28672,
+    ByteOrderDefault = 0,
+    ByteOrder16Little = 4096,
+    ByteOrder32Little = 8192,
+    ByteOrder16Big = 12288,
+    ByteOrder32Big = 16384,
 };
 
 extern "CoreGraphics" fn CGImageGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -916,15 +916,15 @@ pub const MutablePathRef = ?*Path;
 pub const PathRef = ?*Path;
 
 pub const LineJoin = enum(objc.int32_t) {
-    kCGLineJoinMiter = 0,
-    kCGLineJoinRound = 1,
-    kCGLineJoinBevel = 2,
+    Miter = 0,
+    Round = 1,
+    Bevel = 2,
 };
 
 pub const LineCap = enum(objc.int32_t) {
-    kCGLineCapButt = 0,
-    kCGLineCapRound = 1,
-    kCGLineCapSquare = 2,
+    Butt = 0,
+    Round = 1,
+    Square = 2,
 };
 
 extern "CoreGraphics" fn CGPathGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -1120,11 +1120,11 @@ extern "CoreGraphics" fn CGPathContainsPoint(
 pub const pathContainsPoint = CGPathContainsPoint;
 
 pub const PathElementType = enum(objc.int32_t) {
-    kCGPathElementMoveToPoint = 0,
-    kCGPathElementAddLineToPoint = 1,
-    kCGPathElementAddQuadCurveToPoint = 2,
-    kCGPathElementAddCurveToPoint = 3,
-    kCGPathElementCloseSubpath = 4,
+    MoveToPoint = 0,
+    AddLineToPoint = 1,
+    AddQuadCurveToPoint = 2,
+    AddCurveToPoint = 3,
+    CloseSubpath = 4,
 };
 
 pub const PathElement = extern struct {
@@ -1199,15 +1199,15 @@ pub const PDFObject = extern struct {};
 pub const PDFObjectRef = ?*PDFObject;
 
 pub const PDFObjectType = enum(objc.int32_t) {
-    kCGPDFObjectTypeNull = 1,
-    kCGPDFObjectTypeBoolean = 2,
-    kCGPDFObjectTypeInteger = 3,
-    kCGPDFObjectTypeReal = 4,
-    kCGPDFObjectTypeName = 5,
-    kCGPDFObjectTypeString = 6,
-    kCGPDFObjectTypeArray = 7,
-    kCGPDFObjectTypeDictionary = 8,
-    kCGPDFObjectTypeStream = 9,
+    Null = 1,
+    Boolean = 2,
+    Integer = 3,
+    Real = 4,
+    Name = 5,
+    String = 6,
+    Array = 7,
+    Dictionary = 8,
+    Stream = 9,
 };
 
 extern "CoreGraphics" fn CGPDFObjectGetType(object: PDFObjectRef) callconv(.C) PDFObjectType;
@@ -1327,11 +1327,11 @@ extern "CoreGraphics" fn CGPDFDictionaryApplyBlock(dict: PDFDictionaryRef, block
 pub const pdfDictionaryApplyBlock = CGPDFDictionaryApplyBlock;
 
 pub const PDFBox = enum(objc.int32_t) {
-    kCGPDFMediaBox = 0,
-    kCGPDFCropBox = 1,
-    kCGPDFBleedBox = 2,
-    kCGPDFTrimBox = 3,
-    kCGPDFArtBox = 4,
+    MediaBox = 0,
+    CropBox = 1,
+    BleedBox = 2,
+    TrimBox = 3,
+    ArtBox = 4,
 };
 
 extern "CoreGraphics" fn CGPDFPageRetain(page: PDFPageRef) callconv(.C) PDFPageRef;
@@ -1368,14 +1368,14 @@ extern "CoreGraphics" fn CGPDFPageGetTypeID() callconv(.C) core_foundation.TypeI
 pub const pdfPageGetTypeID = CGPDFPageGetTypeID;
 
 pub const PDFAccessPermissions = enum(objc.uint32_t) {
-    kCGPDFAllowsLowQualityPrinting = 1,
-    kCGPDFAllowsHighQualityPrinting = 2,
-    kCGPDFAllowsDocumentChanges = 4,
-    kCGPDFAllowsDocumentAssembly = 8,
-    kCGPDFAllowsContentCopying = 16,
-    kCGPDFAllowsContentAccessibility = 32,
-    kCGPDFAllowsCommenting = 64,
-    kCGPDFAllowsFormFieldEntry = 128,
+    AllowsLowQualityPrinting = 1,
+    AllowsHighQualityPrinting = 2,
+    AllowsDocumentChanges = 4,
+    AllowsDocumentAssembly = 8,
+    AllowsContentCopying = 16,
+    AllowsContentAccessibility = 32,
+    AllowsCommenting = 64,
+    AllowsFormFieldEntry = 128,
 };
 
 extern "CoreGraphics" fn CGPDFDocumentCreateWithProvider(provider: DataProviderRef) callconv(.C) PDFDocumentRef;
@@ -1519,66 +1519,66 @@ extern "CoreGraphics" fn CGShadingRelease(shading: ShadingRef) callconv(.C) void
 pub const shadingRelease = CGShadingRelease;
 
 pub const PathDrawingMode = enum(objc.int32_t) {
-    kCGPathFill = 0,
-    kCGPathEOFill = 1,
-    kCGPathStroke = 2,
-    kCGPathFillStroke = 3,
-    kCGPathEOFillStroke = 4,
+    Fill = 0,
+    EOFill = 1,
+    Stroke = 2,
+    FillStroke = 3,
+    EOFillStroke = 4,
 };
 
 pub const TextDrawingMode = enum(objc.int32_t) {
-    kCGTextFill = 0,
-    kCGTextStroke = 1,
-    kCGTextFillStroke = 2,
-    kCGTextInvisible = 3,
-    kCGTextFillClip = 4,
-    kCGTextStrokeClip = 5,
-    kCGTextFillStrokeClip = 6,
-    kCGTextClip = 7,
+    Fill = 0,
+    Stroke = 1,
+    FillStroke = 2,
+    Invisible = 3,
+    FillClip = 4,
+    StrokeClip = 5,
+    FillStrokeClip = 6,
+    Clip = 7,
 };
 
 pub const TextEncoding = enum(objc.int32_t) {
-    kCGEncodingFontSpecific = 0,
-    kCGEncodingMacRoman = 1,
+    EncodingFontSpecific = 0,
+    EncodingMacRoman = 1,
 };
 
 pub const InterpolationQuality = enum(objc.int32_t) {
-    kCGInterpolationDefault = 0,
-    kCGInterpolationNone = 1,
-    kCGInterpolationLow = 2,
-    kCGInterpolationMedium = 4,
-    kCGInterpolationHigh = 3,
+    Default = 0,
+    None = 1,
+    Low = 2,
+    Medium = 4,
+    High = 3,
 };
 
 pub const BlendMode = enum(objc.int32_t) {
-    kCGBlendModeNormal = 0,
-    kCGBlendModeMultiply = 1,
-    kCGBlendModeScreen = 2,
-    kCGBlendModeOverlay = 3,
-    kCGBlendModeDarken = 4,
-    kCGBlendModeLighten = 5,
-    kCGBlendModeColorDodge = 6,
-    kCGBlendModeColorBurn = 7,
-    kCGBlendModeSoftLight = 8,
-    kCGBlendModeHardLight = 9,
-    kCGBlendModeDifference = 10,
-    kCGBlendModeExclusion = 11,
-    kCGBlendModeHue = 12,
-    kCGBlendModeSaturation = 13,
-    kCGBlendModeColor = 14,
-    kCGBlendModeLuminosity = 15,
-    kCGBlendModeClear = 16,
-    kCGBlendModeCopy = 17,
-    kCGBlendModeSourceIn = 18,
-    kCGBlendModeSourceOut = 19,
-    kCGBlendModeSourceAtop = 20,
-    kCGBlendModeDestinationOver = 21,
-    kCGBlendModeDestinationIn = 22,
-    kCGBlendModeDestinationOut = 23,
-    kCGBlendModeDestinationAtop = 24,
-    kCGBlendModeXOR = 25,
-    kCGBlendModePlusDarker = 26,
-    kCGBlendModePlusLighter = 27,
+    Normal = 0,
+    Multiply = 1,
+    Screen = 2,
+    Overlay = 3,
+    Darken = 4,
+    Lighten = 5,
+    ColorDodge = 6,
+    ColorBurn = 7,
+    SoftLight = 8,
+    HardLight = 9,
+    Difference = 10,
+    Exclusion = 11,
+    Hue = 12,
+    Saturation = 13,
+    Color = 14,
+    Luminosity = 15,
+    Clear = 16,
+    Copy = 17,
+    SourceIn = 18,
+    SourceOut = 19,
+    SourceAtop = 20,
+    DestinationOver = 21,
+    DestinationIn = 22,
+    DestinationOut = 23,
+    DestinationAtop = 24,
+    XOR = 25,
+    PlusDarker = 26,
+    PlusLighter = 27,
 };
 
 extern "CoreGraphics" fn CGContextGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -1864,12 +1864,12 @@ extern "CoreGraphics" fn CGContextDrawTiledImage(c: ContextRef, rect: core_found
 pub const contextDrawTiledImage = CGContextDrawTiledImage;
 
 pub const ToneMapping = enum(objc.uint32_t) {
-    kCGToneMappingDefault = 0,
-    kCGToneMappingImageSpecificLumaScaling = 1,
-    kCGToneMappingReferenceWhiteBased = 2,
-    kCGToneMappingITURecommended = 3,
-    kCGToneMappingEXRGamma = 4,
-    kCGToneMappingNone = 5,
+    Default = 0,
+    ImageSpecificLumaScaling = 1,
+    ReferenceWhiteBased = 2,
+    ITURecommended = 3,
+    EXRGamma = 4,
+    None = 5,
 };
 
 extern "CoreGraphics" fn CGContextDrawImageApplyingToneMapping() callconv(.C) i32;
@@ -2142,9 +2142,9 @@ extern "CoreGraphics" fn CGColorConversionInfoGetTypeID() callconv(.C) core_foun
 pub const colorConversionInfoGetTypeID = CGColorConversionInfoGetTypeID;
 
 pub const ColorConversionInfoTransformType = enum(objc.uint32_t) {
-    kCGColorConversionTransformFromSpace = 0,
-    kCGColorConversionTransformToSpace = 1,
-    kCGColorConversionTransformApplySpace = 2,
+    TransformFromSpace = 0,
+    TransformToSpace = 1,
+    TransformApplySpace = 2,
 };
 
 extern "CoreGraphics" fn CGColorConversionInfoCreate(src: ColorSpaceRef, dst: ColorSpaceRef) callconv(.C) ColorConversionInfoRef;
@@ -2215,17 +2215,17 @@ extern "CoreGraphics" fn CGDataConsumerRelease(consumer: DataConsumerRef) callco
 pub const dataConsumerRelease = CGDataConsumerRelease;
 
 pub const Error = enum(objc.int32_t) {
-    kCGErrorSuccess = 0,
-    kCGErrorFailure = 1000,
-    kCGErrorIllegalArgument = 1001,
-    kCGErrorInvalidConnection = 1002,
-    kCGErrorInvalidContext = 1003,
-    kCGErrorCannotComplete = 1004,
-    kCGErrorNotImplemented = 1006,
-    kCGErrorRangeCheck = 1007,
-    kCGErrorTypeCheck = 1008,
-    kCGErrorInvalidOperation = 1010,
-    kCGErrorNoneAvailable = 1011,
+    Success = 0,
+    Failure = 1000,
+    IllegalArgument = 1001,
+    InvalidConnection = 1002,
+    InvalidContext = 1003,
+    CannotComplete = 1004,
+    NotImplemented = 1006,
+    RangeCheck = 1007,
+    TypeCheck = 1008,
+    InvalidOperation = 1010,
+    NoneAvailable = 1011,
 };
 
 pub const ErrorCallback = ?*const fn () callconv(.C) void;
@@ -2456,24 +2456,24 @@ pub const pdfOperatorTableSetCallback = CGPDFOperatorTableSetCallback;
 pub const WindowID = objc.uint32_t;
 
 pub const WindowSharingType = enum(objc.uint32_t) {
-    kCGWindowSharingNone = 0,
-    kCGWindowSharingReadOnly = 1,
-    kCGWindowSharingReadWrite = 2,
+    None = 0,
+    ReadOnly = 1,
+    ReadWrite = 2,
 };
 
 pub const WindowBackingType = enum(objc.uint32_t) {
-    kCGBackingStoreRetained = 0,
-    kCGBackingStoreNonretained = 1,
-    kCGBackingStoreBuffered = 2,
+    BackingStoreRetained = 0,
+    BackingStoreNonretained = 1,
+    BackingStoreBuffered = 2,
 };
 
 pub const WindowListOption = enum(objc.uint32_t) {
-    kCGWindowListOptionAll = 0,
-    kCGWindowListOptionOnScreenOnly = 1,
-    kCGWindowListOptionOnScreenAboveWindow = 2,
-    kCGWindowListOptionOnScreenBelowWindow = 4,
-    kCGWindowListOptionIncludingWindow = 8,
-    kCGWindowListExcludeDesktopElements = 16,
+    All = 0,
+    OnScreenOnly = 1,
+    OnScreenAboveWindow = 2,
+    OnScreenBelowWindow = 4,
+    IncludingWindow = 8,
+    ExcludeDesktopElements = 16,
 };
 
 extern "CoreGraphics" fn CGWindowListCopyWindowInfo(option: WindowListOption, relativeToWindow: WindowID) callconv(.C) core_foundation.ArrayRef;
@@ -2486,12 +2486,12 @@ extern "CoreGraphics" fn CGWindowListCreateDescriptionFromArray(windowArray: cor
 pub const windowListCreateDescriptionFromArray = CGWindowListCreateDescriptionFromArray;
 
 pub const WindowImageOption = enum(objc.uint32_t) {
-    kCGWindowImageDefault = 0,
-    kCGWindowImageBoundsIgnoreFraming = 1,
-    kCGWindowImageShouldBeOpaque = 2,
-    kCGWindowImageOnlyShadows = 4,
-    kCGWindowImageBestResolution = 8,
-    kCGWindowImageNominalResolution = 16,
+    Default = 0,
+    BoundsIgnoreFraming = 1,
+    ShouldBeOpaque = 2,
+    OnlyShadows = 4,
+    BestResolution = 8,
+    NominalResolution = 16,
 };
 
 extern "CoreGraphics" fn CGWindowListCreateImage(
@@ -2512,28 +2512,28 @@ extern "CoreGraphics" fn CGRequestScreenCaptureAccess() callconv(.C) i32;
 pub const requestScreenCaptureAccess = CGRequestScreenCaptureAccess;
 
 pub const WindowLevelKey = enum(objc.int32_t) {
-    kCGBaseWindowLevelKey = 0,
-    kCGMinimumWindowLevelKey = 1,
-    kCGDesktopWindowLevelKey = 2,
-    kCGBackstopMenuLevelKey = 3,
-    kCGNormalWindowLevelKey = 4,
-    kCGFloatingWindowLevelKey = 5,
-    kCGTornOffMenuWindowLevelKey = 6,
-    kCGDockWindowLevelKey = 7,
-    kCGMainMenuWindowLevelKey = 8,
-    kCGStatusWindowLevelKey = 9,
-    kCGModalPanelWindowLevelKey = 10,
-    kCGPopUpMenuWindowLevelKey = 11,
-    kCGDraggingWindowLevelKey = 12,
-    kCGScreenSaverWindowLevelKey = 13,
-    kCGMaximumWindowLevelKey = 14,
-    kCGOverlayWindowLevelKey = 15,
-    kCGHelpWindowLevelKey = 16,
-    kCGUtilityWindowLevelKey = 17,
-    kCGDesktopIconWindowLevelKey = 18,
-    kCGCursorWindowLevelKey = 19,
-    kCGAssistiveTechHighWindowLevelKey = 20,
-    kCGNumberOfWindowLevelKeys = 21,
+    BaseWindowLevelKey = 0,
+    MinimumWindowLevelKey = 1,
+    DesktopWindowLevelKey = 2,
+    BackstopMenuLevelKey = 3,
+    NormalWindowLevelKey = 4,
+    FloatingWindowLevelKey = 5,
+    TornOffMenuWindowLevelKey = 6,
+    DockWindowLevelKey = 7,
+    MainMenuWindowLevelKey = 8,
+    StatusWindowLevelKey = 9,
+    ModalPanelWindowLevelKey = 10,
+    PopUpMenuWindowLevelKey = 11,
+    DraggingWindowLevelKey = 12,
+    ScreenSaverWindowLevelKey = 13,
+    MaximumWindowLevelKey = 14,
+    OverlayWindowLevelKey = 15,
+    HelpWindowLevelKey = 16,
+    UtilityWindowLevelKey = 17,
+    DesktopIconWindowLevelKey = 18,
+    CursorWindowLevelKey = 19,
+    AssistiveTechHighWindowLevelKey = 20,
+    NumberOfWindowLevelKeys = 21,
 };
 
 pub const WindowLevel = objc.int32_t;
@@ -2709,8 +2709,8 @@ extern "CoreGraphics" fn CGDisplayRestoreColorSyncSettings() callconv(.C) void;
 pub const displayRestoreColorSyncSettings = CGDisplayRestoreColorSyncSettings;
 
 pub const CaptureOptions = enum(objc.uint32_t) {
-    kCGCaptureNoOptions = 0,
-    kCGCaptureNoFill = 1,
+    NoOptions = 0,
+    NoFill = 1,
 };
 
 extern "CoreGraphics" fn CGDisplayIsCaptured(display: DirectDisplayID) callconv(.C) objc.boolean_t;
@@ -2837,9 +2837,9 @@ extern "CoreGraphics" fn CGCancelDisplayConfiguration(config: DisplayConfigRef) 
 pub const cancelDisplayConfiguration = CGCancelDisplayConfiguration;
 
 pub const ConfigureOption = enum(objc.uint32_t) {
-    kCGConfigureForAppOnly = 0,
-    kCGConfigureForSession = 1,
-    kCGConfigurePermanently = 2,
+    ForAppOnly = 0,
+    ForSession = 1,
+    Permanently = 2,
 };
 
 extern "CoreGraphics" fn CGCompleteDisplayConfiguration(config: DisplayConfigRef, option: ConfigureOption) callconv(.C) Error;
@@ -2849,17 +2849,17 @@ extern "CoreGraphics" fn CGRestorePermanentDisplayConfiguration() callconv(.C) v
 pub const restorePermanentDisplayConfiguration = CGRestorePermanentDisplayConfiguration;
 
 pub const DisplayChangeSummaryFlags = enum(objc.uint32_t) {
-    kCGDisplayBeginConfigurationFlag = 1,
-    kCGDisplayMovedFlag = 2,
-    kCGDisplaySetMainFlag = 4,
-    kCGDisplaySetModeFlag = 8,
-    kCGDisplayAddFlag = 16,
-    kCGDisplayRemoveFlag = 32,
-    kCGDisplayEnabledFlag = 256,
-    kCGDisplayDisabledFlag = 512,
-    kCGDisplayMirrorFlag = 1024,
-    kCGDisplayUnMirrorFlag = 2048,
-    kCGDisplayDesktopShapeChangedFlag = 4096,
+    BeginConfigurationFlag = 1,
+    MovedFlag = 2,
+    SetMainFlag = 4,
+    SetModeFlag = 8,
+    AddFlag = 16,
+    RemoveFlag = 32,
+    EnabledFlag = 256,
+    DisabledFlag = 512,
+    MirrorFlag = 1024,
+    UnMirrorFlag = 2048,
+    DesktopShapeChangedFlag = 4096,
 };
 
 pub const DisplayReconfigurationCallBack = ?*const fn (DirectDisplayID, DisplayChangeSummaryFlags, ?*anyopaque) callconv(.C) void;
@@ -2989,17 +2989,17 @@ pub const DisplayStreamUpdate = extern struct {};
 pub const DisplayStreamUpdateRef = ?*DisplayStreamUpdate;
 
 pub const DisplayStreamUpdateRectType = enum(objc.int32_t) {
-    kCGDisplayStreamUpdateRefreshedRects = 0,
-    kCGDisplayStreamUpdateMovedRects = 1,
-    kCGDisplayStreamUpdateDirtyRects = 2,
-    kCGDisplayStreamUpdateReducedDirtyRects = 3,
+    RefreshedRects = 0,
+    MovedRects = 1,
+    DirtyRects = 2,
+    ReducedDirtyRects = 3,
 };
 
 pub const DisplayStreamFrameStatus = enum(objc.int32_t) {
-    kCGDisplayStreamFrameStatusFrameComplete = 0,
-    kCGDisplayStreamFrameStatusFrameIdle = 1,
-    kCGDisplayStreamFrameStatusFrameBlank = 2,
-    kCGDisplayStreamFrameStatusStopped = 3,
+    FrameComplete = 0,
+    FrameIdle = 1,
+    FrameBlank = 2,
+    Stopped = 3,
 };
 
 pub const DisplayStreamFrameAvailableHandler = *const fn (
@@ -3079,9 +3079,9 @@ extern "CoreGraphics" fn CGWaitForScreenRefreshRects(rects: ?*?*core_foundation.
 pub const waitForScreenRefreshRects = CGWaitForScreenRefreshRects;
 
 pub const ScreenUpdateOperation = enum(objc.uint32_t) {
-    kCGScreenUpdateOperationRefresh = 0,
-    kCGScreenUpdateOperationMove = 1,
-    kCGScreenUpdateOperationReducedDirtyRectangleCount = -2147483648,
+    Refresh = 0,
+    Move = 1,
+    ReducedDirtyRectangleCount = -2147483648,
 };
 
 pub const ScreenUpdateMoveDelta = extern struct {
@@ -3150,15 +3150,15 @@ extern "CoreGraphics" fn CGPostKeyboardEvent(keyChar: CharCode, virtualKey: KeyC
 pub const postKeyboardEvent = CGPostKeyboardEvent;
 
 pub const EventFilterMask = enum(objc.uint32_t) {
-    kCGEventFilterMaskPermitLocalMouseEvents = 1,
-    kCGEventFilterMaskPermitLocalKeyboardEvents = 2,
-    kCGEventFilterMaskPermitSystemDefinedEvents = 4,
+    PermitLocalMouseEvents = 1,
+    PermitLocalKeyboardEvents = 2,
+    PermitSystemDefinedEvents = 4,
 };
 
 pub const EventSuppressionState = enum(objc.uint32_t) {
-    kCGEventSuppressionStateSuppressionInterval = 0,
-    kCGEventSuppressionStateRemoteMouseDrag = 1,
-    kCGNumberOfEventSuppressionStates = 2,
+    SuppressionInterval = 0,
+    RemoteMouseDrag = 1,
+    NumberOfEventSuppressionStates = 2,
 };
 
 extern "CoreGraphics" fn CGSetLocalEventsFilterDuringSuppressionState(filter: EventFilterMask, state: EventSuppressionState) callconv(.C) Error;
@@ -3177,164 +3177,164 @@ pub const __CGEvent = extern struct {};
 pub const EventRef = ?*__CGEvent;
 
 pub const MouseButton = enum(objc.uint32_t) {
-    kCGMouseButtonLeft = 0,
-    kCGMouseButtonRight = 1,
-    kCGMouseButtonCenter = 2,
+    Left = 0,
+    Right = 1,
+    Center = 2,
 };
 
 pub const ScrollEventUnit = enum(objc.uint32_t) {
-    kCGScrollEventUnitPixel = 0,
-    kCGScrollEventUnitLine = 1,
+    Pixel = 0,
+    Line = 1,
 };
 
 pub const MomentumScrollPhase = enum(objc.uint32_t) {
-    kCGMomentumScrollPhaseNone = 0,
-    kCGMomentumScrollPhaseBegin = 1,
-    kCGMomentumScrollPhaseContinue = 2,
-    kCGMomentumScrollPhaseEnd = 3,
+    None = 0,
+    Begin = 1,
+    Continue = 2,
+    End = 3,
 };
 
 pub const ScrollPhase = enum(objc.uint32_t) {
-    kCGScrollPhaseBegan = 1,
-    kCGScrollPhaseChanged = 2,
-    kCGScrollPhaseEnded = 4,
-    kCGScrollPhaseCancelled = 8,
-    kCGScrollPhaseMayBegin = 128,
+    Began = 1,
+    Changed = 2,
+    Ended = 4,
+    Cancelled = 8,
+    MayBegin = 128,
 };
 
 pub const GesturePhase = enum(objc.uint32_t) {
-    kCGGesturePhaseNone = 0,
-    kCGGesturePhaseBegan = 1,
-    kCGGesturePhaseChanged = 2,
-    kCGGesturePhaseEnded = 4,
-    kCGGesturePhaseCancelled = 8,
-    kCGGesturePhaseMayBegin = 128,
+    None = 0,
+    Began = 1,
+    Changed = 2,
+    Ended = 4,
+    Cancelled = 8,
+    MayBegin = 128,
 };
 
 pub const EventFlags = enum(objc.uint64_t) {
-    kCGEventFlagMaskAlphaShift = 65536,
-    kCGEventFlagMaskShift = 131072,
-    kCGEventFlagMaskControl = 262144,
-    kCGEventFlagMaskAlternate = 524288,
-    kCGEventFlagMaskCommand = 1048576,
-    kCGEventFlagMaskHelp = 4194304,
-    kCGEventFlagMaskSecondaryFn = 8388608,
-    kCGEventFlagMaskNumericPad = 2097152,
-    kCGEventFlagMaskNonCoalesced = 256,
+    MaskAlphaShift = 65536,
+    MaskShift = 131072,
+    MaskControl = 262144,
+    MaskAlternate = 524288,
+    MaskCommand = 1048576,
+    MaskHelp = 4194304,
+    MaskSecondaryFn = 8388608,
+    MaskNumericPad = 2097152,
+    MaskNonCoalesced = 256,
 };
 
 pub const EventType = enum(objc.uint32_t) {
-    kCGEventNull = 0,
-    kCGEventLeftMouseDown = 1,
-    kCGEventLeftMouseUp = 2,
-    kCGEventRightMouseDown = 3,
-    kCGEventRightMouseUp = 4,
-    kCGEventMouseMoved = 5,
-    kCGEventLeftMouseDragged = 6,
-    kCGEventRightMouseDragged = 7,
-    kCGEventKeyDown = 10,
-    kCGEventKeyUp = 11,
-    kCGEventFlagsChanged = 12,
-    kCGEventScrollWheel = 22,
-    kCGEventTabletPointer = 23,
-    kCGEventTabletProximity = 24,
-    kCGEventOtherMouseDown = 25,
-    kCGEventOtherMouseUp = 26,
-    kCGEventOtherMouseDragged = 27,
-    kCGEventTapDisabledByTimeout = -2,
-    kCGEventTapDisabledByUserInput = -1,
+    Null = 0,
+    LeftMouseDown = 1,
+    LeftMouseUp = 2,
+    RightMouseDown = 3,
+    RightMouseUp = 4,
+    MouseMoved = 5,
+    LeftMouseDragged = 6,
+    RightMouseDragged = 7,
+    KeyDown = 10,
+    KeyUp = 11,
+    FlagsChanged = 12,
+    ScrollWheel = 22,
+    TabletPointer = 23,
+    TabletProximity = 24,
+    OtherMouseDown = 25,
+    OtherMouseUp = 26,
+    OtherMouseDragged = 27,
+    TapDisabledByTimeout = -2,
+    TapDisabledByUserInput = -1,
 };
 
 pub const EventTimestamp = objc.uint64_t;
 
 pub const EventField = enum(objc.uint32_t) {
-    kCGMouseEventNumber = 0,
-    kCGMouseEventClickState = 1,
-    kCGMouseEventPressure = 2,
-    kCGMouseEventButtonNumber = 3,
-    kCGMouseEventDeltaX = 4,
-    kCGMouseEventDeltaY = 5,
-    kCGMouseEventInstantMouser = 6,
-    kCGMouseEventSubtype = 7,
-    kCGKeyboardEventAutorepeat = 8,
-    kCGKeyboardEventKeycode = 9,
-    kCGKeyboardEventKeyboardType = 10,
-    kCGScrollWheelEventDeltaAxis1 = 11,
-    kCGScrollWheelEventDeltaAxis2 = 12,
-    kCGScrollWheelEventDeltaAxis3 = 13,
-    kCGScrollWheelEventFixedPtDeltaAxis1 = 93,
-    kCGScrollWheelEventFixedPtDeltaAxis2 = 94,
-    kCGScrollWheelEventFixedPtDeltaAxis3 = 95,
-    kCGScrollWheelEventPointDeltaAxis1 = 96,
-    kCGScrollWheelEventPointDeltaAxis2 = 97,
-    kCGScrollWheelEventPointDeltaAxis3 = 98,
-    kCGScrollWheelEventScrollPhase = 99,
-    kCGScrollWheelEventScrollCount = 100,
-    kCGScrollWheelEventMomentumPhase = 123,
-    kCGScrollWheelEventInstantMouser = 14,
-    kCGTabletEventPointX = 15,
-    kCGTabletEventPointY = 16,
-    kCGTabletEventPointZ = 17,
-    kCGTabletEventPointButtons = 18,
-    kCGTabletEventPointPressure = 19,
-    kCGTabletEventTiltX = 20,
-    kCGTabletEventTiltY = 21,
-    kCGTabletEventRotation = 22,
-    kCGTabletEventTangentialPressure = 23,
-    kCGTabletEventDeviceID = 24,
-    kCGTabletEventVendor1 = 25,
-    kCGTabletEventVendor2 = 26,
-    kCGTabletEventVendor3 = 27,
-    kCGTabletProximityEventVendorID = 28,
-    kCGTabletProximityEventTabletID = 29,
-    kCGTabletProximityEventPointerID = 30,
-    kCGTabletProximityEventDeviceID = 31,
-    kCGTabletProximityEventSystemTabletID = 32,
-    kCGTabletProximityEventVendorPointerType = 33,
-    kCGTabletProximityEventVendorPointerSerialNumber = 34,
-    kCGTabletProximityEventVendorUniqueID = 35,
-    kCGTabletProximityEventCapabilityMask = 36,
-    kCGTabletProximityEventPointerType = 37,
-    kCGTabletProximityEventEnterProximity = 38,
-    kCGEventTargetProcessSerialNumber = 39,
-    kCGEventTargetUnixProcessID = 40,
-    kCGEventSourceUnixProcessID = 41,
-    kCGEventSourceUserData = 42,
-    kCGEventSourceUserID = 43,
-    kCGEventSourceGroupID = 44,
-    kCGEventSourceStateID = 45,
-    kCGScrollWheelEventIsContinuous = 88,
-    kCGMouseEventWindowUnderMousePointer = 91,
-    kCGMouseEventWindowUnderMousePointerThatCanHandleThisEvent = 92,
-    kCGEventUnacceleratedPointerMovementX = 170,
-    kCGEventUnacceleratedPointerMovementY = 171,
-    kCGScrollWheelEventMomentumOptionPhase = 173,
-    kCGScrollWheelEventAcceleratedDeltaAxis1 = 176,
-    kCGScrollWheelEventAcceleratedDeltaAxis2 = 175,
-    kCGScrollWheelEventRawDeltaAxis1 = 178,
-    kCGScrollWheelEventRawDeltaAxis2 = 177,
+    MouseEventNumber = 0,
+    MouseEventClickState = 1,
+    MouseEventPressure = 2,
+    MouseEventButtonNumber = 3,
+    MouseEventDeltaX = 4,
+    MouseEventDeltaY = 5,
+    MouseEventInstantMouser = 6,
+    MouseEventSubtype = 7,
+    KeyboardEventAutorepeat = 8,
+    KeyboardEventKeycode = 9,
+    KeyboardEventKeyboardType = 10,
+    ScrollWheelEventDeltaAxis1 = 11,
+    ScrollWheelEventDeltaAxis2 = 12,
+    ScrollWheelEventDeltaAxis3 = 13,
+    ScrollWheelEventFixedPtDeltaAxis1 = 93,
+    ScrollWheelEventFixedPtDeltaAxis2 = 94,
+    ScrollWheelEventFixedPtDeltaAxis3 = 95,
+    ScrollWheelEventPointDeltaAxis1 = 96,
+    ScrollWheelEventPointDeltaAxis2 = 97,
+    ScrollWheelEventPointDeltaAxis3 = 98,
+    ScrollWheelEventScrollPhase = 99,
+    ScrollWheelEventScrollCount = 100,
+    ScrollWheelEventMomentumPhase = 123,
+    ScrollWheelEventInstantMouser = 14,
+    TabletEventPointX = 15,
+    TabletEventPointY = 16,
+    TabletEventPointZ = 17,
+    TabletEventPointButtons = 18,
+    TabletEventPointPressure = 19,
+    TabletEventTiltX = 20,
+    TabletEventTiltY = 21,
+    TabletEventRotation = 22,
+    TabletEventTangentialPressure = 23,
+    TabletEventDeviceID = 24,
+    TabletEventVendor1 = 25,
+    TabletEventVendor2 = 26,
+    TabletEventVendor3 = 27,
+    TabletProximityEventVendorID = 28,
+    TabletProximityEventTabletID = 29,
+    TabletProximityEventPointerID = 30,
+    TabletProximityEventDeviceID = 31,
+    TabletProximityEventSystemTabletID = 32,
+    TabletProximityEventVendorPointerType = 33,
+    TabletProximityEventVendorPointerSerialNumber = 34,
+    TabletProximityEventVendorUniqueID = 35,
+    TabletProximityEventCapabilityMask = 36,
+    TabletProximityEventPointerType = 37,
+    TabletProximityEventEnterProximity = 38,
+    TargetProcessSerialNumber = 39,
+    TargetUnixProcessID = 40,
+    SourceUnixProcessID = 41,
+    SourceUserData = 42,
+    SourceUserID = 43,
+    SourceGroupID = 44,
+    SourceStateID = 45,
+    ScrollWheelEventIsContinuous = 88,
+    MouseEventWindowUnderMousePointer = 91,
+    MouseEventWindowUnderMousePointerThatCanHandleThisEvent = 92,
+    UnacceleratedPointerMovementX = 170,
+    UnacceleratedPointerMovementY = 171,
+    ScrollWheelEventMomentumOptionPhase = 173,
+    ScrollWheelEventAcceleratedDeltaAxis1 = 176,
+    ScrollWheelEventAcceleratedDeltaAxis2 = 175,
+    ScrollWheelEventRawDeltaAxis1 = 178,
+    ScrollWheelEventRawDeltaAxis2 = 177,
 };
 
 pub const EventMouseSubtype = enum(objc.uint32_t) {
-    kCGEventMouseSubtypeDefault = 0,
-    kCGEventMouseSubtypeTabletPoint = 1,
-    kCGEventMouseSubtypeTabletProximity = 2,
+    Default = 0,
+    TabletPoint = 1,
+    TabletProximity = 2,
 };
 
 pub const EventTapLocation = enum(objc.uint32_t) {
-    kCGHIDEventTap = 0,
-    kCGSessionEventTap = 1,
-    kCGAnnotatedSessionEventTap = 2,
+    HIDEventTap = 0,
+    SessionEventTap = 1,
+    AnnotatedSessionEventTap = 2,
 };
 
 pub const EventTapPlacement = enum(objc.uint32_t) {
-    kCGHeadInsertEventTap = 0,
-    kCGTailAppendEventTap = 1,
+    HeadInsertEventTap = 0,
+    TailAppendEventTap = 1,
 };
 
 pub const EventTapOptions = enum(objc.uint32_t) {
-    kCGEventTapOptionDefault = 0,
-    kCGEventTapOptionListenOnly = 1,
+    Default = 0,
+    ListenOnly = 1,
 };
 
 pub const EventMask = objc.uint64_t;
@@ -3370,9 +3370,9 @@ pub const __CGEventSource = extern struct {};
 pub const EventSourceRef = ?*__CGEventSource;
 
 pub const EventSourceStateID = enum(objc.int32_t) {
-    kCGEventSourceStatePrivate = -1,
-    kCGEventSourceStateCombinedSessionState = 0,
-    kCGEventSourceStateHIDSystemState = 1,
+    Private = -1,
+    CombinedSessionState = 0,
+    HIDSystemState = 1,
 };
 
 pub const EventSourceKeyboardType = objc.uint32_t;

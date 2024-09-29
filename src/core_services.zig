@@ -7,13 +7,13 @@ const disk_arbitration = @import("disk_arbitration.zig"); // Framework dependenc
 const security = @import("security.zig"); // Framework dependency Security.
 
 pub const anon5721 = enum(u32) {
-    kPEFExpSymClassShift = 24,
-    kPEFExpSymNameOffsetMask = 16777215,
-    kPEFExpSymMaxNameOffset = 16777215,
+    PEFExpSymClassShift = 24,
+    PEFExpSymNameOffsetMask = 16777215,
+    PEFExpSymMaxNameOffset = 16777215,
 };
 
 pub const anon1061 = enum(u32) {
-    kIconFamilyType = 1768124019,
+    IconFamilyType = 1768124019,
 };
 
 pub const FSRef = extern struct {
@@ -21,9 +21,9 @@ pub const FSRef = extern struct {
 };
 
 pub const anon1231 = enum(u32) {
-    kWriteReference = 0,
-    kReadReference = 1,
-    kFetchReference = 2,
+    WriteReference = 0,
+    ReadReference = 1,
+    FetchReference = 2,
     writeReference = 0,
     readReference = 1,
     fetchReference = 2,
@@ -39,82 +39,82 @@ pub const anon1211 = enum(u32) {
     typeWhoseDescriptor = 2003332979,
     formWhose = 2003332979,
     typeWhoseRange = 2003988071,
-    keyAEWhoseRangeStart = 2004055154,
-    keyAEWhoseRangeStop = 2004055152,
-    keyAEIndex = 1802069112,
-    keyAETest = 1802793844,
+    eyAEWhoseRangeStart = 2004055154,
+    eyAEWhoseRangeStop = 2004055152,
+    eyAEIndex = 1802069112,
+    eyAETest = 1802793844,
 };
 
 pub const anon2441 = enum(objc.OSType) {
-    kAESetPosition = 1886352238,
-    kAEShadow = 1936220516,
-    kAEShowClipboard = 1936221036,
-    kAEShutDown = 1936225652,
-    kAESleep = 1936483696,
-    kAESmallCaps = 1936548720,
-    kAESpecialClassProperties = 1665147681,
-    kAEStrikethrough = 1937011307,
-    kAESubscript = 1935831907,
-    kAESuperscript = 1936749411,
-    kAETableSuite = 1952607347,
-    kAETextSuite = 1413830740,
-    kAETransactionTerminated = 1953788525,
-    kAEUnderline = 1970168940,
-    kAEUndo = 1970168943,
-    kAEWholeWordEquals = 2004313457,
-    kAEYes = 2036691744,
-    kAEZoom = 2054123373,
+    AESetPosition = 1886352238,
+    AEShadow = 1936220516,
+    AEShowClipboard = 1936221036,
+    AEShutDown = 1936225652,
+    AESleep = 1936483696,
+    AESmallCaps = 1936548720,
+    AESpecialClassProperties = 1665147681,
+    AEStrikethrough = 1937011307,
+    AESubscript = 1935831907,
+    AESuperscript = 1936749411,
+    AETableSuite = 1952607347,
+    AETextSuite = 1413830740,
+    AETransactionTerminated = 1953788525,
+    AEUnderline = 1970168940,
+    AEUndo = 1970168943,
+    AEWholeWordEquals = 2004313457,
+    AEYes = 2036691744,
+    AEZoom = 2054123373,
 };
 
 pub const anon231 = enum(objc.OSStatus) {
-    kLSNo32BitEnvironmentErr = -10386,
-    kLSMalformedLocErr = -10400,
-    kLSAppInTrashErr = -10660,
-    kLSExecutableIncorrectFormat = -10661,
-    kLSAttributeNotFoundErr = -10662,
-    kLSAttributeNotSettableErr = -10663,
-    kLSIncompatibleApplicationVersionErr = -10664,
-    kLSNoRosettaEnvironmentErr = -10665,
-    kLSGarbageCollectionUnsupportedErr = -10666,
-    kLSUnknownErr = -10810,
-    kLSNotAnApplicationErr = -10811,
-    kLSNotInitializedErr = -10812,
-    kLSDataUnavailableErr = -10813,
-    kLSApplicationNotFoundErr = -10814,
-    kLSUnknownTypeErr = -10815,
-    kLSDataTooOldErr = -10816,
-    kLSDataErr = -10817,
-    kLSLaunchInProgressErr = -10818,
-    kLSNotRegisteredErr = -10819,
-    kLSAppDoesNotClaimTypeErr = -10820,
-    kLSAppDoesNotSupportSchemeWarning = -10821,
-    kLSServerCommunicationErr = -10822,
-    kLSCannotSetInfoErr = -10823,
-    kLSNoRegistrationInfoErr = -10824,
-    kLSIncompatibleSystemVersionErr = -10825,
-    kLSNoLaunchPermissionErr = -10826,
-    kLSNoExecutableErr = -10827,
-    kLSNoClassicEnvironmentErr = -10828,
-    kLSMultipleSessionsNotSupportedErr = -10829,
+    LSNo32BitEnvironmentErr = -10386,
+    LSMalformedLocErr = -10400,
+    LSAppInTrashErr = -10660,
+    LSExecutableIncorrectFormat = -10661,
+    LSAttributeNotFoundErr = -10662,
+    LSAttributeNotSettableErr = -10663,
+    LSIncompatibleApplicationVersionErr = -10664,
+    LSNoRosettaEnvironmentErr = -10665,
+    LSGarbageCollectionUnsupportedErr = -10666,
+    LSUnknownErr = -10810,
+    LSNotAnApplicationErr = -10811,
+    LSNotInitializedErr = -10812,
+    LSDataUnavailableErr = -10813,
+    LSApplicationNotFoundErr = -10814,
+    LSUnknownTypeErr = -10815,
+    LSDataTooOldErr = -10816,
+    LSDataErr = -10817,
+    LSLaunchInProgressErr = -10818,
+    LSNotRegisteredErr = -10819,
+    LSAppDoesNotClaimTypeErr = -10820,
+    LSAppDoesNotSupportSchemeWarning = -10821,
+    LSServerCommunicationErr = -10822,
+    LSCannotSetInfoErr = -10823,
+    LSNoRegistrationInfoErr = -10824,
+    LSIncompatibleSystemVersionErr = -10825,
+    LSNoLaunchPermissionErr = -10826,
+    LSNoExecutableErr = -10827,
+    LSNoClassicEnvironmentErr = -10828,
+    LSMultipleSessionsNotSupportedErr = -10829,
 };
 
 pub const anon651 = enum(u32) {
-    kIdleKCEvent = 0,
-    kLockKCEvent = 1,
-    kUnlockKCEvent = 2,
-    kAddKCEvent = 3,
-    kDeleteKCEvent = 4,
-    kUpdateKCEvent = 5,
-    kPasswordChangedKCEvent = 6,
-    kSystemKCEvent = 8,
-    kDefaultChangedKCEvent = 9,
-    kDataAccessKCEvent = 10,
-    kKeychainListChangedKCEvent = 11,
+    IdleKCEvent = 0,
+    LockKCEvent = 1,
+    UnlockKCEvent = 2,
+    AddKCEvent = 3,
+    DeleteKCEvent = 4,
+    UpdateKCEvent = 5,
+    PasswordChangedKCEvent = 6,
+    SystemKCEvent = 8,
+    DefaultChangedKCEvent = 9,
+    DataAccessKCEvent = 10,
+    KeychainListChangedKCEvent = 11,
 };
 
 pub const anon1141 = enum(u32) {
-    kUCKeyStateEntryTerminalFormat = 1,
-    kUCKeyStateEntryRangeFormat = 2,
+    UCKeyStateEntryTerminalFormat = 1,
+    UCKeyStateEntryRangeFormat = 2,
 };
 
 pub const anon271 = enum(i32) {
@@ -164,29 +164,29 @@ pub const anon371 = enum(objc.OSType) {
 };
 
 pub const anon521 = enum(u32) {
-    kTECAvailableEncodingsResType = 1668703598,
-    kTECAvailableSniffersResType = 1668707174,
-    kTECSubTextEncodingsResType = 1668707170,
-    kTECConversionInfoResType = 1668704614,
-    kTECMailEncodingsResType = 1668705644,
-    kTECWebEncodingsResType = 1668708194,
-    kTECInternetNamesResType = 1668705645,
+    TECAvailableEncodingsResType = 1668703598,
+    TECAvailableSniffersResType = 1668707174,
+    TECSubTextEncodingsResType = 1668707170,
+    TECConversionInfoResType = 1668704614,
+    TECMailEncodingsResType = 1668705644,
+    TECWebEncodingsResType = 1668708194,
+    TECInternetNamesResType = 1668705645,
 };
 
 pub const anon611 = enum(u32) {
-    kLarge1BitMask = 1229147683,
-    kLarge4BitData = 1768123444,
-    kLarge8BitData = 1768123448,
-    kLarge32BitData = 1768698674,
-    kLarge8BitMask = 1815637355,
-    kSmall1BitMask = 1768125219,
-    kSmall4BitData = 1768125236,
-    kSmall8BitData = 1768125240,
-    kSmall32BitData = 1769157426,
-    kSmall8BitMask = 1933077867,
-    kMini1BitMask = 1768123683,
-    kMini4BitData = 1768123700,
-    kMini8BitData = 1768123704,
+    Large1BitMask = 1229147683,
+    Large4BitData = 1768123444,
+    Large8BitData = 1768123448,
+    Large32BitData = 1768698674,
+    Large8BitMask = 1815637355,
+    Small1BitMask = 1768125219,
+    Small4BitData = 1768125236,
+    Small8BitData = 1768125240,
+    Small32BitData = 1769157426,
+    Small8BitMask = 1933077867,
+    Mini1BitMask = 1768123683,
+    Mini4BitData = 1768123700,
+    Mini8BitData = 1768123704,
 };
 
 pub const CustomBadgeResource = extern struct {
@@ -225,13 +225,13 @@ pub const RoutingResourcePtr = ?*RoutingResourceEntry;
 pub const RoutingResourceHandle = ?*RoutingResourcePtr;
 
 pub const anon1271 = enum(u32) {
-    kSystemFolderAliasType = 1717662585,
-    kAppleMenuFolderAliasType = 1717657965,
-    kStartupFolderAliasType = 1717662580,
-    kPrintMonitorDocsFolderAliasType = 1717661806,
-    kPreferencesFolderAliasType = 1717661798,
-    kControlPanelFolderAliasType = 1717658484,
-    kExtensionFolderAliasType = 1717659000,
+    SystemFolderAliasType = 1717662585,
+    AppleMenuFolderAliasType = 1717657965,
+    StartupFolderAliasType = 1717662580,
+    PrintMonitorDocsFolderAliasType = 1717661806,
+    PreferencesFolderAliasType = 1717661798,
+    ControlPanelFolderAliasType = 1717658484,
+    ExtensionFolderAliasType = 1717659000,
 };
 
 pub const anon1381 = enum(u32) {
@@ -241,83 +241,83 @@ pub const anon1381 = enum(u32) {
 };
 
 pub const anon1491 = enum(u32) {
-    kCSIdentityFlagNone = 0,
-    kCSIdentityFlagHidden = 1,
+    CSIdentityFlagNone = 0,
+    CSIdentityFlagHidden = 1,
 };
 
 pub const anon1761 = enum(u32) {
-    kClipboardIcon = 1129072976,
-    kClippingUnknownTypeIcon = 1668051061,
-    kClippingPictureTypeIcon = 1668051056,
-    kClippingTextTypeIcon = 1668051060,
-    kClippingSoundTypeIcon = 1668051059,
-    kDesktopIcon = 1684370283,
-    kFinderIcon = 1179534418,
-    kComputerIcon = 1919905652,
-    kFontSuitcaseIcon = 1179011404,
-    kFullTrashIcon = 1718907496,
-    kGenericApplicationIcon = 1095782476,
-    kGenericCDROMIcon = 1667523698,
-    kGenericControlPanelIcon = 1095782467,
-    kGenericControlStripModuleIcon = 1935959414,
-    kGenericComponentIcon = 1953001063,
-    kGenericDeskAccessoryIcon = 1095782468,
-    kGenericDocumentIcon = 1685021557,
-    kGenericEditionFileIcon = 1701082214,
-    kGenericExtensionIcon = 1229867348,
-    kGenericFileServerIcon = 1936881266,
-    kGenericFontIcon = 1717987692,
-    kGenericFontScalerIcon = 1935895666,
-    kGenericFloppyIcon = 1718382713,
-    kGenericHardDiskIcon = 1751413611,
-    kGenericIDiskIcon = 1768190827,
-    kGenericRemovableMediaIcon = 1919774582,
-    kGenericMoverObjectIcon = 1836021362,
-    kGenericPCCardIcon = 1885564259,
-    kGenericPreferencesIcon = 1886545254,
-    kGenericQueryDocumentIcon = 1902473849,
-    kGenericRAMDiskIcon = 1918987620,
-    kGenericSharedLibaryIcon = 1936223330,
-    kGenericStationeryIcon = 1935961955,
-    kGenericSuitcaseIcon = 1937074548,
-    kGenericURLIcon = 1735750252,
-    kGenericWORMIcon = 2003792493,
-    kInternationalResourcesIcon = 1768319340,
-    kKeyboardLayoutIcon = 1801873772,
-    kSoundFileIcon = 1936091500,
-    kSystemSuitcaseIcon = 2054388083,
-    kTrashIcon = 1953657704,
-    kTrueTypeFontIcon = 1952868716,
-    kTrueTypeFlatFontIcon = 1936092788,
-    kTrueTypeMultiFlatFontIcon = 1953784678,
-    kUserIDiskIcon = 1969517419,
-    kUnknownFSObjectIcon = 1970169459,
-    kInternationResourcesIcon = 1768319340,
+    ClipboardIcon = 1129072976,
+    ClippingUnknownTypeIcon = 1668051061,
+    ClippingPictureTypeIcon = 1668051056,
+    ClippingTextTypeIcon = 1668051060,
+    ClippingSoundTypeIcon = 1668051059,
+    DesktopIcon = 1684370283,
+    FinderIcon = 1179534418,
+    ComputerIcon = 1919905652,
+    FontSuitcaseIcon = 1179011404,
+    FullTrashIcon = 1718907496,
+    GenericApplicationIcon = 1095782476,
+    GenericCDROMIcon = 1667523698,
+    GenericControlPanelIcon = 1095782467,
+    GenericControlStripModuleIcon = 1935959414,
+    GenericComponentIcon = 1953001063,
+    GenericDeskAccessoryIcon = 1095782468,
+    GenericDocumentIcon = 1685021557,
+    GenericEditionFileIcon = 1701082214,
+    GenericExtensionIcon = 1229867348,
+    GenericFileServerIcon = 1936881266,
+    GenericFontIcon = 1717987692,
+    GenericFontScalerIcon = 1935895666,
+    GenericFloppyIcon = 1718382713,
+    GenericHardDiskIcon = 1751413611,
+    GenericIDiskIcon = 1768190827,
+    GenericRemovableMediaIcon = 1919774582,
+    GenericMoverObjectIcon = 1836021362,
+    GenericPCCardIcon = 1885564259,
+    GenericPreferencesIcon = 1886545254,
+    GenericQueryDocumentIcon = 1902473849,
+    GenericRAMDiskIcon = 1918987620,
+    GenericSharedLibaryIcon = 1936223330,
+    GenericStationeryIcon = 1935961955,
+    GenericSuitcaseIcon = 1937074548,
+    GenericURLIcon = 1735750252,
+    GenericWORMIcon = 2003792493,
+    InternationalResourcesIcon = 1768319340,
+    KeyboardLayoutIcon = 1801873772,
+    SoundFileIcon = 1936091500,
+    SystemSuitcaseIcon = 2054388083,
+    TrashIcon = 1953657704,
+    TrueTypeFontIcon = 1952868716,
+    TrueTypeFlatFontIcon = 1936092788,
+    TrueTypeMultiFlatFontIcon = 1953784678,
+    UserIDiskIcon = 1969517419,
+    UnknownFSObjectIcon = 1970169459,
+    InternationResourcesIcon = 1768319340,
 };
 
 pub const anon1981 = enum(u32) {
-    kSecOptionReserved = 255,
-    kCertUsageShift = 8,
-    kCertUsageSigningAdd = 256,
-    kCertUsageSigningAskAndAdd = 512,
-    kCertUsageVerifyAdd = 1024,
-    kCertUsageVerifyAskAndAdd = 2048,
-    kCertUsageEncryptAdd = 4096,
-    kCertUsageEncryptAskAndAdd = 8192,
-    kCertUsageDecryptAdd = 16384,
-    kCertUsageDecryptAskAndAdd = 32768,
-    kCertUsageKeyExchAdd = 65536,
-    kCertUsageKeyExchAskAndAdd = 131072,
-    kCertUsageRootAdd = 262144,
-    kCertUsageRootAskAndAdd = 524288,
-    kCertUsageSSLAdd = 1048576,
-    kCertUsageSSLAskAndAdd = 2097152,
-    kCertUsageAllAdd = 2147483392,
+    SecOptionReserved = 255,
+    CertUsageShift = 8,
+    CertUsageSigningAdd = 256,
+    CertUsageSigningAskAndAdd = 512,
+    CertUsageVerifyAdd = 1024,
+    CertUsageVerifyAskAndAdd = 2048,
+    CertUsageEncryptAdd = 4096,
+    CertUsageEncryptAskAndAdd = 8192,
+    CertUsageDecryptAdd = 16384,
+    CertUsageDecryptAskAndAdd = 32768,
+    CertUsageKeyExchAdd = 65536,
+    CertUsageKeyExchAskAndAdd = 131072,
+    CertUsageRootAdd = 262144,
+    CertUsageRootAskAndAdd = 524288,
+    CertUsageSSLAdd = 1048576,
+    CertUsageSSLAskAndAdd = 2097152,
+    CertUsageAllAdd = 2147483392,
 };
 
 pub const anon2131 = enum(u32) {
-    kFirstMagicBusyFiletype = 1652193568,
-    kLastMagicBusyFiletype = 1652193599,
+    FirstMagicBusyFiletype = 1652193568,
+    LastMagicBusyFiletype = 1652193599,
 };
 
 pub const FileInfo = extern struct {
@@ -477,25 +477,25 @@ pub const anon311 = enum(u32) {
 };
 
 pub const anon391 = enum(u32) {
-    kAEUTHasReturningParam = 31,
-    kAEUTOptional = 15,
-    kAEUTlistOfItems = 14,
-    kAEUTEnumerated = 13,
-    kAEUTReadWrite = 12,
-    kAEUTChangesState = 12,
-    kAEUTTightBindingFunction = 12,
-    kAEUTEnumsAreTypes = 11,
-    kAEUTEnumListIsExclusive = 10,
-    kAEUTReplyIsReference = 9,
-    kAEUTDirectParamIsReference = 9,
-    kAEUTParamIsReference = 9,
-    kAEUTPropertyIsReference = 9,
-    kAEUTNotDirectParamIsTarget = 8,
-    kAEUTParamIsTarget = 8,
-    kAEUTApostrophe = 3,
-    kAEUTFeminine = 2,
-    kAEUTMasculine = 1,
-    kAEUTPlural = 0,
+    AEUTHasReturningParam = 31,
+    AEUTOptional = 15,
+    AEUTlistOfItems = 14,
+    AEUTEnumerated = 13,
+    AEUTReadWrite = 12,
+    AEUTChangesState = 12,
+    AEUTTightBindingFunction = 12,
+    AEUTEnumsAreTypes = 11,
+    AEUTEnumListIsExclusive = 10,
+    AEUTReplyIsReference = 9,
+    AEUTDirectParamIsReference = 9,
+    AEUTParamIsReference = 9,
+    AEUTPropertyIsReference = 9,
+    AEUTNotDirectParamIsTarget = 8,
+    AEUTParamIsTarget = 8,
+    AEUTApostrophe = 3,
+    AEUTFeminine = 2,
+    AEUTMasculine = 1,
+    AEUTPlural = 0,
 };
 
 pub const anon441 = enum(u32) {
@@ -509,21 +509,21 @@ pub const anon441 = enum(u32) {
 };
 
 pub const anon501 = enum(i32) {
-    kGenericDocumentIconResource = -4000,
-    kGenericStationeryIconResource = -3985,
-    kGenericEditionFileIconResource = -3989,
-    kGenericApplicationIconResource = -3996,
-    kGenericDeskAccessoryIconResource = -3991,
-    kGenericFolderIconResource = -3999,
-    kPrivateFolderIconResource = -3994,
-    kFloppyIconResource = -3998,
-    kTrashIconResource = -3993,
-    kGenericRAMDiskIconResource = -3988,
-    kGenericCDROMIconResource = -3987,
+    GenericDocumentIconResource = -4000,
+    GenericStationeryIconResource = -3985,
+    GenericEditionFileIconResource = -3989,
+    GenericApplicationIconResource = -3996,
+    GenericDeskAccessoryIconResource = -3991,
+    GenericFolderIconResource = -3999,
+    PrivateFolderIconResource = -3994,
+    FloppyIconResource = -3998,
+    TrashIconResource = -3993,
+    GenericRAMDiskIconResource = -3988,
+    GenericCDROMIconResource = -3987,
 };
 
 pub const anon711 = enum(DescType) {
-    kCoreEventClass = 1634039412,
+    CoreEventClass = 1634039412,
 };
 
 pub const anon781 = enum(u32) {
@@ -541,7 +541,7 @@ pub const anon781 = enum(u32) {
 pub const DateOrders = objc.SInt8;
 
 pub const anon881 = enum(DescType) {
-    keyAERestoreAppState = 1920169071,
+    eyAERestoreAppState = 1920169071,
 };
 
 pub const OffPair = extern struct {
@@ -782,27 +782,27 @@ pub const ItlbExtRecord = extern struct {
 };
 
 pub const anon341 = enum(u32) {
-    kIconServices16PixelDataARGB = 1768108084,
-    kIconServices32PixelDataARGB = 1768108085,
-    kIconServices48PixelDataARGB = 1768108086,
-    kIconServices128PixelDataARGB = 1768108087,
+    IconServices16PixelDataARGB = 1768108084,
+    IconServices32PixelDataARGB = 1768108085,
+    IconServices48PixelDataARGB = 1768108086,
+    IconServices128PixelDataARGB = 1768108087,
 };
 
 pub const anon901 = enum(u32) {
-    kOpaqueAnyID = 0,
-    kOpaqueProcessID = 1,
-    kOpaqueTaskID = 2,
-    kOpaqueTimerID = 3,
-    kOpaqueQueueID = 4,
-    kOpaqueSemaphoreID = 5,
-    kOpaqueCriticalRegionID = 6,
-    kOpaqueCpuID = 7,
-    kOpaqueAddressSpaceID = 8,
-    kOpaqueEventID = 9,
-    kOpaqueCoherenceID = 10,
-    kOpaqueAreaID = 11,
-    kOpaqueNotificationID = 12,
-    kOpaqueConsoleID = 13,
+    OpaqueAnyID = 0,
+    OpaqueProcessID = 1,
+    OpaqueTaskID = 2,
+    OpaqueTimerID = 3,
+    OpaqueQueueID = 4,
+    OpaqueSemaphoreID = 5,
+    OpaqueCriticalRegionID = 6,
+    OpaqueCpuID = 7,
+    OpaqueAddressSpaceID = 8,
+    OpaqueEventID = 9,
+    OpaqueCoherenceID = 10,
+    OpaqueAreaID = 11,
+    OpaqueNotificationID = 12,
+    OpaqueConsoleID = 13,
 };
 
 pub const anon951 = enum(u32) {
@@ -872,8 +872,8 @@ pub const anon1391 = enum(u32) {
 };
 
 pub const anon1671 = enum(u32) {
-    kUnicodeFallbackSequencingMask = 3,
-    kUnicodeFallbackInterruptSafeMask = 4,
+    UnicodeFallbackSequencingMask = 3,
+    UnicodeFallbackInterruptSafeMask = 4,
 };
 
 pub const anon1941 = enum(u32) {
@@ -906,13 +906,13 @@ pub const anon1941 = enum(u32) {
 };
 
 pub const anon2401 = enum(u32) {
-    kGenericFolderIcon = 1718379634,
-    kDropFolderIcon = 1684172664,
-    kMountedFolderIcon = 1835955300,
-    kOpenFolderIcon = 1868983396,
-    kOwnedFolderIcon = 1870098020,
-    kPrivateFolderIcon = 1886549606,
-    kSharedFolderIcon = 1936221804,
+    GenericFolderIcon = 1718379634,
+    DropFolderIcon = 1684172664,
+    MountedFolderIcon = 1835955300,
+    OpenFolderIcon = 1868983396,
+    OwnedFolderIcon = 1870098020,
+    PrivateFolderIcon = 1886549606,
+    SharedFolderIcon = 1936221804,
 };
 
 pub const anon2531 = enum(u32) {
@@ -920,12 +920,12 @@ pub const anon2531 = enum(u32) {
 };
 
 pub const anon2611 = enum(u32) {
-    kUserFolderIcon = 1969646692,
-    kWorkgroupFolderIcon = 2003201124,
-    kGuestUserIcon = 1735750514,
-    kUserIcon = 1970496882,
-    kOwnerIcon = 1937077106,
-    kGroupIcon = 1735554416,
+    UserFolderIcon = 1969646692,
+    WorkgroupFolderIcon = 2003201124,
+    GuestUserIcon = 1735750514,
+    UserIcon = 1970496882,
+    OwnerIcon = 1937077106,
+    GroupIcon = 1735554416,
 };
 
 pub const anon2891 = enum(u32) {
@@ -958,24 +958,24 @@ pub const anon2891 = enum(u32) {
 };
 
 pub const anon3191 = enum(u32) {
-    kAppleScriptBadgeIcon = 1935897200,
-    kLockedBadgeIcon = 1818387559,
-    kMountedBadgeIcon = 1835164775,
-    kSharedBadgeIcon = 1935828071,
-    kAliasBadgeIcon = 1633838183,
-    kAlertCautionBadgeIcon = 1667392615,
+    AppleScriptBadgeIcon = 1935897200,
+    LockedBadgeIcon = 1818387559,
+    MountedBadgeIcon = 1835164775,
+    SharedBadgeIcon = 1935828071,
+    AliasBadgeIcon = 1633838183,
+    AlertCautionBadgeIcon = 1667392615,
 };
 
 pub const anon3291 = enum(u32) {
-    kAlertNoteIcon = 1852798053,
-    kAlertCautionIcon = 1667331444,
-    kAlertStopIcon = 1937010544,
+    AlertNoteIcon = 1852798053,
+    AlertCautionIcon = 1667331444,
+    AlertStopIcon = 1937010544,
 };
 
 pub const anon3611 = enum(u32) {
-    kMacRomanianDefaultVariant = 0,
-    kMacRomanianCurrencySignVariant = 1,
-    kMacRomanianEuroSignVariant = 2,
+    MacRomanianDefaultVariant = 0,
+    MacRomanianCurrencySignVariant = 1,
+    MacRomanianEuroSignVariant = 2,
 };
 
 pub const anon4001 = enum(u32) {
@@ -993,11 +993,11 @@ pub const anon4001 = enum(u32) {
 };
 
 pub const anon4271 = enum(u32) {
-    kCSIdentityQueryEventSearchPhaseFinished = 1,
-    kCSIdentityQueryEventResultsAdded = 2,
-    kCSIdentityQueryEventResultsChanged = 3,
-    kCSIdentityQueryEventResultsRemoved = 4,
-    kCSIdentityQueryEventErrorOccurred = 5,
+    CSIdentityQueryEventSearchPhaseFinished = 1,
+    CSIdentityQueryEventResultsAdded = 2,
+    CSIdentityQueryEventResultsChanged = 3,
+    CSIdentityQueryEventResultsRemoved = 4,
+    CSIdentityQueryEventErrorOccurred = 5,
 };
 
 pub const anon4551 = enum(u32) {
@@ -1092,22 +1092,22 @@ pub const anon5541 = enum(u32) {
 };
 
 pub const anon5671 = enum(u32) {
-    kRelativeFolder = 1919249510,
-    kRedirectedRelativeFolder = 1920099692,
-    kSpecialFolder = 1936745318,
+    RelativeFolder = 1919249510,
+    RedirectedRelativeFolder = 1920099692,
+    SpecialFolder = 1936745318,
 };
 
 pub const anon5801 = enum(u32) {
-    kCurrentUserFolderLocation = 1668641638,
+    CurrentUserFolderLocation = 1668641638,
 };
 
 pub const anon5961 = enum(AEKeyword) {
-    keyMenuID = 1835623456,
-    keyMenuItem = 1835627629,
-    keyCloseAllWindows = 1667331872,
-    keyOriginalBounds = 1868721764,
-    keyNewBounds = 1851944548,
-    keyLocalWhere = 1819764850,
+    eyMenuID = 1835623456,
+    eyMenuItem = 1835627629,
+    eyCloseAllWindows = 1667331872,
+    eyOriginalBounds = 1868721764,
+    eyNewBounds = 1851944548,
+    eyLocalWhere = 1819764850,
 };
 
 pub const anon6131 = enum(i32) {
@@ -1134,31 +1134,31 @@ pub const anon6191 = enum(i32) {
 };
 
 pub const anon6391 = enum(objc.OSType) {
-    kTextServiceClass = 1953724003,
-    kUpdateActiveInputArea = 1970300020,
-    kShowHideInputWindow = 1936222583,
-    kPos2Offset = 1882354548,
-    kOffset2Pos = 1936994928,
-    kUnicodeNotFromInputMethod = 1970170221,
-    kGetSelectedText = 1735686260,
-    keyAETSMDocumentRefcon = 1919247971,
-    keyAEServerInstance = 1936881257,
-    keyAETheData = 1801740660,
-    keyAEFixLength = 1718188140,
-    keyAEUpdateRange = 1969516135,
-    keyAECurrentPoint = 1668312947,
-    keyAEBufferSize = 1651861094,
-    keyAEMoveView = 1836480119,
-    keyAENextBody = 1853383268,
-    keyAETSMScriptTag = 1935895655,
-    keyAETSMTextFont = 1802795110,
-    keyAETSMTextFMFont = 1802795117,
-    keyAETSMTextPointSize = 1802793075,
-    keyAETSMEventRecord = 1952806516,
-    keyAETSMEventRef = 1952806514,
-    keyAETextServiceEncoding = 1953719662,
-    keyAETextServiceMacEncoding = 1953326446,
-    keyAETSMGlyphInfoArray = 1952934241,
+    TextServiceClass = 1953724003,
+    UpdateActiveInputArea = 1970300020,
+    ShowHideInputWindow = 1936222583,
+    Pos2Offset = 1882354548,
+    Offset2Pos = 1936994928,
+    UnicodeNotFromInputMethod = 1970170221,
+    GetSelectedText = 1735686260,
+    eyAETSMDocumentRefcon = 1919247971,
+    eyAEServerInstance = 1936881257,
+    eyAETheData = 1801740660,
+    eyAEFixLength = 1718188140,
+    eyAEUpdateRange = 1969516135,
+    eyAECurrentPoint = 1668312947,
+    eyAEBufferSize = 1651861094,
+    eyAEMoveView = 1836480119,
+    eyAENextBody = 1853383268,
+    eyAETSMScriptTag = 1935895655,
+    eyAETSMTextFont = 1802795110,
+    eyAETSMTextFMFont = 1802795117,
+    eyAETSMTextPointSize = 1802793075,
+    eyAETSMEventRecord = 1952806516,
+    eyAETSMEventRef = 1952806514,
+    eyAETextServiceEncoding = 1953719662,
+    eyAETextServiceMacEncoding = 1953326446,
+    eyAETSMGlyphInfoArray = 1952934241,
     typeTextRange = 1954050670,
     typeComponentInstance = 1668116585,
     typeOffsetArray = 1868980601,
@@ -1267,22 +1267,22 @@ pub const anon7541 = enum(u32) {
 };
 
 pub const anon8001 = enum(objc.OSType) {
-    kFAServerApp = 1936945782,
-    kDoFolderActionEvent = 1718578273,
-    kFolderActionCode = 1633907822,
-    kFolderOpenedEvent = 1718579310,
-    kFolderClosedEvent = 1717791855,
-    kFolderWindowMovedEvent = 1718839674,
-    kFolderItemsAddedEvent = 1718052212,
-    kFolderItemsRemovedEvent = 1718382451,
-    kItemList = 1718383476,
-    kNewSizeParameter = 1718514554,
-    kFASuiteCode = 1717658479,
-    kFAAttachCommand = 1635018337,
-    kFARemoveCommand = 1919772257,
-    kFAEditCommand = 1701078625,
-    kFAFileParam = 1717657964,
-    kFAIndexParam = 1768842360,
+    FAServerApp = 1936945782,
+    DoFolderActionEvent = 1718578273,
+    FolderActionCode = 1633907822,
+    FolderOpenedEvent = 1718579310,
+    FolderClosedEvent = 1717791855,
+    FolderWindowMovedEvent = 1718839674,
+    FolderItemsAddedEvent = 1718052212,
+    FolderItemsRemovedEvent = 1718382451,
+    ItemList = 1718383476,
+    NewSizeParameter = 1718514554,
+    FASuiteCode = 1717658479,
+    FAAttachCommand = 1635018337,
+    FARemoveCommand = 1919772257,
+    FAEditCommand = 1701078625,
+    FAFileParam = 1717657964,
+    FAIndexParam = 1768842360,
 };
 
 pub const anon8061 = enum(u32) {
@@ -1389,8 +1389,8 @@ pub const anon10241 = enum(u32) {
 };
 
 pub const anon731 = enum(u32) {
-    kResolveAliasFileNoUI = 1,
-    kResolveAliasTryFileIDFirst = 2,
+    ResolveAliasFileNoUI = 1,
+    ResolveAliasTryFileIDFirst = 2,
 };
 
 pub const anon961 = enum(i32) {
@@ -1511,30 +1511,30 @@ pub const anon2461 = enum(u32) {
 };
 
 pub const anon2511 = enum(u32) {
-    kSharingPrivsNotApplicableIcon = 1936223841,
-    kSharingPrivsReadOnlyIcon = 1936224879,
-    kSharingPrivsReadWriteIcon = 1936224887,
-    kSharingPrivsUnknownIcon = 1936225643,
-    kSharingPrivsWritableIcon = 2003986804,
+    SharingPrivsNotApplicableIcon = 1936223841,
+    SharingPrivsReadOnlyIcon = 1936224879,
+    SharingPrivsReadWriteIcon = 1936224887,
+    SharingPrivsUnknownIcon = 1936225643,
+    SharingPrivsWritableIcon = 2003986804,
 };
 
 pub const anon2711 = enum(u32) {
-    kLSSharedFileListNoUserInteraction = 1,
-    kLSSharedFileListDoNotMountVolumes = 2,
+    LSSharedFileListNoUserInteraction = 1,
+    LSSharedFileListDoNotMountVolumes = 2,
 };
 
 pub const anon2861 = enum(u32) {
-    kSpecialCase = 15,
+    SpecialCase = 15,
 };
 
 pub const anon3171 = enum(u32) {
-    kUCCollateTypeSourceMask = 255,
-    kUCCollateTypeShiftBits = 24,
+    UCCollateTypeSourceMask = 255,
+    UCCollateTypeShiftBits = 24,
 };
 
 pub const anon3501 = enum(u32) {
-    kUCTSDirectionNext = 0,
-    kUCTSDirectionPrevious = 1,
+    UCTSDirectionNext = 0,
+    UCTSDirectionPrevious = 1,
 };
 
 pub const anon3761 = enum(i32) {
@@ -1562,9 +1562,9 @@ pub const anon3761 = enum(i32) {
 };
 
 pub const anon4011 = enum(u32) {
-    kIconServicesNormalUsageFlag = 0,
-    kIconServicesNoBadgeFlag = 1,
-    kIconServicesUpdateIfNeededFlag = 2,
+    IconServicesNormalUsageFlag = 0,
+    IconServicesNoBadgeFlag = 1,
+    IconServicesUpdateIfNeededFlag = 2,
 };
 
 pub const anon4231 = enum(i32) {
@@ -1591,14 +1591,14 @@ pub const anon4401 = enum(i32) {
 };
 
 pub const anon4521 = enum(u32) {
-    kISOLatinHebrewImplicitOrderVariant = 0,
-    kISOLatinHebrewVisualOrderVariant = 1,
-    kISOLatinHebrewExplicitOrderVariant = 2,
+    ISOLatinHebrewImplicitOrderVariant = 0,
+    ISOLatinHebrewVisualOrderVariant = 1,
+    ISOLatinHebrewExplicitOrderVariant = 2,
 };
 
 pub const anon4651 = enum(u32) {
-    kDOSJapaneseStandardVariant = 0,
-    kDOSJapanesePalmVariant = 1,
+    DOSJapaneseStandardVariant = 0,
+    DOSJapanesePalmVariant = 1,
 };
 
 pub const anon4861 = enum(i32) {
@@ -1633,10 +1633,10 @@ pub const anon5161 = enum(i32) {
 };
 
 pub const anon5261 = enum(u32) {
-    kDeveloperDocsFolderType = 1684303715,
-    kDeveloperHelpFolderType = 1684371048,
-    kDeveloperFolderType = 1684371046,
-    kDeveloperApplicationsFolderType = 1684107376,
+    DeveloperDocsFolderType = 1684303715,
+    DeveloperHelpFolderType = 1684371048,
+    DeveloperFolderType = 1684371046,
+    DeveloperApplicationsFolderType = 1684107376,
 };
 
 pub const anon5391 = enum(i32) {
@@ -1991,28 +1991,28 @@ pub const anon9291 = enum(i32) {
 };
 
 pub const anon9431 = enum(i32) {
-    kernelIncompleteErr = -2401,
-    kernelCanceledErr = -2402,
-    kernelOptionsErr = -2403,
-    kernelPrivilegeErr = -2404,
-    kernelUnsupportedErr = -2405,
-    kernelObjectExistsErr = -2406,
-    kernelWritePermissionErr = -2407,
-    kernelReadPermissionErr = -2408,
-    kernelExecutePermissionErr = -2409,
-    kernelDeletePermissionErr = -2410,
-    kernelExecutionLevelErr = -2411,
-    kernelAttributeErr = -2412,
-    kernelAsyncSendLimitErr = -2413,
-    kernelAsyncReceiveLimitErr = -2414,
-    kernelTimeoutErr = -2415,
-    kernelInUseErr = -2416,
-    kernelTerminatedErr = -2417,
-    kernelExceptionErr = -2418,
-    kernelIDErr = -2419,
-    kernelAlreadyFreeErr = -2421,
-    kernelReturnValueErr = -2422,
-    kernelUnrecoverableErr = -2499,
+    ernelIncompleteErr = -2401,
+    ernelCanceledErr = -2402,
+    ernelOptionsErr = -2403,
+    ernelPrivilegeErr = -2404,
+    ernelUnsupportedErr = -2405,
+    ernelObjectExistsErr = -2406,
+    ernelWritePermissionErr = -2407,
+    ernelReadPermissionErr = -2408,
+    ernelExecutePermissionErr = -2409,
+    ernelDeletePermissionErr = -2410,
+    ernelExecutionLevelErr = -2411,
+    ernelAttributeErr = -2412,
+    ernelAsyncSendLimitErr = -2413,
+    ernelAsyncReceiveLimitErr = -2414,
+    ernelTimeoutErr = -2415,
+    ernelInUseErr = -2416,
+    ernelTerminatedErr = -2417,
+    ernelExceptionErr = -2418,
+    ernelIDErr = -2419,
+    ernelAlreadyFreeErr = -2421,
+    ernelReturnValueErr = -2422,
+    ernelUnrecoverableErr = -2499,
 };
 
 pub const anon9701 = enum(i32) {
@@ -2197,111 +2197,111 @@ pub const anon12371 = enum(i32) {
 };
 
 pub const anon12511 = enum(i32) {
-    kOTNoError = 0,
-    kOTOutOfMemoryErr = -3211,
-    kOTNotFoundErr = -3201,
-    kOTDuplicateFoundErr = -3216,
-    kOTBadAddressErr = -3150,
-    kOTBadOptionErr = -3151,
-    kOTAccessErr = -3152,
-    kOTBadReferenceErr = -3153,
-    kOTNoAddressErr = -3154,
-    kOTOutStateErr = -3155,
-    kOTBadSequenceErr = -3156,
-    kOTSysErrorErr = -3157,
-    kOTLookErr = -3158,
-    kOTBadDataErr = -3159,
-    kOTBufferOverflowErr = -3160,
-    kOTFlowErr = -3161,
-    kOTNoDataErr = -3162,
-    kOTNoDisconnectErr = -3163,
-    kOTNoUDErrErr = -3164,
-    kOTBadFlagErr = -3165,
-    kOTNoReleaseErr = -3166,
-    kOTNotSupportedErr = -3167,
-    kOTStateChangeErr = -3168,
-    kOTNoStructureTypeErr = -3169,
-    kOTBadNameErr = -3170,
-    kOTBadQLenErr = -3171,
-    kOTAddressBusyErr = -3172,
-    kOTIndOutErr = -3173,
-    kOTProviderMismatchErr = -3174,
-    kOTResQLenErr = -3175,
-    kOTResAddressErr = -3176,
-    kOTQFullErr = -3177,
-    kOTProtocolErr = -3178,
-    kOTBadSyncErr = -3179,
-    kOTCanceledErr = -3180,
-    kEPERMErr = -3200,
-    kENOENTErr = -3201,
-    kENORSRCErr = -3202,
-    kEINTRErr = -3203,
-    kEIOErr = -3204,
-    kENXIOErr = -3205,
-    kEBADFErr = -3208,
-    kEAGAINErr = -3210,
-    kENOMEMErr = -3211,
-    kEACCESErr = -3212,
-    kEFAULTErr = -3213,
-    kEBUSYErr = -3215,
-    kEEXISTErr = -3216,
-    kENODEVErr = -3218,
-    kEINVALErr = -3221,
-    kENOTTYErr = -3224,
-    kEPIPEErr = -3231,
-    kERANGEErr = -3233,
-    kEWOULDBLOCKErr = -3234,
-    kEDEADLKErr = -3234,
-    kEALREADYErr = -3236,
-    kENOTSOCKErr = -3237,
-    kEDESTADDRREQErr = -3238,
-    kEMSGSIZEErr = -3239,
-    kEPROTOTYPEErr = -3240,
-    kENOPROTOOPTErr = -3241,
-    kEPROTONOSUPPORTErr = -3242,
-    kESOCKTNOSUPPORTErr = -3243,
-    kEOPNOTSUPPErr = -3244,
-    kEADDRINUSEErr = -3247,
-    kEADDRNOTAVAILErr = -3248,
-    kENETDOWNErr = -3249,
-    kENETUNREACHErr = -3250,
-    kENETRESETErr = -3251,
-    kECONNABORTEDErr = -3252,
-    kECONNRESETErr = -3253,
-    kENOBUFSErr = -3254,
-    kEISCONNErr = -3255,
-    kENOTCONNErr = -3256,
-    kESHUTDOWNErr = -3257,
-    kETOOMANYREFSErr = -3258,
-    kETIMEDOUTErr = -3259,
-    kECONNREFUSEDErr = -3260,
-    kEHOSTDOWNErr = -3263,
-    kEHOSTUNREACHErr = -3264,
-    kEPROTOErr = -3269,
-    kETIMEErr = -3270,
-    kENOSRErr = -3271,
-    kEBADMSGErr = -3272,
-    kECANCELErr = -3273,
-    kENOSTRErr = -3274,
-    kENODATAErr = -3275,
-    kEINPROGRESSErr = -3276,
-    kESRCHErr = -3277,
-    kENOMSGErr = -3278,
-    kOTClientNotInittedErr = -3279,
-    kOTPortHasDiedErr = -3280,
-    kOTPortWasEjectedErr = -3281,
-    kOTBadConfigurationErr = -3282,
-    kOTConfigurationChangedErr = -3283,
-    kOTUserRequestedErr = -3284,
-    kOTPortLostConnection = -3285,
+    OTNoError = 0,
+    OTOutOfMemoryErr = -3211,
+    OTNotFoundErr = -3201,
+    OTDuplicateFoundErr = -3216,
+    OTBadAddressErr = -3150,
+    OTBadOptionErr = -3151,
+    OTAccessErr = -3152,
+    OTBadReferenceErr = -3153,
+    OTNoAddressErr = -3154,
+    OTOutStateErr = -3155,
+    OTBadSequenceErr = -3156,
+    OTSysErrorErr = -3157,
+    OTLookErr = -3158,
+    OTBadDataErr = -3159,
+    OTBufferOverflowErr = -3160,
+    OTFlowErr = -3161,
+    OTNoDataErr = -3162,
+    OTNoDisconnectErr = -3163,
+    OTNoUDErrErr = -3164,
+    OTBadFlagErr = -3165,
+    OTNoReleaseErr = -3166,
+    OTNotSupportedErr = -3167,
+    OTStateChangeErr = -3168,
+    OTNoStructureTypeErr = -3169,
+    OTBadNameErr = -3170,
+    OTBadQLenErr = -3171,
+    OTAddressBusyErr = -3172,
+    OTIndOutErr = -3173,
+    OTProviderMismatchErr = -3174,
+    OTResQLenErr = -3175,
+    OTResAddressErr = -3176,
+    OTQFullErr = -3177,
+    OTProtocolErr = -3178,
+    OTBadSyncErr = -3179,
+    OTCanceledErr = -3180,
+    EPERMErr = -3200,
+    ENOENTErr = -3201,
+    ENORSRCErr = -3202,
+    EINTRErr = -3203,
+    EIOErr = -3204,
+    ENXIOErr = -3205,
+    EBADFErr = -3208,
+    EAGAINErr = -3210,
+    ENOMEMErr = -3211,
+    EACCESErr = -3212,
+    EFAULTErr = -3213,
+    EBUSYErr = -3215,
+    EEXISTErr = -3216,
+    ENODEVErr = -3218,
+    EINVALErr = -3221,
+    ENOTTYErr = -3224,
+    EPIPEErr = -3231,
+    ERANGEErr = -3233,
+    EWOULDBLOCKErr = -3234,
+    EDEADLKErr = -3234,
+    EALREADYErr = -3236,
+    ENOTSOCKErr = -3237,
+    EDESTADDRREQErr = -3238,
+    EMSGSIZEErr = -3239,
+    EPROTOTYPEErr = -3240,
+    ENOPROTOOPTErr = -3241,
+    EPROTONOSUPPORTErr = -3242,
+    ESOCKTNOSUPPORTErr = -3243,
+    EOPNOTSUPPErr = -3244,
+    EADDRINUSEErr = -3247,
+    EADDRNOTAVAILErr = -3248,
+    ENETDOWNErr = -3249,
+    ENETUNREACHErr = -3250,
+    ENETRESETErr = -3251,
+    ECONNABORTEDErr = -3252,
+    ECONNRESETErr = -3253,
+    ENOBUFSErr = -3254,
+    EISCONNErr = -3255,
+    ENOTCONNErr = -3256,
+    ESHUTDOWNErr = -3257,
+    ETOOMANYREFSErr = -3258,
+    ETIMEDOUTErr = -3259,
+    ECONNREFUSEDErr = -3260,
+    EHOSTDOWNErr = -3263,
+    EHOSTUNREACHErr = -3264,
+    EPROTOErr = -3269,
+    ETIMEErr = -3270,
+    ENOSRErr = -3271,
+    EBADMSGErr = -3272,
+    ECANCELErr = -3273,
+    ENOSTRErr = -3274,
+    ENODATAErr = -3275,
+    EINPROGRESSErr = -3276,
+    ESRCHErr = -3277,
+    ENOMSGErr = -3278,
+    OTClientNotInittedErr = -3279,
+    OTPortHasDiedErr = -3280,
+    OTPortWasEjectedErr = -3281,
+    OTBadConfigurationErr = -3282,
+    OTConfigurationChangedErr = -3283,
+    OTUserRequestedErr = -3284,
+    OTPortLostConnection = -3285,
 };
 
 pub const anon13531 = enum(i32) {
-    kQDNoPalette = -3950,
-    kQDNoColorHWCursorSupport = -3951,
-    kQDCursorAlreadyRegistered = -3952,
-    kQDCursorNotRegistered = -3953,
-    kQDCorruptPICTDataErr = -3954,
+    QDNoPalette = -3950,
+    QDNoColorHWCursorSupport = -3951,
+    QDCursorAlreadyRegistered = -3952,
+    QDCursorNotRegistered = -3953,
+    QDCorruptPICTDataErr = -3954,
 };
 
 pub const anon13641 = enum(i32) {
@@ -2319,50 +2319,50 @@ pub const anon13641 = enum(i32) {
 };
 
 pub const anon13811 = enum(i32) {
-    kNSL68kContextNotSupported = -4170,
-    kNSLSchedulerError = -4171,
-    kNSLBadURLSyntax = -4172,
-    kNSLNoCarbonLib = -4173,
-    kNSLUILibraryNotAvailable = -4174,
-    kNSLNotImplementedYet = -4175,
-    kNSLErrNullPtrError = -4176,
-    kNSLSomePluginsFailedToLoad = -4177,
-    kNSLNullNeighborhoodPtr = -4178,
-    kNSLNoPluginsForSearch = -4179,
-    kNSLSearchAlreadyInProgress = -4180,
-    kNSLNoPluginsFound = -4181,
-    kNSLPluginLoadFailed = -4182,
-    kNSLBadProtocolTypeErr = -4183,
-    kNSLNullListPtr = -4184,
-    kNSLBadClientInfoPtr = -4185,
-    kNSLCannotContinueLookup = -4186,
-    kNSLBufferTooSmallForData = -4187,
-    kNSLNoContextAvailable = -4188,
-    kNSLRequestBufferAlreadyInList = -4189,
-    kNSLInvalidPluginSpec = -4190,
-    kNSLNoSupportForService = -4191,
-    kNSLBadNetConnection = -4192,
-    kNSLBadDataTypeErr = -4193,
-    kNSLBadServiceTypeErr = -4194,
-    kNSLBadReferenceErr = -4195,
-    kNSLNoElementsInList = -4196,
-    kNSLInsufficientOTVer = -4197,
-    kNSLInsufficientSysVer = -4198,
-    kNSLNotInitialized = -4199,
-    kNSLInitializationFailed = -4200,
+    NSL68kContextNotSupported = -4170,
+    NSLSchedulerError = -4171,
+    NSLBadURLSyntax = -4172,
+    NSLNoCarbonLib = -4173,
+    NSLUILibraryNotAvailable = -4174,
+    NSLNotImplementedYet = -4175,
+    NSLErrNullPtrError = -4176,
+    NSLSomePluginsFailedToLoad = -4177,
+    NSLNullNeighborhoodPtr = -4178,
+    NSLNoPluginsForSearch = -4179,
+    NSLSearchAlreadyInProgress = -4180,
+    NSLNoPluginsFound = -4181,
+    NSLPluginLoadFailed = -4182,
+    NSLBadProtocolTypeErr = -4183,
+    NSLNullListPtr = -4184,
+    NSLBadClientInfoPtr = -4185,
+    NSLCannotContinueLookup = -4186,
+    NSLBufferTooSmallForData = -4187,
+    NSLNoContextAvailable = -4188,
+    NSLRequestBufferAlreadyInList = -4189,
+    NSLInvalidPluginSpec = -4190,
+    NSLNoSupportForService = -4191,
+    NSLBadNetConnection = -4192,
+    NSLBadDataTypeErr = -4193,
+    NSLBadServiceTypeErr = -4194,
+    NSLBadReferenceErr = -4195,
+    NSLNoElementsInList = -4196,
+    NSLInsufficientOTVer = -4197,
+    NSLInsufficientSysVer = -4198,
+    NSLNotInitialized = -4199,
+    NSLInitializationFailed = -4200,
 };
 
 pub const anon14181 = enum(i32) {
-    kDTPHoldJobErr = -4200,
-    kDTPStopQueueErr = -4201,
-    kDTPTryAgainErr = -4202,
-    kDTPAbortJobErr = 128,
+    DTPHoldJobErr = -4200,
+    DTPStopQueueErr = -4201,
+    DTPTryAgainErr = -4202,
+    DTPAbortJobErr = 128,
 };
 
 pub const anon14271 = enum(u32) {
-    kMPLowLevelDebugger = 0,
-    kMPMidLevelDebugger = 268435456,
-    kMPHighLevelDebugger = 536870912,
+    MPLowLevelDebugger = 0,
+    MPMidLevelDebugger = 268435456,
+    MPHighLevelDebugger = 536870912,
 };
 
 pub const anon14511 = enum(i32) {
@@ -2555,12 +2555,12 @@ pub const anon17011 = enum(i32) {
 };
 
 pub const anon17071 = enum(i32) {
-    kNavWrongDialogStateErr = -5694,
-    kNavWrongDialogClassErr = -5695,
-    kNavInvalidSystemConfigErr = -5696,
-    kNavCustomControlMessageFailedErr = -5697,
-    kNavInvalidCustomControlMessageErr = -5698,
-    kNavMissingKindStringErr = -5699,
+    NavWrongDialogStateErr = -5694,
+    NavWrongDialogClassErr = -5695,
+    NavInvalidSystemConfigErr = -5696,
+    NavCustomControlMessageFailedErr = -5697,
+    NavInvalidCustomControlMessageErr = -5698,
+    NavMissingKindStringErr = -5699,
 };
 
 pub const anon17181 = enum(u32) {
@@ -2568,7 +2568,7 @@ pub const anon17181 = enum(u32) {
 };
 
 pub const anon17271 = enum(i32) {
-    kQTSSUnknownErr = -6150,
+    QTSSUnknownErr = -6150,
 };
 
 pub const anon17321 = enum(u32) {
@@ -2582,83 +2582,83 @@ pub const anon17571 = enum(u32) {
 };
 
 pub const anon17781 = enum(u32) {
-    kUSBNoErr = 0,
-    kUSBNoTran = 0,
-    kUSBNoDelay = 0,
-    kUSBPending = 1,
+    USBNoErr = 0,
+    USBNoTran = 0,
+    USBNoDelay = 0,
+    USBPending = 1,
 };
 
 pub const anon17981 = enum(i32) {
-    kUSBNotSent2Err = -6901,
-    kUSBNotSent1Err = -6902,
-    kUSBBufUnderRunErr = -6903,
-    kUSBBufOvrRunErr = -6904,
-    kUSBRes2Err = -6905,
-    kUSBRes1Err = -6906,
-    kUSBUnderRunErr = -6907,
-    kUSBOverRunErr = -6908,
-    kUSBWrongPIDErr = -6909,
-    kUSBPIDCheckErr = -6910,
-    kUSBNotRespondingErr = -6911,
-    kUSBEndpointStallErr = -6912,
-    kUSBDataToggleErr = -6913,
-    kUSBBitstufErr = -6914,
-    kUSBCRCErr = -6915,
-    kUSBLinkErr = -6916,
+    USBNotSent2Err = -6901,
+    USBNotSent1Err = -6902,
+    USBBufUnderRunErr = -6903,
+    USBBufOvrRunErr = -6904,
+    USBRes2Err = -6905,
+    USBRes1Err = -6906,
+    USBUnderRunErr = -6907,
+    USBOverRunErr = -6908,
+    USBWrongPIDErr = -6909,
+    USBPIDCheckErr = -6910,
+    USBNotRespondingErr = -6911,
+    USBEndpointStallErr = -6912,
+    USBDataToggleErr = -6913,
+    USBBitstufErr = -6914,
+    USBCRCErr = -6915,
+    USBLinkErr = -6916,
 };
 
 pub const anon18221 = enum(i32) {
-    kUSBQueueFull = -6948,
-    kUSBNotHandled = -6987,
-    kUSBUnknownNotification = -6949,
-    kUSBBadDispatchTable = -6950,
+    USBQueueFull = -6948,
+    USBNotHandled = -6987,
+    USBUnknownNotification = -6949,
+    USBBadDispatchTable = -6950,
 };
 
 pub const anon18351 = enum(i32) {
-    kUSBInternalReserved10 = -6951,
-    kUSBInternalReserved9 = -6952,
-    kUSBInternalReserved8 = -6953,
-    kUSBInternalReserved7 = -6954,
-    kUSBInternalReserved6 = -6955,
-    kUSBInternalReserved5 = -6956,
-    kUSBInternalReserved4 = -6957,
-    kUSBInternalReserved3 = -6958,
-    kUSBInternalReserved2 = -6959,
-    kUSBInternalReserved1 = -6960,
+    USBInternalReserved10 = -6951,
+    USBInternalReserved9 = -6952,
+    USBInternalReserved8 = -6953,
+    USBInternalReserved7 = -6954,
+    USBInternalReserved6 = -6955,
+    USBInternalReserved5 = -6956,
+    USBInternalReserved4 = -6957,
+    USBInternalReserved3 = -6958,
+    USBInternalReserved2 = -6959,
+    USBInternalReserved1 = -6960,
 };
 
 pub const anon18491 = enum(i32) {
-    kUSBPortDisabled = -6969,
-    kUSBQueueAborted = -6970,
-    kUSBTimedOut = -6971,
-    kUSBDeviceDisconnected = -6972,
-    kUSBDeviceNotSuspended = -6973,
-    kUSBDeviceSuspended = -6974,
-    kUSBInvalidBuffer = -6975,
-    kUSBDevicePowerProblem = -6976,
-    kUSBDeviceBusy = -6977,
-    kUSBUnknownInterfaceErr = -6978,
-    kUSBPipeStalledError = -6979,
-    kUSBPipeIdleError = -6980,
-    kUSBNoBandwidthError = -6981,
-    kUSBAbortedError = -6982,
-    kUSBFlagsError = -6983,
-    kUSBCompletionError = -6984,
-    kUSBPBLengthError = -6985,
-    kUSBPBVersionError = -6986,
-    kUSBNotFound = -6987,
-    kUSBOutOfMemoryErr = -6988,
-    kUSBDeviceErr = -6989,
-    kUSBNoDeviceErr = -6990,
-    kUSBAlreadyOpenErr = -6991,
-    kUSBTooManyTransactionsErr = -6992,
-    kUSBUnknownRequestErr = -6993,
-    kUSBRqErr = -6994,
-    kUSBIncorrectTypeErr = -6995,
-    kUSBTooManyPipesErr = -6996,
-    kUSBUnknownPipeErr = -6997,
-    kUSBUnknownDeviceErr = -6998,
-    kUSBInternalErr = -6999,
+    USBPortDisabled = -6969,
+    USBQueueAborted = -6970,
+    USBTimedOut = -6971,
+    USBDeviceDisconnected = -6972,
+    USBDeviceNotSuspended = -6973,
+    USBDeviceSuspended = -6974,
+    USBInvalidBuffer = -6975,
+    USBDevicePowerProblem = -6976,
+    USBDeviceBusy = -6977,
+    USBUnknownInterfaceErr = -6978,
+    USBPipeStalledError = -6979,
+    USBPipeIdleError = -6980,
+    USBNoBandwidthError = -6981,
+    USBAbortedError = -6982,
+    USBFlagsError = -6983,
+    USBCompletionError = -6984,
+    USBPBLengthError = -6985,
+    USBPBVersionError = -6986,
+    USBNotFound = -6987,
+    USBOutOfMemoryErr = -6988,
+    USBDeviceErr = -6989,
+    USBNoDeviceErr = -6990,
+    USBAlreadyOpenErr = -6991,
+    USBTooManyTransactionsErr = -6992,
+    USBUnknownRequestErr = -6993,
+    USBRqErr = -6994,
+    USBIncorrectTypeErr = -6995,
+    USBTooManyPipesErr = -6996,
+    USBUnknownPipeErr = -6997,
+    USBUnknownDeviceErr = -6998,
+    USBInternalErr = -6999,
 };
 
 pub const anon18871 = enum(i32) {
@@ -2688,92 +2688,92 @@ pub const anon18871 = enum(i32) {
 };
 
 pub const anon19151 = enum(i32) {
-    kRAInvalidParameter = -7100,
-    kRAInvalidPort = -7101,
-    kRAStartupFailed = -7102,
-    kRAPortSetupFailed = -7103,
-    kRAOutOfMemory = -7104,
-    kRANotSupported = -7105,
-    kRAMissingResources = -7106,
-    kRAIncompatiblePrefs = -7107,
-    kRANotConnected = -7108,
-    kRAConnectionCanceled = -7109,
-    kRAUnknownUser = -7110,
-    kRAInvalidPassword = -7111,
-    kRAInternalError = -7112,
-    kRAInstallationDamaged = -7113,
-    kRAPortBusy = -7114,
-    kRAUnknownPortState = -7115,
-    kRAInvalidPortState = -7116,
-    kRAInvalidSerialProtocol = -7117,
-    kRAUserLoginDisabled = -7118,
-    kRAUserPwdChangeRequired = -7119,
-    kRAUserPwdEntryRequired = -7120,
-    kRAUserInteractionRequired = -7121,
-    kRAInitOpenTransportFailed = -7122,
-    kRARemoteAccessNotReady = -7123,
-    kRATCPIPInactive = -7124,
-    kRATCPIPNotConfigured = -7125,
-    kRANotPrimaryInterface = -7126,
-    kRAConfigurationDBInitErr = -7127,
-    kRAPPPProtocolRejected = -7128,
-    kRAPPPAuthenticationFailed = -7129,
-    kRAPPPNegotiationFailed = -7130,
-    kRAPPPUserDisconnected = -7131,
-    kRAPPPPeerDisconnected = -7132,
-    kRAPeerNotResponding = -7133,
-    kRAATalkInactive = -7134,
-    kRAExtAuthenticationFailed = -7135,
-    kRANCPRejectedbyPeer = -7136,
-    kRADuplicateIPAddr = -7137,
-    kRACallBackFailed = -7138,
-    kRANotEnabled = -7139,
+    RAInvalidParameter = -7100,
+    RAInvalidPort = -7101,
+    RAStartupFailed = -7102,
+    RAPortSetupFailed = -7103,
+    RAOutOfMemory = -7104,
+    RANotSupported = -7105,
+    RAMissingResources = -7106,
+    RAIncompatiblePrefs = -7107,
+    RANotConnected = -7108,
+    RAConnectionCanceled = -7109,
+    RAUnknownUser = -7110,
+    RAInvalidPassword = -7111,
+    RAInternalError = -7112,
+    RAInstallationDamaged = -7113,
+    RAPortBusy = -7114,
+    RAUnknownPortState = -7115,
+    RAInvalidPortState = -7116,
+    RAInvalidSerialProtocol = -7117,
+    RAUserLoginDisabled = -7118,
+    RAUserPwdChangeRequired = -7119,
+    RAUserPwdEntryRequired = -7120,
+    RAUserInteractionRequired = -7121,
+    RAInitOpenTransportFailed = -7122,
+    RARemoteAccessNotReady = -7123,
+    RATCPIPInactive = -7124,
+    RATCPIPNotConfigured = -7125,
+    RANotPrimaryInterface = -7126,
+    RAConfigurationDBInitErr = -7127,
+    RAPPPProtocolRejected = -7128,
+    RAPPPAuthenticationFailed = -7129,
+    RAPPPNegotiationFailed = -7130,
+    RAPPPUserDisconnected = -7131,
+    RAPPPPeerDisconnected = -7132,
+    RAPeerNotResponding = -7133,
+    RAATalkInactive = -7134,
+    RAExtAuthenticationFailed = -7135,
+    RANCPRejectedbyPeer = -7136,
+    RADuplicateIPAddr = -7137,
+    RACallBackFailed = -7138,
+    RANotEnabled = -7139,
 };
 
 pub const anon19661 = enum(i32) {
-    kATSUInvalidTextLayoutErr = -8790,
-    kATSUInvalidStyleErr = -8791,
-    kATSUInvalidTextRangeErr = -8792,
-    kATSUFontsMatched = -8793,
-    kATSUFontsNotMatched = -8794,
-    kATSUNoCorrespondingFontErr = -8795,
-    kATSUInvalidFontErr = -8796,
-    kATSUInvalidAttributeValueErr = -8797,
-    kATSUInvalidAttributeSizeErr = -8798,
-    kATSUInvalidAttributeTagErr = -8799,
-    kATSUInvalidCacheErr = -8800,
-    kATSUNotSetErr = -8801,
-    kATSUNoStyleRunsAssignedErr = -8802,
-    kATSUQuickDrawTextErr = -8803,
-    kATSULowLevelErr = -8804,
-    kATSUNoFontCmapAvailableErr = -8805,
-    kATSUNoFontScalerAvailableErr = -8806,
-    kATSUCoordinateOverflowErr = -8807,
-    kATSULineBreakInWord = -8808,
-    kATSUBusyObjectErr = -8809,
+    ATSUInvalidTextLayoutErr = -8790,
+    ATSUInvalidStyleErr = -8791,
+    ATSUInvalidTextRangeErr = -8792,
+    ATSUFontsMatched = -8793,
+    ATSUFontsNotMatched = -8794,
+    ATSUNoCorrespondingFontErr = -8795,
+    ATSUInvalidFontErr = -8796,
+    ATSUInvalidAttributeValueErr = -8797,
+    ATSUInvalidAttributeSizeErr = -8798,
+    ATSUInvalidAttributeTagErr = -8799,
+    ATSUInvalidCacheErr = -8800,
+    ATSUNotSetErr = -8801,
+    ATSUNoStyleRunsAssignedErr = -8802,
+    ATSUQuickDrawTextErr = -8803,
+    ATSULowLevelErr = -8804,
+    ATSUNoFontCmapAvailableErr = -8805,
+    ATSUNoFontScalerAvailableErr = -8806,
+    ATSUCoordinateOverflowErr = -8807,
+    ATSULineBreakInWord = -8808,
+    ATSUBusyObjectErr = -8809,
 };
 
 pub const anon20311 = enum(i32) {
-    kTextUnsupportedEncodingErr = -8738,
-    kTextMalformedInputErr = -8739,
-    kTextUndefinedElementErr = -8740,
-    kTECMissingTableErr = -8745,
-    kTECTableChecksumErr = -8746,
-    kTECTableFormatErr = -8747,
-    kTECCorruptConverterErr = -8748,
-    kTECNoConversionPathErr = -8749,
-    kTECBufferBelowMinimumSizeErr = -8750,
-    kTECArrayFullErr = -8751,
-    kTECBadTextRunErr = -8752,
-    kTECPartialCharErr = -8753,
-    kTECUnmappableElementErr = -8754,
-    kTECIncompleteElementErr = -8755,
-    kTECDirectionErr = -8756,
-    kTECGlobalsUnavailableErr = -8770,
-    kTECItemUnavailableErr = -8771,
-    kTECUsedFallbacksStatus = -8783,
-    kTECNeedFlushStatus = -8784,
-    kTECOutputBufferFullStatus = -8785,
+    TextUnsupportedEncodingErr = -8738,
+    TextMalformedInputErr = -8739,
+    TextUndefinedElementErr = -8740,
+    TECMissingTableErr = -8745,
+    TECTableChecksumErr = -8746,
+    TECTableFormatErr = -8747,
+    TECCorruptConverterErr = -8748,
+    TECNoConversionPathErr = -8749,
+    TECBufferBelowMinimumSizeErr = -8750,
+    TECArrayFullErr = -8751,
+    TECBadTextRunErr = -8752,
+    TECPartialCharErr = -8753,
+    TECUnmappableElementErr = -8754,
+    TECIncompleteElementErr = -8755,
+    TECDirectionErr = -8756,
+    TECGlobalsUnavailableErr = -8770,
+    TECItemUnavailableErr = -8771,
+    TECUsedFallbacksStatus = -8783,
+    TECNeedFlushStatus = -8784,
+    TECOutputBufferFullStatus = -8785,
     unicodeChecksumErr = -8769,
     unicodeNoTableErr = -8768,
     unicodeVariantErr = -8767,
@@ -2790,19 +2790,19 @@ pub const anon20311 = enum(i32) {
 };
 
 pub const anon20721 = enum(i32) {
-    kUTCUnderflowErr = -8850,
-    kUTCOverflowErr = -8851,
-    kIllegalClockValueErr = -8852,
+    UTCUnderflowErr = -8850,
+    UTCOverflowErr = -8851,
+    IllegalClockValueErr = -8852,
 };
 
 pub const anon20821 = enum(i32) {
-    kATSUInvalidFontFallbacksErr = -8900,
-    kATSUUnsupportedStreamFormatErr = -8901,
-    kATSUBadStreamErr = -8902,
-    kATSUOutputBufferTooSmallErr = -8903,
-    kATSUInvalidCallInsideCallbackErr = -8904,
-    kATSUNoFontNameErr = -8905,
-    kATSULastErr = -8959,
+    ATSUInvalidFontFallbacksErr = -8900,
+    ATSUUnsupportedStreamFormatErr = -8901,
+    ATSUBadStreamErr = -8902,
+    ATSUOutputBufferTooSmallErr = -8903,
+    ATSUInvalidCallInsideCallbackErr = -8904,
+    ATSUNoFontNameErr = -8905,
+    ATSULastErr = -8959,
 };
 
 pub const anon21011 = enum(u32) {
@@ -2810,66 +2810,66 @@ pub const anon21011 = enum(u32) {
 };
 
 pub const anon21421 = enum(i32) {
-    kBadAdapterErr = -9050,
-    kBadAttributeErr = -9051,
-    kBadBaseErr = -9052,
-    kBadEDCErr = -9053,
-    kBadIRQErr = -9054,
-    kBadOffsetErr = -9055,
-    kBadPageErr = -9056,
-    kBadSizeErr = -9057,
-    kBadSocketErr = -9058,
-    kBadTypeErr = -9059,
-    kBadVccErr = -9060,
-    kBadVppErr = -9061,
-    kBadWindowErr = -9062,
-    kBadArgLengthErr = -9063,
-    kBadArgsErr = -9064,
-    kBadHandleErr = -9065,
-    kBadCISErr = -9066,
-    kBadSpeedErr = -9067,
-    kReadFailureErr = -9068,
-    kWriteFailureErr = -9069,
-    kGeneralFailureErr = -9070,
-    kNoCardErr = -9071,
-    kUnsupportedFunctionErr = -9072,
-    kUnsupportedModeErr = -9073,
-    kBusyErr = -9074,
-    kWriteProtectedErr = -9075,
-    kConfigurationLockedErr = -9076,
-    kInUseErr = -9077,
-    kNoMoreItemsErr = -9078,
-    kOutOfResourceErr = -9079,
-    kNoCardSevicesSocketsErr = -9080,
-    kInvalidRegEntryErr = -9081,
-    kBadLinkErr = -9082,
-    kBadDeviceErr = -9083,
-    k16BitCardErr = -9084,
-    kCardBusCardErr = -9085,
-    kPassCallToChainErr = -9086,
-    kCantConfigureCardErr = -9087,
-    kPostCardEventErr = -9088,
-    kInvalidDeviceNumber = -9089,
-    kUnsupportedVsErr = -9090,
-    kInvalidCSClientErr = -9091,
-    kBadTupleDataErr = -9092,
-    kBadCustomIFIDErr = -9093,
-    kNoIOWindowRequestedErr = -9094,
-    kNoMoreTimerClientsErr = -9095,
-    kNoMoreInterruptSlotsErr = -9096,
-    kNoClientTableErr = -9097,
-    kUnsupportedCardErr = -9098,
-    kNoCardEnablersFoundErr = -9099,
-    kNoEnablerForCardErr = -9100,
-    kNoCompatibleNameErr = -9101,
-    kClientRequestDenied = -9102,
-    kNotReadyErr = -9103,
-    kTooManyIOWindowsErr = -9104,
-    kAlreadySavedStateErr = -9105,
-    kAttemptDupCardEntryErr = -9106,
-    kCardPowerOffErr = -9107,
-    kNotZVCapableErr = -9108,
-    kNoCardBusCISErr = -9109,
+    BadAdapterErr = -9050,
+    BadAttributeErr = -9051,
+    BadBaseErr = -9052,
+    BadEDCErr = -9053,
+    BadIRQErr = -9054,
+    BadOffsetErr = -9055,
+    BadPageErr = -9056,
+    BadSizeErr = -9057,
+    BadSocketErr = -9058,
+    BadTypeErr = -9059,
+    BadVccErr = -9060,
+    BadVppErr = -9061,
+    BadWindowErr = -9062,
+    BadArgLengthErr = -9063,
+    BadArgsErr = -9064,
+    BadHandleErr = -9065,
+    BadCISErr = -9066,
+    BadSpeedErr = -9067,
+    ReadFailureErr = -9068,
+    WriteFailureErr = -9069,
+    GeneralFailureErr = -9070,
+    NoCardErr = -9071,
+    UnsupportedFunctionErr = -9072,
+    UnsupportedModeErr = -9073,
+    BusyErr = -9074,
+    WriteProtectedErr = -9075,
+    ConfigurationLockedErr = -9076,
+    InUseErr = -9077,
+    NoMoreItemsErr = -9078,
+    OutOfResourceErr = -9079,
+    NoCardSevicesSocketsErr = -9080,
+    InvalidRegEntryErr = -9081,
+    BadLinkErr = -9082,
+    BadDeviceErr = -9083,
+    _16BitCardErr = -9084,
+    CardBusCardErr = -9085,
+    PassCallToChainErr = -9086,
+    CantConfigureCardErr = -9087,
+    PostCardEventErr = -9088,
+    InvalidDeviceNumber = -9089,
+    UnsupportedVsErr = -9090,
+    InvalidCSClientErr = -9091,
+    BadTupleDataErr = -9092,
+    BadCustomIFIDErr = -9093,
+    NoIOWindowRequestedErr = -9094,
+    NoMoreTimerClientsErr = -9095,
+    NoMoreInterruptSlotsErr = -9096,
+    NoClientTableErr = -9097,
+    UnsupportedCardErr = -9098,
+    NoCardEnablersFoundErr = -9099,
+    NoEnablerForCardErr = -9100,
+    NoCompatibleNameErr = -9101,
+    ClientRequestDenied = -9102,
+    NotReadyErr = -9103,
+    TooManyIOWindowsErr = -9104,
+    AlreadySavedStateErr = -9105,
+    AttemptDupCardEntryErr = -9106,
+    CardPowerOffErr = -9107,
+    NotZVCapableErr = -9108,
+    NoCardBusCISErr = -9109,
 };
 
 pub const anon22071 = enum(i32) {
@@ -3010,15 +3010,15 @@ pub const anon23361 = enum(i32) {
 };
 
 pub const anon23471 = enum(i32) {
-    kPowerHandlerExistsForDeviceErr = -13006,
-    kPowerHandlerNotFoundForDeviceErr = -13007,
-    kPowerHandlerNotFoundForProcErr = -13008,
-    kPowerMgtMessageNotHandled = -13009,
-    kPowerMgtRequestDenied = -13010,
-    kCantReportProcessorTemperatureErr = -13013,
-    kProcessorTempRoutineRequiresMPLib2 = -13014,
-    kNoSuchPowerSource = -13020,
-    kBridgeSoftwareRunningCantSleep = -13038,
+    PowerHandlerExistsForDeviceErr = -13006,
+    PowerHandlerNotFoundForDeviceErr = -13007,
+    PowerHandlerNotFoundForProcErr = -13008,
+    PowerMgtMessageNotHandled = -13009,
+    PowerMgtRequestDenied = -13010,
+    CantReportProcessorTemperatureErr = -13013,
+    ProcessorTempRoutineRequiresMPLib2 = -13014,
+    NoSuchPowerSource = -13020,
+    BridgeSoftwareRunningCantSleep = -13038,
 };
 
 pub const anon23611 = enum(i32) {
@@ -3033,8 +3033,8 @@ pub const anon23611 = enum(i32) {
 };
 
 pub const anon23741 = enum(i32) {
-    kHIDVersionIncompatibleErr = -13909,
-    kHIDDeviceNotReady = -13910,
+    HIDVersionIncompatibleErr = -13909,
+    HIDDeviceNotReady = -13910,
 };
 
 pub const anon23811 = enum(u32) {
@@ -3053,31 +3053,31 @@ pub const anon23811 = enum(u32) {
 };
 
 pub const anon24151 = enum(i32) {
-    kModemOutOfMemory = -14000,
-    kModemPreferencesMissing = -14001,
-    kModemScriptMissing = -14002,
+    ModemOutOfMemory = -14000,
+    ModemPreferencesMissing = -14001,
+    ModemScriptMissing = -14002,
 };
 
 pub const anon24241 = enum(i32) {
-    kTXNEndIterationErr = -22000,
-    kTXNCannotAddFrameErr = -22001,
-    kTXNInvalidFrameIDErr = -22002,
-    kTXNIllegalToCrossDataBoundariesErr = -22003,
-    kTXNUserCanceledOperationErr = -22004,
-    kTXNBadDefaultFileTypeWarning = -22005,
-    kTXNCannotSetAutoIndentErr = -22006,
-    kTXNRunIndexOutofBoundsErr = -22007,
-    kTXNNoMatchErr = -22008,
-    kTXNAttributeTagInvalidForRunErr = -22009,
-    kTXNSomeOrAllTagsInvalidForRunErr = -22010,
-    kTXNInvalidRunIndex = -22011,
-    kTXNAlreadyInitializedErr = -22012,
-    kTXNCannotTurnTSMOffWhenUsingUnicodeErr = -22013,
-    kTXNCopyNotAllowedInEchoModeErr = -22014,
-    kTXNDataTypeNotAllowedErr = -22015,
-    kTXNATSUIIsNotInstalledErr = -22016,
-    kTXNOutsideOfLineErr = -22017,
-    kTXNOutsideOfFrameErr = -22018,
+    TXNEndIterationErr = -22000,
+    TXNCannotAddFrameErr = -22001,
+    TXNInvalidFrameIDErr = -22002,
+    TXNIllegalToCrossDataBoundariesErr = -22003,
+    TXNUserCanceledOperationErr = -22004,
+    TXNBadDefaultFileTypeWarning = -22005,
+    TXNCannotSetAutoIndentErr = -22006,
+    TXNRunIndexOutofBoundsErr = -22007,
+    TXNNoMatchErr = -22008,
+    TXNAttributeTagInvalidForRunErr = -22009,
+    TXNSomeOrAllTagsInvalidForRunErr = -22010,
+    TXNInvalidRunIndex = -22011,
+    TXNAlreadyInitializedErr = -22012,
+    TXNCannotTurnTSMOffWhenUsingUnicodeErr = -22013,
+    TXNCopyNotAllowedInEchoModeErr = -22014,
+    TXNDataTypeNotAllowedErr = -22015,
+    TXNATSUIIsNotInstalledErr = -22016,
+    TXNOutsideOfLineErr = -22017,
+    TXNOutsideOfFrameErr = -22018,
 };
 
 pub const anon24501 = enum(i32) {
@@ -3116,193 +3116,193 @@ pub const anon24561 = enum(i32) {
 };
 
 pub const anon24891 = enum(i32) {
-    kUCOutputBufferTooSmall = -25340,
-    kUCTextBreakLocatorMissingType = -25341,
+    UCOutputBufferTooSmall = -25340,
+    UCTextBreakLocatorMissingType = -25341,
 };
 
 pub const anon24941 = enum(i32) {
-    kUCTSNoKeysAddedToObjectErr = -25342,
-    kUCTSSearchListErr = -25343,
+    UCTSNoKeysAddedToObjectErr = -25342,
+    UCTSSearchListErr = -25343,
 };
 
 pub const anon24991 = enum(i32) {
-    kUCTokenizerIterationFinished = -25344,
-    kUCTokenizerUnknownLang = -25345,
-    kUCTokenNotFound = -25346,
+    UCTokenizerIterationFinished = -25344,
+    UCTokenizerUnknownLang = -25345,
+    UCTokenNotFound = -25346,
 };
 
 pub const anon25061 = enum(i32) {
-    kMPIterationEndErr = -29275,
-    kMPPrivilegedErr = -29276,
-    kMPProcessCreatedErr = -29288,
-    kMPProcessTerminatedErr = -29289,
-    kMPTaskCreatedErr = -29290,
-    kMPTaskBlockedErr = -29291,
-    kMPTaskStoppedErr = -29292,
-    kMPBlueBlockingErr = -29293,
-    kMPDeletedErr = -29295,
-    kMPTimeoutErr = -29296,
-    kMPTaskAbortedErr = -29297,
-    kMPInsufficientResourcesErr = -29298,
-    kMPInvalidIDErr = -29299,
+    MPIterationEndErr = -29275,
+    MPPrivilegedErr = -29276,
+    MPProcessCreatedErr = -29288,
+    MPProcessTerminatedErr = -29289,
+    MPTaskCreatedErr = -29290,
+    MPTaskBlockedErr = -29291,
+    MPTaskStoppedErr = -29292,
+    MPBlueBlockingErr = -29293,
+    MPDeletedErr = -29295,
+    MPTimeoutErr = -29296,
+    MPTaskAbortedErr = -29297,
+    MPInsufficientResourcesErr = -29298,
+    MPInvalidIDErr = -29299,
 };
 
 pub const anon25221 = enum(i32) {
-    kMPNanokernelNeedsMemoryErr = -29294,
+    MPNanokernelNeedsMemoryErr = -29294,
 };
 
 pub const anon25271 = enum(i32) {
-    kCollateAttributesNotFoundErr = -29500,
-    kCollateInvalidOptions = -29501,
-    kCollateMissingUnicodeTableErr = -29502,
-    kCollateUnicodeConvertFailedErr = -29503,
-    kCollatePatternNotFoundErr = -29504,
-    kCollateInvalidChar = -29505,
-    kCollateBufferTooSmall = -29506,
-    kCollateInvalidCollationRef = -29507,
+    CollateAttributesNotFoundErr = -29500,
+    CollateInvalidOptions = -29501,
+    CollateMissingUnicodeTableErr = -29502,
+    CollateUnicodeConvertFailedErr = -29503,
+    CollatePatternNotFoundErr = -29504,
+    CollateInvalidChar = -29505,
+    CollateBufferTooSmall = -29506,
+    CollateInvalidCollationRef = -29507,
 };
 
 pub const anon25401 = enum(i32) {
-    kFNSInvalidReferenceErr = -29580,
-    kFNSBadReferenceVersionErr = -29581,
-    kFNSInvalidProfileErr = -29582,
-    kFNSBadProfileVersionErr = -29583,
-    kFNSDuplicateReferenceErr = -29584,
-    kFNSMismatchErr = -29585,
-    kFNSInsufficientDataErr = -29586,
-    kFNSBadFlattenedSizeErr = -29587,
-    kFNSNameNotFoundErr = -29589,
+    FNSInvalidReferenceErr = -29580,
+    FNSBadReferenceVersionErr = -29581,
+    FNSInvalidProfileErr = -29582,
+    FNSBadProfileVersionErr = -29583,
+    FNSDuplicateReferenceErr = -29584,
+    FNSMismatchErr = -29585,
+    FNSInsufficientDataErr = -29586,
+    FNSBadFlattenedSizeErr = -29587,
+    FNSNameNotFoundErr = -29589,
 };
 
 pub const anon25551 = enum(i32) {
-    kLocalesBufferTooSmallErr = -30001,
-    kLocalesTableFormatErr = -30002,
-    kLocalesDefaultDisplayStatus = -30029,
+    LocalesBufferTooSmallErr = -30001,
+    LocalesTableFormatErr = -30002,
+    LocalesDefaultDisplayStatus = -30029,
 };
 
 pub const anon25631 = enum(i32) {
-    kALMInternalErr = -30049,
-    kALMGroupNotFoundErr = -30048,
-    kALMNoSuchModuleErr = -30047,
-    kALMModuleCommunicationErr = -30046,
-    kALMDuplicateModuleErr = -30045,
-    kALMInstallationErr = -30044,
-    kALMDeferSwitchErr = -30043,
-    kALMRebootFlagsLevelErr = -30042,
+    ALMInternalErr = -30049,
+    ALMGroupNotFoundErr = -30048,
+    ALMNoSuchModuleErr = -30047,
+    ALMModuleCommunicationErr = -30046,
+    ALMDuplicateModuleErr = -30045,
+    ALMInstallationErr = -30044,
+    ALMDeferSwitchErr = -30043,
+    ALMRebootFlagsLevelErr = -30042,
 };
 
 pub const anon25741 = enum(i32) {
-    kALMLocationNotFoundErr = -30048,
+    ALMLocationNotFoundErr = -30048,
 };
 
 pub const anon25801 = enum(i32) {
-    kSSpInternalErr = -30340,
-    kSSpVersionErr = -30341,
-    kSSpCantInstallErr = -30342,
-    kSSpParallelUpVectorErr = -30343,
-    kSSpScaleToZeroErr = -30344,
+    SSpInternalErr = -30340,
+    SSpVersionErr = -30341,
+    SSpCantInstallErr = -30342,
+    SSpParallelUpVectorErr = -30343,
+    SSpScaleToZeroErr = -30344,
 };
 
 pub const anon25901 = enum(i32) {
-    kNSpInitializationFailedErr = -30360,
-    kNSpAlreadyInitializedErr = -30361,
-    kNSpTopologyNotSupportedErr = -30362,
-    kNSpPipeFullErr = -30364,
-    kNSpHostFailedErr = -30365,
-    kNSpProtocolNotAvailableErr = -30366,
-    kNSpInvalidGameRefErr = -30367,
-    kNSpInvalidParameterErr = -30369,
-    kNSpOTNotPresentErr = -30370,
-    kNSpOTVersionTooOldErr = -30371,
-    kNSpMemAllocationErr = -30373,
-    kNSpAlreadyAdvertisingErr = -30374,
-    kNSpNotAdvertisingErr = -30376,
-    kNSpInvalidAddressErr = -30377,
-    kNSpFreeQExhaustedErr = -30378,
-    kNSpRemovePlayerFailedErr = -30379,
-    kNSpAddressInUseErr = -30380,
-    kNSpFeatureNotImplementedErr = -30381,
-    kNSpNameRequiredErr = -30382,
-    kNSpInvalidPlayerIDErr = -30383,
-    kNSpInvalidGroupIDErr = -30384,
-    kNSpNoPlayersErr = -30385,
-    kNSpNoGroupsErr = -30386,
-    kNSpNoHostVolunteersErr = -30387,
-    kNSpCreateGroupFailedErr = -30388,
-    kNSpAddPlayerFailedErr = -30389,
-    kNSpInvalidDefinitionErr = -30390,
-    kNSpInvalidProtocolRefErr = -30391,
-    kNSpInvalidProtocolListErr = -30392,
-    kNSpTimeoutErr = -30393,
-    kNSpGameTerminatedErr = -30394,
-    kNSpConnectFailedErr = -30395,
-    kNSpSendFailedErr = -30396,
-    kNSpMessageTooBigErr = -30397,
-    kNSpCantBlockErr = -30398,
-    kNSpJoinFailedErr = -30399,
+    NSpInitializationFailedErr = -30360,
+    NSpAlreadyInitializedErr = -30361,
+    NSpTopologyNotSupportedErr = -30362,
+    NSpPipeFullErr = -30364,
+    NSpHostFailedErr = -30365,
+    NSpProtocolNotAvailableErr = -30366,
+    NSpInvalidGameRefErr = -30367,
+    NSpInvalidParameterErr = -30369,
+    NSpOTNotPresentErr = -30370,
+    NSpOTVersionTooOldErr = -30371,
+    NSpMemAllocationErr = -30373,
+    NSpAlreadyAdvertisingErr = -30374,
+    NSpNotAdvertisingErr = -30376,
+    NSpInvalidAddressErr = -30377,
+    NSpFreeQExhaustedErr = -30378,
+    NSpRemovePlayerFailedErr = -30379,
+    NSpAddressInUseErr = -30380,
+    NSpFeatureNotImplementedErr = -30381,
+    NSpNameRequiredErr = -30382,
+    NSpInvalidPlayerIDErr = -30383,
+    NSpInvalidGroupIDErr = -30384,
+    NSpNoPlayersErr = -30385,
+    NSpNoGroupsErr = -30386,
+    NSpNoHostVolunteersErr = -30387,
+    NSpCreateGroupFailedErr = -30388,
+    NSpAddPlayerFailedErr = -30389,
+    NSpInvalidDefinitionErr = -30390,
+    NSpInvalidProtocolRefErr = -30391,
+    NSpInvalidProtocolListErr = -30392,
+    NSpTimeoutErr = -30393,
+    NSpGameTerminatedErr = -30394,
+    NSpConnectFailedErr = -30395,
+    NSpSendFailedErr = -30396,
+    NSpMessageTooBigErr = -30397,
+    NSpCantBlockErr = -30398,
+    NSpJoinFailedErr = -30399,
 };
 
 pub const anon26311 = enum(i32) {
-    kISpInternalErr = -30420,
-    kISpSystemListErr = -30421,
-    kISpBufferToSmallErr = -30422,
-    kISpElementInListErr = -30423,
-    kISpElementNotInListErr = -30424,
-    kISpSystemInactiveErr = -30425,
-    kISpDeviceInactiveErr = -30426,
-    kISpSystemActiveErr = -30427,
-    kISpDeviceActiveErr = -30428,
-    kISpListBusyErr = -30429,
+    ISpInternalErr = -30420,
+    ISpSystemListErr = -30421,
+    ISpBufferToSmallErr = -30422,
+    ISpElementInListErr = -30423,
+    ISpElementNotInListErr = -30424,
+    ISpSystemInactiveErr = -30425,
+    ISpDeviceInactiveErr = -30426,
+    ISpSystemActiveErr = -30427,
+    ISpDeviceActiveErr = -30428,
+    ISpListBusyErr = -30429,
 };
 
 pub const anon26451 = enum(i32) {
-    kDSpNotInitializedErr = -30440,
-    kDSpSystemSWTooOldErr = -30441,
-    kDSpInvalidContextErr = -30442,
-    kDSpInvalidAttributesErr = -30443,
-    kDSpContextAlreadyReservedErr = -30444,
-    kDSpContextNotReservedErr = -30445,
-    kDSpContextNotFoundErr = -30446,
-    kDSpFrameRateNotReadyErr = -30447,
-    kDSpConfirmSwitchWarning = -30448,
-    kDSpInternalErr = -30449,
-    kDSpStereoContextErr = -30450,
+    DSpNotInitializedErr = -30440,
+    DSpSystemSWTooOldErr = -30441,
+    DSpInvalidContextErr = -30442,
+    DSpInvalidAttributesErr = -30443,
+    DSpContextAlreadyReservedErr = -30444,
+    DSpContextNotReservedErr = -30445,
+    DSpContextNotFoundErr = -30446,
+    DSpFrameRateNotReadyErr = -30447,
+    DSpConfirmSwitchWarning = -30448,
+    DSpInternalErr = -30449,
+    DSpStereoContextErr = -30450,
 };
 
 pub const anon26651 = enum(i32) {
-    kFBCvTwinExceptionErr = -30500,
-    kFBCnoIndexesFound = -30501,
-    kFBCallocFailed = -30502,
-    kFBCbadParam = -30503,
-    kFBCfileNotIndexed = -30504,
-    kFBCbadIndexFile = -30505,
-    kFBCcompactionFailed = -30506,
-    kFBCvalidationFailed = -30507,
-    kFBCindexingFailed = -30508,
-    kFBCcommitFailed = -30509,
-    kFBCdeletionFailed = -30510,
-    kFBCmoveFailed = -30511,
-    kFBCtokenizationFailed = -30512,
-    kFBCmergingFailed = -30513,
-    kFBCindexCreationFailed = -30514,
-    kFBCaccessorStoreFailed = -30515,
-    kFBCaddDocFailed = -30516,
-    kFBCflushFailed = -30517,
-    kFBCindexNotFound = -30518,
-    kFBCnoSearchSession = -30519,
-    kFBCindexingCanceled = -30520,
-    kFBCaccessCanceled = -30521,
-    kFBCindexFileDestroyed = -30522,
-    kFBCindexNotAvailable = -30523,
-    kFBCsearchFailed = -30524,
-    kFBCsomeFilesNotIndexed = -30525,
-    kFBCillegalSessionChange = -30526,
-    kFBCanalysisNotAvailable = -30527,
-    kFBCbadIndexFileVersion = -30528,
-    kFBCsummarizationCanceled = -30529,
-    kFBCindexDiskIOFailed = -30530,
-    kFBCbadSearchSession = -30531,
-    kFBCnoSuchHit = -30532,
+    FBCvTwinExceptionErr = -30500,
+    FBCnoIndexesFound = -30501,
+    FBCallocFailed = -30502,
+    FBCbadParam = -30503,
+    FBCfileNotIndexed = -30504,
+    FBCbadIndexFile = -30505,
+    FBCcompactionFailed = -30506,
+    FBCvalidationFailed = -30507,
+    FBCindexingFailed = -30508,
+    FBCcommitFailed = -30509,
+    FBCdeletionFailed = -30510,
+    FBCmoveFailed = -30511,
+    FBCtokenizationFailed = -30512,
+    FBCmergingFailed = -30513,
+    FBCindexCreationFailed = -30514,
+    FBCaccessorStoreFailed = -30515,
+    FBCaddDocFailed = -30516,
+    FBCflushFailed = -30517,
+    FBCindexNotFound = -30518,
+    FBCnoSearchSession = -30519,
+    FBCindexingCanceled = -30520,
+    FBCaccessCanceled = -30521,
+    FBCindexFileDestroyed = -30522,
+    FBCindexNotAvailable = -30523,
+    FBCsearchFailed = -30524,
+    FBCsomeFilesNotIndexed = -30525,
+    FBCillegalSessionChange = -30526,
+    FBCanalysisNotAvailable = -30527,
+    FBCbadIndexFileVersion = -30528,
+    FBCsummarizationCanceled = -30529,
+    FBCindexDiskIOFailed = -30530,
+    FBCbadSearchSession = -30531,
+    FBCnoSuchHit = -30532,
 };
 
 pub const anon27041 = enum(i32) {
@@ -3359,23 +3359,23 @@ pub const anon27431 = enum(i32) {
 };
 
 pub const anon28871 = enum(i32) {
-    kURLInvalidURLReferenceError = -30770,
-    kURLProgressAlreadyDisplayedError = -30771,
-    kURLDestinationExistsError = -30772,
-    kURLInvalidURLError = -30773,
-    kURLUnsupportedSchemeError = -30774,
-    kURLServerBusyError = -30775,
-    kURLAuthenticationError = -30776,
-    kURLPropertyNotYetKnownError = -30777,
-    kURLUnknownPropertyError = -30778,
-    kURLPropertyBufferTooSmallError = -30779,
-    kURLUnsettablePropertyError = -30780,
-    kURLInvalidCallError = -30781,
-    kURLFileEmptyError = -30783,
-    kURLExtensionFailureError = -30785,
-    kURLInvalidConfigurationError = -30786,
-    kURLAccessNotAvailableError = -30787,
-    kURL68kNotSupportedError = -30788,
+    URLInvalidURLReferenceError = -30770,
+    URLProgressAlreadyDisplayedError = -30771,
+    URLDestinationExistsError = -30772,
+    URLInvalidURLError = -30773,
+    URLUnsupportedSchemeError = -30774,
+    URLServerBusyError = -30775,
+    URLAuthenticationError = -30776,
+    URLPropertyNotYetKnownError = -30777,
+    URLUnknownPropertyError = -30778,
+    URLPropertyBufferTooSmallError = -30779,
+    URLUnsettablePropertyError = -30780,
+    URLInvalidCallError = -30781,
+    URLFileEmptyError = -30783,
+    URLExtensionFailureError = -30785,
+    URLInvalidConfigurationError = -30786,
+    URLAccessNotAvailableError = -30787,
+    URL68kNotSupportedError = -30788,
 };
 
 pub const anon29161 = enum(i32) {
@@ -3517,134 +3517,134 @@ pub const anon30591 = enum(u32) {
 };
 
 pub const anon30721 = enum(u32) {
-    kPOSIXErrorBase = 100000,
-    kPOSIXErrorEPERM = 100001,
-    kPOSIXErrorENOENT = 100002,
-    kPOSIXErrorESRCH = 100003,
-    kPOSIXErrorEINTR = 100004,
-    kPOSIXErrorEIO = 100005,
-    kPOSIXErrorENXIO = 100006,
-    kPOSIXErrorE2BIG = 100007,
-    kPOSIXErrorENOEXEC = 100008,
-    kPOSIXErrorEBADF = 100009,
-    kPOSIXErrorECHILD = 100010,
-    kPOSIXErrorEDEADLK = 100011,
-    kPOSIXErrorENOMEM = 100012,
-    kPOSIXErrorEACCES = 100013,
-    kPOSIXErrorEFAULT = 100014,
-    kPOSIXErrorENOTBLK = 100015,
-    kPOSIXErrorEBUSY = 100016,
-    kPOSIXErrorEEXIST = 100017,
-    kPOSIXErrorEXDEV = 100018,
-    kPOSIXErrorENODEV = 100019,
-    kPOSIXErrorENOTDIR = 100020,
-    kPOSIXErrorEISDIR = 100021,
-    kPOSIXErrorEINVAL = 100022,
-    kPOSIXErrorENFILE = 100023,
-    kPOSIXErrorEMFILE = 100024,
-    kPOSIXErrorENOTTY = 100025,
-    kPOSIXErrorETXTBSY = 100026,
-    kPOSIXErrorEFBIG = 100027,
-    kPOSIXErrorENOSPC = 100028,
-    kPOSIXErrorESPIPE = 100029,
-    kPOSIXErrorEROFS = 100030,
-    kPOSIXErrorEMLINK = 100031,
-    kPOSIXErrorEPIPE = 100032,
-    kPOSIXErrorEDOM = 100033,
-    kPOSIXErrorERANGE = 100034,
-    kPOSIXErrorEAGAIN = 100035,
-    kPOSIXErrorEINPROGRESS = 100036,
-    kPOSIXErrorEALREADY = 100037,
-    kPOSIXErrorENOTSOCK = 100038,
-    kPOSIXErrorEDESTADDRREQ = 100039,
-    kPOSIXErrorEMSGSIZE = 100040,
-    kPOSIXErrorEPROTOTYPE = 100041,
-    kPOSIXErrorENOPROTOOPT = 100042,
-    kPOSIXErrorEPROTONOSUPPORT = 100043,
-    kPOSIXErrorESOCKTNOSUPPORT = 100044,
-    kPOSIXErrorENOTSUP = 100045,
-    kPOSIXErrorEPFNOSUPPORT = 100046,
-    kPOSIXErrorEAFNOSUPPORT = 100047,
-    kPOSIXErrorEADDRINUSE = 100048,
-    kPOSIXErrorEADDRNOTAVAIL = 100049,
-    kPOSIXErrorENETDOWN = 100050,
-    kPOSIXErrorENETUNREACH = 100051,
-    kPOSIXErrorENETRESET = 100052,
-    kPOSIXErrorECONNABORTED = 100053,
-    kPOSIXErrorECONNRESET = 100054,
-    kPOSIXErrorENOBUFS = 100055,
-    kPOSIXErrorEISCONN = 100056,
-    kPOSIXErrorENOTCONN = 100057,
-    kPOSIXErrorESHUTDOWN = 100058,
-    kPOSIXErrorETOOMANYREFS = 100059,
-    kPOSIXErrorETIMEDOUT = 100060,
-    kPOSIXErrorECONNREFUSED = 100061,
-    kPOSIXErrorELOOP = 100062,
-    kPOSIXErrorENAMETOOLONG = 100063,
-    kPOSIXErrorEHOSTDOWN = 100064,
-    kPOSIXErrorEHOSTUNREACH = 100065,
-    kPOSIXErrorENOTEMPTY = 100066,
-    kPOSIXErrorEPROCLIM = 100067,
-    kPOSIXErrorEUSERS = 100068,
-    kPOSIXErrorEDQUOT = 100069,
-    kPOSIXErrorESTALE = 100070,
-    kPOSIXErrorEREMOTE = 100071,
-    kPOSIXErrorEBADRPC = 100072,
-    kPOSIXErrorERPCMISMATCH = 100073,
-    kPOSIXErrorEPROGUNAVAIL = 100074,
-    kPOSIXErrorEPROGMISMATCH = 100075,
-    kPOSIXErrorEPROCUNAVAIL = 100076,
-    kPOSIXErrorENOLCK = 100077,
-    kPOSIXErrorENOSYS = 100078,
-    kPOSIXErrorEFTYPE = 100079,
-    kPOSIXErrorEAUTH = 100080,
-    kPOSIXErrorENEEDAUTH = 100081,
-    kPOSIXErrorEPWROFF = 100082,
-    kPOSIXErrorEDEVERR = 100083,
-    kPOSIXErrorEOVERFLOW = 100084,
-    kPOSIXErrorEBADEXEC = 100085,
-    kPOSIXErrorEBADARCH = 100086,
-    kPOSIXErrorESHLIBVERS = 100087,
-    kPOSIXErrorEBADMACHO = 100088,
-    kPOSIXErrorECANCELED = 100089,
-    kPOSIXErrorEIDRM = 100090,
-    kPOSIXErrorENOMSG = 100091,
-    kPOSIXErrorEILSEQ = 100092,
-    kPOSIXErrorENOATTR = 100093,
-    kPOSIXErrorEBADMSG = 100094,
-    kPOSIXErrorEMULTIHOP = 100095,
-    kPOSIXErrorENODATA = 100096,
-    kPOSIXErrorENOLINK = 100097,
-    kPOSIXErrorENOSR = 100098,
-    kPOSIXErrorENOSTR = 100099,
-    kPOSIXErrorEPROTO = 100100,
-    kPOSIXErrorETIME = 100101,
-    kPOSIXErrorEOPNOTSUPP = 100102,
+    POSIXErrorBase = 100000,
+    POSIXErrorEPERM = 100001,
+    POSIXErrorENOENT = 100002,
+    POSIXErrorESRCH = 100003,
+    POSIXErrorEINTR = 100004,
+    POSIXErrorEIO = 100005,
+    POSIXErrorENXIO = 100006,
+    POSIXErrorE2BIG = 100007,
+    POSIXErrorENOEXEC = 100008,
+    POSIXErrorEBADF = 100009,
+    POSIXErrorECHILD = 100010,
+    POSIXErrorEDEADLK = 100011,
+    POSIXErrorENOMEM = 100012,
+    POSIXErrorEACCES = 100013,
+    POSIXErrorEFAULT = 100014,
+    POSIXErrorENOTBLK = 100015,
+    POSIXErrorEBUSY = 100016,
+    POSIXErrorEEXIST = 100017,
+    POSIXErrorEXDEV = 100018,
+    POSIXErrorENODEV = 100019,
+    POSIXErrorENOTDIR = 100020,
+    POSIXErrorEISDIR = 100021,
+    POSIXErrorEINVAL = 100022,
+    POSIXErrorENFILE = 100023,
+    POSIXErrorEMFILE = 100024,
+    POSIXErrorENOTTY = 100025,
+    POSIXErrorETXTBSY = 100026,
+    POSIXErrorEFBIG = 100027,
+    POSIXErrorENOSPC = 100028,
+    POSIXErrorESPIPE = 100029,
+    POSIXErrorEROFS = 100030,
+    POSIXErrorEMLINK = 100031,
+    POSIXErrorEPIPE = 100032,
+    POSIXErrorEDOM = 100033,
+    POSIXErrorERANGE = 100034,
+    POSIXErrorEAGAIN = 100035,
+    POSIXErrorEINPROGRESS = 100036,
+    POSIXErrorEALREADY = 100037,
+    POSIXErrorENOTSOCK = 100038,
+    POSIXErrorEDESTADDRREQ = 100039,
+    POSIXErrorEMSGSIZE = 100040,
+    POSIXErrorEPROTOTYPE = 100041,
+    POSIXErrorENOPROTOOPT = 100042,
+    POSIXErrorEPROTONOSUPPORT = 100043,
+    POSIXErrorESOCKTNOSUPPORT = 100044,
+    POSIXErrorENOTSUP = 100045,
+    POSIXErrorEPFNOSUPPORT = 100046,
+    POSIXErrorEAFNOSUPPORT = 100047,
+    POSIXErrorEADDRINUSE = 100048,
+    POSIXErrorEADDRNOTAVAIL = 100049,
+    POSIXErrorENETDOWN = 100050,
+    POSIXErrorENETUNREACH = 100051,
+    POSIXErrorENETRESET = 100052,
+    POSIXErrorECONNABORTED = 100053,
+    POSIXErrorECONNRESET = 100054,
+    POSIXErrorENOBUFS = 100055,
+    POSIXErrorEISCONN = 100056,
+    POSIXErrorENOTCONN = 100057,
+    POSIXErrorESHUTDOWN = 100058,
+    POSIXErrorETOOMANYREFS = 100059,
+    POSIXErrorETIMEDOUT = 100060,
+    POSIXErrorECONNREFUSED = 100061,
+    POSIXErrorELOOP = 100062,
+    POSIXErrorENAMETOOLONG = 100063,
+    POSIXErrorEHOSTDOWN = 100064,
+    POSIXErrorEHOSTUNREACH = 100065,
+    POSIXErrorENOTEMPTY = 100066,
+    POSIXErrorEPROCLIM = 100067,
+    POSIXErrorEUSERS = 100068,
+    POSIXErrorEDQUOT = 100069,
+    POSIXErrorESTALE = 100070,
+    POSIXErrorEREMOTE = 100071,
+    POSIXErrorEBADRPC = 100072,
+    POSIXErrorERPCMISMATCH = 100073,
+    POSIXErrorEPROGUNAVAIL = 100074,
+    POSIXErrorEPROGMISMATCH = 100075,
+    POSIXErrorEPROCUNAVAIL = 100076,
+    POSIXErrorENOLCK = 100077,
+    POSIXErrorENOSYS = 100078,
+    POSIXErrorEFTYPE = 100079,
+    POSIXErrorEAUTH = 100080,
+    POSIXErrorENEEDAUTH = 100081,
+    POSIXErrorEPWROFF = 100082,
+    POSIXErrorEDEVERR = 100083,
+    POSIXErrorEOVERFLOW = 100084,
+    POSIXErrorEBADEXEC = 100085,
+    POSIXErrorEBADARCH = 100086,
+    POSIXErrorESHLIBVERS = 100087,
+    POSIXErrorEBADMACHO = 100088,
+    POSIXErrorECANCELED = 100089,
+    POSIXErrorEIDRM = 100090,
+    POSIXErrorENOMSG = 100091,
+    POSIXErrorEILSEQ = 100092,
+    POSIXErrorENOATTR = 100093,
+    POSIXErrorEBADMSG = 100094,
+    POSIXErrorEMULTIHOP = 100095,
+    POSIXErrorENODATA = 100096,
+    POSIXErrorENOLINK = 100097,
+    POSIXErrorENOSR = 100098,
+    POSIXErrorENOSTR = 100099,
+    POSIXErrorEPROTO = 100100,
+    POSIXErrorETIME = 100101,
+    POSIXErrorEOPNOTSUPP = 100102,
 };
 
 extern "CoreServices" fn SysError(errorCode: i16) callconv(.C) void;
 pub const sysError = SysError;
 
 pub const anon411 = enum(u32) {
-    kAEAND = 1095648288,
-    kAEOR = 1330782240,
-    kAENOT = 1313821728,
-    kAEFirst = 1718186611,
-    kAELast = 1818325876,
-    kAEMiddle = 1835623524,
-    kAEAny = 1634629920,
-    kAEAll = 1634495520,
-    kAENext = 1852143732,
-    kAEPrevious = 1886545270,
-    keyAECompOperator = 1919249519,
-    keyAELogicalTerms = 1952805485,
-    keyAELogicalOperator = 1819240291,
-    keyAEObject1 = 1868720689,
-    keyAEObject2 = 1868720690,
-    keyAEDesiredClass = 2002873972,
-    keyAEContainer = 1718775661,
-    keyAEKeyForm = 1718579821,
-    keyAEKeyData = 1936026724,
+    AEAND = 1095648288,
+    AEOR = 1330782240,
+    AENOT = 1313821728,
+    AEFirst = 1718186611,
+    AELast = 1818325876,
+    AEMiddle = 1835623524,
+    AEAny = 1634629920,
+    AEAll = 1634495520,
+    AENext = 1852143732,
+    AEPrevious = 1886545270,
+    eyAECompOperator = 1919249519,
+    eyAELogicalTerms = 1952805485,
+    eyAELogicalOperator = 1819240291,
+    eyAEObject1 = 1868720689,
+    eyAEObject2 = 1868720690,
+    eyAEDesiredClass = 2002873972,
+    eyAEContainer = 1718775661,
+    eyAEKeyForm = 1718579821,
+    eyAEKeyData = 1936026724,
 };
 
 pub const UTCDateTime = extern struct {
@@ -3668,307 +3668,307 @@ pub const LocalDateTimePtr = ?*LocalDateTime;
 pub const LocalDateTimeHandle = ?*LocalDateTimePtr;
 
 pub const anon481 = enum(u32) {
-    kSleepRequest = 1,
-    kSleepDemand = 2,
-    kSleepWakeUp = 3,
-    kSleepRevoke = 4,
-    kSleepUnlock = 4,
-    kSleepDeny = 5,
-    kSleepNow = 6,
-    kDozeDemand = 7,
-    kDozeWakeUp = 8,
-    kDozeRequest = 9,
-    kEnterStandby = 10,
-    kEnterRun = 11,
-    kSuspendRequest = 12,
-    kSuspendDemand = 13,
-    kSuspendRevoke = 14,
-    kSuspendWakeUp = 15,
-    kGetPowerLevel = 16,
-    kSetPowerLevel = 17,
-    kDeviceInitiatedWake = 18,
-    kWakeToDoze = 19,
-    kDozeToFullWakeUp = 20,
-    kGetPowerInfo = 21,
-    kGetWakeOnNetInfo = 22,
-    kSuspendWakeToDoze = 23,
-    kEnterIdle = 24,
-    kStillIdle = 25,
-    kExitIdle = 26,
+    SleepRequest = 1,
+    SleepDemand = 2,
+    SleepWakeUp = 3,
+    SleepRevoke = 4,
+    SleepUnlock = 4,
+    SleepDeny = 5,
+    SleepNow = 6,
+    DozeDemand = 7,
+    DozeWakeUp = 8,
+    DozeRequest = 9,
+    EnterStandby = 10,
+    EnterRun = 11,
+    SuspendRequest = 12,
+    SuspendDemand = 13,
+    SuspendRevoke = 14,
+    SuspendWakeUp = 15,
+    GetPowerLevel = 16,
+    SetPowerLevel = 17,
+    DeviceInitiatedWake = 18,
+    WakeToDoze = 19,
+    DozeToFullWakeUp = 20,
+    GetPowerInfo = 21,
+    GetWakeOnNetInfo = 22,
+    SuspendWakeToDoze = 23,
+    EnterIdle = 24,
+    StillIdle = 25,
+    ExitIdle = 26,
 };
 
 pub const TextEncodingBase = objc.UInt32;
 
 pub const anon1191 = enum(u32) {
-    kTextEncodingMacTradChinese = 2,
-    kTextEncodingMacRSymbol = 8,
-    kTextEncodingMacSimpChinese = 25,
-    kTextEncodingMacGeez = 28,
-    kTextEncodingMacEastEurRoman = 29,
-    kTextEncodingMacUninterp = 32,
+    TextEncodingMacTradChinese = 2,
+    TextEncodingMacRSymbol = 8,
+    TextEncodingMacSimpChinese = 25,
+    TextEncodingMacGeez = 28,
+    TextEncodingMacEastEurRoman = 29,
+    TextEncodingMacUninterp = 32,
 };
 
 pub const anon1431 = enum(u32) {
-    kTextEncodingMacFarsi = 140,
-    kTextEncodingMacUkrainian = 152,
-    kTextEncodingMacInuit = 236,
-    kTextEncodingMacVT100 = 252,
+    TextEncodingMacFarsi = 140,
+    TextEncodingMacUkrainian = 152,
+    TextEncodingMacInuit = 236,
+    TextEncodingMacVT100 = 252,
 };
 
 pub const anon1591 = enum(u32) {
-    kPassSelector = 0,
-    kDontPassSelector = 8,
+    PassSelector = 0,
+    DontPassSelector = 8,
 };
 
 pub const anon2411 = enum(u32) {
-    kTextEncodingUS_ASCII = 1536,
-    kTextEncodingANSEL = 1537,
-    kTextEncodingJIS_X0201_76 = 1568,
-    kTextEncodingJIS_X0208_83 = 1569,
-    kTextEncodingJIS_X0208_90 = 1570,
-    kTextEncodingJIS_X0212_90 = 1571,
-    kTextEncodingJIS_C6226_78 = 1572,
-    kTextEncodingShiftJIS_X0213 = 1576,
-    kTextEncodingJIS_X0213_MenKuTen = 1577,
-    kTextEncodingGB_2312_80 = 1584,
-    kTextEncodingGBK_95 = 1585,
-    kTextEncodingGB_18030_2000 = 1586,
-    kTextEncodingGB_18030_2005 = 1586,
-    kTextEncodingKSC_5601_87 = 1600,
-    kTextEncodingKSC_5601_92_Johab = 1601,
-    kTextEncodingCNS_11643_92_P1 = 1617,
-    kTextEncodingCNS_11643_92_P2 = 1618,
-    kTextEncodingCNS_11643_92_P3 = 1619,
+    TextEncodingUS_ASCII = 1536,
+    TextEncodingANSEL = 1537,
+    TextEncodingJIS_X0201_76 = 1568,
+    TextEncodingJIS_X0208_83 = 1569,
+    TextEncodingJIS_X0208_90 = 1570,
+    TextEncodingJIS_X0212_90 = 1571,
+    TextEncodingJIS_C6226_78 = 1572,
+    TextEncodingShiftJIS_X0213 = 1576,
+    TextEncodingJIS_X0213_MenKuTen = 1577,
+    TextEncodingGB_2312_80 = 1584,
+    TextEncodingGBK_95 = 1585,
+    TextEncodingGB_18030_2000 = 1586,
+    TextEncodingGB_18030_2005 = 1586,
+    TextEncodingKSC_5601_87 = 1600,
+    TextEncodingKSC_5601_92_Johab = 1601,
+    TextEncodingCNS_11643_92_P1 = 1617,
+    TextEncodingCNS_11643_92_P2 = 1618,
+    TextEncodingCNS_11643_92_P3 = 1619,
 };
 
 pub const anon2631 = enum(u32) {
-    kTextEncodingISO_2022_JP = 2080,
-    kTextEncodingISO_2022_JP_2 = 2081,
-    kTextEncodingISO_2022_JP_1 = 2082,
-    kTextEncodingISO_2022_JP_3 = 2083,
-    kTextEncodingISO_2022_CN = 2096,
-    kTextEncodingISO_2022_CN_EXT = 2097,
-    kTextEncodingISO_2022_KR = 2112,
+    TextEncodingISO_2022_JP = 2080,
+    TextEncodingISO_2022_JP_2 = 2081,
+    TextEncodingISO_2022_JP_1 = 2082,
+    TextEncodingISO_2022_JP_3 = 2083,
+    TextEncodingISO_2022_CN = 2096,
+    TextEncodingISO_2022_CN_EXT = 2097,
+    TextEncodingISO_2022_KR = 2112,
 };
 
 pub const anon2741 = enum(objc.OSType) {
-    kAEMouseClass = 1836021107,
-    kAEDown = 1685026670,
-    kAEUp = 1970282528,
-    kAEMoved = 1836021349,
-    kAEStoppedMoving = 1937010544,
-    kAEWindowClass = 2003398244,
-    kAEUpdate = 1970300020,
-    kAEActivate = 1633907830,
-    kAEDeactivate = 1684104052,
-    kAECommandClass = 1668116068,
-    kAEKeyClass = 1801812323,
-    kAERawKey = 1919640953,
-    kAEVirtualKey = 1801812323,
-    kAENavigationKey = 1851881061,
-    kAEAutoDown = 1635087471,
-    kAEApplicationClass = 1634758764,
-    kAESuspend = 1937077104,
-    kAEResume = 1920167269,
-    kAEDiskEvent = 1684632427,
-    kAENullEvent = 1853189228,
-    kAEWakeUpEvent = 2002873189,
-    kAEScrapEvent = 1935897200,
-    kAEHighLevel = 1751738216,
+    AEMouseClass = 1836021107,
+    AEDown = 1685026670,
+    AEUp = 1970282528,
+    AEMoved = 1836021349,
+    AEStoppedMoving = 1937010544,
+    AEWindowClass = 2003398244,
+    AEUpdate = 1970300020,
+    AEActivate = 1633907830,
+    AEDeactivate = 1684104052,
+    AECommandClass = 1668116068,
+    AEKeyClass = 1801812323,
+    AERawKey = 1919640953,
+    AEVirtualKey = 1801812323,
+    AENavigationKey = 1851881061,
+    AEAutoDown = 1635087471,
+    AEApplicationClass = 1634758764,
+    AESuspend = 1937077104,
+    AEResume = 1920167269,
+    AEDiskEvent = 1684632427,
+    AENullEvent = 1853189228,
+    AEWakeUpEvent = 2002873189,
+    AEScrapEvent = 1935897200,
+    AEHighLevel = 1751738216,
 };
 
 pub const anon2821 = enum(u32) {
-    kTextEncodingShiftJIS = 2561,
-    kTextEncodingKOI8_R = 2562,
-    kTextEncodingBig5 = 2563,
-    kTextEncodingMacRomanLatin1 = 2564,
-    kTextEncodingHZ_GB_2312 = 2565,
-    kTextEncodingBig5_HKSCS_1999 = 2566,
-    kTextEncodingVISCII = 2567,
-    kTextEncodingKOI8_U = 2568,
-    kTextEncodingBig5_E = 2569,
+    TextEncodingShiftJIS = 2561,
+    TextEncodingKOI8_R = 2562,
+    TextEncodingBig5 = 2563,
+    TextEncodingMacRomanLatin1 = 2564,
+    TextEncodingHZ_GB_2312 = 2565,
+    TextEncodingBig5_HKSCS_1999 = 2566,
+    TextEncodingVISCII = 2567,
+    TextEncodingKOI8_U = 2568,
+    TextEncodingBig5_E = 2569,
 };
 
 pub const anon2951 = enum(u32) {
-    kTextEncodingNextStepLatin = 2817,
-    kTextEncodingNextStepJapanese = 2818,
+    TextEncodingNextStepLatin = 2817,
+    TextEncodingNextStepJapanese = 2818,
 };
 
 pub const anon3011 = enum(u32) {
-    kBlessedBusErrorBait = 1760651505,
+    BlessedBusErrorBait = 1760651505,
 };
 
 pub const anon3071 = enum(u32) {
-    kTextEncodingMultiRun = 4095,
-    kTextEncodingUnknown = 65535,
+    TextEncodingMultiRun = 4095,
+    TextEncodingUnknown = 65535,
 };
 
 pub const anon3131 = enum(u32) {
-    kAESocks4Protocol = 4,
-    kAESocks5Protocol = 5,
+    AESocks4Protocol = 4,
+    AESocks5Protocol = 5,
 };
 
 pub const TextEncodingVariant = objc.UInt32;
 
 pub const anon3211 = enum(u32) {
-    kTextEncodingDefaultVariant = 0,
+    TextEncodingDefaultVariant = 0,
 };
 
 pub const anon3261 = enum(u32) {
-    kMacRomanDefaultVariant = 0,
-    kMacRomanCurrencySignVariant = 1,
-    kMacRomanEuroSignVariant = 2,
+    MacRomanDefaultVariant = 0,
+    MacRomanCurrencySignVariant = 1,
+    MacRomanEuroSignVariant = 2,
 };
 
 pub const anon3331 = enum(u32) {
-    kMacCyrillicDefaultVariant = 0,
-    kMacCyrillicCurrSignStdVariant = 1,
-    kMacCyrillicCurrSignUkrVariant = 2,
-    kMacCyrillicEuroSignVariant = 3,
+    MacCyrillicDefaultVariant = 0,
+    MacCyrillicCurrSignStdVariant = 1,
+    MacCyrillicCurrSignUkrVariant = 2,
+    MacCyrillicEuroSignVariant = 3,
 };
 
 pub const anon3531 = enum(u32) {
-    kMacCroatianDefaultVariant = 0,
-    kMacCroatianCurrencySignVariant = 1,
-    kMacCroatianEuroSignVariant = 2,
+    MacCroatianDefaultVariant = 0,
+    MacCroatianCurrencySignVariant = 1,
+    MacCroatianEuroSignVariant = 2,
 };
 
 pub const anon3691 = enum(u32) {
-    kAppleLogoIcon = 1667330156,
-    kAppleMenuIcon = 1935765612,
-    kBackwardArrowIcon = 1650553455,
-    kFavoriteItemsIcon = 1717663346,
-    kForwardArrowIcon = 1717662319,
-    kGridIcon = 1735551332,
-    kHelpIcon = 1751477360,
-    kKeepArrangedIcon = 1634889319,
-    kLockedIcon = 1819239275,
-    kNoFilesIcon = 1852205420,
-    kNoFolderIcon = 1852206180,
-    kNoWriteIcon = 1853321844,
-    kProtectedApplicationFolderIcon = 1885433968,
-    kProtectedSystemFolderIcon = 1886615923,
-    kRecentItemsIcon = 1919118964,
-    kShortcutIcon = 1936224884,
-    kSortAscendingIcon = 1634954852,
-    kSortDescendingIcon = 1685286500,
-    kUnlockedIcon = 1970037611,
-    kConnectToIcon = 1668178804,
-    kGenericWindowIcon = 1735879022,
-    kQuestionMarkIcon = 1903519091,
-    kDeleteAliasIcon = 1684106345,
-    kEjectMediaIcon = 1701471587,
-    kBurningIcon = 1651864174,
-    kRightContainerArrowIcon = 1919115634,
+    AppleLogoIcon = 1667330156,
+    AppleMenuIcon = 1935765612,
+    BackwardArrowIcon = 1650553455,
+    FavoriteItemsIcon = 1717663346,
+    ForwardArrowIcon = 1717662319,
+    GridIcon = 1735551332,
+    HelpIcon = 1751477360,
+    KeepArrangedIcon = 1634889319,
+    LockedIcon = 1819239275,
+    NoFilesIcon = 1852205420,
+    NoFolderIcon = 1852206180,
+    NoWriteIcon = 1853321844,
+    ProtectedApplicationFolderIcon = 1885433968,
+    ProtectedSystemFolderIcon = 1886615923,
+    RecentItemsIcon = 1919118964,
+    ShortcutIcon = 1936224884,
+    SortAscendingIcon = 1634954852,
+    SortDescendingIcon = 1685286500,
+    UnlockedIcon = 1970037611,
+    ConnectToIcon = 1668178804,
+    GenericWindowIcon = 1735879022,
+    QuestionMarkIcon = 1903519091,
+    DeleteAliasIcon = 1684106345,
+    EjectMediaIcon = 1701471587,
+    BurningIcon = 1651864174,
+    RightContainerArrowIcon = 1919115634,
 };
 
 pub const anon3791 = enum(u32) {
-    kAEDataArray = 0,
-    kAEPackedArray = 1,
-    kAEDescArray = 3,
-    kAEKeyDescArray = 4,
+    AEDataArray = 0,
+    AEPackedArray = 1,
+    AEDescArray = 3,
+    AEKeyDescArray = 4,
 };
 
 pub const anon3871 = enum(u32) {
-    kAEHandleArray = 2,
+    AEHandleArray = 2,
 };
 
 pub const anon3931 = enum(u32) {
-    kMacHebrewStandardVariant = 0,
-    kMacHebrewFigureSpaceVariant = 1,
+    MacHebrewStandardVariant = 0,
+    MacHebrewFigureSpaceVariant = 1,
 };
 
 pub const anon3991 = enum(u32) {
-    kMacGreekDefaultVariant = 0,
-    kMacGreekNoEuroSignVariant = 1,
-    kMacGreekEuroSignVariant = 2,
+    MacGreekDefaultVariant = 0,
+    MacGreekNoEuroSignVariant = 1,
+    MacGreekEuroSignVariant = 2,
 };
 
 pub const anon4061 = enum(u32) {
-    kMacVT100DefaultVariant = 0,
-    kMacVT100CurrencySignVariant = 1,
-    kMacVT100EuroSignVariant = 2,
+    MacVT100DefaultVariant = 0,
+    MacVT100CurrencySignVariant = 1,
+    MacVT100EuroSignVariant = 2,
 };
 
 pub const anon4221 = enum(u32) {
-    kISOLatin1StandardVariant = 0,
-    kISOLatin1MusicCDVariant = 1,
+    ISOLatin1StandardVariant = 0,
+    ISOLatin1MusicCDVariant = 1,
 };
 
 pub const anon4461 = enum(u32) {
-    kServicesFolderType = 1937138547,
+    ServicesFolderType = 1937138547,
 };
 
 pub const anon4591 = enum(u32) {
-    kWindowsLatin1StandardVariant = 0,
-    kWindowsLatin1PalmVariant = 1,
+    WindowsLatin1StandardVariant = 0,
+    WindowsLatin1PalmVariant = 1,
 };
 
 pub const anon4751 = enum(u32) {
-    kEUC_CN_BasicVariant = 0,
-    kEUC_CN_DOSVariant = 1,
+    EUC_CN_BasicVariant = 0,
+    EUC_CN_DOSVariant = 1,
 };
 
 pub const anon4851 = enum(u32) {
-    kEUC_KR_BasicVariant = 0,
-    kEUC_KR_DOSVariant = 1,
+    EUC_KR_BasicVariant = 0,
+    EUC_KR_DOSVariant = 1,
 };
 
 pub const anon5061 = enum(u32) {
-    kBig5_BasicVariant = 0,
-    kBig5_StandardVariant = 1,
-    kBig5_ETenVariant = 2,
-    kBig5_DOSVariant = 3,
+    Big5_BasicVariant = 0,
+    Big5_StandardVariant = 1,
+    Big5_ETenVariant = 2,
+    Big5_DOSVariant = 3,
 };
 
 pub const anon5141 = enum(u32) {
-    kMacRomanLatin1DefaultVariant = 0,
-    kMacRomanLatin1StandardVariant = 2,
-    kMacRomanLatin1TurkishVariant = 6,
-    kMacRomanLatin1CroatianVariant = 8,
-    kMacRomanLatin1IcelandicVariant = 11,
-    kMacRomanLatin1RomanianVariant = 14,
+    MacRomanLatin1DefaultVariant = 0,
+    MacRomanLatin1StandardVariant = 2,
+    MacRomanLatin1TurkishVariant = 6,
+    MacRomanLatin1CroatianVariant = 8,
+    MacRomanLatin1IcelandicVariant = 11,
+    MacRomanLatin1RomanianVariant = 14,
 };
 
 pub const anon5241 = enum(u32) {
-    kUnicodeNoCompatibilityVariant = 1,
-    kUnicodeNoCorporateVariant = 4,
+    UnicodeNoCompatibilityVariant = 1,
+    UnicodeNoCorporateVariant = 4,
 };
 
 pub const anon5301 = enum(u32) {
-    kMacRomanStandardVariant = 0,
-    kMacIcelandicStandardVariant = 0,
-    kMacIcelandicTrueTypeVariant = 1,
-    kJapaneseStandardVariant = 0,
-    kJapaneseStdNoVerticalsVariant = 1,
-    kJapaneseBasicVariant = 2,
-    kJapanesePostScriptScrnVariant = 3,
-    kJapanesePostScriptPrintVariant = 4,
-    kJapaneseVertAtKuPlusTenVariant = 5,
-    kTextEncodingShiftJIS_X0213_00 = 1576,
-    kHebrewStandardVariant = 0,
-    kHebrewFigureSpaceVariant = 1,
-    kUnicodeCanonicalDecompVariant = 2,
-    kUnicodeMaxDecomposedVariant = 2,
-    kUnicodeCanonicalCompVariant = 3,
-    kUnicodeNoComposedVariant = 3,
+    MacRomanStandardVariant = 0,
+    MacIcelandicStandardVariant = 0,
+    MacIcelandicTrueTypeVariant = 1,
+    JapaneseStandardVariant = 0,
+    JapaneseStdNoVerticalsVariant = 1,
+    JapaneseBasicVariant = 2,
+    JapanesePostScriptScrnVariant = 3,
+    JapanesePostScriptPrintVariant = 4,
+    JapaneseVertAtKuPlusTenVariant = 5,
+    TextEncodingShiftJIS_X0213_00 = 1576,
+    HebrewStandardVariant = 0,
+    HebrewFigureSpaceVariant = 1,
+    UnicodeCanonicalDecompVariant = 2,
+    UnicodeMaxDecomposedVariant = 2,
+    UnicodeCanonicalCompVariant = 3,
+    UnicodeNoComposedVariant = 3,
 };
 
 pub const TextEncodingFormat = objc.UInt32;
 
 pub const anon5591 = enum(u32) {
-    kTextEncodingDefaultFormat = 0,
-    kUnicodeUTF16Format = 0,
-    kUnicodeUTF7Format = 1,
-    kUnicodeUTF8Format = 2,
-    kUnicodeUTF32Format = 3,
-    kUnicodeUTF16BEFormat = 4,
-    kUnicodeUTF16LEFormat = 5,
-    kUnicodeUTF32BEFormat = 6,
-    kUnicodeUTF32LEFormat = 7,
-    kUnicodeSCSUFormat = 8,
-    kUnicode16BitFormat = 0,
-    kUnicode32BitFormat = 3,
+    TextEncodingDefaultFormat = 0,
+    UnicodeUTF16Format = 0,
+    UnicodeUTF7Format = 1,
+    UnicodeUTF8Format = 2,
+    UnicodeUTF32Format = 3,
+    UnicodeUTF16BEFormat = 4,
+    UnicodeUTF16LEFormat = 5,
+    UnicodeUTF32BEFormat = 6,
+    UnicodeUTF32LEFormat = 7,
+    UnicodeSCSUFormat = 8,
+    Unicode16BitFormat = 0,
+    Unicode32BitFormat = 3,
 };
 
 pub const TextEncoding = objc.UInt32;
@@ -4006,9 +4006,9 @@ pub const UniCharArrayHandle = ?*UniCharArrayPtr;
 pub const UniCharArrayOffset = u64;
 
 pub const anon6261 = enum(i32) {
-    kTextScriptDontCare = -128,
-    kTextLanguageDontCare = -128,
-    kTextRegionDontCare = -128,
+    TextScriptDontCare = -128,
+    TextLanguageDontCare = -128,
+    TextRegionDontCare = -128,
 };
 
 pub const TECInfo = extern struct {
@@ -4028,29 +4028,29 @@ pub const TECInfoPtr = ?*TECInfo;
 pub const TECInfoHandle = ?*TECInfoPtr;
 
 pub const anon6491 = enum(u32) {
-    kTECInfoCurrentFormat = 2,
+    TECInfoCurrentFormat = 2,
 };
 
 pub const anon6961 = enum(u32) {
-    kTECKeepInfoFixBit = 0,
-    kTECFallbackTextLengthFixBit = 1,
-    kTECTextRunBitClearFixBit = 2,
-    kTECTextToUnicodeScanFixBit = 3,
-    kTECAddForceASCIIChangesBit = 4,
-    kTECPreferredEncodingFixBit = 5,
-    kTECAddTextRunHeuristicsBit = 6,
-    kTECAddFallbackInterruptBit = 7,
+    TECKeepInfoFixBit = 0,
+    TECFallbackTextLengthFixBit = 1,
+    TECTextRunBitClearFixBit = 2,
+    TECTextToUnicodeScanFixBit = 3,
+    TECAddForceASCIIChangesBit = 4,
+    TECPreferredEncodingFixBit = 5,
+    TECAddTextRunHeuristicsBit = 6,
+    TECAddFallbackInterruptBit = 7,
 };
 
 pub const anon7071 = enum(u32) {
-    kTECKeepInfoFixMask = 1,
-    kTECFallbackTextLengthFixMask = 2,
-    kTECTextRunBitClearFixMask = 4,
-    kTECTextToUnicodeScanFixMask = 8,
-    kTECAddForceASCIIChangesMask = 16,
-    kTECPreferredEncodingFixMask = 32,
-    kTECAddTextRunHeuristicsMask = 64,
-    kTECAddFallbackInterruptMask = 128,
+    TECKeepInfoFixMask = 1,
+    TECFallbackTextLengthFixMask = 2,
+    TECTextRunBitClearFixMask = 4,
+    TECTextToUnicodeScanFixMask = 8,
+    TECAddForceASCIIChangesMask = 16,
+    TECPreferredEncodingFixMask = 32,
+    TECAddTextRunHeuristicsMask = 64,
+    TECAddFallbackInterruptMask = 128,
 };
 
 pub const anon7241 = enum(u32) {
@@ -4063,45 +4063,45 @@ pub const anon7241 = enum(u32) {
 pub const UCCharPropertyType = objc.SInt32;
 
 pub const anon7401 = enum(u32) {
-    kUCCharPropTypeGenlCategory = 1,
-    kUCCharPropTypeCombiningClass = 2,
-    kUCCharPropTypeBidiCategory = 3,
-    kUCCharPropTypeDecimalDigitValue = 4,
+    UCCharPropTypeGenlCategory = 1,
+    UCCharPropTypeCombiningClass = 2,
+    UCCharPropTypeBidiCategory = 3,
+    UCCharPropTypeDecimalDigitValue = 4,
 };
 
 pub const UCCharPropertyValue = objc.UInt32;
 
 pub const anon7491 = enum(u32) {
-    kUCGenlCatOtherNotAssigned = 0,
-    kUCGenlCatOtherControl = 1,
-    kUCGenlCatOtherFormat = 2,
-    kUCGenlCatOtherSurrogate = 3,
-    kUCGenlCatOtherPrivateUse = 4,
-    kUCGenlCatMarkNonSpacing = 5,
-    kUCGenlCatMarkSpacingCombining = 6,
-    kUCGenlCatMarkEnclosing = 7,
-    kUCGenlCatNumberDecimalDigit = 8,
-    kUCGenlCatNumberLetter = 9,
-    kUCGenlCatNumberOther = 10,
-    kUCGenlCatSeparatorSpace = 11,
-    kUCGenlCatSeparatorLine = 12,
-    kUCGenlCatSeparatorParagraph = 13,
-    kUCGenlCatLetterUppercase = 14,
-    kUCGenlCatLetterLowercase = 15,
-    kUCGenlCatLetterTitlecase = 16,
-    kUCGenlCatLetterModifier = 17,
-    kUCGenlCatLetterOther = 18,
-    kUCGenlCatPunctConnector = 20,
-    kUCGenlCatPunctDash = 21,
-    kUCGenlCatPunctOpen = 22,
-    kUCGenlCatPunctClose = 23,
-    kUCGenlCatPunctInitialQuote = 24,
-    kUCGenlCatPunctFinalQuote = 25,
-    kUCGenlCatPunctOther = 26,
-    kUCGenlCatSymbolMath = 28,
-    kUCGenlCatSymbolCurrency = 29,
-    kUCGenlCatSymbolModifier = 30,
-    kUCGenlCatSymbolOther = 31,
+    UCGenlCatOtherNotAssigned = 0,
+    UCGenlCatOtherControl = 1,
+    UCGenlCatOtherFormat = 2,
+    UCGenlCatOtherSurrogate = 3,
+    UCGenlCatOtherPrivateUse = 4,
+    UCGenlCatMarkNonSpacing = 5,
+    UCGenlCatMarkSpacingCombining = 6,
+    UCGenlCatMarkEnclosing = 7,
+    UCGenlCatNumberDecimalDigit = 8,
+    UCGenlCatNumberLetter = 9,
+    UCGenlCatNumberOther = 10,
+    UCGenlCatSeparatorSpace = 11,
+    UCGenlCatSeparatorLine = 12,
+    UCGenlCatSeparatorParagraph = 13,
+    UCGenlCatLetterUppercase = 14,
+    UCGenlCatLetterLowercase = 15,
+    UCGenlCatLetterTitlecase = 16,
+    UCGenlCatLetterModifier = 17,
+    UCGenlCatLetterOther = 18,
+    UCGenlCatPunctConnector = 20,
+    UCGenlCatPunctDash = 21,
+    UCGenlCatPunctOpen = 22,
+    UCGenlCatPunctClose = 23,
+    UCGenlCatPunctInitialQuote = 24,
+    UCGenlCatPunctFinalQuote = 25,
+    UCGenlCatPunctOther = 26,
+    UCGenlCatSymbolMath = 28,
+    UCGenlCatSymbolCurrency = 29,
+    UCGenlCatSymbolModifier = 30,
+    UCGenlCatSymbolOther = 31,
 };
 
 pub const anon7851 = enum(u32) {
@@ -4179,10 +4179,10 @@ extern "CoreServices" fn UCGetCharProperty(
 pub const ucGetCharProperty = UCGetCharProperty;
 
 pub const anon11071 = enum(u32) {
-    kUCHighSurrogateRangeStart = 55296,
-    kUCHighSurrogateRangeEnd = 56319,
-    kUCLowSurrogateRangeStart = 56320,
-    kUCLowSurrogateRangeEnd = 57343,
+    UCHighSurrogateRangeStart = 55296,
+    UCHighSurrogateRangeEnd = 56319,
+    UCLowSurrogateRangeStart = 56320,
+    UCLowSurrogateRangeEnd = 57343,
 };
 
 extern "CoreServices" fn UCIsSurrogateHighCharacter(character: objc.UniChar) callconv(.C) objc.Boolean;
@@ -4195,38 +4195,38 @@ extern "CoreServices" fn UCGetUnicodeScalarValueForSurrogatePair(surrogateHigh: 
 pub const ucGetUnicodeScalarValueForSurrogatePair = UCGetUnicodeScalarValueForSurrogatePair;
 
 pub const anon461 = enum(u32) {
-    kTECSignature = 1701733238,
-    kTECUnicodePluginSignature = 1886744169,
-    kTECJapanesePluginSignature = 1886023790,
-    kTECChinesePluginSignature = 1887070319,
-    kTECKoreanPluginSignature = 1886089074,
+    TECSignature = 1701733238,
+    TECUnicodePluginSignature = 1886744169,
+    TECJapanesePluginSignature = 1886023790,
+    TECChinesePluginSignature = 1887070319,
+    TECKoreanPluginSignature = 1886089074,
 };
 
 pub const anon511 = enum(u32) {
-    kHuge1BitMask = 1768122403,
-    kHuge4BitData = 1768122420,
-    kHuge8BitData = 1768122424,
-    kHuge32BitData = 1768436530,
-    kHuge8BitMask = 1748528491,
+    Huge1BitMask = 1768122403,
+    Huge4BitData = 1768122420,
+    Huge8BitData = 1768122424,
+    Huge32BitData = 1768436530,
+    Huge8BitMask = 1748528491,
 };
 
 pub const CallingConventionType = u16;
 
 pub const anon571 = enum(u32) {
-    kPascalStackBased = 0,
-    kCStackBased = 1,
-    kRegisterBased = 2,
-    kD0DispatchedPascalStackBased = 8,
-    kD1DispatchedPascalStackBased = 12,
-    kD0DispatchedCStackBased = 9,
-    kStackDispatchedPascalStackBased = 14,
-    kThinkCStackBased = 5,
+    PascalStackBased = 0,
+    CStackBased = 1,
+    RegisterBased = 2,
+    D0DispatchedPascalStackBased = 8,
+    D1DispatchedPascalStackBased = 12,
+    D0DispatchedCStackBased = 9,
+    StackDispatchedPascalStackBased = 14,
+    ThinkCStackBased = 5,
 };
 
 pub const ISAType = objc.SInt8;
 
 pub const anon751 = enum(i32) {
-    kClassicDomain = -32762,
+    ClassicDomain = -32762,
 };
 
 pub const RTAType = objc.SInt8;
@@ -4257,35 +4257,35 @@ pub const anon871 = enum(i32) {
 };
 
 pub const anon1081 = enum(u32) {
-    kRegisterD0 = 0,
-    kRegisterD1 = 1,
-    kRegisterD2 = 2,
-    kRegisterD3 = 3,
-    kRegisterD4 = 8,
-    kRegisterD5 = 9,
-    kRegisterD6 = 10,
-    kRegisterD7 = 11,
-    kRegisterA0 = 4,
-    kRegisterA1 = 5,
-    kRegisterA2 = 6,
-    kRegisterA3 = 7,
-    kRegisterA4 = 12,
-    kRegisterA5 = 13,
-    kRegisterA6 = 14,
-    kCCRegisterCBit = 16,
-    kCCRegisterVBit = 17,
-    kCCRegisterZBit = 18,
-    kCCRegisterNBit = 19,
-    kCCRegisterXBit = 20,
+    RegisterD0 = 0,
+    RegisterD1 = 1,
+    RegisterD2 = 2,
+    RegisterD3 = 3,
+    RegisterD4 = 8,
+    RegisterD5 = 9,
+    RegisterD6 = 10,
+    RegisterD7 = 11,
+    RegisterA0 = 4,
+    RegisterA1 = 5,
+    RegisterA2 = 6,
+    RegisterA3 = 7,
+    RegisterA4 = 12,
+    RegisterA5 = 13,
+    RegisterA6 = 14,
+    CCRegisterCBit = 16,
+    CCRegisterVBit = 17,
+    CCRegisterZBit = 18,
+    CCRegisterNBit = 19,
+    CCRegisterXBit = 20,
 };
 
 pub const registerSelectorType = u16;
 
 pub const anon1331 = enum(u32) {
-    kNoByteCode = 0,
-    kOneByteCode = 1,
-    kTwoByteCode = 2,
-    kFourByteCode = 3,
+    NoByteCode = 0,
+    OneByteCode = 1,
+    TwoByteCode = 2,
+    FourByteCode = 3,
 };
 
 pub const ProcInfoType = u64;
@@ -4293,21 +4293,21 @@ pub const ProcInfoType = u64;
 pub const RoutineFlagsType = u16;
 
 pub const anon1441 = enum(u32) {
-    kUnicodeMatchUnicodeBaseBit = 0,
-    kUnicodeMatchUnicodeVariantBit = 1,
-    kUnicodeMatchUnicodeFormatBit = 2,
-    kUnicodeMatchOtherBaseBit = 3,
-    kUnicodeMatchOtherVariantBit = 4,
-    kUnicodeMatchOtherFormatBit = 5,
+    UnicodeMatchUnicodeBaseBit = 0,
+    UnicodeMatchUnicodeVariantBit = 1,
+    UnicodeMatchUnicodeFormatBit = 2,
+    UnicodeMatchOtherBaseBit = 3,
+    UnicodeMatchOtherVariantBit = 4,
+    UnicodeMatchOtherFormatBit = 5,
 };
 
 pub const anon1641 = enum(u32) {
-    kSystemIconsCreator = 1835098995,
+    SystemIconsCreator = 1835098995,
 };
 
 pub const anon1691 = enum(u32) {
-    kProcDescriptorIsProcPtr = 0,
-    kProcDescriptorIsIndex = 32,
+    ProcDescriptorIsProcPtr = 0,
+    ProcDescriptorIsIndex = 32,
 };
 
 pub const RoutineRecord = extern struct {
@@ -4349,60 +4349,60 @@ pub const MixedModeStateRecord = extern struct {
 };
 
 pub const anon2581 = enum(u32) {
-    kAnyPort = 0,
+    AnyPort = 0,
 };
 
 pub const anon2901 = enum(u32) {
-    kSpecialCaseHighHook = 0,
-    kSpecialCaseCaretHook = 0,
-    kSpecialCaseEOLHook = 1,
-    kSpecialCaseWidthHook = 2,
-    kSpecialCaseTextWidthHook = 2,
-    kSpecialCaseNWidthHook = 3,
-    kSpecialCaseDrawHook = 4,
-    kSpecialCaseHitTestHook = 5,
-    kSpecialCaseTEFindWord = 6,
-    kSpecialCaseProtocolHandler = 7,
-    kSpecialCaseSocketListener = 8,
-    kSpecialCaseTERecalc = 9,
-    kSpecialCaseTEDoText = 10,
-    kSpecialCaseGNEFilterProc = 11,
-    kSpecialCaseMBarHook = 12,
+    SpecialCaseHighHook = 0,
+    SpecialCaseCaretHook = 0,
+    SpecialCaseEOLHook = 1,
+    SpecialCaseWidthHook = 2,
+    SpecialCaseTextWidthHook = 2,
+    SpecialCaseNWidthHook = 3,
+    SpecialCaseDrawHook = 4,
+    SpecialCaseHitTestHook = 5,
+    SpecialCaseTEFindWord = 6,
+    SpecialCaseProtocolHandler = 7,
+    SpecialCaseSocketListener = 8,
+    SpecialCaseTERecalc = 9,
+    SpecialCaseTEDoText = 10,
+    SpecialCaseGNEFilterProc = 11,
+    SpecialCaseMBarHook = 12,
 };
 
 pub const anon981 = enum(u32) {
-    kCollectionUser0Mask = 1,
-    kCollectionUser1Mask = 2,
-    kCollectionUser2Mask = 4,
-    kCollectionUser3Mask = 8,
-    kCollectionUser4Mask = 16,
-    kCollectionUser5Mask = 32,
-    kCollectionUser6Mask = 64,
-    kCollectionUser7Mask = 128,
-    kCollectionUser8Mask = 256,
-    kCollectionUser9Mask = 512,
-    kCollectionUser10Mask = 1024,
-    kCollectionUser11Mask = 2048,
-    kCollectionUser12Mask = 4096,
-    kCollectionUser13Mask = 8192,
-    kCollectionUser14Mask = 16384,
-    kCollectionUser15Mask = 32768,
-    kCollectionReserved0Mask = 65536,
-    kCollectionReserved1Mask = 131072,
-    kCollectionReserved2Mask = 262144,
-    kCollectionReserved3Mask = 524288,
-    kCollectionReserved4Mask = 1048576,
-    kCollectionReserved5Mask = 2097152,
-    kCollectionReserved6Mask = 4194304,
-    kCollectionReserved7Mask = 8388608,
-    kCollectionReserved8Mask = 16777216,
-    kCollectionReserved9Mask = 33554432,
-    kCollectionReserved10Mask = 67108864,
-    kCollectionReserved11Mask = 134217728,
-    kCollectionReserved12Mask = 268435456,
-    kCollectionReserved13Mask = 536870912,
-    kCollectionPersistenceMask = 1073741824,
-    kCollectionLockMask = -2147483648,
+    CollectionUser0Mask = 1,
+    CollectionUser1Mask = 2,
+    CollectionUser2Mask = 4,
+    CollectionUser3Mask = 8,
+    CollectionUser4Mask = 16,
+    CollectionUser5Mask = 32,
+    CollectionUser6Mask = 64,
+    CollectionUser7Mask = 128,
+    CollectionUser8Mask = 256,
+    CollectionUser9Mask = 512,
+    CollectionUser10Mask = 1024,
+    CollectionUser11Mask = 2048,
+    CollectionUser12Mask = 4096,
+    CollectionUser13Mask = 8192,
+    CollectionUser14Mask = 16384,
+    CollectionUser15Mask = 32768,
+    CollectionReserved0Mask = 65536,
+    CollectionReserved1Mask = 131072,
+    CollectionReserved2Mask = 262144,
+    CollectionReserved3Mask = 524288,
+    CollectionReserved4Mask = 1048576,
+    CollectionReserved5Mask = 2097152,
+    CollectionReserved6Mask = 4194304,
+    CollectionReserved7Mask = 8388608,
+    CollectionReserved8Mask = 16777216,
+    CollectionReserved9Mask = 33554432,
+    CollectionReserved10Mask = 67108864,
+    CollectionReserved11Mask = 134217728,
+    CollectionReserved12Mask = 268435456,
+    CollectionReserved13Mask = 536870912,
+    CollectionPersistenceMask = 1073741824,
+    CollectionLockMask = -2147483648,
 };
 
 pub const OpaqueCollection = extern struct {};
@@ -4678,8 +4678,8 @@ pub const BigEndianOSType = extern struct {
 };
 
 pub const anon3081 = enum(u32) {
-    kCoreEndianResourceManagerDomain = 1920168547,
-    kCoreEndianAppleEventManagerDomain = 1634039412,
+    CoreEndianResourceManagerDomain = 1920168547,
+    CoreEndianAppleEventManagerDomain = 1634039412,
 };
 
 pub const CoreEndianFlipProc = ?*const fn (
@@ -4747,7 +4747,7 @@ extern "CoreServices" fn InvokeSelectorFunctionUPP(selector: objc.OSType, respon
 pub const invokeSelectorFunctionUPP = InvokeSelectorFunctionUPP;
 
 pub const anon4421 = enum(u32) {
-    kQuickLookFolderType = 1902928747,
+    QuickLookFolderType = 1902928747,
 };
 
 pub const anon4491 = enum(i32) {
@@ -4845,8 +4845,8 @@ pub const anon6251 = enum(u32) {
 };
 
 pub const anon6341 = enum(u32) {
-    kAEZoomIn = 7,
-    kAEZoomOut = 8,
+    AEZoomIn = 7,
+    AEZoomOut = 8,
 };
 
 pub const anon6421 = enum(u32) {
@@ -4948,7 +4948,7 @@ pub const anon8141 = enum(u32) {
 
 pub const anon8221 = enum(u32) {
     gestaltDTPFeatures = 1685352550,
-    kDTPThirdPartySupported = 4,
+    DTPThirdPartySupported = 4,
 };
 
 pub const anon8321 = enum(u32) {
@@ -5355,7 +5355,7 @@ pub const anon13481 = enum(u32) {
 };
 
 pub const anon13611 = enum(i32) {
-    kMachineNameStrID = -16395,
+    MachineNameStrID = -16395,
 };
 
 pub const anon13651 = enum(u32) {
@@ -6517,53 +6517,53 @@ pub const csDiskSpaceGetRecoveryEstimate = CSDiskSpaceGetRecoveryEstimate;
 pub const ToggleResults = objc.SInt16;
 
 pub const anon1041 = enum(u32) {
-    kUnlockStateKCStatus = 1,
-    kRdPermKCStatus = 2,
-    kWrPermKCStatus = 4,
+    UnlockStateKCStatus = 1,
+    RdPermKCStatus = 2,
+    WrPermKCStatus = 4,
 };
 
 pub const LongDateField = objc.SInt8;
 
 pub const anon1201 = enum(u32) {
-    kClassKCItemAttr = 1668047219,
-    kCreationDateKCItemAttr = 1667522932,
-    kModDateKCItemAttr = 1835295092,
-    kDescriptionKCItemAttr = 1684370275,
-    kCommentKCItemAttr = 1768123764,
-    kCreatorKCItemAttr = 1668445298,
-    kTypeKCItemAttr = 1954115685,
-    kScriptCodeKCItemAttr = 1935897200,
-    kLabelKCItemAttr = 1818321516,
-    kInvisibleKCItemAttr = 1768846953,
-    kNegativeKCItemAttr = 1852139361,
-    kCustomIconKCItemAttr = 1668641641,
-    kAccountKCItemAttr = 1633903476,
-    kServiceKCItemAttr = 1937138533,
-    kGenericKCItemAttr = 1734700641,
-    kSecurityDomainKCItemAttr = 1935961454,
-    kServerKCItemAttr = 1936881266,
-    kAuthTypeKCItemAttr = 1635023216,
-    kPortKCItemAttr = 1886351988,
-    kPathKCItemAttr = 1885434984,
-    kVolumeKCItemAttr = 1986817381,
-    kAddressKCItemAttr = 1633969266,
-    kSignatureKCItemAttr = 1936943463,
-    kProtocolKCItemAttr = 1886675820,
-    kSubjectKCItemAttr = 1937072746,
-    kCommonNameKCItemAttr = 1668161568,
-    kIssuerKCItemAttr = 1769173877,
-    kSerialNumberKCItemAttr = 1936614002,
-    kEMailKCItemAttr = 1835100524,
-    kPublicKeyHashKCItemAttr = 1752198009,
-    kIssuerURLKCItemAttr = 1769304684,
-    kEncryptKCItemAttr = 1701733234,
-    kDecryptKCItemAttr = 1684366194,
-    kSignKCItemAttr = 1936287598,
-    kVerifyKCItemAttr = 1986359913,
-    kWrapKCItemAttr = 2003984752,
-    kUnwrapKCItemAttr = 1970173810,
-    kStartDateKCItemAttr = 1935958388,
-    kEndDateKCItemAttr = 1701077364,
+    ClassKCItemAttr = 1668047219,
+    CreationDateKCItemAttr = 1667522932,
+    ModDateKCItemAttr = 1835295092,
+    DescriptionKCItemAttr = 1684370275,
+    CommentKCItemAttr = 1768123764,
+    CreatorKCItemAttr = 1668445298,
+    TypeKCItemAttr = 1954115685,
+    ScriptCodeKCItemAttr = 1935897200,
+    LabelKCItemAttr = 1818321516,
+    InvisibleKCItemAttr = 1768846953,
+    NegativeKCItemAttr = 1852139361,
+    CustomIconKCItemAttr = 1668641641,
+    AccountKCItemAttr = 1633903476,
+    ServiceKCItemAttr = 1937138533,
+    GenericKCItemAttr = 1734700641,
+    SecurityDomainKCItemAttr = 1935961454,
+    ServerKCItemAttr = 1936881266,
+    AuthTypeKCItemAttr = 1635023216,
+    PortKCItemAttr = 1886351988,
+    PathKCItemAttr = 1885434984,
+    VolumeKCItemAttr = 1986817381,
+    AddressKCItemAttr = 1633969266,
+    SignatureKCItemAttr = 1936943463,
+    ProtocolKCItemAttr = 1886675820,
+    SubjectKCItemAttr = 1937072746,
+    CommonNameKCItemAttr = 1668161568,
+    IssuerKCItemAttr = 1769173877,
+    SerialNumberKCItemAttr = 1936614002,
+    EMailKCItemAttr = 1835100524,
+    PublicKeyHashKCItemAttr = 1752198009,
+    IssuerURLKCItemAttr = 1769304684,
+    EncryptKCItemAttr = 1701733234,
+    DecryptKCItemAttr = 1684366194,
+    SignKCItemAttr = 1936287598,
+    VerifyKCItemAttr = 1986359913,
+    WrapKCItemAttr = 2003984752,
+    UnwrapKCItemAttr = 1970173810,
+    StartDateKCItemAttr = 1935958388,
+    EndDateKCItemAttr = 1701077364,
 };
 
 pub const DateForm = objc.SInt8;
@@ -6766,23 +6766,23 @@ pub const anon671 = enum(DescType) {
 };
 
 pub const anon1161 = enum(u32) {
-    kUnicodeDefaultDirectionMask = 0,
-    kUnicodeLeftToRightMask = 4,
-    kUnicodeRightToLeftMask = 8,
+    UnicodeDefaultDirectionMask = 0,
+    UnicodeLeftToRightMask = 4,
+    UnicodeRightToLeftMask = 8,
 };
 
 pub const anon6101 = enum(objc.OSType) {
-    kAEQuitPreserveState = 1937006964,
-    kAEQuitReason = 2003335487,
+    AEQuitPreserveState = 1937006964,
+    AEQuitReason = 2003335487,
 };
 
 pub const anon10121 = enum(u32) {
-    kMPMaxAllocSize = 1073741824,
+    MPMaxAllocSize = 1073741824,
 };
 
 pub const anon991 = enum(u32) {
-    kCSIdentityQueryStringEquals = 1,
-    kCSIdentityQueryStringBeginsWith = 2,
+    CSIdentityQueryStringEquals = 1,
+    CSIdentityQueryStringBeginsWith = 2,
 };
 
 pub const anon1181 = enum(u32) {
@@ -6793,10 +6793,10 @@ pub const anon1181 = enum(u32) {
 };
 
 pub const anon1251 = enum(i32) {
-    kDurationImmediate = 0,
-    kDurationForever = 2147483647,
-    kDurationMillisecond = 1,
-    kDurationMicrosecond = -1,
+    DurationImmediate = 0,
+    DurationForever = 2147483647,
+    DurationMillisecond = 1,
+    DurationMicrosecond = -1,
 };
 
 pub const anon1301 = enum(u32) {
@@ -6904,10 +6904,10 @@ pub const anon2981 = enum(u32) {
 };
 
 pub const anon3031 = enum(u32) {
-    kNoUserAuthentication = 1,
-    kPassword = 2,
-    kEncryptPassword = 3,
-    kTwoWayEncryptPassword = 6,
+    NoUserAuthentication = 1,
+    Password = 2,
+    EncryptPassword = 3,
+    TwoWayEncryptPassword = 6,
 };
 
 pub const FSVolumeRefNum = objc.SInt16;
@@ -6915,7 +6915,7 @@ pub const FSVolumeRefNum = objc.SInt16;
 pub const FSIORefNum = i32;
 
 pub const anon3301 = enum(u32) {
-    kFSInvalidVolumeRefNum = 0,
+    FSInvalidVolumeRefNum = 0,
 };
 
 pub const FSRefPtr = ?*FSRef;
@@ -6961,58 +6961,58 @@ pub const FSPermissionInfo = extern struct {
 pub const FSCatalogInfoBitmap = objc.UInt32;
 
 pub const anon10821 = enum(i32) {
-    kFSCatInfoNone = 0,
-    kFSCatInfoTextEncoding = 1,
-    kFSCatInfoNodeFlags = 2,
-    kFSCatInfoVolume = 4,
-    kFSCatInfoParentDirID = 8,
-    kFSCatInfoNodeID = 16,
-    kFSCatInfoCreateDate = 32,
-    kFSCatInfoContentMod = 64,
-    kFSCatInfoAttrMod = 128,
-    kFSCatInfoAccessDate = 256,
-    kFSCatInfoBackupDate = 512,
-    kFSCatInfoPermissions = 1024,
-    kFSCatInfoFinderInfo = 2048,
-    kFSCatInfoFinderXInfo = 4096,
-    kFSCatInfoValence = 8192,
-    kFSCatInfoDataSizes = 16384,
-    kFSCatInfoRsrcSizes = 32768,
-    kFSCatInfoSharingFlags = 65536,
-    kFSCatInfoUserPrivs = 131072,
-    kFSCatInfoUserAccess = 524288,
-    kFSCatInfoSetOwnership = 1048576,
-    kFSCatInfoFSFileSecurityRef = 4194304,
-    kFSCatInfoAllDates = 992,
-    kFSCatInfoGettableInfo = 262143,
-    kFSCatInfoSettableInfo = 8163,
-    kFSCatInfoReserved = -262144,
+    FSCatInfoNone = 0,
+    FSCatInfoTextEncoding = 1,
+    FSCatInfoNodeFlags = 2,
+    FSCatInfoVolume = 4,
+    FSCatInfoParentDirID = 8,
+    FSCatInfoNodeID = 16,
+    FSCatInfoCreateDate = 32,
+    FSCatInfoContentMod = 64,
+    FSCatInfoAttrMod = 128,
+    FSCatInfoAccessDate = 256,
+    FSCatInfoBackupDate = 512,
+    FSCatInfoPermissions = 1024,
+    FSCatInfoFinderInfo = 2048,
+    FSCatInfoFinderXInfo = 4096,
+    FSCatInfoValence = 8192,
+    FSCatInfoDataSizes = 16384,
+    FSCatInfoRsrcSizes = 32768,
+    FSCatInfoSharingFlags = 65536,
+    FSCatInfoUserPrivs = 131072,
+    FSCatInfoUserAccess = 524288,
+    FSCatInfoSetOwnership = 1048576,
+    FSCatInfoFSFileSecurityRef = 4194304,
+    FSCatInfoAllDates = 992,
+    FSCatInfoGettableInfo = 262143,
+    FSCatInfoSettableInfo = 8163,
+    FSCatInfoReserved = -262144,
 };
 
 pub const anon11121 = enum(u32) {
-    kFSNodeLockedBit = 0,
-    kFSNodeLockedMask = 1,
-    kFSNodeResOpenBit = 2,
-    kFSNodeResOpenMask = 4,
-    kFSNodeDataOpenBit = 3,
-    kFSNodeDataOpenMask = 8,
-    kFSNodeIsDirectoryBit = 4,
-    kFSNodeIsDirectoryMask = 16,
-    kFSNodeCopyProtectBit = 6,
-    kFSNodeCopyProtectMask = 64,
-    kFSNodeForkOpenBit = 7,
-    kFSNodeForkOpenMask = 128,
-    kFSNodeHardLinkBit = 8,
-    kFSNodeHardLinkMask = 256,
+    FSNodeLockedBit = 0,
+    FSNodeLockedMask = 1,
+    FSNodeResOpenBit = 2,
+    FSNodeResOpenMask = 4,
+    FSNodeDataOpenBit = 3,
+    FSNodeDataOpenMask = 8,
+    FSNodeIsDirectoryBit = 4,
+    FSNodeIsDirectoryMask = 16,
+    FSNodeCopyProtectBit = 6,
+    FSNodeCopyProtectMask = 64,
+    FSNodeForkOpenBit = 7,
+    FSNodeForkOpenMask = 128,
+    FSNodeHardLinkBit = 8,
+    FSNodeHardLinkMask = 256,
 };
 
 pub const anon11301 = enum(u32) {
-    kFSNodeInSharedBit = 2,
-    kFSNodeInSharedMask = 4,
-    kFSNodeIsMountedBit = 3,
-    kFSNodeIsMountedMask = 8,
-    kFSNodeIsSharePointBit = 5,
-    kFSNodeIsSharePointMask = 32,
+    FSNodeInSharedBit = 2,
+    FSNodeInSharedMask = 4,
+    FSNodeIsMountedBit = 3,
+    FSNodeIsMountedMask = 8,
+    FSNodeIsSharePointBit = 5,
+    FSNodeIsSharePointMask = 32,
 };
 
 pub const FSCatalogInfo = extern struct {
@@ -7096,10 +7096,10 @@ pub const OpaqueFSIterator = extern struct {};
 pub const FSIterator = ?*OpaqueFSIterator;
 
 pub const anon13551 = enum(i32) {
-    kFSIterateFlat = 0,
-    kFSIterateSubtree = 1,
-    kFSIterateDelete = 2,
-    kFSIterateReserved = -4,
+    FSIterateFlat = 0,
+    FSIterateSubtree = 1,
+    FSIterateDelete = 2,
+    FSIterateReserved = -4,
 };
 
 pub const FSIteratorFlags = objc.OptionBits;
@@ -7142,11 +7142,11 @@ pub const FSCatalogBulkParamPtr = ?*FSCatalogBulkParam;
 pub const FSAllocationFlags = objc.UInt16;
 
 pub const anon13981 = enum(u32) {
-    kFSAllocDefaultFlags = 0,
-    kFSAllocAllOrNothingMask = 1,
-    kFSAllocContiguousMask = 2,
-    kFSAllocNoRoundUpMask = 4,
-    kFSAllocReservedMask = 65528,
+    FSAllocDefaultFlags = 0,
+    FSAllocAllOrNothingMask = 1,
+    FSAllocContiguousMask = 2,
+    FSAllocNoRoundUpMask = 4,
+    FSAllocReservedMask = 65528,
 };
 
 pub const FSForkIOParam = extern struct {
@@ -7231,38 +7231,38 @@ pub const FSRangeLockParamPtr = ?*FSRangeLockParam;
 pub const FSVolumeInfoBitmap = objc.UInt32;
 
 pub const anon14891 = enum(u32) {
-    kFSVolInfoNone = 0,
-    kFSVolInfoCreateDate = 1,
-    kFSVolInfoModDate = 2,
-    kFSVolInfoBackupDate = 4,
-    kFSVolInfoCheckedDate = 8,
-    kFSVolInfoFileCount = 16,
-    kFSVolInfoDirCount = 32,
-    kFSVolInfoSizes = 64,
-    kFSVolInfoBlocks = 128,
-    kFSVolInfoNextAlloc = 256,
-    kFSVolInfoRsrcClump = 512,
-    kFSVolInfoDataClump = 1024,
-    kFSVolInfoNextID = 2048,
-    kFSVolInfoFinderInfo = 4096,
-    kFSVolInfoFlags = 8192,
-    kFSVolInfoFSInfo = 16384,
-    kFSVolInfoDriveInfo = 32768,
-    kFSVolInfoGettableInfo = 65535,
-    kFSVolInfoSettableInfo = 12292,
+    FSVolInfoNone = 0,
+    FSVolInfoCreateDate = 1,
+    FSVolInfoModDate = 2,
+    FSVolInfoBackupDate = 4,
+    FSVolInfoCheckedDate = 8,
+    FSVolInfoFileCount = 16,
+    FSVolInfoDirCount = 32,
+    FSVolInfoSizes = 64,
+    FSVolInfoBlocks = 128,
+    FSVolInfoNextAlloc = 256,
+    FSVolInfoRsrcClump = 512,
+    FSVolInfoDataClump = 1024,
+    FSVolInfoNextID = 2048,
+    FSVolInfoFinderInfo = 4096,
+    FSVolInfoFlags = 8192,
+    FSVolInfoFSInfo = 16384,
+    FSVolInfoDriveInfo = 32768,
+    FSVolInfoGettableInfo = 65535,
+    FSVolInfoSettableInfo = 12292,
 };
 
 pub const anon15121 = enum(u32) {
-    kFSVolFlagDefaultVolumeBit = 5,
-    kFSVolFlagDefaultVolumeMask = 32,
-    kFSVolFlagFilesOpenBit = 6,
-    kFSVolFlagFilesOpenMask = 64,
-    kFSVolFlagHardwareLockedBit = 7,
-    kFSVolFlagHardwareLockedMask = 128,
-    kFSVolFlagJournalingActiveBit = 14,
-    kFSVolFlagJournalingActiveMask = 16384,
-    kFSVolFlagSoftwareLockedBit = 15,
-    kFSVolFlagSoftwareLockedMask = 32768,
+    FSVolFlagDefaultVolumeBit = 5,
+    FSVolFlagDefaultVolumeMask = 32,
+    FSVolFlagFilesOpenBit = 6,
+    FSVolFlagFilesOpenMask = 64,
+    FSVolFlagHardwareLockedBit = 7,
+    FSVolFlagHardwareLockedMask = 128,
+    FSVolFlagJournalingActiveBit = 14,
+    FSVolFlagJournalingActiveMask = 16384,
+    FSVolFlagSoftwareLockedBit = 15,
+    FSVolFlagSoftwareLockedMask = 32768,
 };
 
 pub const FSVolumeInfo = extern struct {
@@ -7395,20 +7395,20 @@ pub const AFPXVolMountInfo = extern struct {
 pub const AFPXVolMountInfoPtr = ?*AFPXVolMountInfo;
 
 pub const anon16831 = enum(u32) {
-    kAFPExtendedFlagsAlternateAddressMask = 1,
+    AFPExtendedFlagsAlternateAddressMask = 1,
 };
 
 pub const anon16881 = enum(u32) {
-    kAFPTagTypeIP = 1,
-    kAFPTagTypeIPPort = 2,
-    kAFPTagTypeDDP = 3,
-    kAFPTagTypeDNS = 4,
+    AFPTagTypeIP = 1,
+    AFPTagTypeIPPort = 2,
+    AFPTagTypeDDP = 3,
+    AFPTagTypeDNS = 4,
 };
 
 pub const anon16971 = enum(u32) {
-    kAFPTagLengthIP = 6,
-    kAFPTagLengthIPPort = 8,
-    kAFPTagLengthDDP = 6,
+    AFPTagLengthIP = 6,
+    AFPTagLengthIPPort = 8,
+    AFPTagLengthDDP = 6,
 };
 
 pub const AFPTagData = extern struct {
@@ -7424,12 +7424,12 @@ pub const AFPAlternateAddress = extern struct {
 };
 
 pub const anon17171 = enum(u32) {
-    kLargeIconSize = 256,
-    kLarge4BitIconSize = 512,
-    kLarge8BitIconSize = 1024,
-    kSmallIconSize = 64,
-    kSmall4BitIconSize = 128,
-    kSmall8BitIconSize = 256,
+    LargeIconSize = 256,
+    Large4BitIconSize = 512,
+    Large8BitIconSize = 1024,
+    SmallIconSize = 64,
+    Small4BitIconSize = 128,
+    Small8BitIconSize = 256,
 };
 
 extern "CoreServices" fn NewIOCompletionUPP(userRoutine: IOCompletionProcPtr) callconv(.C) IOCompletionUPP;
@@ -7537,12 +7537,12 @@ extern "CoreServices" fn PBExchangeObjectsAsync(paramBlock: ?*FSRefParam) callco
 pub const pbExchangeObjectsAsync = PBExchangeObjectsAsync;
 
 pub const anon23231 = enum(u32) {
-    kFSReplaceObjectDefaultOptions = 0,
-    kFSReplaceObjectReplaceMetadata = 1,
-    kFSReplaceObjectSaveOriginalAsABackup = 2,
-    kFSReplaceObjectReplacePermissionInfo = 4,
-    kFSReplaceObjectPreservePermissionInfo = 8,
-    kFSReplaceObjectDoNotCheckObjectWriteAccess = 16,
+    FSReplaceObjectDefaultOptions = 0,
+    FSReplaceObjectReplaceMetadata = 1,
+    FSReplaceObjectSaveOriginalAsABackup = 2,
+    FSReplaceObjectReplacePermissionInfo = 4,
+    FSReplaceObjectPreservePermissionInfo = 8,
+    FSReplaceObjectDoNotCheckObjectWriteAccess = 16,
 };
 
 extern "CoreServices" fn FSReplaceObject(
@@ -7930,8 +7930,8 @@ extern "CoreServices" fn FSPathMakeRef(path: ?*objc.UInt8, ref: ?*FSRef, isDirec
 pub const fsPathMakeRef = FSPathMakeRef;
 
 pub const anon41251 = enum(u32) {
-    kFSPathMakeRefDefaultOptions = 0,
-    kFSPathMakeRefDoNotFollowLeafSymlink = 1,
+    FSPathMakeRefDefaultOptions = 0,
+    FSPathMakeRefDoNotFollowLeafSymlink = 1,
 };
 
 extern "CoreServices" fn FSPathMakeRefWithOptions(
@@ -7948,7 +7948,7 @@ pub const fsIsFSRefValid = FSIsFSRefValid;
 pub const FNMessage = objc.UInt32;
 
 pub const anon41981 = enum(u32) {
-    kFNDirectoryModifiedMessage = 1,
+    FNDirectoryModifiedMessage = 1,
 };
 
 extern "CoreServices" fn FNNotify(ref: ?*FSRef, message: FNMessage, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
@@ -7965,8 +7965,8 @@ pub const OpaqueFNSubscriptionRef = extern struct {};
 pub const FNSubscriptionRef = ?*OpaqueFNSubscriptionRef;
 
 pub const anon43161 = enum(u32) {
-    kFNNoImplicitAllSubscription = 1,
-    kFNNotifyInBackground = 2,
+    FNNoImplicitAllSubscription = 1,
+    FNNotifyInBackground = 2,
 };
 
 pub const FNSubscriptionProcPtr = ?*const fn (
@@ -8018,12 +8018,12 @@ extern "CoreServices" fn FNGetDirectoryForSubscription(subscription: FNSubscript
 pub const fnGetDirectoryForSubscription = FNGetDirectoryForSubscription;
 
 pub const anon45341 = enum(u32) {
-    kAsyncMountInProgress = 1,
-    kAsyncMountComplete = 2,
-    kAsyncUnmountInProgress = 3,
-    kAsyncUnmountComplete = 4,
-    kAsyncEjectInProgress = 5,
-    kAsyncEjectComplete = 6,
+    AsyncMountInProgress = 1,
+    AsyncMountComplete = 2,
+    AsyncUnmountInProgress = 3,
+    AsyncUnmountComplete = 4,
+    AsyncEjectInProgress = 5,
+    AsyncEjectComplete = 6,
 };
 
 pub const FSMountStatus = objc.UInt32;
@@ -8113,21 +8113,21 @@ extern "CoreServices" fn InvokeFSVolumeEjectUPP(
 pub const invokeFSVolumeEjectUPP = InvokeFSVolumeEjectUPP;
 
 pub const anon47001 = enum(u32) {
-    kFSMountServerMarkDoNotDisplay = 1,
-    kFSMountServerMountOnMountDir = 4,
-    kFSMountServerSuppressConnectionUI = 64,
+    FSMountServerMarkDoNotDisplay = 1,
+    FSMountServerMountOnMountDir = 4,
+    FSMountServerSuppressConnectionUI = 64,
 };
 
 pub const anon47281 = enum(u32) {
-    kFSMountServerMountWithoutNotification = 2,
+    FSMountServerMountWithoutNotification = 2,
 };
 
 pub const anon47431 = enum(u32) {
-    kFSEjectVolumeForceEject = 1,
+    FSEjectVolumeForceEject = 1,
 };
 
 pub const anon47611 = enum(u32) {
-    kFSUnmountVolumeForceUnmount = 1,
+    FSUnmountVolumeForceUnmount = 1,
 };
 
 extern "CoreServices" fn FSCreateVolumeOperation(volumeOp: ?*FSVolumeOperation) callconv(.C) objc.OSStatus;
@@ -8288,18 +8288,18 @@ pub const FSPathFileOperationStatusProcPtr = ?*const fn (
 ) callconv(.C) void;
 
 pub const anon55751 = enum(u32) {
-    kFSFileOperationDefaultOptions = 0,
-    kFSFileOperationOverwrite = 1,
-    kFSFileOperationSkipSourcePermissionErrors = 2,
-    kFSFileOperationDoNotMoveAcrossVolumes = 4,
-    kFSFileOperationSkipPreflight = 8,
+    FSFileOperationDefaultOptions = 0,
+    FSFileOperationOverwrite = 1,
+    FSFileOperationSkipSourcePermissionErrors = 2,
+    FSFileOperationDoNotMoveAcrossVolumes = 4,
+    FSFileOperationSkipPreflight = 8,
 };
 
 pub const anon56181 = enum(u32) {
-    kFSOperationStageUndefined = 0,
-    kFSOperationStagePreflighting = 1,
-    kFSOperationStageRunning = 2,
-    kFSOperationStageComplete = 3,
+    FSOperationStageUndefined = 0,
+    FSOperationStagePreflighting = 1,
+    FSOperationStageRunning = 2,
+    FSOperationStageComplete = 3,
 };
 
 extern "CoreServices" fn FSCopyObjectSync(
@@ -8517,140 +8517,140 @@ pub const anon70501 = enum(u32) {
 };
 
 pub const anon70681 = enum(u32) {
-    kOwnerID2Name = 1,
-    kGroupID2Name = 2,
-    kOwnerName2ID = 3,
-    kGroupName2ID = 4,
-    kReturnNextUser = 1,
-    kReturnNextGroup = 2,
-    kReturnNextUG = 3,
+    OwnerID2Name = 1,
+    GroupID2Name = 2,
+    OwnerName2ID = 3,
+    GroupName2ID = 4,
+    ReturnNextUser = 1,
+    ReturnNextGroup = 2,
+    ReturnNextUG = 3,
 };
 
 pub const anon70791 = enum(u32) {
-    kVCBFlagsIdleFlushBit = 3,
-    kVCBFlagsIdleFlushMask = 8,
-    kVCBFlagsHFSPlusAPIsBit = 4,
-    kVCBFlagsHFSPlusAPIsMask = 16,
-    kVCBFlagsHardwareGoneBit = 5,
-    kVCBFlagsHardwareGoneMask = 32,
-    kVCBFlagsVolumeDirtyBit = 15,
-    kVCBFlagsVolumeDirtyMask = 32768,
+    VCBFlagsIdleFlushBit = 3,
+    VCBFlagsIdleFlushMask = 8,
+    VCBFlagsHFSPlusAPIsBit = 4,
+    VCBFlagsHFSPlusAPIsMask = 16,
+    VCBFlagsHardwareGoneBit = 5,
+    VCBFlagsHardwareGoneMask = 32,
+    VCBFlagsVolumeDirtyBit = 15,
+    VCBFlagsVolumeDirtyMask = 32768,
 };
 
 pub const anon70911 = enum(u32) {
-    kioVAtrbDefaultVolumeBit = 5,
-    kioVAtrbDefaultVolumeMask = 32,
-    kioVAtrbFilesOpenBit = 6,
-    kioVAtrbFilesOpenMask = 64,
-    kioVAtrbHardwareLockedBit = 7,
-    kioVAtrbHardwareLockedMask = 128,
-    kioVAtrbSoftwareLockedBit = 15,
-    kioVAtrbSoftwareLockedMask = 32768,
+    ioVAtrbDefaultVolumeBit = 5,
+    ioVAtrbDefaultVolumeMask = 32,
+    ioVAtrbFilesOpenBit = 6,
+    ioVAtrbFilesOpenMask = 64,
+    ioVAtrbHardwareLockedBit = 7,
+    ioVAtrbHardwareLockedMask = 128,
+    ioVAtrbSoftwareLockedBit = 15,
+    ioVAtrbSoftwareLockedMask = 32768,
 };
 
 pub const anon71031 = enum(u32) {
-    kioFlAttribLockedBit = 0,
-    kioFlAttribLockedMask = 1,
-    kioFlAttribResOpenBit = 2,
-    kioFlAttribResOpenMask = 4,
-    kioFlAttribDataOpenBit = 3,
-    kioFlAttribDataOpenMask = 8,
-    kioFlAttribDirBit = 4,
-    kioFlAttribDirMask = 16,
+    ioFlAttribLockedBit = 0,
+    ioFlAttribLockedMask = 1,
+    ioFlAttribResOpenBit = 2,
+    ioFlAttribResOpenMask = 4,
+    ioFlAttribDataOpenBit = 3,
+    ioFlAttribDataOpenMask = 8,
+    ioFlAttribDirBit = 4,
+    ioFlAttribDirMask = 16,
     ioDirFlg = 4,
     ioDirMask = 16,
-    kioFlAttribCopyProtBit = 6,
-    kioFlAttribCopyProtMask = 64,
-    kioFlAttribFileOpenBit = 7,
-    kioFlAttribFileOpenMask = 128,
-    kioFlAttribInSharedBit = 2,
-    kioFlAttribInSharedMask = 4,
-    kioFlAttribMountedBit = 3,
-    kioFlAttribMountedMask = 8,
-    kioFlAttribSharePointBit = 5,
-    kioFlAttribSharePointMask = 32,
+    ioFlAttribCopyProtBit = 6,
+    ioFlAttribCopyProtMask = 64,
+    ioFlAttribFileOpenBit = 7,
+    ioFlAttribFileOpenMask = 128,
+    ioFlAttribInSharedBit = 2,
+    ioFlAttribInSharedMask = 4,
+    ioFlAttribMountedBit = 3,
+    ioFlAttribMountedMask = 8,
+    ioFlAttribSharePointBit = 5,
+    ioFlAttribSharePointMask = 32,
 };
 
 pub const anon71311 = enum(u32) {
-    kioFCBWriteBit = 8,
-    kioFCBWriteMask = 256,
-    kioFCBResourceBit = 9,
-    kioFCBResourceMask = 512,
-    kioFCBWriteLockedBit = 10,
-    kioFCBWriteLockedMask = 1024,
-    kioFCBLargeFileBit = 11,
-    kioFCBLargeFileMask = 2048,
-    kioFCBSharedWriteBit = 12,
-    kioFCBSharedWriteMask = 4096,
-    kioFCBFileLockedBit = 13,
-    kioFCBFileLockedMask = 8192,
-    kioFCBOwnClumpBit = 14,
-    kioFCBOwnClumpMask = 16384,
-    kioFCBModifiedBit = 15,
-    kioFCBModifiedMask = 32768,
+    ioFCBWriteBit = 8,
+    ioFCBWriteMask = 256,
+    ioFCBResourceBit = 9,
+    ioFCBResourceMask = 512,
+    ioFCBWriteLockedBit = 10,
+    ioFCBWriteLockedMask = 1024,
+    ioFCBLargeFileBit = 11,
+    ioFCBLargeFileMask = 2048,
+    ioFCBSharedWriteBit = 12,
+    ioFCBSharedWriteMask = 4096,
+    ioFCBFileLockedBit = 13,
+    ioFCBFileLockedMask = 8192,
+    ioFCBOwnClumpBit = 14,
+    ioFCBOwnClumpMask = 16384,
+    ioFCBModifiedBit = 15,
+    ioFCBModifiedMask = 32768,
 };
 
 pub const anon71531 = enum(u32) {
-    kForkInfoFlagsWriteBit = 0,
-    kForkInfoFlagsWriteMask = 1,
-    kForkInfoFlagsResourceBit = 1,
-    kForkInfoFlagsResourceMask = 2,
-    kForkInfoFlagsWriteLockedBit = 2,
-    kForkInfoFlagsWriteLockedMask = 4,
-    kForkInfoFlagsLargeFileBit = 3,
-    kForkInfoFlagsLargeFileMask = 8,
-    kForkInfoFlagsSharedWriteBit = 4,
-    kForkInfoFlagsSharedWriteMask = 16,
-    kForkInfoFlagsFileLockedBit = 5,
-    kForkInfoFlagsFileLockedMask = 32,
-    kForkInfoFlagsOwnClumpBit = 6,
-    kForkInfoFlagsOwnClumpMask = 64,
-    kForkInfoFlagsModifiedBit = 7,
-    kForkInfoFlagsModifiedMask = 128,
+    ForkInfoFlagsWriteBit = 0,
+    ForkInfoFlagsWriteMask = 1,
+    ForkInfoFlagsResourceBit = 1,
+    ForkInfoFlagsResourceMask = 2,
+    ForkInfoFlagsWriteLockedBit = 2,
+    ForkInfoFlagsWriteLockedMask = 4,
+    ForkInfoFlagsLargeFileBit = 3,
+    ForkInfoFlagsLargeFileMask = 8,
+    ForkInfoFlagsSharedWriteBit = 4,
+    ForkInfoFlagsSharedWriteMask = 16,
+    ForkInfoFlagsFileLockedBit = 5,
+    ForkInfoFlagsFileLockedMask = 32,
+    ForkInfoFlagsOwnClumpBit = 6,
+    ForkInfoFlagsOwnClumpMask = 64,
+    ForkInfoFlagsModifiedBit = 7,
+    ForkInfoFlagsModifiedMask = 128,
 };
 
 pub const anon71741 = enum(u32) {
-    kioACUserNoSeeFolderBit = 0,
-    kioACUserNoSeeFolderMask = 1,
-    kioACUserNoSeeFilesBit = 1,
-    kioACUserNoSeeFilesMask = 2,
-    kioACUserNoMakeChangesBit = 2,
-    kioACUserNoMakeChangesMask = 4,
-    kioACUserNotOwnerBit = 7,
-    kioACUserNotOwnerMask = 128,
+    ioACUserNoSeeFolderBit = 0,
+    ioACUserNoSeeFolderMask = 1,
+    ioACUserNoSeeFilesBit = 1,
+    ioACUserNoSeeFilesMask = 2,
+    ioACUserNoMakeChangesBit = 2,
+    ioACUserNoMakeChangesMask = 4,
+    ioACUserNotOwnerBit = 7,
+    ioACUserNotOwnerMask = 128,
 };
 
 pub const anon71861 = enum(i32) {
-    kioACAccessOwnerBit = 31,
-    kioACAccessOwnerMask = -2147483648,
-    kioACAccessBlankAccessBit = 28,
-    kioACAccessBlankAccessMask = 268435456,
-    kioACAccessUserWriteBit = 26,
-    kioACAccessUserWriteMask = 67108864,
-    kioACAccessUserReadBit = 25,
-    kioACAccessUserReadMask = 33554432,
-    kioACAccessUserSearchBit = 24,
-    kioACAccessUserSearchMask = 16777216,
-    kioACAccessEveryoneWriteBit = 18,
-    kioACAccessEveryoneWriteMask = 262144,
-    kioACAccessEveryoneReadBit = 17,
-    kioACAccessEveryoneReadMask = 131072,
-    kioACAccessEveryoneSearchBit = 16,
-    kioACAccessEveryoneSearchMask = 65536,
-    kioACAccessGroupWriteBit = 10,
-    kioACAccessGroupWriteMask = 1024,
-    kioACAccessGroupReadBit = 9,
-    kioACAccessGroupReadMask = 512,
-    kioACAccessGroupSearchBit = 8,
-    kioACAccessGroupSearchMask = 256,
-    kioACAccessOwnerWriteBit = 2,
-    kioACAccessOwnerWriteMask = 4,
-    kioACAccessOwnerReadBit = 1,
-    kioACAccessOwnerReadMask = 2,
-    kioACAccessOwnerSearchBit = 0,
-    kioACAccessOwnerSearchMask = 1,
-    kfullPrivileges = 458759,
-    kownerPrivileges = 7,
+    ioACAccessOwnerBit = 31,
+    ioACAccessOwnerMask = -2147483648,
+    ioACAccessBlankAccessBit = 28,
+    ioACAccessBlankAccessMask = 268435456,
+    ioACAccessUserWriteBit = 26,
+    ioACAccessUserWriteMask = 67108864,
+    ioACAccessUserReadBit = 25,
+    ioACAccessUserReadMask = 33554432,
+    ioACAccessUserSearchBit = 24,
+    ioACAccessUserSearchMask = 16777216,
+    ioACAccessEveryoneWriteBit = 18,
+    ioACAccessEveryoneWriteMask = 262144,
+    ioACAccessEveryoneReadBit = 17,
+    ioACAccessEveryoneReadMask = 131072,
+    ioACAccessEveryoneSearchBit = 16,
+    ioACAccessEveryoneSearchMask = 65536,
+    ioACAccessGroupWriteBit = 10,
+    ioACAccessGroupWriteMask = 1024,
+    ioACAccessGroupReadBit = 9,
+    ioACAccessGroupReadMask = 512,
+    ioACAccessGroupSearchBit = 8,
+    ioACAccessGroupSearchMask = 256,
+    ioACAccessOwnerWriteBit = 2,
+    ioACAccessOwnerWriteMask = 4,
+    ioACAccessOwnerReadBit = 1,
+    ioACAccessOwnerReadMask = 2,
+    ioACAccessOwnerSearchBit = 0,
+    ioACAccessOwnerSearchMask = 1,
+    fullPrivileges = 458759,
+    ownerPrivileges = 7,
 };
 
 extern "CoreServices" fn FSGetVolumeParms(volume: FSVolumeRefNum, buffer: ?*GetVolParmsInfoBuffer, bufferSize: objc.ByteCount) callconv(.C) objc.OSStatus;
@@ -8707,8 +8707,8 @@ pub const ResourceIndex = objc.SInt16;
 pub const ResFileRefNum = FSIORefNum;
 
 pub const anon721 = enum(u32) {
-    kCSIdentityQueryGenerateUpdateEvents = 1,
-    kCSIdentityQueryIncludeHiddenIdentities = 2,
+    CSIdentityQueryGenerateUpdateEvents = 1,
+    CSIdentityQueryIncludeHiddenIdentities = 2,
 };
 
 pub const anon791 = enum(u32) {
@@ -8879,10 +8879,10 @@ pub const getNextFOND = GetNextFOND;
 pub const RsrcChainLocation = objc.SInt16;
 
 pub const anon8151 = enum(u32) {
-    kRsrcChainBelowSystemMap = 0,
-    kRsrcChainBelowApplicationMap = 1,
-    kRsrcChainAboveApplicationMap = 2,
-    kRsrcChainAboveAllMaps = 4,
+    RsrcChainBelowSystemMap = 0,
+    RsrcChainBelowApplicationMap = 1,
+    RsrcChainAboveApplicationMap = 2,
+    RsrcChainAboveAllMaps = 4,
 };
 
 extern "CoreServices" fn InsertResourceFile(refNum: ResFileRefNum, where: RsrcChainLocation) callconv(.C) objc.OSErr;
@@ -8948,44 +8948,44 @@ extern "CoreServices" fn FSOpenResourceFile(
 pub const fsOpenResourceFile = FSOpenResourceFile;
 
 pub const anon531 = enum(u32) {
-    kAnyComponentType = 0,
-    kAnyComponentSubType = 0,
-    kAnyComponentManufacturer = 0,
-    kAnyComponentFlagsMask = 0,
+    AnyComponentType = 0,
+    AnyComponentSubType = 0,
+    AnyComponentManufacturer = 0,
+    AnyComponentFlagsMask = 0,
 };
 
 pub const anon661 = enum(i32) {
-    kDesktopIconResource = -3992,
-    kOpenFolderIconResource = -3997,
-    kGenericHardDiskIconResource = -3995,
-    kGenericFileServerIconResource = -3972,
-    kGenericSuitcaseIconResource = -3970,
-    kGenericMoverObjectIconResource = -3969,
+    DesktopIconResource = -3992,
+    OpenFolderIconResource = -3997,
+    GenericHardDiskIconResource = -3995,
+    GenericFileServerIconResource = -3972,
+    GenericSuitcaseIconResource = -3970,
+    GenericMoverObjectIconResource = -3969,
 };
 
 pub const anon801 = enum(u32) {
-    kIdleKCEventMask = 1,
-    kLockKCEventMask = 2,
-    kUnlockKCEventMask = 4,
-    kAddKCEventMask = 8,
-    kDeleteKCEventMask = 16,
-    kUpdateKCEventMask = 32,
-    kPasswordChangedKCEventMask = 64,
-    kSystemEventKCEventMask = 256,
-    kDefaultChangedKCEventMask = 512,
-    kDataAccessKCEventMask = 1024,
-    kEveryKCEventMask = 65535,
+    IdleKCEventMask = 1,
+    LockKCEventMask = 2,
+    UnlockKCEventMask = 4,
+    AddKCEventMask = 8,
+    DeleteKCEventMask = 16,
+    UpdateKCEventMask = 32,
+    PasswordChangedKCEventMask = 64,
+    SystemEventKCEventMask = 256,
+    DefaultChangedKCEventMask = 512,
+    DataAccessKCEventMask = 1024,
+    EveryKCEventMask = 65535,
 };
 
 pub const anon911 = enum(u32) {
-    kSKSearchOptionDefault = 0,
-    kSKSearchOptionNoRelevanceScores = 1,
-    kSKSearchOptionSpaceMeansOR = 2,
-    kSKSearchOptionFindSimilar = 4,
+    SKSearchOptionDefault = 0,
+    SKSearchOptionNoRelevanceScores = 1,
+    SKSearchOptionSpaceMeansOR = 2,
+    SKSearchOptionFindSimilar = 4,
 };
 
 pub const anon1011 = enum(i32) {
-    kTEC_MIBEnumDontCare = -1,
+    TEC_MIBEnumDontCare = -1,
 };
 
 pub const ComponentDescription = extern struct {
@@ -9094,8 +9094,8 @@ pub const anon2391 = enum(u32) {
 pub const CSComponentsThreadMode = objc.UInt32;
 
 pub const anon2451 = enum(u32) {
-    kCSAcceptAllComponentsMode = 0,
-    kCSAcceptThreadSafeComponentsOnlyMode = 1,
+    CSAcceptAllComponentsMode = 0,
+    CSAcceptThreadSafeComponentsOnlyMode = 1,
 };
 
 extern "CoreServices" fn CSSetComponentsThreadMode(mode: CSComponentsThreadMode) callconv(.C) void;
@@ -9612,9 +9612,9 @@ extern "CoreServices" fn MPCauseNotification(notificationID: MPNotificationID) c
 pub const mpCauseNotification = MPCauseNotification;
 
 pub const anon8721 = enum(u32) {
-    kMPPreserveTimerIDMask = 1,
-    kMPTimeIsDeltaMask = 2,
-    kMPTimeIsDurationMask = 4,
+    MPPreserveTimerIDMask = 1,
+    MPTimeIsDeltaMask = 2,
+    MPTimeIsDurationMask = 4,
 };
 
 extern "CoreServices" fn MPDelayUntil(expirationTime: ?*objc.AbsoluteTime) callconv(.C) objc.OSStatus;
@@ -9642,25 +9642,25 @@ extern "CoreServices" fn MPCancelTimer(timerID: MPTimerID, timeRemaining: ?*objc
 pub const mpCancelTimer = MPCancelTimer;
 
 pub const anon10171 = enum(u32) {
-    kMPAllocateDefaultAligned = 0,
-    kMPAllocate8ByteAligned = 3,
-    kMPAllocate16ByteAligned = 4,
-    kMPAllocate32ByteAligned = 5,
-    kMPAllocate1024ByteAligned = 10,
-    kMPAllocate4096ByteAligned = 12,
-    kMPAllocateMaxAlignment = 16,
-    kMPAllocateAltiVecAligned = 4,
-    kMPAllocateVMXAligned = 4,
-    kMPAllocateVMPageAligned = 254,
-    kMPAllocateInterlockAligned = 255,
+    MPAllocateDefaultAligned = 0,
+    MPAllocate8ByteAligned = 3,
+    MPAllocate16ByteAligned = 4,
+    MPAllocate32ByteAligned = 5,
+    MPAllocate1024ByteAligned = 10,
+    MPAllocate4096ByteAligned = 12,
+    MPAllocateMaxAlignment = 16,
+    MPAllocateAltiVecAligned = 4,
+    MPAllocateVMXAligned = 4,
+    MPAllocateVMPageAligned = 254,
+    MPAllocateInterlockAligned = 255,
 };
 
 pub const anon10341 = enum(u32) {
-    kMPAllocateClearMask = 1,
-    kMPAllocateGloballyMask = 2,
-    kMPAllocateResidentMask = 4,
-    kMPAllocateNoGrowthMask = 16,
-    kMPAllocateNoCreateMask = 32,
+    MPAllocateClearMask = 1,
+    MPAllocateGloballyMask = 2,
+    MPAllocateResidentMask = 4,
+    MPAllocateNoGrowthMask = 16,
+    MPAllocateNoCreateMask = 32,
 };
 
 extern "CoreServices" fn MPAllocateAligned(size: objc.ByteCount, alignment: objc.UInt8, options: objc.OptionBits) callconv(.C) objc.LogicalAddress;
@@ -9682,32 +9682,32 @@ extern "CoreServices" fn MPBlockClear(address: objc.LogicalAddress, size: objc.B
 pub const mpBlockClear = MPBlockClear;
 
 pub const anon12221 = enum(u32) {
-    kMPTaskStateRegisters = 0,
-    kMPTaskStateFPU = 1,
-    kMPTaskStateVectors = 2,
-    kMPTaskStateMachine = 3,
-    kMPTaskState32BitMemoryException = 4,
-    kMPTaskStateTaskInfo = 5,
+    MPTaskStateRegisters = 0,
+    MPTaskStateFPU = 1,
+    MPTaskStateVectors = 2,
+    MPTaskStateMachine = 3,
+    MPTaskState32BitMemoryException = 4,
+    MPTaskStateTaskInfo = 5,
 };
 
 pub const anon12341 = enum(u32) {
-    kMPTaskPropagate = 0,
-    kMPTaskResumeStep = 1,
-    kMPTaskResumeBranch = 2,
-    kMPTaskResumeMask = 0,
-    kMPTaskPropagateMask = 1,
-    kMPTaskResumeStepMask = 2,
-    kMPTaskResumeBranchMask = 4,
+    MPTaskPropagate = 0,
+    MPTaskResumeStep = 1,
+    MPTaskResumeBranch = 2,
+    MPTaskResumeMask = 0,
+    MPTaskPropagateMask = 1,
+    MPTaskResumeStepMask = 2,
+    MPTaskResumeBranchMask = 4,
 };
 
 pub const anon12471 = enum(u32) {
-    kMPTaskBlocked = 0,
-    kMPTaskReady = 1,
-    kMPTaskRunning = 2,
+    MPTaskBlocked = 0,
+    MPTaskReady = 1,
+    MPTaskRunning = 2,
 };
 
 pub const anon12541 = enum(u32) {
-    kMPTaskInfoVersion = 3,
+    MPTaskInfoVersion = 3,
 };
 
 pub const MPTaskInfoVersion2 = extern struct {
@@ -9777,10 +9777,10 @@ pub const MPRemoteProcedure = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
 pub const MPRemoteContext = objc.UInt8;
 
 pub const anon14821 = enum(u32) {
-    kMPAnyRemoteContext = 0,
-    kMPOwningProcessRemoteContext = 1,
-    kMPInterruptRemoteContext = 2,
-    kMPAsyncInterruptRemoteContext = 3,
+    MPAnyRemoteContext = 0,
+    MPOwningProcessRemoteContext = 1,
+    MPInterruptRemoteContext = 2,
+    MPAsyncInterruptRemoteContext = 3,
 };
 
 extern "CoreServices" fn MPRemoteCall(remoteProc: MPRemoteProcedure, parameter: ?*anyopaque, context: MPRemoteContext) callconv(.C) ?*anyopaque;
@@ -9815,8 +9815,8 @@ pub const _mpLibraryIsCompatible = _MPLibraryIsCompatible;
 pub const FSAliasInfoBitmap = objc.UInt32;
 
 pub const anon631 = enum(objc.OSType) {
-    kLSUnknownType = 0,
-    kLSUnknownCreator = 0,
+    LSUnknownType = 0,
+    LSUnknownCreator = 0,
 };
 
 pub const AliasRecord = extern struct {
@@ -10095,12 +10095,12 @@ extern "CoreServices" fn TaskLevel() callconv(.C) objc.UInt32;
 pub const taskLevel = TaskLevel;
 
 pub const anon4041 = enum(u32) {
-    kComponentDebugOption = 0,
+    ComponentDebugOption = 0,
 };
 
 pub const anon4081 = enum(u32) {
-    kGetDebugOption = 1,
-    kSetDebugOption = 2,
+    GetDebugOption = 1,
+    SetDebugOption = 2,
 };
 
 pub const DebugComponentCallbackProcPtr = ?*const fn (objc.SInt32, objc.UInt32, ?*objc.Boolean) callconv(.C) void;
@@ -10371,24 +10371,24 @@ pub const MemoryExceptionInformation = extern struct {
 };
 
 pub const anon1411 = enum(u32) {
-    kUnknownException = 0,
-    kIllegalInstructionException = 1,
-    kTrapException = 2,
-    kAccessException = 3,
-    kUnmappedMemoryException = 4,
-    kExcludedMemoryException = 5,
-    kReadOnlyMemoryException = 6,
-    kUnresolvablePageFaultException = 7,
-    kPrivilegeViolationException = 8,
-    kTraceException = 9,
-    kInstructionBreakpointException = 10,
-    kDataBreakpointException = 11,
-    kIntegerException = 12,
-    kFloatingPointException = 13,
-    kStackOverflowException = 14,
-    kTaskTerminationException = 15,
-    kTaskCreationException = 16,
-    kDataAlignmentException = 17,
+    UnknownException = 0,
+    IllegalInstructionException = 1,
+    TrapException = 2,
+    AccessException = 3,
+    UnmappedMemoryException = 4,
+    ExcludedMemoryException = 5,
+    ReadOnlyMemoryException = 6,
+    UnresolvablePageFaultException = 7,
+    PrivilegeViolationException = 8,
+    TraceException = 9,
+    InstructionBreakpointException = 10,
+    DataBreakpointException = 11,
+    IntegerException = 12,
+    FloatingPointException = 13,
+    StackOverflowException = 14,
+    TaskTerminationException = 15,
+    TaskCreationException = 16,
+    DataAlignmentException = 17,
 };
 
 pub const ExceptionKind = u64;
@@ -10638,32 +10638,32 @@ pub const UCKeySequenceDataIndex = extern struct {
 };
 
 pub const anon2421 = enum(u32) {
-    kUCKeyLayoutHeaderFormat = 4098,
-    kUCKeyLayoutFeatureInfoFormat = 8193,
-    kUCKeyModifiersToTableNumFormat = 12289,
-    kUCKeyToCharTableIndexFormat = 16385,
-    kUCKeyStateRecordsIndexFormat = 20481,
-    kUCKeyStateTerminatorsFormat = 24577,
-    kUCKeySequenceDataIndexFormat = 28673,
+    UCKeyLayoutHeaderFormat = 4098,
+    UCKeyLayoutFeatureInfoFormat = 8193,
+    UCKeyModifiersToTableNumFormat = 12289,
+    UCKeyToCharTableIndexFormat = 16385,
+    UCKeyStateRecordsIndexFormat = 20481,
+    UCKeyStateTerminatorsFormat = 24577,
+    UCKeySequenceDataIndexFormat = 28673,
 };
 
 pub const anon2591 = enum(u32) {
-    kUCKeyActionDown = 0,
-    kUCKeyActionUp = 1,
-    kUCKeyActionAutoKey = 2,
-    kUCKeyActionDisplay = 3,
+    UCKeyActionDown = 0,
+    UCKeyActionUp = 1,
+    UCKeyActionAutoKey = 2,
+    UCKeyActionDisplay = 3,
 };
 
 pub const anon2721 = enum(u32) {
-    kUCKeyTranslateNoDeadKeysBit = 0,
+    UCKeyTranslateNoDeadKeysBit = 0,
 };
 
 pub const anon2761 = enum(u32) {
-    kUCKeyTranslateNoDeadKeysMask = 1,
+    UCKeyTranslateNoDeadKeysMask = 1,
 };
 
 pub const anon2871 = enum(u32) {
-    kUnicodeCollationClass = 1969450860,
+    UnicodeCollationClass = 1969450860,
 };
 
 pub const OpaqueCollatorRef = extern struct {};
@@ -10673,20 +10673,20 @@ pub const CollatorRef = ?*OpaqueCollatorRef;
 pub const UCCollateOptions = objc.UInt32;
 
 pub const anon3041 = enum(u32) {
-    kMPQueueInfoVersion = 262145,
-    kMPSemaphoreInfoVersion = 327681,
-    kMPEventInfoVersion = 589825,
-    kMPCriticalRegionInfoVersion = 393217,
-    kMPNotificationInfoVersion = 786433,
-    kMPAddressSpaceInfoVersion = 524289,
+    MPQueueInfoVersion = 262145,
+    MPSemaphoreInfoVersion = 327681,
+    MPEventInfoVersion = 589825,
+    MPCriticalRegionInfoVersion = 393217,
+    MPNotificationInfoVersion = 786433,
+    MPAddressSpaceInfoVersion = 524289,
 };
 
 pub const anon3121 = enum(u32) {
-    kUCCollateTypeHFSExtended = 1,
+    UCCollateTypeHFSExtended = 1,
 };
 
 pub const anon3221 = enum(u32) {
-    kUCCollateTypeMask = -16777216,
+    UCCollateTypeMask = -16777216,
 };
 
 pub const UCCollationValue = objc.UInt32;
@@ -10702,30 +10702,30 @@ pub const UCTSWalkDirection = objc.UInt16;
 pub const UCTypeSelectOptions = objc.UInt16;
 
 pub const anon3721 = enum(u32) {
-    kFSEventStreamEventFlagNone = 0,
-    kFSEventStreamEventFlagMustScanSubDirs = 1,
-    kFSEventStreamEventFlagUserDropped = 2,
-    kFSEventStreamEventFlagKernelDropped = 4,
-    kFSEventStreamEventFlagEventIdsWrapped = 8,
-    kFSEventStreamEventFlagHistoryDone = 16,
-    kFSEventStreamEventFlagRootChanged = 32,
-    kFSEventStreamEventFlagMount = 64,
-    kFSEventStreamEventFlagUnmount = 128,
-    kFSEventStreamEventFlagItemCreated = 256,
-    kFSEventStreamEventFlagItemRemoved = 512,
-    kFSEventStreamEventFlagItemInodeMetaMod = 1024,
-    kFSEventStreamEventFlagItemRenamed = 2048,
-    kFSEventStreamEventFlagItemModified = 4096,
-    kFSEventStreamEventFlagItemFinderInfoMod = 8192,
-    kFSEventStreamEventFlagItemChangeOwner = 16384,
-    kFSEventStreamEventFlagItemXattrMod = 32768,
-    kFSEventStreamEventFlagItemIsFile = 65536,
-    kFSEventStreamEventFlagItemIsDir = 131072,
-    kFSEventStreamEventFlagItemIsSymlink = 262144,
-    kFSEventStreamEventFlagOwnEvent = 524288,
-    kFSEventStreamEventFlagItemIsHardlink = 1048576,
-    kFSEventStreamEventFlagItemIsLastHardlink = 2097152,
-    kFSEventStreamEventFlagItemCloned = 4194304,
+    FSEventStreamEventFlagNone = 0,
+    FSEventStreamEventFlagMustScanSubDirs = 1,
+    FSEventStreamEventFlagUserDropped = 2,
+    FSEventStreamEventFlagKernelDropped = 4,
+    FSEventStreamEventFlagEventIdsWrapped = 8,
+    FSEventStreamEventFlagHistoryDone = 16,
+    FSEventStreamEventFlagRootChanged = 32,
+    FSEventStreamEventFlagMount = 64,
+    FSEventStreamEventFlagUnmount = 128,
+    FSEventStreamEventFlagItemCreated = 256,
+    FSEventStreamEventFlagItemRemoved = 512,
+    FSEventStreamEventFlagItemInodeMetaMod = 1024,
+    FSEventStreamEventFlagItemRenamed = 2048,
+    FSEventStreamEventFlagItemModified = 4096,
+    FSEventStreamEventFlagItemFinderInfoMod = 8192,
+    FSEventStreamEventFlagItemChangeOwner = 16384,
+    FSEventStreamEventFlagItemXattrMod = 32768,
+    FSEventStreamEventFlagItemIsFile = 65536,
+    FSEventStreamEventFlagItemIsDir = 131072,
+    FSEventStreamEventFlagItemIsSymlink = 262144,
+    FSEventStreamEventFlagOwnEvent = 524288,
+    FSEventStreamEventFlagItemIsHardlink = 1048576,
+    FSEventStreamEventFlagItemIsLastHardlink = 2097152,
+    FSEventStreamEventFlagItemCloned = 4194304,
 };
 
 pub const IndexToUCStringProcPtr = ?*const fn (
@@ -10755,7 +10755,7 @@ extern "CoreServices" fn InvokeIndexToUCStringUPP(
 pub const invokeIndexToUCStringUPP = InvokeIndexToUCStringUPP;
 
 pub const anon4541 = enum(u32) {
-    kUnicodeTextBreakClass = 1969386091,
+    UnicodeTextBreakClass = 1969386091,
 };
 
 pub const OpaqueTextBreakLocatorRef = extern struct {};
@@ -11038,10 +11038,10 @@ pub const TECConversionInfo = extern struct {
 pub const TECInternetNameUsageMask = objc.UInt32;
 
 pub const anon1111 = enum(u32) {
-    kCertificateKCItemClass = 1667592820,
-    kAppleSharePasswordKCItemClass = 1634953328,
-    kInternetPasswordKCItemClass = 1768842612,
-    kGenericPasswordKCItemClass = 1734700656,
+    CertificateKCItemClass = 1667592820,
+    AppleSharePasswordKCItemClass = 1634953328,
+    InternetPasswordKCItemClass = 1768842612,
+    GenericPasswordKCItemClass = 1734700656,
 };
 
 extern "CoreServices" fn TECCountAvailableTextEncodings(numberEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
@@ -11249,25 +11249,25 @@ pub const UnicodeMappingPtr = ?*UnicodeMapping;
 pub const ConstUnicodeMappingPtr = ?*UnicodeMapping;
 
 pub const anon1091 = enum(u32) {
-    kUnicodeDefaultDirection = 0,
-    kUnicodeLeftToRight = 1,
-    kUnicodeRightToLeft = 2,
+    UnicodeDefaultDirection = 0,
+    UnicodeLeftToRight = 1,
+    UnicodeRightToLeft = 2,
 };
 
 pub const anon1531 = enum(u32) {
-    kUnicodeMatchUnicodeBaseMask = 1,
-    kUnicodeMatchUnicodeVariantMask = 2,
-    kUnicodeMatchUnicodeFormatMask = 4,
-    kUnicodeMatchOtherBaseMask = 8,
-    kUnicodeMatchOtherVariantMask = 16,
-    kUnicodeMatchOtherFormatMask = 32,
+    UnicodeMatchUnicodeBaseMask = 1,
+    UnicodeMatchUnicodeVariantMask = 2,
+    UnicodeMatchUnicodeFormatMask = 4,
+    UnicodeMatchOtherBaseMask = 8,
+    UnicodeMatchOtherVariantMask = 16,
+    UnicodeMatchOtherFormatMask = 32,
 };
 
 pub const anon1731 = enum(u32) {
-    kUnicodeFallbackDefaultOnly = 0,
-    kUnicodeFallbackCustomOnly = 1,
-    kUnicodeFallbackDefaultFirst = 2,
-    kUnicodeFallbackCustomFirst = 3,
+    UnicodeFallbackDefaultOnly = 0,
+    UnicodeFallbackCustomOnly = 1,
+    UnicodeFallbackDefaultFirst = 2,
+    UnicodeFallbackCustomFirst = 3,
 };
 
 pub const UnicodeToTextFallbackProcPtr = ?*const fn (
@@ -11681,10 +11681,10 @@ extern "CoreServices" fn SetThreadReadyGivenTaskRef(threadTRef: ThreadTaskRef, t
 pub const setThreadReadyGivenTaskRef = SetThreadReadyGivenTaskRef;
 
 pub const anon831 = enum(u32) {
-    kOSIZDontOpenResourceFile = 15,
-    kOSIZdontAcceptRemoteEvents = 14,
-    kOSIZOpenWithReadPermission = 13,
-    kOSIZCodeInSharedLibraries = 11,
+    OSIZDontOpenResourceFile = 15,
+    OSIZdontAcceptRemoteEvents = 14,
+    OSIZOpenWithReadPermission = 13,
+    OSIZCodeInSharedLibraries = 11,
 };
 
 extern "CoreServices" fn FindFolder(
@@ -11708,192 +11708,192 @@ extern "CoreServices" fn FSFindFolder(
 pub const fsFindFolder = FSFindFolder;
 
 pub const anon3021 = enum(u32) {
-    kDesktopFolderType = 1684370283,
-    kTrashFolderType = 1953657704,
-    kWhereToEmptyTrashFolderType = 1701671028,
-    kFontsFolderType = 1718578804,
-    kPreferencesFolderType = 1886545254,
-    kSystemPreferencesFolderType = 1936749158,
-    kTemporaryFolderType = 1952804208,
-    kChewableItemsFolderType = 1718382196,
-    kTemporaryItemsInCacheDataFolderType = 1987341680,
-    kApplicationsFolderType = 1634758771,
-    kVolumeRootFolderType = 1919905652,
-    kDomainTopLevelFolderType = 1685352304,
-    kDomainLibraryFolderType = 1684826466,
-    kUsersFolderType = 1970500211,
-    kCurrentUserFolderType = 1668641650,
-    kSharedUserDataFolderType = 1935958388,
+    DesktopFolderType = 1684370283,
+    TrashFolderType = 1953657704,
+    WhereToEmptyTrashFolderType = 1701671028,
+    FontsFolderType = 1718578804,
+    PreferencesFolderType = 1886545254,
+    SystemPreferencesFolderType = 1936749158,
+    TemporaryFolderType = 1952804208,
+    ChewableItemsFolderType = 1718382196,
+    TemporaryItemsInCacheDataFolderType = 1987341680,
+    ApplicationsFolderType = 1634758771,
+    VolumeRootFolderType = 1919905652,
+    DomainTopLevelFolderType = 1685352304,
+    DomainLibraryFolderType = 1684826466,
+    UsersFolderType = 1970500211,
+    CurrentUserFolderType = 1668641650,
+    SharedUserDataFolderType = 1935958388,
 };
 
 pub const anon3511 = enum(AEKeyword) {
-    keyAEKeyword = 1803122532,
-    keyAELevel = 1818588780,
-    keyAELineArrow = 1634890351,
-    keyAEName = 1886282093,
-    keyAENewElementLoc = 1886283116,
-    keyAEObject = 1802461802,
-    keyAEObjectClass = 1802462060,
-    keyAEOffStyles = 1868985204,
-    keyAEOnStyles = 1869509492,
-    keyAEParameters = 1886547315,
-    keyAEParamFlags = 1886217831,
-    keyAEPenColor = 1886413676,
-    keyAEPenPattern = 1886416993,
-    keyAEPenWidth = 1886418788,
-    keyAEPixelDepth = 1885630580,
-    keyAEPixMapMinus = 1802530157,
-    keyAEPMTable = 1802530164,
-    keyAEPointList = 1886678132,
-    keyAEPointSize = 1886679930,
-    keyAEPosition = 1802530675,
+    eyAEKeyword = 1803122532,
+    eyAELevel = 1818588780,
+    eyAELineArrow = 1634890351,
+    eyAEName = 1886282093,
+    eyAENewElementLoc = 1886283116,
+    eyAEObject = 1802461802,
+    eyAEObjectClass = 1802462060,
+    eyAEOffStyles = 1868985204,
+    eyAEOnStyles = 1869509492,
+    eyAEParameters = 1886547315,
+    eyAEParamFlags = 1886217831,
+    eyAEPenColor = 1886413676,
+    eyAEPenPattern = 1886416993,
+    eyAEPenWidth = 1886418788,
+    eyAEPixelDepth = 1885630580,
+    eyAEPixMapMinus = 1802530157,
+    eyAEPMTable = 1802530164,
+    eyAEPointList = 1886678132,
+    eyAEPointSize = 1886679930,
+    eyAEPosition = 1802530675,
 };
 
 pub const anon3551 = enum(u32) {
-    kSharedLibrariesFolderType = -999528094,
-    kVoicesFolderType = 1719037795,
-    kUtilitiesFolderType = 1970563524,
-    kThemesFolderType = 1953000805,
-    kFavoritesFolderType = 1717663347,
-    kInternetSearchSitesFolderType = 1769173862,
-    kInstallerLogsFolderType = 1768712038,
-    kScriptsFolderType = 1935897284,
-    kFolderActionsFolderType = 1717662566,
-    kSpeakableItemsFolderType = 1936747369,
-    kKeychainFolderType = 1801676910,
+    SharedLibrariesFolderType = -999528094,
+    VoicesFolderType = 1719037795,
+    UtilitiesFolderType = 1970563524,
+    ThemesFolderType = 1953000805,
+    FavoritesFolderType = 1717663347,
+    InternetSearchSitesFolderType = 1769173862,
+    InstallerLogsFolderType = 1768712038,
+    ScriptsFolderType = 1935897284,
+    FolderActionsFolderType = 1717662566,
+    SpeakableItemsFolderType = 1936747369,
+    KeychainFolderType = 1801676910,
 };
 
 pub const anon3711 = enum(u32) {
-    kColorSyncFolderType = 1937337955,
-    kColorSyncCMMFolderType = 1667460461,
-    kColorSyncScriptingFolderType = 1668506482,
-    kPrintersFolderType = 1768779890,
-    kSpeechFolderType = 1936745320,
-    kCarbonLibraryFolderType = 1667330658,
-    kDocumentationFolderType = 1768842863,
-    kISSDownloadsFolderType = 1769173860,
-    kUserSpecificTmpFolderType = 1970564464,
-    kCachedDataFolderType = 1667326824,
-    kFrameworksFolderType = 1718772077,
-    kPrivateFrameworksFolderType = 1885762157,
-    kClassicDesktopFolderType = 1935962987,
-    kSystemSoundsFolderType = 1936944740,
-    kComponentsFolderType = 1668116580,
-    kQuickTimeComponentsFolderType = 2003004784,
-    kCoreServicesFolderType = 1668510326,
-    kAudioSupportFolderType = 1633970543,
-    kAudioPresetsFolderType = 1634759540,
-    kAudioSoundsFolderType = 1634954852,
-    kAudioSoundBanksFolderType = 1650552427,
-    kAudioAlertSoundsFolderType = 1634497140,
-    kAudioPlugInsFolderType = 1634757735,
-    kAudioComponentsFolderType = 1633906032,
-    kKernelExtensionsFolderType = 1801812084,
-    kDirectoryServicesFolderType = 1685287542,
-    kDirectoryServicesPlugInsFolderType = 1685089383,
-    kInstallerReceiptsFolderType = 1919119476,
-    kFileSystemSupportFolderType = 1718843763,
-    kAppleShareSupportFolderType = 1936220530,
-    kAppleShareAuthenticationFolderType = 1635087464,
-    kMIDIDriversFolderType = 1835623529,
-    kKeyboardLayoutsFolderType = 1802264953,
-    kIndexFilesFolderType = 1768842360,
-    kFindByContentIndexesFolderType = 1717724024,
-    kManagedItemsFolderType = 1835101799,
-    kBootTimeStartupItemsFolderType = 1701671034,
-    kAutomatorWorkflowsFolderType = 1718382455,
-    kAutosaveInformationFolderType = 1634951542,
-    kSpotlightSavedSearchesFolderType = 1936748404,
-    kSpotlightImportersFolderType = 1936289136,
-    kSpotlightMetadataCacheFolderType = 1935893352,
-    kInputManagersFolderType = 1768845428,
-    kInputMethodsFolderType = 1768845414,
-    kLibraryAssistantsFolderType = 1634956396,
-    kAudioDigidesignFolderType = 1633970535,
-    kAudioVSTFolderType = 1635152756,
-    kColorPickersFolderType = 1668311922,
-    kCompositionsFolderType = 1668116595,
-    kFontCollectionsFolderType = 1718510444,
-    kiMovieFolderType = 1768779638,
-    kiMoviePlugInsFolderType = 1768779881,
-    kiMovieSoundEffectsFolderType = 1768780645,
-    kDownloadsFolderType = 1685026670,
+    ColorSyncFolderType = 1937337955,
+    ColorSyncCMMFolderType = 1667460461,
+    ColorSyncScriptingFolderType = 1668506482,
+    PrintersFolderType = 1768779890,
+    SpeechFolderType = 1936745320,
+    CarbonLibraryFolderType = 1667330658,
+    DocumentationFolderType = 1768842863,
+    ISSDownloadsFolderType = 1769173860,
+    UserSpecificTmpFolderType = 1970564464,
+    CachedDataFolderType = 1667326824,
+    FrameworksFolderType = 1718772077,
+    PrivateFrameworksFolderType = 1885762157,
+    ClassicDesktopFolderType = 1935962987,
+    SystemSoundsFolderType = 1936944740,
+    ComponentsFolderType = 1668116580,
+    QuickTimeComponentsFolderType = 2003004784,
+    CoreServicesFolderType = 1668510326,
+    AudioSupportFolderType = 1633970543,
+    AudioPresetsFolderType = 1634759540,
+    AudioSoundsFolderType = 1634954852,
+    AudioSoundBanksFolderType = 1650552427,
+    AudioAlertSoundsFolderType = 1634497140,
+    AudioPlugInsFolderType = 1634757735,
+    AudioComponentsFolderType = 1633906032,
+    KernelExtensionsFolderType = 1801812084,
+    DirectoryServicesFolderType = 1685287542,
+    DirectoryServicesPlugInsFolderType = 1685089383,
+    InstallerReceiptsFolderType = 1919119476,
+    FileSystemSupportFolderType = 1718843763,
+    AppleShareSupportFolderType = 1936220530,
+    AppleShareAuthenticationFolderType = 1635087464,
+    MIDIDriversFolderType = 1835623529,
+    KeyboardLayoutsFolderType = 1802264953,
+    IndexFilesFolderType = 1768842360,
+    FindByContentIndexesFolderType = 1717724024,
+    ManagedItemsFolderType = 1835101799,
+    BootTimeStartupItemsFolderType = 1701671034,
+    AutomatorWorkflowsFolderType = 1718382455,
+    AutosaveInformationFolderType = 1634951542,
+    SpotlightSavedSearchesFolderType = 1936748404,
+    SpotlightImportersFolderType = 1936289136,
+    SpotlightMetadataCacheFolderType = 1935893352,
+    InputManagersFolderType = 1768845428,
+    InputMethodsFolderType = 1768845414,
+    LibraryAssistantsFolderType = 1634956396,
+    AudioDigidesignFolderType = 1633970535,
+    AudioVSTFolderType = 1635152756,
+    ColorPickersFolderType = 1668311922,
+    CompositionsFolderType = 1668116595,
+    FontCollectionsFolderType = 1718510444,
+    iMovieFolderType = 1768779638,
+    iMoviePlugInsFolderType = 1768779881,
+    iMovieSoundEffectsFolderType = 1768780645,
+    DownloadsFolderType = 1685026670,
 };
 
 pub const anon4291 = enum(u32) {
-    kColorSyncProfilesFolderType = 1886547814,
-    kApplicationSupportFolderType = 1634956656,
-    kTextEncodingsFolderType = -999004808,
-    kPrinterDescriptionFolderType = 1886413926,
-    kPrinterDriverFolderType = -999263644,
-    kScriptingAdditionsFolderType = -999070862,
+    ColorSyncProfilesFolderType = 1886547814,
+    ApplicationSupportFolderType = 1634956656,
+    TextEncodingsFolderType = -999004808,
+    PrinterDescriptionFolderType = 1886413926,
+    PrinterDriverFolderType = -999263644,
+    ScriptingAdditionsFolderType = -999070862,
 };
 
 pub const anon4381 = enum(u32) {
-    kClassicPreferencesFolderType = 1668313702,
+    ClassicPreferencesFolderType = 1668313702,
 };
 
 pub const anon4501 = enum(u32) {
-    kSystemFolderType = 1835098995,
-    kSystemDesktopFolderType = 1935962987,
-    kSystemTrashFolderType = 1937011315,
-    kPrintMonitorDocsFolderType = 1886547572,
-    kALMModulesFolderType = 2002873451,
-    kALMPreferencesFolderType = 1953655152,
-    kALMLocationsFolderType = 1717660780,
-    kAppleExtrasFolderType = 1634040004,
-    kContextualMenuItemsFolderType = 1668116085,
-    kMacOSReadMesFolderType = 1836020420,
-    kStartupFolderType = 1937011316,
-    kShutdownFolderType = 1936221286,
-    kAppleMenuFolderType = 1634561653,
-    kControlPanelFolderType = 1668575852,
-    kSystemControlPanelFolderType = 1935897708,
-    kExtensionFolderType = 1702392942,
-    kExtensionDisabledFolderType = 1702392900,
-    kControlPanelDisabledFolderType = 1668575812,
-    kSystemExtensionDisabledFolderType = 1835098948,
-    kStartupItemsDisabledFolderType = 1937011268,
-    kShutdownItemsDisabledFolderType = 1936221252,
-    kAssistantsFolderType = 1634956484,
-    kStationeryFolderType = 1868854132,
-    kOpenDocFolderType = 1868853092,
-    kOpenDocShellPlugInsFolderType = 1868854128,
-    kEditorsFolderType = 1868850532,
-    kOpenDocEditorsFolderType = -999332762,
-    kOpenDocLibrariesFolderType = 1868852322,
-    kGenEditorsFolderType = -999988119,
-    kHelpFolderType = -999789456,
-    kInternetPlugInFolderType = -999398028,
-    kModemScriptsFolderType = -999461020,
-    kControlStripModulesFolderType = 1935959414,
-    kInternetFolderType = 1768846532,
-    kAppearanceFolderType = 1634758770,
-    kSoundSetsFolderType = 1936614515,
-    kDesktopPicturesFolderType = 1685352644,
-    kFindSupportFolderType = 1718510707,
-    kRecentApplicationsFolderType = 1918988400,
-    kRecentDocumentsFolderType = 1919184739,
-    kRecentServersFolderType = 1920169586,
-    kLauncherItemsFolderType = 1818326382,
-    kQuickTimeExtensionsFolderType = 1903453560,
-    kDisplayExtensionsFolderType = 1685287020,
-    kMultiprocessingFolderType = 1836087398,
-    kPrintingPlugInsFolderType = 1886415975,
-    kAppleshareAutomountServerAliasesFolderType = 1936881348,
-    kVolumeSettingsFolderType = 1987274340,
-    kPreMacOS91ApplicationsFolderType = -1938788237,
-    kPreMacOS91InstallerLogsFolderType = -1804834970,
-    kPreMacOS91AssistantsFolderType = -1938590524,
-    kPreMacOS91UtilitiesFolderType = -1619760700,
-    kPreMacOS91AppleExtrasFolderType = -1939507004,
-    kPreMacOS91MacOSReadMesFolderType = -1250987324,
-    kPreMacOS91InternetFolderType = -1804700476,
-    kPreMacOS91AutomountedServersFolderType = -1485670716,
-    kPreMacOS91StationeryFolderType = -1083935884,
-    kLocalesFolderType = -999526557,
-    kFindByContentPluginsFolderType = 1717724016,
-    kFindByContentFolderType = 1717724006,
+    SystemFolderType = 1835098995,
+    SystemDesktopFolderType = 1935962987,
+    SystemTrashFolderType = 1937011315,
+    PrintMonitorDocsFolderType = 1886547572,
+    ALMModulesFolderType = 2002873451,
+    ALMPreferencesFolderType = 1953655152,
+    ALMLocationsFolderType = 1717660780,
+    AppleExtrasFolderType = 1634040004,
+    ContextualMenuItemsFolderType = 1668116085,
+    MacOSReadMesFolderType = 1836020420,
+    StartupFolderType = 1937011316,
+    ShutdownFolderType = 1936221286,
+    AppleMenuFolderType = 1634561653,
+    ControlPanelFolderType = 1668575852,
+    SystemControlPanelFolderType = 1935897708,
+    ExtensionFolderType = 1702392942,
+    ExtensionDisabledFolderType = 1702392900,
+    ControlPanelDisabledFolderType = 1668575812,
+    SystemExtensionDisabledFolderType = 1835098948,
+    StartupItemsDisabledFolderType = 1937011268,
+    ShutdownItemsDisabledFolderType = 1936221252,
+    AssistantsFolderType = 1634956484,
+    StationeryFolderType = 1868854132,
+    OpenDocFolderType = 1868853092,
+    OpenDocShellPlugInsFolderType = 1868854128,
+    EditorsFolderType = 1868850532,
+    OpenDocEditorsFolderType = -999332762,
+    OpenDocLibrariesFolderType = 1868852322,
+    GenEditorsFolderType = -999988119,
+    HelpFolderType = -999789456,
+    InternetPlugInFolderType = -999398028,
+    ModemScriptsFolderType = -999461020,
+    ControlStripModulesFolderType = 1935959414,
+    InternetFolderType = 1768846532,
+    AppearanceFolderType = 1634758770,
+    SoundSetsFolderType = 1936614515,
+    DesktopPicturesFolderType = 1685352644,
+    FindSupportFolderType = 1718510707,
+    RecentApplicationsFolderType = 1918988400,
+    RecentDocumentsFolderType = 1919184739,
+    RecentServersFolderType = 1920169586,
+    LauncherItemsFolderType = 1818326382,
+    QuickTimeExtensionsFolderType = 1903453560,
+    DisplayExtensionsFolderType = 1685287020,
+    MultiprocessingFolderType = 1836087398,
+    PrintingPlugInsFolderType = 1886415975,
+    AppleshareAutomountServerAliasesFolderType = 1936881348,
+    VolumeSettingsFolderType = 1987274340,
+    PreMacOS91ApplicationsFolderType = -1938788237,
+    PreMacOS91InstallerLogsFolderType = -1804834970,
+    PreMacOS91AssistantsFolderType = -1938590524,
+    PreMacOS91UtilitiesFolderType = -1619760700,
+    PreMacOS91AppleExtrasFolderType = -1939507004,
+    PreMacOS91MacOSReadMesFolderType = -1250987324,
+    PreMacOS91InternetFolderType = -1804700476,
+    PreMacOS91AutomountedServersFolderType = -1485670716,
+    PreMacOS91StationeryFolderType = -1083935884,
+    LocalesFolderType = -999526557,
+    FindByContentPluginsFolderType = 1717724016,
+    FindByContentFolderType = 1717724006,
 };
 
 pub const anon5151 = enum(DescType) {
@@ -11914,34 +11914,34 @@ pub const anon5151 = enum(DescType) {
 };
 
 pub const anon5341 = enum(u32) {
-    kCreateFolderAtBoot = 2,
-    kCreateFolderAtBootBit = 1,
-    kFolderCreatedInvisible = 4,
-    kFolderCreatedInvisibleBit = 2,
-    kFolderCreatedNameLocked = 8,
-    kFolderCreatedNameLockedBit = 3,
-    kFolderCreatedAdminPrivs = 16,
-    kFolderCreatedAdminPrivsBit = 4,
+    CreateFolderAtBoot = 2,
+    CreateFolderAtBootBit = 1,
+    FolderCreatedInvisible = 4,
+    FolderCreatedInvisibleBit = 2,
+    FolderCreatedNameLocked = 8,
+    FolderCreatedNameLockedBit = 3,
+    FolderCreatedAdminPrivs = 16,
+    FolderCreatedAdminPrivsBit = 4,
 };
 
 pub const anon5451 = enum(u32) {
-    kFolderInUserFolder = 32,
-    kFolderInUserFolderBit = 5,
-    kFolderTrackedByAlias = 64,
-    kFolderTrackedByAliasBit = 6,
-    kFolderInRemoteUserFolderIfAvailable = 128,
-    kFolderInRemoteUserFolderIfAvailableBit = 7,
-    kFolderNeverMatchedInIdentifyFolder = 256,
-    kFolderNeverMatchedInIdentifyFolderBit = 8,
-    kFolderMustStayOnSameVolume = 512,
-    kFolderMustStayOnSameVolumeBit = 9,
-    kFolderManagerFolderInMacOS9FolderIfMacOSXIsInstalledMask = 1024,
-    kFolderManagerFolderInMacOS9FolderIfMacOSXIsInstalledBit = 10,
-    kFolderInLocalOrRemoteUserFolder = 160,
-    kFolderManagerNotCreatedOnRemoteVolumesBit = 11,
-    kFolderManagerNotCreatedOnRemoteVolumesMask = 2048,
-    kFolderManagerNewlyCreatedFolderIsLocalizedBit = 12,
-    kFolderManagerNewlyCreatedFolderShouldHaveDotLocalizedCreatedWithinMask = 4096,
+    FolderInUserFolder = 32,
+    FolderInUserFolderBit = 5,
+    FolderTrackedByAlias = 64,
+    FolderTrackedByAliasBit = 6,
+    FolderInRemoteUserFolderIfAvailable = 128,
+    FolderInRemoteUserFolderIfAvailableBit = 7,
+    FolderNeverMatchedInIdentifyFolder = 256,
+    FolderNeverMatchedInIdentifyFolderBit = 8,
+    FolderMustStayOnSameVolume = 512,
+    FolderMustStayOnSameVolumeBit = 9,
+    FolderManagerFolderInMacOS9FolderIfMacOSXIsInstalledMask = 1024,
+    FolderManagerFolderInMacOS9FolderIfMacOSXIsInstalledBit = 10,
+    FolderInLocalOrRemoteUserFolder = 160,
+    FolderManagerNotCreatedOnRemoteVolumesBit = 11,
+    FolderManagerNotCreatedOnRemoteVolumesMask = 2048,
+    FolderManagerNewlyCreatedFolderIsLocalizedBit = 12,
+    FolderManagerNewlyCreatedFolderShouldHaveDotLocalizedCreatedWithinMask = 4096,
 };
 
 pub const FolderDescFlags = objc.UInt32;
@@ -11949,14 +11949,14 @@ pub const FolderDescFlags = objc.UInt32;
 pub const FolderClass = objc.OSType;
 
 pub const anon5851 = enum(u32) {
-    kDictionariesFolderType = 1684628340,
-    kLogsFolderType = 1819240307,
-    kPreferencePanesFolderType = 1886413166,
+    DictionariesFolderType = 1684628340,
+    LogsFolderType = 1819240307,
+    PreferencePanesFolderType = 1886413166,
 };
 
 pub const anon5921 = enum(u32) {
-    kWidgetsFolderType = 2003068788,
-    kScreenSaversFolderType = 1935897198,
+    WidgetsFolderType = 2003068788,
+    ScreenSaversFolderType = 1935897198,
 };
 
 pub const FolderType = objc.OSType;
@@ -12060,7 +12060,7 @@ extern "CoreServices" fn Microseconds(microTickCount: ?*objc.UnsignedWide) callc
 pub const microseconds = Microseconds;
 
 pub const anon1051 = enum(u32) {
-    kTMTaskActive = 32768,
+    TMTaskActive = 32768,
 };
 
 pub const TMTask = extern struct {
@@ -12246,7 +12246,7 @@ pub const PEFContainerHeader = extern struct {
 };
 
 pub const anon1171 = enum(u32) {
-    kPEFFirstSectionHeaderOffset = 40,
+    PEFFirstSectionHeaderOffset = 40,
 };
 
 pub const PEFSectionHeader = extern struct {
@@ -12263,57 +12263,57 @@ pub const PEFSectionHeader = extern struct {
 };
 
 pub const anon1451 = enum(u32) {
-    kPEFCodeSection = 0,
-    kPEFUnpackedDataSection = 1,
-    kPEFPackedDataSection = 2,
-    kPEFConstantSection = 3,
-    kPEFExecDataSection = 6,
-    kPEFLoaderSection = 4,
-    kPEFDebugSection = 5,
-    kPEFExceptionSection = 7,
-    kPEFTracebackSection = 8,
+    PEFCodeSection = 0,
+    PEFUnpackedDataSection = 1,
+    PEFPackedDataSection = 2,
+    PEFConstantSection = 3,
+    PEFExecDataSection = 6,
+    PEFLoaderSection = 4,
+    PEFDebugSection = 5,
+    PEFExceptionSection = 7,
+    PEFTracebackSection = 8,
 };
 
 pub const anon1611 = enum(u32) {
-    kPEFProcessShare = 1,
-    kPEFGlobalShare = 4,
-    kPEFProtectedShare = 5,
+    PEFProcessShare = 1,
+    PEFGlobalShare = 4,
+    PEFProtectedShare = 5,
 };
 
 pub const anon1911 = enum(AEKeyword) {
-    keyTransactionIDAttr = 1953653102,
-    keyReturnIDAttr = 1920231780,
-    keyEventClassAttr = 1702257516,
-    keyEventIDAttr = 1702259044,
-    keyAddressAttr = 1633969266,
-    keyOptionalKeywordAttr = 1869640811,
-    keyTimeoutAttr = 1953066351,
-    keyInteractLevelAttr = 1768846437,
-    keyEventSourceAttr = 1702064739,
-    keyMissedKeywordAttr = 1835627379,
-    keyOriginalAddressAttr = 1718775661,
-    keyAcceptTimeoutAttr = 1633907821,
-    keyReplyRequestedAttr = 1919250545,
-    keySenderEUIDAttr = 1936025956,
-    keySenderEGIDAttr = 1936157028,
-    keySenderUIDAttr = 1969841267,
-    keySenderGIDAttr = 1734960243,
-    keySenderPIDAttr = 1936746852,
-    keySenderAuditTokenAttr = 1953459054,
-    keySenderApplescriptEntitlementsAttr = 1701737580,
-    keySenderApplicationIdentifierEntitlementAttr = 1634297185,
-    keySenderApplicationSandboxed = 1936946018,
-    keyActualSenderAuditToken = 1633902964,
-    keyAppleEventAttributesAttr = 1635021938,
+    eyTransactionIDAttr = 1953653102,
+    eyReturnIDAttr = 1920231780,
+    eyEventClassAttr = 1702257516,
+    eyEventIDAttr = 1702259044,
+    eyAddressAttr = 1633969266,
+    eyOptionalKeywordAttr = 1869640811,
+    eyTimeoutAttr = 1953066351,
+    eyInteractLevelAttr = 1768846437,
+    eyEventSourceAttr = 1702064739,
+    eyMissedKeywordAttr = 1835627379,
+    eyOriginalAddressAttr = 1718775661,
+    eyAcceptTimeoutAttr = 1633907821,
+    eyReplyRequestedAttr = 1919250545,
+    eySenderEUIDAttr = 1936025956,
+    eySenderEGIDAttr = 1936157028,
+    eySenderUIDAttr = 1969841267,
+    eySenderGIDAttr = 1734960243,
+    eySenderPIDAttr = 1936746852,
+    eySenderAuditTokenAttr = 1953459054,
+    eySenderApplescriptEntitlementsAttr = 1701737580,
+    eySenderApplicationIdentifierEntitlementAttr = 1634297185,
+    eySenderApplicationSandboxed = 1936946018,
+    eyActualSenderAuditToken = 1633902964,
+    eyAppleEventAttributesAttr = 1635021938,
 };
 
 pub const anon2011 = enum(u32) {
-    kPEFPkDataOpcodeShift = 5,
-    kPEFPkDataCount5Mask = 31,
-    kPEFPkDataMaxCount5 = 31,
-    kPEFPkDataVCountShift = 7,
-    kPEFPkDataVCountMask = 127,
-    kPEFPkDataVCountEndMask = 128,
+    PEFPkDataOpcodeShift = 5,
+    PEFPkDataCount5Mask = 31,
+    PEFPkDataMaxCount5 = 31,
+    PEFPkDataVCountShift = 7,
+    PEFPkDataVCountMask = 127,
+    PEFPkDataVCountEndMask = 128,
 };
 
 pub const PEFLoaderInfoHeader = extern struct {
@@ -12345,8 +12345,8 @@ pub const PEFImportedLibrary = extern struct {
 };
 
 pub const anon3421 = enum(u32) {
-    kPEFWeakImportLibMask = 64,
-    kPEFInitLibBeforeMask = 128,
+    PEFWeakImportLibMask = 64,
+    PEFInitLibBeforeMask = 128,
 };
 
 pub const PEFImportedSymbol = extern struct {
@@ -12354,19 +12354,19 @@ pub const PEFImportedSymbol = extern struct {
 };
 
 pub const anon3731 = enum(u32) {
-    kPEFImpSymClassShift = 24,
-    kPEFImpSymNameOffsetMask = 16777215,
-    kPEFImpSymMaxNameOffset = 16777215,
+    PEFImpSymClassShift = 24,
+    PEFImpSymNameOffsetMask = 16777215,
+    PEFImpSymMaxNameOffset = 16777215,
 };
 
 pub const anon3851 = enum(u32) {
-    kPEFCodeSymbol = 0,
-    kPEFDataSymbol = 1,
-    kPEFTVectorSymbol = 2,
-    kPEFTOCSymbol = 3,
-    kPEFGlueSymbol = 4,
-    kPEFUndefinedSymbol = 15,
-    kPEFWeakImportSymMask = 128,
+    PEFCodeSymbol = 0,
+    PEFDataSymbol = 1,
+    PEFTVectorSymbol = 2,
+    PEFTOCSymbol = 3,
+    PEFGlueSymbol = 4,
+    PEFUndefinedSymbol = 15,
+    PEFWeakImportSymMask = 128,
 };
 
 pub const PEFExportedSymbolHashSlot = extern struct {
@@ -12394,8 +12394,8 @@ pub const PEFExportedSymbol = extern struct {
 };
 
 pub const anon5841 = enum(i32) {
-    kPEFAbsoluteExport = -2,
-    kPEFReexportedImport = -3,
+    PEFAbsoluteExport = -2,
+    PEFReexportedImport = -3,
 };
 
 pub const PEFRelocChunk = objc.UInt16;
@@ -12408,73 +12408,73 @@ pub const PEFLoaderRelocationHeader = extern struct {
 };
 
 pub const anon6561 = enum(u32) {
-    kPEFRelocBasicOpcodeRange = 128,
+    PEFRelocBasicOpcodeRange = 128,
 };
 
 pub const anon6691 = enum(u32) {
-    kPEFRelocBySectDWithSkip = 0,
-    kPEFRelocBySectC = 32,
-    kPEFRelocBySectD = 33,
-    kPEFRelocTVector12 = 34,
-    kPEFRelocTVector8 = 35,
-    kPEFRelocVTable8 = 36,
-    kPEFRelocImportRun = 37,
-    kPEFRelocSmByImport = 48,
-    kPEFRelocSmSetSectC = 49,
-    kPEFRelocSmSetSectD = 50,
-    kPEFRelocSmBySection = 51,
-    kPEFRelocIncrPosition = 64,
-    kPEFRelocSmRepeat = 72,
-    kPEFRelocSetPosition = 80,
-    kPEFRelocLgByImport = 82,
-    kPEFRelocLgRepeat = 88,
-    kPEFRelocLgSetOrBySection = 90,
-    kPEFRelocUndefinedOpcode = 255,
+    PEFRelocBySectDWithSkip = 0,
+    PEFRelocBySectC = 32,
+    PEFRelocBySectD = 33,
+    PEFRelocTVector12 = 34,
+    PEFRelocTVector8 = 35,
+    PEFRelocVTable8 = 36,
+    PEFRelocImportRun = 37,
+    PEFRelocSmByImport = 48,
+    PEFRelocSmSetSectC = 49,
+    PEFRelocSmSetSectD = 50,
+    PEFRelocSmBySection = 51,
+    PEFRelocIncrPosition = 64,
+    PEFRelocSmRepeat = 72,
+    PEFRelocSetPosition = 80,
+    PEFRelocLgByImport = 82,
+    PEFRelocLgRepeat = 88,
+    PEFRelocLgSetOrBySection = 90,
+    PEFRelocUndefinedOpcode = 255,
 };
 
 pub const anon6981 = enum(u32) {
-    kPEFRelocLgBySectionSubopcode = 0,
-    kPEFRelocLgSetSectCSubopcode = 1,
-    kPEFRelocLgSetSectDSubopcode = 2,
+    PEFRelocLgBySectionSubopcode = 0,
+    PEFRelocLgSetSectCSubopcode = 1,
+    PEFRelocLgSetSectDSubopcode = 2,
 };
 
 pub const anon7821 = enum(u32) {
-    kPEFRelocWithSkipMaxSkipCount = 255,
-    kPEFRelocWithSkipMaxRelocCount = 63,
+    PEFRelocWithSkipMaxSkipCount = 255,
+    PEFRelocWithSkipMaxRelocCount = 63,
 };
 
 pub const anon8161 = enum(u32) {
-    kPEFRelocRunMaxRunLength = 512,
+    PEFRelocRunMaxRunLength = 512,
 };
 
 pub const anon8551 = enum(u32) {
-    kPEFRelocSmIndexMaxIndex = 511,
+    PEFRelocSmIndexMaxIndex = 511,
 };
 
 pub const anon8911 = enum(u32) {
-    kPEFRelocIncrPositionMaxOffset = 4096,
+    PEFRelocIncrPositionMaxOffset = 4096,
 };
 
 pub const anon9211 = enum(u32) {
-    kPEFRelocSmRepeatMaxChunkCount = 16,
-    kPEFRelocSmRepeatMaxRepeatCount = 256,
+    PEFRelocSmRepeatMaxChunkCount = 16,
+    PEFRelocSmRepeatMaxRepeatCount = 256,
 };
 
 pub const anon9521 = enum(u32) {
-    kPEFRelocSetPosMaxOffset = 67108863,
+    PEFRelocSetPosMaxOffset = 67108863,
 };
 
 pub const anon9861 = enum(u32) {
-    kPEFRelocLgByImportMaxIndex = 67108863,
+    PEFRelocLgByImportMaxIndex = 67108863,
 };
 
 pub const anon10211 = enum(u32) {
-    kPEFRelocLgRepeatMaxChunkCount = 16,
-    kPEFRelocLgRepeatMaxRepeatCount = 4194303,
+    PEFRelocLgRepeatMaxChunkCount = 16,
+    PEFRelocLgRepeatMaxRepeatCount = 4194303,
 };
 
 pub const anon10591 = enum(u32) {
-    kPEFRelocLgSetOrBySectionMaxIndex = 4194303,
+    PEFRelocLgSetOrBySectionMaxIndex = 4194303,
 };
 
 pub const XLibContainerHeader = extern struct {
@@ -12501,10 +12501,10 @@ pub const XLibContainerHeader = extern struct {
 };
 
 pub const anon11711 = enum(i32) {
-    kXLibTag1 = -263364253,
-    kVLibTag2 = 1447848290,
-    kBLibTag2 = 1112303970,
-    kXLibVersion = 1,
+    XLibTag1 = -263364253,
+    VLibTag2 = 1447848290,
+    BLibTag2 = 1112303970,
+    XLibVersion = 1,
 };
 
 pub const XLibExportedSymbolHashSlot = PEFExportedSymbolHashSlot;
@@ -12517,11 +12517,11 @@ pub const XLibExportedSymbol = extern struct {
 };
 
 pub const anon1291 = enum(u32) {
-    kTileIconVariant = 1953066085,
-    kRolloverIconVariant = 1870030194,
-    kDropIconVariant = 1685221232,
-    kOpenIconVariant = 1869636974,
-    kOpenDropIconVariant = 1868853872,
+    TileIconVariant = 1953066085,
+    RolloverIconVariant = 1870030194,
+    DropIconVariant = 1685221232,
+    OpenIconVariant = 1869636974,
+    OpenDropIconVariant = 1868853872,
 };
 
 pub const anon7691 = enum(DescType) {
@@ -12716,12 +12716,12 @@ pub const TextChunk = extern struct {
 pub const TextChunkPtr = ?*TextChunk;
 
 pub const anon621 = enum(u32) {
-    kTECPluginType = 1701015655,
-    kTECPluginCreator = 1701733238,
-    kTECPluginOneToOne = 1869901679,
-    kTECPluginOneToMany = 1869901677,
-    kTECPluginManyToOne = 1836347247,
-    kTECPluginSniffObj = 1936615782,
+    TECPluginType = 1701015655,
+    TECPluginCreator = 1701733238,
+    TECPluginOneToOne = 1869901679,
+    TECPluginOneToMany = 1869901677,
+    TECPluginManyToOne = 1836347247,
+    TECPluginSniffObj = 1936615782,
 };
 
 pub const TextEncodingRec = extern struct {
@@ -12913,10 +12913,10 @@ pub const TECPluginGetCountWebEncodingsPtr = ?*const fn (?*TextEncoding, objc.It
 pub const TECPluginGetCountMailEncodingsPtr = ?*const fn (?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
 
 pub const anon2551 = enum(u32) {
-    kTECPluginDispatchTableVersion1 = 65536,
-    kTECPluginDispatchTableVersion1_1 = 65537,
-    kTECPluginDispatchTableVersion1_2 = 65538,
-    kTECPluginDispatchTableCurrentVersion = 65538,
+    TECPluginDispatchTableVersion1 = 65536,
+    TECPluginDispatchTableVersion1_1 = 65537,
+    TECPluginDispatchTableVersion1_2 = 65538,
+    TECPluginDispatchTableCurrentVersion = 65538,
 };
 
 pub const TECPluginDispatchTable = extern struct {
@@ -12998,62 +12998,62 @@ pub const anon1861 = enum(DescType) {
 };
 
 pub const anon2261 = enum(i32) {
-    kAEDebugPOSTHeader = 1,
-    kAEDebugReplyHeader = 2,
-    kAEDebugXMLRequest = 4,
-    kAEDebugXMLResponse = 8,
-    kAEDebugXMLDebugAll = -1,
+    AEDebugPOSTHeader = 1,
+    AEDebugReplyHeader = 2,
+    AEDebugXMLRequest = 4,
+    AEDebugXMLResponse = 8,
+    AEDebugXMLDebugAll = -1,
 };
 
 pub const anon2381 = enum(u32) {
-    kSOAP1999Schema = 1936931129,
-    kSOAP2001Schema = 1936928817,
+    SOAP1999Schema = 1936931129,
+    SOAP2001Schema = 1936928817,
 };
 
 pub const anon2431 = enum(AEKeyword) {
-    keyUserNameAttr = 1970168173,
-    keyUserPasswordAttr = 1885434739,
-    keyDisableAuthenticationAttr = 1635087464,
-    keyXMLDebuggingAttr = 2019844711,
-    kAERPCClass = 1919968032,
-    kAEXMLRPCScheme = 1380991794,
-    kAESOAPScheme = 1397702992,
-    kAESharedScriptHandler = 2004050800,
-    keyRPCMethodName = 1835365480,
-    keyRPCMethodParam = 1885434477,
-    keyRPCMethodParamOrder = 795832932,
-    keyAEPOSTHeaderData = 1885889892,
-    keyAEReplyHeaderData = 1919444324,
-    keyAEXMLRequestData = 2020762993,
-    keyAEXMLReplyData = 2020762992,
-    keyAdditionalHTTPHeaders = 1634231652,
-    keySOAPAction = 1935762292,
-    keySOAPMethodNameSpace = 1836281955,
-    keySOAPMethodNameSpaceURI = 1836281973,
-    keySOAPSchemaVersion = 1936941928,
+    eyUserNameAttr = 1970168173,
+    eyUserPasswordAttr = 1885434739,
+    eyDisableAuthenticationAttr = 1635087464,
+    eyXMLDebuggingAttr = 2019844711,
+    AERPCClass = 1919968032,
+    AEXMLRPCScheme = 1380991794,
+    AESOAPScheme = 1397702992,
+    AESharedScriptHandler = 2004050800,
+    eyRPCMethodName = 1835365480,
+    eyRPCMethodParam = 1885434477,
+    eyRPCMethodParamOrder = 795832932,
+    eyAEPOSTHeaderData = 1885889892,
+    eyAEReplyHeaderData = 1919444324,
+    eyAEXMLRequestData = 2020762993,
+    eyAEXMLReplyData = 2020762992,
+    eyAdditionalHTTPHeaders = 1634231652,
+    eySOAPAction = 1935762292,
+    eySOAPMethodNameSpace = 1836281955,
+    eySOAPMethodNameSpaceURI = 1836281973,
+    eySOAPSchemaVersion = 1936941928,
 };
 
 pub const anon2881 = enum(AEKeyword) {
-    keySOAPStructureMetaData = 796093796,
-    keySOAPSMDNamespace = 1936944755,
-    keySOAPSMDNamespaceURI = 1936944757,
-    keySOAPSMDType = 1936946288,
+    eySOAPStructureMetaData = 796093796,
+    eySOAPSMDNamespace = 1936944755,
+    eySOAPSMDNamespaceURI = 1936944757,
+    eySOAPSMDType = 1936946288,
 };
 
 pub const anon3001 = enum(AEKeyword) {
-    keyAEAngle = 1801547367,
-    keyAEArcAngle = 1885434467,
+    eyAEAngle = 1801547367,
+    eyAEArcAngle = 1885434467,
 };
 
 pub const anon3321 = enum(u32) {
-    kAEDescListFactorNone = 0,
-    kAEDescListFactorType = 4,
-    kAEDescListFactorTypeAndSize = 8,
+    AEDescListFactorNone = 0,
+    AEDescListFactorType = 4,
+    AEDescListFactorTypeAndSize = 8,
 };
 
 pub const anon3391 = enum(i32) {
-    kAutoGenerateReturnID = -1,
-    kAnyTransactionID = 0,
+    AutoGenerateReturnID = -1,
+    AnyTransactionID = 0,
 };
 
 pub const OpaqueAEDataStorageType = extern struct {};
@@ -13107,31 +13107,31 @@ pub const AEArrayDataPointer = ?*AEArrayData;
 pub const AESendPriority = objc.SInt16;
 
 pub const anon4051 = enum(u32) {
-    kAENormalPriority = 0,
-    kAEHighPriority = 1,
+    AENormalPriority = 0,
+    AEHighPriority = 1,
 };
 
 pub const AESendMode = objc.SInt32;
 
 pub const anon4121 = enum(u32) {
-    kAENoReply = 1,
-    kAEQueueReply = 2,
-    kAEWaitReply = 3,
-    kAEDontReconnect = 128,
-    kAEWantReceipt = 512,
-    kAENeverInteract = 16,
-    kAECanInteract = 32,
-    kAEAlwaysInteract = 48,
-    kAECanSwitchLayer = 64,
-    kAEDontRecord = 4096,
-    kAEDontExecute = 8192,
-    kAEProcessNonReplyEvents = 32768,
-    kAEDoNotAutomaticallyAddAnnotationsToEvent = 65536,
+    AENoReply = 1,
+    AEQueueReply = 2,
+    AEWaitReply = 3,
+    AEDontReconnect = 128,
+    AEWantReceipt = 512,
+    AENeverInteract = 16,
+    AECanInteract = 32,
+    AEAlwaysInteract = 48,
+    AECanSwitchLayer = 64,
+    AEDontRecord = 4096,
+    AEDontExecute = 8192,
+    AEProcessNonReplyEvents = 32768,
+    AEDoNotAutomaticallyAddAnnotationsToEvent = 65536,
 };
 
 pub const anon4301 = enum(i32) {
-    kAEDefaultTimeout = -1,
-    kNoTimeOut = -2,
+    AEDefaultTimeout = -1,
+    NoTimeOut = -2,
 };
 
 pub const AECoerceDescProcPtr = ?*const fn (
@@ -13504,14 +13504,14 @@ extern "CoreServices" fn InvokeAEEventHandlerUPP(
 pub const invokeAEEventHandlerUPP = InvokeAEEventHandlerUPP;
 
 pub const anon761 = enum(AEEventID) {
-    kAEOpenApplication = 1868656752,
-    kAEOpenDocuments = 1868853091,
-    kAEPrintDocuments = 1885630307,
-    kAEOpenContents = 1868787566,
-    kAEQuitApplication = 1903520116,
-    kAEAnswer = 1634628466,
-    kAEApplicationDied = 1868720500,
-    kAEShowPreferences = 1886545254,
+    AEOpenApplication = 1868656752,
+    AEOpenDocuments = 1868853091,
+    AEPrintDocuments = 1885630307,
+    AEOpenContents = 1868787566,
+    AEQuitApplication = 1903520116,
+    AEAnswer = 1634628466,
+    AEApplicationDied = 1868720500,
+    AEShowPreferences = 1886545254,
 };
 
 pub const AEEventSource = objc.SInt8;
@@ -13600,7 +13600,7 @@ extern "CoreServices" fn AEDeterminePermissionToAutomateTarget(
 pub const aeDeterminePermissionToAutomateTarget = AEDeterminePermissionToAutomateTarget;
 
 pub const anon6151 = enum(u32) {
-    kAEDoNotPromptForUserConsent = 131072,
+    AEDoNotPromptForUserConsent = 131072,
 };
 
 extern "CoreServices" fn CreateOffsetDescriptor(theOffset: i64, theDescriptor: ?*AEDesc) callconv(.C) objc.OSErr;
@@ -13642,15 +13642,15 @@ extern "CoreServices" fn CreateRangeDescriptor(
 pub const createRangeDescriptor = CreateRangeDescriptor;
 
 pub const anon681 = enum(AEKeyword) {
-    keyAERangeStart = 1937006962,
-    keyAERangeStop = 1937010544,
-    keyDisposeTokenProc = 2020896619,
-    keyAECompareProc = 1668116594,
-    keyAECountProc = 1668247156,
-    keyAEMarkTokenProc = 1835755876,
-    keyAEMarkProc = 1835102827,
-    keyAEAdjustMarksProc = 1633970797,
-    keyAEGetErrDescProc = 1768842339,
+    eyAERangeStart = 1937006962,
+    eyAERangeStop = 1937010544,
+    eyDisposeTokenProc = 2020896619,
+    eyAECompareProc = 1668116594,
+    eyAECountProc = 1668247156,
+    eyAEMarkTokenProc = 1835755876,
+    eyAEMarkProc = 1835102827,
+    eyAEAdjustMarksProc = 1633970797,
+    eyAEGetErrDescProc = 1768842339,
 };
 
 pub const ccntTokenRecord = extern struct {
@@ -13891,179 +13891,179 @@ pub const anon1281 = enum(i32) {
 };
 
 pub const anon1511 = enum(objc.OSType) {
-    kAEDoObjectsExist = 1685022072,
-    kAEDoScript = 1685025635,
-    kAEDrag = 1685217639,
-    kAEDuplicateSelection = 1935963504,
-    kAEEditGraphic = 1701079412,
-    kAEEmptyTrash = 1701671028,
-    kAEEnd = 1701733408,
-    kAEEndsWith = 1701733491,
-    kAEEndTransaction = 1701733492,
-    kAEEquals = 1025515552,
-    kAEExpanded = 1885698160,
-    kAEFast = 1717662580,
-    kAEFinderEvents = 1179534418,
-    kAEFormulaProtect = 1718645359,
-    kAEFullyJustified = 1718971500,
-    kAEGetClassInfo = 1903125098,
-    kAEGetData = 1734702180,
-    kAEGetDataSize = 1685285242,
-    kAEGetEventInfo = 1735681385,
-    kAEGetInfoSelection = 1936289382,
+    AEDoObjectsExist = 1685022072,
+    AEDoScript = 1685025635,
+    AEDrag = 1685217639,
+    AEDuplicateSelection = 1935963504,
+    AEEditGraphic = 1701079412,
+    AEEmptyTrash = 1701671028,
+    AEEnd = 1701733408,
+    AEEndsWith = 1701733491,
+    AEEndTransaction = 1701733492,
+    AEEquals = 1025515552,
+    AEExpanded = 1885698160,
+    AEFast = 1717662580,
+    AEFinderEvents = 1179534418,
+    AEFormulaProtect = 1718645359,
+    AEFullyJustified = 1718971500,
+    AEGetClassInfo = 1903125098,
+    AEGetData = 1734702180,
+    AEGetDataSize = 1685285242,
+    AEGetEventInfo = 1735681385,
+    AEGetInfoSelection = 1936289382,
 };
 
 pub const anon1971 = enum(objc.OSType) {
-    kAENonmodifiable = 1852665700,
-    kAEOpen = 1868853091,
-    kAEOpenSelection = 1936683109,
-    kAEOutline = 1869968492,
-    kAEPageSetup = 1885827957,
-    kAEPaste = 1885434740,
-    kAEPlain = 1886151022,
-    kAEPrint = 1885630307,
-    kAEPrintSelection = 1936749161,
-    kAEPrintWindow = 1886873966,
-    kAEPutAwaySelection = 1936749940,
-    kAEQDAddOver = 1633969263,
-    kAEQDAddPin = 1633969264,
-    kAEQDAdMax = 1633971576,
-    kAEQDAdMin = 1633971566,
-    kAEQDBic = 1651073824,
-    kAEQDBlend = 1651273316,
-    kAEQDCopy = 1668315424,
-    kAEQDNotBic = 1851943267,
-    kAEQDNotCopy = 1852010617,
+    AENonmodifiable = 1852665700,
+    AEOpen = 1868853091,
+    AEOpenSelection = 1936683109,
+    AEOutline = 1869968492,
+    AEPageSetup = 1885827957,
+    AEPaste = 1885434740,
+    AEPlain = 1886151022,
+    AEPrint = 1885630307,
+    AEPrintSelection = 1936749161,
+    AEPrintWindow = 1886873966,
+    AEPutAwaySelection = 1936749940,
+    AEQDAddOver = 1633969263,
+    AEQDAddPin = 1633969264,
+    AEQDAdMax = 1633971576,
+    AEQDAdMin = 1633971566,
+    AEQDBic = 1651073824,
+    AEQDBlend = 1651273316,
+    AEQDCopy = 1668315424,
+    AEQDNotBic = 1851943267,
+    AEQDNotCopy = 1852010617,
 };
 
 pub const anon2201 = enum(objc.OSType) {
-    kAEQDNotOr = 1853124466,
-    kAEQDNotXor = 1853386610,
-    kAEQDOr = 1869750304,
-    kAEQDSubOver = 1937072751,
-    kAEQDSubPin = 1937072752,
-    kAEQDSupplementalSuite = 1902408560,
-    kAEQDXor = 2020569632,
-    kAEQuickdrawSuite = 1902408311,
-    kAEQuitAll = 1903520097,
-    kAERedo = 1919247471,
-    kAERegular = 1919248236,
-    kAEReopenApplication = 1918988400,
-    kAEReplace = 1919970403,
-    kAERequiredSuite = 1919250788,
-    kAERestart = 1919251316,
-    kAERevealSelection = 1936876918,
-    kAERevert = 1920365172,
-    kAERightJustified = 1919379572,
-    kAESave = 1935767141,
-    kAESelect = 1936483188,
-    kAESetData = 1936028772,
+    AEQDNotOr = 1853124466,
+    AEQDNotXor = 1853386610,
+    AEQDOr = 1869750304,
+    AEQDSubOver = 1937072751,
+    AEQDSubPin = 1937072752,
+    AEQDSupplementalSuite = 1902408560,
+    AEQDXor = 2020569632,
+    AEQuickdrawSuite = 1902408311,
+    AEQuitAll = 1903520097,
+    AERedo = 1919247471,
+    AERegular = 1919248236,
+    AEReopenApplication = 1918988400,
+    AEReplace = 1919970403,
+    AERequiredSuite = 1919250788,
+    AERestart = 1919251316,
+    AERevealSelection = 1936876918,
+    AERevert = 1920365172,
+    AERightJustified = 1919379572,
+    AESave = 1935767141,
+    AESelect = 1936483188,
+    AESetData = 1936028772,
 };
 
 pub const anon3051 = enum(AEKeyword) {
-    keyAEBaseAddr = 1650549860,
-    keyAEBestType = 1885500276,
-    keyAEBgndColor = 1801610092,
-    keyAEBgndPattern = 1801613428,
-    keyAEBounds = 1885498980,
-    keyAECellList = 1801677940,
-    keyAEClassID = 1668041028,
-    keyAEColor = 1668246642,
-    keyAEColorTable = 1668052066,
-    keyAECurveHeight = 1801676900,
-    keyAECurveWidth = 1801680740,
-    keyAEDashStyle = 1885631348,
-    keyAEData = 1684108385,
-    keyAEDefaultType = 1684366964,
-    keyAEDefinitionRect = 1885631092,
-    keyAEDescType = 1685288048,
-    keyAEDestination = 1684370292,
-    keyAEDoAntiAlias = 1634628705,
-    keyAEDoDithered = 1734633844,
-    keyAEDoRotate = 1801745012,
+    eyAEBaseAddr = 1650549860,
+    eyAEBestType = 1885500276,
+    eyAEBgndColor = 1801610092,
+    eyAEBgndPattern = 1801613428,
+    eyAEBounds = 1885498980,
+    eyAECellList = 1801677940,
+    eyAEClassID = 1668041028,
+    eyAEColor = 1668246642,
+    eyAEColorTable = 1668052066,
+    eyAECurveHeight = 1801676900,
+    eyAECurveWidth = 1801680740,
+    eyAEDashStyle = 1885631348,
+    eyAEData = 1684108385,
+    eyAEDefaultType = 1684366964,
+    eyAEDefinitionRect = 1885631092,
+    eyAEDescType = 1685288048,
+    eyAEDestination = 1684370292,
+    eyAEDoAntiAlias = 1634628705,
+    eyAEDoDithered = 1734633844,
+    eyAEDoRotate = 1801745012,
 };
 
 pub const anon3281 = enum(AEKeyword) {
-    keyAEDoScale = 1802724193,
-    keyAEDoTranslate = 1802793569,
-    keyAEEditionFileLoc = 1701605219,
-    keyAEElements = 1701604723,
-    keyAEEndPoint = 1885695588,
-    keyAEEventClass = 1702257516,
-    keyAEEventID = 1702261865,
-    keyAEFile = 1801873772,
-    keyAEFileType = 1718383728,
-    keyAEFillColor = 1718379372,
-    keyAEFillPattern = 1718382708,
-    keyAEFlipHorizontal = 1801873519,
-    keyAEFlipVertical = 1801877108,
-    keyAEFont = 1718578804,
-    keyAEFormula = 1885761394,
-    keyAEGraphicObjects = 1735352947,
-    keyAEID = 1229201440,
-    keyAEImageQuality = 1735488865,
-    keyAEInsertHere = 1768846184,
-    keyAEKeyForms = 1801812326,
+    eyAEDoScale = 1802724193,
+    eyAEDoTranslate = 1802793569,
+    eyAEEditionFileLoc = 1701605219,
+    eyAEElements = 1701604723,
+    eyAEEndPoint = 1885695588,
+    eyAEEventClass = 1702257516,
+    eyAEEventID = 1702261865,
+    eyAEFile = 1801873772,
+    eyAEFileType = 1718383728,
+    eyAEFillColor = 1718379372,
+    eyAEFillPattern = 1718382708,
+    eyAEFlipHorizontal = 1801873519,
+    eyAEFlipVertical = 1801877108,
+    eyAEFont = 1718578804,
+    eyAEFormula = 1885761394,
+    eyAEGraphicObjects = 1735352947,
+    eyAEID = 1229201440,
+    eyAEImageQuality = 1735488865,
+    eyAEInsertHere = 1768846184,
+    eyAEKeyForms = 1801812326,
 };
 
 pub const anon3741 = enum(AEKeyword) {
-    keyAEPropData = 1886545012,
-    keyAEProperties = 1903194735,
-    keyAEProperty = 1802531440,
-    keyAEPropFlags = 1886545511,
-    keyAEPropID = 1886547824,
-    keyAEProtection = 1886417519,
-    keyAERenderAs = 1802659182,
-    keyAERequestedType = 1920235888,
-    keyAEResult = 757935405,
-    keyAEResultInfo = 1920166254,
-    keyAERotation = 1886547828,
-    keyAERotPoint = 1802663024,
-    keyAERowList = 1802660979,
-    keyAESaveOptions = 1935767151,
-    keyAEScale = 1886610284,
-    keyAEScriptTag = 1886610292,
-    keyAESearchText = 1937012852,
-    keyAEShowWhere = 1936224119,
-    keyAEStartAngle = 1885433447,
-    keyAEStartPoint = 1886614640,
-    keyAEStyles = 1802728569,
+    eyAEPropData = 1886545012,
+    eyAEProperties = 1903194735,
+    eyAEProperty = 1802531440,
+    eyAEPropFlags = 1886545511,
+    eyAEPropID = 1886547824,
+    eyAEProtection = 1886417519,
+    eyAERenderAs = 1802659182,
+    eyAERequestedType = 1920235888,
+    eyAEResult = 757935405,
+    eyAEResultInfo = 1920166254,
+    eyAERotation = 1886547828,
+    eyAERotPoint = 1802663024,
+    eyAERowList = 1802660979,
+    eyAESaveOptions = 1935767151,
+    eyAEScale = 1886610284,
+    eyAEScriptTag = 1886610292,
+    eyAESearchText = 1937012852,
+    eyAEShowWhere = 1936224119,
+    eyAEStartAngle = 1885433447,
+    eyAEStartPoint = 1886614640,
+    eyAEStyles = 1802728569,
 };
 
 pub const anon3981 = enum(AEKeyword) {
-    keyAESuiteID = 1937074548,
-    keyAEText = 1802795124,
-    keyAETextColor = 1886681187,
-    keyAETextFont = 1886681190,
-    keyAETextPointSize = 1886679155,
-    keyAETextStyles = 1954050932,
-    keyAETextLineHeight = 1802792040,
-    keyAETextLineAscent = 1802789235,
-    keyAETheText = 1953002616,
-    keyAETransferMode = 1886418029,
-    keyAETranslation = 1886679667,
-    keyAETryAsStructGraf = 1953460071,
-    keyAEUniformStyles = 1970500716,
-    keyAEUpdateOn = 1886744676,
-    keyAEUserTerm = 1970565741,
-    keyAEWindow = 2003723383,
-    keyAEWritingCode = 2003985252,
+    eyAESuiteID = 1937074548,
+    eyAEText = 1802795124,
+    eyAETextColor = 1886681187,
+    eyAETextFont = 1886681190,
+    eyAETextPointSize = 1886679155,
+    eyAETextStyles = 1954050932,
+    eyAETextLineHeight = 1802792040,
+    eyAETextLineAscent = 1802789235,
+    eyAETheText = 1953002616,
+    eyAETransferMode = 1886418029,
+    eyAETranslation = 1886679667,
+    eyAETryAsStructGraf = 1953460071,
+    eyAEUniformStyles = 1970500716,
+    eyAEUpdateOn = 1886744676,
+    eyAEUserTerm = 1970565741,
+    eyAEWindow = 2003723383,
+    eyAEWritingCode = 2003985252,
 };
 
 pub const anon4181 = enum(AEKeyword) {
-    keyMiscellaneous = 1718448995,
-    keySelection = 1718838636,
-    keyWindow = 1802989156,
-    keyWhen = 2003330414,
-    keyWhere = 2003330418,
-    keyModifiers = 1836016755,
-    keyKey = 1801812256,
-    keyKeyCode = 1668244581,
-    keyKeyboard = 1801812322,
-    keyDriveNumber = 1685222947,
-    keyErrorCode = 1701999139,
-    keyHighLevelClass = 1751346291,
-    keyHighLevelID = 1751737376,
+    eyMiscellaneous = 1718448995,
+    eySelection = 1718838636,
+    eyWindow = 1802989156,
+    eyWhen = 2003330414,
+    eyWhere = 2003330418,
+    eyModifiers = 1836016755,
+    eyKey = 1801812256,
+    eyKeyCode = 1668244581,
+    eyKeyboard = 1801812322,
+    eyDriveNumber = 1685222947,
+    eyErrorCode = 1701999139,
+    eyHighLevelClass = 1751346291,
+    eyHighLevelID = 1751737376,
 };
 
 pub const anon4351 = enum(objc.OSType) {
@@ -14167,13 +14167,13 @@ pub const anon5791 = enum(DescType) {
 };
 
 pub const anon5861 = enum(objc.OSType) {
-    kAEMenuClass = 1835363957,
-    kAEMenuSelect = 1835559284,
-    kAEMouseDown = 1835300718,
-    kAEMouseDownInBack = 1835295339,
-    kAEKeyDown = 1801746286,
-    kAEResized = 1920166266,
-    kAEPromise = 1886547821,
+    AEMenuClass = 1835363957,
+    AEMenuSelect = 1835559284,
+    AEMouseDown = 1835300718,
+    AEMouseDownInBack = 1835295339,
+    AEKeyDown = 1801746286,
+    AEResized = 1920166266,
+    AEPromise = 1886547821,
 };
 
 pub const anon6051 = enum(DescType) {
@@ -14182,27 +14182,27 @@ pub const anon6051 = enum(DescType) {
 };
 
 pub const anon6161 = enum(u32) {
-    kBySmallIcon = 0,
-    kByIconView = 1,
-    kByNameView = 2,
-    kByDateView = 3,
-    kBySizeView = 4,
-    kByKindView = 5,
-    kByCommentView = 6,
-    kByLabelView = 7,
-    kByVersionView = 8,
+    BySmallIcon = 0,
+    ByIconView = 1,
+    ByNameView = 2,
+    ByDateView = 3,
+    BySizeView = 4,
+    ByKindView = 5,
+    ByCommentView = 6,
+    ByLabelView = 7,
+    ByVersionView = 8,
 };
 
 pub const anon6281 = enum(u32) {
-    kAEInfo = 11,
-    kAEMain = 0,
-    kAESharing = 13,
+    AEInfo = 11,
+    AEMain = 0,
+    AESharing = 13,
 };
 
 pub const anon6771 = enum(u32) {
-    kTSMOutsideOfBody = 1,
-    kTSMInsideOfBody = 2,
-    kTSMInsideOfActiveInputArea = 3,
+    TSMOutsideOfBody = 1,
+    TSMInsideOfBody = 2,
+    TSMInsideOfActiveInputArea = 3,
 };
 
 pub const TextRange = extern struct {
@@ -14245,30 +14245,30 @@ pub const IntlText = extern struct {
 };
 
 pub const anon7231 = enum(u32) {
-    kTSMHiliteCaretPosition = 1,
-    kTSMHiliteRawText = 2,
-    kTSMHiliteSelectedRawText = 3,
-    kTSMHiliteConvertedText = 4,
-    kTSMHiliteSelectedConvertedText = 5,
-    kTSMHiliteBlockFillText = 6,
-    kTSMHiliteOutlineText = 7,
-    kTSMHiliteSelectedText = 8,
-    kTSMHiliteNoHilite = 9,
+    TSMHiliteCaretPosition = 1,
+    TSMHiliteRawText = 2,
+    TSMHiliteSelectedRawText = 3,
+    TSMHiliteConvertedText = 4,
+    TSMHiliteSelectedConvertedText = 5,
+    TSMHiliteBlockFillText = 6,
+    TSMHiliteOutlineText = 7,
+    TSMHiliteSelectedText = 8,
+    TSMHiliteNoHilite = 9,
 };
 
 pub const anon7501 = enum(AEKeyword) {
-    keyAEHiliteRange = 1752329831,
-    keyAEPinRange = 1886286439,
-    keyAEClauseOffsets = 1668047221,
-    keyAEOffset = 1868985204,
-    keyAEPoint = 1735421811,
-    keyAELeftSide = 1802265958,
-    keyAERegionClass = 1919381091,
-    keyAEDragging = 1651470188,
+    eyAEHiliteRange = 1752329831,
+    eyAEPinRange = 1886286439,
+    eyAEClauseOffsets = 1668047221,
+    eyAEOffset = 1868985204,
+    eyAEPoint = 1735421811,
+    eyAELeftSide = 1802265958,
+    eyAERegionClass = 1919381091,
+    eyAEDragging = 1651470188,
 };
 
 pub const anon8271 = enum(objc.OSType) {
-    kAEISGetURL = 1735750252,
+    AEISGetURL = 1735750252,
     KAEISHandleCGI = 1935961955,
 };
 
@@ -14280,23 +14280,23 @@ pub const anon8331 = enum(objc.OSType) {
 };
 
 pub const anon8411 = enum(objc.OSType) {
-    kAEISHTTPSearchArgs = 1801875314,
-    kAEISPostArgs = 1886352244,
-    kAEISMethod = 1835365480,
-    kAEISClientAddress = 1633969266,
-    kAEISUserName = 1970496882,
-    kAEISPassword = 1885434739,
-    kAEISFromUser = 1718775157,
-    kAEISServerName = 1937141357,
-    kAEISServerPort = 1937141876,
-    kAEISScriptName = 1935896173,
-    kAEISContentType = 1668577648,
-    kAEISReferrer = 1919247986,
-    kAEISUserAgent = 1097297524,
-    kAEISAction = 1264673652,
-    kAEISActionPath = 1264676980,
-    kAEISClientIP = 1264806256,
-    kAEISFullRequest = 1265005169,
+    AEISHTTPSearchArgs = 1801875314,
+    AEISPostArgs = 1886352244,
+    AEISMethod = 1835365480,
+    AEISClientAddress = 1633969266,
+    AEISUserName = 1970496882,
+    AEISPassword = 1885434739,
+    AEISFromUser = 1718775157,
+    AEISServerName = 1937141357,
+    AEISServerPort = 1937141876,
+    AEISScriptName = 1935896173,
+    AEISContentType = 1668577648,
+    AEISReferrer = 1919247986,
+    AEISUserAgent = 1097297524,
+    AEISAction = 1264673652,
+    AEISActionPath = 1264676980,
+    AEISClientIP = 1264806256,
+    AEISFullRequest = 1265005169,
 };
 
 pub const anon8621 = enum(objc.OSType) {
@@ -14339,7 +14339,7 @@ pub const anon8751 = enum(objc.OSType) {
 };
 
 pub const anon9031 = enum(objc.OSType) {
-    kConnSuite = 1835098979,
+    ConnSuite = 1835098979,
     cDevSpec = 1667523958,
     cAddressSpec = 1667327090,
     cADBAddress = 1667327074,
@@ -14475,15 +14475,15 @@ pub const anon9971 = enum(objc.OSType) {
 };
 
 pub const anon10441 = enum(AEKeyword) {
-    keyAELaunchedAsLogInItem = 1818716532,
-    keyAELaunchedAsServiceItem = 1937140084,
+    eyAELaunchedAsLogInItem = 1818716532,
+    eyAELaunchedAsServiceItem = 1937140084,
 };
 
 pub const anon321 = enum(objc.OSType) {
-    kAEUserTerminology = 1634039156,
-    kAETerminologyExtension = 1634038885,
-    kAEScriptingSizeResource = 1935897466,
-    kAEOSAXSizeResource = 1869834618,
+    AEUserTerminology = 1634039156,
+    AETerminologyExtension = 1634038885,
+    AEScriptingSizeResource = 1935897466,
+    AEOSAXSizeResource = 1869834618,
 };
 
 pub const TScriptingSizeResource = extern struct {
@@ -14666,14 +14666,14 @@ extern "CoreServices" fn DCSCopyTextDefinition(dictionary: DCSDictionaryRef, tex
 pub const dcsCopyTextDefinition = DCSCopyTextDefinition;
 
 pub const anon591 = enum(i32) {
-    kCSIdentityUnknownAuthorityErr = -1,
-    kCSIdentityAuthorityNotAccessibleErr = -2,
-    kCSIdentityPermissionErr = -3,
-    kCSIdentityDeletedErr = -4,
-    kCSIdentityInvalidFullNameErr = -5,
-    kCSIdentityDuplicateFullNameErr = -6,
-    kCSIdentityInvalidPosixNameErr = -7,
-    kCSIdentityDuplicatePosixNameErr = -8,
+    CSIdentityUnknownAuthorityErr = -1,
+    CSIdentityAuthorityNotAccessibleErr = -2,
+    CSIdentityPermissionErr = -3,
+    CSIdentityDeletedErr = -4,
+    CSIdentityInvalidFullNameErr = -5,
+    CSIdentityDuplicateFullNameErr = -6,
+    CSIdentityInvalidPosixNameErr = -7,
+    CSIdentityDuplicatePosixNameErr = -8,
 };
 
 pub const __CSIdentityAuthority = extern struct {};
@@ -14696,26 +14696,26 @@ extern "CoreServices" fn CSIdentityAuthorityCopyLocalizedName(authority: CSIdent
 pub const csIdentityAuthorityCopyLocalizedName = CSIdentityAuthorityCopyLocalizedName;
 
 pub const anon1131 = enum(i32) {
-    kStartupFolderIconResource = -3981,
-    kOwnedFolderIconResource = -3980,
-    kDropFolderIconResource = -3979,
-    kSharedFolderIconResource = -3978,
-    kMountedFolderIconResource = -3977,
-    kControlPanelFolderIconResource = -3976,
-    kPrintMonitorFolderIconResource = -3975,
-    kPreferencesFolderIconResource = -3974,
-    kExtensionsFolderIconResource = -3973,
-    kFontsFolderIconResource = -3968,
-    kFullTrashIconResource = -3984,
+    StartupFolderIconResource = -3981,
+    OwnedFolderIconResource = -3980,
+    DropFolderIconResource = -3979,
+    SharedFolderIconResource = -3978,
+    MountedFolderIconResource = -3977,
+    ControlPanelFolderIconResource = -3976,
+    PrintMonitorFolderIconResource = -3975,
+    PreferencesFolderIconResource = -3974,
+    ExtensionsFolderIconResource = -3973,
+    FontsFolderIconResource = -3968,
+    FullTrashIconResource = -3984,
 };
 
 pub const anon1701 = enum(u32) {
-    kKCAuthTypeNTLM = 1853123693,
-    kKCAuthTypeMSN = 1836281441,
-    kKCAuthTypeDPA = 1685086561,
-    kKCAuthTypeRPA = 1919967585,
-    kKCAuthTypeHTTPDigest = 1752462436,
-    kKCAuthTypeDefault = 1684434036,
+    KCAuthTypeNTLM = 1853123693,
+    KCAuthTypeMSN = 1836281441,
+    KCAuthTypeDPA = 1685086561,
+    KCAuthTypeRPA = 1919967585,
+    KCAuthTypeHTTPDigest = 1752462436,
+    KCAuthTypeDefault = 1684434036,
 };
 
 pub const __CSIdentity = extern struct {};
@@ -14840,7 +14840,7 @@ extern "CoreServices" fn CSIdentityCommit(identity: CSIdentityRef, authorization
 pub const csIdentityCommit = CSIdentityCommit;
 
 pub const anon13521 = enum(u32) {
-    kCSIdentityCommitCompleted = 1,
+    CSIdentityCommitCompleted = 1,
 };
 
 pub const CSIdentityStatusUpdatedCallback = ?*const fn (
@@ -14948,11 +14948,11 @@ extern "CoreServices" fn CSIdentityQueryStop(query: CSIdentityQueryRef) callconv
 pub const csIdentityQueryStop = CSIdentityQueryStop;
 
 pub const anon431 = enum(u32) {
-    kIconServices256PixelDataARGB = 1768108088,
-    kIconServices512PixelDataARGB = 1768108089,
-    kIconServices1024PixelDataARGB = 1768108336,
-    kThumbnail32BitData = 1769222962,
-    kThumbnail8BitMask = 1949855083,
+    IconServices256PixelDataARGB = 1768108088,
+    IconServices512PixelDataARGB = 1768108089,
+    IconServices1024PixelDataARGB = 1768108336,
+    Thumbnail32BitData = 1769222962,
+    Thumbnail8BitMask = 1949855083,
 };
 
 pub const IconFamilyElement = extern struct {
@@ -15054,19 +15054,19 @@ pub const KCItemAttr = objc.FourCharCode;
 pub const KCAuthType = objc.FourCharCode;
 
 pub const anon1801 = enum(u32) {
-    kKCProtocolTypeFTP = 1718906912,
-    kKCProtocolTypeFTPAccount = 1718906977,
-    kKCProtocolTypeHTTP = 1752462448,
-    kKCProtocolTypeIRC = 1769104160,
-    kKCProtocolTypeNNTP = 1852732528,
-    kKCProtocolTypePOP3 = 1886351411,
-    kKCProtocolTypeSMTP = 1936553072,
-    kKCProtocolTypeSOCKS = 1936685088,
-    kKCProtocolTypeIMAP = 1768776048,
-    kKCProtocolTypeLDAP = 1818517872,
-    kKCProtocolTypeAppleTalk = 1635019883,
-    kKCProtocolTypeAFP = 1634103328,
-    kKCProtocolTypeTelnet = 1952803950,
+    KCProtocolTypeFTP = 1718906912,
+    KCProtocolTypeFTPAccount = 1718906977,
+    KCProtocolTypeHTTP = 1752462448,
+    KCProtocolTypeIRC = 1769104160,
+    KCProtocolTypeNNTP = 1852732528,
+    KCProtocolTypePOP3 = 1886351411,
+    KCProtocolTypeSMTP = 1936553072,
+    KCProtocolTypeSOCKS = 1936685088,
+    KCProtocolTypeIMAP = 1768776048,
+    KCProtocolTypeLDAP = 1818517872,
+    KCProtocolTypeAppleTalk = 1635019883,
+    KCProtocolTypeAFP = 1634103328,
+    KCProtocolTypeTelnet = 1952803950,
 };
 
 pub const KCProtocolType = objc.FourCharCode;
@@ -15076,29 +15076,29 @@ pub const KCCertAddOptions = objc.UInt32;
 pub const KCVerifyStopOn = objc.UInt16;
 
 pub const anon2191 = enum(u32) {
-    kPolicyKCStopOn = 0,
-    kNoneKCStopOn = 1,
-    kFirstPassKCStopOn = 2,
-    kFirstFailKCStopOn = 3,
+    PolicyKCStopOn = 0,
+    NoneKCStopOn = 1,
+    FirstPassKCStopOn = 2,
+    FirstFailKCStopOn = 3,
 };
 
 pub const KCCertSearchOptions = objc.UInt32;
 
 pub const anon2271 = enum(u32) {
-    kInternetLocationHTTPIcon = 1768712308,
-    kInternetLocationFTPIcon = 1768711796,
-    kInternetLocationAppleShareIcon = 1768710502,
-    kInternetLocationAppleTalkZoneIcon = 1768710516,
-    kInternetLocationFileIcon = 1768711785,
-    kInternetLocationMailIcon = 1768713569,
-    kInternetLocationNewsIcon = 1768713847,
-    kInternetLocationNSLNeighborhoodIcon = 1768713843,
-    kInternetLocationGenericIcon = 1768712037,
+    InternetLocationHTTPIcon = 1768712308,
+    InternetLocationFTPIcon = 1768711796,
+    InternetLocationAppleShareIcon = 1768710502,
+    InternetLocationAppleTalkZoneIcon = 1768710516,
+    InternetLocationFileIcon = 1768711785,
+    InternetLocationMailIcon = 1768713569,
+    InternetLocationNewsIcon = 1768713847,
+    InternetLocationNSLNeighborhoodIcon = 1768713843,
+    InternetLocationGenericIcon = 1768712037,
 };
 
 pub const anon2621 = enum(u32) {
-    kAnyProtocol = 0,
-    kAnyAuthType = 0,
+    AnyProtocol = 0,
+    AnyAuthType = 0,
 };
 
 extern "CoreServices" fn KCGetKeychainManagerVersion(returnVers: ?*objc.UInt32) callconv(.C) objc.OSStatus;
@@ -15497,12 +15497,12 @@ extern "CoreServices" fn WSProtocolHandlerSetDeserializationOverride(
 pub const wsProtocolHandlerSetDeserializationOverride = WSProtocolHandlerSetDeserializationOverride;
 
 pub const anon771 = enum(i32) {
-    kGenericPreferencesIconResource = -3971,
-    kGenericQueryDocumentIconResource = -16506,
-    kGenericExtensionIconResource = -16415,
-    kSystemFolderIconResource = -3983,
-    kHelpIconResource = -20271,
-    kAppleMenuFolderIconResource = -3982,
+    GenericPreferencesIconResource = -3971,
+    GenericQueryDocumentIconResource = -16506,
+    GenericExtensionIconResource = -16415,
+    SystemFolderIconResource = -3983,
+    HelpIconResource = -20271,
+    AppleMenuFolderIconResource = -3982,
 };
 
 pub const OpaqueIconRef = extern struct {};
@@ -15510,40 +15510,40 @@ pub const OpaqueIconRef = extern struct {};
 pub const IconRef = ?*OpaqueIconRef;
 
 pub const anon3361 = enum(u32) {
-    kAppleTalkIcon = 1635019883,
-    kAppleTalkZoneIcon = 1635023470,
-    kAFPServerIcon = 1634103411,
-    kFTPServerIcon = 1718906995,
-    kHTTPServerIcon = 1752461427,
-    kGenericNetworkIcon = 1735288180,
-    kIPFileServerIcon = 1769173622,
+    AppleTalkIcon = 1635019883,
+    AppleTalkZoneIcon = 1635023470,
+    AFPServerIcon = 1634103411,
+    FTPServerIcon = 1718906995,
+    HTTPServerIcon = 1752461427,
+    GenericNetworkIcon = 1735288180,
+    IPFileServerIcon = 1769173622,
 };
 
 pub const anon3471 = enum(u32) {
-    kToolbarCustomizeIcon = 1952675187,
-    kToolbarDeleteIcon = 1952736620,
-    kToolbarFavoritesIcon = 1952866678,
-    kToolbarHomeIcon = 1953001325,
-    kToolbarAdvancedIcon = 1952604534,
-    kToolbarInfoIcon = 1952606574,
-    kToolbarLabelsIcon = 1952607330,
-    kToolbarApplicationsFolderIcon = 1950445683,
-    kToolbarDocumentsFolderIcon = 1950642019,
-    kToolbarMovieFolderIcon = 1951231862,
-    kToolbarMusicFolderIcon = 1951233395,
-    kToolbarPicturesFolderIcon = 1951426915,
-    kToolbarPublicFolderIcon = 1951429986,
-    kToolbarDesktopFolderIcon = 1950643051,
-    kToolbarDownloadsFolderIcon = 1950644078,
-    kToolbarLibraryFolderIcon = 1951164770,
-    kToolbarUtilitiesFolderIcon = 1951757420,
-    kToolbarSitesFolderIcon = 1951626355,
+    ToolbarCustomizeIcon = 1952675187,
+    ToolbarDeleteIcon = 1952736620,
+    ToolbarFavoritesIcon = 1952866678,
+    ToolbarHomeIcon = 1953001325,
+    ToolbarAdvancedIcon = 1952604534,
+    ToolbarInfoIcon = 1952606574,
+    ToolbarLabelsIcon = 1952607330,
+    ToolbarApplicationsFolderIcon = 1950445683,
+    ToolbarDocumentsFolderIcon = 1950642019,
+    ToolbarMovieFolderIcon = 1951231862,
+    ToolbarMusicFolderIcon = 1951233395,
+    ToolbarPicturesFolderIcon = 1951426915,
+    ToolbarPublicFolderIcon = 1951429986,
+    ToolbarDesktopFolderIcon = 1950643051,
+    ToolbarDownloadsFolderIcon = 1950644078,
+    ToolbarLibraryFolderIcon = 1951164770,
+    ToolbarUtilitiesFolderIcon = 1951757420,
+    ToolbarSitesFolderIcon = 1951626355,
 };
 
 pub const IconServicesUsageFlags = objc.UInt32;
 
 pub const anon4151 = enum(u32) {
-    kIconServicesCatalogInfoMask = 531550,
+    IconServicesCatalogInfoMask = 531550,
 };
 
 extern "CoreServices" fn GetIconRefOwners(theIconRef: IconRef, owners: ?*objc.UInt16) callconv(.C) objc.OSErr;
@@ -15651,16 +15651,16 @@ extern "CoreServices" fn ReadIconFromFSRef(ref: ?*FSRef, iconFamily: ?*IconFamil
 pub const readIconFromFSRef = ReadIconFromFSRef;
 
 pub const LSRolesMask = enum(objc.OptionBits) {
-    kLSRolesNone = 1,
-    kLSRolesViewer = 2,
-    kLSRolesEditor = 4,
-    kLSRolesShell = 8,
-    kLSRolesAll = -1,
+    None = 1,
+    Viewer = 2,
+    Editor = 4,
+    Shell = 8,
+    All = -1,
 };
 
 pub const LSAcceptanceFlags = enum(objc.OptionBits) {
-    kLSAcceptDefault = 1,
-    kLSAcceptAllowLoginUI = 2,
+    Default = 1,
+    AllowLoginUI = 2,
 };
 
 extern "CoreServices" fn LSCopyDefaultApplicationURLForURL(inURL: core_foundation.URLRef, inRoleMask: LSRolesMask, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.URLRef;
@@ -15706,31 +15706,31 @@ extern "CoreServices" fn LSSetDefaultHandlerForURLScheme(inURLScheme: core_found
 pub const lsSetDefaultHandlerForURLScheme = LSSetDefaultHandlerForURLScheme;
 
 pub const LSRequestedInfo = enum(objc.OptionBits) {
-    kLSRequestExtension = 1,
-    kLSRequestTypeCreator = 2,
-    kLSRequestBasicFlagsOnly = 4,
-    kLSRequestAppTypeFlags = 8,
-    kLSRequestAllFlags = 16,
-    kLSRequestIconAndKind = 32,
-    kLSRequestExtensionFlagsOnly = 64,
-    kLSRequestAllInfo = -1,
+    Extension = 1,
+    TypeCreator = 2,
+    BasicFlagsOnly = 4,
+    AppTypeFlags = 8,
+    AllFlags = 16,
+    IconAndKind = 32,
+    ExtensionFlagsOnly = 64,
+    AllInfo = -1,
 };
 
 pub const LSItemInfoFlags = enum(objc.OptionBits) {
-    kLSItemInfoIsPlainFile = 1,
-    kLSItemInfoIsPackage = 2,
-    kLSItemInfoIsApplication = 4,
-    kLSItemInfoIsContainer = 8,
-    kLSItemInfoIsAliasFile = 16,
-    kLSItemInfoIsSymlink = 32,
-    kLSItemInfoIsInvisible = 64,
-    kLSItemInfoIsNativeApp = 128,
-    kLSItemInfoIsClassicApp = 256,
-    kLSItemInfoAppPrefersNative = 512,
-    kLSItemInfoAppPrefersClassic = 1024,
-    kLSItemInfoAppIsScriptable = 2048,
-    kLSItemInfoIsVolume = 4096,
-    kLSItemInfoExtensionIsHidden = 1048576,
+    IsPlainFile = 1,
+    IsPackage = 2,
+    IsApplication = 4,
+    IsContainer = 8,
+    IsAliasFile = 16,
+    IsSymlink = 32,
+    IsInvisible = 64,
+    IsNativeApp = 128,
+    IsClassicApp = 256,
+    AppPrefersNative = 512,
+    AppPrefersClassic = 1024,
+    AppIsScriptable = 2048,
+    IsVolume = 4096,
+    ExtensionIsHidden = 1048576,
 };
 
 pub const LSItemInfoRecord = extern struct {
@@ -15853,8 +15853,8 @@ extern "CoreServices" fn LSSetItemAttribute(
 pub const lsSetItemAttribute = LSSetItemAttribute;
 
 pub const LSHandlerOptions = enum(objc.OptionBits) {
-    kLSHandlerOptionsDefault = 0,
-    kLSHandlerOptionsIgnoreCreator = 1,
+    Default = 0,
+    IgnoreCreator = 1,
 };
 
 extern "CoreServices" fn LSGetHandlerOptionsForContentType(inContentType: core_foundation.StringRef) callconv(.C) LSHandlerOptions;
@@ -15864,15 +15864,15 @@ extern "CoreServices" fn LSSetHandlerOptionsForContentType(inContentType: core_f
 pub const lsSetHandlerOptionsForContentType = LSSetHandlerOptionsForContentType;
 
 pub const LSLaunchFlags = enum(objc.OptionBits) {
-    kLSLaunchDefaults = 1,
-    kLSLaunchAndPrint = 2,
-    kLSLaunchAndDisplayErrors = 64,
-    kLSLaunchDontAddToRecents = 256,
-    kLSLaunchDontSwitch = 512,
-    kLSLaunchAsync = 65536,
-    kLSLaunchNewInstance = 524288,
-    kLSLaunchAndHide = 1048576,
-    kLSLaunchAndHideOthers = 2097152,
+    Defaults = 1,
+    AndPrint = 2,
+    AndDisplayErrors = 64,
+    DontAddToRecents = 256,
+    DontSwitch = 512,
+    Async = 65536,
+    NewInstance = 524288,
+    AndHide = 1048576,
+    AndHideOthers = 2097152,
 };
 
 pub const LSLaunchURLSpec = extern struct {
@@ -15890,11 +15890,11 @@ extern "CoreServices" fn LSOpenFromURLSpec(inLaunchSpec: ?*LSLaunchURLSpec, outL
 pub const lsOpenFromURLSpec = LSOpenFromURLSpec;
 
 pub const anon281 = enum(u32) {
-    kLSLaunchInhibitBGOnly = 128,
-    kLSLaunchNoParams = 2048,
-    kLSLaunchStartClassic = 131072,
-    kLSLaunchInClassic = 262144,
-    kLSLaunchHasUntrustedContents = 4194304,
+    LSLaunchInhibitBGOnly = 128,
+    LSLaunchNoParams = 2048,
+    LSLaunchStartClassic = 131072,
+    LSLaunchInClassic = 262144,
+    LSLaunchHasUntrustedContents = 4194304,
 };
 
 pub const LSLaunchFSRefSpec = extern struct {
@@ -16024,9 +16024,9 @@ pub const __MDQuery = extern struct {};
 pub const MDQueryRef = ?*__MDQuery;
 
 pub const MDQueryOptionFlags = enum(u32) {
-    kMDQuerySynchronous = 1,
-    kMDQueryWantsUpdates = 4,
-    kMDQueryAllowFSTranslation = 8,
+    Synchronous = 1,
+    WantsUpdates = 4,
+    AllowFSTranslation = 8,
 };
 
 extern "CoreServices" fn MDQueryGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -16147,7 +16147,7 @@ extern "CoreServices" fn MDQuerySetSortOrder(query: MDQueryRef, sortingAttrs: co
 pub const mdQuerySetSortOrder = MDQuerySetSortOrder;
 
 pub const MDQuerySortOptionFlags = enum(u32) {
-    kMDQueryReverseSortOrderFlag = 1,
+    ReverseSortOrderFlag = 1,
 };
 
 extern "CoreServices" fn MDQuerySetSortOptionFlagsForAttribute(query: MDQueryRef, fieldName: core_foundation.StringRef, flags: objc.uint32_t) callconv(.C) objc.Boolean;
@@ -16187,8 +16187,8 @@ extern "CoreServices" fn MDItemRemoveLabel(item: MDItemRef, label: MDLabelRef) c
 pub const mdItemRemoveLabel = MDItemRemoveLabel;
 
 pub const MDLabelDomain = enum(u32) {
-    kMDLabelUserDomain = 0,
-    kMDLabelLocalDomain = 1,
+    UserDomain = 0,
+    LocalDomain = 1,
 };
 
 extern "CoreServices" fn MDLabelCreate(
@@ -16276,17 +16276,17 @@ extern "CoreServices" fn SKIndexDocumentIteratorGetTypeID() callconv(.C) core_fo
 pub const skIndexDocumentIteratorGetTypeID = SKIndexDocumentIteratorGetTypeID;
 
 pub const SKIndexType = enum(u32) {
-    kSKIndexUnknown = 0,
-    kSKIndexInverted = 1,
-    kSKIndexVector = 2,
-    kSKIndexInvertedVector = 3,
+    Unknown = 0,
+    Inverted = 1,
+    Vector = 2,
+    InvertedVector = 3,
 };
 
 pub const SKDocumentIndexState = enum(u32) {
-    kSKDocumentStateNotIndexed = 0,
-    kSKDocumentStateIndexed = 1,
-    kSKDocumentStateAddPending = 2,
-    kSKDocumentStateDeletePending = 3,
+    StateNotIndexed = 0,
+    StateIndexed = 1,
+    StateAddPending = 2,
+    StateDeletePending = 3,
 };
 
 extern "CoreServices" fn SKIndexCreateWithURL(
@@ -16481,10 +16481,10 @@ extern "CoreServices" fn SKSearchResultsGetTypeID() callconv(.C) core_foundation
 pub const skSearchResultsGetTypeID = SKSearchResultsGetTypeID;
 
 pub const SKSearchType = enum(u32) {
-    kSKSearchRanked = 0,
-    kSKSearchBooleanRanked = 1,
-    kSKSearchRequiredRanked = 2,
-    kSKSearchPrefixRanked = 3,
+    Ranked = 0,
+    BooleanRanked = 1,
+    RequiredRanked = 2,
+    PrefixRanked = 3,
 };
 
 pub const SKSearchResultsFilterCallBack = ?*const fn (SKIndexRef, SKDocumentRef, ?*anyopaque) callconv(.C) objc.Boolean;
@@ -16577,16 +16577,16 @@ pub const skSummaryGetParagraphSummaryInfo = SKSummaryGetParagraphSummaryInfo;
 pub const FSEventStreamCreateFlags = objc.UInt32;
 
 pub const anon2061 = enum(u32) {
-    kFSEventStreamCreateFlagNone = 0,
-    kFSEventStreamCreateFlagUseCFTypes = 1,
-    kFSEventStreamCreateFlagNoDefer = 2,
-    kFSEventStreamCreateFlagWatchRoot = 4,
-    kFSEventStreamCreateFlagIgnoreSelf = 8,
-    kFSEventStreamCreateFlagFileEvents = 16,
-    kFSEventStreamCreateFlagMarkSelf = 32,
-    kFSEventStreamCreateFlagUseExtendedData = 64,
-    kFSEventStreamCreateFlagFullHistory = 128,
-    kFSEventStreamCreateWithDocID = 256,
+    FSEventStreamCreateFlagNone = 0,
+    FSEventStreamCreateFlagUseCFTypes = 1,
+    FSEventStreamCreateFlagNoDefer = 2,
+    FSEventStreamCreateFlagWatchRoot = 4,
+    FSEventStreamCreateFlagIgnoreSelf = 8,
+    FSEventStreamCreateFlagFileEvents = 16,
+    FSEventStreamCreateFlagMarkSelf = 32,
+    FSEventStreamCreateFlagUseExtendedData = 64,
+    FSEventStreamCreateFlagFullHistory = 128,
+    FSEventStreamCreateWithDocID = 256,
 };
 
 pub const FSEventStreamEventFlags = objc.UInt32;
@@ -16594,7 +16594,7 @@ pub const FSEventStreamEventFlags = objc.UInt32;
 pub const FSEventStreamEventId = objc.UInt64;
 
 pub const anon5761 = enum(u64) {
-    kFSEventStreamEventIdSinceNow = -1,
+    FSEventStreamEventIdSinceNow = -1,
 };
 
 pub const __FSEventStream = extern struct {};

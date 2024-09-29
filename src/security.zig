@@ -3,6 +3,7 @@
 const std = @import("std");
 const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 const core_foundation = @import("core_foundation.zig"); // Framework dependency CoreFoundation.
+const foundation = @import("foundation.zig"); // Framework dependency Foundation.
 
 pub const __SecCertificate = extern struct {};
 
@@ -3189,13 +3190,13 @@ extern "Security" fn SecCertificateCopySerialNumber(certificate: CertificateRef,
 pub const certificateCopySerialNumber = SecCertificateCopySerialNumber;
 
 pub const anon2671 = enum(u32) {
-    kSecSubjectItemAttr = 1937072746,
-    kSecIssuerItemAttr = 1769173877,
-    kSecSerialNumberItemAttr = 1936614002,
-    kSecPublicKeyHashItemAttr = 1752198009,
-    kSecSubjectKeyIdentifierItemAttr = 1936419172,
-    kSecCertTypeItemAttr = 1668577648,
-    kSecCertEncodingItemAttr = 1667591779,
+    SecSubjectItemAttr = 1937072746,
+    SecIssuerItemAttr = 1769173877,
+    SecSerialNumberItemAttr = 1936614002,
+    SecPublicKeyHashItemAttr = 1752198009,
+    SecSubjectKeyIdentifierItemAttr = 1936419172,
+    SecCertTypeItemAttr = 1668577648,
+    SecCertEncodingItemAttr = 1667591779,
 };
 
 extern "Security" fn SecCertificateCreateFromData(
@@ -3245,19 +3246,19 @@ extern "Security" fn SecCertificateSetPreferred(certificate: CertificateRef, nam
 pub const certificateSetPreferred = SecCertificateSetPreferred;
 
 pub const KeyUsage = enum(objc.uint32_t) {
-    kSecKeyUsageUnspecified = 0,
-    kSecKeyUsageDigitalSignature = 1,
-    kSecKeyUsageNonRepudiation = 2,
-    kSecKeyUsageContentCommitment = 2,
-    kSecKeyUsageKeyEncipherment = 4,
-    kSecKeyUsageDataEncipherment = 8,
-    kSecKeyUsageKeyAgreement = 16,
-    kSecKeyUsageKeyCertSign = 32,
-    kSecKeyUsageCRLSign = 64,
-    kSecKeyUsageEncipherOnly = 128,
-    kSecKeyUsageDecipherOnly = 256,
-    kSecKeyUsageCritical = -2147483648,
-    kSecKeyUsageAll = 2147483647,
+    Unspecified = 0,
+    DigitalSignature = 1,
+    NonRepudiation = 2,
+    ContentCommitment = 2,
+    KeyEncipherment = 4,
+    DataEncipherment = 8,
+    KeyAgreement = 16,
+    KeyCertSign = 32,
+    CRLSign = 64,
+    EncipherOnly = 128,
+    DecipherOnly = 256,
+    Critical = -2147483648,
+    All = 2147483647,
 };
 
 extern "Security" fn SecCertificateCopyValues(certificate: CertificateRef, keys: core_foundation.ArrayRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DictionaryRef;
@@ -3314,18 +3315,18 @@ extern "Security" fn SecAccessControlGetTypeID() callconv(.C) core_foundation.Ty
 pub const accessControlGetTypeID = SecAccessControlGetTypeID;
 
 pub const AccessControlCreateFlags = enum(core_foundation.OptionFlags) {
-    kSecAccessControlUserPresence = 1,
-    kSecAccessControlBiometryAny = 2,
-    kSecAccessControlTouchIDAny = 2,
-    kSecAccessControlBiometryCurrentSet = 8,
-    kSecAccessControlTouchIDCurrentSet = 8,
-    kSecAccessControlDevicePasscode = 16,
-    kSecAccessControlWatch = 32,
-    kSecAccessControlCompanion = 32,
-    kSecAccessControlOr = 16384,
-    kSecAccessControlAnd = 32768,
-    kSecAccessControlPrivateKeyUsage = 1073741824,
-    kSecAccessControlApplicationPassword = 2147483648,
+    UserPresence = 1,
+    BiometryAny = 2,
+    TouchIDAny = 2,
+    BiometryCurrentSet = 8,
+    TouchIDCurrentSet = 8,
+    DevicePasscode = 16,
+    Watch = 32,
+    Companion = 32,
+    Or = 16384,
+    And = 32768,
+    PrivateKeyUsage = 1073741824,
+    ApplicationPassword = 2147483648,
 };
 
 extern "Security" fn SecAccessControlCreateWithFlags(
@@ -3351,10 +3352,10 @@ pub const itemDelete = SecItemDelete;
 pub const AccessOwnerType = objc.UInt32;
 
 pub const anon491 = enum(u32) {
-    kSecUseOnlyUID = 1,
-    kSecUseOnlyGID = 2,
-    kSecHonorRoot = 256,
-    kSecMatchBits = 3,
+    SecUseOnlyUID = 1,
+    SecUseOnlyGID = 2,
+    SecHonorRoot = 256,
+    SecMatchBits = 3,
 };
 
 extern "Security" fn SecAccessGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -3407,67 +3408,67 @@ extern "Security" fn SecAccessCopyMatchingACLList(accessRef: AccessRef, authoriz
 pub const accessCopyMatchingACLList = SecAccessCopyMatchingACLList;
 
 pub const anon1241 = enum(i32) {
-    kSecKeyKeyClass = 0,
-    kSecKeyPrintName = 1,
-    kSecKeyAlias = 2,
-    kSecKeyPermanent = 3,
-    kSecKeyPrivate = 4,
-    kSecKeyModifiable = 5,
-    kSecKeyLabel = 6,
-    kSecKeyApplicationTag = 7,
-    kSecKeyKeyCreator = 8,
-    kSecKeyKeyType = 9,
-    kSecKeyKeySizeInBits = 10,
-    kSecKeyEffectiveKeySize = 11,
-    kSecKeyStartDate = 12,
-    kSecKeyEndDate = 13,
-    kSecKeySensitive = 14,
-    kSecKeyAlwaysSensitive = 15,
-    kSecKeyExtractable = 16,
-    kSecKeyNeverExtractable = 17,
-    kSecKeyEncrypt = 18,
-    kSecKeyDecrypt = 19,
-    kSecKeyDerive = 20,
-    kSecKeySign = 21,
-    kSecKeyVerify = 22,
-    kSecKeySignRecover = 23,
-    kSecKeyVerifyRecover = 24,
-    kSecKeyWrap = 25,
-    kSecKeyUnwrap = 26,
+    SecKeyKeyClass = 0,
+    SecKeyPrintName = 1,
+    SecKeyAlias = 2,
+    SecKeyPermanent = 3,
+    SecKeyPrivate = 4,
+    SecKeyModifiable = 5,
+    SecKeyLabel = 6,
+    SecKeyApplicationTag = 7,
+    SecKeyKeyCreator = 8,
+    SecKeyKeyType = 9,
+    SecKeyKeySizeInBits = 10,
+    SecKeyEffectiveKeySize = 11,
+    SecKeyStartDate = 12,
+    SecKeyEndDate = 13,
+    SecKeySensitive = 14,
+    SecKeyAlwaysSensitive = 15,
+    SecKeyExtractable = 16,
+    SecKeyNeverExtractable = 17,
+    SecKeyEncrypt = 18,
+    SecKeyDecrypt = 19,
+    SecKeyDerive = 20,
+    SecKeySign = 21,
+    SecKeyVerify = 22,
+    SecKeySignRecover = 23,
+    SecKeyVerifyRecover = 24,
+    SecKeyWrap = 25,
+    SecKeyUnwrap = 26,
 };
 
 pub const CredentialType = enum(uint32) {
-    kSecCredentialTypeDefault = 0,
-    kSecCredentialTypeWithUI = 1,
-    kSecCredentialTypeNoUI = 2,
+    Default = 0,
+    WithUI = 1,
+    NoUI = 2,
 };
 
 pub const Padding = enum(objc.uint32_t) {
-    kSecPaddingNone = 0,
-    kSecPaddingPKCS1 = 1,
-    kSecPaddingOAEP = 2,
-    kSecPaddingSigRaw = 16384,
-    kSecPaddingPKCS1MD2 = 32768,
-    kSecPaddingPKCS1MD5 = 32769,
-    kSecPaddingPKCS1SHA1 = 32770,
-    kSecPaddingPKCS1SHA224 = 32771,
-    kSecPaddingPKCS1SHA256 = 32772,
-    kSecPaddingPKCS1SHA384 = 32773,
-    kSecPaddingPKCS1SHA512 = 32774,
+    None = 0,
+    PKCS1 = 1,
+    OAEP = 2,
+    SigRaw = 16384,
+    PKCS1MD2 = 32768,
+    PKCS1MD5 = 32769,
+    PKCS1SHA1 = 32770,
+    PKCS1SHA224 = 32771,
+    PKCS1SHA256 = 32772,
+    PKCS1SHA384 = 32773,
+    PKCS1SHA512 = 32774,
 };
 
 pub const KeySizes = enum(objc.uint32_t) {
-    kSecDefaultKeySize = 0,
-    kSec3DES192 = 192,
-    kSecAES128 = 128,
-    kSecAES192 = 192,
-    kSecAES256 = 256,
-    kSecp192r1 = 192,
-    kSecp256r1 = 256,
-    kSecp384r1 = 384,
-    kSecp521r1 = 521,
-    kSecRSAMin = 1024,
-    kSecRSAMax = 4096,
+    DefaultKeySize = 0,
+    Sec3DES192 = 192,
+    AES128 = 128,
+    AES192 = 192,
+    AES256 = 256,
+    Secp192r1 = 192,
+    Secp256r1 = 256,
+    Secp384r1 = 384,
+    Secp521r1 = 521,
+    RSAMin = 1024,
+    RSAMax = 4096,
 };
 
 extern "Security" fn SecKeyGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -3612,11 +3613,11 @@ extern "Security" fn SecKeyCopyKeyExchangeResult(
 pub const keyCopyKeyExchangeResult = SecKeyCopyKeyExchangeResult;
 
 pub const KeyOperationType = enum(core_foundation.Index) {
-    kSecKeyOperationTypeSign = 0,
-    kSecKeyOperationTypeVerify = 1,
-    kSecKeyOperationTypeEncrypt = 2,
-    kSecKeyOperationTypeDecrypt = 3,
-    kSecKeyOperationTypeKeyExchange = 4,
+    Sign = 0,
+    Verify = 1,
+    Encrypt = 2,
+    Decrypt = 3,
+    KeyExchange = 4,
 };
 
 extern "Security" fn SecKeyIsAlgorithmSupported(key: KeyRef, operation: KeyOperationType, algorithm: KeyAlgorithm) callconv(.C) objc.Boolean;
@@ -3635,12 +3636,12 @@ extern "Security" fn SecPolicyCreateSSL(server: objc.Boolean, hostname: core_fou
 pub const policyCreateSSL = SecPolicyCreateSSL;
 
 pub const anon2091 = enum(core_foundation.OptionFlags) {
-    kSecRevocationOCSPMethod = 1,
-    kSecRevocationCRLMethod = 2,
-    kSecRevocationPreferCRL = 4,
-    kSecRevocationRequirePositiveResponse = 8,
-    kSecRevocationNetworkAccessDisabled = 16,
-    kSecRevocationUseAnyAvailableMethod = 3,
+    SecRevocationOCSPMethod = 1,
+    SecRevocationCRLMethod = 2,
+    SecRevocationPreferCRL = 4,
+    SecRevocationRequirePositiveResponse = 8,
+    SecRevocationNetworkAccessDisabled = 16,
+    SecRevocationUseAnyAvailableMethod = 3,
 };
 
 extern "Security" fn SecPolicyCreateRevocation(revocationFlags: core_foundation.OptionFlags) callconv(.C) PolicyRef;
@@ -4798,7 +4799,7 @@ pub const anon6081 = enum(u32) {
 };
 
 pub const cssm_appledl_open_parameters_mask = enum(u32) {
-    kCSSM_APPLEDL_MASK_MODE = 1,
+    CSSM_APPLEDL_MASK_MODE = 1,
 };
 
 pub const cssm_appledl_open_parameters = extern struct {
@@ -5047,9 +5048,9 @@ extern "Security" fn cssmAlgToOid(algId: CSSM_ALGORITHMS) callconv(.C) ?*Asn1Oid
 pub const mAlgToOid = cssmAlgToOid;
 
 pub const anon541 = enum(objc.UInt32) {
-    kSecUnlockStateStatus = 1,
-    kSecReadPermStatus = 2,
-    kSecWritePermStatus = 4,
+    SecUnlockStateStatus = 1,
+    SecReadPermStatus = 2,
+    SecWritePermStatus = 4,
 };
 
 pub const KeychainSettings = extern struct {
@@ -5060,80 +5061,80 @@ pub const KeychainSettings = extern struct {
 };
 
 pub const AuthenticationType = enum(objc.FourCharCode) {
-    kSecAuthenticationTypeNTLM = 1835824238,
-    kSecAuthenticationTypeMSN = 1634628461,
-    kSecAuthenticationTypeDPA = 1633775716,
-    kSecAuthenticationTypeRPA = 1633775730,
-    kSecAuthenticationTypeHTTPBasic = 1886680168,
-    kSecAuthenticationTypeHTTPDigest = 1685353576,
-    kSecAuthenticationTypeHTMLForm = 1836216166,
-    kSecAuthenticationTypeDefault = 1953261156,
-    kSecAuthenticationTypeAny = 0,
+    NTLM = 1835824238,
+    MSN = 1634628461,
+    DPA = 1633775716,
+    RPA = 1633775730,
+    HTTPBasic = 1886680168,
+    HTTPDigest = 1685353576,
+    HTMLForm = 1836216166,
+    Default = 1953261156,
+    Any = 0,
 };
 
 pub const ProtocolType = enum(objc.FourCharCode) {
-    kSecProtocolTypeFTP = 1718906912,
-    kSecProtocolTypeFTPAccount = 1718906977,
-    kSecProtocolTypeHTTP = 1752462448,
-    kSecProtocolTypeIRC = 1769104160,
-    kSecProtocolTypeNNTP = 1852732528,
-    kSecProtocolTypePOP3 = 1886351411,
-    kSecProtocolTypeSMTP = 1936553072,
-    kSecProtocolTypeSOCKS = 1936685088,
-    kSecProtocolTypeIMAP = 1768776048,
-    kSecProtocolTypeLDAP = 1818517872,
-    kSecProtocolTypeAppleTalk = 1635019883,
-    kSecProtocolTypeAFP = 1634103328,
-    kSecProtocolTypeTelnet = 1952803950,
-    kSecProtocolTypeSSH = 1936943136,
-    kSecProtocolTypeFTPS = 1718906995,
-    kSecProtocolTypeHTTPS = 1752461427,
-    kSecProtocolTypeHTTPProxy = 1752461432,
-    kSecProtocolTypeHTTPSProxy = 1752462200,
-    kSecProtocolTypeFTPProxy = 1718907000,
-    kSecProtocolTypeCIFS = 1667851891,
-    kSecProtocolTypeSMB = 1936548384,
-    kSecProtocolTypeRTSP = 1920234352,
-    kSecProtocolTypeRTSPProxy = 1920234360,
-    kSecProtocolTypeDAAP = 1684103536,
-    kSecProtocolTypeEPPC = 1701867619,
-    kSecProtocolTypeIPP = 1768976416,
-    kSecProtocolTypeNNTPS = 1853124723,
-    kSecProtocolTypeLDAPS = 1818521715,
-    kSecProtocolTypeTelnetS = 1952803955,
-    kSecProtocolTypeIMAPS = 1768779891,
-    kSecProtocolTypeIRCS = 1769104243,
-    kSecProtocolTypePOP3S = 1886351475,
-    kSecProtocolTypeCVSpserver = 1668707184,
-    kSecProtocolTypeSVN = 1937141280,
-    kSecProtocolTypeAny = 0,
+    FTP = 1718906912,
+    FTPAccount = 1718906977,
+    HTTP = 1752462448,
+    IRC = 1769104160,
+    NNTP = 1852732528,
+    POP3 = 1886351411,
+    SMTP = 1936553072,
+    SOCKS = 1936685088,
+    IMAP = 1768776048,
+    LDAP = 1818517872,
+    AppleTalk = 1635019883,
+    AFP = 1634103328,
+    Telnet = 1952803950,
+    SSH = 1936943136,
+    FTPS = 1718906995,
+    HTTPS = 1752461427,
+    HTTPProxy = 1752461432,
+    HTTPSProxy = 1752462200,
+    FTPProxy = 1718907000,
+    CIFS = 1667851891,
+    SMB = 1936548384,
+    RTSP = 1920234352,
+    RTSPProxy = 1920234360,
+    DAAP = 1684103536,
+    EPPC = 1701867619,
+    IPP = 1768976416,
+    NNTPS = 1853124723,
+    LDAPS = 1818521715,
+    TelnetS = 1952803955,
+    IMAPS = 1768779891,
+    IRCS = 1769104243,
+    POP3S = 1886351475,
+    CVSpserver = 1668707184,
+    SVN = 1937141280,
+    Any = 0,
 };
 
 pub const KeychainEvent = enum(objc.UInt32) {
-    kSecLockEvent = 1,
-    kSecUnlockEvent = 2,
-    kSecAddEvent = 3,
-    kSecDeleteEvent = 4,
-    kSecUpdateEvent = 5,
-    kSecPasswordChangedEvent = 6,
-    kSecDefaultChangedEvent = 9,
-    kSecDataAccessEvent = 10,
-    kSecKeychainListChangedEvent = 11,
-    kSecTrustSettingsChangedEvent = 12,
+    LockEvent = 1,
+    UnlockEvent = 2,
+    AddEvent = 3,
+    DeleteEvent = 4,
+    UpdateEvent = 5,
+    PasswordChangedEvent = 6,
+    DefaultChangedEvent = 9,
+    DataAccessEvent = 10,
+    ListChangedEvent = 11,
+    TrustSettingsChangedEvent = 12,
 };
 
 pub const KeychainEventMask = enum(objc.UInt32) {
-    kSecLockEventMask = 2,
-    kSecUnlockEventMask = 4,
-    kSecAddEventMask = 8,
-    kSecDeleteEventMask = 16,
-    kSecUpdateEventMask = 32,
-    kSecPasswordChangedEventMask = 64,
-    kSecDefaultChangedEventMask = 512,
-    kSecDataAccessEventMask = 1024,
-    kSecKeychainListChangedMask = 2048,
-    kSecTrustSettingsChangedEventMask = 4096,
-    kSecEveryEventMask = -1,
+    LockEventMask = 2,
+    UnlockEventMask = 4,
+    AddEventMask = 8,
+    DeleteEventMask = 16,
+    UpdateEventMask = 32,
+    PasswordChangedEventMask = 64,
+    DefaultChangedEventMask = 512,
+    DataAccessEventMask = 1024,
+    ListChangedMask = 2048,
+    TrustSettingsChangedEventMask = 4096,
+    EveryEventMask = -1,
 };
 
 pub const KeychainCallbackInfo = extern struct {
@@ -5198,10 +5199,10 @@ extern "Security" fn SecKeychainSetSearchList(searchList: core_foundation.ArrayR
 pub const keychainSetSearchList = SecKeychainSetSearchList;
 
 pub const PreferencesDomain = enum(i32) {
-    kSecPreferencesDomainUser = 0,
-    kSecPreferencesDomainSystem = 1,
-    kSecPreferencesDomainCommon = 2,
-    kSecPreferencesDomainDynamic = 3,
+    User = 0,
+    System = 1,
+    Common = 2,
+    Dynamic = 3,
 };
 
 extern "Security" fn SecKeychainCopyDomainDefault(domain: PreferencesDomain, keychain: ?*KeychainRef) callconv(.C) objc.OSStatus;
@@ -5323,40 +5324,40 @@ extern "Security" fn SecKeychainSetAccess(keychain: KeychainRef, access: AccessR
 pub const keychainSetAccess = SecKeychainSetAccess;
 
 pub const ExternalFormat = enum(objc.uint32_t) {
-    kSecFormatUnknown = 0,
-    kSecFormatOpenSSL = 1,
-    kSecFormatSSH = 2,
-    kSecFormatBSAFE = 3,
-    kSecFormatRawKey = 4,
-    kSecFormatWrappedPKCS8 = 5,
-    kSecFormatWrappedOpenSSL = 6,
-    kSecFormatWrappedSSH = 7,
-    kSecFormatWrappedLSH = 8,
-    kSecFormatX509Cert = 9,
-    kSecFormatPEMSequence = 10,
-    kSecFormatPKCS7 = 11,
-    kSecFormatPKCS12 = 12,
-    kSecFormatNetscapeCertSequence = 13,
-    kSecFormatSSHv2 = 14,
+    FormatUnknown = 0,
+    FormatOpenSSL = 1,
+    FormatSSH = 2,
+    FormatBSAFE = 3,
+    FormatRawKey = 4,
+    FormatWrappedPKCS8 = 5,
+    FormatWrappedOpenSSL = 6,
+    FormatWrappedSSH = 7,
+    FormatWrappedLSH = 8,
+    FormatX509Cert = 9,
+    FormatPEMSequence = 10,
+    FormatPKCS7 = 11,
+    FormatPKCS12 = 12,
+    FormatNetscapeCertSequence = 13,
+    FormatSSHv2 = 14,
 };
 
 pub const ExternalItemType = enum(objc.uint32_t) {
-    kSecItemTypeUnknown = 0,
-    kSecItemTypePrivateKey = 1,
-    kSecItemTypePublicKey = 2,
-    kSecItemTypeSessionKey = 3,
-    kSecItemTypeCertificate = 4,
-    kSecItemTypeAggregate = 5,
+    ItemTypeUnknown = 0,
+    ItemTypePrivateKey = 1,
+    ItemTypePublicKey = 2,
+    ItemTypeSessionKey = 3,
+    ItemTypeCertificate = 4,
+    ItemTypeAggregate = 5,
 };
 
 pub const ItemImportExportFlags = enum(objc.uint32_t) {
-    kSecItemPemArmour = 1,
+    PemArmour = 1,
 };
 
 pub const KeyImportExportFlags = enum(objc.uint32_t) {
-    kSecKeyImportOnlyOne = 1,
-    kSecKeySecurePassphrase = 2,
-    kSecKeyNoAccessControl = 4,
+    OnlyOne = 1,
+    SecurePassphrase = 2,
+    NoAccessControl = 4,
 };
 
 pub const KeyImportExportParameters = extern struct {
@@ -5427,14 +5428,14 @@ extern "Security" fn SecPKCS12Import(pkcs12_data: core_foundation.DataRef, optio
 pub const pkcs12Import = SecPKCS12Import;
 
 pub const TrustResultType = enum(objc.uint32_t) {
-    kSecTrustResultInvalid = 0,
-    kSecTrustResultProceed = 1,
-    kSecTrustResultConfirm = 2,
-    kSecTrustResultDeny = 3,
-    kSecTrustResultUnspecified = 4,
-    kSecTrustResultRecoverableTrustFailure = 5,
-    kSecTrustResultFatalTrustFailure = 6,
-    kSecTrustResultOtherError = 7,
+    Invalid = 0,
+    Proceed = 1,
+    Confirm = 2,
+    Deny = 3,
+    Unspecified = 4,
+    RecoverableTrustFailure = 5,
+    FatalTrustFailure = 6,
+    OtherError = 7,
 };
 
 pub const __SecTrust = extern struct {};
@@ -5529,13 +5530,13 @@ pub const trustCopyCertificateChain = SecTrustCopyCertificateChain;
 pub const TrustUserSetting = TrustResultType;
 
 pub const TrustOptionFlags = enum(objc.uint32_t) {
-    kSecTrustOptionAllowExpired = 1,
-    kSecTrustOptionLeafIsCA = 2,
-    kSecTrustOptionFetchIssuerFromNet = 4,
-    kSecTrustOptionAllowExpiredRoot = 8,
-    kSecTrustOptionRequireRevPerCert = 16,
-    kSecTrustOptionUseTrustSettings = 32,
-    kSecTrustOptionImplicitAnchors = 64,
+    AllowExpired = 1,
+    LeafIsCA = 2,
+    FetchIssuerFromNet = 4,
+    AllowExpiredRoot = 8,
+    RequireRevPerCert = 16,
+    UseTrustSettings = 32,
+    ImplicitAnchors = 64,
 };
 
 extern "Security" fn SecTrustSetOptions(trustRef: TrustRef, options: TrustOptionFlags) callconv(.C) objc.OSStatus;
@@ -5655,12 +5656,12 @@ pub const OS_sec_object = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "description", ?*anyopaque, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "debugDescription", ?*anyopaque, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 };
 
@@ -5675,11 +5676,11 @@ pub const anon471 = enum(u32) {
 };
 
 pub const SSLCiphersuiteGroup = enum(i32) {
-    kSSLCiphersuiteGroupDefault = 0,
-    kSSLCiphersuiteGroupCompatibility = 1,
-    kSSLCiphersuiteGroupLegacy = 2,
-    kSSLCiphersuiteGroupATS = 3,
-    kSSLCiphersuiteGroupATSCompatibility = 4,
+    Default = 0,
+    Compatibility = 1,
+    Legacy = 2,
+    ATS = 3,
+    ATSCompatibility = 4,
 };
 
 /// https://developer.apple.com/documentation/Security/OS_sec_trust?language=objc
@@ -5750,12 +5751,12 @@ pub const OS_sec_trust = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "description", ?*anyopaque, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "debugDescription", ?*anyopaque, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 };
 
@@ -5829,12 +5830,12 @@ pub const OS_sec_identity = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "description", ?*anyopaque, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "debugDescription", ?*anyopaque, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 };
 
@@ -5908,12 +5909,12 @@ pub const OS_sec_certificate = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "description", ?*anyopaque, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "debugDescription", ?*anyopaque, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 };
 
@@ -5966,19 +5967,19 @@ pub const tls_ciphersuite_group_t = enum(objc.uint16_t) {
 };
 
 pub const SSLProtocol = enum(i32) {
-    kSSLProtocolUnknown = 0,
-    kTLSProtocol1 = 4,
-    kTLSProtocol11 = 7,
-    kTLSProtocol12 = 8,
-    kDTLSProtocol1 = 9,
-    kTLSProtocol13 = 10,
-    kDTLSProtocol12 = 11,
-    kTLSProtocolMaxSupported = 999,
-    kSSLProtocol2 = 1,
-    kSSLProtocol3 = 2,
-    kSSLProtocol3Only = 3,
-    kTLSProtocol1Only = 5,
-    kSSLProtocolAll = 6,
+    Unknown = 0,
+    TLSProtocol1 = 4,
+    TLSProtocol11 = 7,
+    TLSProtocol12 = 8,
+    DTLSProtocol1 = 9,
+    TLSProtocol13 = 10,
+    DTLSProtocol12 = 11,
+    TLSProtocolMaxSupported = 999,
+    _2 = 1,
+    _3 = 2,
+    _3Only = 3,
+    TLSProtocol1Only = 5,
+    All = 6,
 };
 
 extern "Security" fn sec_trust_create(trust: TrustRef) callconv(.C) sec_trust_t;
@@ -6076,12 +6077,12 @@ pub const OS_sec_protocol_metadata = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "description", ?*anyopaque, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "debugDescription", ?*anyopaque, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 };
 
@@ -6218,12 +6219,12 @@ pub const OS_sec_protocol_options = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "description", ?*anyopaque, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "debugDescription", ?*anyopaque, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 };
 
@@ -6372,18 +6373,18 @@ pub const anon871 = enum(objc.OSStatus) {
 };
 
 pub const AuthorizationFlags = enum(objc.UInt32) {
-    kAuthorizationFlagDefaults = 0,
-    kAuthorizationFlagInteractionAllowed = 1,
-    kAuthorizationFlagExtendRights = 2,
-    kAuthorizationFlagPartialRights = 4,
-    kAuthorizationFlagDestroyRights = 8,
-    kAuthorizationFlagPreAuthorize = 16,
-    kAuthorizationFlagSkipInternalAuth = 512,
-    kAuthorizationFlagNoData = 1048576,
+    Defaults = 0,
+    InteractionAllowed = 1,
+    ExtendRights = 2,
+    PartialRights = 4,
+    DestroyRights = 8,
+    PreAuthorize = 16,
+    SkipInternalAuth = 512,
+    NoData = 1048576,
 };
 
 pub const anon1291 = enum(u32) {
-    kAuthorizationFlagCanNotPreAuthorize = 1,
+    AuthorizationFlagCanNotPreAuthorize = 1,
 };
 
 pub const AuthorizationOpaqueRef = extern struct {};
@@ -8837,11 +8838,11 @@ extern "Security" fn MDS_Uninstall(MdsHandle: MDS_HANDLE) callconv(.C) CSSM_RETU
 pub const _Uninstall = MDS_Uninstall;
 
 pub const KeychainPromptSelector = enum(uint16) {
-    kSecKeychainPromptRequirePassphase = 1,
-    kSecKeychainPromptUnsigned = 16,
-    kSecKeychainPromptUnsignedAct = 32,
-    kSecKeychainPromptInvalid = 64,
-    kSecKeychainPromptInvalidAct = 128,
+    RequirePassphase = 1,
+    Unsigned = 16,
+    UnsignedAct = 32,
+    Invalid = 64,
+    InvalidAct = 128,
 };
 
 extern "Security" fn SecACLGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -8926,44 +8927,44 @@ extern "Security" fn SecIdentitySearchCopyNext(searchRef: IdentitySearchRef, ide
 pub const identitySearchCopyNext = SecIdentitySearchCopyNext;
 
 pub const ItemClass = enum(objc.FourCharCode) {
-    kSecInternetPasswordItemClass = 1768842612,
-    kSecGenericPasswordItemClass = 1734700656,
-    kSecAppleSharePasswordItemClass = 1634953328,
-    kSecCertificateItemClass = -2147479552,
-    kSecPublicKeyItemClass = 15,
-    kSecPrivateKeyItemClass = 16,
-    kSecSymmetricKeyItemClass = 17,
+    InternetPasswordItemClass = 1768842612,
+    GenericPasswordItemClass = 1734700656,
+    AppleSharePasswordItemClass = 1634953328,
+    CertificateItemClass = -2147479552,
+    PublicKeyItemClass = 15,
+    PrivateKeyItemClass = 16,
+    SymmetricKeyItemClass = 17,
 };
 
 pub const ItemAttr = enum(objc.FourCharCode) {
-    kSecCreationDateItemAttr = 1667522932,
-    kSecModDateItemAttr = 1835295092,
-    kSecDescriptionItemAttr = 1684370275,
-    kSecCommentItemAttr = 1768123764,
-    kSecCreatorItemAttr = 1668445298,
-    kSecTypeItemAttr = 1954115685,
-    kSecScriptCodeItemAttr = 1935897200,
-    kSecLabelItemAttr = 1818321516,
-    kSecInvisibleItemAttr = 1768846953,
-    kSecNegativeItemAttr = 1852139361,
-    kSecCustomIconItemAttr = 1668641641,
-    kSecAccountItemAttr = 1633903476,
-    kSecServiceItemAttr = 1937138533,
-    kSecGenericItemAttr = 1734700641,
-    kSecSecurityDomainItemAttr = 1935961454,
-    kSecServerItemAttr = 1936881266,
-    kSecAuthenticationTypeItemAttr = 1635023216,
-    kSecPortItemAttr = 1886351988,
-    kSecPathItemAttr = 1885434984,
-    kSecVolumeItemAttr = 1986817381,
-    kSecAddressItemAttr = 1633969266,
-    kSecSignatureItemAttr = 1936943463,
-    kSecProtocolItemAttr = 1886675820,
-    kSecCertificateType = 1668577648,
-    kSecCertificateEncoding = 1667591779,
-    kSecCrlType = 1668445296,
-    kSecCrlEncoding = 1668443747,
-    kSecAlias = 1634494835,
+    CreationDateItemAttr = 1667522932,
+    ModDateItemAttr = 1835295092,
+    DescriptionItemAttr = 1684370275,
+    CommentItemAttr = 1768123764,
+    CreatorItemAttr = 1668445298,
+    TypeItemAttr = 1954115685,
+    ScriptCodeItemAttr = 1935897200,
+    LabelItemAttr = 1818321516,
+    InvisibleItemAttr = 1768846953,
+    NegativeItemAttr = 1852139361,
+    CustomIconItemAttr = 1668641641,
+    AccountItemAttr = 1633903476,
+    ServiceItemAttr = 1937138533,
+    GenericItemAttr = 1734700641,
+    SecurityDomainItemAttr = 1935961454,
+    ServerItemAttr = 1936881266,
+    AuthenticationTypeItemAttr = 1635023216,
+    PortItemAttr = 1886351988,
+    PathItemAttr = 1885434984,
+    VolumeItemAttr = 1986817381,
+    AddressItemAttr = 1633969266,
+    SignatureItemAttr = 1936943463,
+    ProtocolItemAttr = 1886675820,
+    CertificateType = 1668577648,
+    CertificateEncoding = 1667591779,
+    CrlType = 1668445296,
+    CrlEncoding = 1668443747,
+    Alias = 1634494835,
 };
 
 pub const AFPServerSignature = [16]objc.UInt8;
@@ -9102,27 +9103,27 @@ extern "Security" fn SecTrustedApplicationSetData(appRef: TrustedApplicationRef,
 pub const trustedApplicationSetData = SecTrustedApplicationSetData;
 
 pub const TrustSettingsKeyUsage = enum(objc.uint32_t) {
-    kSecTrustSettingsKeyUseSignature = 1,
-    kSecTrustSettingsKeyUseEnDecryptData = 2,
-    kSecTrustSettingsKeyUseEnDecryptKey = 4,
-    kSecTrustSettingsKeyUseSignCert = 8,
-    kSecTrustSettingsKeyUseSignRevocation = 16,
-    kSecTrustSettingsKeyUseKeyExchange = 32,
-    kSecTrustSettingsKeyUseAny = -1,
+    UseSignature = 1,
+    UseEnDecryptData = 2,
+    UseEnDecryptKey = 4,
+    UseSignCert = 8,
+    UseSignRevocation = 16,
+    UseKeyExchange = 32,
+    UseAny = -1,
 };
 
 pub const TrustSettingsResult = enum(objc.uint32_t) {
-    kSecTrustSettingsResultInvalid = 0,
-    kSecTrustSettingsResultTrustRoot = 1,
-    kSecTrustSettingsResultTrustAsRoot = 2,
-    kSecTrustSettingsResultDeny = 3,
-    kSecTrustSettingsResultUnspecified = 4,
+    Invalid = 0,
+    TrustRoot = 1,
+    TrustAsRoot = 2,
+    Deny = 3,
+    Unspecified = 4,
 };
 
 pub const TrustSettingsDomain = enum(objc.uint32_t) {
-    kSecTrustSettingsDomainUser = 0,
-    kSecTrustSettingsDomainAdmin = 1,
-    kSecTrustSettingsDomainSystem = 2,
+    User = 0,
+    Admin = 1,
+    System = 2,
 };
 
 extern "Security" fn SecTrustSettingsCopyTrustSettings(certRef: CertificateRef, domain: TrustSettingsDomain, trustSettings: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
@@ -9246,60 +9247,60 @@ pub const RequirementRef = ?*__SecRequirement;
 pub const GuestRef = objc.u_int32_t;
 
 pub const anon2051 = enum(GuestRef) {
-    kSecNoGuest = 0,
+    SecNoGuest = 0,
 };
 
 pub const CSFlags = enum(objc.uint32_t) {
-    kSecCSDefaultFlags = 0,
-    kSecCSConsiderExpiration = -2147483648,
-    kSecCSEnforceRevocationChecks = 1073741824,
-    kSecCSNoNetworkAccess = 536870912,
-    kSecCSReportProgress = 268435456,
-    kSecCSCheckTrustedAnchors = 134217728,
-    kSecCSQuickCheck = 67108864,
-    kSecCSApplyEmbeddedPolicy = 33554432,
-    kSecCSStripDisallowedXattrs = 16777216,
-    kSecCSMatchGuestRequirementInKernel = 8388608,
+    DefaultFlags = 0,
+    ConsiderExpiration = -2147483648,
+    EnforceRevocationChecks = 1073741824,
+    NoNetworkAccess = 536870912,
+    ReportProgress = 268435456,
+    CheckTrustedAnchors = 134217728,
+    QuickCheck = 67108864,
+    ApplyEmbeddedPolicy = 33554432,
+    StripDisallowedXattrs = 16777216,
+    MatchGuestRequirementInKernel = 8388608,
 };
 
 pub const CodeSignatureFlags = enum(objc.uint32_t) {
-    kSecCodeSignatureHost = 1,
-    kSecCodeSignatureAdhoc = 2,
-    kSecCodeSignatureForceHard = 256,
-    kSecCodeSignatureForceKill = 512,
-    kSecCodeSignatureForceExpiration = 1024,
-    kSecCodeSignatureRestrict = 2048,
-    kSecCodeSignatureEnforcement = 4096,
-    kSecCodeSignatureLibraryValidation = 8192,
-    kSecCodeSignatureRuntime = 65536,
-    kSecCodeSignatureLinkerSigned = 131072,
+    Host = 1,
+    Adhoc = 2,
+    ForceHard = 256,
+    ForceKill = 512,
+    ForceExpiration = 1024,
+    Restrict = 2048,
+    Enforcement = 4096,
+    LibraryValidation = 8192,
+    Runtime = 65536,
+    LinkerSigned = 131072,
 };
 
 pub const CodeStatus = enum(objc.uint32_t) {
-    kSecCodeStatusValid = 1,
-    kSecCodeStatusHard = 256,
-    kSecCodeStatusKill = 512,
-    kSecCodeStatusDebugged = 268435456,
-    kSecCodeStatusPlatform = 67108864,
+    Valid = 1,
+    Hard = 256,
+    Kill = 512,
+    Debugged = 268435456,
+    Platform = 67108864,
 };
 
 pub const RequirementType = enum(objc.uint32_t) {
-    kSecHostRequirementType = 1,
-    kSecGuestRequirementType = 2,
-    kSecDesignatedRequirementType = 3,
-    kSecLibraryRequirementType = 4,
-    kSecPluginRequirementType = 5,
-    kSecInvalidRequirementType = 6,
-    kSecRequirementTypeCount = 6,
+    HostRequirementType = 1,
+    GuestRequirementType = 2,
+    DesignatedRequirementType = 3,
+    LibraryRequirementType = 4,
+    PluginRequirementType = 5,
+    InvalidRequirementType = 6,
+    Count = 6,
 };
 
 pub const CSDigestAlgorithm = enum(objc.uint32_t) {
-    kSecCodeSignatureNoHash = 0,
-    kSecCodeSignatureHashSHA1 = 1,
-    kSecCodeSignatureHashSHA256 = 2,
-    kSecCodeSignatureHashSHA256Truncated = 3,
-    kSecCodeSignatureHashSHA384 = 4,
-    kSecCodeSignatureHashSHA512 = 5,
+    CodeSignatureNoHash = 0,
+    CodeSignatureHashSHA1 = 1,
+    CodeSignatureHashSHA256 = 2,
+    CodeSignatureHashSHA256Truncated = 3,
+    CodeSignatureHashSHA384 = 4,
+    CodeSignatureHashSHA512 = 5,
 };
 
 extern "Security" fn SecStaticCodeGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -9317,22 +9318,22 @@ extern "Security" fn SecStaticCodeCreateWithPathAndAttributes(
 pub const staticCodeCreateWithPathAndAttributes = SecStaticCodeCreateWithPathAndAttributes;
 
 pub const anon1751 = enum(objc.uint32_t) {
-    kSecCSCheckAllArchitectures = 1,
-    kSecCSDoNotValidateExecutable = 2,
-    kSecCSDoNotValidateResources = 4,
-    kSecCSBasicValidateOnly = 6,
-    kSecCSCheckNestedCode = 8,
-    kSecCSStrictValidate = 16,
-    kSecCSFullReport = 32,
-    kSecCSCheckGatekeeperArchitectures = 65,
-    kSecCSRestrictSymlinks = 128,
-    kSecCSRestrictToAppLike = 256,
-    kSecCSRestrictSidebandData = 512,
-    kSecCSUseSoftwareSigningCert = 1024,
-    kSecCSValidatePEH = 2048,
-    kSecCSSingleThreaded = 4096,
-    kSecCSAllowNetworkAccess = 65536,
-    kSecCSFastExecutableValidation = 131072,
+    SecCSCheckAllArchitectures = 1,
+    SecCSDoNotValidateExecutable = 2,
+    SecCSDoNotValidateResources = 4,
+    SecCSBasicValidateOnly = 6,
+    SecCSCheckNestedCode = 8,
+    SecCSStrictValidate = 16,
+    SecCSFullReport = 32,
+    SecCSCheckGatekeeperArchitectures = 65,
+    SecCSRestrictSymlinks = 128,
+    SecCSRestrictToAppLike = 256,
+    SecCSRestrictSidebandData = 512,
+    SecCSUseSoftwareSigningCert = 1024,
+    SecCSValidatePEH = 2048,
+    SecCSSingleThreaded = 4096,
+    SecCSAllowNetworkAccess = 65536,
+    SecCSFastExecutableValidation = 131072,
 };
 
 extern "Security" fn SecStaticCodeCheckValidity(staticCode: StaticCodeRef, flags: CSFlags, requirement: RequirementRef) callconv(.C) objc.OSStatus;
@@ -9353,7 +9354,7 @@ extern "Security" fn SecCodeCopySelf(flags: CSFlags, self: ?*CodeRef) callconv(.
 pub const codeCopySelf = SecCodeCopySelf;
 
 pub const anon991 = enum(objc.uint32_t) {
-    kSecCSUseAllArchitectures = 1,
+    SecCSUseAllArchitectures = 1,
 };
 
 extern "Security" fn SecCodeCopyStaticCode(code: CodeRef, flags: CSFlags, staticCode: ?*StaticCodeRef) callconv(.C) objc.OSStatus;
@@ -9399,13 +9400,13 @@ extern "Security" fn SecCodeCopyDesignatedRequirement(code: StaticCodeRef, flags
 pub const codeCopyDesignatedRequirement = SecCodeCopyDesignatedRequirement;
 
 pub const anon4671 = enum(objc.uint32_t) {
-    kSecCSInternalInformation = 1,
-    kSecCSSigningInformation = 2,
-    kSecCSRequirementInformation = 4,
-    kSecCSDynamicInformation = 8,
-    kSecCSContentInformation = 16,
-    kSecCSSkipResourceDirectory = 32,
-    kSecCSCalculateCMSDigest = 64,
+    SecCSInternalInformation = 1,
+    SecCSSigningInformation = 2,
+    SecCSRequirementInformation = 4,
+    SecCSDynamicInformation = 8,
+    SecCSContentInformation = 16,
+    SecCSSkipResourceDirectory = 32,
+    SecCSCalculateCMSDigest = 64,
 };
 
 extern "Security" fn SecCodeCopySigningInformation(code: StaticCodeRef, flags: CSFlags, information: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
@@ -9415,8 +9416,8 @@ extern "Security" fn SecCodeMapMemory(code: StaticCodeRef, flags: CSFlags) callc
 pub const codeMapMemory = SecCodeMapMemory;
 
 pub const anon351 = enum(objc.uint32_t) {
-    kSecCSDedicatedHost = 1,
-    kSecCSGenerateGuestHash = 2,
+    SecCSDedicatedHost = 1,
+    SecCSGenerateGuestHash = 2,
 };
 
 extern "Security" fn SecHostCreateGuest(
@@ -9521,12 +9522,12 @@ extern "Security" fn CMSDecoderGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const decoderGetTypeID = CMSDecoderGetTypeID;
 
 pub const CMSSignerStatus = enum(objc.uint32_t) {
-    kCMSSignerUnsigned = 0,
-    kCMSSignerValid = 1,
-    kCMSSignerNeedsDetachedContent = 2,
-    kCMSSignerInvalidSignature = 3,
-    kCMSSignerInvalidCert = 4,
-    kCMSSignerInvalidIndex = 5,
+    Unsigned = 0,
+    Valid = 1,
+    NeedsDetachedContent = 2,
+    InvalidSignature = 3,
+    InvalidCert = 4,
+    InvalidIndex = 5,
 };
 
 extern "Security" fn CMSDecoderCreate(cmsDecoderOut: ?*CMSDecoderRef) callconv(.C) objc.OSStatus;
@@ -9643,25 +9644,25 @@ extern "Security" fn CMSEncoderCopySupportingCerts(cmsEncoder: CMSEncoderRef, ce
 pub const encoderCopySupportingCerts = CMSEncoderCopySupportingCerts;
 
 pub const CMSSignedAttributes = enum(objc.uint32_t) {
-    kCMSAttrNone = 0,
-    kCMSAttrSmimeCapabilities = 1,
-    kCMSAttrSmimeEncryptionKeyPrefs = 2,
-    kCMSAttrSmimeMSEncryptionKeyPrefs = 4,
-    kCMSAttrSigningTime = 8,
-    kCMSAttrAppleCodesigningHashAgility = 16,
-    kCMSAttrAppleCodesigningHashAgilityV2 = 32,
-    kCMSAttrAppleExpirationTime = 64,
+    AttrNone = 0,
+    AttrSmimeCapabilities = 1,
+    AttrSmimeEncryptionKeyPrefs = 2,
+    AttrSmimeMSEncryptionKeyPrefs = 4,
+    AttrSigningTime = 8,
+    AttrAppleCodesigningHashAgility = 16,
+    AttrAppleCodesigningHashAgilityV2 = 32,
+    AttrAppleExpirationTime = 64,
 };
 
 extern "Security" fn CMSEncoderAddSignedAttributes(cmsEncoder: CMSEncoderRef, signedAttributes: CMSSignedAttributes) callconv(.C) objc.OSStatus;
 pub const encoderAddSignedAttributes = CMSEncoderAddSignedAttributes;
 
 pub const CMSCertificateChainMode = enum(objc.uint32_t) {
-    kCMSCertificateNone = 0,
-    kCMSCertificateSignerOnly = 1,
-    kCMSCertificateChain = 2,
-    kCMSCertificateChainWithRoot = 3,
-    kCMSCertificateChainWithRootOrFail = 4,
+    None = 0,
+    SignerOnly = 1,
+    Chain = 2,
+    WithRoot = 3,
+    WithRootOrFail = 4,
 };
 
 extern "Security" fn CMSEncoderSetCertificateChainMode(cmsEncoder: CMSEncoderRef, chainMode: CMSCertificateChainMode) callconv(.C) objc.OSStatus;
@@ -9718,31 +9719,31 @@ pub const SSLContextRef = ?*SSLContext;
 pub const SSLConnectionRef = ?*anyopaque;
 
 pub const SSLSessionOption = enum(i32) {
-    kSSLSessionOptionBreakOnServerAuth = 0,
-    kSSLSessionOptionBreakOnCertRequested = 1,
-    kSSLSessionOptionBreakOnClientAuth = 2,
-    kSSLSessionOptionFalseStart = 3,
-    kSSLSessionOptionSendOneByteRecord = 4,
-    kSSLSessionOptionAllowServerIdentityChange = 5,
-    kSSLSessionOptionFallback = 6,
-    kSSLSessionOptionBreakOnClientHello = 7,
-    kSSLSessionOptionAllowRenegotiation = 8,
-    kSSLSessionOptionEnableSessionTickets = 9,
+    BreakOnServerAuth = 0,
+    BreakOnCertRequested = 1,
+    BreakOnClientAuth = 2,
+    FalseStart = 3,
+    SendOneByteRecord = 4,
+    AllowServerIdentityChange = 5,
+    Fallback = 6,
+    BreakOnClientHello = 7,
+    AllowRenegotiation = 8,
+    EnableSessionTickets = 9,
 };
 
 pub const SSLSessionState = enum(i32) {
-    kSSLIdle = 0,
-    kSSLHandshake = 1,
-    kSSLConnected = 2,
-    kSSLClosed = 3,
-    kSSLAborted = 4,
+    Idle = 0,
+    Handshake = 1,
+    Connected = 2,
+    Closed = 3,
+    Aborted = 4,
 };
 
 pub const SSLClientCertificateState = enum(i32) {
-    kSSLClientCertNone = 0,
-    kSSLClientCertRequested = 1,
-    kSSLClientCertSent = 2,
-    kSSLClientCertRejected = 3,
+    None = 0,
+    Requested = 1,
+    Sent = 2,
+    Rejected = 3,
 };
 
 pub const SSLReadFunc = ?*const fn (SSLConnectionRef, ?*anyopaque, ?*objc.size_t) callconv(.C) objc.OSStatus;
@@ -9750,13 +9751,13 @@ pub const SSLReadFunc = ?*const fn (SSLConnectionRef, ?*anyopaque, ?*objc.size_t
 pub const SSLWriteFunc = ?*const fn (SSLConnectionRef, ?*anyopaque, ?*objc.size_t) callconv(.C) objc.OSStatus;
 
 pub const SSLProtocolSide = enum(i32) {
-    kSSLServerSide = 0,
-    kSSLClientSide = 1,
+    ServerSide = 0,
+    ClientSide = 1,
 };
 
 pub const SSLConnectionType = enum(i32) {
-    kSSLStreamType = 0,
-    kSSLDatagramType = 1,
+    StreamType = 0,
+    DatagramType = 1,
 };
 
 extern "Security" fn SSLContextGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -9922,9 +9923,9 @@ extern "Security" fn SSLSetEncryptionCertificate(context: SSLContextRef, certRef
 pub const setEncryptionCertificate = SSLSetEncryptionCertificate;
 
 pub const SSLAuthenticate = enum(i32) {
-    kNeverAuthenticate = 0,
-    kAlwaysAuthenticate = 1,
-    kTryAuthenticate = 2,
+    NeverAuthenticate = 0,
+    AlwaysAuthenticate = 1,
+    TryAuthenticate = 2,
 };
 
 extern "Security" fn SSLSetClientSideAuthenticate(context: SSLContextRef, auth: SSLAuthenticate) callconv(.C) objc.OSStatus;
@@ -9992,26 +9993,26 @@ extern "Security" fn SSLSetError(context: SSLContextRef, status: objc.OSStatus) 
 pub const setError = SSLSetError;
 
 pub const anon1791 = enum(core_foundation.Index) {
-    kSecTransformErrorAttributeNotFound = 1,
-    kSecTransformErrorInvalidOperation = 2,
-    kSecTransformErrorNotInitializedCorrectly = 3,
-    kSecTransformErrorMoreThanOneOutput = 4,
-    kSecTransformErrorInvalidInputDictionary = 5,
-    kSecTransformErrorInvalidAlgorithm = 6,
-    kSecTransformErrorInvalidLength = 7,
-    kSecTransformErrorInvalidType = 8,
-    kSecTransformErrorInvalidInput = 10,
-    kSecTransformErrorNameAlreadyRegistered = 11,
-    kSecTransformErrorUnsupportedAttribute = 12,
-    kSecTransformOperationNotSupportedOnGroup = 13,
-    kSecTransformErrorMissingParameter = 14,
-    kSecTransformErrorInvalidConnection = 15,
-    kSecTransformTransformIsExecuting = 16,
-    kSecTransformInvalidOverride = 17,
-    kSecTransformTransformIsNotRegistered = 18,
-    kSecTransformErrorAbortInProgress = 19,
-    kSecTransformErrorAborted = 20,
-    kSecTransformInvalidArgument = 21,
+    SecTransformErrorAttributeNotFound = 1,
+    SecTransformErrorInvalidOperation = 2,
+    SecTransformErrorNotInitializedCorrectly = 3,
+    SecTransformErrorMoreThanOneOutput = 4,
+    SecTransformErrorInvalidInputDictionary = 5,
+    SecTransformErrorInvalidAlgorithm = 6,
+    SecTransformErrorInvalidLength = 7,
+    SecTransformErrorInvalidType = 8,
+    SecTransformErrorInvalidInput = 10,
+    SecTransformErrorNameAlreadyRegistered = 11,
+    SecTransformErrorUnsupportedAttribute = 12,
+    SecTransformOperationNotSupportedOnGroup = 13,
+    SecTransformErrorMissingParameter = 14,
+    SecTransformErrorInvalidConnection = 15,
+    SecTransformTransformIsExecuting = 16,
+    SecTransformInvalidOverride = 17,
+    SecTransformTransformIsNotRegistered = 18,
+    SecTransformErrorAbortInProgress = 19,
+    SecTransformErrorAborted = 20,
+    SecTransformInvalidArgument = 21,
 };
 
 pub const TransformRef = core_foundation.TypeRef;
@@ -10066,17 +10067,17 @@ extern "Security" fn SecTransformExecuteAsync(transformRef: TransformRef, delive
 pub const transformExecuteAsync = SecTransformExecuteAsync;
 
 pub const TransformMetaAttributeType = enum(core_foundation.Index) {
-    kSecTransformMetaAttributeValue = 0,
-    kSecTransformMetaAttributeName = 1,
-    kSecTransformMetaAttributeRef = 2,
-    kSecTransformMetaAttributeRequired = 3,
-    kSecTransformMetaAttributeRequiresOutboundConnection = 4,
-    kSecTransformMetaAttributeDeferred = 5,
-    kSecTransformMetaAttributeStream = 6,
-    kSecTransformMetaAttributeCanCycle = 7,
-    kSecTransformMetaAttributeExternalize = 8,
-    kSecTransformMetaAttributeHasOutboundConnections = 9,
-    kSecTransformMetaAttributeHasInboundConnection = 10,
+    Value = 0,
+    Name = 1,
+    Ref = 2,
+    Required = 3,
+    RequiresOutboundConnection = 4,
+    Deferred = 5,
+    Stream = 6,
+    CanCycle = 7,
+    Externalize = 8,
+    HasOutboundConnections = 9,
+    HasInboundConnection = 10,
 };
 
 pub const TransformAttributeRef = core_foundation.TypeRef;

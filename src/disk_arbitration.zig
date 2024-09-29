@@ -6,19 +6,19 @@ const core_foundation = @import("core_foundation.zig"); // Framework dependency 
 const io_kit = @import("io_kit.zig"); // Framework dependency IOKit.
 
 pub const anon741 = enum(u32) {
-    kDADiskUnmountOptionDefault = 0,
-    kDADiskUnmountOptionForce = 524288,
-    kDADiskUnmountOptionWhole = 1,
+    DADiskUnmountOptionDefault = 0,
+    DADiskUnmountOptionForce = 524288,
+    DADiskUnmountOptionWhole = 1,
 };
 
 pub const anon461 = enum(u32) {
-    kDADiskMountOptionDefault = 0,
-    kDADiskMountOptionWhole = 1,
-    kDADiskMountOptionNoFollow = 2,
+    DADiskMountOptionDefault = 0,
+    DADiskMountOptionWhole = 1,
+    DADiskMountOptionNoFollow = 2,
 };
 
 pub const anon881 = enum(u32) {
-    kDADiskEjectOptionDefault = 0,
+    DADiskEjectOptionDefault = 0,
 };
 
 pub const __DASession = extern struct {};
@@ -83,19 +83,19 @@ extern "DiskArbitration" fn DADiskCopyWholeDisk(disk: DiskRef) callconv(.C) Disk
 pub const diskCopyWholeDisk = DADiskCopyWholeDisk;
 
 pub const anon441 = enum(i32) {
-    kDAReturnSuccess = 0,
-    kDAReturnError = -119930879,
-    kDAReturnBusy = -119930878,
-    kDAReturnBadArgument = -119930877,
-    kDAReturnExclusiveAccess = -119930876,
-    kDAReturnNoResources = -119930875,
-    kDAReturnNotFound = -119930874,
-    kDAReturnNotMounted = -119930873,
-    kDAReturnNotPermitted = -119930872,
-    kDAReturnNotPrivileged = -119930871,
-    kDAReturnNotReady = -119930870,
-    kDAReturnNotWritable = -119930869,
-    kDAReturnUnsupported = -119930868,
+    DAReturnSuccess = 0,
+    DAReturnError = -119930879,
+    DAReturnBusy = -119930878,
+    DAReturnBadArgument = -119930877,
+    DAReturnExclusiveAccess = -119930876,
+    DAReturnNoResources = -119930875,
+    DAReturnNotFound = -119930874,
+    DAReturnNotMounted = -119930873,
+    DAReturnNotPermitted = -119930872,
+    DAReturnNotPrivileged = -119930871,
+    DAReturnNotReady = -119930870,
+    DAReturnNotWritable = -119930869,
+    DAReturnUnsupported = -119930868,
 };
 
 pub const Return = objc.mach_error_t;
@@ -116,7 +116,7 @@ pub const dissenterGetStatusString = DADissenterGetStatusString;
 pub const DiskMountOptions = objc.UInt32;
 
 pub const anon601 = enum(u32) {
-    kDADiskRenameOptionDefault = 0,
+    DADiskRenameOptionDefault = 0,
 };
 
 pub const DiskRenameOptions = objc.UInt32;
@@ -126,13 +126,13 @@ pub const DiskUnmountOptions = objc.UInt32;
 pub const DiskEjectOptions = objc.UInt32;
 
 pub const anon1001 = enum(u32) {
-    kDADiskClaimOptionDefault = 0,
+    DADiskClaimOptionDefault = 0,
 };
 
 pub const DiskClaimOptions = objc.UInt32;
 
 pub const anon1121 = enum(u32) {
-    kDADiskOptionDefault = 0,
+    DADiskOptionDefault = 0,
 };
 
 pub const DiskOptions = objc.UInt32;

@@ -159,29 +159,29 @@ pub const LayerContentsFilter = ?*foundation.String;
 pub const LayerCornerCurve = ?*foundation.String;
 
 pub const AutoresizingMask = enum(u32) {
-    kCALayerNotSizable = 0,
-    kCALayerMinXMargin = 1,
-    kCALayerWidthSizable = 2,
-    kCALayerMaxXMargin = 4,
-    kCALayerMinYMargin = 8,
-    kCALayerHeightSizable = 16,
-    kCALayerMaxYMargin = 32,
+    LayerNotSizable = 0,
+    LayerMinXMargin = 1,
+    LayerWidthSizable = 2,
+    LayerMaxXMargin = 4,
+    LayerMinYMargin = 8,
+    LayerHeightSizable = 16,
+    LayerMaxYMargin = 32,
 };
 
 pub const ToneMapMode = ?*foundation.String;
 
 pub const EdgeAntialiasingMask = enum(u32) {
-    kCALayerLeftEdge = 1,
-    kCALayerRightEdge = 2,
-    kCALayerBottomEdge = 4,
-    kCALayerTopEdge = 8,
+    LayerLeftEdge = 1,
+    LayerRightEdge = 2,
+    LayerBottomEdge = 4,
+    LayerTopEdge = 8,
 };
 
 pub const CornerMask = enum(objc.NSUInteger) {
-    kCALayerMinXMinYCorner = 1,
-    kCALayerMaxXMinYCorner = 2,
-    kCALayerMinXMaxYCorner = 4,
-    kCALayerMaxXMaxYCorner = 8,
+    LayerMinXMinYCorner = 1,
+    LayerMaxXMinYCorner = 2,
+    LayerMinXMaxYCorner = 4,
+    LayerMaxXMaxYCorner = 8,
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CALayer?language=objc
@@ -3297,14 +3297,14 @@ pub const AnimationGroup = opaque {
 };
 
 pub const ConstraintAttribute = enum(i32) {
-    kCAConstraintMinX = 0,
-    kCAConstraintMidX = 1,
-    kCAConstraintMaxX = 2,
-    kCAConstraintWidth = 3,
-    kCAConstraintMinY = 4,
-    kCAConstraintMidY = 5,
-    kCAConstraintMaxY = 6,
-    kCAConstraintHeight = 7,
+    MinX = 0,
+    MidX = 1,
+    MaxX = 2,
+    Width = 3,
+    MinY = 4,
+    MidY = 5,
+    MaxY = 6,
+    Height = 7,
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAConstraintLayoutManager?language=objc

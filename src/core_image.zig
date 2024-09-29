@@ -14,7 +14,7 @@ const metal = @import("metal.zig"); // Framework dependency Metal.
 
 /// https://developer.apple.com/documentation/CoreImage/CIVector?language=objc
 pub const Vector = opaque {
-    pub const InternalInfo = objc.ExternClass("CIVector", @This(), objc.NSObject, &.{foundation.Copying, foundation.SecureCoding});
+    pub const InternalInfo = objc.ExternClass("CIVector", @This(), objc.NSObject, &.{ foundation.Copying, foundation.SecureCoding });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -44,11 +44,11 @@ pub const Vector = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -148,7 +148,7 @@ pub const Vector = opaque {
     }
 
     pub fn vectorWithValuesCount(_self: *@This(), _values: ?*core_foundation.CGFloat, _count: objc.size_t) *@This() {
-        return objc.msgSend(_self, "vectorWithValues:count:", *@This(), .{_values, _count});
+        return objc.msgSend(_self, "vectorWithValues:count:", *@This(), .{ _values, _count });
     }
 
     pub fn vectorWithX(_self: *@This(), _x: core_foundation.CGFloat) *@This() {
@@ -156,15 +156,26 @@ pub const Vector = opaque {
     }
 
     pub fn vectorWithXY(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(_self, "vectorWithX:Y:", *@This(), .{_x, _y});
+        return objc.msgSend(_self, "vectorWithX:Y:", *@This(), .{ _x, _y });
     }
 
     pub fn vectorWithXYZ(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat, _z: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(_self, "vectorWithX:Y:Z:", *@This(), .{_x, _y, _z});
+        return objc.msgSend(_self, "vectorWithX:Y:Z:", *@This(), .{ _x, _y, _z });
     }
 
-    pub fn vectorWithXYZW(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat, _z: core_foundation.CGFloat, _w: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(_self, "vectorWithX:Y:Z:W:", *@This(), .{_x, _y, _z, _w, });
+    pub fn vectorWithXYZW(
+        _self: *@This(),
+        _x: core_foundation.CGFloat,
+        _y: core_foundation.CGFloat,
+        _z: core_foundation.CGFloat,
+        _w: core_foundation.CGFloat,
+    ) *@This() {
+        return objc.msgSend(_self, "vectorWithX:Y:Z:W:", *@This(), .{
+            _x,
+            _y,
+            _z,
+            _w,
+        });
     }
 
     pub fn vectorWithCGPoint(_self: *@This(), _p: core_foundation.CGPoint) *@This() {
@@ -184,7 +195,7 @@ pub const Vector = opaque {
     }
 
     pub fn initWithValuesCount(_self: *@This(), _values: ?*core_foundation.CGFloat, _count: objc.size_t) *@This() {
-        return objc.msgSend(_self, "initWithValues:count:", *@This(), .{_values, _count});
+        return objc.msgSend(_self, "initWithValues:count:", *@This(), .{ _values, _count });
     }
 
     pub fn initWithX(_self: *@This(), _x: core_foundation.CGFloat) *@This() {
@@ -192,15 +203,26 @@ pub const Vector = opaque {
     }
 
     pub fn initWithXY(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(_self, "initWithX:Y:", *@This(), .{_x, _y});
+        return objc.msgSend(_self, "initWithX:Y:", *@This(), .{ _x, _y });
     }
 
     pub fn initWithXYZ(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat, _z: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(_self, "initWithX:Y:Z:", *@This(), .{_x, _y, _z});
+        return objc.msgSend(_self, "initWithX:Y:Z:", *@This(), .{ _x, _y, _z });
     }
 
-    pub fn initWithXYZW(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat, _z: core_foundation.CGFloat, _w: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(_self, "initWithX:Y:Z:W:", *@This(), .{_x, _y, _z, _w, });
+    pub fn initWithXYZW(
+        _self: *@This(),
+        _x: core_foundation.CGFloat,
+        _y: core_foundation.CGFloat,
+        _z: core_foundation.CGFloat,
+        _w: core_foundation.CGFloat,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithX:Y:Z:W:", *@This(), .{
+            _x,
+            _y,
+            _z,
+            _w,
+        });
     }
 
     pub fn initWithCGPoint(_self: *@This(), _p: core_foundation.CGPoint) *@This() {
@@ -258,17 +280,16 @@ pub const Vector = opaque {
     pub fn stringRepresentation(_self: *@This()) ?*foundation.String {
         return objc.msgSend(_self, "stringRepresentation", ?*foundation.String, .{});
     }
-
 };
 
 pub const anon235 = extern union {
-    vec: [4] core_foundation.CGFloat,
+    vec: [4]core_foundation.CGFloat,
     ptr: ?*core_foundation.CGFloat,
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIColor?language=objc
 pub const Color = opaque {
-    pub const InternalInfo = objc.ExternClass("CIColor", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying});
+    pub const InternalInfo = objc.ExternClass("CIColor", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -298,11 +319,11 @@ pub const Color = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -405,20 +426,55 @@ pub const Color = opaque {
         return objc.msgSend(_self, "colorWithCGColor:", *@This(), .{_c});
     }
 
-    pub fn colorWithRedGreenBlueAlpha(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _a: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(_self, "colorWithRed:green:blue:alpha:", *@This(), .{_r, _g, _b, _a, });
+    pub fn colorWithRedGreenBlueAlpha(
+        _self: *@This(),
+        _r: core_foundation.CGFloat,
+        _g: core_foundation.CGFloat,
+        _b: core_foundation.CGFloat,
+        _a: core_foundation.CGFloat,
+    ) *@This() {
+        return objc.msgSend(_self, "colorWithRed:green:blue:alpha:", *@This(), .{
+            _r,
+            _g,
+            _b,
+            _a,
+        });
     }
 
     pub fn colorWithRedGreenBlue(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(_self, "colorWithRed:green:blue:", *@This(), .{_r, _g, _b});
+        return objc.msgSend(_self, "colorWithRed:green:blue:", *@This(), .{ _r, _g, _b });
     }
 
-    pub fn colorWithRedGreenBlueAlphaColorSpace(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _a: core_foundation.CGFloat, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(_self, "colorWithRed:green:blue:alpha:colorSpace:", *@This(), .{_r, _g, _b, _a, _colorSpace, });
+    pub fn colorWithRedGreenBlueAlphaColorSpace(
+        _self: *@This(),
+        _r: core_foundation.CGFloat,
+        _g: core_foundation.CGFloat,
+        _b: core_foundation.CGFloat,
+        _a: core_foundation.CGFloat,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) *@This() {
+        return objc.msgSend(_self, "colorWithRed:green:blue:alpha:colorSpace:", *@This(), .{
+            _r,
+            _g,
+            _b,
+            _a,
+            _colorSpace,
+        });
     }
 
-    pub fn colorWithRedGreenBlueColorSpace(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(_self, "colorWithRed:green:blue:colorSpace:", *@This(), .{_r, _g, _b, _colorSpace, });
+    pub fn colorWithRedGreenBlueColorSpace(
+        _self: *@This(),
+        _r: core_foundation.CGFloat,
+        _g: core_foundation.CGFloat,
+        _b: core_foundation.CGFloat,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) *@This() {
+        return objc.msgSend(_self, "colorWithRed:green:blue:colorSpace:", *@This(), .{
+            _r,
+            _g,
+            _b,
+            _colorSpace,
+        });
     }
 
     pub fn colorWithString(_self: *@This(), _representation: ?*foundation.String) *@This() {
@@ -429,20 +485,55 @@ pub const Color = opaque {
         return objc.msgSend(_self, "initWithCGColor:", *@This(), .{_c});
     }
 
-    pub fn initWithRedGreenBlueAlpha(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _a: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(_self, "initWithRed:green:blue:alpha:", *@This(), .{_r, _g, _b, _a, });
+    pub fn initWithRedGreenBlueAlpha(
+        _self: *@This(),
+        _r: core_foundation.CGFloat,
+        _g: core_foundation.CGFloat,
+        _b: core_foundation.CGFloat,
+        _a: core_foundation.CGFloat,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithRed:green:blue:alpha:", *@This(), .{
+            _r,
+            _g,
+            _b,
+            _a,
+        });
     }
 
     pub fn initWithRedGreenBlue(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(_self, "initWithRed:green:blue:", *@This(), .{_r, _g, _b});
+        return objc.msgSend(_self, "initWithRed:green:blue:", *@This(), .{ _r, _g, _b });
     }
 
-    pub fn initWithRedGreenBlueAlphaColorSpace(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _a: core_foundation.CGFloat, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(_self, "initWithRed:green:blue:alpha:colorSpace:", *@This(), .{_r, _g, _b, _a, _colorSpace, });
+    pub fn initWithRedGreenBlueAlphaColorSpace(
+        _self: *@This(),
+        _r: core_foundation.CGFloat,
+        _g: core_foundation.CGFloat,
+        _b: core_foundation.CGFloat,
+        _a: core_foundation.CGFloat,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithRed:green:blue:alpha:colorSpace:", *@This(), .{
+            _r,
+            _g,
+            _b,
+            _a,
+            _colorSpace,
+        });
     }
 
-    pub fn initWithRedGreenBlueColorSpace(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(_self, "initWithRed:green:blue:colorSpace:", *@This(), .{_r, _g, _b, _colorSpace, });
+    pub fn initWithRedGreenBlueColorSpace(
+        _self: *@This(),
+        _r: core_foundation.CGFloat,
+        _g: core_foundation.CGFloat,
+        _b: core_foundation.CGFloat,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithRed:green:blue:colorSpace:", *@This(), .{
+            _r,
+            _g,
+            _b,
+            _colorSpace,
+        });
     }
 
     pub fn numberOfComponents(_self: *@This()) objc.size_t {
@@ -516,12 +607,11 @@ pub const Color = opaque {
     pub fn clearColor(_self: *@This()) ?*Color {
         return objc.msgSend(_self, "clearColor", ?*Color, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIImage?language=objc
 pub const Image = opaque {
-    pub const InternalInfo = objc.ExternClass("CIImage", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying});
+    pub const InternalInfo = objc.ExternClass("CIImage", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -551,11 +641,11 @@ pub const Image = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -659,11 +749,11 @@ pub const Image = opaque {
     }
 
     pub fn imageWithCGImageOptions(_self: *@This(), _image: core_graphics.ImageRef, _options: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageWithCGImage:options:", ?*Image, .{_image, _options});
+        return objc.msgSend(_self, "imageWithCGImage:options:", ?*Image, .{ _image, _options });
     }
 
     pub fn imageWithCGImageSourceIndexOptions(_self: *@This(), _source: image_io.SourceRef, _index: objc.size_t, _dict: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageWithCGImageSource:index:options:", ?*Image, .{_source, _index, _dict});
+        return objc.msgSend(_self, "imageWithCGImageSource:index:options:", ?*Image, .{ _source, _index, _dict });
     }
 
     pub fn imageWithCGLayer(_self: *@This(), _layer: core_graphics.LayerRef) ?*Image {
@@ -671,23 +761,58 @@ pub const Image = opaque {
     }
 
     pub fn imageWithCGLayerOptions(_self: *@This(), _layer: core_graphics.LayerRef, _options: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageWithCGLayer:options:", ?*Image, .{_layer, _options});
+        return objc.msgSend(_self, "imageWithCGLayer:options:", ?*Image, .{ _layer, _options });
     }
 
-    pub fn imageWithBitmapDataBytesPerRowSizeFormatColorSpace(_self: *@This(), _data: ?*foundation.Data, _bytesPerRow: objc.size_t, _size: core_foundation.CGSize, _format: Format, _colorSpace: core_graphics.ColorSpaceRef, ) ?*Image {
-        return objc.msgSend(_self, "imageWithBitmapData:bytesPerRow:size:format:colorSpace:", ?*Image, .{_data, _bytesPerRow, _size, _format, _colorSpace, });
+    pub fn imageWithBitmapDataBytesPerRowSizeFormatColorSpace(
+        _self: *@This(),
+        _data: ?*foundation.Data,
+        _bytesPerRow: objc.size_t,
+        _size: core_foundation.CGSize,
+        _format: Format,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) ?*Image {
+        return objc.msgSend(_self, "imageWithBitmapData:bytesPerRow:size:format:colorSpace:", ?*Image, .{
+            _data,
+            _bytesPerRow,
+            _size,
+            _format,
+            _colorSpace,
+        });
     }
 
-    pub fn imageWithTextureSizeFlippedColorSpace(_self: *@This(), _name: u32, _size: core_foundation.CGSize, _flipped: objc.BOOL, _colorSpace: core_graphics.ColorSpaceRef, ) ?*Image {
-        return objc.msgSend(_self, "imageWithTexture:size:flipped:colorSpace:", ?*Image, .{_name, _size, _flipped, _colorSpace, });
+    pub fn imageWithTextureSizeFlippedColorSpace(
+        _self: *@This(),
+        _name: u32,
+        _size: core_foundation.CGSize,
+        _flipped: objc.BOOL,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) ?*Image {
+        return objc.msgSend(_self, "imageWithTexture:size:flipped:colorSpace:", ?*Image, .{
+            _name,
+            _size,
+            _flipped,
+            _colorSpace,
+        });
     }
 
-    pub fn imageWithTextureSizeFlippedOptions(_self: *@This(), _name: u32, _size: core_foundation.CGSize, _flipped: objc.BOOL, _options: ?*anyopaque, ) ?*Image {
-        return objc.msgSend(_self, "imageWithTexture:size:flipped:options:", ?*Image, .{_name, _size, _flipped, _options, });
+    pub fn imageWithTextureSizeFlippedOptions(
+        _self: *@This(),
+        _name: u32,
+        _size: core_foundation.CGSize,
+        _flipped: objc.BOOL,
+        _options: ?*anyopaque,
+    ) ?*Image {
+        return objc.msgSend(_self, "imageWithTexture:size:flipped:options:", ?*Image, .{
+            _name,
+            _size,
+            _flipped,
+            _options,
+        });
     }
 
     pub fn imageWithMTLTextureOptions(_self: *@This(), _texture: ?*anyopaque, _options: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageWithMTLTexture:options:", ?*Image, .{_texture, _options});
+        return objc.msgSend(_self, "imageWithMTLTexture:options:", ?*Image, .{ _texture, _options });
     }
 
     pub fn imageWithContentsOfURL(_self: *@This(), _url: ?*foundation.URL) ?*Image {
@@ -695,7 +820,7 @@ pub const Image = opaque {
     }
 
     pub fn imageWithContentsOfURLOptions(_self: *@This(), _url: ?*foundation.URL, _options: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageWithContentsOfURL:options:", ?*Image, .{_url, _options});
+        return objc.msgSend(_self, "imageWithContentsOfURL:options:", ?*Image, .{ _url, _options });
     }
 
     pub fn imageWithData(_self: *@This(), _data: ?*foundation.Data) ?*Image {
@@ -703,7 +828,7 @@ pub const Image = opaque {
     }
 
     pub fn imageWithDataOptions(_self: *@This(), _data: ?*foundation.Data, _options: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageWithData:options:", ?*Image, .{_data, _options});
+        return objc.msgSend(_self, "imageWithData:options:", ?*Image, .{ _data, _options });
     }
 
     pub fn imageWithCVImageBuffer(_self: *@This(), _imageBuffer: core_video.ImageBufferRef) ?*Image {
@@ -711,7 +836,7 @@ pub const Image = opaque {
     }
 
     pub fn imageWithCVImageBufferOptions(_self: *@This(), _imageBuffer: core_video.ImageBufferRef, _options: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageWithCVImageBuffer:options:", ?*Image, .{_imageBuffer, _options});
+        return objc.msgSend(_self, "imageWithCVImageBuffer:options:", ?*Image, .{ _imageBuffer, _options });
     }
 
     pub fn imageWithCVPixelBuffer(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef) ?*Image {
@@ -719,7 +844,7 @@ pub const Image = opaque {
     }
 
     pub fn imageWithCVPixelBufferOptions(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef, _options: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageWithCVPixelBuffer:options:", ?*Image, .{_pixelBuffer, _options});
+        return objc.msgSend(_self, "imageWithCVPixelBuffer:options:", ?*Image, .{ _pixelBuffer, _options });
     }
 
     pub fn imageWithIOSurface(_self: *@This(), _surface: io_surface.Ref) ?*Image {
@@ -727,7 +852,7 @@ pub const Image = opaque {
     }
 
     pub fn imageWithIOSurfaceOptions(_self: *@This(), _surface: io_surface.Ref, _options: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageWithIOSurface:options:", ?*Image, .{_surface, _options});
+        return objc.msgSend(_self, "imageWithIOSurface:options:", ?*Image, .{ _surface, _options });
     }
 
     pub fn imageWithColor(_self: *@This(), _color: ?*Color) ?*Image {
@@ -783,11 +908,11 @@ pub const Image = opaque {
     }
 
     pub fn initWithCGImageOptions(_self: *@This(), _image: core_graphics.ImageRef, _options: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithCGImage:options:", *@This(), .{_image, _options});
+        return objc.msgSend(_self, "initWithCGImage:options:", *@This(), .{ _image, _options });
     }
 
     pub fn initWithCGImageSourceIndexOptions(_self: *@This(), _source: image_io.SourceRef, _index: objc.size_t, _dict: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithCGImageSource:index:options:", *@This(), .{_source, _index, _dict});
+        return objc.msgSend(_self, "initWithCGImageSource:index:options:", *@This(), .{ _source, _index, _dict });
     }
 
     pub fn initWithCGLayer(_self: *@This(), _layer: core_graphics.LayerRef) *@This() {
@@ -795,7 +920,7 @@ pub const Image = opaque {
     }
 
     pub fn initWithCGLayerOptions(_self: *@This(), _layer: core_graphics.LayerRef, _options: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithCGLayer:options:", *@This(), .{_layer, _options});
+        return objc.msgSend(_self, "initWithCGLayer:options:", *@This(), .{ _layer, _options });
     }
 
     pub fn initWithData(_self: *@This(), _data: ?*foundation.Data) *@This() {
@@ -803,23 +928,58 @@ pub const Image = opaque {
     }
 
     pub fn initWithDataOptions(_self: *@This(), _data: ?*foundation.Data, _options: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithData:options:", *@This(), .{_data, _options});
+        return objc.msgSend(_self, "initWithData:options:", *@This(), .{ _data, _options });
     }
 
-    pub fn initWithBitmapDataBytesPerRowSizeFormatColorSpace(_self: *@This(), _data: ?*foundation.Data, _bytesPerRow: objc.size_t, _size: core_foundation.CGSize, _format: Format, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(_self, "initWithBitmapData:bytesPerRow:size:format:colorSpace:", *@This(), .{_data, _bytesPerRow, _size, _format, _colorSpace, });
+    pub fn initWithBitmapDataBytesPerRowSizeFormatColorSpace(
+        _self: *@This(),
+        _data: ?*foundation.Data,
+        _bytesPerRow: objc.size_t,
+        _size: core_foundation.CGSize,
+        _format: Format,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithBitmapData:bytesPerRow:size:format:colorSpace:", *@This(), .{
+            _data,
+            _bytesPerRow,
+            _size,
+            _format,
+            _colorSpace,
+        });
     }
 
-    pub fn initWithTextureSizeFlippedColorSpace(_self: *@This(), _name: u32, _size: core_foundation.CGSize, _flipped: objc.BOOL, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(_self, "initWithTexture:size:flipped:colorSpace:", *@This(), .{_name, _size, _flipped, _colorSpace, });
+    pub fn initWithTextureSizeFlippedColorSpace(
+        _self: *@This(),
+        _name: u32,
+        _size: core_foundation.CGSize,
+        _flipped: objc.BOOL,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithTexture:size:flipped:colorSpace:", *@This(), .{
+            _name,
+            _size,
+            _flipped,
+            _colorSpace,
+        });
     }
 
-    pub fn initWithTextureSizeFlippedOptions(_self: *@This(), _name: u32, _size: core_foundation.CGSize, _flipped: objc.BOOL, _options: ?*anyopaque, ) *@This() {
-        return objc.msgSend(_self, "initWithTexture:size:flipped:options:", *@This(), .{_name, _size, _flipped, _options, });
+    pub fn initWithTextureSizeFlippedOptions(
+        _self: *@This(),
+        _name: u32,
+        _size: core_foundation.CGSize,
+        _flipped: objc.BOOL,
+        _options: ?*anyopaque,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithTexture:size:flipped:options:", *@This(), .{
+            _name,
+            _size,
+            _flipped,
+            _options,
+        });
     }
 
     pub fn initWithMTLTextureOptions(_self: *@This(), _texture: ?*anyopaque, _options: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithMTLTexture:options:", *@This(), .{_texture, _options});
+        return objc.msgSend(_self, "initWithMTLTexture:options:", *@This(), .{ _texture, _options });
     }
 
     pub fn initWithContentsOfURL(_self: *@This(), _url: ?*foundation.URL) *@This() {
@@ -827,7 +987,7 @@ pub const Image = opaque {
     }
 
     pub fn initWithContentsOfURLOptions(_self: *@This(), _url: ?*foundation.URL, _options: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithContentsOfURL:options:", *@This(), .{_url, _options});
+        return objc.msgSend(_self, "initWithContentsOfURL:options:", *@This(), .{ _url, _options });
     }
 
     pub fn initWithIOSurface(_self: *@This(), _surface: io_surface.Ref) *@This() {
@@ -835,11 +995,22 @@ pub const Image = opaque {
     }
 
     pub fn initWithIOSurfaceOptions(_self: *@This(), _surface: io_surface.Ref, _options: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithIOSurface:options:", *@This(), .{_surface, _options});
+        return objc.msgSend(_self, "initWithIOSurface:options:", *@This(), .{ _surface, _options });
     }
 
-    pub fn initWithIOSurfacePlaneFormatOptions(_self: *@This(), _surface: io_surface.Ref, _plane: objc.size_t, _format: Format, _options: ?*anyopaque, ) *@This() {
-        return objc.msgSend(_self, "initWithIOSurface:plane:format:options:", *@This(), .{_surface, _plane, _format, _options, });
+    pub fn initWithIOSurfacePlaneFormatOptions(
+        _self: *@This(),
+        _surface: io_surface.Ref,
+        _plane: objc.size_t,
+        _format: Format,
+        _options: ?*anyopaque,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithIOSurface:plane:format:options:", *@This(), .{
+            _surface,
+            _plane,
+            _format,
+            _options,
+        });
     }
 
     pub fn initWithCVImageBuffer(_self: *@This(), _imageBuffer: core_video.ImageBufferRef) *@This() {
@@ -847,7 +1018,7 @@ pub const Image = opaque {
     }
 
     pub fn initWithCVImageBufferOptions(_self: *@This(), _imageBuffer: core_video.ImageBufferRef, _options: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithCVImageBuffer:options:", *@This(), .{_imageBuffer, _options});
+        return objc.msgSend(_self, "initWithCVImageBuffer:options:", *@This(), .{ _imageBuffer, _options });
     }
 
     pub fn initWithCVPixelBuffer(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef) *@This() {
@@ -855,7 +1026,7 @@ pub const Image = opaque {
     }
 
     pub fn initWithCVPixelBufferOptions(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef, _options: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithCVPixelBuffer:options:", *@This(), .{_pixelBuffer, _options});
+        return objc.msgSend(_self, "initWithCVPixelBuffer:options:", *@This(), .{ _pixelBuffer, _options });
     }
 
     pub fn initWithColor(_self: *@This(), _color: ?*Color) *@This() {
@@ -867,7 +1038,7 @@ pub const Image = opaque {
     }
 
     pub fn imageByApplyingTransformHighQualityDownsample(_self: *@This(), _matrix: core_foundation.CGAffineTransform, _highQualityDownsample: objc.BOOL) ?*Image {
-        return objc.msgSend(_self, "imageByApplyingTransform:highQualityDownsample:", ?*Image, .{_matrix, _highQualityDownsample});
+        return objc.msgSend(_self, "imageByApplyingTransform:highQualityDownsample:", ?*Image, .{ _matrix, _highQualityDownsample });
     }
 
     pub fn imageByApplyingOrientation(_self: *@This(), _orientation: i32) ?*Image {
@@ -903,7 +1074,7 @@ pub const Image = opaque {
     }
 
     pub fn imageByApplyingFilterWithInputParameters(_self: *@This(), _filterName: ?*foundation.String, _params: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "imageByApplyingFilter:withInputParameters:", ?*Image, .{_filterName, _params});
+        return objc.msgSend(_self, "imageByApplyingFilter:withInputParameters:", ?*Image, .{ _filterName, _params });
     }
 
     pub fn imageByApplyingFilter(_self: *@This(), _filterName: ?*foundation.String) ?*Image {
@@ -959,7 +1130,7 @@ pub const Image = opaque {
     }
 
     pub fn imageByApplyingGainMapHeadroom(_self: *@This(), _gainmap: ?*Image, _headroom: f32) ?*Image {
-        return objc.msgSend(_self, "imageByApplyingGainMap:headroom:", ?*Image, .{_gainmap, _headroom});
+        return objc.msgSend(_self, "imageByApplyingGainMap:headroom:", ?*Image, .{ _gainmap, _headroom });
     }
 
     pub fn extent(_self: *@This()) core_foundation.CGRect {
@@ -1003,9 +1174,8 @@ pub const Image = opaque {
     }
 
     pub fn regionOfInterestForImageInRect(_self: *@This(), _image: ?*Image, _rect: core_foundation.CGRect) core_foundation.CGRect {
-        return objc.msgSend(_self, "regionOfInterestForImage:inRect:", core_foundation.CGRect, .{_image, _rect});
+        return objc.msgSend(_self, "regionOfInterestForImage:inRect:", core_foundation.CGRect, .{ _image, _rect });
     }
-
 };
 
 pub const Format = i32;
@@ -1046,11 +1216,11 @@ pub const Context = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -1137,16 +1307,27 @@ pub const Context = opaque {
         return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn contextWithCGLContextPixelFormatColorSpaceOptions(_self: *@This(), _cglctx: opengl.ContextObj, _pixelFormat: opengl.PixelFormatObj, _colorSpace: core_graphics.ColorSpaceRef, _options: ?*anyopaque, ) ?*Context {
-        return objc.msgSend(_self, "contextWithCGLContext:pixelFormat:colorSpace:options:", ?*Context, .{_cglctx, _pixelFormat, _colorSpace, _options, });
+    pub fn contextWithCGLContextPixelFormatColorSpaceOptions(
+        _self: *@This(),
+        _cglctx: opengl.ContextObj,
+        _pixelFormat: opengl.PixelFormatObj,
+        _colorSpace: core_graphics.ColorSpaceRef,
+        _options: ?*anyopaque,
+    ) ?*Context {
+        return objc.msgSend(_self, "contextWithCGLContext:pixelFormat:colorSpace:options:", ?*Context, .{
+            _cglctx,
+            _pixelFormat,
+            _colorSpace,
+            _options,
+        });
     }
 
     pub fn contextWithCGLContextPixelFormatOptions(_self: *@This(), _cglctx: opengl.ContextObj, _pixelFormat: opengl.PixelFormatObj, _options: ?*anyopaque) ?*Context {
-        return objc.msgSend(_self, "contextWithCGLContext:pixelFormat:options:", ?*Context, .{_cglctx, _pixelFormat, _options});
+        return objc.msgSend(_self, "contextWithCGLContext:pixelFormat:options:", ?*Context, .{ _cglctx, _pixelFormat, _options });
     }
 
     pub fn contextWithCGContextOptions(_self: *@This(), _cgctx: core_graphics.ContextRef, _options: ?*anyopaque) ?*Context {
-        return objc.msgSend(_self, "contextWithCGContext:options:", ?*Context, .{_cgctx, _options});
+        return objc.msgSend(_self, "contextWithCGContext:options:", ?*Context, .{ _cgctx, _options });
     }
 
     pub fn contextWithOptions(_self: *@This(), _options: ?*anyopaque) ?*Context {
@@ -1166,7 +1347,7 @@ pub const Context = opaque {
     }
 
     pub fn contextWithMTLDeviceOptions(_self: *@This(), _device: ?*anyopaque, _options: ?*anyopaque) ?*Context {
-        return objc.msgSend(_self, "contextWithMTLDevice:options:", ?*Context, .{_device, _options});
+        return objc.msgSend(_self, "contextWithMTLDevice:options:", ?*Context, .{ _device, _options });
     }
 
     pub fn contextWithMTLCommandQueue(_self: *@This(), _commandQueue: ?*anyopaque) ?*Context {
@@ -1174,7 +1355,7 @@ pub const Context = opaque {
     }
 
     pub fn contextWithMTLCommandQueueOptions(_self: *@This(), _commandQueue: ?*anyopaque, _options: ?*anyopaque) ?*Context {
-        return objc.msgSend(_self, "contextWithMTLCommandQueue:options:", ?*Context, .{_commandQueue, _options});
+        return objc.msgSend(_self, "contextWithMTLCommandQueue:options:", ?*Context, .{ _commandQueue, _options });
     }
 
     pub fn workingColorSpace(_self: *@This()) core_graphics.ColorSpaceRef {
@@ -1186,35 +1367,85 @@ pub const Context = opaque {
     }
 
     pub fn drawImageAtPointFromRect(_self: *@This(), _image: ?*Image, _atPoint: core_foundation.CGPoint, _fromRect: core_foundation.CGRect) void {
-        return objc.msgSend(_self, "drawImage:atPoint:fromRect:", void, .{_image, _atPoint, _fromRect});
+        return objc.msgSend(_self, "drawImage:atPoint:fromRect:", void, .{ _image, _atPoint, _fromRect });
     }
 
     pub fn drawImageInRectFromRect(_self: *@This(), _image: ?*Image, _inRect: core_foundation.CGRect, _fromRect: core_foundation.CGRect) void {
-        return objc.msgSend(_self, "drawImage:inRect:fromRect:", void, .{_image, _inRect, _fromRect});
+        return objc.msgSend(_self, "drawImage:inRect:fromRect:", void, .{ _image, _inRect, _fromRect });
     }
 
     pub fn createCGLayerWithSizeInfo(_self: *@This(), _size: core_foundation.CGSize, _info: core_foundation.DictionaryRef) core_graphics.LayerRef {
-        return objc.msgSend(_self, "createCGLayerWithSize:info:", core_graphics.LayerRef, .{_size, _info});
+        return objc.msgSend(_self, "createCGLayerWithSize:info:", core_graphics.LayerRef, .{ _size, _info });
     }
 
-    pub fn renderToBitmapRowBytesBoundsFormatColorSpace(_self: *@This(), _image: ?*Image, _data: ?*anyopaque, _rowBytes: objc.ptrdiff_t, _bounds: core_foundation.CGRect, _format: Format, _colorSpace: core_graphics.ColorSpaceRef, ) void {
-        return objc.msgSend(_self, "render:toBitmap:rowBytes:bounds:format:colorSpace:", void, .{_image, _data, _rowBytes, _bounds, _format, _colorSpace, });
+    pub fn renderToBitmapRowBytesBoundsFormatColorSpace(
+        _self: *@This(),
+        _image: ?*Image,
+        _data: ?*anyopaque,
+        _rowBytes: objc.ptrdiff_t,
+        _bounds: core_foundation.CGRect,
+        _format: Format,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) void {
+        return objc.msgSend(_self, "render:toBitmap:rowBytes:bounds:format:colorSpace:", void, .{
+            _image,
+            _data,
+            _rowBytes,
+            _bounds,
+            _format,
+            _colorSpace,
+        });
     }
 
-    pub fn renderToIOSurfaceBoundsColorSpace(_self: *@This(), _image: ?*Image, _surface: io_surface.Ref, _bounds: core_foundation.CGRect, _colorSpace: core_graphics.ColorSpaceRef, ) void {
-        return objc.msgSend(_self, "render:toIOSurface:bounds:colorSpace:", void, .{_image, _surface, _bounds, _colorSpace, });
+    pub fn renderToIOSurfaceBoundsColorSpace(
+        _self: *@This(),
+        _image: ?*Image,
+        _surface: io_surface.Ref,
+        _bounds: core_foundation.CGRect,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) void {
+        return objc.msgSend(_self, "render:toIOSurface:bounds:colorSpace:", void, .{
+            _image,
+            _surface,
+            _bounds,
+            _colorSpace,
+        });
     }
 
     pub fn renderToCVPixelBuffer(_self: *@This(), _image: ?*Image, _buffer: core_video.PixelBufferRef) void {
-        return objc.msgSend(_self, "render:toCVPixelBuffer:", void, .{_image, _buffer});
+        return objc.msgSend(_self, "render:toCVPixelBuffer:", void, .{ _image, _buffer });
     }
 
-    pub fn renderToCVPixelBufferBoundsColorSpace(_self: *@This(), _image: ?*Image, _buffer: core_video.PixelBufferRef, _bounds: core_foundation.CGRect, _colorSpace: core_graphics.ColorSpaceRef, ) void {
-        return objc.msgSend(_self, "render:toCVPixelBuffer:bounds:colorSpace:", void, .{_image, _buffer, _bounds, _colorSpace, });
+    pub fn renderToCVPixelBufferBoundsColorSpace(
+        _self: *@This(),
+        _image: ?*Image,
+        _buffer: core_video.PixelBufferRef,
+        _bounds: core_foundation.CGRect,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) void {
+        return objc.msgSend(_self, "render:toCVPixelBuffer:bounds:colorSpace:", void, .{
+            _image,
+            _buffer,
+            _bounds,
+            _colorSpace,
+        });
     }
 
-    pub fn renderToMTLTextureCommandBufferBoundsColorSpace(_self: *@This(), _image: ?*Image, _texture: ?*anyopaque, _commandBuffer: ?*anyopaque, _bounds: core_foundation.CGRect, _colorSpace: core_graphics.ColorSpaceRef, ) void {
-        return objc.msgSend(_self, "render:toMTLTexture:commandBuffer:bounds:colorSpace:", void, .{_image, _texture, _commandBuffer, _bounds, _colorSpace, });
+    pub fn renderToMTLTextureCommandBufferBoundsColorSpace(
+        _self: *@This(),
+        _image: ?*Image,
+        _texture: ?*anyopaque,
+        _commandBuffer: ?*anyopaque,
+        _bounds: core_foundation.CGRect,
+        _colorSpace: core_graphics.ColorSpaceRef,
+    ) void {
+        return objc.msgSend(_self, "render:toMTLTexture:commandBuffer:bounds:colorSpace:", void, .{
+            _image,
+            _texture,
+            _commandBuffer,
+            _bounds,
+            _colorSpace,
+        });
     }
 
     pub fn reclaimResources(_self: *@This()) void {
@@ -1232,7 +1463,6 @@ pub const Context = opaque {
     pub fn outputImageMaximumSize(_self: *@This()) core_foundation.CGSize {
         return objc.msgSend(_self, "outputImageMaximumSize", core_foundation.CGSize, .{});
     }
-
 };
 
 pub const ContextOption = ?*foundation.String;
@@ -1250,12 +1480,11 @@ pub const FilterConstructor = opaque {
     pub fn filterWithName(_self: *@This(), _name: ?*foundation.String) ?*Filter {
         return objc.msgSend(_self, "filterWithName:", ?*Filter, .{_name});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilter?language=objc
 pub const Filter = opaque {
-    pub const InternalInfo = objc.ExternClass("CIFilter", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying});
+    pub const InternalInfo = objc.ExternClass("CIFilter", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1285,11 +1514,11 @@ pub const Filter = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -1401,7 +1630,7 @@ pub const Filter = opaque {
     }
 
     pub fn applyArgumentsOptions(_self: *@This(), _k: ?*Kernel, _args: ?*foundation.Array, _dict: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "apply:arguments:options:", ?*Image, .{_k, _args, _dict});
+        return objc.msgSend(_self, "apply:arguments:options:", ?*Image, .{ _k, _args, _dict });
     }
 
     pub fn apply(_self: *@This(), _k: ?*Kernel) ?*Image {
@@ -1431,7 +1660,6 @@ pub const Filter = opaque {
     pub fn attributes(_self: *@This()) ?*anyopaque {
         return objc.msgSend(_self, "attributes", ?*anyopaque, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilter?language=objc
@@ -1449,10 +1677,9 @@ pub const Filter = opaque {
     pub fn outputImage(_self: *@This()) ?*Image {
         return objc.msgSend(_self, "outputImage", ?*Image, .{});
     }
-
 };
 
-pub const KernelROICallback = *const fn(i32, core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+pub const KernelROICallback = *const fn (i32, core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
 
 /// https://developer.apple.com/documentation/CoreImage/CIKernel?language=objc
 pub const Kernel = opaque {
@@ -1486,11 +1713,11 @@ pub const Kernel = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -1582,7 +1809,7 @@ pub const Kernel = opaque {
     }
 
     pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*foundation.String, _error: ?*?*foundation.Error) ?*anyopaque {
-        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
+        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{ _source, _error });
     }
 
     pub fn kernelWithString(_self: *@This(), _string: ?*foundation.String) *@This() {
@@ -1590,11 +1817,22 @@ pub const Kernel = opaque {
     }
 
     pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
-        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{ _name, _data, _error });
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
-        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(
+        _self: *@This(),
+        _name: ?*foundation.String,
+        _data: ?*foundation.Data,
+        _format: Format,
+        _error: ?*?*foundation.Error,
+    ) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{
+            _name,
+            _data,
+            _format,
+            _error,
+        });
     }
 
     pub fn kernelNamesFromMetalLibraryData(_self: *@This(), _data: ?*foundation.Data) ?*anyopaque {
@@ -1606,13 +1844,12 @@ pub const Kernel = opaque {
     }
 
     pub fn applyWithExtentRoiCallbackArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _args: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{ _extent, _callback, _args });
     }
 
     pub fn name(_self: *@This()) ?*foundation.String {
         return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIColorKernel?language=objc
@@ -1647,11 +1884,11 @@ pub const ColorKernel = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -1743,7 +1980,7 @@ pub const ColorKernel = opaque {
     }
 
     pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*foundation.String, _error: ?*?*foundation.Error) ?*anyopaque {
-        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
+        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{ _source, _error });
     }
 
     pub fn kernelWithString(_self: *@This(), _string: ?*foundation.String) *@This() {
@@ -1751,11 +1988,22 @@ pub const ColorKernel = opaque {
     }
 
     pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
-        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{ _name, _data, _error });
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
-        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(
+        _self: *@This(),
+        _name: ?*foundation.String,
+        _data: ?*foundation.Data,
+        _format: Format,
+        _error: ?*?*foundation.Error,
+    ) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{
+            _name,
+            _data,
+            _format,
+            _error,
+        });
     }
 
     pub fn kernelNamesFromMetalLibraryData(_self: *@This(), _data: ?*foundation.Data) ?*anyopaque {
@@ -1767,7 +2015,7 @@ pub const ColorKernel = opaque {
     }
 
     pub fn applyWithExtentRoiCallbackArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _args: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{ _extent, _callback, _args });
     }
 
     pub fn name(_self: *@This()) ?*foundation.String {
@@ -1775,9 +2023,8 @@ pub const ColorKernel = opaque {
     }
 
     pub fn applyWithExtentArguments(_self: *@This(), _extent: core_foundation.CGRect, _args: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "applyWithExtent:arguments:", ?*Image, .{_extent, _args});
+        return objc.msgSend(_self, "applyWithExtent:arguments:", ?*Image, .{ _extent, _args });
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIWarpKernel?language=objc
@@ -1812,11 +2059,11 @@ pub const WarpKernel = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -1908,7 +2155,7 @@ pub const WarpKernel = opaque {
     }
 
     pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*foundation.String, _error: ?*?*foundation.Error) ?*anyopaque {
-        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
+        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{ _source, _error });
     }
 
     pub fn kernelWithString(_self: *@This(), _string: ?*foundation.String) *@This() {
@@ -1916,11 +2163,22 @@ pub const WarpKernel = opaque {
     }
 
     pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
-        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{ _name, _data, _error });
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
-        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(
+        _self: *@This(),
+        _name: ?*foundation.String,
+        _data: ?*foundation.Data,
+        _format: Format,
+        _error: ?*?*foundation.Error,
+    ) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{
+            _name,
+            _data,
+            _format,
+            _error,
+        });
     }
 
     pub fn kernelNamesFromMetalLibraryData(_self: *@This(), _data: ?*foundation.Data) ?*anyopaque {
@@ -1932,17 +2190,27 @@ pub const WarpKernel = opaque {
     }
 
     pub fn applyWithExtentRoiCallbackArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _args: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{ _extent, _callback, _args });
     }
 
     pub fn name(_self: *@This()) ?*foundation.String {
         return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn applyWithExtentRoiCallbackInputImageArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _image: ?*Image, _args: ?*anyopaque, ) ?*Image {
-        return objc.msgSend(_self, "applyWithExtent:roiCallback:inputImage:arguments:", ?*Image, .{_extent, _callback, _image, _args, });
+    pub fn applyWithExtentRoiCallbackInputImageArguments(
+        _self: *@This(),
+        _extent: core_foundation.CGRect,
+        _callback: KernelROICallback,
+        _image: ?*Image,
+        _args: ?*anyopaque,
+    ) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:inputImage:arguments:", ?*Image, .{
+            _extent,
+            _callback,
+            _image,
+            _args,
+        });
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIBlendKernel?language=objc
@@ -1977,11 +2245,11 @@ pub const BlendKernel = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -2073,7 +2341,7 @@ pub const BlendKernel = opaque {
     }
 
     pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*foundation.String, _error: ?*?*foundation.Error) ?*anyopaque {
-        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
+        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{ _source, _error });
     }
 
     pub fn kernelWithString(_self: *@This(), _string: ?*foundation.String) *@This() {
@@ -2081,11 +2349,22 @@ pub const BlendKernel = opaque {
     }
 
     pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
-        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{ _name, _data, _error });
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
-        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(
+        _self: *@This(),
+        _name: ?*foundation.String,
+        _data: ?*foundation.Data,
+        _format: Format,
+        _error: ?*?*foundation.Error,
+    ) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{
+            _name,
+            _data,
+            _format,
+            _error,
+        });
     }
 
     pub fn kernelNamesFromMetalLibraryData(_self: *@This(), _data: ?*foundation.Data) ?*anyopaque {
@@ -2097,7 +2376,7 @@ pub const BlendKernel = opaque {
     }
 
     pub fn applyWithExtentRoiCallbackArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _args: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{ _extent, _callback, _args });
     }
 
     pub fn name(_self: *@This()) ?*foundation.String {
@@ -2105,17 +2384,16 @@ pub const BlendKernel = opaque {
     }
 
     pub fn applyWithExtentArguments(_self: *@This(), _extent: core_foundation.CGRect, _args: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "applyWithExtent:arguments:", ?*Image, .{_extent, _args});
+        return objc.msgSend(_self, "applyWithExtent:arguments:", ?*Image, .{ _extent, _args });
     }
 
     pub fn applyWithForegroundBackground(_self: *@This(), _foreground: ?*Image, _background: ?*Image) ?*Image {
-        return objc.msgSend(_self, "applyWithForeground:background:", ?*Image, .{_foreground, _background});
+        return objc.msgSend(_self, "applyWithForeground:background:", ?*Image, .{ _foreground, _background });
     }
 
     pub fn applyWithForegroundBackgroundColorSpace(_self: *@This(), _foreground: ?*Image, _background: ?*Image, _colorSpace: core_graphics.ColorSpaceRef) ?*Image {
-        return objc.msgSend(_self, "applyWithForeground:background:colorSpace:", ?*Image, .{_foreground, _background, _colorSpace});
+        return objc.msgSend(_self, "applyWithForeground:background:colorSpace:", ?*Image, .{ _foreground, _background, _colorSpace });
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIDetector?language=objc
@@ -2150,11 +2428,11 @@ pub const Detector = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -2242,7 +2520,7 @@ pub const Detector = opaque {
     }
 
     pub fn detectorOfTypeContextOptions(_self: *@This(), _type: ?*foundation.String, _context: ?*Context, _options: ?*anyopaque) ?*Detector {
-        return objc.msgSend(_self, "detectorOfType:context:options:", ?*Detector, .{_type, _context, _options});
+        return objc.msgSend(_self, "detectorOfType:context:options:", ?*Detector, .{ _type, _context, _options });
     }
 
     pub fn featuresInImage(_self: *@This(), _image: ?*Image) ?*anyopaque {
@@ -2250,9 +2528,8 @@ pub const Detector = opaque {
     }
 
     pub fn featuresInImageOptions(_self: *@This(), _image: ?*Image, _options: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(_self, "featuresInImage:options:", ?*anyopaque, .{_image, _options});
+        return objc.msgSend(_self, "featuresInImage:options:", ?*anyopaque, .{ _image, _options });
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFeature?language=objc
@@ -2287,11 +2564,11 @@ pub const Feature = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -2385,7 +2662,6 @@ pub const Feature = opaque {
     pub fn bounds(_self: *@This()) core_foundation.CGRect {
         return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFaceFeature?language=objc
@@ -2420,11 +2696,11 @@ pub const FaceFeature = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -2518,7 +2794,6 @@ pub const FaceFeature = opaque {
     pub fn bounds(_self: *@This()) core_foundation.CGRect {
         return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIRectangleFeature?language=objc
@@ -2553,11 +2828,11 @@ pub const RectangleFeature = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -2667,12 +2942,11 @@ pub const RectangleFeature = opaque {
     pub fn bottomRight(_self: *@This()) core_foundation.CGPoint {
         return objc.msgSend(_self, "bottomRight", core_foundation.CGPoint, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature?language=objc
 pub const QRCodeFeature = opaque {
-    pub const InternalInfo = objc.ExternClass("CIQRCodeFeature", @This(), Feature, &.{foundation.SecureCoding, foundation.Copying});
+    pub const InternalInfo = objc.ExternClass("CIQRCodeFeature", @This(), Feature, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2702,11 +2976,11 @@ pub const QRCodeFeature = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -2836,7 +3110,6 @@ pub const QRCodeFeature = opaque {
     pub fn symbolDescriptor(_self: *@This()) ?*QRCodeDescriptor {
         return objc.msgSend(_self, "symbolDescriptor", ?*QRCodeDescriptor, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CITextFeature?language=objc
@@ -2871,11 +3144,11 @@ pub const TextFeature = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -2989,7 +3262,6 @@ pub const TextFeature = opaque {
     pub fn subFeatures(_self: *@This()) ?*foundation.Array {
         return objc.msgSend(_self, "subFeatures", ?*foundation.Array, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel?language=objc
@@ -3024,11 +3296,11 @@ pub const ImageProcessorKernel = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -3116,19 +3388,30 @@ pub const ImageProcessorKernel = opaque {
     }
 
     pub fn roiForInputArgumentsOutputRect(_self: *@This(), _input: i32, _arguments: ?*anyopaque, _outputRect: core_foundation.CGRect) core_foundation.CGRect {
-        return objc.msgSend(_self, "roiForInput:arguments:outputRect:", core_foundation.CGRect, .{_input, _arguments, _outputRect});
+        return objc.msgSend(_self, "roiForInput:arguments:outputRect:", core_foundation.CGRect, .{ _input, _arguments, _outputRect });
     }
 
     pub fn roiTileArrayForInputArgumentsOutputRect(_self: *@This(), _input: i32, _arguments: ?*anyopaque, _outputRect: core_foundation.CGRect) ?*anyopaque {
-        return objc.msgSend(_self, "roiTileArrayForInput:arguments:outputRect:", ?*anyopaque, .{_input, _arguments, _outputRect});
+        return objc.msgSend(_self, "roiTileArrayForInput:arguments:outputRect:", ?*anyopaque, .{ _input, _arguments, _outputRect });
     }
 
     pub fn formatForInputAtIndex(_self: *@This(), _input: i32) Format {
         return objc.msgSend(_self, "formatForInputAtIndex:", Format, .{_input});
     }
 
-    pub fn applyWithExtentInputsArgumentsError(_self: *@This(), _extent: core_foundation.CGRect, _inputs: ?*anyopaque, _args: ?*anyopaque, _error: ?*?*foundation.Error, ) ?*Image {
-        return objc.msgSend(_self, "applyWithExtent:inputs:arguments:error:", ?*Image, .{_extent, _inputs, _args, _error, });
+    pub fn applyWithExtentInputsArgumentsError(
+        _self: *@This(),
+        _extent: core_foundation.CGRect,
+        _inputs: ?*anyopaque,
+        _args: ?*anyopaque,
+        _error: ?*?*foundation.Error,
+    ) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:inputs:arguments:error:", ?*Image, .{
+            _extent,
+            _inputs,
+            _args,
+            _error,
+        });
     }
 
     pub fn outputFormat(_self: *@This()) Format {
@@ -3142,7 +3425,6 @@ pub const ImageProcessorKernel = opaque {
     pub fn synchronizeInputs(_self: *@This()) core_graphics.bool {
         return objc.msgSend(_self, "synchronizeInputs", core_graphics.bool, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIImageProcessorInput?language=objc
@@ -3192,7 +3474,6 @@ pub const ImageProcessorInput = opaque {
     pub fn roiTileCount(_self: *@This()) objc.NSUInteger {
         return objc.msgSend(_self, "roiTileCount", objc.NSUInteger, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIImageProcessorOutput?language=objc
@@ -3238,7 +3519,6 @@ pub const ImageProcessorOutput = opaque {
     pub fn digest(_self: *@This()) objc.uint64_t {
         return objc.msgSend(_self, "digest", objc.uint64_t, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIImageAccumulator?language=objc
@@ -3273,11 +3553,11 @@ pub const ImageAccumulator = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -3365,19 +3645,19 @@ pub const ImageAccumulator = opaque {
     }
 
     pub fn imageAccumulatorWithExtentFormat(_self: *@This(), _extent: core_foundation.CGRect, _format: Format) *@This() {
-        return objc.msgSend(_self, "imageAccumulatorWithExtent:format:", *@This(), .{_extent, _format});
+        return objc.msgSend(_self, "imageAccumulatorWithExtent:format:", *@This(), .{ _extent, _format });
     }
 
     pub fn imageAccumulatorWithExtentFormatColorSpace(_self: *@This(), _extent: core_foundation.CGRect, _format: Format, _colorSpace: core_graphics.ColorSpaceRef) *@This() {
-        return objc.msgSend(_self, "imageAccumulatorWithExtent:format:colorSpace:", *@This(), .{_extent, _format, _colorSpace});
+        return objc.msgSend(_self, "imageAccumulatorWithExtent:format:colorSpace:", *@This(), .{ _extent, _format, _colorSpace });
     }
 
     pub fn initWithExtentFormat(_self: *@This(), _extent: core_foundation.CGRect, _format: Format) *@This() {
-        return objc.msgSend(_self, "initWithExtent:format:", *@This(), .{_extent, _format});
+        return objc.msgSend(_self, "initWithExtent:format:", *@This(), .{ _extent, _format });
     }
 
     pub fn initWithExtentFormatColorSpace(_self: *@This(), _extent: core_foundation.CGRect, _format: Format, _colorSpace: core_graphics.ColorSpaceRef) *@This() {
-        return objc.msgSend(_self, "initWithExtent:format:colorSpace:", *@This(), .{_extent, _format, _colorSpace});
+        return objc.msgSend(_self, "initWithExtent:format:colorSpace:", *@This(), .{ _extent, _format, _colorSpace });
     }
 
     pub fn image(_self: *@This()) ?*Image {
@@ -3389,7 +3669,7 @@ pub const ImageAccumulator = opaque {
     }
 
     pub fn setImageDirtyRect(_self: *@This(), _image: ?*Image, _dirtyRect: core_foundation.CGRect) void {
-        return objc.msgSend(_self, "setImage:dirtyRect:", void, .{_image, _dirtyRect});
+        return objc.msgSend(_self, "setImage:dirtyRect:", void, .{ _image, _dirtyRect });
     }
 
     pub fn clear(_self: *@This()) void {
@@ -3403,7 +3683,6 @@ pub const ImageAccumulator = opaque {
     pub fn format(_self: *@This()) Format {
         return objc.msgSend(_self, "format", Format, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilterShape?language=objc
@@ -3438,11 +3717,11 @@ pub const FilterShape = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -3538,11 +3817,11 @@ pub const FilterShape = opaque {
     }
 
     pub fn transformByInterior(_self: *@This(), _m: core_foundation.CGAffineTransform, _flag: objc.BOOL) ?*FilterShape {
-        return objc.msgSend(_self, "transformBy:interior:", ?*FilterShape, .{_m, _flag});
+        return objc.msgSend(_self, "transformBy:interior:", ?*FilterShape, .{ _m, _flag });
     }
 
     pub fn insetByXY(_self: *@This(), _dx: i32, _dy: i32) ?*FilterShape {
-        return objc.msgSend(_self, "insetByX:Y:", ?*FilterShape, .{_dx, _dy});
+        return objc.msgSend(_self, "insetByX:Y:", ?*FilterShape, .{ _dx, _dy });
     }
 
     pub fn unionWith(_self: *@This(), _s2: ?*FilterShape) ?*FilterShape {
@@ -3564,7 +3843,6 @@ pub const FilterShape = opaque {
     pub fn extent(_self: *@This()) core_foundation.CGRect {
         return objc.msgSend(_self, "extent", core_foundation.CGRect, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CISampler?language=objc
@@ -3599,11 +3877,11 @@ pub const Sampler = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -3695,11 +3973,11 @@ pub const Sampler = opaque {
     }
 
     pub fn samplerWithImageKeysAndValues(_self: *@This(), _im: ?*Image, _key0: *objc.Id) *@This() {
-        return objc.msgSend(_self, "samplerWithImage:keysAndValues:", *@This(), .{_im, _key0});
+        return objc.msgSend(_self, "samplerWithImage:keysAndValues:", *@This(), .{ _im, _key0 });
     }
 
     pub fn samplerWithImageOptions(_self: *@This(), _im: ?*Image, _dict: ?*foundation.Dictionary) *@This() {
-        return objc.msgSend(_self, "samplerWithImage:options:", *@This(), .{_im, _dict});
+        return objc.msgSend(_self, "samplerWithImage:options:", *@This(), .{ _im, _dict });
     }
 
     pub fn initWithImage(_self: *@This(), _im: ?*Image) *@This() {
@@ -3707,11 +3985,11 @@ pub const Sampler = opaque {
     }
 
     pub fn initWithImageKeysAndValues(_self: *@This(), _im: ?*Image, _key0: *objc.Id) *@This() {
-        return objc.msgSend(_self, "initWithImage:keysAndValues:", *@This(), .{_im, _key0});
+        return objc.msgSend(_self, "initWithImage:keysAndValues:", *@This(), .{ _im, _key0 });
     }
 
     pub fn initWithImageOptions(_self: *@This(), _im: ?*Image, _dict: ?*foundation.Dictionary) *@This() {
-        return objc.msgSend(_self, "initWithImage:options:", *@This(), .{_im, _dict});
+        return objc.msgSend(_self, "initWithImage:options:", *@This(), .{ _im, _dict });
     }
 
     pub fn definition(_self: *@This()) ?*FilterShape {
@@ -3721,7 +3999,6 @@ pub const Sampler = opaque {
     pub fn extent(_self: *@This()) core_foundation.CGRect {
         return objc.msgSend(_self, "extent", core_foundation.CGRect, .{});
     }
-
 };
 
 pub const RAWFilterOption = ?*foundation.String;
@@ -3758,11 +4035,11 @@ pub const RAWFilter = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -3874,7 +4151,7 @@ pub const RAWFilter = opaque {
     }
 
     pub fn applyArgumentsOptions(_self: *@This(), _k: ?*Kernel, _args: ?*foundation.Array, _dict: ?*anyopaque) ?*Image {
-        return objc.msgSend(_self, "apply:arguments:options:", ?*Image, .{_k, _args, _dict});
+        return objc.msgSend(_self, "apply:arguments:options:", ?*Image, .{ _k, _args, _dict });
     }
 
     pub fn apply(_self: *@This(), _k: ?*Kernel) ?*Image {
@@ -4178,13 +4455,12 @@ pub const RAWFilter = opaque {
     }
 
     pub fn filterWithImageDataIdentifierHint(_self: *@This(), _data: ?*foundation.Data, _identifierHint: ?*foundation.String) *@This() {
-        return objc.msgSend(_self, "filterWithImageData:identifierHint:", *@This(), .{_data, _identifierHint});
+        return objc.msgSend(_self, "filterWithImageData:identifierHint:", *@This(), .{ _data, _identifierHint });
     }
 
     pub fn filterWithCVPixelBufferProperties(_self: *@This(), _buffer: core_video.PixelBufferRef, _properties: ?*foundation.Dictionary) *@This() {
-        return objc.msgSend(_self, "filterWithCVPixelBuffer:properties:", *@This(), .{_buffer, _properties});
+        return objc.msgSend(_self, "filterWithCVPixelBuffer:properties:", *@This(), .{ _buffer, _properties });
     }
-
 };
 
 pub const RAWDecoderVersion = ?*foundation.String;
@@ -4221,11 +4497,11 @@ pub const RenderDestination = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -4316,24 +4592,61 @@ pub const RenderDestination = opaque {
         return objc.msgSend(_self, "initWithPixelBuffer:", *@This(), .{_pixelBuffer});
     }
 
-    pub fn initWithIOSurface(_self: *@This(), _surface: ?*io_surface.) *@This() {
+    pub fn initWithIOSurface(_self: *@This(), _surface: ?*io_surface.IOSurface) *@This() {
         return objc.msgSend(_self, "initWithIOSurface:", *@This(), .{_surface});
     }
 
     pub fn initWithMTLTextureCommandBuffer(_self: *@This(), _texture: ?*anyopaque, _commandBuffer: ?*anyopaque) *@This() {
-        return objc.msgSend(_self, "initWithMTLTexture:commandBuffer:", *@This(), .{_texture, _commandBuffer});
+        return objc.msgSend(_self, "initWithMTLTexture:commandBuffer:", *@This(), .{ _texture, _commandBuffer });
     }
 
-    pub fn initWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(_self: *@This(), _width: objc.NSUInteger, _height: objc.NSUInteger, _pixelFormat: metal.PixelFormat, _commandBuffer: ?*anyopaque, _block: *const fn() callconv(.C) ?*anyopaque, ) *@This() {
-        return objc.msgSend(_self, "initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:", *@This(), .{_width, _height, _pixelFormat, _commandBuffer, _block, });
+    pub fn initWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(
+        _self: *@This(),
+        _width: objc.NSUInteger,
+        _height: objc.NSUInteger,
+        _pixelFormat: metal.PixelFormat,
+        _commandBuffer: ?*anyopaque,
+        _block: *const fn () callconv(.C) ?*anyopaque,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:", *@This(), .{
+            _width,
+            _height,
+            _pixelFormat,
+            _commandBuffer,
+            _block,
+        });
     }
 
-    pub fn initWithGLTextureTargetWidthHeight(_self: *@This(), _texture: u32, _target: u32, _width: objc.NSUInteger, _height: objc.NSUInteger, ) *@This() {
-        return objc.msgSend(_self, "initWithGLTexture:target:width:height:", *@This(), .{_texture, _target, _width, _height, });
+    pub fn initWithGLTextureTargetWidthHeight(
+        _self: *@This(),
+        _texture: u32,
+        _target: u32,
+        _width: objc.NSUInteger,
+        _height: objc.NSUInteger,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithGLTexture:target:width:height:", *@This(), .{
+            _texture,
+            _target,
+            _width,
+            _height,
+        });
     }
 
-    pub fn initWithBitmapDataWidthHeightBytesPerRowFormat(_self: *@This(), _data: ?*anyopaque, _width: objc.NSUInteger, _height: objc.NSUInteger, _bytesPerRow: objc.NSUInteger, _format: Format, ) *@This() {
-        return objc.msgSend(_self, "initWithBitmapData:width:height:bytesPerRow:format:", *@This(), .{_data, _width, _height, _bytesPerRow, _format, });
+    pub fn initWithBitmapDataWidthHeightBytesPerRowFormat(
+        _self: *@This(),
+        _data: ?*anyopaque,
+        _width: objc.NSUInteger,
+        _height: objc.NSUInteger,
+        _bytesPerRow: objc.NSUInteger,
+        _format: Format,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithBitmapData:width:height:bytesPerRow:format:", *@This(), .{
+            _data,
+            _width,
+            _height,
+            _bytesPerRow,
+            _format,
+        });
     }
 
     pub fn width(_self: *@This()) objc.NSUInteger {
@@ -4399,13 +4712,12 @@ pub const RenderDestination = opaque {
     pub fn setBlendsInDestinationColorSpace(_self: *@This(), _blendsInDestinationColorSpace: objc.BOOL) void {
         return objc.msgSend(_self, "setBlendsInDestinationColorSpace:", void, .{_blendsInDestinationColorSpace});
     }
-
 };
 
 pub const RenderDestinationAlphaMode = enum(objc.NSUInteger) {
-None = 0,
-Premultiplied = 1,
-Unpremultiplied = 2,
+    None = 0,
+    Premultiplied = 1,
+    Unpremultiplied = 2,
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIRenderInfo?language=objc
@@ -4440,11 +4752,11 @@ pub const RenderInfo = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -4546,7 +4858,6 @@ pub const RenderInfo = opaque {
     pub fn pixelsProcessed(_self: *@This()) objc.NSInteger {
         return objc.msgSend(_self, "pixelsProcessed", objc.NSInteger, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIRenderTask?language=objc
@@ -4581,11 +4892,11 @@ pub const RenderTask = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -4675,12 +4986,11 @@ pub const RenderTask = opaque {
     pub fn waitUntilCompletedAndReturnError(_self: *@This(), _error: ?*?*foundation.Error) ?*RenderInfo {
         return objc.msgSend(_self, "waitUntilCompletedAndReturnError:", ?*RenderInfo, .{_error});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIBarcodeDescriptor?language=objc
 pub const BarcodeDescriptor = opaque {
-    pub const InternalInfo = objc.ExternClass("CIBarcodeDescriptor", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying});
+    pub const InternalInfo = objc.ExternClass("CIBarcodeDescriptor", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -4710,11 +5020,11 @@ pub const BarcodeDescriptor = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -4812,14 +5122,13 @@ pub const BarcodeDescriptor = opaque {
     pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
-
 };
 
 pub const QRCodeErrorCorrectionLevel = enum(objc.NSInteger) {
-L = 76,
-M = 77,
-Q = 81,
-H = 72,
+    L = 76,
+    M = 77,
+    Q = 81,
+    H = 72,
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor?language=objc
@@ -4854,11 +5163,11 @@ pub const QRCodeDescriptor = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -4957,12 +5266,34 @@ pub const QRCodeDescriptor = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _symbolVersion: objc.NSInteger, _maskPattern: objc.uint8_t, _errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
-        return objc.msgSend(_self, "initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{_errorCorrectedPayload, _symbolVersion, _maskPattern, _errorCorrectionLevel, });
+    pub fn initWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(
+        _self: *@This(),
+        _errorCorrectedPayload: ?*foundation.Data,
+        _symbolVersion: objc.NSInteger,
+        _maskPattern: objc.uint8_t,
+        _errorCorrectionLevel: QRCodeErrorCorrectionLevel,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{
+            _errorCorrectedPayload,
+            _symbolVersion,
+            _maskPattern,
+            _errorCorrectionLevel,
+        });
     }
 
-    pub fn descriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _symbolVersion: objc.NSInteger, _maskPattern: objc.uint8_t, _errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
-        return objc.msgSend(_self, "descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{_errorCorrectedPayload, _symbolVersion, _maskPattern, _errorCorrectionLevel, });
+    pub fn descriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(
+        _self: *@This(),
+        _errorCorrectedPayload: ?*foundation.Data,
+        _symbolVersion: objc.NSInteger,
+        _maskPattern: objc.uint8_t,
+        _errorCorrectionLevel: QRCodeErrorCorrectionLevel,
+    ) *@This() {
+        return objc.msgSend(_self, "descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{
+            _errorCorrectedPayload,
+            _symbolVersion,
+            _maskPattern,
+            _errorCorrectionLevel,
+        });
     }
 
     pub fn errorCorrectedPayload(_self: *@This()) ?*foundation.Data {
@@ -4980,7 +5311,6 @@ pub const QRCodeDescriptor = opaque {
     pub fn errorCorrectionLevel(_self: *@This()) QRCodeErrorCorrectionLevel {
         return objc.msgSend(_self, "errorCorrectionLevel", QRCodeErrorCorrectionLevel, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor?language=objc
@@ -5015,11 +5345,11 @@ pub const AztecCodeDescriptor = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -5118,14 +5448,35 @@ pub const AztecCodeDescriptor = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithPayloadIsCompactLayerCountDataCodewordCount(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _isCompact: objc.BOOL, _layerCount: objc.NSInteger, _dataCodewordCount: objc.NSInteger, ) *@This() {
-        return objc.msgSend(_self, "initWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _layerCount, _dataCodewordCount, });
+    pub fn initWithPayloadIsCompactLayerCountDataCodewordCount(
+        _self: *@This(),
+        _errorCorrectedPayload: ?*foundation.Data,
+        _isCompact: objc.BOOL,
+        _layerCount: objc.NSInteger,
+        _dataCodewordCount: objc.NSInteger,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{
+            _errorCorrectedPayload,
+            _isCompact,
+            _layerCount,
+            _dataCodewordCount,
+        });
     }
 
-    pub fn descriptorWithPayloadIsCompactLayerCountDataCodewordCount(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _isCompact: objc.BOOL, _layerCount: objc.NSInteger, _dataCodewordCount: objc.NSInteger, ) *@This() {
-        return objc.msgSend(_self, "descriptorWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _layerCount, _dataCodewordCount, });
+    pub fn descriptorWithPayloadIsCompactLayerCountDataCodewordCount(
+        _self: *@This(),
+        _errorCorrectedPayload: ?*foundation.Data,
+        _isCompact: objc.BOOL,
+        _layerCount: objc.NSInteger,
+        _dataCodewordCount: objc.NSInteger,
+    ) *@This() {
+        return objc.msgSend(_self, "descriptorWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{
+            _errorCorrectedPayload,
+            _isCompact,
+            _layerCount,
+            _dataCodewordCount,
+        });
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor?language=objc
@@ -5160,11 +5511,11 @@ pub const PDF417CodeDescriptor = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -5263,23 +5614,44 @@ pub const PDF417CodeDescriptor = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithPayloadIsCompactRowCountColumnCount(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _isCompact: objc.BOOL, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, ) *@This() {
-        return objc.msgSend(_self, "initWithPayload:isCompact:rowCount:columnCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _rowCount, _columnCount, });
+    pub fn initWithPayloadIsCompactRowCountColumnCount(
+        _self: *@This(),
+        _errorCorrectedPayload: ?*foundation.Data,
+        _isCompact: objc.BOOL,
+        _rowCount: objc.NSInteger,
+        _columnCount: objc.NSInteger,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithPayload:isCompact:rowCount:columnCount:", *@This(), .{
+            _errorCorrectedPayload,
+            _isCompact,
+            _rowCount,
+            _columnCount,
+        });
     }
 
-    pub fn descriptorWithPayloadIsCompactRowCountColumnCount(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _isCompact: objc.BOOL, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, ) *@This() {
-        return objc.msgSend(_self, "descriptorWithPayload:isCompact:rowCount:columnCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _rowCount, _columnCount, });
+    pub fn descriptorWithPayloadIsCompactRowCountColumnCount(
+        _self: *@This(),
+        _errorCorrectedPayload: ?*foundation.Data,
+        _isCompact: objc.BOOL,
+        _rowCount: objc.NSInteger,
+        _columnCount: objc.NSInteger,
+    ) *@This() {
+        return objc.msgSend(_self, "descriptorWithPayload:isCompact:rowCount:columnCount:", *@This(), .{
+            _errorCorrectedPayload,
+            _isCompact,
+            _rowCount,
+            _columnCount,
+        });
     }
-
 };
 
 pub const DataMatrixCodeECCVersion = enum(objc.NSInteger) {
-_000 = 0,
-_050 = 50,
-_080 = 80,
-_100 = 100,
-_140 = 140,
-_200 = 200,
+    _000 = 0,
+    _050 = 50,
+    _080 = 80,
+    _100 = 100,
+    _140 = 140,
+    _200 = 200,
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor?language=objc
@@ -5314,11 +5686,11 @@ pub const DataMatrixCodeDescriptor = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -5417,12 +5789,34 @@ pub const DataMatrixCodeDescriptor = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithPayloadRowCountColumnCountEccVersion(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, _eccVersion: DataMatrixCodeECCVersion, ) *@This() {
-        return objc.msgSend(_self, "initWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{_errorCorrectedPayload, _rowCount, _columnCount, _eccVersion, });
+    pub fn initWithPayloadRowCountColumnCountEccVersion(
+        _self: *@This(),
+        _errorCorrectedPayload: ?*foundation.Data,
+        _rowCount: objc.NSInteger,
+        _columnCount: objc.NSInteger,
+        _eccVersion: DataMatrixCodeECCVersion,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{
+            _errorCorrectedPayload,
+            _rowCount,
+            _columnCount,
+            _eccVersion,
+        });
     }
 
-    pub fn descriptorWithPayloadRowCountColumnCountEccVersion(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, _eccVersion: DataMatrixCodeECCVersion, ) *@This() {
-        return objc.msgSend(_self, "descriptorWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{_errorCorrectedPayload, _rowCount, _columnCount, _eccVersion, });
+    pub fn descriptorWithPayloadRowCountColumnCountEccVersion(
+        _self: *@This(),
+        _errorCorrectedPayload: ?*foundation.Data,
+        _rowCount: objc.NSInteger,
+        _columnCount: objc.NSInteger,
+        _eccVersion: DataMatrixCodeECCVersion,
+    ) *@This() {
+        return objc.msgSend(_self, "descriptorWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{
+            _errorCorrectedPayload,
+            _rowCount,
+            _columnCount,
+            _eccVersion,
+        });
     }
 
     pub fn errorCorrectedPayload(_self: *@This()) ?*foundation.Data {
@@ -5440,12 +5834,11 @@ pub const DataMatrixCodeDescriptor = opaque {
     pub fn eccVersion(_self: *@This()) DataMatrixCodeECCVersion {
         return objc.msgSend(_self, "eccVersion", DataMatrixCodeECCVersion, .{});
     }
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilterGenerator?language=objc
 pub const FilterGenerator = opaque {
-    pub const InternalInfo = objc.ExternClass("CIFilterGenerator", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, FilterConstructor});
+    pub const InternalInfo = objc.ExternClass("CIFilterGenerator", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying, FilterConstructor });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -5475,11 +5868,11 @@ pub const FilterGenerator = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -5594,16 +5987,38 @@ pub const FilterGenerator = opaque {
         return objc.msgSend(_self, "initWithContentsOfURL:", *objc.Id, .{_aURL});
     }
 
-    pub fn connectObjectWithKeyToObjectWithKey(_self: *@This(), _sourceObject: *objc.Id, _sourceKey: ?*foundation.String, _targetObject: *objc.Id, _targetKey: ?*foundation.String, ) void {
-        return objc.msgSend(_self, "connectObject:withKey:toObject:withKey:", void, .{_sourceObject, _sourceKey, _targetObject, _targetKey, });
+    pub fn connectObjectWithKeyToObjectWithKey(
+        _self: *@This(),
+        _sourceObject: *objc.Id,
+        _sourceKey: ?*foundation.String,
+        _targetObject: *objc.Id,
+        _targetKey: ?*foundation.String,
+    ) void {
+        return objc.msgSend(_self, "connectObject:withKey:toObject:withKey:", void, .{
+            _sourceObject,
+            _sourceKey,
+            _targetObject,
+            _targetKey,
+        });
     }
 
-    pub fn disconnectObjectWithKeyToObjectWithKey(_self: *@This(), _sourceObject: *objc.Id, _sourceKey: ?*foundation.String, _targetObject: *objc.Id, _targetKey: ?*foundation.String, ) void {
-        return objc.msgSend(_self, "disconnectObject:withKey:toObject:withKey:", void, .{_sourceObject, _sourceKey, _targetObject, _targetKey, });
+    pub fn disconnectObjectWithKeyToObjectWithKey(
+        _self: *@This(),
+        _sourceObject: *objc.Id,
+        _sourceKey: ?*foundation.String,
+        _targetObject: *objc.Id,
+        _targetKey: ?*foundation.String,
+    ) void {
+        return objc.msgSend(_self, "disconnectObject:withKey:toObject:withKey:", void, .{
+            _sourceObject,
+            _sourceKey,
+            _targetObject,
+            _targetKey,
+        });
     }
 
     pub fn exportKeyFromObjectWithName(_self: *@This(), _key: ?*foundation.String, _targetObject: *objc.Id, _exportedKeyName: ?*foundation.String) void {
-        return objc.msgSend(_self, "exportKey:fromObject:withName:", void, .{_key, _targetObject, _exportedKeyName});
+        return objc.msgSend(_self, "exportKey:fromObject:withName:", void, .{ _key, _targetObject, _exportedKeyName });
     }
 
     pub fn removeExportedKey(_self: *@This(), _exportedKeyName: ?*foundation.String) void {
@@ -5611,7 +6026,7 @@ pub const FilterGenerator = opaque {
     }
 
     pub fn setAttributesForExportedKey(_self: *@This(), _attributes: ?*foundation.Dictionary, _key: ?*foundation.String) void {
-        return objc.msgSend(_self, "setAttributes:forExportedKey:", void, .{_attributes, _key});
+        return objc.msgSend(_self, "setAttributes:forExportedKey:", void, .{ _attributes, _key });
     }
 
     pub fn filter(_self: *@This()) ?*Filter {
@@ -5633,7 +6048,6 @@ pub const FilterGenerator = opaque {
     pub fn setClassAttributes(_self: *@This(), _classAttributes: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setClassAttributes:", void, .{_classAttributes});
     }
-
 };
 
 pub const FilterGeneratorStruct = extern struct {};
@@ -5645,7 +6059,6 @@ pub const PlugInRegistration = opaque {
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
-
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIPlugIn?language=objc
@@ -5680,11 +6093,11 @@ pub const PlugIn = opaque {
     }
 
     pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
     pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn retainCount(_self: *@This()) objc.NSUInteger {
@@ -5780,16 +6193,14 @@ pub const PlugIn = opaque {
     }
 
     pub fn loadPlugInAllowNonExecutable(_self: *@This(), _url: ?*foundation.URL, _allowNonExecutable: objc.BOOL) void {
-        return objc.msgSend(_self, "loadPlugIn:allowNonExecutable:", void, .{_url, _allowNonExecutable});
+        return objc.msgSend(_self, "loadPlugIn:allowNonExecutable:", void, .{ _url, _allowNonExecutable });
     }
 
     pub fn loadPlugInAllowExecutableCode(_self: *@This(), _url: ?*foundation.URL, _allowExecutableCode: objc.BOOL) void {
-        return objc.msgSend(_self, "loadPlugIn:allowExecutableCode:", void, .{_url, _allowExecutableCode});
+        return objc.msgSend(_self, "loadPlugIn:allowExecutableCode:", void, .{ _url, _allowExecutableCode });
     }
 
     pub fn loadNonExecutablePlugIn(_self: *@This(), _url: ?*foundation.URL) void {
         return objc.msgSend(_self, "loadNonExecutablePlugIn:", void, .{_url});
     }
-
 };
-

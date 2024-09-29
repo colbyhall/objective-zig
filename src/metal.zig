@@ -301,7 +301,6 @@ pub const ResourceOptions = enum(objc.NSUInteger) {
     HazardTrackingModeUntracked = 256,
     HazardTrackingModeTracked = 512,
     CPUCacheModeDefault = 0,
-    CPUCacheModeWriteCombined = 1,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLResource?language=objc

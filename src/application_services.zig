@@ -7,14 +7,15 @@ const core_text = @import("core_text.zig"); // Framework dependency CoreText.
 const core_graphics = @import("core_graphics.zig"); // Framework dependency CoreGraphics.
 const core_services = @import("core_services.zig"); // Framework dependency CoreServices.
 const foundation = @import("foundation.zig"); // Framework dependency Foundation.
+const app_kit = @import("app_kit.zig"); // Framework dependency AppKit.
 
 pub const anon1231 = enum(u32) {
-    kICAttrLockedBit = 0,
-    kICAttrVolatileBit = 1,
+    ICAttrLockedBit = 0,
+    ICAttrVolatileBit = 1,
 };
 
 pub const anon651 = enum(u32) {
-    kATSUUnFlattenOptionNoOptionsMask = 0,
+    ATSUUnFlattenOptionNoOptionsMask = 0,
 };
 
 pub const anon1071 = enum(objc.OSType) {
@@ -23,43 +24,43 @@ pub const anon1071 = enum(objc.OSType) {
 };
 
 pub const anon371 = enum(u32) {
-    kPMCancel = 128,
+    PMCancel = 128,
 };
 
 pub const anon521 = enum(objc.SInt32) {
-    kImmediate = 0,
-    kEndOfWord = 1,
-    kEndOfSentence = 2,
+    Immediate = 0,
+    EndOfWord = 1,
+    EndOfSentence = 2,
 };
 
 pub const anon1271 = enum(u32) {
-    kSelectorLarge1Bit = 1,
-    kSelectorLarge4Bit = 2,
-    kSelectorLarge8Bit = 4,
-    kSelectorLarge32Bit = 8,
-    kSelectorLarge8BitMask = 16,
-    kSelectorSmall1Bit = 256,
-    kSelectorSmall4Bit = 512,
-    kSelectorSmall8Bit = 1024,
-    kSelectorSmall32Bit = 2048,
-    kSelectorSmall8BitMask = 4096,
-    kSelectorMini1Bit = 65536,
-    kSelectorMini4Bit = 131072,
-    kSelectorMini8Bit = 262144,
-    kSelectorHuge1Bit = 16777216,
-    kSelectorHuge4Bit = 33554432,
-    kSelectorHuge8Bit = 67108864,
-    kSelectorHuge32Bit = 134217728,
-    kSelectorHuge8BitMask = 268435456,
-    kSelectorAllLargeData = 255,
-    kSelectorAllSmallData = 65280,
-    kSelectorAllMiniData = 16711680,
-    kSelectorAllHugeData = -16777216,
-    kSelectorAll1BitData = 16843009,
-    kSelectorAll4BitData = 33686018,
-    kSelectorAll8BitData = 67372036,
-    kSelectorAll32BitData = 134219784,
-    kSelectorAllAvailableData = -1,
+    SelectorLarge1Bit = 1,
+    SelectorLarge4Bit = 2,
+    SelectorLarge8Bit = 4,
+    SelectorLarge32Bit = 8,
+    SelectorLarge8BitMask = 16,
+    SelectorSmall1Bit = 256,
+    SelectorSmall4Bit = 512,
+    SelectorSmall8Bit = 1024,
+    SelectorSmall32Bit = 2048,
+    SelectorSmall8BitMask = 4096,
+    SelectorMini1Bit = 65536,
+    SelectorMini4Bit = 131072,
+    SelectorMini8Bit = 262144,
+    SelectorHuge1Bit = 16777216,
+    SelectorHuge4Bit = 33554432,
+    SelectorHuge8Bit = 67108864,
+    SelectorHuge32Bit = 134217728,
+    SelectorHuge8BitMask = 268435456,
+    SelectorAllLargeData = 255,
+    SelectorAllSmallData = 65280,
+    SelectorAllMiniData = 16711680,
+    SelectorAllHugeData = -16777216,
+    SelectorAll1BitData = 16843009,
+    SelectorAll4BitData = 33686018,
+    SelectorAll8BitData = 67372036,
+    SelectorAll32BitData = 134219784,
+    SelectorAllAvailableData = -1,
 };
 
 pub const anon1381 = enum(u32) {
@@ -69,37 +70,37 @@ pub const anon1381 = enum(u32) {
 };
 
 pub const anon391 = enum(objc.OSType) {
-    kTextToSpeechSynthType = 1953788771,
-    kTextToSpeechVoiceType = 1953789540,
-    kTextToSpeechVoiceFileType = 1953789542,
-    kTextToSpeechVoiceBundleType = 1953789538,
+    TextToSpeechSynthType = 1953788771,
+    TextToSpeechVoiceType = 1953789540,
+    TextToSpeechVoiceFileType = 1953789542,
+    TextToSpeechVoiceBundleType = 1953789538,
 };
 
 pub const anon441 = enum(u32) {
-    kATSUDataStreamUnicodeStyledText = 1970500716,
+    ATSUDataStreamUnicodeStyledText = 1970500716,
 };
 
 pub const anon711 = enum(u32) {
-    kUAZoomFocusTypeOther = 0,
-    kUAZoomFocusTypeInsertionPoint = 1,
+    UAZoomFocusTypeOther = 0,
+    UAZoomFocusTypeInsertionPoint = 1,
 };
 
 pub const anon881 = enum(u32) {
-    kTransformNone = 0,
-    kTransformDisabled = 1,
-    kTransformOffline = 2,
-    kTransformOpen = 3,
-    kTransformLabel1 = 256,
-    kTransformLabel2 = 512,
-    kTransformLabel3 = 768,
-    kTransformLabel4 = 1024,
-    kTransformLabel5 = 1280,
-    kTransformLabel6 = 1536,
-    kTransformLabel7 = 1792,
-    kTransformSelected = 16384,
-    kTransformSelectedDisabled = 16385,
-    kTransformSelectedOffline = 16386,
-    kTransformSelectedOpen = 16387,
+    TransformNone = 0,
+    TransformDisabled = 1,
+    TransformOffline = 2,
+    TransformOpen = 3,
+    TransformLabel1 = 256,
+    TransformLabel2 = 512,
+    TransformLabel3 = 768,
+    TransformLabel4 = 1024,
+    TransformLabel5 = 1280,
+    TransformLabel6 = 1536,
+    TransformLabel7 = 1792,
+    TransformSelected = 16384,
+    TransformSelectedDisabled = 16385,
+    TransformSelectedOffline = 16386,
+    TransformSelectedOpen = 16387,
 };
 
 pub const anon1121 = enum(u32) {
@@ -123,18 +124,18 @@ pub const anon1121 = enum(u32) {
 };
 
 pub const anon1391 = enum(u32) {
-    kPMLayoutLeftRightTopBottom = 1,
-    kPMLayoutLeftRightBottomTop = 2,
-    kPMLayoutRightLeftTopBottom = 3,
-    kPMLayoutRightLeftBottomTop = 4,
-    kPMLayoutTopBottomLeftRight = 5,
-    kPMLayoutTopBottomRightLeft = 6,
-    kPMLayoutBottomTopLeftRight = 7,
-    kPMLayoutBottomTopRightLeft = 8,
+    PMLayoutLeftRightTopBottom = 1,
+    PMLayoutLeftRightBottomTop = 2,
+    PMLayoutRightLeftTopBottom = 3,
+    PMLayoutRightLeftBottomTop = 4,
+    PMLayoutTopBottomLeftRight = 5,
+    PMLayoutTopBottomRightLeft = 6,
+    PMLayoutBottomTopLeftRight = 7,
+    PMLayoutBottomTopRightLeft = 8,
 };
 
 pub const anon4001 = enum(u32) {
-    kATSFlattenedFontSpecifierRawNameData = 1851878756,
+    ATSFlattenedFontSpecifierRawNameData = 1851878756,
 };
 
 pub const anon731 = enum(i32) {
@@ -153,11 +154,11 @@ pub const anon731 = enum(i32) {
 };
 
 pub const anon1501 = enum(u32) {
-    kICNilProfileID = 0,
+    ICNilProfileID = 0,
 };
 
 pub const anon2511 = enum(u32) {
-    kICFileSpecHeaderSize = 106,
+    ICFileSpecHeaderSize = 106,
 };
 
 pub const anon3451 = enum(u32) {
@@ -194,21 +195,21 @@ pub const anon3451 = enum(u32) {
 };
 
 pub const anon12291 = enum(u32) {
-    kATSUUseLineControlWidth = 2147483647,
+    ATSUUseLineControlWidth = 2147483647,
 };
 
 pub const anon1191 = enum(u32) {
-    kPMScalingPinTopLeft = 1,
-    kPMScalingPinTopRight = 2,
-    kPMScalingPinBottomLeft = 3,
-    kPMScalingPinBottomRight = 4,
-    kPMScalingCenterOnPaper = 5,
-    kPMScalingCenterOnImgArea = 6,
+    PMScalingPinTopLeft = 1,
+    PMScalingPinTopRight = 2,
+    PMScalingPinBottomLeft = 3,
+    PMScalingPinBottomRight = 4,
+    PMScalingCenterOnPaper = 5,
+    PMScalingCenterOnImgArea = 6,
 };
 
 pub const anon1541 = enum(u32) {
-    kATSULayoutOperationCallbackStatusHandled = 0,
-    kATSULayoutOperationCallbackStatusContinue = 1,
+    ATSULayoutOperationCallbackStatusHandled = 0,
+    ATSULayoutOperationCallbackStatusContinue = 1,
 };
 
 pub const anon1591 = enum(u32) {
@@ -231,17 +232,17 @@ pub const anon1591 = enum(u32) {
 };
 
 pub const anon2821 = enum(u32) {
-    kICMapBinaryBit = 0,
-    kICMapResourceForkBit = 1,
-    kICMapDataForkBit = 2,
-    kICMapPostBit = 3,
-    kICMapNotIncomingBit = 4,
-    kICMapNotOutgoingBit = 5,
+    ICMapBinaryBit = 0,
+    ICMapResourceForkBit = 1,
+    ICMapDataForkBit = 2,
+    ICMapPostBit = 3,
+    ICMapNotIncomingBit = 4,
+    ICMapNotOutgoingBit = 5,
 };
 
 pub const anon3131 = enum(u32) {
-    kICServicesTCPBit = 0,
-    kICServicesUDPBit = 1,
+    ICServicesTCPBit = 0,
+    ICServicesUDPBit = 1,
 };
 
 pub const anon3331 = enum(u32) {
@@ -256,7 +257,7 @@ pub const anon3331 = enum(u32) {
 };
 
 pub const anon3411 = enum(u32) {
-    kATSDeletedGlyphcode = 65535,
+    ATSDeletedGlyphcode = 65535,
 };
 
 pub const anon3791 = enum(u32) {
@@ -278,9 +279,9 @@ pub const anon3991 = enum(u32) {
 };
 
 pub const anon461 = enum(objc.SInt32) {
-    kNoEndingProsody = 1,
-    kNoSpeechInterrupt = 2,
-    kPreflightThenPause = 4,
+    NoEndingProsody = 1,
+    NoSpeechInterrupt = 2,
+    PreflightThenPause = 4,
 };
 
 pub const anon511 = enum(u32) {
@@ -288,17 +289,17 @@ pub const anon511 = enum(u32) {
 };
 
 pub const anon571 = enum(u32) {
-    kATSOptionFlagsDefault = 0,
-    kATSOptionFlagsComposeFontPostScriptName = 1,
-    kATSOptionFlagsUseDataForkAsResourceFork = 256,
-    kATSOptionFlagsUseResourceFork = 512,
-    kATSOptionFlagsUseDataFork = 768,
+    ATSOptionFlagsDefault = 0,
+    ATSOptionFlagsComposeFontPostScriptName = 1,
+    ATSOptionFlagsUseDataForkAsResourceFork = 256,
+    ATSOptionFlagsUseResourceFork = 512,
+    ATSOptionFlagsUseDataFork = 768,
 };
 
 pub const anon751 = enum(u32) {
-    kPMPrinterIdle = 3,
-    kPMPrinterProcessing = 4,
-    kPMPrinterStopped = 5,
+    PMPrinterIdle = 3,
+    PMPrinterProcessing = 4,
+    PMPrinterStopped = 5,
 };
 
 pub const anon1691 = enum(u32) {
@@ -314,29 +315,29 @@ pub const anon981 = enum(objc.OSType) {
 };
 
 pub const anon5121 = enum(u32) {
-    kSetFrontProcessFrontWindowOnly = 1,
-    kSetFrontProcessCausedByUser = 2,
+    SetFrontProcessFrontWindowOnly = 1,
+    SetFrontProcessCausedByUser = 2,
 };
 
 pub const anon7791 = enum(u32) {
-    kATSUStronglyHorizontal = 0,
-    kATSUStronglyVertical = 1,
+    ATSUStronglyHorizontal = 0,
+    ATSUStronglyVertical = 1,
 };
 
 pub const anon9191 = enum(u32) {
-    kGlyphCollectionGID = 0,
-    kGlyphCollectionAdobeCNS1 = 1,
-    kGlyphCollectionAdobeGB1 = 2,
-    kGlyphCollectionAdobeJapan1 = 3,
-    kGlyphCollectionAdobeJapan2 = 4,
-    kGlyphCollectionAdobeKorea1 = 5,
-    kGlyphCollectionUnspecified = 255,
+    GlyphCollectionGID = 0,
+    GlyphCollectionAdobeCNS1 = 1,
+    GlyphCollectionAdobeGB1 = 2,
+    GlyphCollectionAdobeJapan1 = 3,
+    GlyphCollectionAdobeJapan2 = 4,
+    GlyphCollectionAdobeKorea1 = 5,
+    GlyphCollectionUnspecified = 255,
 };
 
 pub const anon9321 = enum(u32) {
-    kPlotIconRefNormalFlags = 0,
-    kPlotIconRefNoImage = 2,
-    kPlotIconRefNoMask = 4,
+    PlotIconRefNormalFlags = 0,
+    PlotIconRefNoImage = 2,
+    PlotIconRefNoMask = 4,
 };
 
 pub const anon14521 = enum(u32) {
@@ -409,11 +410,11 @@ pub const anon18681 = enum(i32) {
 };
 
 pub const anon821 = enum(u32) {
-    kPMUnknownColorSpaceModel = 0,
-    kPMGrayColorSpaceModel = 1,
-    kPMRGBColorSpaceModel = 2,
-    kPMCMYKColorSpaceModel = 3,
-    kPMDevNColorSpaceModel = 4,
+    PMUnknownColorSpaceModel = 0,
+    PMGrayColorSpaceModel = 1,
+    PMRGBColorSpaceModel = 2,
+    PMCMYKColorSpaceModel = 3,
+    PMDevNColorSpaceModel = 4,
 };
 
 pub const anon451 = enum(u32) {
@@ -426,10 +427,10 @@ pub const anon451 = enum(u32) {
 };
 
 pub const anon1041 = enum(u32) {
-    kATSFlatDataUstlVersion0 = 0,
-    kATSFlatDataUstlVersion1 = 1,
-    kATSFlatDataUstlVersion2 = 2,
-    kATSFlatDataUstlCurrentVersion = 2,
+    ATSFlatDataUstlVersion0 = 0,
+    ATSFlatDataUstlVersion1 = 1,
+    ATSFlatDataUstlVersion2 = 2,
+    ATSFlatDataUstlCurrentVersion = 2,
 };
 
 pub const anon1201 = enum(i32) {
@@ -437,7 +438,7 @@ pub const anon1201 = enum(i32) {
 };
 
 pub const anon551 = enum(u32) {
-    kATSUFlattenOptionNoOptionsMask = 0,
+    ATSUFlattenOptionNoOptionsMask = 0,
 };
 
 pub const anon671 = enum(u32) {
@@ -460,27 +461,27 @@ pub const anon671 = enum(u32) {
 };
 
 pub const anon1161 = enum(i32) {
-    kInvalidGeneration = 0,
-    kInvalidFontFamily = -1,
-    kInvalidFont = 0,
+    InvalidGeneration = 0,
+    InvalidFontFamily = -1,
+    InvalidFont = 0,
 };
 
 pub const anon1251 = enum(objc.UInt32) {
-    kAudioUnitSubType_SpeechSynthesis = 1953788784,
-    kAudioUnitProperty_Voice = 3330,
-    kAudioUnitProperty_SpeechChannel = 3331,
+    AudioUnitSubType_SpeechSynthesis = 1953788784,
+    AudioUnitProperty_Voice = 3330,
+    AudioUnitProperty_SpeechChannel = 3331,
 };
 
 pub const anon1301 = enum(u32) {
-    kPMDuplexNone = 1,
-    kPMDuplexNoTumble = 2,
-    kPMDuplexTumble = 3,
-    kPMSimplexTumble = 4,
+    PMDuplexNone = 1,
+    PMDuplexNoTumble = 2,
+    PMDuplexTumble = 3,
+    PMSimplexTumble = 4,
 };
 
 pub const anon1371 = enum(u32) {
-    kFMTrueTypeFontTechnology = 1953658213,
-    kFMPostScriptFontTechnology = 1954115633,
+    FMTrueTypeFontTechnology = 1953658213,
+    FMPostScriptFontTechnology = 1954115633,
 };
 
 pub const anon2211 = enum(u32) {
@@ -492,37 +493,37 @@ pub const anon2211 = enum(u32) {
 };
 
 pub const anon2911 = enum(u32) {
-    kICMapBinaryMask = 1,
-    kICMapResourceForkMask = 2,
-    kICMapDataForkMask = 4,
-    kICMapPostMask = 8,
-    kICMapNotIncomingMask = 16,
-    kICMapNotOutgoingMask = 32,
+    ICMapBinaryMask = 1,
+    ICMapResourceForkMask = 2,
+    ICMapDataForkMask = 4,
+    ICMapPostMask = 8,
+    ICMapNotIncomingMask = 16,
+    ICMapNotOutgoingMask = 32,
 };
 
 pub const anon3181 = enum(u32) {
-    kICServicesTCPMask = 1,
-    kICServicesUDPMask = 2,
+    ICServicesTCPMask = 1,
+    ICServicesUDPMask = 2,
 };
 
 pub const anon3301 = enum(u32) {
-    kATSCubicCurveType = 1,
-    kATSQuadCurveType = 2,
-    kATSOtherCurveType = 3,
+    ATSCubicCurveType = 1,
+    ATSQuadCurveType = 2,
+    ATSOtherCurveType = 3,
 };
 
 pub const anon8151 = enum(u32) {
-    kATSUDefaultFontFallbacks = 0,
-    kATSULastResortOnlyFallback = 1,
-    kATSUSequentialFallbacksPreferred = 2,
-    kATSUSequentialFallbacksExclusive = 3,
+    ATSUDefaultFontFallbacks = 0,
+    ATSULastResortOnlyFallback = 1,
+    ATSUSequentialFallbacksPreferred = 2,
+    ATSUSequentialFallbacksExclusive = 3,
 };
 
 pub const anon661 = enum(u32) {
-    kPMPortrait = 1,
-    kPMLandscape = 2,
-    kPMReversePortrait = 3,
-    kPMReverseLandscape = 4,
+    PMPortrait = 1,
+    PMLandscape = 2,
+    PMReversePortrait = 3,
+    PMReverseLandscape = 4,
 };
 
 pub const anon911 = enum(u32) {
@@ -586,66 +587,66 @@ pub const anon2721 = enum(u32) {
 };
 
 pub const anon2761 = enum(i32) {
-    kProcessDictionaryIncludeAllInformationMask = -1,
+    ProcessDictionaryIncludeAllInformationMask = -1,
 };
 
 pub const anon2871 = enum(u32) {
-    kATSFontFormatUnspecified = 0,
+    ATSFontFormatUnspecified = 0,
 };
 
 pub const anon3221 = enum(u32) {
-    kATSItalicQDSkew = 16384,
-    kATSBoldQDStretch = 98304,
-    kATSRadiansFactor = 1144,
+    ATSItalicQDSkew = 16384,
+    ATSBoldQDStretch = 98304,
+    ATSRadiansFactor = 1144,
 };
 
 pub const anon1651 = enum(u32) {
-    kPMHideInlineItems = 0,
-    kPMShowDefaultInlineItems = 32768,
-    kPMShowInlineCopies = 1,
-    kPMShowInlinePageRange = 2,
-    kPMShowInlinePageRangeWithSelection = 64,
-    kPMShowInlinePaperSize = 4,
-    kPMShowInlineOrientation = 8,
-    kPMShowInlineScale = 128,
-    kPMShowPageAttributesPDE = 256,
+    PMHideInlineItems = 0,
+    PMShowDefaultInlineItems = 32768,
+    PMShowInlineCopies = 1,
+    PMShowInlinePageRange = 2,
+    PMShowInlinePageRangeWithSelection = 64,
+    PMShowInlinePaperSize = 4,
+    PMShowInlineOrientation = 8,
+    PMShowInlineScale = 128,
+    PMShowPageAttributesPDE = 256,
 };
 
 pub const anon1111 = enum(u32) {
-    k1MonochromePixelFormat = 1,
-    k2IndexedPixelFormat = 2,
-    k4IndexedPixelFormat = 4,
-    k8IndexedPixelFormat = 8,
-    k16BE555PixelFormat = 16,
-    k24RGBPixelFormat = 24,
-    k32ARGBPixelFormat = 32,
-    k1IndexedGrayPixelFormat = 33,
-    k2IndexedGrayPixelFormat = 34,
-    k4IndexedGrayPixelFormat = 36,
-    k8IndexedGrayPixelFormat = 40,
-    k16LE555PixelFormat = 1278555445,
-    k16LE5551PixelFormat = 892679473,
-    k16BE565PixelFormat = 1110783541,
-    k16LE565PixelFormat = 1278555701,
-    k24BGRPixelFormat = 842285639,
-    k32BGRAPixelFormat = 1111970369,
-    k32ABGRPixelFormat = 1094862674,
-    k32RGBAPixelFormat = 1380401729,
-    kYUVSPixelFormat = 2037741171,
-    kYUVUPixelFormat = 2037741173,
-    kYVU9PixelFormat = 1498830137,
-    kYUV411PixelFormat = 1496592689,
-    kYVYU422PixelFormat = 1498831189,
-    kUYVY422PixelFormat = 1431918169,
-    kYUV211PixelFormat = 1496461617,
-    k2vuyPixelFormat = 846624121,
+    _1MonochromePixelFormat = 1,
+    _2IndexedPixelFormat = 2,
+    _4IndexedPixelFormat = 4,
+    _8IndexedPixelFormat = 8,
+    _16BE555PixelFormat = 16,
+    _24RGBPixelFormat = 24,
+    _32ARGBPixelFormat = 32,
+    _1IndexedGrayPixelFormat = 33,
+    _2IndexedGrayPixelFormat = 34,
+    _4IndexedGrayPixelFormat = 36,
+    _8IndexedGrayPixelFormat = 40,
+    _16LE555PixelFormat = 1278555445,
+    _16LE5551PixelFormat = 892679473,
+    _16BE565PixelFormat = 1110783541,
+    _16LE565PixelFormat = 1278555701,
+    _24BGRPixelFormat = 842285639,
+    _32BGRAPixelFormat = 1111970369,
+    _32ABGRPixelFormat = 1094862674,
+    _32RGBAPixelFormat = 1380401729,
+    YUVSPixelFormat = 2037741171,
+    YUVUPixelFormat = 2037741173,
+    YVU9PixelFormat = 1498830137,
+    YUV411PixelFormat = 1496592689,
+    YVYU422PixelFormat = 1498831189,
+    UYVY422PixelFormat = 1431918169,
+    YUV211PixelFormat = 1496461617,
+    _2vuyPixelFormat = 846624121,
 };
 
 pub const anon1531 = enum(u32) {
-    kPMBorderSingleHairline = 1,
-    kPMBorderDoubleHairline = 2,
-    kPMBorderSingleThickline = 3,
-    kPMBorderDoubleThickline = 4,
+    PMBorderSingleHairline = 1,
+    PMBorderDoubleHairline = 2,
+    PMBorderSingleThickline = 3,
+    PMBorderDoubleThickline = 4,
 };
 
 pub const anon1631 = enum(u32) {
@@ -654,21 +655,21 @@ pub const anon1631 = enum(u32) {
 };
 
 pub const anon1731 = enum(u32) {
-    kInternetEventClass = 1196773964,
-    kAEGetURL = 1196773964,
-    kAEFetchURL = 1179996748,
-    keyAEAttaching = 1098146664,
+    InternetEventClass = 1196773964,
+    AEGetURL = 1196773964,
+    AEFetchURL = 1179996748,
+    eyAEAttaching = 1098146664,
 };
 
 pub const anon831 = enum(u32) {
-    kATSOptionFlagsActivateDisabled = 32,
-    kATSOptionFlagsProcessSubdirectories = 64,
-    kATSOptionFlagsDoNotNotify = 128,
-    kATSOptionFlagsRecordPersistently = 262144,
+    ATSOptionFlagsActivateDisabled = 32,
+    ATSOptionFlagsProcessSubdirectories = 64,
+    ATSOptionFlagsDoNotNotify = 128,
+    ATSOptionFlagsRecordPersistently = 262144,
 };
 
 pub const anon1611 = enum(u32) {
-    kICNoUserInteractionMask = 1,
+    ICNoUserInteractionMask = 1,
 };
 
 pub const anon621 = enum(objc.OSType) {
@@ -704,13 +705,13 @@ pub const anon621 = enum(objc.OSType) {
 };
 
 pub const anon1221 = enum(u32) {
-    kFMCurrentFilterFormat = 0,
+    FMCurrentFilterFormat = 0,
 };
 
 pub const anon1811 = enum(u32) {
-    kICEditPreferenceEventClass = 1229144432,
-    kICEditPreferenceEvent = 1229144432,
-    keyICEditPreferenceDestination = 1684370292,
+    ICEditPreferenceEventClass = 1229144432,
+    ICEditPreferenceEvent = 1229144432,
+    eyICEditPreferenceDestination = 1684370292,
 };
 
 pub const anon3001 = enum(u32) {
@@ -727,19 +728,19 @@ pub const anon761 = enum(u32) {
 };
 
 pub const anon941 = enum(u32) {
-    kPMQualityLowest = 0,
-    kPMQualityInkSaver = 1,
-    kPMQualityDraft = 4,
-    kPMQualityNormal = 8,
-    kPMQualityPhoto = 11,
-    kPMQualityBest = 13,
-    kPMQualityHighest = 15,
+    PMQualityLowest = 0,
+    PMQualityInkSaver = 1,
+    PMQualityDraft = 4,
+    PMQualityNormal = 8,
+    PMQualityPhoto = 11,
+    PMQualityBest = 13,
+    PMQualityHighest = 15,
 };
 
 pub const anon1281 = enum(u32) {
-    kICAttrNoChange = -1,
-    kICAttrLockedMask = 1,
-    kICAttrVolatileMask = 2,
+    ICAttrNoChange = -1,
+    ICAttrLockedMask = 1,
+    ICAttrVolatileMask = 2,
 };
 
 pub const anon1741 = enum(u32) {
@@ -789,10 +790,10 @@ pub const anon1741 = enum(u32) {
 };
 
 pub const anon2201 = enum(i32) {
-    kPMInvalidPrintSession = -30879,
-    kPMInvalidPrinter = -30880,
-    kPMObjectInUse = -30881,
-    kPMInvalidPreset = -30899,
+    PMInvalidPrintSession = -30879,
+    PMInvalidPrinter = -30880,
+    PMObjectInUse = -30881,
+    PMInvalidPreset = -30899,
 };
 
 pub const anon8331 = enum(u32) {
@@ -808,7 +809,7 @@ pub const anon8751 = enum(u32) {
     updateDev = 4,
     activDev = 5,
     deactivDev = 6,
-    keyEvtDev = 7,
+    eyEvtDev = 7,
     macDev = 8,
     undoDev = 9,
     cutDev = 10,
@@ -819,19 +820,19 @@ pub const anon8751 = enum(u32) {
 };
 
 pub const anon2781 = enum(u32) {
-    kICMapFixedLength = 22,
+    ICMapFixedLength = 22,
 };
 
 pub const anon2921 = enum(u32) {
-    kQuitBeforeNormalTimeMask = 1,
-    kQuitAtNormalTimeMask = 2,
-    kQuitBeforeFBAsQuitMask = 4,
-    kQuitBeforeShellQuitsMask = 8,
-    kQuitBeforeTerminatorAppQuitsMask = 16,
-    kQuitNeverMask = 32,
-    kQuitOptionsMask = 127,
-    kQuitNotQuitDuringInstallMask = 256,
-    kQuitNotQuitDuringLogoutMask = 512,
+    QuitBeforeNormalTimeMask = 1,
+    QuitAtNormalTimeMask = 2,
+    QuitBeforeFBAsQuitMask = 4,
+    QuitBeforeShellQuitsMask = 8,
+    QuitBeforeTerminatorAppQuitsMask = 16,
+    QuitNeverMask = 32,
+    QuitOptionsMask = 127,
+    QuitNotQuitDuringInstallMask = 256,
+    QuitNotQuitDuringLogoutMask = 512,
 };
 
 pub const anon851 = enum(i32) {
@@ -840,13 +841,13 @@ pub const anon851 = enum(i32) {
 };
 
 pub const anon1901 = enum(u32) {
-    kICComponentVersion = 0,
-    kICNumVersion = 1,
+    ICComponentVersion = 0,
+    ICNumVersion = 1,
 };
 
 pub const anon10431 = enum(u32) {
-    kATSUBackgroundColor = 0,
-    kATSUBackgroundCallback = 1,
+    ATSUBackgroundColor = 0,
+    ATSUBackgroundCallback = 1,
 };
 
 pub const anon1021 = enum(i32) {
@@ -860,203 +861,203 @@ pub const anon1021 = enum(i32) {
 };
 
 pub const anon1151 = enum(objc.SInt32) {
-    kSpeechGenerateTune = 1,
-    kSpeechRelativePitch = 2,
-    kSpeechRelativeDuration = 4,
-    kSpeechShowSyllables = 8,
+    SpeechGenerateTune = 1,
+    SpeechRelativePitch = 2,
+    SpeechRelativeDuration = 4,
+    SpeechShowSyllables = 8,
 };
 
 pub const anon1561 = enum(u32) {
-    kPMCoverPageNone = 1,
-    kPMCoverPageBefore = 2,
-    kPMCoverPageAfter = 3,
+    PMCoverPageNone = 1,
+    PMCoverPageBefore = 2,
+    PMCoverPageAfter = 3,
 };
 
 pub const anon8681 = enum(u32) {
-    kATSULeftTab = 0,
-    kATSUCenterTab = 1,
-    kATSURightTab = 2,
-    kATSUDecimalTab = 3,
-    kATSUNumberTabTypes = 4,
+    ATSULeftTab = 0,
+    ATSUCenterTab = 1,
+    ATSURightTab = 2,
+    ATSUDecimalTab = 3,
+    ATSUNumberTabTypes = 4,
 };
 
 pub const anon541 = enum(u32) {
-    kPMDestinationInvalid = 0,
-    kPMDestinationPrinter = 1,
-    kPMDestinationFile = 2,
-    kPMDestinationFax = 3,
-    kPMDestinationPreview = 4,
-    kPMDestinationProcessPDF = 5,
+    PMDestinationInvalid = 0,
+    PMDestinationPrinter = 1,
+    PMDestinationFile = 2,
+    PMDestinationFax = 3,
+    PMDestinationPreview = 4,
+    PMDestinationProcessPDF = 5,
 };
 
 pub const anon351 = enum(i32) {
-    kPMAllocationFailure = -108,
-    kPMInternalError = -30870,
-    kPMInvalidIndex = -30882,
-    kPMStringConversionFailure = -30883,
-    kPMXMLParseError = -30884,
-    kPMInvalidJobTemplate = -30885,
-    kPMInvalidPrinterInfo = -30886,
-    kPMInvalidConnection = -30887,
-    kPMInvalidKey = -30888,
-    kPMInvalidValue = -30889,
-    kPMInvalidAllocator = -30890,
-    kPMInvalidTicket = -30891,
-    kPMInvalidItem = -30892,
-    kPMInvalidType = -30893,
-    kPMInvalidReply = -30894,
-    kPMInvalidFileType = -30895,
-    kPMInvalidObject = -30896,
-    kPMInvalidPaper = -30897,
-    kPMInvalidCalibrationTarget = -30898,
-    kPMNoDefaultItem = -9500,
-    kPMNoDefaultSettings = -9501,
-    kPMInvalidPDEContext = -9530,
-    kPMDontSwitchPDEError = -9531,
-    kPMUnableToFindProcess = -9532,
-    kPMFeatureNotInstalled = -9533,
-    kPMInvalidPBMRef = -9540,
-    kPMNoSelectedPrinters = -9541,
-    kPMInvalidLookupSpec = -9542,
-    kPMSyncRequestFailed = -9543,
-    kPMEditRequestFailed = -9544,
-    kPMPrBrowserNoUI = -9545,
-    kPMTicketTypeNotFound = -9580,
-    kPMUpdateTicketFailed = -9581,
-    kPMValidateTicketFailed = -9582,
-    kPMSubTicketNotFound = -9583,
-    kPMInvalidSubTicket = -9584,
-    kPMDeleteSubTicketFailed = -9585,
-    kPMItemIsLocked = -9586,
-    kPMTicketIsLocked = -9587,
-    kPMTemplateIsLocked = -9588,
-    kPMKeyNotFound = -9589,
-    kPMKeyNotUnique = -9590,
-    kPMUnknownDataType = -9591,
-    kPMCreateMessageFailed = -9620,
-    kPMServerCommunicationFailed = -9621,
-    kPMKeyOrValueNotFound = -9623,
-    kPMMessagingError = -9624,
-    kPMServerNotFound = -9630,
-    kPMServerAlreadyRunning = -9631,
-    kPMServerSuspended = -9632,
-    kPMServerAttributeRestricted = -9633,
-    kPMFileOrDirOperationFailed = -9634,
-    kPMUserOrGroupNotFound = -9635,
-    kPMPermissionError = -9636,
-    kPMUnknownMessage = -9637,
-    kPMQueueNotFound = -9638,
-    kPMQueueAlreadyExists = -9639,
-    kPMQueueJobFailed = -9640,
-    kPMJobNotFound = -9641,
-    kPMJobBusy = -9642,
-    kPMJobCanceled = -9643,
-    kPMDocumentNotFound = -9644,
-    kPMPMSymbolNotFound = -9660,
-    kPMIOMSymbolNotFound = -9661,
-    kPMCVMSymbolNotFound = -9662,
-    kPMInvalidPMContext = -9663,
-    kPMInvalidIOMContext = -9664,
-    kPMInvalidCVMContext = -9665,
-    kPMInvalidJobID = -9666,
-    kPMNoPrinterJobID = -9667,
-    kPMJobStreamOpenFailed = -9668,
-    kPMJobStreamReadFailed = -9669,
-    kPMJobStreamEndError = -9670,
-    kPMJobManagerAborted = -9671,
-    kPMJobGetTicketBadFormatError = -9672,
-    kPMJobGetTicketReadError = -9673,
-    kPMPluginNotFound = -9701,
-    kPMPluginRegisterationFailed = -9702,
-    kPMFontNotFound = -9703,
-    kPMFontNameTooLong = -9704,
-    kPMGeneralCGError = -9705,
-    kPMInvalidState = -9706,
-    kPMUnexpectedImagingError = -9707,
-    kPMInvalidPrinterAddress = -9780,
-    kPMOpenFailed = -9781,
-    kPMReadFailed = -9782,
-    kPMWriteFailed = -9783,
-    kPMStatusFailed = -9784,
-    kPMCloseFailed = -9785,
-    kPMUnsupportedConnection = -9786,
-    kPMIOAttrNotAvailable = -9787,
-    kPMReadGotZeroData = -9788,
-    kPMLastErrorCodeToMakeMaintenanceOfThisListEasier = -9799,
+    PMAllocationFailure = -108,
+    PMInternalError = -30870,
+    PMInvalidIndex = -30882,
+    PMStringConversionFailure = -30883,
+    PMXMLParseError = -30884,
+    PMInvalidJobTemplate = -30885,
+    PMInvalidPrinterInfo = -30886,
+    PMInvalidConnection = -30887,
+    PMInvalidKey = -30888,
+    PMInvalidValue = -30889,
+    PMInvalidAllocator = -30890,
+    PMInvalidTicket = -30891,
+    PMInvalidItem = -30892,
+    PMInvalidType = -30893,
+    PMInvalidReply = -30894,
+    PMInvalidFileType = -30895,
+    PMInvalidObject = -30896,
+    PMInvalidPaper = -30897,
+    PMInvalidCalibrationTarget = -30898,
+    PMNoDefaultItem = -9500,
+    PMNoDefaultSettings = -9501,
+    PMInvalidPDEContext = -9530,
+    PMDontSwitchPDEError = -9531,
+    PMUnableToFindProcess = -9532,
+    PMFeatureNotInstalled = -9533,
+    PMInvalidPBMRef = -9540,
+    PMNoSelectedPrinters = -9541,
+    PMInvalidLookupSpec = -9542,
+    PMSyncRequestFailed = -9543,
+    PMEditRequestFailed = -9544,
+    PMPrBrowserNoUI = -9545,
+    PMTicketTypeNotFound = -9580,
+    PMUpdateTicketFailed = -9581,
+    PMValidateTicketFailed = -9582,
+    PMSubTicketNotFound = -9583,
+    PMInvalidSubTicket = -9584,
+    PMDeleteSubTicketFailed = -9585,
+    PMItemIsLocked = -9586,
+    PMTicketIsLocked = -9587,
+    PMTemplateIsLocked = -9588,
+    PMKeyNotFound = -9589,
+    PMKeyNotUnique = -9590,
+    PMUnknownDataType = -9591,
+    PMCreateMessageFailed = -9620,
+    PMServerCommunicationFailed = -9621,
+    PMKeyOrValueNotFound = -9623,
+    PMMessagingError = -9624,
+    PMServerNotFound = -9630,
+    PMServerAlreadyRunning = -9631,
+    PMServerSuspended = -9632,
+    PMServerAttributeRestricted = -9633,
+    PMFileOrDirOperationFailed = -9634,
+    PMUserOrGroupNotFound = -9635,
+    PMPermissionError = -9636,
+    PMUnknownMessage = -9637,
+    PMQueueNotFound = -9638,
+    PMQueueAlreadyExists = -9639,
+    PMQueueJobFailed = -9640,
+    PMJobNotFound = -9641,
+    PMJobBusy = -9642,
+    PMJobCanceled = -9643,
+    PMDocumentNotFound = -9644,
+    PMPMSymbolNotFound = -9660,
+    PMIOMSymbolNotFound = -9661,
+    PMCVMSymbolNotFound = -9662,
+    PMInvalidPMContext = -9663,
+    PMInvalidIOMContext = -9664,
+    PMInvalidCVMContext = -9665,
+    PMInvalidJobID = -9666,
+    PMNoPrinterJobID = -9667,
+    PMJobStreamOpenFailed = -9668,
+    PMJobStreamReadFailed = -9669,
+    PMJobStreamEndError = -9670,
+    PMJobManagerAborted = -9671,
+    PMJobGetTicketBadFormatError = -9672,
+    PMJobGetTicketReadError = -9673,
+    PMPluginNotFound = -9701,
+    PMPluginRegisterationFailed = -9702,
+    PMFontNotFound = -9703,
+    PMFontNameTooLong = -9704,
+    PMGeneralCGError = -9705,
+    PMInvalidState = -9706,
+    PMUnexpectedImagingError = -9707,
+    PMInvalidPrinterAddress = -9780,
+    PMOpenFailed = -9781,
+    PMReadFailed = -9782,
+    PMWriteFailed = -9783,
+    PMStatusFailed = -9784,
+    PMCloseFailed = -9785,
+    PMUnsupportedConnection = -9786,
+    PMIOAttrNotAvailable = -9787,
+    PMReadGotZeroData = -9788,
+    PMLastErrorCodeToMakeMaintenanceOfThisListEasier = -9799,
 };
 
 pub const anon1801 = enum(u32) {
-    kATSULineWidthTag = 1,
-    kATSULineRotationTag = 2,
-    kATSULineDirectionTag = 3,
-    kATSULineJustificationFactorTag = 4,
-    kATSULineFlushFactorTag = 5,
-    kATSULineBaselineValuesTag = 6,
-    kATSULineLayoutOptionsTag = 7,
-    kATSULineAscentTag = 8,
-    kATSULineDescentTag = 9,
-    kATSULineLangRegionTag = 10,
-    kATSULineTextLocatorTag = 11,
-    kATSULineTruncationTag = 12,
-    kATSULineFontFallbacksTag = 13,
-    kATSULineDecimalTabCharacterTag = 14,
-    kATSULayoutOperationOverrideTag = 15,
-    kATSULineHighlightCGColorTag = 17,
-    kATSUMaxLineTag = 18,
-    kATSULineLanguageTag = 10,
-    kATSUCGContextTag = 32767,
-    kATSUQDBoldfaceTag = 256,
-    kATSUQDItalicTag = 257,
-    kATSUQDUnderlineTag = 258,
-    kATSUQDCondensedTag = 259,
-    kATSUQDExtendedTag = 260,
-    kATSUFontTag = 261,
-    kATSUSizeTag = 262,
-    kATSUColorTag = 263,
-    kATSULangRegionTag = 264,
-    kATSUVerticalCharacterTag = 265,
-    kATSUImposeWidthTag = 266,
-    kATSUBeforeWithStreamShiftTag = 267,
-    kATSUAfterWithStreamShiftTag = 268,
-    kATSUCrossStreamShiftTag = 269,
-    kATSUTrackingTag = 270,
-    kATSUHangingInhibitFactorTag = 271,
-    kATSUKerningInhibitFactorTag = 272,
-    kATSUDecompositionFactorTag = 273,
-    kATSUBaselineClassTag = 274,
-    kATSUPriorityJustOverrideTag = 275,
-    kATSUNoLigatureSplitTag = 276,
-    kATSUNoCaretAngleTag = 277,
-    kATSUSuppressCrossKerningTag = 278,
-    kATSUNoOpticalAlignmentTag = 279,
-    kATSUForceHangingTag = 280,
-    kATSUNoSpecialJustificationTag = 281,
-    kATSUStyleTextLocatorTag = 282,
-    kATSUStyleRenderingOptionsTag = 283,
-    kATSUAscentTag = 284,
-    kATSUDescentTag = 285,
-    kATSULeadingTag = 286,
-    kATSUGlyphSelectorTag = 287,
-    kATSURGBAlphaColorTag = 288,
-    kATSUFontMatrixTag = 289,
-    kATSUStyleUnderlineCountOptionTag = 290,
-    kATSUStyleUnderlineColorOptionTag = 291,
-    kATSUStyleStrikeThroughTag = 292,
-    kATSUStyleStrikeThroughCountOptionTag = 293,
-    kATSUStyleStrikeThroughColorOptionTag = 294,
-    kATSUStyleDropShadowTag = 295,
-    kATSUStyleDropShadowBlurOptionTag = 296,
-    kATSUStyleDropShadowOffsetOptionTag = 297,
-    kATSUStyleDropShadowColorOptionTag = 298,
-    kATSUMaxStyleTag = 299,
-    kATSULanguageTag = 264,
-    kATSUMaxATSUITagValue = 65535,
+    ATSULineWidthTag = 1,
+    ATSULineRotationTag = 2,
+    ATSULineDirectionTag = 3,
+    ATSULineJustificationFactorTag = 4,
+    ATSULineFlushFactorTag = 5,
+    ATSULineBaselineValuesTag = 6,
+    ATSULineLayoutOptionsTag = 7,
+    ATSULineAscentTag = 8,
+    ATSULineDescentTag = 9,
+    ATSULineLangRegionTag = 10,
+    ATSULineTextLocatorTag = 11,
+    ATSULineTruncationTag = 12,
+    ATSULineFontFallbacksTag = 13,
+    ATSULineDecimalTabCharacterTag = 14,
+    ATSULayoutOperationOverrideTag = 15,
+    ATSULineHighlightCGColorTag = 17,
+    ATSUMaxLineTag = 18,
+    ATSULineLanguageTag = 10,
+    ATSUCGContextTag = 32767,
+    ATSUQDBoldfaceTag = 256,
+    ATSUQDItalicTag = 257,
+    ATSUQDUnderlineTag = 258,
+    ATSUQDCondensedTag = 259,
+    ATSUQDExtendedTag = 260,
+    ATSUFontTag = 261,
+    ATSUSizeTag = 262,
+    ATSUColorTag = 263,
+    ATSULangRegionTag = 264,
+    ATSUVerticalCharacterTag = 265,
+    ATSUImposeWidthTag = 266,
+    ATSUBeforeWithStreamShiftTag = 267,
+    ATSUAfterWithStreamShiftTag = 268,
+    ATSUCrossStreamShiftTag = 269,
+    ATSUTrackingTag = 270,
+    ATSUHangingInhibitFactorTag = 271,
+    ATSUKerningInhibitFactorTag = 272,
+    ATSUDecompositionFactorTag = 273,
+    ATSUBaselineClassTag = 274,
+    ATSUPriorityJustOverrideTag = 275,
+    ATSUNoLigatureSplitTag = 276,
+    ATSUNoCaretAngleTag = 277,
+    ATSUSuppressCrossKerningTag = 278,
+    ATSUNoOpticalAlignmentTag = 279,
+    ATSUForceHangingTag = 280,
+    ATSUNoSpecialJustificationTag = 281,
+    ATSUStyleTextLocatorTag = 282,
+    ATSUStyleRenderingOptionsTag = 283,
+    ATSUAscentTag = 284,
+    ATSUDescentTag = 285,
+    ATSULeadingTag = 286,
+    ATSUGlyphSelectorTag = 287,
+    ATSURGBAlphaColorTag = 288,
+    ATSUFontMatrixTag = 289,
+    ATSUStyleUnderlineCountOptionTag = 290,
+    ATSUStyleUnderlineColorOptionTag = 291,
+    ATSUStyleStrikeThroughTag = 292,
+    ATSUStyleStrikeThroughCountOptionTag = 293,
+    ATSUStyleStrikeThroughColorOptionTag = 294,
+    ATSUStyleDropShadowTag = 295,
+    ATSUStyleDropShadowBlurOptionTag = 296,
+    ATSUStyleDropShadowOffsetOptionTag = 297,
+    ATSUStyleDropShadowColorOptionTag = 298,
+    ATSUMaxStyleTag = 299,
+    ATSULanguageTag = 264,
+    ATSUMaxATSUITagValue = 65535,
 };
 
 pub const anon2191 = enum(u32) {
-    kNoConstraint = 0,
-    kVerticalConstraint = 1,
-    kHorizontalConstraint = 2,
+    NoConstraint = 0,
+    VerticalConstraint = 1,
+    HorizontalConstraint = 2,
 };
 
 pub const anon2621 = enum(u32) {
@@ -1068,27 +1069,27 @@ pub const anon2621 = enum(u32) {
 };
 
 pub const anon771 = enum(u32) {
-    kATSFontContextUnspecified = 0,
-    kATSFontContextGlobal = 1,
-    kATSFontContextLocal = 2,
+    ATSFontContextUnspecified = 0,
+    ATSFontContextGlobal = 1,
+    ATSFontContextLocal = 2,
 };
 
 pub const anon12141 = enum(i32) {
-    kNoTransform = 0,
-    kUseAtoB = 1,
-    kUseBtoA = 2,
-    kUseBtoB = 3,
-    kDeviceToPCS = 1,
-    kPCSToDevice = 2,
-    kPCSToPCS = 3,
-    kUseProfileIntent = -1,
+    NoTransform = 0,
+    UseAtoB = 1,
+    UseBtoA = 2,
+    UseBtoB = 3,
+    DeviceToPCS = 1,
+    PCSToDevice = 2,
+    PCSToPCS = 3,
+    UseProfileIntent = -1,
 };
 
 pub const anon14691 = enum(u32) {
-    kATSFontAutoActivationDefault = 0,
-    kATSFontAutoActivationDisabled = 1,
-    kATSFontAutoActivationEnabled = 2,
-    kATSFontAutoActivationAsk = 4,
+    ATSFontAutoActivationDefault = 0,
+    ATSFontAutoActivationDisabled = 1,
+    ATSFontAutoActivationEnabled = 2,
+    ATSFontAutoActivationAsk = 4,
 };
 
 pub const Point = core_foundation.CGPoint;
@@ -1189,14 +1190,14 @@ pub const GlyphID = GlyphRef;
 pub const ULayoutOperationSelector = objc.UInt32;
 
 pub const anon1031 = enum(u32) {
-    kATSULayoutOperationNone = 0,
-    kATSULayoutOperationJustification = 1,
-    kATSULayoutOperationMorph = 2,
-    kATSULayoutOperationKerningAdjustment = 4,
-    kATSULayoutOperationBaselineAdjustment = 8,
-    kATSULayoutOperationTrackingAdjustment = 16,
-    kATSULayoutOperationPostLayoutAdjustment = 32,
-    kATSULayoutOperationAppleReserved = -64,
+    ATSULayoutOperationNone = 0,
+    ATSULayoutOperationJustification = 1,
+    ATSULayoutOperationMorph = 2,
+    ATSULayoutOperationKerningAdjustment = 4,
+    ATSULayoutOperationBaselineAdjustment = 8,
+    ATSULayoutOperationTrackingAdjustment = 16,
+    ATSULayoutOperationPostLayoutAdjustment = 32,
+    ATSULayoutOperationAppleReserved = -64,
 };
 
 pub const ULayoutOperationCallbackStatus = objc.UInt32;
@@ -1245,10 +1246,10 @@ pub const anon3201 = enum(u32) {
 };
 
 pub const anon251 = enum(u32) {
-    kFontNoPlatform = -1,
-    kFontNoScript = -1,
-    kFontNoLanguage = -1,
-    kFontNoName = -1,
+    FontNoPlatform = -1,
+    FontNoScript = -1,
+    FontNoLanguage = -1,
+    FontNoName = -1,
 };
 
 pub const FontContext = objc.UInt32;
@@ -1266,12 +1267,12 @@ pub const FontIterator_ = extern struct {};
 pub const FontIterator = ?*FontIterator_;
 
 pub const FontFilterSelector = enum(u32) {
-    kATSFontFilterSelectorUnspecified = 0,
-    kATSFontFilterSelectorGeneration = 3,
-    kATSFontFilterSelectorFontFamily = 7,
-    kATSFontFilterSelectorFontFamilyApplierFunction = 8,
-    kATSFontFilterSelectorFontApplierFunction = 9,
-    kATSFileReferenceFilterSelector = 10,
+    Unspecified = 0,
+    Generation = 3,
+    FontFamily = 7,
+    FontFamilyApplierFunction = 8,
+    FontApplierFunction = 9,
+    FileReferenceFilterSelector = 10,
 };
 
 pub const FontFilter = extern struct {
@@ -1296,13 +1297,13 @@ pub const FontNotificationInfoRef_ = extern struct {};
 pub const FontNotificationInfoRef = ?*FontNotificationInfoRef_;
 
 pub const FontNotifyOption = enum(u32) {
-    kATSFontNotifyOptionDefault = 0,
-    kATSFontNotifyOptionReceiveWhileSuspended = 1,
+    Default = 0,
+    ReceiveWhileSuspended = 1,
 };
 
 pub const FontNotifyAction = enum(u32) {
-    kATSFontNotifyActionFontsChanged = 1,
-    kATSFontNotifyActionDirectoriesChanged = 2,
+    FontsChanged = 1,
+    DirectoriesChanged = 2,
 };
 
 pub const NotificationCallback = ?*const fn (FontNotificationInfoRef, ?*anyopaque) callconv(.C) void;
@@ -1480,7 +1481,7 @@ pub const FontQuerySourceContext = extern struct {
 };
 
 pub const FontQueryMessageID = enum(u32) {
-    kATSQueryActivateFontMessage = 1635021665,
+    QueryActivateFontMessage = 1635021665,
 };
 
 pub const FontQueryCallback = ?*const fn (FontQueryMessageID, core_foundation.PropertyListRef, ?*anyopaque) callconv(.C) core_foundation.PropertyListRef;
@@ -1508,9 +1509,9 @@ extern "ApplicationServices" fn ATSFontGetAutoActivationSettingForApplication(iA
 pub const fontGetAutoActivationSettingForApplication = ATSFontGetAutoActivationSettingForApplication;
 
 pub const anon1341 = enum(u32) {
-    kProcessTransformToForegroundApplication = 1,
-    kProcessTransformToBackgroundApplication = 2,
-    kProcessTransformToUIElementApplication = 4,
+    ProcessTransformToForegroundApplication = 1,
+    ProcessTransformToBackgroundApplication = 2,
+    ProcessTransformToUIElementApplication = 4,
 };
 
 pub const anon1401 = enum(u32) {
@@ -1526,7 +1527,7 @@ pub const anon1471 = enum(u32) {
 };
 
 pub const anon1571 = enum(u32) {
-    kICNoUserInteractionBit = 0,
+    ICNoUserInteractionBit = 0,
 };
 
 pub const anon3061 = enum(u32) {
@@ -2001,7 +2002,7 @@ pub const CMConcatCallBackProcPtr = ?*const fn (objc.SInt32, ?*anyopaque) callco
 pub const CMConcatCallBackUPP = CMConcatCallBackProcPtr;
 
 pub const anon10851 = enum(u32) {
-    kDefaultCMMSignature = 1634758764,
+    DefaultCMMSignature = 1634758764,
 };
 
 pub const anon11381 = enum(u32) {
@@ -2319,10 +2320,10 @@ pub const CMLabToLabProcPtr = ?*const fn (
 ) callconv(.C) void;
 
 pub const CMFloatBitmapFlags = enum(u32) {
-    kCMFloatBitmapFlagsNone = 0,
-    kCMFloatBitmapFlagsAlpha = 1,
-    kCMFloatBitmapFlagsAlphaPremul = 2,
-    kCMFloatBitmapFlagsRangeClipped = 4,
+    None = 0,
+    Alpha = 1,
+    AlphaPremul = 2,
+    RangeClipped = 4,
 };
 
 pub const CMFloatBitmap = extern struct {
@@ -2776,12 +2777,12 @@ pub const HIShapeRef = ?*__HIShape;
 pub const HIMutableShapeRef = ?*__HIShape;
 
 pub const anon971 = enum(u32) {
-    kHIShapeParseFromTop = 0,
-    kHIShapeParseFromBottom = 1,
-    kHIShapeParseFromLeft = 0,
-    kHIShapeParseFromRight = 2,
-    kHIShapeParseFromTopLeft = 0,
-    kHIShapeParseFromBottomRight = 3,
+    HIShapeParseFromTop = 0,
+    HIShapeParseFromBottom = 1,
+    HIShapeParseFromLeft = 0,
+    HIShapeParseFromRight = 2,
+    HIShapeParseFromTopLeft = 0,
+    HIShapeParseFromBottomRight = 3,
 };
 
 pub const HIShapeEnumerateProcPtr = ?*const fn (
@@ -2975,12 +2976,12 @@ extern "ApplicationServices" fn GetIconRefVariant(inIconRef: core_services.IconR
 pub const iconRefVariant = GetIconRefVariant;
 
 pub const anon921 = enum(u32) {
-    kICComponentInterfaceVersion0 = 0,
-    kICComponentInterfaceVersion1 = 65536,
-    kICComponentInterfaceVersion2 = 131072,
-    kICComponentInterfaceVersion3 = 196608,
-    kICComponentInterfaceVersion4 = 262144,
-    kICComponentInterfaceVersion = 262144,
+    ICComponentInterfaceVersion0 = 0,
+    ICComponentInterfaceVersion1 = 65536,
+    ICComponentInterfaceVersion2 = 131072,
+    ICComponentInterfaceVersion3 = 196608,
+    ICComponentInterfaceVersion4 = 262144,
+    ICComponentInterfaceVersion = 262144,
 };
 
 pub const OpaqueICInstance = extern struct {};
@@ -3445,23 +3446,23 @@ pub const PasteboardRef = ?*OpaquePasteboardRef;
 pub const PasteboardItemID = ?*anyopaque;
 
 pub const PasteboardSyncFlags = enum(objc.OptionBits) {
-    kPasteboardModified = 1,
-    kPasteboardClientIsOwner = 2,
+    Modified = 1,
+    ClientIsOwner = 2,
 };
 
 pub const PasteboardFlavorFlags = enum(objc.OptionBits) {
-    kPasteboardFlavorNoFlags = 0,
-    kPasteboardFlavorSenderOnly = 1,
-    kPasteboardFlavorSenderTranslated = 2,
-    kPasteboardFlavorNotSaved = 4,
-    kPasteboardFlavorRequestOnly = 8,
-    kPasteboardFlavorSystemTranslated = 256,
-    kPasteboardFlavorPromised = 512,
+    NoFlags = 0,
+    SenderOnly = 1,
+    SenderTranslated = 2,
+    NotSaved = 4,
+    RequestOnly = 8,
+    SystemTranslated = 256,
+    Promised = 512,
 };
 
 pub const PasteboardStandardLocation = enum(objc.OSType) {
-    kPasteboardStandardLocationTrash = 1953657704,
-    kPasteboardStandardLocationUnknown = 1970170734,
+    Trash = 1953657704,
+    Unknown = 1970170734,
 };
 
 extern "ApplicationServices" fn PasteboardGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -3539,8 +3540,8 @@ pub const TranslationRef = ?*OpaqueTranslationRef;
 pub const TranslationFlags = objc.OptionBits;
 
 pub const anon1421 = enum(u32) {
-    kTranslationDataTranslation = 1,
-    kTranslationFileTranslation = 2,
+    TranslationDataTranslation = 1,
+    TranslationFileTranslation = 2,
 };
 
 extern "ApplicationServices" fn TranslationGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -3592,36 +3593,36 @@ extern "ApplicationServices" fn TranslationGetTranslationFlags(inTranslation: Tr
 pub const nslationGetTranslationFlags = TranslationGetTranslationFlags;
 
 pub const AXError = enum(objc.SInt32) {
-    kAXErrorSuccess = 0,
-    kAXErrorFailure = -25200,
-    kAXErrorIllegalArgument = -25201,
-    kAXErrorInvalidUIElement = -25202,
-    kAXErrorInvalidUIElementObserver = -25203,
-    kAXErrorCannotComplete = -25204,
-    kAXErrorAttributeUnsupported = -25205,
-    kAXErrorActionUnsupported = -25206,
-    kAXErrorNotificationUnsupported = -25207,
-    kAXErrorNotImplemented = -25208,
-    kAXErrorNotificationAlreadyRegistered = -25209,
-    kAXErrorNotificationNotRegistered = -25210,
-    kAXErrorAPIDisabled = -25211,
-    kAXErrorNoValue = -25212,
-    kAXErrorParameterizedAttributeUnsupported = -25213,
-    kAXErrorNotEnoughPrecision = -25214,
+    Success = 0,
+    Failure = -25200,
+    IllegalArgument = -25201,
+    InvalidUIElement = -25202,
+    InvalidUIElementObserver = -25203,
+    CannotComplete = -25204,
+    AttributeUnsupported = -25205,
+    ActionUnsupported = -25206,
+    NotificationUnsupported = -25207,
+    NotImplemented = -25208,
+    NotificationAlreadyRegistered = -25209,
+    NotificationNotRegistered = -25210,
+    APIDisabled = -25211,
+    NoValue = -25212,
+    ParameterizedAttributeUnsupported = -25213,
+    NotEnoughPrecision = -25214,
 };
 
 pub const AXMenuItemModifiers = enum(objc.UInt32) {
-    kAXMenuItemModifierNone = 0,
-    kAXMenuItemModifierShift = 1,
-    kAXMenuItemModifierOption = 2,
-    kAXMenuItemModifierControl = 4,
-    kAXMenuItemModifierNoCommand = 8,
+    None = 0,
+    Shift = 1,
+    Option = 2,
+    Control = 4,
+    NoCommand = 8,
 };
 
 pub const AXPriority = enum(core_foundation.Index) {
-    kAXPriorityLow = 10,
-    kAXPriorityMedium = 50,
-    kAXPriorityHigh = 90,
+    Low = 10,
+    Medium = 50,
+    High = 90,
 };
 
 extern "ApplicationServices" fn AXAPIEnabled() callconv(.C) objc.Boolean;
@@ -3641,7 +3642,7 @@ pub const __AXUIElement = extern struct {};
 pub const AXUIElementRef = ?*__AXUIElement;
 
 pub const AXCopyMultipleAttributeOptions = enum(objc.UInt32) {
-    kAXCopyMultipleAttributeOptionStopOnError = 1,
+    StopOnError = 1,
 };
 
 extern "ApplicationServices" fn AXUIElementGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -3811,12 +3812,12 @@ extern "ApplicationServices" fn AXObserverGetRunLoopSource(observer: AXObserverR
 pub const bserverGetRunLoopSource = AXObserverGetRunLoopSource;
 
 pub const AXValueType = enum(objc.UInt32) {
-    kAXValueTypeCGPoint = 1,
-    kAXValueTypeCGSize = 2,
-    kAXValueTypeCGRect = 3,
-    kAXValueTypeCFRange = 4,
-    kAXValueTypeAXError = 5,
-    kAXValueTypeIllegal = 0,
+    CGPoint = 1,
+    CGSize = 2,
+    CGRect = 3,
+    CFRange = 4,
+    AXError = 5,
+    Illegal = 0,
 };
 
 pub const __AXValue = extern struct {};
@@ -3836,10 +3837,10 @@ extern "ApplicationServices" fn AXValueGetValue(value: AXValueRef, theType: AXVa
 pub const alueGetValue = AXValueGetValue;
 
 pub const AXUnderlineStyle = enum(objc.UInt32) {
-    kAXUnderlineStyleNone = 0,
-    kAXUnderlineStyleSingle = 1,
-    kAXUnderlineStyleThick = 2,
-    kAXUnderlineStyleDouble = 9,
+    None = 0,
+    Single = 1,
+    Thick = 2,
+    Double = 9,
 };
 
 pub const UAZoomChangeFocusType = objc.UInt32;
@@ -3905,33 +3906,33 @@ pub const PMPrintDialogOptionFlags = objc.OptionBits;
 pub const PMPPDDomain = objc.UInt16;
 
 pub const anon1781 = enum(u32) {
-    kAllPPDDomains = 1,
-    kSystemPPDDomain = 2,
-    kLocalPPDDomain = 3,
-    kNetworkPPDDomain = 4,
-    kUserPPDDomain = 5,
-    kCUPSPPDDomain = 6,
+    AllPPDDomains = 1,
+    SystemPPDDomain = 2,
+    LocalPPDDomain = 3,
+    NetworkPPDDomain = 4,
+    UserPPDDomain = 5,
+    CUPSPPDDomain = 6,
 };
 
 pub const anon2071 = enum(i32) {
-    kPMNoError = 0,
-    kPMGeneralError = -30870,
-    kPMOutOfScope = -30871,
-    kPMInvalidParameter = -50,
-    kPMNoDefaultPrinter = -30872,
-    kPMNotImplemented = -30873,
-    kPMNoSuchEntry = -30874,
-    kPMInvalidPrintSettings = -30875,
-    kPMInvalidPageFormat = -30876,
-    kPMValueOutOfRange = -30877,
+    PMNoError = 0,
+    PMGeneralError = -30870,
+    PMOutOfScope = -30871,
+    PMInvalidParameter = -50,
+    PMNoDefaultPrinter = -30872,
+    PMNotImplemented = -30873,
+    PMNoSuchEntry = -30874,
+    PMInvalidPrintSettings = -30875,
+    PMInvalidPageFormat = -30876,
+    PMValueOutOfRange = -30877,
 };
 
 pub const anon2281 = enum(i32) {
-    kPMPrintAllPages = -1,
+    PMPrintAllPages = -1,
 };
 
 pub const anon2321 = enum(u32) {
-    kPMUnlocked = 0,
+    PMUnlocked = 0,
 };
 
 pub const PMRect = extern struct {
@@ -3955,9 +3956,9 @@ pub const PMLanguageInfo = extern struct {
 pub const PMPaperMargins = PMRect;
 
 pub const PMDataFormat = enum(u32) {
-    kPMDataFormatXMLDefault = 0,
-    kPMDataFormatXMLMinimal = 1,
-    kPMDataFormatXMLCompressed = 2,
+    XMLDefault = 0,
+    XMLMinimal = 1,
+    XMLCompressed = 2,
 };
 
 /// https://developer.apple.com/documentation/ApplicationServices/PDEPlugIn?language=objc
@@ -4145,8 +4146,8 @@ pub const PDEPanel = opaque {
         return objc.msgSend(_self, "PPDOptionKeyValueDidChange:ppdChoice:", void, .{ _option, _choice });
     }
 
-    pub fn panelView(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "panelView", ?*anyopaque, .{});
+    pub fn panelView(_self: *@This()) ?*app_kit.View {
+        return objc.msgSend(_self, "panelView", ?*app_kit.View, .{});
     }
 
     pub fn panelName(_self: *@This()) ?*foundation.String {
@@ -4633,8 +4634,8 @@ extern "ApplicationServices" fn PMCGImageCreateWithEPSDataProvider(epsDataProvid
 pub const gImageCreateWithEPSDataProvider = PMCGImageCreateWithEPSDataProvider;
 
 pub const PMPageToPaperMappingType = enum(u32) {
-    kPMPageToPaperMappingNone = 1,
-    kPMPageToPaperMappingScaleToFit = 2,
+    None = 1,
+    ScaleToFit = 2,
 };
 
 pub const FontRec = extern struct {
@@ -4766,29 +4767,29 @@ pub const UCaret = extern struct {
 pub const UCursorMovementType = objc.UInt16;
 
 pub const anon6931 = enum(u32) {
-    kATSUByCharacter = 0,
-    kATSUByTypographicCluster = 1,
-    kATSUByWord = 2,
-    kATSUByCharacterCluster = 3,
-    kATSUByCluster = 1,
+    ATSUByCharacter = 0,
+    ATSUByTypographicCluster = 1,
+    ATSUByWord = 2,
+    ATSUByCharacterCluster = 3,
+    ATSUByCluster = 1,
 };
 
 pub const ULineTruncation = objc.UInt32;
 
 pub const anon7441 = enum(u32) {
-    kATSUTruncateNone = 0,
-    kATSUTruncateStart = 1,
-    kATSUTruncateEnd = 2,
-    kATSUTruncateMiddle = 3,
-    kATSUTruncateSpecificationMask = 7,
-    kATSUTruncFeatNoSquishing = 8,
+    ATSUTruncateNone = 0,
+    ATSUTruncateStart = 1,
+    ATSUTruncateEnd = 2,
+    ATSUTruncateMiddle = 3,
+    ATSUTruncateSpecificationMask = 7,
+    ATSUTruncFeatNoSquishing = 8,
 };
 
 pub const UStyleLineCountType = objc.UInt16;
 
 pub const anon7631 = enum(u32) {
-    kATSUStyleSingleLineCount = 1,
-    kATSUStyleDoubleLineCount = 2,
+    ATSUStyleSingleLineCount = 1,
+    ATSUStyleDoubleLineCount = 2,
 };
 
 pub const UVerticalCharacterType = objc.UInt16;
@@ -4796,10 +4797,10 @@ pub const UVerticalCharacterType = objc.UInt16;
 pub const UStyleComparison = objc.UInt16;
 
 pub const anon7961 = enum(u32) {
-    kATSUStyleUnequal = 0,
-    kATSUStyleContains = 1,
-    kATSUStyleEquals = 2,
-    kATSUStyleContainedBy = 3,
+    ATSUStyleUnequal = 0,
+    ATSUStyleContains = 1,
+    ATSUStyleEquals = 2,
+    ATSUStyleContainedBy = 3,
 };
 
 pub const UFontFallbackMethod = objc.UInt16;
@@ -4846,8 +4847,8 @@ pub const UGlyphInfoArray = extern struct {
 pub const UHighlightMethod = objc.UInt32;
 
 pub const anon10261 = enum(u32) {
-    kInvertHighlighting = 0,
-    kRedrawHighlighting = 1,
+    InvertHighlighting = 0,
+    RedrawHighlighting = 1,
 };
 
 pub const UBackgroundDataType = objc.UInt32;
@@ -4875,28 +4876,28 @@ pub const UUnhighlightData = extern struct {
 };
 
 pub const anon11921 = enum(u32) {
-    kATSULeftToRightBaseDirection = 0,
-    kATSURightToLeftBaseDirection = 1,
+    ATSULeftToRightBaseDirection = 0,
+    ATSURightToLeftBaseDirection = 1,
 };
 
 pub const anon12171 = enum(u32) {
-    kATSUInvalidFontID = 0,
+    ATSUInvalidFontID = 0,
 };
 
 pub const anon12401 = enum(u32) {
-    kATSUNoSelector = 65535,
+    ATSUNoSelector = 65535,
 };
 
 pub const anon12551 = enum(u32) {
-    kATSUFromTextBeginning = -1,
-    kATSUToTextEnd = -1,
-    kATSUFromPreviousLayout = -2,
-    kATSUFromFollowingLayout = -3,
+    ATSUFromTextBeginning = -1,
+    ATSUToTextEnd = -1,
+    ATSUFromPreviousLayout = -2,
+    ATSUFromFollowingLayout = -3,
 };
 
 pub const anon12831 = enum(u32) {
-    kATSUUseGrafPortPenLoc = -1,
-    kATSUClearAll = -1,
+    ATSUUseGrafPortPenLoc = -1,
+    ATSUClearAll = -1,
 };
 
 pub const QuadraticNewPathProcPtr = ?*const fn (?*anyopaque) callconv(.C) objc.OSStatus;
@@ -5054,9 +5055,9 @@ pub const VoiceSpec = extern struct {
 pub const VoiceSpecPtr = ?*VoiceSpec;
 
 pub const anon1481 = enum(objc.SInt16) {
-    kNeuter = 0,
-    kMale = 1,
-    kFemale = 2,
+    Neuter = 0,
+    Male = 1,
+    Female = 2,
 };
 
 pub const VoiceDescription = extern struct {

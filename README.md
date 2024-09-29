@@ -27,6 +27,14 @@
 - [QuartzCore](src/quartz_core.zig)
 - [Security](src/security.zig)
 - [CoreLocation](src/core_location.zig)
+- [AddressBook](src/address_book.zig)
+- [Contacts](src/contacts.zig)
+- [CoreSpotlight](src/core_spotlight.zig)
+- [EventKit](src/event_kit.zig)
+- [Intents](src/intents.zig)
+- [IntentsUI](src/intents_ui.zig)
+- [MapKit](src/map_kit.zig)
+- [UniformTypeIdentifiers](src/uniform_type_identifiers.zig)
 
 ## Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests if you want to help improve the project.

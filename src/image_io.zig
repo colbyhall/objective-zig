@@ -32,14 +32,14 @@ extern "ImageIO" fn CGImageMetadataTagGetTypeID() callconv(.C) core_foundation.T
 pub const metadataTagGetTypeID = CGImageMetadataTagGetTypeID;
 
 pub const MetadataType = enum(objc.int32_t) {
-    kCGImageMetadataTypeInvalid = -1,
-    kCGImageMetadataTypeDefault = 0,
-    kCGImageMetadataTypeString = 1,
-    kCGImageMetadataTypeArrayUnordered = 2,
-    kCGImageMetadataTypeArrayOrdered = 3,
-    kCGImageMetadataTypeAlternateArray = 4,
-    kCGImageMetadataTypeAlternateText = 5,
-    kCGImageMetadataTypeStructure = 6,
+    Invalid = -1,
+    Default = 0,
+    String = 1,
+    ArrayUnordered = 2,
+    ArrayOrdered = 3,
+    AlternateArray = 4,
+    AlternateText = 5,
+    Structure = 6,
 };
 
 extern "ImageIO" fn CGImageMetadataTagCreate(
@@ -113,20 +113,20 @@ extern "ImageIO" fn CGImageMetadataCreateFromXMPData(data: core_foundation.DataR
 pub const metadataCreateFromXMPData = CGImageMetadataCreateFromXMPData;
 
 pub const MetadataErrors = enum(objc.int32_t) {
-    kCGImageMetadataErrorUnknown = 0,
-    kCGImageMetadataErrorUnsupportedFormat = 1,
-    kCGImageMetadataErrorBadArgument = 2,
-    kCGImageMetadataErrorConflictingArguments = 3,
-    kCGImageMetadataErrorPrefixConflict = 4,
+    Unknown = 0,
+    UnsupportedFormat = 1,
+    BadArgument = 2,
+    ConflictingArguments = 3,
+    PrefixConflict = 4,
 };
 
 pub const SourceStatus = enum(objc.int32_t) {
-    kCGImageStatusUnexpectedEOF = -5,
-    kCGImageStatusInvalidData = -4,
-    kCGImageStatusUnknownType = -3,
-    kCGImageStatusReadingHeader = -2,
-    kCGImageStatusIncomplete = -1,
-    kCGImageStatusComplete = 0,
+    StatusUnexpectedEOF = -5,
+    StatusInvalidData = -4,
+    StatusUnknownType = -3,
+    StatusReadingHeader = -2,
+    StatusIncomplete = -1,
+    StatusComplete = 0,
 };
 
 extern "ImageIO" fn CGImageSourceGetTypeID() callconv(.C) core_foundation.TypeID;
@@ -258,27 +258,27 @@ extern "ImageIO" fn CGImageDestinationAddAuxiliaryDataInfo(idst: DestinationRef,
 pub const destinationAddAuxiliaryDataInfo = CGImageDestinationAddAuxiliaryDataInfo;
 
 pub const PropertyOrientation = enum(objc.uint32_t) {
-    kCGImagePropertyOrientationUp = 1,
-    kCGImagePropertyOrientationUpMirrored = 2,
-    kCGImagePropertyOrientationDown = 3,
-    kCGImagePropertyOrientationDownMirrored = 4,
-    kCGImagePropertyOrientationLeftMirrored = 5,
-    kCGImagePropertyOrientationRight = 6,
-    kCGImagePropertyOrientationRightMirrored = 7,
-    kCGImagePropertyOrientationLeft = 8,
+    Up = 1,
+    UpMirrored = 2,
+    Down = 3,
+    DownMirrored = 4,
+    LeftMirrored = 5,
+    Right = 6,
+    RightMirrored = 7,
+    Left = 8,
 };
 
 pub const PropertyTGACompression = enum(objc.uint32_t) {
-    kCGImageTGACompressionNone = 0,
-    kCGImageTGACompressionRLE = 1,
+    TGACompressionNone = 0,
+    TGACompressionRLE = 1,
 };
 
 pub const AnimationStatus = enum(objc.OSStatus) {
-    kCGImageAnimationStatus_ParameterError = -22140,
-    kCGImageAnimationStatus_CorruptInputImage = -22141,
-    kCGImageAnimationStatus_UnsupportedFormat = -22142,
-    kCGImageAnimationStatus_IncompleteInputImage = -22143,
-    kCGImageAnimationStatus_AllocationFailure = -22144,
+    _ParameterError = -22140,
+    _CorruptInputImage = -22141,
+    _UnsupportedFormat = -22142,
+    _IncompleteInputImage = -22143,
+    _AllocationFailure = -22144,
 };
 
 pub const SourceAnimationBlock = *const fn (objc.size_t, core_graphics.ImageRef, ?*objc.bool) callconv(.C) void;
