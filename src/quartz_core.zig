@@ -10,35 +10,70 @@ const metal = @import("metal.zig"); // Framework dependency Metal.
 const opengl = @import("opengl.zig"); // Framework dependency OpenGL.
 const core_video = @import("core_video.zig"); // Framework dependency CoreVideo.
 
-pub extern "QuartzCore" fn CurrentMediaTime() callconv(.C) core_foundation.TimeInterval;
+extern "QuartzCore" fn CACurrentMediaTime() callconv(.C) core_foundation.TimeInterval;
+pub const currentMediaTime = CACurrentMediaTime;
 
 pub const Transform3D = extern struct {};
 
-pub extern "QuartzCore" fn Transform3DIsIdentity() callconv(.C) i32;
+extern "QuartzCore" fn CATransform3DIsIdentity() callconv(.C) i32;
+pub const transform3DIsIdentity = CATransform3DIsIdentity;
 
-pub extern "QuartzCore" fn Transform3DEqualToTransform() callconv(.C) i32;
+extern "QuartzCore" fn CATransform3DEqualToTransform() callconv(.C) i32;
+pub const transform3DEqualToTransform = CATransform3DEqualToTransform;
 
-pub extern "QuartzCore" fn Transform3DMakeTranslation(tx: core_foundation.CGFloat, ty: core_foundation.CGFloat, tz: core_foundation.CGFloat) callconv(.C) Transform3D;
+extern "QuartzCore" fn CATransform3DMakeTranslation(tx: core_foundation.CGFloat, ty: core_foundation.CGFloat, tz: core_foundation.CGFloat) callconv(.C) Transform3D;
+pub const transform3DMakeTranslation = CATransform3DMakeTranslation;
 
-pub extern "QuartzCore" fn Transform3DMakeScale(sx: core_foundation.CGFloat, sy: core_foundation.CGFloat, sz: core_foundation.CGFloat) callconv(.C) Transform3D;
+extern "QuartzCore" fn CATransform3DMakeScale(sx: core_foundation.CGFloat, sy: core_foundation.CGFloat, sz: core_foundation.CGFloat) callconv(.C) Transform3D;
+pub const transform3DMakeScale = CATransform3DMakeScale;
 
-pub extern "QuartzCore" fn Transform3DMakeRotation(angle: core_foundation.CGFloat, x: core_foundation.CGFloat, y: core_foundation.CGFloat, z: core_foundation.CGFloat, ) callconv(.C) Transform3D;
+extern "QuartzCore" fn CATransform3DMakeRotation(
+    angle: core_foundation.CGFloat,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+    z: core_foundation.CGFloat,
+) callconv(.C) Transform3D;
+pub const transform3DMakeRotation = CATransform3DMakeRotation;
 
-pub extern "QuartzCore" fn Transform3DTranslate(t: Transform3D, tx: core_foundation.CGFloat, ty: core_foundation.CGFloat, tz: core_foundation.CGFloat, ) callconv(.C) Transform3D;
+extern "QuartzCore" fn CATransform3DTranslate(
+    t: Transform3D,
+    tx: core_foundation.CGFloat,
+    ty: core_foundation.CGFloat,
+    tz: core_foundation.CGFloat,
+) callconv(.C) Transform3D;
+pub const transform3DTranslate = CATransform3DTranslate;
 
-pub extern "QuartzCore" fn Transform3DScale(t: Transform3D, sx: core_foundation.CGFloat, sy: core_foundation.CGFloat, sz: core_foundation.CGFloat, ) callconv(.C) Transform3D;
+extern "QuartzCore" fn CATransform3DScale(
+    t: Transform3D,
+    sx: core_foundation.CGFloat,
+    sy: core_foundation.CGFloat,
+    sz: core_foundation.CGFloat,
+) callconv(.C) Transform3D;
+pub const transform3DScale = CATransform3DScale;
 
-pub extern "QuartzCore" fn Transform3DRotate(t: Transform3D, angle: core_foundation.CGFloat, x: core_foundation.CGFloat, y: core_foundation.CGFloat, z: core_foundation.CGFloat, ) callconv(.C) Transform3D;
+extern "QuartzCore" fn CATransform3DRotate(
+    t: Transform3D,
+    angle: core_foundation.CGFloat,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+    z: core_foundation.CGFloat,
+) callconv(.C) Transform3D;
+pub const transform3DRotate = CATransform3DRotate;
 
-pub extern "QuartzCore" fn Transform3DConcat(a: Transform3D, b: Transform3D) callconv(.C) Transform3D;
+extern "QuartzCore" fn CATransform3DConcat(a: Transform3D, b: Transform3D) callconv(.C) Transform3D;
+pub const transform3DConcat = CATransform3DConcat;
 
-pub extern "QuartzCore" fn Transform3DInvert(t: Transform3D) callconv(.C) Transform3D;
+extern "QuartzCore" fn CATransform3DInvert(t: Transform3D) callconv(.C) Transform3D;
+pub const transform3DInvert = CATransform3DInvert;
 
-pub extern "QuartzCore" fn Transform3DMakeAffineTransform(m: core_foundation.CGAffineTransform) callconv(.C) Transform3D;
+extern "QuartzCore" fn CATransform3DMakeAffineTransform(m: core_foundation.CGAffineTransform) callconv(.C) Transform3D;
+pub const transform3DMakeAffineTransform = CATransform3DMakeAffineTransform;
 
-pub extern "QuartzCore" fn Transform3DIsAffine() callconv(.C) i32;
+extern "QuartzCore" fn CATransform3DIsAffine() callconv(.C) i32;
+pub const transform3DIsAffine = CATransform3DIsAffine;
 
-pub extern "QuartzCore" fn Transform3DGetAffineTransform(t: Transform3D) callconv(.C) core_foundation.CGAffineTransform;
+extern "QuartzCore" fn CATransform3DGetAffineTransform(t: Transform3D) callconv(.C) core_foundation.CGAffineTransform;
+pub const transform3DGetAffineTransform = CATransform3DGetAffineTransform;
 
 pub const MediaTimingFillMode = ?*NSString;
 
@@ -50,70 +85,69 @@ pub const MediaTiming = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn beginTime(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "beginTime", core_foundation.TimeInterval, .{});
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
     }
 
-    pub fn setBeginTime(self: *@This(), beginTime: core_foundation.TimeInterval) void {
-        return objc.msgSend(self, "setBeginTime:", void, .{beginTime});
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
     }
 
-    pub fn duration(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "duration", core_foundation.TimeInterval, .{});
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
     }
 
-    pub fn setDuration(self: *@This(), duration: core_foundation.TimeInterval) void {
-        return objc.msgSend(self, "setDuration:", void, .{duration});
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
     }
 
-    pub fn speed(self: *@This()) f32 {
-        return objc.msgSend(self, "speed", f32, .{});
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
     }
 
-    pub fn setSpeed(self: *@This(), speed: f32) void {
-        return objc.msgSend(self, "setSpeed:", void, .{speed});
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
     }
 
-    pub fn timeOffset(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "timeOffset", core_foundation.TimeInterval, .{});
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
     }
 
-    pub fn setTimeOffset(self: *@This(), timeOffset: core_foundation.TimeInterval) void {
-        return objc.msgSend(self, "setTimeOffset:", void, .{timeOffset});
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
     }
 
-    pub fn repeatCount(self: *@This()) f32 {
-        return objc.msgSend(self, "repeatCount", f32, .{});
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
     }
 
-    pub fn setRepeatCount(self: *@This(), repeatCount: f32) void {
-        return objc.msgSend(self, "setRepeatCount:", void, .{repeatCount});
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
     }
 
-    pub fn repeatDuration(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "repeatDuration", core_foundation.TimeInterval, .{});
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
     }
 
-    pub fn setRepeatDuration(self: *@This(), repeatDuration: core_foundation.TimeInterval) void {
-        return objc.msgSend(self, "setRepeatDuration:", void, .{repeatDuration});
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
     }
 
-    pub fn autoreverses(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "autoreverses", objc.BOOL, .{});
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
     }
 
-    pub fn setAutoreverses(self: *@This(), autoreverses: objc.BOOL) void {
-        return objc.msgSend(self, "setAutoreverses:", void, .{autoreverses});
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
     }
 
-    pub fn fillMode(self: *@This()) MediaTimingFillMode {
-        return objc.msgSend(self, "fillMode", MediaTimingFillMode, .{});
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
     }
 
-    pub fn setFillMode(self: *@This(), fillMode: MediaTimingFillMode) void {
-        return objc.msgSend(self, "setFillMode:", void, .{fillMode});
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
-
 };
 
 pub const LayerContentsGravity = ?*NSString;
@@ -152,7 +186,10 @@ pub const CornerMask = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/QuartzCore/CALayer?language=objc
 pub const Layer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CALayer", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CALayer", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        MediaTiming,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -161,636 +198,864 @@ pub const Layer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn layer(self: *@This()) *@This() {
-        return objc.msgSend(self, "layer", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithLayer(self: *@This(), layer: *objc.Id) *@This() {
-        return objc.msgSend(self, "initWithLayer:", *@This(), .{layer});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn presentationLayer(self: *@This()) *@This() {
-        return objc.msgSend(self, "presentationLayer", *@This(), .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn modelLayer(self: *@This()) *@This() {
-        return objc.msgSend(self, "modelLayer", *@This(), .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn defaultValueForKey(self: *@This(), key: ?*NSString) *objc.Id {
-        return objc.msgSend(self, "defaultValueForKey:", *objc.Id, .{key});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn affineTransform(self: *@This()) core_foundation.CGAffineTransform {
-        return objc.msgSend(self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setAffineTransform(self: *@This(), m: core_foundation.CGAffineTransform) void {
-        return objc.msgSend(self, "setAffineTransform:", void, .{m});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn removeFromSuperlayer(self: *@This()) void {
-        return objc.msgSend(self, "removeFromSuperlayer", void, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn addSublayer(self: *@This(), layer: ?*Layer) void {
-        return objc.msgSend(self, "addSublayer:", void, .{layer});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn insertSublayerAtIndex(self: *@This(), layer: ?*Layer, idx: u32) void {
-        return objc.msgSend(self, "insertSublayer:atIndex:", void, .{layer, idx});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn insertSublayerBelow(self: *@This(), layer: ?*Layer, sibling: ?*Layer) void {
-        return objc.msgSend(self, "insertSublayer:below:", void, .{layer, sibling});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn insertSublayerAbove(self: *@This(), layer: ?*Layer, sibling: ?*Layer) void {
-        return objc.msgSend(self, "insertSublayer:above:", void, .{layer, sibling});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn replaceSublayerWith(self: *@This(), oldLayer: ?*Layer, newLayer: ?*Layer) void {
-        return objc.msgSend(self, "replaceSublayer:with:", void, .{oldLayer, newLayer});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn convertPointFromLayer(self: *@This(), p: core_foundation.CGPoint, l: ?*Layer) core_foundation.CGPoint {
-        return objc.msgSend(self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{p, l});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn convertPointToLayer(self: *@This(), p: core_foundation.CGPoint, l: ?*Layer) core_foundation.CGPoint {
-        return objc.msgSend(self, "convertPoint:toLayer:", core_foundation.CGPoint, .{p, l});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn convertRectFromLayer(self: *@This(), r: core_foundation.CGRect, l: ?*Layer) core_foundation.CGRect {
-        return objc.msgSend(self, "convertRect:fromLayer:", core_foundation.CGRect, .{r, l});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn convertRectToLayer(self: *@This(), r: core_foundation.CGRect, l: ?*Layer) core_foundation.CGRect {
-        return objc.msgSend(self, "convertRect:toLayer:", core_foundation.CGRect, .{r, l});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn convertTimeFromLayer(self: *@This(), t: core_foundation.TimeInterval, l: ?*Layer) core_foundation.TimeInterval {
-        return objc.msgSend(self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{t, l});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn convertTimeToLayer(self: *@This(), t: core_foundation.TimeInterval, l: ?*Layer) core_foundation.TimeInterval {
-        return objc.msgSend(self, "convertTime:toLayer:", core_foundation.TimeInterval, .{t, l});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn hitTest(self: *@This(), p: core_foundation.CGPoint) ?*anyopaque {
-        return objc.msgSend(self, "hitTest:", ?*anyopaque, .{p});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn display(self: *@This()) void {
-        return objc.msgSend(self, "display", void, .{});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn setNeedsDisplay(self: *@This()) void {
-        return objc.msgSend(self, "setNeedsDisplay", void, .{});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn setNeedsDisplayInRect(self: *@This(), r: core_foundation.CGRect) void {
-        return objc.msgSend(self, "setNeedsDisplayInRect:", void, .{r});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn displayIfNeeded(self: *@This()) void {
-        return objc.msgSend(self, "displayIfNeeded", void, .{});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn drawInContext(self: *@This(), ctx: core_graphics.ContextRef) void {
-        return objc.msgSend(self, "drawInContext:", void, .{ctx});
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn renderInContext(self: *@This(), ctx: core_graphics.ContextRef) void {
-        return objc.msgSend(self, "renderInContext:", void, .{ctx});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn cornerCurveExpansionFactor(self: *@This(), curve: LayerCornerCurve) core_foundation.CGFloat {
-        return objc.msgSend(self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{curve});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn preferredFrameSize(self: *@This()) core_foundation.CGSize {
-        return objc.msgSend(self, "preferredFrameSize", core_foundation.CGSize, .{});
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
     }
 
-    pub fn setNeedsLayout(self: *@This()) void {
-        return objc.msgSend(self, "setNeedsLayout", void, .{});
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
     }
 
-    pub fn layoutIfNeeded(self: *@This()) void {
-        return objc.msgSend(self, "layoutIfNeeded", void, .{});
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn layoutSublayers(self: *@This()) void {
-        return objc.msgSend(self, "layoutSublayers", void, .{});
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
     }
 
-    pub fn resizeSublayersWithOldSize(self: *@This(), size: core_foundation.CGSize) void {
-        return objc.msgSend(self, "resizeSublayersWithOldSize:", void, .{size});
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
     }
 
-    pub fn resizeWithOldSuperlayerSize(self: *@This(), size: core_foundation.CGSize) void {
-        return objc.msgSend(self, "resizeWithOldSuperlayerSize:", void, .{size});
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
     }
 
-    pub fn defaultActionForKey(self: *@This(), event: ?*NSString) ?*anyopaque {
-        return objc.msgSend(self, "defaultActionForKey:", ?*anyopaque, .{event});
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
     }
 
-    pub fn actionForKey(self: *@This(), event: ?*NSString) ?*anyopaque {
-        return objc.msgSend(self, "actionForKey:", ?*anyopaque, .{event});
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
     }
 
-    pub fn addAnimationForKey(self: *@This(), anim: ?*Animation, key: ?*NSString) void {
-        return objc.msgSend(self, "addAnimation:forKey:", void, .{anim, key});
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
     }
 
-    pub fn removeAllAnimations(self: *@This()) void {
-        return objc.msgSend(self, "removeAllAnimations", void, .{});
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
     }
 
-    pub fn removeAnimationForKey(self: *@This(), key: ?*NSString) void {
-        return objc.msgSend(self, "removeAnimationForKey:", void, .{key});
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
     }
 
-    pub fn animationKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "animationKeys", ?*anyopaque, .{});
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
     }
 
-    pub fn animationForKey(self: *@This(), key: ?*NSString) ?*anyopaque {
-        return objc.msgSend(self, "animationForKey:", ?*anyopaque, .{key});
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
     }
 
-    pub fn bounds(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "bounds", core_foundation.CGRect, .{});
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
     }
 
-    pub fn setBounds(self: *@This(), bounds: core_foundation.CGRect) void {
-        return objc.msgSend(self, "setBounds:", void, .{bounds});
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
     }
 
-    pub fn position(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "position", core_foundation.CGPoint, .{});
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
     }
 
-    pub fn setPosition(self: *@This(), position: core_foundation.CGPoint) void {
-        return objc.msgSend(self, "setPosition:", void, .{position});
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
     }
 
-    pub fn zPosition(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "zPosition", core_foundation.CGFloat, .{});
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
     }
 
-    pub fn setZPosition(self: *@This(), zPosition: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setZPosition:", void, .{zPosition});
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
 
-    pub fn anchorPoint(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "anchorPoint", core_foundation.CGPoint, .{});
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
     }
 
-    pub fn setAnchorPoint(self: *@This(), anchorPoint: core_foundation.CGPoint) void {
-        return objc.msgSend(self, "setAnchorPoint:", void, .{anchorPoint});
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
     }
 
-    pub fn anchorPointZ(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "anchorPointZ", core_foundation.CGFloat, .{});
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
     }
 
-    pub fn setAnchorPointZ(self: *@This(), anchorPointZ: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setAnchorPointZ:", void, .{anchorPointZ});
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn transform(self: *@This()) Transform3D {
-        return objc.msgSend(self, "transform", Transform3D, .{});
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
-    pub fn setTransform(self: *@This(), transform: Transform3D) void {
-        return objc.msgSend(self, "setTransform:", void, .{transform});
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
     }
 
-    pub fn frame(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "frame", core_foundation.CGRect, .{});
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
     }
 
-    pub fn setFrame(self: *@This(), frame: core_foundation.CGRect) void {
-        return objc.msgSend(self, "setFrame:", void, .{frame});
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
     }
 
-    pub fn isHidden(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isHidden", objc.BOOL, .{});
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
     }
 
-    pub fn setHidden(self: *@This(), hidden: objc.BOOL) void {
-        return objc.msgSend(self, "setHidden:", void, .{hidden});
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
     }
 
-    pub fn isDoubleSided(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isDoubleSided", objc.BOOL, .{});
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
     }
 
-    pub fn setDoubleSided(self: *@This(), doubleSided: objc.BOOL) void {
-        return objc.msgSend(self, "setDoubleSided:", void, .{doubleSided});
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
     }
 
-    pub fn isGeometryFlipped(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isGeometryFlipped", objc.BOOL, .{});
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
     }
 
-    pub fn setGeometryFlipped(self: *@This(), geometryFlipped: objc.BOOL) void {
-        return objc.msgSend(self, "setGeometryFlipped:", void, .{geometryFlipped});
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
     }
 
-    pub fn superlayer(self: *@This()) ?*Layer {
-        return objc.msgSend(self, "superlayer", ?*Layer, .{});
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
     }
 
-    pub fn sublayers(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "sublayers", ?*anyopaque, .{});
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
     }
 
-    pub fn setSublayers(self: *@This(), sublayers: ?*anyopaque) void {
-        return objc.msgSend(self, "setSublayers:", void, .{sublayers});
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
     }
 
-    pub fn sublayerTransform(self: *@This()) Transform3D {
-        return objc.msgSend(self, "sublayerTransform", Transform3D, .{});
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
     }
 
-    pub fn setSublayerTransform(self: *@This(), sublayerTransform: Transform3D) void {
-        return objc.msgSend(self, "setSublayerTransform:", void, .{sublayerTransform});
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
     }
 
-    pub fn mask(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "mask", ?*anyopaque, .{});
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
     }
 
-    pub fn setMask(self: *@This(), mask: ?*anyopaque) void {
-        return objc.msgSend(self, "setMask:", void, .{mask});
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
     }
 
-    pub fn masksToBounds(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "masksToBounds", objc.BOOL, .{});
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
     }
 
-    pub fn setMasksToBounds(self: *@This(), masksToBounds: objc.BOOL) void {
-        return objc.msgSend(self, "setMasksToBounds:", void, .{masksToBounds});
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
     }
 
-    pub fn contents(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "contents", *objc.Id, .{});
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
     }
 
-    pub fn setContents(self: *@This(), contents: *objc.Id) void {
-        return objc.msgSend(self, "setContents:", void, .{contents});
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
     }
 
-    pub fn contentsRect(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "contentsRect", core_foundation.CGRect, .{});
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
     }
 
-    pub fn setContentsRect(self: *@This(), contentsRect: core_foundation.CGRect) void {
-        return objc.msgSend(self, "setContentsRect:", void, .{contentsRect});
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
     }
 
-    pub fn contentsGravity(self: *@This()) LayerContentsGravity {
-        return objc.msgSend(self, "contentsGravity", LayerContentsGravity, .{});
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
     }
 
-    pub fn setContentsGravity(self: *@This(), contentsGravity: LayerContentsGravity) void {
-        return objc.msgSend(self, "setContentsGravity:", void, .{contentsGravity});
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
     }
 
-    pub fn contentsScale(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "contentsScale", core_foundation.CGFloat, .{});
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
     }
 
-    pub fn setContentsScale(self: *@This(), contentsScale: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setContentsScale:", void, .{contentsScale});
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
     }
 
-    pub fn contentsCenter(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "contentsCenter", core_foundation.CGRect, .{});
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
     }
 
-    pub fn setContentsCenter(self: *@This(), contentsCenter: core_foundation.CGRect) void {
-        return objc.msgSend(self, "setContentsCenter:", void, .{contentsCenter});
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn contentsFormat(self: *@This()) LayerContentsFormat {
-        return objc.msgSend(self, "contentsFormat", LayerContentsFormat, .{});
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn setContentsFormat(self: *@This(), contentsFormat: LayerContentsFormat) void {
-        return objc.msgSend(self, "setContentsFormat:", void, .{contentsFormat});
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn wantsExtendedDynamicRangeContent(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
-    pub fn setWantsExtendedDynamicRangeContent(self: *@This(), wantsExtendedDynamicRangeContent: objc.BOOL) void {
-        return objc.msgSend(self, "setWantsExtendedDynamicRangeContent:", void, .{wantsExtendedDynamicRangeContent});
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn toneMapMode(self: *@This()) ToneMapMode {
-        return objc.msgSend(self, "toneMapMode", ToneMapMode, .{});
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
-    pub fn setToneMapMode(self: *@This(), toneMapMode: ToneMapMode) void {
-        return objc.msgSend(self, "setToneMapMode:", void, .{toneMapMode});
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn wantsDynamicContentScaling(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
-    pub fn setWantsDynamicContentScaling(self: *@This(), wantsDynamicContentScaling: objc.BOOL) void {
-        return objc.msgSend(self, "setWantsDynamicContentScaling:", void, .{wantsDynamicContentScaling});
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
     }
 
-    pub fn minificationFilter(self: *@This()) LayerContentsFilter {
-        return objc.msgSend(self, "minificationFilter", LayerContentsFilter, .{});
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
     }
 
-    pub fn setMinificationFilter(self: *@This(), minificationFilter: LayerContentsFilter) void {
-        return objc.msgSend(self, "setMinificationFilter:", void, .{minificationFilter});
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
     }
 
-    pub fn magnificationFilter(self: *@This()) LayerContentsFilter {
-        return objc.msgSend(self, "magnificationFilter", LayerContentsFilter, .{});
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
     }
 
-    pub fn setMagnificationFilter(self: *@This(), magnificationFilter: LayerContentsFilter) void {
-        return objc.msgSend(self, "setMagnificationFilter:", void, .{magnificationFilter});
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
     }
 
-    pub fn minificationFilterBias(self: *@This()) f32 {
-        return objc.msgSend(self, "minificationFilterBias", f32, .{});
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
     }
 
-    pub fn setMinificationFilterBias(self: *@This(), minificationFilterBias: f32) void {
-        return objc.msgSend(self, "setMinificationFilterBias:", void, .{minificationFilterBias});
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
     }
 
-    pub fn isOpaque(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isOpaque", objc.BOOL, .{});
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
     }
 
-    pub fn setOpaque(self: *@This(), opaque: objc.BOOL) void {
-        return objc.msgSend(self, "setOpaque:", void, .{opaque});
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
     }
 
-    pub fn needsDisplayOnBoundsChange(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
     }
 
-    pub fn setNeedsDisplayOnBoundsChange(self: *@This(), needsDisplayOnBoundsChange: objc.BOOL) void {
-        return objc.msgSend(self, "setNeedsDisplayOnBoundsChange:", void, .{needsDisplayOnBoundsChange});
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
     }
 
-    pub fn drawsAsynchronously(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "drawsAsynchronously", objc.BOOL, .{});
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
     }
 
-    pub fn setDrawsAsynchronously(self: *@This(), drawsAsynchronously: objc.BOOL) void {
-        return objc.msgSend(self, "setDrawsAsynchronously:", void, .{drawsAsynchronously});
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
     }
 
-    pub fn edgeAntialiasingMask(self: *@This()) EdgeAntialiasingMask {
-        return objc.msgSend(self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
     }
 
-    pub fn setEdgeAntialiasingMask(self: *@This(), edgeAntialiasingMask: EdgeAntialiasingMask) void {
-        return objc.msgSend(self, "setEdgeAntialiasingMask:", void, .{edgeAntialiasingMask});
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
     }
 
-    pub fn allowsEdgeAntialiasing(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
     }
 
-    pub fn setAllowsEdgeAntialiasing(self: *@This(), allowsEdgeAntialiasing: objc.BOOL) void {
-        return objc.msgSend(self, "setAllowsEdgeAntialiasing:", void, .{allowsEdgeAntialiasing});
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
     }
 
-    pub fn backgroundColor(self: *@This()) core_graphics.ColorRef {
-        return objc.msgSend(self, "backgroundColor", core_graphics.ColorRef, .{});
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
     }
 
-    pub fn setBackgroundColor(self: *@This(), backgroundColor: core_graphics.ColorRef) void {
-        return objc.msgSend(self, "setBackgroundColor:", void, .{backgroundColor});
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
     }
 
-    pub fn cornerRadius(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "cornerRadius", core_foundation.CGFloat, .{});
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
     }
 
-    pub fn setCornerRadius(self: *@This(), cornerRadius: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setCornerRadius:", void, .{cornerRadius});
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
     }
 
-    pub fn maskedCorners(self: *@This()) CornerMask {
-        return objc.msgSend(self, "maskedCorners", CornerMask, .{});
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
     }
 
-    pub fn setMaskedCorners(self: *@This(), maskedCorners: CornerMask) void {
-        return objc.msgSend(self, "setMaskedCorners:", void, .{maskedCorners});
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
     }
 
-    pub fn cornerCurve(self: *@This()) LayerCornerCurve {
-        return objc.msgSend(self, "cornerCurve", LayerCornerCurve, .{});
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
     }
 
-    pub fn setCornerCurve(self: *@This(), cornerCurve: LayerCornerCurve) void {
-        return objc.msgSend(self, "setCornerCurve:", void, .{cornerCurve});
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
     }
 
-    pub fn borderWidth(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "borderWidth", core_foundation.CGFloat, .{});
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
     }
 
-    pub fn setBorderWidth(self: *@This(), borderWidth: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setBorderWidth:", void, .{borderWidth});
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
     }
 
-    pub fn borderColor(self: *@This()) core_graphics.ColorRef {
-        return objc.msgSend(self, "borderColor", core_graphics.ColorRef, .{});
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
     }
 
-    pub fn setBorderColor(self: *@This(), borderColor: core_graphics.ColorRef) void {
-        return objc.msgSend(self, "setBorderColor:", void, .{borderColor});
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
     }
 
-    pub fn opacity(self: *@This()) f32 {
-        return objc.msgSend(self, "opacity", f32, .{});
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
     }
 
-    pub fn setOpacity(self: *@This(), opacity: f32) void {
-        return objc.msgSend(self, "setOpacity:", void, .{opacity});
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
     }
 
-    pub fn allowsGroupOpacity(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowsGroupOpacity", objc.BOOL, .{});
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
     }
 
-    pub fn setAllowsGroupOpacity(self: *@This(), allowsGroupOpacity: objc.BOOL) void {
-        return objc.msgSend(self, "setAllowsGroupOpacity:", void, .{allowsGroupOpacity});
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
     }
 
-    pub fn compositingFilter(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "compositingFilter", *objc.Id, .{});
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
     }
 
-    pub fn setCompositingFilter(self: *@This(), compositingFilter: *objc.Id) void {
-        return objc.msgSend(self, "setCompositingFilter:", void, .{compositingFilter});
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
     }
 
-    pub fn filters(self: *@This()) ?*NSArray {
-        return objc.msgSend(self, "filters", ?*NSArray, .{});
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
     }
 
-    pub fn setFilters(self: *@This(), filters: ?*NSArray) void {
-        return objc.msgSend(self, "setFilters:", void, .{filters});
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
     }
 
-    pub fn backgroundFilters(self: *@This()) ?*NSArray {
-        return objc.msgSend(self, "backgroundFilters", ?*NSArray, .{});
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
     }
 
-    pub fn setBackgroundFilters(self: *@This(), backgroundFilters: ?*NSArray) void {
-        return objc.msgSend(self, "setBackgroundFilters:", void, .{backgroundFilters});
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
     }
 
-    pub fn shouldRasterize(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "shouldRasterize", objc.BOOL, .{});
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
     }
 
-    pub fn setShouldRasterize(self: *@This(), shouldRasterize: objc.BOOL) void {
-        return objc.msgSend(self, "setShouldRasterize:", void, .{shouldRasterize});
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
     }
 
-    pub fn rasterizationScale(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "rasterizationScale", core_foundation.CGFloat, .{});
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
     }
 
-    pub fn setRasterizationScale(self: *@This(), rasterizationScale: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setRasterizationScale:", void, .{rasterizationScale});
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
     }
 
-    pub fn shadowColor(self: *@This()) core_graphics.ColorRef {
-        return objc.msgSend(self, "shadowColor", core_graphics.ColorRef, .{});
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
     }
 
-    pub fn setShadowColor(self: *@This(), shadowColor: core_graphics.ColorRef) void {
-        return objc.msgSend(self, "setShadowColor:", void, .{shadowColor});
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
     }
 
-    pub fn shadowOpacity(self: *@This()) f32 {
-        return objc.msgSend(self, "shadowOpacity", f32, .{});
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
     }
 
-    pub fn setShadowOpacity(self: *@This(), shadowOpacity: f32) void {
-        return objc.msgSend(self, "setShadowOpacity:", void, .{shadowOpacity});
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
     }
 
-    pub fn shadowOffset(self: *@This()) core_foundation.CGSize {
-        return objc.msgSend(self, "shadowOffset", core_foundation.CGSize, .{});
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
     }
 
-    pub fn setShadowOffset(self: *@This(), shadowOffset: core_foundation.CGSize) void {
-        return objc.msgSend(self, "setShadowOffset:", void, .{shadowOffset});
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
     }
 
-    pub fn shadowRadius(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "shadowRadius", core_foundation.CGFloat, .{});
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
     }
 
-    pub fn setShadowRadius(self: *@This(), shadowRadius: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setShadowRadius:", void, .{shadowRadius});
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
     }
 
-    pub fn shadowPath(self: *@This()) core_graphics.PathRef {
-        return objc.msgSend(self, "shadowPath", core_graphics.PathRef, .{});
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
     }
 
-    pub fn setShadowPath(self: *@This(), shadowPath: core_graphics.PathRef) void {
-        return objc.msgSend(self, "setShadowPath:", void, .{shadowPath});
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
     }
 
-    pub fn autoresizingMask(self: *@This()) AutoresizingMask {
-        return objc.msgSend(self, "autoresizingMask", AutoresizingMask, .{});
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
     }
 
-    pub fn setAutoresizingMask(self: *@This(), autoresizingMask: AutoresizingMask) void {
-        return objc.msgSend(self, "setAutoresizingMask:", void, .{autoresizingMask});
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
     }
 
-    pub fn layoutManager(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "layoutManager", ?*anyopaque, .{});
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
     }
 
-    pub fn setLayoutManager(self: *@This(), layoutManager: ?*anyopaque) void {
-        return objc.msgSend(self, "setLayoutManager:", void, .{layoutManager});
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
     }
 
-    pub fn actions(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "actions", ?*anyopaque, .{});
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
     }
 
-    pub fn setActions(self: *@This(), actions: ?*anyopaque) void {
-        return objc.msgSend(self, "setActions:", void, .{actions});
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
     }
 
-    pub fn name(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "name", ?*NSString, .{});
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
     }
 
-    pub fn setName(self: *@This(), name: ?*NSString) void {
-        return objc.msgSend(self, "setName:", void, .{name});
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
     }
 
-    pub fn delegate(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "delegate", ?*anyopaque, .{});
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
     }
 
-    pub fn setDelegate(self: *@This(), delegate: ?*anyopaque) void {
-        return objc.msgSend(self, "setDelegate:", void, .{delegate});
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
     }
 
-    pub fn style(self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(self, "style", ?*core_image.NSDictionary, .{});
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
     }
 
-    pub fn setStyle(self: *@This(), style: ?*core_image.NSDictionary) void {
-        return objc.msgSend(self, "setStyle:", void, .{style});
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
     }
 
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CALayoutManager?language=objc
 pub const LayoutManager = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn preferredSizeOfLayer(self: *@This(), layer: ?*Layer) core_foundation.CGSize {
-        return objc.msgSend(self, "preferredSizeOfLayer:", core_foundation.CGSize, .{layer});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn invalidateLayoutOfLayer(self: *@This(), layer: ?*Layer) void {
-        return objc.msgSend(self, "invalidateLayoutOfLayer:", void, .{layer});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn layoutSublayersOfLayer(self: *@This(), layer: ?*Layer) void {
-        return objc.msgSend(self, "layoutSublayersOfLayer:", void, .{layer});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn preferredSizeOfLayer(_self: *@This(), _layer: ?*Layer) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredSizeOfLayer:", core_foundation.CGSize, .{_layer});
+    }
+
+    pub fn invalidateLayoutOfLayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "invalidateLayoutOfLayer:", void, .{_layer});
+    }
+
+    pub fn layoutSublayersOfLayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "layoutSublayersOfLayer:", void, .{_layer});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAAction?language=objc
@@ -801,40 +1066,84 @@ pub const Action = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn runActionForKeyObjectArguments(self: *@This(), event: ?*NSString, anObject: *objc.Id, dict: ?*core_image.NSDictionary) void {
-        return objc.msgSend(self, "runActionForKey:object:arguments:", void, .{event, anObject, dict});
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
     }
-
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CALayerDelegate?language=objc
 pub const LayerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn displayLayer(self: *@This(), layer: ?*Layer) void {
-        return objc.msgSend(self, "displayLayer:", void, .{layer});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn drawLayerInContext(self: *@This(), layer: ?*Layer, ctx: core_graphics.ContextRef) void {
-        return objc.msgSend(self, "drawLayer:inContext:", void, .{layer, ctx});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn layerWillDraw(self: *@This(), layer: ?*Layer) void {
-        return objc.msgSend(self, "layerWillDraw:", void, .{layer});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn layoutSublayersOfLayer(self: *@This(), layer: ?*Layer) void {
-        return objc.msgSend(self, "layoutSublayersOfLayer:", void, .{layer});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn actionForLayerForKey(self: *@This(), layer: ?*Layer, event: ?*NSString) ?*anyopaque {
-        return objc.msgSend(self, "actionForLayer:forKey:", ?*anyopaque, .{layer, event});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn displayLayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "displayLayer:", void, .{_layer});
+    }
+
+    pub fn drawLayerInContext(_self: *@This(), _layer: ?*Layer, _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawLayer:inContext:", void, .{ _layer, _ctx });
+    }
+
+    pub fn layerWillDraw(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "layerWillDraw:", void, .{_layer});
+    }
+
+    pub fn layoutSublayersOfLayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "layoutSublayersOfLayer:", void, .{_layer});
+    }
+
+    pub fn actionForLayerForKey(_self: *@This(), _layer: ?*Layer, _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForLayer:forKey:", ?*anyopaque, .{ _layer, _event });
+    }
 };
 
 pub const FrameRateRange = extern struct {
@@ -843,9 +1152,11 @@ pub const FrameRateRange = extern struct {
     preferred: f32,
 };
 
-pub extern "QuartzCore" fn FrameRateRangeMake(minimum: f32, maximum: f32, preferred: f32) callconv(.C) FrameRateRange;
+extern "QuartzCore" fn CAFrameRateRangeMake(minimum: f32, maximum: f32, preferred: f32) callconv(.C) FrameRateRange;
+pub const frameRateRangeMake = CAFrameRateRangeMake;
 
-pub extern "QuartzCore" fn FrameRateRangeIsEqualToRange() callconv(.C) i32;
+extern "QuartzCore" fn CAFrameRateRangeIsEqualToRange() callconv(.C) i32;
+pub const frameRateRangeIsEqualToRange = CAFrameRateRangeIsEqualToRange;
 
 pub const AnimationCalculationMode = ?*NSString;
 
@@ -857,7 +1168,12 @@ pub const TransitionSubtype = ?*NSString;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAAnimation?language=objc
 pub const Animation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAAnimation", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CAAnimation", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+        MediaTiming,
+        Action,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -866,69 +1182,305 @@ pub const Animation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn animation(self: *@This()) *@This() {
-        return objc.msgSend(self, "animation", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn defaultValueForKey(self: *@This(), key: ?*NSString) *objc.Id {
-        return objc.msgSend(self, "defaultValueForKey:", *objc.Id, .{key});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn timingFunction(self: *@This()) ?*MediaTimingFunction {
-        return objc.msgSend(self, "timingFunction", ?*MediaTimingFunction, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setTimingFunction(self: *@This(), timingFunction: ?*MediaTimingFunction) void {
-        return objc.msgSend(self, "setTimingFunction:", void, .{timingFunction});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn delegate(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "delegate", ?*anyopaque, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setDelegate(self: *@This(), delegate: ?*anyopaque) void {
-        return objc.msgSend(self, "setDelegate:", void, .{delegate});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn isRemovedOnCompletion(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isRemovedOnCompletion", objc.BOOL, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setRemovedOnCompletion(self: *@This(), removedOnCompletion: objc.BOOL) void {
-        return objc.msgSend(self, "setRemovedOnCompletion:", void, .{removedOnCompletion});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn preferredFrameRateRange(self: *@This()) FrameRateRange {
-        return objc.msgSend(self, "preferredFrameRateRange", FrameRateRange, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setPreferredFrameRateRange(self: *@This(), preferredFrameRateRange: FrameRateRange) void {
-        return objc.msgSend(self, "setPreferredFrameRateRange:", void, .{preferredFrameRateRange});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
+    }
+
+    pub fn animation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "animation", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn timingFunction(_self: *@This()) ?*MediaTimingFunction {
+        return objc.msgSend(_self, "timingFunction", ?*MediaTimingFunction, .{});
+    }
+
+    pub fn setTimingFunction(_self: *@This(), _timingFunction: ?*MediaTimingFunction) void {
+        return objc.msgSend(_self, "setTimingFunction:", void, .{_timingFunction});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn isRemovedOnCompletion(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isRemovedOnCompletion", objc.BOOL, .{});
+    }
+
+    pub fn setRemovedOnCompletion(_self: *@This(), _removedOnCompletion: objc.BOOL) void {
+        return objc.msgSend(_self, "setRemovedOnCompletion:", void, .{_removedOnCompletion});
+    }
+
+    pub fn preferredFrameRateRange(_self: *@This()) FrameRateRange {
+        return objc.msgSend(_self, "preferredFrameRateRange", FrameRateRange, .{});
+    }
+
+    pub fn setPreferredFrameRateRange(_self: *@This(), _preferredFrameRateRange: FrameRateRange) void {
+        return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAAnimationDelegate?language=objc
 pub const AnimationDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn animationDidStart(self: *@This(), anim: ?*Animation) void {
-        return objc.msgSend(self, "animationDidStart:", void, .{anim});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn animationDidStopFinished(self: *@This(), anim: ?*Animation, flag: objc.BOOL) void {
-        return objc.msgSend(self, "animationDidStop:finished:", void, .{anim, flag});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn animationDidStart(_self: *@This(), _anim: ?*Animation) void {
+        return objc.msgSend(_self, "animationDidStart:", void, .{_anim});
+    }
+
+    pub fn animationDidStopFinished(_self: *@This(), _anim: ?*Animation, _flag: objc.BOOL) void {
+        return objc.msgSend(_self, "animationDidStop:finished:", void, .{ _anim, _flag });
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation?language=objc
 pub const PropertyAnimation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAPropertyAnimation", @This(), Animation, &.{});
+    pub const InternalInfo = objc.ExternClass("CAPropertyAnimation", @This(), Animation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -937,47 +1489,278 @@ pub const PropertyAnimation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn animationWithKeyPath(self: *@This(), path: ?*NSString) *@This() {
-        return objc.msgSend(self, "animationWithKeyPath:", *@This(), .{path});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn keyPath(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "keyPath", ?*NSString, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setKeyPath(self: *@This(), keyPath: ?*NSString) void {
-        return objc.msgSend(self, "setKeyPath:", void, .{keyPath});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn isAdditive(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isAdditive", objc.BOOL, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setAdditive(self: *@This(), additive: objc.BOOL) void {
-        return objc.msgSend(self, "setAdditive:", void, .{additive});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn isCumulative(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isCumulative", objc.BOOL, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setCumulative(self: *@This(), cumulative: objc.BOOL) void {
-        return objc.msgSend(self, "setCumulative:", void, .{cumulative});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn valueFunction(self: *@This()) ?*ValueFunction {
-        return objc.msgSend(self, "valueFunction", ?*ValueFunction, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setValueFunction(self: *@This(), valueFunction: ?*ValueFunction) void {
-        return objc.msgSend(self, "setValueFunction:", void, .{valueFunction});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
+    }
+
+    pub fn animation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "animation", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn timingFunction(_self: *@This()) ?*MediaTimingFunction {
+        return objc.msgSend(_self, "timingFunction", ?*MediaTimingFunction, .{});
+    }
+
+    pub fn setTimingFunction(_self: *@This(), _timingFunction: ?*MediaTimingFunction) void {
+        return objc.msgSend(_self, "setTimingFunction:", void, .{_timingFunction});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn isRemovedOnCompletion(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isRemovedOnCompletion", objc.BOOL, .{});
+    }
+
+    pub fn setRemovedOnCompletion(_self: *@This(), _removedOnCompletion: objc.BOOL) void {
+        return objc.msgSend(_self, "setRemovedOnCompletion:", void, .{_removedOnCompletion});
+    }
+
+    pub fn preferredFrameRateRange(_self: *@This()) FrameRateRange {
+        return objc.msgSend(_self, "preferredFrameRateRange", FrameRateRange, .{});
+    }
+
+    pub fn setPreferredFrameRateRange(_self: *@This(), _preferredFrameRateRange: FrameRateRange) void {
+        return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
+    }
+
+    pub fn animationWithKeyPath(_self: *@This(), _path: ?*NSString) *@This() {
+        return objc.msgSend(_self, "animationWithKeyPath:", *@This(), .{_path});
+    }
+
+    pub fn keyPath(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "keyPath", ?*NSString, .{});
+    }
+
+    pub fn setKeyPath(_self: *@This(), _keyPath: ?*NSString) void {
+        return objc.msgSend(_self, "setKeyPath:", void, .{_keyPath});
+    }
+
+    pub fn isAdditive(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAdditive", objc.BOOL, .{});
+    }
+
+    pub fn setAdditive(_self: *@This(), _additive: objc.BOOL) void {
+        return objc.msgSend(_self, "setAdditive:", void, .{_additive});
+    }
+
+    pub fn isCumulative(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCumulative", objc.BOOL, .{});
+    }
+
+    pub fn setCumulative(_self: *@This(), _cumulative: objc.BOOL) void {
+        return objc.msgSend(_self, "setCumulative:", void, .{_cumulative});
+    }
+
+    pub fn valueFunction(_self: *@This()) ?*ValueFunction {
+        return objc.msgSend(_self, "valueFunction", ?*ValueFunction, .{});
+    }
+
+    pub fn setValueFunction(_self: *@This(), _valueFunction: ?*ValueFunction) void {
+        return objc.msgSend(_self, "setValueFunction:", void, .{_valueFunction});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CABasicAnimation?language=objc
 pub const BasicAnimation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CABasicAnimation", @This(), PropertyAnimation, &.{});
+    pub const InternalInfo = objc.ExternClass("CABasicAnimation", @This(), PropertyAnimation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -986,35 +1769,302 @@ pub const BasicAnimation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn fromValue(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "fromValue", *objc.Id, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setFromValue(self: *@This(), fromValue: *objc.Id) void {
-        return objc.msgSend(self, "setFromValue:", void, .{fromValue});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn toValue(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "toValue", *objc.Id, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setToValue(self: *@This(), toValue: *objc.Id) void {
-        return objc.msgSend(self, "setToValue:", void, .{toValue});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn byValue(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "byValue", *objc.Id, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setByValue(self: *@This(), byValue: *objc.Id) void {
-        return objc.msgSend(self, "setByValue:", void, .{byValue});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
+    }
+
+    pub fn animation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "animation", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn timingFunction(_self: *@This()) ?*MediaTimingFunction {
+        return objc.msgSend(_self, "timingFunction", ?*MediaTimingFunction, .{});
+    }
+
+    pub fn setTimingFunction(_self: *@This(), _timingFunction: ?*MediaTimingFunction) void {
+        return objc.msgSend(_self, "setTimingFunction:", void, .{_timingFunction});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn isRemovedOnCompletion(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isRemovedOnCompletion", objc.BOOL, .{});
+    }
+
+    pub fn setRemovedOnCompletion(_self: *@This(), _removedOnCompletion: objc.BOOL) void {
+        return objc.msgSend(_self, "setRemovedOnCompletion:", void, .{_removedOnCompletion});
+    }
+
+    pub fn preferredFrameRateRange(_self: *@This()) FrameRateRange {
+        return objc.msgSend(_self, "preferredFrameRateRange", FrameRateRange, .{});
+    }
+
+    pub fn setPreferredFrameRateRange(_self: *@This(), _preferredFrameRateRange: FrameRateRange) void {
+        return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
+    }
+
+    pub fn animationWithKeyPath(_self: *@This(), _path: ?*NSString) *@This() {
+        return objc.msgSend(_self, "animationWithKeyPath:", *@This(), .{_path});
+    }
+
+    pub fn keyPath(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "keyPath", ?*NSString, .{});
+    }
+
+    pub fn setKeyPath(_self: *@This(), _keyPath: ?*NSString) void {
+        return objc.msgSend(_self, "setKeyPath:", void, .{_keyPath});
+    }
+
+    pub fn isAdditive(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAdditive", objc.BOOL, .{});
+    }
+
+    pub fn setAdditive(_self: *@This(), _additive: objc.BOOL) void {
+        return objc.msgSend(_self, "setAdditive:", void, .{_additive});
+    }
+
+    pub fn isCumulative(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCumulative", objc.BOOL, .{});
+    }
+
+    pub fn setCumulative(_self: *@This(), _cumulative: objc.BOOL) void {
+        return objc.msgSend(_self, "setCumulative:", void, .{_cumulative});
+    }
+
+    pub fn valueFunction(_self: *@This()) ?*ValueFunction {
+        return objc.msgSend(_self, "valueFunction", ?*ValueFunction, .{});
+    }
+
+    pub fn setValueFunction(_self: *@This(), _valueFunction: ?*ValueFunction) void {
+        return objc.msgSend(_self, "setValueFunction:", void, .{_valueFunction});
+    }
+
+    pub fn fromValue(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "fromValue", *objc.Id, .{});
+    }
+
+    pub fn setFromValue(_self: *@This(), _fromValue: *objc.Id) void {
+        return objc.msgSend(_self, "setFromValue:", void, .{_fromValue});
+    }
+
+    pub fn toValue(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "toValue", *objc.Id, .{});
+    }
+
+    pub fn setToValue(_self: *@This(), _toValue: *objc.Id) void {
+        return objc.msgSend(_self, "setToValue:", void, .{_toValue});
+    }
+
+    pub fn byValue(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "byValue", *objc.Id, .{});
+    }
+
+    pub fn setByValue(_self: *@This(), _byValue: *objc.Id) void {
+        return objc.msgSend(_self, "setByValue:", void, .{_byValue});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation?language=objc
 pub const KeyframeAnimation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAKeyframeAnimation", @This(), PropertyAnimation, &.{});
+    pub const InternalInfo = objc.ExternClass("CAKeyframeAnimation", @This(), PropertyAnimation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1023,83 +2073,350 @@ pub const KeyframeAnimation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn values(self: *@This()) ?*NSArray {
-        return objc.msgSend(self, "values", ?*NSArray, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setValues(self: *@This(), values: ?*NSArray) void {
-        return objc.msgSend(self, "setValues:", void, .{values});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn path(self: *@This()) core_graphics.PathRef {
-        return objc.msgSend(self, "path", core_graphics.PathRef, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setPath(self: *@This(), path: core_graphics.PathRef) void {
-        return objc.msgSend(self, "setPath:", void, .{path});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn keyTimes(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "keyTimes", ?*anyopaque, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setKeyTimes(self: *@This(), keyTimes: ?*anyopaque) void {
-        return objc.msgSend(self, "setKeyTimes:", void, .{keyTimes});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn timingFunctions(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "timingFunctions", ?*anyopaque, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setTimingFunctions(self: *@This(), timingFunctions: ?*anyopaque) void {
-        return objc.msgSend(self, "setTimingFunctions:", void, .{timingFunctions});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn calculationMode(self: *@This()) AnimationCalculationMode {
-        return objc.msgSend(self, "calculationMode", AnimationCalculationMode, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setCalculationMode(self: *@This(), calculationMode: AnimationCalculationMode) void {
-        return objc.msgSend(self, "setCalculationMode:", void, .{calculationMode});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn tensionValues(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "tensionValues", ?*anyopaque, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setTensionValues(self: *@This(), tensionValues: ?*anyopaque) void {
-        return objc.msgSend(self, "setTensionValues:", void, .{tensionValues});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn continuityValues(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "continuityValues", ?*anyopaque, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setContinuityValues(self: *@This(), continuityValues: ?*anyopaque) void {
-        return objc.msgSend(self, "setContinuityValues:", void, .{continuityValues});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn biasValues(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "biasValues", ?*anyopaque, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn setBiasValues(self: *@This(), biasValues: ?*anyopaque) void {
-        return objc.msgSend(self, "setBiasValues:", void, .{biasValues});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn rotationMode(self: *@This()) AnimationRotationMode {
-        return objc.msgSend(self, "rotationMode", AnimationRotationMode, .{});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn setRotationMode(self: *@This(), rotationMode: AnimationRotationMode) void {
-        return objc.msgSend(self, "setRotationMode:", void, .{rotationMode});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
+    }
+
+    pub fn animation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "animation", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn timingFunction(_self: *@This()) ?*MediaTimingFunction {
+        return objc.msgSend(_self, "timingFunction", ?*MediaTimingFunction, .{});
+    }
+
+    pub fn setTimingFunction(_self: *@This(), _timingFunction: ?*MediaTimingFunction) void {
+        return objc.msgSend(_self, "setTimingFunction:", void, .{_timingFunction});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn isRemovedOnCompletion(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isRemovedOnCompletion", objc.BOOL, .{});
+    }
+
+    pub fn setRemovedOnCompletion(_self: *@This(), _removedOnCompletion: objc.BOOL) void {
+        return objc.msgSend(_self, "setRemovedOnCompletion:", void, .{_removedOnCompletion});
+    }
+
+    pub fn preferredFrameRateRange(_self: *@This()) FrameRateRange {
+        return objc.msgSend(_self, "preferredFrameRateRange", FrameRateRange, .{});
+    }
+
+    pub fn setPreferredFrameRateRange(_self: *@This(), _preferredFrameRateRange: FrameRateRange) void {
+        return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
+    }
+
+    pub fn animationWithKeyPath(_self: *@This(), _path: ?*NSString) *@This() {
+        return objc.msgSend(_self, "animationWithKeyPath:", *@This(), .{_path});
+    }
+
+    pub fn keyPath(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "keyPath", ?*NSString, .{});
+    }
+
+    pub fn setKeyPath(_self: *@This(), _keyPath: ?*NSString) void {
+        return objc.msgSend(_self, "setKeyPath:", void, .{_keyPath});
+    }
+
+    pub fn isAdditive(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAdditive", objc.BOOL, .{});
+    }
+
+    pub fn setAdditive(_self: *@This(), _additive: objc.BOOL) void {
+        return objc.msgSend(_self, "setAdditive:", void, .{_additive});
+    }
+
+    pub fn isCumulative(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCumulative", objc.BOOL, .{});
+    }
+
+    pub fn setCumulative(_self: *@This(), _cumulative: objc.BOOL) void {
+        return objc.msgSend(_self, "setCumulative:", void, .{_cumulative});
+    }
+
+    pub fn valueFunction(_self: *@This()) ?*ValueFunction {
+        return objc.msgSend(_self, "valueFunction", ?*ValueFunction, .{});
+    }
+
+    pub fn setValueFunction(_self: *@This(), _valueFunction: ?*ValueFunction) void {
+        return objc.msgSend(_self, "setValueFunction:", void, .{_valueFunction});
+    }
+
+    pub fn values(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "values", ?*NSArray, .{});
+    }
+
+    pub fn setValues(_self: *@This(), _values: ?*NSArray) void {
+        return objc.msgSend(_self, "setValues:", void, .{_values});
+    }
+
+    pub fn path(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "path", core_graphics.PathRef, .{});
+    }
+
+    pub fn setPath(_self: *@This(), _path: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setPath:", void, .{_path});
+    }
+
+    pub fn keyTimes(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "keyTimes", ?*anyopaque, .{});
+    }
+
+    pub fn setKeyTimes(_self: *@This(), _keyTimes: ?*anyopaque) void {
+        return objc.msgSend(_self, "setKeyTimes:", void, .{_keyTimes});
+    }
+
+    pub fn timingFunctions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "timingFunctions", ?*anyopaque, .{});
+    }
+
+    pub fn setTimingFunctions(_self: *@This(), _timingFunctions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setTimingFunctions:", void, .{_timingFunctions});
+    }
+
+    pub fn calculationMode(_self: *@This()) AnimationCalculationMode {
+        return objc.msgSend(_self, "calculationMode", AnimationCalculationMode, .{});
+    }
+
+    pub fn setCalculationMode(_self: *@This(), _calculationMode: AnimationCalculationMode) void {
+        return objc.msgSend(_self, "setCalculationMode:", void, .{_calculationMode});
+    }
+
+    pub fn tensionValues(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "tensionValues", ?*anyopaque, .{});
+    }
+
+    pub fn setTensionValues(_self: *@This(), _tensionValues: ?*anyopaque) void {
+        return objc.msgSend(_self, "setTensionValues:", void, .{_tensionValues});
+    }
+
+    pub fn continuityValues(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "continuityValues", ?*anyopaque, .{});
+    }
+
+    pub fn setContinuityValues(_self: *@This(), _continuityValues: ?*anyopaque) void {
+        return objc.msgSend(_self, "setContinuityValues:", void, .{_continuityValues});
+    }
+
+    pub fn biasValues(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "biasValues", ?*anyopaque, .{});
+    }
+
+    pub fn setBiasValues(_self: *@This(), _biasValues: ?*anyopaque) void {
+        return objc.msgSend(_self, "setBiasValues:", void, .{_biasValues});
+    }
+
+    pub fn rotationMode(_self: *@This()) AnimationRotationMode {
+        return objc.msgSend(_self, "rotationMode", AnimationRotationMode, .{});
+    }
+
+    pub fn setRotationMode(_self: *@This(), _rotationMode: AnimationRotationMode) void {
+        return objc.msgSend(_self, "setRotationMode:", void, .{_rotationMode});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CASpringAnimation?language=objc
 pub const SpringAnimation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CASpringAnimation", @This(), BasicAnimation, &.{});
+    pub const InternalInfo = objc.ExternClass("CASpringAnimation", @This(), BasicAnimation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1108,67 +2425,358 @@ pub const SpringAnimation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithPerceptualDurationBounce(self: *@This(), perceptualDuration: core_foundation.TimeInterval, bounce: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(self, "initWithPerceptualDuration:bounce:", *@This(), .{perceptualDuration, bounce});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn mass(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "mass", core_foundation.CGFloat, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setMass(self: *@This(), mass: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setMass:", void, .{mass});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn stiffness(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "stiffness", core_foundation.CGFloat, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setStiffness(self: *@This(), stiffness: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setStiffness:", void, .{stiffness});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn damping(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "damping", core_foundation.CGFloat, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setDamping(self: *@This(), damping: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setDamping:", void, .{damping});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn initialVelocity(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "initialVelocity", core_foundation.CGFloat, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setInitialVelocity(self: *@This(), initialVelocity: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setInitialVelocity:", void, .{initialVelocity});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn allowsOverdamping(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowsOverdamping", objc.BOOL, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn setAllowsOverdamping(self: *@This(), allowsOverdamping: objc.BOOL) void {
-        return objc.msgSend(self, "setAllowsOverdamping:", void, .{allowsOverdamping});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn settlingDuration(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "settlingDuration", core_foundation.TimeInterval, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn perceptualDuration(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "perceptualDuration", core_foundation.TimeInterval, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn bounce(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "bounce", core_foundation.CGFloat, .{});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
+    }
+
+    pub fn animation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "animation", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn timingFunction(_self: *@This()) ?*MediaTimingFunction {
+        return objc.msgSend(_self, "timingFunction", ?*MediaTimingFunction, .{});
+    }
+
+    pub fn setTimingFunction(_self: *@This(), _timingFunction: ?*MediaTimingFunction) void {
+        return objc.msgSend(_self, "setTimingFunction:", void, .{_timingFunction});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn isRemovedOnCompletion(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isRemovedOnCompletion", objc.BOOL, .{});
+    }
+
+    pub fn setRemovedOnCompletion(_self: *@This(), _removedOnCompletion: objc.BOOL) void {
+        return objc.msgSend(_self, "setRemovedOnCompletion:", void, .{_removedOnCompletion});
+    }
+
+    pub fn preferredFrameRateRange(_self: *@This()) FrameRateRange {
+        return objc.msgSend(_self, "preferredFrameRateRange", FrameRateRange, .{});
+    }
+
+    pub fn setPreferredFrameRateRange(_self: *@This(), _preferredFrameRateRange: FrameRateRange) void {
+        return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
+    }
+
+    pub fn animationWithKeyPath(_self: *@This(), _path: ?*NSString) *@This() {
+        return objc.msgSend(_self, "animationWithKeyPath:", *@This(), .{_path});
+    }
+
+    pub fn keyPath(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "keyPath", ?*NSString, .{});
+    }
+
+    pub fn setKeyPath(_self: *@This(), _keyPath: ?*NSString) void {
+        return objc.msgSend(_self, "setKeyPath:", void, .{_keyPath});
+    }
+
+    pub fn isAdditive(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAdditive", objc.BOOL, .{});
+    }
+
+    pub fn setAdditive(_self: *@This(), _additive: objc.BOOL) void {
+        return objc.msgSend(_self, "setAdditive:", void, .{_additive});
+    }
+
+    pub fn isCumulative(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCumulative", objc.BOOL, .{});
+    }
+
+    pub fn setCumulative(_self: *@This(), _cumulative: objc.BOOL) void {
+        return objc.msgSend(_self, "setCumulative:", void, .{_cumulative});
+    }
+
+    pub fn valueFunction(_self: *@This()) ?*ValueFunction {
+        return objc.msgSend(_self, "valueFunction", ?*ValueFunction, .{});
+    }
+
+    pub fn setValueFunction(_self: *@This(), _valueFunction: ?*ValueFunction) void {
+        return objc.msgSend(_self, "setValueFunction:", void, .{_valueFunction});
+    }
+
+    pub fn fromValue(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "fromValue", *objc.Id, .{});
+    }
+
+    pub fn setFromValue(_self: *@This(), _fromValue: *objc.Id) void {
+        return objc.msgSend(_self, "setFromValue:", void, .{_fromValue});
+    }
+
+    pub fn toValue(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "toValue", *objc.Id, .{});
+    }
+
+    pub fn setToValue(_self: *@This(), _toValue: *objc.Id) void {
+        return objc.msgSend(_self, "setToValue:", void, .{_toValue});
+    }
+
+    pub fn byValue(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "byValue", *objc.Id, .{});
+    }
+
+    pub fn setByValue(_self: *@This(), _byValue: *objc.Id) void {
+        return objc.msgSend(_self, "setByValue:", void, .{_byValue});
+    }
+
+    pub fn initWithPerceptualDurationBounce(_self: *@This(), _perceptualDuration: core_foundation.TimeInterval, _bounce: core_foundation.CGFloat) *@This() {
+        return objc.msgSend(_self, "initWithPerceptualDuration:bounce:", *@This(), .{ _perceptualDuration, _bounce });
+    }
+
+    pub fn mass(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "mass", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setMass(_self: *@This(), _mass: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setMass:", void, .{_mass});
+    }
+
+    pub fn stiffness(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "stiffness", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setStiffness(_self: *@This(), _stiffness: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setStiffness:", void, .{_stiffness});
+    }
+
+    pub fn damping(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "damping", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setDamping(_self: *@This(), _damping: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setDamping:", void, .{_damping});
+    }
+
+    pub fn initialVelocity(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "initialVelocity", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setInitialVelocity(_self: *@This(), _initialVelocity: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setInitialVelocity:", void, .{_initialVelocity});
+    }
+
+    pub fn allowsOverdamping(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsOverdamping", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsOverdamping(_self: *@This(), _allowsOverdamping: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsOverdamping:", void, .{_allowsOverdamping});
+    }
+
+    pub fn settlingDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "settlingDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn perceptualDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "perceptualDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn bounce(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "bounce", core_foundation.CGFloat, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CATransition?language=objc
 pub const Transition = opaque {
-    pub const InternalInfo = objc.ExternalClass("CATransition", @This(), Animation, &.{});
+    pub const InternalInfo = objc.ExternClass("CATransition", @This(), Animation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1177,51 +2785,282 @@ pub const Transition = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn @"type"(self: *@This()) TransitionType {
-        return objc.msgSend(self, "type", TransitionType, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setType(self: *@This(), @"type": TransitionType) void {
-        return objc.msgSend(self, "setType:", void, .{@"type"});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn subtype(self: *@This()) TransitionSubtype {
-        return objc.msgSend(self, "subtype", TransitionSubtype, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setSubtype(self: *@This(), subtype: TransitionSubtype) void {
-        return objc.msgSend(self, "setSubtype:", void, .{subtype});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn startProgress(self: *@This()) f32 {
-        return objc.msgSend(self, "startProgress", f32, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setStartProgress(self: *@This(), startProgress: f32) void {
-        return objc.msgSend(self, "setStartProgress:", void, .{startProgress});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn endProgress(self: *@This()) f32 {
-        return objc.msgSend(self, "endProgress", f32, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setEndProgress(self: *@This(), endProgress: f32) void {
-        return objc.msgSend(self, "setEndProgress:", void, .{endProgress});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn filter(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "filter", *objc.Id, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setFilter(self: *@This(), filter: *objc.Id) void {
-        return objc.msgSend(self, "setFilter:", void, .{filter});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
+    }
+
+    pub fn animation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "animation", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn timingFunction(_self: *@This()) ?*MediaTimingFunction {
+        return objc.msgSend(_self, "timingFunction", ?*MediaTimingFunction, .{});
+    }
+
+    pub fn setTimingFunction(_self: *@This(), _timingFunction: ?*MediaTimingFunction) void {
+        return objc.msgSend(_self, "setTimingFunction:", void, .{_timingFunction});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn isRemovedOnCompletion(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isRemovedOnCompletion", objc.BOOL, .{});
+    }
+
+    pub fn setRemovedOnCompletion(_self: *@This(), _removedOnCompletion: objc.BOOL) void {
+        return objc.msgSend(_self, "setRemovedOnCompletion:", void, .{_removedOnCompletion});
+    }
+
+    pub fn preferredFrameRateRange(_self: *@This()) FrameRateRange {
+        return objc.msgSend(_self, "preferredFrameRateRange", FrameRateRange, .{});
+    }
+
+    pub fn setPreferredFrameRateRange(_self: *@This(), _preferredFrameRateRange: FrameRateRange) void {
+        return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
+    }
+
+    pub fn @"type"(_self: *@This()) TransitionType {
+        return objc.msgSend(_self, "type", TransitionType, .{});
+    }
+
+    pub fn setType(_self: *@This(), _type: TransitionType) void {
+        return objc.msgSend(_self, "setType:", void, .{_type});
+    }
+
+    pub fn subtype(_self: *@This()) TransitionSubtype {
+        return objc.msgSend(_self, "subtype", TransitionSubtype, .{});
+    }
+
+    pub fn setSubtype(_self: *@This(), _subtype: TransitionSubtype) void {
+        return objc.msgSend(_self, "setSubtype:", void, .{_subtype});
+    }
+
+    pub fn startProgress(_self: *@This()) f32 {
+        return objc.msgSend(_self, "startProgress", f32, .{});
+    }
+
+    pub fn setStartProgress(_self: *@This(), _startProgress: f32) void {
+        return objc.msgSend(_self, "setStartProgress:", void, .{_startProgress});
+    }
+
+    pub fn endProgress(_self: *@This()) f32 {
+        return objc.msgSend(_self, "endProgress", f32, .{});
+    }
+
+    pub fn setEndProgress(_self: *@This(), _endProgress: f32) void {
+        return objc.msgSend(_self, "setEndProgress:", void, .{_endProgress});
+    }
+
+    pub fn filter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "filter", *objc.Id, .{});
+    }
+
+    pub fn setFilter(_self: *@This(), _filter: *objc.Id) void {
+        return objc.msgSend(_self, "setFilter:", void, .{_filter});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAAnimationGroup?language=objc
 pub const AnimationGroup = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAAnimationGroup", @This(), Animation, &.{});
+    pub const InternalInfo = objc.ExternClass("CAAnimationGroup", @This(), Animation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1230,14 +3069,245 @@ pub const AnimationGroup = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn animations(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "animations", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setAnimations(self: *@This(), animations: ?*anyopaque) void {
-        return objc.msgSend(self, "setAnimations:", void, .{animations});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
+    }
+
+    pub fn animation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "animation", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn timingFunction(_self: *@This()) ?*MediaTimingFunction {
+        return objc.msgSend(_self, "timingFunction", ?*MediaTimingFunction, .{});
+    }
+
+    pub fn setTimingFunction(_self: *@This(), _timingFunction: ?*MediaTimingFunction) void {
+        return objc.msgSend(_self, "setTimingFunction:", void, .{_timingFunction});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn isRemovedOnCompletion(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isRemovedOnCompletion", objc.BOOL, .{});
+    }
+
+    pub fn setRemovedOnCompletion(_self: *@This(), _removedOnCompletion: objc.BOOL) void {
+        return objc.msgSend(_self, "setRemovedOnCompletion:", void, .{_removedOnCompletion});
+    }
+
+    pub fn preferredFrameRateRange(_self: *@This()) FrameRateRange {
+        return objc.msgSend(_self, "preferredFrameRateRange", FrameRateRange, .{});
+    }
+
+    pub fn setPreferredFrameRateRange(_self: *@This(), _preferredFrameRateRange: FrameRateRange) void {
+        return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
+    }
+
+    pub fn animations(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animations", ?*anyopaque, .{});
+    }
+
+    pub fn setAnimations(_self: *@This(), _animations: ?*anyopaque) void {
+        return objc.msgSend(_self, "setAnimations:", void, .{_animations});
+    }
 };
 
 pub const ConstraintAttribute = enum(i32) {
@@ -1253,7 +3323,9 @@ pub const ConstraintAttribute = enum(i32) {
 
 /// https://developer.apple.com/documentation/QuartzCore/CAConstraintLayoutManager?language=objc
 pub const ConstraintLayoutManager = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAConstraintLayoutManager", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CAConstraintLayoutManager", @This(), objc.NSObject, &.{
+        LayoutManager,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1262,15 +3334,140 @@ pub const ConstraintLayoutManager = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn layoutManager(self: *@This()) *@This() {
-        return objc.msgSend(self, "layoutManager", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn preferredSizeOfLayer(_self: *@This(), _layer: ?*Layer) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredSizeOfLayer:", core_foundation.CGSize, .{_layer});
+    }
+
+    pub fn invalidateLayoutOfLayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "invalidateLayoutOfLayer:", void, .{_layer});
+    }
+
+    pub fn layoutSublayersOfLayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "layoutSublayersOfLayer:", void, .{_layer});
+    }
+
+    pub fn layoutManager(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layoutManager", *@This(), .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAConstraint?language=objc
 pub const Constraint = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAConstraint", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CAConstraint", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1279,47 +3476,207 @@ pub const Constraint = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn constraintWithAttributeRelativeToAttributeScaleOffset(self: *@This(), attr: ConstraintAttribute, srcId: ?*NSString, srcAttr: ConstraintAttribute, m: core_foundation.CGFloat, c: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(self, "constraintWithAttribute:relativeTo:attribute:scale:offset:", *@This(), .{attr, srcId, srcAttr, m, c, });
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn constraintWithAttributeRelativeToAttributeOffset(self: *@This(), attr: ConstraintAttribute, srcId: ?*NSString, srcAttr: ConstraintAttribute, c: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(self, "constraintWithAttribute:relativeTo:attribute:offset:", *@This(), .{attr, srcId, srcAttr, c, });
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn constraintWithAttributeRelativeToAttribute(self: *@This(), attr: ConstraintAttribute, srcId: ?*NSString, srcAttr: ConstraintAttribute) *@This() {
-        return objc.msgSend(self, "constraintWithAttribute:relativeTo:attribute:", *@This(), .{attr, srcId, srcAttr});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn initWithAttributeRelativeToAttributeScaleOffset(self: *@This(), attr: ConstraintAttribute, srcId: ?*NSString, srcAttr: ConstraintAttribute, m: core_foundation.CGFloat, c: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(self, "initWithAttribute:relativeTo:attribute:scale:offset:", *@This(), .{attr, srcId, srcAttr, m, c, });
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn attribute(self: *@This()) ConstraintAttribute {
-        return objc.msgSend(self, "attribute", ConstraintAttribute, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn sourceName(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "sourceName", ?*NSString, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn sourceAttribute(self: *@This()) ConstraintAttribute {
-        return objc.msgSend(self, "sourceAttribute", ConstraintAttribute, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn scale(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "scale", core_foundation.CGFloat, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn offset(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "offset", core_foundation.CGFloat, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn constraintWithAttributeRelativeToAttributeScaleOffset(
+        _self: *@This(),
+        _attr: ConstraintAttribute,
+        _srcId: ?*NSString,
+        _srcAttr: ConstraintAttribute,
+        _m: core_foundation.CGFloat,
+        _c: core_foundation.CGFloat,
+    ) *@This() {
+        return objc.msgSend(_self, "constraintWithAttribute:relativeTo:attribute:scale:offset:", *@This(), .{
+            _attr,
+            _srcId,
+            _srcAttr,
+            _m,
+            _c,
+        });
+    }
+
+    pub fn constraintWithAttributeRelativeToAttributeOffset(
+        _self: *@This(),
+        _attr: ConstraintAttribute,
+        _srcId: ?*NSString,
+        _srcAttr: ConstraintAttribute,
+        _c: core_foundation.CGFloat,
+    ) *@This() {
+        return objc.msgSend(_self, "constraintWithAttribute:relativeTo:attribute:offset:", *@This(), .{
+            _attr,
+            _srcId,
+            _srcAttr,
+            _c,
+        });
+    }
+
+    pub fn constraintWithAttributeRelativeToAttribute(_self: *@This(), _attr: ConstraintAttribute, _srcId: ?*NSString, _srcAttr: ConstraintAttribute) *@This() {
+        return objc.msgSend(_self, "constraintWithAttribute:relativeTo:attribute:", *@This(), .{ _attr, _srcId, _srcAttr });
+    }
+
+    pub fn initWithAttributeRelativeToAttributeScaleOffset(
+        _self: *@This(),
+        _attr: ConstraintAttribute,
+        _srcId: ?*NSString,
+        _srcAttr: ConstraintAttribute,
+        _m: core_foundation.CGFloat,
+        _c: core_foundation.CGFloat,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithAttribute:relativeTo:attribute:scale:offset:", *@This(), .{
+            _attr,
+            _srcId,
+            _srcAttr,
+            _m,
+            _c,
+        });
+    }
+
+    pub fn attribute(_self: *@This()) ConstraintAttribute {
+        return objc.msgSend(_self, "attribute", ConstraintAttribute, .{});
+    }
+
+    pub fn sourceName(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "sourceName", ?*NSString, .{});
+    }
+
+    pub fn sourceAttribute(_self: *@This()) ConstraintAttribute {
+        return objc.msgSend(_self, "sourceAttribute", ConstraintAttribute, .{});
+    }
+
+    pub fn scale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "scale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn offset(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "offset", core_foundation.CGFloat, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CADisplayLink?language=objc
 pub const DisplayLink = opaque {
-    pub const InternalInfo = objc.ExternalClass("CADisplayLink", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CADisplayLink", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1328,71 +3685,185 @@ pub const DisplayLink = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn displayLinkWithTargetSelector(self: *@This(), target: *objc.Id, sel: *objc.SEL) ?*DisplayLink {
-        return objc.msgSend(self, "displayLinkWithTarget:selector:", ?*DisplayLink, .{target, sel});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn addToRunLoopForMode(self: *@This(), runloop: ?*NSRunLoop, mode: foundation.RunLoopMode) void {
-        return objc.msgSend(self, "addToRunLoop:forMode:", void, .{runloop, mode});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn removeFromRunLoopForMode(self: *@This(), runloop: ?*NSRunLoop, mode: foundation.RunLoopMode) void {
-        return objc.msgSend(self, "removeFromRunLoop:forMode:", void, .{runloop, mode});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn invalidate(self: *@This()) void {
-        return objc.msgSend(self, "invalidate", void, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn timestamp(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "timestamp", core_foundation.TimeInterval, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn duration(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "duration", core_foundation.TimeInterval, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn targetTimestamp(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "targetTimestamp", core_foundation.TimeInterval, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn isPaused(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isPaused", objc.BOOL, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setPaused(self: *@This(), paused: objc.BOOL) void {
-        return objc.msgSend(self, "setPaused:", void, .{paused});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn frameInterval(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "frameInterval", objc.NSInteger, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn setFrameInterval(self: *@This(), frameInterval: objc.NSInteger) void {
-        return objc.msgSend(self, "setFrameInterval:", void, .{frameInterval});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn preferredFramesPerSecond(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "preferredFramesPerSecond", objc.NSInteger, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn setPreferredFramesPerSecond(self: *@This(), preferredFramesPerSecond: objc.NSInteger) void {
-        return objc.msgSend(self, "setPreferredFramesPerSecond:", void, .{preferredFramesPerSecond});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn preferredFrameRateRange(self: *@This()) FrameRateRange {
-        return objc.msgSend(self, "preferredFrameRateRange", FrameRateRange, .{});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn setPreferredFrameRateRange(self: *@This(), preferredFrameRateRange: FrameRateRange) void {
-        return objc.msgSend(self, "setPreferredFrameRateRange:", void, .{preferredFrameRateRange});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn displayLinkWithTargetSelector(_self: *@This(), _target: *objc.Id, _sel: *objc.SEL) ?*DisplayLink {
+        return objc.msgSend(_self, "displayLinkWithTarget:selector:", ?*DisplayLink, .{ _target, _sel });
+    }
+
+    pub fn addToRunLoopForMode(_self: *@This(), _runloop: ?*NSRunLoop, _mode: foundation.RunLoopMode) void {
+        return objc.msgSend(_self, "addToRunLoop:forMode:", void, .{ _runloop, _mode });
+    }
+
+    pub fn removeFromRunLoopForMode(_self: *@This(), _runloop: ?*NSRunLoop, _mode: foundation.RunLoopMode) void {
+        return objc.msgSend(_self, "removeFromRunLoop:forMode:", void, .{ _runloop, _mode });
+    }
+
+    pub fn invalidate(_self: *@This()) void {
+        return objc.msgSend(_self, "invalidate", void, .{});
+    }
+
+    pub fn timestamp(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timestamp", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn targetTimestamp(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "targetTimestamp", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn isPaused(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isPaused", objc.BOOL, .{});
+    }
+
+    pub fn setPaused(_self: *@This(), _paused: objc.BOOL) void {
+        return objc.msgSend(_self, "setPaused:", void, .{_paused});
+    }
+
+    pub fn frameInterval(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "frameInterval", objc.NSInteger, .{});
+    }
+
+    pub fn setFrameInterval(_self: *@This(), _frameInterval: objc.NSInteger) void {
+        return objc.msgSend(_self, "setFrameInterval:", void, .{_frameInterval});
+    }
+
+    pub fn preferredFramesPerSecond(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "preferredFramesPerSecond", objc.NSInteger, .{});
+    }
+
+    pub fn setPreferredFramesPerSecond(_self: *@This(), _preferredFramesPerSecond: objc.NSInteger) void {
+        return objc.msgSend(_self, "setPreferredFramesPerSecond:", void, .{_preferredFramesPerSecond});
+    }
+
+    pub fn preferredFrameRateRange(_self: *@This()) FrameRateRange {
+        return objc.msgSend(_self, "preferredFrameRateRange", FrameRateRange, .{});
+    }
+
+    pub fn setPreferredFrameRateRange(_self: *@This(), _preferredFrameRateRange: FrameRateRange) void {
+        return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata?language=objc
 pub const EDRMetadata = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAEDRMetadata", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CAEDRMetadata", @This(), objc.NSObject, &.{
+        foundation.Copying,
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1401,59 +3872,243 @@ pub const EDRMetadata = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn HDR10MetadataWithDisplayInfoContentInfoOpticalOutputScale(self: *@This(), displayData: ?*core_image.NSData, contentData: ?*core_image.NSData, scale: f32) ?*EDRMetadata {
-        return objc.msgSend(self, "HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:", ?*EDRMetadata, .{displayData, contentData, scale});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn HDR10MetadataWithMinLuminanceMaxLuminanceOpticalOutputScale(self: *@This(), minNits: f32, maxNits: f32, scale: f32) ?*EDRMetadata {
-        return objc.msgSend(self, "HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:", ?*EDRMetadata, .{minNits, maxNits, scale});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn HLGMetadataWithAmbientViewingEnvironment(self: *@This(), data: ?*core_image.NSData) ?*EDRMetadata {
-        return objc.msgSend(self, "HLGMetadataWithAmbientViewingEnvironment:", ?*EDRMetadata, .{data});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn HLGMetadata(self: *@This()) ?*EDRMetadata {
-        return objc.msgSend(self, "HLGMetadata", ?*EDRMetadata, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn isAvailable(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isAvailable", objc.BOOL, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn hdr10MetadataWithDisplayInfoContentInfoOpticalOutputScale(_self: *@This(), _displayData: ?*core_image.NSData, _contentData: ?*core_image.NSData, _scale: f32) ?*EDRMetadata {
+        return objc.msgSend(_self, "HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:", ?*EDRMetadata, .{ _displayData, _contentData, _scale });
+    }
+
+    pub fn hdr10MetadataWithMinLuminanceMaxLuminanceOpticalOutputScale(_self: *@This(), _minNits: f32, _maxNits: f32, _scale: f32) ?*EDRMetadata {
+        return objc.msgSend(_self, "HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:", ?*EDRMetadata, .{ _minNits, _maxNits, _scale });
+    }
+
+    pub fn hlgMetadataWithAmbientViewingEnvironment(_self: *@This(), _data: ?*core_image.NSData) ?*EDRMetadata {
+        return objc.msgSend(_self, "HLGMetadataWithAmbientViewingEnvironment:", ?*EDRMetadata, .{_data});
+    }
+
+    pub fn hlgMetadata(_self: *@This()) ?*EDRMetadata {
+        return objc.msgSend(_self, "HLGMetadata", ?*EDRMetadata, .{});
+    }
+
+    pub fn isAvailable(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAvailable", objc.BOOL, .{});
+    }
 };
 
 pub const _CAEDRMetadataPrivate = extern struct {};
 
 /// https://developer.apple.com/documentation/QuartzCore/CAMetalDrawable?language=objc
 pub const MetalDrawable = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{metal.Drawable, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        metal.Drawable,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn texture(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "texture", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn layer(self: *@This()) ?*MetalLayer {
-        return objc.msgSend(self, "layer", ?*MetalLayer, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn present(_self: *@This()) void {
+        return objc.msgSend(_self, "present", void, .{});
+    }
+
+    pub fn presentAtTime(_self: *@This(), _presentationTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "presentAtTime:", void, .{_presentationTime});
+    }
+
+    pub fn presentAfterMinimumDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "presentAfterMinimumDuration:", void, .{_duration});
+    }
+
+    pub fn addPresentedHandler(_self: *@This(), _block: metal.DrawablePresentedHandler) void {
+        return objc.msgSend(_self, "addPresentedHandler:", void, .{_block});
+    }
+
+    pub fn presentedTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "presentedTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn drawableID(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "drawableID", objc.NSUInteger, .{});
+    }
+
+    pub fn texture(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "texture", ?*anyopaque, .{});
+    }
+
+    pub fn layer(_self: *@This()) ?*MetalLayer {
+        return objc.msgSend(_self, "layer", ?*MetalLayer, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAMetalLayer?language=objc
 pub const MetalLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAMetalLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CAMetalLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1462,117 +4117,900 @@ pub const MetalLayer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn nextDrawable(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "nextDrawable", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn device(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "device", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setDevice(self: *@This(), device: ?*anyopaque) void {
-        return objc.msgSend(self, "setDevice:", void, .{device});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn preferredDevice(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "preferredDevice", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn pixelFormat(self: *@This()) metal.PixelFormat {
-        return objc.msgSend(self, "pixelFormat", metal.PixelFormat, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setPixelFormat(self: *@This(), pixelFormat: metal.PixelFormat) void {
-        return objc.msgSend(self, "setPixelFormat:", void, .{pixelFormat});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn framebufferOnly(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "framebufferOnly", objc.BOOL, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setFramebufferOnly(self: *@This(), framebufferOnly: objc.BOOL) void {
-        return objc.msgSend(self, "setFramebufferOnly:", void, .{framebufferOnly});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn drawableSize(self: *@This()) core_foundation.CGSize {
-        return objc.msgSend(self, "drawableSize", core_foundation.CGSize, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setDrawableSize(self: *@This(), drawableSize: core_foundation.CGSize) void {
-        return objc.msgSend(self, "setDrawableSize:", void, .{drawableSize});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn maximumDrawableCount(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "maximumDrawableCount", objc.NSUInteger, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setMaximumDrawableCount(self: *@This(), maximumDrawableCount: objc.NSUInteger) void {
-        return objc.msgSend(self, "setMaximumDrawableCount:", void, .{maximumDrawableCount});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn presentsWithTransaction(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "presentsWithTransaction", objc.BOOL, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setPresentsWithTransaction(self: *@This(), presentsWithTransaction: objc.BOOL) void {
-        return objc.msgSend(self, "setPresentsWithTransaction:", void, .{presentsWithTransaction});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn colorspace(self: *@This()) core_graphics.ColorSpaceRef {
-        return objc.msgSend(self, "colorspace", core_graphics.ColorSpaceRef, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn setColorspace(self: *@This(), colorspace: core_graphics.ColorSpaceRef) void {
-        return objc.msgSend(self, "setColorspace:", void, .{colorspace});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn wantsExtendedDynamicRangeContent(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn setWantsExtendedDynamicRangeContent(self: *@This(), wantsExtendedDynamicRangeContent: objc.BOOL) void {
-        return objc.msgSend(self, "setWantsExtendedDynamicRangeContent:", void, .{wantsExtendedDynamicRangeContent});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn EDRMetadata(self: *@This()) ?*EDRMetadata {
-        return objc.msgSend(self, "EDRMetadata", ?*EDRMetadata, .{});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn setEDRMetadata(self: *@This(), EDRMetadata: ?*EDRMetadata) void {
-        return objc.msgSend(self, "setEDRMetadata:", void, .{EDRMetadata});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn displaySyncEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "displaySyncEnabled", objc.BOOL, .{});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn setDisplaySyncEnabled(self: *@This(), displaySyncEnabled: objc.BOOL) void {
-        return objc.msgSend(self, "setDisplaySyncEnabled:", void, .{displaySyncEnabled});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn allowsNextDrawableTimeout(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowsNextDrawableTimeout", objc.BOOL, .{});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn setAllowsNextDrawableTimeout(self: *@This(), allowsNextDrawableTimeout: objc.BOOL) void {
-        return objc.msgSend(self, "setAllowsNextDrawableTimeout:", void, .{allowsNextDrawableTimeout});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn developerHUDProperties(self: *@This()) ?*NSDictionary {
-        return objc.msgSend(self, "developerHUDProperties", ?*NSDictionary, .{});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setDeveloperHUDProperties(self: *@This(), developerHUDProperties: ?*NSDictionary) void {
-        return objc.msgSend(self, "setDeveloperHUDProperties:", void, .{developerHUDProperties});
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
+
+    pub fn nextDrawable(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "nextDrawable", ?*anyopaque, .{});
+    }
+
+    pub fn device(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "device", ?*anyopaque, .{});
+    }
+
+    pub fn setDevice(_self: *@This(), _device: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDevice:", void, .{_device});
+    }
+
+    pub fn preferredDevice(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "preferredDevice", ?*anyopaque, .{});
+    }
+
+    pub fn pixelFormat(_self: *@This()) metal.PixelFormat {
+        return objc.msgSend(_self, "pixelFormat", metal.PixelFormat, .{});
+    }
+
+    pub fn setPixelFormat(_self: *@This(), _pixelFormat: metal.PixelFormat) void {
+        return objc.msgSend(_self, "setPixelFormat:", void, .{_pixelFormat});
+    }
+
+    pub fn framebufferOnly(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "framebufferOnly", objc.BOOL, .{});
+    }
+
+    pub fn setFramebufferOnly(_self: *@This(), _framebufferOnly: objc.BOOL) void {
+        return objc.msgSend(_self, "setFramebufferOnly:", void, .{_framebufferOnly});
+    }
+
+    pub fn drawableSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "drawableSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setDrawableSize(_self: *@This(), _drawableSize: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setDrawableSize:", void, .{_drawableSize});
+    }
+
+    pub fn maximumDrawableCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "maximumDrawableCount", objc.NSUInteger, .{});
+    }
+
+    pub fn setMaximumDrawableCount(_self: *@This(), _maximumDrawableCount: objc.NSUInteger) void {
+        return objc.msgSend(_self, "setMaximumDrawableCount:", void, .{_maximumDrawableCount});
+    }
+
+    pub fn presentsWithTransaction(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "presentsWithTransaction", objc.BOOL, .{});
+    }
+
+    pub fn setPresentsWithTransaction(_self: *@This(), _presentsWithTransaction: objc.BOOL) void {
+        return objc.msgSend(_self, "setPresentsWithTransaction:", void, .{_presentsWithTransaction});
+    }
+
+    pub fn colorspace(_self: *@This()) core_graphics.ColorSpaceRef {
+        return objc.msgSend(_self, "colorspace", core_graphics.ColorSpaceRef, .{});
+    }
+
+    pub fn setColorspace(_self: *@This(), _colorspace: core_graphics.ColorSpaceRef) void {
+        return objc.msgSend(_self, "setColorspace:", void, .{_colorspace});
+    }
+
+    pub fn edrMetadata(_self: *@This()) ?*EDRMetadata {
+        return objc.msgSend(_self, "EDRMetadata", ?*EDRMetadata, .{});
+    }
+
+    pub fn setEDRMetadata(_self: *@This(), _EDRMetadata: ?*EDRMetadata) void {
+        return objc.msgSend(_self, "setEDRMetadata:", void, .{_EDRMetadata});
+    }
+
+    pub fn displaySyncEnabled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "displaySyncEnabled", objc.BOOL, .{});
+    }
+
+    pub fn setDisplaySyncEnabled(_self: *@This(), _displaySyncEnabled: objc.BOOL) void {
+        return objc.msgSend(_self, "setDisplaySyncEnabled:", void, .{_displaySyncEnabled});
+    }
+
+    pub fn allowsNextDrawableTimeout(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsNextDrawableTimeout", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsNextDrawableTimeout(_self: *@This(), _allowsNextDrawableTimeout: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsNextDrawableTimeout:", void, .{_allowsNextDrawableTimeout});
+    }
+
+    pub fn developerHUDProperties(_self: *@This()) ?*NSDictionary {
+        return objc.msgSend(_self, "developerHUDProperties", ?*NSDictionary, .{});
+    }
+
+    pub fn setDeveloperHUDProperties(_self: *@This(), _developerHUDProperties: ?*NSDictionary) void {
+        return objc.msgSend(_self, "setDeveloperHUDProperties:", void, .{_developerHUDProperties});
+    }
 };
 
 pub const _CAMetalLayerPrivate = extern struct {};
 
 /// https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLinkUpdate?language=objc
 pub const MetalDisplayLinkUpdate = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAMetalDisplayLinkUpdate", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CAMetalDisplayLinkUpdate", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1581,18 +5019,129 @@ pub const MetalDisplayLinkUpdate = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn drawable(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "drawable", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn targetTimestamp(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "targetTimestamp", core_foundation.TimeInterval, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn targetPresentationTimestamp(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "targetPresentationTimestamp", core_foundation.TimeInterval, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn drawable(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "drawable", ?*anyopaque, .{});
+    }
+
+    pub fn targetTimestamp(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "targetTimestamp", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn targetPresentationTimestamp(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "targetPresentationTimestamp", core_foundation.TimeInterval, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLinkDelegate?language=objc
@@ -1603,15 +5152,14 @@ pub const MetalDisplayLinkDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn metalDisplayLinkNeedsUpdate(self: *@This(), link: ?*MetalDisplayLink, update: ?*MetalDisplayLinkUpdate) void {
-        return objc.msgSend(self, "metalDisplayLink:needsUpdate:", void, .{link, update});
+    pub fn metalDisplayLinkNeedsUpdate(_self: *@This(), _link: ?*MetalDisplayLink, _update: ?*MetalDisplayLinkUpdate) void {
+        return objc.msgSend(_self, "metalDisplayLink:needsUpdate:", void, .{ _link, _update });
     }
-
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink?language=objc
 pub const MetalDisplayLink = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAMetalDisplayLink", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CAMetalDisplayLink", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1620,59 +5168,173 @@ pub const MetalDisplayLink = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithMetalLayer(self: *@This(), layer: ?*MetalLayer) *@This() {
-        return objc.msgSend(self, "initWithMetalLayer:", *@This(), .{layer});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn addToRunLoopForMode(self: *@This(), runloop: ?*NSRunLoop, mode: foundation.RunLoopMode) void {
-        return objc.msgSend(self, "addToRunLoop:forMode:", void, .{runloop, mode});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn removeFromRunLoopForMode(self: *@This(), runloop: ?*NSRunLoop, mode: foundation.RunLoopMode) void {
-        return objc.msgSend(self, "removeFromRunLoop:forMode:", void, .{runloop, mode});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn invalidate(self: *@This()) void {
-        return objc.msgSend(self, "invalidate", void, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn delegate(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "delegate", ?*anyopaque, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setDelegate(self: *@This(), delegate: ?*anyopaque) void {
-        return objc.msgSend(self, "setDelegate:", void, .{delegate});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn preferredFrameLatency(self: *@This()) f32 {
-        return objc.msgSend(self, "preferredFrameLatency", f32, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setPreferredFrameLatency(self: *@This(), preferredFrameLatency: f32) void {
-        return objc.msgSend(self, "setPreferredFrameLatency:", void, .{preferredFrameLatency});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn preferredFrameRateRange(self: *@This()) FrameRateRange {
-        return objc.msgSend(self, "preferredFrameRateRange", FrameRateRange, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setPreferredFrameRateRange(self: *@This(), preferredFrameRateRange: FrameRateRange) void {
-        return objc.msgSend(self, "setPreferredFrameRateRange:", void, .{preferredFrameRateRange});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn isPaused(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isPaused", objc.BOOL, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setPaused(self: *@This(), paused: objc.BOOL) void {
-        return objc.msgSend(self, "setPaused:", void, .{paused});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn initWithMetalLayer(_self: *@This(), _layer: ?*MetalLayer) *@This() {
+        return objc.msgSend(_self, "initWithMetalLayer:", *@This(), .{_layer});
+    }
+
+    pub fn addToRunLoopForMode(_self: *@This(), _runloop: ?*NSRunLoop, _mode: foundation.RunLoopMode) void {
+        return objc.msgSend(_self, "addToRunLoop:forMode:", void, .{ _runloop, _mode });
+    }
+
+    pub fn removeFromRunLoopForMode(_self: *@This(), _runloop: ?*NSRunLoop, _mode: foundation.RunLoopMode) void {
+        return objc.msgSend(_self, "removeFromRunLoop:forMode:", void, .{ _runloop, _mode });
+    }
+
+    pub fn invalidate(_self: *@This()) void {
+        return objc.msgSend(_self, "invalidate", void, .{});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn preferredFrameLatency(_self: *@This()) f32 {
+        return objc.msgSend(_self, "preferredFrameLatency", f32, .{});
+    }
+
+    pub fn setPreferredFrameLatency(_self: *@This(), _preferredFrameLatency: f32) void {
+        return objc.msgSend(_self, "setPreferredFrameLatency:", void, .{_preferredFrameLatency});
+    }
+
+    pub fn preferredFrameRateRange(_self: *@This()) FrameRateRange {
+        return objc.msgSend(_self, "preferredFrameRateRange", FrameRateRange, .{});
+    }
+
+    pub fn setPreferredFrameRateRange(_self: *@This(), _preferredFrameRateRange: FrameRateRange) void {
+        return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
+    }
+
+    pub fn isPaused(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isPaused", objc.BOOL, .{});
+    }
+
+    pub fn setPaused(_self: *@This(), _paused: objc.BOOL) void {
+        return objc.msgSend(_self, "setPaused:", void, .{_paused});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAEmitterCell?language=objc
 pub const EmitterCell = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAEmitterCell", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CAEmitterCell", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        MediaTiming,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1681,294 +5343,481 @@ pub const EmitterCell = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn emitterCell(self: *@This()) *@This() {
-        return objc.msgSend(self, "emitterCell", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn defaultValueForKey(self: *@This(), key: ?*NSString) *objc.Id {
-        return objc.msgSend(self, "defaultValueForKey:", *objc.Id, .{key});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn name(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "name", ?*NSString, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setName(self: *@This(), name: ?*NSString) void {
-        return objc.msgSend(self, "setName:", void, .{name});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn isEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isEnabled", objc.BOOL, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setEnabled(self: *@This(), enabled: objc.BOOL) void {
-        return objc.msgSend(self, "setEnabled:", void, .{enabled});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn birthRate(self: *@This()) f32 {
-        return objc.msgSend(self, "birthRate", f32, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setBirthRate(self: *@This(), birthRate: f32) void {
-        return objc.msgSend(self, "setBirthRate:", void, .{birthRate});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn lifetime(self: *@This()) f32 {
-        return objc.msgSend(self, "lifetime", f32, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setLifetime(self: *@This(), lifetime: f32) void {
-        return objc.msgSend(self, "setLifetime:", void, .{lifetime});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn lifetimeRange(self: *@This()) f32 {
-        return objc.msgSend(self, "lifetimeRange", f32, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setLifetimeRange(self: *@This(), lifetimeRange: f32) void {
-        return objc.msgSend(self, "setLifetimeRange:", void, .{lifetimeRange});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn emissionLatitude(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "emissionLatitude", core_foundation.CGFloat, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setEmissionLatitude(self: *@This(), emissionLatitude: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setEmissionLatitude:", void, .{emissionLatitude});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn emissionLongitude(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "emissionLongitude", core_foundation.CGFloat, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn setEmissionLongitude(self: *@This(), emissionLongitude: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setEmissionLongitude:", void, .{emissionLongitude});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn emissionRange(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "emissionRange", core_foundation.CGFloat, .{});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn setEmissionRange(self: *@This(), emissionRange: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setEmissionRange:", void, .{emissionRange});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn velocity(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "velocity", core_foundation.CGFloat, .{});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn setVelocity(self: *@This(), velocity: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setVelocity:", void, .{velocity});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn velocityRange(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "velocityRange", core_foundation.CGFloat, .{});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn setVelocityRange(self: *@This(), velocityRange: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setVelocityRange:", void, .{velocityRange});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn xAcceleration(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "xAcceleration", core_foundation.CGFloat, .{});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn setXAcceleration(self: *@This(), xAcceleration: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setXAcceleration:", void, .{xAcceleration});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn yAcceleration(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "yAcceleration", core_foundation.CGFloat, .{});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setYAcceleration(self: *@This(), yAcceleration: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setYAcceleration:", void, .{yAcceleration});
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn zAcceleration(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "zAcceleration", core_foundation.CGFloat, .{});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn setZAcceleration(self: *@This(), zAcceleration: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setZAcceleration:", void, .{zAcceleration});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn scale(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "scale", core_foundation.CGFloat, .{});
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
     }
 
-    pub fn setScale(self: *@This(), scale: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setScale:", void, .{scale});
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
     }
 
-    pub fn scaleRange(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "scaleRange", core_foundation.CGFloat, .{});
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn setScaleRange(self: *@This(), scaleRange: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setScaleRange:", void, .{scaleRange});
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
     }
 
-    pub fn scaleSpeed(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "scaleSpeed", core_foundation.CGFloat, .{});
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
     }
 
-    pub fn setScaleSpeed(self: *@This(), scaleSpeed: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setScaleSpeed:", void, .{scaleSpeed});
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
     }
 
-    pub fn spin(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "spin", core_foundation.CGFloat, .{});
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
     }
 
-    pub fn setSpin(self: *@This(), spin: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setSpin:", void, .{spin});
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
     }
 
-    pub fn spinRange(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "spinRange", core_foundation.CGFloat, .{});
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
     }
 
-    pub fn setSpinRange(self: *@This(), spinRange: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setSpinRange:", void, .{spinRange});
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
     }
 
-    pub fn color(self: *@This()) core_graphics.ColorRef {
-        return objc.msgSend(self, "color", core_graphics.ColorRef, .{});
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
     }
 
-    pub fn setColor(self: *@This(), color: core_graphics.ColorRef) void {
-        return objc.msgSend(self, "setColor:", void, .{color});
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
     }
 
-    pub fn redRange(self: *@This()) f32 {
-        return objc.msgSend(self, "redRange", f32, .{});
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
     }
 
-    pub fn setRedRange(self: *@This(), redRange: f32) void {
-        return objc.msgSend(self, "setRedRange:", void, .{redRange});
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
     }
 
-    pub fn greenRange(self: *@This()) f32 {
-        return objc.msgSend(self, "greenRange", f32, .{});
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
     }
 
-    pub fn setGreenRange(self: *@This(), greenRange: f32) void {
-        return objc.msgSend(self, "setGreenRange:", void, .{greenRange});
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
     }
 
-    pub fn blueRange(self: *@This()) f32 {
-        return objc.msgSend(self, "blueRange", f32, .{});
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
     }
 
-    pub fn setBlueRange(self: *@This(), blueRange: f32) void {
-        return objc.msgSend(self, "setBlueRange:", void, .{blueRange});
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
     }
 
-    pub fn alphaRange(self: *@This()) f32 {
-        return objc.msgSend(self, "alphaRange", f32, .{});
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
 
-    pub fn setAlphaRange(self: *@This(), alphaRange: f32) void {
-        return objc.msgSend(self, "setAlphaRange:", void, .{alphaRange});
+    pub fn emitterCell(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "emitterCell", *@This(), .{});
     }
 
-    pub fn redSpeed(self: *@This()) f32 {
-        return objc.msgSend(self, "redSpeed", f32, .{});
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
-    pub fn setRedSpeed(self: *@This(), redSpeed: f32) void {
-        return objc.msgSend(self, "setRedSpeed:", void, .{redSpeed});
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
     }
 
-    pub fn greenSpeed(self: *@This()) f32 {
-        return objc.msgSend(self, "greenSpeed", f32, .{});
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
-    pub fn setGreenSpeed(self: *@This(), greenSpeed: f32) void {
-        return objc.msgSend(self, "setGreenSpeed:", void, .{greenSpeed});
+    pub fn isEnabled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isEnabled", objc.BOOL, .{});
     }
 
-    pub fn blueSpeed(self: *@This()) f32 {
-        return objc.msgSend(self, "blueSpeed", f32, .{});
+    pub fn setEnabled(_self: *@This(), _enabled: objc.BOOL) void {
+        return objc.msgSend(_self, "setEnabled:", void, .{_enabled});
     }
 
-    pub fn setBlueSpeed(self: *@This(), blueSpeed: f32) void {
-        return objc.msgSend(self, "setBlueSpeed:", void, .{blueSpeed});
+    pub fn birthRate(_self: *@This()) f32 {
+        return objc.msgSend(_self, "birthRate", f32, .{});
     }
 
-    pub fn alphaSpeed(self: *@This()) f32 {
-        return objc.msgSend(self, "alphaSpeed", f32, .{});
+    pub fn setBirthRate(_self: *@This(), _birthRate: f32) void {
+        return objc.msgSend(_self, "setBirthRate:", void, .{_birthRate});
     }
 
-    pub fn setAlphaSpeed(self: *@This(), alphaSpeed: f32) void {
-        return objc.msgSend(self, "setAlphaSpeed:", void, .{alphaSpeed});
+    pub fn lifetime(_self: *@This()) f32 {
+        return objc.msgSend(_self, "lifetime", f32, .{});
     }
 
-    pub fn contents(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "contents", *objc.Id, .{});
+    pub fn setLifetime(_self: *@This(), _lifetime: f32) void {
+        return objc.msgSend(_self, "setLifetime:", void, .{_lifetime});
     }
 
-    pub fn setContents(self: *@This(), contents: *objc.Id) void {
-        return objc.msgSend(self, "setContents:", void, .{contents});
+    pub fn lifetimeRange(_self: *@This()) f32 {
+        return objc.msgSend(_self, "lifetimeRange", f32, .{});
     }
 
-    pub fn contentsRect(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "contentsRect", core_foundation.CGRect, .{});
+    pub fn setLifetimeRange(_self: *@This(), _lifetimeRange: f32) void {
+        return objc.msgSend(_self, "setLifetimeRange:", void, .{_lifetimeRange});
     }
 
-    pub fn setContentsRect(self: *@This(), contentsRect: core_foundation.CGRect) void {
-        return objc.msgSend(self, "setContentsRect:", void, .{contentsRect});
+    pub fn emissionLatitude(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "emissionLatitude", core_foundation.CGFloat, .{});
     }
 
-    pub fn contentsScale(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "contentsScale", core_foundation.CGFloat, .{});
+    pub fn setEmissionLatitude(_self: *@This(), _emissionLatitude: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setEmissionLatitude:", void, .{_emissionLatitude});
     }
 
-    pub fn setContentsScale(self: *@This(), contentsScale: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setContentsScale:", void, .{contentsScale});
+    pub fn emissionLongitude(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "emissionLongitude", core_foundation.CGFloat, .{});
     }
 
-    pub fn minificationFilter(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "minificationFilter", ?*NSString, .{});
+    pub fn setEmissionLongitude(_self: *@This(), _emissionLongitude: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setEmissionLongitude:", void, .{_emissionLongitude});
     }
 
-    pub fn setMinificationFilter(self: *@This(), minificationFilter: ?*NSString) void {
-        return objc.msgSend(self, "setMinificationFilter:", void, .{minificationFilter});
+    pub fn emissionRange(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "emissionRange", core_foundation.CGFloat, .{});
     }
 
-    pub fn magnificationFilter(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "magnificationFilter", ?*NSString, .{});
+    pub fn setEmissionRange(_self: *@This(), _emissionRange: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setEmissionRange:", void, .{_emissionRange});
     }
 
-    pub fn setMagnificationFilter(self: *@This(), magnificationFilter: ?*NSString) void {
-        return objc.msgSend(self, "setMagnificationFilter:", void, .{magnificationFilter});
+    pub fn velocity(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "velocity", core_foundation.CGFloat, .{});
     }
 
-    pub fn minificationFilterBias(self: *@This()) f32 {
-        return objc.msgSend(self, "minificationFilterBias", f32, .{});
+    pub fn setVelocity(_self: *@This(), _velocity: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setVelocity:", void, .{_velocity});
     }
 
-    pub fn setMinificationFilterBias(self: *@This(), minificationFilterBias: f32) void {
-        return objc.msgSend(self, "setMinificationFilterBias:", void, .{minificationFilterBias});
+    pub fn velocityRange(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "velocityRange", core_foundation.CGFloat, .{});
     }
 
-    pub fn emitterCells(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "emitterCells", ?*anyopaque, .{});
+    pub fn setVelocityRange(_self: *@This(), _velocityRange: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setVelocityRange:", void, .{_velocityRange});
     }
 
-    pub fn setEmitterCells(self: *@This(), emitterCells: ?*anyopaque) void {
-        return objc.msgSend(self, "setEmitterCells:", void, .{emitterCells});
+    pub fn xAcceleration(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "xAcceleration", core_foundation.CGFloat, .{});
     }
 
-    pub fn style(self: *@This()) ?*NSDictionary {
-        return objc.msgSend(self, "style", ?*NSDictionary, .{});
+    pub fn setXAcceleration(_self: *@This(), _xAcceleration: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setXAcceleration:", void, .{_xAcceleration});
     }
 
-    pub fn setStyle(self: *@This(), style: ?*NSDictionary) void {
-        return objc.msgSend(self, "setStyle:", void, .{style});
+    pub fn yAcceleration(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "yAcceleration", core_foundation.CGFloat, .{});
     }
 
+    pub fn setYAcceleration(_self: *@This(), _yAcceleration: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setYAcceleration:", void, .{_yAcceleration});
+    }
+
+    pub fn zAcceleration(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zAcceleration", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZAcceleration(_self: *@This(), _zAcceleration: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZAcceleration:", void, .{_zAcceleration});
+    }
+
+    pub fn scale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "scale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setScale(_self: *@This(), _scale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setScale:", void, .{_scale});
+    }
+
+    pub fn scaleRange(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "scaleRange", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setScaleRange(_self: *@This(), _scaleRange: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setScaleRange:", void, .{_scaleRange});
+    }
+
+    pub fn scaleSpeed(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "scaleSpeed", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setScaleSpeed(_self: *@This(), _scaleSpeed: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setScaleSpeed:", void, .{_scaleSpeed});
+    }
+
+    pub fn spin(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "spin", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setSpin(_self: *@This(), _spin: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setSpin:", void, .{_spin});
+    }
+
+    pub fn spinRange(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "spinRange", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setSpinRange(_self: *@This(), _spinRange: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setSpinRange:", void, .{_spinRange});
+    }
+
+    pub fn color(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "color", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setColor(_self: *@This(), _color: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setColor:", void, .{_color});
+    }
+
+    pub fn redRange(_self: *@This()) f32 {
+        return objc.msgSend(_self, "redRange", f32, .{});
+    }
+
+    pub fn setRedRange(_self: *@This(), _redRange: f32) void {
+        return objc.msgSend(_self, "setRedRange:", void, .{_redRange});
+    }
+
+    pub fn greenRange(_self: *@This()) f32 {
+        return objc.msgSend(_self, "greenRange", f32, .{});
+    }
+
+    pub fn setGreenRange(_self: *@This(), _greenRange: f32) void {
+        return objc.msgSend(_self, "setGreenRange:", void, .{_greenRange});
+    }
+
+    pub fn blueRange(_self: *@This()) f32 {
+        return objc.msgSend(_self, "blueRange", f32, .{});
+    }
+
+    pub fn setBlueRange(_self: *@This(), _blueRange: f32) void {
+        return objc.msgSend(_self, "setBlueRange:", void, .{_blueRange});
+    }
+
+    pub fn alphaRange(_self: *@This()) f32 {
+        return objc.msgSend(_self, "alphaRange", f32, .{});
+    }
+
+    pub fn setAlphaRange(_self: *@This(), _alphaRange: f32) void {
+        return objc.msgSend(_self, "setAlphaRange:", void, .{_alphaRange});
+    }
+
+    pub fn redSpeed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "redSpeed", f32, .{});
+    }
+
+    pub fn setRedSpeed(_self: *@This(), _redSpeed: f32) void {
+        return objc.msgSend(_self, "setRedSpeed:", void, .{_redSpeed});
+    }
+
+    pub fn greenSpeed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "greenSpeed", f32, .{});
+    }
+
+    pub fn setGreenSpeed(_self: *@This(), _greenSpeed: f32) void {
+        return objc.msgSend(_self, "setGreenSpeed:", void, .{_greenSpeed});
+    }
+
+    pub fn blueSpeed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "blueSpeed", f32, .{});
+    }
+
+    pub fn setBlueSpeed(_self: *@This(), _blueSpeed: f32) void {
+        return objc.msgSend(_self, "setBlueSpeed:", void, .{_blueSpeed});
+    }
+
+    pub fn alphaSpeed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "alphaSpeed", f32, .{});
+    }
+
+    pub fn setAlphaSpeed(_self: *@This(), _alphaSpeed: f32) void {
+        return objc.msgSend(_self, "setAlphaSpeed:", void, .{_alphaSpeed});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn minificationFilter(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "minificationFilter", ?*NSString, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: ?*NSString) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "magnificationFilter", ?*NSString, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: ?*NSString) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn emitterCells(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "emitterCells", ?*anyopaque, .{});
+    }
+
+    pub fn setEmitterCells(_self: *@This(), _emitterCells: ?*anyopaque) void {
+        return objc.msgSend(_self, "setEmitterCells:", void, .{_emitterCells});
+    }
+
+    pub fn style(_self: *@This()) ?*NSDictionary {
+        return objc.msgSend(_self, "style", ?*NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
 };
 
 pub const EmitterLayerEmitterShape = ?*NSString;
@@ -1979,7 +5828,7 @@ pub const EmitterLayerRenderMode = ?*NSString;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer?language=objc
 pub const EmitterLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAEmitterLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CAEmitterLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1988,133 +5837,926 @@ pub const EmitterLayer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn emitterCells(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "emitterCells", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setEmitterCells(self: *@This(), emitterCells: ?*anyopaque) void {
-        return objc.msgSend(self, "setEmitterCells:", void, .{emitterCells});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn birthRate(self: *@This()) f32 {
-        return objc.msgSend(self, "birthRate", f32, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setBirthRate(self: *@This(), birthRate: f32) void {
-        return objc.msgSend(self, "setBirthRate:", void, .{birthRate});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn lifetime(self: *@This()) f32 {
-        return objc.msgSend(self, "lifetime", f32, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setLifetime(self: *@This(), lifetime: f32) void {
-        return objc.msgSend(self, "setLifetime:", void, .{lifetime});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn emitterPosition(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "emitterPosition", core_foundation.CGPoint, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setEmitterPosition(self: *@This(), emitterPosition: core_foundation.CGPoint) void {
-        return objc.msgSend(self, "setEmitterPosition:", void, .{emitterPosition});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn emitterZPosition(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "emitterZPosition", core_foundation.CGFloat, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setEmitterZPosition(self: *@This(), emitterZPosition: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setEmitterZPosition:", void, .{emitterZPosition});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn emitterSize(self: *@This()) core_foundation.CGSize {
-        return objc.msgSend(self, "emitterSize", core_foundation.CGSize, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setEmitterSize(self: *@This(), emitterSize: core_foundation.CGSize) void {
-        return objc.msgSend(self, "setEmitterSize:", void, .{emitterSize});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn emitterDepth(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "emitterDepth", core_foundation.CGFloat, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setEmitterDepth(self: *@This(), emitterDepth: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setEmitterDepth:", void, .{emitterDepth});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn emitterShape(self: *@This()) EmitterLayerEmitterShape {
-        return objc.msgSend(self, "emitterShape", EmitterLayerEmitterShape, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn setEmitterShape(self: *@This(), emitterShape: EmitterLayerEmitterShape) void {
-        return objc.msgSend(self, "setEmitterShape:", void, .{emitterShape});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn emitterMode(self: *@This()) EmitterLayerEmitterMode {
-        return objc.msgSend(self, "emitterMode", EmitterLayerEmitterMode, .{});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn setEmitterMode(self: *@This(), emitterMode: EmitterLayerEmitterMode) void {
-        return objc.msgSend(self, "setEmitterMode:", void, .{emitterMode});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn renderMode(self: *@This()) EmitterLayerRenderMode {
-        return objc.msgSend(self, "renderMode", EmitterLayerRenderMode, .{});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn setRenderMode(self: *@This(), renderMode: EmitterLayerRenderMode) void {
-        return objc.msgSend(self, "setRenderMode:", void, .{renderMode});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn preservesDepth(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "preservesDepth", objc.BOOL, .{});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn setPreservesDepth(self: *@This(), preservesDepth: objc.BOOL) void {
-        return objc.msgSend(self, "setPreservesDepth:", void, .{preservesDepth});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn velocity(self: *@This()) f32 {
-        return objc.msgSend(self, "velocity", f32, .{});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn setVelocity(self: *@This(), velocity: f32) void {
-        return objc.msgSend(self, "setVelocity:", void, .{velocity});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn scale(self: *@This()) f32 {
-        return objc.msgSend(self, "scale", f32, .{});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setScale(self: *@This(), scale: f32) void {
-        return objc.msgSend(self, "setScale:", void, .{scale});
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn spin(self: *@This()) f32 {
-        return objc.msgSend(self, "spin", f32, .{});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn setSpin(self: *@This(), spin: f32) void {
-        return objc.msgSend(self, "setSpin:", void, .{spin});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn seed(self: *@This()) u32 {
-        return objc.msgSend(self, "seed", u32, .{});
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
     }
 
-    pub fn setSeed(self: *@This(), seed: u32) void {
-        return objc.msgSend(self, "setSeed:", void, .{seed});
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
     }
 
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
+
+    pub fn emitterCells(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "emitterCells", ?*anyopaque, .{});
+    }
+
+    pub fn setEmitterCells(_self: *@This(), _emitterCells: ?*anyopaque) void {
+        return objc.msgSend(_self, "setEmitterCells:", void, .{_emitterCells});
+    }
+
+    pub fn birthRate(_self: *@This()) f32 {
+        return objc.msgSend(_self, "birthRate", f32, .{});
+    }
+
+    pub fn setBirthRate(_self: *@This(), _birthRate: f32) void {
+        return objc.msgSend(_self, "setBirthRate:", void, .{_birthRate});
+    }
+
+    pub fn lifetime(_self: *@This()) f32 {
+        return objc.msgSend(_self, "lifetime", f32, .{});
+    }
+
+    pub fn setLifetime(_self: *@This(), _lifetime: f32) void {
+        return objc.msgSend(_self, "setLifetime:", void, .{_lifetime});
+    }
+
+    pub fn emitterPosition(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "emitterPosition", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setEmitterPosition(_self: *@This(), _emitterPosition: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setEmitterPosition:", void, .{_emitterPosition});
+    }
+
+    pub fn emitterZPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "emitterZPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setEmitterZPosition(_self: *@This(), _emitterZPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setEmitterZPosition:", void, .{_emitterZPosition});
+    }
+
+    pub fn emitterSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "emitterSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setEmitterSize(_self: *@This(), _emitterSize: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setEmitterSize:", void, .{_emitterSize});
+    }
+
+    pub fn emitterDepth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "emitterDepth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setEmitterDepth(_self: *@This(), _emitterDepth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setEmitterDepth:", void, .{_emitterDepth});
+    }
+
+    pub fn emitterShape(_self: *@This()) EmitterLayerEmitterShape {
+        return objc.msgSend(_self, "emitterShape", EmitterLayerEmitterShape, .{});
+    }
+
+    pub fn setEmitterShape(_self: *@This(), _emitterShape: EmitterLayerEmitterShape) void {
+        return objc.msgSend(_self, "setEmitterShape:", void, .{_emitterShape});
+    }
+
+    pub fn emitterMode(_self: *@This()) EmitterLayerEmitterMode {
+        return objc.msgSend(_self, "emitterMode", EmitterLayerEmitterMode, .{});
+    }
+
+    pub fn setEmitterMode(_self: *@This(), _emitterMode: EmitterLayerEmitterMode) void {
+        return objc.msgSend(_self, "setEmitterMode:", void, .{_emitterMode});
+    }
+
+    pub fn renderMode(_self: *@This()) EmitterLayerRenderMode {
+        return objc.msgSend(_self, "renderMode", EmitterLayerRenderMode, .{});
+    }
+
+    pub fn setRenderMode(_self: *@This(), _renderMode: EmitterLayerRenderMode) void {
+        return objc.msgSend(_self, "setRenderMode:", void, .{_renderMode});
+    }
+
+    pub fn preservesDepth(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "preservesDepth", objc.BOOL, .{});
+    }
+
+    pub fn setPreservesDepth(_self: *@This(), _preservesDepth: objc.BOOL) void {
+        return objc.msgSend(_self, "setPreservesDepth:", void, .{_preservesDepth});
+    }
+
+    pub fn velocity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "velocity", f32, .{});
+    }
+
+    pub fn setVelocity(_self: *@This(), _velocity: f32) void {
+        return objc.msgSend(_self, "setVelocity:", void, .{_velocity});
+    }
+
+    pub fn scale(_self: *@This()) f32 {
+        return objc.msgSend(_self, "scale", f32, .{});
+    }
+
+    pub fn setScale(_self: *@This(), _scale: f32) void {
+        return objc.msgSend(_self, "setScale:", void, .{_scale});
+    }
+
+    pub fn spin(_self: *@This()) f32 {
+        return objc.msgSend(_self, "spin", f32, .{});
+    }
+
+    pub fn setSpin(_self: *@This(), _spin: f32) void {
+        return objc.msgSend(_self, "setSpin:", void, .{_spin});
+    }
+
+    pub fn seed(_self: *@This()) u32 {
+        return objc.msgSend(_self, "seed", u32, .{});
+    }
+
+    pub fn setSeed(_self: *@This(), _seed: u32) void {
+        return objc.msgSend(_self, "setSeed:", void, .{_seed});
+    }
 };
 
 pub const MediaTimingFunctionName = ?*NSString;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction?language=objc
 pub const MediaTimingFunction = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAMediaTimingFunction", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CAMediaTimingFunction", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2123,22 +6765,167 @@ pub const MediaTimingFunction = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn functionWithName(self: *@This(), name: MediaTimingFunctionName) *@This() {
-        return objc.msgSend(self, "functionWithName:", *@This(), .{name});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn functionWithControlPoints(self: *@This(), c1x: f32, c1y: f32, c2x: f32, c2y: f32, ) *@This() {
-        return objc.msgSend(self, "functionWithControlPoints::::", *@This(), .{c1x, c1y, c2x, c2y, });
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithControlPoints(self: *@This(), c1x: f32, c1y: f32, c2x: f32, c2y: f32, ) *@This() {
-        return objc.msgSend(self, "initWithControlPoints::::", *@This(), .{c1x, c1y, c2x, c2y, });
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn getControlPointAtIndexValues(self: *@This(), idx: objc.size_t, ptr: ?*f32) void {
-        return objc.msgSend(self, "getControlPointAtIndex:values:", void, .{idx, ptr});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn functionWithName(_self: *@This(), _name: MediaTimingFunctionName) *@This() {
+        return objc.msgSend(_self, "functionWithName:", *@This(), .{_name});
+    }
+
+    pub fn functionWithControlPoints(
+        _self: *@This(),
+        _c1x: f32,
+        _c1y: f32,
+        _c2x: f32,
+        _c2y: f32,
+    ) *@This() {
+        return objc.msgSend(_self, "functionWithControlPoints::::", *@This(), .{
+            _c1x,
+            _c1y,
+            _c2x,
+            _c2y,
+        });
+    }
+
+    pub fn initWithControlPoints(
+        _self: *@This(),
+        _c1x: f32,
+        _c1y: f32,
+        _c2x: f32,
+        _c2y: f32,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithControlPoints::::", *@This(), .{
+            _c1x,
+            _c1y,
+            _c2x,
+            _c2y,
+        });
+    }
+
+    pub fn getControlPointAtIndexValues(_self: *@This(), _idx: objc.size_t, _ptr: ?*f32) void {
+        return objc.msgSend(_self, "getControlPointAtIndex:values:", void, .{ _idx, _ptr });
+    }
 };
 
 pub const MediaTimingFunctionPrivate = extern struct {};
@@ -2147,7 +6934,7 @@ pub const GradientLayerType = ?*NSString;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAGradientLayer?language=objc
 pub const GradientLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAGradientLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CAGradientLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2156,51 +6943,842 @@ pub const GradientLayer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn colors(self: *@This()) ?*NSArray {
-        return objc.msgSend(self, "colors", ?*NSArray, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setColors(self: *@This(), colors: ?*NSArray) void {
-        return objc.msgSend(self, "setColors:", void, .{colors});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn locations(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "locations", ?*anyopaque, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setLocations(self: *@This(), locations: ?*anyopaque) void {
-        return objc.msgSend(self, "setLocations:", void, .{locations});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn startPoint(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "startPoint", core_foundation.CGPoint, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setStartPoint(self: *@This(), startPoint: core_foundation.CGPoint) void {
-        return objc.msgSend(self, "setStartPoint:", void, .{startPoint});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn endPoint(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "endPoint", core_foundation.CGPoint, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setEndPoint(self: *@This(), endPoint: core_foundation.CGPoint) void {
-        return objc.msgSend(self, "setEndPoint:", void, .{endPoint});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn @"type"(self: *@This()) GradientLayerType {
-        return objc.msgSend(self, "type", GradientLayerType, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setType(self: *@This(), @"type": GradientLayerType) void {
-        return objc.msgSend(self, "setType:", void, .{@"type"});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
+
+    pub fn colors(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "colors", ?*NSArray, .{});
+    }
+
+    pub fn setColors(_self: *@This(), _colors: ?*NSArray) void {
+        return objc.msgSend(_self, "setColors:", void, .{_colors});
+    }
+
+    pub fn locations(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "locations", ?*anyopaque, .{});
+    }
+
+    pub fn setLocations(_self: *@This(), _locations: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLocations:", void, .{_locations});
+    }
+
+    pub fn startPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "startPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setStartPoint(_self: *@This(), _startPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setStartPoint:", void, .{_startPoint});
+    }
+
+    pub fn endPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "endPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setEndPoint(_self: *@This(), _endPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setEndPoint:", void, .{_endPoint});
+    }
+
+    pub fn @"type"(_self: *@This()) GradientLayerType {
+        return objc.msgSend(_self, "type", GradientLayerType, .{});
+    }
+
+    pub fn setType(_self: *@This(), _type: GradientLayerType) void {
+        return objc.msgSend(_self, "setType:", void, .{_type});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer?language=objc
 pub const OpenGLLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAOpenGLLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CAOpenGLLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2209,57 +7787,851 @@ pub const OpenGLLayer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn drawInCGLContextPixelFormatForLayerTimeDisplayTime(self: *@This(), ctx: opengl.ContextObj, pf: opengl.PixelFormatObj, t: core_foundation.TimeInterval, ts: ?*core_video.TimeStamp, ) void {
-        return objc.msgSend(self, "drawInCGLContext:pixelFormat:forLayerTime:displayTime:", void, .{ctx, pf, t, ts, });
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn copyCGLPixelFormatForDisplayMask(self: *@This(), mask: objc.uint32_t) opengl.PixelFormatObj {
-        return objc.msgSend(self, "copyCGLPixelFormatForDisplayMask:", opengl.PixelFormatObj, .{mask});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn releaseCGLPixelFormat(self: *@This(), pf: opengl.PixelFormatObj) void {
-        return objc.msgSend(self, "releaseCGLPixelFormat:", void, .{pf});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn copyCGLContextForPixelFormat(self: *@This(), pf: opengl.PixelFormatObj) opengl.ContextObj {
-        return objc.msgSend(self, "copyCGLContextForPixelFormat:", opengl.ContextObj, .{pf});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn releaseCGLContext(self: *@This(), ctx: opengl.ContextObj) void {
-        return objc.msgSend(self, "releaseCGLContext:", void, .{ctx});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn isAsynchronous(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isAsynchronous", objc.BOOL, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setAsynchronous(self: *@This(), asynchronous: objc.BOOL) void {
-        return objc.msgSend(self, "setAsynchronous:", void, .{asynchronous});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn colorspace(self: *@This()) core_graphics.ColorSpaceRef {
-        return objc.msgSend(self, "colorspace", core_graphics.ColorSpaceRef, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setColorspace(self: *@This(), colorspace: core_graphics.ColorSpaceRef) void {
-        return objc.msgSend(self, "setColorspace:", void, .{colorspace});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn wantsExtendedDynamicRangeContent(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn setWantsExtendedDynamicRangeContent(self: *@This(), wantsExtendedDynamicRangeContent: objc.BOOL) void {
-        return objc.msgSend(self, "setWantsExtendedDynamicRangeContent:", void, .{wantsExtendedDynamicRangeContent});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
+
+    pub fn drawInCGLContextPixelFormatForLayerTimeDisplayTime(
+        _self: *@This(),
+        _ctx: opengl.ContextObj,
+        _pf: opengl.PixelFormatObj,
+        _t: core_foundation.TimeInterval,
+        _ts: ?*core_video.TimeStamp,
+    ) void {
+        return objc.msgSend(_self, "drawInCGLContext:pixelFormat:forLayerTime:displayTime:", void, .{
+            _ctx,
+            _pf,
+            _t,
+            _ts,
+        });
+    }
+
+    pub fn copyCGLPixelFormatForDisplayMask(_self: *@This(), _mask: objc.uint32_t) opengl.PixelFormatObj {
+        return objc.msgSend(_self, "copyCGLPixelFormatForDisplayMask:", opengl.PixelFormatObj, .{_mask});
+    }
+
+    pub fn releaseCGLPixelFormat(_self: *@This(), _pf: opengl.PixelFormatObj) void {
+        return objc.msgSend(_self, "releaseCGLPixelFormat:", void, .{_pf});
+    }
+
+    pub fn copyCGLContextForPixelFormat(_self: *@This(), _pf: opengl.PixelFormatObj) opengl.ContextObj {
+        return objc.msgSend(_self, "copyCGLContextForPixelFormat:", opengl.ContextObj, .{_pf});
+    }
+
+    pub fn releaseCGLContext(_self: *@This(), _ctx: opengl.ContextObj) void {
+        return objc.msgSend(_self, "releaseCGLContext:", void, .{_ctx});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn setAsynchronous(_self: *@This(), _asynchronous: objc.BOOL) void {
+        return objc.msgSend(_self, "setAsynchronous:", void, .{_asynchronous});
+    }
+
+    pub fn colorspace(_self: *@This()) core_graphics.ColorSpaceRef {
+        return objc.msgSend(_self, "colorspace", core_graphics.ColorSpaceRef, .{});
+    }
+
+    pub fn setColorspace(_self: *@This(), _colorspace: core_graphics.ColorSpaceRef) void {
+        return objc.msgSend(_self, "setColorspace:", void, .{_colorspace});
+    }
 };
 
 pub const OpenGLLayerPrivate = extern struct {};
 
 /// https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient?language=objc
 pub const RemoteLayerClient = opaque {
-    pub const InternalInfo = objc.ExternalClass("CARemoteLayerClient", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CARemoteLayerClient", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2268,31 +8640,142 @@ pub const RemoteLayerClient = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithServerPort(self: *@This(), port: objc.mach_port_t) *@This() {
-        return objc.msgSend(self, "initWithServerPort:", *@This(), .{port});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn invalidate(self: *@This()) void {
-        return objc.msgSend(self, "invalidate", void, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn clientId(self: *@This()) objc.uint32_t {
-        return objc.msgSend(self, "clientId", objc.uint32_t, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn layer(self: *@This()) ?*Layer {
-        return objc.msgSend(self, "layer", ?*Layer, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setLayer(self: *@This(), layer: ?*Layer) void {
-        return objc.msgSend(self, "setLayer:", void, .{layer});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn initWithServerPort(_self: *@This(), _port: objc.mach_port_t) *@This() {
+        return objc.msgSend(_self, "initWithServerPort:", *@This(), .{_port});
+    }
+
+    pub fn invalidate(_self: *@This()) void {
+        return objc.msgSend(_self, "invalidate", void, .{});
+    }
+
+    pub fn clientId(_self: *@This()) objc.uint32_t {
+        return objc.msgSend(_self, "clientId", objc.uint32_t, .{});
+    }
+
+    pub fn layer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "layer", ?*Layer, .{});
+    }
+
+    pub fn setLayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "setLayer:", void, .{_layer});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CARemoteLayerServer?language=objc
 pub const RemoteLayerServer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CARemoteLayerServer", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CARemoteLayerServer", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2301,19 +8784,130 @@ pub const RemoteLayerServer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn sharedServer(self: *@This()) ?*RemoteLayerServer {
-        return objc.msgSend(self, "sharedServer", ?*RemoteLayerServer, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn serverPort(self: *@This()) objc.mach_port_t {
-        return objc.msgSend(self, "serverPort", objc.mach_port_t, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn sharedServer(_self: *@This()) ?*RemoteLayerServer {
+        return objc.msgSend(_self, "sharedServer", ?*RemoteLayerServer, .{});
+    }
+
+    pub fn serverPort(_self: *@This()) objc.mach_port_t {
+        return objc.msgSend(_self, "serverPort", objc.mach_port_t, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CARenderer?language=objc
 pub const Renderer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CARenderer", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CARenderer", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2322,65 +8916,176 @@ pub const Renderer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn rendererWithCGLContextOptions(self: *@This(), ctx: ?*anyopaque, dict: ?*NSDictionary) ?*Renderer {
-        return objc.msgSend(self, "rendererWithCGLContext:options:", ?*Renderer, .{ctx, dict});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn rendererWithMTLTextureOptions(self: *@This(), tex: ?*anyopaque, dict: ?*NSDictionary) ?*Renderer {
-        return objc.msgSend(self, "rendererWithMTLTexture:options:", ?*Renderer, .{tex, dict});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn beginFrameAtTimeTimeStamp(self: *@This(), t: core_foundation.TimeInterval, ts: ?*core_video.TimeStamp) void {
-        return objc.msgSend(self, "beginFrameAtTime:timeStamp:", void, .{t, ts});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn updateBounds(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "updateBounds", core_foundation.CGRect, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn addUpdateRect(self: *@This(), r: core_foundation.CGRect) void {
-        return objc.msgSend(self, "addUpdateRect:", void, .{r});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn render(self: *@This()) void {
-        return objc.msgSend(self, "render", void, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn nextFrameTime(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "nextFrameTime", core_foundation.TimeInterval, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn endFrame(self: *@This()) void {
-        return objc.msgSend(self, "endFrame", void, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setDestination(self: *@This(), tex: ?*anyopaque) void {
-        return objc.msgSend(self, "setDestination:", void, .{tex});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn layer(self: *@This()) ?*Layer {
-        return objc.msgSend(self, "layer", ?*Layer, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn setLayer(self: *@This(), layer: ?*Layer) void {
-        return objc.msgSend(self, "setLayer:", void, .{layer});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn bounds(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "bounds", core_foundation.CGRect, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn setBounds(self: *@This(), bounds: core_foundation.CGRect) void {
-        return objc.msgSend(self, "setBounds:", void, .{bounds});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn rendererWithCGLContextOptions(_self: *@This(), _ctx: ?*anyopaque, _dict: ?*NSDictionary) ?*Renderer {
+        return objc.msgSend(_self, "rendererWithCGLContext:options:", ?*Renderer, .{ _ctx, _dict });
+    }
+
+    pub fn rendererWithMTLTextureOptions(_self: *@This(), _tex: ?*anyopaque, _dict: ?*NSDictionary) ?*Renderer {
+        return objc.msgSend(_self, "rendererWithMTLTexture:options:", ?*Renderer, .{ _tex, _dict });
+    }
+
+    pub fn beginFrameAtTimeTimeStamp(_self: *@This(), _t: core_foundation.TimeInterval, _ts: ?*core_video.TimeStamp) void {
+        return objc.msgSend(_self, "beginFrameAtTime:timeStamp:", void, .{ _t, _ts });
+    }
+
+    pub fn updateBounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "updateBounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn addUpdateRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "addUpdateRect:", void, .{_r});
+    }
+
+    pub fn render(_self: *@This()) void {
+        return objc.msgSend(_self, "render", void, .{});
+    }
+
+    pub fn nextFrameTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "nextFrameTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn endFrame(_self: *@This()) void {
+        return objc.msgSend(_self, "endFrame", void, .{});
+    }
+
+    pub fn setDestination(_self: *@This(), _tex: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDestination:", void, .{_tex});
+    }
+
+    pub fn layer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "layer", ?*Layer, .{});
+    }
+
+    pub fn setLayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "setLayer:", void, .{_layer});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
 };
 
 pub const RendererPriv = extern struct {};
 
 /// https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer?language=objc
 pub const ReplicatorLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAReplicatorLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CAReplicatorLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2389,85 +9094,876 @@ pub const ReplicatorLayer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn instanceCount(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "instanceCount", objc.NSInteger, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setInstanceCount(self: *@This(), instanceCount: objc.NSInteger) void {
-        return objc.msgSend(self, "setInstanceCount:", void, .{instanceCount});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn preservesDepth(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "preservesDepth", objc.BOOL, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setPreservesDepth(self: *@This(), preservesDepth: objc.BOOL) void {
-        return objc.msgSend(self, "setPreservesDepth:", void, .{preservesDepth});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn instanceDelay(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "instanceDelay", core_foundation.TimeInterval, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setInstanceDelay(self: *@This(), instanceDelay: core_foundation.TimeInterval) void {
-        return objc.msgSend(self, "setInstanceDelay:", void, .{instanceDelay});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn instanceTransform(self: *@This()) Transform3D {
-        return objc.msgSend(self, "instanceTransform", Transform3D, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setInstanceTransform(self: *@This(), instanceTransform: Transform3D) void {
-        return objc.msgSend(self, "setInstanceTransform:", void, .{instanceTransform});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn instanceColor(self: *@This()) core_graphics.ColorRef {
-        return objc.msgSend(self, "instanceColor", core_graphics.ColorRef, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setInstanceColor(self: *@This(), instanceColor: core_graphics.ColorRef) void {
-        return objc.msgSend(self, "setInstanceColor:", void, .{instanceColor});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn instanceRedOffset(self: *@This()) f32 {
-        return objc.msgSend(self, "instanceRedOffset", f32, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setInstanceRedOffset(self: *@This(), instanceRedOffset: f32) void {
-        return objc.msgSend(self, "setInstanceRedOffset:", void, .{instanceRedOffset});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn instanceGreenOffset(self: *@This()) f32 {
-        return objc.msgSend(self, "instanceGreenOffset", f32, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setInstanceGreenOffset(self: *@This(), instanceGreenOffset: f32) void {
-        return objc.msgSend(self, "setInstanceGreenOffset:", void, .{instanceGreenOffset});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn instanceBlueOffset(self: *@This()) f32 {
-        return objc.msgSend(self, "instanceBlueOffset", f32, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn setInstanceBlueOffset(self: *@This(), instanceBlueOffset: f32) void {
-        return objc.msgSend(self, "setInstanceBlueOffset:", void, .{instanceBlueOffset});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn instanceAlphaOffset(self: *@This()) f32 {
-        return objc.msgSend(self, "instanceAlphaOffset", f32, .{});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn setInstanceAlphaOffset(self: *@This(), instanceAlphaOffset: f32) void {
-        return objc.msgSend(self, "setInstanceAlphaOffset:", void, .{instanceAlphaOffset});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
+
+    pub fn instanceCount(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "instanceCount", objc.NSInteger, .{});
+    }
+
+    pub fn setInstanceCount(_self: *@This(), _instanceCount: objc.NSInteger) void {
+        return objc.msgSend(_self, "setInstanceCount:", void, .{_instanceCount});
+    }
+
+    pub fn preservesDepth(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "preservesDepth", objc.BOOL, .{});
+    }
+
+    pub fn setPreservesDepth(_self: *@This(), _preservesDepth: objc.BOOL) void {
+        return objc.msgSend(_self, "setPreservesDepth:", void, .{_preservesDepth});
+    }
+
+    pub fn instanceDelay(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "instanceDelay", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setInstanceDelay(_self: *@This(), _instanceDelay: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setInstanceDelay:", void, .{_instanceDelay});
+    }
+
+    pub fn instanceTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "instanceTransform", Transform3D, .{});
+    }
+
+    pub fn setInstanceTransform(_self: *@This(), _instanceTransform: Transform3D) void {
+        return objc.msgSend(_self, "setInstanceTransform:", void, .{_instanceTransform});
+    }
+
+    pub fn instanceColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "instanceColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setInstanceColor(_self: *@This(), _instanceColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setInstanceColor:", void, .{_instanceColor});
+    }
+
+    pub fn instanceRedOffset(_self: *@This()) f32 {
+        return objc.msgSend(_self, "instanceRedOffset", f32, .{});
+    }
+
+    pub fn setInstanceRedOffset(_self: *@This(), _instanceRedOffset: f32) void {
+        return objc.msgSend(_self, "setInstanceRedOffset:", void, .{_instanceRedOffset});
+    }
+
+    pub fn instanceGreenOffset(_self: *@This()) f32 {
+        return objc.msgSend(_self, "instanceGreenOffset", f32, .{});
+    }
+
+    pub fn setInstanceGreenOffset(_self: *@This(), _instanceGreenOffset: f32) void {
+        return objc.msgSend(_self, "setInstanceGreenOffset:", void, .{_instanceGreenOffset});
+    }
+
+    pub fn instanceBlueOffset(_self: *@This()) f32 {
+        return objc.msgSend(_self, "instanceBlueOffset", f32, .{});
+    }
+
+    pub fn setInstanceBlueOffset(_self: *@This(), _instanceBlueOffset: f32) void {
+        return objc.msgSend(_self, "setInstanceBlueOffset:", void, .{_instanceBlueOffset});
+    }
+
+    pub fn instanceAlphaOffset(_self: *@This()) f32 {
+        return objc.msgSend(_self, "instanceAlphaOffset", f32, .{});
+    }
+
+    pub fn setInstanceAlphaOffset(_self: *@This(), _instanceAlphaOffset: f32) void {
+        return objc.msgSend(_self, "setInstanceAlphaOffset:", void, .{_instanceAlphaOffset});
+    }
 };
 
 pub const ScrollLayerScrollMode = ?*NSString;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAScrollLayer?language=objc
 pub const ScrollLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAScrollLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CAScrollLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2476,22 +9972,813 @@ pub const ScrollLayer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn scrollToPoint(self: *@This(), p: core_foundation.CGPoint) void {
-        return objc.msgSend(self, "scrollToPoint:", void, .{p});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn scrollToRect(self: *@This(), r: core_foundation.CGRect) void {
-        return objc.msgSend(self, "scrollToRect:", void, .{r});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn scrollMode(self: *@This()) ScrollLayerScrollMode {
-        return objc.msgSend(self, "scrollMode", ScrollLayerScrollMode, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setScrollMode(self: *@This(), scrollMode: ScrollLayerScrollMode) void {
-        return objc.msgSend(self, "setScrollMode:", void, .{scrollMode});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
+
+    pub fn scrollToPoint(_self: *@This(), _p: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "scrollToPoint:", void, .{_p});
+    }
+
+    pub fn scrollToRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "scrollToRect:", void, .{_r});
+    }
+
+    pub fn scrollMode(_self: *@This()) ScrollLayerScrollMode {
+        return objc.msgSend(_self, "scrollMode", ScrollLayerScrollMode, .{});
+    }
+
+    pub fn setScrollMode(_self: *@This(), _scrollMode: ScrollLayerScrollMode) void {
+        return objc.msgSend(_self, "setScrollMode:", void, .{_scrollMode});
+    }
 };
 
 pub const ShapeLayerFillRule = ?*NSString;
@@ -2502,7 +10789,7 @@ pub const ShapeLayerLineCap = ?*NSString;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAShapeLayer?language=objc
 pub const ShapeLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAShapeLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CAShapeLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2511,102 +10798,893 @@ pub const ShapeLayer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn path(self: *@This()) core_graphics.PathRef {
-        return objc.msgSend(self, "path", core_graphics.PathRef, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setPath(self: *@This(), path: core_graphics.PathRef) void {
-        return objc.msgSend(self, "setPath:", void, .{path});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn fillColor(self: *@This()) core_graphics.ColorRef {
-        return objc.msgSend(self, "fillColor", core_graphics.ColorRef, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setFillColor(self: *@This(), fillColor: core_graphics.ColorRef) void {
-        return objc.msgSend(self, "setFillColor:", void, .{fillColor});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn fillRule(self: *@This()) ShapeLayerFillRule {
-        return objc.msgSend(self, "fillRule", ShapeLayerFillRule, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setFillRule(self: *@This(), fillRule: ShapeLayerFillRule) void {
-        return objc.msgSend(self, "setFillRule:", void, .{fillRule});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn strokeColor(self: *@This()) core_graphics.ColorRef {
-        return objc.msgSend(self, "strokeColor", core_graphics.ColorRef, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setStrokeColor(self: *@This(), strokeColor: core_graphics.ColorRef) void {
-        return objc.msgSend(self, "setStrokeColor:", void, .{strokeColor});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn strokeStart(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "strokeStart", core_foundation.CGFloat, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setStrokeStart(self: *@This(), strokeStart: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setStrokeStart:", void, .{strokeStart});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn strokeEnd(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "strokeEnd", core_foundation.CGFloat, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setStrokeEnd(self: *@This(), strokeEnd: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setStrokeEnd:", void, .{strokeEnd});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn lineWidth(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "lineWidth", core_foundation.CGFloat, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setLineWidth(self: *@This(), lineWidth: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setLineWidth:", void, .{lineWidth});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn miterLimit(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "miterLimit", core_foundation.CGFloat, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn setMiterLimit(self: *@This(), miterLimit: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setMiterLimit:", void, .{miterLimit});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn lineCap(self: *@This()) ShapeLayerLineCap {
-        return objc.msgSend(self, "lineCap", ShapeLayerLineCap, .{});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn setLineCap(self: *@This(), lineCap: ShapeLayerLineCap) void {
-        return objc.msgSend(self, "setLineCap:", void, .{lineCap});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn lineJoin(self: *@This()) ShapeLayerLineJoin {
-        return objc.msgSend(self, "lineJoin", ShapeLayerLineJoin, .{});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn setLineJoin(self: *@This(), lineJoin: ShapeLayerLineJoin) void {
-        return objc.msgSend(self, "setLineJoin:", void, .{lineJoin});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn lineDashPhase(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "lineDashPhase", core_foundation.CGFloat, .{});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn setLineDashPhase(self: *@This(), lineDashPhase: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setLineDashPhase:", void, .{lineDashPhase});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn lineDashPattern(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "lineDashPattern", ?*anyopaque, .{});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn setLineDashPattern(self: *@This(), lineDashPattern: ?*anyopaque) void {
-        return objc.msgSend(self, "setLineDashPattern:", void, .{lineDashPattern});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
+
+    pub fn path(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "path", core_graphics.PathRef, .{});
+    }
+
+    pub fn setPath(_self: *@This(), _path: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setPath:", void, .{_path});
+    }
+
+    pub fn fillColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "fillColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setFillColor(_self: *@This(), _fillColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setFillColor:", void, .{_fillColor});
+    }
+
+    pub fn fillRule(_self: *@This()) ShapeLayerFillRule {
+        return objc.msgSend(_self, "fillRule", ShapeLayerFillRule, .{});
+    }
+
+    pub fn setFillRule(_self: *@This(), _fillRule: ShapeLayerFillRule) void {
+        return objc.msgSend(_self, "setFillRule:", void, .{_fillRule});
+    }
+
+    pub fn strokeColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "strokeColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setStrokeColor(_self: *@This(), _strokeColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setStrokeColor:", void, .{_strokeColor});
+    }
+
+    pub fn strokeStart(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "strokeStart", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setStrokeStart(_self: *@This(), _strokeStart: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setStrokeStart:", void, .{_strokeStart});
+    }
+
+    pub fn strokeEnd(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "strokeEnd", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setStrokeEnd(_self: *@This(), _strokeEnd: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setStrokeEnd:", void, .{_strokeEnd});
+    }
+
+    pub fn lineWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "lineWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setLineWidth(_self: *@This(), _lineWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setLineWidth:", void, .{_lineWidth});
+    }
+
+    pub fn miterLimit(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "miterLimit", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setMiterLimit(_self: *@This(), _miterLimit: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setMiterLimit:", void, .{_miterLimit});
+    }
+
+    pub fn lineCap(_self: *@This()) ShapeLayerLineCap {
+        return objc.msgSend(_self, "lineCap", ShapeLayerLineCap, .{});
+    }
+
+    pub fn setLineCap(_self: *@This(), _lineCap: ShapeLayerLineCap) void {
+        return objc.msgSend(_self, "setLineCap:", void, .{_lineCap});
+    }
+
+    pub fn lineJoin(_self: *@This()) ShapeLayerLineJoin {
+        return objc.msgSend(_self, "lineJoin", ShapeLayerLineJoin, .{});
+    }
+
+    pub fn setLineJoin(_self: *@This(), _lineJoin: ShapeLayerLineJoin) void {
+        return objc.msgSend(_self, "setLineJoin:", void, .{_lineJoin});
+    }
+
+    pub fn lineDashPhase(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "lineDashPhase", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setLineDashPhase(_self: *@This(), _lineDashPhase: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setLineDashPhase:", void, .{_lineDashPhase});
+    }
+
+    pub fn lineDashPattern(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "lineDashPattern", ?*anyopaque, .{});
+    }
+
+    pub fn setLineDashPattern(_self: *@This(), _lineDashPattern: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLineDashPattern:", void, .{_lineDashPattern});
+    }
 };
 
 pub const TextLayerTruncationMode = ?*NSString;
@@ -2615,7 +11693,7 @@ pub const TextLayerAlignmentMode = ?*NSString;
 
 /// https://developer.apple.com/documentation/QuartzCore/CATextLayer?language=objc
 pub const TextLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CATextLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CATextLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2624,77 +11702,868 @@ pub const TextLayer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn string(self: *@This()) *objc.Id {
-        return objc.msgSend(self, "string", *objc.Id, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setString(self: *@This(), string: *objc.Id) void {
-        return objc.msgSend(self, "setString:", void, .{string});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn font(self: *@This()) core_foundation.TypeRef {
-        return objc.msgSend(self, "font", core_foundation.TypeRef, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setFont(self: *@This(), font: core_foundation.TypeRef) void {
-        return objc.msgSend(self, "setFont:", void, .{font});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn fontSize(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "fontSize", core_foundation.CGFloat, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setFontSize(self: *@This(), fontSize: core_foundation.CGFloat) void {
-        return objc.msgSend(self, "setFontSize:", void, .{fontSize});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn foregroundColor(self: *@This()) core_graphics.ColorRef {
-        return objc.msgSend(self, "foregroundColor", core_graphics.ColorRef, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setForegroundColor(self: *@This(), foregroundColor: core_graphics.ColorRef) void {
-        return objc.msgSend(self, "setForegroundColor:", void, .{foregroundColor});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn isWrapped(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isWrapped", objc.BOOL, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setWrapped(self: *@This(), wrapped: objc.BOOL) void {
-        return objc.msgSend(self, "setWrapped:", void, .{wrapped});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn truncationMode(self: *@This()) TextLayerTruncationMode {
-        return objc.msgSend(self, "truncationMode", TextLayerTruncationMode, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setTruncationMode(self: *@This(), truncationMode: TextLayerTruncationMode) void {
-        return objc.msgSend(self, "setTruncationMode:", void, .{truncationMode});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn alignmentMode(self: *@This()) TextLayerAlignmentMode {
-        return objc.msgSend(self, "alignmentMode", TextLayerAlignmentMode, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setAlignmentMode(self: *@This(), alignmentMode: TextLayerAlignmentMode) void {
-        return objc.msgSend(self, "setAlignmentMode:", void, .{alignmentMode});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allowsFontSubpixelQuantization(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowsFontSubpixelQuantization", objc.BOOL, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn setAllowsFontSubpixelQuantization(self: *@This(), allowsFontSubpixelQuantization: objc.BOOL) void {
-        return objc.msgSend(self, "setAllowsFontSubpixelQuantization:", void, .{allowsFontSubpixelQuantization});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
+
+    pub fn string(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "string", *objc.Id, .{});
+    }
+
+    pub fn setString(_self: *@This(), _string: *objc.Id) void {
+        return objc.msgSend(_self, "setString:", void, .{_string});
+    }
+
+    pub fn font(_self: *@This()) core_foundation.TypeRef {
+        return objc.msgSend(_self, "font", core_foundation.TypeRef, .{});
+    }
+
+    pub fn setFont(_self: *@This(), _font: core_foundation.TypeRef) void {
+        return objc.msgSend(_self, "setFont:", void, .{_font});
+    }
+
+    pub fn fontSize(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "fontSize", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setFontSize(_self: *@This(), _fontSize: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setFontSize:", void, .{_fontSize});
+    }
+
+    pub fn foregroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "foregroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setForegroundColor(_self: *@This(), _foregroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setForegroundColor:", void, .{_foregroundColor});
+    }
+
+    pub fn isWrapped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isWrapped", objc.BOOL, .{});
+    }
+
+    pub fn setWrapped(_self: *@This(), _wrapped: objc.BOOL) void {
+        return objc.msgSend(_self, "setWrapped:", void, .{_wrapped});
+    }
+
+    pub fn truncationMode(_self: *@This()) TextLayerTruncationMode {
+        return objc.msgSend(_self, "truncationMode", TextLayerTruncationMode, .{});
+    }
+
+    pub fn setTruncationMode(_self: *@This(), _truncationMode: TextLayerTruncationMode) void {
+        return objc.msgSend(_self, "setTruncationMode:", void, .{_truncationMode});
+    }
+
+    pub fn alignmentMode(_self: *@This()) TextLayerAlignmentMode {
+        return objc.msgSend(_self, "alignmentMode", TextLayerAlignmentMode, .{});
+    }
+
+    pub fn setAlignmentMode(_self: *@This(), _alignmentMode: TextLayerAlignmentMode) void {
+        return objc.msgSend(_self, "setAlignmentMode:", void, .{_alignmentMode});
+    }
+
+    pub fn allowsFontSubpixelQuantization(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsFontSubpixelQuantization", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsFontSubpixelQuantization(_self: *@This(), _allowsFontSubpixelQuantization: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsFontSubpixelQuantization:", void, .{_allowsFontSubpixelQuantization});
+    }
 };
 
 pub const TextLayerPrivate = extern struct {};
 
 /// https://developer.apple.com/documentation/QuartzCore/CATiledLayer?language=objc
 pub const TiledLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CATiledLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CATiledLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2703,39 +12572,830 @@ pub const TiledLayer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn fadeDuration(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "fadeDuration", core_foundation.TimeInterval, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn levelsOfDetail(self: *@This()) objc.size_t {
-        return objc.msgSend(self, "levelsOfDetail", objc.size_t, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setLevelsOfDetail(self: *@This(), levelsOfDetail: objc.size_t) void {
-        return objc.msgSend(self, "setLevelsOfDetail:", void, .{levelsOfDetail});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn levelsOfDetailBias(self: *@This()) objc.size_t {
-        return objc.msgSend(self, "levelsOfDetailBias", objc.size_t, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setLevelsOfDetailBias(self: *@This(), levelsOfDetailBias: objc.size_t) void {
-        return objc.msgSend(self, "setLevelsOfDetailBias:", void, .{levelsOfDetailBias});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn tileSize(self: *@This()) core_foundation.CGSize {
-        return objc.msgSend(self, "tileSize", core_foundation.CGSize, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setTileSize(self: *@This(), tileSize: core_foundation.CGSize) void {
-        return objc.msgSend(self, "setTileSize:", void, .{tileSize});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
+
+    pub fn fadeDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "fadeDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn levelsOfDetail(_self: *@This()) objc.size_t {
+        return objc.msgSend(_self, "levelsOfDetail", objc.size_t, .{});
+    }
+
+    pub fn setLevelsOfDetail(_self: *@This(), _levelsOfDetail: objc.size_t) void {
+        return objc.msgSend(_self, "setLevelsOfDetail:", void, .{_levelsOfDetail});
+    }
+
+    pub fn levelsOfDetailBias(_self: *@This()) objc.size_t {
+        return objc.msgSend(_self, "levelsOfDetailBias", objc.size_t, .{});
+    }
+
+    pub fn setLevelsOfDetailBias(_self: *@This(), _levelsOfDetailBias: objc.size_t) void {
+        return objc.msgSend(_self, "setLevelsOfDetailBias:", void, .{_levelsOfDetailBias});
+    }
+
+    pub fn tileSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "tileSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setTileSize(_self: *@This(), _tileSize: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setTileSize:", void, .{_tileSize});
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CATransaction?language=objc
 pub const Transaction = opaque {
-    pub const InternalInfo = objc.ExternalClass("CATransaction", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CATransaction", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2744,67 +13404,178 @@ pub const Transaction = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn begin(self: *@This()) void {
-        return objc.msgSend(self, "begin", void, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn commit(self: *@This()) void {
-        return objc.msgSend(self, "commit", void, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn flush(self: *@This()) void {
-        return objc.msgSend(self, "flush", void, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn lock(self: *@This()) void {
-        return objc.msgSend(self, "lock", void, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn unlock(self: *@This()) void {
-        return objc.msgSend(self, "unlock", void, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn animationDuration(self: *@This()) core_foundation.TimeInterval {
-        return objc.msgSend(self, "animationDuration", core_foundation.TimeInterval, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setAnimationDuration(self: *@This(), dur: core_foundation.TimeInterval) void {
-        return objc.msgSend(self, "setAnimationDuration:", void, .{dur});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn animationTimingFunction(self: *@This()) ?*MediaTimingFunction {
-        return objc.msgSend(self, "animationTimingFunction", ?*MediaTimingFunction, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setAnimationTimingFunction(self: *@This(), function: ?*MediaTimingFunction) void {
-        return objc.msgSend(self, "setAnimationTimingFunction:", void, .{function});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setDisableActions(self: *@This(), flag: objc.BOOL) void {
-        return objc.msgSend(self, "setDisableActions:", void, .{flag});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn completionBlock(self: *@This()) *const fn() callconv(.C) void {
-        return objc.msgSend(self, "completionBlock", *const fn() callconv(.C) void, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setCompletionBlock(self: *@This(), block: *const fn() callconv(.C) void) void {
-        return objc.msgSend(self, "setCompletionBlock:", void, .{block});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn valueForKey(self: *@This(), key: ?*NSString) *objc.Id {
-        return objc.msgSend(self, "valueForKey:", *objc.Id, .{key});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setValueForKey(self: *@This(), anObject: *objc.Id, key: ?*NSString) void {
-        return objc.msgSend(self, "setValue:forKey:", void, .{anObject, key});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn begin(_self: *@This()) void {
+        return objc.msgSend(_self, "begin", void, .{});
+    }
+
+    pub fn commit(_self: *@This()) void {
+        return objc.msgSend(_self, "commit", void, .{});
+    }
+
+    pub fn flush(_self: *@This()) void {
+        return objc.msgSend(_self, "flush", void, .{});
+    }
+
+    pub fn lock(_self: *@This()) void {
+        return objc.msgSend(_self, "lock", void, .{});
+    }
+
+    pub fn unlock(_self: *@This()) void {
+        return objc.msgSend(_self, "unlock", void, .{});
+    }
+
+    pub fn animationDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "animationDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setAnimationDuration(_self: *@This(), _dur: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setAnimationDuration:", void, .{_dur});
+    }
+
+    pub fn animationTimingFunction(_self: *@This()) ?*MediaTimingFunction {
+        return objc.msgSend(_self, "animationTimingFunction", ?*MediaTimingFunction, .{});
+    }
+
+    pub fn setAnimationTimingFunction(_self: *@This(), _function: ?*MediaTimingFunction) void {
+        return objc.msgSend(_self, "setAnimationTimingFunction:", void, .{_function});
+    }
+
+    pub fn setDisableActions(_self: *@This(), _flag: objc.BOOL) void {
+        return objc.msgSend(_self, "setDisableActions:", void, .{_flag});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _block: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_block});
+    }
+
+    pub fn valueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "valueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn setValueForKey(_self: *@This(), _anObject: *objc.Id, _key: ?*NSString) void {
+        return objc.msgSend(_self, "setValue:forKey:", void, .{ _anObject, _key });
+    }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CATransformLayer?language=objc
 pub const TransformLayer = opaque {
-    pub const InternalInfo = objc.ExternalClass("CATransformLayer", @This(), Layer, &.{});
+    pub const InternalInfo = objc.ExternClass("CATransformLayer", @This(), Layer, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2812,13 +13583,807 @@ pub const TransformLayer = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn beginTime(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "beginTime", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setBeginTime(_self: *@This(), _beginTime: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setBeginTime:", void, .{_beginTime});
+    }
+
+    pub fn duration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "duration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setDuration(_self: *@This(), _duration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setDuration:", void, .{_duration});
+    }
+
+    pub fn speed(_self: *@This()) f32 {
+        return objc.msgSend(_self, "speed", f32, .{});
+    }
+
+    pub fn setSpeed(_self: *@This(), _speed: f32) void {
+        return objc.msgSend(_self, "setSpeed:", void, .{_speed});
+    }
+
+    pub fn timeOffset(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "timeOffset", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeOffset(_self: *@This(), _timeOffset: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeOffset:", void, .{_timeOffset});
+    }
+
+    pub fn repeatCount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "repeatCount", f32, .{});
+    }
+
+    pub fn setRepeatCount(_self: *@This(), _repeatCount: f32) void {
+        return objc.msgSend(_self, "setRepeatCount:", void, .{_repeatCount});
+    }
+
+    pub fn repeatDuration(_self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "repeatDuration", core_foundation.TimeInterval, .{});
+    }
+
+    pub fn setRepeatDuration(_self: *@This(), _repeatDuration: core_foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setRepeatDuration:", void, .{_repeatDuration});
+    }
+
+    pub fn autoreverses(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "autoreverses", objc.BOOL, .{});
+    }
+
+    pub fn setAutoreverses(_self: *@This(), _autoreverses: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutoreverses:", void, .{_autoreverses});
+    }
+
+    pub fn fillMode(_self: *@This()) MediaTimingFillMode {
+        return objc.msgSend(_self, "fillMode", MediaTimingFillMode, .{});
+    }
+
+    pub fn setFillMode(_self: *@This(), _fillMode: MediaTimingFillMode) void {
+        return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
+    }
+
+    pub fn layer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "layer", *@This(), .{});
+    }
+
+    pub fn initWithLayer(_self: *@This(), _layer: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithLayer:", *@This(), .{_layer});
+    }
+
+    pub fn presentationLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "presentationLayer", *@This(), .{});
+    }
+
+    pub fn modelLayer(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "modelLayer", *@This(), .{});
+    }
+
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+        return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
+    }
+
+    pub fn affineTransform(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "affineTransform", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn setAffineTransform(_self: *@This(), _m: core_foundation.CGAffineTransform) void {
+        return objc.msgSend(_self, "setAffineTransform:", void, .{_m});
+    }
+
+    pub fn removeFromSuperlayer(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromSuperlayer", void, .{});
+    }
+
+    pub fn addSublayer(_self: *@This(), _layer: ?*Layer) void {
+        return objc.msgSend(_self, "addSublayer:", void, .{_layer});
+    }
+
+    pub fn insertSublayerAtIndex(_self: *@This(), _layer: ?*Layer, _idx: u32) void {
+        return objc.msgSend(_self, "insertSublayer:atIndex:", void, .{ _layer, _idx });
+    }
+
+    pub fn insertSublayerBelow(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:below:", void, .{ _layer, _sibling });
+    }
+
+    pub fn insertSublayerAbove(_self: *@This(), _layer: ?*Layer, _sibling: ?*Layer) void {
+        return objc.msgSend(_self, "insertSublayer:above:", void, .{ _layer, _sibling });
+    }
+
+    pub fn replaceSublayerWith(_self: *@This(), _oldLayer: ?*Layer, _newLayer: ?*Layer) void {
+        return objc.msgSend(_self, "replaceSublayer:with:", void, .{ _oldLayer, _newLayer });
+    }
+
+    pub fn convertPointFromLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:fromLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertPointToLayer(_self: *@This(), _p: core_foundation.CGPoint, _l: ?*Layer) core_foundation.CGPoint {
+        return objc.msgSend(_self, "convertPoint:toLayer:", core_foundation.CGPoint, .{ _p, _l });
+    }
+
+    pub fn convertRectFromLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:fromLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertRectToLayer(_self: *@This(), _r: core_foundation.CGRect, _l: ?*Layer) core_foundation.CGRect {
+        return objc.msgSend(_self, "convertRect:toLayer:", core_foundation.CGRect, .{ _r, _l });
+    }
+
+    pub fn convertTimeFromLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:fromLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn convertTimeToLayer(_self: *@This(), _t: core_foundation.TimeInterval, _l: ?*Layer) core_foundation.TimeInterval {
+        return objc.msgSend(_self, "convertTime:toLayer:", core_foundation.TimeInterval, .{ _t, _l });
+    }
+
+    pub fn hitTest(_self: *@This(), _p: core_foundation.CGPoint) ?*anyopaque {
+        return objc.msgSend(_self, "hitTest:", ?*anyopaque, .{_p});
+    }
+
+    pub fn display(_self: *@This()) void {
+        return objc.msgSend(_self, "display", void, .{});
+    }
+
+    pub fn setNeedsDisplay(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn setNeedsDisplayInRect(_self: *@This(), _r: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setNeedsDisplayInRect:", void, .{_r});
+    }
+
+    pub fn displayIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "displayIfNeeded", void, .{});
+    }
+
+    pub fn drawInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "drawInContext:", void, .{_ctx});
+    }
+
+    pub fn renderInContext(_self: *@This(), _ctx: core_graphics.ContextRef) void {
+        return objc.msgSend(_self, "renderInContext:", void, .{_ctx});
+    }
+
+    pub fn cornerCurveExpansionFactor(_self: *@This(), _curve: LayerCornerCurve) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerCurveExpansionFactor:", core_foundation.CGFloat, .{_curve});
+    }
+
+    pub fn preferredFrameSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "preferredFrameSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn setNeedsLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsLayout", void, .{});
+    }
+
+    pub fn layoutIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutIfNeeded", void, .{});
+    }
+
+    pub fn layoutSublayers(_self: *@This()) void {
+        return objc.msgSend(_self, "layoutSublayers", void, .{});
+    }
+
+    pub fn resizeSublayersWithOldSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeSublayersWithOldSize:", void, .{_size});
+    }
+
+    pub fn resizeWithOldSuperlayerSize(_self: *@This(), _size: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
+    }
+
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
+    }
+
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+        return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
+    }
+
+    pub fn removeAllAnimations(_self: *@This()) void {
+        return objc.msgSend(_self, "removeAllAnimations", void, .{});
+    }
+
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+        return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
+    }
+
+    pub fn animationKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
+    }
+
+    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn setBounds(_self: *@This(), _bounds: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setBounds:", void, .{_bounds});
+    }
+
+    pub fn position(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "position", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setPosition(_self: *@This(), _position: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setPosition:", void, .{_position});
+    }
+
+    pub fn zPosition(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "zPosition", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setZPosition(_self: *@This(), _zPosition: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setZPosition:", void, .{_zPosition});
+    }
+
+    pub fn anchorPoint(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "anchorPoint", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setAnchorPoint(_self: *@This(), _anchorPoint: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setAnchorPoint:", void, .{_anchorPoint});
+    }
+
+    pub fn anchorPointZ(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "anchorPointZ", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setAnchorPointZ(_self: *@This(), _anchorPointZ: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setAnchorPointZ:", void, .{_anchorPointZ});
+    }
+
+    pub fn transform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "transform", Transform3D, .{});
+    }
+
+    pub fn setTransform(_self: *@This(), _transform: Transform3D) void {
+        return objc.msgSend(_self, "setTransform:", void, .{_transform});
+    }
+
+    pub fn frame(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "frame", core_foundation.CGRect, .{});
+    }
+
+    pub fn setFrame(_self: *@This(), _frame: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setFrame:", void, .{_frame});
+    }
+
+    pub fn isHidden(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHidden", objc.BOOL, .{});
+    }
+
+    pub fn setHidden(_self: *@This(), _hidden: objc.BOOL) void {
+        return objc.msgSend(_self, "setHidden:", void, .{_hidden});
+    }
+
+    pub fn isDoubleSided(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDoubleSided", objc.BOOL, .{});
+    }
+
+    pub fn setDoubleSided(_self: *@This(), _doubleSided: objc.BOOL) void {
+        return objc.msgSend(_self, "setDoubleSided:", void, .{_doubleSided});
+    }
+
+    pub fn isGeometryFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGeometryFlipped", objc.BOOL, .{});
+    }
+
+    pub fn setGeometryFlipped(_self: *@This(), _geometryFlipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setGeometryFlipped:", void, .{_geometryFlipped});
+    }
+
+    pub fn superlayer(_self: *@This()) ?*Layer {
+        return objc.msgSend(_self, "superlayer", ?*Layer, .{});
+    }
+
+    pub fn sublayers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sublayers", ?*anyopaque, .{});
+    }
+
+    pub fn setSublayers(_self: *@This(), _sublayers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSublayers:", void, .{_sublayers});
+    }
+
+    pub fn sublayerTransform(_self: *@This()) Transform3D {
+        return objc.msgSend(_self, "sublayerTransform", Transform3D, .{});
+    }
+
+    pub fn setSublayerTransform(_self: *@This(), _sublayerTransform: Transform3D) void {
+        return objc.msgSend(_self, "setSublayerTransform:", void, .{_sublayerTransform});
+    }
+
+    pub fn mask(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "mask", ?*anyopaque, .{});
+    }
+
+    pub fn setMask(_self: *@This(), _mask: ?*anyopaque) void {
+        return objc.msgSend(_self, "setMask:", void, .{_mask});
+    }
+
+    pub fn masksToBounds(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "masksToBounds", objc.BOOL, .{});
+    }
+
+    pub fn setMasksToBounds(_self: *@This(), _masksToBounds: objc.BOOL) void {
+        return objc.msgSend(_self, "setMasksToBounds:", void, .{_masksToBounds});
+    }
+
+    pub fn contents(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "contents", *objc.Id, .{});
+    }
+
+    pub fn setContents(_self: *@This(), _contents: *objc.Id) void {
+        return objc.msgSend(_self, "setContents:", void, .{_contents});
+    }
+
+    pub fn contentsRect(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsRect", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsRect(_self: *@This(), _contentsRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsRect:", void, .{_contentsRect});
+    }
+
+    pub fn contentsGravity(_self: *@This()) LayerContentsGravity {
+        return objc.msgSend(_self, "contentsGravity", LayerContentsGravity, .{});
+    }
+
+    pub fn setContentsGravity(_self: *@This(), _contentsGravity: LayerContentsGravity) void {
+        return objc.msgSend(_self, "setContentsGravity:", void, .{_contentsGravity});
+    }
+
+    pub fn contentsScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "contentsScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setContentsScale(_self: *@This(), _contentsScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
+    }
+
+    pub fn contentsCenter(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "contentsCenter", core_foundation.CGRect, .{});
+    }
+
+    pub fn setContentsCenter(_self: *@This(), _contentsCenter: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setContentsCenter:", void, .{_contentsCenter});
+    }
+
+    pub fn contentsFormat(_self: *@This()) LayerContentsFormat {
+        return objc.msgSend(_self, "contentsFormat", LayerContentsFormat, .{});
+    }
+
+    pub fn setContentsFormat(_self: *@This(), _contentsFormat: LayerContentsFormat) void {
+        return objc.msgSend(_self, "setContentsFormat:", void, .{_contentsFormat});
+    }
+
+    pub fn wantsExtendedDynamicRangeContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeContent", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeContent(_self: *@This(), _wantsExtendedDynamicRangeContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeContent:", void, .{_wantsExtendedDynamicRangeContent});
+    }
+
+    pub fn toneMapMode(_self: *@This()) ToneMapMode {
+        return objc.msgSend(_self, "toneMapMode", ToneMapMode, .{});
+    }
+
+    pub fn setToneMapMode(_self: *@This(), _toneMapMode: ToneMapMode) void {
+        return objc.msgSend(_self, "setToneMapMode:", void, .{_toneMapMode});
+    }
+
+    pub fn wantsDynamicContentScaling(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsDynamicContentScaling", objc.BOOL, .{});
+    }
+
+    pub fn setWantsDynamicContentScaling(_self: *@This(), _wantsDynamicContentScaling: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsDynamicContentScaling:", void, .{_wantsDynamicContentScaling});
+    }
+
+    pub fn minificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "minificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
+    }
+
+    pub fn magnificationFilter(_self: *@This()) LayerContentsFilter {
+        return objc.msgSend(_self, "magnificationFilter", LayerContentsFilter, .{});
+    }
+
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: LayerContentsFilter) void {
+        return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
+    }
+
+    pub fn minificationFilterBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "minificationFilterBias", f32, .{});
+    }
+
+    pub fn setMinificationFilterBias(_self: *@This(), _minificationFilterBias: f32) void {
+        return objc.msgSend(_self, "setMinificationFilterBias:", void, .{_minificationFilterBias});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn setOpaque(_self: *@This(), _opaque: objc.BOOL) void {
+        return objc.msgSend(_self, "setOpaque:", void, .{_opaque});
+    }
+
+    pub fn needsDisplayOnBoundsChange(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsDisplayOnBoundsChange", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsDisplayOnBoundsChange(_self: *@This(), _needsDisplayOnBoundsChange: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsDisplayOnBoundsChange:", void, .{_needsDisplayOnBoundsChange});
+    }
+
+    pub fn drawsAsynchronously(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "drawsAsynchronously", objc.BOOL, .{});
+    }
+
+    pub fn setDrawsAsynchronously(_self: *@This(), _drawsAsynchronously: objc.BOOL) void {
+        return objc.msgSend(_self, "setDrawsAsynchronously:", void, .{_drawsAsynchronously});
+    }
+
+    pub fn edgeAntialiasingMask(_self: *@This()) EdgeAntialiasingMask {
+        return objc.msgSend(_self, "edgeAntialiasingMask", EdgeAntialiasingMask, .{});
+    }
+
+    pub fn setEdgeAntialiasingMask(_self: *@This(), _edgeAntialiasingMask: EdgeAntialiasingMask) void {
+        return objc.msgSend(_self, "setEdgeAntialiasingMask:", void, .{_edgeAntialiasingMask});
+    }
+
+    pub fn allowsEdgeAntialiasing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsEdgeAntialiasing", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsEdgeAntialiasing(_self: *@This(), _allowsEdgeAntialiasing: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsEdgeAntialiasing:", void, .{_allowsEdgeAntialiasing});
+    }
+
+    pub fn backgroundColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "backgroundColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBackgroundColor(_self: *@This(), _backgroundColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBackgroundColor:", void, .{_backgroundColor});
+    }
+
+    pub fn cornerRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "cornerRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setCornerRadius(_self: *@This(), _cornerRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setCornerRadius:", void, .{_cornerRadius});
+    }
+
+    pub fn maskedCorners(_self: *@This()) CornerMask {
+        return objc.msgSend(_self, "maskedCorners", CornerMask, .{});
+    }
+
+    pub fn setMaskedCorners(_self: *@This(), _maskedCorners: CornerMask) void {
+        return objc.msgSend(_self, "setMaskedCorners:", void, .{_maskedCorners});
+    }
+
+    pub fn cornerCurve(_self: *@This()) LayerCornerCurve {
+        return objc.msgSend(_self, "cornerCurve", LayerCornerCurve, .{});
+    }
+
+    pub fn setCornerCurve(_self: *@This(), _cornerCurve: LayerCornerCurve) void {
+        return objc.msgSend(_self, "setCornerCurve:", void, .{_cornerCurve});
+    }
+
+    pub fn borderWidth(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "borderWidth", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setBorderWidth(_self: *@This(), _borderWidth: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setBorderWidth:", void, .{_borderWidth});
+    }
+
+    pub fn borderColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "borderColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setBorderColor(_self: *@This(), _borderColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setBorderColor:", void, .{_borderColor});
+    }
+
+    pub fn opacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "opacity", f32, .{});
+    }
+
+    pub fn setOpacity(_self: *@This(), _opacity: f32) void {
+        return objc.msgSend(_self, "setOpacity:", void, .{_opacity});
+    }
+
+    pub fn allowsGroupOpacity(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsGroupOpacity", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsGroupOpacity(_self: *@This(), _allowsGroupOpacity: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsGroupOpacity:", void, .{_allowsGroupOpacity});
+    }
+
+    pub fn compositingFilter(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "compositingFilter", *objc.Id, .{});
+    }
+
+    pub fn setCompositingFilter(_self: *@This(), _compositingFilter: *objc.Id) void {
+        return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
+    }
+
+    pub fn filters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    }
+
+    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+        return objc.msgSend(_self, "setFilters:", void, .{_filters});
+    }
+
+    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    }
+
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+        return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
+    }
+
+    pub fn shouldRasterize(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldRasterize", objc.BOOL, .{});
+    }
+
+    pub fn setShouldRasterize(_self: *@This(), _shouldRasterize: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldRasterize:", void, .{_shouldRasterize});
+    }
+
+    pub fn rasterizationScale(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rasterizationScale", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setRasterizationScale(_self: *@This(), _rasterizationScale: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setRasterizationScale:", void, .{_rasterizationScale});
+    }
+
+    pub fn shadowColor(_self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(_self, "shadowColor", core_graphics.ColorRef, .{});
+    }
+
+    pub fn setShadowColor(_self: *@This(), _shadowColor: core_graphics.ColorRef) void {
+        return objc.msgSend(_self, "setShadowColor:", void, .{_shadowColor});
+    }
+
+    pub fn shadowOpacity(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowOpacity", f32, .{});
+    }
+
+    pub fn setShadowOpacity(_self: *@This(), _shadowOpacity: f32) void {
+        return objc.msgSend(_self, "setShadowOpacity:", void, .{_shadowOpacity});
+    }
+
+    pub fn shadowOffset(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "shadowOffset", core_foundation.CGSize, .{});
+    }
+
+    pub fn setShadowOffset(_self: *@This(), _shadowOffset: core_foundation.CGSize) void {
+        return objc.msgSend(_self, "setShadowOffset:", void, .{_shadowOffset});
+    }
+
+    pub fn shadowRadius(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "shadowRadius", core_foundation.CGFloat, .{});
+    }
+
+    pub fn setShadowRadius(_self: *@This(), _shadowRadius: core_foundation.CGFloat) void {
+        return objc.msgSend(_self, "setShadowRadius:", void, .{_shadowRadius});
+    }
+
+    pub fn shadowPath(_self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(_self, "shadowPath", core_graphics.PathRef, .{});
+    }
+
+    pub fn setShadowPath(_self: *@This(), _shadowPath: core_graphics.PathRef) void {
+        return objc.msgSend(_self, "setShadowPath:", void, .{_shadowPath});
+    }
+
+    pub fn autoresizingMask(_self: *@This()) AutoresizingMask {
+        return objc.msgSend(_self, "autoresizingMask", AutoresizingMask, .{});
+    }
+
+    pub fn setAutoresizingMask(_self: *@This(), _autoresizingMask: AutoresizingMask) void {
+        return objc.msgSend(_self, "setAutoresizingMask:", void, .{_autoresizingMask});
+    }
+
+    pub fn layoutManager(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutManager", ?*anyopaque, .{});
+    }
+
+    pub fn setLayoutManager(_self: *@This(), _layoutManager: ?*anyopaque) void {
+        return objc.msgSend(_self, "setLayoutManager:", void, .{_layoutManager});
+    }
+
+    pub fn actions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "actions", ?*anyopaque, .{});
+    }
+
+    pub fn setActions(_self: *@This(), _actions: ?*anyopaque) void {
+        return objc.msgSend(_self, "setActions:", void, .{_actions});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
+        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    }
+
+    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+        return objc.msgSend(_self, "setStyle:", void, .{_style});
+    }
 };
 
 pub const ValueFunctionName = ?*NSString;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAValueFunction?language=objc
 pub const ValueFunction = opaque {
-    pub const InternalInfo = objc.ExternalClass("CAValueFunction", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CAValueFunction", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2827,13 +14392,135 @@ pub const ValueFunction = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn functionWithName(self: *@This(), name: ValueFunctionName) *@This() {
-        return objc.msgSend(self, "functionWithName:", *@This(), .{name});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn name(self: *@This()) ValueFunctionName {
-        return objc.msgSend(self, "name", ValueFunctionName, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn functionWithName(_self: *@This(), _name: ValueFunctionName) *@This() {
+        return objc.msgSend(_self, "functionWithName:", *@This(), .{_name});
+    }
+
+    pub fn name(_self: *@This()) ValueFunctionName {
+        return objc.msgSend(_self, "name", ValueFunctionName, .{});
+    }
 };
-

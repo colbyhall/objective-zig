@@ -17,7 +17,7 @@ pub const anon1061 = enum(u32) {
 };
 
 pub const FSRef = extern struct {
-    hidden: [80] objc.UInt8,
+    hidden: [80]objc.UInt8,
 };
 
 pub const anon1231 = enum(u32) {
@@ -336,7 +336,7 @@ pub const FolderInfo = extern struct {
 };
 
 pub const ExtendedFileInfo = extern struct {
-    reserved1: [4] objc.SInt16,
+    reserved1: [4]objc.SInt16,
     extendedFinderFlags: objc.UInt16,
     reserved2: objc.SInt16,
     putAwayFolderID: objc.SInt32,
@@ -360,7 +360,7 @@ pub const FInfo = extern struct {
 
 pub const FXInfo = extern struct {
     fdIconID: objc.SInt16,
-    fdReserved: [3] objc.SInt16,
+    fdReserved: [3]objc.SInt16,
     fdScript: objc.SInt8,
     fdXFlags: objc.SInt8,
     fdComment: objc.SInt16,
@@ -383,63 +383,92 @@ pub const DXInfo = extern struct {
     frPutAway: objc.SInt32,
 };
 
-pub extern "CoreServices" fn FixRatio(numer: i16, denom: i16) callconv(.C) objc.Fixed;
+extern "CoreServices" fn FixRatio(numer: i16, denom: i16) callconv(.C) objc.Fixed;
+pub const fixRatio = FixRatio;
 
-pub extern "CoreServices" fn FixMul(a: objc.Fixed, b: objc.Fixed) callconv(.C) objc.Fixed;
+extern "CoreServices" fn FixMul(a: objc.Fixed, b: objc.Fixed) callconv(.C) objc.Fixed;
+pub const fixMul = FixMul;
 
-pub extern "CoreServices" fn FixRound(x: objc.Fixed) callconv(.C) i16;
+extern "CoreServices" fn FixRound(x: objc.Fixed) callconv(.C) i16;
+pub const fixRound = FixRound;
 
-pub extern "CoreServices" fn Fix2Frac(x: objc.Fixed) callconv(.C) objc.Fract;
+extern "CoreServices" fn Fix2Frac(x: objc.Fixed) callconv(.C) objc.Fract;
+pub const fix2Frac = Fix2Frac;
 
-pub extern "CoreServices" fn Fix2Long(x: objc.Fixed) callconv(.C) objc.SInt32;
+extern "CoreServices" fn Fix2Long(x: objc.Fixed) callconv(.C) objc.SInt32;
+pub const fix2Long = Fix2Long;
 
-pub extern "CoreServices" fn Long2Fix(x: objc.SInt32) callconv(.C) objc.Fixed;
+extern "CoreServices" fn Long2Fix(x: objc.SInt32) callconv(.C) objc.Fixed;
+pub const long2Fix = Long2Fix;
 
-pub extern "CoreServices" fn Frac2Fix(x: objc.Fract) callconv(.C) objc.Fixed;
+extern "CoreServices" fn Frac2Fix(x: objc.Fract) callconv(.C) objc.Fixed;
+pub const frac2Fix = Frac2Fix;
 
-pub extern "CoreServices" fn FracMul(x: objc.Fract, y: objc.Fract) callconv(.C) objc.Fract;
+extern "CoreServices" fn FracMul(x: objc.Fract, y: objc.Fract) callconv(.C) objc.Fract;
+pub const fracMul = FracMul;
 
-pub extern "CoreServices" fn FixDiv(x: objc.Fixed, y: objc.Fixed) callconv(.C) objc.Fixed;
+extern "CoreServices" fn FixDiv(x: objc.Fixed, y: objc.Fixed) callconv(.C) objc.Fixed;
+pub const fixDiv = FixDiv;
 
-pub extern "CoreServices" fn FracDiv(x: objc.Fract, y: objc.Fract) callconv(.C) objc.Fract;
+extern "CoreServices" fn FracDiv(x: objc.Fract, y: objc.Fract) callconv(.C) objc.Fract;
+pub const fracDiv = FracDiv;
 
-pub extern "CoreServices" fn FracSqrt(x: objc.Fract) callconv(.C) objc.Fract;
+extern "CoreServices" fn FracSqrt(x: objc.Fract) callconv(.C) objc.Fract;
+pub const fracSqrt = FracSqrt;
 
-pub extern "CoreServices" fn FracSin(x: objc.Fixed) callconv(.C) objc.Fract;
+extern "CoreServices" fn FracSin(x: objc.Fixed) callconv(.C) objc.Fract;
+pub const fracSin = FracSin;
 
-pub extern "CoreServices" fn FracCos(x: objc.Fixed) callconv(.C) objc.Fract;
+extern "CoreServices" fn FracCos(x: objc.Fixed) callconv(.C) objc.Fract;
+pub const fracCos = FracCos;
 
-pub extern "CoreServices" fn FixATan2(x: objc.SInt32, y: objc.SInt32) callconv(.C) objc.Fixed;
+extern "CoreServices" fn FixATan2(x: objc.SInt32, y: objc.SInt32) callconv(.C) objc.Fixed;
+pub const fixATan2 = FixATan2;
 
-pub extern "CoreServices" fn Frac2X(x: objc.Fract) callconv(.C) f64;
+extern "CoreServices" fn Frac2X(x: objc.Fract) callconv(.C) f64;
+pub const frac2X = Frac2X;
 
-pub extern "CoreServices" fn Fix2X(x: objc.Fixed) callconv(.C) f64;
+extern "CoreServices" fn Fix2X(x: objc.Fixed) callconv(.C) f64;
+pub const fix2X = Fix2X;
 
-pub extern "CoreServices" fn X2Fix(x: f64) callconv(.C) objc.Fixed;
+extern "CoreServices" fn X2Fix(x: f64) callconv(.C) objc.Fixed;
+pub const x2Fix = X2Fix;
 
-pub extern "CoreServices" fn X2Frac(x: f64) callconv(.C) objc.Fract;
+extern "CoreServices" fn X2Frac(x: f64) callconv(.C) objc.Fract;
+pub const x2Frac = X2Frac;
 
-pub extern "CoreServices" fn WideCompare(target: ?*objc.wide, source: ?*objc.wide) callconv(.C) i16;
+extern "CoreServices" fn WideCompare(target: ?*objc.wide, source: ?*objc.wide) callconv(.C) i16;
+pub const wideCompare = WideCompare;
 
-pub extern "CoreServices" fn WideAdd(target: ?*objc.wide, source: ?*objc.wide) callconv(.C) ?*objc.wide;
+extern "CoreServices" fn WideAdd(target: ?*objc.wide, source: ?*objc.wide) callconv(.C) ?*objc.wide;
+pub const wideAdd = WideAdd;
 
-pub extern "CoreServices" fn WideSubtract(target: ?*objc.wide, source: ?*objc.wide) callconv(.C) ?*objc.wide;
+extern "CoreServices" fn WideSubtract(target: ?*objc.wide, source: ?*objc.wide) callconv(.C) ?*objc.wide;
+pub const wideSubtract = WideSubtract;
 
-pub extern "CoreServices" fn WideNegate(target: ?*objc.wide) callconv(.C) ?*objc.wide;
+extern "CoreServices" fn WideNegate(target: ?*objc.wide) callconv(.C) ?*objc.wide;
+pub const wideNegate = WideNegate;
 
-pub extern "CoreServices" fn WideShift(target: ?*objc.wide, shift: objc.SInt32) callconv(.C) ?*objc.wide;
+extern "CoreServices" fn WideShift(target: ?*objc.wide, shift: objc.SInt32) callconv(.C) ?*objc.wide;
+pub const wideShift = WideShift;
 
-pub extern "CoreServices" fn WideSquareRoot(source: ?*objc.wide) callconv(.C) objc.UInt32;
+extern "CoreServices" fn WideSquareRoot(source: ?*objc.wide) callconv(.C) objc.UInt32;
+pub const wideSquareRoot = WideSquareRoot;
 
-pub extern "CoreServices" fn WideMultiply(multiplicand: objc.SInt32, multiplier: objc.SInt32, target: ?*objc.wide) callconv(.C) ?*objc.wide;
+extern "CoreServices" fn WideMultiply(multiplicand: objc.SInt32, multiplier: objc.SInt32, target: ?*objc.wide) callconv(.C) ?*objc.wide;
+pub const wideMultiply = WideMultiply;
 
-pub extern "CoreServices" fn WideDivide(dividend: ?*objc.wide, divisor: objc.SInt32, remainder: ?*objc.SInt32) callconv(.C) objc.SInt32;
+extern "CoreServices" fn WideDivide(dividend: ?*objc.wide, divisor: objc.SInt32, remainder: ?*objc.SInt32) callconv(.C) objc.SInt32;
+pub const wideDivide = WideDivide;
 
-pub extern "CoreServices" fn WideWideDivide(dividend: ?*objc.wide, divisor: objc.SInt32, remainder: ?*objc.SInt32) callconv(.C) ?*objc.wide;
+extern "CoreServices" fn WideWideDivide(dividend: ?*objc.wide, divisor: objc.SInt32, remainder: ?*objc.SInt32) callconv(.C) ?*objc.wide;
+pub const wideWideDivide = WideWideDivide;
 
-pub extern "CoreServices" fn WideBitShift(target: ?*objc.wide, shift: objc.SInt32) callconv(.C) ?*objc.wide;
+extern "CoreServices" fn WideBitShift(target: ?*objc.wide, shift: objc.SInt32) callconv(.C) ?*objc.wide;
+pub const wideBitShift = WideBitShift;
 
-pub extern "CoreServices" fn UnsignedFixedMulDiv(value: objc.UnsignedFixed, multiplier: objc.UnsignedFixed, divisor: objc.UnsignedFixed) callconv(.C) objc.UnsignedFixed;
+extern "CoreServices" fn UnsignedFixedMulDiv(value: objc.UnsignedFixed, multiplier: objc.UnsignedFixed, divisor: objc.UnsignedFixed) callconv(.C) objc.UnsignedFixed;
+pub const unsignedFixedMulDiv = UnsignedFixedMulDiv;
 
 pub const anon311 = enum(u32) {
     itlcShowIcon = 7,
@@ -520,7 +549,7 @@ pub const OffPair = extern struct {
     offSecond: i16,
 };
 
-pub const OffsetTable = [3] OffPair;
+pub const OffsetTable = [3]OffPair;
 
 pub const Intl0Rec = extern struct {
     decimalPt: i8,
@@ -535,8 +564,8 @@ pub const Intl0Rec = extern struct {
     dateSep: i8,
     timeCycle: objc.UInt8,
     timeFmt: objc.UInt8,
-    mornStr: [4] i8,
-    eveStr: [4] i8,
+    mornStr: [4]i8,
+    eveStr: [4]i8,
     timeSep: i8,
     time1Suff: i8,
     time2Suff: i8,
@@ -555,19 +584,19 @@ pub const Intl0Ptr = ?*Intl0Rec;
 pub const Intl0Hndl = ?*Intl0Ptr;
 
 pub const Intl1Rec = extern struct {
-    days: [7] objc.Str15,
-    months: [12] objc.Str15,
+    days: [7]objc.Str15,
+    months: [12]objc.Str15,
     suppressDay: objc.UInt8,
     lngDateFmt: objc.UInt8,
     dayLeading0: objc.UInt8,
     abbrLen: objc.UInt8,
-    st0: [4] i8,
-    st1: [4] i8,
-    st2: [4] i8,
-    st3: [4] i8,
-    st4: [4] i8,
+    st0: [4]i8,
+    st1: [4]i8,
+    st2: [4]i8,
+    st3: [4]i8,
+    st4: [4]i8,
     intl1Vers: i16,
-    localRtn: [1] i16,
+    localRtn: [1]i16,
 };
 
 pub const Intl1Ptr = ?*Intl1Rec;
@@ -589,13 +618,13 @@ pub const Itl1ExtRec = extern struct {
     abbrevMonthsTableLength: objc.SInt32,
     extraSepsTableOffset: objc.SInt32,
     extraSepsTableLength: objc.SInt32,
-    tables: [1] i16,
+    tables: [1]i16,
 };
 
 pub const UntokenTable = extern struct {
     len: i16,
     lastToken: i16,
-    index: [256] i16,
+    index: [256]i16,
 };
 
 pub const UntokenTablePtr = ?*UntokenTable;
@@ -614,17 +643,17 @@ pub const anon2083 = extern struct {
 
 pub const WideCharArr = extern struct {
     size: i16,
-    data: [10] WideChar,
+    data: [10]WideChar,
 };
 
 pub const NumberParts = extern struct {
     version: i16,
-    data: [31] WideChar,
+    data: [31]WideChar,
     pePlus: WideCharArr,
     peMinus: WideCharArr,
     peMinusPlus: WideCharArr,
     altNumTable: WideCharArr,
-    reserved: [20] i8,
+    reserved: [20]i8,
 };
 
 pub const NumberPartsPtr = ?*NumberParts;
@@ -692,8 +721,8 @@ pub const TableDirectoryRecord = extern struct {
 pub const Itl5Record = extern struct {
     versionNumber: objc.Fixed,
     numberOfTables: u16,
-    reserved: [3] u16,
-    tableDirectory: [1] TableDirectoryRecord,
+    reserved: [3]u16,
+    tableDirectory: [1]TableDirectoryRecord,
 };
 
 pub const RuleBasedTrslRecord = extern struct {
@@ -716,7 +745,7 @@ pub const ItlcRecord = extern struct {
     itlcIconRsvd: objc.SInt8,
     itlcRegionCode: i16,
     itlcSysFlags: i16,
-    itlcReserved4: [32] objc.SInt8,
+    itlcReserved4: [32]objc.SInt8,
 };
 
 pub const ItlbRecord = extern struct {
@@ -1271,13 +1300,13 @@ pub const anon8061 = enum(u32) {
 
 pub const TokenResults = objc.SInt8;
 
-pub const CharByteTable = [256] i8;
+pub const CharByteTable = [256]i8;
 
 pub const ScriptTokenType = i16;
 
-pub const DelimType = [2] ScriptTokenType;
+pub const DelimType = [2]ScriptTokenType;
 
-pub const CommentType = [4] ScriptTokenType;
+pub const CommentType = [4]ScriptTokenType;
 
 pub const TokenRec = extern struct {
     theToken: ScriptTokenType,
@@ -1301,14 +1330,14 @@ pub const TokenBlock = extern struct {
     doAppend: objc.Boolean,
     doAlphanumeric: objc.Boolean,
     doNest: objc.Boolean,
-    leftDelims: [2] ScriptTokenType,
-    rightDelims: [2] ScriptTokenType,
-    leftComment: [4] ScriptTokenType,
-    rightComment: [4] ScriptTokenType,
+    leftDelims: [2]ScriptTokenType,
+    rightDelims: [2]ScriptTokenType,
+    leftComment: [4]ScriptTokenType,
+    rightComment: [4]ScriptTokenType,
     escapeCode: ScriptTokenType,
     decimalCode: ScriptTokenType,
     itlResource: objc.Handle,
-    reserved: [8] i64,
+    reserved: [8]i64,
 };
 
 pub const TokenBlockPtr = ?*TokenBlock;
@@ -1338,9 +1367,11 @@ pub const anon8921 = enum(u32) {
     smRegionCode = 40,
 };
 
-pub extern "CoreServices" fn GetScriptManagerVariable(selector: i16) callconv(.C) i64;
+extern "CoreServices" fn GetScriptManagerVariable(selector: i16) callconv(.C) i64;
+pub const getScriptManagerVariable = GetScriptManagerVariable;
 
-pub extern "CoreServices" fn SetScriptManagerVariable(selector: i16, param: i64) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetScriptManagerVariable(selector: i16, param: i64) callconv(.C) objc.OSErr;
+pub const setScriptManagerVariable = SetScriptManagerVariable;
 
 pub const anon10241 = enum(u32) {
     smsfIntellCP = 0,
@@ -3591,7 +3622,8 @@ pub const anon30721 = enum(u32) {
     kPOSIXErrorEOPNOTSUPP = 100102,
 };
 
-pub extern "CoreServices" fn SysError(errorCode: i16) callconv(.C) void;
+extern "CoreServices" fn SysError(errorCode: i16) callconv(.C) void;
+pub const sysError = SysError;
 
 pub const anon411 = enum(u32) {
     kAEAND = 1095648288,
@@ -4076,31 +4108,75 @@ pub const anon7851 = enum(u32) {
     gestaltDisplayMgrVers = 1685089398,
 };
 
-pub extern "CoreServices" fn CreateTextEncoding(encodingBase: TextEncodingBase, encodingVariant: TextEncodingVariant, encodingFormat: TextEncodingFormat) callconv(.C) TextEncoding;
+extern "CoreServices" fn CreateTextEncoding(encodingBase: TextEncodingBase, encodingVariant: TextEncodingVariant, encodingFormat: TextEncodingFormat) callconv(.C) TextEncoding;
+pub const createTextEncoding = CreateTextEncoding;
 
-pub extern "CoreServices" fn GetTextEncodingBase(encoding: TextEncoding) callconv(.C) TextEncodingBase;
+extern "CoreServices" fn GetTextEncodingBase(encoding: TextEncoding) callconv(.C) TextEncodingBase;
+pub const getTextEncodingBase = GetTextEncodingBase;
 
-pub extern "CoreServices" fn GetTextEncodingVariant(encoding: TextEncoding) callconv(.C) TextEncodingVariant;
+extern "CoreServices" fn GetTextEncodingVariant(encoding: TextEncoding) callconv(.C) TextEncodingVariant;
+pub const getTextEncodingVariant = GetTextEncodingVariant;
 
-pub extern "CoreServices" fn GetTextEncodingFormat(encoding: TextEncoding) callconv(.C) TextEncodingFormat;
+extern "CoreServices" fn GetTextEncodingFormat(encoding: TextEncoding) callconv(.C) TextEncodingFormat;
+pub const getTextEncodingFormat = GetTextEncodingFormat;
 
-pub extern "CoreServices" fn ResolveDefaultTextEncoding(encoding: TextEncoding) callconv(.C) TextEncoding;
+extern "CoreServices" fn ResolveDefaultTextEncoding(encoding: TextEncoding) callconv(.C) TextEncoding;
+pub const resolveDefaultTextEncoding = ResolveDefaultTextEncoding;
 
-pub extern "CoreServices" fn GetTextEncodingName(iEncoding: TextEncoding, iNamePartSelector: TextEncodingNameSelector, iPreferredRegion: objc.RegionCode, iPreferredEncoding: TextEncoding, iOutputBufLen: objc.ByteCount, oNameLength: ?*objc.ByteCount, oActualRegion: ?*objc.RegionCode, oActualEncoding: ?*TextEncoding, oEncodingName: TextPtr, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn GetTextEncodingName(
+    iEncoding: TextEncoding,
+    iNamePartSelector: TextEncodingNameSelector,
+    iPreferredRegion: objc.RegionCode,
+    iPreferredEncoding: TextEncoding,
+    iOutputBufLen: objc.ByteCount,
+    oNameLength: ?*objc.ByteCount,
+    oActualRegion: ?*objc.RegionCode,
+    oActualEncoding: ?*TextEncoding,
+    oEncodingName: TextPtr,
+) callconv(.C) objc.OSStatus;
+pub const getTextEncodingName = GetTextEncodingName;
 
-pub extern "CoreServices" fn TECGetInfo(tecInfo: ?*TECInfoHandle) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetInfo(tecInfo: ?*TECInfoHandle) callconv(.C) objc.OSStatus;
+pub const tecGetInfo = TECGetInfo;
 
-pub extern "CoreServices" fn UpgradeScriptInfoToTextEncoding(iTextScriptID: objc.ScriptCode, iTextLanguageID: objc.LangCode, iRegionID: objc.RegionCode, iTextFontname: objc.ConstStr255Param, oEncoding: ?*TextEncoding, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UpgradeScriptInfoToTextEncoding(
+    iTextScriptID: objc.ScriptCode,
+    iTextLanguageID: objc.LangCode,
+    iRegionID: objc.RegionCode,
+    iTextFontname: objc.ConstStr255Param,
+    oEncoding: ?*TextEncoding,
+) callconv(.C) objc.OSStatus;
+pub const upgradeScriptInfoToTextEncoding = UpgradeScriptInfoToTextEncoding;
 
-pub extern "CoreServices" fn RevertTextEncodingToScriptInfo(iEncoding: TextEncoding, oTextScriptID: ?*objc.ScriptCode, oTextLanguageID: ?*objc.LangCode, oTextFontname: objc.Str255, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn RevertTextEncodingToScriptInfo(
+    iEncoding: TextEncoding,
+    oTextScriptID: ?*objc.ScriptCode,
+    oTextLanguageID: ?*objc.LangCode,
+    oTextFontname: objc.Str255,
+) callconv(.C) objc.OSStatus;
+pub const revertTextEncodingToScriptInfo = RevertTextEncodingToScriptInfo;
 
-pub extern "CoreServices" fn GetTextEncodingFromScriptInfo(iTextScriptID: objc.ScriptCode, iTextLanguageID: objc.LangCode, iTextRegionID: objc.RegionCode, oEncoding: ?*TextEncoding, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn GetTextEncodingFromScriptInfo(
+    iTextScriptID: objc.ScriptCode,
+    iTextLanguageID: objc.LangCode,
+    iTextRegionID: objc.RegionCode,
+    oEncoding: ?*TextEncoding,
+) callconv(.C) objc.OSStatus;
+pub const getTextEncodingFromScriptInfo = GetTextEncodingFromScriptInfo;
 
-pub extern "CoreServices" fn GetScriptInfoFromTextEncoding(iEncoding: TextEncoding, oTextScriptID: ?*objc.ScriptCode, oTextLanguageID: ?*objc.LangCode) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn GetScriptInfoFromTextEncoding(iEncoding: TextEncoding, oTextScriptID: ?*objc.ScriptCode, oTextLanguageID: ?*objc.LangCode) callconv(.C) objc.OSStatus;
+pub const getScriptInfoFromTextEncoding = GetScriptInfoFromTextEncoding;
 
-pub extern "CoreServices" fn NearestMacTextEncodings(generalEncoding: TextEncoding, bestMacEncoding: ?*TextEncoding, alternateMacEncoding: ?*TextEncoding) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn NearestMacTextEncodings(generalEncoding: TextEncoding, bestMacEncoding: ?*TextEncoding, alternateMacEncoding: ?*TextEncoding) callconv(.C) objc.OSStatus;
+pub const nearestMacTextEncodings = NearestMacTextEncodings;
 
-pub extern "CoreServices" fn UCGetCharProperty(charPtr: ?*objc.UniChar, textLength: objc.UniCharCount, propType: UCCharPropertyType, propValue: ?*UCCharPropertyValue, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCGetCharProperty(
+    charPtr: ?*objc.UniChar,
+    textLength: objc.UniCharCount,
+    propType: UCCharPropertyType,
+    propValue: ?*UCCharPropertyValue,
+) callconv(.C) objc.OSStatus;
+pub const ucGetCharProperty = UCGetCharProperty;
 
 pub const anon11071 = enum(u32) {
     kUCHighSurrogateRangeStart = 55296,
@@ -4109,11 +4185,14 @@ pub const anon11071 = enum(u32) {
     kUCLowSurrogateRangeEnd = 57343,
 };
 
-pub extern "CoreServices" fn UCIsSurrogateHighCharacter(character: objc.UniChar) callconv(.C) objc.Boolean;
+extern "CoreServices" fn UCIsSurrogateHighCharacter(character: objc.UniChar) callconv(.C) objc.Boolean;
+pub const ucIsSurrogateHighCharacter = UCIsSurrogateHighCharacter;
 
-pub extern "CoreServices" fn UCIsSurrogateLowCharacter(character: objc.UniChar) callconv(.C) objc.Boolean;
+extern "CoreServices" fn UCIsSurrogateLowCharacter(character: objc.UniChar) callconv(.C) objc.Boolean;
+pub const ucIsSurrogateLowCharacter = UCIsSurrogateLowCharacter;
 
-pub extern "CoreServices" fn UCGetUnicodeScalarValueForSurrogatePair(surrogateHigh: objc.UniChar, surrogateLow: objc.UniChar) callconv(.C) objc.UnicodeScalarValue;
+extern "CoreServices" fn UCGetUnicodeScalarValueForSurrogatePair(surrogateHigh: objc.UniChar, surrogateLow: objc.UniChar) callconv(.C) objc.UnicodeScalarValue;
+pub const ucGetUnicodeScalarValueForSurrogatePair = UCGetUnicodeScalarValueForSurrogatePair;
 
 pub const anon461 = enum(u32) {
     kTECSignature = 1701733238,
@@ -4255,7 +4334,7 @@ pub const RoutineDescriptor = extern struct {
     reserved2: objc.UInt8,
     selectorInfo: objc.UInt8,
     routineCount: objc.UInt16,
-    routineRecords: [1] RoutineRecord,
+    routineRecords: [1]RoutineRecord,
 };
 
 pub const RoutineDescriptorPtr = ?*RoutineDescriptor;
@@ -4332,109 +4411,239 @@ pub const Collection = ?*OpaqueCollection;
 
 pub const CollectionTag = objc.FourCharCode;
 
-pub const CollectionFlattenProcPtr = ?*const fn(objc.SInt32, ?*anyopaque, ?*anyopaque) callconv(.C) objc.OSErr;
+pub const CollectionFlattenProcPtr = ?*const fn (objc.SInt32, ?*anyopaque, ?*anyopaque) callconv(.C) objc.OSErr;
 
-pub const CollectionExceptionProcPtr = ?*const fn(Collection, objc.OSErr) callconv(.C) objc.OSErr;
+pub const CollectionExceptionProcPtr = ?*const fn (Collection, objc.OSErr) callconv(.C) objc.OSErr;
 
 pub const CollectionFlattenUPP = CollectionFlattenProcPtr;
 
 pub const CollectionExceptionUPP = CollectionExceptionProcPtr;
 
-pub extern "CoreServices" fn NewCollectionFlattenUPP(userRoutine: CollectionFlattenProcPtr) callconv(.C) CollectionFlattenUPP;
+extern "CoreServices" fn NewCollectionFlattenUPP(userRoutine: CollectionFlattenProcPtr) callconv(.C) CollectionFlattenUPP;
+pub const newCollectionFlattenUPP = NewCollectionFlattenUPP;
 
-pub extern "CoreServices" fn NewCollectionExceptionUPP(userRoutine: CollectionExceptionProcPtr) callconv(.C) CollectionExceptionUPP;
+extern "CoreServices" fn NewCollectionExceptionUPP(userRoutine: CollectionExceptionProcPtr) callconv(.C) CollectionExceptionUPP;
+pub const newCollectionExceptionUPP = NewCollectionExceptionUPP;
 
-pub extern "CoreServices" fn DisposeCollectionFlattenUPP(userUPP: CollectionFlattenUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeCollectionFlattenUPP(userUPP: CollectionFlattenUPP) callconv(.C) void;
+pub const disposeCollectionFlattenUPP = DisposeCollectionFlattenUPP;
 
-pub extern "CoreServices" fn DisposeCollectionExceptionUPP(userUPP: CollectionExceptionUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeCollectionExceptionUPP(userUPP: CollectionExceptionUPP) callconv(.C) void;
+pub const disposeCollectionExceptionUPP = DisposeCollectionExceptionUPP;
 
-pub extern "CoreServices" fn InvokeCollectionFlattenUPP(size: objc.SInt32, data: ?*anyopaque, refCon: ?*anyopaque, userUPP: CollectionFlattenUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeCollectionFlattenUPP(
+    size: objc.SInt32,
+    data: ?*anyopaque,
+    refCon: ?*anyopaque,
+    userUPP: CollectionFlattenUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeCollectionFlattenUPP = InvokeCollectionFlattenUPP;
 
-pub extern "CoreServices" fn InvokeCollectionExceptionUPP(c: Collection, status: objc.OSErr, userUPP: CollectionExceptionUPP) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeCollectionExceptionUPP(c: Collection, status: objc.OSErr, userUPP: CollectionExceptionUPP) callconv(.C) objc.OSErr;
+pub const invokeCollectionExceptionUPP = InvokeCollectionExceptionUPP;
 
-pub extern "CoreServices" fn NewCollection() callconv(.C) Collection;
+extern "CoreServices" fn NewCollection() callconv(.C) Collection;
+pub const newCollection = NewCollection;
 
-pub extern "CoreServices" fn DisposeCollection(c: Collection) callconv(.C) void;
+extern "CoreServices" fn DisposeCollection(c: Collection) callconv(.C) void;
+pub const disposeCollection = DisposeCollection;
 
-pub extern "CoreServices" fn CloneCollection(c: Collection) callconv(.C) Collection;
+extern "CoreServices" fn CloneCollection(c: Collection) callconv(.C) Collection;
+pub const cloneCollection = CloneCollection;
 
-pub extern "CoreServices" fn CountCollectionOwners(c: Collection) callconv(.C) objc.SInt32;
+extern "CoreServices" fn CountCollectionOwners(c: Collection) callconv(.C) objc.SInt32;
+pub const countCollectionOwners = CountCollectionOwners;
 
-pub extern "CoreServices" fn RetainCollection(c: Collection) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn RetainCollection(c: Collection) callconv(.C) objc.OSStatus;
+pub const retainCollection = RetainCollection;
 
-pub extern "CoreServices" fn ReleaseCollection(c: Collection) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ReleaseCollection(c: Collection) callconv(.C) objc.OSStatus;
+pub const releaseCollection = ReleaseCollection;
 
-pub extern "CoreServices" fn GetCollectionRetainCount(c: Collection) callconv(.C) objc.ItemCount;
+extern "CoreServices" fn GetCollectionRetainCount(c: Collection) callconv(.C) objc.ItemCount;
+pub const getCollectionRetainCount = GetCollectionRetainCount;
 
-pub extern "CoreServices" fn CopyCollection(srcCollection: Collection, dstCollection: Collection) callconv(.C) Collection;
+extern "CoreServices" fn CopyCollection(srcCollection: Collection, dstCollection: Collection) callconv(.C) Collection;
+pub const copyCollection = CopyCollection;
 
-pub extern "CoreServices" fn GetCollectionDefaultAttributes(c: Collection) callconv(.C) objc.SInt32;
+extern "CoreServices" fn GetCollectionDefaultAttributes(c: Collection) callconv(.C) objc.SInt32;
+pub const getCollectionDefaultAttributes = GetCollectionDefaultAttributes;
 
-pub extern "CoreServices" fn SetCollectionDefaultAttributes(c: Collection, whichAttributes: objc.SInt32, newAttributes: objc.SInt32) callconv(.C) void;
+extern "CoreServices" fn SetCollectionDefaultAttributes(c: Collection, whichAttributes: objc.SInt32, newAttributes: objc.SInt32) callconv(.C) void;
+pub const setCollectionDefaultAttributes = SetCollectionDefaultAttributes;
 
-pub extern "CoreServices" fn CountCollectionItems(c: Collection) callconv(.C) objc.SInt32;
+extern "CoreServices" fn CountCollectionItems(c: Collection) callconv(.C) objc.SInt32;
+pub const countCollectionItems = CountCollectionItems;
 
-pub extern "CoreServices" fn AddCollectionItem(c: Collection, tag: CollectionTag, id: objc.SInt32, itemSize: objc.SInt32, itemData: ?*anyopaque, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AddCollectionItem(
+    c: Collection,
+    tag: CollectionTag,
+    id: objc.SInt32,
+    itemSize: objc.SInt32,
+    itemData: ?*anyopaque,
+) callconv(.C) objc.OSErr;
+pub const addCollectionItem = AddCollectionItem;
 
-pub extern "CoreServices" fn GetCollectionItem(c: Collection, tag: CollectionTag, id: objc.SInt32, itemSize: ?*objc.SInt32, itemData: ?*anyopaque, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetCollectionItem(
+    c: Collection,
+    tag: CollectionTag,
+    id: objc.SInt32,
+    itemSize: ?*objc.SInt32,
+    itemData: ?*anyopaque,
+) callconv(.C) objc.OSErr;
+pub const getCollectionItem = GetCollectionItem;
 
-pub extern "CoreServices" fn RemoveCollectionItem(c: Collection, tag: CollectionTag, id: objc.SInt32) callconv(.C) objc.OSErr;
+extern "CoreServices" fn RemoveCollectionItem(c: Collection, tag: CollectionTag, id: objc.SInt32) callconv(.C) objc.OSErr;
+pub const removeCollectionItem = RemoveCollectionItem;
 
-pub extern "CoreServices" fn SetCollectionItemInfo(c: Collection, tag: CollectionTag, id: objc.SInt32, whichAttributes: objc.SInt32, newAttributes: objc.SInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetCollectionItemInfo(
+    c: Collection,
+    tag: CollectionTag,
+    id: objc.SInt32,
+    whichAttributes: objc.SInt32,
+    newAttributes: objc.SInt32,
+) callconv(.C) objc.OSErr;
+pub const setCollectionItemInfo = SetCollectionItemInfo;
 
-pub extern "CoreServices" fn GetCollectionItemInfo(c: Collection, tag: CollectionTag, id: objc.SInt32, itemIndex: ?*objc.SInt32, itemSize: ?*objc.SInt32, attributes: ?*objc.SInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetCollectionItemInfo(
+    c: Collection,
+    tag: CollectionTag,
+    id: objc.SInt32,
+    itemIndex: ?*objc.SInt32,
+    itemSize: ?*objc.SInt32,
+    attributes: ?*objc.SInt32,
+) callconv(.C) objc.OSErr;
+pub const getCollectionItemInfo = GetCollectionItemInfo;
 
-pub extern "CoreServices" fn ReplaceIndexedCollectionItem(c: Collection, itemIndex: objc.SInt32, itemSize: objc.SInt32, itemData: ?*anyopaque, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn ReplaceIndexedCollectionItem(
+    c: Collection,
+    itemIndex: objc.SInt32,
+    itemSize: objc.SInt32,
+    itemData: ?*anyopaque,
+) callconv(.C) objc.OSErr;
+pub const replaceIndexedCollectionItem = ReplaceIndexedCollectionItem;
 
-pub extern "CoreServices" fn GetIndexedCollectionItem(c: Collection, itemIndex: objc.SInt32, itemSize: ?*objc.SInt32, itemData: ?*anyopaque, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetIndexedCollectionItem(
+    c: Collection,
+    itemIndex: objc.SInt32,
+    itemSize: ?*objc.SInt32,
+    itemData: ?*anyopaque,
+) callconv(.C) objc.OSErr;
+pub const getIndexedCollectionItem = GetIndexedCollectionItem;
 
-pub extern "CoreServices" fn RemoveIndexedCollectionItem(c: Collection, itemIndex: objc.SInt32) callconv(.C) objc.OSErr;
+extern "CoreServices" fn RemoveIndexedCollectionItem(c: Collection, itemIndex: objc.SInt32) callconv(.C) objc.OSErr;
+pub const removeIndexedCollectionItem = RemoveIndexedCollectionItem;
 
-pub extern "CoreServices" fn SetIndexedCollectionItemInfo(c: Collection, itemIndex: objc.SInt32, whichAttributes: objc.SInt32, newAttributes: objc.SInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetIndexedCollectionItemInfo(
+    c: Collection,
+    itemIndex: objc.SInt32,
+    whichAttributes: objc.SInt32,
+    newAttributes: objc.SInt32,
+) callconv(.C) objc.OSErr;
+pub const setIndexedCollectionItemInfo = SetIndexedCollectionItemInfo;
 
-pub extern "CoreServices" fn GetIndexedCollectionItemInfo(c: Collection, itemIndex: objc.SInt32, tag: ?*CollectionTag, id: ?*objc.SInt32, itemSize: ?*objc.SInt32, attributes: ?*objc.SInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetIndexedCollectionItemInfo(
+    c: Collection,
+    itemIndex: objc.SInt32,
+    tag: ?*CollectionTag,
+    id: ?*objc.SInt32,
+    itemSize: ?*objc.SInt32,
+    attributes: ?*objc.SInt32,
+) callconv(.C) objc.OSErr;
+pub const getIndexedCollectionItemInfo = GetIndexedCollectionItemInfo;
 
-pub extern "CoreServices" fn CollectionTagExists(c: Collection, tag: CollectionTag) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CollectionTagExists(c: Collection, tag: CollectionTag) callconv(.C) objc.Boolean;
+pub const collectionTagExists = CollectionTagExists;
 
-pub extern "CoreServices" fn CountCollectionTags(c: Collection) callconv(.C) objc.SInt32;
+extern "CoreServices" fn CountCollectionTags(c: Collection) callconv(.C) objc.SInt32;
+pub const countCollectionTags = CountCollectionTags;
 
-pub extern "CoreServices" fn GetIndexedCollectionTag(c: Collection, tagIndex: objc.SInt32, tag: ?*CollectionTag) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetIndexedCollectionTag(c: Collection, tagIndex: objc.SInt32, tag: ?*CollectionTag) callconv(.C) objc.OSErr;
+pub const getIndexedCollectionTag = GetIndexedCollectionTag;
 
-pub extern "CoreServices" fn CountTaggedCollectionItems(c: Collection, tag: CollectionTag) callconv(.C) objc.SInt32;
+extern "CoreServices" fn CountTaggedCollectionItems(c: Collection, tag: CollectionTag) callconv(.C) objc.SInt32;
+pub const countTaggedCollectionItems = CountTaggedCollectionItems;
 
-pub extern "CoreServices" fn GetTaggedCollectionItem(c: Collection, tag: CollectionTag, whichItem: objc.SInt32, itemSize: ?*objc.SInt32, itemData: ?*anyopaque, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetTaggedCollectionItem(
+    c: Collection,
+    tag: CollectionTag,
+    whichItem: objc.SInt32,
+    itemSize: ?*objc.SInt32,
+    itemData: ?*anyopaque,
+) callconv(.C) objc.OSErr;
+pub const getTaggedCollectionItem = GetTaggedCollectionItem;
 
-pub extern "CoreServices" fn GetTaggedCollectionItemInfo(c: Collection, tag: CollectionTag, whichItem: objc.SInt32, id: ?*objc.SInt32, itemIndex: ?*objc.SInt32, itemSize: ?*objc.SInt32, attributes: ?*objc.SInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetTaggedCollectionItemInfo(
+    c: Collection,
+    tag: CollectionTag,
+    whichItem: objc.SInt32,
+    id: ?*objc.SInt32,
+    itemIndex: ?*objc.SInt32,
+    itemSize: ?*objc.SInt32,
+    attributes: ?*objc.SInt32,
+) callconv(.C) objc.OSErr;
+pub const getTaggedCollectionItemInfo = GetTaggedCollectionItemInfo;
 
-pub extern "CoreServices" fn PurgeCollection(c: Collection, whichAttributes: objc.SInt32, matchingAttributes: objc.SInt32) callconv(.C) void;
+extern "CoreServices" fn PurgeCollection(c: Collection, whichAttributes: objc.SInt32, matchingAttributes: objc.SInt32) callconv(.C) void;
+pub const purgeCollection = PurgeCollection;
 
-pub extern "CoreServices" fn PurgeCollectionTag(c: Collection, tag: CollectionTag) callconv(.C) void;
+extern "CoreServices" fn PurgeCollectionTag(c: Collection, tag: CollectionTag) callconv(.C) void;
+pub const purgeCollectionTag = PurgeCollectionTag;
 
-pub extern "CoreServices" fn EmptyCollection(c: Collection) callconv(.C) void;
+extern "CoreServices" fn EmptyCollection(c: Collection) callconv(.C) void;
+pub const emptyCollection = EmptyCollection;
 
-pub extern "CoreServices" fn FlattenCollection(c: Collection, flattenProc: CollectionFlattenUPP, refCon: ?*anyopaque) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FlattenCollection(c: Collection, flattenProc: CollectionFlattenUPP, refCon: ?*anyopaque) callconv(.C) objc.OSErr;
+pub const flattenCollection = FlattenCollection;
 
-pub extern "CoreServices" fn FlattenPartialCollection(c: Collection, flattenProc: CollectionFlattenUPP, refCon: ?*anyopaque, whichAttributes: objc.SInt32, matchingAttributes: objc.SInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FlattenPartialCollection(
+    c: Collection,
+    flattenProc: CollectionFlattenUPP,
+    refCon: ?*anyopaque,
+    whichAttributes: objc.SInt32,
+    matchingAttributes: objc.SInt32,
+) callconv(.C) objc.OSErr;
+pub const flattenPartialCollection = FlattenPartialCollection;
 
-pub extern "CoreServices" fn UnflattenCollection(c: Collection, flattenProc: CollectionFlattenUPP, refCon: ?*anyopaque) callconv(.C) objc.OSErr;
+extern "CoreServices" fn UnflattenCollection(c: Collection, flattenProc: CollectionFlattenUPP, refCon: ?*anyopaque) callconv(.C) objc.OSErr;
+pub const unflattenCollection = UnflattenCollection;
 
-pub extern "CoreServices" fn GetCollectionExceptionProc(c: Collection) callconv(.C) CollectionExceptionUPP;
+extern "CoreServices" fn GetCollectionExceptionProc(c: Collection) callconv(.C) CollectionExceptionUPP;
+pub const getCollectionExceptionProc = GetCollectionExceptionProc;
 
-pub extern "CoreServices" fn SetCollectionExceptionProc(c: Collection, exceptionProc: CollectionExceptionUPP) callconv(.C) void;
+extern "CoreServices" fn SetCollectionExceptionProc(c: Collection, exceptionProc: CollectionExceptionUPP) callconv(.C) void;
+pub const setCollectionExceptionProc = SetCollectionExceptionProc;
 
-pub extern "CoreServices" fn GetNewCollection(collectionID: objc.SInt16) callconv(.C) Collection;
+extern "CoreServices" fn GetNewCollection(collectionID: objc.SInt16) callconv(.C) Collection;
+pub const getNewCollection = GetNewCollection;
 
-pub extern "CoreServices" fn AddCollectionItemHdl(aCollection: Collection, tag: CollectionTag, id: objc.SInt32, itemData: objc.Handle, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AddCollectionItemHdl(
+    aCollection: Collection,
+    tag: CollectionTag,
+    id: objc.SInt32,
+    itemData: objc.Handle,
+) callconv(.C) objc.OSErr;
+pub const addCollectionItemHdl = AddCollectionItemHdl;
 
-pub extern "CoreServices" fn GetCollectionItemHdl(aCollection: Collection, tag: CollectionTag, id: objc.SInt32, itemData: objc.Handle, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetCollectionItemHdl(
+    aCollection: Collection,
+    tag: CollectionTag,
+    id: objc.SInt32,
+    itemData: objc.Handle,
+) callconv(.C) objc.OSErr;
+pub const getCollectionItemHdl = GetCollectionItemHdl;
 
-pub extern "CoreServices" fn ReplaceIndexedCollectionItemHdl(aCollection: Collection, itemIndex: objc.SInt32, itemData: objc.Handle) callconv(.C) objc.OSErr;
+extern "CoreServices" fn ReplaceIndexedCollectionItemHdl(aCollection: Collection, itemIndex: objc.SInt32, itemData: objc.Handle) callconv(.C) objc.OSErr;
+pub const replaceIndexedCollectionItemHdl = ReplaceIndexedCollectionItemHdl;
 
-pub extern "CoreServices" fn GetIndexedCollectionItemHdl(aCollection: Collection, itemIndex: objc.SInt32, itemData: objc.Handle) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetIndexedCollectionItemHdl(aCollection: Collection, itemIndex: objc.SInt32, itemData: objc.Handle) callconv(.C) objc.OSErr;
+pub const getIndexedCollectionItemHdl = GetIndexedCollectionItemHdl;
 
-pub extern "CoreServices" fn FlattenCollectionToHdl(aCollection: Collection, flattened: objc.Handle) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FlattenCollectionToHdl(aCollection: Collection, flattened: objc.Handle) callconv(.C) objc.OSErr;
+pub const flattenCollectionToHdl = FlattenCollectionToHdl;
 
-pub extern "CoreServices" fn UnflattenCollectionFromHdl(aCollection: Collection, flattened: objc.Handle) callconv(.C) objc.OSErr;
+extern "CoreServices" fn UnflattenCollectionFromHdl(aCollection: Collection, flattened: objc.Handle) callconv(.C) objc.OSErr;
+pub const unflattenCollectionFromHdl = UnflattenCollectionFromHdl;
 
 pub const BigEndianUInt32 = extern struct {
     bigEndianValue: objc.UInt32,
@@ -4473,33 +4682,69 @@ pub const anon3081 = enum(u32) {
     kCoreEndianAppleEventManagerDomain = 1634039412,
 };
 
-pub const CoreEndianFlipProc = ?*const fn(objc.OSType, objc.OSType, objc.SInt16, ?*anyopaque, objc.ByteCount, objc.Boolean, ?*anyopaque, ) callconv(.C) objc.OSStatus;
+pub const CoreEndianFlipProc = ?*const fn (
+    objc.OSType,
+    objc.OSType,
+    objc.SInt16,
+    ?*anyopaque,
+    objc.ByteCount,
+    objc.Boolean,
+    ?*anyopaque,
+) callconv(.C) objc.OSStatus;
 
-pub extern "CoreServices" fn CoreEndianInstallFlipper(dataDomain: objc.OSType, dataType: objc.OSType, proc: CoreEndianFlipProc, refcon: ?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CoreEndianInstallFlipper(
+    dataDomain: objc.OSType,
+    dataType: objc.OSType,
+    proc: CoreEndianFlipProc,
+    refcon: ?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const coreEndianInstallFlipper = CoreEndianInstallFlipper;
 
-pub extern "CoreServices" fn CoreEndianGetFlipper(dataDomain: objc.OSType, dataType: objc.OSType, proc: ?*CoreEndianFlipProc, refcon: ?*?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CoreEndianGetFlipper(
+    dataDomain: objc.OSType,
+    dataType: objc.OSType,
+    proc: ?*CoreEndianFlipProc,
+    refcon: ?*?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const coreEndianGetFlipper = CoreEndianGetFlipper;
 
-pub extern "CoreServices" fn CoreEndianFlipData(dataDomain: objc.OSType, dataType: objc.OSType, id: objc.SInt16, data: ?*anyopaque, dataLen: objc.ByteCount, currentlyNative: objc.Boolean, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CoreEndianFlipData(
+    dataDomain: objc.OSType,
+    dataType: objc.OSType,
+    id: objc.SInt16,
+    data: ?*anyopaque,
+    dataLen: objc.ByteCount,
+    currentlyNative: objc.Boolean,
+) callconv(.C) objc.OSStatus;
+pub const coreEndianFlipData = CoreEndianFlipData;
 
-pub const SelectorFunctionProcPtr = ?*const fn(objc.OSType, ?*objc.SInt32) callconv(.C) objc.OSErr;
+pub const SelectorFunctionProcPtr = ?*const fn (objc.OSType, ?*objc.SInt32) callconv(.C) objc.OSErr;
 
 pub const SelectorFunctionUPP = SelectorFunctionProcPtr;
 
-pub extern "CoreServices" fn Gestalt(selector: objc.OSType, response: ?*objc.SInt32) callconv(.C) objc.OSErr;
+extern "CoreServices" fn Gestalt(selector: objc.OSType, response: ?*objc.SInt32) callconv(.C) objc.OSErr;
+pub const gestalt = Gestalt;
 
-pub extern "CoreServices" fn NewGestaltValue(selector: objc.OSType, newValue: objc.SInt32) callconv(.C) objc.OSErr;
+extern "CoreServices" fn NewGestaltValue(selector: objc.OSType, newValue: objc.SInt32) callconv(.C) objc.OSErr;
+pub const newGestaltValue = NewGestaltValue;
 
-pub extern "CoreServices" fn ReplaceGestaltValue(selector: objc.OSType, replacementValue: objc.SInt32) callconv(.C) objc.OSErr;
+extern "CoreServices" fn ReplaceGestaltValue(selector: objc.OSType, replacementValue: objc.SInt32) callconv(.C) objc.OSErr;
+pub const replaceGestaltValue = ReplaceGestaltValue;
 
-pub extern "CoreServices" fn SetGestaltValue(selector: objc.OSType, newValue: objc.SInt32) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetGestaltValue(selector: objc.OSType, newValue: objc.SInt32) callconv(.C) objc.OSErr;
+pub const setGestaltValue = SetGestaltValue;
 
-pub extern "CoreServices" fn DeleteGestaltValue(selector: objc.OSType) callconv(.C) objc.OSErr;
+extern "CoreServices" fn DeleteGestaltValue(selector: objc.OSType) callconv(.C) objc.OSErr;
+pub const deleteGestaltValue = DeleteGestaltValue;
 
-pub extern "CoreServices" fn NewSelectorFunctionUPP(userRoutine: SelectorFunctionProcPtr) callconv(.C) SelectorFunctionUPP;
+extern "CoreServices" fn NewSelectorFunctionUPP(userRoutine: SelectorFunctionProcPtr) callconv(.C) SelectorFunctionUPP;
+pub const newSelectorFunctionUPP = NewSelectorFunctionUPP;
 
-pub extern "CoreServices" fn DisposeSelectorFunctionUPP(userUPP: SelectorFunctionUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeSelectorFunctionUPP(userUPP: SelectorFunctionUPP) callconv(.C) void;
+pub const disposeSelectorFunctionUPP = DisposeSelectorFunctionUPP;
 
-pub extern "CoreServices" fn InvokeSelectorFunctionUPP(selector: objc.OSType, response: ?*objc.SInt32, userUPP: SelectorFunctionUPP) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeSelectorFunctionUPP(selector: objc.OSType, response: ?*objc.SInt32, userUPP: SelectorFunctionUPP) callconv(.C) objc.OSErr;
+pub const invokeSelectorFunctionUPP = InvokeSelectorFunctionUPP;
 
 pub const anon4421 = enum(u32) {
     kQuickLookFolderType = 1902928747,
@@ -5973,185 +6218,275 @@ pub const anon641 = enum(u32) {
     aeBuildSyntaxUncoercedDoubleAt = 19,
 };
 
-pub extern "CoreServices" fn MemError() callconv(.C) objc.OSErr;
+extern "CoreServices" fn MemError() callconv(.C) objc.OSErr;
+pub const memError = MemError;
 
-pub extern "CoreServices" fn LMGetMemErr() callconv(.C) objc.SInt16;
+extern "CoreServices" fn LMGetMemErr() callconv(.C) objc.SInt16;
+pub const lmGetMemErr = LMGetMemErr;
 
-pub extern "CoreServices" fn LMSetMemErr(value: objc.SInt16) callconv(.C) void;
+extern "CoreServices" fn LMSetMemErr(value: objc.SInt16) callconv(.C) void;
+pub const lmSetMemErr = LMSetMemErr;
 
-pub extern "CoreServices" fn NewHandle(byteCount: objc.Size) callconv(.C) objc.Handle;
+extern "CoreServices" fn NewHandle(byteCount: objc.Size) callconv(.C) objc.Handle;
+pub const newHandle = NewHandle;
 
-pub extern "CoreServices" fn NewHandleClear(byteCount: objc.Size) callconv(.C) objc.Handle;
+extern "CoreServices" fn NewHandleClear(byteCount: objc.Size) callconv(.C) objc.Handle;
+pub const newHandleClear = NewHandleClear;
 
-pub extern "CoreServices" fn RecoverHandle(p: objc.Ptr) callconv(.C) objc.Handle;
+extern "CoreServices" fn RecoverHandle(p: objc.Ptr) callconv(.C) objc.Handle;
+pub const recoverHandle = RecoverHandle;
 
-pub extern "CoreServices" fn NewPtr(byteCount: objc.Size) callconv(.C) objc.Ptr;
+extern "CoreServices" fn NewPtr(byteCount: objc.Size) callconv(.C) objc.Ptr;
+pub const newPtr = NewPtr;
 
-pub extern "CoreServices" fn NewPtrClear(byteCount: objc.Size) callconv(.C) objc.Ptr;
+extern "CoreServices" fn NewPtrClear(byteCount: objc.Size) callconv(.C) objc.Ptr;
+pub const newPtrClear = NewPtrClear;
 
-pub extern "CoreServices" fn NewEmptyHandle() callconv(.C) objc.Handle;
+extern "CoreServices" fn NewEmptyHandle() callconv(.C) objc.Handle;
+pub const newEmptyHandle = NewEmptyHandle;
 
-pub extern "CoreServices" fn HLock(h: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn HLock(h: objc.Handle) callconv(.C) void;
+pub const hLock = HLock;
 
-pub extern "CoreServices" fn HLockHi(h: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn HLockHi(h: objc.Handle) callconv(.C) void;
+pub const hLockHi = HLockHi;
 
-pub extern "CoreServices" fn HUnlock(h: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn HUnlock(h: objc.Handle) callconv(.C) void;
+pub const hUnlock = HUnlock;
 
-pub extern "CoreServices" fn TempNewHandle(logicalSize: objc.Size, resultCode: ?*objc.OSErr) callconv(.C) objc.Handle;
+extern "CoreServices" fn TempNewHandle(logicalSize: objc.Size, resultCode: ?*objc.OSErr) callconv(.C) objc.Handle;
+pub const tempNewHandle = TempNewHandle;
 
-pub extern "CoreServices" fn DisposePtr(p: objc.Ptr) callconv(.C) void;
+extern "CoreServices" fn DisposePtr(p: objc.Ptr) callconv(.C) void;
+pub const disposePtr = DisposePtr;
 
-pub extern "CoreServices" fn GetPtrSize(p: objc.Ptr) callconv(.C) objc.Size;
+extern "CoreServices" fn GetPtrSize(p: objc.Ptr) callconv(.C) objc.Size;
+pub const getPtrSize = GetPtrSize;
 
-pub extern "CoreServices" fn SetPtrSize(p: objc.Ptr, newSize: objc.Size) callconv(.C) void;
+extern "CoreServices" fn SetPtrSize(p: objc.Ptr, newSize: objc.Size) callconv(.C) void;
+pub const setPtrSize = SetPtrSize;
 
-pub extern "CoreServices" fn DisposeHandle(h: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn DisposeHandle(h: objc.Handle) callconv(.C) void;
+pub const disposeHandle = DisposeHandle;
 
-pub extern "CoreServices" fn SetHandleSize(h: objc.Handle, newSize: objc.Size) callconv(.C) void;
+extern "CoreServices" fn SetHandleSize(h: objc.Handle, newSize: objc.Size) callconv(.C) void;
+pub const setHandleSize = SetHandleSize;
 
-pub extern "CoreServices" fn GetHandleSize(h: objc.Handle) callconv(.C) objc.Size;
+extern "CoreServices" fn GetHandleSize(h: objc.Handle) callconv(.C) objc.Size;
+pub const getHandleSize = GetHandleSize;
 
-pub extern "CoreServices" fn ReallocateHandle(h: objc.Handle, byteCount: objc.Size) callconv(.C) void;
+extern "CoreServices" fn ReallocateHandle(h: objc.Handle, byteCount: objc.Size) callconv(.C) void;
+pub const reallocateHandle = ReallocateHandle;
 
-pub extern "CoreServices" fn EmptyHandle(h: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn EmptyHandle(h: objc.Handle) callconv(.C) void;
+pub const emptyHandle = EmptyHandle;
 
-pub extern "CoreServices" fn HSetRBit(h: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn HSetRBit(h: objc.Handle) callconv(.C) void;
+pub const hSetRBit = HSetRBit;
 
-pub extern "CoreServices" fn HClrRBit(h: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn HClrRBit(h: objc.Handle) callconv(.C) void;
+pub const hClrRBit = HClrRBit;
 
-pub extern "CoreServices" fn HGetState(h: objc.Handle) callconv(.C) objc.SInt8;
+extern "CoreServices" fn HGetState(h: objc.Handle) callconv(.C) objc.SInt8;
+pub const hGetState = HGetState;
 
-pub extern "CoreServices" fn HSetState(h: objc.Handle, flags: objc.SInt8) callconv(.C) void;
+extern "CoreServices" fn HSetState(h: objc.Handle, flags: objc.SInt8) callconv(.C) void;
+pub const hSetState = HSetState;
 
-pub extern "CoreServices" fn HandToHand(theHndl: ?*objc.Handle) callconv(.C) objc.OSErr;
+extern "CoreServices" fn HandToHand(theHndl: ?*objc.Handle) callconv(.C) objc.OSErr;
+pub const handToHand = HandToHand;
 
-pub extern "CoreServices" fn PtrToXHand(srcPtr: ?*anyopaque, dstHndl: objc.Handle, size: i64) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PtrToXHand(srcPtr: ?*anyopaque, dstHndl: objc.Handle, size: i64) callconv(.C) objc.OSErr;
+pub const ptrToXHand = PtrToXHand;
 
-pub extern "CoreServices" fn PtrToHand(srcPtr: ?*anyopaque, dstHndl: ?*objc.Handle, size: i64) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PtrToHand(srcPtr: ?*anyopaque, dstHndl: ?*objc.Handle, size: i64) callconv(.C) objc.OSErr;
+pub const ptrToHand = PtrToHand;
 
-pub extern "CoreServices" fn HandAndHand(hand1: objc.Handle, hand2: objc.Handle) callconv(.C) objc.OSErr;
+extern "CoreServices" fn HandAndHand(hand1: objc.Handle, hand2: objc.Handle) callconv(.C) objc.OSErr;
+pub const handAndHand = HandAndHand;
 
-pub extern "CoreServices" fn PtrAndHand(ptr1: ?*anyopaque, hand2: objc.Handle, size: i64) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PtrAndHand(ptr1: ?*anyopaque, hand2: objc.Handle, size: i64) callconv(.C) objc.OSErr;
+pub const ptrAndHand = PtrAndHand;
 
-pub extern "CoreServices" fn IsHeapValid() callconv(.C) objc.Boolean;
+extern "CoreServices" fn IsHeapValid() callconv(.C) objc.Boolean;
+pub const isHeapValid = IsHeapValid;
 
-pub extern "CoreServices" fn IsHandleValid(h: objc.Handle) callconv(.C) objc.Boolean;
+extern "CoreServices" fn IsHandleValid(h: objc.Handle) callconv(.C) objc.Boolean;
+pub const isHandleValid = IsHandleValid;
 
-pub extern "CoreServices" fn IsPointerValid(p: objc.Ptr) callconv(.C) objc.Boolean;
+extern "CoreServices" fn IsPointerValid(p: objc.Ptr) callconv(.C) objc.Boolean;
+pub const isPointerValid = IsPointerValid;
 
-pub extern "CoreServices" fn S64Max() callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Max() callconv(.C) objc.SInt64;
+pub const s64Max = S64Max;
 
-pub extern "CoreServices" fn S64Min() callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Min() callconv(.C) objc.SInt64;
+pub const s64Min = S64Min;
 
-pub extern "CoreServices" fn S64Add(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Add(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64Add = S64Add;
 
-pub extern "CoreServices" fn S64Subtract(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Subtract(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64Subtract = S64Subtract;
 
-pub extern "CoreServices" fn S64Negate(value: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Negate(value: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64Negate = S64Negate;
 
-pub extern "CoreServices" fn S64Absolute(value: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Absolute(value: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64Absolute = S64Absolute;
 
-pub extern "CoreServices" fn S64Multiply(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Multiply(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64Multiply = S64Multiply;
 
-pub extern "CoreServices" fn S64Mod(dividend: objc.SInt64, divisor: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Mod(dividend: objc.SInt64, divisor: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64Mod = S64Mod;
 
-pub extern "CoreServices" fn S64Divide(dividend: objc.SInt64, divisor: objc.SInt64, remainderP: ?*objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Divide(dividend: objc.SInt64, divisor: objc.SInt64, remainderP: ?*objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64Divide = S64Divide;
 
-pub extern "CoreServices" fn S64Div(dividend: objc.SInt64, divisor: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Div(dividend: objc.SInt64, divisor: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64Div = S64Div;
 
-pub extern "CoreServices" fn S64Set(value: objc.SInt32) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64Set(value: objc.SInt32) callconv(.C) objc.SInt64;
+pub const s64Set = S64Set;
 
-pub extern "CoreServices" fn S64SetU(value: objc.UInt32) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64SetU(value: objc.UInt32) callconv(.C) objc.SInt64;
+pub const s64SetU = S64SetU;
 
-pub extern "CoreServices" fn S32Set(value: objc.SInt64) callconv(.C) objc.SInt32;
+extern "CoreServices" fn S32Set(value: objc.SInt64) callconv(.C) objc.SInt32;
+pub const s32Set = S32Set;
 
-pub extern "CoreServices" fn S64And(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn S64And(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.Boolean;
+pub const s64And = S64And;
 
-pub extern "CoreServices" fn S64Or(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn S64Or(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.Boolean;
+pub const s64Or = S64Or;
 
-pub extern "CoreServices" fn S64Eor(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn S64Eor(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.Boolean;
+pub const s64Eor = S64Eor;
 
-pub extern "CoreServices" fn S64Not(value: objc.SInt64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn S64Not(value: objc.SInt64) callconv(.C) objc.Boolean;
+pub const s64Not = S64Not;
 
-pub extern "CoreServices" fn S64Compare(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt32;
+extern "CoreServices" fn S64Compare(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt32;
+pub const s64Compare = S64Compare;
 
-pub extern "CoreServices" fn S64BitwiseAnd(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64BitwiseAnd(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64BitwiseAnd = S64BitwiseAnd;
 
-pub extern "CoreServices" fn S64BitwiseOr(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64BitwiseOr(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64BitwiseOr = S64BitwiseOr;
 
-pub extern "CoreServices" fn S64BitwiseEor(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64BitwiseEor(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64BitwiseEor = S64BitwiseEor;
 
-pub extern "CoreServices" fn S64BitwiseNot(value: objc.SInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64BitwiseNot(value: objc.SInt64) callconv(.C) objc.SInt64;
+pub const s64BitwiseNot = S64BitwiseNot;
 
-pub extern "CoreServices" fn S64ShiftRight(value: objc.SInt64, shift: objc.UInt32) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64ShiftRight(value: objc.SInt64, shift: objc.UInt32) callconv(.C) objc.SInt64;
+pub const s64ShiftRight = S64ShiftRight;
 
-pub extern "CoreServices" fn S64ShiftLeft(value: objc.SInt64, shift: objc.UInt32) callconv(.C) objc.SInt64;
+extern "CoreServices" fn S64ShiftLeft(value: objc.SInt64, shift: objc.UInt32) callconv(.C) objc.SInt64;
+pub const s64ShiftLeft = S64ShiftLeft;
 
-pub extern "CoreServices" fn SInt64ToLongDouble(value: objc.SInt64) callconv(.C) f64;
+extern "CoreServices" fn SInt64ToLongDouble(value: objc.SInt64) callconv(.C) f64;
+pub const sInt64ToLongDouble = SInt64ToLongDouble;
 
-pub extern "CoreServices" fn LongDoubleToSInt64(value: f64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn LongDoubleToSInt64(value: f64) callconv(.C) objc.SInt64;
+pub const longDoubleToSInt64 = LongDoubleToSInt64;
 
-pub extern "CoreServices" fn U64Max() callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64Max() callconv(.C) objc.UInt64;
+pub const u64Max = U64Max;
 
-pub extern "CoreServices" fn U64Add(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64Add(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64Add = U64Add;
 
-pub extern "CoreServices" fn U64Subtract(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64Subtract(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64Subtract = U64Subtract;
 
-pub extern "CoreServices" fn U64Multiply(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64Multiply(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64Multiply = U64Multiply;
 
-pub extern "CoreServices" fn U64Mod(dividend: objc.UInt64, divisor: objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64Mod(dividend: objc.UInt64, divisor: objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64Mod = U64Mod;
 
-pub extern "CoreServices" fn U64Divide(dividend: objc.UInt64, divisor: objc.UInt64, remainder: ?*objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64Divide(dividend: objc.UInt64, divisor: objc.UInt64, remainder: ?*objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64Divide = U64Divide;
 
-pub extern "CoreServices" fn U64Div(dividend: objc.UInt64, divisor: objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64Div(dividend: objc.UInt64, divisor: objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64Div = U64Div;
 
-pub extern "CoreServices" fn U64Set(value: objc.SInt32) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64Set(value: objc.SInt32) callconv(.C) objc.UInt64;
+pub const u64Set = U64Set;
 
-pub extern "CoreServices" fn U64SetU(value: objc.UInt32) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64SetU(value: objc.UInt32) callconv(.C) objc.UInt64;
+pub const u64SetU = U64SetU;
 
-pub extern "CoreServices" fn U32SetU(value: objc.UInt64) callconv(.C) objc.UInt32;
+extern "CoreServices" fn U32SetU(value: objc.UInt64) callconv(.C) objc.UInt32;
+pub const u32SetU = U32SetU;
 
-pub extern "CoreServices" fn U64And(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn U64And(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.Boolean;
+pub const u64And = U64And;
 
-pub extern "CoreServices" fn U64Or(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn U64Or(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.Boolean;
+pub const u64Or = U64Or;
 
-pub extern "CoreServices" fn U64Eor(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn U64Eor(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.Boolean;
+pub const u64Eor = U64Eor;
 
-pub extern "CoreServices" fn U64Not(value: objc.UInt64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn U64Not(value: objc.UInt64) callconv(.C) objc.Boolean;
+pub const u64Not = U64Not;
 
-pub extern "CoreServices" fn U64Compare(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.SInt32;
+extern "CoreServices" fn U64Compare(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.SInt32;
+pub const u64Compare = U64Compare;
 
-pub extern "CoreServices" fn U64BitwiseAnd(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64BitwiseAnd(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64BitwiseAnd = U64BitwiseAnd;
 
-pub extern "CoreServices" fn U64BitwiseOr(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64BitwiseOr(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64BitwiseOr = U64BitwiseOr;
 
-pub extern "CoreServices" fn U64BitwiseEor(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64BitwiseEor(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64BitwiseEor = U64BitwiseEor;
 
-pub extern "CoreServices" fn U64BitwiseNot(value: objc.UInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64BitwiseNot(value: objc.UInt64) callconv(.C) objc.UInt64;
+pub const u64BitwiseNot = U64BitwiseNot;
 
-pub extern "CoreServices" fn U64ShiftRight(value: objc.UInt64, shift: objc.UInt32) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64ShiftRight(value: objc.UInt64, shift: objc.UInt32) callconv(.C) objc.UInt64;
+pub const u64ShiftRight = U64ShiftRight;
 
-pub extern "CoreServices" fn U64ShiftLeft(value: objc.UInt64, shift: objc.UInt32) callconv(.C) objc.UInt64;
+extern "CoreServices" fn U64ShiftLeft(value: objc.UInt64, shift: objc.UInt32) callconv(.C) objc.UInt64;
+pub const u64ShiftLeft = U64ShiftLeft;
 
-pub extern "CoreServices" fn UInt64ToLongDouble(value: objc.UInt64) callconv(.C) f64;
+extern "CoreServices" fn UInt64ToLongDouble(value: objc.UInt64) callconv(.C) f64;
+pub const uInt64ToLongDouble = UInt64ToLongDouble;
 
-pub extern "CoreServices" fn LongDoubleToUInt64(value: f64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn LongDoubleToUInt64(value: f64) callconv(.C) objc.UInt64;
+pub const longDoubleToUInt64 = LongDoubleToUInt64;
 
-pub extern "CoreServices" fn UInt64ToSInt64(value: objc.UInt64) callconv(.C) objc.SInt64;
+extern "CoreServices" fn UInt64ToSInt64(value: objc.UInt64) callconv(.C) objc.SInt64;
+pub const uInt64ToSInt64 = UInt64ToSInt64;
 
-pub extern "CoreServices" fn SInt64ToUInt64(value: objc.SInt64) callconv(.C) objc.UInt64;
+extern "CoreServices" fn SInt64ToUInt64(value: objc.SInt64) callconv(.C) objc.UInt64;
+pub const sInt64ToUInt64 = SInt64ToUInt64;
 
-pub extern "CoreServices" fn SInt64ToWide(s: objc.SInt64) callconv(.C) objc.wide;
+extern "CoreServices" fn SInt64ToWide(s: objc.SInt64) callconv(.C) objc.wide;
+pub const sInt64ToWide = SInt64ToWide;
 
-pub extern "CoreServices" fn WideToSInt64(w: objc.wide) callconv(.C) objc.SInt64;
+extern "CoreServices" fn WideToSInt64(w: objc.wide) callconv(.C) objc.SInt64;
+pub const wideToSInt64 = WideToSInt64;
 
-pub extern "CoreServices" fn UInt64ToUnsignedWide(u: objc.UInt64) callconv(.C) objc.UnsignedWide;
+extern "CoreServices" fn UInt64ToUnsignedWide(u: objc.UInt64) callconv(.C) objc.UnsignedWide;
+pub const uInt64ToUnsignedWide = UInt64ToUnsignedWide;
 
-pub extern "CoreServices" fn UnsignedWideToUInt64(uw: objc.UnsignedWide) callconv(.C) objc.UInt64;
+extern "CoreServices" fn UnsignedWideToUInt64(uw: objc.UnsignedWide) callconv(.C) objc.UInt64;
+pub const unsignedWideToUInt64 = UnsignedWideToUInt64;
 
-pub extern "CoreServices" fn CSBackupSetItemExcluded(item: core_foundation.URLRef, exclude: objc.Boolean, excludeByPath: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CSBackupSetItemExcluded(item: core_foundation.URLRef, exclude: objc.Boolean, excludeByPath: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const csBackupSetItemExcluded = CSBackupSetItemExcluded;
 
-pub extern "CoreServices" fn CSBackupIsItemExcluded(item: core_foundation.URLRef, excludeByPath: ?*objc.Boolean) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSBackupIsItemExcluded(item: core_foundation.URLRef, excludeByPath: ?*objc.Boolean) callconv(.C) objc.Boolean;
+pub const csBackupIsItemExcluded = CSBackupIsItemExcluded;
 
 pub const anon451 = enum(u32) {
     NoLooping = 0,
@@ -6161,13 +6496,23 @@ pub const anon451 = enum(u32) {
 
 pub const CSDiskSpaceRecoveryOptions = i32;
 
-pub const CSDiskSpaceRecoveryCallback = *const fn(objc.Boolean, objc.UInt64, core_foundation.ErrorRef) callconv(.C) void;
+pub const CSDiskSpaceRecoveryCallback = *const fn (objc.Boolean, objc.UInt64, core_foundation.ErrorRef) callconv(.C) void;
 
-pub extern "CoreServices" fn CSDiskSpaceStartRecovery(volumeURL: core_foundation.URLRef, bytesNeeded: objc.UInt64, options: CSDiskSpaceRecoveryOptions, outOperationUUID: ?*core_foundation.UUIDRef, callbackQueue: objc.dispatch_queue_t, callback: CSDiskSpaceRecoveryCallback, ) callconv(.C) void;
+extern "CoreServices" fn CSDiskSpaceStartRecovery(
+    volumeURL: core_foundation.URLRef,
+    bytesNeeded: objc.UInt64,
+    options: CSDiskSpaceRecoveryOptions,
+    outOperationUUID: ?*core_foundation.UUIDRef,
+    callbackQueue: objc.dispatch_queue_t,
+    callback: CSDiskSpaceRecoveryCallback,
+) callconv(.C) void;
+pub const csDiskSpaceStartRecovery = CSDiskSpaceStartRecovery;
 
-pub extern "CoreServices" fn CSDiskSpaceCancelRecovery(operationUUID: core_foundation.UUIDRef) callconv(.C) void;
+extern "CoreServices" fn CSDiskSpaceCancelRecovery(operationUUID: core_foundation.UUIDRef) callconv(.C) void;
+pub const csDiskSpaceCancelRecovery = CSDiskSpaceCancelRecovery;
 
-pub extern "CoreServices" fn CSDiskSpaceGetRecoveryEstimate(volumeURL: core_foundation.URLRef) callconv(.C) objc.UInt64;
+extern "CoreServices" fn CSDiskSpaceGetRecoveryEstimate(volumeURL: core_foundation.URLRef) callconv(.C) objc.UInt64;
+pub const csDiskSpaceGetRecoveryEstimate = CSDiskSpaceGetRecoveryEstimate;
 
 pub const ToggleResults = objc.SInt16;
 
@@ -6228,7 +6573,7 @@ pub const StringToDateStatus = i16;
 pub const String2DateStatus = StringToDateStatus;
 
 pub const DateCacheRecord = extern struct {
-    hidden: [256] i16,
+    hidden: [256]i16,
 };
 
 pub const DateCachePtr = ?*DateCacheRecord;
@@ -6257,7 +6602,7 @@ pub const anon1913 = extern struct {
 
 pub const LongDateRec = extern union {
     ld: anon2003,
-    list: [14] i16,
+    list: [14]i16,
     od: anon2173,
 };
 
@@ -6289,27 +6634,33 @@ pub const TogglePB = extern struct {
     togFlags: i64,
     amChars: objc.ResType,
     pmChars: objc.ResType,
-    reserved: [4] i64,
+    reserved: [4]i64,
 };
 
-pub extern "CoreServices" fn UCConvertUTCDateTimeToCFAbsoluteTime(iUTCDate: ?*UTCDateTime, oCFTime: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCConvertUTCDateTimeToCFAbsoluteTime(iUTCDate: ?*UTCDateTime, oCFTime: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+pub const ucConvertUTCDateTimeToCFAbsoluteTime = UCConvertUTCDateTimeToCFAbsoluteTime;
 
-pub extern "CoreServices" fn UCConvertSecondsToCFAbsoluteTime(iSeconds: objc.UInt32, oCFTime: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCConvertSecondsToCFAbsoluteTime(iSeconds: objc.UInt32, oCFTime: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+pub const ucConvertSecondsToCFAbsoluteTime = UCConvertSecondsToCFAbsoluteTime;
 
-pub extern "CoreServices" fn UCConvertLongDateTimeToCFAbsoluteTime(iLongTime: LongDateTime, oCFTime: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCConvertLongDateTimeToCFAbsoluteTime(iLongTime: LongDateTime, oCFTime: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+pub const ucConvertLongDateTimeToCFAbsoluteTime = UCConvertLongDateTimeToCFAbsoluteTime;
 
-pub extern "CoreServices" fn UCConvertCFAbsoluteTimeToUTCDateTime(iCFTime: core_foundation.AbsoluteTime, oUTCDate: ?*UTCDateTime) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCConvertCFAbsoluteTimeToUTCDateTime(iCFTime: core_foundation.AbsoluteTime, oUTCDate: ?*UTCDateTime) callconv(.C) objc.OSStatus;
+pub const ucConvertCFAbsoluteTimeToUTCDateTime = UCConvertCFAbsoluteTimeToUTCDateTime;
 
-pub extern "CoreServices" fn UCConvertCFAbsoluteTimeToSeconds(iCFTime: core_foundation.AbsoluteTime, oSeconds: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCConvertCFAbsoluteTimeToSeconds(iCFTime: core_foundation.AbsoluteTime, oSeconds: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+pub const ucConvertCFAbsoluteTimeToSeconds = UCConvertCFAbsoluteTimeToSeconds;
 
-pub extern "CoreServices" fn UCConvertCFAbsoluteTimeToLongDateTime(iCFTime: core_foundation.AbsoluteTime, oLongDate: ?*LongDateTime) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCConvertCFAbsoluteTimeToLongDateTime(iCFTime: core_foundation.AbsoluteTime, oLongDate: ?*LongDateTime) callconv(.C) objc.OSStatus;
+pub const ucConvertCFAbsoluteTimeToLongDateTime = UCConvertCFAbsoluteTimeToLongDateTime;
 
 pub const QTypes = objc.SignedByte;
 
 pub const QElem = extern struct {
     qLink: ?*QElem,
     qType: i16,
-    qData: [1] i16,
+    qData: [1]i16,
 };
 
 pub const QElemPtr = ?*QElem;
@@ -6334,25 +6685,33 @@ pub const anon1145 = extern union {
 };
 
 pub const anon1199 = extern struct {
-    pad: [3] objc.SInt8,
+    pad: [3]objc.SInt8,
     Delta: objc.SInt8,
 };
 
-pub extern "CoreServices" fn IsMetric() callconv(.C) objc.Boolean;
+extern "CoreServices" fn IsMetric() callconv(.C) objc.Boolean;
+pub const isMetric = IsMetric;
 
-pub extern "CoreServices" fn Delay(numTicks: u64, finalTicks: ?*u64) callconv(.C) void;
+extern "CoreServices" fn Delay(numTicks: u64, finalTicks: ?*u64) callconv(.C) void;
+pub const delay = Delay;
 
-pub extern "CoreServices" fn Enqueue(qElement: QElemPtr, qHeader: QHdrPtr) callconv(.C) void;
+extern "CoreServices" fn Enqueue(qElement: QElemPtr, qHeader: QHdrPtr) callconv(.C) void;
+pub const enqueue = Enqueue;
 
-pub extern "CoreServices" fn Dequeue(qElement: QElemPtr, qHeader: QHdrPtr) callconv(.C) objc.OSErr;
+extern "CoreServices" fn Dequeue(qElement: QElemPtr, qHeader: QHdrPtr) callconv(.C) objc.OSErr;
+pub const dequeue = Dequeue;
 
-pub extern "CoreServices" fn ReadLocation(loc: ?*MachineLocation) callconv(.C) void;
+extern "CoreServices" fn ReadLocation(loc: ?*MachineLocation) callconv(.C) void;
+pub const readLocation = ReadLocation;
 
-pub extern "CoreServices" fn TickCount() callconv(.C) objc.UInt32;
+extern "CoreServices" fn TickCount() callconv(.C) objc.UInt32;
+pub const tickCount = TickCount;
 
-pub extern "CoreServices" fn CSCopyUserName(useShortName: objc.Boolean) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn CSCopyUserName(useShortName: objc.Boolean) callconv(.C) core_foundation.StringRef;
+pub const csCopyUserName = CSCopyUserName;
 
-pub extern "CoreServices" fn CSCopyMachineName() callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn CSCopyMachineName() callconv(.C) core_foundation.StringRef;
+pub const csCopyMachineName = CSCopyMachineName;
 
 pub const anon4481 = enum(u32) {
     useFree = 0,
@@ -6369,15 +6728,18 @@ pub const anon4561 = enum(u32) {
 
 pub const SysPPtr = ?*anyopaque;
 
-pub const DeferredTaskProcPtr = ?*const fn(i64) callconv(.C) void;
+pub const DeferredTaskProcPtr = ?*const fn (i64) callconv(.C) void;
 
 pub const DeferredTaskUPP = DeferredTaskProcPtr;
 
-pub extern "CoreServices" fn NewDeferredTaskUPP(userRoutine: DeferredTaskProcPtr) callconv(.C) DeferredTaskUPP;
+extern "CoreServices" fn NewDeferredTaskUPP(userRoutine: DeferredTaskProcPtr) callconv(.C) DeferredTaskUPP;
+pub const newDeferredTaskUPP = NewDeferredTaskUPP;
 
-pub extern "CoreServices" fn DisposeDeferredTaskUPP(userUPP: DeferredTaskUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeDeferredTaskUPP(userUPP: DeferredTaskUPP) callconv(.C) void;
+pub const disposeDeferredTaskUPP = DisposeDeferredTaskUPP;
 
-pub extern "CoreServices" fn InvokeDeferredTaskUPP(dtParam: i64, userUPP: DeferredTaskUPP) callconv(.C) void;
+extern "CoreServices" fn InvokeDeferredTaskUPP(dtParam: i64, userUPP: DeferredTaskUPP) callconv(.C) void;
+pub const invokeDeferredTaskUPP = InvokeDeferredTaskUPP;
 
 pub const DeferredTask = extern struct {
     qLink: QElemPtr,
@@ -6564,11 +6926,11 @@ pub const FSFileSecurityRef = ?*__FSFileSecurity;
 
 pub const CatPositionRec = extern struct {
     initialize: objc.SInt32,
-    priv: [6] objc.SInt16,
+    priv: [6]objc.SInt16,
 };
 
 pub const FSSpec = extern struct {
-    hidden: [70] objc.UInt8,
+    hidden: [70]objc.UInt8,
 };
 
 pub const FSSpecPtr = ?*FSSpec;
@@ -6583,7 +6945,7 @@ pub const ParamBlockRec = extern union {};
 
 pub const ParmBlkPtr = ?*anyopaque;
 
-pub const IOCompletionProcPtr = ?*const fn(ParmBlkPtr) callconv(.C) void;
+pub const IOCompletionProcPtr = ?*const fn (ParmBlkPtr) callconv(.C) void;
 
 pub const IOCompletionUPP = IOCompletionProcPtr;
 
@@ -6668,8 +7030,8 @@ pub const FSCatalogInfo = extern struct {
     accessDate: UTCDateTime,
     backupDate: UTCDateTime,
     permissions: FSPermissionInfo,
-    finderInfo: [16] objc.UInt8,
-    extFinderInfo: [16] objc.UInt8,
+    finderInfo: [16]objc.UInt8,
+    extFinderInfo: [16]objc.UInt8,
     dataLogicalSize: objc.UInt64,
     dataPhysicalSize: objc.UInt64,
     rsrcLogicalSize: objc.UInt64,
@@ -6919,7 +7281,7 @@ pub const FSVolumeInfo = extern struct {
     rsrcClumpSize: objc.UInt32,
     dataClumpSize: objc.UInt32,
     nextCatalogID: objc.UInt32,
-    finderInfo: [32] objc.UInt8,
+    finderInfo: [32]objc.UInt8,
     flags: objc.UInt16,
     filesystemID: objc.UInt16,
     signature: objc.UInt16,
@@ -7006,7 +7368,7 @@ pub const AFPVolMountInfo = extern struct {
     userNameOffset: objc.SInt16,
     userPasswordOffset: objc.SInt16,
     volPasswordOffset: objc.SInt16,
-    AFPData: [144] i8,
+    AFPData: [144]i8,
 };
 
 pub const AFPVolMountInfoPtr = ?*AFPVolMountInfo;
@@ -7027,7 +7389,7 @@ pub const AFPXVolMountInfo = extern struct {
     extendedFlags: objc.SInt16,
     uamNameOffset: objc.SInt16,
     alternateAddressOffset: objc.SInt16,
-    AFPData: [176] i8,
+    AFPData: [176]i8,
 };
 
 pub const AFPXVolMountInfoPtr = ?*AFPXVolMountInfo;
@@ -7052,13 +7414,13 @@ pub const anon16971 = enum(u32) {
 pub const AFPTagData = extern struct {
     fLength: objc.UInt8,
     fType: objc.UInt8,
-    fData: [1] objc.UInt8,
+    fData: [1]objc.UInt8,
 };
 
 pub const AFPAlternateAddress = extern struct {
     fVersion: objc.UInt8,
     fAddressCount: objc.UInt8,
-    fAddressList: [1] objc.UInt8,
+    fAddressList: [1]objc.UInt8,
 };
 
 pub const anon17171 = enum(u32) {
@@ -7070,59 +7432,109 @@ pub const anon17171 = enum(u32) {
     kSmall8BitIconSize = 256,
 };
 
-pub extern "CoreServices" fn NewIOCompletionUPP(userRoutine: IOCompletionProcPtr) callconv(.C) IOCompletionUPP;
+extern "CoreServices" fn NewIOCompletionUPP(userRoutine: IOCompletionProcPtr) callconv(.C) IOCompletionUPP;
+pub const newIOCompletionUPP = NewIOCompletionUPP;
 
-pub extern "CoreServices" fn DisposeIOCompletionUPP(userUPP: IOCompletionUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeIOCompletionUPP(userUPP: IOCompletionUPP) callconv(.C) void;
+pub const disposeIOCompletionUPP = DisposeIOCompletionUPP;
 
-pub extern "CoreServices" fn InvokeIOCompletionUPP(paramBlock: ParmBlkPtr, userUPP: IOCompletionUPP) callconv(.C) void;
+extern "CoreServices" fn InvokeIOCompletionUPP(paramBlock: ParmBlkPtr, userUPP: IOCompletionUPP) callconv(.C) void;
+pub const invokeIOCompletionUPP = InvokeIOCompletionUPP;
 
-pub extern "CoreServices" fn FSMakeFSRefUnicode(parentRef: ?*FSRef, nameLength: objc.UniCharCount, name: ?*objc.UniChar, textEncodingHint: TextEncoding, newRef: ?*FSRef, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSMakeFSRefUnicode(
+    parentRef: ?*FSRef,
+    nameLength: objc.UniCharCount,
+    name: ?*objc.UniChar,
+    textEncodingHint: TextEncoding,
+    newRef: ?*FSRef,
+) callconv(.C) objc.OSErr;
+pub const fsMakeFSRefUnicode = FSMakeFSRefUnicode;
 
-pub extern "CoreServices" fn PBMakeFSRefUnicodeSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PBMakeFSRefUnicodeSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbMakeFSRefUnicodeSync = PBMakeFSRefUnicodeSync;
 
-pub extern "CoreServices" fn PBMakeFSRefUnicodeAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+extern "CoreServices" fn PBMakeFSRefUnicodeAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbMakeFSRefUnicodeAsync = PBMakeFSRefUnicodeAsync;
 
-pub extern "CoreServices" fn FSCompareFSRefs(ref1: ?*FSRef, ref2: ?*FSRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSCompareFSRefs(ref1: ?*FSRef, ref2: ?*FSRef) callconv(.C) objc.OSErr;
+pub const fsCompareFSRefs = FSCompareFSRefs;
 
-pub extern "CoreServices" fn PBCompareFSRefsSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PBCompareFSRefsSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbCompareFSRefsSync = PBCompareFSRefsSync;
 
-pub extern "CoreServices" fn PBCompareFSRefsAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+extern "CoreServices" fn PBCompareFSRefsAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbCompareFSRefsAsync = PBCompareFSRefsAsync;
 
-pub extern "CoreServices" fn FSCreateFileUnicode(parentRef: ?*FSRef, nameLength: objc.UniCharCount, name: ?*objc.UniChar, whichInfo: FSCatalogInfoBitmap, catalogInfo: ?*FSCatalogInfo, newRef: ?*FSRef, newSpec: FSSpecPtr, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSCreateFileUnicode(
+    parentRef: ?*FSRef,
+    nameLength: objc.UniCharCount,
+    name: ?*objc.UniChar,
+    whichInfo: FSCatalogInfoBitmap,
+    catalogInfo: ?*FSCatalogInfo,
+    newRef: ?*FSRef,
+    newSpec: FSSpecPtr,
+) callconv(.C) objc.OSErr;
+pub const fsCreateFileUnicode = FSCreateFileUnicode;
 
-pub extern "CoreServices" fn PBCreateFileUnicodeSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PBCreateFileUnicodeSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbCreateFileUnicodeSync = PBCreateFileUnicodeSync;
 
-pub extern "CoreServices" fn PBCreateFileUnicodeAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+extern "CoreServices" fn PBCreateFileUnicodeAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbCreateFileUnicodeAsync = PBCreateFileUnicodeAsync;
 
-pub extern "CoreServices" fn FSCreateDirectoryUnicode(parentRef: ?*FSRef, nameLength: objc.UniCharCount, name: ?*objc.UniChar, whichInfo: FSCatalogInfoBitmap, catalogInfo: ?*FSCatalogInfo, newRef: ?*FSRef, newSpec: FSSpecPtr, newDirID: ?*objc.UInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSCreateDirectoryUnicode(
+    parentRef: ?*FSRef,
+    nameLength: objc.UniCharCount,
+    name: ?*objc.UniChar,
+    whichInfo: FSCatalogInfoBitmap,
+    catalogInfo: ?*FSCatalogInfo,
+    newRef: ?*FSRef,
+    newSpec: FSSpecPtr,
+    newDirID: ?*objc.UInt32,
+) callconv(.C) objc.OSErr;
+pub const fsCreateDirectoryUnicode = FSCreateDirectoryUnicode;
 
-pub extern "CoreServices" fn PBCreateDirectoryUnicodeSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PBCreateDirectoryUnicodeSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbCreateDirectoryUnicodeSync = PBCreateDirectoryUnicodeSync;
 
-pub extern "CoreServices" fn PBCreateDirectoryUnicodeAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+extern "CoreServices" fn PBCreateDirectoryUnicodeAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbCreateDirectoryUnicodeAsync = PBCreateDirectoryUnicodeAsync;
 
-pub extern "CoreServices" fn FSDeleteObject(ref: ?*FSRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSDeleteObject(ref: ?*FSRef) callconv(.C) objc.OSErr;
+pub const fsDeleteObject = FSDeleteObject;
 
-pub extern "CoreServices" fn PBDeleteObjectSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PBDeleteObjectSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbDeleteObjectSync = PBDeleteObjectSync;
 
-pub extern "CoreServices" fn PBDeleteObjectAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+extern "CoreServices" fn PBDeleteObjectAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbDeleteObjectAsync = PBDeleteObjectAsync;
 
-pub extern "CoreServices" fn FSUnlinkObject(ref: ?*FSRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSUnlinkObject(ref: ?*FSRef) callconv(.C) objc.OSErr;
+pub const fsUnlinkObject = FSUnlinkObject;
 
-pub extern "CoreServices" fn PBUnlinkObjectSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PBUnlinkObjectSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbUnlinkObjectSync = PBUnlinkObjectSync;
 
-pub extern "CoreServices" fn PBUnlinkObjectAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+extern "CoreServices" fn PBUnlinkObjectAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbUnlinkObjectAsync = PBUnlinkObjectAsync;
 
-pub extern "CoreServices" fn FSMoveObject(ref: ?*FSRef, destDirectory: ?*FSRef, newRef: ?*FSRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSMoveObject(ref: ?*FSRef, destDirectory: ?*FSRef, newRef: ?*FSRef) callconv(.C) objc.OSErr;
+pub const fsMoveObject = FSMoveObject;
 
-pub extern "CoreServices" fn PBMoveObjectSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PBMoveObjectSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbMoveObjectSync = PBMoveObjectSync;
 
-pub extern "CoreServices" fn PBMoveObjectAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+extern "CoreServices" fn PBMoveObjectAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbMoveObjectAsync = PBMoveObjectAsync;
 
-pub extern "CoreServices" fn FSExchangeObjects(ref: ?*FSRef, destRef: ?*FSRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSExchangeObjects(ref: ?*FSRef, destRef: ?*FSRef) callconv(.C) objc.OSErr;
+pub const fsExchangeObjects = FSExchangeObjects;
 
-pub extern "CoreServices" fn PBExchangeObjectsSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PBExchangeObjectsSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbExchangeObjectsSync = PBExchangeObjectsSync;
 
-pub extern "CoreServices" fn PBExchangeObjectsAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+extern "CoreServices" fn PBExchangeObjectsAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbExchangeObjectsAsync = PBExchangeObjectsAsync;
 
 pub const anon23231 = enum(u32) {
     kFSReplaceObjectDefaultOptions = 0,
@@ -7133,186 +7545,405 @@ pub const anon23231 = enum(u32) {
     kFSReplaceObjectDoNotCheckObjectWriteAccess = 16,
 };
 
-pub extern "CoreServices" fn FSReplaceObject(originalObject: ?*FSRef, replacementObject: ?*FSRef, newName: core_foundation.StringRef, temporaryName: core_foundation.StringRef, temporaryDirectory: ?*FSRef, flags: objc.OptionBits, resultObject: ?*FSRef, ) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn FSPathReplaceObject(originalObjectPath: ?*i8, replacementObjectPath: ?*i8, newName: core_foundation.StringRef, temporaryName: core_foundation.StringRef, temporaryDirectoryPath: ?*i8, flags: objc.OptionBits, ) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn FSGetTemporaryDirectoryForReplaceObject(originalObject: ?*FSRef, temporaryDirectory: ?*FSRef, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn FSPathGetTemporaryDirectoryForReplaceObject(originalObjectPath: ?*i8, temporaryDirectoryPath: ?*i8, maxPathSize: objc.UInt32, flags: objc.OptionBits, ) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn FSRenameUnicode(ref: ?*FSRef, nameLength: objc.UniCharCount, name: ?*objc.UniChar, textEncodingHint: TextEncoding, newRef: ?*FSRef, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBRenameUnicodeSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBRenameUnicodeAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSGetCatalogInfo(ref: ?*FSRef, whichInfo: FSCatalogInfoBitmap, catalogInfo: ?*FSCatalogInfo, outName: ?*objc.HFSUniStr255, fsSpec: FSSpecPtr, parentRef: ?*FSRef, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetCatalogInfoSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetCatalogInfoAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSSetCatalogInfo(ref: ?*FSRef, whichInfo: FSCatalogInfoBitmap, catalogInfo: ?*FSCatalogInfo) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBSetCatalogInfoSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBSetCatalogInfoAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSOpenIterator(container: ?*FSRef, iteratorFlags: FSIteratorFlags, iterator: ?*FSIterator) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBOpenIteratorSync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBOpenIteratorAsync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSCloseIterator(iterator: FSIterator) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBCloseIteratorSync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBCloseIteratorAsync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSGetCatalogInfoBulk(iterator: FSIterator, maximumObjects: objc.ItemCount, actualObjects: ?*objc.ItemCount, containerChanged: ?*objc.Boolean, whichInfo: FSCatalogInfoBitmap, catalogInfos: ?*FSCatalogInfo, refs: ?*FSRef, specs: FSSpecPtr, names: ?*objc.HFSUniStr255, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetCatalogInfoBulkSync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetCatalogInfoBulkAsync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSCatalogSearch(iterator: FSIterator, searchCriteria: ?*FSSearchParams, maximumObjects: objc.ItemCount, actualObjects: ?*objc.ItemCount, containerChanged: ?*objc.Boolean, whichInfo: FSCatalogInfoBitmap, catalogInfos: ?*FSCatalogInfo, refs: ?*FSRef, specs: FSSpecPtr, names: ?*objc.HFSUniStr255, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBCatalogSearchSync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBCatalogSearchAsync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSCreateFileAndOpenForkUnicode(parentRef: ?*FSRef, nameLength: objc.UniCharCount, name: ?*objc.UniChar, whichInfo: FSCatalogInfoBitmap, catalogInfo: ?*FSCatalogInfo, forkNameLength: objc.UniCharCount, forkName: ?*objc.UniChar, permissions: objc.SInt8, forkRefNum: ?*FSIORefNum, newRef: ?*FSRef, ) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn PBCreateFileAndOpenForkUnicodeSync(paramBlock: FSRefForkIOParamPtr) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn PBCreateFileAndOpenForkUnicodeAsync(paramBlock: FSRefForkIOParamPtr) callconv(.C) void;
-
-pub extern "CoreServices" fn FSCreateFork(ref: ?*FSRef, forkNameLength: objc.UniCharCount, forkName: ?*objc.UniChar) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBCreateForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBCreateForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSDeleteFork(ref: ?*FSRef, forkNameLength: objc.UniCharCount, forkName: ?*objc.UniChar) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBDeleteForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBDeleteForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSIterateForks(ref: ?*FSRef, forkIterator: ?*CatPositionRec, forkName: ?*objc.HFSUniStr255, forkSize: ?*objc.SInt64, forkPhysicalSize: ?*objc.UInt64, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBIterateForksSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBIterateForksAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSOpenFork(ref: ?*FSRef, forkNameLength: objc.UniCharCount, forkName: ?*objc.UniChar, permissions: objc.SInt8, forkRefNum: ?*FSIORefNum, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBOpenForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBOpenForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSReadFork(forkRefNum: FSIORefNum, positionMode: objc.UInt16, positionOffset: objc.SInt64, requestCount: objc.ByteCount, buffer: ?*anyopaque, actualCount: ?*objc.ByteCount, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBReadForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBReadForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSWriteFork(forkRefNum: FSIORefNum, positionMode: objc.UInt16, positionOffset: objc.SInt64, requestCount: objc.ByteCount, buffer: ?*anyopaque, actualCount: ?*objc.ByteCount, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBWriteForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBWriteForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSGetForkPosition(forkRefNum: FSIORefNum, position: ?*objc.SInt64) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetForkPositionSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetForkPositionAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSSetForkPosition(forkRefNum: FSIORefNum, positionMode: objc.UInt16, positionOffset: objc.SInt64) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBSetForkPositionSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBSetForkPositionAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSGetForkSize(forkRefNum: FSIORefNum, forkSize: ?*objc.SInt64) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetForkSizeSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetForkSizeAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSSetForkSize(forkRefNum: FSIORefNum, positionMode: objc.UInt16, positionOffset: objc.SInt64) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBSetForkSizeSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBSetForkSizeAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSAllocateFork(forkRefNum: FSIORefNum, flags: FSAllocationFlags, positionMode: objc.UInt16, positionOffset: objc.SInt64, requestCount: objc.UInt64, actualCount: ?*objc.UInt64, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBAllocateForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBAllocateForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSFlushFork(forkRefNum: FSIORefNum) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBFlushForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBFlushForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSCloseFork(forkRefNum: FSIORefNum) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBCloseForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBCloseForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSGetForkCBInfo(desiredRefNum: FSIORefNum, volume: FSVolumeRefNum, iterator: ?*i16, actualRefNum: ?*FSIORefNum, forkInfo: ?*FSForkInfo, ref: ?*FSRef, outForkName: ?*objc.HFSUniStr255, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetForkCBInfoSync(paramBlock: ?*FSForkCBInfoParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetForkCBInfoAsync(paramBlock: ?*FSForkCBInfoParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSLockRange(forkRefNum: FSIORefNum, positionMode: objc.UInt16, positionOffset: objc.SInt64, requestCount: objc.UInt64, rangeStart: ?*objc.UInt64, ) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn PBXLockRangeSync(paramBlock: FSRangeLockParamPtr) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn PBXLockRangeAsync(paramBlock: FSRangeLockParamPtr) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn FSUnlockRange(forkRefNum: FSIORefNum, positionMode: objc.UInt16, positionOffset: objc.SInt64, requestCount: objc.UInt64, rangeStart: ?*objc.UInt64, ) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn PBXUnlockRangeSync(paramBlock: FSRangeLockParamPtr) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn PBXUnlockRangeAsync(paramBlock: FSRangeLockParamPtr) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn FSGetVolumeInfo(volume: FSVolumeRefNum, volumeIndex: objc.ItemCount, actualVolume: ?*FSVolumeRefNum, whichInfo: FSVolumeInfoBitmap, info: ?*FSVolumeInfo, volumeName: ?*objc.HFSUniStr255, rootDirectory: ?*FSRef, ) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetVolumeInfoSync(paramBlock: ?*FSVolumeInfoParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBGetVolumeInfoAsync(paramBlock: ?*FSVolumeInfoParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSSetVolumeInfo(volume: FSVolumeRefNum, whichInfo: FSVolumeInfoBitmap, info: ?*FSVolumeInfo) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBSetVolumeInfoSync(paramBlock: ?*FSVolumeInfoParam) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn PBSetVolumeInfoAsync(paramBlock: ?*FSVolumeInfoParam) callconv(.C) void;
-
-pub extern "CoreServices" fn FSGetDataForkName(dataForkName: ?*objc.HFSUniStr255) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn FSGetResourceForkName(resourceForkName: ?*objc.HFSUniStr255) callconv(.C) objc.OSErr;
-
-pub extern "CoreServices" fn FSRefMakePath(ref: ?*FSRef, path: ?*objc.UInt8, pathBufferSize: objc.UInt32) callconv(.C) objc.OSStatus;
-
-pub extern "CoreServices" fn FSPathMakeRef(path: ?*objc.UInt8, ref: ?*FSRef, isDirectory: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSReplaceObject(
+    originalObject: ?*FSRef,
+    replacementObject: ?*FSRef,
+    newName: core_foundation.StringRef,
+    temporaryName: core_foundation.StringRef,
+    temporaryDirectory: ?*FSRef,
+    flags: objc.OptionBits,
+    resultObject: ?*FSRef,
+) callconv(.C) objc.OSStatus;
+pub const fsReplaceObject = FSReplaceObject;
+
+extern "CoreServices" fn FSPathReplaceObject(
+    originalObjectPath: ?*i8,
+    replacementObjectPath: ?*i8,
+    newName: core_foundation.StringRef,
+    temporaryName: core_foundation.StringRef,
+    temporaryDirectoryPath: ?*i8,
+    flags: objc.OptionBits,
+) callconv(.C) objc.OSStatus;
+pub const fsPathReplaceObject = FSPathReplaceObject;
+
+extern "CoreServices" fn FSGetTemporaryDirectoryForReplaceObject(originalObject: ?*FSRef, temporaryDirectory: ?*FSRef, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
+pub const fsGetTemporaryDirectoryForReplaceObject = FSGetTemporaryDirectoryForReplaceObject;
+
+extern "CoreServices" fn FSPathGetTemporaryDirectoryForReplaceObject(
+    originalObjectPath: ?*i8,
+    temporaryDirectoryPath: ?*i8,
+    maxPathSize: objc.UInt32,
+    flags: objc.OptionBits,
+) callconv(.C) objc.OSStatus;
+pub const fsPathGetTemporaryDirectoryForReplaceObject = FSPathGetTemporaryDirectoryForReplaceObject;
+
+extern "CoreServices" fn FSRenameUnicode(
+    ref: ?*FSRef,
+    nameLength: objc.UniCharCount,
+    name: ?*objc.UniChar,
+    textEncodingHint: TextEncoding,
+    newRef: ?*FSRef,
+) callconv(.C) objc.OSErr;
+pub const fsRenameUnicode = FSRenameUnicode;
+
+extern "CoreServices" fn PBRenameUnicodeSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbRenameUnicodeSync = PBRenameUnicodeSync;
+
+extern "CoreServices" fn PBRenameUnicodeAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbRenameUnicodeAsync = PBRenameUnicodeAsync;
+
+extern "CoreServices" fn FSGetCatalogInfo(
+    ref: ?*FSRef,
+    whichInfo: FSCatalogInfoBitmap,
+    catalogInfo: ?*FSCatalogInfo,
+    outName: ?*objc.HFSUniStr255,
+    fsSpec: FSSpecPtr,
+    parentRef: ?*FSRef,
+) callconv(.C) objc.OSErr;
+pub const fsGetCatalogInfo = FSGetCatalogInfo;
+
+extern "CoreServices" fn PBGetCatalogInfoSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbGetCatalogInfoSync = PBGetCatalogInfoSync;
+
+extern "CoreServices" fn PBGetCatalogInfoAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbGetCatalogInfoAsync = PBGetCatalogInfoAsync;
+
+extern "CoreServices" fn FSSetCatalogInfo(ref: ?*FSRef, whichInfo: FSCatalogInfoBitmap, catalogInfo: ?*FSCatalogInfo) callconv(.C) objc.OSErr;
+pub const fsSetCatalogInfo = FSSetCatalogInfo;
+
+extern "CoreServices" fn PBSetCatalogInfoSync(paramBlock: ?*FSRefParam) callconv(.C) objc.OSErr;
+pub const pbSetCatalogInfoSync = PBSetCatalogInfoSync;
+
+extern "CoreServices" fn PBSetCatalogInfoAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
+pub const pbSetCatalogInfoAsync = PBSetCatalogInfoAsync;
+
+extern "CoreServices" fn FSOpenIterator(container: ?*FSRef, iteratorFlags: FSIteratorFlags, iterator: ?*FSIterator) callconv(.C) objc.OSErr;
+pub const fsOpenIterator = FSOpenIterator;
+
+extern "CoreServices" fn PBOpenIteratorSync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) objc.OSErr;
+pub const pbOpenIteratorSync = PBOpenIteratorSync;
+
+extern "CoreServices" fn PBOpenIteratorAsync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) void;
+pub const pbOpenIteratorAsync = PBOpenIteratorAsync;
+
+extern "CoreServices" fn FSCloseIterator(iterator: FSIterator) callconv(.C) objc.OSErr;
+pub const fsCloseIterator = FSCloseIterator;
+
+extern "CoreServices" fn PBCloseIteratorSync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) objc.OSErr;
+pub const pbCloseIteratorSync = PBCloseIteratorSync;
+
+extern "CoreServices" fn PBCloseIteratorAsync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) void;
+pub const pbCloseIteratorAsync = PBCloseIteratorAsync;
+
+extern "CoreServices" fn FSGetCatalogInfoBulk(
+    iterator: FSIterator,
+    maximumObjects: objc.ItemCount,
+    actualObjects: ?*objc.ItemCount,
+    containerChanged: ?*objc.Boolean,
+    whichInfo: FSCatalogInfoBitmap,
+    catalogInfos: ?*FSCatalogInfo,
+    refs: ?*FSRef,
+    specs: FSSpecPtr,
+    names: ?*objc.HFSUniStr255,
+) callconv(.C) objc.OSErr;
+pub const fsGetCatalogInfoBulk = FSGetCatalogInfoBulk;
+
+extern "CoreServices" fn PBGetCatalogInfoBulkSync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) objc.OSErr;
+pub const pbGetCatalogInfoBulkSync = PBGetCatalogInfoBulkSync;
+
+extern "CoreServices" fn PBGetCatalogInfoBulkAsync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) void;
+pub const pbGetCatalogInfoBulkAsync = PBGetCatalogInfoBulkAsync;
+
+extern "CoreServices" fn FSCatalogSearch(
+    iterator: FSIterator,
+    searchCriteria: ?*FSSearchParams,
+    maximumObjects: objc.ItemCount,
+    actualObjects: ?*objc.ItemCount,
+    containerChanged: ?*objc.Boolean,
+    whichInfo: FSCatalogInfoBitmap,
+    catalogInfos: ?*FSCatalogInfo,
+    refs: ?*FSRef,
+    specs: FSSpecPtr,
+    names: ?*objc.HFSUniStr255,
+) callconv(.C) objc.OSErr;
+pub const fsCatalogSearch = FSCatalogSearch;
+
+extern "CoreServices" fn PBCatalogSearchSync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) objc.OSErr;
+pub const pbCatalogSearchSync = PBCatalogSearchSync;
+
+extern "CoreServices" fn PBCatalogSearchAsync(paramBlock: ?*FSCatalogBulkParam) callconv(.C) void;
+pub const pbCatalogSearchAsync = PBCatalogSearchAsync;
+
+extern "CoreServices" fn FSCreateFileAndOpenForkUnicode(
+    parentRef: ?*FSRef,
+    nameLength: objc.UniCharCount,
+    name: ?*objc.UniChar,
+    whichInfo: FSCatalogInfoBitmap,
+    catalogInfo: ?*FSCatalogInfo,
+    forkNameLength: objc.UniCharCount,
+    forkName: ?*objc.UniChar,
+    permissions: objc.SInt8,
+    forkRefNum: ?*FSIORefNum,
+    newRef: ?*FSRef,
+) callconv(.C) objc.OSStatus;
+pub const fsCreateFileAndOpenForkUnicode = FSCreateFileAndOpenForkUnicode;
+
+extern "CoreServices" fn PBCreateFileAndOpenForkUnicodeSync(paramBlock: FSRefForkIOParamPtr) callconv(.C) objc.OSStatus;
+pub const pbCreateFileAndOpenForkUnicodeSync = PBCreateFileAndOpenForkUnicodeSync;
+
+extern "CoreServices" fn PBCreateFileAndOpenForkUnicodeAsync(paramBlock: FSRefForkIOParamPtr) callconv(.C) void;
+pub const pbCreateFileAndOpenForkUnicodeAsync = PBCreateFileAndOpenForkUnicodeAsync;
+
+extern "CoreServices" fn FSCreateFork(ref: ?*FSRef, forkNameLength: objc.UniCharCount, forkName: ?*objc.UniChar) callconv(.C) objc.OSErr;
+pub const fsCreateFork = FSCreateFork;
+
+extern "CoreServices" fn PBCreateForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbCreateForkSync = PBCreateForkSync;
+
+extern "CoreServices" fn PBCreateForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbCreateForkAsync = PBCreateForkAsync;
+
+extern "CoreServices" fn FSDeleteFork(ref: ?*FSRef, forkNameLength: objc.UniCharCount, forkName: ?*objc.UniChar) callconv(.C) objc.OSErr;
+pub const fsDeleteFork = FSDeleteFork;
+
+extern "CoreServices" fn PBDeleteForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbDeleteForkSync = PBDeleteForkSync;
+
+extern "CoreServices" fn PBDeleteForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbDeleteForkAsync = PBDeleteForkAsync;
+
+extern "CoreServices" fn FSIterateForks(
+    ref: ?*FSRef,
+    forkIterator: ?*CatPositionRec,
+    forkName: ?*objc.HFSUniStr255,
+    forkSize: ?*objc.SInt64,
+    forkPhysicalSize: ?*objc.UInt64,
+) callconv(.C) objc.OSErr;
+pub const fsIterateForks = FSIterateForks;
+
+extern "CoreServices" fn PBIterateForksSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbIterateForksSync = PBIterateForksSync;
+
+extern "CoreServices" fn PBIterateForksAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbIterateForksAsync = PBIterateForksAsync;
+
+extern "CoreServices" fn FSOpenFork(
+    ref: ?*FSRef,
+    forkNameLength: objc.UniCharCount,
+    forkName: ?*objc.UniChar,
+    permissions: objc.SInt8,
+    forkRefNum: ?*FSIORefNum,
+) callconv(.C) objc.OSErr;
+pub const fsOpenFork = FSOpenFork;
+
+extern "CoreServices" fn PBOpenForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbOpenForkSync = PBOpenForkSync;
+
+extern "CoreServices" fn PBOpenForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbOpenForkAsync = PBOpenForkAsync;
+
+extern "CoreServices" fn FSReadFork(
+    forkRefNum: FSIORefNum,
+    positionMode: objc.UInt16,
+    positionOffset: objc.SInt64,
+    requestCount: objc.ByteCount,
+    buffer: ?*anyopaque,
+    actualCount: ?*objc.ByteCount,
+) callconv(.C) objc.OSErr;
+pub const fsReadFork = FSReadFork;
+
+extern "CoreServices" fn PBReadForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbReadForkSync = PBReadForkSync;
+
+extern "CoreServices" fn PBReadForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbReadForkAsync = PBReadForkAsync;
+
+extern "CoreServices" fn FSWriteFork(
+    forkRefNum: FSIORefNum,
+    positionMode: objc.UInt16,
+    positionOffset: objc.SInt64,
+    requestCount: objc.ByteCount,
+    buffer: ?*anyopaque,
+    actualCount: ?*objc.ByteCount,
+) callconv(.C) objc.OSErr;
+pub const fsWriteFork = FSWriteFork;
+
+extern "CoreServices" fn PBWriteForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbWriteForkSync = PBWriteForkSync;
+
+extern "CoreServices" fn PBWriteForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbWriteForkAsync = PBWriteForkAsync;
+
+extern "CoreServices" fn FSGetForkPosition(forkRefNum: FSIORefNum, position: ?*objc.SInt64) callconv(.C) objc.OSErr;
+pub const fsGetForkPosition = FSGetForkPosition;
+
+extern "CoreServices" fn PBGetForkPositionSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbGetForkPositionSync = PBGetForkPositionSync;
+
+extern "CoreServices" fn PBGetForkPositionAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbGetForkPositionAsync = PBGetForkPositionAsync;
+
+extern "CoreServices" fn FSSetForkPosition(forkRefNum: FSIORefNum, positionMode: objc.UInt16, positionOffset: objc.SInt64) callconv(.C) objc.OSErr;
+pub const fsSetForkPosition = FSSetForkPosition;
+
+extern "CoreServices" fn PBSetForkPositionSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbSetForkPositionSync = PBSetForkPositionSync;
+
+extern "CoreServices" fn PBSetForkPositionAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbSetForkPositionAsync = PBSetForkPositionAsync;
+
+extern "CoreServices" fn FSGetForkSize(forkRefNum: FSIORefNum, forkSize: ?*objc.SInt64) callconv(.C) objc.OSErr;
+pub const fsGetForkSize = FSGetForkSize;
+
+extern "CoreServices" fn PBGetForkSizeSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbGetForkSizeSync = PBGetForkSizeSync;
+
+extern "CoreServices" fn PBGetForkSizeAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbGetForkSizeAsync = PBGetForkSizeAsync;
+
+extern "CoreServices" fn FSSetForkSize(forkRefNum: FSIORefNum, positionMode: objc.UInt16, positionOffset: objc.SInt64) callconv(.C) objc.OSErr;
+pub const fsSetForkSize = FSSetForkSize;
+
+extern "CoreServices" fn PBSetForkSizeSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbSetForkSizeSync = PBSetForkSizeSync;
+
+extern "CoreServices" fn PBSetForkSizeAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbSetForkSizeAsync = PBSetForkSizeAsync;
+
+extern "CoreServices" fn FSAllocateFork(
+    forkRefNum: FSIORefNum,
+    flags: FSAllocationFlags,
+    positionMode: objc.UInt16,
+    positionOffset: objc.SInt64,
+    requestCount: objc.UInt64,
+    actualCount: ?*objc.UInt64,
+) callconv(.C) objc.OSErr;
+pub const fsAllocateFork = FSAllocateFork;
+
+extern "CoreServices" fn PBAllocateForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbAllocateForkSync = PBAllocateForkSync;
+
+extern "CoreServices" fn PBAllocateForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbAllocateForkAsync = PBAllocateForkAsync;
+
+extern "CoreServices" fn FSFlushFork(forkRefNum: FSIORefNum) callconv(.C) objc.OSErr;
+pub const fsFlushFork = FSFlushFork;
+
+extern "CoreServices" fn PBFlushForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbFlushForkSync = PBFlushForkSync;
+
+extern "CoreServices" fn PBFlushForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbFlushForkAsync = PBFlushForkAsync;
+
+extern "CoreServices" fn FSCloseFork(forkRefNum: FSIORefNum) callconv(.C) objc.OSErr;
+pub const fsCloseFork = FSCloseFork;
+
+extern "CoreServices" fn PBCloseForkSync(paramBlock: ?*FSForkIOParam) callconv(.C) objc.OSErr;
+pub const pbCloseForkSync = PBCloseForkSync;
+
+extern "CoreServices" fn PBCloseForkAsync(paramBlock: ?*FSForkIOParam) callconv(.C) void;
+pub const pbCloseForkAsync = PBCloseForkAsync;
+
+extern "CoreServices" fn FSGetForkCBInfo(
+    desiredRefNum: FSIORefNum,
+    volume: FSVolumeRefNum,
+    iterator: ?*i16,
+    actualRefNum: ?*FSIORefNum,
+    forkInfo: ?*FSForkInfo,
+    ref: ?*FSRef,
+    outForkName: ?*objc.HFSUniStr255,
+) callconv(.C) objc.OSErr;
+pub const fsGetForkCBInfo = FSGetForkCBInfo;
+
+extern "CoreServices" fn PBGetForkCBInfoSync(paramBlock: ?*FSForkCBInfoParam) callconv(.C) objc.OSErr;
+pub const pbGetForkCBInfoSync = PBGetForkCBInfoSync;
+
+extern "CoreServices" fn PBGetForkCBInfoAsync(paramBlock: ?*FSForkCBInfoParam) callconv(.C) void;
+pub const pbGetForkCBInfoAsync = PBGetForkCBInfoAsync;
+
+extern "CoreServices" fn FSLockRange(
+    forkRefNum: FSIORefNum,
+    positionMode: objc.UInt16,
+    positionOffset: objc.SInt64,
+    requestCount: objc.UInt64,
+    rangeStart: ?*objc.UInt64,
+) callconv(.C) objc.OSStatus;
+pub const fsLockRange = FSLockRange;
+
+extern "CoreServices" fn PBXLockRangeSync(paramBlock: FSRangeLockParamPtr) callconv(.C) objc.OSStatus;
+pub const pbxLockRangeSync = PBXLockRangeSync;
+
+extern "CoreServices" fn PBXLockRangeAsync(paramBlock: FSRangeLockParamPtr) callconv(.C) objc.OSStatus;
+pub const pbxLockRangeAsync = PBXLockRangeAsync;
+
+extern "CoreServices" fn FSUnlockRange(
+    forkRefNum: FSIORefNum,
+    positionMode: objc.UInt16,
+    positionOffset: objc.SInt64,
+    requestCount: objc.UInt64,
+    rangeStart: ?*objc.UInt64,
+) callconv(.C) objc.OSStatus;
+pub const fsUnlockRange = FSUnlockRange;
+
+extern "CoreServices" fn PBXUnlockRangeSync(paramBlock: FSRangeLockParamPtr) callconv(.C) objc.OSStatus;
+pub const pbxUnlockRangeSync = PBXUnlockRangeSync;
+
+extern "CoreServices" fn PBXUnlockRangeAsync(paramBlock: FSRangeLockParamPtr) callconv(.C) objc.OSStatus;
+pub const pbxUnlockRangeAsync = PBXUnlockRangeAsync;
+
+extern "CoreServices" fn FSGetVolumeInfo(
+    volume: FSVolumeRefNum,
+    volumeIndex: objc.ItemCount,
+    actualVolume: ?*FSVolumeRefNum,
+    whichInfo: FSVolumeInfoBitmap,
+    info: ?*FSVolumeInfo,
+    volumeName: ?*objc.HFSUniStr255,
+    rootDirectory: ?*FSRef,
+) callconv(.C) objc.OSErr;
+pub const fsGetVolumeInfo = FSGetVolumeInfo;
+
+extern "CoreServices" fn PBGetVolumeInfoSync(paramBlock: ?*FSVolumeInfoParam) callconv(.C) objc.OSErr;
+pub const pbGetVolumeInfoSync = PBGetVolumeInfoSync;
+
+extern "CoreServices" fn PBGetVolumeInfoAsync(paramBlock: ?*FSVolumeInfoParam) callconv(.C) void;
+pub const pbGetVolumeInfoAsync = PBGetVolumeInfoAsync;
+
+extern "CoreServices" fn FSSetVolumeInfo(volume: FSVolumeRefNum, whichInfo: FSVolumeInfoBitmap, info: ?*FSVolumeInfo) callconv(.C) objc.OSErr;
+pub const fsSetVolumeInfo = FSSetVolumeInfo;
+
+extern "CoreServices" fn PBSetVolumeInfoSync(paramBlock: ?*FSVolumeInfoParam) callconv(.C) objc.OSErr;
+pub const pbSetVolumeInfoSync = PBSetVolumeInfoSync;
+
+extern "CoreServices" fn PBSetVolumeInfoAsync(paramBlock: ?*FSVolumeInfoParam) callconv(.C) void;
+pub const pbSetVolumeInfoAsync = PBSetVolumeInfoAsync;
+
+extern "CoreServices" fn FSGetDataForkName(dataForkName: ?*objc.HFSUniStr255) callconv(.C) objc.OSErr;
+pub const fsGetDataForkName = FSGetDataForkName;
+
+extern "CoreServices" fn FSGetResourceForkName(resourceForkName: ?*objc.HFSUniStr255) callconv(.C) objc.OSErr;
+pub const fsGetResourceForkName = FSGetResourceForkName;
+
+extern "CoreServices" fn FSRefMakePath(ref: ?*FSRef, path: ?*objc.UInt8, pathBufferSize: objc.UInt32) callconv(.C) objc.OSStatus;
+pub const fsRefMakePath = FSRefMakePath;
+
+extern "CoreServices" fn FSPathMakeRef(path: ?*objc.UInt8, ref: ?*FSRef, isDirectory: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const fsPathMakeRef = FSPathMakeRef;
 
 pub const anon41251 = enum(u32) {
     kFSPathMakeRefDefaultOptions = 0,
     kFSPathMakeRefDoNotFollowLeafSymlink = 1,
 };
 
-pub extern "CoreServices" fn FSPathMakeRefWithOptions(path: ?*objc.UInt8, options: objc.OptionBits, ref: ?*FSRef, isDirectory: ?*objc.Boolean, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSPathMakeRefWithOptions(
+    path: ?*objc.UInt8,
+    options: objc.OptionBits,
+    ref: ?*FSRef,
+    isDirectory: ?*objc.Boolean,
+) callconv(.C) objc.OSStatus;
+pub const fsPathMakeRefWithOptions = FSPathMakeRefWithOptions;
 
-pub extern "CoreServices" fn FSIsFSRefValid(ref: ?*FSRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn FSIsFSRefValid(ref: ?*FSRef) callconv(.C) objc.Boolean;
+pub const fsIsFSRefValid = FSIsFSRefValid;
 
 pub const FNMessage = objc.UInt32;
 
@@ -7320,11 +7951,14 @@ pub const anon41981 = enum(u32) {
     kFNDirectoryModifiedMessage = 1,
 };
 
-pub extern "CoreServices" fn FNNotify(ref: ?*FSRef, message: FNMessage, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FNNotify(ref: ?*FSRef, message: FNMessage, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
+pub const fnNotify = FNNotify;
 
-pub extern "CoreServices" fn FNNotifyByPath(path: ?*objc.UInt8, message: FNMessage, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FNNotifyByPath(path: ?*objc.UInt8, message: FNMessage, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
+pub const fnNotifyByPath = FNNotifyByPath;
 
-pub extern "CoreServices" fn FNNotifyAll(message: FNMessage, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FNNotifyAll(message: FNMessage, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
+pub const fnNotifyAll = FNNotifyAll;
 
 pub const OpaqueFNSubscriptionRef = extern struct {};
 
@@ -7335,23 +7969,53 @@ pub const anon43161 = enum(u32) {
     kFNNotifyInBackground = 2,
 };
 
-pub const FNSubscriptionProcPtr = ?*const fn(FNMessage, objc.OptionBits, ?*anyopaque, FNSubscriptionRef, ) callconv(.C) void;
+pub const FNSubscriptionProcPtr = ?*const fn (
+    FNMessage,
+    objc.OptionBits,
+    ?*anyopaque,
+    FNSubscriptionRef,
+) callconv(.C) void;
 
 pub const FNSubscriptionUPP = FNSubscriptionProcPtr;
 
-pub extern "CoreServices" fn NewFNSubscriptionUPP(userRoutine: FNSubscriptionProcPtr) callconv(.C) FNSubscriptionUPP;
+extern "CoreServices" fn NewFNSubscriptionUPP(userRoutine: FNSubscriptionProcPtr) callconv(.C) FNSubscriptionUPP;
+pub const newFNSubscriptionUPP = NewFNSubscriptionUPP;
 
-pub extern "CoreServices" fn DisposeFNSubscriptionUPP(userUPP: FNSubscriptionUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeFNSubscriptionUPP(userUPP: FNSubscriptionUPP) callconv(.C) void;
+pub const disposeFNSubscriptionUPP = DisposeFNSubscriptionUPP;
 
-pub extern "CoreServices" fn InvokeFNSubscriptionUPP(message: FNMessage, flags: objc.OptionBits, refcon: ?*anyopaque, subscription: FNSubscriptionRef, userUPP: FNSubscriptionUPP, ) callconv(.C) void;
+extern "CoreServices" fn InvokeFNSubscriptionUPP(
+    message: FNMessage,
+    flags: objc.OptionBits,
+    refcon: ?*anyopaque,
+    subscription: FNSubscriptionRef,
+    userUPP: FNSubscriptionUPP,
+) callconv(.C) void;
+pub const invokeFNSubscriptionUPP = InvokeFNSubscriptionUPP;
 
-pub extern "CoreServices" fn FNSubscribe(directoryRef: ?*FSRef, callback: FNSubscriptionUPP, refcon: ?*anyopaque, flags: objc.OptionBits, subscription: ?*FNSubscriptionRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FNSubscribe(
+    directoryRef: ?*FSRef,
+    callback: FNSubscriptionUPP,
+    refcon: ?*anyopaque,
+    flags: objc.OptionBits,
+    subscription: ?*FNSubscriptionRef,
+) callconv(.C) objc.OSStatus;
+pub const fnSubscribe = FNSubscribe;
 
-pub extern "CoreServices" fn FNSubscribeByPath(directoryPath: ?*objc.UInt8, callback: FNSubscriptionUPP, refcon: ?*anyopaque, flags: objc.OptionBits, subscription: ?*FNSubscriptionRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FNSubscribeByPath(
+    directoryPath: ?*objc.UInt8,
+    callback: FNSubscriptionUPP,
+    refcon: ?*anyopaque,
+    flags: objc.OptionBits,
+    subscription: ?*FNSubscriptionRef,
+) callconv(.C) objc.OSStatus;
+pub const fnSubscribeByPath = FNSubscribeByPath;
 
-pub extern "CoreServices" fn FNUnsubscribe(subscription: FNSubscriptionRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FNUnsubscribe(subscription: FNSubscriptionRef) callconv(.C) objc.OSStatus;
+pub const fnUnsubscribe = FNUnsubscribe;
 
-pub extern "CoreServices" fn FNGetDirectoryForSubscription(subscription: FNSubscriptionRef, ref: ?*FSRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FNGetDirectoryForSubscription(subscription: FNSubscriptionRef, ref: ?*FSRef) callconv(.C) objc.OSStatus;
+pub const fnGetDirectoryForSubscription = FNGetDirectoryForSubscription;
 
 pub const anon45341 = enum(u32) {
     kAsyncMountInProgress = 1,
@@ -7372,11 +8036,28 @@ pub const OpaqueFSVolumeOperation = extern struct {};
 
 pub const FSVolumeOperation = ?*OpaqueFSVolumeOperation;
 
-pub const FSVolumeMountProcPtr = ?*const fn(FSVolumeOperation, ?*anyopaque, objc.OSStatus, FSVolumeRefNum, ) callconv(.C) void;
+pub const FSVolumeMountProcPtr = ?*const fn (
+    FSVolumeOperation,
+    ?*anyopaque,
+    objc.OSStatus,
+    FSVolumeRefNum,
+) callconv(.C) void;
 
-pub const FSVolumeUnmountProcPtr = ?*const fn(FSVolumeOperation, ?*anyopaque, objc.OSStatus, FSVolumeRefNum, objc.pid_t, ) callconv(.C) void;
+pub const FSVolumeUnmountProcPtr = ?*const fn (
+    FSVolumeOperation,
+    ?*anyopaque,
+    objc.OSStatus,
+    FSVolumeRefNum,
+    objc.pid_t,
+) callconv(.C) void;
 
-pub const FSVolumeEjectProcPtr = ?*const fn(FSVolumeOperation, ?*anyopaque, objc.OSStatus, FSVolumeRefNum, objc.pid_t, ) callconv(.C) void;
+pub const FSVolumeEjectProcPtr = ?*const fn (
+    FSVolumeOperation,
+    ?*anyopaque,
+    objc.OSStatus,
+    FSVolumeRefNum,
+    objc.pid_t,
+) callconv(.C) void;
 
 pub const FSVolumeMountUPP = FSVolumeMountProcPtr;
 
@@ -7384,23 +8065,52 @@ pub const FSVolumeUnmountUPP = FSVolumeUnmountProcPtr;
 
 pub const FSVolumeEjectUPP = FSVolumeEjectProcPtr;
 
-pub extern "CoreServices" fn NewFSVolumeMountUPP(userRoutine: FSVolumeMountProcPtr) callconv(.C) FSVolumeMountUPP;
+extern "CoreServices" fn NewFSVolumeMountUPP(userRoutine: FSVolumeMountProcPtr) callconv(.C) FSVolumeMountUPP;
+pub const newFSVolumeMountUPP = NewFSVolumeMountUPP;
 
-pub extern "CoreServices" fn NewFSVolumeUnmountUPP(userRoutine: FSVolumeUnmountProcPtr) callconv(.C) FSVolumeUnmountUPP;
+extern "CoreServices" fn NewFSVolumeUnmountUPP(userRoutine: FSVolumeUnmountProcPtr) callconv(.C) FSVolumeUnmountUPP;
+pub const newFSVolumeUnmountUPP = NewFSVolumeUnmountUPP;
 
-pub extern "CoreServices" fn NewFSVolumeEjectUPP(userRoutine: FSVolumeEjectProcPtr) callconv(.C) FSVolumeEjectUPP;
+extern "CoreServices" fn NewFSVolumeEjectUPP(userRoutine: FSVolumeEjectProcPtr) callconv(.C) FSVolumeEjectUPP;
+pub const newFSVolumeEjectUPP = NewFSVolumeEjectUPP;
 
-pub extern "CoreServices" fn DisposeFSVolumeMountUPP(userUPP: FSVolumeMountUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeFSVolumeMountUPP(userUPP: FSVolumeMountUPP) callconv(.C) void;
+pub const disposeFSVolumeMountUPP = DisposeFSVolumeMountUPP;
 
-pub extern "CoreServices" fn DisposeFSVolumeUnmountUPP(userUPP: FSVolumeUnmountUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeFSVolumeUnmountUPP(userUPP: FSVolumeUnmountUPP) callconv(.C) void;
+pub const disposeFSVolumeUnmountUPP = DisposeFSVolumeUnmountUPP;
 
-pub extern "CoreServices" fn DisposeFSVolumeEjectUPP(userUPP: FSVolumeEjectUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeFSVolumeEjectUPP(userUPP: FSVolumeEjectUPP) callconv(.C) void;
+pub const disposeFSVolumeEjectUPP = DisposeFSVolumeEjectUPP;
 
-pub extern "CoreServices" fn InvokeFSVolumeMountUPP(volumeOp: FSVolumeOperation, clientData: ?*anyopaque, err: objc.OSStatus, mountedVolumeRefNum: FSVolumeRefNum, userUPP: FSVolumeMountUPP, ) callconv(.C) void;
+extern "CoreServices" fn InvokeFSVolumeMountUPP(
+    volumeOp: FSVolumeOperation,
+    clientData: ?*anyopaque,
+    err: objc.OSStatus,
+    mountedVolumeRefNum: FSVolumeRefNum,
+    userUPP: FSVolumeMountUPP,
+) callconv(.C) void;
+pub const invokeFSVolumeMountUPP = InvokeFSVolumeMountUPP;
 
-pub extern "CoreServices" fn InvokeFSVolumeUnmountUPP(volumeOp: FSVolumeOperation, clientData: ?*anyopaque, err: objc.OSStatus, volumeRefNum: FSVolumeRefNum, dissenter: objc.pid_t, userUPP: FSVolumeUnmountUPP, ) callconv(.C) void;
+extern "CoreServices" fn InvokeFSVolumeUnmountUPP(
+    volumeOp: FSVolumeOperation,
+    clientData: ?*anyopaque,
+    err: objc.OSStatus,
+    volumeRefNum: FSVolumeRefNum,
+    dissenter: objc.pid_t,
+    userUPP: FSVolumeUnmountUPP,
+) callconv(.C) void;
+pub const invokeFSVolumeUnmountUPP = InvokeFSVolumeUnmountUPP;
 
-pub extern "CoreServices" fn InvokeFSVolumeEjectUPP(volumeOp: FSVolumeOperation, clientData: ?*anyopaque, err: objc.OSStatus, volumeRefNum: FSVolumeRefNum, dissenter: objc.pid_t, userUPP: FSVolumeEjectUPP, ) callconv(.C) void;
+extern "CoreServices" fn InvokeFSVolumeEjectUPP(
+    volumeOp: FSVolumeOperation,
+    clientData: ?*anyopaque,
+    err: objc.OSStatus,
+    volumeRefNum: FSVolumeRefNum,
+    dissenter: objc.pid_t,
+    userUPP: FSVolumeEjectUPP,
+) callconv(.C) void;
+pub const invokeFSVolumeEjectUPP = InvokeFSVolumeEjectUPP;
 
 pub const anon47001 = enum(u32) {
     kFSMountServerMarkDoNotDisplay = 1,
@@ -7420,43 +8130,130 @@ pub const anon47611 = enum(u32) {
     kFSUnmountVolumeForceUnmount = 1,
 };
 
-pub extern "CoreServices" fn FSCreateVolumeOperation(volumeOp: ?*FSVolumeOperation) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSCreateVolumeOperation(volumeOp: ?*FSVolumeOperation) callconv(.C) objc.OSStatus;
+pub const fsCreateVolumeOperation = FSCreateVolumeOperation;
 
-pub extern "CoreServices" fn FSDisposeVolumeOperation(volumeOp: FSVolumeOperation) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSDisposeVolumeOperation(volumeOp: FSVolumeOperation) callconv(.C) objc.OSStatus;
+pub const fsDisposeVolumeOperation = FSDisposeVolumeOperation;
 
-pub extern "CoreServices" fn FSMountLocalVolumeSync(diskID: core_foundation.StringRef, mountDir: core_foundation.URLRef, mountedVolumeRefNum: ?*FSVolumeRefNum, flags: objc.OptionBits, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSMountLocalVolumeSync(
+    diskID: core_foundation.StringRef,
+    mountDir: core_foundation.URLRef,
+    mountedVolumeRefNum: ?*FSVolumeRefNum,
+    flags: objc.OptionBits,
+) callconv(.C) objc.OSStatus;
+pub const fsMountLocalVolumeSync = FSMountLocalVolumeSync;
 
-pub extern "CoreServices" fn FSMountLocalVolumeAsync(diskID: core_foundation.StringRef, mountDir: core_foundation.URLRef, volumeOp: FSVolumeOperation, clientData: ?*anyopaque, flags: objc.OptionBits, callback: FSVolumeMountUPP, runloop: core_foundation.RunLoopRef, runloopMode: core_foundation.StringRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSMountLocalVolumeAsync(
+    diskID: core_foundation.StringRef,
+    mountDir: core_foundation.URLRef,
+    volumeOp: FSVolumeOperation,
+    clientData: ?*anyopaque,
+    flags: objc.OptionBits,
+    callback: FSVolumeMountUPP,
+    runloop: core_foundation.RunLoopRef,
+    runloopMode: core_foundation.StringRef,
+) callconv(.C) objc.OSStatus;
+pub const fsMountLocalVolumeAsync = FSMountLocalVolumeAsync;
 
-pub extern "CoreServices" fn FSMountServerVolumeSync(url: core_foundation.URLRef, mountDir: core_foundation.URLRef, user: core_foundation.StringRef, password: core_foundation.StringRef, mountedVolumeRefNum: ?*FSVolumeRefNum, flags: objc.OptionBits, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSMountServerVolumeSync(
+    url: core_foundation.URLRef,
+    mountDir: core_foundation.URLRef,
+    user: core_foundation.StringRef,
+    password: core_foundation.StringRef,
+    mountedVolumeRefNum: ?*FSVolumeRefNum,
+    flags: objc.OptionBits,
+) callconv(.C) objc.OSStatus;
+pub const fsMountServerVolumeSync = FSMountServerVolumeSync;
 
-pub extern "CoreServices" fn FSMountServerVolumeAsync(url: core_foundation.URLRef, mountDir: core_foundation.URLRef, user: core_foundation.StringRef, password: core_foundation.StringRef, volumeOp: FSVolumeOperation, clientData: ?*anyopaque, flags: objc.OptionBits, callback: FSVolumeMountUPP, runloop: core_foundation.RunLoopRef, runloopMode: core_foundation.StringRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSMountServerVolumeAsync(
+    url: core_foundation.URLRef,
+    mountDir: core_foundation.URLRef,
+    user: core_foundation.StringRef,
+    password: core_foundation.StringRef,
+    volumeOp: FSVolumeOperation,
+    clientData: ?*anyopaque,
+    flags: objc.OptionBits,
+    callback: FSVolumeMountUPP,
+    runloop: core_foundation.RunLoopRef,
+    runloopMode: core_foundation.StringRef,
+) callconv(.C) objc.OSStatus;
+pub const fsMountServerVolumeAsync = FSMountServerVolumeAsync;
 
-pub extern "CoreServices" fn FSGetAsyncMountStatus(volumeOp: FSVolumeOperation, status: ?*FSMountStatus, volumeOpStatus: ?*objc.OSStatus, mountedVolumeRefNum: ?*FSVolumeRefNum, clientData: ?*?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSGetAsyncMountStatus(
+    volumeOp: FSVolumeOperation,
+    status: ?*FSMountStatus,
+    volumeOpStatus: ?*objc.OSStatus,
+    mountedVolumeRefNum: ?*FSVolumeRefNum,
+    clientData: ?*?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const fsGetAsyncMountStatus = FSGetAsyncMountStatus;
 
-pub extern "CoreServices" fn FSUnmountVolumeSync(vRefNum: FSVolumeRefNum, flags: objc.OptionBits, dissenter: ?*objc.pid_t) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSUnmountVolumeSync(vRefNum: FSVolumeRefNum, flags: objc.OptionBits, dissenter: ?*objc.pid_t) callconv(.C) objc.OSStatus;
+pub const fsUnmountVolumeSync = FSUnmountVolumeSync;
 
-pub extern "CoreServices" fn FSUnmountVolumeAsync(vRefNum: FSVolumeRefNum, flags: objc.OptionBits, volumeOp: FSVolumeOperation, clientData: ?*anyopaque, callback: FSVolumeUnmountUPP, runloop: core_foundation.RunLoopRef, runloopMode: core_foundation.StringRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSUnmountVolumeAsync(
+    vRefNum: FSVolumeRefNum,
+    flags: objc.OptionBits,
+    volumeOp: FSVolumeOperation,
+    clientData: ?*anyopaque,
+    callback: FSVolumeUnmountUPP,
+    runloop: core_foundation.RunLoopRef,
+    runloopMode: core_foundation.StringRef,
+) callconv(.C) objc.OSStatus;
+pub const fsUnmountVolumeAsync = FSUnmountVolumeAsync;
 
-pub extern "CoreServices" fn FSGetAsyncUnmountStatus(volumeOp: FSVolumeOperation, status: ?*FSUnmountStatus, volumeOpStatus: ?*objc.OSStatus, volumeRefNum: ?*FSVolumeRefNum, dissenter: ?*objc.pid_t, clientData: ?*?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSGetAsyncUnmountStatus(
+    volumeOp: FSVolumeOperation,
+    status: ?*FSUnmountStatus,
+    volumeOpStatus: ?*objc.OSStatus,
+    volumeRefNum: ?*FSVolumeRefNum,
+    dissenter: ?*objc.pid_t,
+    clientData: ?*?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const fsGetAsyncUnmountStatus = FSGetAsyncUnmountStatus;
 
-pub extern "CoreServices" fn FSCancelVolumeOperation(volumeOp: FSVolumeOperation) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSCancelVolumeOperation(volumeOp: FSVolumeOperation) callconv(.C) objc.OSStatus;
+pub const fsCancelVolumeOperation = FSCancelVolumeOperation;
 
-pub extern "CoreServices" fn FSEjectVolumeSync(vRefNum: FSVolumeRefNum, flags: objc.OptionBits, dissenter: ?*objc.pid_t) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSEjectVolumeSync(vRefNum: FSVolumeRefNum, flags: objc.OptionBits, dissenter: ?*objc.pid_t) callconv(.C) objc.OSStatus;
+pub const fsEjectVolumeSync = FSEjectVolumeSync;
 
-pub extern "CoreServices" fn FSEjectVolumeAsync(vRefNum: FSVolumeRefNum, flags: objc.OptionBits, volumeOp: FSVolumeOperation, clientData: ?*anyopaque, callback: FSVolumeEjectUPP, runloop: core_foundation.RunLoopRef, runloopMode: core_foundation.StringRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSEjectVolumeAsync(
+    vRefNum: FSVolumeRefNum,
+    flags: objc.OptionBits,
+    volumeOp: FSVolumeOperation,
+    clientData: ?*anyopaque,
+    callback: FSVolumeEjectUPP,
+    runloop: core_foundation.RunLoopRef,
+    runloopMode: core_foundation.StringRef,
+) callconv(.C) objc.OSStatus;
+pub const fsEjectVolumeAsync = FSEjectVolumeAsync;
 
-pub extern "CoreServices" fn FSGetAsyncEjectStatus(volumeOp: FSVolumeOperation, status: ?*FSEjectStatus, volumeOpStatus: ?*objc.OSStatus, volumeRefNum: ?*FSVolumeRefNum, dissenter: ?*objc.pid_t, clientData: ?*?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSGetAsyncEjectStatus(
+    volumeOp: FSVolumeOperation,
+    status: ?*FSEjectStatus,
+    volumeOpStatus: ?*objc.OSStatus,
+    volumeRefNum: ?*FSVolumeRefNum,
+    dissenter: ?*objc.pid_t,
+    clientData: ?*?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const fsGetAsyncEjectStatus = FSGetAsyncEjectStatus;
 
-pub extern "CoreServices" fn FSCopyDiskIDForVolume(vRefNum: FSVolumeRefNum, diskID: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSCopyDiskIDForVolume(vRefNum: FSVolumeRefNum, diskID: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const fsCopyDiskIDForVolume = FSCopyDiskIDForVolume;
 
-pub extern "CoreServices" fn FSCopyURLForVolume(vRefNum: FSVolumeRefNum, url: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSCopyURLForVolume(vRefNum: FSVolumeRefNum, url: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+pub const fsCopyURLForVolume = FSCopyURLForVolume;
 
-pub extern "CoreServices" fn FSGetVolumeForDiskID(diskID: core_foundation.StringRef, vRefNum: ?*FSVolumeRefNum) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSGetVolumeForDiskID(diskID: core_foundation.StringRef, vRefNum: ?*FSVolumeRefNum) callconv(.C) objc.OSStatus;
+pub const fsGetVolumeForDiskID = FSGetVolumeForDiskID;
 
-pub extern "CoreServices" fn FSCopyDADiskForVolume(vRefNum: FSVolumeRefNum, disk: ?*disk_arbitration.DiskRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSCopyDADiskForVolume(vRefNum: FSVolumeRefNum, disk: ?*disk_arbitration.DiskRef) callconv(.C) objc.OSStatus;
+pub const fsCopyDADiskForVolume = FSCopyDADiskForVolume;
 
-pub extern "CoreServices" fn FSGetVolumeForDADisk(disk: disk_arbitration.DiskRef, vRefNum: ?*FSVolumeRefNum) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSGetVolumeForDADisk(disk: disk_arbitration.DiskRef, vRefNum: ?*FSVolumeRefNum) callconv(.C) objc.OSStatus;
+pub const fsGetVolumeForDADisk = FSGetVolumeForDADisk;
 
 pub const __FSFileOperation = extern struct {};
 
@@ -7472,9 +8269,23 @@ pub const FSFileOperationClientContext = extern struct {
     copyDescription: core_foundation.AllocatorCopyDescriptionCallBack,
 };
 
-pub const FSFileOperationStatusProcPtr = ?*const fn(FSFileOperationRef, ?*FSRef, FSFileOperationStage, objc.OSStatus, core_foundation.DictionaryRef, ?*anyopaque, ) callconv(.C) void;
+pub const FSFileOperationStatusProcPtr = ?*const fn (
+    FSFileOperationRef,
+    ?*FSRef,
+    FSFileOperationStage,
+    objc.OSStatus,
+    core_foundation.DictionaryRef,
+    ?*anyopaque,
+) callconv(.C) void;
 
-pub const FSPathFileOperationStatusProcPtr = ?*const fn(FSFileOperationRef, ?*i8, FSFileOperationStage, objc.OSStatus, core_foundation.DictionaryRef, ?*anyopaque, ) callconv(.C) void;
+pub const FSPathFileOperationStatusProcPtr = ?*const fn (
+    FSFileOperationRef,
+    ?*i8,
+    FSFileOperationStage,
+    objc.OSStatus,
+    core_foundation.DictionaryRef,
+    ?*anyopaque,
+) callconv(.C) void;
 
 pub const anon55751 = enum(u32) {
     kFSFileOperationDefaultOptions = 0,
@@ -7491,79 +8302,204 @@ pub const anon56181 = enum(u32) {
     kFSOperationStageComplete = 3,
 };
 
-pub extern "CoreServices" fn FSCopyObjectSync(source: ?*FSRef, destDir: ?*FSRef, destName: core_foundation.StringRef, target: ?*FSRef, options: objc.OptionBits, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSCopyObjectSync(
+    source: ?*FSRef,
+    destDir: ?*FSRef,
+    destName: core_foundation.StringRef,
+    target: ?*FSRef,
+    options: objc.OptionBits,
+) callconv(.C) objc.OSStatus;
+pub const fsCopyObjectSync = FSCopyObjectSync;
 
-pub extern "CoreServices" fn FSMoveObjectSync(source: ?*FSRef, destDir: ?*FSRef, destName: core_foundation.StringRef, target: ?*FSRef, options: objc.OptionBits, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSMoveObjectSync(
+    source: ?*FSRef,
+    destDir: ?*FSRef,
+    destName: core_foundation.StringRef,
+    target: ?*FSRef,
+    options: objc.OptionBits,
+) callconv(.C) objc.OSStatus;
+pub const fsMoveObjectSync = FSMoveObjectSync;
 
-pub extern "CoreServices" fn FSMoveObjectToTrashSync(source: ?*FSRef, target: ?*FSRef, options: objc.OptionBits) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSMoveObjectToTrashSync(source: ?*FSRef, target: ?*FSRef, options: objc.OptionBits) callconv(.C) objc.OSStatus;
+pub const fsMoveObjectToTrashSync = FSMoveObjectToTrashSync;
 
-pub extern "CoreServices" fn FSPathCopyObjectSync(sourcePath: ?*i8, destDirPath: ?*i8, destName: core_foundation.StringRef, targetPath: ?*?*i8, options: objc.OptionBits, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSPathCopyObjectSync(
+    sourcePath: ?*i8,
+    destDirPath: ?*i8,
+    destName: core_foundation.StringRef,
+    targetPath: ?*?*i8,
+    options: objc.OptionBits,
+) callconv(.C) objc.OSStatus;
+pub const fsPathCopyObjectSync = FSPathCopyObjectSync;
 
-pub extern "CoreServices" fn FSPathMoveObjectSync(sourcePath: ?*i8, destDirPath: ?*i8, destName: core_foundation.StringRef, targetPath: ?*?*i8, options: objc.OptionBits, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSPathMoveObjectSync(
+    sourcePath: ?*i8,
+    destDirPath: ?*i8,
+    destName: core_foundation.StringRef,
+    targetPath: ?*?*i8,
+    options: objc.OptionBits,
+) callconv(.C) objc.OSStatus;
+pub const fsPathMoveObjectSync = FSPathMoveObjectSync;
 
-pub extern "CoreServices" fn FSPathMoveObjectToTrashSync(sourcePath: ?*i8, targetPath: ?*?*i8, options: objc.OptionBits) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSPathMoveObjectToTrashSync(sourcePath: ?*i8, targetPath: ?*?*i8, options: objc.OptionBits) callconv(.C) objc.OSStatus;
+pub const fsPathMoveObjectToTrashSync = FSPathMoveObjectToTrashSync;
 
-pub extern "CoreServices" fn FSFileOperationGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn FSFileOperationGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const fsFileOperationGetTypeID = FSFileOperationGetTypeID;
 
-pub extern "CoreServices" fn FSFileOperationCreate(alloc: core_foundation.AllocatorRef) callconv(.C) FSFileOperationRef;
+extern "CoreServices" fn FSFileOperationCreate(alloc: core_foundation.AllocatorRef) callconv(.C) FSFileOperationRef;
+pub const fsFileOperationCreate = FSFileOperationCreate;
 
-pub extern "CoreServices" fn FSFileOperationScheduleWithRunLoop(fileOp: FSFileOperationRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileOperationScheduleWithRunLoop(fileOp: FSFileOperationRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const fsFileOperationScheduleWithRunLoop = FSFileOperationScheduleWithRunLoop;
 
-pub extern "CoreServices" fn FSFileOperationUnscheduleFromRunLoop(fileOp: FSFileOperationRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileOperationUnscheduleFromRunLoop(fileOp: FSFileOperationRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const fsFileOperationUnscheduleFromRunLoop = FSFileOperationUnscheduleFromRunLoop;
 
-pub extern "CoreServices" fn FSCopyObjectAsync(fileOp: FSFileOperationRef, source: ?*FSRef, destDir: ?*FSRef, destName: core_foundation.StringRef, flags: objc.OptionBits, callback: FSFileOperationStatusProcPtr, statusChangeInterval: core_foundation.TimeInterval, clientContext: ?*FSFileOperationClientContext, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSCopyObjectAsync(
+    fileOp: FSFileOperationRef,
+    source: ?*FSRef,
+    destDir: ?*FSRef,
+    destName: core_foundation.StringRef,
+    flags: objc.OptionBits,
+    callback: FSFileOperationStatusProcPtr,
+    statusChangeInterval: core_foundation.TimeInterval,
+    clientContext: ?*FSFileOperationClientContext,
+) callconv(.C) objc.OSStatus;
+pub const fsCopyObjectAsync = FSCopyObjectAsync;
 
-pub extern "CoreServices" fn FSMoveObjectAsync(fileOp: FSFileOperationRef, source: ?*FSRef, destDir: ?*FSRef, destName: core_foundation.StringRef, flags: objc.OptionBits, callback: FSFileOperationStatusProcPtr, statusChangeInterval: core_foundation.TimeInterval, clientContext: ?*FSFileOperationClientContext, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSMoveObjectAsync(
+    fileOp: FSFileOperationRef,
+    source: ?*FSRef,
+    destDir: ?*FSRef,
+    destName: core_foundation.StringRef,
+    flags: objc.OptionBits,
+    callback: FSFileOperationStatusProcPtr,
+    statusChangeInterval: core_foundation.TimeInterval,
+    clientContext: ?*FSFileOperationClientContext,
+) callconv(.C) objc.OSStatus;
+pub const fsMoveObjectAsync = FSMoveObjectAsync;
 
-pub extern "CoreServices" fn FSMoveObjectToTrashAsync(fileOp: FSFileOperationRef, source: ?*FSRef, flags: objc.OptionBits, callback: FSFileOperationStatusProcPtr, statusChangeInterval: core_foundation.TimeInterval, clientContext: ?*FSFileOperationClientContext, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSMoveObjectToTrashAsync(
+    fileOp: FSFileOperationRef,
+    source: ?*FSRef,
+    flags: objc.OptionBits,
+    callback: FSFileOperationStatusProcPtr,
+    statusChangeInterval: core_foundation.TimeInterval,
+    clientContext: ?*FSFileOperationClientContext,
+) callconv(.C) objc.OSStatus;
+pub const fsMoveObjectToTrashAsync = FSMoveObjectToTrashAsync;
 
-pub extern "CoreServices" fn FSPathCopyObjectAsync(fileOp: FSFileOperationRef, sourcePath: ?*i8, destDirPath: ?*i8, destName: core_foundation.StringRef, flags: objc.OptionBits, callback: FSPathFileOperationStatusProcPtr, statusChangeInterval: core_foundation.TimeInterval, clientContext: ?*FSFileOperationClientContext, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSPathCopyObjectAsync(
+    fileOp: FSFileOperationRef,
+    sourcePath: ?*i8,
+    destDirPath: ?*i8,
+    destName: core_foundation.StringRef,
+    flags: objc.OptionBits,
+    callback: FSPathFileOperationStatusProcPtr,
+    statusChangeInterval: core_foundation.TimeInterval,
+    clientContext: ?*FSFileOperationClientContext,
+) callconv(.C) objc.OSStatus;
+pub const fsPathCopyObjectAsync = FSPathCopyObjectAsync;
 
-pub extern "CoreServices" fn FSPathMoveObjectAsync(fileOp: FSFileOperationRef, sourcePath: ?*i8, destDirPath: ?*i8, destName: core_foundation.StringRef, flags: objc.OptionBits, callback: FSPathFileOperationStatusProcPtr, statusChangeInterval: core_foundation.TimeInterval, clientContext: ?*FSFileOperationClientContext, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSPathMoveObjectAsync(
+    fileOp: FSFileOperationRef,
+    sourcePath: ?*i8,
+    destDirPath: ?*i8,
+    destName: core_foundation.StringRef,
+    flags: objc.OptionBits,
+    callback: FSPathFileOperationStatusProcPtr,
+    statusChangeInterval: core_foundation.TimeInterval,
+    clientContext: ?*FSFileOperationClientContext,
+) callconv(.C) objc.OSStatus;
+pub const fsPathMoveObjectAsync = FSPathMoveObjectAsync;
 
-pub extern "CoreServices" fn FSPathMoveObjectToTrashAsync(fileOp: FSFileOperationRef, sourcePath: ?*i8, flags: objc.OptionBits, callback: FSPathFileOperationStatusProcPtr, statusChangeInterval: core_foundation.TimeInterval, clientContext: ?*FSFileOperationClientContext, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSPathMoveObjectToTrashAsync(
+    fileOp: FSFileOperationRef,
+    sourcePath: ?*i8,
+    flags: objc.OptionBits,
+    callback: FSPathFileOperationStatusProcPtr,
+    statusChangeInterval: core_foundation.TimeInterval,
+    clientContext: ?*FSFileOperationClientContext,
+) callconv(.C) objc.OSStatus;
+pub const fsPathMoveObjectToTrashAsync = FSPathMoveObjectToTrashAsync;
 
-pub extern "CoreServices" fn FSFileOperationCancel(fileOp: FSFileOperationRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileOperationCancel(fileOp: FSFileOperationRef) callconv(.C) objc.OSStatus;
+pub const fsFileOperationCancel = FSFileOperationCancel;
 
-pub extern "CoreServices" fn FSFileOperationCopyStatus(fileOp: FSFileOperationRef, currentItem: ?*FSRef, stage: ?*FSFileOperationStage, @"error": ?*objc.OSStatus, statusDictionary: ?*core_foundation.DictionaryRef, info: ?*?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileOperationCopyStatus(
+    fileOp: FSFileOperationRef,
+    currentItem: ?*FSRef,
+    stage: ?*FSFileOperationStage,
+    @"error": ?*objc.OSStatus,
+    statusDictionary: ?*core_foundation.DictionaryRef,
+    info: ?*?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const fsFileOperationCopyStatus = FSFileOperationCopyStatus;
 
-pub extern "CoreServices" fn FSPathFileOperationCopyStatus(fileOp: FSFileOperationRef, currentItem: ?*?*i8, stage: ?*FSFileOperationStage, @"error": ?*objc.OSStatus, statusDictionary: ?*core_foundation.DictionaryRef, info: ?*?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSPathFileOperationCopyStatus(
+    fileOp: FSFileOperationRef,
+    currentItem: ?*?*i8,
+    stage: ?*FSFileOperationStage,
+    @"error": ?*objc.OSStatus,
+    statusDictionary: ?*core_foundation.DictionaryRef,
+    info: ?*?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const fsPathFileOperationCopyStatus = FSPathFileOperationCopyStatus;
 
-pub extern "CoreServices" fn FSCreateStringFromHFSUniStr(alloc: core_foundation.AllocatorRef, uniStr: ?*objc.HFSUniStr255) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn FSCreateStringFromHFSUniStr(alloc: core_foundation.AllocatorRef, uniStr: ?*objc.HFSUniStr255) callconv(.C) core_foundation.StringRef;
+pub const fsCreateStringFromHFSUniStr = FSCreateStringFromHFSUniStr;
 
-pub extern "CoreServices" fn FSGetHFSUniStrFromString(theString: core_foundation.StringRef, uniStr: ?*objc.HFSUniStr255) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSGetHFSUniStrFromString(theString: core_foundation.StringRef, uniStr: ?*objc.HFSUniStr255) callconv(.C) objc.OSStatus;
+pub const fsGetHFSUniStrFromString = FSGetHFSUniStrFromString;
 
-pub extern "CoreServices" fn FSFileSecurityGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn FSFileSecurityGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const fsFileSecurityGetTypeID = FSFileSecurityGetTypeID;
 
-pub extern "CoreServices" fn FSFileSecurityCreate(alloc: core_foundation.AllocatorRef) callconv(.C) FSFileSecurityRef;
+extern "CoreServices" fn FSFileSecurityCreate(alloc: core_foundation.AllocatorRef) callconv(.C) FSFileSecurityRef;
+pub const fsFileSecurityCreate = FSFileSecurityCreate;
 
-pub extern "CoreServices" fn FSFileSecurityCreateWithFSPermissionInfo(alloc: core_foundation.AllocatorRef, permissions: ?*FSPermissionInfo) callconv(.C) FSFileSecurityRef;
+extern "CoreServices" fn FSFileSecurityCreateWithFSPermissionInfo(alloc: core_foundation.AllocatorRef, permissions: ?*FSPermissionInfo) callconv(.C) FSFileSecurityRef;
+pub const fsFileSecurityCreateWithFSPermissionInfo = FSFileSecurityCreateWithFSPermissionInfo;
 
-pub extern "CoreServices" fn FSFileSecurityRefCreateCopy(alloc: core_foundation.AllocatorRef, fileSec: FSFileSecurityRef) callconv(.C) FSFileSecurityRef;
+extern "CoreServices" fn FSFileSecurityRefCreateCopy(alloc: core_foundation.AllocatorRef, fileSec: FSFileSecurityRef) callconv(.C) FSFileSecurityRef;
+pub const fsFileSecurityRefCreateCopy = FSFileSecurityRefCreateCopy;
 
-pub extern "CoreServices" fn FSFileSecurityGetOwnerUUID(fileSec: FSFileSecurityRef, owner: ?*core_foundation.UUIDBytes) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecurityGetOwnerUUID(fileSec: FSFileSecurityRef, owner: ?*core_foundation.UUIDBytes) callconv(.C) objc.OSStatus;
+pub const fsFileSecurityGetOwnerUUID = FSFileSecurityGetOwnerUUID;
 
-pub extern "CoreServices" fn FSFileSecuritySetOwnerUUID(fileSec: FSFileSecurityRef, owner: ?*core_foundation.UUIDBytes) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecuritySetOwnerUUID(fileSec: FSFileSecurityRef, owner: ?*core_foundation.UUIDBytes) callconv(.C) objc.OSStatus;
+pub const fsFileSecuritySetOwnerUUID = FSFileSecuritySetOwnerUUID;
 
-pub extern "CoreServices" fn FSFileSecurityGetGroupUUID(fileSec: FSFileSecurityRef, group: ?*core_foundation.UUIDBytes) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecurityGetGroupUUID(fileSec: FSFileSecurityRef, group: ?*core_foundation.UUIDBytes) callconv(.C) objc.OSStatus;
+pub const fsFileSecurityGetGroupUUID = FSFileSecurityGetGroupUUID;
 
-pub extern "CoreServices" fn FSFileSecuritySetGroupUUID(fileSec: FSFileSecurityRef, group: ?*core_foundation.UUIDBytes) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecuritySetGroupUUID(fileSec: FSFileSecurityRef, group: ?*core_foundation.UUIDBytes) callconv(.C) objc.OSStatus;
+pub const fsFileSecuritySetGroupUUID = FSFileSecuritySetGroupUUID;
 
-pub extern "CoreServices" fn FSFileSecurityCopyAccessControlList(fileSec: FSFileSecurityRef, accessControlList: ?*objc.acl_t) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecurityCopyAccessControlList(fileSec: FSFileSecurityRef, accessControlList: ?*objc.acl_t) callconv(.C) objc.OSStatus;
+pub const fsFileSecurityCopyAccessControlList = FSFileSecurityCopyAccessControlList;
 
-pub extern "CoreServices" fn FSFileSecuritySetAccessControlList(fileSec: FSFileSecurityRef, accessControlList: objc.acl_t) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecuritySetAccessControlList(fileSec: FSFileSecurityRef, accessControlList: objc.acl_t) callconv(.C) objc.OSStatus;
+pub const fsFileSecuritySetAccessControlList = FSFileSecuritySetAccessControlList;
 
-pub extern "CoreServices" fn FSFileSecurityGetOwner(fileSec: FSFileSecurityRef, owner: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecurityGetOwner(fileSec: FSFileSecurityRef, owner: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+pub const fsFileSecurityGetOwner = FSFileSecurityGetOwner;
 
-pub extern "CoreServices" fn FSFileSecuritySetOwner(fileSec: FSFileSecurityRef, owner: objc.UInt32) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecuritySetOwner(fileSec: FSFileSecurityRef, owner: objc.UInt32) callconv(.C) objc.OSStatus;
+pub const fsFileSecuritySetOwner = FSFileSecuritySetOwner;
 
-pub extern "CoreServices" fn FSFileSecurityGetGroup(fileSec: FSFileSecurityRef, group: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecurityGetGroup(fileSec: FSFileSecurityRef, group: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+pub const fsFileSecurityGetGroup = FSFileSecurityGetGroup;
 
-pub extern "CoreServices" fn FSFileSecuritySetGroup(fileSec: FSFileSecurityRef, group: objc.UInt32) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecuritySetGroup(fileSec: FSFileSecurityRef, group: objc.UInt32) callconv(.C) objc.OSStatus;
+pub const fsFileSecuritySetGroup = FSFileSecuritySetGroup;
 
-pub extern "CoreServices" fn FSFileSecurityGetMode(fileSec: FSFileSecurityRef, mode: ?*objc.UInt16) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecurityGetMode(fileSec: FSFileSecurityRef, mode: ?*objc.UInt16) callconv(.C) objc.OSStatus;
+pub const fsFileSecurityGetMode = FSFileSecurityGetMode;
 
-pub extern "CoreServices" fn FSFileSecuritySetMode(fileSec: FSFileSecurityRef, mode: objc.UInt16) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFileSecuritySetMode(fileSec: FSFileSecurityRef, mode: objc.UInt16) callconv(.C) objc.OSStatus;
+pub const fsFileSecuritySetMode = FSFileSecuritySetMode;
 
 pub const anon70501 = enum(u32) {
     pleaseCacheBit = 4,
@@ -7717,29 +8653,46 @@ pub const anon71861 = enum(i32) {
     kownerPrivileges = 7,
 };
 
-pub extern "CoreServices" fn FSGetVolumeParms(volume: FSVolumeRefNum, buffer: ?*GetVolParmsInfoBuffer, bufferSize: objc.ByteCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSGetVolumeParms(volume: FSVolumeRefNum, buffer: ?*GetVolParmsInfoBuffer, bufferSize: objc.ByteCount) callconv(.C) objc.OSStatus;
+pub const fsGetVolumeParms = FSGetVolumeParms;
 
-pub extern "CoreServices" fn FSGetVolumeMountInfoSize(volume: FSVolumeRefNum, size: ?*objc.ByteCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSGetVolumeMountInfoSize(volume: FSVolumeRefNum, size: ?*objc.ByteCount) callconv(.C) objc.OSStatus;
+pub const fsGetVolumeMountInfoSize = FSGetVolumeMountInfoSize;
 
-pub extern "CoreServices" fn FSGetVolumeMountInfo(volume: FSVolumeRefNum, buffer: objc.BytePtr, bufferSize: objc.ByteCount, actualSize: ?*objc.ByteCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSGetVolumeMountInfo(
+    volume: FSVolumeRefNum,
+    buffer: objc.BytePtr,
+    bufferSize: objc.ByteCount,
+    actualSize: ?*objc.ByteCount,
+) callconv(.C) objc.OSStatus;
+pub const fsGetVolumeMountInfo = FSGetVolumeMountInfo;
 
-pub extern "CoreServices" fn FSVolumeMount(buffer: objc.BytePtr, mountedVolume: ?*FSVolumeRefNum) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSVolumeMount(buffer: objc.BytePtr, mountedVolume: ?*FSVolumeRefNum) callconv(.C) objc.OSStatus;
+pub const fsVolumeMount = FSVolumeMount;
 
-pub extern "CoreServices" fn FSFlushVolume(vRefNum: FSVolumeRefNum) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSFlushVolume(vRefNum: FSVolumeRefNum) callconv(.C) objc.OSStatus;
+pub const fsFlushVolume = FSFlushVolume;
 
-pub extern "CoreServices" fn PBFlushVolumeSync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn PBFlushVolumeSync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+pub const pbFlushVolumeSync = PBFlushVolumeSync;
 
-pub extern "CoreServices" fn PBFlushVolumeAsync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn PBFlushVolumeAsync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+pub const pbFlushVolumeAsync = PBFlushVolumeAsync;
 
-pub extern "CoreServices" fn PBFSCopyFileSync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn PBFSCopyFileSync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+pub const pbfsCopyFileSync = PBFSCopyFileSync;
 
-pub extern "CoreServices" fn PBFSCopyFileAsync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn PBFSCopyFileAsync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+pub const pbfsCopyFileAsync = PBFSCopyFileAsync;
 
-pub extern "CoreServices" fn FSResolveNodeID(volume: FSVolumeRefNum, nodeID: objc.UInt32, newRef: FSRefPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSResolveNodeID(volume: FSVolumeRefNum, nodeID: objc.UInt32, newRef: FSRefPtr) callconv(.C) objc.OSStatus;
+pub const fsResolveNodeID = FSResolveNodeID;
 
-pub extern "CoreServices" fn PBFSResolveNodeIDSync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn PBFSResolveNodeIDSync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+pub const pbfsResolveNodeIDSync = PBFSResolveNodeIDSync;
 
-pub extern "CoreServices" fn PBFSResolveNodeIDAsync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn PBFSResolveNodeIDAsync(paramBlock: FSRefParamPtr) callconv(.C) objc.OSStatus;
+pub const pbfsResolveNodeIDAsync = PBFSResolveNodeIDAsync;
 
 pub const ResID = objc.SInt16;
 
@@ -7765,99 +8718,163 @@ pub const anon791 = enum(u32) {
     sleepQType = 16,
 };
 
-pub const ResErrProcPtr = ?*const fn(objc.OSErr) callconv(.C) void;
+pub const ResErrProcPtr = ?*const fn (objc.OSErr) callconv(.C) void;
 
 pub const ResErrUPP = ResErrProcPtr;
 
-pub extern "CoreServices" fn NewResErrUPP(userRoutine: ResErrProcPtr) callconv(.C) ResErrUPP;
+extern "CoreServices" fn NewResErrUPP(userRoutine: ResErrProcPtr) callconv(.C) ResErrUPP;
+pub const newResErrUPP = NewResErrUPP;
 
-pub extern "CoreServices" fn DisposeResErrUPP(userUPP: ResErrUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeResErrUPP(userUPP: ResErrUPP) callconv(.C) void;
+pub const disposeResErrUPP = DisposeResErrUPP;
 
-pub extern "CoreServices" fn InvokeResErrUPP(thErr: objc.OSErr, userUPP: ResErrUPP) callconv(.C) void;
+extern "CoreServices" fn InvokeResErrUPP(thErr: objc.OSErr, userUPP: ResErrUPP) callconv(.C) void;
+pub const invokeResErrUPP = InvokeResErrUPP;
 
-pub const ResourceEndianFilterPtr = ?*const fn(objc.Handle, objc.Boolean) callconv(.C) objc.OSErr;
+pub const ResourceEndianFilterPtr = ?*const fn (objc.Handle, objc.Boolean) callconv(.C) objc.OSErr;
 
-pub extern "CoreServices" fn CloseResFile(refNum: ResFileRefNum) callconv(.C) void;
+extern "CoreServices" fn CloseResFile(refNum: ResFileRefNum) callconv(.C) void;
+pub const closeResFile = CloseResFile;
 
-pub extern "CoreServices" fn ResError() callconv(.C) objc.OSErr;
+extern "CoreServices" fn ResError() callconv(.C) objc.OSErr;
+pub const resError = ResError;
 
-pub extern "CoreServices" fn CurResFile() callconv(.C) ResFileRefNum;
+extern "CoreServices" fn CurResFile() callconv(.C) ResFileRefNum;
+pub const curResFile = CurResFile;
 
-pub extern "CoreServices" fn HomeResFile(theResource: objc.Handle) callconv(.C) ResFileRefNum;
+extern "CoreServices" fn HomeResFile(theResource: objc.Handle) callconv(.C) ResFileRefNum;
+pub const homeResFile = HomeResFile;
 
-pub extern "CoreServices" fn UseResFile(refNum: ResFileRefNum) callconv(.C) void;
+extern "CoreServices" fn UseResFile(refNum: ResFileRefNum) callconv(.C) void;
+pub const useResFile = UseResFile;
 
-pub extern "CoreServices" fn CountTypes() callconv(.C) ResourceCount;
+extern "CoreServices" fn CountTypes() callconv(.C) ResourceCount;
+pub const countTypes = CountTypes;
 
-pub extern "CoreServices" fn Count1Types() callconv(.C) ResourceCount;
+extern "CoreServices" fn Count1Types() callconv(.C) ResourceCount;
+pub const count1Types = Count1Types;
 
-pub extern "CoreServices" fn GetIndType(theType: ?*objc.ResType, itemIndex: ResourceIndex) callconv(.C) void;
+extern "CoreServices" fn GetIndType(theType: ?*objc.ResType, itemIndex: ResourceIndex) callconv(.C) void;
+pub const getIndType = GetIndType;
 
-pub extern "CoreServices" fn Get1IndType(theType: ?*objc.ResType, itemIndex: ResourceIndex) callconv(.C) void;
+extern "CoreServices" fn Get1IndType(theType: ?*objc.ResType, itemIndex: ResourceIndex) callconv(.C) void;
+pub const get1IndType = Get1IndType;
 
-pub extern "CoreServices" fn SetResLoad(load: objc.Boolean) callconv(.C) void;
+extern "CoreServices" fn SetResLoad(load: objc.Boolean) callconv(.C) void;
+pub const setResLoad = SetResLoad;
 
-pub extern "CoreServices" fn CountResources(theType: objc.ResType) callconv(.C) ResourceCount;
+extern "CoreServices" fn CountResources(theType: objc.ResType) callconv(.C) ResourceCount;
+pub const countResources = CountResources;
 
-pub extern "CoreServices" fn Count1Resources(theType: objc.ResType) callconv(.C) ResourceCount;
+extern "CoreServices" fn Count1Resources(theType: objc.ResType) callconv(.C) ResourceCount;
+pub const count1Resources = Count1Resources;
 
-pub extern "CoreServices" fn GetIndResource(theType: objc.ResType, itemIndex: ResourceIndex) callconv(.C) objc.Handle;
+extern "CoreServices" fn GetIndResource(theType: objc.ResType, itemIndex: ResourceIndex) callconv(.C) objc.Handle;
+pub const getIndResource = GetIndResource;
 
-pub extern "CoreServices" fn Get1IndResource(theType: objc.ResType, itemIndex: ResourceIndex) callconv(.C) objc.Handle;
+extern "CoreServices" fn Get1IndResource(theType: objc.ResType, itemIndex: ResourceIndex) callconv(.C) objc.Handle;
+pub const get1IndResource = Get1IndResource;
 
-pub extern "CoreServices" fn GetResource(theType: objc.ResType, theID: ResID) callconv(.C) objc.Handle;
+extern "CoreServices" fn GetResource(theType: objc.ResType, theID: ResID) callconv(.C) objc.Handle;
+pub const getResource = GetResource;
 
-pub extern "CoreServices" fn Get1Resource(theType: objc.ResType, theID: ResID) callconv(.C) objc.Handle;
+extern "CoreServices" fn Get1Resource(theType: objc.ResType, theID: ResID) callconv(.C) objc.Handle;
+pub const get1Resource = Get1Resource;
 
-pub extern "CoreServices" fn GetNamedResource(theType: objc.ResType, name: objc.ConstStr255Param) callconv(.C) objc.Handle;
+extern "CoreServices" fn GetNamedResource(theType: objc.ResType, name: objc.ConstStr255Param) callconv(.C) objc.Handle;
+pub const getNamedResource = GetNamedResource;
 
-pub extern "CoreServices" fn Get1NamedResource(theType: objc.ResType, name: objc.ConstStr255Param) callconv(.C) objc.Handle;
+extern "CoreServices" fn Get1NamedResource(theType: objc.ResType, name: objc.ConstStr255Param) callconv(.C) objc.Handle;
+pub const get1NamedResource = Get1NamedResource;
 
-pub extern "CoreServices" fn LoadResource(theResource: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn LoadResource(theResource: objc.Handle) callconv(.C) void;
+pub const loadResource = LoadResource;
 
-pub extern "CoreServices" fn ReleaseResource(theResource: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn ReleaseResource(theResource: objc.Handle) callconv(.C) void;
+pub const releaseResource = ReleaseResource;
 
-pub extern "CoreServices" fn DetachResource(theResource: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn DetachResource(theResource: objc.Handle) callconv(.C) void;
+pub const detachResource = DetachResource;
 
-pub extern "CoreServices" fn UniqueID(theType: objc.ResType) callconv(.C) ResID;
+extern "CoreServices" fn UniqueID(theType: objc.ResType) callconv(.C) ResID;
+pub const uniqueID = UniqueID;
 
-pub extern "CoreServices" fn Unique1ID(theType: objc.ResType) callconv(.C) ResID;
+extern "CoreServices" fn Unique1ID(theType: objc.ResType) callconv(.C) ResID;
+pub const unique1ID = Unique1ID;
 
-pub extern "CoreServices" fn GetResAttrs(theResource: objc.Handle) callconv(.C) ResAttributes;
+extern "CoreServices" fn GetResAttrs(theResource: objc.Handle) callconv(.C) ResAttributes;
+pub const getResAttrs = GetResAttrs;
 
-pub extern "CoreServices" fn GetResInfo(theResource: objc.Handle, theID: ?*ResID, theType: ?*objc.ResType, name: objc.Str255, ) callconv(.C) void;
+extern "CoreServices" fn GetResInfo(
+    theResource: objc.Handle,
+    theID: ?*ResID,
+    theType: ?*objc.ResType,
+    name: objc.Str255,
+) callconv(.C) void;
+pub const getResInfo = GetResInfo;
 
-pub extern "CoreServices" fn SetResInfo(theResource: objc.Handle, theID: ResID, name: objc.ConstStr255Param) callconv(.C) void;
+extern "CoreServices" fn SetResInfo(theResource: objc.Handle, theID: ResID, name: objc.ConstStr255Param) callconv(.C) void;
+pub const setResInfo = SetResInfo;
 
-pub extern "CoreServices" fn AddResource(theData: objc.Handle, theType: objc.ResType, theID: ResID, name: objc.ConstStr255Param, ) callconv(.C) void;
+extern "CoreServices" fn AddResource(
+    theData: objc.Handle,
+    theType: objc.ResType,
+    theID: ResID,
+    name: objc.ConstStr255Param,
+) callconv(.C) void;
+pub const addResource = AddResource;
 
-pub extern "CoreServices" fn GetResourceSizeOnDisk(theResource: objc.Handle) callconv(.C) i64;
+extern "CoreServices" fn GetResourceSizeOnDisk(theResource: objc.Handle) callconv(.C) i64;
+pub const getResourceSizeOnDisk = GetResourceSizeOnDisk;
 
-pub extern "CoreServices" fn GetMaxResourceSize(theResource: objc.Handle) callconv(.C) i64;
+extern "CoreServices" fn GetMaxResourceSize(theResource: objc.Handle) callconv(.C) i64;
+pub const getMaxResourceSize = GetMaxResourceSize;
 
-pub extern "CoreServices" fn SetResAttrs(theResource: objc.Handle, attrs: ResAttributes) callconv(.C) void;
+extern "CoreServices" fn SetResAttrs(theResource: objc.Handle, attrs: ResAttributes) callconv(.C) void;
+pub const setResAttrs = SetResAttrs;
 
-pub extern "CoreServices" fn ChangedResource(theResource: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn ChangedResource(theResource: objc.Handle) callconv(.C) void;
+pub const changedResource = ChangedResource;
 
-pub extern "CoreServices" fn RemoveResource(theResource: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn RemoveResource(theResource: objc.Handle) callconv(.C) void;
+pub const removeResource = RemoveResource;
 
-pub extern "CoreServices" fn UpdateResFile(refNum: ResFileRefNum) callconv(.C) void;
+extern "CoreServices" fn UpdateResFile(refNum: ResFileRefNum) callconv(.C) void;
+pub const updateResFile = UpdateResFile;
 
-pub extern "CoreServices" fn WriteResource(theResource: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn WriteResource(theResource: objc.Handle) callconv(.C) void;
+pub const writeResource = WriteResource;
 
-pub extern "CoreServices" fn SetResPurge(install: objc.Boolean) callconv(.C) void;
+extern "CoreServices" fn SetResPurge(install: objc.Boolean) callconv(.C) void;
+pub const setResPurge = SetResPurge;
 
-pub extern "CoreServices" fn GetResFileAttrs(refNum: ResFileRefNum) callconv(.C) ResFileAttributes;
+extern "CoreServices" fn GetResFileAttrs(refNum: ResFileRefNum) callconv(.C) ResFileAttributes;
+pub const getResFileAttrs = GetResFileAttrs;
 
-pub extern "CoreServices" fn SetResFileAttrs(refNum: ResFileRefNum, attrs: ResFileAttributes) callconv(.C) void;
+extern "CoreServices" fn SetResFileAttrs(refNum: ResFileRefNum, attrs: ResFileAttributes) callconv(.C) void;
+pub const setResFileAttrs = SetResFileAttrs;
 
-pub extern "CoreServices" fn ReadPartialResource(theResource: objc.Handle, offset: i64, buffer: ?*anyopaque, count: i64, ) callconv(.C) void;
+extern "CoreServices" fn ReadPartialResource(
+    theResource: objc.Handle,
+    offset: i64,
+    buffer: ?*anyopaque,
+    count: i64,
+) callconv(.C) void;
+pub const readPartialResource = ReadPartialResource;
 
-pub extern "CoreServices" fn WritePartialResource(theResource: objc.Handle, offset: i64, buffer: ?*anyopaque, count: i64, ) callconv(.C) void;
+extern "CoreServices" fn WritePartialResource(
+    theResource: objc.Handle,
+    offset: i64,
+    buffer: ?*anyopaque,
+    count: i64,
+) callconv(.C) void;
+pub const writePartialResource = WritePartialResource;
 
-pub extern "CoreServices" fn SetResourceSize(theResource: objc.Handle, newSize: i64) callconv(.C) void;
+extern "CoreServices" fn SetResourceSize(theResource: objc.Handle, newSize: i64) callconv(.C) void;
+pub const setResourceSize = SetResourceSize;
 
-pub extern "CoreServices" fn GetNextFOND(fondHandle: objc.Handle) callconv(.C) objc.Handle;
+extern "CoreServices" fn GetNextFOND(fondHandle: objc.Handle) callconv(.C) objc.Handle;
+pub const getNextFOND = GetNextFOND;
 
 pub const RsrcChainLocation = objc.SInt16;
 
@@ -7868,27 +8885,67 @@ pub const anon8151 = enum(u32) {
     kRsrcChainAboveAllMaps = 4,
 };
 
-pub extern "CoreServices" fn InsertResourceFile(refNum: ResFileRefNum, where: RsrcChainLocation) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InsertResourceFile(refNum: ResFileRefNum, where: RsrcChainLocation) callconv(.C) objc.OSErr;
+pub const insertResourceFile = InsertResourceFile;
 
-pub extern "CoreServices" fn DetachResourceFile(refNum: ResFileRefNum) callconv(.C) objc.OSErr;
+extern "CoreServices" fn DetachResourceFile(refNum: ResFileRefNum) callconv(.C) objc.OSErr;
+pub const detachResourceFile = DetachResourceFile;
 
-pub extern "CoreServices" fn GetTopResourceFile(refNum: ?*ResFileRefNum) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetTopResourceFile(refNum: ?*ResFileRefNum) callconv(.C) objc.OSErr;
+pub const getTopResourceFile = GetTopResourceFile;
 
-pub extern "CoreServices" fn GetNextResourceFile(curRefNum: ResFileRefNum, nextRefNum: ?*ResFileRefNum) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetNextResourceFile(curRefNum: ResFileRefNum, nextRefNum: ?*ResFileRefNum) callconv(.C) objc.OSErr;
+pub const getNextResourceFile = GetNextResourceFile;
 
-pub extern "CoreServices" fn FSOpenResFile(ref: ?*FSRef, permission: objc.SInt8) callconv(.C) ResFileRefNum;
+extern "CoreServices" fn FSOpenResFile(ref: ?*FSRef, permission: objc.SInt8) callconv(.C) ResFileRefNum;
+pub const fsOpenResFile = FSOpenResFile;
 
-pub extern "CoreServices" fn FSCreateResFile(parentRef: ?*FSRef, nameLength: objc.UniCharCount, name: ?*objc.UniChar, whichInfo: FSCatalogInfoBitmap, catalogInfo: ?*FSCatalogInfo, newRef: ?*FSRef, newSpec: FSSpecPtr, ) callconv(.C) void;
+extern "CoreServices" fn FSCreateResFile(
+    parentRef: ?*FSRef,
+    nameLength: objc.UniCharCount,
+    name: ?*objc.UniChar,
+    whichInfo: FSCatalogInfoBitmap,
+    catalogInfo: ?*FSCatalogInfo,
+    newRef: ?*FSRef,
+    newSpec: FSSpecPtr,
+) callconv(.C) void;
+pub const fsCreateResFile = FSCreateResFile;
 
-pub extern "CoreServices" fn FSResourceFileAlreadyOpen(resourceFileRef: ?*FSRef, inChain: ?*objc.Boolean, refNum: ?*ResFileRefNum) callconv(.C) objc.Boolean;
+extern "CoreServices" fn FSResourceFileAlreadyOpen(resourceFileRef: ?*FSRef, inChain: ?*objc.Boolean, refNum: ?*ResFileRefNum) callconv(.C) objc.Boolean;
+pub const fsResourceFileAlreadyOpen = FSResourceFileAlreadyOpen;
 
-pub extern "CoreServices" fn FSOpenOrphanResFile(ref: ?*FSRef, permission: objc.SignedByte, refNum: ?*ResFileRefNum) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSOpenOrphanResFile(ref: ?*FSRef, permission: objc.SignedByte, refNum: ?*ResFileRefNum) callconv(.C) objc.OSErr;
+pub const fsOpenOrphanResFile = FSOpenOrphanResFile;
 
-pub extern "CoreServices" fn FSCreateResourceFile(parentRef: ?*FSRef, nameLength: objc.UniCharCount, name: ?*objc.UniChar, whichInfo: FSCatalogInfoBitmap, catalogInfo: ?*FSCatalogInfo, forkNameLength: objc.UniCharCount, forkName: ?*objc.UniChar, newRef: ?*FSRef, newSpec: FSSpecPtr, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSCreateResourceFile(
+    parentRef: ?*FSRef,
+    nameLength: objc.UniCharCount,
+    name: ?*objc.UniChar,
+    whichInfo: FSCatalogInfoBitmap,
+    catalogInfo: ?*FSCatalogInfo,
+    forkNameLength: objc.UniCharCount,
+    forkName: ?*objc.UniChar,
+    newRef: ?*FSRef,
+    newSpec: FSSpecPtr,
+) callconv(.C) objc.OSErr;
+pub const fsCreateResourceFile = FSCreateResourceFile;
 
-pub extern "CoreServices" fn FSCreateResourceFork(ref: ?*FSRef, forkNameLength: objc.UniCharCount, forkName: ?*objc.UniChar, flags: objc.UInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSCreateResourceFork(
+    ref: ?*FSRef,
+    forkNameLength: objc.UniCharCount,
+    forkName: ?*objc.UniChar,
+    flags: objc.UInt32,
+) callconv(.C) objc.OSErr;
+pub const fsCreateResourceFork = FSCreateResourceFork;
 
-pub extern "CoreServices" fn FSOpenResourceFile(ref: ?*FSRef, forkNameLength: objc.UniCharCount, forkName: ?*objc.UniChar, permissions: objc.SInt8, refNum: ?*ResFileRefNum, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSOpenResourceFile(
+    ref: ?*FSRef,
+    forkNameLength: objc.UniCharCount,
+    forkName: ?*objc.UniChar,
+    permissions: objc.SInt8,
+    refNum: ?*ResFileRefNum,
+) callconv(.C) objc.OSErr;
+pub const fsOpenResourceFile = FSOpenResourceFile;
 
 pub const anon531 = enum(u32) {
     kAnyComponentType = 0,
@@ -7970,7 +9027,7 @@ pub const ComponentResourceExtension = extern struct {
 
 pub const ComponentPlatformInfoArray = extern struct {
     count: objc.SInt32,
-    platformArray: [1] ComponentPlatformInfo,
+    platformArray: [1]ComponentPlatformInfo,
 };
 
 pub const ExtComponentResource = extern struct {
@@ -7983,7 +9040,7 @@ pub const ExtComponentResource = extern struct {
     componentRegisterFlags: objc.SInt32,
     componentIconFamily: objc.SInt16,
     count: objc.SInt32,
-    platformArray: [1] ComponentPlatformInfo,
+    platformArray: [1]ComponentPlatformInfo,
 };
 
 pub const ExtComponentResourcePtr = ?*ExtComponentResource;
@@ -8000,29 +9057,29 @@ pub const ComponentParameters = extern struct {
     paramSize: objc.UInt8,
     what: objc.SInt16,
     padding: objc.UInt32,
-    params: [1] i64,
+    params: [1]i64,
 };
 
 pub const ComponentRecord = extern struct {
-    data: [1] i64,
+    data: [1]i64,
 };
 
 pub const Component = ?*ComponentRecord;
 
 pub const ComponentInstanceRecord = extern struct {
-    data: [1] i64,
+    data: [1]i64,
 };
 
 pub const ComponentInstance = ?*ComponentInstanceRecord;
 
 pub const RegisteredComponentRecord = extern struct {
-    data: [1] i64,
+    data: [1]i64,
 };
 
 pub const RegisteredComponentRecordPtr = ?*RegisteredComponentRecord;
 
 pub const RegisteredComponentInstanceRecord = extern struct {
-    data: [1] i64,
+    data: [1]i64,
 };
 
 pub const RegisteredComponentInstanceRecordPtr = ?*RegisteredComponentInstanceRecord;
@@ -8041,9 +9098,11 @@ pub const anon2451 = enum(u32) {
     kCSAcceptThreadSafeComponentsOnlyMode = 1,
 };
 
-pub extern "CoreServices" fn CSSetComponentsThreadMode(mode: CSComponentsThreadMode) callconv(.C) void;
+extern "CoreServices" fn CSSetComponentsThreadMode(mode: CSComponentsThreadMode) callconv(.C) void;
+pub const csSetComponentsThreadMode = CSSetComponentsThreadMode;
 
-pub extern "CoreServices" fn CSGetComponentsThreadMode() callconv(.C) CSComponentsThreadMode;
+extern "CoreServices" fn CSGetComponentsThreadMode() callconv(.C) CSComponentsThreadMode;
+pub const csGetComponentsThreadMode = CSGetComponentsThreadMode;
 
 pub const ComponentMPWorkFunctionHeaderRecord = extern struct {
     headerSize: objc.UInt32,
@@ -8056,11 +9115,17 @@ pub const ComponentMPWorkFunctionHeaderRecord = extern struct {
 
 pub const ComponentMPWorkFunctionHeaderRecordPtr = ?*ComponentMPWorkFunctionHeaderRecord;
 
-pub const ComponentMPWorkFunctionProcPtr = ?*const fn(?*anyopaque, ComponentMPWorkFunctionHeaderRecordPtr) callconv(.C) ComponentResult;
+pub const ComponentMPWorkFunctionProcPtr = ?*const fn (?*anyopaque, ComponentMPWorkFunctionHeaderRecordPtr) callconv(.C) ComponentResult;
 
-pub const ComponentRoutineProcPtr = ?*const fn(?*ComponentParameters, objc.Handle) callconv(.C) ComponentResult;
+pub const ComponentRoutineProcPtr = ?*const fn (?*ComponentParameters, objc.Handle) callconv(.C) ComponentResult;
 
-pub const GetMissingComponentResourceProcPtr = ?*const fn(Component, objc.OSType, objc.SInt16, ?*anyopaque, ?*objc.Handle, ) callconv(.C) objc.OSErr;
+pub const GetMissingComponentResourceProcPtr = ?*const fn (
+    Component,
+    objc.OSType,
+    objc.SInt16,
+    ?*anyopaque,
+    ?*objc.Handle,
+) callconv(.C) objc.OSErr;
 
 pub const ComponentMPWorkFunctionUPP = ComponentMPWorkFunctionProcPtr;
 
@@ -8070,125 +9135,248 @@ pub const GetMissingComponentResourceUPP = GetMissingComponentResourceProcPtr;
 
 pub const ComponentFunctionUPP = objc.UniversalProcPtr;
 
-pub extern "CoreServices" fn NewComponentFunctionUPP(userRoutine: objc.ProcPtr, procInfo: ProcInfoType) callconv(.C) ComponentFunctionUPP;
+extern "CoreServices" fn NewComponentFunctionUPP(userRoutine: objc.ProcPtr, procInfo: ProcInfoType) callconv(.C) ComponentFunctionUPP;
+pub const newComponentFunctionUPP = NewComponentFunctionUPP;
 
-pub extern "CoreServices" fn DisposeComponentFunctionUPP(userUPP: ComponentFunctionUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeComponentFunctionUPP(userUPP: ComponentFunctionUPP) callconv(.C) void;
+pub const disposeComponentFunctionUPP = DisposeComponentFunctionUPP;
 
-pub extern "CoreServices" fn RegisterComponent(cd: ?*ComponentDescription, componentEntryPoint: ComponentRoutineUPP, global: objc.SInt16, componentName: objc.Handle, componentInfo: objc.Handle, componentIcon: objc.Handle, ) callconv(.C) Component;
+extern "CoreServices" fn RegisterComponent(
+    cd: ?*ComponentDescription,
+    componentEntryPoint: ComponentRoutineUPP,
+    global: objc.SInt16,
+    componentName: objc.Handle,
+    componentInfo: objc.Handle,
+    componentIcon: objc.Handle,
+) callconv(.C) Component;
+pub const registerComponent = RegisterComponent;
 
-pub extern "CoreServices" fn RegisterComponentResource(cr: ComponentResourceHandle, global: objc.SInt16) callconv(.C) Component;
+extern "CoreServices" fn RegisterComponentResource(cr: ComponentResourceHandle, global: objc.SInt16) callconv(.C) Component;
+pub const registerComponentResource = RegisterComponentResource;
 
-pub extern "CoreServices" fn UnregisterComponent(aComponent: Component) callconv(.C) objc.OSErr;
+extern "CoreServices" fn UnregisterComponent(aComponent: Component) callconv(.C) objc.OSErr;
+pub const unregisterComponent = UnregisterComponent;
 
-pub extern "CoreServices" fn FindNextComponent(aComponent: Component, looking: ?*ComponentDescription) callconv(.C) Component;
+extern "CoreServices" fn FindNextComponent(aComponent: Component, looking: ?*ComponentDescription) callconv(.C) Component;
+pub const findNextComponent = FindNextComponent;
 
-pub extern "CoreServices" fn CountComponents(looking: ?*ComponentDescription) callconv(.C) i64;
+extern "CoreServices" fn CountComponents(looking: ?*ComponentDescription) callconv(.C) i64;
+pub const countComponents = CountComponents;
 
-pub extern "CoreServices" fn GetComponentInfo(aComponent: Component, cd: ?*ComponentDescription, componentName: objc.Handle, componentInfo: objc.Handle, componentIcon: objc.Handle, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetComponentInfo(
+    aComponent: Component,
+    cd: ?*ComponentDescription,
+    componentName: objc.Handle,
+    componentInfo: objc.Handle,
+    componentIcon: objc.Handle,
+) callconv(.C) objc.OSErr;
+pub const getComponentInfo = GetComponentInfo;
 
-pub extern "CoreServices" fn GetComponentListModSeed() callconv(.C) objc.SInt32;
+extern "CoreServices" fn GetComponentListModSeed() callconv(.C) objc.SInt32;
+pub const getComponentListModSeed = GetComponentListModSeed;
 
-pub extern "CoreServices" fn GetComponentTypeModSeed(componentType: objc.OSType) callconv(.C) objc.SInt32;
+extern "CoreServices" fn GetComponentTypeModSeed(componentType: objc.OSType) callconv(.C) objc.SInt32;
+pub const getComponentTypeModSeed = GetComponentTypeModSeed;
 
-pub extern "CoreServices" fn OpenAComponent(aComponent: Component, ci: ?*ComponentInstance) callconv(.C) objc.OSErr;
+extern "CoreServices" fn OpenAComponent(aComponent: Component, ci: ?*ComponentInstance) callconv(.C) objc.OSErr;
+pub const openAComponent = OpenAComponent;
 
-pub extern "CoreServices" fn OpenComponent(aComponent: Component) callconv(.C) ComponentInstance;
+extern "CoreServices" fn OpenComponent(aComponent: Component) callconv(.C) ComponentInstance;
+pub const openComponent = OpenComponent;
 
-pub extern "CoreServices" fn CloseComponent(aComponentInstance: ComponentInstance) callconv(.C) objc.OSErr;
+extern "CoreServices" fn CloseComponent(aComponentInstance: ComponentInstance) callconv(.C) objc.OSErr;
+pub const closeComponent = CloseComponent;
 
-pub extern "CoreServices" fn GetComponentInstanceError(aComponentInstance: ComponentInstance) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetComponentInstanceError(aComponentInstance: ComponentInstance) callconv(.C) objc.OSErr;
+pub const getComponentInstanceError = GetComponentInstanceError;
 
-pub extern "CoreServices" fn ResolveComponentAlias(aComponent: Component) callconv(.C) Component;
+extern "CoreServices" fn ResolveComponentAlias(aComponent: Component) callconv(.C) Component;
+pub const resolveComponentAlias = ResolveComponentAlias;
 
-pub extern "CoreServices" fn GetComponentPublicResource(aComponent: Component, resourceType: objc.OSType, resourceID: objc.SInt16, theResource: ?*objc.Handle, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetComponentPublicResource(
+    aComponent: Component,
+    resourceType: objc.OSType,
+    resourceID: objc.SInt16,
+    theResource: ?*objc.Handle,
+) callconv(.C) objc.OSErr;
+pub const getComponentPublicResource = GetComponentPublicResource;
 
-pub extern "CoreServices" fn GetComponentPublicResourceList(resourceType: objc.OSType, resourceID: objc.SInt16, flags: objc.SInt32, cd: ?*ComponentDescription, missingProc: GetMissingComponentResourceUPP, refCon: ?*anyopaque, atomContainerPtr: ?*anyopaque, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetComponentPublicResourceList(
+    resourceType: objc.OSType,
+    resourceID: objc.SInt16,
+    flags: objc.SInt32,
+    cd: ?*ComponentDescription,
+    missingProc: GetMissingComponentResourceUPP,
+    refCon: ?*anyopaque,
+    atomContainerPtr: ?*anyopaque,
+) callconv(.C) objc.OSErr;
+pub const getComponentPublicResourceList = GetComponentPublicResourceList;
 
-pub extern "CoreServices" fn GetComponentPublicIndString(aComponent: Component, theString: objc.Str255, strListID: objc.SInt16, index: objc.SInt16, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetComponentPublicIndString(
+    aComponent: Component,
+    theString: objc.Str255,
+    strListID: objc.SInt16,
+    index: objc.SInt16,
+) callconv(.C) objc.OSErr;
+pub const getComponentPublicIndString = GetComponentPublicIndString;
 
-pub extern "CoreServices" fn SetComponentInstanceError(aComponentInstance: ComponentInstance, theError: objc.OSErr) callconv(.C) void;
+extern "CoreServices" fn SetComponentInstanceError(aComponentInstance: ComponentInstance, theError: objc.OSErr) callconv(.C) void;
+pub const setComponentInstanceError = SetComponentInstanceError;
 
-pub extern "CoreServices" fn GetComponentRefcon(aComponent: Component) callconv(.C) i64;
+extern "CoreServices" fn GetComponentRefcon(aComponent: Component) callconv(.C) i64;
+pub const getComponentRefcon = GetComponentRefcon;
 
-pub extern "CoreServices" fn SetComponentRefcon(aComponent: Component, theRefcon: i64) callconv(.C) void;
+extern "CoreServices" fn SetComponentRefcon(aComponent: Component, theRefcon: i64) callconv(.C) void;
+pub const setComponentRefcon = SetComponentRefcon;
 
-pub extern "CoreServices" fn OpenComponentResFile(aComponent: Component) callconv(.C) ResFileRefNum;
+extern "CoreServices" fn OpenComponentResFile(aComponent: Component) callconv(.C) ResFileRefNum;
+pub const openComponentResFile = OpenComponentResFile;
 
-pub extern "CoreServices" fn OpenAComponentResFile(aComponent: Component, resRef: ?*ResFileRefNum) callconv(.C) objc.OSErr;
+extern "CoreServices" fn OpenAComponentResFile(aComponent: Component, resRef: ?*ResFileRefNum) callconv(.C) objc.OSErr;
+pub const openAComponentResFile = OpenAComponentResFile;
 
-pub extern "CoreServices" fn CloseComponentResFile(refnum: ResFileRefNum) callconv(.C) objc.OSErr;
+extern "CoreServices" fn CloseComponentResFile(refnum: ResFileRefNum) callconv(.C) objc.OSErr;
+pub const closeComponentResFile = CloseComponentResFile;
 
-pub extern "CoreServices" fn GetComponentResource(aComponent: Component, resType: objc.OSType, resID: objc.SInt16, theResource: ?*objc.Handle, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetComponentResource(
+    aComponent: Component,
+    resType: objc.OSType,
+    resID: objc.SInt16,
+    theResource: ?*objc.Handle,
+) callconv(.C) objc.OSErr;
+pub const getComponentResource = GetComponentResource;
 
-pub extern "CoreServices" fn GetComponentIndString(aComponent: Component, theString: objc.Str255, strListID: objc.SInt16, index: objc.SInt16, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetComponentIndString(
+    aComponent: Component,
+    theString: objc.Str255,
+    strListID: objc.SInt16,
+    index: objc.SInt16,
+) callconv(.C) objc.OSErr;
+pub const getComponentIndString = GetComponentIndString;
 
-pub extern "CoreServices" fn GetComponentInstanceStorage(aComponentInstance: ComponentInstance) callconv(.C) objc.Handle;
+extern "CoreServices" fn GetComponentInstanceStorage(aComponentInstance: ComponentInstance) callconv(.C) objc.Handle;
+pub const getComponentInstanceStorage = GetComponentInstanceStorage;
 
-pub extern "CoreServices" fn SetComponentInstanceStorage(aComponentInstance: ComponentInstance, theStorage: objc.Handle) callconv(.C) void;
+extern "CoreServices" fn SetComponentInstanceStorage(aComponentInstance: ComponentInstance, theStorage: objc.Handle) callconv(.C) void;
+pub const setComponentInstanceStorage = SetComponentInstanceStorage;
 
-pub extern "CoreServices" fn CountComponentInstances(aComponent: Component) callconv(.C) i64;
+extern "CoreServices" fn CountComponentInstances(aComponent: Component) callconv(.C) i64;
+pub const countComponentInstances = CountComponentInstances;
 
-pub extern "CoreServices" fn CallComponentFunction(params: ?*ComponentParameters, func: ComponentFunctionUPP) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentFunction(params: ?*ComponentParameters, func: ComponentFunctionUPP) callconv(.C) ComponentResult;
+pub const callComponentFunction = CallComponentFunction;
 
-pub extern "CoreServices" fn CallComponentFunctionWithStorage(storage: objc.Handle, params: ?*ComponentParameters, func: ComponentFunctionUPP) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentFunctionWithStorage(storage: objc.Handle, params: ?*ComponentParameters, func: ComponentFunctionUPP) callconv(.C) ComponentResult;
+pub const callComponentFunctionWithStorage = CallComponentFunctionWithStorage;
 
-pub extern "CoreServices" fn CallComponentFunctionWithStorageProcInfo(storage: objc.Handle, params: ?*ComponentParameters, func: objc.ProcPtr, funcProcInfo: ProcInfoType, ) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentFunctionWithStorageProcInfo(
+    storage: objc.Handle,
+    params: ?*ComponentParameters,
+    func: objc.ProcPtr,
+    funcProcInfo: ProcInfoType,
+) callconv(.C) ComponentResult;
+pub const callComponentFunctionWithStorageProcInfo = CallComponentFunctionWithStorageProcInfo;
 
-pub extern "CoreServices" fn DelegateComponentCall(originalParams: ?*ComponentParameters, ci: ComponentInstance) callconv(.C) ComponentResult;
+extern "CoreServices" fn DelegateComponentCall(originalParams: ?*ComponentParameters, ci: ComponentInstance) callconv(.C) ComponentResult;
+pub const delegateComponentCall = DelegateComponentCall;
 
-pub extern "CoreServices" fn SetDefaultComponent(aComponent: Component, flags: objc.SInt16) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetDefaultComponent(aComponent: Component, flags: objc.SInt16) callconv(.C) objc.OSErr;
+pub const setDefaultComponent = SetDefaultComponent;
 
-pub extern "CoreServices" fn OpenDefaultComponent(componentType: objc.OSType, componentSubType: objc.OSType) callconv(.C) ComponentInstance;
+extern "CoreServices" fn OpenDefaultComponent(componentType: objc.OSType, componentSubType: objc.OSType) callconv(.C) ComponentInstance;
+pub const openDefaultComponent = OpenDefaultComponent;
 
-pub extern "CoreServices" fn OpenADefaultComponent(componentType: objc.OSType, componentSubType: objc.OSType, ci: ?*ComponentInstance) callconv(.C) objc.OSErr;
+extern "CoreServices" fn OpenADefaultComponent(componentType: objc.OSType, componentSubType: objc.OSType, ci: ?*ComponentInstance) callconv(.C) objc.OSErr;
+pub const openADefaultComponent = OpenADefaultComponent;
 
-pub extern "CoreServices" fn CaptureComponent(capturedComponent: Component, capturingComponent: Component) callconv(.C) Component;
+extern "CoreServices" fn CaptureComponent(capturedComponent: Component, capturingComponent: Component) callconv(.C) Component;
+pub const captureComponent = CaptureComponent;
 
-pub extern "CoreServices" fn UncaptureComponent(aComponent: Component) callconv(.C) objc.OSErr;
+extern "CoreServices" fn UncaptureComponent(aComponent: Component) callconv(.C) objc.OSErr;
+pub const uncaptureComponent = UncaptureComponent;
 
-pub extern "CoreServices" fn RegisterComponentResourceFile(resRefNum: objc.SInt16, global: objc.SInt16) callconv(.C) objc.SInt32;
+extern "CoreServices" fn RegisterComponentResourceFile(resRefNum: objc.SInt16, global: objc.SInt16) callconv(.C) objc.SInt32;
+pub const registerComponentResourceFile = RegisterComponentResourceFile;
 
-pub extern "CoreServices" fn RegisterComponentFileRef(ref: ?*FSRef, global: objc.SInt16) callconv(.C) objc.OSErr;
+extern "CoreServices" fn RegisterComponentFileRef(ref: ?*FSRef, global: objc.SInt16) callconv(.C) objc.OSErr;
+pub const registerComponentFileRef = RegisterComponentFileRef;
 
-pub extern "CoreServices" fn RegisterComponentFileRefEntries(ref: ?*FSRef, global: objc.SInt16, toRegister: ?*ComponentDescription, registerCount: objc.UInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn RegisterComponentFileRefEntries(
+    ref: ?*FSRef,
+    global: objc.SInt16,
+    toRegister: ?*ComponentDescription,
+    registerCount: objc.UInt32,
+) callconv(.C) objc.OSErr;
+pub const registerComponentFileRefEntries = RegisterComponentFileRefEntries;
 
-pub extern "CoreServices" fn CallComponentOpen(ci: ComponentInstance, self: ComponentInstance) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentOpen(ci: ComponentInstance, self: ComponentInstance) callconv(.C) ComponentResult;
+pub const callComponentOpen = CallComponentOpen;
 
-pub extern "CoreServices" fn CallComponentClose(ci: ComponentInstance, self: ComponentInstance) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentClose(ci: ComponentInstance, self: ComponentInstance) callconv(.C) ComponentResult;
+pub const callComponentClose = CallComponentClose;
 
-pub extern "CoreServices" fn CallComponentCanDo(ci: ComponentInstance, ftnNumber: objc.SInt16) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentCanDo(ci: ComponentInstance, ftnNumber: objc.SInt16) callconv(.C) ComponentResult;
+pub const callComponentCanDo = CallComponentCanDo;
 
-pub extern "CoreServices" fn CallComponentVersion(ci: ComponentInstance) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentVersion(ci: ComponentInstance) callconv(.C) ComponentResult;
+pub const callComponentVersion = CallComponentVersion;
 
-pub extern "CoreServices" fn CallComponentRegister(ci: ComponentInstance) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentRegister(ci: ComponentInstance) callconv(.C) ComponentResult;
+pub const callComponentRegister = CallComponentRegister;
 
-pub extern "CoreServices" fn CallComponentTarget(ci: ComponentInstance, target: ComponentInstance) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentTarget(ci: ComponentInstance, target: ComponentInstance) callconv(.C) ComponentResult;
+pub const callComponentTarget = CallComponentTarget;
 
-pub extern "CoreServices" fn CallComponentUnregister(ci: ComponentInstance) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentUnregister(ci: ComponentInstance) callconv(.C) ComponentResult;
+pub const callComponentUnregister = CallComponentUnregister;
 
-pub extern "CoreServices" fn CallComponentGetMPWorkFunction(ci: ComponentInstance, workFunction: ?*ComponentMPWorkFunctionUPP, refCon: ?*?*anyopaque) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentGetMPWorkFunction(ci: ComponentInstance, workFunction: ?*ComponentMPWorkFunctionUPP, refCon: ?*?*anyopaque) callconv(.C) ComponentResult;
+pub const callComponentGetMPWorkFunction = CallComponentGetMPWorkFunction;
 
-pub extern "CoreServices" fn CallComponentGetPublicResource(ci: ComponentInstance, resourceType: objc.OSType, resourceID: objc.SInt16, resource: ?*objc.Handle, ) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentGetPublicResource(
+    ci: ComponentInstance,
+    resourceType: objc.OSType,
+    resourceID: objc.SInt16,
+    resource: ?*objc.Handle,
+) callconv(.C) ComponentResult;
+pub const callComponentGetPublicResource = CallComponentGetPublicResource;
 
-pub extern "CoreServices" fn CallComponentDispatch(cp: ?*ComponentParameters) callconv(.C) ComponentResult;
+extern "CoreServices" fn CallComponentDispatch(cp: ?*ComponentParameters) callconv(.C) ComponentResult;
+pub const callComponentDispatch = CallComponentDispatch;
 
-pub extern "CoreServices" fn NewComponentMPWorkFunctionUPP(userRoutine: ComponentMPWorkFunctionProcPtr) callconv(.C) ComponentMPWorkFunctionUPP;
+extern "CoreServices" fn NewComponentMPWorkFunctionUPP(userRoutine: ComponentMPWorkFunctionProcPtr) callconv(.C) ComponentMPWorkFunctionUPP;
+pub const newComponentMPWorkFunctionUPP = NewComponentMPWorkFunctionUPP;
 
-pub extern "CoreServices" fn NewComponentRoutineUPP(userRoutine: ComponentRoutineProcPtr) callconv(.C) ComponentRoutineUPP;
+extern "CoreServices" fn NewComponentRoutineUPP(userRoutine: ComponentRoutineProcPtr) callconv(.C) ComponentRoutineUPP;
+pub const newComponentRoutineUPP = NewComponentRoutineUPP;
 
-pub extern "CoreServices" fn NewGetMissingComponentResourceUPP(userRoutine: GetMissingComponentResourceProcPtr) callconv(.C) GetMissingComponentResourceUPP;
+extern "CoreServices" fn NewGetMissingComponentResourceUPP(userRoutine: GetMissingComponentResourceProcPtr) callconv(.C) GetMissingComponentResourceUPP;
+pub const newGetMissingComponentResourceUPP = NewGetMissingComponentResourceUPP;
 
-pub extern "CoreServices" fn DisposeComponentMPWorkFunctionUPP(userUPP: ComponentMPWorkFunctionUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeComponentMPWorkFunctionUPP(userUPP: ComponentMPWorkFunctionUPP) callconv(.C) void;
+pub const disposeComponentMPWorkFunctionUPP = DisposeComponentMPWorkFunctionUPP;
 
-pub extern "CoreServices" fn DisposeComponentRoutineUPP(userUPP: ComponentRoutineUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeComponentRoutineUPP(userUPP: ComponentRoutineUPP) callconv(.C) void;
+pub const disposeComponentRoutineUPP = DisposeComponentRoutineUPP;
 
-pub extern "CoreServices" fn DisposeGetMissingComponentResourceUPP(userUPP: GetMissingComponentResourceUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeGetMissingComponentResourceUPP(userUPP: GetMissingComponentResourceUPP) callconv(.C) void;
+pub const disposeGetMissingComponentResourceUPP = DisposeGetMissingComponentResourceUPP;
 
-pub extern "CoreServices" fn InvokeComponentMPWorkFunctionUPP(globalRefCon: ?*anyopaque, header: ComponentMPWorkFunctionHeaderRecordPtr, userUPP: ComponentMPWorkFunctionUPP) callconv(.C) ComponentResult;
+extern "CoreServices" fn InvokeComponentMPWorkFunctionUPP(globalRefCon: ?*anyopaque, header: ComponentMPWorkFunctionHeaderRecordPtr, userUPP: ComponentMPWorkFunctionUPP) callconv(.C) ComponentResult;
+pub const invokeComponentMPWorkFunctionUPP = InvokeComponentMPWorkFunctionUPP;
 
-pub extern "CoreServices" fn InvokeComponentRoutineUPP(cp: ?*ComponentParameters, componentStorage: objc.Handle, userUPP: ComponentRoutineUPP) callconv(.C) ComponentResult;
+extern "CoreServices" fn InvokeComponentRoutineUPP(cp: ?*ComponentParameters, componentStorage: objc.Handle, userUPP: ComponentRoutineUPP) callconv(.C) ComponentResult;
+pub const invokeComponentRoutineUPP = InvokeComponentRoutineUPP;
 
-pub extern "CoreServices" fn InvokeGetMissingComponentResourceUPP(c: Component, resType: objc.OSType, resID: objc.SInt16, refCon: ?*anyopaque, resource: ?*objc.Handle, userUPP: GetMissingComponentResourceUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeGetMissingComponentResourceUPP(
+    c: Component,
+    resType: objc.OSType,
+    resID: objc.SInt16,
+    refCon: ?*anyopaque,
+    resource: ?*objc.Handle,
+    userUPP: GetMissingComponentResourceUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeGetMissingComponentResourceUPP = InvokeGetMissingComponentResourceUPP;
 
 pub const anon15701 = enum(u32) {
     uppComponentFunctionImplementedProcInfo = 752,
@@ -8281,79 +9469,147 @@ pub const MPTaskStateKind = objc.UInt32;
 
 pub const MPPageSizeClass = objc.UInt32;
 
-pub extern "CoreServices" fn MPProcessors() callconv(.C) objc.ItemCount;
+extern "CoreServices" fn MPProcessors() callconv(.C) objc.ItemCount;
+pub const mpProcessors = MPProcessors;
 
-pub extern "CoreServices" fn MPProcessorsScheduled() callconv(.C) objc.ItemCount;
+extern "CoreServices" fn MPProcessorsScheduled() callconv(.C) objc.ItemCount;
+pub const mpProcessorsScheduled = MPProcessorsScheduled;
 
-pub const TaskProc = ?*const fn(?*anyopaque) callconv(.C) objc.OSStatus;
+pub const TaskProc = ?*const fn (?*anyopaque) callconv(.C) objc.OSStatus;
 
-pub extern "CoreServices" fn MPCreateTask(entryPoint: TaskProc, parameter: ?*anyopaque, stackSize: objc.ByteCount, notifyQueue: MPQueueID, terminationParameter1: ?*anyopaque, terminationParameter2: ?*anyopaque, options: MPTaskOptions, task: ?*MPTaskID, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPCreateTask(
+    entryPoint: TaskProc,
+    parameter: ?*anyopaque,
+    stackSize: objc.ByteCount,
+    notifyQueue: MPQueueID,
+    terminationParameter1: ?*anyopaque,
+    terminationParameter2: ?*anyopaque,
+    options: MPTaskOptions,
+    task: ?*MPTaskID,
+) callconv(.C) objc.OSStatus;
+pub const mpCreateTask = MPCreateTask;
 
-pub extern "CoreServices" fn MPTerminateTask(task: MPTaskID, terminationStatus: objc.OSStatus) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPTerminateTask(task: MPTaskID, terminationStatus: objc.OSStatus) callconv(.C) objc.OSStatus;
+pub const mpTerminateTask = MPTerminateTask;
 
-pub extern "CoreServices" fn MPSetTaskWeight(task: MPTaskID, weight: MPTaskWeight) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPSetTaskWeight(task: MPTaskID, weight: MPTaskWeight) callconv(.C) objc.OSStatus;
+pub const mpSetTaskWeight = MPSetTaskWeight;
 
-pub extern "CoreServices" fn MPTaskIsPreemptive(taskID: MPTaskID) callconv(.C) objc.Boolean;
+extern "CoreServices" fn MPTaskIsPreemptive(taskID: MPTaskID) callconv(.C) objc.Boolean;
+pub const mpTaskIsPreemptive = MPTaskIsPreemptive;
 
-pub extern "CoreServices" fn MPExit(status: objc.OSStatus) callconv(.C) void;
+extern "CoreServices" fn MPExit(status: objc.OSStatus) callconv(.C) void;
+pub const mpExit = MPExit;
 
-pub extern "CoreServices" fn MPYield() callconv(.C) void;
+extern "CoreServices" fn MPYield() callconv(.C) void;
+pub const mpYield = MPYield;
 
-pub extern "CoreServices" fn MPCurrentTaskID() callconv(.C) MPTaskID;
+extern "CoreServices" fn MPCurrentTaskID() callconv(.C) MPTaskID;
+pub const mpCurrentTaskID = MPCurrentTaskID;
 
-pub extern "CoreServices" fn MPSetTaskType(task: MPTaskID, taskType: objc.OSType) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPSetTaskType(task: MPTaskID, taskType: objc.OSType) callconv(.C) objc.OSStatus;
+pub const mpSetTaskType = MPSetTaskType;
 
-pub extern "CoreServices" fn MPAllocateTaskStorageIndex(taskIndex: ?*TaskStorageIndex) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPAllocateTaskStorageIndex(taskIndex: ?*TaskStorageIndex) callconv(.C) objc.OSStatus;
+pub const mpAllocateTaskStorageIndex = MPAllocateTaskStorageIndex;
 
-pub extern "CoreServices" fn MPDeallocateTaskStorageIndex(taskIndex: TaskStorageIndex) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPDeallocateTaskStorageIndex(taskIndex: TaskStorageIndex) callconv(.C) objc.OSStatus;
+pub const mpDeallocateTaskStorageIndex = MPDeallocateTaskStorageIndex;
 
-pub extern "CoreServices" fn MPSetTaskStorageValue(taskIndex: TaskStorageIndex, value: TaskStorageValue) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPSetTaskStorageValue(taskIndex: TaskStorageIndex, value: TaskStorageValue) callconv(.C) objc.OSStatus;
+pub const mpSetTaskStorageValue = MPSetTaskStorageValue;
 
-pub extern "CoreServices" fn MPGetTaskStorageValue(taskIndex: TaskStorageIndex) callconv(.C) TaskStorageValue;
+extern "CoreServices" fn MPGetTaskStorageValue(taskIndex: TaskStorageIndex) callconv(.C) TaskStorageValue;
+pub const mpGetTaskStorageValue = MPGetTaskStorageValue;
 
-pub extern "CoreServices" fn MPCreateQueue(queue: ?*MPQueueID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPCreateQueue(queue: ?*MPQueueID) callconv(.C) objc.OSStatus;
+pub const mpCreateQueue = MPCreateQueue;
 
-pub extern "CoreServices" fn MPDeleteQueue(queue: MPQueueID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPDeleteQueue(queue: MPQueueID) callconv(.C) objc.OSStatus;
+pub const mpDeleteQueue = MPDeleteQueue;
 
-pub extern "CoreServices" fn MPNotifyQueue(queue: MPQueueID, param1: ?*anyopaque, param2: ?*anyopaque, param3: ?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPNotifyQueue(
+    queue: MPQueueID,
+    param1: ?*anyopaque,
+    param2: ?*anyopaque,
+    param3: ?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const mpNotifyQueue = MPNotifyQueue;
 
-pub extern "CoreServices" fn MPWaitOnQueue(queue: MPQueueID, param1: ?*?*anyopaque, param2: ?*?*anyopaque, param3: ?*?*anyopaque, timeout: objc.Duration, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPWaitOnQueue(
+    queue: MPQueueID,
+    param1: ?*?*anyopaque,
+    param2: ?*?*anyopaque,
+    param3: ?*?*anyopaque,
+    timeout: objc.Duration,
+) callconv(.C) objc.OSStatus;
+pub const mpWaitOnQueue = MPWaitOnQueue;
 
-pub extern "CoreServices" fn MPSetQueueReserve(queue: MPQueueID, count: objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPSetQueueReserve(queue: MPQueueID, count: objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const mpSetQueueReserve = MPSetQueueReserve;
 
-pub extern "CoreServices" fn MPCreateSemaphore(maximumValue: MPSemaphoreCount, initialValue: MPSemaphoreCount, semaphore: ?*MPSemaphoreID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPCreateSemaphore(maximumValue: MPSemaphoreCount, initialValue: MPSemaphoreCount, semaphore: ?*MPSemaphoreID) callconv(.C) objc.OSStatus;
+pub const mpCreateSemaphore = MPCreateSemaphore;
 
-pub extern "CoreServices" fn MPDeleteSemaphore(semaphore: MPSemaphoreID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPDeleteSemaphore(semaphore: MPSemaphoreID) callconv(.C) objc.OSStatus;
+pub const mpDeleteSemaphore = MPDeleteSemaphore;
 
-pub extern "CoreServices" fn MPSignalSemaphore(semaphore: MPSemaphoreID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPSignalSemaphore(semaphore: MPSemaphoreID) callconv(.C) objc.OSStatus;
+pub const mpSignalSemaphore = MPSignalSemaphore;
 
-pub extern "CoreServices" fn MPWaitOnSemaphore(semaphore: MPSemaphoreID, timeout: objc.Duration) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPWaitOnSemaphore(semaphore: MPSemaphoreID, timeout: objc.Duration) callconv(.C) objc.OSStatus;
+pub const mpWaitOnSemaphore = MPWaitOnSemaphore;
 
-pub extern "CoreServices" fn MPCreateCriticalRegion(criticalRegion: ?*MPCriticalRegionID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPCreateCriticalRegion(criticalRegion: ?*MPCriticalRegionID) callconv(.C) objc.OSStatus;
+pub const mpCreateCriticalRegion = MPCreateCriticalRegion;
 
-pub extern "CoreServices" fn MPDeleteCriticalRegion(criticalRegion: MPCriticalRegionID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPDeleteCriticalRegion(criticalRegion: MPCriticalRegionID) callconv(.C) objc.OSStatus;
+pub const mpDeleteCriticalRegion = MPDeleteCriticalRegion;
 
-pub extern "CoreServices" fn MPEnterCriticalRegion(criticalRegion: MPCriticalRegionID, timeout: objc.Duration) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPEnterCriticalRegion(criticalRegion: MPCriticalRegionID, timeout: objc.Duration) callconv(.C) objc.OSStatus;
+pub const mpEnterCriticalRegion = MPEnterCriticalRegion;
 
-pub extern "CoreServices" fn MPExitCriticalRegion(criticalRegion: MPCriticalRegionID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPExitCriticalRegion(criticalRegion: MPCriticalRegionID) callconv(.C) objc.OSStatus;
+pub const mpExitCriticalRegion = MPExitCriticalRegion;
 
-pub extern "CoreServices" fn MPCreateEvent(event: ?*MPEventID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPCreateEvent(event: ?*MPEventID) callconv(.C) objc.OSStatus;
+pub const mpCreateEvent = MPCreateEvent;
 
-pub extern "CoreServices" fn MPDeleteEvent(event: MPEventID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPDeleteEvent(event: MPEventID) callconv(.C) objc.OSStatus;
+pub const mpDeleteEvent = MPDeleteEvent;
 
-pub extern "CoreServices" fn MPSetEvent(event: MPEventID, flags: MPEventFlags) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPSetEvent(event: MPEventID, flags: MPEventFlags) callconv(.C) objc.OSStatus;
+pub const mpSetEvent = MPSetEvent;
 
-pub extern "CoreServices" fn MPWaitForEvent(event: MPEventID, flags: ?*MPEventFlags, timeout: objc.Duration) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPWaitForEvent(event: MPEventID, flags: ?*MPEventFlags, timeout: objc.Duration) callconv(.C) objc.OSStatus;
+pub const mpWaitForEvent = MPWaitForEvent;
 
-pub extern "CoreServices" fn MPCreateNotification(notificationID: ?*MPNotificationID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPCreateNotification(notificationID: ?*MPNotificationID) callconv(.C) objc.OSStatus;
+pub const mpCreateNotification = MPCreateNotification;
 
-pub extern "CoreServices" fn MPDeleteNotification(notificationID: MPNotificationID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPDeleteNotification(notificationID: MPNotificationID) callconv(.C) objc.OSStatus;
+pub const mpDeleteNotification = MPDeleteNotification;
 
-pub extern "CoreServices" fn MPModifyNotification(notificationID: MPNotificationID, anID: MPOpaqueID, notifyParam1: ?*anyopaque, notifyParam2: ?*anyopaque, notifyParam3: ?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPModifyNotification(
+    notificationID: MPNotificationID,
+    anID: MPOpaqueID,
+    notifyParam1: ?*anyopaque,
+    notifyParam2: ?*anyopaque,
+    notifyParam3: ?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const mpModifyNotification = MPModifyNotification;
 
-pub extern "CoreServices" fn MPModifyNotificationParameters(notificationID: MPNotificationID, kind: MPOpaqueIDClass, notifyParam1: ?*anyopaque, notifyParam2: ?*anyopaque, notifyParam3: ?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPModifyNotificationParameters(
+    notificationID: MPNotificationID,
+    kind: MPOpaqueIDClass,
+    notifyParam1: ?*anyopaque,
+    notifyParam2: ?*anyopaque,
+    notifyParam3: ?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const mpModifyNotificationParameters = MPModifyNotificationParameters;
 
-pub extern "CoreServices" fn MPCauseNotification(notificationID: MPNotificationID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPCauseNotification(notificationID: MPNotificationID) callconv(.C) objc.OSStatus;
+pub const mpCauseNotification = MPCauseNotification;
 
 pub const anon8721 = enum(u32) {
     kMPPreserveTimerIDMask = 1,
@@ -8361,17 +9617,29 @@ pub const anon8721 = enum(u32) {
     kMPTimeIsDurationMask = 4,
 };
 
-pub extern "CoreServices" fn MPDelayUntil(expirationTime: ?*objc.AbsoluteTime) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPDelayUntil(expirationTime: ?*objc.AbsoluteTime) callconv(.C) objc.OSStatus;
+pub const mpDelayUntil = MPDelayUntil;
 
-pub extern "CoreServices" fn MPCreateTimer(timerID: ?*MPTimerID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPCreateTimer(timerID: ?*MPTimerID) callconv(.C) objc.OSStatus;
+pub const mpCreateTimer = MPCreateTimer;
 
-pub extern "CoreServices" fn MPDeleteTimer(timerID: MPTimerID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPDeleteTimer(timerID: MPTimerID) callconv(.C) objc.OSStatus;
+pub const mpDeleteTimer = MPDeleteTimer;
 
-pub extern "CoreServices" fn MPSetTimerNotify(timerID: MPTimerID, anID: MPOpaqueID, notifyParam1: ?*anyopaque, notifyParam2: ?*anyopaque, notifyParam3: ?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPSetTimerNotify(
+    timerID: MPTimerID,
+    anID: MPOpaqueID,
+    notifyParam1: ?*anyopaque,
+    notifyParam2: ?*anyopaque,
+    notifyParam3: ?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const mpSetTimerNotify = MPSetTimerNotify;
 
-pub extern "CoreServices" fn MPArmTimer(timerID: MPTimerID, expirationTime: ?*objc.AbsoluteTime, options: objc.OptionBits) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPArmTimer(timerID: MPTimerID, expirationTime: ?*objc.AbsoluteTime, options: objc.OptionBits) callconv(.C) objc.OSStatus;
+pub const mpArmTimer = MPArmTimer;
 
-pub extern "CoreServices" fn MPCancelTimer(timerID: MPTimerID, timeRemaining: ?*objc.AbsoluteTime) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPCancelTimer(timerID: MPTimerID, timeRemaining: ?*objc.AbsoluteTime) callconv(.C) objc.OSStatus;
+pub const mpCancelTimer = MPCancelTimer;
 
 pub const anon10171 = enum(u32) {
     kMPAllocateDefaultAligned = 0,
@@ -8395,17 +9663,23 @@ pub const anon10341 = enum(u32) {
     kMPAllocateNoCreateMask = 32,
 };
 
-pub extern "CoreServices" fn MPAllocateAligned(size: objc.ByteCount, alignment: objc.UInt8, options: objc.OptionBits) callconv(.C) objc.LogicalAddress;
+extern "CoreServices" fn MPAllocateAligned(size: objc.ByteCount, alignment: objc.UInt8, options: objc.OptionBits) callconv(.C) objc.LogicalAddress;
+pub const mpAllocateAligned = MPAllocateAligned;
 
-pub extern "CoreServices" fn MPAllocate(size: objc.ByteCount) callconv(.C) objc.LogicalAddress;
+extern "CoreServices" fn MPAllocate(size: objc.ByteCount) callconv(.C) objc.LogicalAddress;
+pub const mpAllocate = MPAllocate;
 
-pub extern "CoreServices" fn MPFree(object: objc.LogicalAddress) callconv(.C) void;
+extern "CoreServices" fn MPFree(object: objc.LogicalAddress) callconv(.C) void;
+pub const mpFree = MPFree;
 
-pub extern "CoreServices" fn MPGetAllocatedBlockSize(object: objc.LogicalAddress) callconv(.C) objc.ByteCount;
+extern "CoreServices" fn MPGetAllocatedBlockSize(object: objc.LogicalAddress) callconv(.C) objc.ByteCount;
+pub const mpGetAllocatedBlockSize = MPGetAllocatedBlockSize;
 
-pub extern "CoreServices" fn MPBlockCopy(source: objc.LogicalAddress, destination: objc.LogicalAddress, size: objc.ByteCount) callconv(.C) void;
+extern "CoreServices" fn MPBlockCopy(source: objc.LogicalAddress, destination: objc.LogicalAddress, size: objc.ByteCount) callconv(.C) void;
+pub const mpBlockCopy = MPBlockCopy;
 
-pub extern "CoreServices" fn MPBlockClear(address: objc.LogicalAddress, size: objc.ByteCount) callconv(.C) void;
+extern "CoreServices" fn MPBlockClear(address: objc.LogicalAddress, size: objc.ByteCount) callconv(.C) void;
+pub const mpBlockClear = MPBlockClear;
 
 pub const anon12221 = enum(u32) {
     kMPTaskStateRegisters = 0,
@@ -8475,23 +9749,30 @@ pub const MPTaskInfo = extern struct {
     stackCurr: objc.LogicalAddress,
 };
 
-pub extern "CoreServices" fn MPSetExceptionHandler(task: MPTaskID, exceptionQ: MPQueueID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPSetExceptionHandler(task: MPTaskID, exceptionQ: MPQueueID) callconv(.C) objc.OSStatus;
+pub const mpSetExceptionHandler = MPSetExceptionHandler;
 
-pub extern "CoreServices" fn MPDisposeTaskException(task: MPTaskID, action: objc.OptionBits) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPDisposeTaskException(task: MPTaskID, action: objc.OptionBits) callconv(.C) objc.OSStatus;
+pub const mpDisposeTaskException = MPDisposeTaskException;
 
-pub extern "CoreServices" fn MPExtractTaskState(task: MPTaskID, kind: MPTaskStateKind, info: ?*anyopaque) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPExtractTaskState(task: MPTaskID, kind: MPTaskStateKind, info: ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const mpExtractTaskState = MPExtractTaskState;
 
-pub extern "CoreServices" fn MPSetTaskState(task: MPTaskID, kind: MPTaskStateKind, info: ?*anyopaque) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPSetTaskState(task: MPTaskID, kind: MPTaskStateKind, info: ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const mpSetTaskState = MPSetTaskState;
 
-pub extern "CoreServices" fn MPThrowException(task: MPTaskID, kind: MPExceptionKind) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPThrowException(task: MPTaskID, kind: MPExceptionKind) callconv(.C) objc.OSStatus;
+pub const mpThrowException = MPThrowException;
 
 pub const MPDebuggerLevel = objc.UInt32;
 
-pub extern "CoreServices" fn MPRegisterDebugger(queue: MPQueueID, level: MPDebuggerLevel) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPRegisterDebugger(queue: MPQueueID, level: MPDebuggerLevel) callconv(.C) objc.OSStatus;
+pub const mpRegisterDebugger = MPRegisterDebugger;
 
-pub extern "CoreServices" fn MPUnregisterDebugger(queue: MPQueueID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPUnregisterDebugger(queue: MPQueueID) callconv(.C) objc.OSStatus;
+pub const mpUnregisterDebugger = MPUnregisterDebugger;
 
-pub const MPRemoteProcedure = ?*const fn(?*anyopaque) callconv(.C) ?*anyopaque;
+pub const MPRemoteProcedure = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
 
 pub const MPRemoteContext = objc.UInt8;
 
@@ -8502,17 +9783,34 @@ pub const anon14821 = enum(u32) {
     kMPAsyncInterruptRemoteContext = 3,
 };
 
-pub extern "CoreServices" fn MPRemoteCall(remoteProc: MPRemoteProcedure, parameter: ?*anyopaque, context: MPRemoteContext) callconv(.C) ?*anyopaque;
+extern "CoreServices" fn MPRemoteCall(remoteProc: MPRemoteProcedure, parameter: ?*anyopaque, context: MPRemoteContext) callconv(.C) ?*anyopaque;
+pub const mpRemoteCall = MPRemoteCall;
 
-pub extern "CoreServices" fn MPRemoteCallCFM(remoteProc: MPRemoteProcedure, parameter: ?*anyopaque, context: MPRemoteContext) callconv(.C) ?*anyopaque;
+extern "CoreServices" fn MPRemoteCallCFM(remoteProc: MPRemoteProcedure, parameter: ?*anyopaque, context: MPRemoteContext) callconv(.C) ?*anyopaque;
+pub const mpRemoteCallCFM = MPRemoteCallCFM;
 
-pub extern "CoreServices" fn _MPIsFullyInitialized() callconv(.C) objc.Boolean;
+extern "CoreServices" fn _MPIsFullyInitialized() callconv(.C) objc.Boolean;
+pub const _mpIsFullyInitialized = _MPIsFullyInitialized;
 
-pub const MPIsFullyInitializedProc = ?*const fn() callconv(.C) objc.Boolean;
+pub const MPIsFullyInitializedProc = ?*const fn () callconv(.C) objc.Boolean;
 
-pub extern "CoreServices" fn _MPLibraryVersion(versionCString: ?*?*i8, major: ?*objc.UInt32, minor: ?*objc.UInt32, release: ?*objc.UInt32, revision: ?*objc.UInt32, ) callconv(.C) void;
+extern "CoreServices" fn _MPLibraryVersion(
+    versionCString: ?*?*i8,
+    major: ?*objc.UInt32,
+    minor: ?*objc.UInt32,
+    release: ?*objc.UInt32,
+    revision: ?*objc.UInt32,
+) callconv(.C) void;
+pub const _mpLibraryVersion = _MPLibraryVersion;
 
-pub extern "CoreServices" fn _MPLibraryIsCompatible(versionCString: ?*i8, major: objc.UInt32, minor: objc.UInt32, release: objc.UInt32, revision: objc.UInt32, ) callconv(.C) objc.Boolean;
+extern "CoreServices" fn _MPLibraryIsCompatible(
+    versionCString: ?*i8,
+    major: objc.UInt32,
+    minor: objc.UInt32,
+    release: objc.UInt32,
+    revision: objc.UInt32,
+) callconv(.C) objc.Boolean;
+pub const _mpLibraryIsCompatible = _MPLibraryIsCompatible;
 
 pub const FSAliasInfoBitmap = objc.UInt32;
 
@@ -8522,7 +9820,7 @@ pub const anon631 = enum(objc.OSType) {
 };
 
 pub const AliasRecord = extern struct {
-    hidden: [6] objc.UInt8,
+    hidden: [6]objc.UInt8,
 };
 
 pub const AliasPtr = ?*AliasRecord;
@@ -8549,47 +9847,135 @@ pub const FSAliasInfoPtr = ?*FSAliasInfo;
 
 pub const AliasInfoType = i16;
 
-pub const FSAliasFilterProcPtr = ?*const fn(?*FSRef, ?*objc.Boolean, objc.Ptr) callconv(.C) objc.Boolean;
+pub const FSAliasFilterProcPtr = ?*const fn (?*FSRef, ?*objc.Boolean, objc.Ptr) callconv(.C) objc.Boolean;
 
-pub extern "CoreServices" fn FSNewAlias(fromFile: ?*FSRef, target: ?*FSRef, inAlias: ?*AliasHandle) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSNewAlias(fromFile: ?*FSRef, target: ?*FSRef, inAlias: ?*AliasHandle) callconv(.C) objc.OSErr;
+pub const fsNewAlias = FSNewAlias;
 
-pub extern "CoreServices" fn FSNewAliasMinimal(target: ?*FSRef, inAlias: ?*AliasHandle) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSNewAliasMinimal(target: ?*FSRef, inAlias: ?*AliasHandle) callconv(.C) objc.OSErr;
+pub const fsNewAliasMinimal = FSNewAliasMinimal;
 
-pub extern "CoreServices" fn FSIsAliasFile(fileRef: ?*FSRef, aliasFileFlag: ?*objc.Boolean, folderFlag: ?*objc.Boolean) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSIsAliasFile(fileRef: ?*FSRef, aliasFileFlag: ?*objc.Boolean, folderFlag: ?*objc.Boolean) callconv(.C) objc.OSErr;
+pub const fsIsAliasFile = FSIsAliasFile;
 
-pub extern "CoreServices" fn FSResolveAliasWithMountFlags(fromFile: ?*FSRef, inAlias: AliasHandle, target: ?*FSRef, wasChanged: ?*objc.Boolean, mountFlags: u64, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSResolveAliasWithMountFlags(
+    fromFile: ?*FSRef,
+    inAlias: AliasHandle,
+    target: ?*FSRef,
+    wasChanged: ?*objc.Boolean,
+    mountFlags: u64,
+) callconv(.C) objc.OSErr;
+pub const fsResolveAliasWithMountFlags = FSResolveAliasWithMountFlags;
 
-pub extern "CoreServices" fn FSResolveAlias(fromFile: ?*FSRef, alias: AliasHandle, target: ?*FSRef, wasChanged: ?*objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSResolveAlias(
+    fromFile: ?*FSRef,
+    alias: AliasHandle,
+    target: ?*FSRef,
+    wasChanged: ?*objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const fsResolveAlias = FSResolveAlias;
 
-pub extern "CoreServices" fn FSResolveAliasFileWithMountFlags(theRef: ?*FSRef, resolveAliasChains: objc.Boolean, targetIsFolder: ?*objc.Boolean, wasAliased: ?*objc.Boolean, mountFlags: u64, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSResolveAliasFileWithMountFlags(
+    theRef: ?*FSRef,
+    resolveAliasChains: objc.Boolean,
+    targetIsFolder: ?*objc.Boolean,
+    wasAliased: ?*objc.Boolean,
+    mountFlags: u64,
+) callconv(.C) objc.OSErr;
+pub const fsResolveAliasFileWithMountFlags = FSResolveAliasFileWithMountFlags;
 
-pub extern "CoreServices" fn FSResolveAliasFile(theRef: ?*FSRef, resolveAliasChains: objc.Boolean, targetIsFolder: ?*objc.Boolean, wasAliased: ?*objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSResolveAliasFile(
+    theRef: ?*FSRef,
+    resolveAliasChains: objc.Boolean,
+    targetIsFolder: ?*objc.Boolean,
+    wasAliased: ?*objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const fsResolveAliasFile = FSResolveAliasFile;
 
-pub extern "CoreServices" fn FSFollowFinderAlias(fromFile: ?*FSRef, alias: AliasHandle, logon: objc.Boolean, target: ?*FSRef, wasChanged: ?*objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSFollowFinderAlias(
+    fromFile: ?*FSRef,
+    alias: AliasHandle,
+    logon: objc.Boolean,
+    target: ?*FSRef,
+    wasChanged: ?*objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const fsFollowFinderAlias = FSFollowFinderAlias;
 
-pub extern "CoreServices" fn FSUpdateAlias(fromFile: ?*FSRef, target: ?*FSRef, alias: AliasHandle, wasChanged: ?*objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSUpdateAlias(
+    fromFile: ?*FSRef,
+    target: ?*FSRef,
+    alias: AliasHandle,
+    wasChanged: ?*objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const fsUpdateAlias = FSUpdateAlias;
 
-pub extern "CoreServices" fn FSNewAliasUnicode(fromFile: ?*FSRef, targetParentRef: ?*FSRef, targetNameLength: objc.UniCharCount, targetName: ?*objc.UniChar, inAlias: ?*AliasHandle, isDirectory: ?*objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSNewAliasUnicode(
+    fromFile: ?*FSRef,
+    targetParentRef: ?*FSRef,
+    targetNameLength: objc.UniCharCount,
+    targetName: ?*objc.UniChar,
+    inAlias: ?*AliasHandle,
+    isDirectory: ?*objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const fsNewAliasUnicode = FSNewAliasUnicode;
 
-pub extern "CoreServices" fn FSNewAliasMinimalUnicode(targetParentRef: ?*FSRef, targetNameLength: objc.UniCharCount, targetName: ?*objc.UniChar, inAlias: ?*AliasHandle, isDirectory: ?*objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSNewAliasMinimalUnicode(
+    targetParentRef: ?*FSRef,
+    targetNameLength: objc.UniCharCount,
+    targetName: ?*objc.UniChar,
+    inAlias: ?*AliasHandle,
+    isDirectory: ?*objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const fsNewAliasMinimalUnicode = FSNewAliasMinimalUnicode;
 
-pub extern "CoreServices" fn FSNewAliasFromPath(fromFilePath: ?*i8, targetPath: ?*i8, flags: objc.OptionBits, inAlias: ?*AliasHandle, isDirectory: ?*objc.Boolean, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSNewAliasFromPath(
+    fromFilePath: ?*i8,
+    targetPath: ?*i8,
+    flags: objc.OptionBits,
+    inAlias: ?*AliasHandle,
+    isDirectory: ?*objc.Boolean,
+) callconv(.C) objc.OSStatus;
+pub const fsNewAliasFromPath = FSNewAliasFromPath;
 
-pub extern "CoreServices" fn FSMatchAliasBulk(fromFile: ?*FSRef, rulesMask: u64, inAlias: AliasHandle, aliasCount: ?*i16, aliasList: ?*FSRef, needsUpdate: ?*objc.Boolean, aliasFilter: FSAliasFilterProcPtr, yourDataPtr: ?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSMatchAliasBulk(
+    fromFile: ?*FSRef,
+    rulesMask: u64,
+    inAlias: AliasHandle,
+    aliasCount: ?*i16,
+    aliasList: ?*FSRef,
+    needsUpdate: ?*objc.Boolean,
+    aliasFilter: FSAliasFilterProcPtr,
+    yourDataPtr: ?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const fsMatchAliasBulk = FSMatchAliasBulk;
 
-pub extern "CoreServices" fn FSCopyAliasInfo(inAlias: AliasHandle, targetName: ?*objc.HFSUniStr255, volumeName: ?*objc.HFSUniStr255, pathString: ?*core_foundation.StringRef, whichInfo: ?*FSAliasInfoBitmap, info: ?*FSAliasInfo, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn FSCopyAliasInfo(
+    inAlias: AliasHandle,
+    targetName: ?*objc.HFSUniStr255,
+    volumeName: ?*objc.HFSUniStr255,
+    pathString: ?*core_foundation.StringRef,
+    whichInfo: ?*FSAliasInfoBitmap,
+    info: ?*FSAliasInfo,
+) callconv(.C) objc.OSStatus;
+pub const fsCopyAliasInfo = FSCopyAliasInfo;
 
-pub extern "CoreServices" fn GetAliasSize(alias: AliasHandle) callconv(.C) objc.Size;
+extern "CoreServices" fn GetAliasSize(alias: AliasHandle) callconv(.C) objc.Size;
+pub const getAliasSize = GetAliasSize;
 
-pub extern "CoreServices" fn GetAliasUserType(alias: AliasHandle) callconv(.C) objc.OSType;
+extern "CoreServices" fn GetAliasUserType(alias: AliasHandle) callconv(.C) objc.OSType;
+pub const getAliasUserType = GetAliasUserType;
 
-pub extern "CoreServices" fn SetAliasUserType(alias: AliasHandle, userType: objc.OSType) callconv(.C) void;
+extern "CoreServices" fn SetAliasUserType(alias: AliasHandle, userType: objc.OSType) callconv(.C) void;
+pub const setAliasUserType = SetAliasUserType;
 
-pub extern "CoreServices" fn GetAliasSizeFromPtr(alias: ?*AliasRecord) callconv(.C) objc.Size;
+extern "CoreServices" fn GetAliasSizeFromPtr(alias: ?*AliasRecord) callconv(.C) objc.Size;
+pub const getAliasSizeFromPtr = GetAliasSizeFromPtr;
 
-pub extern "CoreServices" fn GetAliasUserTypeFromPtr(alias: ?*AliasRecord) callconv(.C) objc.OSType;
+extern "CoreServices" fn GetAliasUserTypeFromPtr(alias: ?*AliasRecord) callconv(.C) objc.OSType;
+pub const getAliasUserTypeFromPtr = GetAliasUserTypeFromPtr;
 
-pub extern "CoreServices" fn SetAliasUserTypeWithPtr(alias: AliasPtr, userType: objc.OSType) callconv(.C) void;
+extern "CoreServices" fn SetAliasUserTypeWithPtr(alias: AliasPtr, userType: objc.OSType) callconv(.C) void;
+pub const setAliasUserTypeWithPtr = SetAliasUserTypeWithPtr;
 
 pub const OpaqueLocaleRef = extern struct {};
 
@@ -8612,33 +9998,101 @@ pub const anon691 = enum(u32) {
     fVNumber = 0,
 };
 
-pub extern "CoreServices" fn LocaleRefFromLangOrRegionCode(lang: objc.LangCode, region: objc.RegionCode, locale: ?*LocaleRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleRefFromLangOrRegionCode(lang: objc.LangCode, region: objc.RegionCode, locale: ?*LocaleRef) callconv(.C) objc.OSStatus;
+pub const localeRefFromLangOrRegionCode = LocaleRefFromLangOrRegionCode;
 
-pub extern "CoreServices" fn LocaleRefFromLocaleString(localeString: *i8, locale: ?*LocaleRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleRefFromLocaleString(localeString: *i8, locale: ?*LocaleRef) callconv(.C) objc.OSStatus;
+pub const localeRefFromLocaleString = LocaleRefFromLocaleString;
 
-pub extern "CoreServices" fn LocaleRefGetPartString(locale: LocaleRef, partMask: LocalePartMask, maxStringLen: objc.ByteCount, partString: *i8, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleRefGetPartString(
+    locale: LocaleRef,
+    partMask: LocalePartMask,
+    maxStringLen: objc.ByteCount,
+    partString: *i8,
+) callconv(.C) objc.OSStatus;
+pub const localeRefGetPartString = LocaleRefGetPartString;
 
-pub extern "CoreServices" fn LocaleStringToLangAndRegionCodes(localeString: *i8, lang: ?*objc.LangCode, region: ?*objc.RegionCode) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleStringToLangAndRegionCodes(localeString: *i8, lang: ?*objc.LangCode, region: ?*objc.RegionCode) callconv(.C) objc.OSStatus;
+pub const localeStringToLangAndRegionCodes = LocaleStringToLangAndRegionCodes;
 
-pub extern "CoreServices" fn LocaleOperationCountLocales(opClass: LocaleOperationClass, localeCount: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleOperationCountLocales(opClass: LocaleOperationClass, localeCount: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const localeOperationCountLocales = LocaleOperationCountLocales;
 
-pub extern "CoreServices" fn LocaleOperationGetLocales(opClass: LocaleOperationClass, maxLocaleCount: objc.ItemCount, actualLocaleCount: ?*objc.ItemCount, localeVariantList: *LocaleAndVariant, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleOperationGetLocales(
+    opClass: LocaleOperationClass,
+    maxLocaleCount: objc.ItemCount,
+    actualLocaleCount: ?*objc.ItemCount,
+    localeVariantList: *LocaleAndVariant,
+) callconv(.C) objc.OSStatus;
+pub const localeOperationGetLocales = LocaleOperationGetLocales;
 
-pub extern "CoreServices" fn LocaleGetName(locale: LocaleRef, opVariant: LocaleOperationVariant, nameMask: LocaleNameMask, displayLocale: LocaleRef, maxNameLen: objc.UniCharCount, actualNameLen: ?*objc.UniCharCount, displayName: *objc.UniChar, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleGetName(
+    locale: LocaleRef,
+    opVariant: LocaleOperationVariant,
+    nameMask: LocaleNameMask,
+    displayLocale: LocaleRef,
+    maxNameLen: objc.UniCharCount,
+    actualNameLen: ?*objc.UniCharCount,
+    displayName: *objc.UniChar,
+) callconv(.C) objc.OSStatus;
+pub const localeGetName = LocaleGetName;
 
-pub extern "CoreServices" fn LocaleCountNames(locale: LocaleRef, opVariant: LocaleOperationVariant, nameMask: LocaleNameMask, nameCount: ?*objc.ItemCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleCountNames(
+    locale: LocaleRef,
+    opVariant: LocaleOperationVariant,
+    nameMask: LocaleNameMask,
+    nameCount: ?*objc.ItemCount,
+) callconv(.C) objc.OSStatus;
+pub const localeCountNames = LocaleCountNames;
 
-pub extern "CoreServices" fn LocaleGetIndName(locale: LocaleRef, opVariant: LocaleOperationVariant, nameMask: LocaleNameMask, nameIndex: objc.ItemCount, maxNameLen: objc.UniCharCount, actualNameLen: ?*objc.UniCharCount, displayName: *objc.UniChar, displayLocale: ?*LocaleRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleGetIndName(
+    locale: LocaleRef,
+    opVariant: LocaleOperationVariant,
+    nameMask: LocaleNameMask,
+    nameIndex: objc.ItemCount,
+    maxNameLen: objc.UniCharCount,
+    actualNameLen: ?*objc.UniCharCount,
+    displayName: *objc.UniChar,
+    displayLocale: ?*LocaleRef,
+) callconv(.C) objc.OSStatus;
+pub const localeGetIndName = LocaleGetIndName;
 
-pub extern "CoreServices" fn LocaleOperationGetName(opClass: LocaleOperationClass, displayLocale: LocaleRef, maxNameLen: objc.UniCharCount, actualNameLen: ?*objc.UniCharCount, displayName: *objc.UniChar, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleOperationGetName(
+    opClass: LocaleOperationClass,
+    displayLocale: LocaleRef,
+    maxNameLen: objc.UniCharCount,
+    actualNameLen: ?*objc.UniCharCount,
+    displayName: *objc.UniChar,
+) callconv(.C) objc.OSStatus;
+pub const localeOperationGetName = LocaleOperationGetName;
 
-pub extern "CoreServices" fn LocaleOperationCountNames(opClass: LocaleOperationClass, nameCount: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleOperationCountNames(opClass: LocaleOperationClass, nameCount: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const localeOperationCountNames = LocaleOperationCountNames;
 
-pub extern "CoreServices" fn LocaleOperationGetIndName(opClass: LocaleOperationClass, nameIndex: objc.ItemCount, maxNameLen: objc.UniCharCount, actualNameLen: ?*objc.UniCharCount, displayName: *objc.UniChar, displayLocale: ?*LocaleRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LocaleOperationGetIndName(
+    opClass: LocaleOperationClass,
+    nameIndex: objc.ItemCount,
+    maxNameLen: objc.UniCharCount,
+    actualNameLen: ?*objc.UniCharCount,
+    displayName: *objc.UniChar,
+    displayLocale: ?*LocaleRef,
+) callconv(.C) objc.OSStatus;
+pub const localeOperationGetIndName = LocaleOperationGetIndName;
 
-pub extern "CoreServices" fn DebugAssert(componentSignature: objc.OSType, options: objc.UInt32, assertionString: ?*i8, exceptionLabelString: ?*i8, errorString: ?*i8, fileName: ?*i8, lineNumber: i64, value: ?*anyopaque, ) callconv(.C) void;
+extern "CoreServices" fn DebugAssert(
+    componentSignature: objc.OSType,
+    options: objc.UInt32,
+    assertionString: ?*i8,
+    exceptionLabelString: ?*i8,
+    errorString: ?*i8,
+    fileName: ?*i8,
+    lineNumber: i64,
+    value: ?*anyopaque,
+) callconv(.C) void;
+pub const debugAssert = DebugAssert;
 
-pub extern "CoreServices" fn TaskLevel() callconv(.C) objc.UInt32;
+extern "CoreServices" fn TaskLevel() callconv(.C) objc.UInt32;
+pub const taskLevel = TaskLevel;
 
 pub const anon4041 = enum(u32) {
     kComponentDebugOption = 0,
@@ -8649,111 +10103,192 @@ pub const anon4081 = enum(u32) {
     kSetDebugOption = 2,
 };
 
-pub const DebugComponentCallbackProcPtr = ?*const fn(objc.SInt32, objc.UInt32, ?*objc.Boolean) callconv(.C) void;
+pub const DebugComponentCallbackProcPtr = ?*const fn (objc.SInt32, objc.UInt32, ?*objc.Boolean) callconv(.C) void;
 
 pub const DebugComponentCallbackUPP = DebugComponentCallbackProcPtr;
 
-pub extern "CoreServices" fn NewDebugComponent(componentSignature: objc.OSType, componentName: objc.ConstStr255Param, componentCallback: DebugComponentCallbackUPP) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn NewDebugComponent(componentSignature: objc.OSType, componentName: objc.ConstStr255Param, componentCallback: DebugComponentCallbackUPP) callconv(.C) objc.OSStatus;
+pub const newDebugComponent = NewDebugComponent;
 
-pub extern "CoreServices" fn NewDebugOption(componentSignature: objc.OSType, optionSelectorNum: objc.SInt32, optionName: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn NewDebugOption(componentSignature: objc.OSType, optionSelectorNum: objc.SInt32, optionName: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
+pub const newDebugOption = NewDebugOption;
 
-pub extern "CoreServices" fn DisposeDebugComponent(componentSignature: objc.OSType) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn DisposeDebugComponent(componentSignature: objc.OSType) callconv(.C) objc.OSStatus;
+pub const disposeDebugComponent = DisposeDebugComponent;
 
-pub extern "CoreServices" fn GetDebugComponentInfo(itemIndex: objc.UInt32, componentSignature: ?*objc.OSType, componentName: objc.Str255) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn GetDebugComponentInfo(itemIndex: objc.UInt32, componentSignature: ?*objc.OSType, componentName: objc.Str255) callconv(.C) objc.OSStatus;
+pub const getDebugComponentInfo = GetDebugComponentInfo;
 
-pub extern "CoreServices" fn GetDebugOptionInfo(itemIndex: objc.UInt32, componentSignature: objc.OSType, optionSelectorNum: ?*objc.SInt32, optionName: objc.Str255, optionSetting: ?*objc.Boolean, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn GetDebugOptionInfo(
+    itemIndex: objc.UInt32,
+    componentSignature: objc.OSType,
+    optionSelectorNum: ?*objc.SInt32,
+    optionName: objc.Str255,
+    optionSetting: ?*objc.Boolean,
+) callconv(.C) objc.OSStatus;
+pub const getDebugOptionInfo = GetDebugOptionInfo;
 
-pub extern "CoreServices" fn SetDebugOptionValue(componentSignature: objc.OSType, optionSelectorNum: objc.SInt32, newOptionSetting: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn SetDebugOptionValue(componentSignature: objc.OSType, optionSelectorNum: objc.SInt32, newOptionSetting: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setDebugOptionValue = SetDebugOptionValue;
 
-pub const DebugAssertOutputHandlerProcPtr = ?*const fn(objc.OSType, objc.UInt32, ?*i8, ?*i8, ?*i8, ?*i8, i64, ?*anyopaque, objc.ConstStr255Param, ) callconv(.C) void;
+pub const DebugAssertOutputHandlerProcPtr = ?*const fn (
+    objc.OSType,
+    objc.UInt32,
+    ?*i8,
+    ?*i8,
+    ?*i8,
+    ?*i8,
+    i64,
+    ?*anyopaque,
+    objc.ConstStr255Param,
+) callconv(.C) void;
 
 pub const DebugAssertOutputHandlerUPP = DebugAssertOutputHandlerProcPtr;
 
-pub extern "CoreServices" fn InstallDebugAssertOutputHandler(handler: DebugAssertOutputHandlerUPP) callconv(.C) void;
+extern "CoreServices" fn InstallDebugAssertOutputHandler(handler: DebugAssertOutputHandlerUPP) callconv(.C) void;
+pub const installDebugAssertOutputHandler = InstallDebugAssertOutputHandler;
 
-pub extern "CoreServices" fn GetMacOSStatusErrorString(err: objc.OSStatus) callconv(.C) ?*i8;
+extern "CoreServices" fn GetMacOSStatusErrorString(err: objc.OSStatus) callconv(.C) ?*i8;
+pub const getMacOSStatusErrorString = GetMacOSStatusErrorString;
 
-pub extern "CoreServices" fn GetMacOSStatusCommentString(err: objc.OSStatus) callconv(.C) ?*i8;
+extern "CoreServices" fn GetMacOSStatusCommentString(err: objc.OSStatus) callconv(.C) ?*i8;
+pub const getMacOSStatusCommentString = GetMacOSStatusCommentString;
 
-pub extern "CoreServices" fn NewDebugComponentCallbackUPP(userRoutine: DebugComponentCallbackProcPtr) callconv(.C) DebugComponentCallbackUPP;
+extern "CoreServices" fn NewDebugComponentCallbackUPP(userRoutine: DebugComponentCallbackProcPtr) callconv(.C) DebugComponentCallbackUPP;
+pub const newDebugComponentCallbackUPP = NewDebugComponentCallbackUPP;
 
-pub extern "CoreServices" fn NewDebugAssertOutputHandlerUPP(userRoutine: DebugAssertOutputHandlerProcPtr) callconv(.C) DebugAssertOutputHandlerUPP;
+extern "CoreServices" fn NewDebugAssertOutputHandlerUPP(userRoutine: DebugAssertOutputHandlerProcPtr) callconv(.C) DebugAssertOutputHandlerUPP;
+pub const newDebugAssertOutputHandlerUPP = NewDebugAssertOutputHandlerUPP;
 
-pub extern "CoreServices" fn DisposeDebugComponentCallbackUPP(userUPP: DebugComponentCallbackUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeDebugComponentCallbackUPP(userUPP: DebugComponentCallbackUPP) callconv(.C) void;
+pub const disposeDebugComponentCallbackUPP = DisposeDebugComponentCallbackUPP;
 
-pub extern "CoreServices" fn DisposeDebugAssertOutputHandlerUPP(userUPP: DebugAssertOutputHandlerUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeDebugAssertOutputHandlerUPP(userUPP: DebugAssertOutputHandlerUPP) callconv(.C) void;
+pub const disposeDebugAssertOutputHandlerUPP = DisposeDebugAssertOutputHandlerUPP;
 
-pub extern "CoreServices" fn InvokeDebugComponentCallbackUPP(optionSelectorNum: objc.SInt32, command: objc.UInt32, optionSetting: ?*objc.Boolean, userUPP: DebugComponentCallbackUPP, ) callconv(.C) void;
+extern "CoreServices" fn InvokeDebugComponentCallbackUPP(
+    optionSelectorNum: objc.SInt32,
+    command: objc.UInt32,
+    optionSetting: ?*objc.Boolean,
+    userUPP: DebugComponentCallbackUPP,
+) callconv(.C) void;
+pub const invokeDebugComponentCallbackUPP = InvokeDebugComponentCallbackUPP;
 
-pub extern "CoreServices" fn InvokeDebugAssertOutputHandlerUPP(componentSignature: objc.OSType, options: objc.UInt32, assertionString: ?*i8, exceptionLabelString: ?*i8, errorString: ?*i8, fileName: ?*i8, lineNumber: i64, value: ?*anyopaque, outputMsg: objc.ConstStr255Param, userUPP: DebugAssertOutputHandlerUPP, ) callconv(.C) void;
+extern "CoreServices" fn InvokeDebugAssertOutputHandlerUPP(
+    componentSignature: objc.OSType,
+    options: objc.UInt32,
+    assertionString: ?*i8,
+    exceptionLabelString: ?*i8,
+    errorString: ?*i8,
+    fileName: ?*i8,
+    lineNumber: i64,
+    value: ?*anyopaque,
+    outputMsg: objc.ConstStr255Param,
+    userUPP: DebugAssertOutputHandlerUPP,
+) callconv(.C) void;
+pub const invokeDebugAssertOutputHandlerUPP = InvokeDebugAssertOutputHandlerUPP;
 
-pub extern "CoreServices" fn PLstrcmp(str1: objc.ConstStr255Param, str2: objc.ConstStr255Param) callconv(.C) i16;
+extern "CoreServices" fn PLstrcmp(str1: objc.ConstStr255Param, str2: objc.ConstStr255Param) callconv(.C) i16;
+pub const pLstrcmp = PLstrcmp;
 
-pub extern "CoreServices" fn PLstrncmp(str1: objc.ConstStr255Param, str2: objc.ConstStr255Param, num: i16) callconv(.C) i16;
+extern "CoreServices" fn PLstrncmp(str1: objc.ConstStr255Param, str2: objc.ConstStr255Param, num: i16) callconv(.C) i16;
+pub const pLstrncmp = PLstrncmp;
 
-pub extern "CoreServices" fn PLstrcpy(dest: objc.StringPtr, source: objc.ConstStr255Param) callconv(.C) objc.StringPtr;
+extern "CoreServices" fn PLstrcpy(dest: objc.StringPtr, source: objc.ConstStr255Param) callconv(.C) objc.StringPtr;
+pub const pLstrcpy = PLstrcpy;
 
-pub extern "CoreServices" fn PLstrncpy(dest: objc.StringPtr, source: objc.ConstStr255Param, num: i16) callconv(.C) objc.StringPtr;
+extern "CoreServices" fn PLstrncpy(dest: objc.StringPtr, source: objc.ConstStr255Param, num: i16) callconv(.C) objc.StringPtr;
+pub const pLstrncpy = PLstrncpy;
 
-pub extern "CoreServices" fn PLstrcat(str: objc.StringPtr, append: objc.ConstStr255Param) callconv(.C) objc.StringPtr;
+extern "CoreServices" fn PLstrcat(str: objc.StringPtr, append: objc.ConstStr255Param) callconv(.C) objc.StringPtr;
+pub const pLstrcat = PLstrcat;
 
-pub extern "CoreServices" fn PLstrncat(str1: objc.StringPtr, append: objc.ConstStr255Param, num: i16) callconv(.C) objc.StringPtr;
+extern "CoreServices" fn PLstrncat(str1: objc.StringPtr, append: objc.ConstStr255Param, num: i16) callconv(.C) objc.StringPtr;
+pub const pLstrncat = PLstrncat;
 
-pub extern "CoreServices" fn PLstrchr(str1: objc.ConstStr255Param, ch1: i16) callconv(.C) objc.Ptr;
+extern "CoreServices" fn PLstrchr(str1: objc.ConstStr255Param, ch1: i16) callconv(.C) objc.Ptr;
+pub const pLstrchr = PLstrchr;
 
-pub extern "CoreServices" fn PLstrrchr(str1: objc.ConstStr255Param, ch1: i16) callconv(.C) objc.Ptr;
+extern "CoreServices" fn PLstrrchr(str1: objc.ConstStr255Param, ch1: i16) callconv(.C) objc.Ptr;
+pub const pLstrrchr = PLstrrchr;
 
-pub extern "CoreServices" fn PLstrpbrk(str1: objc.ConstStr255Param, charSet: objc.ConstStr255Param) callconv(.C) objc.Ptr;
+extern "CoreServices" fn PLstrpbrk(str1: objc.ConstStr255Param, charSet: objc.ConstStr255Param) callconv(.C) objc.Ptr;
+pub const pLstrpbrk = PLstrpbrk;
 
-pub extern "CoreServices" fn PLstrspn(str1: objc.ConstStr255Param, charSet: objc.ConstStr255Param) callconv(.C) i16;
+extern "CoreServices" fn PLstrspn(str1: objc.ConstStr255Param, charSet: objc.ConstStr255Param) callconv(.C) i16;
+pub const pLstrspn = PLstrspn;
 
-pub extern "CoreServices" fn PLstrstr(str1: objc.ConstStr255Param, searchStr: objc.ConstStr255Param) callconv(.C) objc.Ptr;
+extern "CoreServices" fn PLstrstr(str1: objc.ConstStr255Param, searchStr: objc.ConstStr255Param) callconv(.C) objc.Ptr;
+pub const pLstrstr = PLstrstr;
 
-pub extern "CoreServices" fn PLstrlen(str: objc.ConstStr255Param) callconv(.C) i16;
+extern "CoreServices" fn PLstrlen(str: objc.ConstStr255Param) callconv(.C) i16;
+pub const pLstrlen = PLstrlen;
 
-pub extern "CoreServices" fn PLpos(str1: objc.ConstStr255Param, searchStr: objc.ConstStr255Param) callconv(.C) i16;
+extern "CoreServices" fn PLpos(str1: objc.ConstStr255Param, searchStr: objc.ConstStr255Param) callconv(.C) i16;
+pub const pLpos = PLpos;
 
-pub extern "CoreServices" fn CompareAndSwap(oldValue: objc.UInt32, newValue: objc.UInt32, address: ?*objc.UInt32) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CompareAndSwap(oldValue: objc.UInt32, newValue: objc.UInt32, address: ?*objc.UInt32) callconv(.C) objc.Boolean;
+pub const compareAndSwap = CompareAndSwap;
 
-pub extern "CoreServices" fn TestAndClear(bit: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.Boolean;
+extern "CoreServices" fn TestAndClear(bit: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.Boolean;
+pub const testAndClear = TestAndClear;
 
-pub extern "CoreServices" fn TestAndSet(bit: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.Boolean;
+extern "CoreServices" fn TestAndSet(bit: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.Boolean;
+pub const testAndSet = TestAndSet;
 
-pub extern "CoreServices" fn IncrementAtomic8(address: ?*objc.SInt8) callconv(.C) objc.SInt8;
+extern "CoreServices" fn IncrementAtomic8(address: ?*objc.SInt8) callconv(.C) objc.SInt8;
+pub const incrementAtomic8 = IncrementAtomic8;
 
-pub extern "CoreServices" fn DecrementAtomic8(address: ?*objc.SInt8) callconv(.C) objc.SInt8;
+extern "CoreServices" fn DecrementAtomic8(address: ?*objc.SInt8) callconv(.C) objc.SInt8;
+pub const decrementAtomic8 = DecrementAtomic8;
 
-pub extern "CoreServices" fn AddAtomic8(amount: objc.SInt32, address: ?*objc.SInt8) callconv(.C) objc.SInt8;
+extern "CoreServices" fn AddAtomic8(amount: objc.SInt32, address: ?*objc.SInt8) callconv(.C) objc.SInt8;
+pub const addAtomic8 = AddAtomic8;
 
-pub extern "CoreServices" fn BitAndAtomic8(mask: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.UInt8;
+extern "CoreServices" fn BitAndAtomic8(mask: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.UInt8;
+pub const bitAndAtomic8 = BitAndAtomic8;
 
-pub extern "CoreServices" fn BitOrAtomic8(mask: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.UInt8;
+extern "CoreServices" fn BitOrAtomic8(mask: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.UInt8;
+pub const bitOrAtomic8 = BitOrAtomic8;
 
-pub extern "CoreServices" fn BitXorAtomic8(mask: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.UInt8;
+extern "CoreServices" fn BitXorAtomic8(mask: objc.UInt32, address: ?*objc.UInt8) callconv(.C) objc.UInt8;
+pub const bitXorAtomic8 = BitXorAtomic8;
 
-pub extern "CoreServices" fn IncrementAtomic16(address: ?*objc.SInt16) callconv(.C) objc.SInt16;
+extern "CoreServices" fn IncrementAtomic16(address: ?*objc.SInt16) callconv(.C) objc.SInt16;
+pub const incrementAtomic16 = IncrementAtomic16;
 
-pub extern "CoreServices" fn DecrementAtomic16(address: ?*objc.SInt16) callconv(.C) objc.SInt16;
+extern "CoreServices" fn DecrementAtomic16(address: ?*objc.SInt16) callconv(.C) objc.SInt16;
+pub const decrementAtomic16 = DecrementAtomic16;
 
-pub extern "CoreServices" fn AddAtomic16(amount: objc.SInt32, address: ?*objc.SInt16) callconv(.C) objc.SInt16;
+extern "CoreServices" fn AddAtomic16(amount: objc.SInt32, address: ?*objc.SInt16) callconv(.C) objc.SInt16;
+pub const addAtomic16 = AddAtomic16;
 
-pub extern "CoreServices" fn BitAndAtomic16(mask: objc.UInt32, address: ?*objc.UInt16) callconv(.C) objc.UInt16;
+extern "CoreServices" fn BitAndAtomic16(mask: objc.UInt32, address: ?*objc.UInt16) callconv(.C) objc.UInt16;
+pub const bitAndAtomic16 = BitAndAtomic16;
 
-pub extern "CoreServices" fn BitOrAtomic16(mask: objc.UInt32, address: ?*objc.UInt16) callconv(.C) objc.UInt16;
+extern "CoreServices" fn BitOrAtomic16(mask: objc.UInt32, address: ?*objc.UInt16) callconv(.C) objc.UInt16;
+pub const bitOrAtomic16 = BitOrAtomic16;
 
-pub extern "CoreServices" fn BitXorAtomic16(mask: objc.UInt32, address: ?*objc.UInt16) callconv(.C) objc.UInt16;
+extern "CoreServices" fn BitXorAtomic16(mask: objc.UInt32, address: ?*objc.UInt16) callconv(.C) objc.UInt16;
+pub const bitXorAtomic16 = BitXorAtomic16;
 
-pub extern "CoreServices" fn IncrementAtomic(address: ?*objc.SInt32) callconv(.C) objc.SInt32;
+extern "CoreServices" fn IncrementAtomic(address: ?*objc.SInt32) callconv(.C) objc.SInt32;
+pub const incrementAtomic = IncrementAtomic;
 
-pub extern "CoreServices" fn DecrementAtomic(address: ?*objc.SInt32) callconv(.C) objc.SInt32;
+extern "CoreServices" fn DecrementAtomic(address: ?*objc.SInt32) callconv(.C) objc.SInt32;
+pub const decrementAtomic = DecrementAtomic;
 
-pub extern "CoreServices" fn AddAtomic(amount: objc.SInt32, address: ?*objc.SInt32) callconv(.C) objc.SInt32;
+extern "CoreServices" fn AddAtomic(amount: objc.SInt32, address: ?*objc.SInt32) callconv(.C) objc.SInt32;
+pub const addAtomic = AddAtomic;
 
-pub extern "CoreServices" fn BitAndAtomic(mask: objc.UInt32, address: ?*objc.UInt32) callconv(.C) objc.UInt32;
+extern "CoreServices" fn BitAndAtomic(mask: objc.UInt32, address: ?*objc.UInt32) callconv(.C) objc.UInt32;
+pub const bitAndAtomic = BitAndAtomic;
 
-pub extern "CoreServices" fn BitOrAtomic(mask: objc.UInt32, address: ?*objc.UInt32) callconv(.C) objc.UInt32;
+extern "CoreServices" fn BitOrAtomic(mask: objc.UInt32, address: ?*objc.UInt32) callconv(.C) objc.UInt32;
+pub const bitOrAtomic = BitOrAtomic;
 
-pub extern "CoreServices" fn BitXorAtomic(mask: objc.UInt32, address: ?*objc.UInt32) callconv(.C) objc.UInt32;
+extern "CoreServices" fn BitXorAtomic(mask: objc.UInt32, address: ?*objc.UInt32) callconv(.C) objc.UInt32;
+pub const bitXorAtomic = BitXorAtomic;
 
 pub const OpaqueAreaID = extern struct {};
 
@@ -8809,19 +10344,19 @@ pub const RegisterInformationPowerPC = extern struct {
 };
 
 pub const FPUInformationPowerPC = extern struct {
-    Registers: [32] objc.UnsignedWide,
+    Registers: [32]objc.UnsignedWide,
     FPSCR: u64,
     Reserved: u64,
 };
 
 pub const Vector128 = extern union {
-    l: [4] u64,
-    s: [8] u16,
-    c: [16] u8,
+    l: [4]u64,
+    s: [8]u16,
+    c: [16]u8,
 };
 
 pub const VectorInformationPowerPC = extern struct {
-    Registers: [32] Vector128,
+    Registers: [32]Vector128,
     VSCR: Vector128,
     VRsave: objc.UInt32,
 };
@@ -8896,58 +10431,77 @@ pub const ExceptionInformation = extern struct {
     vectorImage: ?*VectorInformation,
 };
 
-pub const ExceptionHandlerProcPtr = ?*const fn(?*ExceptionInformation) callconv(.C) objc.OSStatus;
+pub const ExceptionHandlerProcPtr = ?*const fn (?*ExceptionInformation) callconv(.C) objc.OSStatus;
 
 pub const ExceptionHandlerUPP = ExceptionHandlerProcPtr;
 
-pub extern "CoreServices" fn NewExceptionHandlerUPP(userRoutine: ExceptionHandlerProcPtr) callconv(.C) ExceptionHandlerUPP;
+extern "CoreServices" fn NewExceptionHandlerUPP(userRoutine: ExceptionHandlerProcPtr) callconv(.C) ExceptionHandlerUPP;
+pub const newExceptionHandlerUPP = NewExceptionHandlerUPP;
 
-pub extern "CoreServices" fn DisposeExceptionHandlerUPP(userUPP: ExceptionHandlerUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeExceptionHandlerUPP(userUPP: ExceptionHandlerUPP) callconv(.C) void;
+pub const disposeExceptionHandlerUPP = DisposeExceptionHandlerUPP;
 
-pub extern "CoreServices" fn InvokeExceptionHandlerUPP(theException: ?*ExceptionInformation, userUPP: ExceptionHandlerUPP) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn InvokeExceptionHandlerUPP(theException: ?*ExceptionInformation, userUPP: ExceptionHandlerUPP) callconv(.C) objc.OSStatus;
+pub const invokeExceptionHandlerUPP = InvokeExceptionHandlerUPP;
 
 pub const ExceptionHandlerTPP = ExceptionHandlerUPP;
 
 pub const ExceptionHandler = ExceptionHandlerTPP;
 
-pub extern "CoreServices" fn InstallExceptionHandler(theHandler: ExceptionHandlerTPP) callconv(.C) ExceptionHandlerTPP;
+extern "CoreServices" fn InstallExceptionHandler(theHandler: ExceptionHandlerTPP) callconv(.C) ExceptionHandlerTPP;
+pub const installExceptionHandler = InstallExceptionHandler;
 
 pub const Nanoseconds = objc.UnsignedWide;
 
-pub extern "CoreServices" fn UpTime() callconv(.C) objc.AbsoluteTime;
+extern "CoreServices" fn UpTime() callconv(.C) objc.AbsoluteTime;
+pub const upTime = UpTime;
 
-pub extern "CoreServices" fn AbsoluteToNanoseconds(absoluteTime: objc.AbsoluteTime) callconv(.C) Nanoseconds;
+extern "CoreServices" fn AbsoluteToNanoseconds(absoluteTime: objc.AbsoluteTime) callconv(.C) Nanoseconds;
+pub const absoluteToNanoseconds = AbsoluteToNanoseconds;
 
-pub extern "CoreServices" fn AbsoluteToDuration(absoluteTime: objc.AbsoluteTime) callconv(.C) objc.Duration;
+extern "CoreServices" fn AbsoluteToDuration(absoluteTime: objc.AbsoluteTime) callconv(.C) objc.Duration;
+pub const absoluteToDuration = AbsoluteToDuration;
 
-pub extern "CoreServices" fn NanosecondsToAbsolute(nanoseconds: Nanoseconds) callconv(.C) objc.AbsoluteTime;
+extern "CoreServices" fn NanosecondsToAbsolute(nanoseconds: Nanoseconds) callconv(.C) objc.AbsoluteTime;
+pub const nanosecondsToAbsolute = NanosecondsToAbsolute;
 
-pub extern "CoreServices" fn DurationToAbsolute(duration: objc.Duration) callconv(.C) objc.AbsoluteTime;
+extern "CoreServices" fn DurationToAbsolute(duration: objc.Duration) callconv(.C) objc.AbsoluteTime;
+pub const durationToAbsolute = DurationToAbsolute;
 
-pub extern "CoreServices" fn AddAbsoluteToAbsolute(absoluteTime1: objc.AbsoluteTime, absoluteTime2: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+extern "CoreServices" fn AddAbsoluteToAbsolute(absoluteTime1: objc.AbsoluteTime, absoluteTime2: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+pub const addAbsoluteToAbsolute = AddAbsoluteToAbsolute;
 
-pub extern "CoreServices" fn SubAbsoluteFromAbsolute(leftAbsoluteTime: objc.AbsoluteTime, rightAbsoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+extern "CoreServices" fn SubAbsoluteFromAbsolute(leftAbsoluteTime: objc.AbsoluteTime, rightAbsoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+pub const subAbsoluteFromAbsolute = SubAbsoluteFromAbsolute;
 
-pub extern "CoreServices" fn AddNanosecondsToAbsolute(nanoseconds: Nanoseconds, absoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+extern "CoreServices" fn AddNanosecondsToAbsolute(nanoseconds: Nanoseconds, absoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+pub const addNanosecondsToAbsolute = AddNanosecondsToAbsolute;
 
-pub extern "CoreServices" fn AddDurationToAbsolute(duration: objc.Duration, absoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+extern "CoreServices" fn AddDurationToAbsolute(duration: objc.Duration, absoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+pub const addDurationToAbsolute = AddDurationToAbsolute;
 
-pub extern "CoreServices" fn SubNanosecondsFromAbsolute(nanoseconds: Nanoseconds, absoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+extern "CoreServices" fn SubNanosecondsFromAbsolute(nanoseconds: Nanoseconds, absoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+pub const subNanosecondsFromAbsolute = SubNanosecondsFromAbsolute;
 
-pub extern "CoreServices" fn SubDurationFromAbsolute(duration: objc.Duration, absoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+extern "CoreServices" fn SubDurationFromAbsolute(duration: objc.Duration, absoluteTime: objc.AbsoluteTime) callconv(.C) objc.AbsoluteTime;
+pub const subDurationFromAbsolute = SubDurationFromAbsolute;
 
-pub extern "CoreServices" fn AbsoluteDeltaToNanoseconds(leftAbsoluteTime: objc.AbsoluteTime, rightAbsoluteTime: objc.AbsoluteTime) callconv(.C) Nanoseconds;
+extern "CoreServices" fn AbsoluteDeltaToNanoseconds(leftAbsoluteTime: objc.AbsoluteTime, rightAbsoluteTime: objc.AbsoluteTime) callconv(.C) Nanoseconds;
+pub const absoluteDeltaToNanoseconds = AbsoluteDeltaToNanoseconds;
 
-pub extern "CoreServices" fn AbsoluteDeltaToDuration(leftAbsoluteTime: objc.AbsoluteTime, rightAbsoluteTime: objc.AbsoluteTime) callconv(.C) objc.Duration;
+extern "CoreServices" fn AbsoluteDeltaToDuration(leftAbsoluteTime: objc.AbsoluteTime, rightAbsoluteTime: objc.AbsoluteTime) callconv(.C) objc.Duration;
+pub const absoluteDeltaToDuration = AbsoluteDeltaToDuration;
 
-pub extern "CoreServices" fn DurationToNanoseconds(theDuration: objc.Duration) callconv(.C) Nanoseconds;
+extern "CoreServices" fn DurationToNanoseconds(theDuration: objc.Duration) callconv(.C) Nanoseconds;
+pub const durationToNanoseconds = DurationToNanoseconds;
 
-pub extern "CoreServices" fn NanosecondsToDuration(theNanoseconds: Nanoseconds) callconv(.C) objc.Duration;
+extern "CoreServices" fn NanosecondsToDuration(theNanoseconds: Nanoseconds) callconv(.C) objc.Duration;
+pub const nanosecondsToDuration = NanosecondsToDuration;
 
 pub const NumFormatString = extern struct {
     fLength: objc.UInt8,
     fVersion: objc.UInt8,
-    data: [254] i8,
+    data: [254]i8,
 };
 
 pub const NumFormatStringRec = NumFormatString;
@@ -8963,27 +10517,44 @@ pub const FVector = extern struct {
     length: i16,
 };
 
-pub const TripleInt = [3] FVector;
+pub const TripleInt = [3]FVector;
 
-pub extern "CoreServices" fn numtostring(theNum: i64, theString: ?*i8) callconv(.C) void;
+extern "CoreServices" fn numtostring(theNum: i64, theString: ?*i8) callconv(.C) void;
+pub const numtostring = numtostring;
 
-pub extern "CoreServices" fn Munger(h: objc.Handle, offset: i64, ptr1: ?*anyopaque, len1: i64, ptr2: ?*anyopaque, len2: i64, ) callconv(.C) i64;
+extern "CoreServices" fn Munger(
+    h: objc.Handle,
+    offset: i64,
+    ptr1: ?*anyopaque,
+    len1: i64,
+    ptr2: ?*anyopaque,
+    len2: i64,
+) callconv(.C) i64;
+pub const munger = Munger;
 
-pub extern "CoreServices" fn BitTst(bytePtr: ?*anyopaque, bitNum: i64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn BitTst(bytePtr: ?*anyopaque, bitNum: i64) callconv(.C) objc.Boolean;
+pub const bitTst = BitTst;
 
-pub extern "CoreServices" fn BitSet(bytePtr: ?*anyopaque, bitNum: i64) callconv(.C) void;
+extern "CoreServices" fn BitSet(bytePtr: ?*anyopaque, bitNum: i64) callconv(.C) void;
+pub const bitSet = BitSet;
 
-pub extern "CoreServices" fn BitClr(bytePtr: ?*anyopaque, bitNum: i64) callconv(.C) void;
+extern "CoreServices" fn BitClr(bytePtr: ?*anyopaque, bitNum: i64) callconv(.C) void;
+pub const bitClr = BitClr;
 
-pub extern "CoreServices" fn BitAnd(value1: i64, value2: i64) callconv(.C) i64;
+extern "CoreServices" fn BitAnd(value1: i64, value2: i64) callconv(.C) i64;
+pub const bitAnd = BitAnd;
 
-pub extern "CoreServices" fn BitOr(value1: i64, value2: i64) callconv(.C) i64;
+extern "CoreServices" fn BitOr(value1: i64, value2: i64) callconv(.C) i64;
+pub const bitOr = BitOr;
 
-pub extern "CoreServices" fn BitXor(value1: i64, value2: i64) callconv(.C) i64;
+extern "CoreServices" fn BitXor(value1: i64, value2: i64) callconv(.C) i64;
+pub const bitXor = BitXor;
 
-pub extern "CoreServices" fn BitNot(value: i64) callconv(.C) i64;
+extern "CoreServices" fn BitNot(value: i64) callconv(.C) i64;
+pub const bitNot = BitNot;
 
-pub extern "CoreServices" fn BitShift(value: i64, count: i16) callconv(.C) i64;
+extern "CoreServices" fn BitShift(value: i64, count: i16) callconv(.C) i64;
+pub const bitShift = BitShift;
 
 pub const UCKeyOutput = objc.UInt16;
 
@@ -8994,7 +10565,7 @@ pub const UCKeyStateRecord = extern struct {
     stateZeroNextState: objc.UInt16,
     stateEntryCount: objc.UInt16,
     stateEntryFormat: objc.UInt16,
-    stateEntryData: [1] objc.UInt32,
+    stateEntryData: [1]objc.UInt32,
 };
 
 pub const UCKeyStateEntryTerminal = extern struct {
@@ -9025,7 +10596,7 @@ pub const UCKeyboardLayout = extern struct {
     keyLayoutDataVersion: objc.UInt16,
     keyLayoutFeatureInfoOffset: objc.UInt32,
     keyboardTypeCount: objc.UInt32,
-    keyboardTypeList: [1] UCKeyboardTypeHeader,
+    keyboardTypeList: [1]UCKeyboardTypeHeader,
 };
 
 pub const UCKeyLayoutFeatureInfo = extern struct {
@@ -9038,32 +10609,32 @@ pub const UCKeyModifiersToTableNum = extern struct {
     keyModifiersToTableNumFormat: objc.UInt16,
     defaultTableNum: objc.UInt16,
     modifiersCount: objc.UInt32,
-    tableNum: [1] objc.UInt8,
+    tableNum: [1]objc.UInt8,
 };
 
 pub const UCKeyToCharTableIndex = extern struct {
     keyToCharTableIndexFormat: objc.UInt16,
     keyToCharTableSize: objc.UInt16,
     keyToCharTableCount: objc.UInt32,
-    keyToCharTableOffsets: [1] objc.UInt32,
+    keyToCharTableOffsets: [1]objc.UInt32,
 };
 
 pub const UCKeyStateRecordsIndex = extern struct {
     keyStateRecordsIndexFormat: objc.UInt16,
     keyStateRecordCount: objc.UInt16,
-    keyStateRecordOffsets: [1] objc.UInt32,
+    keyStateRecordOffsets: [1]objc.UInt32,
 };
 
 pub const UCKeyStateTerminators = extern struct {
     keyStateTerminatorsFormat: objc.UInt16,
     keyStateTerminatorCount: objc.UInt16,
-    keyStateTerminators: [1] UCKeyCharSeq,
+    keyStateTerminators: [1]UCKeyCharSeq,
 };
 
 pub const UCKeySequenceDataIndex = extern struct {
     keySequenceDataIndexFormat: objc.UInt16,
     charSequenceCount: objc.UInt16,
-    charSequenceOffsets: [1] objc.UInt16,
+    charSequenceOffsets: [1]objc.UInt16,
 };
 
 pub const anon2421 = enum(u32) {
@@ -9157,15 +10728,31 @@ pub const anon3721 = enum(u32) {
     kFSEventStreamEventFlagItemCloned = 4194304,
 };
 
-pub const IndexToUCStringProcPtr = ?*const fn(objc.UInt32, ?*anyopaque, ?*anyopaque, ?*core_foundation.StringRef, ?*UCTypeSelectOptions, ) callconv(.C) objc.Boolean;
+pub const IndexToUCStringProcPtr = ?*const fn (
+    objc.UInt32,
+    ?*anyopaque,
+    ?*anyopaque,
+    ?*core_foundation.StringRef,
+    ?*UCTypeSelectOptions,
+) callconv(.C) objc.Boolean;
 
 pub const IndexToUCStringUPP = IndexToUCStringProcPtr;
 
-pub extern "CoreServices" fn NewIndexToUCStringUPP(userRoutine: IndexToUCStringProcPtr) callconv(.C) IndexToUCStringUPP;
+extern "CoreServices" fn NewIndexToUCStringUPP(userRoutine: IndexToUCStringProcPtr) callconv(.C) IndexToUCStringUPP;
+pub const newIndexToUCStringUPP = NewIndexToUCStringUPP;
 
-pub extern "CoreServices" fn DisposeIndexToUCStringUPP(userUPP: IndexToUCStringUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeIndexToUCStringUPP(userUPP: IndexToUCStringUPP) callconv(.C) void;
+pub const disposeIndexToUCStringUPP = DisposeIndexToUCStringUPP;
 
-pub extern "CoreServices" fn InvokeIndexToUCStringUPP(index: objc.UInt32, listDataPtr: ?*anyopaque, refcon: ?*anyopaque, outString: ?*core_foundation.StringRef, tsOptions: ?*UCTypeSelectOptions, userUPP: IndexToUCStringUPP, ) callconv(.C) objc.Boolean;
+extern "CoreServices" fn InvokeIndexToUCStringUPP(
+    index: objc.UInt32,
+    listDataPtr: ?*anyopaque,
+    refcon: ?*anyopaque,
+    outString: ?*core_foundation.StringRef,
+    tsOptions: ?*UCTypeSelectOptions,
+    userUPP: IndexToUCStringUPP,
+) callconv(.C) objc.Boolean;
+pub const invokeIndexToUCStringUPP = InvokeIndexToUCStringUPP;
 
 pub const anon4541 = enum(u32) {
     kUnicodeTextBreakClass = 1969386091,
@@ -9190,49 +10777,164 @@ pub const anon5041 = enum(objc.OSType) {
     pVisible = 1886808435,
 };
 
-pub extern "CoreServices" fn UCKeyTranslate(keyLayoutPtr: ?*UCKeyboardLayout, virtualKeyCode: objc.UInt16, keyAction: objc.UInt16, modifierKeyState: objc.UInt32, keyboardType: objc.UInt32, keyTranslateOptions: objc.OptionBits, deadKeyState: ?*objc.UInt32, maxStringLength: objc.UniCharCount, actualStringLength: ?*objc.UniCharCount, unicodeString: *objc.UniChar, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCKeyTranslate(
+    keyLayoutPtr: ?*UCKeyboardLayout,
+    virtualKeyCode: objc.UInt16,
+    keyAction: objc.UInt16,
+    modifierKeyState: objc.UInt32,
+    keyboardType: objc.UInt32,
+    keyTranslateOptions: objc.OptionBits,
+    deadKeyState: ?*objc.UInt32,
+    maxStringLength: objc.UniCharCount,
+    actualStringLength: ?*objc.UniCharCount,
+    unicodeString: *objc.UniChar,
+) callconv(.C) objc.OSStatus;
+pub const ucKeyTranslate = UCKeyTranslate;
 
-pub extern "CoreServices" fn UCCreateCollator(locale: LocaleRef, opVariant: LocaleOperationVariant, options: UCCollateOptions, collatorRef: ?*CollatorRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCCreateCollator(
+    locale: LocaleRef,
+    opVariant: LocaleOperationVariant,
+    options: UCCollateOptions,
+    collatorRef: ?*CollatorRef,
+) callconv(.C) objc.OSStatus;
+pub const ucCreateCollator = UCCreateCollator;
 
-pub extern "CoreServices" fn UCGetCollationKey(collatorRef: CollatorRef, textPtr: ?*objc.UniChar, textLength: objc.UniCharCount, maxKeySize: objc.ItemCount, actualKeySize: ?*objc.ItemCount, collationKey: *UCCollationValue, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCGetCollationKey(
+    collatorRef: CollatorRef,
+    textPtr: ?*objc.UniChar,
+    textLength: objc.UniCharCount,
+    maxKeySize: objc.ItemCount,
+    actualKeySize: ?*objc.ItemCount,
+    collationKey: *UCCollationValue,
+) callconv(.C) objc.OSStatus;
+pub const ucGetCollationKey = UCGetCollationKey;
 
-pub extern "CoreServices" fn UCCompareCollationKeys(key1Ptr: ?*UCCollationValue, key1Length: objc.ItemCount, key2Ptr: ?*UCCollationValue, key2Length: objc.ItemCount, equivalent: ?*objc.Boolean, order: ?*objc.SInt32, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCCompareCollationKeys(
+    key1Ptr: ?*UCCollationValue,
+    key1Length: objc.ItemCount,
+    key2Ptr: ?*UCCollationValue,
+    key2Length: objc.ItemCount,
+    equivalent: ?*objc.Boolean,
+    order: ?*objc.SInt32,
+) callconv(.C) objc.OSStatus;
+pub const ucCompareCollationKeys = UCCompareCollationKeys;
 
-pub extern "CoreServices" fn UCCompareText(collatorRef: CollatorRef, text1Ptr: ?*objc.UniChar, text1Length: objc.UniCharCount, text2Ptr: ?*objc.UniChar, text2Length: objc.UniCharCount, equivalent: ?*objc.Boolean, order: ?*objc.SInt32, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCCompareText(
+    collatorRef: CollatorRef,
+    text1Ptr: ?*objc.UniChar,
+    text1Length: objc.UniCharCount,
+    text2Ptr: ?*objc.UniChar,
+    text2Length: objc.UniCharCount,
+    equivalent: ?*objc.Boolean,
+    order: ?*objc.SInt32,
+) callconv(.C) objc.OSStatus;
+pub const ucCompareText = UCCompareText;
 
-pub extern "CoreServices" fn UCDisposeCollator(collatorRef: ?*CollatorRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCDisposeCollator(collatorRef: ?*CollatorRef) callconv(.C) objc.OSStatus;
+pub const ucDisposeCollator = UCDisposeCollator;
 
-pub extern "CoreServices" fn UCCompareTextDefault(options: UCCollateOptions, text1Ptr: ?*objc.UniChar, text1Length: objc.UniCharCount, text2Ptr: ?*objc.UniChar, text2Length: objc.UniCharCount, equivalent: ?*objc.Boolean, order: ?*objc.SInt32, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCCompareTextDefault(
+    options: UCCollateOptions,
+    text1Ptr: ?*objc.UniChar,
+    text1Length: objc.UniCharCount,
+    text2Ptr: ?*objc.UniChar,
+    text2Length: objc.UniCharCount,
+    equivalent: ?*objc.Boolean,
+    order: ?*objc.SInt32,
+) callconv(.C) objc.OSStatus;
+pub const ucCompareTextDefault = UCCompareTextDefault;
 
-pub extern "CoreServices" fn UCCompareTextNoLocale(options: UCCollateOptions, text1Ptr: ?*objc.UniChar, text1Length: objc.UniCharCount, text2Ptr: ?*objc.UniChar, text2Length: objc.UniCharCount, equivalent: ?*objc.Boolean, order: ?*objc.SInt32, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCCompareTextNoLocale(
+    options: UCCollateOptions,
+    text1Ptr: ?*objc.UniChar,
+    text1Length: objc.UniCharCount,
+    text2Ptr: ?*objc.UniChar,
+    text2Length: objc.UniCharCount,
+    equivalent: ?*objc.Boolean,
+    order: ?*objc.SInt32,
+) callconv(.C) objc.OSStatus;
+pub const ucCompareTextNoLocale = UCCompareTextNoLocale;
 
-pub extern "CoreServices" fn UCCreateTextBreakLocator(locale: LocaleRef, opVariant: LocaleOperationVariant, breakTypes: UCTextBreakType, breakRef: ?*TextBreakLocatorRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCCreateTextBreakLocator(
+    locale: LocaleRef,
+    opVariant: LocaleOperationVariant,
+    breakTypes: UCTextBreakType,
+    breakRef: ?*TextBreakLocatorRef,
+) callconv(.C) objc.OSStatus;
+pub const ucCreateTextBreakLocator = UCCreateTextBreakLocator;
 
-pub extern "CoreServices" fn UCFindTextBreak(breakRef: TextBreakLocatorRef, breakType: UCTextBreakType, options: UCTextBreakOptions, textPtr: ?*objc.UniChar, textLength: objc.UniCharCount, startOffset: UniCharArrayOffset, breakOffset: ?*UniCharArrayOffset, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCFindTextBreak(
+    breakRef: TextBreakLocatorRef,
+    breakType: UCTextBreakType,
+    options: UCTextBreakOptions,
+    textPtr: ?*objc.UniChar,
+    textLength: objc.UniCharCount,
+    startOffset: UniCharArrayOffset,
+    breakOffset: ?*UniCharArrayOffset,
+) callconv(.C) objc.OSStatus;
+pub const ucFindTextBreak = UCFindTextBreak;
 
-pub extern "CoreServices" fn UCDisposeTextBreakLocator(breakRef: ?*TextBreakLocatorRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCDisposeTextBreakLocator(breakRef: ?*TextBreakLocatorRef) callconv(.C) objc.OSStatus;
+pub const ucDisposeTextBreakLocator = UCDisposeTextBreakLocator;
 
-pub extern "CoreServices" fn UCTypeSelectCreateSelector(locale: LocaleRef, opVariant: LocaleOperationVariant, options: UCCollateOptions, newSelector: ?*UCTypeSelectRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCTypeSelectCreateSelector(
+    locale: LocaleRef,
+    opVariant: LocaleOperationVariant,
+    options: UCCollateOptions,
+    newSelector: ?*UCTypeSelectRef,
+) callconv(.C) objc.OSStatus;
+pub const ucTypeSelectCreateSelector = UCTypeSelectCreateSelector;
 
-pub extern "CoreServices" fn UCTypeSelectFlushSelectorData(ref: UCTypeSelectRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCTypeSelectFlushSelectorData(ref: UCTypeSelectRef) callconv(.C) objc.OSStatus;
+pub const ucTypeSelectFlushSelectorData = UCTypeSelectFlushSelectorData;
 
-pub extern "CoreServices" fn UCTypeSelectReleaseSelector(ref: ?*UCTypeSelectRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCTypeSelectReleaseSelector(ref: ?*UCTypeSelectRef) callconv(.C) objc.OSStatus;
+pub const ucTypeSelectReleaseSelector = UCTypeSelectReleaseSelector;
 
-pub extern "CoreServices" fn UCTypeSelectWouldResetBuffer(inRef: UCTypeSelectRef, inText: core_foundation.StringRef, inEventTime: f64) callconv(.C) objc.Boolean;
+extern "CoreServices" fn UCTypeSelectWouldResetBuffer(inRef: UCTypeSelectRef, inText: core_foundation.StringRef, inEventTime: f64) callconv(.C) objc.Boolean;
+pub const ucTypeSelectWouldResetBuffer = UCTypeSelectWouldResetBuffer;
 
-pub extern "CoreServices" fn UCTypeSelectAddKeyToSelector(inRef: UCTypeSelectRef, inText: core_foundation.StringRef, inEventTime: f64, updateFlag: ?*objc.Boolean, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCTypeSelectAddKeyToSelector(
+    inRef: UCTypeSelectRef,
+    inText: core_foundation.StringRef,
+    inEventTime: f64,
+    updateFlag: ?*objc.Boolean,
+) callconv(.C) objc.OSStatus;
+pub const ucTypeSelectAddKeyToSelector = UCTypeSelectAddKeyToSelector;
 
-pub extern "CoreServices" fn UCTypeSelectCompare(ref: UCTypeSelectRef, inText: core_foundation.StringRef, result: ?*UCTypeSelectCompareResult) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCTypeSelectCompare(ref: UCTypeSelectRef, inText: core_foundation.StringRef, result: ?*UCTypeSelectCompareResult) callconv(.C) objc.OSStatus;
+pub const ucTypeSelectCompare = UCTypeSelectCompare;
 
-pub extern "CoreServices" fn UCTypeSelectFindItem(ref: UCTypeSelectRef, listSize: objc.UInt32, listDataPtr: ?*anyopaque, refcon: ?*anyopaque, userUPP: IndexToUCStringUPP, closestItem: ?*objc.UInt32, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCTypeSelectFindItem(
+    ref: UCTypeSelectRef,
+    listSize: objc.UInt32,
+    listDataPtr: ?*anyopaque,
+    refcon: ?*anyopaque,
+    userUPP: IndexToUCStringUPP,
+    closestItem: ?*objc.UInt32,
+) callconv(.C) objc.OSStatus;
+pub const ucTypeSelectFindItem = UCTypeSelectFindItem;
 
-pub extern "CoreServices" fn UCTypeSelectWalkList(ref: UCTypeSelectRef, currSelect: core_foundation.StringRef, direction: UCTSWalkDirection, listSize: objc.UInt32, listDataPtr: ?*anyopaque, refcon: ?*anyopaque, userUPP: IndexToUCStringUPP, closestItem: ?*objc.UInt32, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn UCTypeSelectWalkList(
+    ref: UCTypeSelectRef,
+    currSelect: core_foundation.StringRef,
+    direction: UCTSWalkDirection,
+    listSize: objc.UInt32,
+    listDataPtr: ?*anyopaque,
+    refcon: ?*anyopaque,
+    userUPP: IndexToUCStringUPP,
+    closestItem: ?*objc.UInt32,
+) callconv(.C) objc.OSStatus;
+pub const ucTypeSelectWalkList = UCTypeSelectWalkList;
 
-pub extern "CoreServices" fn compound(rate: f64, periods: f64) callconv(.C) f64;
+extern "CoreServices" fn compound(rate: f64, periods: f64) callconv(.C) f64;
+pub const compound = compound;
 
-pub extern "CoreServices" fn annuity(rate: f64, periods: f64) callconv(.C) f64;
+extern "CoreServices" fn annuity(rate: f64, periods: f64) callconv(.C) f64;
+pub const annuity = annuity;
 
-pub extern "CoreServices" fn randomx(x: ?*objc.double_t) callconv(.C) objc.double_t;
+extern "CoreServices" fn randomx(x: ?*objc.double_t) callconv(.C) objc.double_t;
+pub const randomx = randomx;
 
 pub const relop = i16;
 
@@ -9243,7 +10945,8 @@ pub const anon12621 = enum(u32) {
     UNORDERED = 3,
 };
 
-pub extern "CoreServices" fn relation(x: objc.double_t, y: objc.double_t) callconv(.C) relop;
+extern "CoreServices" fn relation(x: objc.double_t, y: objc.double_t) callconv(.C) relop;
+pub const relation = relation;
 
 pub const decimal = extern struct {
     sgn: i8,
@@ -9254,7 +10957,7 @@ pub const decimal = extern struct {
 
 pub const anon13205 = extern struct {
     length: u8,
-    text: [36] u8,
+    text: [36]u8,
     unused: u8,
 };
 
@@ -9264,33 +10967,52 @@ pub const decform = extern struct {
     digits: i16,
 };
 
-pub extern "CoreServices" fn num2dec(f: ?*decform, x: objc.double_t, d: ?*decimal) callconv(.C) void;
+extern "CoreServices" fn num2dec(f: ?*decform, x: objc.double_t, d: ?*decimal) callconv(.C) void;
+pub const num2dec = num2dec;
 
-pub extern "CoreServices" fn dec2num(d: ?*decimal) callconv(.C) objc.double_t;
+extern "CoreServices" fn dec2num(d: ?*decimal) callconv(.C) objc.double_t;
+pub const dec2num = dec2num;
 
-pub extern "CoreServices" fn dec2str(f: ?*decform, d: ?*decimal, s: ?*i8) callconv(.C) void;
+extern "CoreServices" fn dec2str(f: ?*decform, d: ?*decimal, s: ?*i8) callconv(.C) void;
+pub const dec2str = dec2str;
 
-pub extern "CoreServices" fn str2dec(s: ?*i8, ix: ?*i16, d: ?*decimal, vp: ?*i16, ) callconv(.C) void;
+extern "CoreServices" fn str2dec(
+    s: ?*i8,
+    ix: ?*i16,
+    d: ?*decimal,
+    vp: ?*i16,
+) callconv(.C) void;
+pub const str2dec = str2dec;
 
-pub extern "CoreServices" fn dec2f(d: ?*decimal) callconv(.C) f32;
+extern "CoreServices" fn dec2f(d: ?*decimal) callconv(.C) f32;
+pub const dec2f = dec2f;
 
-pub extern "CoreServices" fn dec2s(d: ?*decimal) callconv(.C) i16;
+extern "CoreServices" fn dec2s(d: ?*decimal) callconv(.C) i16;
+pub const dec2s = dec2s;
 
-pub extern "CoreServices" fn dec2l(d: ?*decimal) callconv(.C) i64;
+extern "CoreServices" fn dec2l(d: ?*decimal) callconv(.C) i64;
+pub const dec2l = dec2l;
 
-pub extern "CoreServices" fn relationl(x: f64, y: f64) callconv(.C) relop;
+extern "CoreServices" fn relationl(x: f64, y: f64) callconv(.C) relop;
+pub const relationl = relationl;
 
-pub extern "CoreServices" fn num2decl(f: ?*decform, x: f64, d: ?*decimal) callconv(.C) void;
+extern "CoreServices" fn num2decl(f: ?*decform, x: f64, d: ?*decimal) callconv(.C) void;
+pub const num2decl = num2decl;
 
-pub extern "CoreServices" fn dec2numl(d: ?*decimal) callconv(.C) f64;
+extern "CoreServices" fn dec2numl(d: ?*decimal) callconv(.C) f64;
+pub const dec2numl = dec2numl;
 
-pub extern "CoreServices" fn x80tod(x80: ?*objc.extended80) callconv(.C) f64;
+extern "CoreServices" fn x80tod(x80: ?*objc.extended80) callconv(.C) f64;
+pub const x80tod = x80tod;
 
-pub extern "CoreServices" fn dtox80(x: ?*f64, x80: ?*objc.extended80) callconv(.C) void;
+extern "CoreServices" fn dtox80(x: ?*f64, x80: ?*objc.extended80) callconv(.C) void;
+pub const dtox80 = dtox80;
 
-pub extern "CoreServices" fn x80told(x80: ?*objc.extended80, x: ?*f64) callconv(.C) void;
+extern "CoreServices" fn x80told(x80: ?*objc.extended80, x: ?*f64) callconv(.C) void;
+pub const x80told = x80told;
 
-pub extern "CoreServices" fn ldtox80(x: ?*f64, x80: ?*objc.extended80) callconv(.C) void;
+extern "CoreServices" fn ldtox80(x: ?*f64, x80: ?*objc.extended80) callconv(.C) void;
+pub const ldtox80 = ldtox80;
 
 pub const TECPluginSignature = objc.OSType;
 
@@ -9322,71 +11044,181 @@ pub const anon1111 = enum(u32) {
     kGenericPasswordKCItemClass = 1734700656,
 };
 
-pub extern "CoreServices" fn TECCountAvailableTextEncodings(numberEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCountAvailableTextEncodings(numberEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecCountAvailableTextEncodings = TECCountAvailableTextEncodings;
 
-pub extern "CoreServices" fn TECGetAvailableTextEncodings(availableEncodings: *TextEncoding, maxAvailableEncodings: objc.ItemCount, actualAvailableEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetAvailableTextEncodings(availableEncodings: *TextEncoding, maxAvailableEncodings: objc.ItemCount, actualAvailableEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecGetAvailableTextEncodings = TECGetAvailableTextEncodings;
 
-pub extern "CoreServices" fn TECCountDirectTextEncodingConversions(numberOfEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCountDirectTextEncodingConversions(numberOfEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecCountDirectTextEncodingConversions = TECCountDirectTextEncodingConversions;
 
-pub extern "CoreServices" fn TECGetDirectTextEncodingConversions(availableConversions: *TECConversionInfo, maxAvailableConversions: objc.ItemCount, actualAvailableConversions: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetDirectTextEncodingConversions(availableConversions: *TECConversionInfo, maxAvailableConversions: objc.ItemCount, actualAvailableConversions: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecGetDirectTextEncodingConversions = TECGetDirectTextEncodingConversions;
 
-pub extern "CoreServices" fn TECCountDestinationTextEncodings(inputEncoding: TextEncoding, numberOfEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCountDestinationTextEncodings(inputEncoding: TextEncoding, numberOfEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecCountDestinationTextEncodings = TECCountDestinationTextEncodings;
 
-pub extern "CoreServices" fn TECGetDestinationTextEncodings(inputEncoding: TextEncoding, destinationEncodings: *TextEncoding, maxDestinationEncodings: objc.ItemCount, actualDestinationEncodings: ?*objc.ItemCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetDestinationTextEncodings(
+    inputEncoding: TextEncoding,
+    destinationEncodings: *TextEncoding,
+    maxDestinationEncodings: objc.ItemCount,
+    actualDestinationEncodings: ?*objc.ItemCount,
+) callconv(.C) objc.OSStatus;
+pub const tecGetDestinationTextEncodings = TECGetDestinationTextEncodings;
 
-pub extern "CoreServices" fn TECGetTextEncodingInternetName(textEncoding: TextEncoding, encodingName: objc.Str255) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetTextEncodingInternetName(textEncoding: TextEncoding, encodingName: objc.Str255) callconv(.C) objc.OSStatus;
+pub const tecGetTextEncodingInternetName = TECGetTextEncodingInternetName;
 
-pub extern "CoreServices" fn TECGetTextEncodingFromInternetName(textEncoding: ?*TextEncoding, encodingName: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetTextEncodingFromInternetName(textEncoding: ?*TextEncoding, encodingName: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
+pub const tecGetTextEncodingFromInternetName = TECGetTextEncodingFromInternetName;
 
-pub extern "CoreServices" fn TECCreateConverter(newEncodingConverter: ?*TECObjectRef, inputEncoding: TextEncoding, outputEncoding: TextEncoding) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCreateConverter(newEncodingConverter: ?*TECObjectRef, inputEncoding: TextEncoding, outputEncoding: TextEncoding) callconv(.C) objc.OSStatus;
+pub const tecCreateConverter = TECCreateConverter;
 
-pub extern "CoreServices" fn TECCreateConverterFromPath(newEncodingConverter: ?*TECObjectRef, inPath: *TextEncoding, inEncodings: objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCreateConverterFromPath(newEncodingConverter: ?*TECObjectRef, inPath: *TextEncoding, inEncodings: objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecCreateConverterFromPath = TECCreateConverterFromPath;
 
-pub extern "CoreServices" fn TECDisposeConverter(newEncodingConverter: TECObjectRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECDisposeConverter(newEncodingConverter: TECObjectRef) callconv(.C) objc.OSStatus;
+pub const tecDisposeConverter = TECDisposeConverter;
 
-pub extern "CoreServices" fn TECClearConverterContextInfo(encodingConverter: TECObjectRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECClearConverterContextInfo(encodingConverter: TECObjectRef) callconv(.C) objc.OSStatus;
+pub const tecClearConverterContextInfo = TECClearConverterContextInfo;
 
-pub extern "CoreServices" fn TECConvertText(encodingConverter: TECObjectRef, inputBuffer: ConstTextPtr, inputBufferLength: objc.ByteCount, actualInputLength: ?*objc.ByteCount, outputBuffer: TextPtr, outputBufferLength: objc.ByteCount, actualOutputLength: ?*objc.ByteCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECConvertText(
+    encodingConverter: TECObjectRef,
+    inputBuffer: ConstTextPtr,
+    inputBufferLength: objc.ByteCount,
+    actualInputLength: ?*objc.ByteCount,
+    outputBuffer: TextPtr,
+    outputBufferLength: objc.ByteCount,
+    actualOutputLength: ?*objc.ByteCount,
+) callconv(.C) objc.OSStatus;
+pub const tecConvertText = TECConvertText;
 
-pub extern "CoreServices" fn TECFlushText(encodingConverter: TECObjectRef, outputBuffer: TextPtr, outputBufferLength: objc.ByteCount, actualOutputLength: ?*objc.ByteCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECFlushText(
+    encodingConverter: TECObjectRef,
+    outputBuffer: TextPtr,
+    outputBufferLength: objc.ByteCount,
+    actualOutputLength: ?*objc.ByteCount,
+) callconv(.C) objc.OSStatus;
+pub const tecFlushText = TECFlushText;
 
-pub extern "CoreServices" fn TECCountSubTextEncodings(inputEncoding: TextEncoding, numberOfEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCountSubTextEncodings(inputEncoding: TextEncoding, numberOfEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecCountSubTextEncodings = TECCountSubTextEncodings;
 
-pub extern "CoreServices" fn TECGetSubTextEncodings(inputEncoding: TextEncoding, subEncodings: *TextEncoding, maxSubEncodings: objc.ItemCount, actualSubEncodings: ?*objc.ItemCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetSubTextEncodings(
+    inputEncoding: TextEncoding,
+    subEncodings: *TextEncoding,
+    maxSubEncodings: objc.ItemCount,
+    actualSubEncodings: ?*objc.ItemCount,
+) callconv(.C) objc.OSStatus;
+pub const tecGetSubTextEncodings = TECGetSubTextEncodings;
 
-pub extern "CoreServices" fn TECGetEncodingList(encodingConverter: TECObjectRef, numEncodings: ?*objc.ItemCount, encodingList: ?*objc.Handle) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetEncodingList(encodingConverter: TECObjectRef, numEncodings: ?*objc.ItemCount, encodingList: ?*objc.Handle) callconv(.C) objc.OSStatus;
+pub const tecGetEncodingList = TECGetEncodingList;
 
-pub extern "CoreServices" fn TECCreateOneToManyConverter(newEncodingConverter: ?*TECObjectRef, inputEncoding: TextEncoding, numOutputEncodings: objc.ItemCount, outputEncodings: *TextEncoding, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCreateOneToManyConverter(
+    newEncodingConverter: ?*TECObjectRef,
+    inputEncoding: TextEncoding,
+    numOutputEncodings: objc.ItemCount,
+    outputEncodings: *TextEncoding,
+) callconv(.C) objc.OSStatus;
+pub const tecCreateOneToManyConverter = TECCreateOneToManyConverter;
 
-pub extern "CoreServices" fn TECConvertTextToMultipleEncodings(encodingConverter: TECObjectRef, inputBuffer: ConstTextPtr, inputBufferLength: objc.ByteCount, actualInputLength: ?*objc.ByteCount, outputBuffer: TextPtr, outputBufferLength: objc.ByteCount, actualOutputLength: ?*objc.ByteCount, outEncodingsBuffer: *TextEncodingRun, maxOutEncodingRuns: objc.ItemCount, actualOutEncodingRuns: ?*objc.ItemCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECConvertTextToMultipleEncodings(
+    encodingConverter: TECObjectRef,
+    inputBuffer: ConstTextPtr,
+    inputBufferLength: objc.ByteCount,
+    actualInputLength: ?*objc.ByteCount,
+    outputBuffer: TextPtr,
+    outputBufferLength: objc.ByteCount,
+    actualOutputLength: ?*objc.ByteCount,
+    outEncodingsBuffer: *TextEncodingRun,
+    maxOutEncodingRuns: objc.ItemCount,
+    actualOutEncodingRuns: ?*objc.ItemCount,
+) callconv(.C) objc.OSStatus;
+pub const tecConvertTextToMultipleEncodings = TECConvertTextToMultipleEncodings;
 
-pub extern "CoreServices" fn TECFlushMultipleEncodings(encodingConverter: TECObjectRef, outputBuffer: TextPtr, outputBufferLength: objc.ByteCount, actualOutputLength: ?*objc.ByteCount, outEncodingsBuffer: *TextEncodingRun, maxOutEncodingRuns: objc.ItemCount, actualOutEncodingRuns: ?*objc.ItemCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECFlushMultipleEncodings(
+    encodingConverter: TECObjectRef,
+    outputBuffer: TextPtr,
+    outputBufferLength: objc.ByteCount,
+    actualOutputLength: ?*objc.ByteCount,
+    outEncodingsBuffer: *TextEncodingRun,
+    maxOutEncodingRuns: objc.ItemCount,
+    actualOutEncodingRuns: ?*objc.ItemCount,
+) callconv(.C) objc.OSStatus;
+pub const tecFlushMultipleEncodings = TECFlushMultipleEncodings;
 
-pub extern "CoreServices" fn TECCountWebTextEncodings(locale: objc.RegionCode, numberEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCountWebTextEncodings(locale: objc.RegionCode, numberEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecCountWebTextEncodings = TECCountWebTextEncodings;
 
-pub extern "CoreServices" fn TECGetWebTextEncodings(locale: objc.RegionCode, availableEncodings: *TextEncoding, maxAvailableEncodings: objc.ItemCount, actualAvailableEncodings: ?*objc.ItemCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetWebTextEncodings(
+    locale: objc.RegionCode,
+    availableEncodings: *TextEncoding,
+    maxAvailableEncodings: objc.ItemCount,
+    actualAvailableEncodings: ?*objc.ItemCount,
+) callconv(.C) objc.OSStatus;
+pub const tecGetWebTextEncodings = TECGetWebTextEncodings;
 
-pub extern "CoreServices" fn TECCountMailTextEncodings(locale: objc.RegionCode, numberEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCountMailTextEncodings(locale: objc.RegionCode, numberEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecCountMailTextEncodings = TECCountMailTextEncodings;
 
-pub extern "CoreServices" fn TECGetMailTextEncodings(locale: objc.RegionCode, availableEncodings: *TextEncoding, maxAvailableEncodings: objc.ItemCount, actualAvailableEncodings: ?*objc.ItemCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetMailTextEncodings(
+    locale: objc.RegionCode,
+    availableEncodings: *TextEncoding,
+    maxAvailableEncodings: objc.ItemCount,
+    actualAvailableEncodings: ?*objc.ItemCount,
+) callconv(.C) objc.OSStatus;
+pub const tecGetMailTextEncodings = TECGetMailTextEncodings;
 
-pub extern "CoreServices" fn TECCountAvailableSniffers(numberOfEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCountAvailableSniffers(numberOfEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecCountAvailableSniffers = TECCountAvailableSniffers;
 
-pub extern "CoreServices" fn TECGetAvailableSniffers(availableSniffers: *TextEncoding, maxAvailableSniffers: objc.ItemCount, actualAvailableSniffers: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetAvailableSniffers(availableSniffers: *TextEncoding, maxAvailableSniffers: objc.ItemCount, actualAvailableSniffers: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecGetAvailableSniffers = TECGetAvailableSniffers;
 
-pub extern "CoreServices" fn TECCreateSniffer(encodingSniffer: ?*TECSnifferObjectRef, testEncodings: *TextEncoding, numTextEncodings: objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCreateSniffer(encodingSniffer: ?*TECSnifferObjectRef, testEncodings: *TextEncoding, numTextEncodings: objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const tecCreateSniffer = TECCreateSniffer;
 
-pub extern "CoreServices" fn TECSniffTextEncoding(encodingSniffer: TECSnifferObjectRef, inputBuffer: ConstTextPtr, inputBufferLength: objc.ByteCount, testEncodings: *TextEncoding, numTextEncodings: objc.ItemCount, numErrsArray: *objc.ItemCount, maxErrs: objc.ItemCount, numFeaturesArray: *objc.ItemCount, maxFeatures: objc.ItemCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECSniffTextEncoding(
+    encodingSniffer: TECSnifferObjectRef,
+    inputBuffer: ConstTextPtr,
+    inputBufferLength: objc.ByteCount,
+    testEncodings: *TextEncoding,
+    numTextEncodings: objc.ItemCount,
+    numErrsArray: *objc.ItemCount,
+    maxErrs: objc.ItemCount,
+    numFeaturesArray: *objc.ItemCount,
+    maxFeatures: objc.ItemCount,
+) callconv(.C) objc.OSStatus;
+pub const tecSniffTextEncoding = TECSniffTextEncoding;
 
-pub extern "CoreServices" fn TECDisposeSniffer(encodingSniffer: TECSnifferObjectRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECDisposeSniffer(encodingSniffer: TECSnifferObjectRef) callconv(.C) objc.OSStatus;
+pub const tecDisposeSniffer = TECDisposeSniffer;
 
-pub extern "CoreServices" fn TECClearSnifferContextInfo(encodingSniffer: TECSnifferObjectRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECClearSnifferContextInfo(encodingSniffer: TECSnifferObjectRef) callconv(.C) objc.OSStatus;
+pub const tecClearSnifferContextInfo = TECClearSnifferContextInfo;
 
-pub extern "CoreServices" fn TECSetBasicOptions(encodingConverter: TECObjectRef, controlFlags: objc.OptionBits) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECSetBasicOptions(encodingConverter: TECObjectRef, controlFlags: objc.OptionBits) callconv(.C) objc.OSStatus;
+pub const tecSetBasicOptions = TECSetBasicOptions;
 
-pub extern "CoreServices" fn TECCopyTextEncodingInternetNameAndMIB(textEncoding: TextEncoding, usage: TECInternetNameUsageMask, encodingNamePtr: ?*core_foundation.StringRef, mibEnumPtr: ?*objc.SInt32, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECCopyTextEncodingInternetNameAndMIB(
+    textEncoding: TextEncoding,
+    usage: TECInternetNameUsageMask,
+    encodingNamePtr: ?*core_foundation.StringRef,
+    mibEnumPtr: ?*objc.SInt32,
+) callconv(.C) objc.OSStatus;
+pub const tecCopyTextEncodingInternetNameAndMIB = TECCopyTextEncodingInternetNameAndMIB;
 
-pub extern "CoreServices" fn TECGetTextEncodingFromInternetNameOrMIB(textEncodingPtr: ?*TextEncoding, usage: TECInternetNameUsageMask, encodingName: core_foundation.StringRef, mibEnum: objc.SInt32, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TECGetTextEncodingFromInternetNameOrMIB(
+    textEncodingPtr: ?*TextEncoding,
+    usage: TECInternetNameUsageMask,
+    encodingName: core_foundation.StringRef,
+    mibEnum: objc.SInt32,
+) callconv(.C) objc.OSStatus;
+pub const tecGetTextEncodingFromInternetNameOrMIB = TECGetTextEncodingFromInternetNameOrMIB;
 
 pub const OpaqueTextToUnicodeInfo = extern struct {};
 
@@ -9438,69 +11270,216 @@ pub const anon1731 = enum(u32) {
     kUnicodeFallbackCustomFirst = 3,
 };
 
-pub const UnicodeToTextFallbackProcPtr = ?*const fn(?*objc.UniChar, objc.ByteCount, ?*objc.ByteCount, TextPtr, objc.ByteCount, ?*objc.ByteCount, objc.LogicalAddress, ConstUnicodeMappingPtr, ) callconv(.C) objc.OSStatus;
+pub const UnicodeToTextFallbackProcPtr = ?*const fn (
+    ?*objc.UniChar,
+    objc.ByteCount,
+    ?*objc.ByteCount,
+    TextPtr,
+    objc.ByteCount,
+    ?*objc.ByteCount,
+    objc.LogicalAddress,
+    ConstUnicodeMappingPtr,
+) callconv(.C) objc.OSStatus;
 
 pub const UnicodeToTextFallbackUPP = UnicodeToTextFallbackProcPtr;
 
-pub extern "CoreServices" fn NewUnicodeToTextFallbackUPP(userRoutine: UnicodeToTextFallbackProcPtr) callconv(.C) UnicodeToTextFallbackUPP;
+extern "CoreServices" fn NewUnicodeToTextFallbackUPP(userRoutine: UnicodeToTextFallbackProcPtr) callconv(.C) UnicodeToTextFallbackUPP;
+pub const newUnicodeToTextFallbackUPP = NewUnicodeToTextFallbackUPP;
 
-pub extern "CoreServices" fn DisposeUnicodeToTextFallbackUPP(userUPP: UnicodeToTextFallbackUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeUnicodeToTextFallbackUPP(userUPP: UnicodeToTextFallbackUPP) callconv(.C) void;
+pub const disposeUnicodeToTextFallbackUPP = DisposeUnicodeToTextFallbackUPP;
 
-pub extern "CoreServices" fn InvokeUnicodeToTextFallbackUPP(iSrcUniStr: ?*objc.UniChar, iSrcUniStrLen: objc.ByteCount, oSrcConvLen: ?*objc.ByteCount, oDestStr: TextPtr, iDestStrLen: objc.ByteCount, oDestConvLen: ?*objc.ByteCount, iInfoPtr: objc.LogicalAddress, iUnicodeMappingPtr: ConstUnicodeMappingPtr, userUPP: UnicodeToTextFallbackUPP, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn InvokeUnicodeToTextFallbackUPP(
+    iSrcUniStr: ?*objc.UniChar,
+    iSrcUniStrLen: objc.ByteCount,
+    oSrcConvLen: ?*objc.ByteCount,
+    oDestStr: TextPtr,
+    iDestStrLen: objc.ByteCount,
+    oDestConvLen: ?*objc.ByteCount,
+    iInfoPtr: objc.LogicalAddress,
+    iUnicodeMappingPtr: ConstUnicodeMappingPtr,
+    userUPP: UnicodeToTextFallbackUPP,
+) callconv(.C) objc.OSStatus;
+pub const invokeUnicodeToTextFallbackUPP = InvokeUnicodeToTextFallbackUPP;
 
-pub extern "CoreServices" fn CreateTextToUnicodeInfo(iUnicodeMapping: ConstUnicodeMappingPtr, oTextToUnicodeInfo: ?*TextToUnicodeInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CreateTextToUnicodeInfo(iUnicodeMapping: ConstUnicodeMappingPtr, oTextToUnicodeInfo: ?*TextToUnicodeInfo) callconv(.C) objc.OSStatus;
+pub const createTextToUnicodeInfo = CreateTextToUnicodeInfo;
 
-pub extern "CoreServices" fn CreateTextToUnicodeInfoByEncoding(iEncoding: TextEncoding, oTextToUnicodeInfo: ?*TextToUnicodeInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CreateTextToUnicodeInfoByEncoding(iEncoding: TextEncoding, oTextToUnicodeInfo: ?*TextToUnicodeInfo) callconv(.C) objc.OSStatus;
+pub const createTextToUnicodeInfoByEncoding = CreateTextToUnicodeInfoByEncoding;
 
-pub extern "CoreServices" fn CreateUnicodeToTextInfo(iUnicodeMapping: ConstUnicodeMappingPtr, oUnicodeToTextInfo: ?*UnicodeToTextInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CreateUnicodeToTextInfo(iUnicodeMapping: ConstUnicodeMappingPtr, oUnicodeToTextInfo: ?*UnicodeToTextInfo) callconv(.C) objc.OSStatus;
+pub const createUnicodeToTextInfo = CreateUnicodeToTextInfo;
 
-pub extern "CoreServices" fn CreateUnicodeToTextInfoByEncoding(iEncoding: TextEncoding, oUnicodeToTextInfo: ?*UnicodeToTextInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CreateUnicodeToTextInfoByEncoding(iEncoding: TextEncoding, oUnicodeToTextInfo: ?*UnicodeToTextInfo) callconv(.C) objc.OSStatus;
+pub const createUnicodeToTextInfoByEncoding = CreateUnicodeToTextInfoByEncoding;
 
-pub extern "CoreServices" fn CreateUnicodeToTextRunInfo(iNumberOfMappings: objc.ItemCount, iUnicodeMappings: *UnicodeMapping, oUnicodeToTextInfo: ?*UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CreateUnicodeToTextRunInfo(iNumberOfMappings: objc.ItemCount, iUnicodeMappings: *UnicodeMapping, oUnicodeToTextInfo: ?*UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+pub const createUnicodeToTextRunInfo = CreateUnicodeToTextRunInfo;
 
-pub extern "CoreServices" fn CreateUnicodeToTextRunInfoByEncoding(iNumberOfEncodings: objc.ItemCount, iEncodings: *TextEncoding, oUnicodeToTextInfo: ?*UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CreateUnicodeToTextRunInfoByEncoding(iNumberOfEncodings: objc.ItemCount, iEncodings: *TextEncoding, oUnicodeToTextInfo: ?*UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+pub const createUnicodeToTextRunInfoByEncoding = CreateUnicodeToTextRunInfoByEncoding;
 
-pub extern "CoreServices" fn CreateUnicodeToTextRunInfoByScriptCode(iNumberOfScriptCodes: objc.ItemCount, iScripts: *objc.ScriptCode, oUnicodeToTextInfo: ?*UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CreateUnicodeToTextRunInfoByScriptCode(iNumberOfScriptCodes: objc.ItemCount, iScripts: *objc.ScriptCode, oUnicodeToTextInfo: ?*UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+pub const createUnicodeToTextRunInfoByScriptCode = CreateUnicodeToTextRunInfoByScriptCode;
 
-pub extern "CoreServices" fn ChangeTextToUnicodeInfo(ioTextToUnicodeInfo: TextToUnicodeInfo, iUnicodeMapping: ConstUnicodeMappingPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ChangeTextToUnicodeInfo(ioTextToUnicodeInfo: TextToUnicodeInfo, iUnicodeMapping: ConstUnicodeMappingPtr) callconv(.C) objc.OSStatus;
+pub const changeTextToUnicodeInfo = ChangeTextToUnicodeInfo;
 
-pub extern "CoreServices" fn ChangeUnicodeToTextInfo(ioUnicodeToTextInfo: UnicodeToTextInfo, iUnicodeMapping: ConstUnicodeMappingPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ChangeUnicodeToTextInfo(ioUnicodeToTextInfo: UnicodeToTextInfo, iUnicodeMapping: ConstUnicodeMappingPtr) callconv(.C) objc.OSStatus;
+pub const changeUnicodeToTextInfo = ChangeUnicodeToTextInfo;
 
-pub extern "CoreServices" fn DisposeTextToUnicodeInfo(ioTextToUnicodeInfo: ?*TextToUnicodeInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn DisposeTextToUnicodeInfo(ioTextToUnicodeInfo: ?*TextToUnicodeInfo) callconv(.C) objc.OSStatus;
+pub const disposeTextToUnicodeInfo = DisposeTextToUnicodeInfo;
 
-pub extern "CoreServices" fn DisposeUnicodeToTextInfo(ioUnicodeToTextInfo: ?*UnicodeToTextInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn DisposeUnicodeToTextInfo(ioUnicodeToTextInfo: ?*UnicodeToTextInfo) callconv(.C) objc.OSStatus;
+pub const disposeUnicodeToTextInfo = DisposeUnicodeToTextInfo;
 
-pub extern "CoreServices" fn DisposeUnicodeToTextRunInfo(ioUnicodeToTextRunInfo: ?*UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn DisposeUnicodeToTextRunInfo(ioUnicodeToTextRunInfo: ?*UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+pub const disposeUnicodeToTextRunInfo = DisposeUnicodeToTextRunInfo;
 
-pub extern "CoreServices" fn ConvertFromTextToUnicode(iTextToUnicodeInfo: TextToUnicodeInfo, iSourceLen: objc.ByteCount, iSourceStr: objc.ConstLogicalAddress, iControlFlags: objc.OptionBits, iOffsetCount: objc.ItemCount, iOffsetArray: *objc.ByteOffset, oOffsetCount: ?*objc.ItemCount, oOffsetArray: *objc.ByteOffset, iOutputBufLen: objc.ByteCount, oSourceRead: ?*objc.ByteCount, oUnicodeLen: ?*objc.ByteCount, oUnicodeStr: *objc.UniChar, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ConvertFromTextToUnicode(
+    iTextToUnicodeInfo: TextToUnicodeInfo,
+    iSourceLen: objc.ByteCount,
+    iSourceStr: objc.ConstLogicalAddress,
+    iControlFlags: objc.OptionBits,
+    iOffsetCount: objc.ItemCount,
+    iOffsetArray: *objc.ByteOffset,
+    oOffsetCount: ?*objc.ItemCount,
+    oOffsetArray: *objc.ByteOffset,
+    iOutputBufLen: objc.ByteCount,
+    oSourceRead: ?*objc.ByteCount,
+    oUnicodeLen: ?*objc.ByteCount,
+    oUnicodeStr: *objc.UniChar,
+) callconv(.C) objc.OSStatus;
+pub const convertFromTextToUnicode = ConvertFromTextToUnicode;
 
-pub extern "CoreServices" fn ConvertFromUnicodeToText(iUnicodeToTextInfo: UnicodeToTextInfo, iUnicodeLen: objc.ByteCount, iUnicodeStr: *objc.UniChar, iControlFlags: objc.OptionBits, iOffsetCount: objc.ItemCount, iOffsetArray: *objc.ByteOffset, oOffsetCount: ?*objc.ItemCount, oOffsetArray: *objc.ByteOffset, iOutputBufLen: objc.ByteCount, oInputRead: ?*objc.ByteCount, oOutputLen: ?*objc.ByteCount, oOutputStr: objc.LogicalAddress, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ConvertFromUnicodeToText(
+    iUnicodeToTextInfo: UnicodeToTextInfo,
+    iUnicodeLen: objc.ByteCount,
+    iUnicodeStr: *objc.UniChar,
+    iControlFlags: objc.OptionBits,
+    iOffsetCount: objc.ItemCount,
+    iOffsetArray: *objc.ByteOffset,
+    oOffsetCount: ?*objc.ItemCount,
+    oOffsetArray: *objc.ByteOffset,
+    iOutputBufLen: objc.ByteCount,
+    oInputRead: ?*objc.ByteCount,
+    oOutputLen: ?*objc.ByteCount,
+    oOutputStr: objc.LogicalAddress,
+) callconv(.C) objc.OSStatus;
+pub const convertFromUnicodeToText = ConvertFromUnicodeToText;
 
-pub extern "CoreServices" fn ConvertFromUnicodeToTextRun(iUnicodeToTextInfo: UnicodeToTextRunInfo, iUnicodeLen: objc.ByteCount, iUnicodeStr: *objc.UniChar, iControlFlags: objc.OptionBits, iOffsetCount: objc.ItemCount, iOffsetArray: *objc.ByteOffset, oOffsetCount: ?*objc.ItemCount, oOffsetArray: *objc.ByteOffset, iOutputBufLen: objc.ByteCount, oInputRead: ?*objc.ByteCount, oOutputLen: ?*objc.ByteCount, oOutputStr: objc.LogicalAddress, iEncodingRunBufLen: objc.ItemCount, oEncodingRunOutLen: ?*objc.ItemCount, oEncodingRuns: *TextEncodingRun, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ConvertFromUnicodeToTextRun(
+    iUnicodeToTextInfo: UnicodeToTextRunInfo,
+    iUnicodeLen: objc.ByteCount,
+    iUnicodeStr: *objc.UniChar,
+    iControlFlags: objc.OptionBits,
+    iOffsetCount: objc.ItemCount,
+    iOffsetArray: *objc.ByteOffset,
+    oOffsetCount: ?*objc.ItemCount,
+    oOffsetArray: *objc.ByteOffset,
+    iOutputBufLen: objc.ByteCount,
+    oInputRead: ?*objc.ByteCount,
+    oOutputLen: ?*objc.ByteCount,
+    oOutputStr: objc.LogicalAddress,
+    iEncodingRunBufLen: objc.ItemCount,
+    oEncodingRunOutLen: ?*objc.ItemCount,
+    oEncodingRuns: *TextEncodingRun,
+) callconv(.C) objc.OSStatus;
+pub const convertFromUnicodeToTextRun = ConvertFromUnicodeToTextRun;
 
-pub extern "CoreServices" fn ConvertFromUnicodeToScriptCodeRun(iUnicodeToTextInfo: UnicodeToTextRunInfo, iUnicodeLen: objc.ByteCount, iUnicodeStr: *objc.UniChar, iControlFlags: objc.OptionBits, iOffsetCount: objc.ItemCount, iOffsetArray: *objc.ByteOffset, oOffsetCount: ?*objc.ItemCount, oOffsetArray: *objc.ByteOffset, iOutputBufLen: objc.ByteCount, oInputRead: ?*objc.ByteCount, oOutputLen: ?*objc.ByteCount, oOutputStr: objc.LogicalAddress, iScriptRunBufLen: objc.ItemCount, oScriptRunOutLen: ?*objc.ItemCount, oScriptCodeRuns: *ScriptCodeRun, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ConvertFromUnicodeToScriptCodeRun(
+    iUnicodeToTextInfo: UnicodeToTextRunInfo,
+    iUnicodeLen: objc.ByteCount,
+    iUnicodeStr: *objc.UniChar,
+    iControlFlags: objc.OptionBits,
+    iOffsetCount: objc.ItemCount,
+    iOffsetArray: *objc.ByteOffset,
+    oOffsetCount: ?*objc.ItemCount,
+    oOffsetArray: *objc.ByteOffset,
+    iOutputBufLen: objc.ByteCount,
+    oInputRead: ?*objc.ByteCount,
+    oOutputLen: ?*objc.ByteCount,
+    oOutputStr: objc.LogicalAddress,
+    iScriptRunBufLen: objc.ItemCount,
+    oScriptRunOutLen: ?*objc.ItemCount,
+    oScriptCodeRuns: *ScriptCodeRun,
+) callconv(.C) objc.OSStatus;
+pub const convertFromUnicodeToScriptCodeRun = ConvertFromUnicodeToScriptCodeRun;
 
-pub extern "CoreServices" fn TruncateForTextToUnicode(iTextToUnicodeInfo: ConstTextToUnicodeInfo, iSourceLen: objc.ByteCount, iSourceStr: objc.ConstLogicalAddress, iMaxLen: objc.ByteCount, oTruncatedLen: ?*objc.ByteCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TruncateForTextToUnicode(
+    iTextToUnicodeInfo: ConstTextToUnicodeInfo,
+    iSourceLen: objc.ByteCount,
+    iSourceStr: objc.ConstLogicalAddress,
+    iMaxLen: objc.ByteCount,
+    oTruncatedLen: ?*objc.ByteCount,
+) callconv(.C) objc.OSStatus;
+pub const truncateForTextToUnicode = TruncateForTextToUnicode;
 
-pub extern "CoreServices" fn TruncateForUnicodeToText(iUnicodeToTextInfo: ConstUnicodeToTextInfo, iSourceLen: objc.ByteCount, iSourceStr: *objc.UniChar, iControlFlags: objc.OptionBits, iMaxLen: objc.ByteCount, oTruncatedLen: ?*objc.ByteCount, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn TruncateForUnicodeToText(
+    iUnicodeToTextInfo: ConstUnicodeToTextInfo,
+    iSourceLen: objc.ByteCount,
+    iSourceStr: *objc.UniChar,
+    iControlFlags: objc.OptionBits,
+    iMaxLen: objc.ByteCount,
+    oTruncatedLen: ?*objc.ByteCount,
+) callconv(.C) objc.OSStatus;
+pub const truncateForUnicodeToText = TruncateForUnicodeToText;
 
-pub extern "CoreServices" fn ConvertFromPStringToUnicode(iTextToUnicodeInfo: TextToUnicodeInfo, iPascalStr: objc.ConstStr255Param, iOutputBufLen: objc.ByteCount, oUnicodeLen: ?*objc.ByteCount, oUnicodeStr: *objc.UniChar, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ConvertFromPStringToUnicode(
+    iTextToUnicodeInfo: TextToUnicodeInfo,
+    iPascalStr: objc.ConstStr255Param,
+    iOutputBufLen: objc.ByteCount,
+    oUnicodeLen: ?*objc.ByteCount,
+    oUnicodeStr: *objc.UniChar,
+) callconv(.C) objc.OSStatus;
+pub const convertFromPStringToUnicode = ConvertFromPStringToUnicode;
 
-pub extern "CoreServices" fn ConvertFromUnicodeToPString(iUnicodeToTextInfo: UnicodeToTextInfo, iUnicodeLen: objc.ByteCount, iUnicodeStr: *objc.UniChar, oPascalStr: objc.Str255, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ConvertFromUnicodeToPString(
+    iUnicodeToTextInfo: UnicodeToTextInfo,
+    iUnicodeLen: objc.ByteCount,
+    iUnicodeStr: *objc.UniChar,
+    oPascalStr: objc.Str255,
+) callconv(.C) objc.OSStatus;
+pub const convertFromUnicodeToPString = ConvertFromUnicodeToPString;
 
-pub extern "CoreServices" fn CountUnicodeMappings(iFilter: objc.OptionBits, iFindMapping: ConstUnicodeMappingPtr, oActualCount: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn CountUnicodeMappings(iFilter: objc.OptionBits, iFindMapping: ConstUnicodeMappingPtr, oActualCount: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const countUnicodeMappings = CountUnicodeMappings;
 
-pub extern "CoreServices" fn QueryUnicodeMappings(iFilter: objc.OptionBits, iFindMapping: ConstUnicodeMappingPtr, iMaxCount: objc.ItemCount, oActualCount: ?*objc.ItemCount, oReturnedMappings: *UnicodeMapping, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn QueryUnicodeMappings(
+    iFilter: objc.OptionBits,
+    iFindMapping: ConstUnicodeMappingPtr,
+    iMaxCount: objc.ItemCount,
+    oActualCount: ?*objc.ItemCount,
+    oReturnedMappings: *UnicodeMapping,
+) callconv(.C) objc.OSStatus;
+pub const queryUnicodeMappings = QueryUnicodeMappings;
 
-pub extern "CoreServices" fn SetFallbackUnicodeToText(iUnicodeToTextInfo: UnicodeToTextInfo, iFallback: UnicodeToTextFallbackUPP, iControlFlags: objc.OptionBits, iInfoPtr: objc.LogicalAddress, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn SetFallbackUnicodeToText(
+    iUnicodeToTextInfo: UnicodeToTextInfo,
+    iFallback: UnicodeToTextFallbackUPP,
+    iControlFlags: objc.OptionBits,
+    iInfoPtr: objc.LogicalAddress,
+) callconv(.C) objc.OSStatus;
+pub const setFallbackUnicodeToText = SetFallbackUnicodeToText;
 
-pub extern "CoreServices" fn SetFallbackUnicodeToTextRun(iUnicodeToTextRunInfo: UnicodeToTextRunInfo, iFallback: UnicodeToTextFallbackUPP, iControlFlags: objc.OptionBits, iInfoPtr: objc.LogicalAddress, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn SetFallbackUnicodeToTextRun(
+    iUnicodeToTextRunInfo: UnicodeToTextRunInfo,
+    iFallback: UnicodeToTextFallbackUPP,
+    iControlFlags: objc.OptionBits,
+    iInfoPtr: objc.LogicalAddress,
+) callconv(.C) objc.OSStatus;
+pub const setFallbackUnicodeToTextRun = SetFallbackUnicodeToTextRun;
 
-pub extern "CoreServices" fn ResetTextToUnicodeInfo(ioTextToUnicodeInfo: TextToUnicodeInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ResetTextToUnicodeInfo(ioTextToUnicodeInfo: TextToUnicodeInfo) callconv(.C) objc.OSStatus;
+pub const resetTextToUnicodeInfo = ResetTextToUnicodeInfo;
 
-pub extern "CoreServices" fn ResetUnicodeToTextInfo(ioUnicodeToTextInfo: UnicodeToTextInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ResetUnicodeToTextInfo(ioUnicodeToTextInfo: UnicodeToTextInfo) callconv(.C) objc.OSStatus;
+pub const resetUnicodeToTextInfo = ResetUnicodeToTextInfo;
 
-pub extern "CoreServices" fn ResetUnicodeToTextRunInfo(ioUnicodeToTextRunInfo: UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ResetUnicodeToTextRunInfo(ioUnicodeToTextRunInfo: UnicodeToTextRunInfo) callconv(.C) objc.OSStatus;
+pub const resetUnicodeToTextRunInfo = ResetUnicodeToTextRunInfo;
 
 pub const ThreadState = objc.UInt16;
 
@@ -9523,19 +11502,19 @@ pub const SchedulerInfoRecPtr = ?*SchedulerInfoRec;
 
 pub const voidPtr = ?*anyopaque;
 
-pub const ThreadEntryProcPtr = ?*const fn(?*anyopaque) callconv(.C) voidPtr;
+pub const ThreadEntryProcPtr = ?*const fn (?*anyopaque) callconv(.C) voidPtr;
 
-pub const ThreadSchedulerProcPtr = ?*const fn(SchedulerInfoRecPtr) callconv(.C) ThreadID;
+pub const ThreadSchedulerProcPtr = ?*const fn (SchedulerInfoRecPtr) callconv(.C) ThreadID;
 
-pub const ThreadSwitchProcPtr = ?*const fn(ThreadID, ?*anyopaque) callconv(.C) void;
+pub const ThreadSwitchProcPtr = ?*const fn (ThreadID, ?*anyopaque) callconv(.C) void;
 
-pub const ThreadTerminationProcPtr = ?*const fn(ThreadID, ?*anyopaque) callconv(.C) void;
+pub const ThreadTerminationProcPtr = ?*const fn (ThreadID, ?*anyopaque) callconv(.C) void;
 
-pub const DebuggerNewThreadProcPtr = ?*const fn(ThreadID) callconv(.C) void;
+pub const DebuggerNewThreadProcPtr = ?*const fn (ThreadID) callconv(.C) void;
 
-pub const DebuggerDisposeThreadProcPtr = ?*const fn(ThreadID) callconv(.C) void;
+pub const DebuggerDisposeThreadProcPtr = ?*const fn (ThreadID) callconv(.C) void;
 
-pub const DebuggerThreadSchedulerProcPtr = ?*const fn(SchedulerInfoRecPtr) callconv(.C) ThreadID;
+pub const DebuggerThreadSchedulerProcPtr = ?*const fn (SchedulerInfoRecPtr) callconv(.C) ThreadID;
 
 pub const ThreadEntryUPP = ThreadEntryProcPtr;
 
@@ -9551,47 +11530,68 @@ pub const DebuggerDisposeThreadUPP = DebuggerDisposeThreadProcPtr;
 
 pub const DebuggerThreadSchedulerUPP = DebuggerThreadSchedulerProcPtr;
 
-pub extern "CoreServices" fn NewThreadEntryUPP(userRoutine: ThreadEntryProcPtr) callconv(.C) ThreadEntryUPP;
+extern "CoreServices" fn NewThreadEntryUPP(userRoutine: ThreadEntryProcPtr) callconv(.C) ThreadEntryUPP;
+pub const newThreadEntryUPP = NewThreadEntryUPP;
 
-pub extern "CoreServices" fn NewThreadSchedulerUPP(userRoutine: ThreadSchedulerProcPtr) callconv(.C) ThreadSchedulerUPP;
+extern "CoreServices" fn NewThreadSchedulerUPP(userRoutine: ThreadSchedulerProcPtr) callconv(.C) ThreadSchedulerUPP;
+pub const newThreadSchedulerUPP = NewThreadSchedulerUPP;
 
-pub extern "CoreServices" fn NewThreadSwitchUPP(userRoutine: ThreadSwitchProcPtr) callconv(.C) ThreadSwitchUPP;
+extern "CoreServices" fn NewThreadSwitchUPP(userRoutine: ThreadSwitchProcPtr) callconv(.C) ThreadSwitchUPP;
+pub const newThreadSwitchUPP = NewThreadSwitchUPP;
 
-pub extern "CoreServices" fn NewThreadTerminationUPP(userRoutine: ThreadTerminationProcPtr) callconv(.C) ThreadTerminationUPP;
+extern "CoreServices" fn NewThreadTerminationUPP(userRoutine: ThreadTerminationProcPtr) callconv(.C) ThreadTerminationUPP;
+pub const newThreadTerminationUPP = NewThreadTerminationUPP;
 
-pub extern "CoreServices" fn NewDebuggerNewThreadUPP(userRoutine: DebuggerNewThreadProcPtr) callconv(.C) DebuggerNewThreadUPP;
+extern "CoreServices" fn NewDebuggerNewThreadUPP(userRoutine: DebuggerNewThreadProcPtr) callconv(.C) DebuggerNewThreadUPP;
+pub const newDebuggerNewThreadUPP = NewDebuggerNewThreadUPP;
 
-pub extern "CoreServices" fn NewDebuggerDisposeThreadUPP(userRoutine: DebuggerDisposeThreadProcPtr) callconv(.C) DebuggerDisposeThreadUPP;
+extern "CoreServices" fn NewDebuggerDisposeThreadUPP(userRoutine: DebuggerDisposeThreadProcPtr) callconv(.C) DebuggerDisposeThreadUPP;
+pub const newDebuggerDisposeThreadUPP = NewDebuggerDisposeThreadUPP;
 
-pub extern "CoreServices" fn NewDebuggerThreadSchedulerUPP(userRoutine: DebuggerThreadSchedulerProcPtr) callconv(.C) DebuggerThreadSchedulerUPP;
+extern "CoreServices" fn NewDebuggerThreadSchedulerUPP(userRoutine: DebuggerThreadSchedulerProcPtr) callconv(.C) DebuggerThreadSchedulerUPP;
+pub const newDebuggerThreadSchedulerUPP = NewDebuggerThreadSchedulerUPP;
 
-pub extern "CoreServices" fn DisposeThreadEntryUPP(userUPP: ThreadEntryUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeThreadEntryUPP(userUPP: ThreadEntryUPP) callconv(.C) void;
+pub const disposeThreadEntryUPP = DisposeThreadEntryUPP;
 
-pub extern "CoreServices" fn DisposeThreadSchedulerUPP(userUPP: ThreadSchedulerUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeThreadSchedulerUPP(userUPP: ThreadSchedulerUPP) callconv(.C) void;
+pub const disposeThreadSchedulerUPP = DisposeThreadSchedulerUPP;
 
-pub extern "CoreServices" fn DisposeThreadSwitchUPP(userUPP: ThreadSwitchUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeThreadSwitchUPP(userUPP: ThreadSwitchUPP) callconv(.C) void;
+pub const disposeThreadSwitchUPP = DisposeThreadSwitchUPP;
 
-pub extern "CoreServices" fn DisposeThreadTerminationUPP(userUPP: ThreadTerminationUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeThreadTerminationUPP(userUPP: ThreadTerminationUPP) callconv(.C) void;
+pub const disposeThreadTerminationUPP = DisposeThreadTerminationUPP;
 
-pub extern "CoreServices" fn DisposeDebuggerNewThreadUPP(userUPP: DebuggerNewThreadUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeDebuggerNewThreadUPP(userUPP: DebuggerNewThreadUPP) callconv(.C) void;
+pub const disposeDebuggerNewThreadUPP = DisposeDebuggerNewThreadUPP;
 
-pub extern "CoreServices" fn DisposeDebuggerDisposeThreadUPP(userUPP: DebuggerDisposeThreadUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeDebuggerDisposeThreadUPP(userUPP: DebuggerDisposeThreadUPP) callconv(.C) void;
+pub const disposeDebuggerDisposeThreadUPP = DisposeDebuggerDisposeThreadUPP;
 
-pub extern "CoreServices" fn DisposeDebuggerThreadSchedulerUPP(userUPP: DebuggerThreadSchedulerUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeDebuggerThreadSchedulerUPP(userUPP: DebuggerThreadSchedulerUPP) callconv(.C) void;
+pub const disposeDebuggerThreadSchedulerUPP = DisposeDebuggerThreadSchedulerUPP;
 
-pub extern "CoreServices" fn InvokeThreadEntryUPP(threadParam: ?*anyopaque, userUPP: ThreadEntryUPP) callconv(.C) voidPtr;
+extern "CoreServices" fn InvokeThreadEntryUPP(threadParam: ?*anyopaque, userUPP: ThreadEntryUPP) callconv(.C) voidPtr;
+pub const invokeThreadEntryUPP = InvokeThreadEntryUPP;
 
-pub extern "CoreServices" fn InvokeThreadSchedulerUPP(schedulerInfo: SchedulerInfoRecPtr, userUPP: ThreadSchedulerUPP) callconv(.C) ThreadID;
+extern "CoreServices" fn InvokeThreadSchedulerUPP(schedulerInfo: SchedulerInfoRecPtr, userUPP: ThreadSchedulerUPP) callconv(.C) ThreadID;
+pub const invokeThreadSchedulerUPP = InvokeThreadSchedulerUPP;
 
-pub extern "CoreServices" fn InvokeThreadSwitchUPP(threadBeingSwitched: ThreadID, switchProcParam: ?*anyopaque, userUPP: ThreadSwitchUPP) callconv(.C) void;
+extern "CoreServices" fn InvokeThreadSwitchUPP(threadBeingSwitched: ThreadID, switchProcParam: ?*anyopaque, userUPP: ThreadSwitchUPP) callconv(.C) void;
+pub const invokeThreadSwitchUPP = InvokeThreadSwitchUPP;
 
-pub extern "CoreServices" fn InvokeThreadTerminationUPP(threadTerminated: ThreadID, terminationProcParam: ?*anyopaque, userUPP: ThreadTerminationUPP) callconv(.C) void;
+extern "CoreServices" fn InvokeThreadTerminationUPP(threadTerminated: ThreadID, terminationProcParam: ?*anyopaque, userUPP: ThreadTerminationUPP) callconv(.C) void;
+pub const invokeThreadTerminationUPP = InvokeThreadTerminationUPP;
 
-pub extern "CoreServices" fn InvokeDebuggerNewThreadUPP(threadCreated: ThreadID, userUPP: DebuggerNewThreadUPP) callconv(.C) void;
+extern "CoreServices" fn InvokeDebuggerNewThreadUPP(threadCreated: ThreadID, userUPP: DebuggerNewThreadUPP) callconv(.C) void;
+pub const invokeDebuggerNewThreadUPP = InvokeDebuggerNewThreadUPP;
 
-pub extern "CoreServices" fn InvokeDebuggerDisposeThreadUPP(threadDeleted: ThreadID, userUPP: DebuggerDisposeThreadUPP) callconv(.C) void;
+extern "CoreServices" fn InvokeDebuggerDisposeThreadUPP(threadDeleted: ThreadID, userUPP: DebuggerDisposeThreadUPP) callconv(.C) void;
+pub const invokeDebuggerDisposeThreadUPP = InvokeDebuggerDisposeThreadUPP;
 
-pub extern "CoreServices" fn InvokeDebuggerThreadSchedulerUPP(schedulerInfo: SchedulerInfoRecPtr, userUPP: DebuggerThreadSchedulerUPP) callconv(.C) ThreadID;
+extern "CoreServices" fn InvokeDebuggerThreadSchedulerUPP(schedulerInfo: SchedulerInfoRecPtr, userUPP: DebuggerThreadSchedulerUPP) callconv(.C) ThreadID;
+pub const invokeDebuggerThreadSchedulerUPP = InvokeDebuggerThreadSchedulerUPP;
 
 pub const ThreadEntryTPP = ThreadEntryUPP;
 
@@ -9607,45 +11607,78 @@ pub const DebuggerDisposeThreadTPP = DebuggerDisposeThreadUPP;
 
 pub const DebuggerThreadSchedulerTPP = DebuggerThreadSchedulerUPP;
 
-pub extern "CoreServices" fn NewThread(threadStyle: ThreadStyle, threadEntry: ThreadEntryTPP, threadParam: ?*anyopaque, stackSize: objc.Size, options: ThreadOptions, threadResult: ?*?*anyopaque, threadMade: ?*ThreadID, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn NewThread(
+    threadStyle: ThreadStyle,
+    threadEntry: ThreadEntryTPP,
+    threadParam: ?*anyopaque,
+    stackSize: objc.Size,
+    options: ThreadOptions,
+    threadResult: ?*?*anyopaque,
+    threadMade: ?*ThreadID,
+) callconv(.C) objc.OSErr;
+pub const newThread = NewThread;
 
-pub extern "CoreServices" fn SetThreadScheduler(threadScheduler: ThreadSchedulerTPP) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetThreadScheduler(threadScheduler: ThreadSchedulerTPP) callconv(.C) objc.OSErr;
+pub const setThreadScheduler = SetThreadScheduler;
 
-pub extern "CoreServices" fn SetThreadSwitcher(thread: ThreadID, threadSwitcher: ThreadSwitchTPP, switchProcParam: ?*anyopaque, inOrOut: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetThreadSwitcher(
+    thread: ThreadID,
+    threadSwitcher: ThreadSwitchTPP,
+    switchProcParam: ?*anyopaque,
+    inOrOut: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const setThreadSwitcher = SetThreadSwitcher;
 
-pub extern "CoreServices" fn SetThreadTerminator(thread: ThreadID, threadTerminator: ThreadTerminationTPP, terminationProcParam: ?*anyopaque) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetThreadTerminator(thread: ThreadID, threadTerminator: ThreadTerminationTPP, terminationProcParam: ?*anyopaque) callconv(.C) objc.OSErr;
+pub const setThreadTerminator = SetThreadTerminator;
 
-pub extern "CoreServices" fn SetDebuggerNotificationProcs(notifyNewThread: DebuggerNewThreadTPP, notifyDisposeThread: DebuggerDisposeThreadTPP, notifyThreadScheduler: DebuggerThreadSchedulerTPP) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetDebuggerNotificationProcs(notifyNewThread: DebuggerNewThreadTPP, notifyDisposeThread: DebuggerDisposeThreadTPP, notifyThreadScheduler: DebuggerThreadSchedulerTPP) callconv(.C) objc.OSErr;
+pub const setDebuggerNotificationProcs = SetDebuggerNotificationProcs;
 
-pub extern "CoreServices" fn CreateThreadPool(threadStyle: ThreadStyle, numToCreate: objc.SInt16, stackSize: objc.Size) callconv(.C) objc.OSErr;
+extern "CoreServices" fn CreateThreadPool(threadStyle: ThreadStyle, numToCreate: objc.SInt16, stackSize: objc.Size) callconv(.C) objc.OSErr;
+pub const createThreadPool = CreateThreadPool;
 
-pub extern "CoreServices" fn GetDefaultThreadStackSize(threadStyle: ThreadStyle, stackSize: ?*objc.Size) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetDefaultThreadStackSize(threadStyle: ThreadStyle, stackSize: ?*objc.Size) callconv(.C) objc.OSErr;
+pub const getDefaultThreadStackSize = GetDefaultThreadStackSize;
 
-pub extern "CoreServices" fn ThreadCurrentStackSpace(thread: ThreadID, freeStack: ?*objc.ByteCount) callconv(.C) objc.OSErr;
+extern "CoreServices" fn ThreadCurrentStackSpace(thread: ThreadID, freeStack: ?*objc.ByteCount) callconv(.C) objc.OSErr;
+pub const threadCurrentStackSpace = ThreadCurrentStackSpace;
 
-pub extern "CoreServices" fn DisposeThread(threadToDump: ThreadID, threadResult: ?*anyopaque, recycleThread: objc.Boolean) callconv(.C) objc.OSErr;
+extern "CoreServices" fn DisposeThread(threadToDump: ThreadID, threadResult: ?*anyopaque, recycleThread: objc.Boolean) callconv(.C) objc.OSErr;
+pub const disposeThread = DisposeThread;
 
-pub extern "CoreServices" fn YieldToThread(suggestedThread: ThreadID) callconv(.C) objc.OSErr;
+extern "CoreServices" fn YieldToThread(suggestedThread: ThreadID) callconv(.C) objc.OSErr;
+pub const yieldToThread = YieldToThread;
 
-pub extern "CoreServices" fn YieldToAnyThread() callconv(.C) objc.OSErr;
+extern "CoreServices" fn YieldToAnyThread() callconv(.C) objc.OSErr;
+pub const yieldToAnyThread = YieldToAnyThread;
 
-pub extern "CoreServices" fn GetCurrentThread(currentThreadID: ?*ThreadID) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetCurrentThread(currentThreadID: ?*ThreadID) callconv(.C) objc.OSErr;
+pub const getCurrentThread = GetCurrentThread;
 
-pub extern "CoreServices" fn GetThreadState(threadToGet: ThreadID, threadState: ?*ThreadState) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetThreadState(threadToGet: ThreadID, threadState: ?*ThreadState) callconv(.C) objc.OSErr;
+pub const getThreadState = GetThreadState;
 
-pub extern "CoreServices" fn SetThreadState(threadToSet: ThreadID, newState: ThreadState, suggestedThread: ThreadID) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetThreadState(threadToSet: ThreadID, newState: ThreadState, suggestedThread: ThreadID) callconv(.C) objc.OSErr;
+pub const setThreadState = SetThreadState;
 
-pub extern "CoreServices" fn SetThreadStateEndCritical(threadToSet: ThreadID, newState: ThreadState, suggestedThread: ThreadID) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetThreadStateEndCritical(threadToSet: ThreadID, newState: ThreadState, suggestedThread: ThreadID) callconv(.C) objc.OSErr;
+pub const setThreadStateEndCritical = SetThreadStateEndCritical;
 
-pub extern "CoreServices" fn ThreadBeginCritical() callconv(.C) objc.OSErr;
+extern "CoreServices" fn ThreadBeginCritical() callconv(.C) objc.OSErr;
+pub const threadBeginCritical = ThreadBeginCritical;
 
-pub extern "CoreServices" fn ThreadEndCritical() callconv(.C) objc.OSErr;
+extern "CoreServices" fn ThreadEndCritical() callconv(.C) objc.OSErr;
+pub const threadEndCritical = ThreadEndCritical;
 
-pub extern "CoreServices" fn GetThreadCurrentTaskRef(threadTRef: ?*ThreadTaskRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetThreadCurrentTaskRef(threadTRef: ?*ThreadTaskRef) callconv(.C) objc.OSErr;
+pub const getThreadCurrentTaskRef = GetThreadCurrentTaskRef;
 
-pub extern "CoreServices" fn GetThreadStateGivenTaskRef(threadTRef: ThreadTaskRef, threadToGet: ThreadID, threadState: ?*ThreadState) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetThreadStateGivenTaskRef(threadTRef: ThreadTaskRef, threadToGet: ThreadID, threadState: ?*ThreadState) callconv(.C) objc.OSErr;
+pub const getThreadStateGivenTaskRef = GetThreadStateGivenTaskRef;
 
-pub extern "CoreServices" fn SetThreadReadyGivenTaskRef(threadTRef: ThreadTaskRef, threadToSet: ThreadID) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetThreadReadyGivenTaskRef(threadTRef: ThreadTaskRef, threadToSet: ThreadID) callconv(.C) objc.OSErr;
+pub const setThreadReadyGivenTaskRef = SetThreadReadyGivenTaskRef;
 
 pub const anon831 = enum(u32) {
     kOSIZDontOpenResourceFile = 15,
@@ -9654,11 +11687,25 @@ pub const anon831 = enum(u32) {
     kOSIZCodeInSharedLibraries = 11,
 };
 
-pub extern "CoreServices" fn FindFolder(vRefNum: FSVolumeRefNum, folderType: objc.OSType, createFolder: objc.Boolean, foundVRefNum: ?*FSVolumeRefNum, foundDirID: ?*objc.SInt32, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FindFolder(
+    vRefNum: FSVolumeRefNum,
+    folderType: objc.OSType,
+    createFolder: objc.Boolean,
+    foundVRefNum: ?*FSVolumeRefNum,
+    foundDirID: ?*objc.SInt32,
+) callconv(.C) objc.OSErr;
+pub const findFolder = FindFolder;
 
-pub extern "CoreServices" fn ReleaseFolder(vRefNum: FSVolumeRefNum, folderType: objc.OSType) callconv(.C) objc.OSErr;
+extern "CoreServices" fn ReleaseFolder(vRefNum: FSVolumeRefNum, folderType: objc.OSType) callconv(.C) objc.OSErr;
+pub const releaseFolder = ReleaseFolder;
 
-pub extern "CoreServices" fn FSFindFolder(vRefNum: FSVolumeRefNum, folderType: objc.OSType, createFolder: objc.Boolean, foundRef: ?*FSRef, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSFindFolder(
+    vRefNum: FSVolumeRefNum,
+    folderType: objc.OSType,
+    createFolder: objc.Boolean,
+    foundRef: ?*FSRef,
+) callconv(.C) objc.OSErr;
+pub const fsFindFolder = FSFindFolder;
 
 pub const anon3021 = enum(u32) {
     kDesktopFolderType = 1684370283,
@@ -9942,33 +11989,75 @@ pub const FolderRouting = extern struct {
 
 pub const FolderRoutingPtr = ?*FolderRouting;
 
-pub extern "CoreServices" fn AddFolderDescriptor(foldType: FolderType, flags: FolderDescFlags, foldClass: FolderClass, foldLocation: FolderLocation, badgeSignature: objc.OSType, badgeType: objc.OSType, name: objc.ConstStrFileNameParam, replaceFlag: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AddFolderDescriptor(
+    foldType: FolderType,
+    flags: FolderDescFlags,
+    foldClass: FolderClass,
+    foldLocation: FolderLocation,
+    badgeSignature: objc.OSType,
+    badgeType: objc.OSType,
+    name: objc.ConstStrFileNameParam,
+    replaceFlag: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const addFolderDescriptor = AddFolderDescriptor;
 
-pub extern "CoreServices" fn GetFolderTypes(requestedTypeCount: objc.UInt32, totalTypeCount: ?*objc.UInt32, theTypes: ?*FolderType) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetFolderTypes(requestedTypeCount: objc.UInt32, totalTypeCount: ?*objc.UInt32, theTypes: ?*FolderType) callconv(.C) objc.OSErr;
+pub const getFolderTypes = GetFolderTypes;
 
-pub extern "CoreServices" fn RemoveFolderDescriptor(foldType: FolderType) callconv(.C) objc.OSErr;
+extern "CoreServices" fn RemoveFolderDescriptor(foldType: FolderType) callconv(.C) objc.OSErr;
+pub const removeFolderDescriptor = RemoveFolderDescriptor;
 
-pub extern "CoreServices" fn GetFolderNameUnicode(vRefNum: FSVolumeRefNum, foldType: objc.OSType, foundVRefNum: ?*FSVolumeRefNum, name: ?*objc.HFSUniStr255, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn GetFolderNameUnicode(
+    vRefNum: FSVolumeRefNum,
+    foldType: objc.OSType,
+    foundVRefNum: ?*FSVolumeRefNum,
+    name: ?*objc.HFSUniStr255,
+) callconv(.C) objc.OSStatus;
+pub const getFolderNameUnicode = GetFolderNameUnicode;
 
-pub extern "CoreServices" fn InvalidateFolderDescriptorCache(vRefNum: FSVolumeRefNum, dirID: objc.SInt32) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvalidateFolderDescriptorCache(vRefNum: FSVolumeRefNum, dirID: objc.SInt32) callconv(.C) objc.OSErr;
+pub const invalidateFolderDescriptorCache = InvalidateFolderDescriptorCache;
 
-pub extern "CoreServices" fn IdentifyFolder(vRefNum: FSVolumeRefNum, dirID: objc.SInt32, foldType: ?*FolderType) callconv(.C) objc.OSErr;
+extern "CoreServices" fn IdentifyFolder(vRefNum: FSVolumeRefNum, dirID: objc.SInt32, foldType: ?*FolderType) callconv(.C) objc.OSErr;
+pub const identifyFolder = IdentifyFolder;
 
-pub extern "CoreServices" fn FSDetermineIfRefIsEnclosedByFolder(domainOrVRefNum: FSVolumeRefNum, folderType: objc.OSType, inRef: ?*FSRef, outResult: ?*objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn FSDetermineIfRefIsEnclosedByFolder(
+    domainOrVRefNum: FSVolumeRefNum,
+    folderType: objc.OSType,
+    inRef: ?*FSRef,
+    outResult: ?*objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const fsDetermineIfRefIsEnclosedByFolder = FSDetermineIfRefIsEnclosedByFolder;
 
-pub extern "CoreServices" fn DetermineIfPathIsEnclosedByFolder(domainOrVRefNum: FSVolumeRefNum, folderType: objc.OSType, utf8Path: ?*objc.UInt8, pathIsRealPath: objc.Boolean, outResult: ?*objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn DetermineIfPathIsEnclosedByFolder(
+    domainOrVRefNum: FSVolumeRefNum,
+    folderType: objc.OSType,
+    utf8Path: ?*objc.UInt8,
+    pathIsRealPath: objc.Boolean,
+    outResult: ?*objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const determineIfPathIsEnclosedByFolder = DetermineIfPathIsEnclosedByFolder;
 
-pub const FolderManagerNotificationProcPtr = ?*const fn(objc.OSType, ?*anyopaque, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const FolderManagerNotificationProcPtr = ?*const fn (objc.OSType, ?*anyopaque, ?*anyopaque) callconv(.C) objc.OSStatus;
 
 pub const FolderManagerNotificationUPP = FolderManagerNotificationProcPtr;
 
-pub extern "CoreServices" fn NewFolderManagerNotificationUPP(userRoutine: FolderManagerNotificationProcPtr) callconv(.C) FolderManagerNotificationUPP;
+extern "CoreServices" fn NewFolderManagerNotificationUPP(userRoutine: FolderManagerNotificationProcPtr) callconv(.C) FolderManagerNotificationUPP;
+pub const newFolderManagerNotificationUPP = NewFolderManagerNotificationUPP;
 
-pub extern "CoreServices" fn DisposeFolderManagerNotificationUPP(userUPP: FolderManagerNotificationUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeFolderManagerNotificationUPP(userUPP: FolderManagerNotificationUPP) callconv(.C) void;
+pub const disposeFolderManagerNotificationUPP = DisposeFolderManagerNotificationUPP;
 
-pub extern "CoreServices" fn InvokeFolderManagerNotificationUPP(message: objc.OSType, arg: ?*anyopaque, userRefCon: ?*anyopaque, userUPP: FolderManagerNotificationUPP, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn InvokeFolderManagerNotificationUPP(
+    message: objc.OSType,
+    arg: ?*anyopaque,
+    userRefCon: ?*anyopaque,
+    userUPP: FolderManagerNotificationUPP,
+) callconv(.C) objc.OSStatus;
+pub const invokeFolderManagerNotificationUPP = InvokeFolderManagerNotificationUPP;
 
-pub extern "CoreServices" fn Microseconds(microTickCount: ?*objc.UnsignedWide) callconv(.C) void;
+extern "CoreServices" fn Microseconds(microTickCount: ?*objc.UnsignedWide) callconv(.C) void;
+pub const microseconds = Microseconds;
 
 pub const anon1051 = enum(u32) {
     kTMTaskActive = 32768,
@@ -9985,35 +12074,48 @@ pub const TMTask = extern struct {
 
 pub const TMTaskPtr = ?*TMTask;
 
-pub const TimerProcPtr = ?*const fn(TMTaskPtr) callconv(.C) void;
+pub const TimerProcPtr = ?*const fn (TMTaskPtr) callconv(.C) void;
 
 pub const TimerUPP = TimerProcPtr;
 
-pub extern "CoreServices" fn InsTime(tmTaskPtr: QElemPtr) callconv(.C) void;
+extern "CoreServices" fn InsTime(tmTaskPtr: QElemPtr) callconv(.C) void;
+pub const insTime = InsTime;
 
-pub extern "CoreServices" fn InsXTime(tmTaskPtr: QElemPtr) callconv(.C) void;
+extern "CoreServices" fn InsXTime(tmTaskPtr: QElemPtr) callconv(.C) void;
+pub const insXTime = InsXTime;
 
-pub extern "CoreServices" fn PrimeTime(tmTaskPtr: QElemPtr, count: i64) callconv(.C) void;
+extern "CoreServices" fn PrimeTime(tmTaskPtr: QElemPtr, count: i64) callconv(.C) void;
+pub const primeTime = PrimeTime;
 
-pub extern "CoreServices" fn RmvTime(tmTaskPtr: QElemPtr) callconv(.C) void;
+extern "CoreServices" fn RmvTime(tmTaskPtr: QElemPtr) callconv(.C) void;
+pub const rmvTime = RmvTime;
 
-pub extern "CoreServices" fn InstallTimeTask(tmTaskPtr: QElemPtr) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InstallTimeTask(tmTaskPtr: QElemPtr) callconv(.C) objc.OSErr;
+pub const installTimeTask = InstallTimeTask;
 
-pub extern "CoreServices" fn InstallXTimeTask(tmTaskPtr: QElemPtr) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InstallXTimeTask(tmTaskPtr: QElemPtr) callconv(.C) objc.OSErr;
+pub const installXTimeTask = InstallXTimeTask;
 
-pub extern "CoreServices" fn PrimeTimeTask(tmTaskPtr: QElemPtr, count: i64) callconv(.C) objc.OSErr;
+extern "CoreServices" fn PrimeTimeTask(tmTaskPtr: QElemPtr, count: i64) callconv(.C) objc.OSErr;
+pub const primeTimeTask = PrimeTimeTask;
 
-pub extern "CoreServices" fn RemoveTimeTask(tmTaskPtr: QElemPtr) callconv(.C) objc.OSErr;
+extern "CoreServices" fn RemoveTimeTask(tmTaskPtr: QElemPtr) callconv(.C) objc.OSErr;
+pub const removeTimeTask = RemoveTimeTask;
 
-pub extern "CoreServices" fn NewTimerUPP(userRoutine: TimerProcPtr) callconv(.C) TimerUPP;
+extern "CoreServices" fn NewTimerUPP(userRoutine: TimerProcPtr) callconv(.C) TimerUPP;
+pub const newTimerUPP = NewTimerUPP;
 
-pub extern "CoreServices" fn DisposeTimerUPP(userUPP: TimerUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeTimerUPP(userUPP: TimerUPP) callconv(.C) void;
+pub const disposeTimerUPP = DisposeTimerUPP;
 
-pub extern "CoreServices" fn InvokeTimerUPP(tmTaskPtr: TMTaskPtr, userUPP: TimerUPP) callconv(.C) void;
+extern "CoreServices" fn InvokeTimerUPP(tmTaskPtr: TMTaskPtr, userUPP: TimerUPP) callconv(.C) void;
+pub const invokeTimerUPP = InvokeTimerUPP;
 
-pub extern "CoreServices" fn MPGetNextCpuID(owningCoherenceID: MPCoherenceID, cpuID: ?*MPCpuID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPGetNextCpuID(owningCoherenceID: MPCoherenceID, cpuID: ?*MPCpuID) callconv(.C) objc.OSStatus;
+pub const mpGetNextCpuID = MPGetNextCpuID;
 
-pub extern "CoreServices" fn MPGetNextTaskID(owningProcessID: MPProcessID, taskID: ?*MPTaskID) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn MPGetNextTaskID(owningProcessID: MPProcessID, taskID: ?*MPTaskID) callconv(.C) objc.OSStatus;
+pub const mpGetNextTaskID = MPGetNextTaskID;
 
 pub const MPQueueInfo = extern struct {
     version: objc.PBVersion,
@@ -10075,42 +12177,59 @@ pub const MPAddressSpaceInfo = extern struct {
     processID: MPProcessID,
     groupID: MPCoherenceID,
     nTasks: objc.ItemCount,
-    vsid: [16] objc.UInt32,
+    vsid: [16]objc.UInt32,
 };
 
-pub extern "CoreServices" fn LMGetBootDrive() callconv(.C) objc.SInt16;
+extern "CoreServices" fn LMGetBootDrive() callconv(.C) objc.SInt16;
+pub const lmGetBootDrive = LMGetBootDrive;
 
-pub extern "CoreServices" fn LMSetBootDrive(value: objc.SInt16) callconv(.C) void;
+extern "CoreServices" fn LMSetBootDrive(value: objc.SInt16) callconv(.C) void;
+pub const lmSetBootDrive = LMSetBootDrive;
 
-pub extern "CoreServices" fn LMGetApFontID() callconv(.C) objc.SInt16;
+extern "CoreServices" fn LMGetApFontID() callconv(.C) objc.SInt16;
+pub const lmGetApFontID = LMGetApFontID;
 
-pub extern "CoreServices" fn LMSetApFontID(value: objc.SInt16) callconv(.C) void;
+extern "CoreServices" fn LMSetApFontID(value: objc.SInt16) callconv(.C) void;
+pub const lmSetApFontID = LMSetApFontID;
 
-pub extern "CoreServices" fn LMGetSysMap() callconv(.C) objc.SInt16;
+extern "CoreServices" fn LMGetSysMap() callconv(.C) objc.SInt16;
+pub const lmGetSysMap = LMGetSysMap;
 
-pub extern "CoreServices" fn LMSetSysMap(value: objc.SInt16) callconv(.C) void;
+extern "CoreServices" fn LMSetSysMap(value: objc.SInt16) callconv(.C) void;
+pub const lmSetSysMap = LMSetSysMap;
 
-pub extern "CoreServices" fn LMGetResLoad() callconv(.C) objc.UInt8;
+extern "CoreServices" fn LMGetResLoad() callconv(.C) objc.UInt8;
+pub const lmGetResLoad = LMGetResLoad;
 
-pub extern "CoreServices" fn LMSetResLoad(value: objc.UInt8) callconv(.C) void;
+extern "CoreServices" fn LMSetResLoad(value: objc.UInt8) callconv(.C) void;
+pub const lmSetResLoad = LMSetResLoad;
 
-pub extern "CoreServices" fn LMGetResErr() callconv(.C) objc.SInt16;
+extern "CoreServices" fn LMGetResErr() callconv(.C) objc.SInt16;
+pub const lmGetResErr = LMGetResErr;
 
-pub extern "CoreServices" fn LMSetResErr(value: objc.SInt16) callconv(.C) void;
+extern "CoreServices" fn LMSetResErr(value: objc.SInt16) callconv(.C) void;
+pub const lmSetResErr = LMSetResErr;
 
-pub extern "CoreServices" fn LMGetTmpResLoad() callconv(.C) objc.UInt8;
+extern "CoreServices" fn LMGetTmpResLoad() callconv(.C) objc.UInt8;
+pub const lmGetTmpResLoad = LMGetTmpResLoad;
 
-pub extern "CoreServices" fn LMSetTmpResLoad(value: objc.UInt8) callconv(.C) void;
+extern "CoreServices" fn LMSetTmpResLoad(value: objc.UInt8) callconv(.C) void;
+pub const lmSetTmpResLoad = LMSetTmpResLoad;
 
-pub extern "CoreServices" fn LMGetIntlSpec() callconv(.C) objc.Ptr;
+extern "CoreServices" fn LMGetIntlSpec() callconv(.C) objc.Ptr;
+pub const lmGetIntlSpec = LMGetIntlSpec;
 
-pub extern "CoreServices" fn LMSetIntlSpec(value: objc.Ptr) callconv(.C) void;
+extern "CoreServices" fn LMSetIntlSpec(value: objc.Ptr) callconv(.C) void;
+pub const lmSetIntlSpec = LMSetIntlSpec;
 
-pub extern "CoreServices" fn LMSetSysFontFam(value: objc.SInt16) callconv(.C) void;
+extern "CoreServices" fn LMSetSysFontFam(value: objc.SInt16) callconv(.C) void;
+pub const lmSetSysFontFam = LMSetSysFontFam;
 
-pub extern "CoreServices" fn LMGetSysFontSize() callconv(.C) objc.SInt16;
+extern "CoreServices" fn LMGetSysFontSize() callconv(.C) objc.SInt16;
+pub const lmGetSysFontSize = LMGetSysFontSize;
 
-pub extern "CoreServices" fn LMSetSysFontSize(value: objc.SInt16) callconv(.C) void;
+extern "CoreServices" fn LMSetSysFontSize(value: objc.SInt16) callconv(.C) void;
+pub const lmSetSysFontSize = LMSetSysFontSize;
 
 pub const PEFContainerHeader = extern struct {
     tag1: objc.OSType,
@@ -10496,7 +12615,7 @@ pub const ExtCommonChunk = extern struct {
     sampleSize: objc.SInt16,
     sampleRate: objc.extended80,
     compressionType: objc.UInt32,
-    compressionName: [1] i8,
+    compressionName: [1]i8,
 };
 
 pub const ExtCommonChunkPtr = ?*ExtCommonChunk;
@@ -10520,7 +12639,7 @@ pub const MarkerChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
     numMarkers: objc.UInt16,
-    Markers: [1] Marker,
+    Markers: [1]Marker,
 };
 
 pub const MarkerChunkPtr = ?*MarkerChunk;
@@ -10550,7 +12669,7 @@ pub const InstrumentChunkPtr = ?*InstrumentChunk;
 pub const MIDIDataChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
-    MIDIdata: [1] objc.UInt8,
+    MIDIdata: [1]objc.UInt8,
 };
 
 pub const MIDIDataChunkPtr = ?*MIDIDataChunk;
@@ -10558,7 +12677,7 @@ pub const MIDIDataChunkPtr = ?*MIDIDataChunk;
 pub const AudioRecordingChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
-    AESChannelStatus: [24] objc.UInt8,
+    AESChannelStatus: [24]objc.UInt8,
 };
 
 pub const AudioRecordingChunkPtr = ?*AudioRecordingChunk;
@@ -10567,7 +12686,7 @@ pub const ApplicationSpecificChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
     applicationSignature: objc.OSType,
-    data: [1] objc.UInt8,
+    data: [1]objc.UInt8,
 };
 
 pub const ApplicationSpecificChunkPtr = ?*ApplicationSpecificChunk;
@@ -10576,14 +12695,14 @@ pub const Comment = extern struct {
     timeStamp: objc.UInt32,
     marker: MarkerIdType,
     count: objc.UInt16,
-    text: [1] i8,
+    text: [1]i8,
 };
 
 pub const CommentsChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
     numComments: objc.UInt16,
-    comments: [1] Comment,
+    comments: [1]Comment,
 };
 
 pub const CommentsChunkPtr = ?*CommentsChunk;
@@ -10591,7 +12710,7 @@ pub const CommentsChunkPtr = ?*CommentsChunk;
 pub const TextChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
-    text: [1] i8,
+    text: [1]i8,
 };
 
 pub const TextChunkPtr = ?*TextChunk;
@@ -10677,7 +12796,7 @@ pub const TECInternetNameRec = extern struct {
     offset: objc.UInt32,
     searchEncoding: TextEncodingRec,
     encodingNameLength: objc.UInt8,
-    encodingName: [1] objc.UInt8,
+    encodingName: [1]objc.UInt8,
 };
 
 pub const TECInternetNamesRec = extern struct {
@@ -10742,41 +12861,56 @@ pub const TECSnifferContextRec = extern struct {
     pluginState: TECPluginStateRec,
 };
 
-pub const TECPluginNewEncodingConverterPtr = ?*const fn(?*TECObjectRef, ?*TECConverterContextRec, TextEncoding, TextEncoding, ) callconv(.C) objc.OSStatus;
+pub const TECPluginNewEncodingConverterPtr = ?*const fn (
+    ?*TECObjectRef,
+    ?*TECConverterContextRec,
+    TextEncoding,
+    TextEncoding,
+) callconv(.C) objc.OSStatus;
 
-pub const TECPluginClearContextInfoPtr = ?*const fn(TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginClearContextInfoPtr = ?*const fn (TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
 
-pub const TECPluginConvertTextEncodingPtr = ?*const fn(TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginConvertTextEncodingPtr = ?*const fn (TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
 
-pub const TECPluginFlushConversionPtr = ?*const fn(TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginFlushConversionPtr = ?*const fn (TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
 
-pub const TECPluginDisposeEncodingConverterPtr = ?*const fn(TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginDisposeEncodingConverterPtr = ?*const fn (TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
 
-pub const TECPluginNewEncodingSnifferPtr = ?*const fn(?*TECSnifferObjectRef, ?*TECSnifferContextRec, TextEncoding) callconv(.C) objc.OSStatus;
+pub const TECPluginNewEncodingSnifferPtr = ?*const fn (?*TECSnifferObjectRef, ?*TECSnifferContextRec, TextEncoding) callconv(.C) objc.OSStatus;
 
-pub const TECPluginClearSnifferContextInfoPtr = ?*const fn(TECSnifferObjectRef, ?*TECSnifferContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginClearSnifferContextInfoPtr = ?*const fn (TECSnifferObjectRef, ?*TECSnifferContextRec) callconv(.C) objc.OSStatus;
 
-pub const TECPluginSniffTextEncodingPtr = ?*const fn(TECSnifferObjectRef, ?*TECSnifferContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginSniffTextEncodingPtr = ?*const fn (TECSnifferObjectRef, ?*TECSnifferContextRec) callconv(.C) objc.OSStatus;
 
-pub const TECPluginDisposeEncodingSnifferPtr = ?*const fn(TECSnifferObjectRef, ?*TECSnifferContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginDisposeEncodingSnifferPtr = ?*const fn (TECSnifferObjectRef, ?*TECSnifferContextRec) callconv(.C) objc.OSStatus;
 
-pub const TECPluginGetCountAvailableTextEncodingsPtr = ?*const fn(?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountAvailableTextEncodingsPtr = ?*const fn (?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
 
-pub const TECPluginGetCountAvailableTextEncodingPairsPtr = ?*const fn(?*TECConversionInfo, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountAvailableTextEncodingPairsPtr = ?*const fn (?*TECConversionInfo, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
 
-pub const TECPluginGetCountDestinationTextEncodingsPtr = ?*const fn(TextEncoding, ?*TextEncoding, objc.ItemCount, ?*objc.ItemCount, ) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountDestinationTextEncodingsPtr = ?*const fn (
+    TextEncoding,
+    ?*TextEncoding,
+    objc.ItemCount,
+    ?*objc.ItemCount,
+) callconv(.C) objc.OSStatus;
 
-pub const TECPluginGetCountSubTextEncodingsPtr = ?*const fn(TextEncoding, *TextEncoding, objc.ItemCount, ?*objc.ItemCount, ) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountSubTextEncodingsPtr = ?*const fn (
+    TextEncoding,
+    *TextEncoding,
+    objc.ItemCount,
+    ?*objc.ItemCount,
+) callconv(.C) objc.OSStatus;
 
-pub const TECPluginGetCountAvailableSniffersPtr = ?*const fn(?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountAvailableSniffersPtr = ?*const fn (?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
 
-pub const TECPluginGetTextEncodingInternetNamePtr = ?*const fn(TextEncoding, objc.Str255) callconv(.C) objc.OSStatus;
+pub const TECPluginGetTextEncodingInternetNamePtr = ?*const fn (TextEncoding, objc.Str255) callconv(.C) objc.OSStatus;
 
-pub const TECPluginGetTextEncodingFromInternetNamePtr = ?*const fn(?*TextEncoding, objc.ConstStr255Param) callconv(.C) objc.OSStatus;
+pub const TECPluginGetTextEncodingFromInternetNamePtr = ?*const fn (?*TextEncoding, objc.ConstStr255Param) callconv(.C) objc.OSStatus;
 
-pub const TECPluginGetCountWebEncodingsPtr = ?*const fn(?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountWebEncodingsPtr = ?*const fn (?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
 
-pub const TECPluginGetCountMailEncodingsPtr = ?*const fn(?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountMailEncodingsPtr = ?*const fn (?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
 
 pub const anon2551 = enum(u32) {
     kTECPluginDispatchTableVersion1 = 65536,
@@ -10809,7 +12943,7 @@ pub const TECPluginDispatchTable = extern struct {
     PluginGetTextEncodingFromInternetName: TECPluginGetTextEncodingFromInternetNamePtr,
 };
 
-pub const TECPluginGetPluginDispatchTablePtr = ?*const fn() callconv(.C) ?*TECPluginDispatchTable;
+pub const TECPluginGetPluginDispatchTablePtr = ?*const fn () callconv(.C) ?*TECPluginDispatchTable;
 
 pub const DescType = objc.ResType;
 
@@ -10961,11 +13095,11 @@ pub const AEEventID = objc.FourCharCode;
 pub const AEArrayType = objc.SInt8;
 
 pub const AEArrayData = extern union {
-    kAEDataArray: [1] objc.SInt16,
-    kAEPackedArray: [1] i8,
-    kAEHandleArray: [1] objc.Handle,
-    kAEDescArray: [1] AEDesc,
-    kAEKeyDescArray: [1] AEKeyDesc,
+    kAEDataArray: [1]objc.SInt16,
+    kAEPackedArray: [1]i8,
+    kAEHandleArray: [1]objc.Handle,
+    kAEDescArray: [1]AEDesc,
+    kAEKeyDescArray: [1]AEKeyDesc,
 };
 
 pub const AEArrayDataPointer = ?*AEArrayData;
@@ -11000,131 +13134,374 @@ pub const anon4301 = enum(i32) {
     kNoTimeOut = -2,
 };
 
-pub const AECoerceDescProcPtr = ?*const fn(?*AEDesc, DescType, objc.SRefCon, ?*AEDesc, ) callconv(.C) objc.OSErr;
+pub const AECoerceDescProcPtr = ?*const fn (
+    ?*AEDesc,
+    DescType,
+    objc.SRefCon,
+    ?*AEDesc,
+) callconv(.C) objc.OSErr;
 
-pub const AECoercePtrProcPtr = ?*const fn(DescType, ?*anyopaque, objc.Size, DescType, objc.SRefCon, ?*AEDesc, ) callconv(.C) objc.OSErr;
+pub const AECoercePtrProcPtr = ?*const fn (
+    DescType,
+    ?*anyopaque,
+    objc.Size,
+    DescType,
+    objc.SRefCon,
+    ?*AEDesc,
+) callconv(.C) objc.OSErr;
 
 pub const AECoerceDescUPP = AECoerceDescProcPtr;
 
 pub const AECoercePtrUPP = AECoercePtrProcPtr;
 
-pub extern "CoreServices" fn NewAECoerceDescUPP(userRoutine: AECoerceDescProcPtr) callconv(.C) AECoerceDescUPP;
+extern "CoreServices" fn NewAECoerceDescUPP(userRoutine: AECoerceDescProcPtr) callconv(.C) AECoerceDescUPP;
+pub const newAECoerceDescUPP = NewAECoerceDescUPP;
 
-pub extern "CoreServices" fn NewAECoercePtrUPP(userRoutine: AECoercePtrProcPtr) callconv(.C) AECoercePtrUPP;
+extern "CoreServices" fn NewAECoercePtrUPP(userRoutine: AECoercePtrProcPtr) callconv(.C) AECoercePtrUPP;
+pub const newAECoercePtrUPP = NewAECoercePtrUPP;
 
-pub extern "CoreServices" fn DisposeAECoerceDescUPP(userUPP: AECoerceDescUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeAECoerceDescUPP(userUPP: AECoerceDescUPP) callconv(.C) void;
+pub const disposeAECoerceDescUPP = DisposeAECoerceDescUPP;
 
-pub extern "CoreServices" fn DisposeAECoercePtrUPP(userUPP: AECoercePtrUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeAECoercePtrUPP(userUPP: AECoercePtrUPP) callconv(.C) void;
+pub const disposeAECoercePtrUPP = DisposeAECoercePtrUPP;
 
-pub extern "CoreServices" fn InvokeAECoerceDescUPP(fromDesc: ?*AEDesc, toType: DescType, handlerRefcon: objc.SRefCon, toDesc: ?*AEDesc, userUPP: AECoerceDescUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeAECoerceDescUPP(
+    fromDesc: ?*AEDesc,
+    toType: DescType,
+    handlerRefcon: objc.SRefCon,
+    toDesc: ?*AEDesc,
+    userUPP: AECoerceDescUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeAECoerceDescUPP = InvokeAECoerceDescUPP;
 
-pub extern "CoreServices" fn InvokeAECoercePtrUPP(typeCode: DescType, dataPtr: ?*anyopaque, dataSize: objc.Size, toType: DescType, handlerRefcon: objc.SRefCon, result: ?*AEDesc, userUPP: AECoercePtrUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeAECoercePtrUPP(
+    typeCode: DescType,
+    dataPtr: ?*anyopaque,
+    dataSize: objc.Size,
+    toType: DescType,
+    handlerRefcon: objc.SRefCon,
+    result: ?*AEDesc,
+    userUPP: AECoercePtrUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeAECoercePtrUPP = InvokeAECoercePtrUPP;
 
 pub const AECoercionHandlerUPP = AECoerceDescUPP;
 
-pub extern "CoreServices" fn AEInstallCoercionHandler(fromType: DescType, toType: DescType, handler: AECoercionHandlerUPP, handlerRefcon: objc.SRefCon, fromTypeIsDesc: objc.Boolean, isSysHandler: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEInstallCoercionHandler(
+    fromType: DescType,
+    toType: DescType,
+    handler: AECoercionHandlerUPP,
+    handlerRefcon: objc.SRefCon,
+    fromTypeIsDesc: objc.Boolean,
+    isSysHandler: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const aeInstallCoercionHandler = AEInstallCoercionHandler;
 
-pub extern "CoreServices" fn AERemoveCoercionHandler(fromType: DescType, toType: DescType, handler: AECoercionHandlerUPP, isSysHandler: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AERemoveCoercionHandler(
+    fromType: DescType,
+    toType: DescType,
+    handler: AECoercionHandlerUPP,
+    isSysHandler: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const aeRemoveCoercionHandler = AERemoveCoercionHandler;
 
-pub extern "CoreServices" fn AEGetCoercionHandler(fromType: DescType, toType: DescType, handler: ?*AECoercionHandlerUPP, handlerRefcon: ?*objc.SRefCon, fromTypeIsDesc: ?*objc.Boolean, isSysHandler: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetCoercionHandler(
+    fromType: DescType,
+    toType: DescType,
+    handler: ?*AECoercionHandlerUPP,
+    handlerRefcon: ?*objc.SRefCon,
+    fromTypeIsDesc: ?*objc.Boolean,
+    isSysHandler: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const aeGetCoercionHandler = AEGetCoercionHandler;
 
-pub extern "CoreServices" fn AECoercePtr(typeCode: DescType, dataPtr: ?*anyopaque, dataSize: objc.Size, toType: DescType, result: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AECoercePtr(
+    typeCode: DescType,
+    dataPtr: ?*anyopaque,
+    dataSize: objc.Size,
+    toType: DescType,
+    result: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const aeCoercePtr = AECoercePtr;
 
-pub extern "CoreServices" fn AECoerceDesc(theAEDesc: ?*AEDesc, toType: DescType, result: ?*AEDesc) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AECoerceDesc(theAEDesc: ?*AEDesc, toType: DescType, result: ?*AEDesc) callconv(.C) objc.OSErr;
+pub const aeCoerceDesc = AECoerceDesc;
 
-pub extern "CoreServices" fn AEInitializeDesc(desc: ?*AEDesc) callconv(.C) void;
+extern "CoreServices" fn AEInitializeDesc(desc: ?*AEDesc) callconv(.C) void;
+pub const aeInitializeDesc = AEInitializeDesc;
 
-pub extern "CoreServices" fn AECreateDesc(typeCode: DescType, dataPtr: ?*anyopaque, dataSize: objc.Size, result: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AECreateDesc(
+    typeCode: DescType,
+    dataPtr: ?*anyopaque,
+    dataSize: objc.Size,
+    result: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const aeCreateDesc = AECreateDesc;
 
-pub extern "CoreServices" fn AEDisposeDesc(theAEDesc: ?*AEDesc) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEDisposeDesc(theAEDesc: ?*AEDesc) callconv(.C) objc.OSErr;
+pub const aeDisposeDesc = AEDisposeDesc;
 
-pub extern "CoreServices" fn AEDuplicateDesc(theAEDesc: ?*AEDesc, result: ?*AEDesc) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEDuplicateDesc(theAEDesc: ?*AEDesc, result: ?*AEDesc) callconv(.C) objc.OSErr;
+pub const aeDuplicateDesc = AEDuplicateDesc;
 
-pub const AEDisposeExternalProcPtr = ?*const fn(?*anyopaque, objc.Size, objc.SRefCon) callconv(.C) void;
+pub const AEDisposeExternalProcPtr = ?*const fn (?*anyopaque, objc.Size, objc.SRefCon) callconv(.C) void;
 
 pub const AEDisposeExternalUPP = AEDisposeExternalProcPtr;
 
-pub extern "CoreServices" fn AECreateDescFromExternalPtr(descriptorType: objc.OSType, dataPtr: ?*anyopaque, dataLength: objc.Size, disposeCallback: AEDisposeExternalUPP, disposeRefcon: objc.SRefCon, theDesc: ?*AEDesc, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AECreateDescFromExternalPtr(
+    descriptorType: objc.OSType,
+    dataPtr: ?*anyopaque,
+    dataLength: objc.Size,
+    disposeCallback: AEDisposeExternalUPP,
+    disposeRefcon: objc.SRefCon,
+    theDesc: ?*AEDesc,
+) callconv(.C) objc.OSStatus;
+pub const aeCreateDescFromExternalPtr = AECreateDescFromExternalPtr;
 
-pub extern "CoreServices" fn AECompareDesc(desc1: ?*AEDesc, desc2: ?*AEDesc, resultP: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AECompareDesc(desc1: ?*AEDesc, desc2: ?*AEDesc, resultP: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const aeCompareDesc = AECompareDesc;
 
-pub extern "CoreServices" fn AECreateList(factoringPtr: ?*anyopaque, factoredSize: objc.Size, isRecord: objc.Boolean, resultList: ?*AEDescList, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AECreateList(
+    factoringPtr: ?*anyopaque,
+    factoredSize: objc.Size,
+    isRecord: objc.Boolean,
+    resultList: ?*AEDescList,
+) callconv(.C) objc.OSErr;
+pub const aeCreateList = AECreateList;
 
-pub extern "CoreServices" fn AECountItems(theAEDescList: ?*AEDescList, theCount: ?*i64) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AECountItems(theAEDescList: ?*AEDescList, theCount: ?*i64) callconv(.C) objc.OSErr;
+pub const aeCountItems = AECountItems;
 
-pub extern "CoreServices" fn AEPutPtr(theAEDescList: ?*AEDescList, index: i64, typeCode: DescType, dataPtr: ?*anyopaque, dataSize: objc.Size, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEPutPtr(
+    theAEDescList: ?*AEDescList,
+    index: i64,
+    typeCode: DescType,
+    dataPtr: ?*anyopaque,
+    dataSize: objc.Size,
+) callconv(.C) objc.OSErr;
+pub const aePutPtr = AEPutPtr;
 
-pub extern "CoreServices" fn AEPutDesc(theAEDescList: ?*AEDescList, index: i64, theAEDesc: ?*AEDesc) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEPutDesc(theAEDescList: ?*AEDescList, index: i64, theAEDesc: ?*AEDesc) callconv(.C) objc.OSErr;
+pub const aePutDesc = AEPutDesc;
 
-pub extern "CoreServices" fn AEGetNthPtr(theAEDescList: ?*AEDescList, index: i64, desiredType: DescType, theAEKeyword: ?*AEKeyword, typeCode: ?*DescType, dataPtr: ?*anyopaque, maximumSize: objc.Size, actualSize: ?*objc.Size, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetNthPtr(
+    theAEDescList: ?*AEDescList,
+    index: i64,
+    desiredType: DescType,
+    theAEKeyword: ?*AEKeyword,
+    typeCode: ?*DescType,
+    dataPtr: ?*anyopaque,
+    maximumSize: objc.Size,
+    actualSize: ?*objc.Size,
+) callconv(.C) objc.OSErr;
+pub const aeGetNthPtr = AEGetNthPtr;
 
-pub extern "CoreServices" fn AEGetNthDesc(theAEDescList: ?*AEDescList, index: i64, desiredType: DescType, theAEKeyword: ?*AEKeyword, result: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetNthDesc(
+    theAEDescList: ?*AEDescList,
+    index: i64,
+    desiredType: DescType,
+    theAEKeyword: ?*AEKeyword,
+    result: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const aeGetNthDesc = AEGetNthDesc;
 
-pub extern "CoreServices" fn AESizeOfNthItem(theAEDescList: ?*AEDescList, index: i64, typeCode: ?*DescType, dataSize: ?*objc.Size, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AESizeOfNthItem(
+    theAEDescList: ?*AEDescList,
+    index: i64,
+    typeCode: ?*DescType,
+    dataSize: ?*objc.Size,
+) callconv(.C) objc.OSErr;
+pub const aeSizeOfNthItem = AESizeOfNthItem;
 
-pub extern "CoreServices" fn AEGetArray(theAEDescList: ?*AEDescList, arrayType: AEArrayType, arrayPtr: AEArrayDataPointer, maximumSize: objc.Size, itemType: ?*DescType, itemSize: ?*objc.Size, itemCount: ?*i64, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetArray(
+    theAEDescList: ?*AEDescList,
+    arrayType: AEArrayType,
+    arrayPtr: AEArrayDataPointer,
+    maximumSize: objc.Size,
+    itemType: ?*DescType,
+    itemSize: ?*objc.Size,
+    itemCount: ?*i64,
+) callconv(.C) objc.OSErr;
+pub const aeGetArray = AEGetArray;
 
-pub extern "CoreServices" fn AEPutArray(theAEDescList: ?*AEDescList, arrayType: AEArrayType, arrayPtr: ?*AEArrayData, itemType: DescType, itemSize: objc.Size, itemCount: i64, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEPutArray(
+    theAEDescList: ?*AEDescList,
+    arrayType: AEArrayType,
+    arrayPtr: ?*AEArrayData,
+    itemType: DescType,
+    itemSize: objc.Size,
+    itemCount: i64,
+) callconv(.C) objc.OSErr;
+pub const aePutArray = AEPutArray;
 
-pub extern "CoreServices" fn AEDeleteItem(theAEDescList: ?*AEDescList, index: i64) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEDeleteItem(theAEDescList: ?*AEDescList, index: i64) callconv(.C) objc.OSErr;
+pub const aeDeleteItem = AEDeleteItem;
 
-pub extern "CoreServices" fn AECheckIsRecord(theDesc: ?*AEDesc) callconv(.C) objc.Boolean;
+extern "CoreServices" fn AECheckIsRecord(theDesc: ?*AEDesc) callconv(.C) objc.Boolean;
+pub const aeCheckIsRecord = AECheckIsRecord;
 
-pub extern "CoreServices" fn AECreateAppleEvent(theAEEventClass: AEEventClass, theAEEventID: AEEventID, target: ?*AEAddressDesc, returnID: AEReturnID, transactionID: AETransactionID, result: ?*AppleEvent, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AECreateAppleEvent(
+    theAEEventClass: AEEventClass,
+    theAEEventID: AEEventID,
+    target: ?*AEAddressDesc,
+    returnID: AEReturnID,
+    transactionID: AETransactionID,
+    result: ?*AppleEvent,
+) callconv(.C) objc.OSErr;
+pub const aeCreateAppleEvent = AECreateAppleEvent;
 
-pub extern "CoreServices" fn AEPutParamPtr(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, typeCode: DescType, dataPtr: ?*anyopaque, dataSize: objc.Size, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEPutParamPtr(
+    theAppleEvent: ?*AppleEvent,
+    theAEKeyword: AEKeyword,
+    typeCode: DescType,
+    dataPtr: ?*anyopaque,
+    dataSize: objc.Size,
+) callconv(.C) objc.OSErr;
+pub const aePutParamPtr = AEPutParamPtr;
 
-pub extern "CoreServices" fn AEPutParamDesc(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, theAEDesc: ?*AEDesc) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEPutParamDesc(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, theAEDesc: ?*AEDesc) callconv(.C) objc.OSErr;
+pub const aePutParamDesc = AEPutParamDesc;
 
-pub extern "CoreServices" fn AEGetParamPtr(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, desiredType: DescType, actualType: ?*DescType, dataPtr: ?*anyopaque, maximumSize: objc.Size, actualSize: ?*objc.Size, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetParamPtr(
+    theAppleEvent: ?*AppleEvent,
+    theAEKeyword: AEKeyword,
+    desiredType: DescType,
+    actualType: ?*DescType,
+    dataPtr: ?*anyopaque,
+    maximumSize: objc.Size,
+    actualSize: ?*objc.Size,
+) callconv(.C) objc.OSErr;
+pub const aeGetParamPtr = AEGetParamPtr;
 
-pub extern "CoreServices" fn AEGetParamDesc(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, desiredType: DescType, result: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetParamDesc(
+    theAppleEvent: ?*AppleEvent,
+    theAEKeyword: AEKeyword,
+    desiredType: DescType,
+    result: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const aeGetParamDesc = AEGetParamDesc;
 
-pub extern "CoreServices" fn AESizeOfParam(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, typeCode: ?*DescType, dataSize: ?*objc.Size, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AESizeOfParam(
+    theAppleEvent: ?*AppleEvent,
+    theAEKeyword: AEKeyword,
+    typeCode: ?*DescType,
+    dataSize: ?*objc.Size,
+) callconv(.C) objc.OSErr;
+pub const aeSizeOfParam = AESizeOfParam;
 
-pub extern "CoreServices" fn AEDeleteParam(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEDeleteParam(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword) callconv(.C) objc.OSErr;
+pub const aeDeleteParam = AEDeleteParam;
 
-pub extern "CoreServices" fn AEGetAttributePtr(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, desiredType: DescType, typeCode: ?*DescType, dataPtr: ?*anyopaque, maximumSize: objc.Size, actualSize: ?*objc.Size, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetAttributePtr(
+    theAppleEvent: ?*AppleEvent,
+    theAEKeyword: AEKeyword,
+    desiredType: DescType,
+    typeCode: ?*DescType,
+    dataPtr: ?*anyopaque,
+    maximumSize: objc.Size,
+    actualSize: ?*objc.Size,
+) callconv(.C) objc.OSErr;
+pub const aeGetAttributePtr = AEGetAttributePtr;
 
-pub extern "CoreServices" fn AEGetAttributeDesc(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, desiredType: DescType, result: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetAttributeDesc(
+    theAppleEvent: ?*AppleEvent,
+    theAEKeyword: AEKeyword,
+    desiredType: DescType,
+    result: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const aeGetAttributeDesc = AEGetAttributeDesc;
 
-pub extern "CoreServices" fn AESizeOfAttribute(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, typeCode: ?*DescType, dataSize: ?*objc.Size, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AESizeOfAttribute(
+    theAppleEvent: ?*AppleEvent,
+    theAEKeyword: AEKeyword,
+    typeCode: ?*DescType,
+    dataSize: ?*objc.Size,
+) callconv(.C) objc.OSErr;
+pub const aeSizeOfAttribute = AESizeOfAttribute;
 
-pub extern "CoreServices" fn AEPutAttributePtr(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, typeCode: DescType, dataPtr: ?*anyopaque, dataSize: objc.Size, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEPutAttributePtr(
+    theAppleEvent: ?*AppleEvent,
+    theAEKeyword: AEKeyword,
+    typeCode: DescType,
+    dataPtr: ?*anyopaque,
+    dataSize: objc.Size,
+) callconv(.C) objc.OSErr;
+pub const aePutAttributePtr = AEPutAttributePtr;
 
-pub extern "CoreServices" fn AEPutAttributeDesc(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, theAEDesc: ?*AEDesc) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEPutAttributeDesc(theAppleEvent: ?*AppleEvent, theAEKeyword: AEKeyword, theAEDesc: ?*AEDesc) callconv(.C) objc.OSErr;
+pub const aePutAttributeDesc = AEPutAttributeDesc;
 
-pub extern "CoreServices" fn AESizeOfFlattenedDesc(theAEDesc: ?*AEDesc) callconv(.C) objc.Size;
+extern "CoreServices" fn AESizeOfFlattenedDesc(theAEDesc: ?*AEDesc) callconv(.C) objc.Size;
+pub const aeSizeOfFlattenedDesc = AESizeOfFlattenedDesc;
 
-pub extern "CoreServices" fn AEFlattenDesc(theAEDesc: ?*AEDesc, buffer: objc.Ptr, bufferSize: objc.Size, actualSize: ?*objc.Size, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEFlattenDesc(
+    theAEDesc: ?*AEDesc,
+    buffer: objc.Ptr,
+    bufferSize: objc.Size,
+    actualSize: ?*objc.Size,
+) callconv(.C) objc.OSStatus;
+pub const aeFlattenDesc = AEFlattenDesc;
 
-pub extern "CoreServices" fn AEUnflattenDesc(buffer: ?*anyopaque, result: ?*AEDesc) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEUnflattenDesc(buffer: ?*anyopaque, result: ?*AEDesc) callconv(.C) objc.OSStatus;
+pub const aeUnflattenDesc = AEUnflattenDesc;
 
-pub extern "CoreServices" fn AEUnflattenDescFromBytes(buffer: ?*anyopaque, bufferLen: objc.size_t, result: ?*AEDesc) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEUnflattenDescFromBytes(buffer: ?*anyopaque, bufferLen: objc.size_t, result: ?*AEDesc) callconv(.C) objc.OSStatus;
+pub const aeUnflattenDescFromBytes = AEUnflattenDescFromBytes;
 
-pub extern "CoreServices" fn AEGetDescData(theAEDesc: ?*AEDesc, dataPtr: ?*anyopaque, maximumSize: objc.Size) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetDescData(theAEDesc: ?*AEDesc, dataPtr: ?*anyopaque, maximumSize: objc.Size) callconv(.C) objc.OSErr;
+pub const aeGetDescData = AEGetDescData;
 
-pub extern "CoreServices" fn AEGetDescDataSize(theAEDesc: ?*AEDesc) callconv(.C) objc.Size;
+extern "CoreServices" fn AEGetDescDataSize(theAEDesc: ?*AEDesc) callconv(.C) objc.Size;
+pub const aeGetDescDataSize = AEGetDescDataSize;
 
-pub extern "CoreServices" fn AEReplaceDescData(typeCode: DescType, dataPtr: ?*anyopaque, dataSize: objc.Size, theAEDesc: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEReplaceDescData(
+    typeCode: DescType,
+    dataPtr: ?*anyopaque,
+    dataSize: objc.Size,
+    theAEDesc: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const aeReplaceDescData = AEReplaceDescData;
 
-pub extern "CoreServices" fn AEGetDescDataRange(dataDesc: ?*AEDesc, buffer: ?*anyopaque, offset: objc.Size, length: objc.Size, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEGetDescDataRange(
+    dataDesc: ?*AEDesc,
+    buffer: ?*anyopaque,
+    offset: objc.Size,
+    length: objc.Size,
+) callconv(.C) objc.OSStatus;
+pub const aeGetDescDataRange = AEGetDescDataRange;
 
-pub const AEEventHandlerProcPtr = ?*const fn(?*AppleEvent, ?*AppleEvent, objc.SRefCon) callconv(.C) objc.OSErr;
+pub const AEEventHandlerProcPtr = ?*const fn (?*AppleEvent, ?*AppleEvent, objc.SRefCon) callconv(.C) objc.OSErr;
 
 pub const AEEventHandlerUPP = AEEventHandlerProcPtr;
 
-pub extern "CoreServices" fn NewAEDisposeExternalUPP(userRoutine: AEDisposeExternalProcPtr) callconv(.C) AEDisposeExternalUPP;
+extern "CoreServices" fn NewAEDisposeExternalUPP(userRoutine: AEDisposeExternalProcPtr) callconv(.C) AEDisposeExternalUPP;
+pub const newAEDisposeExternalUPP = NewAEDisposeExternalUPP;
 
-pub extern "CoreServices" fn NewAEEventHandlerUPP(userRoutine: AEEventHandlerProcPtr) callconv(.C) AEEventHandlerUPP;
+extern "CoreServices" fn NewAEEventHandlerUPP(userRoutine: AEEventHandlerProcPtr) callconv(.C) AEEventHandlerUPP;
+pub const newAEEventHandlerUPP = NewAEEventHandlerUPP;
 
-pub extern "CoreServices" fn DisposeAEDisposeExternalUPP(userUPP: AEDisposeExternalUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeAEDisposeExternalUPP(userUPP: AEDisposeExternalUPP) callconv(.C) void;
+pub const disposeAEDisposeExternalUPP = DisposeAEDisposeExternalUPP;
 
-pub extern "CoreServices" fn DisposeAEEventHandlerUPP(userUPP: AEEventHandlerUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeAEEventHandlerUPP(userUPP: AEEventHandlerUPP) callconv(.C) void;
+pub const disposeAEEventHandlerUPP = DisposeAEEventHandlerUPP;
 
-pub extern "CoreServices" fn InvokeAEDisposeExternalUPP(dataPtr: ?*anyopaque, dataLength: objc.Size, refcon: objc.SRefCon, userUPP: AEDisposeExternalUPP, ) callconv(.C) void;
+extern "CoreServices" fn InvokeAEDisposeExternalUPP(
+    dataPtr: ?*anyopaque,
+    dataLength: objc.Size,
+    refcon: objc.SRefCon,
+    userUPP: AEDisposeExternalUPP,
+) callconv(.C) void;
+pub const invokeAEDisposeExternalUPP = InvokeAEDisposeExternalUPP;
 
-pub extern "CoreServices" fn InvokeAEEventHandlerUPP(theAppleEvent: ?*AppleEvent, reply: ?*AppleEvent, handlerRefcon: objc.SRefCon, userUPP: AEEventHandlerUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeAEEventHandlerUPP(
+    theAppleEvent: ?*AppleEvent,
+    reply: ?*AppleEvent,
+    handlerRefcon: objc.SRefCon,
+    userUPP: AEEventHandlerUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeAEEventHandlerUPP = InvokeAEEventHandlerUPP;
 
 pub const anon761 = enum(AEEventID) {
     kAEOpenApplication = 1868656752,
@@ -11144,19 +13521,43 @@ pub const anon1202 = enum(i32) {
     errAEEventNotPermitted = -1743,
 };
 
-pub extern "CoreServices" fn AEInstallEventHandler(theAEEventClass: AEEventClass, theAEEventID: AEEventID, handler: AEEventHandlerUPP, handlerRefcon: objc.SRefCon, isSysHandler: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEInstallEventHandler(
+    theAEEventClass: AEEventClass,
+    theAEEventID: AEEventID,
+    handler: AEEventHandlerUPP,
+    handlerRefcon: objc.SRefCon,
+    isSysHandler: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const aeInstallEventHandler = AEInstallEventHandler;
 
-pub extern "CoreServices" fn AERemoveEventHandler(theAEEventClass: AEEventClass, theAEEventID: AEEventID, handler: AEEventHandlerUPP, isSysHandler: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AERemoveEventHandler(
+    theAEEventClass: AEEventClass,
+    theAEEventID: AEEventID,
+    handler: AEEventHandlerUPP,
+    isSysHandler: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const aeRemoveEventHandler = AERemoveEventHandler;
 
-pub extern "CoreServices" fn AEGetEventHandler(theAEEventClass: AEEventClass, theAEEventID: AEEventID, handler: ?*AEEventHandlerUPP, handlerRefcon: ?*objc.SRefCon, isSysHandler: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetEventHandler(
+    theAEEventClass: AEEventClass,
+    theAEEventID: AEEventID,
+    handler: ?*AEEventHandlerUPP,
+    handlerRefcon: ?*objc.SRefCon,
+    isSysHandler: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const aeGetEventHandler = AEGetEventHandler;
 
-pub extern "CoreServices" fn AEInstallSpecialHandler(functionClass: AEKeyword, handler: AEEventHandlerUPP, isSysHandler: objc.Boolean) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEInstallSpecialHandler(functionClass: AEKeyword, handler: AEEventHandlerUPP, isSysHandler: objc.Boolean) callconv(.C) objc.OSErr;
+pub const aeInstallSpecialHandler = AEInstallSpecialHandler;
 
-pub extern "CoreServices" fn AERemoveSpecialHandler(functionClass: AEKeyword, handler: AEEventHandlerUPP, isSysHandler: objc.Boolean) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AERemoveSpecialHandler(functionClass: AEKeyword, handler: AEEventHandlerUPP, isSysHandler: objc.Boolean) callconv(.C) objc.OSErr;
+pub const aeRemoveSpecialHandler = AERemoveSpecialHandler;
 
-pub extern "CoreServices" fn AEGetSpecialHandler(functionClass: AEKeyword, handler: ?*AEEventHandlerUPP, isSysHandler: objc.Boolean) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetSpecialHandler(functionClass: AEKeyword, handler: ?*AEEventHandlerUPP, isSysHandler: objc.Boolean) callconv(.C) objc.OSErr;
+pub const aeGetSpecialHandler = AEGetSpecialHandler;
 
-pub extern "CoreServices" fn AEManagerInfo(keyWord: AEKeyword, result: ?*i64) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEManagerInfo(keyWord: AEKeyword, result: ?*i64) callconv(.C) objc.OSErr;
+pub const aeManagerInfo = AEManagerInfo;
 
 pub const AERemoteProcessResolverContext = extern struct {
     version: core_foundation.Index,
@@ -11170,31 +13571,75 @@ pub const AERemoteProcessResolver = extern struct {};
 
 pub const AERemoteProcessResolverRef = ?*AERemoteProcessResolver;
 
-pub extern "CoreServices" fn AECreateRemoteProcessResolver(allocator: core_foundation.AllocatorRef, url: core_foundation.URLRef) callconv(.C) AERemoteProcessResolverRef;
+extern "CoreServices" fn AECreateRemoteProcessResolver(allocator: core_foundation.AllocatorRef, url: core_foundation.URLRef) callconv(.C) AERemoteProcessResolverRef;
+pub const aeCreateRemoteProcessResolver = AECreateRemoteProcessResolver;
 
-pub extern "CoreServices" fn AEDisposeRemoteProcessResolver(ref: AERemoteProcessResolverRef) callconv(.C) void;
+extern "CoreServices" fn AEDisposeRemoteProcessResolver(ref: AERemoteProcessResolverRef) callconv(.C) void;
+pub const aeDisposeRemoteProcessResolver = AEDisposeRemoteProcessResolver;
 
-pub extern "CoreServices" fn AERemoteProcessResolverGetProcesses(ref: AERemoteProcessResolverRef, outError: ?*core_foundation.StreamError) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn AERemoteProcessResolverGetProcesses(ref: AERemoteProcessResolverRef, outError: ?*core_foundation.StreamError) callconv(.C) core_foundation.ArrayRef;
+pub const aeRemoteProcessResolverGetProcesses = AERemoteProcessResolverGetProcesses;
 
-pub const AERemoteProcessResolverCallback = ?*const fn(AERemoteProcessResolverRef, ?*anyopaque) callconv(.C) void;
+pub const AERemoteProcessResolverCallback = ?*const fn (AERemoteProcessResolverRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "CoreServices" fn AERemoteProcessResolverScheduleWithRunLoop(ref: AERemoteProcessResolverRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef, callback: AERemoteProcessResolverCallback, ctx: ?*AERemoteProcessResolverContext, ) callconv(.C) void;
+extern "CoreServices" fn AERemoteProcessResolverScheduleWithRunLoop(
+    ref: AERemoteProcessResolverRef,
+    runLoop: core_foundation.RunLoopRef,
+    runLoopMode: core_foundation.StringRef,
+    callback: AERemoteProcessResolverCallback,
+    ctx: ?*AERemoteProcessResolverContext,
+) callconv(.C) void;
+pub const aeRemoteProcessResolverScheduleWithRunLoop = AERemoteProcessResolverScheduleWithRunLoop;
 
-pub extern "CoreServices" fn AEDeterminePermissionToAutomateTarget(target: ?*AEAddressDesc, theAEEventClass: AEEventClass, theAEEventID: AEEventID, askUserIfNeeded: objc.Boolean, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEDeterminePermissionToAutomateTarget(
+    target: ?*AEAddressDesc,
+    theAEEventClass: AEEventClass,
+    theAEEventID: AEEventID,
+    askUserIfNeeded: objc.Boolean,
+) callconv(.C) objc.OSStatus;
+pub const aeDeterminePermissionToAutomateTarget = AEDeterminePermissionToAutomateTarget;
 
 pub const anon6151 = enum(u32) {
     kAEDoNotPromptForUserConsent = 131072,
 };
 
-pub extern "CoreServices" fn CreateOffsetDescriptor(theOffset: i64, theDescriptor: ?*AEDesc) callconv(.C) objc.OSErr;
+extern "CoreServices" fn CreateOffsetDescriptor(theOffset: i64, theDescriptor: ?*AEDesc) callconv(.C) objc.OSErr;
+pub const createOffsetDescriptor = CreateOffsetDescriptor;
 
-pub extern "CoreServices" fn CreateCompDescriptor(comparisonOperator: DescType, operand1: ?*AEDesc, operand2: ?*AEDesc, disposeInputs: objc.Boolean, theDescriptor: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn CreateCompDescriptor(
+    comparisonOperator: DescType,
+    operand1: ?*AEDesc,
+    operand2: ?*AEDesc,
+    disposeInputs: objc.Boolean,
+    theDescriptor: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const createCompDescriptor = CreateCompDescriptor;
 
-pub extern "CoreServices" fn CreateLogicalDescriptor(theLogicalTerms: ?*AEDescList, theLogicOperator: DescType, disposeInputs: objc.Boolean, theDescriptor: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn CreateLogicalDescriptor(
+    theLogicalTerms: ?*AEDescList,
+    theLogicOperator: DescType,
+    disposeInputs: objc.Boolean,
+    theDescriptor: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const createLogicalDescriptor = CreateLogicalDescriptor;
 
-pub extern "CoreServices" fn CreateObjSpecifier(desiredClass: DescType, theContainer: ?*AEDesc, keyForm: DescType, keyData: ?*AEDesc, disposeInputs: objc.Boolean, objSpecifier: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn CreateObjSpecifier(
+    desiredClass: DescType,
+    theContainer: ?*AEDesc,
+    keyForm: DescType,
+    keyData: ?*AEDesc,
+    disposeInputs: objc.Boolean,
+    objSpecifier: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const createObjSpecifier = CreateObjSpecifier;
 
-pub extern "CoreServices" fn CreateRangeDescriptor(rangeStart: ?*AEDesc, rangeStop: ?*AEDesc, disposeInputs: objc.Boolean, theDescriptor: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn CreateRangeDescriptor(
+    rangeStart: ?*AEDesc,
+    rangeStop: ?*AEDesc,
+    disposeInputs: objc.Boolean,
+    theDescriptor: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const createRangeDescriptor = CreateRangeDescriptor;
 
 pub const anon681 = enum(AEKeyword) {
     keyAERangeStart = 1937006962,
@@ -11217,21 +13662,39 @@ pub const ccntTokenRecPtr = ?*ccntTokenRecord;
 
 pub const ccntTokenRecHandle = ?*ccntTokenRecPtr;
 
-pub const OSLAccessorProcPtr = ?*const fn(DescType, ?*AEDesc, DescType, DescType, ?*AEDesc, ?*AEDesc, objc.SRefCon, ) callconv(.C) objc.OSErr;
+pub const OSLAccessorProcPtr = ?*const fn (
+    DescType,
+    ?*AEDesc,
+    DescType,
+    DescType,
+    ?*AEDesc,
+    ?*AEDesc,
+    objc.SRefCon,
+) callconv(.C) objc.OSErr;
 
-pub const OSLCompareProcPtr = ?*const fn(DescType, ?*AEDesc, ?*AEDesc, ?*objc.Boolean, ) callconv(.C) objc.OSErr;
+pub const OSLCompareProcPtr = ?*const fn (
+    DescType,
+    ?*AEDesc,
+    ?*AEDesc,
+    ?*objc.Boolean,
+) callconv(.C) objc.OSErr;
 
-pub const OSLCountProcPtr = ?*const fn(DescType, DescType, ?*AEDesc, ?*i64, ) callconv(.C) objc.OSErr;
+pub const OSLCountProcPtr = ?*const fn (
+    DescType,
+    DescType,
+    ?*AEDesc,
+    ?*i64,
+) callconv(.C) objc.OSErr;
 
-pub const OSLDisposeTokenProcPtr = ?*const fn(?*AEDesc) callconv(.C) objc.OSErr;
+pub const OSLDisposeTokenProcPtr = ?*const fn (?*AEDesc) callconv(.C) objc.OSErr;
 
-pub const OSLGetMarkTokenProcPtr = ?*const fn(?*AEDesc, DescType, ?*AEDesc) callconv(.C) objc.OSErr;
+pub const OSLGetMarkTokenProcPtr = ?*const fn (?*AEDesc, DescType, ?*AEDesc) callconv(.C) objc.OSErr;
 
-pub const OSLGetErrDescProcPtr = ?*const fn(?*?*AEDesc) callconv(.C) objc.OSErr;
+pub const OSLGetErrDescProcPtr = ?*const fn (?*?*AEDesc) callconv(.C) objc.OSErr;
 
-pub const OSLMarkProcPtr = ?*const fn(?*AEDesc, ?*AEDesc, i64) callconv(.C) objc.OSErr;
+pub const OSLMarkProcPtr = ?*const fn (?*AEDesc, ?*AEDesc, i64) callconv(.C) objc.OSErr;
 
-pub const OSLAdjustMarksProcPtr = ?*const fn(i64, i64, ?*AEDesc) callconv(.C) objc.OSErr;
+pub const OSLAdjustMarksProcPtr = ?*const fn (i64, i64, ?*AEDesc) callconv(.C) objc.OSErr;
 
 pub const OSLAccessorUPP = OSLAccessorProcPtr;
 
@@ -11249,69 +13712,169 @@ pub const OSLMarkUPP = OSLMarkProcPtr;
 
 pub const OSLAdjustMarksUPP = OSLAdjustMarksProcPtr;
 
-pub extern "CoreServices" fn NewOSLAccessorUPP(userRoutine: OSLAccessorProcPtr) callconv(.C) OSLAccessorUPP;
+extern "CoreServices" fn NewOSLAccessorUPP(userRoutine: OSLAccessorProcPtr) callconv(.C) OSLAccessorUPP;
+pub const newOSLAccessorUPP = NewOSLAccessorUPP;
 
-pub extern "CoreServices" fn NewOSLCompareUPP(userRoutine: OSLCompareProcPtr) callconv(.C) OSLCompareUPP;
+extern "CoreServices" fn NewOSLCompareUPP(userRoutine: OSLCompareProcPtr) callconv(.C) OSLCompareUPP;
+pub const newOSLCompareUPP = NewOSLCompareUPP;
 
-pub extern "CoreServices" fn NewOSLCountUPP(userRoutine: OSLCountProcPtr) callconv(.C) OSLCountUPP;
+extern "CoreServices" fn NewOSLCountUPP(userRoutine: OSLCountProcPtr) callconv(.C) OSLCountUPP;
+pub const newOSLCountUPP = NewOSLCountUPP;
 
-pub extern "CoreServices" fn NewOSLDisposeTokenUPP(userRoutine: OSLDisposeTokenProcPtr) callconv(.C) OSLDisposeTokenUPP;
+extern "CoreServices" fn NewOSLDisposeTokenUPP(userRoutine: OSLDisposeTokenProcPtr) callconv(.C) OSLDisposeTokenUPP;
+pub const newOSLDisposeTokenUPP = NewOSLDisposeTokenUPP;
 
-pub extern "CoreServices" fn NewOSLGetMarkTokenUPP(userRoutine: OSLGetMarkTokenProcPtr) callconv(.C) OSLGetMarkTokenUPP;
+extern "CoreServices" fn NewOSLGetMarkTokenUPP(userRoutine: OSLGetMarkTokenProcPtr) callconv(.C) OSLGetMarkTokenUPP;
+pub const newOSLGetMarkTokenUPP = NewOSLGetMarkTokenUPP;
 
-pub extern "CoreServices" fn NewOSLGetErrDescUPP(userRoutine: OSLGetErrDescProcPtr) callconv(.C) OSLGetErrDescUPP;
+extern "CoreServices" fn NewOSLGetErrDescUPP(userRoutine: OSLGetErrDescProcPtr) callconv(.C) OSLGetErrDescUPP;
+pub const newOSLGetErrDescUPP = NewOSLGetErrDescUPP;
 
-pub extern "CoreServices" fn NewOSLMarkUPP(userRoutine: OSLMarkProcPtr) callconv(.C) OSLMarkUPP;
+extern "CoreServices" fn NewOSLMarkUPP(userRoutine: OSLMarkProcPtr) callconv(.C) OSLMarkUPP;
+pub const newOSLMarkUPP = NewOSLMarkUPP;
 
-pub extern "CoreServices" fn NewOSLAdjustMarksUPP(userRoutine: OSLAdjustMarksProcPtr) callconv(.C) OSLAdjustMarksUPP;
+extern "CoreServices" fn NewOSLAdjustMarksUPP(userRoutine: OSLAdjustMarksProcPtr) callconv(.C) OSLAdjustMarksUPP;
+pub const newOSLAdjustMarksUPP = NewOSLAdjustMarksUPP;
 
-pub extern "CoreServices" fn DisposeOSLAccessorUPP(userUPP: OSLAccessorUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeOSLAccessorUPP(userUPP: OSLAccessorUPP) callconv(.C) void;
+pub const disposeOSLAccessorUPP = DisposeOSLAccessorUPP;
 
-pub extern "CoreServices" fn DisposeOSLCompareUPP(userUPP: OSLCompareUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeOSLCompareUPP(userUPP: OSLCompareUPP) callconv(.C) void;
+pub const disposeOSLCompareUPP = DisposeOSLCompareUPP;
 
-pub extern "CoreServices" fn DisposeOSLCountUPP(userUPP: OSLCountUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeOSLCountUPP(userUPP: OSLCountUPP) callconv(.C) void;
+pub const disposeOSLCountUPP = DisposeOSLCountUPP;
 
-pub extern "CoreServices" fn DisposeOSLDisposeTokenUPP(userUPP: OSLDisposeTokenUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeOSLDisposeTokenUPP(userUPP: OSLDisposeTokenUPP) callconv(.C) void;
+pub const disposeOSLDisposeTokenUPP = DisposeOSLDisposeTokenUPP;
 
-pub extern "CoreServices" fn DisposeOSLGetMarkTokenUPP(userUPP: OSLGetMarkTokenUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeOSLGetMarkTokenUPP(userUPP: OSLGetMarkTokenUPP) callconv(.C) void;
+pub const disposeOSLGetMarkTokenUPP = DisposeOSLGetMarkTokenUPP;
 
-pub extern "CoreServices" fn DisposeOSLGetErrDescUPP(userUPP: OSLGetErrDescUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeOSLGetErrDescUPP(userUPP: OSLGetErrDescUPP) callconv(.C) void;
+pub const disposeOSLGetErrDescUPP = DisposeOSLGetErrDescUPP;
 
-pub extern "CoreServices" fn DisposeOSLMarkUPP(userUPP: OSLMarkUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeOSLMarkUPP(userUPP: OSLMarkUPP) callconv(.C) void;
+pub const disposeOSLMarkUPP = DisposeOSLMarkUPP;
 
-pub extern "CoreServices" fn DisposeOSLAdjustMarksUPP(userUPP: OSLAdjustMarksUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeOSLAdjustMarksUPP(userUPP: OSLAdjustMarksUPP) callconv(.C) void;
+pub const disposeOSLAdjustMarksUPP = DisposeOSLAdjustMarksUPP;
 
-pub extern "CoreServices" fn InvokeOSLAccessorUPP(desiredClass: DescType, container: ?*AEDesc, containerClass: DescType, form: DescType, selectionData: ?*AEDesc, value: ?*AEDesc, accessorRefcon: objc.SRefCon, userUPP: OSLAccessorUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeOSLAccessorUPP(
+    desiredClass: DescType,
+    container: ?*AEDesc,
+    containerClass: DescType,
+    form: DescType,
+    selectionData: ?*AEDesc,
+    value: ?*AEDesc,
+    accessorRefcon: objc.SRefCon,
+    userUPP: OSLAccessorUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeOSLAccessorUPP = InvokeOSLAccessorUPP;
 
-pub extern "CoreServices" fn InvokeOSLCompareUPP(oper: DescType, obj1: ?*AEDesc, obj2: ?*AEDesc, result: ?*objc.Boolean, userUPP: OSLCompareUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeOSLCompareUPP(
+    oper: DescType,
+    obj1: ?*AEDesc,
+    obj2: ?*AEDesc,
+    result: ?*objc.Boolean,
+    userUPP: OSLCompareUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeOSLCompareUPP = InvokeOSLCompareUPP;
 
-pub extern "CoreServices" fn InvokeOSLCountUPP(desiredType: DescType, containerClass: DescType, container: ?*AEDesc, result: ?*i64, userUPP: OSLCountUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeOSLCountUPP(
+    desiredType: DescType,
+    containerClass: DescType,
+    container: ?*AEDesc,
+    result: ?*i64,
+    userUPP: OSLCountUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeOSLCountUPP = InvokeOSLCountUPP;
 
-pub extern "CoreServices" fn InvokeOSLDisposeTokenUPP(unneededToken: ?*AEDesc, userUPP: OSLDisposeTokenUPP) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeOSLDisposeTokenUPP(unneededToken: ?*AEDesc, userUPP: OSLDisposeTokenUPP) callconv(.C) objc.OSErr;
+pub const invokeOSLDisposeTokenUPP = InvokeOSLDisposeTokenUPP;
 
-pub extern "CoreServices" fn InvokeOSLGetMarkTokenUPP(dContainerToken: ?*AEDesc, containerClass: DescType, result: ?*AEDesc, userUPP: OSLGetMarkTokenUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeOSLGetMarkTokenUPP(
+    dContainerToken: ?*AEDesc,
+    containerClass: DescType,
+    result: ?*AEDesc,
+    userUPP: OSLGetMarkTokenUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeOSLGetMarkTokenUPP = InvokeOSLGetMarkTokenUPP;
 
-pub extern "CoreServices" fn InvokeOSLGetErrDescUPP(appDescPtr: ?*?*AEDesc, userUPP: OSLGetErrDescUPP) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeOSLGetErrDescUPP(appDescPtr: ?*?*AEDesc, userUPP: OSLGetErrDescUPP) callconv(.C) objc.OSErr;
+pub const invokeOSLGetErrDescUPP = InvokeOSLGetErrDescUPP;
 
-pub extern "CoreServices" fn InvokeOSLMarkUPP(dToken: ?*AEDesc, markToken: ?*AEDesc, index: i64, userUPP: OSLMarkUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeOSLMarkUPP(
+    dToken: ?*AEDesc,
+    markToken: ?*AEDesc,
+    index: i64,
+    userUPP: OSLMarkUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeOSLMarkUPP = InvokeOSLMarkUPP;
 
-pub extern "CoreServices" fn InvokeOSLAdjustMarksUPP(newStart: i64, newStop: i64, markToken: ?*AEDesc, userUPP: OSLAdjustMarksUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn InvokeOSLAdjustMarksUPP(
+    newStart: i64,
+    newStop: i64,
+    markToken: ?*AEDesc,
+    userUPP: OSLAdjustMarksUPP,
+) callconv(.C) objc.OSErr;
+pub const invokeOSLAdjustMarksUPP = InvokeOSLAdjustMarksUPP;
 
-pub extern "CoreServices" fn AEObjectInit() callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEObjectInit() callconv(.C) objc.OSErr;
+pub const aeObjectInit = AEObjectInit;
 
-pub extern "CoreServices" fn AESetObjectCallbacks(myCompareProc: OSLCompareUPP, myCountProc: OSLCountUPP, myDisposeTokenProc: OSLDisposeTokenUPP, myGetMarkTokenProc: OSLGetMarkTokenUPP, myMarkProc: OSLMarkUPP, myAdjustMarksProc: OSLAdjustMarksUPP, myGetErrDescProcPtr: OSLGetErrDescUPP, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AESetObjectCallbacks(
+    myCompareProc: OSLCompareUPP,
+    myCountProc: OSLCountUPP,
+    myDisposeTokenProc: OSLDisposeTokenUPP,
+    myGetMarkTokenProc: OSLGetMarkTokenUPP,
+    myMarkProc: OSLMarkUPP,
+    myAdjustMarksProc: OSLAdjustMarksUPP,
+    myGetErrDescProcPtr: OSLGetErrDescUPP,
+) callconv(.C) objc.OSErr;
+pub const aeSetObjectCallbacks = AESetObjectCallbacks;
 
-pub extern "CoreServices" fn AEResolve(objectSpecifier: ?*AEDesc, callbackFlags: i16, theToken: ?*AEDesc) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEResolve(objectSpecifier: ?*AEDesc, callbackFlags: i16, theToken: ?*AEDesc) callconv(.C) objc.OSErr;
+pub const aeResolve = AEResolve;
 
-pub extern "CoreServices" fn AEInstallObjectAccessor(desiredClass: DescType, containerType: DescType, theAccessor: OSLAccessorUPP, accessorRefcon: objc.SRefCon, isSysHandler: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEInstallObjectAccessor(
+    desiredClass: DescType,
+    containerType: DescType,
+    theAccessor: OSLAccessorUPP,
+    accessorRefcon: objc.SRefCon,
+    isSysHandler: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const aeInstallObjectAccessor = AEInstallObjectAccessor;
 
-pub extern "CoreServices" fn AERemoveObjectAccessor(desiredClass: DescType, containerType: DescType, theAccessor: OSLAccessorUPP, isSysHandler: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AERemoveObjectAccessor(
+    desiredClass: DescType,
+    containerType: DescType,
+    theAccessor: OSLAccessorUPP,
+    isSysHandler: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const aeRemoveObjectAccessor = AERemoveObjectAccessor;
 
-pub extern "CoreServices" fn AEGetObjectAccessor(desiredClass: DescType, containerType: DescType, accessor: ?*OSLAccessorUPP, accessorRefcon: ?*objc.SRefCon, isSysHandler: objc.Boolean, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEGetObjectAccessor(
+    desiredClass: DescType,
+    containerType: DescType,
+    accessor: ?*OSLAccessorUPP,
+    accessorRefcon: ?*objc.SRefCon,
+    isSysHandler: objc.Boolean,
+) callconv(.C) objc.OSErr;
+pub const aeGetObjectAccessor = AEGetObjectAccessor;
 
-pub extern "CoreServices" fn AEDisposeToken(theToken: ?*AEDesc) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AEDisposeToken(theToken: ?*AEDesc) callconv(.C) objc.OSErr;
+pub const aeDisposeToken = AEDisposeToken;
 
-pub extern "CoreServices" fn AECallObjectAccessor(desiredClass: DescType, containerToken: ?*AEDesc, containerClass: DescType, keyForm: DescType, keyData: ?*AEDesc, token: ?*AEDesc, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AECallObjectAccessor(
+    desiredClass: DescType,
+    containerToken: ?*AEDesc,
+    containerClass: DescType,
+    keyForm: DescType,
+    keyData: ?*AEDesc,
+    token: ?*AEDesc,
+) callconv(.C) objc.OSErr;
+pub const aeCallObjectAccessor = AECallObjectAccessor;
 
 pub const anon1281 = enum(i32) {
     startupFolderIconResource = -3981,
@@ -11654,7 +14217,7 @@ pub const TextRangeHandle = ?*TextRangePtr;
 
 pub const TextRangeArray = extern struct {
     fNumOfRanges: objc.SInt16,
-    fRange: [1] TextRange,
+    fRange: [1]TextRange,
 };
 
 pub const TextRangeArrayPtr = ?*TextRangeArray;
@@ -11663,7 +14226,7 @@ pub const TextRangeArrayHandle = ?*TextRangeArrayPtr;
 
 pub const OffsetArray = extern struct {
     fNumOfOffsets: objc.SInt16,
-    fOffset: [1] objc.SInt32,
+    fOffset: [1]objc.SInt32,
 };
 
 pub const OffsetArrayPtr = ?*OffsetArray;
@@ -11678,7 +14241,7 @@ pub const WritingCode = extern struct {
 pub const IntlText = extern struct {
     theScriptCode: objc.ScriptCode,
     theLangCode: objc.LangCode,
-    theText: [1] i8,
+    theText: [1]i8,
 };
 
 pub const anon7231 = enum(u32) {
@@ -11940,79 +14503,167 @@ pub const AEBuildError = extern struct {
     fErrorPos: objc.UInt32,
 };
 
-pub extern "CoreServices" fn AEBuildDesc(dst: ?*AEDesc, @"error": ?*AEBuildError, src: ?*i8) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEBuildDesc(dst: ?*AEDesc, @"error": ?*AEBuildError, src: ?*i8) callconv(.C) objc.OSStatus;
+pub const aeBuildDesc = AEBuildDesc;
 
-pub extern "CoreServices" fn vAEBuildDesc(dst: ?*AEDesc, @"error": ?*AEBuildError, src: ?*i8, args: objc.va_list, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn vAEBuildDesc(
+    dst: ?*AEDesc,
+    @"error": ?*AEBuildError,
+    src: ?*i8,
+    args: objc.va_list,
+) callconv(.C) objc.OSStatus;
+pub const vaeBuildDesc = vAEBuildDesc;
 
-pub extern "CoreServices" fn AEBuildParameters(event: ?*AppleEvent, @"error": ?*AEBuildError, format: ?*i8) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEBuildParameters(event: ?*AppleEvent, @"error": ?*AEBuildError, format: ?*i8) callconv(.C) objc.OSStatus;
+pub const aeBuildParameters = AEBuildParameters;
 
-pub extern "CoreServices" fn vAEBuildParameters(event: ?*AppleEvent, @"error": ?*AEBuildError, format: ?*i8, args: objc.va_list, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn vAEBuildParameters(
+    event: ?*AppleEvent,
+    @"error": ?*AEBuildError,
+    format: ?*i8,
+    args: objc.va_list,
+) callconv(.C) objc.OSStatus;
+pub const vaeBuildParameters = vAEBuildParameters;
 
-pub extern "CoreServices" fn AEBuildAppleEvent(theClass: AEEventClass, theID: AEEventID, addressType: DescType, addressData: ?*anyopaque, addressLength: objc.Size, returnID: objc.SInt16, transactionID: objc.SInt32, result: ?*AppleEvent, @"error": ?*AEBuildError, paramsFmt: ?*i8, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEBuildAppleEvent(
+    theClass: AEEventClass,
+    theID: AEEventID,
+    addressType: DescType,
+    addressData: ?*anyopaque,
+    addressLength: objc.Size,
+    returnID: objc.SInt16,
+    transactionID: objc.SInt32,
+    result: ?*AppleEvent,
+    @"error": ?*AEBuildError,
+    paramsFmt: ?*i8,
+) callconv(.C) objc.OSStatus;
+pub const aeBuildAppleEvent = AEBuildAppleEvent;
 
-pub extern "CoreServices" fn vAEBuildAppleEvent(theClass: AEEventClass, theID: AEEventID, addressType: DescType, addressData: ?*anyopaque, addressLength: objc.Size, returnID: objc.SInt16, transactionID: objc.SInt32, resultEvt: ?*AppleEvent, @"error": ?*AEBuildError, paramsFmt: ?*i8, args: objc.va_list, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn vAEBuildAppleEvent(
+    theClass: AEEventClass,
+    theID: AEEventID,
+    addressType: DescType,
+    addressData: ?*anyopaque,
+    addressLength: objc.Size,
+    returnID: objc.SInt16,
+    transactionID: objc.SInt32,
+    resultEvt: ?*AppleEvent,
+    @"error": ?*AEBuildError,
+    paramsFmt: ?*i8,
+    args: objc.va_list,
+) callconv(.C) objc.OSStatus;
+pub const vaeBuildAppleEvent = vAEBuildAppleEvent;
 
-pub extern "CoreServices" fn AEPrintDescToHandle(desc: ?*AEDesc, result: ?*objc.Handle) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEPrintDescToHandle(desc: ?*AEDesc, result: ?*objc.Handle) callconv(.C) objc.OSStatus;
+pub const aePrintDescToHandle = AEPrintDescToHandle;
 
 pub const OpaqueAEStreamRef = extern struct {};
 
 pub const AEStreamRef = ?*OpaqueAEStreamRef;
 
-pub extern "CoreServices" fn AEStreamOpen() callconv(.C) AEStreamRef;
+extern "CoreServices" fn AEStreamOpen() callconv(.C) AEStreamRef;
+pub const aeStreamOpen = AEStreamOpen;
 
-pub extern "CoreServices" fn AEStreamClose(ref: AEStreamRef, desc: ?*AEDesc) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamClose(ref: AEStreamRef, desc: ?*AEDesc) callconv(.C) objc.OSStatus;
+pub const aeStreamClose = AEStreamClose;
 
-pub extern "CoreServices" fn AEStreamOpenDesc(ref: AEStreamRef, newType: DescType) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamOpenDesc(ref: AEStreamRef, newType: DescType) callconv(.C) objc.OSStatus;
+pub const aeStreamOpenDesc = AEStreamOpenDesc;
 
-pub extern "CoreServices" fn AEStreamWriteData(ref: AEStreamRef, data: ?*anyopaque, length: objc.Size) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamWriteData(ref: AEStreamRef, data: ?*anyopaque, length: objc.Size) callconv(.C) objc.OSStatus;
+pub const aeStreamWriteData = AEStreamWriteData;
 
-pub extern "CoreServices" fn AEStreamCloseDesc(ref: AEStreamRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamCloseDesc(ref: AEStreamRef) callconv(.C) objc.OSStatus;
+pub const aeStreamCloseDesc = AEStreamCloseDesc;
 
-pub extern "CoreServices" fn AEStreamWriteDesc(ref: AEStreamRef, newType: DescType, data: ?*anyopaque, length: objc.Size, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamWriteDesc(
+    ref: AEStreamRef,
+    newType: DescType,
+    data: ?*anyopaque,
+    length: objc.Size,
+) callconv(.C) objc.OSStatus;
+pub const aeStreamWriteDesc = AEStreamWriteDesc;
 
-pub extern "CoreServices" fn AEStreamWriteAEDesc(ref: AEStreamRef, desc: ?*AEDesc) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamWriteAEDesc(ref: AEStreamRef, desc: ?*AEDesc) callconv(.C) objc.OSStatus;
+pub const aeStreamWriteAEDesc = AEStreamWriteAEDesc;
 
-pub extern "CoreServices" fn AEStreamOpenList(ref: AEStreamRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamOpenList(ref: AEStreamRef) callconv(.C) objc.OSStatus;
+pub const aeStreamOpenList = AEStreamOpenList;
 
-pub extern "CoreServices" fn AEStreamCloseList(ref: AEStreamRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamCloseList(ref: AEStreamRef) callconv(.C) objc.OSStatus;
+pub const aeStreamCloseList = AEStreamCloseList;
 
-pub extern "CoreServices" fn AEStreamOpenRecord(ref: AEStreamRef, newType: DescType) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamOpenRecord(ref: AEStreamRef, newType: DescType) callconv(.C) objc.OSStatus;
+pub const aeStreamOpenRecord = AEStreamOpenRecord;
 
-pub extern "CoreServices" fn AEStreamSetRecordType(ref: AEStreamRef, newType: DescType) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamSetRecordType(ref: AEStreamRef, newType: DescType) callconv(.C) objc.OSStatus;
+pub const aeStreamSetRecordType = AEStreamSetRecordType;
 
-pub extern "CoreServices" fn AEStreamCloseRecord(ref: AEStreamRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamCloseRecord(ref: AEStreamRef) callconv(.C) objc.OSStatus;
+pub const aeStreamCloseRecord = AEStreamCloseRecord;
 
-pub extern "CoreServices" fn AEStreamWriteKeyDesc(ref: AEStreamRef, key: AEKeyword, newType: DescType, data: ?*anyopaque, length: objc.Size, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamWriteKeyDesc(
+    ref: AEStreamRef,
+    key: AEKeyword,
+    newType: DescType,
+    data: ?*anyopaque,
+    length: objc.Size,
+) callconv(.C) objc.OSStatus;
+pub const aeStreamWriteKeyDesc = AEStreamWriteKeyDesc;
 
-pub extern "CoreServices" fn AEStreamOpenKeyDesc(ref: AEStreamRef, key: AEKeyword, newType: DescType) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamOpenKeyDesc(ref: AEStreamRef, key: AEKeyword, newType: DescType) callconv(.C) objc.OSStatus;
+pub const aeStreamOpenKeyDesc = AEStreamOpenKeyDesc;
 
-pub extern "CoreServices" fn AEStreamWriteKey(ref: AEStreamRef, key: AEKeyword) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamWriteKey(ref: AEStreamRef, key: AEKeyword) callconv(.C) objc.OSStatus;
+pub const aeStreamWriteKey = AEStreamWriteKey;
 
-pub extern "CoreServices" fn AEStreamCreateEvent(clazz: AEEventClass, id: AEEventID, targetType: DescType, targetData: ?*anyopaque, targetLength: objc.Size, returnID: objc.SInt16, transactionID: objc.SInt32, ) callconv(.C) AEStreamRef;
+extern "CoreServices" fn AEStreamCreateEvent(
+    clazz: AEEventClass,
+    id: AEEventID,
+    targetType: DescType,
+    targetData: ?*anyopaque,
+    targetLength: objc.Size,
+    returnID: objc.SInt16,
+    transactionID: objc.SInt32,
+) callconv(.C) AEStreamRef;
+pub const aeStreamCreateEvent = AEStreamCreateEvent;
 
-pub extern "CoreServices" fn AEStreamOpenEvent(event: ?*AppleEvent) callconv(.C) AEStreamRef;
+extern "CoreServices" fn AEStreamOpenEvent(event: ?*AppleEvent) callconv(.C) AEStreamRef;
+pub const aeStreamOpenEvent = AEStreamOpenEvent;
 
-pub extern "CoreServices" fn AEStreamOptionalParam(ref: AEStreamRef, key: AEKeyword) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEStreamOptionalParam(ref: AEStreamRef, key: AEKeyword) callconv(.C) objc.OSStatus;
+pub const aeStreamOptionalParam = AEStreamOptionalParam;
 
 pub const anon841 = enum(DescType) {
     typeReplyPortAttr = 1919250544,
 };
 
-pub extern "CoreServices" fn AEGetRegisteredMachPort() callconv(.C) objc.mach_port_t;
+extern "CoreServices" fn AEGetRegisteredMachPort() callconv(.C) objc.mach_port_t;
+pub const aeGetRegisteredMachPort = AEGetRegisteredMachPort;
 
-pub extern "CoreServices" fn AEDecodeMessage(header: ?*objc.mach_msg_header_t, event: ?*AppleEvent, reply: ?*AppleEvent) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEDecodeMessage(header: ?*objc.mach_msg_header_t, event: ?*AppleEvent, reply: ?*AppleEvent) callconv(.C) objc.OSStatus;
+pub const aeDecodeMessage = AEDecodeMessage;
 
-pub extern "CoreServices" fn AEProcessMessage(header: ?*objc.mach_msg_header_t) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AEProcessMessage(header: ?*objc.mach_msg_header_t) callconv(.C) objc.OSStatus;
+pub const aeProcessMessage = AEProcessMessage;
 
-pub extern "CoreServices" fn AESendMessage(event: ?*AppleEvent, reply: ?*AppleEvent, sendMode: AESendMode, timeOutInTicks: i64, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn AESendMessage(
+    event: ?*AppleEvent,
+    reply: ?*AppleEvent,
+    sendMode: AESendMode,
+    timeOutInTicks: i64,
+) callconv(.C) objc.OSStatus;
+pub const aeSendMessage = AESendMessage;
 
 pub const __DCSDictionary = extern struct {};
 
 pub const DCSDictionaryRef = ?*__DCSDictionary;
 
-pub extern "CoreServices" fn DCSGetTermRangeInString(dictionary: DCSDictionaryRef, textString: core_foundation.StringRef, offset: core_foundation.Index) callconv(.C) core_foundation.Range;
+extern "CoreServices" fn DCSGetTermRangeInString(dictionary: DCSDictionaryRef, textString: core_foundation.StringRef, offset: core_foundation.Index) callconv(.C) core_foundation.Range;
+pub const dcsGetTermRangeInString = DCSGetTermRangeInString;
 
-pub extern "CoreServices" fn DCSCopyTextDefinition(dictionary: DCSDictionaryRef, textString: core_foundation.StringRef, range: core_foundation.Range) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn DCSCopyTextDefinition(dictionary: DCSDictionaryRef, textString: core_foundation.StringRef, range: core_foundation.Range) callconv(.C) core_foundation.StringRef;
+pub const dcsCopyTextDefinition = DCSCopyTextDefinition;
 
 pub const anon591 = enum(i32) {
     kCSIdentityUnknownAuthorityErr = -1,
@@ -12029,15 +14680,20 @@ pub const __CSIdentityAuthority = extern struct {};
 
 pub const CSIdentityAuthorityRef = ?*__CSIdentityAuthority;
 
-pub extern "CoreServices" fn CSIdentityAuthorityGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn CSIdentityAuthorityGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const csIdentityAuthorityGetTypeID = CSIdentityAuthorityGetTypeID;
 
-pub extern "CoreServices" fn CSGetDefaultIdentityAuthority() callconv(.C) CSIdentityAuthorityRef;
+extern "CoreServices" fn CSGetDefaultIdentityAuthority() callconv(.C) CSIdentityAuthorityRef;
+pub const csGetDefaultIdentityAuthority = CSGetDefaultIdentityAuthority;
 
-pub extern "CoreServices" fn CSGetLocalIdentityAuthority() callconv(.C) CSIdentityAuthorityRef;
+extern "CoreServices" fn CSGetLocalIdentityAuthority() callconv(.C) CSIdentityAuthorityRef;
+pub const csGetLocalIdentityAuthority = CSGetLocalIdentityAuthority;
 
-pub extern "CoreServices" fn CSGetManagedIdentityAuthority() callconv(.C) CSIdentityAuthorityRef;
+extern "CoreServices" fn CSGetManagedIdentityAuthority() callconv(.C) CSIdentityAuthorityRef;
+pub const csGetManagedIdentityAuthority = CSGetManagedIdentityAuthority;
 
-pub extern "CoreServices" fn CSIdentityAuthorityCopyLocalizedName(authority: CSIdentityAuthorityRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn CSIdentityAuthorityCopyLocalizedName(authority: CSIdentityAuthorityRef) callconv(.C) core_foundation.StringRef;
+pub const csIdentityAuthorityCopyLocalizedName = CSIdentityAuthorityCopyLocalizedName;
 
 pub const anon1131 = enum(i32) {
     kStartupFolderIconResource = -3981,
@@ -12074,79 +14730,125 @@ pub const CSIdentityClass = core_foundation.Index;
 
 pub const CSIdentityFlags = core_foundation.OptionFlags;
 
-pub extern "CoreServices" fn CSIdentityGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn CSIdentityGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const csIdentityGetTypeID = CSIdentityGetTypeID;
 
-pub extern "CoreServices" fn CSIdentityCreate(allocator: core_foundation.AllocatorRef, identityClass: CSIdentityClass, fullName: core_foundation.StringRef, posixName: core_foundation.StringRef, flags: CSIdentityFlags, authority: CSIdentityAuthorityRef, ) callconv(.C) CSIdentityRef;
+extern "CoreServices" fn CSIdentityCreate(
+    allocator: core_foundation.AllocatorRef,
+    identityClass: CSIdentityClass,
+    fullName: core_foundation.StringRef,
+    posixName: core_foundation.StringRef,
+    flags: CSIdentityFlags,
+    authority: CSIdentityAuthorityRef,
+) callconv(.C) CSIdentityRef;
+pub const csIdentityCreate = CSIdentityCreate;
 
-pub extern "CoreServices" fn CSIdentityCreateCopy(allocator: core_foundation.AllocatorRef, identity: CSIdentityRef) callconv(.C) CSIdentityRef;
+extern "CoreServices" fn CSIdentityCreateCopy(allocator: core_foundation.AllocatorRef, identity: CSIdentityRef) callconv(.C) CSIdentityRef;
+pub const csIdentityCreateCopy = CSIdentityCreateCopy;
 
-pub extern "CoreServices" fn CSIdentityGetClass(identity: CSIdentityRef) callconv(.C) CSIdentityClass;
+extern "CoreServices" fn CSIdentityGetClass(identity: CSIdentityRef) callconv(.C) CSIdentityClass;
+pub const csIdentityGetClass = CSIdentityGetClass;
 
-pub extern "CoreServices" fn CSIdentityGetAuthority(identity: CSIdentityRef) callconv(.C) CSIdentityAuthorityRef;
+extern "CoreServices" fn CSIdentityGetAuthority(identity: CSIdentityRef) callconv(.C) CSIdentityAuthorityRef;
+pub const csIdentityGetAuthority = CSIdentityGetAuthority;
 
-pub extern "CoreServices" fn CSIdentityGetUUID(identity: CSIdentityRef) callconv(.C) core_foundation.UUIDRef;
+extern "CoreServices" fn CSIdentityGetUUID(identity: CSIdentityRef) callconv(.C) core_foundation.UUIDRef;
+pub const csIdentityGetUUID = CSIdentityGetUUID;
 
-pub extern "CoreServices" fn CSIdentityGetFullName(identity: CSIdentityRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn CSIdentityGetFullName(identity: CSIdentityRef) callconv(.C) core_foundation.StringRef;
+pub const csIdentityGetFullName = CSIdentityGetFullName;
 
-pub extern "CoreServices" fn CSIdentityGetPosixID(identity: CSIdentityRef) callconv(.C) objc.id_t;
+extern "CoreServices" fn CSIdentityGetPosixID(identity: CSIdentityRef) callconv(.C) objc.id_t;
+pub const csIdentityGetPosixID = CSIdentityGetPosixID;
 
-pub extern "CoreServices" fn CSIdentityGetPosixName(identity: CSIdentityRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn CSIdentityGetPosixName(identity: CSIdentityRef) callconv(.C) core_foundation.StringRef;
+pub const csIdentityGetPosixName = CSIdentityGetPosixName;
 
-pub extern "CoreServices" fn CSIdentityGetEmailAddress(identity: CSIdentityRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn CSIdentityGetEmailAddress(identity: CSIdentityRef) callconv(.C) core_foundation.StringRef;
+pub const csIdentityGetEmailAddress = CSIdentityGetEmailAddress;
 
-pub extern "CoreServices" fn CSIdentityGetImageURL(identity: CSIdentityRef) callconv(.C) core_foundation.URLRef;
+extern "CoreServices" fn CSIdentityGetImageURL(identity: CSIdentityRef) callconv(.C) core_foundation.URLRef;
+pub const csIdentityGetImageURL = CSIdentityGetImageURL;
 
-pub extern "CoreServices" fn CSIdentityGetImageData(identity: CSIdentityRef) callconv(.C) core_foundation.DataRef;
+extern "CoreServices" fn CSIdentityGetImageData(identity: CSIdentityRef) callconv(.C) core_foundation.DataRef;
+pub const csIdentityGetImageData = CSIdentityGetImageData;
 
-pub extern "CoreServices" fn CSIdentityGetImageDataType(identity: CSIdentityRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn CSIdentityGetImageDataType(identity: CSIdentityRef) callconv(.C) core_foundation.StringRef;
+pub const csIdentityGetImageDataType = CSIdentityGetImageDataType;
 
-pub extern "CoreServices" fn CSIdentityGetAliases(identity: CSIdentityRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn CSIdentityGetAliases(identity: CSIdentityRef) callconv(.C) core_foundation.ArrayRef;
+pub const csIdentityGetAliases = CSIdentityGetAliases;
 
-pub extern "CoreServices" fn CSIdentityIsMemberOfGroup(identity: CSIdentityRef, group: CSIdentityRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSIdentityIsMemberOfGroup(identity: CSIdentityRef, group: CSIdentityRef) callconv(.C) objc.Boolean;
+pub const csIdentityIsMemberOfGroup = CSIdentityIsMemberOfGroup;
 
-pub extern "CoreServices" fn CSIdentityIsHidden(identity: CSIdentityRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSIdentityIsHidden(identity: CSIdentityRef) callconv(.C) objc.Boolean;
+pub const csIdentityIsHidden = CSIdentityIsHidden;
 
-pub extern "CoreServices" fn CSIdentityCreatePersistentReference(allocator: core_foundation.AllocatorRef, identity: CSIdentityRef) callconv(.C) core_foundation.DataRef;
+extern "CoreServices" fn CSIdentityCreatePersistentReference(allocator: core_foundation.AllocatorRef, identity: CSIdentityRef) callconv(.C) core_foundation.DataRef;
+pub const csIdentityCreatePersistentReference = CSIdentityCreatePersistentReference;
 
-pub extern "CoreServices" fn CSIdentityIsEnabled(user: CSIdentityRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSIdentityIsEnabled(user: CSIdentityRef) callconv(.C) objc.Boolean;
+pub const csIdentityIsEnabled = CSIdentityIsEnabled;
 
-pub extern "CoreServices" fn CSIdentityAuthenticateUsingPassword(user: CSIdentityRef, password: core_foundation.StringRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSIdentityAuthenticateUsingPassword(user: CSIdentityRef, password: core_foundation.StringRef) callconv(.C) objc.Boolean;
+pub const csIdentityAuthenticateUsingPassword = CSIdentityAuthenticateUsingPassword;
 
-pub extern "CoreServices" fn CSIdentityGetCertificate(user: CSIdentityRef) callconv(.C) security.CertificateRef;
+extern "CoreServices" fn CSIdentityGetCertificate(user: CSIdentityRef) callconv(.C) security.CertificateRef;
+pub const csIdentityGetCertificate = CSIdentityGetCertificate;
 
-pub extern "CoreServices" fn CSIdentityCreateGroupMembershipQuery(allocator: core_foundation.AllocatorRef, group: CSIdentityRef) callconv(.C) CSIdentityQueryRef;
+extern "CoreServices" fn CSIdentityCreateGroupMembershipQuery(allocator: core_foundation.AllocatorRef, group: CSIdentityRef) callconv(.C) CSIdentityQueryRef;
+pub const csIdentityCreateGroupMembershipQuery = CSIdentityCreateGroupMembershipQuery;
 
-pub extern "CoreServices" fn CSIdentitySetFullName(identity: CSIdentityRef, fullName: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentitySetFullName(identity: CSIdentityRef, fullName: core_foundation.StringRef) callconv(.C) void;
+pub const csIdentitySetFullName = CSIdentitySetFullName;
 
-pub extern "CoreServices" fn CSIdentitySetEmailAddress(identity: CSIdentityRef, emailAddress: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentitySetEmailAddress(identity: CSIdentityRef, emailAddress: core_foundation.StringRef) callconv(.C) void;
+pub const csIdentitySetEmailAddress = CSIdentitySetEmailAddress;
 
-pub extern "CoreServices" fn CSIdentitySetImageURL(identity: CSIdentityRef, url: core_foundation.URLRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentitySetImageURL(identity: CSIdentityRef, url: core_foundation.URLRef) callconv(.C) void;
+pub const csIdentitySetImageURL = CSIdentitySetImageURL;
 
-pub extern "CoreServices" fn CSIdentitySetImageData(identity: CSIdentityRef, imageData: core_foundation.DataRef, imageDataType: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentitySetImageData(identity: CSIdentityRef, imageData: core_foundation.DataRef, imageDataType: core_foundation.StringRef) callconv(.C) void;
+pub const csIdentitySetImageData = CSIdentitySetImageData;
 
-pub extern "CoreServices" fn CSIdentityAddAlias(identity: CSIdentityRef, alias: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentityAddAlias(identity: CSIdentityRef, alias: core_foundation.StringRef) callconv(.C) void;
+pub const csIdentityAddAlias = CSIdentityAddAlias;
 
-pub extern "CoreServices" fn CSIdentityRemoveAlias(identity: CSIdentityRef, alias: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentityRemoveAlias(identity: CSIdentityRef, alias: core_foundation.StringRef) callconv(.C) void;
+pub const csIdentityRemoveAlias = CSIdentityRemoveAlias;
 
-pub extern "CoreServices" fn CSIdentityAddMember(group: CSIdentityRef, member: CSIdentityRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentityAddMember(group: CSIdentityRef, member: CSIdentityRef) callconv(.C) void;
+pub const csIdentityAddMember = CSIdentityAddMember;
 
-pub extern "CoreServices" fn CSIdentityRemoveMember(group: CSIdentityRef, member: CSIdentityRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentityRemoveMember(group: CSIdentityRef, member: CSIdentityRef) callconv(.C) void;
+pub const csIdentityRemoveMember = CSIdentityRemoveMember;
 
-pub extern "CoreServices" fn CSIdentitySetIsEnabled(user: CSIdentityRef, isEnabled: objc.Boolean) callconv(.C) void;
+extern "CoreServices" fn CSIdentitySetIsEnabled(user: CSIdentityRef, isEnabled: objc.Boolean) callconv(.C) void;
+pub const csIdentitySetIsEnabled = CSIdentitySetIsEnabled;
 
-pub extern "CoreServices" fn CSIdentitySetPassword(user: CSIdentityRef, password: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentitySetPassword(user: CSIdentityRef, password: core_foundation.StringRef) callconv(.C) void;
+pub const csIdentitySetPassword = CSIdentitySetPassword;
 
-pub extern "CoreServices" fn CSIdentitySetCertificate(user: CSIdentityRef, certificate: security.CertificateRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentitySetCertificate(user: CSIdentityRef, certificate: security.CertificateRef) callconv(.C) void;
+pub const csIdentitySetCertificate = CSIdentitySetCertificate;
 
-pub extern "CoreServices" fn CSIdentityDelete(identity: CSIdentityRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentityDelete(identity: CSIdentityRef) callconv(.C) void;
+pub const csIdentityDelete = CSIdentityDelete;
 
-pub extern "CoreServices" fn CSIdentityCommit(identity: CSIdentityRef, authorization: security.AuthorizationRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSIdentityCommit(identity: CSIdentityRef, authorization: security.AuthorizationRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) objc.Boolean;
+pub const csIdentityCommit = CSIdentityCommit;
 
 pub const anon13521 = enum(u32) {
     kCSIdentityCommitCompleted = 1,
 };
 
-pub const CSIdentityStatusUpdatedCallback = ?*const fn(CSIdentityRef, core_foundation.Index, core_foundation.ErrorRef, ?*anyopaque, ) callconv(.C) void;
+pub const CSIdentityStatusUpdatedCallback = ?*const fn (
+    CSIdentityRef,
+    core_foundation.Index,
+    core_foundation.ErrorRef,
+    ?*anyopaque,
+) callconv(.C) void;
 
 pub const CSIdentityClientContext = extern struct {
     version: core_foundation.Index,
@@ -12157,37 +14859,72 @@ pub const CSIdentityClientContext = extern struct {
     statusUpdated: CSIdentityStatusUpdatedCallback,
 };
 
-pub extern "CoreServices" fn CSIdentityCommitAsynchronously(identity: CSIdentityRef, clientContext: ?*CSIdentityClientContext, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef, authorization: security.AuthorizationRef, ) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSIdentityCommitAsynchronously(
+    identity: CSIdentityRef,
+    clientContext: ?*CSIdentityClientContext,
+    runLoop: core_foundation.RunLoopRef,
+    runLoopMode: core_foundation.StringRef,
+    authorization: security.AuthorizationRef,
+) callconv(.C) objc.Boolean;
+pub const csIdentityCommitAsynchronously = CSIdentityCommitAsynchronously;
 
-pub extern "CoreServices" fn CSIdentityIsCommitting(identity: CSIdentityRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSIdentityIsCommitting(identity: CSIdentityRef) callconv(.C) objc.Boolean;
+pub const csIdentityIsCommitting = CSIdentityIsCommitting;
 
-pub extern "CoreServices" fn CSIdentityRemoveClient(identity: CSIdentityRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentityRemoveClient(identity: CSIdentityRef) callconv(.C) void;
+pub const csIdentityRemoveClient = CSIdentityRemoveClient;
 
-pub extern "CoreServices" fn CSIdentityQueryGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn CSIdentityQueryGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const csIdentityQueryGetTypeID = CSIdentityQueryGetTypeID;
 
 pub const CSIdentityQueryFlags = core_foundation.OptionFlags;
 
 pub const CSIdentityQueryStringComparisonMethod = core_foundation.Index;
 
-pub extern "CoreServices" fn CSIdentityQueryCreate(allocator: core_foundation.AllocatorRef, identityClass: CSIdentityClass, authority: CSIdentityAuthorityRef) callconv(.C) CSIdentityQueryRef;
+extern "CoreServices" fn CSIdentityQueryCreate(allocator: core_foundation.AllocatorRef, identityClass: CSIdentityClass, authority: CSIdentityAuthorityRef) callconv(.C) CSIdentityQueryRef;
+pub const csIdentityQueryCreate = CSIdentityQueryCreate;
 
-pub extern "CoreServices" fn CSIdentityQueryCreateForName(allocator: core_foundation.AllocatorRef, name: core_foundation.StringRef, comparisonMethod: CSIdentityQueryStringComparisonMethod, identityClass: CSIdentityClass, authority: CSIdentityAuthorityRef, ) callconv(.C) CSIdentityQueryRef;
+extern "CoreServices" fn CSIdentityQueryCreateForName(
+    allocator: core_foundation.AllocatorRef,
+    name: core_foundation.StringRef,
+    comparisonMethod: CSIdentityQueryStringComparisonMethod,
+    identityClass: CSIdentityClass,
+    authority: CSIdentityAuthorityRef,
+) callconv(.C) CSIdentityQueryRef;
+pub const csIdentityQueryCreateForName = CSIdentityQueryCreateForName;
 
-pub extern "CoreServices" fn CSIdentityQueryCreateForUUID(allocator: core_foundation.AllocatorRef, uuid: core_foundation.UUIDRef, authority: CSIdentityAuthorityRef) callconv(.C) CSIdentityQueryRef;
+extern "CoreServices" fn CSIdentityQueryCreateForUUID(allocator: core_foundation.AllocatorRef, uuid: core_foundation.UUIDRef, authority: CSIdentityAuthorityRef) callconv(.C) CSIdentityQueryRef;
+pub const csIdentityQueryCreateForUUID = CSIdentityQueryCreateForUUID;
 
-pub extern "CoreServices" fn CSIdentityQueryCreateForPosixID(allocator: core_foundation.AllocatorRef, posixID: objc.id_t, identityClass: CSIdentityClass, authority: CSIdentityAuthorityRef, ) callconv(.C) CSIdentityQueryRef;
+extern "CoreServices" fn CSIdentityQueryCreateForPosixID(
+    allocator: core_foundation.AllocatorRef,
+    posixID: objc.id_t,
+    identityClass: CSIdentityClass,
+    authority: CSIdentityAuthorityRef,
+) callconv(.C) CSIdentityQueryRef;
+pub const csIdentityQueryCreateForPosixID = CSIdentityQueryCreateForPosixID;
 
-pub extern "CoreServices" fn CSIdentityQueryCreateForPersistentReference(allocator: core_foundation.AllocatorRef, referenceData: core_foundation.DataRef) callconv(.C) CSIdentityQueryRef;
+extern "CoreServices" fn CSIdentityQueryCreateForPersistentReference(allocator: core_foundation.AllocatorRef, referenceData: core_foundation.DataRef) callconv(.C) CSIdentityQueryRef;
+pub const csIdentityQueryCreateForPersistentReference = CSIdentityQueryCreateForPersistentReference;
 
-pub extern "CoreServices" fn CSIdentityQueryCreateForCurrentUser(allocator: core_foundation.AllocatorRef) callconv(.C) CSIdentityQueryRef;
+extern "CoreServices" fn CSIdentityQueryCreateForCurrentUser(allocator: core_foundation.AllocatorRef) callconv(.C) CSIdentityQueryRef;
+pub const csIdentityQueryCreateForCurrentUser = CSIdentityQueryCreateForCurrentUser;
 
-pub extern "CoreServices" fn CSIdentityQueryCopyResults(query: CSIdentityQueryRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn CSIdentityQueryCopyResults(query: CSIdentityQueryRef) callconv(.C) core_foundation.ArrayRef;
+pub const csIdentityQueryCopyResults = CSIdentityQueryCopyResults;
 
-pub extern "CoreServices" fn CSIdentityQueryExecute(query: CSIdentityQueryRef, flags: CSIdentityQueryFlags, @"error": ?*core_foundation.ErrorRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSIdentityQueryExecute(query: CSIdentityQueryRef, flags: CSIdentityQueryFlags, @"error": ?*core_foundation.ErrorRef) callconv(.C) objc.Boolean;
+pub const csIdentityQueryExecute = CSIdentityQueryExecute;
 
 pub const CSIdentityQueryEvent = core_foundation.Index;
 
-pub const CSIdentityQueryReceiveEventCallback = ?*const fn(CSIdentityQueryRef, CSIdentityQueryEvent, core_foundation.ArrayRef, core_foundation.ErrorRef, ?*anyopaque, ) callconv(.C) void;
+pub const CSIdentityQueryReceiveEventCallback = ?*const fn (
+    CSIdentityQueryRef,
+    CSIdentityQueryEvent,
+    core_foundation.ArrayRef,
+    core_foundation.ErrorRef,
+    ?*anyopaque,
+) callconv(.C) void;
 
 pub const CSIdentityQueryClientContext = extern struct {
     version: core_foundation.Index,
@@ -12198,9 +14935,17 @@ pub const CSIdentityQueryClientContext = extern struct {
     receiveEvent: CSIdentityQueryReceiveEventCallback,
 };
 
-pub extern "CoreServices" fn CSIdentityQueryExecuteAsynchronously(query: CSIdentityQueryRef, flags: CSIdentityQueryFlags, clientContext: ?*CSIdentityQueryClientContext, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef, ) callconv(.C) objc.Boolean;
+extern "CoreServices" fn CSIdentityQueryExecuteAsynchronously(
+    query: CSIdentityQueryRef,
+    flags: CSIdentityQueryFlags,
+    clientContext: ?*CSIdentityQueryClientContext,
+    runLoop: core_foundation.RunLoopRef,
+    runLoopMode: core_foundation.StringRef,
+) callconv(.C) objc.Boolean;
+pub const csIdentityQueryExecuteAsynchronously = CSIdentityQueryExecuteAsynchronously;
 
-pub extern "CoreServices" fn CSIdentityQueryStop(query: CSIdentityQueryRef) callconv(.C) void;
+extern "CoreServices" fn CSIdentityQueryStop(query: CSIdentityQueryRef) callconv(.C) void;
+pub const csIdentityQueryStop = CSIdentityQueryStop;
 
 pub const anon431 = enum(u32) {
     kIconServices256PixelDataARGB = 1768108088,
@@ -12213,13 +14958,13 @@ pub const anon431 = enum(u32) {
 pub const IconFamilyElement = extern struct {
     elementType: objc.OSType,
     elementSize: objc.SInt32,
-    elementData: [1] u8,
+    elementData: [1]u8,
 };
 
 pub const IconFamilyResource = extern struct {
     resourceType: objc.OSType,
     resourceSize: objc.SInt32,
-    elements: [1] IconFamilyElement,
+    elements: [1]IconFamilyElement,
 };
 
 pub const IconFamilyPtr = ?*IconFamilyResource;
@@ -12235,31 +14980,42 @@ pub const SleepQRec = extern struct {
 
 pub const SleepQRecPtr = ?*SleepQRec;
 
-pub const SleepQProcPtr = ?*const fn(i64, SleepQRecPtr) callconv(.C) i64;
+pub const SleepQProcPtr = ?*const fn (i64, SleepQRecPtr) callconv(.C) i64;
 
 pub const SleepQUPP = SleepQProcPtr;
 
-pub extern "CoreServices" fn NewSleepQUPP(userRoutine: SleepQProcPtr) callconv(.C) SleepQUPP;
+extern "CoreServices" fn NewSleepQUPP(userRoutine: SleepQProcPtr) callconv(.C) SleepQUPP;
+pub const newSleepQUPP = NewSleepQUPP;
 
-pub extern "CoreServices" fn DisposeSleepQUPP(userUPP: SleepQUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeSleepQUPP(userUPP: SleepQUPP) callconv(.C) void;
+pub const disposeSleepQUPP = DisposeSleepQUPP;
 
-pub extern "CoreServices" fn InvokeSleepQUPP(message: i64, qRecPtr: SleepQRecPtr, userUPP: SleepQUPP) callconv(.C) i64;
+extern "CoreServices" fn InvokeSleepQUPP(message: i64, qRecPtr: SleepQRecPtr, userUPP: SleepQUPP) callconv(.C) i64;
+pub const invokeSleepQUPP = InvokeSleepQUPP;
 
-pub extern "CoreServices" fn GetCPUSpeed() callconv(.C) i64;
+extern "CoreServices" fn GetCPUSpeed() callconv(.C) i64;
+pub const getCPUSpeed = GetCPUSpeed;
 
-pub extern "CoreServices" fn SleepQInstall(qRecPtr: SleepQRecPtr) callconv(.C) void;
+extern "CoreServices" fn SleepQInstall(qRecPtr: SleepQRecPtr) callconv(.C) void;
+pub const sleepQInstall = SleepQInstall;
 
-pub extern "CoreServices" fn SleepQRemove(qRecPtr: SleepQRecPtr) callconv(.C) void;
+extern "CoreServices" fn SleepQRemove(qRecPtr: SleepQRecPtr) callconv(.C) void;
+pub const sleepQRemove = SleepQRemove;
 
-pub extern "CoreServices" fn MaximumProcessorSpeed() callconv(.C) i16;
+extern "CoreServices" fn MaximumProcessorSpeed() callconv(.C) i16;
+pub const maximumProcessorSpeed = MaximumProcessorSpeed;
 
-pub extern "CoreServices" fn MinimumProcessorSpeed() callconv(.C) i16;
+extern "CoreServices" fn MinimumProcessorSpeed() callconv(.C) i16;
+pub const minimumProcessorSpeed = MinimumProcessorSpeed;
 
-pub extern "CoreServices" fn CurrentProcessorSpeed() callconv(.C) i16;
+extern "CoreServices" fn CurrentProcessorSpeed() callconv(.C) i16;
+pub const currentProcessorSpeed = CurrentProcessorSpeed;
 
-pub extern "CoreServices" fn BatteryCount() callconv(.C) i16;
+extern "CoreServices" fn BatteryCount() callconv(.C) i16;
+pub const batteryCount = BatteryCount;
 
-pub extern "CoreServices" fn UpdateSystemActivity(activity: objc.UInt8) callconv(.C) objc.OSErr;
+extern "CoreServices" fn UpdateSystemActivity(activity: objc.UInt8) callconv(.C) objc.OSErr;
+pub const updateSystemActivity = UpdateSystemActivity;
 
 pub const KCRef = security.KeychainRef;
 
@@ -12279,15 +15035,15 @@ pub const KCEvent = objc.UInt16;
 
 pub const KCEventMask = objc.UInt16;
 
-pub const AFPServerSignature = [16] objc.UInt8;
+pub const AFPServerSignature = [16]objc.UInt8;
 
-pub const KCPublicKeyHash = [20] objc.UInt8;
+pub const KCPublicKeyHash = [20]objc.UInt8;
 
 pub const KCCallbackInfo = extern struct {
     version: objc.UInt32,
     item: KCItemRef,
-    processID: [2] objc.SInt32,
-    event: [4] objc.SInt32,
+    processID: [2]objc.SInt32,
+    event: [4]objc.SInt32,
     keychain: KCRef,
 };
 
@@ -12345,91 +15101,233 @@ pub const anon2621 = enum(u32) {
     kAnyAuthType = 0,
 };
 
-pub extern "CoreServices" fn KCGetKeychainManagerVersion(returnVers: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCGetKeychainManagerVersion(returnVers: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+pub const kcGetKeychainManagerVersion = KCGetKeychainManagerVersion;
 
-pub extern "CoreServices" fn KCSetInteractionAllowed(state: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCSetInteractionAllowed(state: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const kcSetInteractionAllowed = KCSetInteractionAllowed;
 
-pub extern "CoreServices" fn KCIsInteractionAllowed() callconv(.C) objc.Boolean;
+extern "CoreServices" fn KCIsInteractionAllowed() callconv(.C) objc.Boolean;
+pub const kcIsInteractionAllowed = KCIsInteractionAllowed;
 
-pub extern "CoreServices" fn KCMakeKCRefFromFSRef(keychainFSRef: ?*FSRef, keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCMakeKCRefFromFSRef(keychainFSRef: ?*FSRef, keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+pub const kcMakeKCRefFromFSRef = KCMakeKCRefFromFSRef;
 
-pub extern "CoreServices" fn KCMakeKCRefFromAlias(keychainAlias: AliasHandle, keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCMakeKCRefFromAlias(keychainAlias: AliasHandle, keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+pub const kcMakeKCRefFromAlias = KCMakeKCRefFromAlias;
 
-pub extern "CoreServices" fn KCMakeAliasFromKCRef(keychain: KCRef, keychainAlias: ?*AliasHandle) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCMakeAliasFromKCRef(keychain: KCRef, keychainAlias: ?*AliasHandle) callconv(.C) objc.OSStatus;
+pub const kcMakeAliasFromKCRef = KCMakeAliasFromKCRef;
 
-pub extern "CoreServices" fn KCReleaseKeychain(keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCReleaseKeychain(keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+pub const kcReleaseKeychain = KCReleaseKeychain;
 
-pub extern "CoreServices" fn KCGetDefaultKeychain(keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCGetDefaultKeychain(keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+pub const kcGetDefaultKeychain = KCGetDefaultKeychain;
 
-pub extern "CoreServices" fn KCSetDefaultKeychain(keychain: KCRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCSetDefaultKeychain(keychain: KCRef) callconv(.C) objc.OSStatus;
+pub const kcSetDefaultKeychain = KCSetDefaultKeychain;
 
-pub extern "CoreServices" fn KCGetStatus(keychain: KCRef, keychainStatus: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCGetStatus(keychain: KCRef, keychainStatus: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+pub const kcGetStatus = KCGetStatus;
 
-pub extern "CoreServices" fn KCGetKeychain(item: KCItemRef, keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCGetKeychain(item: KCItemRef, keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+pub const kcGetKeychain = KCGetKeychain;
 
-pub extern "CoreServices" fn KCGetKeychainName(keychain: KCRef, keychainName: objc.StringPtr) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCGetKeychainName(keychain: KCRef, keychainName: objc.StringPtr) callconv(.C) objc.OSStatus;
+pub const kcGetKeychainName = KCGetKeychainName;
 
-pub extern "CoreServices" fn KCCountKeychains() callconv(.C) objc.UInt16;
+extern "CoreServices" fn KCCountKeychains() callconv(.C) objc.UInt16;
+pub const kcCountKeychains = KCCountKeychains;
 
-pub extern "CoreServices" fn KCGetIndKeychain(index: objc.UInt16, keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCGetIndKeychain(index: objc.UInt16, keychain: ?*KCRef) callconv(.C) objc.OSStatus;
+pub const kcGetIndKeychain = KCGetIndKeychain;
 
-pub const KCCallbackProcPtr = ?*const fn(KCEvent, ?*KCCallbackInfo, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const KCCallbackProcPtr = ?*const fn (KCEvent, ?*KCCallbackInfo, ?*anyopaque) callconv(.C) objc.OSStatus;
 
 pub const KCCallbackUPP = KCCallbackProcPtr;
 
-pub extern "CoreServices" fn NewKCCallbackUPP(userRoutine: KCCallbackProcPtr) callconv(.C) KCCallbackUPP;
+extern "CoreServices" fn NewKCCallbackUPP(userRoutine: KCCallbackProcPtr) callconv(.C) KCCallbackUPP;
+pub const newKCCallbackUPP = NewKCCallbackUPP;
 
-pub extern "CoreServices" fn DisposeKCCallbackUPP(userUPP: KCCallbackUPP) callconv(.C) void;
+extern "CoreServices" fn DisposeKCCallbackUPP(userUPP: KCCallbackUPP) callconv(.C) void;
+pub const disposeKCCallbackUPP = DisposeKCCallbackUPP;
 
-pub extern "CoreServices" fn InvokeKCCallbackUPP(keychainEvent: KCEvent, info: ?*KCCallbackInfo, userContext: ?*anyopaque, userUPP: KCCallbackUPP, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn InvokeKCCallbackUPP(
+    keychainEvent: KCEvent,
+    info: ?*KCCallbackInfo,
+    userContext: ?*anyopaque,
+    userUPP: KCCallbackUPP,
+) callconv(.C) objc.OSStatus;
+pub const invokeKCCallbackUPP = InvokeKCCallbackUPP;
 
-pub extern "CoreServices" fn KCFindAppleSharePassword(serverSignature: ?*AFPServerSignature, serverAddress: objc.ConstStringPtr, serverName: objc.ConstStringPtr, volumeName: objc.ConstStringPtr, accountName: objc.ConstStringPtr, maxLength: objc.UInt32, passwordData: ?*anyopaque, actualLength: ?*objc.UInt32, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCFindAppleSharePassword(
+    serverSignature: ?*AFPServerSignature,
+    serverAddress: objc.ConstStringPtr,
+    serverName: objc.ConstStringPtr,
+    volumeName: objc.ConstStringPtr,
+    accountName: objc.ConstStringPtr,
+    maxLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    actualLength: ?*objc.UInt32,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcFindAppleSharePassword = KCFindAppleSharePassword;
 
-pub extern "CoreServices" fn KCFindInternetPassword(serverName: objc.ConstStringPtr, securityDomain: objc.ConstStringPtr, accountName: objc.ConstStringPtr, port: objc.UInt16, protocol: objc.OSType, authType: objc.OSType, maxLength: objc.UInt32, passwordData: ?*anyopaque, actualLength: ?*objc.UInt32, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCFindInternetPassword(
+    serverName: objc.ConstStringPtr,
+    securityDomain: objc.ConstStringPtr,
+    accountName: objc.ConstStringPtr,
+    port: objc.UInt16,
+    protocol: objc.OSType,
+    authType: objc.OSType,
+    maxLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    actualLength: ?*objc.UInt32,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcFindInternetPassword = KCFindInternetPassword;
 
-pub extern "CoreServices" fn KCFindInternetPasswordWithPath(serverName: objc.ConstStringPtr, securityDomain: objc.ConstStringPtr, accountName: objc.ConstStringPtr, path: objc.ConstStringPtr, port: objc.UInt16, protocol: objc.OSType, authType: objc.OSType, maxLength: objc.UInt32, passwordData: ?*anyopaque, actualLength: ?*objc.UInt32, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCFindInternetPasswordWithPath(
+    serverName: objc.ConstStringPtr,
+    securityDomain: objc.ConstStringPtr,
+    accountName: objc.ConstStringPtr,
+    path: objc.ConstStringPtr,
+    port: objc.UInt16,
+    protocol: objc.OSType,
+    authType: objc.OSType,
+    maxLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    actualLength: ?*objc.UInt32,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcFindInternetPasswordWithPath = KCFindInternetPasswordWithPath;
 
-pub extern "CoreServices" fn KCFindGenericPassword(serviceName: objc.ConstStringPtr, accountName: objc.ConstStringPtr, maxLength: objc.UInt32, passwordData: ?*anyopaque, actualLength: ?*objc.UInt32, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCFindGenericPassword(
+    serviceName: objc.ConstStringPtr,
+    accountName: objc.ConstStringPtr,
+    maxLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    actualLength: ?*objc.UInt32,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcFindGenericPassword = KCFindGenericPassword;
 
-pub extern "CoreServices" fn KCAddCallback(callbackProc: KCCallbackUPP, eventMask: KCEventMask, userContext: ?*anyopaque) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCAddCallback(callbackProc: KCCallbackUPP, eventMask: KCEventMask, userContext: ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const kcAddCallback = KCAddCallback;
 
-pub extern "CoreServices" fn KCRemoveCallback(callbackProc: KCCallbackUPP) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCRemoveCallback(callbackProc: KCCallbackUPP) callconv(.C) objc.OSStatus;
+pub const kcRemoveCallback = KCRemoveCallback;
 
-pub extern "CoreServices" fn KCNewItem(itemClass: KCItemClass, itemCreator: objc.OSType, length: objc.UInt32, data: ?*anyopaque, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCNewItem(
+    itemClass: KCItemClass,
+    itemCreator: objc.OSType,
+    length: objc.UInt32,
+    data: ?*anyopaque,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcNewItem = KCNewItem;
 
-pub extern "CoreServices" fn KCSetAttribute(item: KCItemRef, attr: ?*KCAttribute) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCSetAttribute(item: KCItemRef, attr: ?*KCAttribute) callconv(.C) objc.OSStatus;
+pub const kcSetAttribute = KCSetAttribute;
 
-pub extern "CoreServices" fn KCGetAttribute(item: KCItemRef, attr: ?*KCAttribute, actualLength: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCGetAttribute(item: KCItemRef, attr: ?*KCAttribute, actualLength: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+pub const kcGetAttribute = KCGetAttribute;
 
-pub extern "CoreServices" fn KCSetData(item: KCItemRef, length: objc.UInt32, data: ?*anyopaque) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCSetData(item: KCItemRef, length: objc.UInt32, data: ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const kcSetData = KCSetData;
 
-pub extern "CoreServices" fn KCUpdateItem(item: KCItemRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCUpdateItem(item: KCItemRef) callconv(.C) objc.OSStatus;
+pub const kcUpdateItem = KCUpdateItem;
 
-pub extern "CoreServices" fn KCReleaseItem(item: ?*KCItemRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCReleaseItem(item: ?*KCItemRef) callconv(.C) objc.OSStatus;
+pub const kcReleaseItem = KCReleaseItem;
 
-pub extern "CoreServices" fn KCCopyItem(item: KCItemRef, destKeychain: KCRef, copy: ?*KCItemRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCCopyItem(item: KCItemRef, destKeychain: KCRef, copy: ?*KCItemRef) callconv(.C) objc.OSStatus;
+pub const kcCopyItem = KCCopyItem;
 
-pub extern "CoreServices" fn KCFindFirstItem(keychain: KCRef, attrList: ?*KCAttributeList, search: ?*KCSearchRef, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCFindFirstItem(
+    keychain: KCRef,
+    attrList: ?*KCAttributeList,
+    search: ?*KCSearchRef,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcFindFirstItem = KCFindFirstItem;
 
-pub extern "CoreServices" fn KCFindNextItem(search: KCSearchRef, item: ?*KCItemRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCFindNextItem(search: KCSearchRef, item: ?*KCItemRef) callconv(.C) objc.OSStatus;
+pub const kcFindNextItem = KCFindNextItem;
 
-pub extern "CoreServices" fn KCReleaseSearch(search: ?*KCSearchRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCReleaseSearch(search: ?*KCSearchRef) callconv(.C) objc.OSStatus;
+pub const kcReleaseSearch = KCReleaseSearch;
 
-pub extern "CoreServices" fn KCDeleteItem(item: KCItemRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCDeleteItem(item: KCItemRef) callconv(.C) objc.OSStatus;
+pub const kcDeleteItem = KCDeleteItem;
 
-pub extern "CoreServices" fn KCGetData(item: KCItemRef, maxLength: objc.UInt32, data: ?*anyopaque, actualLength: ?*objc.UInt32, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCGetData(
+    item: KCItemRef,
+    maxLength: objc.UInt32,
+    data: ?*anyopaque,
+    actualLength: ?*objc.UInt32,
+) callconv(.C) objc.OSStatus;
+pub const kcGetData = KCGetData;
 
-pub extern "CoreServices" fn KCLock(keychain: KCRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn KCLock(keychain: KCRef) callconv(.C) objc.OSStatus;
+pub const kcLock = KCLock;
 
-pub extern "CoreServices" fn kcgetkeychainname(keychain: KCRef, keychainName: ?*i8) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn kcgetkeychainname(keychain: KCRef, keychainName: ?*i8) callconv(.C) objc.OSStatus;
+pub const kcgetkeychainname = kcgetkeychainname;
 
-pub extern "CoreServices" fn kcfindapplesharepassword(serverSignature: ?*AFPServerSignature, serverAddress: ?*i8, serverName: ?*i8, volumeName: ?*i8, accountName: ?*i8, maxLength: objc.UInt32, passwordData: ?*anyopaque, actualLength: ?*objc.UInt32, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn kcfindapplesharepassword(
+    serverSignature: ?*AFPServerSignature,
+    serverAddress: ?*i8,
+    serverName: ?*i8,
+    volumeName: ?*i8,
+    accountName: ?*i8,
+    maxLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    actualLength: ?*objc.UInt32,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcfindapplesharepassword = kcfindapplesharepassword;
 
-pub extern "CoreServices" fn kcfindinternetpassword(serverName: ?*i8, securityDomain: ?*i8, accountName: ?*i8, port: objc.UInt16, protocol: objc.OSType, authType: objc.OSType, maxLength: objc.UInt32, passwordData: ?*anyopaque, actualLength: ?*objc.UInt32, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn kcfindinternetpassword(
+    serverName: ?*i8,
+    securityDomain: ?*i8,
+    accountName: ?*i8,
+    port: objc.UInt16,
+    protocol: objc.OSType,
+    authType: objc.OSType,
+    maxLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    actualLength: ?*objc.UInt32,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcfindinternetpassword = kcfindinternetpassword;
 
-pub extern "CoreServices" fn kcfindinternetpasswordwithpath(serverName: ?*i8, securityDomain: ?*i8, accountName: ?*i8, path: ?*i8, port: objc.UInt16, protocol: objc.OSType, authType: objc.OSType, maxLength: objc.UInt32, passwordData: ?*anyopaque, actualLength: ?*objc.UInt32, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn kcfindinternetpasswordwithpath(
+    serverName: ?*i8,
+    securityDomain: ?*i8,
+    accountName: ?*i8,
+    path: ?*i8,
+    port: objc.UInt16,
+    protocol: objc.OSType,
+    authType: objc.OSType,
+    maxLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    actualLength: ?*objc.UInt32,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcfindinternetpasswordwithpath = kcfindinternetpasswordwithpath;
 
-pub extern "CoreServices" fn kcfindgenericpassword(serviceName: ?*i8, accountName: ?*i8, maxLength: objc.UInt32, passwordData: ?*anyopaque, actualLength: ?*objc.UInt32, item: ?*KCItemRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn kcfindgenericpassword(
+    serviceName: ?*i8,
+    accountName: ?*i8,
+    maxLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    actualLength: ?*objc.UInt32,
+    item: ?*KCItemRef,
+) callconv(.C) objc.OSStatus;
+pub const kcfindgenericpassword = kcfindgenericpassword;
 
 pub const WSTypeID = enum(u32) {
     eWSUnknownType = 0,
@@ -12444,11 +15342,11 @@ pub const WSTypeID = enum(u32) {
     eWSDictionaryType = 9,
 };
 
-pub const WSClientContextRetainCallBackProcPtr = ?*const fn(?*anyopaque) callconv(.C) ?*anyopaque;
+pub const WSClientContextRetainCallBackProcPtr = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
 
-pub const WSClientContextReleaseCallBackProcPtr = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const WSClientContextReleaseCallBackProcPtr = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const WSClientContextCopyDescriptionCallBackProcPtr = ?*const fn(?*anyopaque) callconv(.C) core_foundation.StringRef;
+pub const WSClientContextCopyDescriptionCallBackProcPtr = ?*const fn (?*anyopaque) callconv(.C) core_foundation.StringRef;
 
 pub const WSClientContext = extern struct {
     version: core_foundation.Index,
@@ -12458,79 +15356,145 @@ pub const WSClientContext = extern struct {
     copyDescription: WSClientContextCopyDescriptionCallBackProcPtr,
 };
 
-pub extern "CoreServices" fn WSGetWSTypeIDFromCFType(ref: core_foundation.TypeRef) callconv(.C) WSTypeID;
+extern "CoreServices" fn WSGetWSTypeIDFromCFType(ref: core_foundation.TypeRef) callconv(.C) WSTypeID;
+pub const wsGetWSTypeIDFromCFType = WSGetWSTypeIDFromCFType;
 
-pub extern "CoreServices" fn WSGetCFTypeIDFromWSTypeID(typeID: WSTypeID) callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn WSGetCFTypeIDFromWSTypeID(typeID: WSTypeID) callconv(.C) core_foundation.TypeID;
+pub const wsGetCFTypeIDFromWSTypeID = WSGetCFTypeIDFromWSTypeID;
 
 pub const OpaqueWSMethodInvocationRef = extern struct {};
 
 pub const WSMethodInvocationRef = ?*OpaqueWSMethodInvocationRef;
 
-pub extern "CoreServices" fn WSMethodInvocationGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn WSMethodInvocationGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const wsMethodInvocationGetTypeID = WSMethodInvocationGetTypeID;
 
-pub extern "CoreServices" fn WSMethodInvocationCreate(url: core_foundation.URLRef, methodName: core_foundation.StringRef, protocol: core_foundation.StringRef) callconv(.C) WSMethodInvocationRef;
+extern "CoreServices" fn WSMethodInvocationCreate(url: core_foundation.URLRef, methodName: core_foundation.StringRef, protocol: core_foundation.StringRef) callconv(.C) WSMethodInvocationRef;
+pub const wsMethodInvocationCreate = WSMethodInvocationCreate;
 
-pub extern "CoreServices" fn WSMethodInvocationCreateFromSerialization(contract: core_foundation.DataRef) callconv(.C) WSMethodInvocationRef;
+extern "CoreServices" fn WSMethodInvocationCreateFromSerialization(contract: core_foundation.DataRef) callconv(.C) WSMethodInvocationRef;
+pub const wsMethodInvocationCreateFromSerialization = WSMethodInvocationCreateFromSerialization;
 
-pub extern "CoreServices" fn WSMethodInvocationCopySerialization(invocation: WSMethodInvocationRef) callconv(.C) core_foundation.DataRef;
+extern "CoreServices" fn WSMethodInvocationCopySerialization(invocation: WSMethodInvocationRef) callconv(.C) core_foundation.DataRef;
+pub const wsMethodInvocationCopySerialization = WSMethodInvocationCopySerialization;
 
-pub extern "CoreServices" fn WSMethodInvocationSetParameters(invocation: WSMethodInvocationRef, parameters: core_foundation.DictionaryRef, parameterOrder: core_foundation.ArrayRef) callconv(.C) void;
+extern "CoreServices" fn WSMethodInvocationSetParameters(invocation: WSMethodInvocationRef, parameters: core_foundation.DictionaryRef, parameterOrder: core_foundation.ArrayRef) callconv(.C) void;
+pub const wsMethodInvocationSetParameters = WSMethodInvocationSetParameters;
 
-pub extern "CoreServices" fn WSMethodInvocationCopyParameters(invocation: WSMethodInvocationRef, parameterOrder: ?*core_foundation.ArrayRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn WSMethodInvocationCopyParameters(invocation: WSMethodInvocationRef, parameterOrder: ?*core_foundation.ArrayRef) callconv(.C) core_foundation.DictionaryRef;
+pub const wsMethodInvocationCopyParameters = WSMethodInvocationCopyParameters;
 
-pub extern "CoreServices" fn WSMethodInvocationSetProperty(invocation: WSMethodInvocationRef, propertyName: core_foundation.StringRef, propertyValue: core_foundation.TypeRef) callconv(.C) void;
+extern "CoreServices" fn WSMethodInvocationSetProperty(invocation: WSMethodInvocationRef, propertyName: core_foundation.StringRef, propertyValue: core_foundation.TypeRef) callconv(.C) void;
+pub const wsMethodInvocationSetProperty = WSMethodInvocationSetProperty;
 
-pub extern "CoreServices" fn WSMethodInvocationCopyProperty(invocation: WSMethodInvocationRef, propertyName: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "CoreServices" fn WSMethodInvocationCopyProperty(invocation: WSMethodInvocationRef, propertyName: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const wsMethodInvocationCopyProperty = WSMethodInvocationCopyProperty;
 
-pub extern "CoreServices" fn WSMethodInvocationInvoke(invocation: WSMethodInvocationRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn WSMethodInvocationInvoke(invocation: WSMethodInvocationRef) callconv(.C) core_foundation.DictionaryRef;
+pub const wsMethodInvocationInvoke = WSMethodInvocationInvoke;
 
-pub const WSMethodInvocationCallBackProcPtr = ?*const fn(WSMethodInvocationRef, ?*anyopaque, core_foundation.DictionaryRef) callconv(.C) void;
+pub const WSMethodInvocationCallBackProcPtr = ?*const fn (WSMethodInvocationRef, ?*anyopaque, core_foundation.DictionaryRef) callconv(.C) void;
 
-pub extern "CoreServices" fn WSMethodInvocationSetCallBack(invocation: WSMethodInvocationRef, clientCB: WSMethodInvocationCallBackProcPtr, context: ?*WSClientContext) callconv(.C) void;
+extern "CoreServices" fn WSMethodInvocationSetCallBack(invocation: WSMethodInvocationRef, clientCB: WSMethodInvocationCallBackProcPtr, context: ?*WSClientContext) callconv(.C) void;
+pub const wsMethodInvocationSetCallBack = WSMethodInvocationSetCallBack;
 
-pub extern "CoreServices" fn WSMethodInvocationScheduleWithRunLoop(invocation: WSMethodInvocationRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn WSMethodInvocationScheduleWithRunLoop(invocation: WSMethodInvocationRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+pub const wsMethodInvocationScheduleWithRunLoop = WSMethodInvocationScheduleWithRunLoop;
 
-pub extern "CoreServices" fn WSMethodInvocationUnscheduleFromRunLoop(invocation: WSMethodInvocationRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn WSMethodInvocationUnscheduleFromRunLoop(invocation: WSMethodInvocationRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+pub const wsMethodInvocationUnscheduleFromRunLoop = WSMethodInvocationUnscheduleFromRunLoop;
 
-pub extern "CoreServices" fn WSMethodResultIsFault(methodResult: core_foundation.DictionaryRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn WSMethodResultIsFault(methodResult: core_foundation.DictionaryRef) callconv(.C) objc.Boolean;
+pub const wsMethodResultIsFault = WSMethodResultIsFault;
 
-pub const WSMethodInvocationSerializationProcPtr = ?*const fn(WSMethodInvocationRef, core_foundation.TypeRef, ?*anyopaque) callconv(.C) core_foundation.StringRef;
+pub const WSMethodInvocationSerializationProcPtr = ?*const fn (WSMethodInvocationRef, core_foundation.TypeRef, ?*anyopaque) callconv(.C) core_foundation.StringRef;
 
-pub extern "CoreServices" fn WSMethodInvocationAddSerializationOverride(invocation: WSMethodInvocationRef, objType: core_foundation.TypeID, serializationProc: WSMethodInvocationSerializationProcPtr, context: ?*WSClientContext, ) callconv(.C) void;
+extern "CoreServices" fn WSMethodInvocationAddSerializationOverride(
+    invocation: WSMethodInvocationRef,
+    objType: core_foundation.TypeID,
+    serializationProc: WSMethodInvocationSerializationProcPtr,
+    context: ?*WSClientContext,
+) callconv(.C) void;
+pub const wsMethodInvocationAddSerializationOverride = WSMethodInvocationAddSerializationOverride;
 
-pub const WSMethodInvocationDeserializationProcPtr = ?*const fn(WSMethodInvocationRef, core_foundation.XMLTreeRef, core_foundation.XMLTreeRef, ?*anyopaque, ) callconv(.C) core_foundation.TypeRef;
+pub const WSMethodInvocationDeserializationProcPtr = ?*const fn (
+    WSMethodInvocationRef,
+    core_foundation.XMLTreeRef,
+    core_foundation.XMLTreeRef,
+    ?*anyopaque,
+) callconv(.C) core_foundation.TypeRef;
 
-pub extern "CoreServices" fn WSMethodInvocationAddDeserializationOverride(invocation: WSMethodInvocationRef, typeNamespace: core_foundation.StringRef, typeName: core_foundation.StringRef, deserializationProc: WSMethodInvocationDeserializationProcPtr, context: ?*WSClientContext, ) callconv(.C) void;
+extern "CoreServices" fn WSMethodInvocationAddDeserializationOverride(
+    invocation: WSMethodInvocationRef,
+    typeNamespace: core_foundation.StringRef,
+    typeName: core_foundation.StringRef,
+    deserializationProc: WSMethodInvocationDeserializationProcPtr,
+    context: ?*WSClientContext,
+) callconv(.C) void;
+pub const wsMethodInvocationAddDeserializationOverride = WSMethodInvocationAddDeserializationOverride;
 
 pub const OpaqueWSProtocolHandlerRef = extern struct {};
 
 pub const WSProtocolHandlerRef = ?*OpaqueWSProtocolHandlerRef;
 
-pub extern "CoreServices" fn WSProtocolHandlerGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn WSProtocolHandlerGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const wsProtocolHandlerGetTypeID = WSProtocolHandlerGetTypeID;
 
-pub extern "CoreServices" fn WSProtocolHandlerCreate(allocator: core_foundation.AllocatorRef, protocol: core_foundation.StringRef) callconv(.C) WSProtocolHandlerRef;
+extern "CoreServices" fn WSProtocolHandlerCreate(allocator: core_foundation.AllocatorRef, protocol: core_foundation.StringRef) callconv(.C) WSProtocolHandlerRef;
+pub const wsProtocolHandlerCreate = WSProtocolHandlerCreate;
 
-pub extern "CoreServices" fn WSProtocolHandlerCopyRequestDictionary(ref: WSProtocolHandlerRef, data: core_foundation.DataRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn WSProtocolHandlerCopyRequestDictionary(ref: WSProtocolHandlerRef, data: core_foundation.DataRef) callconv(.C) core_foundation.DictionaryRef;
+pub const wsProtocolHandlerCopyRequestDictionary = WSProtocolHandlerCopyRequestDictionary;
 
-pub extern "CoreServices" fn WSProtocolHandlerCopyReplyDictionary(ref: WSProtocolHandlerRef, methodName: core_foundation.StringRef, data: core_foundation.DataRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn WSProtocolHandlerCopyReplyDictionary(ref: WSProtocolHandlerRef, methodName: core_foundation.StringRef, data: core_foundation.DataRef) callconv(.C) core_foundation.DictionaryRef;
+pub const wsProtocolHandlerCopyReplyDictionary = WSProtocolHandlerCopyReplyDictionary;
 
-pub extern "CoreServices" fn WSProtocolHandlerCopyReplyDocument(ref: WSProtocolHandlerRef, methodContext: core_foundation.DictionaryRef, resultValue: core_foundation.TypeRef) callconv(.C) core_foundation.DataRef;
+extern "CoreServices" fn WSProtocolHandlerCopyReplyDocument(ref: WSProtocolHandlerRef, methodContext: core_foundation.DictionaryRef, resultValue: core_foundation.TypeRef) callconv(.C) core_foundation.DataRef;
+pub const wsProtocolHandlerCopyReplyDocument = WSProtocolHandlerCopyReplyDocument;
 
-pub extern "CoreServices" fn WSProtocolHandlerCopyFaultDocument(ref: WSProtocolHandlerRef, methodContext: core_foundation.DictionaryRef, faultDict: core_foundation.DictionaryRef) callconv(.C) core_foundation.DataRef;
+extern "CoreServices" fn WSProtocolHandlerCopyFaultDocument(ref: WSProtocolHandlerRef, methodContext: core_foundation.DictionaryRef, faultDict: core_foundation.DictionaryRef) callconv(.C) core_foundation.DataRef;
+pub const wsProtocolHandlerCopyFaultDocument = WSProtocolHandlerCopyFaultDocument;
 
-pub extern "CoreServices" fn WSProtocolHandlerCopyRequestDocument(ref: WSProtocolHandlerRef, methodName: core_foundation.StringRef, methodParams: core_foundation.DictionaryRef, methodParamOrder: core_foundation.ArrayRef, methodExtras: core_foundation.DictionaryRef, ) callconv(.C) core_foundation.DataRef;
+extern "CoreServices" fn WSProtocolHandlerCopyRequestDocument(
+    ref: WSProtocolHandlerRef,
+    methodName: core_foundation.StringRef,
+    methodParams: core_foundation.DictionaryRef,
+    methodParamOrder: core_foundation.ArrayRef,
+    methodExtras: core_foundation.DictionaryRef,
+) callconv(.C) core_foundation.DataRef;
+pub const wsProtocolHandlerCopyRequestDocument = WSProtocolHandlerCopyRequestDocument;
 
-pub extern "CoreServices" fn WSProtocolHandlerCopyProperty(ref: WSProtocolHandlerRef, propertyName: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "CoreServices" fn WSProtocolHandlerCopyProperty(ref: WSProtocolHandlerRef, propertyName: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const wsProtocolHandlerCopyProperty = WSProtocolHandlerCopyProperty;
 
-pub extern "CoreServices" fn WSProtocolHandlerSetProperty(ref: WSProtocolHandlerRef, propertyName: core_foundation.StringRef, propertyValue: core_foundation.TypeRef) callconv(.C) void;
+extern "CoreServices" fn WSProtocolHandlerSetProperty(ref: WSProtocolHandlerRef, propertyName: core_foundation.StringRef, propertyValue: core_foundation.TypeRef) callconv(.C) void;
+pub const wsProtocolHandlerSetProperty = WSProtocolHandlerSetProperty;
 
-pub const WSProtocolHandlerSerializationProcPtr = ?*const fn(WSProtocolHandlerRef, core_foundation.TypeRef, ?*anyopaque) callconv(.C) core_foundation.StringRef;
+pub const WSProtocolHandlerSerializationProcPtr = ?*const fn (WSProtocolHandlerRef, core_foundation.TypeRef, ?*anyopaque) callconv(.C) core_foundation.StringRef;
 
-pub extern "CoreServices" fn WSProtocolHandlerSetSerializationOverride(protocol: WSProtocolHandlerRef, objType: core_foundation.TypeID, serializationProc: WSProtocolHandlerSerializationProcPtr, context: ?*WSClientContext, ) callconv(.C) void;
+extern "CoreServices" fn WSProtocolHandlerSetSerializationOverride(
+    protocol: WSProtocolHandlerRef,
+    objType: core_foundation.TypeID,
+    serializationProc: WSProtocolHandlerSerializationProcPtr,
+    context: ?*WSClientContext,
+) callconv(.C) void;
+pub const wsProtocolHandlerSetSerializationOverride = WSProtocolHandlerSetSerializationOverride;
 
-pub const WSProtocolHandlerDeserializationProcPtr = ?*const fn(WSProtocolHandlerRef, core_foundation.XMLTreeRef, core_foundation.XMLTreeRef, ?*anyopaque, ) callconv(.C) core_foundation.TypeRef;
+pub const WSProtocolHandlerDeserializationProcPtr = ?*const fn (
+    WSProtocolHandlerRef,
+    core_foundation.XMLTreeRef,
+    core_foundation.XMLTreeRef,
+    ?*anyopaque,
+) callconv(.C) core_foundation.TypeRef;
 
-pub extern "CoreServices" fn WSProtocolHandlerSetDeserializationOverride(protocol: WSProtocolHandlerRef, typeNamespace: core_foundation.StringRef, typeName: core_foundation.StringRef, deserializationProc: WSProtocolHandlerDeserializationProcPtr, context: ?*WSClientContext, ) callconv(.C) void;
+extern "CoreServices" fn WSProtocolHandlerSetDeserializationOverride(
+    protocol: WSProtocolHandlerRef,
+    typeNamespace: core_foundation.StringRef,
+    typeName: core_foundation.StringRef,
+    deserializationProc: WSProtocolHandlerDeserializationProcPtr,
+    context: ?*WSClientContext,
+) callconv(.C) void;
+pub const wsProtocolHandlerSetDeserializationOverride = WSProtocolHandlerSetDeserializationOverride;
 
 pub const anon771 = enum(i32) {
     kGenericPreferencesIconResource = -3971,
@@ -12582,49 +15546,109 @@ pub const anon4151 = enum(u32) {
     kIconServicesCatalogInfoMask = 531550,
 };
 
-pub extern "CoreServices" fn GetIconRefOwners(theIconRef: IconRef, owners: ?*objc.UInt16) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetIconRefOwners(theIconRef: IconRef, owners: ?*objc.UInt16) callconv(.C) objc.OSErr;
+pub const getIconRefOwners = GetIconRefOwners;
 
-pub extern "CoreServices" fn AcquireIconRef(theIconRef: IconRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn AcquireIconRef(theIconRef: IconRef) callconv(.C) objc.OSErr;
+pub const acquireIconRef = AcquireIconRef;
 
-pub extern "CoreServices" fn ReleaseIconRef(theIconRef: IconRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn ReleaseIconRef(theIconRef: IconRef) callconv(.C) objc.OSErr;
+pub const releaseIconRef = ReleaseIconRef;
 
-pub extern "CoreServices" fn GetIconRef(vRefNum: objc.SInt16, creator: objc.OSType, iconType: objc.OSType, theIconRef: ?*IconRef, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetIconRef(
+    vRefNum: objc.SInt16,
+    creator: objc.OSType,
+    iconType: objc.OSType,
+    theIconRef: ?*IconRef,
+) callconv(.C) objc.OSErr;
+pub const getIconRef = GetIconRef;
 
-pub extern "CoreServices" fn GetIconRefFromFolder(vRefNum: objc.SInt16, parentFolderID: objc.SInt32, folderID: objc.SInt32, attributes: objc.SInt8, accessPrivileges: objc.SInt8, theIconRef: ?*IconRef, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetIconRefFromFolder(
+    vRefNum: objc.SInt16,
+    parentFolderID: objc.SInt32,
+    folderID: objc.SInt32,
+    attributes: objc.SInt8,
+    accessPrivileges: objc.SInt8,
+    theIconRef: ?*IconRef,
+) callconv(.C) objc.OSErr;
+pub const getIconRefFromFolder = GetIconRefFromFolder;
 
-pub extern "CoreServices" fn GetIconRefFromFileInfo(inRef: ?*FSRef, inFileNameLength: objc.UniCharCount, inFileName: ?*objc.UniChar, inWhichInfo: FSCatalogInfoBitmap, inCatalogInfo: ?*FSCatalogInfo, inUsageFlags: IconServicesUsageFlags, outIconRef: ?*IconRef, outLabel: ?*objc.SInt16, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn GetIconRefFromFileInfo(
+    inRef: ?*FSRef,
+    inFileNameLength: objc.UniCharCount,
+    inFileName: ?*objc.UniChar,
+    inWhichInfo: FSCatalogInfoBitmap,
+    inCatalogInfo: ?*FSCatalogInfo,
+    inUsageFlags: IconServicesUsageFlags,
+    outIconRef: ?*IconRef,
+    outLabel: ?*objc.SInt16,
+) callconv(.C) objc.OSStatus;
+pub const getIconRefFromFileInfo = GetIconRefFromFileInfo;
 
-pub extern "CoreServices" fn GetIconRefFromTypeInfo(inCreator: objc.OSType, inType: objc.OSType, inExtension: core_foundation.StringRef, inMIMEType: core_foundation.StringRef, inUsageFlags: IconServicesUsageFlags, outIconRef: ?*IconRef, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetIconRefFromTypeInfo(
+    inCreator: objc.OSType,
+    inType: objc.OSType,
+    inExtension: core_foundation.StringRef,
+    inMIMEType: core_foundation.StringRef,
+    inUsageFlags: IconServicesUsageFlags,
+    outIconRef: ?*IconRef,
+) callconv(.C) objc.OSErr;
+pub const getIconRefFromTypeInfo = GetIconRefFromTypeInfo;
 
-pub extern "CoreServices" fn GetIconRefFromIconFamilyPtr(inIconFamilyPtr: ?*IconFamilyResource, inSize: objc.Size, outIconRef: ?*IconRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn GetIconRefFromIconFamilyPtr(inIconFamilyPtr: ?*IconFamilyResource, inSize: objc.Size, outIconRef: ?*IconRef) callconv(.C) objc.OSStatus;
+pub const getIconRefFromIconFamilyPtr = GetIconRefFromIconFamilyPtr;
 
-pub extern "CoreServices" fn GetIconRefFromComponent(inComponent: Component, outIconRef: ?*IconRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn GetIconRefFromComponent(inComponent: Component, outIconRef: ?*IconRef) callconv(.C) objc.OSStatus;
+pub const getIconRefFromComponent = GetIconRefFromComponent;
 
-pub extern "CoreServices" fn RegisterIconRefFromIconFamily(creator: objc.OSType, iconType: objc.OSType, iconFamily: IconFamilyHandle, theIconRef: ?*IconRef, ) callconv(.C) objc.OSErr;
+extern "CoreServices" fn RegisterIconRefFromIconFamily(
+    creator: objc.OSType,
+    iconType: objc.OSType,
+    iconFamily: IconFamilyHandle,
+    theIconRef: ?*IconRef,
+) callconv(.C) objc.OSErr;
+pub const registerIconRefFromIconFamily = RegisterIconRefFromIconFamily;
 
-pub extern "CoreServices" fn RegisterIconRefFromFSRef(creator: objc.OSType, iconType: objc.OSType, iconFile: ?*FSRef, theIconRef: ?*IconRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn RegisterIconRefFromFSRef(
+    creator: objc.OSType,
+    iconType: objc.OSType,
+    iconFile: ?*FSRef,
+    theIconRef: ?*IconRef,
+) callconv(.C) objc.OSStatus;
+pub const registerIconRefFromFSRef = RegisterIconRefFromFSRef;
 
-pub extern "CoreServices" fn UnregisterIconRef(creator: objc.OSType, iconType: objc.OSType) callconv(.C) objc.OSErr;
+extern "CoreServices" fn UnregisterIconRef(creator: objc.OSType, iconType: objc.OSType) callconv(.C) objc.OSErr;
+pub const unregisterIconRef = UnregisterIconRef;
 
-pub extern "CoreServices" fn UpdateIconRef(theIconRef: IconRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn UpdateIconRef(theIconRef: IconRef) callconv(.C) objc.OSErr;
+pub const updateIconRef = UpdateIconRef;
 
-pub extern "CoreServices" fn OverrideIconRef(oldIconRef: IconRef, newIconRef: IconRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn OverrideIconRef(oldIconRef: IconRef, newIconRef: IconRef) callconv(.C) objc.OSErr;
+pub const overrideIconRef = OverrideIconRef;
 
-pub extern "CoreServices" fn RemoveIconRefOverride(theIconRef: IconRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn RemoveIconRefOverride(theIconRef: IconRef) callconv(.C) objc.OSErr;
+pub const removeIconRefOverride = RemoveIconRefOverride;
 
-pub extern "CoreServices" fn CompositeIconRef(backgroundIconRef: IconRef, foregroundIconRef: IconRef, compositeIconRef: ?*IconRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn CompositeIconRef(backgroundIconRef: IconRef, foregroundIconRef: IconRef, compositeIconRef: ?*IconRef) callconv(.C) objc.OSErr;
+pub const compositeIconRef = CompositeIconRef;
 
-pub extern "CoreServices" fn IsIconRefComposite(compositeIconRef: IconRef, backgroundIconRef: ?*IconRef, foregroundIconRef: ?*IconRef) callconv(.C) objc.OSErr;
+extern "CoreServices" fn IsIconRefComposite(compositeIconRef: IconRef, backgroundIconRef: ?*IconRef, foregroundIconRef: ?*IconRef) callconv(.C) objc.OSErr;
+pub const isIconRefComposite = IsIconRefComposite;
 
-pub extern "CoreServices" fn IsValidIconRef(theIconRef: IconRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn IsValidIconRef(theIconRef: IconRef) callconv(.C) objc.Boolean;
+pub const isValidIconRef = IsValidIconRef;
 
-pub extern "CoreServices" fn IsDataAvailableInIconRef(inIconKind: objc.OSType, inIconRef: IconRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn IsDataAvailableInIconRef(inIconKind: objc.OSType, inIconRef: IconRef) callconv(.C) objc.Boolean;
+pub const isDataAvailableInIconRef = IsDataAvailableInIconRef;
 
-pub extern "CoreServices" fn SetCustomIconsEnabled(vRefNum: objc.SInt16, enableCustomIcons: objc.Boolean) callconv(.C) objc.OSErr;
+extern "CoreServices" fn SetCustomIconsEnabled(vRefNum: objc.SInt16, enableCustomIcons: objc.Boolean) callconv(.C) objc.OSErr;
+pub const setCustomIconsEnabled = SetCustomIconsEnabled;
 
-pub extern "CoreServices" fn GetCustomIconsEnabled(vRefNum: objc.SInt16, customIconsEnabled: ?*objc.Boolean) callconv(.C) objc.OSErr;
+extern "CoreServices" fn GetCustomIconsEnabled(vRefNum: objc.SInt16, customIconsEnabled: ?*objc.Boolean) callconv(.C) objc.OSErr;
+pub const getCustomIconsEnabled = GetCustomIconsEnabled;
 
-pub extern "CoreServices" fn ReadIconFromFSRef(ref: ?*FSRef, iconFamily: ?*IconFamilyHandle) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn ReadIconFromFSRef(ref: ?*FSRef, iconFamily: ?*IconFamilyHandle) callconv(.C) objc.OSStatus;
+pub const readIconFromFSRef = ReadIconFromFSRef;
 
 pub const LSRolesMask = enum(objc.OptionBits) {
     kLSRolesNone = 1,
@@ -12639,29 +15663,47 @@ pub const LSAcceptanceFlags = enum(objc.OptionBits) {
     kLSAcceptAllowLoginUI = 2,
 };
 
-pub extern "CoreServices" fn LSCopyDefaultApplicationURLForURL(inURL: core_foundation.URLRef, inRoleMask: LSRolesMask, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.URLRef;
+extern "CoreServices" fn LSCopyDefaultApplicationURLForURL(inURL: core_foundation.URLRef, inRoleMask: LSRolesMask, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.URLRef;
+pub const lsCopyDefaultApplicationURLForURL = LSCopyDefaultApplicationURLForURL;
 
-pub extern "CoreServices" fn LSCopyDefaultApplicationURLForContentType(inContentType: core_foundation.StringRef, inRoleMask: LSRolesMask, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.URLRef;
+extern "CoreServices" fn LSCopyDefaultApplicationURLForContentType(inContentType: core_foundation.StringRef, inRoleMask: LSRolesMask, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.URLRef;
+pub const lsCopyDefaultApplicationURLForContentType = LSCopyDefaultApplicationURLForContentType;
 
-pub extern "CoreServices" fn LSCopyApplicationURLsForBundleIdentifier(inBundleIdentifier: core_foundation.StringRef, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn LSCopyApplicationURLsForBundleIdentifier(inBundleIdentifier: core_foundation.StringRef, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.ArrayRef;
+pub const lsCopyApplicationURLsForBundleIdentifier = LSCopyApplicationURLsForBundleIdentifier;
 
-pub extern "CoreServices" fn LSCopyApplicationURLsForURL(inURL: core_foundation.URLRef, inRoleMask: LSRolesMask) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn LSCopyApplicationURLsForURL(inURL: core_foundation.URLRef, inRoleMask: LSRolesMask) callconv(.C) core_foundation.ArrayRef;
+pub const lsCopyApplicationURLsForURL = LSCopyApplicationURLsForURL;
 
-pub extern "CoreServices" fn LSCanURLAcceptURL(inItemURL: core_foundation.URLRef, inTargetURL: core_foundation.URLRef, inRoleMask: LSRolesMask, inFlags: LSAcceptanceFlags, outAcceptsItem: ?*objc.Boolean, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCanURLAcceptURL(
+    inItemURL: core_foundation.URLRef,
+    inTargetURL: core_foundation.URLRef,
+    inRoleMask: LSRolesMask,
+    inFlags: LSAcceptanceFlags,
+    outAcceptsItem: ?*objc.Boolean,
+) callconv(.C) objc.OSStatus;
+pub const lsCanURLAcceptURL = LSCanURLAcceptURL;
 
-pub extern "CoreServices" fn LSRegisterURL(inURL: core_foundation.URLRef, inUpdate: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSRegisterURL(inURL: core_foundation.URLRef, inUpdate: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const lsRegisterURL = LSRegisterURL;
 
-pub extern "CoreServices" fn LSCopyDefaultRoleHandlerForContentType(inContentType: core_foundation.StringRef, inRole: LSRolesMask) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn LSCopyDefaultRoleHandlerForContentType(inContentType: core_foundation.StringRef, inRole: LSRolesMask) callconv(.C) core_foundation.StringRef;
+pub const lsCopyDefaultRoleHandlerForContentType = LSCopyDefaultRoleHandlerForContentType;
 
-pub extern "CoreServices" fn LSCopyAllRoleHandlersForContentType(inContentType: core_foundation.StringRef, inRole: LSRolesMask) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn LSCopyAllRoleHandlersForContentType(inContentType: core_foundation.StringRef, inRole: LSRolesMask) callconv(.C) core_foundation.ArrayRef;
+pub const lsCopyAllRoleHandlersForContentType = LSCopyAllRoleHandlersForContentType;
 
-pub extern "CoreServices" fn LSSetDefaultRoleHandlerForContentType(inContentType: core_foundation.StringRef, inRole: LSRolesMask, inHandlerBundleID: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSetDefaultRoleHandlerForContentType(inContentType: core_foundation.StringRef, inRole: LSRolesMask, inHandlerBundleID: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const lsSetDefaultRoleHandlerForContentType = LSSetDefaultRoleHandlerForContentType;
 
-pub extern "CoreServices" fn LSCopyDefaultHandlerForURLScheme(inURLScheme: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn LSCopyDefaultHandlerForURLScheme(inURLScheme: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const lsCopyDefaultHandlerForURLScheme = LSCopyDefaultHandlerForURLScheme;
 
-pub extern "CoreServices" fn LSCopyAllHandlersForURLScheme(inURLScheme: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn LSCopyAllHandlersForURLScheme(inURLScheme: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+pub const lsCopyAllHandlersForURLScheme = LSCopyAllHandlersForURLScheme;
 
-pub extern "CoreServices" fn LSSetDefaultHandlerForURLScheme(inURLScheme: core_foundation.StringRef, inHandlerBundleID: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSetDefaultHandlerForURLScheme(inURLScheme: core_foundation.StringRef, inHandlerBundleID: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const lsSetDefaultHandlerForURLScheme = LSSetDefaultHandlerForURLScheme;
 
 pub const LSRequestedInfo = enum(objc.OptionBits) {
     kLSRequestExtension = 1,
@@ -12698,56 +15740,128 @@ pub const LSItemInfoRecord = extern struct {
     extension: core_foundation.StringRef,
 };
 
-pub extern "CoreServices" fn LSCopyItemInfoForURL(inURL: core_foundation.URLRef, inWhichInfo: LSRequestedInfo, outItemInfo: ?*LSItemInfoRecord) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyItemInfoForURL(inURL: core_foundation.URLRef, inWhichInfo: LSRequestedInfo, outItemInfo: ?*LSItemInfoRecord) callconv(.C) objc.OSStatus;
+pub const lsCopyItemInfoForURL = LSCopyItemInfoForURL;
 
-pub extern "CoreServices" fn LSCopyItemInfoForRef(inItemRef: ?*FSRef, inWhichInfo: LSRequestedInfo, outItemInfo: ?*LSItemInfoRecord) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyItemInfoForRef(inItemRef: ?*FSRef, inWhichInfo: LSRequestedInfo, outItemInfo: ?*LSItemInfoRecord) callconv(.C) objc.OSStatus;
+pub const lsCopyItemInfoForRef = LSCopyItemInfoForRef;
 
-pub extern "CoreServices" fn LSGetExtensionInfo(inNameLen: objc.UniCharCount, inNameBuffer: *objc.UniChar, outExtStartIndex: ?*objc.UniCharCount) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSGetExtensionInfo(inNameLen: objc.UniCharCount, inNameBuffer: *objc.UniChar, outExtStartIndex: ?*objc.UniCharCount) callconv(.C) objc.OSStatus;
+pub const lsGetExtensionInfo = LSGetExtensionInfo;
 
-pub extern "CoreServices" fn LSCopyDisplayNameForRef(inRef: ?*FSRef, outDisplayName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyDisplayNameForRef(inRef: ?*FSRef, outDisplayName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const lsCopyDisplayNameForRef = LSCopyDisplayNameForRef;
 
-pub extern "CoreServices" fn LSCopyDisplayNameForURL(inURL: core_foundation.URLRef, outDisplayName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyDisplayNameForURL(inURL: core_foundation.URLRef, outDisplayName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const lsCopyDisplayNameForURL = LSCopyDisplayNameForURL;
 
-pub extern "CoreServices" fn LSSetExtensionHiddenForRef(inRef: ?*FSRef, inHide: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSetExtensionHiddenForRef(inRef: ?*FSRef, inHide: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const lsSetExtensionHiddenForRef = LSSetExtensionHiddenForRef;
 
-pub extern "CoreServices" fn LSSetExtensionHiddenForURL(inURL: core_foundation.URLRef, inHide: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSetExtensionHiddenForURL(inURL: core_foundation.URLRef, inHide: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const lsSetExtensionHiddenForURL = LSSetExtensionHiddenForURL;
 
-pub extern "CoreServices" fn LSCopyKindStringForRef(inFSRef: ?*FSRef, outKindString: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyKindStringForRef(inFSRef: ?*FSRef, outKindString: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const lsCopyKindStringForRef = LSCopyKindStringForRef;
 
-pub extern "CoreServices" fn LSCopyKindStringForURL(inURL: core_foundation.URLRef, outKindString: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyKindStringForURL(inURL: core_foundation.URLRef, outKindString: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const lsCopyKindStringForURL = LSCopyKindStringForURL;
 
-pub extern "CoreServices" fn LSCopyKindStringForTypeInfo(inType: objc.OSType, inCreator: objc.OSType, inExtension: core_foundation.StringRef, outKindString: ?*core_foundation.StringRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyKindStringForTypeInfo(
+    inType: objc.OSType,
+    inCreator: objc.OSType,
+    inExtension: core_foundation.StringRef,
+    outKindString: ?*core_foundation.StringRef,
+) callconv(.C) objc.OSStatus;
+pub const lsCopyKindStringForTypeInfo = LSCopyKindStringForTypeInfo;
 
-pub extern "CoreServices" fn LSCopyKindStringForMIMEType(inMIMEType: core_foundation.StringRef, outKindString: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyKindStringForMIMEType(inMIMEType: core_foundation.StringRef, outKindString: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const lsCopyKindStringForMIMEType = LSCopyKindStringForMIMEType;
 
-pub extern "CoreServices" fn LSGetApplicationForItem(inItemRef: ?*FSRef, inRoleMask: LSRolesMask, outAppRef: ?*FSRef, outAppURL: ?*core_foundation.URLRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSGetApplicationForItem(
+    inItemRef: ?*FSRef,
+    inRoleMask: LSRolesMask,
+    outAppRef: ?*FSRef,
+    outAppURL: ?*core_foundation.URLRef,
+) callconv(.C) objc.OSStatus;
+pub const lsGetApplicationForItem = LSGetApplicationForItem;
 
-pub extern "CoreServices" fn LSGetApplicationForInfo(inType: objc.OSType, inCreator: objc.OSType, inExtension: core_foundation.StringRef, inRoleMask: LSRolesMask, outAppRef: ?*FSRef, outAppURL: ?*core_foundation.URLRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSGetApplicationForInfo(
+    inType: objc.OSType,
+    inCreator: objc.OSType,
+    inExtension: core_foundation.StringRef,
+    inRoleMask: LSRolesMask,
+    outAppRef: ?*FSRef,
+    outAppURL: ?*core_foundation.URLRef,
+) callconv(.C) objc.OSStatus;
+pub const lsGetApplicationForInfo = LSGetApplicationForInfo;
 
-pub extern "CoreServices" fn LSCopyApplicationForMIMEType(inMIMEType: core_foundation.StringRef, inRoleMask: LSRolesMask, outAppURL: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyApplicationForMIMEType(inMIMEType: core_foundation.StringRef, inRoleMask: LSRolesMask, outAppURL: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+pub const lsCopyApplicationForMIMEType = LSCopyApplicationForMIMEType;
 
-pub extern "CoreServices" fn LSGetApplicationForURL(inURL: core_foundation.URLRef, inRoleMask: LSRolesMask, outAppRef: ?*FSRef, outAppURL: ?*core_foundation.URLRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSGetApplicationForURL(
+    inURL: core_foundation.URLRef,
+    inRoleMask: LSRolesMask,
+    outAppRef: ?*FSRef,
+    outAppURL: ?*core_foundation.URLRef,
+) callconv(.C) objc.OSStatus;
+pub const lsGetApplicationForURL = LSGetApplicationForURL;
 
-pub extern "CoreServices" fn LSFindApplicationForInfo(inCreator: objc.OSType, inBundleID: core_foundation.StringRef, inName: core_foundation.StringRef, outAppRef: ?*FSRef, outAppURL: ?*core_foundation.URLRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSFindApplicationForInfo(
+    inCreator: objc.OSType,
+    inBundleID: core_foundation.StringRef,
+    inName: core_foundation.StringRef,
+    outAppRef: ?*FSRef,
+    outAppURL: ?*core_foundation.URLRef,
+) callconv(.C) objc.OSStatus;
+pub const lsFindApplicationForInfo = LSFindApplicationForInfo;
 
-pub extern "CoreServices" fn LSCanRefAcceptItem(inItemFSRef: ?*FSRef, inTargetRef: ?*FSRef, inRoleMask: LSRolesMask, inFlags: LSAcceptanceFlags, outAcceptsItem: ?*objc.Boolean, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCanRefAcceptItem(
+    inItemFSRef: ?*FSRef,
+    inTargetRef: ?*FSRef,
+    inRoleMask: LSRolesMask,
+    inFlags: LSAcceptanceFlags,
+    outAcceptsItem: ?*objc.Boolean,
+) callconv(.C) objc.OSStatus;
+pub const lsCanRefAcceptItem = LSCanRefAcceptItem;
 
-pub extern "CoreServices" fn LSRegisterFSRef(inRef: ?*FSRef, inUpdate: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSRegisterFSRef(inRef: ?*FSRef, inUpdate: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const lsRegisterFSRef = LSRegisterFSRef;
 
-pub extern "CoreServices" fn LSCopyItemAttribute(inItem: ?*FSRef, inRoles: LSRolesMask, inAttributeName: core_foundation.StringRef, outValue: ?*core_foundation.TypeRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyItemAttribute(
+    inItem: ?*FSRef,
+    inRoles: LSRolesMask,
+    inAttributeName: core_foundation.StringRef,
+    outValue: ?*core_foundation.TypeRef,
+) callconv(.C) objc.OSStatus;
+pub const lsCopyItemAttribute = LSCopyItemAttribute;
 
-pub extern "CoreServices" fn LSCopyItemAttributes(inItem: ?*FSRef, inRoles: LSRolesMask, inAttributeNames: core_foundation.ArrayRef, outValues: ?*core_foundation.DictionaryRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSCopyItemAttributes(
+    inItem: ?*FSRef,
+    inRoles: LSRolesMask,
+    inAttributeNames: core_foundation.ArrayRef,
+    outValues: ?*core_foundation.DictionaryRef,
+) callconv(.C) objc.OSStatus;
+pub const lsCopyItemAttributes = LSCopyItemAttributes;
 
-pub extern "CoreServices" fn LSSetItemAttribute(inItem: ?*FSRef, inRoles: LSRolesMask, inAttributeName: core_foundation.StringRef, inValue: core_foundation.TypeRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSetItemAttribute(
+    inItem: ?*FSRef,
+    inRoles: LSRolesMask,
+    inAttributeName: core_foundation.StringRef,
+    inValue: core_foundation.TypeRef,
+) callconv(.C) objc.OSStatus;
+pub const lsSetItemAttribute = LSSetItemAttribute;
 
 pub const LSHandlerOptions = enum(objc.OptionBits) {
     kLSHandlerOptionsDefault = 0,
     kLSHandlerOptionsIgnoreCreator = 1,
 };
 
-pub extern "CoreServices" fn LSGetHandlerOptionsForContentType(inContentType: core_foundation.StringRef) callconv(.C) LSHandlerOptions;
+extern "CoreServices" fn LSGetHandlerOptionsForContentType(inContentType: core_foundation.StringRef) callconv(.C) LSHandlerOptions;
+pub const lsGetHandlerOptionsForContentType = LSGetHandlerOptionsForContentType;
 
-pub extern "CoreServices" fn LSSetHandlerOptionsForContentType(inContentType: core_foundation.StringRef, inOptions: LSHandlerOptions) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSetHandlerOptionsForContentType(inContentType: core_foundation.StringRef, inOptions: LSHandlerOptions) callconv(.C) objc.OSStatus;
+pub const lsSetHandlerOptionsForContentType = LSSetHandlerOptionsForContentType;
 
 pub const LSLaunchFlags = enum(objc.OptionBits) {
     kLSLaunchDefaults = 1,
@@ -12769,9 +15883,11 @@ pub const LSLaunchURLSpec = extern struct {
     asyncRefCon: ?*anyopaque,
 };
 
-pub extern "CoreServices" fn LSOpenCFURLRef(inURL: core_foundation.URLRef, outLaunchedURL: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSOpenCFURLRef(inURL: core_foundation.URLRef, outLaunchedURL: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+pub const lsOpenCFURLRef = LSOpenCFURLRef;
 
-pub extern "CoreServices" fn LSOpenFromURLSpec(inLaunchSpec: ?*LSLaunchURLSpec, outLaunchedURL: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSOpenFromURLSpec(inLaunchSpec: ?*LSLaunchURLSpec, outLaunchedURL: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+pub const lsOpenFromURLSpec = LSOpenFromURLSpec;
 
 pub const anon281 = enum(u32) {
     kLSLaunchInhibitBGOnly = 128,
@@ -12790,9 +15906,11 @@ pub const LSLaunchFSRefSpec = extern struct {
     asyncRefCon: ?*anyopaque,
 };
 
-pub extern "CoreServices" fn LSOpenFSRef(inRef: ?*FSRef, outLaunchedRef: ?*FSRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSOpenFSRef(inRef: ?*FSRef, outLaunchedRef: ?*FSRef) callconv(.C) objc.OSStatus;
+pub const lsOpenFSRef = LSOpenFSRef;
 
-pub extern "CoreServices" fn LSOpenFromRefSpec(inLaunchSpec: ?*LSLaunchFSRefSpec, outLaunchedRef: ?*FSRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSOpenFromRefSpec(inLaunchSpec: ?*LSLaunchFSRefSpec, outLaunchedRef: ?*FSRef) callconv(.C) objc.OSStatus;
+pub const lsOpenFromRefSpec = LSOpenFromRefSpec;
 
 pub const LSApplicationParameters = extern struct {
     version: core_foundation.Index,
@@ -12804,61 +15922,102 @@ pub const LSApplicationParameters = extern struct {
     initialEvent: ?*AppleEvent,
 };
 
-pub extern "CoreServices" fn LSOpenApplication(appParams: ?*LSApplicationParameters, outPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSOpenApplication(appParams: ?*LSApplicationParameters, outPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSStatus;
+pub const lsOpenApplication = LSOpenApplication;
 
-pub extern "CoreServices" fn LSOpenItemsWithRole(inItems: ?*FSRef, inItemCount: core_foundation.Index, inRole: LSRolesMask, inAEParam: ?*AEKeyDesc, inAppParams: ?*LSApplicationParameters, outPSNs: ?*objc.ProcessSerialNumber, inMaxPSNCount: core_foundation.Index, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSOpenItemsWithRole(
+    inItems: ?*FSRef,
+    inItemCount: core_foundation.Index,
+    inRole: LSRolesMask,
+    inAEParam: ?*AEKeyDesc,
+    inAppParams: ?*LSApplicationParameters,
+    outPSNs: ?*objc.ProcessSerialNumber,
+    inMaxPSNCount: core_foundation.Index,
+) callconv(.C) objc.OSStatus;
+pub const lsOpenItemsWithRole = LSOpenItemsWithRole;
 
-pub extern "CoreServices" fn LSOpenURLsWithRole(inURLs: core_foundation.ArrayRef, inRole: LSRolesMask, inAEParam: ?*AEKeyDesc, inAppParams: ?*LSApplicationParameters, outPSNs: ?*objc.ProcessSerialNumber, inMaxPSNCount: core_foundation.Index, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSOpenURLsWithRole(
+    inURLs: core_foundation.ArrayRef,
+    inRole: LSRolesMask,
+    inAEParam: ?*AEKeyDesc,
+    inAppParams: ?*LSApplicationParameters,
+    outPSNs: ?*objc.ProcessSerialNumber,
+    inMaxPSNCount: core_foundation.Index,
+) callconv(.C) objc.OSStatus;
+pub const lsOpenURLsWithRole = LSOpenURLsWithRole;
 
-pub extern "CoreServices" fn UTTypeCreatePreferredIdentifierForTag(inTagClass: core_foundation.StringRef, inTag: core_foundation.StringRef, inConformingToUTI: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn UTTypeCreatePreferredIdentifierForTag(inTagClass: core_foundation.StringRef, inTag: core_foundation.StringRef, inConformingToUTI: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const utTypeCreatePreferredIdentifierForTag = UTTypeCreatePreferredIdentifierForTag;
 
-pub extern "CoreServices" fn UTTypeCreateAllIdentifiersForTag(inTagClass: core_foundation.StringRef, inTag: core_foundation.StringRef, inConformingToUTI: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn UTTypeCreateAllIdentifiersForTag(inTagClass: core_foundation.StringRef, inTag: core_foundation.StringRef, inConformingToUTI: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+pub const utTypeCreateAllIdentifiersForTag = UTTypeCreateAllIdentifiersForTag;
 
-pub extern "CoreServices" fn UTTypeCopyPreferredTagWithClass(inUTI: core_foundation.StringRef, inTagClass: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn UTTypeCopyPreferredTagWithClass(inUTI: core_foundation.StringRef, inTagClass: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const utTypeCopyPreferredTagWithClass = UTTypeCopyPreferredTagWithClass;
 
-pub extern "CoreServices" fn UTTypeCopyAllTagsWithClass(inUTI: core_foundation.StringRef, inTagClass: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn UTTypeCopyAllTagsWithClass(inUTI: core_foundation.StringRef, inTagClass: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+pub const utTypeCopyAllTagsWithClass = UTTypeCopyAllTagsWithClass;
 
-pub extern "CoreServices" fn UTTypeEqual(inUTI1: core_foundation.StringRef, inUTI2: core_foundation.StringRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn UTTypeEqual(inUTI1: core_foundation.StringRef, inUTI2: core_foundation.StringRef) callconv(.C) objc.Boolean;
+pub const utTypeEqual = UTTypeEqual;
 
-pub extern "CoreServices" fn UTTypeConformsTo(inUTI: core_foundation.StringRef, inConformsToUTI: core_foundation.StringRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn UTTypeConformsTo(inUTI: core_foundation.StringRef, inConformsToUTI: core_foundation.StringRef) callconv(.C) objc.Boolean;
+pub const utTypeConformsTo = UTTypeConformsTo;
 
-pub extern "CoreServices" fn UTTypeCopyDescription(inUTI: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn UTTypeCopyDescription(inUTI: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const utTypeCopyDescription = UTTypeCopyDescription;
 
-pub extern "CoreServices" fn UTTypeIsDeclared(inUTI: core_foundation.StringRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn UTTypeIsDeclared(inUTI: core_foundation.StringRef) callconv(.C) objc.Boolean;
+pub const utTypeIsDeclared = UTTypeIsDeclared;
 
-pub extern "CoreServices" fn UTTypeIsDynamic(inUTI: core_foundation.StringRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn UTTypeIsDynamic(inUTI: core_foundation.StringRef) callconv(.C) objc.Boolean;
+pub const utTypeIsDynamic = UTTypeIsDynamic;
 
-pub extern "CoreServices" fn UTTypeCopyDeclaration(inUTI: core_foundation.StringRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn UTTypeCopyDeclaration(inUTI: core_foundation.StringRef) callconv(.C) core_foundation.DictionaryRef;
+pub const utTypeCopyDeclaration = UTTypeCopyDeclaration;
 
-pub extern "CoreServices" fn UTTypeCopyDeclaringBundleURL(inUTI: core_foundation.StringRef) callconv(.C) core_foundation.URLRef;
+extern "CoreServices" fn UTTypeCopyDeclaringBundleURL(inUTI: core_foundation.StringRef) callconv(.C) core_foundation.URLRef;
+pub const utTypeCopyDeclaringBundleURL = UTTypeCopyDeclaringBundleURL;
 
-pub extern "CoreServices" fn UTCreateStringForOSType(inOSType: objc.OSType) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn UTCreateStringForOSType(inOSType: objc.OSType) callconv(.C) core_foundation.StringRef;
+pub const utCreateStringForOSType = UTCreateStringForOSType;
 
-pub extern "CoreServices" fn UTGetOSTypeFromString(inString: core_foundation.StringRef) callconv(.C) objc.OSType;
+extern "CoreServices" fn UTGetOSTypeFromString(inString: core_foundation.StringRef) callconv(.C) objc.OSType;
+pub const utGetOSTypeFromString = UTGetOSTypeFromString;
 
 pub const __MDItem = extern struct {};
 
 pub const MDItemRef = ?*__MDItem;
 
-pub extern "CoreServices" fn MDItemGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn MDItemGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const mdItemGetTypeID = MDItemGetTypeID;
 
-pub extern "CoreServices" fn MDItemCreate(allocator: core_foundation.AllocatorRef, path: core_foundation.StringRef) callconv(.C) MDItemRef;
+extern "CoreServices" fn MDItemCreate(allocator: core_foundation.AllocatorRef, path: core_foundation.StringRef) callconv(.C) MDItemRef;
+pub const mdItemCreate = MDItemCreate;
 
-pub extern "CoreServices" fn MDItemCreateWithURL(allocator: core_foundation.AllocatorRef, url: core_foundation.URLRef) callconv(.C) MDItemRef;
+extern "CoreServices" fn MDItemCreateWithURL(allocator: core_foundation.AllocatorRef, url: core_foundation.URLRef) callconv(.C) MDItemRef;
+pub const mdItemCreateWithURL = MDItemCreateWithURL;
 
-pub extern "CoreServices" fn MDItemsCreateWithURLs(allocator: core_foundation.AllocatorRef, urls: core_foundation.ArrayRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDItemsCreateWithURLs(allocator: core_foundation.AllocatorRef, urls: core_foundation.ArrayRef) callconv(.C) core_foundation.ArrayRef;
+pub const mdItemsCreateWithURLs = MDItemsCreateWithURLs;
 
-pub extern "CoreServices" fn MDItemCopyAttribute(item: MDItemRef, name: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "CoreServices" fn MDItemCopyAttribute(item: MDItemRef, name: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const mdItemCopyAttribute = MDItemCopyAttribute;
 
-pub extern "CoreServices" fn MDItemCopyAttributes(item: MDItemRef, names: core_foundation.ArrayRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn MDItemCopyAttributes(item: MDItemRef, names: core_foundation.ArrayRef) callconv(.C) core_foundation.DictionaryRef;
+pub const mdItemCopyAttributes = MDItemCopyAttributes;
 
-pub extern "CoreServices" fn MDItemCopyAttributeList(item: MDItemRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn MDItemCopyAttributeList(item: MDItemRef) callconv(.C) core_foundation.DictionaryRef;
+pub const mdItemCopyAttributeList = MDItemCopyAttributeList;
 
-pub extern "CoreServices" fn MDItemCopyAttributeNames(item: MDItemRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDItemCopyAttributeNames(item: MDItemRef) callconv(.C) core_foundation.ArrayRef;
+pub const mdItemCopyAttributeNames = MDItemCopyAttributeNames;
 
-pub extern "CoreServices" fn MDItemsCopyAttributes(items: core_foundation.ArrayRef, names: core_foundation.ArrayRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDItemsCopyAttributes(items: core_foundation.ArrayRef, names: core_foundation.ArrayRef) callconv(.C) core_foundation.ArrayRef;
+pub const mdItemsCopyAttributes = MDItemsCopyAttributes;
 
-pub extern "CoreServices" fn __MDItemCopyAttributesEllipsis1(item: MDItemRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn __MDItemCopyAttributesEllipsis1(item: MDItemRef) callconv(.C) core_foundation.DictionaryRef;
+pub const __mdItemCopyAttributesEllipsis1 = __MDItemCopyAttributesEllipsis1;
 
 pub const __MDQuery = extern struct {};
 
@@ -12870,19 +16029,43 @@ pub const MDQueryOptionFlags = enum(u32) {
     kMDQueryAllowFSTranslation = 8,
 };
 
-pub extern "CoreServices" fn MDQueryGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn MDQueryGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const mdQueryGetTypeID = MDQueryGetTypeID;
 
-pub extern "CoreServices" fn MDQueryCreate(allocator: core_foundation.AllocatorRef, queryString: core_foundation.StringRef, valueListAttrs: core_foundation.ArrayRef, sortingAttrs: core_foundation.ArrayRef, ) callconv(.C) MDQueryRef;
+extern "CoreServices" fn MDQueryCreate(
+    allocator: core_foundation.AllocatorRef,
+    queryString: core_foundation.StringRef,
+    valueListAttrs: core_foundation.ArrayRef,
+    sortingAttrs: core_foundation.ArrayRef,
+) callconv(.C) MDQueryRef;
+pub const mdQueryCreate = MDQueryCreate;
 
-pub extern "CoreServices" fn MDQueryCreateSubset(allocator: core_foundation.AllocatorRef, query: MDQueryRef, queryString: core_foundation.StringRef, valueListAttrs: core_foundation.ArrayRef, sortingAttrs: core_foundation.ArrayRef, ) callconv(.C) MDQueryRef;
+extern "CoreServices" fn MDQueryCreateSubset(
+    allocator: core_foundation.AllocatorRef,
+    query: MDQueryRef,
+    queryString: core_foundation.StringRef,
+    valueListAttrs: core_foundation.ArrayRef,
+    sortingAttrs: core_foundation.ArrayRef,
+) callconv(.C) MDQueryRef;
+pub const mdQueryCreateSubset = MDQueryCreateSubset;
 
-pub extern "CoreServices" fn MDQueryCreateForItems(allocator: core_foundation.AllocatorRef, queryString: core_foundation.StringRef, valueListAttrs: core_foundation.ArrayRef, sortingAttrs: core_foundation.ArrayRef, items: core_foundation.ArrayRef, ) callconv(.C) MDQueryRef;
+extern "CoreServices" fn MDQueryCreateForItems(
+    allocator: core_foundation.AllocatorRef,
+    queryString: core_foundation.StringRef,
+    valueListAttrs: core_foundation.ArrayRef,
+    sortingAttrs: core_foundation.ArrayRef,
+    items: core_foundation.ArrayRef,
+) callconv(.C) MDQueryRef;
+pub const mdQueryCreateForItems = MDQueryCreateForItems;
 
-pub extern "CoreServices" fn MDQueryCopyQueryString(query: MDQueryRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn MDQueryCopyQueryString(query: MDQueryRef) callconv(.C) core_foundation.StringRef;
+pub const mdQueryCopyQueryString = MDQueryCopyQueryString;
 
-pub extern "CoreServices" fn MDQueryCopyValueListAttributes(query: MDQueryRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDQueryCopyValueListAttributes(query: MDQueryRef) callconv(.C) core_foundation.ArrayRef;
+pub const mdQueryCopyValueListAttributes = MDQueryCopyValueListAttributes;
 
-pub extern "CoreServices" fn MDQueryCopySortingAttributes(query: MDQueryRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDQueryCopySortingAttributes(query: MDQueryRef) callconv(.C) core_foundation.ArrayRef;
+pub const mdQueryCopySortingAttributes = MDQueryCopySortingAttributes;
 
 pub const MDQueryBatchingParams = extern struct {
     first_max_num: objc.size_t,
@@ -12893,134 +16076,204 @@ pub const MDQueryBatchingParams = extern struct {
     update_max_ms: objc.size_t,
 };
 
-pub extern "CoreServices" fn MDQueryGetBatchingParameters(query: MDQueryRef) callconv(.C) MDQueryBatchingParams;
+extern "CoreServices" fn MDQueryGetBatchingParameters(query: MDQueryRef) callconv(.C) MDQueryBatchingParams;
+pub const mdQueryGetBatchingParameters = MDQueryGetBatchingParameters;
 
-pub extern "CoreServices" fn MDQuerySetBatchingParameters(query: MDQueryRef, params: MDQueryBatchingParams) callconv(.C) void;
+extern "CoreServices" fn MDQuerySetBatchingParameters(query: MDQueryRef, params: MDQueryBatchingParams) callconv(.C) void;
+pub const mdQuerySetBatchingParameters = MDQuerySetBatchingParameters;
 
-pub const MDQueryCreateResultFunction = ?*const fn(MDQueryRef, MDItemRef, ?*anyopaque) callconv(.C) ?*anyopaque;
+pub const MDQueryCreateResultFunction = ?*const fn (MDQueryRef, MDItemRef, ?*anyopaque) callconv(.C) ?*anyopaque;
 
-pub extern "CoreServices" fn MDQuerySetCreateResultFunction(query: MDQueryRef, func: MDQueryCreateResultFunction, context: ?*anyopaque, cb: ?*core_foundation.ArrayCallBacks, ) callconv(.C) void;
+extern "CoreServices" fn MDQuerySetCreateResultFunction(
+    query: MDQueryRef,
+    func: MDQueryCreateResultFunction,
+    context: ?*anyopaque,
+    cb: ?*core_foundation.ArrayCallBacks,
+) callconv(.C) void;
+pub const mdQuerySetCreateResultFunction = MDQuerySetCreateResultFunction;
 
-pub const MDQueryCreateValueFunction = ?*const fn(MDQueryRef, core_foundation.StringRef, core_foundation.TypeRef, ?*anyopaque, ) callconv(.C) ?*anyopaque;
+pub const MDQueryCreateValueFunction = ?*const fn (
+    MDQueryRef,
+    core_foundation.StringRef,
+    core_foundation.TypeRef,
+    ?*anyopaque,
+) callconv(.C) ?*anyopaque;
 
-pub extern "CoreServices" fn MDQuerySetCreateValueFunction(query: MDQueryRef, func: MDQueryCreateValueFunction, context: ?*anyopaque, cb: ?*core_foundation.ArrayCallBacks, ) callconv(.C) void;
+extern "CoreServices" fn MDQuerySetCreateValueFunction(
+    query: MDQueryRef,
+    func: MDQueryCreateValueFunction,
+    context: ?*anyopaque,
+    cb: ?*core_foundation.ArrayCallBacks,
+) callconv(.C) void;
+pub const mdQuerySetCreateValueFunction = MDQuerySetCreateValueFunction;
 
-pub extern "CoreServices" fn MDQuerySetDispatchQueue(query: MDQueryRef, queue: objc.dispatch_queue_t) callconv(.C) void;
+extern "CoreServices" fn MDQuerySetDispatchQueue(query: MDQueryRef, queue: objc.dispatch_queue_t) callconv(.C) void;
+pub const mdQuerySetDispatchQueue = MDQuerySetDispatchQueue;
 
-pub extern "CoreServices" fn MDQueryExecute(query: MDQueryRef, optionFlags: core_foundation.OptionFlags) callconv(.C) objc.Boolean;
+extern "CoreServices" fn MDQueryExecute(query: MDQueryRef, optionFlags: core_foundation.OptionFlags) callconv(.C) objc.Boolean;
+pub const mdQueryExecute = MDQueryExecute;
 
-pub extern "CoreServices" fn MDQueryStop(query: MDQueryRef) callconv(.C) void;
+extern "CoreServices" fn MDQueryStop(query: MDQueryRef) callconv(.C) void;
+pub const mdQueryStop = MDQueryStop;
 
-pub extern "CoreServices" fn MDQueryDisableUpdates(query: MDQueryRef) callconv(.C) void;
+extern "CoreServices" fn MDQueryDisableUpdates(query: MDQueryRef) callconv(.C) void;
+pub const mdQueryDisableUpdates = MDQueryDisableUpdates;
 
-pub extern "CoreServices" fn MDQueryEnableUpdates(query: MDQueryRef) callconv(.C) void;
+extern "CoreServices" fn MDQueryEnableUpdates(query: MDQueryRef) callconv(.C) void;
+pub const mdQueryEnableUpdates = MDQueryEnableUpdates;
 
-pub extern "CoreServices" fn MDQueryIsGatheringComplete(query: MDQueryRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn MDQueryIsGatheringComplete(query: MDQueryRef) callconv(.C) objc.Boolean;
+pub const mdQueryIsGatheringComplete = MDQueryIsGatheringComplete;
 
-pub extern "CoreServices" fn MDQueryGetResultCount(query: MDQueryRef) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn MDQueryGetResultCount(query: MDQueryRef) callconv(.C) core_foundation.Index;
+pub const mdQueryGetResultCount = MDQueryGetResultCount;
 
-pub extern "CoreServices" fn MDQueryGetResultAtIndex(query: MDQueryRef, idx: core_foundation.Index) callconv(.C) ?*anyopaque;
+extern "CoreServices" fn MDQueryGetResultAtIndex(query: MDQueryRef, idx: core_foundation.Index) callconv(.C) ?*anyopaque;
+pub const mdQueryGetResultAtIndex = MDQueryGetResultAtIndex;
 
-pub extern "CoreServices" fn MDQueryGetIndexOfResult(query: MDQueryRef, result: ?*anyopaque) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn MDQueryGetIndexOfResult(query: MDQueryRef, result: ?*anyopaque) callconv(.C) core_foundation.Index;
+pub const mdQueryGetIndexOfResult = MDQueryGetIndexOfResult;
 
-pub extern "CoreServices" fn MDQueryGetAttributeValueOfResultAtIndex(query: MDQueryRef, name: core_foundation.StringRef, idx: core_foundation.Index) callconv(.C) ?*anyopaque;
+extern "CoreServices" fn MDQueryGetAttributeValueOfResultAtIndex(query: MDQueryRef, name: core_foundation.StringRef, idx: core_foundation.Index) callconv(.C) ?*anyopaque;
+pub const mdQueryGetAttributeValueOfResultAtIndex = MDQueryGetAttributeValueOfResultAtIndex;
 
-pub extern "CoreServices" fn MDQueryCopyValuesOfAttribute(query: MDQueryRef, name: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDQueryCopyValuesOfAttribute(query: MDQueryRef, name: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+pub const mdQueryCopyValuesOfAttribute = MDQueryCopyValuesOfAttribute;
 
-pub extern "CoreServices" fn MDQueryGetCountOfResultsWithAttributeValue(query: MDQueryRef, name: core_foundation.StringRef, value: core_foundation.TypeRef) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn MDQueryGetCountOfResultsWithAttributeValue(query: MDQueryRef, name: core_foundation.StringRef, value: core_foundation.TypeRef) callconv(.C) core_foundation.Index;
+pub const mdQueryGetCountOfResultsWithAttributeValue = MDQueryGetCountOfResultsWithAttributeValue;
 
-pub extern "CoreServices" fn MDQuerySetSortOrder(query: MDQueryRef, sortingAttrs: core_foundation.ArrayRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn MDQuerySetSortOrder(query: MDQueryRef, sortingAttrs: core_foundation.ArrayRef) callconv(.C) objc.Boolean;
+pub const mdQuerySetSortOrder = MDQuerySetSortOrder;
 
 pub const MDQuerySortOptionFlags = enum(u32) {
     kMDQueryReverseSortOrderFlag = 1,
 };
 
-pub extern "CoreServices" fn MDQuerySetSortOptionFlagsForAttribute(query: MDQueryRef, fieldName: core_foundation.StringRef, flags: objc.uint32_t) callconv(.C) objc.Boolean;
+extern "CoreServices" fn MDQuerySetSortOptionFlagsForAttribute(query: MDQueryRef, fieldName: core_foundation.StringRef, flags: objc.uint32_t) callconv(.C) objc.Boolean;
+pub const mdQuerySetSortOptionFlagsForAttribute = MDQuerySetSortOptionFlagsForAttribute;
 
-pub extern "CoreServices" fn MDQueryGetSortOptionFlagsForAttribute(query: MDQueryRef, fieldName: core_foundation.StringRef) callconv(.C) objc.uint32_t;
+extern "CoreServices" fn MDQueryGetSortOptionFlagsForAttribute(query: MDQueryRef, fieldName: core_foundation.StringRef) callconv(.C) objc.uint32_t;
+pub const mdQueryGetSortOptionFlagsForAttribute = MDQueryGetSortOptionFlagsForAttribute;
 
-pub const MDQuerySortComparatorFunction = ?*const fn(*core_foundation.TypeRef, *core_foundation.TypeRef, ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
+pub const MDQuerySortComparatorFunction = ?*const fn (*core_foundation.TypeRef, *core_foundation.TypeRef, ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
 
-pub extern "CoreServices" fn MDQuerySetSortComparator(query: MDQueryRef, comparator: MDQuerySortComparatorFunction, context: ?*anyopaque) callconv(.C) void;
+extern "CoreServices" fn MDQuerySetSortComparator(query: MDQueryRef, comparator: MDQuerySortComparatorFunction, context: ?*anyopaque) callconv(.C) void;
+pub const mdQuerySetSortComparator = MDQuerySetSortComparator;
 
-pub extern "CoreServices" fn MDQuerySetSortComparatorBlock(query: MDQueryRef, comparator: *const fn(*core_foundation.TypeRef, *core_foundation.TypeRef) callconv(.C) core_foundation.ComparisonResult) callconv(.C) void;
+extern "CoreServices" fn MDQuerySetSortComparatorBlock(query: MDQueryRef, comparator: *const fn (*core_foundation.TypeRef, *core_foundation.TypeRef) callconv(.C) core_foundation.ComparisonResult) callconv(.C) void;
+pub const mdQuerySetSortComparatorBlock = MDQuerySetSortComparatorBlock;
 
-pub extern "CoreServices" fn MDQuerySetSearchScope(query: MDQueryRef, scopeDirectories: core_foundation.ArrayRef, scopeOptions: objc.OptionBits) callconv(.C) void;
+extern "CoreServices" fn MDQuerySetSearchScope(query: MDQueryRef, scopeDirectories: core_foundation.ArrayRef, scopeOptions: objc.OptionBits) callconv(.C) void;
+pub const mdQuerySetSearchScope = MDQuerySetSearchScope;
 
-pub extern "CoreServices" fn MDQuerySetMaxCount(query: MDQueryRef, size: core_foundation.Index) callconv(.C) void;
+extern "CoreServices" fn MDQuerySetMaxCount(query: MDQueryRef, size: core_foundation.Index) callconv(.C) void;
+pub const mdQuerySetMaxCount = MDQuerySetMaxCount;
 
 pub const __MDLabel = extern struct {};
 
 pub const MDLabelRef = ?*__MDLabel;
 
-pub extern "CoreServices" fn MDLabelGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn MDLabelGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const mdLabelGetTypeID = MDLabelGetTypeID;
 
-pub extern "CoreServices" fn MDItemCopyLabels(item: MDItemRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDItemCopyLabels(item: MDItemRef) callconv(.C) core_foundation.ArrayRef;
+pub const mdItemCopyLabels = MDItemCopyLabels;
 
-pub extern "CoreServices" fn MDItemSetLabel(item: MDItemRef, label: MDLabelRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn MDItemSetLabel(item: MDItemRef, label: MDLabelRef) callconv(.C) objc.Boolean;
+pub const mdItemSetLabel = MDItemSetLabel;
 
-pub extern "CoreServices" fn MDItemRemoveLabel(item: MDItemRef, label: MDLabelRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn MDItemRemoveLabel(item: MDItemRef, label: MDLabelRef) callconv(.C) objc.Boolean;
+pub const mdItemRemoveLabel = MDItemRemoveLabel;
 
 pub const MDLabelDomain = enum(u32) {
     kMDLabelUserDomain = 0,
     kMDLabelLocalDomain = 1,
 };
 
-pub extern "CoreServices" fn MDLabelCreate(allocator: core_foundation.AllocatorRef, displayName: core_foundation.StringRef, kind: core_foundation.StringRef, domain: MDLabelDomain, ) callconv(.C) MDLabelRef;
+extern "CoreServices" fn MDLabelCreate(
+    allocator: core_foundation.AllocatorRef,
+    displayName: core_foundation.StringRef,
+    kind: core_foundation.StringRef,
+    domain: MDLabelDomain,
+) callconv(.C) MDLabelRef;
+pub const mdLabelCreate = MDLabelCreate;
 
-pub extern "CoreServices" fn MDLabelCopyAttribute(label: MDLabelRef, name: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "CoreServices" fn MDLabelCopyAttribute(label: MDLabelRef, name: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const mdLabelCopyAttribute = MDLabelCopyAttribute;
 
-pub extern "CoreServices" fn MDLabelCopyAttributeName(label: MDLabelRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn MDLabelCopyAttributeName(label: MDLabelRef) callconv(.C) core_foundation.StringRef;
+pub const mdLabelCopyAttributeName = MDLabelCopyAttributeName;
 
-pub extern "CoreServices" fn MDLabelDelete(label: MDLabelRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn MDLabelDelete(label: MDLabelRef) callconv(.C) objc.Boolean;
+pub const mdLabelDelete = MDLabelDelete;
 
-pub extern "CoreServices" fn MDLabelSetAttributes(label: MDLabelRef, attrs: core_foundation.DictionaryRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn MDLabelSetAttributes(label: MDLabelRef, attrs: core_foundation.DictionaryRef) callconv(.C) objc.Boolean;
+pub const mdLabelSetAttributes = MDLabelSetAttributes;
 
-pub extern "CoreServices" fn MDCopyLabelKinds() callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDCopyLabelKinds() callconv(.C) core_foundation.ArrayRef;
+pub const mdCopyLabelKinds = MDCopyLabelKinds;
 
-pub extern "CoreServices" fn MDCopyLabelsMatchingExpression(simpleQueryString: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDCopyLabelsMatchingExpression(simpleQueryString: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+pub const mdCopyLabelsMatchingExpression = MDCopyLabelsMatchingExpression;
 
-pub extern "CoreServices" fn MDCopyLabelsWithKind(kind: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDCopyLabelsWithKind(kind: core_foundation.StringRef) callconv(.C) core_foundation.ArrayRef;
+pub const mdCopyLabelsWithKind = MDCopyLabelsWithKind;
 
-pub extern "CoreServices" fn MDCopyLabelWithUUID(labelUUID: core_foundation.UUIDRef) callconv(.C) MDLabelRef;
+extern "CoreServices" fn MDCopyLabelWithUUID(labelUUID: core_foundation.UUIDRef) callconv(.C) MDLabelRef;
+pub const mdCopyLabelWithUUID = MDCopyLabelWithUUID;
 
-pub extern "CoreServices" fn MDSchemaCopyAttributesForContentType(contentTypeUTI: core_foundation.StringRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn MDSchemaCopyAttributesForContentType(contentTypeUTI: core_foundation.StringRef) callconv(.C) core_foundation.DictionaryRef;
+pub const mdSchemaCopyAttributesForContentType = MDSchemaCopyAttributesForContentType;
 
-pub extern "CoreServices" fn MDSchemaCopyMetaAttributesForAttribute(name: core_foundation.StringRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn MDSchemaCopyMetaAttributesForAttribute(name: core_foundation.StringRef) callconv(.C) core_foundation.DictionaryRef;
+pub const mdSchemaCopyMetaAttributesForAttribute = MDSchemaCopyMetaAttributesForAttribute;
 
-pub extern "CoreServices" fn MDSchemaCopyAllAttributes() callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn MDSchemaCopyAllAttributes() callconv(.C) core_foundation.ArrayRef;
+pub const mdSchemaCopyAllAttributes = MDSchemaCopyAllAttributes;
 
-pub extern "CoreServices" fn MDSchemaCopyDisplayNameForAttribute(name: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn MDSchemaCopyDisplayNameForAttribute(name: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const mdSchemaCopyDisplayNameForAttribute = MDSchemaCopyDisplayNameForAttribute;
 
-pub extern "CoreServices" fn MDSchemaCopyDisplayDescriptionForAttribute(name: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn MDSchemaCopyDisplayDescriptionForAttribute(name: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const mdSchemaCopyDisplayDescriptionForAttribute = MDSchemaCopyDisplayDescriptionForAttribute;
 
 pub const SKDocumentRef = core_foundation.TypeRef;
 
-pub extern "CoreServices" fn SKDocumentGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn SKDocumentGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const skDocumentGetTypeID = SKDocumentGetTypeID;
 
-pub extern "CoreServices" fn SKDocumentCreateWithURL(inURL: core_foundation.URLRef) callconv(.C) SKDocumentRef;
+extern "CoreServices" fn SKDocumentCreateWithURL(inURL: core_foundation.URLRef) callconv(.C) SKDocumentRef;
+pub const skDocumentCreateWithURL = SKDocumentCreateWithURL;
 
-pub extern "CoreServices" fn SKDocumentCopyURL(inDocument: SKDocumentRef) callconv(.C) core_foundation.URLRef;
+extern "CoreServices" fn SKDocumentCopyURL(inDocument: SKDocumentRef) callconv(.C) core_foundation.URLRef;
+pub const skDocumentCopyURL = SKDocumentCopyURL;
 
-pub extern "CoreServices" fn SKDocumentCreate(inScheme: core_foundation.StringRef, inParent: SKDocumentRef, inName: core_foundation.StringRef) callconv(.C) SKDocumentRef;
+extern "CoreServices" fn SKDocumentCreate(inScheme: core_foundation.StringRef, inParent: SKDocumentRef, inName: core_foundation.StringRef) callconv(.C) SKDocumentRef;
+pub const skDocumentCreate = SKDocumentCreate;
 
-pub extern "CoreServices" fn SKDocumentGetSchemeName(inDocument: SKDocumentRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn SKDocumentGetSchemeName(inDocument: SKDocumentRef) callconv(.C) core_foundation.StringRef;
+pub const skDocumentGetSchemeName = SKDocumentGetSchemeName;
 
-pub extern "CoreServices" fn SKDocumentGetName(inDocument: SKDocumentRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn SKDocumentGetName(inDocument: SKDocumentRef) callconv(.C) core_foundation.StringRef;
+pub const skDocumentGetName = SKDocumentGetName;
 
-pub extern "CoreServices" fn SKDocumentGetParent(inDocument: SKDocumentRef) callconv(.C) SKDocumentRef;
+extern "CoreServices" fn SKDocumentGetParent(inDocument: SKDocumentRef) callconv(.C) SKDocumentRef;
+pub const skDocumentGetParent = SKDocumentGetParent;
 
 pub const __SKIndex = extern struct {};
 
 pub const SKIndexRef = ?*__SKIndex;
 
-pub extern "CoreServices" fn SKIndexGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn SKIndexGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const skIndexGetTypeID = SKIndexGetTypeID;
 
 pub const __SKIndexDocumentIterator = extern struct {};
 
 pub const SKIndexDocumentIteratorRef = ?*__SKIndexDocumentIterator;
 
-pub extern "CoreServices" fn SKIndexDocumentIteratorGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn SKIndexDocumentIteratorGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const skIndexDocumentIteratorGetTypeID = SKIndexDocumentIteratorGetTypeID;
 
 pub const SKIndexType = enum(u32) {
     kSKIndexUnknown = 0,
@@ -13036,109 +16289,196 @@ pub const SKDocumentIndexState = enum(u32) {
     kSKDocumentStateDeletePending = 3,
 };
 
-pub extern "CoreServices" fn SKIndexCreateWithURL(inURL: core_foundation.URLRef, inIndexName: core_foundation.StringRef, inIndexType: SKIndexType, inAnalysisProperties: core_foundation.DictionaryRef, ) callconv(.C) SKIndexRef;
+extern "CoreServices" fn SKIndexCreateWithURL(
+    inURL: core_foundation.URLRef,
+    inIndexName: core_foundation.StringRef,
+    inIndexType: SKIndexType,
+    inAnalysisProperties: core_foundation.DictionaryRef,
+) callconv(.C) SKIndexRef;
+pub const skIndexCreateWithURL = SKIndexCreateWithURL;
 
-pub extern "CoreServices" fn SKIndexOpenWithURL(inURL: core_foundation.URLRef, inIndexName: core_foundation.StringRef, inWriteAccess: objc.Boolean) callconv(.C) SKIndexRef;
+extern "CoreServices" fn SKIndexOpenWithURL(inURL: core_foundation.URLRef, inIndexName: core_foundation.StringRef, inWriteAccess: objc.Boolean) callconv(.C) SKIndexRef;
+pub const skIndexOpenWithURL = SKIndexOpenWithURL;
 
-pub extern "CoreServices" fn SKIndexCreateWithMutableData(inData: core_foundation.MutableDataRef, inIndexName: core_foundation.StringRef, inIndexType: SKIndexType, inAnalysisProperties: core_foundation.DictionaryRef, ) callconv(.C) SKIndexRef;
+extern "CoreServices" fn SKIndexCreateWithMutableData(
+    inData: core_foundation.MutableDataRef,
+    inIndexName: core_foundation.StringRef,
+    inIndexType: SKIndexType,
+    inAnalysisProperties: core_foundation.DictionaryRef,
+) callconv(.C) SKIndexRef;
+pub const skIndexCreateWithMutableData = SKIndexCreateWithMutableData;
 
-pub extern "CoreServices" fn SKIndexOpenWithData(inData: core_foundation.DataRef, inIndexName: core_foundation.StringRef) callconv(.C) SKIndexRef;
+extern "CoreServices" fn SKIndexOpenWithData(inData: core_foundation.DataRef, inIndexName: core_foundation.StringRef) callconv(.C) SKIndexRef;
+pub const skIndexOpenWithData = SKIndexOpenWithData;
 
-pub extern "CoreServices" fn SKIndexOpenWithMutableData(inData: core_foundation.MutableDataRef, inIndexName: core_foundation.StringRef) callconv(.C) SKIndexRef;
+extern "CoreServices" fn SKIndexOpenWithMutableData(inData: core_foundation.MutableDataRef, inIndexName: core_foundation.StringRef) callconv(.C) SKIndexRef;
+pub const skIndexOpenWithMutableData = SKIndexOpenWithMutableData;
 
-pub extern "CoreServices" fn SKIndexFlush(inIndex: SKIndexRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn SKIndexFlush(inIndex: SKIndexRef) callconv(.C) objc.Boolean;
+pub const skIndexFlush = SKIndexFlush;
 
-pub extern "CoreServices" fn SKIndexSetMaximumBytesBeforeFlush(inIndex: SKIndexRef, inBytesForUpdate: core_foundation.Index) callconv(.C) void;
+extern "CoreServices" fn SKIndexSetMaximumBytesBeforeFlush(inIndex: SKIndexRef, inBytesForUpdate: core_foundation.Index) callconv(.C) void;
+pub const skIndexSetMaximumBytesBeforeFlush = SKIndexSetMaximumBytesBeforeFlush;
 
-pub extern "CoreServices" fn SKIndexGetMaximumBytesBeforeFlush(inIndex: SKIndexRef) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKIndexGetMaximumBytesBeforeFlush(inIndex: SKIndexRef) callconv(.C) core_foundation.Index;
+pub const skIndexGetMaximumBytesBeforeFlush = SKIndexGetMaximumBytesBeforeFlush;
 
-pub extern "CoreServices" fn SKIndexCompact(inIndex: SKIndexRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn SKIndexCompact(inIndex: SKIndexRef) callconv(.C) objc.Boolean;
+pub const skIndexCompact = SKIndexCompact;
 
-pub extern "CoreServices" fn SKIndexGetIndexType(inIndex: SKIndexRef) callconv(.C) SKIndexType;
+extern "CoreServices" fn SKIndexGetIndexType(inIndex: SKIndexRef) callconv(.C) SKIndexType;
+pub const skIndexGetIndexType = SKIndexGetIndexType;
 
-pub extern "CoreServices" fn SKIndexGetAnalysisProperties(inIndex: SKIndexRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn SKIndexGetAnalysisProperties(inIndex: SKIndexRef) callconv(.C) core_foundation.DictionaryRef;
+pub const skIndexGetAnalysisProperties = SKIndexGetAnalysisProperties;
 
-pub extern "CoreServices" fn SKIndexGetDocumentCount(inIndex: SKIndexRef) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKIndexGetDocumentCount(inIndex: SKIndexRef) callconv(.C) core_foundation.Index;
+pub const skIndexGetDocumentCount = SKIndexGetDocumentCount;
 
-pub extern "CoreServices" fn SKIndexClose(inIndex: SKIndexRef) callconv(.C) void;
+extern "CoreServices" fn SKIndexClose(inIndex: SKIndexRef) callconv(.C) void;
+pub const skIndexClose = SKIndexClose;
 
 pub const SKDocumentID = core_foundation.Index;
 
-pub extern "CoreServices" fn SKIndexAddDocumentWithText(inIndex: SKIndexRef, inDocument: SKDocumentRef, inDocumentText: core_foundation.StringRef, inCanReplace: objc.Boolean, ) callconv(.C) objc.Boolean;
+extern "CoreServices" fn SKIndexAddDocumentWithText(
+    inIndex: SKIndexRef,
+    inDocument: SKDocumentRef,
+    inDocumentText: core_foundation.StringRef,
+    inCanReplace: objc.Boolean,
+) callconv(.C) objc.Boolean;
+pub const skIndexAddDocumentWithText = SKIndexAddDocumentWithText;
 
-pub extern "CoreServices" fn SKIndexAddDocument(inIndex: SKIndexRef, inDocument: SKDocumentRef, inMIMETypeHint: core_foundation.StringRef, inCanReplace: objc.Boolean, ) callconv(.C) objc.Boolean;
+extern "CoreServices" fn SKIndexAddDocument(
+    inIndex: SKIndexRef,
+    inDocument: SKDocumentRef,
+    inMIMETypeHint: core_foundation.StringRef,
+    inCanReplace: objc.Boolean,
+) callconv(.C) objc.Boolean;
+pub const skIndexAddDocument = SKIndexAddDocument;
 
-pub extern "CoreServices" fn SKIndexRemoveDocument(inIndex: SKIndexRef, inDocument: SKDocumentRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn SKIndexRemoveDocument(inIndex: SKIndexRef, inDocument: SKDocumentRef) callconv(.C) objc.Boolean;
+pub const skIndexRemoveDocument = SKIndexRemoveDocument;
 
-pub extern "CoreServices" fn SKIndexCopyDocumentProperties(inIndex: SKIndexRef, inDocument: SKDocumentRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreServices" fn SKIndexCopyDocumentProperties(inIndex: SKIndexRef, inDocument: SKDocumentRef) callconv(.C) core_foundation.DictionaryRef;
+pub const skIndexCopyDocumentProperties = SKIndexCopyDocumentProperties;
 
-pub extern "CoreServices" fn SKIndexSetDocumentProperties(inIndex: SKIndexRef, inDocument: SKDocumentRef, inProperties: core_foundation.DictionaryRef) callconv(.C) void;
+extern "CoreServices" fn SKIndexSetDocumentProperties(inIndex: SKIndexRef, inDocument: SKDocumentRef, inProperties: core_foundation.DictionaryRef) callconv(.C) void;
+pub const skIndexSetDocumentProperties = SKIndexSetDocumentProperties;
 
-pub extern "CoreServices" fn SKIndexGetDocumentState(inIndex: SKIndexRef, inDocument: SKDocumentRef) callconv(.C) SKDocumentIndexState;
+extern "CoreServices" fn SKIndexGetDocumentState(inIndex: SKIndexRef, inDocument: SKDocumentRef) callconv(.C) SKDocumentIndexState;
+pub const skIndexGetDocumentState = SKIndexGetDocumentState;
 
-pub extern "CoreServices" fn SKIndexGetDocumentID(inIndex: SKIndexRef, inDocument: SKDocumentRef) callconv(.C) SKDocumentID;
+extern "CoreServices" fn SKIndexGetDocumentID(inIndex: SKIndexRef, inDocument: SKDocumentRef) callconv(.C) SKDocumentID;
+pub const skIndexGetDocumentID = SKIndexGetDocumentID;
 
-pub extern "CoreServices" fn SKIndexCopyDocumentForDocumentID(inIndex: SKIndexRef, inDocumentID: SKDocumentID) callconv(.C) SKDocumentRef;
+extern "CoreServices" fn SKIndexCopyDocumentForDocumentID(inIndex: SKIndexRef, inDocumentID: SKDocumentID) callconv(.C) SKDocumentRef;
+pub const skIndexCopyDocumentForDocumentID = SKIndexCopyDocumentForDocumentID;
 
-pub extern "CoreServices" fn SKIndexRenameDocument(inIndex: SKIndexRef, inDocument: SKDocumentRef, inNewName: core_foundation.StringRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn SKIndexRenameDocument(inIndex: SKIndexRef, inDocument: SKDocumentRef, inNewName: core_foundation.StringRef) callconv(.C) objc.Boolean;
+pub const skIndexRenameDocument = SKIndexRenameDocument;
 
-pub extern "CoreServices" fn SKIndexMoveDocument(inIndex: SKIndexRef, inDocument: SKDocumentRef, inNewParent: SKDocumentRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn SKIndexMoveDocument(inIndex: SKIndexRef, inDocument: SKDocumentRef, inNewParent: SKDocumentRef) callconv(.C) objc.Boolean;
+pub const skIndexMoveDocument = SKIndexMoveDocument;
 
-pub extern "CoreServices" fn SKIndexDocumentIteratorCreate(inIndex: SKIndexRef, inParentDocument: SKDocumentRef) callconv(.C) SKIndexDocumentIteratorRef;
+extern "CoreServices" fn SKIndexDocumentIteratorCreate(inIndex: SKIndexRef, inParentDocument: SKDocumentRef) callconv(.C) SKIndexDocumentIteratorRef;
+pub const skIndexDocumentIteratorCreate = SKIndexDocumentIteratorCreate;
 
-pub extern "CoreServices" fn SKIndexDocumentIteratorCopyNext(inIterator: SKIndexDocumentIteratorRef) callconv(.C) SKDocumentRef;
+extern "CoreServices" fn SKIndexDocumentIteratorCopyNext(inIterator: SKIndexDocumentIteratorRef) callconv(.C) SKDocumentRef;
+pub const skIndexDocumentIteratorCopyNext = SKIndexDocumentIteratorCopyNext;
 
-pub extern "CoreServices" fn SKIndexGetMaximumDocumentID(inIndex: SKIndexRef) callconv(.C) SKDocumentID;
+extern "CoreServices" fn SKIndexGetMaximumDocumentID(inIndex: SKIndexRef) callconv(.C) SKDocumentID;
+pub const skIndexGetMaximumDocumentID = SKIndexGetMaximumDocumentID;
 
-pub extern "CoreServices" fn SKIndexGetDocumentTermCount(inIndex: SKIndexRef, inDocumentID: SKDocumentID) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKIndexGetDocumentTermCount(inIndex: SKIndexRef, inDocumentID: SKDocumentID) callconv(.C) core_foundation.Index;
+pub const skIndexGetDocumentTermCount = SKIndexGetDocumentTermCount;
 
-pub extern "CoreServices" fn SKIndexCopyTermIDArrayForDocumentID(inIndex: SKIndexRef, inDocumentID: SKDocumentID) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn SKIndexCopyTermIDArrayForDocumentID(inIndex: SKIndexRef, inDocumentID: SKDocumentID) callconv(.C) core_foundation.ArrayRef;
+pub const skIndexCopyTermIDArrayForDocumentID = SKIndexCopyTermIDArrayForDocumentID;
 
-pub extern "CoreServices" fn SKIndexGetDocumentTermFrequency(inIndex: SKIndexRef, inDocumentID: SKDocumentID, inTermID: core_foundation.Index) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKIndexGetDocumentTermFrequency(inIndex: SKIndexRef, inDocumentID: SKDocumentID, inTermID: core_foundation.Index) callconv(.C) core_foundation.Index;
+pub const skIndexGetDocumentTermFrequency = SKIndexGetDocumentTermFrequency;
 
-pub extern "CoreServices" fn SKIndexGetMaximumTermID(inIndex: SKIndexRef) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKIndexGetMaximumTermID(inIndex: SKIndexRef) callconv(.C) core_foundation.Index;
+pub const skIndexGetMaximumTermID = SKIndexGetMaximumTermID;
 
-pub extern "CoreServices" fn SKIndexGetTermDocumentCount(inIndex: SKIndexRef, inTermID: core_foundation.Index) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKIndexGetTermDocumentCount(inIndex: SKIndexRef, inTermID: core_foundation.Index) callconv(.C) core_foundation.Index;
+pub const skIndexGetTermDocumentCount = SKIndexGetTermDocumentCount;
 
-pub extern "CoreServices" fn SKIndexCopyDocumentIDArrayForTermID(inIndex: SKIndexRef, inTermID: core_foundation.Index) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn SKIndexCopyDocumentIDArrayForTermID(inIndex: SKIndexRef, inTermID: core_foundation.Index) callconv(.C) core_foundation.ArrayRef;
+pub const skIndexCopyDocumentIDArrayForTermID = SKIndexCopyDocumentIDArrayForTermID;
 
-pub extern "CoreServices" fn SKIndexCopyTermStringForTermID(inIndex: SKIndexRef, inTermID: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn SKIndexCopyTermStringForTermID(inIndex: SKIndexRef, inTermID: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+pub const skIndexCopyTermStringForTermID = SKIndexCopyTermStringForTermID;
 
-pub extern "CoreServices" fn SKIndexGetTermIDForTermString(inIndex: SKIndexRef, inTermString: core_foundation.StringRef) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKIndexGetTermIDForTermString(inIndex: SKIndexRef, inTermString: core_foundation.StringRef) callconv(.C) core_foundation.Index;
+pub const skIndexGetTermIDForTermString = SKIndexGetTermIDForTermString;
 
-pub extern "CoreServices" fn SKLoadDefaultExtractorPlugIns() callconv(.C) void;
+extern "CoreServices" fn SKLoadDefaultExtractorPlugIns() callconv(.C) void;
+pub const skLoadDefaultExtractorPlugIns = SKLoadDefaultExtractorPlugIns;
 
 pub const __SKSearch = extern struct {};
 
 pub const SKSearchRef = ?*__SKSearch;
 
-pub extern "CoreServices" fn SKSearchGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn SKSearchGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const skSearchGetTypeID = SKSearchGetTypeID;
 
 pub const SKSearchOptions = objc.UInt32;
 
-pub extern "CoreServices" fn SKSearchCreate(inIndex: SKIndexRef, inQuery: core_foundation.StringRef, inSearchOptions: SKSearchOptions) callconv(.C) SKSearchRef;
+extern "CoreServices" fn SKSearchCreate(inIndex: SKIndexRef, inQuery: core_foundation.StringRef, inSearchOptions: SKSearchOptions) callconv(.C) SKSearchRef;
+pub const skSearchCreate = SKSearchCreate;
 
-pub extern "CoreServices" fn SKSearchCancel(inSearch: SKSearchRef) callconv(.C) void;
+extern "CoreServices" fn SKSearchCancel(inSearch: SKSearchRef) callconv(.C) void;
+pub const skSearchCancel = SKSearchCancel;
 
-pub extern "CoreServices" fn SKSearchFindMatches(inSearch: SKSearchRef, inMaximumCount: core_foundation.Index, outDocumentIDsArray: ?*SKDocumentID, outScoresArray: ?*f32, maximumTime: core_foundation.TimeInterval, outFoundCount: ?*core_foundation.Index, ) callconv(.C) objc.Boolean;
+extern "CoreServices" fn SKSearchFindMatches(
+    inSearch: SKSearchRef,
+    inMaximumCount: core_foundation.Index,
+    outDocumentIDsArray: ?*SKDocumentID,
+    outScoresArray: ?*f32,
+    maximumTime: core_foundation.TimeInterval,
+    outFoundCount: ?*core_foundation.Index,
+) callconv(.C) objc.Boolean;
+pub const skSearchFindMatches = SKSearchFindMatches;
 
-pub extern "CoreServices" fn SKIndexCopyInfoForDocumentIDs(inIndex: SKIndexRef, inCount: core_foundation.Index, inDocumentIDsArray: ?*SKDocumentID, outNamesArray: ?*core_foundation.StringRef, outParentIDsArray: ?*SKDocumentID, ) callconv(.C) void;
+extern "CoreServices" fn SKIndexCopyInfoForDocumentIDs(
+    inIndex: SKIndexRef,
+    inCount: core_foundation.Index,
+    inDocumentIDsArray: ?*SKDocumentID,
+    outNamesArray: ?*core_foundation.StringRef,
+    outParentIDsArray: ?*SKDocumentID,
+) callconv(.C) void;
+pub const skIndexCopyInfoForDocumentIDs = SKIndexCopyInfoForDocumentIDs;
 
-pub extern "CoreServices" fn SKIndexCopyDocumentRefsForDocumentIDs(inIndex: SKIndexRef, inCount: core_foundation.Index, inDocumentIDsArray: ?*SKDocumentID, outDocumentRefsArray: ?*SKDocumentRef, ) callconv(.C) void;
+extern "CoreServices" fn SKIndexCopyDocumentRefsForDocumentIDs(
+    inIndex: SKIndexRef,
+    inCount: core_foundation.Index,
+    inDocumentIDsArray: ?*SKDocumentID,
+    outDocumentRefsArray: ?*SKDocumentRef,
+) callconv(.C) void;
+pub const skIndexCopyDocumentRefsForDocumentIDs = SKIndexCopyDocumentRefsForDocumentIDs;
 
-pub extern "CoreServices" fn SKIndexCopyDocumentURLsForDocumentIDs(inIndex: SKIndexRef, inCount: core_foundation.Index, inDocumentIDsArray: ?*SKDocumentID, outDocumentURLsArray: ?*core_foundation.URLRef, ) callconv(.C) void;
+extern "CoreServices" fn SKIndexCopyDocumentURLsForDocumentIDs(
+    inIndex: SKIndexRef,
+    inCount: core_foundation.Index,
+    inDocumentIDsArray: ?*SKDocumentID,
+    outDocumentURLsArray: ?*core_foundation.URLRef,
+) callconv(.C) void;
+pub const skIndexCopyDocumentURLsForDocumentIDs = SKIndexCopyDocumentURLsForDocumentIDs;
 
 pub const __SKSearchGroup = extern struct {};
 
 pub const SKSearchGroupRef = ?*__SKSearchGroup;
 
-pub extern "CoreServices" fn SKSearchGroupGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn SKSearchGroupGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const skSearchGroupGetTypeID = SKSearchGroupGetTypeID;
 
 pub const __SKSearchResults = extern struct {};
 
 pub const SKSearchResultsRef = ?*__SKSearchResults;
 
-pub extern "CoreServices" fn SKSearchResultsGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn SKSearchResultsGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const skSearchResultsGetTypeID = SKSearchResultsGetTypeID;
 
 pub const SKSearchType = enum(u32) {
     kSKSearchRanked = 0,
@@ -13147,45 +16487,92 @@ pub const SKSearchType = enum(u32) {
     kSKSearchPrefixRanked = 3,
 };
 
-pub const SKSearchResultsFilterCallBack = ?*const fn(SKIndexRef, SKDocumentRef, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const SKSearchResultsFilterCallBack = ?*const fn (SKIndexRef, SKDocumentRef, ?*anyopaque) callconv(.C) objc.Boolean;
 
-pub extern "CoreServices" fn SKSearchGroupCreate(inArrayOfInIndexes: core_foundation.ArrayRef) callconv(.C) SKSearchGroupRef;
+extern "CoreServices" fn SKSearchGroupCreate(inArrayOfInIndexes: core_foundation.ArrayRef) callconv(.C) SKSearchGroupRef;
+pub const skSearchGroupCreate = SKSearchGroupCreate;
 
-pub extern "CoreServices" fn SKSearchGroupCopyIndexes(inSearchGroup: SKSearchGroupRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn SKSearchGroupCopyIndexes(inSearchGroup: SKSearchGroupRef) callconv(.C) core_foundation.ArrayRef;
+pub const skSearchGroupCopyIndexes = SKSearchGroupCopyIndexes;
 
-pub extern "CoreServices" fn SKSearchResultsCreateWithQuery(inSearchGroup: SKSearchGroupRef, inQuery: core_foundation.StringRef, inSearchType: SKSearchType, inMaxFoundDocuments: core_foundation.Index, inContext: ?*anyopaque, inFilterCallBack: SKSearchResultsFilterCallBack, ) callconv(.C) SKSearchResultsRef;
+extern "CoreServices" fn SKSearchResultsCreateWithQuery(
+    inSearchGroup: SKSearchGroupRef,
+    inQuery: core_foundation.StringRef,
+    inSearchType: SKSearchType,
+    inMaxFoundDocuments: core_foundation.Index,
+    inContext: ?*anyopaque,
+    inFilterCallBack: SKSearchResultsFilterCallBack,
+) callconv(.C) SKSearchResultsRef;
+pub const skSearchResultsCreateWithQuery = SKSearchResultsCreateWithQuery;
 
-pub extern "CoreServices" fn SKSearchResultsCreateWithDocuments(inSearchGroup: SKSearchGroupRef, inExampleDocuments: core_foundation.ArrayRef, inMaxFoundDocuments: core_foundation.Index, inContext: ?*anyopaque, inFilterCallBack: SKSearchResultsFilterCallBack, ) callconv(.C) SKSearchResultsRef;
+extern "CoreServices" fn SKSearchResultsCreateWithDocuments(
+    inSearchGroup: SKSearchGroupRef,
+    inExampleDocuments: core_foundation.ArrayRef,
+    inMaxFoundDocuments: core_foundation.Index,
+    inContext: ?*anyopaque,
+    inFilterCallBack: SKSearchResultsFilterCallBack,
+) callconv(.C) SKSearchResultsRef;
+pub const skSearchResultsCreateWithDocuments = SKSearchResultsCreateWithDocuments;
 
-pub extern "CoreServices" fn SKSearchResultsGetCount(inSearchResults: SKSearchResultsRef) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKSearchResultsGetCount(inSearchResults: SKSearchResultsRef) callconv(.C) core_foundation.Index;
+pub const skSearchResultsGetCount = SKSearchResultsGetCount;
 
-pub extern "CoreServices" fn SKSearchResultsGetInfoInRange(inSearchResults: SKSearchResultsRef, inRange: core_foundation.Range, outDocumentsArray: ?*SKDocumentRef, outIndexesArray: ?*SKIndexRef, outScoresArray: ?*f32, ) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKSearchResultsGetInfoInRange(
+    inSearchResults: SKSearchResultsRef,
+    inRange: core_foundation.Range,
+    outDocumentsArray: ?*SKDocumentRef,
+    outIndexesArray: ?*SKIndexRef,
+    outScoresArray: ?*f32,
+) callconv(.C) core_foundation.Index;
+pub const skSearchResultsGetInfoInRange = SKSearchResultsGetInfoInRange;
 
-pub extern "CoreServices" fn SKSearchResultsCopyMatchingTerms(inSearchResults: SKSearchResultsRef, inItem: core_foundation.Index) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn SKSearchResultsCopyMatchingTerms(inSearchResults: SKSearchResultsRef, inItem: core_foundation.Index) callconv(.C) core_foundation.ArrayRef;
+pub const skSearchResultsCopyMatchingTerms = SKSearchResultsCopyMatchingTerms;
 
 pub const __SKSummary = extern struct {};
 
 pub const SKSummaryRef = ?*__SKSummary;
 
-pub extern "CoreServices" fn SKSummaryGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn SKSummaryGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const skSummaryGetTypeID = SKSummaryGetTypeID;
 
-pub extern "CoreServices" fn SKSummaryCreateWithString(inString: core_foundation.StringRef) callconv(.C) SKSummaryRef;
+extern "CoreServices" fn SKSummaryCreateWithString(inString: core_foundation.StringRef) callconv(.C) SKSummaryRef;
+pub const skSummaryCreateWithString = SKSummaryCreateWithString;
 
-pub extern "CoreServices" fn SKSummaryGetSentenceCount(summary: SKSummaryRef) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKSummaryGetSentenceCount(summary: SKSummaryRef) callconv(.C) core_foundation.Index;
+pub const skSummaryGetSentenceCount = SKSummaryGetSentenceCount;
 
-pub extern "CoreServices" fn SKSummaryGetParagraphCount(summary: SKSummaryRef) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKSummaryGetParagraphCount(summary: SKSummaryRef) callconv(.C) core_foundation.Index;
+pub const skSummaryGetParagraphCount = SKSummaryGetParagraphCount;
 
-pub extern "CoreServices" fn SKSummaryCopySentenceAtIndex(summary: SKSummaryRef, i: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn SKSummaryCopySentenceAtIndex(summary: SKSummaryRef, i: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+pub const skSummaryCopySentenceAtIndex = SKSummaryCopySentenceAtIndex;
 
-pub extern "CoreServices" fn SKSummaryCopyParagraphAtIndex(summary: SKSummaryRef, i: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn SKSummaryCopyParagraphAtIndex(summary: SKSummaryRef, i: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+pub const skSummaryCopyParagraphAtIndex = SKSummaryCopyParagraphAtIndex;
 
-pub extern "CoreServices" fn SKSummaryCopySentenceSummaryString(summary: SKSummaryRef, numSentences: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn SKSummaryCopySentenceSummaryString(summary: SKSummaryRef, numSentences: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+pub const skSummaryCopySentenceSummaryString = SKSummaryCopySentenceSummaryString;
 
-pub extern "CoreServices" fn SKSummaryCopyParagraphSummaryString(summary: SKSummaryRef, numParagraphs: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn SKSummaryCopyParagraphSummaryString(summary: SKSummaryRef, numParagraphs: core_foundation.Index) callconv(.C) core_foundation.StringRef;
+pub const skSummaryCopyParagraphSummaryString = SKSummaryCopyParagraphSummaryString;
 
-pub extern "CoreServices" fn SKSummaryGetSentenceSummaryInfo(summary: SKSummaryRef, numSentencesInSummary: core_foundation.Index, outRankOrderOfSentences: ?*core_foundation.Index, outSentenceIndexOfSentences: ?*core_foundation.Index, outParagraphIndexOfSentences: ?*core_foundation.Index, ) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKSummaryGetSentenceSummaryInfo(
+    summary: SKSummaryRef,
+    numSentencesInSummary: core_foundation.Index,
+    outRankOrderOfSentences: ?*core_foundation.Index,
+    outSentenceIndexOfSentences: ?*core_foundation.Index,
+    outParagraphIndexOfSentences: ?*core_foundation.Index,
+) callconv(.C) core_foundation.Index;
+pub const skSummaryGetSentenceSummaryInfo = SKSummaryGetSentenceSummaryInfo;
 
-pub extern "CoreServices" fn SKSummaryGetParagraphSummaryInfo(summary: SKSummaryRef, numParagraphsInSummary: core_foundation.Index, outRankOrderOfParagraphs: ?*core_foundation.Index, outParagraphIndexOfParagraphs: ?*core_foundation.Index, ) callconv(.C) core_foundation.Index;
+extern "CoreServices" fn SKSummaryGetParagraphSummaryInfo(
+    summary: SKSummaryRef,
+    numParagraphsInSummary: core_foundation.Index,
+    outRankOrderOfParagraphs: ?*core_foundation.Index,
+    outParagraphIndexOfParagraphs: ?*core_foundation.Index,
+) callconv(.C) core_foundation.Index;
+pub const skSummaryGetParagraphSummaryInfo = SKSummaryGetParagraphSummaryInfo;
 
 pub const FSEventStreamCreateFlags = objc.UInt32;
 
@@ -13224,51 +16611,97 @@ pub const FSEventStreamContext = extern struct {
     copyDescription: core_foundation.AllocatorCopyDescriptionCallBack,
 };
 
-pub const FSEventStreamCallback = ?*const fn(ConstFSEventStreamRef, ?*anyopaque, objc.size_t, ?*anyopaque, ?*FSEventStreamEventFlags, ?*FSEventStreamEventId, ) callconv(.C) void;
+pub const FSEventStreamCallback = ?*const fn (
+    ConstFSEventStreamRef,
+    ?*anyopaque,
+    objc.size_t,
+    ?*anyopaque,
+    ?*FSEventStreamEventFlags,
+    ?*FSEventStreamEventId,
+) callconv(.C) void;
 
-pub extern "CoreServices" fn FSEventStreamCreate(allocator: core_foundation.AllocatorRef, callback: FSEventStreamCallback, context: ?*FSEventStreamContext, pathsToWatch: core_foundation.ArrayRef, sinceWhen: FSEventStreamEventId, latency: core_foundation.TimeInterval, flags: FSEventStreamCreateFlags, ) callconv(.C) FSEventStreamRef;
+extern "CoreServices" fn FSEventStreamCreate(
+    allocator: core_foundation.AllocatorRef,
+    callback: FSEventStreamCallback,
+    context: ?*FSEventStreamContext,
+    pathsToWatch: core_foundation.ArrayRef,
+    sinceWhen: FSEventStreamEventId,
+    latency: core_foundation.TimeInterval,
+    flags: FSEventStreamCreateFlags,
+) callconv(.C) FSEventStreamRef;
+pub const fsEventStreamCreate = FSEventStreamCreate;
 
-pub extern "CoreServices" fn FSEventStreamCreateRelativeToDevice(allocator: core_foundation.AllocatorRef, callback: FSEventStreamCallback, context: ?*FSEventStreamContext, deviceToWatch: objc.dev_t, pathsToWatchRelativeToDevice: core_foundation.ArrayRef, sinceWhen: FSEventStreamEventId, latency: core_foundation.TimeInterval, flags: FSEventStreamCreateFlags, ) callconv(.C) FSEventStreamRef;
+extern "CoreServices" fn FSEventStreamCreateRelativeToDevice(
+    allocator: core_foundation.AllocatorRef,
+    callback: FSEventStreamCallback,
+    context: ?*FSEventStreamContext,
+    deviceToWatch: objc.dev_t,
+    pathsToWatchRelativeToDevice: core_foundation.ArrayRef,
+    sinceWhen: FSEventStreamEventId,
+    latency: core_foundation.TimeInterval,
+    flags: FSEventStreamCreateFlags,
+) callconv(.C) FSEventStreamRef;
+pub const fsEventStreamCreateRelativeToDevice = FSEventStreamCreateRelativeToDevice;
 
-pub extern "CoreServices" fn FSEventStreamGetLatestEventId(streamRef: ConstFSEventStreamRef) callconv(.C) FSEventStreamEventId;
+extern "CoreServices" fn FSEventStreamGetLatestEventId(streamRef: ConstFSEventStreamRef) callconv(.C) FSEventStreamEventId;
+pub const fsEventStreamGetLatestEventId = FSEventStreamGetLatestEventId;
 
-pub extern "CoreServices" fn FSEventStreamGetDeviceBeingWatched(streamRef: ConstFSEventStreamRef) callconv(.C) objc.dev_t;
+extern "CoreServices" fn FSEventStreamGetDeviceBeingWatched(streamRef: ConstFSEventStreamRef) callconv(.C) objc.dev_t;
+pub const fsEventStreamGetDeviceBeingWatched = FSEventStreamGetDeviceBeingWatched;
 
-pub extern "CoreServices" fn FSEventStreamCopyPathsBeingWatched(streamRef: ConstFSEventStreamRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn FSEventStreamCopyPathsBeingWatched(streamRef: ConstFSEventStreamRef) callconv(.C) core_foundation.ArrayRef;
+pub const fsEventStreamCopyPathsBeingWatched = FSEventStreamCopyPathsBeingWatched;
 
-pub extern "CoreServices" fn FSEventsGetCurrentEventId() callconv(.C) FSEventStreamEventId;
+extern "CoreServices" fn FSEventsGetCurrentEventId() callconv(.C) FSEventStreamEventId;
+pub const fsEventsGetCurrentEventId = FSEventsGetCurrentEventId;
 
-pub extern "CoreServices" fn FSEventsCopyUUIDForDevice(dev: objc.dev_t) callconv(.C) core_foundation.UUIDRef;
+extern "CoreServices" fn FSEventsCopyUUIDForDevice(dev: objc.dev_t) callconv(.C) core_foundation.UUIDRef;
+pub const fsEventsCopyUUIDForDevice = FSEventsCopyUUIDForDevice;
 
-pub extern "CoreServices" fn FSEventsGetLastEventIdForDeviceBeforeTime(dev: objc.dev_t, time: core_foundation.AbsoluteTime) callconv(.C) FSEventStreamEventId;
+extern "CoreServices" fn FSEventsGetLastEventIdForDeviceBeforeTime(dev: objc.dev_t, time: core_foundation.AbsoluteTime) callconv(.C) FSEventStreamEventId;
+pub const fsEventsGetLastEventIdForDeviceBeforeTime = FSEventsGetLastEventIdForDeviceBeforeTime;
 
-pub extern "CoreServices" fn FSEventsPurgeEventsForDeviceUpToEventId(dev: objc.dev_t, eventId: FSEventStreamEventId) callconv(.C) objc.Boolean;
+extern "CoreServices" fn FSEventsPurgeEventsForDeviceUpToEventId(dev: objc.dev_t, eventId: FSEventStreamEventId) callconv(.C) objc.Boolean;
+pub const fsEventsPurgeEventsForDeviceUpToEventId = FSEventsPurgeEventsForDeviceUpToEventId;
 
-pub extern "CoreServices" fn FSEventStreamRetain(streamRef: FSEventStreamRef) callconv(.C) void;
+extern "CoreServices" fn FSEventStreamRetain(streamRef: FSEventStreamRef) callconv(.C) void;
+pub const fsEventStreamRetain = FSEventStreamRetain;
 
-pub extern "CoreServices" fn FSEventStreamRelease(streamRef: FSEventStreamRef) callconv(.C) void;
+extern "CoreServices" fn FSEventStreamRelease(streamRef: FSEventStreamRef) callconv(.C) void;
+pub const fsEventStreamRelease = FSEventStreamRelease;
 
-pub extern "CoreServices" fn FSEventStreamScheduleWithRunLoop(streamRef: FSEventStreamRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn FSEventStreamScheduleWithRunLoop(streamRef: FSEventStreamRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+pub const fsEventStreamScheduleWithRunLoop = FSEventStreamScheduleWithRunLoop;
 
-pub extern "CoreServices" fn FSEventStreamUnscheduleFromRunLoop(streamRef: FSEventStreamRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+extern "CoreServices" fn FSEventStreamUnscheduleFromRunLoop(streamRef: FSEventStreamRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+pub const fsEventStreamUnscheduleFromRunLoop = FSEventStreamUnscheduleFromRunLoop;
 
-pub extern "CoreServices" fn FSEventStreamSetDispatchQueue(streamRef: FSEventStreamRef, q: objc.dispatch_queue_t) callconv(.C) void;
+extern "CoreServices" fn FSEventStreamSetDispatchQueue(streamRef: FSEventStreamRef, q: objc.dispatch_queue_t) callconv(.C) void;
+pub const fsEventStreamSetDispatchQueue = FSEventStreamSetDispatchQueue;
 
-pub extern "CoreServices" fn FSEventStreamInvalidate(streamRef: FSEventStreamRef) callconv(.C) void;
+extern "CoreServices" fn FSEventStreamInvalidate(streamRef: FSEventStreamRef) callconv(.C) void;
+pub const fsEventStreamInvalidate = FSEventStreamInvalidate;
 
-pub extern "CoreServices" fn FSEventStreamStart(streamRef: FSEventStreamRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn FSEventStreamStart(streamRef: FSEventStreamRef) callconv(.C) objc.Boolean;
+pub const fsEventStreamStart = FSEventStreamStart;
 
-pub extern "CoreServices" fn FSEventStreamFlushAsync(streamRef: FSEventStreamRef) callconv(.C) FSEventStreamEventId;
+extern "CoreServices" fn FSEventStreamFlushAsync(streamRef: FSEventStreamRef) callconv(.C) FSEventStreamEventId;
+pub const fsEventStreamFlushAsync = FSEventStreamFlushAsync;
 
-pub extern "CoreServices" fn FSEventStreamFlushSync(streamRef: FSEventStreamRef) callconv(.C) void;
+extern "CoreServices" fn FSEventStreamFlushSync(streamRef: FSEventStreamRef) callconv(.C) void;
+pub const fsEventStreamFlushSync = FSEventStreamFlushSync;
 
-pub extern "CoreServices" fn FSEventStreamStop(streamRef: FSEventStreamRef) callconv(.C) void;
+extern "CoreServices" fn FSEventStreamStop(streamRef: FSEventStreamRef) callconv(.C) void;
+pub const fsEventStreamStop = FSEventStreamStop;
 
-pub extern "CoreServices" fn FSEventStreamShow(streamRef: ConstFSEventStreamRef) callconv(.C) void;
+extern "CoreServices" fn FSEventStreamShow(streamRef: ConstFSEventStreamRef) callconv(.C) void;
+pub const fsEventStreamShow = FSEventStreamShow;
 
-pub extern "CoreServices" fn FSEventStreamCopyDescription(streamRef: ConstFSEventStreamRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn FSEventStreamCopyDescription(streamRef: ConstFSEventStreamRef) callconv(.C) core_foundation.StringRef;
+pub const fsEventStreamCopyDescription = FSEventStreamCopyDescription;
 
-pub extern "CoreServices" fn FSEventStreamSetExclusionPaths(streamRef: FSEventStreamRef, pathsToExclude: core_foundation.ArrayRef) callconv(.C) objc.Boolean;
+extern "CoreServices" fn FSEventStreamSetExclusionPaths(streamRef: FSEventStreamRef, pathsToExclude: core_foundation.ArrayRef) callconv(.C) objc.Boolean;
+pub const fsEventStreamSetExclusionPaths = FSEventStreamSetExclusionPaths;
 
 pub const OpaqueLSSharedFileListRef = extern struct {};
 
@@ -13280,49 +16713,103 @@ pub const LSSharedFileListItemRef = ?*OpaqueLSSharedFileListItemRef;
 
 pub const LSSharedFileListResolutionFlags = objc.UInt32;
 
-pub const LSSharedFileListChangedProcPtr = ?*const fn(LSSharedFileListRef, ?*anyopaque) callconv(.C) void;
+pub const LSSharedFileListChangedProcPtr = ?*const fn (LSSharedFileListRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "CoreServices" fn LSSharedFileListGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn LSSharedFileListGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const lsSharedFileListGetTypeID = LSSharedFileListGetTypeID;
 
-pub extern "CoreServices" fn LSSharedFileListItemGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreServices" fn LSSharedFileListItemGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const lsSharedFileListItemGetTypeID = LSSharedFileListItemGetTypeID;
 
-pub extern "CoreServices" fn LSSharedFileListCreate(inAllocator: core_foundation.AllocatorRef, inListType: core_foundation.StringRef, listOptions: core_foundation.TypeRef) callconv(.C) LSSharedFileListRef;
+extern "CoreServices" fn LSSharedFileListCreate(inAllocator: core_foundation.AllocatorRef, inListType: core_foundation.StringRef, listOptions: core_foundation.TypeRef) callconv(.C) LSSharedFileListRef;
+pub const lsSharedFileListCreate = LSSharedFileListCreate;
 
-pub extern "CoreServices" fn LSSharedFileListSetAuthorization(inList: LSSharedFileListRef, inAuthorization: security.AuthorizationRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSharedFileListSetAuthorization(inList: LSSharedFileListRef, inAuthorization: security.AuthorizationRef) callconv(.C) objc.OSStatus;
+pub const lsSharedFileListSetAuthorization = LSSharedFileListSetAuthorization;
 
-pub extern "CoreServices" fn LSSharedFileListAddObserver(inList: LSSharedFileListRef, inRunloop: core_foundation.RunLoopRef, inRunloopMode: core_foundation.StringRef, callback: LSSharedFileListChangedProcPtr, context: ?*anyopaque, ) callconv(.C) void;
+extern "CoreServices" fn LSSharedFileListAddObserver(
+    inList: LSSharedFileListRef,
+    inRunloop: core_foundation.RunLoopRef,
+    inRunloopMode: core_foundation.StringRef,
+    callback: LSSharedFileListChangedProcPtr,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const lsSharedFileListAddObserver = LSSharedFileListAddObserver;
 
-pub extern "CoreServices" fn LSSharedFileListRemoveObserver(inList: LSSharedFileListRef, inRunloop: core_foundation.RunLoopRef, inRunloopMode: core_foundation.StringRef, callback: LSSharedFileListChangedProcPtr, context: ?*anyopaque, ) callconv(.C) void;
+extern "CoreServices" fn LSSharedFileListRemoveObserver(
+    inList: LSSharedFileListRef,
+    inRunloop: core_foundation.RunLoopRef,
+    inRunloopMode: core_foundation.StringRef,
+    callback: LSSharedFileListChangedProcPtr,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const lsSharedFileListRemoveObserver = LSSharedFileListRemoveObserver;
 
-pub extern "CoreServices" fn LSSharedFileListGetSeedValue(inList: LSSharedFileListRef) callconv(.C) objc.UInt32;
+extern "CoreServices" fn LSSharedFileListGetSeedValue(inList: LSSharedFileListRef) callconv(.C) objc.UInt32;
+pub const lsSharedFileListGetSeedValue = LSSharedFileListGetSeedValue;
 
-pub extern "CoreServices" fn LSSharedFileListCopyProperty(inList: LSSharedFileListRef, inPropertyName: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "CoreServices" fn LSSharedFileListCopyProperty(inList: LSSharedFileListRef, inPropertyName: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const lsSharedFileListCopyProperty = LSSharedFileListCopyProperty;
 
-pub extern "CoreServices" fn LSSharedFileListSetProperty(inList: LSSharedFileListRef, inPropertyName: core_foundation.StringRef, inPropertyData: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSharedFileListSetProperty(inList: LSSharedFileListRef, inPropertyName: core_foundation.StringRef, inPropertyData: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const lsSharedFileListSetProperty = LSSharedFileListSetProperty;
 
-pub extern "CoreServices" fn LSSharedFileListCopySnapshot(inList: LSSharedFileListRef, outSnapshotSeed: ?*objc.UInt32) callconv(.C) core_foundation.ArrayRef;
+extern "CoreServices" fn LSSharedFileListCopySnapshot(inList: LSSharedFileListRef, outSnapshotSeed: ?*objc.UInt32) callconv(.C) core_foundation.ArrayRef;
+pub const lsSharedFileListCopySnapshot = LSSharedFileListCopySnapshot;
 
-pub extern "CoreServices" fn LSSharedFileListInsertItemURL(inList: LSSharedFileListRef, insertAfterThisItem: LSSharedFileListItemRef, inDisplayName: core_foundation.StringRef, inIconRef: IconRef, inURL: core_foundation.URLRef, inPropertiesToSet: core_foundation.DictionaryRef, inPropertiesToClear: core_foundation.ArrayRef, ) callconv(.C) LSSharedFileListItemRef;
+extern "CoreServices" fn LSSharedFileListInsertItemURL(
+    inList: LSSharedFileListRef,
+    insertAfterThisItem: LSSharedFileListItemRef,
+    inDisplayName: core_foundation.StringRef,
+    inIconRef: IconRef,
+    inURL: core_foundation.URLRef,
+    inPropertiesToSet: core_foundation.DictionaryRef,
+    inPropertiesToClear: core_foundation.ArrayRef,
+) callconv(.C) LSSharedFileListItemRef;
+pub const lsSharedFileListInsertItemURL = LSSharedFileListInsertItemURL;
 
-pub extern "CoreServices" fn LSSharedFileListInsertItemFSRef(inList: LSSharedFileListRef, insertAfterThisItem: LSSharedFileListItemRef, inDisplayName: core_foundation.StringRef, inIconRef: IconRef, inFSRef: ?*FSRef, inPropertiesToSet: core_foundation.DictionaryRef, inPropertiesToClear: core_foundation.ArrayRef, ) callconv(.C) LSSharedFileListItemRef;
+extern "CoreServices" fn LSSharedFileListInsertItemFSRef(
+    inList: LSSharedFileListRef,
+    insertAfterThisItem: LSSharedFileListItemRef,
+    inDisplayName: core_foundation.StringRef,
+    inIconRef: IconRef,
+    inFSRef: ?*FSRef,
+    inPropertiesToSet: core_foundation.DictionaryRef,
+    inPropertiesToClear: core_foundation.ArrayRef,
+) callconv(.C) LSSharedFileListItemRef;
+pub const lsSharedFileListInsertItemFSRef = LSSharedFileListInsertItemFSRef;
 
-pub extern "CoreServices" fn LSSharedFileListItemMove(inList: LSSharedFileListRef, inItem: LSSharedFileListItemRef, inMoveAfterItem: LSSharedFileListItemRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSharedFileListItemMove(inList: LSSharedFileListRef, inItem: LSSharedFileListItemRef, inMoveAfterItem: LSSharedFileListItemRef) callconv(.C) objc.OSStatus;
+pub const lsSharedFileListItemMove = LSSharedFileListItemMove;
 
-pub extern "CoreServices" fn LSSharedFileListItemRemove(inList: LSSharedFileListRef, inItem: LSSharedFileListItemRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSharedFileListItemRemove(inList: LSSharedFileListRef, inItem: LSSharedFileListItemRef) callconv(.C) objc.OSStatus;
+pub const lsSharedFileListItemRemove = LSSharedFileListItemRemove;
 
-pub extern "CoreServices" fn LSSharedFileListRemoveAllItems(inList: LSSharedFileListRef) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSharedFileListRemoveAllItems(inList: LSSharedFileListRef) callconv(.C) objc.OSStatus;
+pub const lsSharedFileListRemoveAllItems = LSSharedFileListRemoveAllItems;
 
-pub extern "CoreServices" fn LSSharedFileListItemGetID(inItem: LSSharedFileListItemRef) callconv(.C) objc.UInt32;
+extern "CoreServices" fn LSSharedFileListItemGetID(inItem: LSSharedFileListItemRef) callconv(.C) objc.UInt32;
+pub const lsSharedFileListItemGetID = LSSharedFileListItemGetID;
 
-pub extern "CoreServices" fn LSSharedFileListItemCopyIconRef(inItem: LSSharedFileListItemRef) callconv(.C) IconRef;
+extern "CoreServices" fn LSSharedFileListItemCopyIconRef(inItem: LSSharedFileListItemRef) callconv(.C) IconRef;
+pub const lsSharedFileListItemCopyIconRef = LSSharedFileListItemCopyIconRef;
 
-pub extern "CoreServices" fn LSSharedFileListItemCopyDisplayName(inItem: LSSharedFileListItemRef) callconv(.C) core_foundation.StringRef;
+extern "CoreServices" fn LSSharedFileListItemCopyDisplayName(inItem: LSSharedFileListItemRef) callconv(.C) core_foundation.StringRef;
+pub const lsSharedFileListItemCopyDisplayName = LSSharedFileListItemCopyDisplayName;
 
-pub extern "CoreServices" fn LSSharedFileListItemResolve(inItem: LSSharedFileListItemRef, inFlags: LSSharedFileListResolutionFlags, outURL: ?*core_foundation.URLRef, outRef: ?*FSRef, ) callconv(.C) objc.OSStatus;
+extern "CoreServices" fn LSSharedFileListItemResolve(
+    inItem: LSSharedFileListItemRef,
+    inFlags: LSSharedFileListResolutionFlags,
+    outURL: ?*core_foundation.URLRef,
+    outRef: ?*FSRef,
+) callconv(.C) objc.OSStatus;
+pub const lsSharedFileListItemResolve = LSSharedFileListItemResolve;
 
-pub extern "CoreServices" fn LSSharedFileListItemCopyResolvedURL(inItem: LSSharedFileListItemRef, inFlags: LSSharedFileListResolutionFlags, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.URLRef;
+extern "CoreServices" fn LSSharedFileListItemCopyResolvedURL(inItem: LSSharedFileListItemRef, inFlags: LSSharedFileListResolutionFlags, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.URLRef;
+pub const lsSharedFileListItemCopyResolvedURL = LSSharedFileListItemCopyResolvedURL;
 
-pub extern "CoreServices" fn LSSharedFileListItemCopyProperty(inItem: LSSharedFileListItemRef, inPropertyName: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "CoreServices" fn LSSharedFileListItemCopyProperty(inItem: LSSharedFileListItemRef, inPropertyName: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const lsSharedFileListItemCopyProperty = LSSharedFileListItemCopyProperty;
 
-pub extern "CoreServices" fn LSSharedFileListItemSetProperty(inItem: LSSharedFileListItemRef, inPropertyName: core_foundation.StringRef, inPropertyData: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
-
+extern "CoreServices" fn LSSharedFileListItemSetProperty(inItem: LSSharedFileListItemRef, inPropertyName: core_foundation.StringRef, inPropertyData: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const lsSharedFileListItemSetProperty = LSSharedFileListItemSetProperty;

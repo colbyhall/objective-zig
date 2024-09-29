@@ -8,13 +8,19 @@ pub const __SecCertificate = extern struct {};
 
 pub const CertificateRef = ?*__SecCertificate;
 
+pub const OpaqueSecCertificateRef = __SecCertificate;
+
 pub const __SecIdentity = extern struct {};
 
 pub const IdentityRef = ?*__SecIdentity;
 
+pub const OpaqueSecIdentityRef = __SecIdentity;
+
 pub const __SecKey = extern struct {};
 
 pub const KeyRef = ?*__SecKey;
+
+pub const OpaqueSecKeyRef = __SecKey;
 
 pub const __SecPolicy = extern struct {};
 
@@ -61,6 +67,8 @@ pub const __SecAccess = extern struct {};
 
 pub const AccessRef = ?*__SecAccess;
 
+pub const OpaqueSecAccessRef = __SecAccess;
+
 pub const __SecACL = extern struct {};
 
 pub const ACLRef = ?*__SecACL;
@@ -75,7 +83,8 @@ pub const KeychainAttributeInfo = extern struct {
     format: ?*objc.UInt32,
 };
 
-pub extern "Security" fn CopyErrorMessageString(status: objc.OSStatus, reserved: ?*anyopaque) callconv(.C) core_foundation.StringRef;
+extern "Security" fn SecCopyErrorMessageString(status: objc.OSStatus, reserved: ?*anyopaque) callconv(.C) core_foundation.StringRef;
+pub const copyErrorMessageString = SecCopyErrorMessageString;
 
 pub const anon3181 = enum(objc.OSStatus) {
     errSecSuccess = 0,
@@ -565,6 +574,10 @@ pub const cssm_data = extern struct {
     Data: ?*objc.uint8_t,
 };
 
+pub const Asn1Item = cssm_data;
+
+pub const Asn1Oid = cssm_data;
+
 pub const Asn1AlgId = extern struct {
     algorithm: Asn1Oid,
     parameters: Asn1Item,
@@ -582,7 +595,15 @@ pub const Asn1Template_struct = extern struct {
     size: objc.uint32_t,
 };
 
-pub const Asn1TemplateChooser = fn(?*anyopaque, objc.Boolean, ?*i8, objc.size_t, ?*anyopaque, ) callconv(.C) ?*Asn1Template;
+pub const Asn1Template = Asn1Template_struct;
+
+pub const Asn1TemplateChooser = fn (
+    ?*anyopaque,
+    objc.Boolean,
+    ?*i8,
+    objc.size_t,
+    ?*anyopaque,
+) callconv(.C) ?*Asn1Template;
 
 pub const Asn1TemplateChooserPtr = ?*Asn1TemplateChooser;
 
@@ -633,7 +654,7 @@ pub const anon891 = enum(u32) {
     CSSM_MODULE_STRING_SIZE = 64,
 };
 
-pub const CSSM_STRING = [68] i8;
+pub const CSSM_STRING = [68]i8;
 
 pub const CSSM_DATA_PTR = ?*Asn1Item;
 
@@ -641,8 +662,10 @@ pub const cssm_guid = extern struct {
     Data1: uint32,
     Data2: uint16,
     Data3: uint16,
-    Data4: [8] uint8,
+    Data4: [8]uint8,
 };
+
+pub const CSSM_GUID = cssm_guid;
 
 pub const CSSM_GUID_PTR = ?*cssm_guid;
 
@@ -671,6 +694,8 @@ pub const cssm_version = extern struct {
     Minor: uint32,
 };
 
+pub const CSSM_VERSION = cssm_version;
+
 pub const CSSM_VERSION_PTR = ?*cssm_version;
 
 pub const CSSM_SERVICE_MASK = uint32;
@@ -693,6 +718,8 @@ pub const cssm_subservice_uid = extern struct {
     SubserviceType: CSSM_SERVICE_TYPE,
 };
 
+pub const CSSM_SUBSERVICE_UID = cssm_subservice_uid;
+
 pub const CSSM_SUBSERVICE_UID_PTR = ?*cssm_subservice_uid;
 
 pub const CSSM_MODULE_EVENT = uint32;
@@ -705,7 +732,13 @@ pub const anon1521 = enum(u32) {
     CSSM_NOTIFY_FAULT = 3,
 };
 
-pub const CSSM_API_ModuleEventHandler = ?*const fn(?*CSSM_GUID, ?*anyopaque, uint32, CSSM_SERVICE_TYPE, CSSM_MODULE_EVENT, ) callconv(.C) CSSM_RETURN;
+pub const CSSM_API_ModuleEventHandler = ?*const fn (
+    ?*CSSM_GUID,
+    ?*anyopaque,
+    uint32,
+    CSSM_SERVICE_TYPE,
+    CSSM_MODULE_EVENT,
+) callconv(.C) CSSM_RETURN;
 
 pub const CSSM_ATTACH_FLAGS = uint32;
 
@@ -758,6 +791,8 @@ pub const cssm_net_address = extern struct {
     Address: Asn1Item,
 };
 
+pub const CSSM_NET_ADDRESS = cssm_net_address;
+
 pub const CSSM_NET_ADDRESS_PTR = ?*cssm_net_address;
 
 pub const CSSM_NET_PROTOCOL = uint32;
@@ -777,13 +812,15 @@ pub const anon2041 = enum(u32) {
     CSSM_NET_PROTO_CMPS = 11,
 };
 
-pub const CSSM_CALLBACK = ?*const fn(CSSM_DATA_PTR, ?*anyopaque) callconv(.C) CSSM_RETURN;
+pub const CSSM_CALLBACK = ?*const fn (CSSM_DATA_PTR, ?*anyopaque) callconv(.C) CSSM_RETURN;
 
 pub const cssm_crypto_data = extern struct {
     Param: Asn1Item,
     Callback: CSSM_CALLBACK,
     CallerCtx: ?*anyopaque,
 };
+
+pub const CSSM_CRYPTO_DATA = cssm_crypto_data;
 
 pub const CSSM_CRYPTO_DATA_PTR = ?*cssm_crypto_data;
 
@@ -968,12 +1005,16 @@ pub const cssm_list = extern struct {
     Tail: CSSM_LIST_ELEMENT_PTR,
 };
 
+pub const CSSM_LIST = cssm_list;
+
 pub const CSSM_LIST_PTR = ?*cssm_list;
 
 pub const anon3945 = extern union {
     Sublist: CSSM_LIST,
     Word: Asn1Item,
 };
+
+pub const CSSM_LIST_ELEMENT = cssm_list_element;
 
 pub const CSSM_TUPLE = extern struct {
     Issuer: CSSM_LIST,
@@ -989,6 +1030,8 @@ pub const cssm_tuplegroup = extern struct {
     NumberOfTuples: uint32,
     Tuples: CSSM_TUPLE_PTR,
 };
+
+pub const CSSM_TUPLEGROUP = cssm_tuplegroup;
 
 pub const CSSM_TUPLEGROUP_PTR = ?*cssm_tuplegroup;
 
@@ -1012,6 +1055,8 @@ pub const cssm_sample = extern struct {
     Verifier: ?*CSSM_SUBSERVICE_UID,
 };
 
+pub const CSSM_SAMPLE = cssm_sample;
+
 pub const CSSM_SAMPLE_PTR = ?*cssm_sample;
 
 pub const cssm_samplegroup = extern struct {
@@ -1019,15 +1064,17 @@ pub const cssm_samplegroup = extern struct {
     Samples: ?*CSSM_SAMPLE,
 };
 
+pub const CSSM_SAMPLEGROUP = cssm_samplegroup;
+
 pub const CSSM_SAMPLEGROUP_PTR = ?*cssm_samplegroup;
 
-pub const CSSM_MALLOC = ?*const fn(CSSM_SIZE, ?*anyopaque) callconv(.C) ?*anyopaque;
+pub const CSSM_MALLOC = ?*const fn (CSSM_SIZE, ?*anyopaque) callconv(.C) ?*anyopaque;
 
-pub const CSSM_FREE = ?*const fn(?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const CSSM_FREE = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
 
-pub const CSSM_REALLOC = ?*const fn(?*anyopaque, CSSM_SIZE, ?*anyopaque) callconv(.C) ?*anyopaque;
+pub const CSSM_REALLOC = ?*const fn (?*anyopaque, CSSM_SIZE, ?*anyopaque) callconv(.C) ?*anyopaque;
 
-pub const CSSM_CALLOC = ?*const fn(uint32, CSSM_SIZE, ?*anyopaque) callconv(.C) ?*anyopaque;
+pub const CSSM_CALLOC = ?*const fn (uint32, CSSM_SIZE, ?*anyopaque) callconv(.C) ?*anyopaque;
 
 pub const cssm_memory_funcs = extern struct {
     malloc_func: CSSM_MALLOC,
@@ -1037,13 +1084,20 @@ pub const cssm_memory_funcs = extern struct {
     AllocRef: ?*anyopaque,
 };
 
+pub const CSSM_MEMORY_FUNCS = cssm_memory_funcs;
+
 pub const CSSM_MEMORY_FUNCS_PTR = ?*cssm_memory_funcs;
 
 pub const CSSM_API_MEMORY_FUNCS = CSSM_MEMORY_FUNCS;
 
 pub const CSSM_API_MEMORY_FUNCS_PTR = ?*CSSM_API_MEMORY_FUNCS;
 
-pub const CSSM_CHALLENGE_CALLBACK = ?*const fn(?*CSSM_LIST, CSSM_SAMPLEGROUP_PTR, ?*anyopaque, ?*CSSM_MEMORY_FUNCS, ) callconv(.C) CSSM_RETURN;
+pub const CSSM_CHALLENGE_CALLBACK = ?*const fn (
+    ?*CSSM_LIST,
+    CSSM_SAMPLEGROUP_PTR,
+    ?*anyopaque,
+    ?*CSSM_MEMORY_FUNCS,
+) callconv(.C) CSSM_RETURN;
 
 pub const CSSM_CERT_TYPE = uint32;
 
@@ -1090,6 +1144,8 @@ pub const cssm_encoded_cert = extern struct {
     CertBlob: Asn1Item,
 };
 
+pub const CSSM_ENCODED_CERT = cssm_encoded_cert;
+
 pub const CSSM_ENCODED_CERT_PTR = ?*cssm_encoded_cert;
 
 pub const CSSM_CERT_PARSE_FORMAT = uint32;
@@ -1114,12 +1170,16 @@ pub const cssm_parsed_cert = extern struct {
     ParsedCert: ?*anyopaque,
 };
 
+pub const CSSM_PARSED_CERT = cssm_parsed_cert;
+
 pub const CSSM_PARSED_CERT_PTR = ?*cssm_parsed_cert;
 
 pub const cssm_cert_pair = extern struct {
     EncodedCert: CSSM_ENCODED_CERT,
     ParsedCert: CSSM_PARSED_CERT,
 };
+
+pub const CSSM_CERT_PAIR = cssm_cert_pair;
 
 pub const CSSM_CERT_PAIR_PTR = ?*cssm_cert_pair;
 
@@ -1150,6 +1210,8 @@ pub const anon5605 = extern union {
     PairCertList: CSSM_CERT_PAIR_PTR,
 };
 
+pub const CSSM_CERTGROUP = cssm_certgroup;
+
 pub const CSSM_CERTGROUP_PTR = ?*cssm_certgroup;
 
 pub const cssm_base_certs = extern struct {
@@ -1157,6 +1219,8 @@ pub const cssm_base_certs = extern struct {
     CLHandle: CSSM_CL_HANDLE,
     Certs: CSSM_CERTGROUP,
 };
+
+pub const CSSM_BASE_CERTS = cssm_base_certs;
 
 pub const CSSM_BASE_CERTS_PTR = ?*cssm_base_certs;
 
@@ -1167,6 +1231,8 @@ pub const cssm_access_credentials = extern struct {
     Callback: CSSM_CHALLENGE_CALLBACK,
     CallerCtx: ?*anyopaque,
 };
+
+pub const CSSM_ACCESS_CREDENTIALS = cssm_access_credentials;
 
 pub const CSSM_ACCESS_CREDENTIALS_PTR = ?*cssm_access_credentials;
 
@@ -1217,12 +1283,16 @@ pub const cssm_authorizationgroup = extern struct {
     AuthTags: ?*CSSM_ACL_AUTHORIZATION_TAG,
 };
 
+pub const CSSM_AUTHORIZATIONGROUP = cssm_authorizationgroup;
+
 pub const CSSM_AUTHORIZATIONGROUP_PTR = ?*cssm_authorizationgroup;
 
 pub const cssm_acl_validity_period = extern struct {
     StartDate: Asn1Item,
     EndDate: Asn1Item,
 };
+
+pub const CSSM_ACL_VALIDITY_PERIOD = cssm_acl_validity_period;
 
 pub const CSSM_ACL_VALIDITY_PERIOD_PTR = ?*cssm_acl_validity_period;
 
@@ -1234,6 +1304,8 @@ pub const cssm_acl_entry_prototype = extern struct {
     EntryTag: CSSM_STRING,
 };
 
+pub const CSSM_ACL_ENTRY_PROTOTYPE = cssm_acl_entry_prototype;
+
 pub const CSSM_ACL_ENTRY_PROTOTYPE_PTR = ?*cssm_acl_entry_prototype;
 
 pub const cssm_acl_owner_prototype = extern struct {
@@ -1241,9 +1313,16 @@ pub const cssm_acl_owner_prototype = extern struct {
     Delegate: CSSM_BOOL,
 };
 
+pub const CSSM_ACL_OWNER_PROTOTYPE = cssm_acl_owner_prototype;
+
 pub const CSSM_ACL_OWNER_PROTOTYPE_PTR = ?*cssm_acl_owner_prototype;
 
-pub const CSSM_ACL_SUBJECT_CALLBACK = ?*const fn(?*CSSM_LIST, CSSM_LIST_PTR, ?*anyopaque, ?*CSSM_MEMORY_FUNCS, ) callconv(.C) CSSM_RETURN;
+pub const CSSM_ACL_SUBJECT_CALLBACK = ?*const fn (
+    ?*CSSM_LIST,
+    CSSM_LIST_PTR,
+    ?*anyopaque,
+    ?*CSSM_MEMORY_FUNCS,
+) callconv(.C) CSSM_RETURN;
 
 pub const cssm_acl_entry_input = extern struct {
     Prototype: CSSM_ACL_ENTRY_PROTOTYPE,
@@ -1251,12 +1330,16 @@ pub const cssm_acl_entry_input = extern struct {
     CallerContext: ?*anyopaque,
 };
 
+pub const CSSM_ACL_ENTRY_INPUT = cssm_acl_entry_input;
+
 pub const CSSM_ACL_ENTRY_INPUT_PTR = ?*cssm_acl_entry_input;
 
 pub const cssm_resource_control_context = extern struct {
     AccessCred: CSSM_ACCESS_CREDENTIALS_PTR,
     InitialAclEntry: CSSM_ACL_ENTRY_INPUT,
 };
+
+pub const CSSM_RESOURCE_CONTROL_CONTEXT = cssm_resource_control_context;
 
 pub const CSSM_RESOURCE_CONTROL_CONTEXT_PTR = ?*cssm_resource_control_context;
 
@@ -1266,6 +1349,8 @@ pub const cssm_acl_entry_info = extern struct {
     EntryPublicInfo: CSSM_ACL_ENTRY_PROTOTYPE,
     EntryHandle: CSSM_ACL_HANDLE,
 };
+
+pub const CSSM_ACL_ENTRY_INFO = cssm_acl_entry_info;
 
 pub const CSSM_ACL_ENTRY_INFO_PTR = ?*cssm_acl_entry_info;
 
@@ -1283,9 +1368,11 @@ pub const cssm_acl_edit = extern struct {
     NewEntry: ?*CSSM_ACL_ENTRY_INPUT,
 };
 
+pub const CSSM_ACL_EDIT = cssm_acl_edit;
+
 pub const CSSM_ACL_EDIT_PTR = ?*cssm_acl_edit;
 
-pub const CSSM_PROC_ADDR = ?*const fn() callconv(.C) void;
+pub const CSSM_PROC_ADDR = ?*const fn () callconv(.C) void;
 
 pub const CSSM_PROC_ADDR_PTR = ?*CSSM_PROC_ADDR;
 
@@ -1294,13 +1381,17 @@ pub const cssm_func_name_addr = extern struct {
     Address: CSSM_PROC_ADDR,
 };
 
+pub const CSSM_FUNC_NAME_ADDR = cssm_func_name_addr;
+
 pub const CSSM_FUNC_NAME_ADDR_PTR = ?*cssm_func_name_addr;
 
 pub const cssm_date = extern struct {
-    Year: [4] uint8,
-    Month: [2] uint8,
-    Day: [2] uint8,
+    Year: [4]uint8,
+    Month: [2]uint8,
+    Day: [2]uint8,
 };
+
+pub const CSSM_DATE = cssm_date;
 
 pub const CSSM_DATE_PTR = ?*cssm_date;
 
@@ -1309,12 +1400,16 @@ pub const cssm_range = extern struct {
     Max: uint32,
 };
 
+pub const CSSM_RANGE = cssm_range;
+
 pub const CSSM_RANGE_PTR = ?*cssm_range;
 
 pub const cssm_query_size_data = extern struct {
     SizeInputBlock: uint32,
     SizeOutputBlock: uint32,
 };
+
+pub const CSSM_QUERY_SIZE_DATA = cssm_query_size_data;
 
 pub const CSSM_QUERY_SIZE_DATA_PTR = ?*cssm_query_size_data;
 
@@ -1328,6 +1423,8 @@ pub const cssm_key_size = extern struct {
     LogicalKeySizeInBits: uint32,
     EffectiveKeySizeInBits: uint32,
 };
+
+pub const CSSM_KEY_SIZE = cssm_key_size;
 
 pub const CSSM_KEY_SIZE_PTR = ?*cssm_key_size;
 
@@ -1595,12 +1692,16 @@ pub const cssm_keyheader = extern struct {
     Reserved: uint32,
 };
 
+pub const CSSM_KEYHEADER = cssm_keyheader;
+
 pub const CSSM_KEYHEADER_PTR = ?*cssm_keyheader;
 
 pub const cssm_key = extern struct {
     KeyHeader: CSSM_KEYHEADER,
     KeyData: Asn1Item,
 };
+
+pub const CSSM_KEY = cssm_key;
 
 pub const CSSM_KEY_PTR = ?*cssm_key;
 
@@ -1620,6 +1721,8 @@ pub const cssm_dl_db_handle = extern struct {
     DLHandle: CSSM_DL_HANDLE,
     DBHandle: CSSM_DB_HANDLE,
 };
+
+pub const CSSM_DL_DB_HANDLE = cssm_dl_db_handle;
 
 pub const CSSM_DL_DB_HANDLE_PTR = ?*cssm_dl_db_handle;
 
@@ -1757,6 +1860,8 @@ pub const cssm_kr_profile = extern struct {
     KRSPExtensions: CSSM_DATA_PTR,
 };
 
+pub const CSSM_CONTEXT_ATTRIBUTE = cssm_context_attribute;
+
 pub const CSSM_CONTEXT_ATTRIBUTE_PTR = ?*cssm_context_attribute;
 
 pub const cssm_context = extern struct {
@@ -1770,6 +1875,8 @@ pub const cssm_context = extern struct {
     WorkFactor: uint32,
     Reserved: uint32,
 };
+
+pub const CSSM_CONTEXT = cssm_context;
 
 pub const CSSM_CONTEXT_PTR = ?*cssm_context;
 
@@ -1829,6 +1936,8 @@ pub const cssm_pkcs1_oaep_params = extern struct {
     PSourceParams: Asn1Item,
 };
 
+pub const CSSM_PKCS1_OAEP_PARAMS = cssm_pkcs1_oaep_params;
+
 pub const CSSM_PKCS1_OAEP_PARAMS_PTR = ?*cssm_pkcs1_oaep_params;
 
 pub const cssm_csp_operational_statistics = extern struct {
@@ -1844,6 +1953,8 @@ pub const cssm_csp_operational_statistics = extern struct {
     TokenFreePrivateMem: uint32,
 };
 
+pub const CSSM_CSP_OPERATIONAL_STATISTICS = cssm_csp_operational_statistics;
+
 pub const CSSM_CSP_OPERATIONAL_STATISTICS_PTR = ?*cssm_csp_operational_statistics;
 
 pub const anon12281 = enum(i32) {
@@ -1854,6 +1965,8 @@ pub const cssm_pkcs5_pbkdf1_params = extern struct {
     Passphrase: Asn1Item,
     InitVector: Asn1Item,
 };
+
+pub const CSSM_PKCS5_PBKDF1_PARAMS = cssm_pkcs5_pbkdf1_params;
 
 pub const CSSM_PKCS5_PBKDF1_PARAMS_PTR = ?*cssm_pkcs5_pbkdf1_params;
 
@@ -1868,6 +1981,8 @@ pub const cssm_pkcs5_pbkdf2_params = extern struct {
     PseudoRandomFunction: CSSM_PKCS5_PBKDF2_PRF,
 };
 
+pub const CSSM_PKCS5_PBKDF2_PARAMS = cssm_pkcs5_pbkdf2_params;
+
 pub const CSSM_PKCS5_PBKDF2_PARAMS_PTR = ?*cssm_pkcs5_pbkdf2_params;
 
 pub const cssm_kea_derive_params = extern struct {
@@ -1875,12 +1990,16 @@ pub const cssm_kea_derive_params = extern struct {
     Yb: Asn1Item,
 };
 
+pub const CSSM_KEA_DERIVE_PARAMS = cssm_kea_derive_params;
+
 pub const CSSM_KEA_DERIVE_PARAMS_PTR = ?*cssm_kea_derive_params;
 
 pub const cssm_tp_authority_id = extern struct {
     AuthorityCert: ?*Asn1Item,
     AuthorityLocation: CSSM_NET_ADDRESS_PTR,
 };
+
+pub const CSSM_TP_AUTHORITY_ID = cssm_tp_authority_id;
 
 pub const CSSM_TP_AUTHORITY_ID_PTR = ?*cssm_tp_authority_id;
 
@@ -1899,7 +2018,7 @@ pub const anon12611 = enum(u32) {
     CSSM_TP_AUTHORITY_REQUEST_CRLISSUE = 256,
 };
 
-pub const CSSM_TP_VERIFICATION_RESULTS_CALLBACK = ?*const fn(CSSM_MODULE_HANDLE, ?*anyopaque, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const CSSM_TP_VERIFICATION_RESULTS_CALLBACK = ?*const fn (CSSM_MODULE_HANDLE, ?*anyopaque, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
 
 pub const CSSM_OID_PTR = ?*Asn1Oid;
 
@@ -1908,6 +2027,8 @@ pub const cssm_field = extern struct {
     FieldValue: Asn1Item,
 };
 
+pub const CSSM_FIELD = cssm_field;
+
 pub const CSSM_FIELD_PTR = ?*cssm_field;
 
 pub const cssm_tp_policyinfo = extern struct {
@@ -1915,6 +2036,8 @@ pub const cssm_tp_policyinfo = extern struct {
     PolicyIds: CSSM_FIELD_PTR,
     PolicyControl: ?*anyopaque,
 };
+
+pub const CSSM_TP_POLICYINFO = cssm_tp_policyinfo;
 
 pub const CSSM_TP_POLICYINFO_PTR = ?*cssm_tp_policyinfo;
 
@@ -1950,6 +2073,8 @@ pub const cssm_dl_db_list = extern struct {
     DLDBHandle: CSSM_DL_DB_HANDLE_PTR,
 };
 
+pub const CSSM_DL_DB_LIST = cssm_dl_db_list;
+
 pub const CSSM_DL_DB_LIST_PTR = ?*cssm_dl_db_list;
 
 pub const cssm_tp_callerauth_context = extern struct {
@@ -1962,6 +2087,8 @@ pub const cssm_tp_callerauth_context = extern struct {
     DBList: CSSM_DL_DB_LIST_PTR,
     CallerCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 };
+
+pub const CSSM_TP_CALLERAUTH_CONTEXT = cssm_tp_callerauth_context;
 
 pub const CSSM_TP_CALLERAUTH_CONTEXT_PTR = ?*cssm_tp_callerauth_context;
 
@@ -2013,6 +2140,8 @@ pub const cssm_encoded_crl = extern struct {
     CrlBlob: Asn1Item,
 };
 
+pub const CSSM_ENCODED_CRL = cssm_encoded_crl;
+
 pub const CSSM_ENCODED_CRL_PTR = ?*cssm_encoded_crl;
 
 pub const cssm_parsed_crl = extern struct {
@@ -2021,12 +2150,16 @@ pub const cssm_parsed_crl = extern struct {
     ParsedCrl: ?*anyopaque,
 };
 
+pub const CSSM_PARSED_CRL = cssm_parsed_crl;
+
 pub const CSSM_PARSED_CRL_PTR = ?*cssm_parsed_crl;
 
 pub const cssm_crl_pair = extern struct {
     EncodedCrl: CSSM_ENCODED_CRL,
     ParsedCrl: CSSM_PARSED_CRL,
 };
+
+pub const CSSM_CRL_PAIR = cssm_crl_pair;
 
 pub const CSSM_CRL_PAIR_PTR = ?*cssm_crl_pair;
 
@@ -2056,12 +2189,16 @@ pub const anon14045 = extern union {
     PairCrlList: CSSM_CRL_PAIR_PTR,
 };
 
+pub const CSSM_CRLGROUP = cssm_crlgroup;
+
 pub const CSSM_CRLGROUP_PTR = ?*cssm_crlgroup;
 
 pub const cssm_fieldgroup = extern struct {
     NumberOfFields: i32,
     Fields: CSSM_FIELD_PTR,
 };
+
+pub const CSSM_FIELDGROUP = cssm_fieldgroup;
 
 pub const CSSM_FIELDGROUP_PTR = ?*cssm_fieldgroup;
 
@@ -2085,6 +2222,8 @@ pub const cssm_evidence = extern struct {
     Evidence: ?*anyopaque,
 };
 
+pub const CSSM_EVIDENCE = cssm_evidence;
+
 pub const CSSM_EVIDENCE_PTR = ?*cssm_evidence;
 
 pub const cssm_tp_verify_context = extern struct {
@@ -2094,12 +2233,16 @@ pub const cssm_tp_verify_context = extern struct {
     Cred: CSSM_TP_CALLERAUTH_CONTEXT_PTR,
 };
 
+pub const CSSM_TP_VERIFY_CONTEXT = cssm_tp_verify_context;
+
 pub const CSSM_TP_VERIFY_CONTEXT_PTR = ?*cssm_tp_verify_context;
 
 pub const cssm_tp_verify_context_result = extern struct {
     NumberOfEvidences: uint32,
     Evidence: CSSM_EVIDENCE_PTR,
 };
+
+pub const CSSM_TP_VERIFY_CONTEXT_RESULT = cssm_tp_verify_context_result;
 
 pub const CSSM_TP_VERIFY_CONTEXT_RESULT_PTR = ?*cssm_tp_verify_context_result;
 
@@ -2108,12 +2251,16 @@ pub const cssm_tp_request_set = extern struct {
     Requests: ?*anyopaque,
 };
 
+pub const CSSM_TP_REQUEST_SET = cssm_tp_request_set;
+
 pub const CSSM_TP_REQUEST_SET_PTR = ?*cssm_tp_request_set;
 
 pub const cssm_tp_result_set = extern struct {
     NumberOfResults: uint32,
     Results: ?*anyopaque,
 };
+
+pub const CSSM_TP_RESULT_SET = cssm_tp_result_set;
 
 pub const CSSM_TP_RESULT_SET_PTR = ?*cssm_tp_result_set;
 
@@ -2131,6 +2278,8 @@ pub const cssm_tp_confirm_response = extern struct {
     NumberOfResponses: uint32,
     Responses: CSSM_TP_CONFIRM_STATUS_PTR,
 };
+
+pub const CSSM_TP_CONFIRM_RESPONSE = cssm_tp_confirm_response;
 
 pub const CSSM_TP_CONFIRM_RESPONSE_PTR = ?*cssm_tp_confirm_response;
 
@@ -2154,6 +2303,8 @@ pub const cssm_tp_certissue_input = extern struct {
     UserCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 };
 
+pub const CSSM_TP_CERTISSUE_INPUT = cssm_tp_certissue_input;
+
 pub const CSSM_TP_CERTISSUE_INPUT_PTR = ?*cssm_tp_certissue_input;
 
 pub const CSSM_TP_CERTISSUE_STATUS = uint32;
@@ -2173,6 +2324,8 @@ pub const cssm_tp_certissue_output = extern struct {
     CertGroup: CSSM_CERTGROUP_PTR,
     PerformedServiceRequests: CSSM_TP_SERVICES,
 };
+
+pub const CSSM_TP_CERTISSUE_OUTPUT = cssm_tp_certissue_output;
 
 pub const CSSM_TP_CERTISSUE_OUTPUT_PTR = ?*cssm_tp_certissue_output;
 
@@ -2208,6 +2361,8 @@ pub const cssm_tp_certchange_input = extern struct {
     CallerCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 };
 
+pub const CSSM_TP_CERTCHANGE_INPUT = cssm_tp_certchange_input;
+
 pub const CSSM_TP_CERTCHANGE_INPUT_PTR = ?*cssm_tp_certchange_input;
 
 pub const CSSM_TP_CERTCHANGE_STATUS = uint32;
@@ -2226,6 +2381,8 @@ pub const cssm_tp_certchange_output = extern struct {
     RevokeInfo: CSSM_FIELD,
 };
 
+pub const CSSM_TP_CERTCHANGE_OUTPUT = cssm_tp_certchange_output;
+
 pub const CSSM_TP_CERTCHANGE_OUTPUT_PTR = ?*cssm_tp_certchange_output;
 
 pub const cssm_tp_certverify_input = extern struct {
@@ -2233,6 +2390,8 @@ pub const cssm_tp_certverify_input = extern struct {
     Cert: CSSM_DATA_PTR,
     VerifyContext: CSSM_TP_VERIFY_CONTEXT_PTR,
 };
+
+pub const CSSM_TP_CERTVERIFY_INPUT = cssm_tp_certverify_input;
 
 pub const CSSM_TP_CERTVERIFY_INPUT_PTR = ?*cssm_tp_certverify_input;
 
@@ -2264,6 +2423,8 @@ pub const cssm_tp_certverify_output = extern struct {
     Evidence: CSSM_EVIDENCE_PTR,
 };
 
+pub const CSSM_TP_CERTVERIFY_OUTPUT = cssm_tp_certverify_output;
+
 pub const CSSM_TP_CERTVERIFY_OUTPUT_PTR = ?*cssm_tp_certverify_output;
 
 pub const cssm_tp_certnotarize_input = extern struct {
@@ -2277,6 +2438,8 @@ pub const cssm_tp_certnotarize_input = extern struct {
     ServiceControls: CSSM_FIELD_PTR,
     UserCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 };
+
+pub const CSSM_TP_CERTNOTARIZE_INPUT = cssm_tp_certnotarize_input;
 
 pub const CSSM_TP_CERTNOTARIZE_INPUT_PTR = ?*cssm_tp_certnotarize_input;
 
@@ -2297,6 +2460,8 @@ pub const cssm_tp_certnotarize_output = extern struct {
     PerformedServiceRequests: CSSM_TP_SERVICES,
 };
 
+pub const CSSM_TP_CERTNOTARIZE_OUTPUT = cssm_tp_certnotarize_output;
+
 pub const CSSM_TP_CERTNOTARIZE_OUTPUT_PTR = ?*cssm_tp_certnotarize_output;
 
 pub const cssm_tp_certreclaim_input = extern struct {
@@ -2305,6 +2470,8 @@ pub const cssm_tp_certreclaim_input = extern struct {
     SelectionFields: CSSM_FIELD_PTR,
     UserCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 };
+
+pub const CSSM_TP_CERTRECLAIM_INPUT = cssm_tp_certreclaim_input;
 
 pub const CSSM_TP_CERTRECLAIM_INPUT_PTR = ?*cssm_tp_certreclaim_input;
 
@@ -2324,6 +2491,8 @@ pub const cssm_tp_certreclaim_output = extern struct {
     KeyCacheHandle: CSSM_LONG_HANDLE,
 };
 
+pub const CSSM_TP_CERTRECLAIM_OUTPUT = cssm_tp_certreclaim_output;
+
 pub const CSSM_TP_CERTRECLAIM_OUTPUT_PTR = ?*cssm_tp_certreclaim_output;
 
 pub const cssm_tp_crlissue_input = extern struct {
@@ -2333,6 +2502,8 @@ pub const cssm_tp_crlissue_input = extern struct {
     PolicyIdentifier: CSSM_FIELD_PTR,
     CallerCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 };
+
+pub const CSSM_TP_CRLISSUE_INPUT = cssm_tp_crlissue_input;
 
 pub const CSSM_TP_CRLISSUE_INPUT_PTR = ?*cssm_tp_crlissue_input;
 
@@ -2353,6 +2524,8 @@ pub const cssm_tp_crlissue_output = extern struct {
     Crl: CSSM_ENCODED_CRL_PTR,
     CrlNextTime: CSSM_TIMESTRING,
 };
+
+pub const CSSM_TP_CRLISSUE_OUTPUT = cssm_tp_crlissue_output;
 
 pub const CSSM_TP_CRLISSUE_OUTPUT_PTR = ?*cssm_tp_crlissue_output;
 
@@ -2401,12 +2574,16 @@ pub const cssm_cert_bundle_header = extern struct {
     BundleEncoding: CSSM_CERT_BUNDLE_ENCODING,
 };
 
+pub const CSSM_CERT_BUNDLE_HEADER = cssm_cert_bundle_header;
+
 pub const CSSM_CERT_BUNDLE_HEADER_PTR = ?*cssm_cert_bundle_header;
 
 pub const cssm_cert_bundle = extern struct {
     BundleHeader: CSSM_CERT_BUNDLE_HEADER,
     Bundle: Asn1Item,
 };
+
+pub const CSSM_CERT_BUNDLE = cssm_cert_bundle;
 
 pub const CSSM_CERT_BUNDLE_PTR = ?*cssm_cert_bundle;
 
@@ -2452,6 +2629,8 @@ pub const cssm_db_attribute_label = extern union {
     AttributeID: uint32,
 };
 
+pub const CSSM_DB_ATTRIBUTE_INFO = cssm_db_attribute_info;
+
 pub const CSSM_DB_ATTRIBUTE_INFO_PTR = ?*cssm_db_attribute_info;
 
 pub const cssm_db_attribute_data = extern struct {
@@ -2459,6 +2638,8 @@ pub const cssm_db_attribute_data = extern struct {
     NumberOfValues: uint32,
     Value: CSSM_DATA_PTR,
 };
+
+pub const CSSM_DB_ATTRIBUTE_DATA = cssm_db_attribute_data;
 
 pub const CSSM_DB_ATTRIBUTE_DATA_PTR = ?*cssm_db_attribute_data;
 
@@ -2501,6 +2682,8 @@ pub const cssm_db_record_attribute_info = extern struct {
     AttributeInfo: CSSM_DB_ATTRIBUTE_INFO_PTR,
 };
 
+pub const CSSM_DB_RECORD_ATTRIBUTE_INFO = cssm_db_record_attribute_info;
+
 pub const CSSM_DB_RECORD_ATTRIBUTE_INFO_PTR = ?*cssm_db_record_attribute_info;
 
 pub const cssm_db_record_attribute_data = extern struct {
@@ -2510,12 +2693,16 @@ pub const cssm_db_record_attribute_data = extern struct {
     AttributeData: CSSM_DB_ATTRIBUTE_DATA_PTR,
 };
 
+pub const CSSM_DB_RECORD_ATTRIBUTE_DATA = cssm_db_record_attribute_data;
+
 pub const CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR = ?*cssm_db_record_attribute_data;
 
 pub const cssm_db_parsing_module_info = extern struct {
     RecordType: CSSM_DB_RECORDTYPE,
     ModuleSubserviceUid: CSSM_SUBSERVICE_UID,
 };
+
+pub const CSSM_DB_PARSING_MODULE_INFO = cssm_db_parsing_module_info;
 
 pub const CSSM_DB_PARSING_MODULE_INFO_PTR = ?*cssm_db_parsing_module_info;
 
@@ -2540,12 +2727,16 @@ pub const cssm_db_index_info = extern struct {
     Info: CSSM_DB_ATTRIBUTE_INFO,
 };
 
+pub const CSSM_DB_INDEX_INFO = cssm_db_index_info;
+
 pub const CSSM_DB_INDEX_INFO_PTR = ?*cssm_db_index_info;
 
 pub const cssm_db_unique_record = extern struct {
     RecordLocator: CSSM_DB_INDEX_INFO,
     RecordIdentifier: Asn1Item,
 };
+
+pub const CSSM_DB_UNIQUE_RECORD = cssm_db_unique_record;
 
 pub const CSSM_DB_UNIQUE_RECORD_PTR = ?*cssm_db_unique_record;
 
@@ -2554,6 +2745,8 @@ pub const cssm_db_record_index_info = extern struct {
     NumberOfIndexes: uint32,
     IndexInfo: CSSM_DB_INDEX_INFO_PTR,
 };
+
+pub const CSSM_DB_RECORD_INDEX_INFO = cssm_db_record_index_info;
 
 pub const CSSM_DB_RECORD_INDEX_INFO_PTR = ?*cssm_db_record_index_info;
 
@@ -2586,6 +2779,8 @@ pub const cssm_dbinfo = extern struct {
     Reserved: ?*anyopaque,
 };
 
+pub const CSSM_DBINFO = cssm_dbinfo;
+
 pub const CSSM_DBINFO_PTR = ?*cssm_dbinfo;
 
 pub const CSSM_DB_OPERATOR = uint32;
@@ -2617,6 +2812,8 @@ pub const cssm_selection_predicate = extern struct {
     Attribute: CSSM_DB_ATTRIBUTE_DATA,
 };
 
+pub const CSSM_SELECTION_PREDICATE = cssm_selection_predicate;
+
 pub const CSSM_SELECTION_PREDICATE_PTR = ?*cssm_selection_predicate;
 
 pub const anon20051 = enum(u32) {
@@ -2631,6 +2828,8 @@ pub const cssm_query_limits = extern struct {
     TimeLimit: uint32,
     SizeLimit: uint32,
 };
+
+pub const CSSM_QUERY_LIMITS = cssm_query_limits;
 
 pub const CSSM_QUERY_LIMITS_PTR = ?*cssm_query_limits;
 
@@ -2648,6 +2847,8 @@ pub const cssm_query = extern struct {
     QueryLimits: CSSM_QUERY_LIMITS,
     QueryFlags: CSSM_QUERY_FLAGS,
 };
+
+pub const CSSM_QUERY = cssm_query;
 
 pub const CSSM_QUERY_PTR = ?*cssm_query;
 
@@ -2691,6 +2892,8 @@ pub const cssm_name_list = extern struct {
     String: ?*?*i8,
 };
 
+pub const CSSM_NAME_LIST = cssm_name_list;
+
 pub const CSSM_NAME_LIST_PTR = ?*cssm_name_list;
 
 pub const CSSM_DB_RETRIEVAL_MODES = uint32;
@@ -2707,6 +2910,8 @@ pub const cssm_db_schema_attribute_info = extern struct {
     DataType: CSSM_DB_ATTRIBUTE_FORMAT,
 };
 
+pub const CSSM_DB_SCHEMA_ATTRIBUTE_INFO = cssm_db_schema_attribute_info;
+
 pub const CSSM_DB_SCHEMA_ATTRIBUTE_INFO_PTR = ?*cssm_db_schema_attribute_info;
 
 pub const cssm_db_schema_index_info = extern struct {
@@ -2716,6 +2921,8 @@ pub const cssm_db_schema_index_info = extern struct {
     IndexedDataLocation: CSSM_DB_INDEXED_DATA_LOCATION,
 };
 
+pub const CSSM_DB_SCHEMA_INDEX_INFO = cssm_db_schema_index_info;
+
 pub const CSSM_DB_SCHEMA_INDEX_INFO_PTR = ?*cssm_db_schema_index_info;
 
 pub const CSSM_BER_TAG = uint8;
@@ -2723,10 +2930,12 @@ pub const CSSM_BER_TAG = uint8;
 pub const CSSM_X509_ALGORITHM_IDENTIFIER_PTR = ?*Asn1AlgId;
 
 pub const cssm_x509_type_value_pair = extern struct {
-    @"type": Asn1Oid,
+    type: Asn1Oid,
     valueType: CSSM_BER_TAG,
     value: Asn1Item,
 };
+
+pub const CSSM_X509_TYPE_VALUE_PAIR = cssm_x509_type_value_pair;
 
 pub const CSSM_X509_TYPE_VALUE_PAIR_PTR = ?*cssm_x509_type_value_pair;
 
@@ -2735,12 +2944,16 @@ pub const cssm_x509_rdn = extern struct {
     AttributeTypeAndValue: CSSM_X509_TYPE_VALUE_PAIR_PTR,
 };
 
+pub const CSSM_X509_RDN = cssm_x509_rdn;
+
 pub const CSSM_X509_RDN_PTR = ?*cssm_x509_rdn;
 
 pub const cssm_x509_name = extern struct {
     numberOfRDNs: uint32,
     RelativeDistinguishedName: CSSM_X509_RDN_PTR,
 };
+
+pub const CSSM_X509_NAME = cssm_x509_name;
 
 pub const CSSM_X509_NAME_PTR = ?*cssm_x509_name;
 
@@ -2751,12 +2964,16 @@ pub const cssm_x509_time = extern struct {
     time: Asn1Item,
 };
 
+pub const CSSM_X509_TIME = cssm_x509_time;
+
 pub const CSSM_X509_TIME_PTR = ?*cssm_x509_time;
 
 pub const x509_validity = extern struct {
     notBefore: CSSM_X509_TIME,
     notAfter: CSSM_X509_TIME,
 };
+
+pub const CSSM_X509_VALIDITY = x509_validity;
 
 pub const CSSM_X509_VALIDITY_PTR = ?*x509_validity;
 
@@ -2768,6 +2985,8 @@ pub const cssm_x509ext_basicConstraints = extern struct {
     pathLenConstraint: uint32,
 };
 
+pub const CSSM_X509EXT_BASICCONSTRAINTS = cssm_x509ext_basicConstraints;
+
 pub const CSSM_X509EXT_BASICCONSTRAINTS_PTR = ?*cssm_x509ext_basicConstraints;
 
 pub const extension_data_format = enum(u32) {
@@ -2776,10 +2995,14 @@ pub const extension_data_format = enum(u32) {
     CSSM_X509_DATAFORMAT_PAIR = 2,
 };
 
+pub const CSSM_X509EXT_DATA_FORMAT = extension_data_format;
+
 pub const cssm_x509_extensionTagAndValue = extern struct {
-    @"type": CSSM_BER_TAG,
+    type: CSSM_BER_TAG,
     value: Asn1Item,
 };
+
+pub const CSSM_X509EXT_TAGandVALUE = cssm_x509_extensionTagAndValue;
 
 pub const CSSM_X509EXT_TAGandVALUE_PTR = ?*cssm_x509_extensionTagAndValue;
 
@@ -2787,6 +3010,8 @@ pub const cssm_x509ext_pair = extern struct {
     tagAndValue: CSSM_X509EXT_TAGandVALUE,
     parsedValue: ?*anyopaque,
 };
+
+pub const CSSM_X509EXT_PAIR = cssm_x509ext_pair;
 
 pub const CSSM_X509EXT_PAIR_PTR = ?*cssm_x509ext_pair;
 
@@ -2804,12 +3029,16 @@ pub const cssm_x509ext_value = extern union {
     valuePair: ?*CSSM_X509EXT_PAIR,
 };
 
+pub const CSSM_X509_EXTENSION = cssm_x509_extension;
+
 pub const CSSM_X509_EXTENSION_PTR = ?*cssm_x509_extension;
 
 pub const cssm_x509_extensions = extern struct {
     numberOfExtensions: uint32,
     extensions: CSSM_X509_EXTENSION_PTR,
 };
+
+pub const CSSM_X509_EXTENSIONS = cssm_x509_extensions;
 
 pub const CSSM_X509_EXTENSIONS_PTR = ?*cssm_x509_extensions;
 
@@ -2826,12 +3055,16 @@ pub const cssm_x509_tbs_certificate = extern struct {
     extensions: CSSM_X509_EXTENSIONS,
 };
 
+pub const CSSM_X509_TBS_CERTIFICATE = cssm_x509_tbs_certificate;
+
 pub const CSSM_X509_TBS_CERTIFICATE_PTR = ?*cssm_x509_tbs_certificate;
 
 pub const cssm_x509_signature = extern struct {
     algorithmIdentifier: Asn1AlgId,
     encrypted: Asn1Item,
 };
+
+pub const CSSM_X509_SIGNATURE = cssm_x509_signature;
 
 pub const CSSM_X509_SIGNATURE_PTR = ?*cssm_x509_signature;
 
@@ -2840,12 +3073,16 @@ pub const cssm_x509_signed_certificate = extern struct {
     signature: CSSM_X509_SIGNATURE,
 };
 
+pub const CSSM_X509_SIGNED_CERTIFICATE = cssm_x509_signed_certificate;
+
 pub const CSSM_X509_SIGNED_CERTIFICATE_PTR = ?*cssm_x509_signed_certificate;
 
 pub const cssm_x509ext_policyQualifierInfo = extern struct {
     policyQualifierId: Asn1Oid,
     value: Asn1Item,
 };
+
+pub const CSSM_X509EXT_POLICYQUALIFIERINFO = cssm_x509ext_policyQualifierInfo;
 
 pub const CSSM_X509EXT_POLICYQUALIFIERINFO_PTR = ?*cssm_x509ext_policyQualifierInfo;
 
@@ -2854,12 +3091,16 @@ pub const cssm_x509ext_policyQualifiers = extern struct {
     policyQualifier: ?*CSSM_X509EXT_POLICYQUALIFIERINFO,
 };
 
+pub const CSSM_X509EXT_POLICYQUALIFIERS = cssm_x509ext_policyQualifiers;
+
 pub const CSSM_X509EXT_POLICYQUALIFIERS_PTR = ?*cssm_x509ext_policyQualifiers;
 
 pub const cssm_x509ext_policyInfo = extern struct {
     policyIdentifier: Asn1Oid,
     policyQualifiers: CSSM_X509EXT_POLICYQUALIFIERS,
 };
+
+pub const CSSM_X509EXT_POLICYINFO = cssm_x509ext_policyInfo;
 
 pub const CSSM_X509EXT_POLICYINFO_PTR = ?*cssm_x509ext_policyInfo;
 
@@ -2869,12 +3110,16 @@ pub const cssm_x509_revoked_cert_entry = extern struct {
     extensions: CSSM_X509_EXTENSIONS,
 };
 
+pub const CSSM_X509_REVOKED_CERT_ENTRY = cssm_x509_revoked_cert_entry;
+
 pub const CSSM_X509_REVOKED_CERT_ENTRY_PTR = ?*cssm_x509_revoked_cert_entry;
 
 pub const cssm_x509_revoked_cert_list = extern struct {
     numberOfRevokedCertEntries: uint32,
     revokedCertEntry: CSSM_X509_REVOKED_CERT_ENTRY_PTR,
 };
+
+pub const CSSM_X509_REVOKED_CERT_LIST = cssm_x509_revoked_cert_list;
 
 pub const CSSM_X509_REVOKED_CERT_LIST_PTR = ?*cssm_x509_revoked_cert_list;
 
@@ -2888,6 +3133,8 @@ pub const cssm_x509_tbs_certlist = extern struct {
     extensions: CSSM_X509_EXTENSIONS,
 };
 
+pub const CSSM_X509_TBS_CERTLIST = cssm_x509_tbs_certlist;
+
 pub const CSSM_X509_TBS_CERTLIST_PTR = ?*cssm_x509_tbs_certlist;
 
 pub const cssm_x509_signed_crl = extern struct {
@@ -2895,35 +3142,51 @@ pub const cssm_x509_signed_crl = extern struct {
     signature: CSSM_X509_SIGNATURE,
 };
 
+pub const CSSM_X509_SIGNED_CRL = cssm_x509_signed_crl;
+
 pub const CSSM_X509_SIGNED_CRL_PTR = ?*cssm_x509_signed_crl;
 
-pub extern "Security" fn CertificateGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecCertificateGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const certificateGetTypeID = SecCertificateGetTypeID;
 
-pub extern "Security" fn CertificateCreateWithData(allocator: core_foundation.AllocatorRef, data: core_foundation.DataRef) callconv(.C) CertificateRef;
+extern "Security" fn SecCertificateCreateWithData(allocator: core_foundation.AllocatorRef, data: core_foundation.DataRef) callconv(.C) CertificateRef;
+pub const certificateCreateWithData = SecCertificateCreateWithData;
 
-pub extern "Security" fn CertificateCopyData(certificate: CertificateRef) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecCertificateCopyData(certificate: CertificateRef) callconv(.C) core_foundation.DataRef;
+pub const certificateCopyData = SecCertificateCopyData;
 
-pub extern "Security" fn CertificateCopySubjectSummary(certificate: CertificateRef) callconv(.C) core_foundation.StringRef;
+extern "Security" fn SecCertificateCopySubjectSummary(certificate: CertificateRef) callconv(.C) core_foundation.StringRef;
+pub const certificateCopySubjectSummary = SecCertificateCopySubjectSummary;
 
-pub extern "Security" fn CertificateCopyCommonName(certificate: CertificateRef, commonName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateCopyCommonName(certificate: CertificateRef, commonName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const certificateCopyCommonName = SecCertificateCopyCommonName;
 
-pub extern "Security" fn CertificateCopyEmailAddresses(certificate: CertificateRef, emailAddresses: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateCopyEmailAddresses(certificate: CertificateRef, emailAddresses: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const certificateCopyEmailAddresses = SecCertificateCopyEmailAddresses;
 
-pub extern "Security" fn CertificateCopyNormalizedIssuerSequence(certificate: CertificateRef) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecCertificateCopyNormalizedIssuerSequence(certificate: CertificateRef) callconv(.C) core_foundation.DataRef;
+pub const certificateCopyNormalizedIssuerSequence = SecCertificateCopyNormalizedIssuerSequence;
 
-pub extern "Security" fn CertificateCopyNormalizedSubjectSequence(certificate: CertificateRef) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecCertificateCopyNormalizedSubjectSequence(certificate: CertificateRef) callconv(.C) core_foundation.DataRef;
+pub const certificateCopyNormalizedSubjectSequence = SecCertificateCopyNormalizedSubjectSequence;
 
-pub extern "Security" fn CertificateCopyKey(certificate: CertificateRef) callconv(.C) KeyRef;
+extern "Security" fn SecCertificateCopyKey(certificate: CertificateRef) callconv(.C) KeyRef;
+pub const certificateCopyKey = SecCertificateCopyKey;
 
-pub extern "Security" fn CertificateCopyPublicKey(certificate: CertificateRef, key: ?*KeyRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateCopyPublicKey(certificate: CertificateRef, key: ?*KeyRef) callconv(.C) objc.OSStatus;
+pub const certificateCopyPublicKey = SecCertificateCopyPublicKey;
 
-pub extern "Security" fn CertificateCopySerialNumberData(certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecCertificateCopySerialNumberData(certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+pub const certificateCopySerialNumberData = SecCertificateCopySerialNumberData;
 
-pub extern "Security" fn CertificateCopyNotValidBeforeDate(certificate: CertificateRef) callconv(.C) core_foundation.DateRef;
+extern "Security" fn SecCertificateCopyNotValidBeforeDate(certificate: CertificateRef) callconv(.C) core_foundation.DateRef;
+pub const certificateCopyNotValidBeforeDate = SecCertificateCopyNotValidBeforeDate;
 
-pub extern "Security" fn CertificateCopyNotValidAfterDate(certificate: CertificateRef) callconv(.C) core_foundation.DateRef;
+extern "Security" fn SecCertificateCopyNotValidAfterDate(certificate: CertificateRef) callconv(.C) core_foundation.DateRef;
+pub const certificateCopyNotValidAfterDate = SecCertificateCopyNotValidAfterDate;
 
-pub extern "Security" fn CertificateCopySerialNumber(certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecCertificateCopySerialNumber(certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+pub const certificateCopySerialNumber = SecCertificateCopySerialNumber;
 
 pub const anon2671 = enum(u32) {
     kSecSubjectItemAttr = 1937072746,
@@ -2935,29 +3198,51 @@ pub const anon2671 = enum(u32) {
     kSecCertEncodingItemAttr = 1667591779,
 };
 
-pub extern "Security" fn CertificateCreateFromData(data: ?*Asn1Item, @"type": CSSM_CERT_TYPE, encoding: CSSM_CERT_ENCODING, certificate: ?*CertificateRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateCreateFromData(
+    data: ?*Asn1Item,
+    @"type": CSSM_CERT_TYPE,
+    encoding: CSSM_CERT_ENCODING,
+    certificate: ?*CertificateRef,
+) callconv(.C) objc.OSStatus;
+pub const certificateCreateFromData = SecCertificateCreateFromData;
 
-pub extern "Security" fn CertificateAddToKeychain(certificate: CertificateRef, keychain: KeychainRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateAddToKeychain(certificate: CertificateRef, keychain: KeychainRef) callconv(.C) objc.OSStatus;
+pub const certificateAddToKeychain = SecCertificateAddToKeychain;
 
-pub extern "Security" fn CertificateGetData(certificate: CertificateRef, data: CSSM_DATA_PTR) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateGetData(certificate: CertificateRef, data: CSSM_DATA_PTR) callconv(.C) objc.OSStatus;
+pub const certificateGetData = SecCertificateGetData;
 
-pub extern "Security" fn CertificateGetType(certificate: CertificateRef, certificateType: ?*CSSM_CERT_TYPE) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateGetType(certificate: CertificateRef, certificateType: ?*CSSM_CERT_TYPE) callconv(.C) objc.OSStatus;
+pub const certificateGetType = SecCertificateGetType;
 
-pub extern "Security" fn CertificateGetSubject(certificate: CertificateRef, subject: ?*?*CSSM_X509_NAME) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateGetSubject(certificate: CertificateRef, subject: ?*?*CSSM_X509_NAME) callconv(.C) objc.OSStatus;
+pub const certificateGetSubject = SecCertificateGetSubject;
 
-pub extern "Security" fn CertificateGetIssuer(certificate: CertificateRef, issuer: ?*?*CSSM_X509_NAME) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateGetIssuer(certificate: CertificateRef, issuer: ?*?*CSSM_X509_NAME) callconv(.C) objc.OSStatus;
+pub const certificateGetIssuer = SecCertificateGetIssuer;
 
-pub extern "Security" fn CertificateGetCLHandle(certificate: CertificateRef, clHandle: ?*CSSM_CL_HANDLE) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateGetCLHandle(certificate: CertificateRef, clHandle: ?*CSSM_CL_HANDLE) callconv(.C) objc.OSStatus;
+pub const certificateGetCLHandle = SecCertificateGetCLHandle;
 
-pub extern "Security" fn CertificateGetAlgorithmID(certificate: CertificateRef, algid: ?*?*Asn1AlgId) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateGetAlgorithmID(certificate: CertificateRef, algid: ?*?*Asn1AlgId) callconv(.C) objc.OSStatus;
+pub const certificateGetAlgorithmID = SecCertificateGetAlgorithmID;
 
-pub extern "Security" fn CertificateCopyPreference(name: core_foundation.StringRef, keyUsage: uint32, certificate: ?*CertificateRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateCopyPreference(name: core_foundation.StringRef, keyUsage: uint32, certificate: ?*CertificateRef) callconv(.C) objc.OSStatus;
+pub const certificateCopyPreference = SecCertificateCopyPreference;
 
-pub extern "Security" fn CertificateCopyPreferred(name: core_foundation.StringRef, keyUsage: core_foundation.ArrayRef) callconv(.C) CertificateRef;
+extern "Security" fn SecCertificateCopyPreferred(name: core_foundation.StringRef, keyUsage: core_foundation.ArrayRef) callconv(.C) CertificateRef;
+pub const certificateCopyPreferred = SecCertificateCopyPreferred;
 
-pub extern "Security" fn CertificateSetPreference(certificate: CertificateRef, name: core_foundation.StringRef, keyUsage: uint32, date: core_foundation.DateRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateSetPreference(
+    certificate: CertificateRef,
+    name: core_foundation.StringRef,
+    keyUsage: uint32,
+    date: core_foundation.DateRef,
+) callconv(.C) objc.OSStatus;
+pub const certificateSetPreference = SecCertificateSetPreference;
 
-pub extern "Security" fn CertificateSetPreferred(certificate: CertificateRef, name: core_foundation.StringRef, keyUsage: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCertificateSetPreferred(certificate: CertificateRef, name: core_foundation.StringRef, keyUsage: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const certificateSetPreferred = SecCertificateSetPreferred;
 
 pub const KeyUsage = enum(objc.uint32_t) {
     kSecKeyUsageUnspecified = 0,
@@ -2975,37 +3260,58 @@ pub const KeyUsage = enum(objc.uint32_t) {
     kSecKeyUsageAll = 2147483647,
 };
 
-pub extern "Security" fn CertificateCopyValues(certificate: CertificateRef, keys: core_foundation.ArrayRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DictionaryRef;
+extern "Security" fn SecCertificateCopyValues(certificate: CertificateRef, keys: core_foundation.ArrayRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DictionaryRef;
+pub const certificateCopyValues = SecCertificateCopyValues;
 
-pub extern "Security" fn CertificateCopyLongDescription(alloc: core_foundation.AllocatorRef, certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.StringRef;
+extern "Security" fn SecCertificateCopyLongDescription(alloc: core_foundation.AllocatorRef, certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.StringRef;
+pub const certificateCopyLongDescription = SecCertificateCopyLongDescription;
 
-pub extern "Security" fn CertificateCopyShortDescription(alloc: core_foundation.AllocatorRef, certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.StringRef;
+extern "Security" fn SecCertificateCopyShortDescription(alloc: core_foundation.AllocatorRef, certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.StringRef;
+pub const certificateCopyShortDescription = SecCertificateCopyShortDescription;
 
-pub extern "Security" fn CertificateCopyNormalizedIssuerContent(certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecCertificateCopyNormalizedIssuerContent(certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+pub const certificateCopyNormalizedIssuerContent = SecCertificateCopyNormalizedIssuerContent;
 
-pub extern "Security" fn CertificateCopyNormalizedSubjectContent(certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecCertificateCopyNormalizedSubjectContent(certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+pub const certificateCopyNormalizedSubjectContent = SecCertificateCopyNormalizedSubjectContent;
 
-pub extern "Security" fn IdentityGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecIdentityGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const identityGetTypeID = SecIdentityGetTypeID;
 
-pub extern "Security" fn IdentityCreateWithCertificate(keychainOrArray: core_foundation.TypeRef, certificateRef: CertificateRef, identityRef: ?*IdentityRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentityCreateWithCertificate(keychainOrArray: core_foundation.TypeRef, certificateRef: CertificateRef, identityRef: ?*IdentityRef) callconv(.C) objc.OSStatus;
+pub const identityCreateWithCertificate = SecIdentityCreateWithCertificate;
 
-pub extern "Security" fn IdentityCopyCertificate(identityRef: IdentityRef, certificateRef: ?*CertificateRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentityCopyCertificate(identityRef: IdentityRef, certificateRef: ?*CertificateRef) callconv(.C) objc.OSStatus;
+pub const identityCopyCertificate = SecIdentityCopyCertificate;
 
-pub extern "Security" fn IdentityCopyPrivateKey(identityRef: IdentityRef, privateKeyRef: ?*KeyRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentityCopyPrivateKey(identityRef: IdentityRef, privateKeyRef: ?*KeyRef) callconv(.C) objc.OSStatus;
+pub const identityCopyPrivateKey = SecIdentityCopyPrivateKey;
 
-pub extern "Security" fn IdentityCopyPreference(name: core_foundation.StringRef, keyUsage: CSSM_KEYUSE, validIssuers: core_foundation.ArrayRef, identity: ?*IdentityRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentityCopyPreference(
+    name: core_foundation.StringRef,
+    keyUsage: CSSM_KEYUSE,
+    validIssuers: core_foundation.ArrayRef,
+    identity: ?*IdentityRef,
+) callconv(.C) objc.OSStatus;
+pub const identityCopyPreference = SecIdentityCopyPreference;
 
-pub extern "Security" fn IdentityCopyPreferred(name: core_foundation.StringRef, keyUsage: core_foundation.ArrayRef, validIssuers: core_foundation.ArrayRef) callconv(.C) IdentityRef;
+extern "Security" fn SecIdentityCopyPreferred(name: core_foundation.StringRef, keyUsage: core_foundation.ArrayRef, validIssuers: core_foundation.ArrayRef) callconv(.C) IdentityRef;
+pub const identityCopyPreferred = SecIdentityCopyPreferred;
 
-pub extern "Security" fn IdentitySetPreference(identity: IdentityRef, name: core_foundation.StringRef, keyUsage: CSSM_KEYUSE) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentitySetPreference(identity: IdentityRef, name: core_foundation.StringRef, keyUsage: CSSM_KEYUSE) callconv(.C) objc.OSStatus;
+pub const identitySetPreference = SecIdentitySetPreference;
 
-pub extern "Security" fn IdentitySetPreferred(identity: IdentityRef, name: core_foundation.StringRef, keyUsage: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentitySetPreferred(identity: IdentityRef, name: core_foundation.StringRef, keyUsage: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const identitySetPreferred = SecIdentitySetPreferred;
 
-pub extern "Security" fn IdentityCopySystemIdentity(domain: core_foundation.StringRef, idRef: ?*IdentityRef, actualDomain: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentityCopySystemIdentity(domain: core_foundation.StringRef, idRef: ?*IdentityRef, actualDomain: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const identityCopySystemIdentity = SecIdentityCopySystemIdentity;
 
-pub extern "Security" fn IdentitySetSystemIdentity(domain: core_foundation.StringRef, idRef: IdentityRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentitySetSystemIdentity(domain: core_foundation.StringRef, idRef: IdentityRef) callconv(.C) objc.OSStatus;
+pub const identitySetSystemIdentity = SecIdentitySetSystemIdentity;
 
-pub extern "Security" fn AccessControlGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecAccessControlGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const accessControlGetTypeID = SecAccessControlGetTypeID;
 
 pub const AccessControlCreateFlags = enum(core_foundation.OptionFlags) {
     kSecAccessControlUserPresence = 1,
@@ -3022,15 +3328,25 @@ pub const AccessControlCreateFlags = enum(core_foundation.OptionFlags) {
     kSecAccessControlApplicationPassword = 2147483648,
 };
 
-pub extern "Security" fn AccessControlCreateWithFlags(allocator: core_foundation.AllocatorRef, protection: core_foundation.TypeRef, flags: AccessControlCreateFlags, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) AccessControlRef;
+extern "Security" fn SecAccessControlCreateWithFlags(
+    allocator: core_foundation.AllocatorRef,
+    protection: core_foundation.TypeRef,
+    flags: AccessControlCreateFlags,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) AccessControlRef;
+pub const accessControlCreateWithFlags = SecAccessControlCreateWithFlags;
 
-pub extern "Security" fn ItemCopyMatching(query: core_foundation.DictionaryRef, result: ?*core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecItemCopyMatching(query: core_foundation.DictionaryRef, result: ?*core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const itemCopyMatching = SecItemCopyMatching;
 
-pub extern "Security" fn ItemAdd(attributes: core_foundation.DictionaryRef, result: ?*core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecItemAdd(attributes: core_foundation.DictionaryRef, result: ?*core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const itemAdd = SecItemAdd;
 
-pub extern "Security" fn ItemUpdate(query: core_foundation.DictionaryRef, attributesToUpdate: core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecItemUpdate(query: core_foundation.DictionaryRef, attributesToUpdate: core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+pub const itemUpdate = SecItemUpdate;
 
-pub extern "Security" fn ItemDelete(query: core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecItemDelete(query: core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+pub const itemDelete = SecItemDelete;
 
 pub const AccessOwnerType = objc.UInt32;
 
@@ -3041,23 +3357,54 @@ pub const anon491 = enum(u32) {
     kSecMatchBits = 3,
 };
 
-pub extern "Security" fn AccessGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecAccessGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const accessGetTypeID = SecAccessGetTypeID;
 
-pub extern "Security" fn AccessCreate(descriptor: core_foundation.StringRef, trustedlist: core_foundation.ArrayRef, accessRef: ?*AccessRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecAccessCreate(descriptor: core_foundation.StringRef, trustedlist: core_foundation.ArrayRef, accessRef: ?*AccessRef) callconv(.C) objc.OSStatus;
+pub const accessCreate = SecAccessCreate;
 
-pub extern "Security" fn AccessCreateFromOwnerAndACL(owner: ?*CSSM_ACL_OWNER_PROTOTYPE, aclCount: uint32, acls: ?*CSSM_ACL_ENTRY_INFO, accessRef: ?*AccessRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecAccessCreateFromOwnerAndACL(
+    owner: ?*CSSM_ACL_OWNER_PROTOTYPE,
+    aclCount: uint32,
+    acls: ?*CSSM_ACL_ENTRY_INFO,
+    accessRef: ?*AccessRef,
+) callconv(.C) objc.OSStatus;
+pub const accessCreateFromOwnerAndACL = SecAccessCreateFromOwnerAndACL;
 
-pub extern "Security" fn AccessCreateWithOwnerAndACL(userId: objc.uid_t, groupId: objc.gid_t, ownerType: AccessOwnerType, acls: core_foundation.ArrayRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) AccessRef;
+extern "Security" fn SecAccessCreateWithOwnerAndACL(
+    userId: objc.uid_t,
+    groupId: objc.gid_t,
+    ownerType: AccessOwnerType,
+    acls: core_foundation.ArrayRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) AccessRef;
+pub const accessCreateWithOwnerAndACL = SecAccessCreateWithOwnerAndACL;
 
-pub extern "Security" fn AccessGetOwnerAndACL(accessRef: AccessRef, owner: ?*CSSM_ACL_OWNER_PROTOTYPE_PTR, aclCount: ?*uint32, acls: ?*CSSM_ACL_ENTRY_INFO_PTR, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecAccessGetOwnerAndACL(
+    accessRef: AccessRef,
+    owner: ?*CSSM_ACL_OWNER_PROTOTYPE_PTR,
+    aclCount: ?*uint32,
+    acls: ?*CSSM_ACL_ENTRY_INFO_PTR,
+) callconv(.C) objc.OSStatus;
+pub const accessGetOwnerAndACL = SecAccessGetOwnerAndACL;
 
-pub extern "Security" fn AccessCopyOwnerAndACL(accessRef: AccessRef, userId: ?*objc.uid_t, groupId: ?*objc.gid_t, ownerType: ?*AccessOwnerType, aclList: ?*core_foundation.ArrayRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecAccessCopyOwnerAndACL(
+    accessRef: AccessRef,
+    userId: ?*objc.uid_t,
+    groupId: ?*objc.gid_t,
+    ownerType: ?*AccessOwnerType,
+    aclList: ?*core_foundation.ArrayRef,
+) callconv(.C) objc.OSStatus;
+pub const accessCopyOwnerAndACL = SecAccessCopyOwnerAndACL;
 
-pub extern "Security" fn AccessCopyACLList(accessRef: AccessRef, aclList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecAccessCopyACLList(accessRef: AccessRef, aclList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const accessCopyACLList = SecAccessCopyACLList;
 
-pub extern "Security" fn AccessCopySelectedACLList(accessRef: AccessRef, action: CSSM_ACL_AUTHORIZATION_TAG, aclList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecAccessCopySelectedACLList(accessRef: AccessRef, action: CSSM_ACL_AUTHORIZATION_TAG, aclList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const accessCopySelectedACLList = SecAccessCopySelectedACLList;
 
-pub extern "Security" fn AccessCopyMatchingACLList(accessRef: AccessRef, authorizationTag: core_foundation.TypeRef) callconv(.C) core_foundation.ArrayRef;
+extern "Security" fn SecAccessCopyMatchingACLList(accessRef: AccessRef, authorizationTag: core_foundation.TypeRef) callconv(.C) core_foundation.ArrayRef;
+pub const accessCopyMatchingACLList = SecAccessCopyMatchingACLList;
 
 pub const anon1241 = enum(i32) {
     kSecKeyKeyClass = 0,
@@ -3123,59 +3470,146 @@ pub const KeySizes = enum(objc.uint32_t) {
     kSecRSAMax = 4096,
 };
 
-pub extern "Security" fn KeyGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecKeyGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const keyGetTypeID = SecKeyGetTypeID;
 
-pub extern "Security" fn KeyCreatePair(keychainRef: KeychainRef, algorithm: CSSM_ALGORITHMS, keySizeInBits: uint32, contextHandle: CSSM_CC_HANDLE, publicKeyUsage: CSSM_KEYUSE, publicKeyAttr: uint32, privateKeyUsage: CSSM_KEYUSE, privateKeyAttr: uint32, initialAccess: AccessRef, publicKey: ?*KeyRef, privateKey: ?*KeyRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeyCreatePair(
+    keychainRef: KeychainRef,
+    algorithm: CSSM_ALGORITHMS,
+    keySizeInBits: uint32,
+    contextHandle: CSSM_CC_HANDLE,
+    publicKeyUsage: CSSM_KEYUSE,
+    publicKeyAttr: uint32,
+    privateKeyUsage: CSSM_KEYUSE,
+    privateKeyAttr: uint32,
+    initialAccess: AccessRef,
+    publicKey: ?*KeyRef,
+    privateKey: ?*KeyRef,
+) callconv(.C) objc.OSStatus;
+pub const keyCreatePair = SecKeyCreatePair;
 
-pub extern "Security" fn KeyGenerate(keychainRef: KeychainRef, algorithm: CSSM_ALGORITHMS, keySizeInBits: uint32, contextHandle: CSSM_CC_HANDLE, keyUsage: CSSM_KEYUSE, keyAttr: uint32, initialAccess: AccessRef, keyRef: ?*KeyRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeyGenerate(
+    keychainRef: KeychainRef,
+    algorithm: CSSM_ALGORITHMS,
+    keySizeInBits: uint32,
+    contextHandle: CSSM_CC_HANDLE,
+    keyUsage: CSSM_KEYUSE,
+    keyAttr: uint32,
+    initialAccess: AccessRef,
+    keyRef: ?*KeyRef,
+) callconv(.C) objc.OSStatus;
+pub const keyGenerate = SecKeyGenerate;
 
-pub extern "Security" fn KeyGetCSSMKey(key: KeyRef, cssmKey: ?*?*CSSM_KEY) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeyGetCSSMKey(key: KeyRef, cssmKey: ?*?*CSSM_KEY) callconv(.C) objc.OSStatus;
+pub const keyGetCSSMKey = SecKeyGetCSSMKey;
 
-pub extern "Security" fn KeyGetCSPHandle(keyRef: KeyRef, cspHandle: ?*CSSM_CSP_HANDLE) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeyGetCSPHandle(keyRef: KeyRef, cspHandle: ?*CSSM_CSP_HANDLE) callconv(.C) objc.OSStatus;
+pub const keyGetCSPHandle = SecKeyGetCSPHandle;
 
-pub extern "Security" fn KeyGetCredentials(keyRef: KeyRef, operation: CSSM_ACL_AUTHORIZATION_TAG, credentialType: CredentialType, outCredentials: ?*?*CSSM_ACCESS_CREDENTIALS, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeyGetCredentials(
+    keyRef: KeyRef,
+    operation: CSSM_ACL_AUTHORIZATION_TAG,
+    credentialType: CredentialType,
+    outCredentials: ?*?*CSSM_ACCESS_CREDENTIALS,
+) callconv(.C) objc.OSStatus;
+pub const keyGetCredentials = SecKeyGetCredentials;
 
-pub extern "Security" fn KeyGenerateSymmetric(parameters: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+extern "Security" fn SecKeyGenerateSymmetric(parameters: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+pub const keyGenerateSymmetric = SecKeyGenerateSymmetric;
 
-pub extern "Security" fn KeyCreateFromData(parameters: core_foundation.DictionaryRef, keyData: core_foundation.DataRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+extern "Security" fn SecKeyCreateFromData(parameters: core_foundation.DictionaryRef, keyData: core_foundation.DataRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+pub const keyCreateFromData = SecKeyCreateFromData;
 
-pub const KeyGeneratePairBlock = *const fn(KeyRef, KeyRef, core_foundation.ErrorRef) callconv(.C) void;
+pub const KeyGeneratePairBlock = *const fn (KeyRef, KeyRef, core_foundation.ErrorRef) callconv(.C) void;
 
-pub extern "Security" fn KeyGeneratePairAsync(parameters: core_foundation.DictionaryRef, deliveryQueue: objc.dispatch_queue_t, result: KeyGeneratePairBlock) callconv(.C) void;
+extern "Security" fn SecKeyGeneratePairAsync(parameters: core_foundation.DictionaryRef, deliveryQueue: objc.dispatch_queue_t, result: KeyGeneratePairBlock) callconv(.C) void;
+pub const keyGeneratePairAsync = SecKeyGeneratePairAsync;
 
-pub extern "Security" fn KeyDeriveFromPassword(password: core_foundation.StringRef, parameters: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+extern "Security" fn SecKeyDeriveFromPassword(password: core_foundation.StringRef, parameters: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+pub const keyDeriveFromPassword = SecKeyDeriveFromPassword;
 
-pub extern "Security" fn KeyWrapSymmetric(keyToWrap: KeyRef, wrappingKey: KeyRef, parameters: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecKeyWrapSymmetric(
+    keyToWrap: KeyRef,
+    wrappingKey: KeyRef,
+    parameters: core_foundation.DictionaryRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) core_foundation.DataRef;
+pub const keyWrapSymmetric = SecKeyWrapSymmetric;
 
-pub extern "Security" fn KeyUnwrapSymmetric(keyToUnwrap: ?*core_foundation.DataRef, unwrappingKey: KeyRef, parameters: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) KeyRef;
+extern "Security" fn SecKeyUnwrapSymmetric(
+    keyToUnwrap: ?*core_foundation.DataRef,
+    unwrappingKey: KeyRef,
+    parameters: core_foundation.DictionaryRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) KeyRef;
+pub const keyUnwrapSymmetric = SecKeyUnwrapSymmetric;
 
-pub extern "Security" fn KeyGeneratePair(parameters: core_foundation.DictionaryRef, publicKey: ?*KeyRef, privateKey: ?*KeyRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeyGeneratePair(parameters: core_foundation.DictionaryRef, publicKey: ?*KeyRef, privateKey: ?*KeyRef) callconv(.C) objc.OSStatus;
+pub const keyGeneratePair = SecKeyGeneratePair;
 
-pub extern "Security" fn KeyCreateRandomKey(parameters: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+extern "Security" fn SecKeyCreateRandomKey(parameters: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+pub const keyCreateRandomKey = SecKeyCreateRandomKey;
 
-pub extern "Security" fn KeyCreateWithData(keyData: core_foundation.DataRef, attributes: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+extern "Security" fn SecKeyCreateWithData(keyData: core_foundation.DataRef, attributes: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) KeyRef;
+pub const keyCreateWithData = SecKeyCreateWithData;
 
-pub extern "Security" fn KeyGetBlockSize(key: KeyRef) callconv(.C) objc.size_t;
+extern "Security" fn SecKeyGetBlockSize(key: KeyRef) callconv(.C) objc.size_t;
+pub const keyGetBlockSize = SecKeyGetBlockSize;
 
-pub extern "Security" fn KeyCopyExternalRepresentation(key: KeyRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecKeyCopyExternalRepresentation(key: KeyRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
+pub const keyCopyExternalRepresentation = SecKeyCopyExternalRepresentation;
 
-pub extern "Security" fn KeyCopyAttributes(key: KeyRef) callconv(.C) core_foundation.DictionaryRef;
+extern "Security" fn SecKeyCopyAttributes(key: KeyRef) callconv(.C) core_foundation.DictionaryRef;
+pub const keyCopyAttributes = SecKeyCopyAttributes;
 
-pub extern "Security" fn KeyCopyPublicKey(key: KeyRef) callconv(.C) KeyRef;
+extern "Security" fn SecKeyCopyPublicKey(key: KeyRef) callconv(.C) KeyRef;
+pub const keyCopyPublicKey = SecKeyCopyPublicKey;
 
 pub const KeyAlgorithm = core_foundation.StringRef;
 
-pub extern "Security" fn KeyCreateSignature(key: KeyRef, algorithm: KeyAlgorithm, dataToSign: core_foundation.DataRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecKeyCreateSignature(
+    key: KeyRef,
+    algorithm: KeyAlgorithm,
+    dataToSign: core_foundation.DataRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) core_foundation.DataRef;
+pub const keyCreateSignature = SecKeyCreateSignature;
 
-pub extern "Security" fn KeyVerifySignature(key: KeyRef, algorithm: KeyAlgorithm, signedData: core_foundation.DataRef, signature: core_foundation.DataRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) objc.Boolean;
+extern "Security" fn SecKeyVerifySignature(
+    key: KeyRef,
+    algorithm: KeyAlgorithm,
+    signedData: core_foundation.DataRef,
+    signature: core_foundation.DataRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) objc.Boolean;
+pub const keyVerifySignature = SecKeyVerifySignature;
 
-pub extern "Security" fn KeyCreateEncryptedData(key: KeyRef, algorithm: KeyAlgorithm, plaintext: core_foundation.DataRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecKeyCreateEncryptedData(
+    key: KeyRef,
+    algorithm: KeyAlgorithm,
+    plaintext: core_foundation.DataRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) core_foundation.DataRef;
+pub const keyCreateEncryptedData = SecKeyCreateEncryptedData;
 
-pub extern "Security" fn KeyCreateDecryptedData(key: KeyRef, algorithm: KeyAlgorithm, ciphertext: core_foundation.DataRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecKeyCreateDecryptedData(
+    key: KeyRef,
+    algorithm: KeyAlgorithm,
+    ciphertext: core_foundation.DataRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) core_foundation.DataRef;
+pub const keyCreateDecryptedData = SecKeyCreateDecryptedData;
 
 pub const KeyKeyExchangeParameter = core_foundation.StringRef;
 
-pub extern "Security" fn KeyCopyKeyExchangeResult(privateKey: KeyRef, algorithm: KeyAlgorithm, publicKey: KeyRef, parameters: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecKeyCopyKeyExchangeResult(
+    privateKey: KeyRef,
+    algorithm: KeyAlgorithm,
+    publicKey: KeyRef,
+    parameters: core_foundation.DictionaryRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) core_foundation.DataRef;
+pub const keyCopyKeyExchangeResult = SecKeyCopyKeyExchangeResult;
 
 pub const KeyOperationType = enum(core_foundation.Index) {
     kSecKeyOperationTypeSign = 0,
@@ -3185,15 +3619,20 @@ pub const KeyOperationType = enum(core_foundation.Index) {
     kSecKeyOperationTypeKeyExchange = 4,
 };
 
-pub extern "Security" fn KeyIsAlgorithmSupported(key: KeyRef, operation: KeyOperationType, algorithm: KeyAlgorithm) callconv(.C) objc.Boolean;
+extern "Security" fn SecKeyIsAlgorithmSupported(key: KeyRef, operation: KeyOperationType, algorithm: KeyAlgorithm) callconv(.C) objc.Boolean;
+pub const keyIsAlgorithmSupported = SecKeyIsAlgorithmSupported;
 
-pub extern "Security" fn PolicyGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecPolicyGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const policyGetTypeID = SecPolicyGetTypeID;
 
-pub extern "Security" fn PolicyCopyProperties(policyRef: PolicyRef) callconv(.C) core_foundation.DictionaryRef;
+extern "Security" fn SecPolicyCopyProperties(policyRef: PolicyRef) callconv(.C) core_foundation.DictionaryRef;
+pub const policyCopyProperties = SecPolicyCopyProperties;
 
-pub extern "Security" fn PolicyCreateBasicX509() callconv(.C) PolicyRef;
+extern "Security" fn SecPolicyCreateBasicX509() callconv(.C) PolicyRef;
+pub const policyCreateBasicX509 = SecPolicyCreateBasicX509;
 
-pub extern "Security" fn PolicyCreateSSL(server: objc.Boolean, hostname: core_foundation.StringRef) callconv(.C) PolicyRef;
+extern "Security" fn SecPolicyCreateSSL(server: objc.Boolean, hostname: core_foundation.StringRef) callconv(.C) PolicyRef;
+pub const policyCreateSSL = SecPolicyCreateSSL;
 
 pub const anon2091 = enum(core_foundation.OptionFlags) {
     kSecRevocationOCSPMethod = 1,
@@ -3204,27 +3643,36 @@ pub const anon2091 = enum(core_foundation.OptionFlags) {
     kSecRevocationUseAnyAvailableMethod = 3,
 };
 
-pub extern "Security" fn PolicyCreateRevocation(revocationFlags: core_foundation.OptionFlags) callconv(.C) PolicyRef;
+extern "Security" fn SecPolicyCreateRevocation(revocationFlags: core_foundation.OptionFlags) callconv(.C) PolicyRef;
+pub const policyCreateRevocation = SecPolicyCreateRevocation;
 
-pub extern "Security" fn PolicyCreateWithProperties(policyIdentifier: core_foundation.TypeRef, properties: core_foundation.DictionaryRef) callconv(.C) PolicyRef;
+extern "Security" fn SecPolicyCreateWithProperties(policyIdentifier: core_foundation.TypeRef, properties: core_foundation.DictionaryRef) callconv(.C) PolicyRef;
+pub const policyCreateWithProperties = SecPolicyCreateWithProperties;
 
-pub extern "Security" fn PolicyCreateWithOID(policyOID: core_foundation.TypeRef) callconv(.C) PolicyRef;
+extern "Security" fn SecPolicyCreateWithOID(policyOID: core_foundation.TypeRef) callconv(.C) PolicyRef;
+pub const policyCreateWithOID = SecPolicyCreateWithOID;
 
-pub extern "Security" fn PolicyGetOID(policyRef: PolicyRef, oid: ?*Asn1Oid) callconv(.C) objc.OSStatus;
+extern "Security" fn SecPolicyGetOID(policyRef: PolicyRef, oid: ?*Asn1Oid) callconv(.C) objc.OSStatus;
+pub const policyGetOID = SecPolicyGetOID;
 
-pub extern "Security" fn PolicyGetValue(policyRef: PolicyRef, value: ?*Asn1Item) callconv(.C) objc.OSStatus;
+extern "Security" fn SecPolicyGetValue(policyRef: PolicyRef, value: ?*Asn1Item) callconv(.C) objc.OSStatus;
+pub const policyGetValue = SecPolicyGetValue;
 
-pub extern "Security" fn PolicySetValue(policyRef: PolicyRef, value: ?*Asn1Item) callconv(.C) objc.OSStatus;
+extern "Security" fn SecPolicySetValue(policyRef: PolicyRef, value: ?*Asn1Item) callconv(.C) objc.OSStatus;
+pub const policySetValue = SecPolicySetValue;
 
-pub extern "Security" fn PolicySetProperties(policyRef: PolicyRef, properties: core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecPolicySetProperties(policyRef: PolicyRef, properties: core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+pub const policySetProperties = SecPolicySetProperties;
 
-pub extern "Security" fn PolicyGetTPHandle(policyRef: PolicyRef, tpHandle: ?*CSSM_TP_HANDLE) callconv(.C) objc.OSStatus;
+extern "Security" fn SecPolicyGetTPHandle(policyRef: PolicyRef, tpHandle: ?*CSSM_TP_HANDLE) callconv(.C) objc.OSStatus;
+pub const policyGetTPHandle = SecPolicyGetTPHandle;
 
 pub const __SecRandom = extern struct {};
 
 pub const RandomRef = ?*__SecRandom;
 
-pub extern "Security" fn RandomCopyBytes(rnd: RandomRef, count: objc.size_t, bytes: ?*anyopaque) callconv(.C) i32;
+extern "Security" fn SecRandomCopyBytes(rnd: RandomRef, count: objc.size_t, bytes: ?*anyopaque) callconv(.C) i32;
+pub const randomCopyBytes = SecRandomCopyBytes;
 
 pub const anon551 = enum(i32) {
     CSSM_BASE_ERROR = -2147418112,
@@ -3762,10 +4210,14 @@ pub const __CE_GeneralNameType = enum(u32) {
     GNT_RegisteredID = 8,
 };
 
+pub const CE_GeneralNameType = __CE_GeneralNameType;
+
 pub const __CE_OtherName = extern struct {
     typeId: Asn1Oid,
     value: Asn1Item,
 };
+
+pub const CE_OtherName = __CE_OtherName;
 
 pub const __CE_GeneralName = extern struct {
     nameType: CE_GeneralNameType,
@@ -3773,10 +4225,14 @@ pub const __CE_GeneralName = extern struct {
     name: Asn1Item,
 };
 
+pub const CE_GeneralName = __CE_GeneralName;
+
 pub const __CE_GeneralNames = extern struct {
     numNames: uint32,
     generalName: ?*CE_GeneralName,
 };
+
+pub const CE_GeneralNames = __CE_GeneralNames;
 
 pub const __CE_AuthorityKeyID = extern struct {
     keyIdentifierPresent: CSSM_BOOL,
@@ -3786,6 +4242,8 @@ pub const __CE_AuthorityKeyID = extern struct {
     serialNumberPresent: CSSM_BOOL,
     serialNumber: Asn1Item,
 };
+
+pub const CE_AuthorityKeyID = __CE_AuthorityKeyID;
 
 pub const CE_SubjectKeyID = Asn1Item;
 
@@ -3798,16 +4256,22 @@ pub const __CE_ExtendedKeyUsage = extern struct {
     purposes: CSSM_OID_PTR,
 };
 
+pub const CE_ExtendedKeyUsage = __CE_ExtendedKeyUsage;
+
 pub const __CE_BasicConstraints = extern struct {
     cA: CSSM_BOOL,
     pathLenConstraintPresent: CSSM_BOOL,
     pathLenConstraint: uint32,
 };
 
+pub const CE_BasicConstraints = __CE_BasicConstraints;
+
 pub const __CE_PolicyQualifierInfo = extern struct {
     policyQualifierId: Asn1Oid,
     qualifier: Asn1Item,
 };
+
+pub const CE_PolicyQualifierInfo = __CE_PolicyQualifierInfo;
 
 pub const __CE_PolicyInformation = extern struct {
     certPolicyId: Asn1Oid,
@@ -3815,10 +4279,14 @@ pub const __CE_PolicyInformation = extern struct {
     policyQualifiers: ?*CE_PolicyQualifierInfo,
 };
 
+pub const CE_PolicyInformation = __CE_PolicyInformation;
+
 pub const __CE_CertPolicies = extern struct {
     numPolicies: uint32,
     policies: ?*CE_PolicyInformation,
 };
+
+pub const CE_CertPolicies = __CE_CertPolicies;
 
 pub const CE_NetscapeCertType = uint16;
 
@@ -3828,6 +4296,8 @@ pub const __CE_CrlDistributionPointNameType = enum(u32) {
     CE_CDNT_FullName = 0,
     CE_CDNT_NameRelativeToCrlIssuer = 1,
 };
+
+pub const CE_CrlDistributionPointNameType = __CE_CrlDistributionPointNameType;
 
 pub const __CE_DistributionPointName = extern struct {
     nameType: CE_CrlDistributionPointNameType,
@@ -3839,6 +4309,8 @@ pub const anon5372 = extern union {
     rdn: CSSM_X509_RDN_PTR,
 };
 
+pub const CE_DistributionPointName = __CE_DistributionPointName;
+
 pub const __CE_CRLDistributionPoint = extern struct {
     distPointName: ?*CE_DistributionPointName,
     reasonsPresent: CSSM_BOOL,
@@ -3846,20 +4318,28 @@ pub const __CE_CRLDistributionPoint = extern struct {
     crlIssuer: ?*CE_GeneralNames,
 };
 
+pub const CE_CRLDistributionPoint = __CE_CRLDistributionPoint;
+
 pub const __CE_CRLDistPointsSyntax = extern struct {
     numDistPoints: uint32,
     distPoints: ?*CE_CRLDistributionPoint,
 };
+
+pub const CE_CRLDistPointsSyntax = __CE_CRLDistPointsSyntax;
 
 pub const __CE_AccessDescription = extern struct {
     accessMethod: Asn1Oid,
     accessLocation: CE_GeneralName,
 };
 
+pub const CE_AccessDescription = __CE_AccessDescription;
+
 pub const __CE_AuthorityInfoAccess = extern struct {
     numAccessDescriptions: uint32,
     accessDescriptions: ?*CE_AccessDescription,
 };
+
+pub const CE_AuthorityInfoAccess = __CE_AuthorityInfoAccess;
 
 pub const CE_NameRegistrationAuthorities = CE_GeneralNames;
 
@@ -3868,16 +4348,22 @@ pub const __CE_SemanticsInformation = extern struct {
     nameRegistrationAuthorities: ?*CE_NameRegistrationAuthorities,
 };
 
+pub const CE_SemanticsInformation = __CE_SemanticsInformation;
+
 pub const __CE_QC_Statement = extern struct {
     statementId: Asn1Oid,
     semanticsInfo: ?*CE_SemanticsInformation,
     otherInfo: ?*Asn1Item,
 };
 
+pub const CE_QC_Statement = __CE_QC_Statement;
+
 pub const __CE_QC_Statements = extern struct {
     numQCStatements: uint32,
     qcStatements: ?*CE_QC_Statement,
 };
+
+pub const CE_QC_Statements = __CE_QC_Statements;
 
 pub const CE_CrlNumber = uint32;
 
@@ -3895,6 +4381,8 @@ pub const __CE_IssuingDistributionPoint = extern struct {
     indirectCrl: CSSM_BOOL,
 };
 
+pub const CE_IssuingDistributionPoint = __CE_IssuingDistributionPoint;
+
 pub const __CE_GeneralSubtree = extern struct {
     base: ?*CE_GeneralNames,
     minimum: uint32,
@@ -3902,25 +4390,35 @@ pub const __CE_GeneralSubtree = extern struct {
     maximum: uint32,
 };
 
+pub const CE_GeneralSubtree = __CE_GeneralSubtree;
+
 pub const __CE_GeneralSubtrees = extern struct {
     numSubtrees: uint32,
     subtrees: ?*CE_GeneralSubtree,
 };
+
+pub const CE_GeneralSubtrees = __CE_GeneralSubtrees;
 
 pub const __CE_NameConstraints = extern struct {
     permitted: ?*CE_GeneralSubtrees,
     excluded: ?*CE_GeneralSubtrees,
 };
 
+pub const CE_NameConstraints = __CE_NameConstraints;
+
 pub const __CE_PolicyMapping = extern struct {
     issuerDomainPolicy: Asn1Oid,
     subjectDomainPolicy: Asn1Oid,
 };
 
+pub const CE_PolicyMapping = __CE_PolicyMapping;
+
 pub const __CE_PolicyMappings = extern struct {
     numPolicyMappings: uint32,
     policyMappings: ?*CE_PolicyMapping,
 };
+
+pub const CE_PolicyMappings = __CE_PolicyMappings;
 
 pub const __CE_PolicyConstraints = extern struct {
     requireExplicitPolicyPresent: CSSM_BOOL,
@@ -3928,6 +4426,8 @@ pub const __CE_PolicyConstraints = extern struct {
     inhibitPolicyMappingPresent: CSSM_BOOL,
     inhibitPolicyMapping: uint32,
 };
+
+pub const CE_PolicyConstraints = __CE_PolicyConstraints;
 
 pub const CE_InhibitAnyPolicy = uint32;
 
@@ -3955,6 +4455,8 @@ pub const __CE_DataType = enum(u32) {
     DT_InhibitAnyPolicy = 20,
 };
 
+pub const CE_DataType = __CE_DataType;
+
 pub const CE_Data = extern union {
     authorityKeyID: CE_AuthorityKeyID,
     subjectKeyID: CE_SubjectKeyID,
@@ -3980,10 +4482,12 @@ pub const CE_Data = extern union {
 };
 
 pub const __CE_DataAndType = extern struct {
-    @"type": CE_DataType,
+    type: CE_DataType,
     extension: CE_Data,
     critical: CSSM_BOOL,
 };
+
+pub const CE_DataAndType = __CE_DataAndType;
 
 pub const anon821 = enum(u32) {
     CSSM_HINT_NONE = 0,
@@ -4036,6 +4540,8 @@ pub const cssm_acl_process_subject_selector = extern struct {
     gid: uint32,
 };
 
+pub const CSSM_ACL_PROCESS_SUBJECT_SELECTOR = cssm_acl_process_subject_selector;
+
 pub const anon1831 = enum(u32) {
     CSSM_ACL_KEYCHAIN_PROMPT_CURRENT_VERSION = 257,
 };
@@ -4052,6 +4558,8 @@ pub const cssm_acl_keychain_prompt_selector = extern struct {
     version: uint16,
     flags: uint16,
 };
+
+pub const CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR = cssm_acl_keychain_prompt_selector;
 
 pub const CSSM_ACL_PREAUTH_TRACKING_STATE = uint32;
 
@@ -4301,6 +4809,8 @@ pub const cssm_appledl_open_parameters = extern struct {
     mode: objc.mode_t,
 };
 
+pub const CSSM_APPLEDL_OPEN_PARAMETERS = cssm_appledl_open_parameters;
+
 pub const CSSM_APPLEDL_OPEN_PARAMETERS_PTR = ?*cssm_appledl_open_parameters;
 
 pub const anon6451 = enum(u32) {
@@ -4341,17 +4851,23 @@ pub const cssm_applecspdl_db_settings_parameters = extern struct {
     lockOnSleep: uint8,
 };
 
+pub const CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS = cssm_applecspdl_db_settings_parameters;
+
 pub const CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS_PTR = ?*cssm_applecspdl_db_settings_parameters;
 
 pub const cssm_applecspdl_db_is_locked_parameters = extern struct {
     isLocked: uint8,
 };
 
+pub const CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS = cssm_applecspdl_db_is_locked_parameters;
+
 pub const CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS_PTR = ?*cssm_applecspdl_db_is_locked_parameters;
 
 pub const cssm_applecspdl_db_change_password_parameters = extern struct {
     accessCredentials: ?*CSSM_ACCESS_CREDENTIALS,
 };
+
+pub const CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS = cssm_applecspdl_db_change_password_parameters;
 
 pub const CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS_PTR = ?*cssm_applecspdl_db_change_password_parameters;
 
@@ -4521,11 +5037,14 @@ pub const CSSM_APPLE_CL_CSR_REQUEST = extern struct {
     challengeString: ?*i8,
 };
 
-pub extern "Security" fn cssmPerror(how: ?*i8, @"error": CSSM_RETURN) callconv(.C) void;
+extern "Security" fn cssmPerror(how: ?*i8, @"error": CSSM_RETURN) callconv(.C) void;
+pub const mPerror = cssmPerror;
 
-pub extern "Security" fn cssmOidToAlg() callconv(.C) i32;
+extern "Security" fn cssmOidToAlg() callconv(.C) i32;
+pub const mOidToAlg = cssmOidToAlg;
 
-pub extern "Security" fn cssmAlgToOid(algId: CSSM_ALGORITHMS) callconv(.C) ?*Asn1Oid;
+extern "Security" fn cssmAlgToOid(algId: CSSM_ALGORITHMS) callconv(.C) ?*Asn1Oid;
+pub const mAlgToOid = cssmAlgToOid;
 
 pub const anon541 = enum(objc.UInt32) {
     kSecUnlockStateStatus = 1,
@@ -4624,33 +5143,59 @@ pub const KeychainCallbackInfo = extern struct {
     pid: objc.pid_t,
 };
 
-pub extern "Security" fn KeychainGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecKeychainGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const keychainGetTypeID = SecKeychainGetTypeID;
 
-pub extern "Security" fn KeychainGetVersion(returnVers: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainGetVersion(returnVers: ?*objc.UInt32) callconv(.C) objc.OSStatus;
+pub const keychainGetVersion = SecKeychainGetVersion;
 
-pub extern "Security" fn KeychainOpen(pathName: ?*i8, keychain: ?*KeychainRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainOpen(pathName: ?*i8, keychain: ?*KeychainRef) callconv(.C) objc.OSStatus;
+pub const keychainOpen = SecKeychainOpen;
 
-pub extern "Security" fn KeychainCreate(pathName: ?*i8, passwordLength: objc.UInt32, password: ?*anyopaque, promptUser: objc.Boolean, initialAccess: AccessRef, keychain: ?*KeychainRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainCreate(
+    pathName: ?*i8,
+    passwordLength: objc.UInt32,
+    password: ?*anyopaque,
+    promptUser: objc.Boolean,
+    initialAccess: AccessRef,
+    keychain: ?*KeychainRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainCreate = SecKeychainCreate;
 
-pub extern "Security" fn KeychainDelete(keychainOrArray: KeychainRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainDelete(keychainOrArray: KeychainRef) callconv(.C) objc.OSStatus;
+pub const keychainDelete = SecKeychainDelete;
 
-pub extern "Security" fn KeychainSetSettings(keychain: KeychainRef, newSettings: ?*KeychainSettings) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSetSettings(keychain: KeychainRef, newSettings: ?*KeychainSettings) callconv(.C) objc.OSStatus;
+pub const keychainSetSettings = SecKeychainSetSettings;
 
-pub extern "Security" fn KeychainCopySettings(keychain: KeychainRef, outSettings: ?*KeychainSettings) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainCopySettings(keychain: KeychainRef, outSettings: ?*KeychainSettings) callconv(.C) objc.OSStatus;
+pub const keychainCopySettings = SecKeychainCopySettings;
 
-pub extern "Security" fn KeychainUnlock(keychain: KeychainRef, passwordLength: objc.UInt32, password: ?*anyopaque, usePassword: objc.Boolean, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainUnlock(
+    keychain: KeychainRef,
+    passwordLength: objc.UInt32,
+    password: ?*anyopaque,
+    usePassword: objc.Boolean,
+) callconv(.C) objc.OSStatus;
+pub const keychainUnlock = SecKeychainUnlock;
 
-pub extern "Security" fn KeychainLock(keychain: KeychainRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainLock(keychain: KeychainRef) callconv(.C) objc.OSStatus;
+pub const keychainLock = SecKeychainLock;
 
-pub extern "Security" fn KeychainLockAll() callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainLockAll() callconv(.C) objc.OSStatus;
+pub const keychainLockAll = SecKeychainLockAll;
 
-pub extern "Security" fn KeychainCopyDefault(keychain: ?*KeychainRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainCopyDefault(keychain: ?*KeychainRef) callconv(.C) objc.OSStatus;
+pub const keychainCopyDefault = SecKeychainCopyDefault;
 
-pub extern "Security" fn KeychainSetDefault(keychain: KeychainRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSetDefault(keychain: KeychainRef) callconv(.C) objc.OSStatus;
+pub const keychainSetDefault = SecKeychainSetDefault;
 
-pub extern "Security" fn KeychainCopySearchList(searchList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainCopySearchList(searchList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const keychainCopySearchList = SecKeychainCopySearchList;
 
-pub extern "Security" fn KeychainSetSearchList(searchList: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSetSearchList(searchList: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const keychainSetSearchList = SecKeychainSetSearchList;
 
 pub const PreferencesDomain = enum(i32) {
     kSecPreferencesDomainUser = 0,
@@ -4659,51 +5204,123 @@ pub const PreferencesDomain = enum(i32) {
     kSecPreferencesDomainDynamic = 3,
 };
 
-pub extern "Security" fn KeychainCopyDomainDefault(domain: PreferencesDomain, keychain: ?*KeychainRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainCopyDomainDefault(domain: PreferencesDomain, keychain: ?*KeychainRef) callconv(.C) objc.OSStatus;
+pub const keychainCopyDomainDefault = SecKeychainCopyDomainDefault;
 
-pub extern "Security" fn KeychainSetDomainDefault(domain: PreferencesDomain, keychain: KeychainRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSetDomainDefault(domain: PreferencesDomain, keychain: KeychainRef) callconv(.C) objc.OSStatus;
+pub const keychainSetDomainDefault = SecKeychainSetDomainDefault;
 
-pub extern "Security" fn KeychainCopyDomainSearchList(domain: PreferencesDomain, searchList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainCopyDomainSearchList(domain: PreferencesDomain, searchList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const keychainCopyDomainSearchList = SecKeychainCopyDomainSearchList;
 
-pub extern "Security" fn KeychainSetDomainSearchList(domain: PreferencesDomain, searchList: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSetDomainSearchList(domain: PreferencesDomain, searchList: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const keychainSetDomainSearchList = SecKeychainSetDomainSearchList;
 
-pub extern "Security" fn KeychainSetPreferenceDomain(domain: PreferencesDomain) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSetPreferenceDomain(domain: PreferencesDomain) callconv(.C) objc.OSStatus;
+pub const keychainSetPreferenceDomain = SecKeychainSetPreferenceDomain;
 
-pub extern "Security" fn KeychainGetPreferenceDomain(domain: ?*PreferencesDomain) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainGetPreferenceDomain(domain: ?*PreferencesDomain) callconv(.C) objc.OSStatus;
+pub const keychainGetPreferenceDomain = SecKeychainGetPreferenceDomain;
 
-pub extern "Security" fn KeychainGetStatus(keychain: KeychainRef, keychainStatus: ?*KeychainStatus) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainGetStatus(keychain: KeychainRef, keychainStatus: ?*KeychainStatus) callconv(.C) objc.OSStatus;
+pub const keychainGetStatus = SecKeychainGetStatus;
 
-pub extern "Security" fn KeychainGetPath(keychain: KeychainRef, ioPathLength: ?*objc.UInt32, pathName: ?*i8) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainGetPath(keychain: KeychainRef, ioPathLength: ?*objc.UInt32, pathName: ?*i8) callconv(.C) objc.OSStatus;
+pub const keychainGetPath = SecKeychainGetPath;
 
-pub extern "Security" fn KeychainAttributeInfoForItemID(keychain: KeychainRef, itemID: objc.UInt32, info: ?*?*KeychainAttributeInfo) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainAttributeInfoForItemID(keychain: KeychainRef, itemID: objc.UInt32, info: ?*?*KeychainAttributeInfo) callconv(.C) objc.OSStatus;
+pub const keychainAttributeInfoForItemID = SecKeychainAttributeInfoForItemID;
 
-pub extern "Security" fn KeychainFreeAttributeInfo(info: ?*KeychainAttributeInfo) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainFreeAttributeInfo(info: ?*KeychainAttributeInfo) callconv(.C) objc.OSStatus;
+pub const keychainFreeAttributeInfo = SecKeychainFreeAttributeInfo;
 
-pub const KeychainCallback = ?*const fn(KeychainEvent, ?*KeychainCallbackInfo, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const KeychainCallback = ?*const fn (KeychainEvent, ?*KeychainCallbackInfo, ?*anyopaque) callconv(.C) objc.OSStatus;
 
-pub extern "Security" fn KeychainAddCallback(callbackFunction: KeychainCallback, eventMask: KeychainEventMask, userContext: ?*anyopaque) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainAddCallback(callbackFunction: KeychainCallback, eventMask: KeychainEventMask, userContext: ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const keychainAddCallback = SecKeychainAddCallback;
 
-pub extern "Security" fn KeychainRemoveCallback(callbackFunction: KeychainCallback) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainRemoveCallback(callbackFunction: KeychainCallback) callconv(.C) objc.OSStatus;
+pub const keychainRemoveCallback = SecKeychainRemoveCallback;
 
-pub extern "Security" fn KeychainAddInternetPassword(keychain: KeychainRef, serverNameLength: objc.UInt32, serverName: ?*i8, securityDomainLength: objc.UInt32, securityDomain: ?*i8, accountNameLength: objc.UInt32, accountName: ?*i8, pathLength: objc.UInt32, path: ?*i8, port: objc.UInt16, protocol: ProtocolType, authenticationType: AuthenticationType, passwordLength: objc.UInt32, passwordData: ?*anyopaque, itemRef: ?*KeychainItemRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainAddInternetPassword(
+    keychain: KeychainRef,
+    serverNameLength: objc.UInt32,
+    serverName: ?*i8,
+    securityDomainLength: objc.UInt32,
+    securityDomain: ?*i8,
+    accountNameLength: objc.UInt32,
+    accountName: ?*i8,
+    pathLength: objc.UInt32,
+    path: ?*i8,
+    port: objc.UInt16,
+    protocol: ProtocolType,
+    authenticationType: AuthenticationType,
+    passwordLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    itemRef: ?*KeychainItemRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainAddInternetPassword = SecKeychainAddInternetPassword;
 
-pub extern "Security" fn KeychainFindInternetPassword(keychainOrArray: core_foundation.TypeRef, serverNameLength: objc.UInt32, serverName: ?*i8, securityDomainLength: objc.UInt32, securityDomain: ?*i8, accountNameLength: objc.UInt32, accountName: ?*i8, pathLength: objc.UInt32, path: ?*i8, port: objc.UInt16, protocol: ProtocolType, authenticationType: AuthenticationType, passwordLength: ?*objc.UInt32, passwordData: ?*?*anyopaque, itemRef: ?*KeychainItemRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainFindInternetPassword(
+    keychainOrArray: core_foundation.TypeRef,
+    serverNameLength: objc.UInt32,
+    serverName: ?*i8,
+    securityDomainLength: objc.UInt32,
+    securityDomain: ?*i8,
+    accountNameLength: objc.UInt32,
+    accountName: ?*i8,
+    pathLength: objc.UInt32,
+    path: ?*i8,
+    port: objc.UInt16,
+    protocol: ProtocolType,
+    authenticationType: AuthenticationType,
+    passwordLength: ?*objc.UInt32,
+    passwordData: ?*?*anyopaque,
+    itemRef: ?*KeychainItemRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainFindInternetPassword = SecKeychainFindInternetPassword;
 
-pub extern "Security" fn KeychainAddGenericPassword(keychain: KeychainRef, serviceNameLength: objc.UInt32, serviceName: ?*i8, accountNameLength: objc.UInt32, accountName: ?*i8, passwordLength: objc.UInt32, passwordData: ?*anyopaque, itemRef: ?*KeychainItemRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainAddGenericPassword(
+    keychain: KeychainRef,
+    serviceNameLength: objc.UInt32,
+    serviceName: ?*i8,
+    accountNameLength: objc.UInt32,
+    accountName: ?*i8,
+    passwordLength: objc.UInt32,
+    passwordData: ?*anyopaque,
+    itemRef: ?*KeychainItemRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainAddGenericPassword = SecKeychainAddGenericPassword;
 
-pub extern "Security" fn KeychainFindGenericPassword(keychainOrArray: core_foundation.TypeRef, serviceNameLength: objc.UInt32, serviceName: ?*i8, accountNameLength: objc.UInt32, accountName: ?*i8, passwordLength: ?*objc.UInt32, passwordData: ?*?*anyopaque, itemRef: ?*KeychainItemRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainFindGenericPassword(
+    keychainOrArray: core_foundation.TypeRef,
+    serviceNameLength: objc.UInt32,
+    serviceName: ?*i8,
+    accountNameLength: objc.UInt32,
+    accountName: ?*i8,
+    passwordLength: ?*objc.UInt32,
+    passwordData: ?*?*anyopaque,
+    itemRef: ?*KeychainItemRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainFindGenericPassword = SecKeychainFindGenericPassword;
 
-pub extern "Security" fn KeychainSetUserInteractionAllowed(state: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSetUserInteractionAllowed(state: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const keychainSetUserInteractionAllowed = SecKeychainSetUserInteractionAllowed;
 
-pub extern "Security" fn KeychainGetUserInteractionAllowed(state: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainGetUserInteractionAllowed(state: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const keychainGetUserInteractionAllowed = SecKeychainGetUserInteractionAllowed;
 
-pub extern "Security" fn KeychainGetCSPHandle(keychain: KeychainRef, cspHandle: ?*CSSM_CSP_HANDLE) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainGetCSPHandle(keychain: KeychainRef, cspHandle: ?*CSSM_CSP_HANDLE) callconv(.C) objc.OSStatus;
+pub const keychainGetCSPHandle = SecKeychainGetCSPHandle;
 
-pub extern "Security" fn KeychainGetDLDBHandle(keychain: KeychainRef, dldbHandle: ?*CSSM_DL_DB_HANDLE) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainGetDLDBHandle(keychain: KeychainRef, dldbHandle: ?*CSSM_DL_DB_HANDLE) callconv(.C) objc.OSStatus;
+pub const keychainGetDLDBHandle = SecKeychainGetDLDBHandle;
 
-pub extern "Security" fn KeychainCopyAccess(keychain: KeychainRef, access: ?*AccessRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainCopyAccess(keychain: KeychainRef, access: ?*AccessRef) callconv(.C) objc.OSStatus;
+pub const keychainCopyAccess = SecKeychainCopyAccess;
 
-pub extern "Security" fn KeychainSetAccess(keychain: KeychainRef, access: AccessRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSetAccess(keychain: KeychainRef, access: AccessRef) callconv(.C) objc.OSStatus;
+pub const keychainSetAccess = SecKeychainSetAccess;
 
 pub const ExternalFormat = enum(objc.uint32_t) {
     kSecFormatUnknown = 0,
@@ -4764,15 +5381,50 @@ pub const ItemImportExportKeyParameters = extern struct {
     keyAttributes: core_foundation.ArrayRef,
 };
 
-pub extern "Security" fn KeychainItemExport(keychainItemOrArray: core_foundation.TypeRef, outputFormat: ExternalFormat, flags: ItemImportExportFlags, keyParams: ?*KeyImportExportParameters, exportedData: ?*core_foundation.DataRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemExport(
+    keychainItemOrArray: core_foundation.TypeRef,
+    outputFormat: ExternalFormat,
+    flags: ItemImportExportFlags,
+    keyParams: ?*KeyImportExportParameters,
+    exportedData: ?*core_foundation.DataRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainItemExport = SecKeychainItemExport;
 
-pub extern "Security" fn ItemExport(secItemOrArray: core_foundation.TypeRef, outputFormat: ExternalFormat, flags: ItemImportExportFlags, keyParams: ?*ItemImportExportKeyParameters, exportedData: ?*core_foundation.DataRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecItemExport(
+    secItemOrArray: core_foundation.TypeRef,
+    outputFormat: ExternalFormat,
+    flags: ItemImportExportFlags,
+    keyParams: ?*ItemImportExportKeyParameters,
+    exportedData: ?*core_foundation.DataRef,
+) callconv(.C) objc.OSStatus;
+pub const itemExport = SecItemExport;
 
-pub extern "Security" fn KeychainItemImport(importedData: core_foundation.DataRef, fileNameOrExtension: core_foundation.StringRef, inputFormat: ?*ExternalFormat, itemType: ?*ExternalItemType, flags: ItemImportExportFlags, keyParams: ?*KeyImportExportParameters, importKeychain: KeychainRef, outItems: ?*core_foundation.ArrayRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemImport(
+    importedData: core_foundation.DataRef,
+    fileNameOrExtension: core_foundation.StringRef,
+    inputFormat: ?*ExternalFormat,
+    itemType: ?*ExternalItemType,
+    flags: ItemImportExportFlags,
+    keyParams: ?*KeyImportExportParameters,
+    importKeychain: KeychainRef,
+    outItems: ?*core_foundation.ArrayRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainItemImport = SecKeychainItemImport;
 
-pub extern "Security" fn ItemImport(importedData: core_foundation.DataRef, fileNameOrExtension: core_foundation.StringRef, inputFormat: ?*ExternalFormat, itemType: ?*ExternalItemType, flags: ItemImportExportFlags, keyParams: ?*ItemImportExportKeyParameters, importKeychain: KeychainRef, outItems: ?*core_foundation.ArrayRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecItemImport(
+    importedData: core_foundation.DataRef,
+    fileNameOrExtension: core_foundation.StringRef,
+    inputFormat: ?*ExternalFormat,
+    itemType: ?*ExternalItemType,
+    flags: ItemImportExportFlags,
+    keyParams: ?*ItemImportExportKeyParameters,
+    importKeychain: KeychainRef,
+    outItems: ?*core_foundation.ArrayRef,
+) callconv(.C) objc.OSStatus;
+pub const itemImport = SecItemImport;
 
-pub extern "Security" fn PKCS12Import(pkcs12_data: core_foundation.DataRef, options: core_foundation.DictionaryRef, items: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecPKCS12Import(pkcs12_data: core_foundation.DataRef, options: core_foundation.DictionaryRef, items: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const pkcs12Import = SecPKCS12Import;
 
 pub const TrustResultType = enum(objc.uint32_t) {
     kSecTrustResultInvalid = 0,
@@ -4789,63 +5441,90 @@ pub const __SecTrust = extern struct {};
 
 pub const TrustRef = ?*__SecTrust;
 
-pub const TrustCallback = *const fn(TrustRef, TrustResultType) callconv(.C) void;
+pub const TrustCallback = *const fn (TrustRef, TrustResultType) callconv(.C) void;
 
-pub extern "Security" fn TrustGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecTrustGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const trustGetTypeID = SecTrustGetTypeID;
 
-pub extern "Security" fn TrustCreateWithCertificates(certificates: core_foundation.TypeRef, policies: core_foundation.TypeRef, trust: ?*TrustRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustCreateWithCertificates(certificates: core_foundation.TypeRef, policies: core_foundation.TypeRef, trust: ?*TrustRef) callconv(.C) objc.OSStatus;
+pub const trustCreateWithCertificates = SecTrustCreateWithCertificates;
 
-pub extern "Security" fn TrustSetPolicies(trust: TrustRef, policies: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetPolicies(trust: TrustRef, policies: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const trustSetPolicies = SecTrustSetPolicies;
 
-pub extern "Security" fn TrustCopyPolicies(trust: TrustRef, policies: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustCopyPolicies(trust: TrustRef, policies: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const trustCopyPolicies = SecTrustCopyPolicies;
 
-pub extern "Security" fn TrustSetNetworkFetchAllowed(trust: TrustRef, allowFetch: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetNetworkFetchAllowed(trust: TrustRef, allowFetch: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const trustSetNetworkFetchAllowed = SecTrustSetNetworkFetchAllowed;
 
-pub extern "Security" fn TrustGetNetworkFetchAllowed(trust: TrustRef, allowFetch: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustGetNetworkFetchAllowed(trust: TrustRef, allowFetch: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const trustGetNetworkFetchAllowed = SecTrustGetNetworkFetchAllowed;
 
-pub extern "Security" fn TrustSetAnchorCertificates(trust: TrustRef, anchorCertificates: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetAnchorCertificates(trust: TrustRef, anchorCertificates: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const trustSetAnchorCertificates = SecTrustSetAnchorCertificates;
 
-pub extern "Security" fn TrustSetAnchorCertificatesOnly(trust: TrustRef, anchorCertificatesOnly: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetAnchorCertificatesOnly(trust: TrustRef, anchorCertificatesOnly: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const trustSetAnchorCertificatesOnly = SecTrustSetAnchorCertificatesOnly;
 
-pub extern "Security" fn TrustCopyCustomAnchorCertificates(trust: TrustRef, anchors: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustCopyCustomAnchorCertificates(trust: TrustRef, anchors: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const trustCopyCustomAnchorCertificates = SecTrustCopyCustomAnchorCertificates;
 
-pub extern "Security" fn TrustSetVerifyDate(trust: TrustRef, verifyDate: core_foundation.DateRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetVerifyDate(trust: TrustRef, verifyDate: core_foundation.DateRef) callconv(.C) objc.OSStatus;
+pub const trustSetVerifyDate = SecTrustSetVerifyDate;
 
-pub extern "Security" fn TrustGetVerifyTime(trust: TrustRef) callconv(.C) core_foundation.AbsoluteTime;
+extern "Security" fn SecTrustGetVerifyTime(trust: TrustRef) callconv(.C) core_foundation.AbsoluteTime;
+pub const trustGetVerifyTime = SecTrustGetVerifyTime;
 
-pub extern "Security" fn TrustEvaluate(trust: TrustRef, result: ?*TrustResultType) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustEvaluate(trust: TrustRef, result: ?*TrustResultType) callconv(.C) objc.OSStatus;
+pub const trustEvaluate = SecTrustEvaluate;
 
-pub extern "Security" fn TrustEvaluateAsync(trust: TrustRef, queue: objc.dispatch_queue_t, result: TrustCallback) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustEvaluateAsync(trust: TrustRef, queue: objc.dispatch_queue_t, result: TrustCallback) callconv(.C) objc.OSStatus;
+pub const trustEvaluateAsync = SecTrustEvaluateAsync;
 
-pub extern "Security" fn TrustEvaluateWithError() callconv(.C) i32;
+extern "Security" fn SecTrustEvaluateWithError() callconv(.C) i32;
+pub const trustEvaluateWithError = SecTrustEvaluateWithError;
 
-pub const TrustWithErrorCallback = *const fn(TrustRef, objc.bool, core_foundation.ErrorRef) callconv(.C) void;
+pub const TrustWithErrorCallback = *const fn (TrustRef, objc.bool, core_foundation.ErrorRef) callconv(.C) void;
 
-pub extern "Security" fn TrustEvaluateAsyncWithError(trust: TrustRef, queue: objc.dispatch_queue_t, result: TrustWithErrorCallback) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustEvaluateAsyncWithError(trust: TrustRef, queue: objc.dispatch_queue_t, result: TrustWithErrorCallback) callconv(.C) objc.OSStatus;
+pub const trustEvaluateAsyncWithError = SecTrustEvaluateAsyncWithError;
 
-pub extern "Security" fn TrustGetTrustResult(trust: TrustRef, result: ?*TrustResultType) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustGetTrustResult(trust: TrustRef, result: ?*TrustResultType) callconv(.C) objc.OSStatus;
+pub const trustGetTrustResult = SecTrustGetTrustResult;
 
-pub extern "Security" fn TrustCopyPublicKey(trust: TrustRef) callconv(.C) KeyRef;
+extern "Security" fn SecTrustCopyPublicKey(trust: TrustRef) callconv(.C) KeyRef;
+pub const trustCopyPublicKey = SecTrustCopyPublicKey;
 
-pub extern "Security" fn TrustCopyKey(trust: TrustRef) callconv(.C) KeyRef;
+extern "Security" fn SecTrustCopyKey(trust: TrustRef) callconv(.C) KeyRef;
+pub const trustCopyKey = SecTrustCopyKey;
 
-pub extern "Security" fn TrustGetCertificateCount(trust: TrustRef) callconv(.C) core_foundation.Index;
+extern "Security" fn SecTrustGetCertificateCount(trust: TrustRef) callconv(.C) core_foundation.Index;
+pub const trustGetCertificateCount = SecTrustGetCertificateCount;
 
-pub extern "Security" fn TrustGetCertificateAtIndex(trust: TrustRef, ix: core_foundation.Index) callconv(.C) CertificateRef;
+extern "Security" fn SecTrustGetCertificateAtIndex(trust: TrustRef, ix: core_foundation.Index) callconv(.C) CertificateRef;
+pub const trustGetCertificateAtIndex = SecTrustGetCertificateAtIndex;
 
-pub extern "Security" fn TrustCopyExceptions(trust: TrustRef) callconv(.C) core_foundation.DataRef;
+extern "Security" fn SecTrustCopyExceptions(trust: TrustRef) callconv(.C) core_foundation.DataRef;
+pub const trustCopyExceptions = SecTrustCopyExceptions;
 
-pub extern "Security" fn TrustSetExceptions() callconv(.C) i32;
+extern "Security" fn SecTrustSetExceptions() callconv(.C) i32;
+pub const trustSetExceptions = SecTrustSetExceptions;
 
-pub extern "Security" fn TrustCopyProperties(trust: TrustRef) callconv(.C) core_foundation.ArrayRef;
+extern "Security" fn SecTrustCopyProperties(trust: TrustRef) callconv(.C) core_foundation.ArrayRef;
+pub const trustCopyProperties = SecTrustCopyProperties;
 
-pub extern "Security" fn TrustCopyResult(trust: TrustRef) callconv(.C) core_foundation.DictionaryRef;
+extern "Security" fn SecTrustCopyResult(trust: TrustRef) callconv(.C) core_foundation.DictionaryRef;
+pub const trustCopyResult = SecTrustCopyResult;
 
-pub extern "Security" fn TrustSetOCSPResponse(trust: TrustRef, responseData: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetOCSPResponse(trust: TrustRef, responseData: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const trustSetOCSPResponse = SecTrustSetOCSPResponse;
 
-pub extern "Security" fn TrustSetSignedCertificateTimestamps(trust: TrustRef, sctArray: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetSignedCertificateTimestamps(trust: TrustRef, sctArray: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const trustSetSignedCertificateTimestamps = SecTrustSetSignedCertificateTimestamps;
 
-pub extern "Security" fn TrustCopyCertificateChain(trust: TrustRef) callconv(.C) core_foundation.ArrayRef;
+extern "Security" fn SecTrustCopyCertificateChain(trust: TrustRef) callconv(.C) core_foundation.ArrayRef;
+pub const trustCopyCertificateChain = SecTrustCopyCertificateChain;
 
 pub const TrustUserSetting = TrustResultType;
 
@@ -4859,39 +5538,132 @@ pub const TrustOptionFlags = enum(objc.uint32_t) {
     kSecTrustOptionImplicitAnchors = 64,
 };
 
-pub extern "Security" fn TrustSetOptions(trustRef: TrustRef, options: TrustOptionFlags) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetOptions(trustRef: TrustRef, options: TrustOptionFlags) callconv(.C) objc.OSStatus;
+pub const trustSetOptions = SecTrustSetOptions;
 
-pub extern "Security" fn TrustSetParameters(trustRef: TrustRef, action: CSSM_TP_ACTION, actionData: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetParameters(trustRef: TrustRef, action: CSSM_TP_ACTION, actionData: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const trustSetParameters = SecTrustSetParameters;
 
-pub extern "Security" fn TrustSetKeychains(trust: TrustRef, keychainOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSetKeychains(trust: TrustRef, keychainOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const trustSetKeychains = SecTrustSetKeychains;
 
-pub extern "Security" fn TrustGetResult(trustRef: TrustRef, result: ?*TrustResultType, certChain: ?*core_foundation.ArrayRef, statusChain: ?*?*CSSM_TP_APPLE_EVIDENCE_INFO, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustGetResult(
+    trustRef: TrustRef,
+    result: ?*TrustResultType,
+    certChain: ?*core_foundation.ArrayRef,
+    statusChain: ?*?*CSSM_TP_APPLE_EVIDENCE_INFO,
+) callconv(.C) objc.OSStatus;
+pub const trustGetResult = SecTrustGetResult;
 
-pub extern "Security" fn TrustGetCssmResult(trust: TrustRef, result: ?*CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustGetCssmResult(trust: TrustRef, result: ?*CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) callconv(.C) objc.OSStatus;
+pub const trustGetCssmResult = SecTrustGetCssmResult;
 
-pub extern "Security" fn TrustGetCssmResultCode(trust: TrustRef, resultCode: ?*objc.OSStatus) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustGetCssmResultCode(trust: TrustRef, resultCode: ?*objc.OSStatus) callconv(.C) objc.OSStatus;
+pub const trustGetCssmResultCode = SecTrustGetCssmResultCode;
 
-pub extern "Security" fn TrustGetTPHandle(trust: TrustRef, handle: ?*CSSM_TP_HANDLE) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustGetTPHandle(trust: TrustRef, handle: ?*CSSM_TP_HANDLE) callconv(.C) objc.OSStatus;
+pub const trustGetTPHandle = SecTrustGetTPHandle;
 
-pub extern "Security" fn TrustCopyAnchorCertificates(anchors: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustCopyAnchorCertificates(anchors: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const trustCopyAnchorCertificates = SecTrustCopyAnchorCertificates;
 
-pub extern "Security" fn AddSharedWebCredential(fqdn: core_foundation.StringRef, account: core_foundation.StringRef, password: core_foundation.StringRef, completionHandler: *const fn(core_foundation.ErrorRef) callconv(.C) void, ) callconv(.C) void;
+extern "Security" fn SecAddSharedWebCredential(
+    fqdn: core_foundation.StringRef,
+    account: core_foundation.StringRef,
+    password: core_foundation.StringRef,
+    completionHandler: *const fn (core_foundation.ErrorRef) callconv(.C) void,
+) callconv(.C) void;
+pub const addSharedWebCredential = SecAddSharedWebCredential;
 
-pub extern "Security" fn RequestSharedWebCredential(fqdn: core_foundation.StringRef, account: core_foundation.StringRef, completionHandler: *const fn(core_foundation.ArrayRef, core_foundation.ErrorRef) callconv(.C) void) callconv(.C) void;
+extern "Security" fn SecRequestSharedWebCredential(fqdn: core_foundation.StringRef, account: core_foundation.StringRef, completionHandler: *const fn (core_foundation.ArrayRef, core_foundation.ErrorRef) callconv(.C) void) callconv(.C) void;
+pub const requestSharedWebCredential = SecRequestSharedWebCredential;
 
-pub extern "Security" fn CreateSharedWebCredentialPassword() callconv(.C) core_foundation.StringRef;
+extern "Security" fn SecCreateSharedWebCredentialPassword() callconv(.C) core_foundation.StringRef;
+pub const createSharedWebCredentialPassword = SecCreateSharedWebCredentialPassword;
 
-pub extern "Security" fn sec_retain(obj: ?*anyopaque) callconv(.C) ?*anyopaque;
+extern "Security" fn sec_retain(obj: ?*anyopaque) callconv(.C) ?*anyopaque;
+pub const _retain = sec_retain;
 
-pub extern "Security" fn sec_release(obj: ?*anyopaque) callconv(.C) void;
+extern "Security" fn sec_release(obj: ?*anyopaque) callconv(.C) void;
+pub const _release = sec_release;
 
 /// https://developer.apple.com/documentation/Security/OS_sec_object?language=objc
 pub const OS_sec_object = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
 };
 
 pub const sec_object_t = ?*anyopaque;
@@ -4914,33 +5686,243 @@ pub const SSLCiphersuiteGroup = enum(i32) {
 
 /// https://developer.apple.com/documentation/Security/OS_sec_trust?language=objc
 pub const OS_sec_trust = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
 };
 
 pub const sec_trust_t = ?*anyopaque;
 
 /// https://developer.apple.com/documentation/Security/OS_sec_identity?language=objc
 pub const OS_sec_identity = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
 };
 
 pub const sec_identity_t = ?*anyopaque;
 
 /// https://developer.apple.com/documentation/Security/OS_sec_certificate?language=objc
 pub const OS_sec_certificate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
 };
 
 pub const sec_certificate_t = ?*anyopaque;
@@ -5007,167 +5989,381 @@ pub const SSLProtocol = enum(i32) {
     kSSLProtocolAll = 6,
 };
 
-pub extern "Security" fn sec_trust_create(trust: TrustRef) callconv(.C) sec_trust_t;
+extern "Security" fn sec_trust_create(trust: TrustRef) callconv(.C) sec_trust_t;
+pub const _trust_create = sec_trust_create;
 
-pub extern "Security" fn sec_trust_copy_ref(trust: sec_trust_t) callconv(.C) TrustRef;
+extern "Security" fn sec_trust_copy_ref(trust: sec_trust_t) callconv(.C) TrustRef;
+pub const _trust_copy_ref = sec_trust_copy_ref;
 
-pub extern "Security" fn sec_identity_create(identity: IdentityRef) callconv(.C) sec_identity_t;
+extern "Security" fn sec_identity_create(identity: IdentityRef) callconv(.C) sec_identity_t;
+pub const _identity_create = sec_identity_create;
 
-pub extern "Security" fn sec_identity_create_with_certificates(identity: IdentityRef, certificates: core_foundation.ArrayRef) callconv(.C) sec_identity_t;
+extern "Security" fn sec_identity_create_with_certificates(identity: IdentityRef, certificates: core_foundation.ArrayRef) callconv(.C) sec_identity_t;
+pub const _identity_create_with_certificates = sec_identity_create_with_certificates;
 
-pub extern "Security" fn sec_identity_access_certificates() callconv(.C) i32;
+extern "Security" fn sec_identity_access_certificates() callconv(.C) i32;
+pub const _identity_access_certificates = sec_identity_access_certificates;
 
-pub extern "Security" fn sec_identity_copy_ref(identity: sec_identity_t) callconv(.C) IdentityRef;
+extern "Security" fn sec_identity_copy_ref(identity: sec_identity_t) callconv(.C) IdentityRef;
+pub const _identity_copy_ref = sec_identity_copy_ref;
 
-pub extern "Security" fn sec_identity_copy_certificates_ref(identity: sec_identity_t) callconv(.C) core_foundation.ArrayRef;
+extern "Security" fn sec_identity_copy_certificates_ref(identity: sec_identity_t) callconv(.C) core_foundation.ArrayRef;
+pub const _identity_copy_certificates_ref = sec_identity_copy_certificates_ref;
 
-pub extern "Security" fn sec_certificate_create(certificate: CertificateRef) callconv(.C) sec_certificate_t;
+extern "Security" fn sec_certificate_create(certificate: CertificateRef) callconv(.C) sec_certificate_t;
+pub const _certificate_create = sec_certificate_create;
 
-pub extern "Security" fn sec_certificate_copy_ref(certificate: sec_certificate_t) callconv(.C) CertificateRef;
+extern "Security" fn sec_certificate_copy_ref(certificate: sec_certificate_t) callconv(.C) CertificateRef;
+pub const _certificate_copy_ref = sec_certificate_copy_ref;
 
 /// https://developer.apple.com/documentation/Security/OS_sec_protocol_metadata?language=objc
 pub const OS_sec_protocol_metadata = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
 };
 
 pub const sec_protocol_metadata_t = ?*anyopaque;
 
-pub extern "Security" fn sec_protocol_metadata_get_negotiated_protocol(metadata: sec_protocol_metadata_t) callconv(.C) ?*i8;
+extern "Security" fn sec_protocol_metadata_get_negotiated_protocol(metadata: sec_protocol_metadata_t) callconv(.C) ?*i8;
+pub const _protocol_metadata_get_negotiated_protocol = sec_protocol_metadata_get_negotiated_protocol;
 
-pub extern "Security" fn sec_protocol_metadata_copy_peer_public_key(metadata: sec_protocol_metadata_t) callconv(.C) objc.dispatch_data_t;
+extern "Security" fn sec_protocol_metadata_copy_peer_public_key(metadata: sec_protocol_metadata_t) callconv(.C) objc.dispatch_data_t;
+pub const _protocol_metadata_copy_peer_public_key = sec_protocol_metadata_copy_peer_public_key;
 
-pub extern "Security" fn sec_protocol_metadata_get_negotiated_tls_protocol_version(metadata: sec_protocol_metadata_t) callconv(.C) tls_protocol_version_t;
+extern "Security" fn sec_protocol_metadata_get_negotiated_tls_protocol_version(metadata: sec_protocol_metadata_t) callconv(.C) tls_protocol_version_t;
+pub const _protocol_metadata_get_negotiated_tls_protocol_version = sec_protocol_metadata_get_negotiated_tls_protocol_version;
 
-pub extern "Security" fn sec_protocol_metadata_get_negotiated_protocol_version(metadata: sec_protocol_metadata_t) callconv(.C) SSLProtocol;
+extern "Security" fn sec_protocol_metadata_get_negotiated_protocol_version(metadata: sec_protocol_metadata_t) callconv(.C) SSLProtocol;
+pub const _protocol_metadata_get_negotiated_protocol_version = sec_protocol_metadata_get_negotiated_protocol_version;
 
-pub extern "Security" fn sec_protocol_metadata_get_negotiated_tls_ciphersuite(metadata: sec_protocol_metadata_t) callconv(.C) tls_ciphersuite_t;
+extern "Security" fn sec_protocol_metadata_get_negotiated_tls_ciphersuite(metadata: sec_protocol_metadata_t) callconv(.C) tls_ciphersuite_t;
+pub const _protocol_metadata_get_negotiated_tls_ciphersuite = sec_protocol_metadata_get_negotiated_tls_ciphersuite;
 
-pub extern "Security" fn sec_protocol_metadata_get_negotiated_ciphersuite(metadata: sec_protocol_metadata_t) callconv(.C) SSLCipherSuite;
+extern "Security" fn sec_protocol_metadata_get_negotiated_ciphersuite(metadata: sec_protocol_metadata_t) callconv(.C) SSLCipherSuite;
+pub const _protocol_metadata_get_negotiated_ciphersuite = sec_protocol_metadata_get_negotiated_ciphersuite;
 
-pub extern "Security" fn sec_protocol_metadata_get_early_data_accepted() callconv(.C) i32;
+extern "Security" fn sec_protocol_metadata_get_early_data_accepted() callconv(.C) i32;
+pub const _protocol_metadata_get_early_data_accepted = sec_protocol_metadata_get_early_data_accepted;
 
-pub extern "Security" fn sec_protocol_metadata_access_peer_certificate_chain() callconv(.C) i32;
+extern "Security" fn sec_protocol_metadata_access_peer_certificate_chain() callconv(.C) i32;
+pub const _protocol_metadata_access_peer_certificate_chain = sec_protocol_metadata_access_peer_certificate_chain;
 
-pub extern "Security" fn sec_protocol_metadata_access_ocsp_response() callconv(.C) i32;
+extern "Security" fn sec_protocol_metadata_access_ocsp_response() callconv(.C) i32;
+pub const _protocol_metadata_access_ocsp_response = sec_protocol_metadata_access_ocsp_response;
 
-pub extern "Security" fn sec_protocol_metadata_access_supported_signature_algorithms() callconv(.C) i32;
+extern "Security" fn sec_protocol_metadata_access_supported_signature_algorithms() callconv(.C) i32;
+pub const _protocol_metadata_access_supported_signature_algorithms = sec_protocol_metadata_access_supported_signature_algorithms;
 
-pub extern "Security" fn sec_protocol_metadata_access_distinguished_names() callconv(.C) i32;
+extern "Security" fn sec_protocol_metadata_access_distinguished_names() callconv(.C) i32;
+pub const _protocol_metadata_access_distinguished_names = sec_protocol_metadata_access_distinguished_names;
 
-pub extern "Security" fn sec_protocol_metadata_access_pre_shared_keys() callconv(.C) i32;
+extern "Security" fn sec_protocol_metadata_access_pre_shared_keys() callconv(.C) i32;
+pub const _protocol_metadata_access_pre_shared_keys = sec_protocol_metadata_access_pre_shared_keys;
 
-pub extern "Security" fn sec_protocol_metadata_get_server_name(metadata: sec_protocol_metadata_t) callconv(.C) ?*i8;
+extern "Security" fn sec_protocol_metadata_get_server_name(metadata: sec_protocol_metadata_t) callconv(.C) ?*i8;
+pub const _protocol_metadata_get_server_name = sec_protocol_metadata_get_server_name;
 
-pub extern "Security" fn sec_protocol_metadata_peers_are_equal() callconv(.C) i32;
+extern "Security" fn sec_protocol_metadata_peers_are_equal() callconv(.C) i32;
+pub const _protocol_metadata_peers_are_equal = sec_protocol_metadata_peers_are_equal;
 
-pub extern "Security" fn sec_protocol_metadata_challenge_parameters_are_equal() callconv(.C) i32;
+extern "Security" fn sec_protocol_metadata_challenge_parameters_are_equal() callconv(.C) i32;
+pub const _protocol_metadata_challenge_parameters_are_equal = sec_protocol_metadata_challenge_parameters_are_equal;
 
-pub extern "Security" fn sec_protocol_metadata_create_secret(metadata: sec_protocol_metadata_t, label_len: objc.size_t, label: ?*i8, exporter_length: objc.size_t, ) callconv(.C) objc.dispatch_data_t;
+extern "Security" fn sec_protocol_metadata_create_secret(
+    metadata: sec_protocol_metadata_t,
+    label_len: objc.size_t,
+    label: ?*i8,
+    exporter_length: objc.size_t,
+) callconv(.C) objc.dispatch_data_t;
+pub const _protocol_metadata_create_secret = sec_protocol_metadata_create_secret;
 
-pub extern "Security" fn sec_protocol_metadata_create_secret_with_context(metadata: sec_protocol_metadata_t, label_len: objc.size_t, label: ?*i8, context_len: objc.size_t, context: ?*objc.uint8_t, exporter_length: objc.size_t, ) callconv(.C) objc.dispatch_data_t;
+extern "Security" fn sec_protocol_metadata_create_secret_with_context(
+    metadata: sec_protocol_metadata_t,
+    label_len: objc.size_t,
+    label: ?*i8,
+    context_len: objc.size_t,
+    context: ?*objc.uint8_t,
+    exporter_length: objc.size_t,
+) callconv(.C) objc.dispatch_data_t;
+pub const _protocol_metadata_create_secret_with_context = sec_protocol_metadata_create_secret_with_context;
 
 /// https://developer.apple.com/documentation/Security/OS_sec_protocol_options?language=objc
 pub const OS_sec_protocol_options = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
 };
 
 pub const sec_protocol_options_t = ?*anyopaque;
 
-pub extern "Security" fn sec_protocol_options_are_equal() callconv(.C) i32;
+extern "Security" fn sec_protocol_options_are_equal() callconv(.C) i32;
+pub const _protocol_options_are_equal = sec_protocol_options_are_equal;
 
-pub extern "Security" fn sec_protocol_options_set_local_identity(options: sec_protocol_options_t, identity: sec_identity_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_local_identity(options: sec_protocol_options_t, identity: sec_identity_t) callconv(.C) void;
+pub const _protocol_options_set_local_identity = sec_protocol_options_set_local_identity;
 
-pub extern "Security" fn sec_protocol_options_append_tls_ciphersuite(options: sec_protocol_options_t, ciphersuite: tls_ciphersuite_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_append_tls_ciphersuite(options: sec_protocol_options_t, ciphersuite: tls_ciphersuite_t) callconv(.C) void;
+pub const _protocol_options_append_tls_ciphersuite = sec_protocol_options_append_tls_ciphersuite;
 
-pub extern "Security" fn sec_protocol_options_add_tls_ciphersuite(options: sec_protocol_options_t, ciphersuite: SSLCipherSuite) callconv(.C) void;
+extern "Security" fn sec_protocol_options_add_tls_ciphersuite(options: sec_protocol_options_t, ciphersuite: SSLCipherSuite) callconv(.C) void;
+pub const _protocol_options_add_tls_ciphersuite = sec_protocol_options_add_tls_ciphersuite;
 
-pub extern "Security" fn sec_protocol_options_append_tls_ciphersuite_group(options: sec_protocol_options_t, group: tls_ciphersuite_group_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_append_tls_ciphersuite_group(options: sec_protocol_options_t, group: tls_ciphersuite_group_t) callconv(.C) void;
+pub const _protocol_options_append_tls_ciphersuite_group = sec_protocol_options_append_tls_ciphersuite_group;
 
-pub extern "Security" fn sec_protocol_options_add_tls_ciphersuite_group(options: sec_protocol_options_t, group: SSLCiphersuiteGroup) callconv(.C) void;
+extern "Security" fn sec_protocol_options_add_tls_ciphersuite_group(options: sec_protocol_options_t, group: SSLCiphersuiteGroup) callconv(.C) void;
+pub const _protocol_options_add_tls_ciphersuite_group = sec_protocol_options_add_tls_ciphersuite_group;
 
-pub extern "Security" fn sec_protocol_options_set_tls_min_version(options: sec_protocol_options_t, version: SSLProtocol) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_min_version(options: sec_protocol_options_t, version: SSLProtocol) callconv(.C) void;
+pub const _protocol_options_set_tls_min_version = sec_protocol_options_set_tls_min_version;
 
-pub extern "Security" fn sec_protocol_options_set_min_tls_protocol_version(options: sec_protocol_options_t, version: tls_protocol_version_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_min_tls_protocol_version(options: sec_protocol_options_t, version: tls_protocol_version_t) callconv(.C) void;
+pub const _protocol_options_set_min_tls_protocol_version = sec_protocol_options_set_min_tls_protocol_version;
 
-pub extern "Security" fn sec_protocol_options_get_default_min_tls_protocol_version() callconv(.C) tls_protocol_version_t;
+extern "Security" fn sec_protocol_options_get_default_min_tls_protocol_version() callconv(.C) tls_protocol_version_t;
+pub const _protocol_options_get_default_min_tls_protocol_version = sec_protocol_options_get_default_min_tls_protocol_version;
 
-pub extern "Security" fn sec_protocol_options_get_default_min_dtls_protocol_version() callconv(.C) tls_protocol_version_t;
+extern "Security" fn sec_protocol_options_get_default_min_dtls_protocol_version() callconv(.C) tls_protocol_version_t;
+pub const _protocol_options_get_default_min_dtls_protocol_version = sec_protocol_options_get_default_min_dtls_protocol_version;
 
-pub extern "Security" fn sec_protocol_options_set_tls_max_version(options: sec_protocol_options_t, version: SSLProtocol) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_max_version(options: sec_protocol_options_t, version: SSLProtocol) callconv(.C) void;
+pub const _protocol_options_set_tls_max_version = sec_protocol_options_set_tls_max_version;
 
-pub extern "Security" fn sec_protocol_options_set_max_tls_protocol_version(options: sec_protocol_options_t, version: tls_protocol_version_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_max_tls_protocol_version(options: sec_protocol_options_t, version: tls_protocol_version_t) callconv(.C) void;
+pub const _protocol_options_set_max_tls_protocol_version = sec_protocol_options_set_max_tls_protocol_version;
 
-pub extern "Security" fn sec_protocol_options_get_default_max_tls_protocol_version() callconv(.C) tls_protocol_version_t;
+extern "Security" fn sec_protocol_options_get_default_max_tls_protocol_version() callconv(.C) tls_protocol_version_t;
+pub const _protocol_options_get_default_max_tls_protocol_version = sec_protocol_options_get_default_max_tls_protocol_version;
 
-pub extern "Security" fn sec_protocol_options_get_default_max_dtls_protocol_version() callconv(.C) tls_protocol_version_t;
+extern "Security" fn sec_protocol_options_get_default_max_dtls_protocol_version() callconv(.C) tls_protocol_version_t;
+pub const _protocol_options_get_default_max_dtls_protocol_version = sec_protocol_options_get_default_max_dtls_protocol_version;
 
-pub extern "Security" fn sec_protocol_options_get_enable_encrypted_client_hello() callconv(.C) i32;
+extern "Security" fn sec_protocol_options_get_enable_encrypted_client_hello() callconv(.C) i32;
+pub const _protocol_options_get_enable_encrypted_client_hello = sec_protocol_options_get_enable_encrypted_client_hello;
 
-pub extern "Security" fn sec_protocol_options_get_quic_use_legacy_codepoint() callconv(.C) i32;
+extern "Security" fn sec_protocol_options_get_quic_use_legacy_codepoint() callconv(.C) i32;
+pub const _protocol_options_get_quic_use_legacy_codepoint = sec_protocol_options_get_quic_use_legacy_codepoint;
 
-pub extern "Security" fn sec_protocol_options_add_tls_application_protocol(options: sec_protocol_options_t, application_protocol: ?*i8) callconv(.C) void;
+extern "Security" fn sec_protocol_options_add_tls_application_protocol(options: sec_protocol_options_t, application_protocol: ?*i8) callconv(.C) void;
+pub const _protocol_options_add_tls_application_protocol = sec_protocol_options_add_tls_application_protocol;
 
-pub extern "Security" fn sec_protocol_options_set_tls_server_name(options: sec_protocol_options_t, server_name: ?*i8) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_server_name(options: sec_protocol_options_t, server_name: ?*i8) callconv(.C) void;
+pub const _protocol_options_set_tls_server_name = sec_protocol_options_set_tls_server_name;
 
-pub extern "Security" fn sec_protocol_options_set_tls_diffie_hellman_parameters(options: sec_protocol_options_t, params: objc.dispatch_data_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_diffie_hellman_parameters(options: sec_protocol_options_t, params: objc.dispatch_data_t) callconv(.C) void;
+pub const _protocol_options_set_tls_diffie_hellman_parameters = sec_protocol_options_set_tls_diffie_hellman_parameters;
 
-pub extern "Security" fn sec_protocol_options_add_pre_shared_key(options: sec_protocol_options_t, psk: objc.dispatch_data_t, psk_identity: objc.dispatch_data_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_add_pre_shared_key(options: sec_protocol_options_t, psk: objc.dispatch_data_t, psk_identity: objc.dispatch_data_t) callconv(.C) void;
+pub const _protocol_options_add_pre_shared_key = sec_protocol_options_add_pre_shared_key;
 
-pub extern "Security" fn sec_protocol_options_set_tls_pre_shared_key_identity_hint(options: sec_protocol_options_t, psk_identity_hint: objc.dispatch_data_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_pre_shared_key_identity_hint(options: sec_protocol_options_t, psk_identity_hint: objc.dispatch_data_t) callconv(.C) void;
+pub const _protocol_options_set_tls_pre_shared_key_identity_hint = sec_protocol_options_set_tls_pre_shared_key_identity_hint;
 
-pub const sec_protocol_pre_shared_key_selection_complete_t = *const fn(objc.dispatch_data_t) callconv(.C) void;
+pub const sec_protocol_pre_shared_key_selection_complete_t = *const fn (objc.dispatch_data_t) callconv(.C) void;
 
-pub const sec_protocol_pre_shared_key_selection_t = *const fn(sec_protocol_metadata_t, objc.dispatch_data_t, sec_protocol_pre_shared_key_selection_complete_t) callconv(.C) void;
+pub const sec_protocol_pre_shared_key_selection_t = *const fn (sec_protocol_metadata_t, objc.dispatch_data_t, sec_protocol_pre_shared_key_selection_complete_t) callconv(.C) void;
 
-pub extern "Security" fn sec_protocol_options_set_pre_shared_key_selection_block(options: sec_protocol_options_t, psk_selection_block: sec_protocol_pre_shared_key_selection_t, psk_selection_queue: objc.dispatch_queue_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_pre_shared_key_selection_block(options: sec_protocol_options_t, psk_selection_block: sec_protocol_pre_shared_key_selection_t, psk_selection_queue: objc.dispatch_queue_t) callconv(.C) void;
+pub const _protocol_options_set_pre_shared_key_selection_block = sec_protocol_options_set_pre_shared_key_selection_block;
 
-pub extern "Security" fn sec_protocol_options_set_tls_tickets_enabled(options: sec_protocol_options_t, tickets_enabled: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_tickets_enabled(options: sec_protocol_options_t, tickets_enabled: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_tls_tickets_enabled = sec_protocol_options_set_tls_tickets_enabled;
 
-pub extern "Security" fn sec_protocol_options_set_tls_is_fallback_attempt(options: sec_protocol_options_t, is_fallback_attempt: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_is_fallback_attempt(options: sec_protocol_options_t, is_fallback_attempt: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_tls_is_fallback_attempt = sec_protocol_options_set_tls_is_fallback_attempt;
 
-pub extern "Security" fn sec_protocol_options_set_tls_resumption_enabled(options: sec_protocol_options_t, resumption_enabled: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_resumption_enabled(options: sec_protocol_options_t, resumption_enabled: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_tls_resumption_enabled = sec_protocol_options_set_tls_resumption_enabled;
 
-pub extern "Security" fn sec_protocol_options_set_tls_false_start_enabled(options: sec_protocol_options_t, false_start_enabled: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_false_start_enabled(options: sec_protocol_options_t, false_start_enabled: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_tls_false_start_enabled = sec_protocol_options_set_tls_false_start_enabled;
 
-pub extern "Security" fn sec_protocol_options_set_tls_ocsp_enabled(options: sec_protocol_options_t, ocsp_enabled: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_ocsp_enabled(options: sec_protocol_options_t, ocsp_enabled: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_tls_ocsp_enabled = sec_protocol_options_set_tls_ocsp_enabled;
 
-pub extern "Security" fn sec_protocol_options_set_tls_sct_enabled(options: sec_protocol_options_t, sct_enabled: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_sct_enabled(options: sec_protocol_options_t, sct_enabled: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_tls_sct_enabled = sec_protocol_options_set_tls_sct_enabled;
 
-pub extern "Security" fn sec_protocol_options_set_tls_renegotiation_enabled(options: sec_protocol_options_t, renegotiation_enabled: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_tls_renegotiation_enabled(options: sec_protocol_options_t, renegotiation_enabled: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_tls_renegotiation_enabled = sec_protocol_options_set_tls_renegotiation_enabled;
 
-pub extern "Security" fn sec_protocol_options_set_peer_authentication_required(options: sec_protocol_options_t, peer_authentication_required: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_peer_authentication_required(options: sec_protocol_options_t, peer_authentication_required: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_peer_authentication_required = sec_protocol_options_set_peer_authentication_required;
 
-pub extern "Security" fn sec_protocol_options_set_peer_authentication_optional(options: sec_protocol_options_t, peer_authentication_optional: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_peer_authentication_optional(options: sec_protocol_options_t, peer_authentication_optional: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_peer_authentication_optional = sec_protocol_options_set_peer_authentication_optional;
 
-pub extern "Security" fn sec_protocol_options_set_enable_encrypted_client_hello(options: sec_protocol_options_t, enable_encrypted_client_hello: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_enable_encrypted_client_hello(options: sec_protocol_options_t, enable_encrypted_client_hello: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_enable_encrypted_client_hello = sec_protocol_options_set_enable_encrypted_client_hello;
 
-pub extern "Security" fn sec_protocol_options_set_quic_use_legacy_codepoint(options: sec_protocol_options_t, quic_use_legacy_codepoint: objc.bool) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_quic_use_legacy_codepoint(options: sec_protocol_options_t, quic_use_legacy_codepoint: objc.bool) callconv(.C) void;
+pub const _protocol_options_set_quic_use_legacy_codepoint = sec_protocol_options_set_quic_use_legacy_codepoint;
 
-pub const sec_protocol_key_update_complete_t = *const fn() callconv(.C) void;
+pub const sec_protocol_key_update_complete_t = *const fn () callconv(.C) void;
 
-pub const sec_protocol_key_update_t = *const fn(sec_protocol_metadata_t, sec_protocol_key_update_complete_t) callconv(.C) void;
+pub const sec_protocol_key_update_t = *const fn (sec_protocol_metadata_t, sec_protocol_key_update_complete_t) callconv(.C) void;
 
-pub const sec_protocol_challenge_complete_t = *const fn(sec_identity_t) callconv(.C) void;
+pub const sec_protocol_challenge_complete_t = *const fn (sec_identity_t) callconv(.C) void;
 
-pub const sec_protocol_challenge_t = *const fn(sec_protocol_metadata_t, sec_protocol_challenge_complete_t) callconv(.C) void;
+pub const sec_protocol_challenge_t = *const fn (sec_protocol_metadata_t, sec_protocol_challenge_complete_t) callconv(.C) void;
 
-pub const sec_protocol_verify_complete_t = *const fn(objc.bool) callconv(.C) void;
+pub const sec_protocol_verify_complete_t = *const fn (objc.bool) callconv(.C) void;
 
-pub const sec_protocol_verify_t = *const fn(sec_protocol_metadata_t, sec_trust_t, sec_protocol_verify_complete_t) callconv(.C) void;
+pub const sec_protocol_verify_t = *const fn (sec_protocol_metadata_t, sec_trust_t, sec_protocol_verify_complete_t) callconv(.C) void;
 
-pub extern "Security" fn sec_protocol_options_set_key_update_block(options: sec_protocol_options_t, key_update_block: sec_protocol_key_update_t, key_update_queue: objc.dispatch_queue_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_key_update_block(options: sec_protocol_options_t, key_update_block: sec_protocol_key_update_t, key_update_queue: objc.dispatch_queue_t) callconv(.C) void;
+pub const _protocol_options_set_key_update_block = sec_protocol_options_set_key_update_block;
 
-pub extern "Security" fn sec_protocol_options_set_challenge_block(options: sec_protocol_options_t, challenge_block: sec_protocol_challenge_t, challenge_queue: objc.dispatch_queue_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_challenge_block(options: sec_protocol_options_t, challenge_block: sec_protocol_challenge_t, challenge_queue: objc.dispatch_queue_t) callconv(.C) void;
+pub const _protocol_options_set_challenge_block = sec_protocol_options_set_challenge_block;
 
-pub extern "Security" fn sec_protocol_options_set_verify_block(options: sec_protocol_options_t, verify_block: sec_protocol_verify_t, verify_block_queue: objc.dispatch_queue_t) callconv(.C) void;
+extern "Security" fn sec_protocol_options_set_verify_block(options: sec_protocol_options_t, verify_block: sec_protocol_verify_t, verify_block_queue: objc.dispatch_queue_t) callconv(.C) void;
+pub const _protocol_options_set_verify_block = sec_protocol_options_set_verify_block;
 
 pub const anon871 = enum(objc.OSStatus) {
     errAuthorizationSuccess = 0,
@@ -5221,34 +6417,67 @@ pub const AuthorizationItemSet = extern struct {
 };
 
 pub const AuthorizationExternalForm = extern struct {
-    bytes: [32] i8,
+    bytes: [32]i8,
 };
 
 pub const AuthorizationRights = AuthorizationItemSet;
 
 pub const AuthorizationEnvironment = AuthorizationItemSet;
 
-pub extern "Security" fn AuthorizationCreate(rights: ?*AuthorizationRights, environment: ?*AuthorizationEnvironment, flags: AuthorizationFlags, authorization: ?*AuthorizationRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationCreate(
+    rights: ?*AuthorizationRights,
+    environment: ?*AuthorizationEnvironment,
+    flags: AuthorizationFlags,
+    authorization: ?*AuthorizationRef,
+) callconv(.C) objc.OSStatus;
+pub const horizationCreate = AuthorizationCreate;
 
-pub extern "Security" fn AuthorizationFree(authorization: AuthorizationRef, flags: AuthorizationFlags) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationFree(authorization: AuthorizationRef, flags: AuthorizationFlags) callconv(.C) objc.OSStatus;
+pub const horizationFree = AuthorizationFree;
 
-pub extern "Security" fn AuthorizationCopyRights(authorization: AuthorizationRef, rights: ?*AuthorizationRights, environment: ?*AuthorizationEnvironment, flags: AuthorizationFlags, authorizedRights: ?*?*AuthorizationRights, ) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationCopyRights(
+    authorization: AuthorizationRef,
+    rights: ?*AuthorizationRights,
+    environment: ?*AuthorizationEnvironment,
+    flags: AuthorizationFlags,
+    authorizedRights: ?*?*AuthorizationRights,
+) callconv(.C) objc.OSStatus;
+pub const horizationCopyRights = AuthorizationCopyRights;
 
-pub const AuthorizationAsyncCallback = *const fn(objc.OSStatus, ?*AuthorizationRights) callconv(.C) void;
+pub const AuthorizationAsyncCallback = *const fn (objc.OSStatus, ?*AuthorizationRights) callconv(.C) void;
 
-pub extern "Security" fn AuthorizationCopyRightsAsync(authorization: AuthorizationRef, rights: ?*AuthorizationRights, environment: ?*AuthorizationEnvironment, flags: AuthorizationFlags, callbackBlock: AuthorizationAsyncCallback, ) callconv(.C) void;
+extern "Security" fn AuthorizationCopyRightsAsync(
+    authorization: AuthorizationRef,
+    rights: ?*AuthorizationRights,
+    environment: ?*AuthorizationEnvironment,
+    flags: AuthorizationFlags,
+    callbackBlock: AuthorizationAsyncCallback,
+) callconv(.C) void;
+pub const horizationCopyRightsAsync = AuthorizationCopyRightsAsync;
 
-pub extern "Security" fn AuthorizationCopyInfo(authorization: AuthorizationRef, tag: AuthorizationString, info: ?*?*AuthorizationItemSet) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationCopyInfo(authorization: AuthorizationRef, tag: AuthorizationString, info: ?*?*AuthorizationItemSet) callconv(.C) objc.OSStatus;
+pub const horizationCopyInfo = AuthorizationCopyInfo;
 
-pub extern "Security" fn AuthorizationMakeExternalForm(authorization: AuthorizationRef, extForm: ?*AuthorizationExternalForm) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationMakeExternalForm(authorization: AuthorizationRef, extForm: ?*AuthorizationExternalForm) callconv(.C) objc.OSStatus;
+pub const horizationMakeExternalForm = AuthorizationMakeExternalForm;
 
-pub extern "Security" fn AuthorizationCreateFromExternalForm(extForm: ?*AuthorizationExternalForm, authorization: ?*AuthorizationRef) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationCreateFromExternalForm(extForm: ?*AuthorizationExternalForm, authorization: ?*AuthorizationRef) callconv(.C) objc.OSStatus;
+pub const horizationCreateFromExternalForm = AuthorizationCreateFromExternalForm;
 
-pub extern "Security" fn AuthorizationFreeItemSet(set: ?*AuthorizationItemSet) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationFreeItemSet(set: ?*AuthorizationItemSet) callconv(.C) objc.OSStatus;
+pub const horizationFreeItemSet = AuthorizationFreeItemSet;
 
-pub extern "Security" fn AuthorizationExecuteWithPrivileges(authorization: AuthorizationRef, pathToTool: ?*i8, options: AuthorizationFlags, arguments: ?*?*const i8, communicationsPipe: ?*?*objc.FILE, ) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationExecuteWithPrivileges(
+    authorization: AuthorizationRef,
+    pathToTool: ?*i8,
+    options: AuthorizationFlags,
+    arguments: ?*?*const i8,
+    communicationsPipe: ?*?*objc.FILE,
+) callconv(.C) objc.OSStatus;
+pub const horizationExecuteWithPrivileges = AuthorizationExecuteWithPrivileges;
 
-pub extern "Security" fn AuthorizationCopyPrivilegedReference(authorization: ?*AuthorizationRef, flags: AuthorizationFlags) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationCopyPrivilegedReference(authorization: ?*AuthorizationRef, flags: AuthorizationFlags) callconv(.C) objc.OSStatus;
+pub const horizationCopyPrivilegedReference = AuthorizationCopyPrivilegedReference;
 
 pub const uritySessionId = objc.UInt32;
 
@@ -5268,9 +6497,11 @@ pub const SessionCreationFlags = enum(objc.UInt32) {
     sessionKeepCurrentBootstrap = 32768,
 };
 
-pub extern "Security" fn SessionGetInfo(session: uritySessionId, sessionId: ?*uritySessionId, attributes: ?*SessionAttributeBits) callconv(.C) objc.OSStatus;
+extern "Security" fn SessionGetInfo(session: uritySessionId, sessionId: ?*uritySessionId, attributes: ?*SessionAttributeBits) callconv(.C) objc.OSStatus;
+pub const sionGetInfo = SessionGetInfo;
 
-pub extern "Security" fn SessionCreate(flags: SessionCreationFlags, attributes: SessionAttributeBits) callconv(.C) objc.OSStatus;
+extern "Security" fn SessionCreate(flags: SessionCreationFlags, attributes: SessionAttributeBits) callconv(.C) objc.OSStatus;
+pub const sionCreate = SessionCreate;
 
 pub const CSSM_MANAGER_EVENT_TYPES = uint32;
 
@@ -5282,422 +6513,1431 @@ pub const cssm_manager_event_notification = extern struct {
     EventData: Asn1Item,
 };
 
+pub const CSSM_MANAGER_EVENT_NOTIFICATION = cssm_manager_event_notification;
+
 pub const CSSM_MANAGER_EVENT_NOTIFICATION_PTR = ?*cssm_manager_event_notification;
 
-pub extern "Security" fn CSSM_Init(Version: ?*CSSM_VERSION, Scope: CSSM_PRIVILEGE_SCOPE, CallerGuid: ?*CSSM_GUID, KeyHierarchy: CSSM_KEY_HIERARCHY, PvcPolicy: ?*CSSM_PVC_MODE, Reserved: ?*anyopaque, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_Terminate() callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_ModuleLoad(ModuleGuid: ?*CSSM_GUID, KeyHierarchy: CSSM_KEY_HIERARCHY, AppNotifyCallback: CSSM_API_ModuleEventHandler, AppNotifyCallbackCtx: ?*anyopaque, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_ModuleUnload(ModuleGuid: ?*CSSM_GUID, AppNotifyCallback: CSSM_API_ModuleEventHandler, AppNotifyCallbackCtx: ?*anyopaque) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_Introduce(ModuleID: ?*CSSM_GUID, KeyHierarchy: CSSM_KEY_HIERARCHY) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_Unintroduce(ModuleID: ?*CSSM_GUID) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_ModuleAttach(ModuleGuid: ?*CSSM_GUID, Version: ?*CSSM_VERSION, MemoryFuncs: ?*CSSM_API_MEMORY_FUNCS, SubserviceID: uint32, SubServiceType: CSSM_SERVICE_TYPE, AttachFlags: CSSM_ATTACH_FLAGS, KeyHierarchy: CSSM_KEY_HIERARCHY, FunctionTable: ?*CSSM_FUNC_NAME_ADDR, NumFunctionTable: uint32, Reserved: ?*anyopaque, NewModuleHandle: CSSM_MODULE_HANDLE_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_ModuleDetach(ModuleHandle: CSSM_MODULE_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_SetPrivilege(Privilege: CSSM_PRIVILEGE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GetPrivilege(Privilege: ?*CSSM_PRIVILEGE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GetModuleGUIDFromHandle(ModuleHandle: CSSM_MODULE_HANDLE, ModuleGUID: CSSM_GUID_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GetSubserviceUIDFromHandle(ModuleHandle: CSSM_MODULE_HANDLE, SubserviceUID: CSSM_SUBSERVICE_UID_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_ListAttachedModuleManagers(NumberOfModuleManagers: ?*uint32, ModuleManagerGuids: CSSM_GUID_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GetAPIMemoryFunctions(AddInHandle: CSSM_MODULE_HANDLE, AppMemoryFuncs: CSSM_API_MEMORY_FUNCS_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_CreateSignatureContext(CSPHandle: CSSM_CSP_HANDLE, AlgorithmID: CSSM_ALGORITHMS, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, Key: ?*CSSM_KEY, NewContextHandle: ?*CSSM_CC_HANDLE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_CreateSymmetricContext(CSPHandle: CSSM_CSP_HANDLE, AlgorithmID: CSSM_ALGORITHMS, Mode: CSSM_ENCRYPT_MODE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, Key: ?*CSSM_KEY, InitVector: ?*Asn1Item, Padding: CSSM_PADDING, Reserved: ?*anyopaque, NewContextHandle: ?*CSSM_CC_HANDLE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_CreateDigestContext(CSPHandle: CSSM_CSP_HANDLE, AlgorithmID: CSSM_ALGORITHMS, NewContextHandle: ?*CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_CreateMacContext(CSPHandle: CSSM_CSP_HANDLE, AlgorithmID: CSSM_ALGORITHMS, Key: ?*CSSM_KEY, NewContextHandle: ?*CSSM_CC_HANDLE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_CreateRandomGenContext(CSPHandle: CSSM_CSP_HANDLE, AlgorithmID: CSSM_ALGORITHMS, Seed: ?*CSSM_CRYPTO_DATA, Length: CSSM_SIZE, NewContextHandle: ?*CSSM_CC_HANDLE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_CreateAsymmetricContext(CSPHandle: CSSM_CSP_HANDLE, AlgorithmID: CSSM_ALGORITHMS, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, Key: ?*CSSM_KEY, Padding: CSSM_PADDING, NewContextHandle: ?*CSSM_CC_HANDLE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_CreateDeriveKeyContext(CSPHandle: CSSM_CSP_HANDLE, AlgorithmID: CSSM_ALGORITHMS, DeriveKeyType: CSSM_KEY_TYPE, DeriveKeyLengthInBits: uint32, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, BaseKey: ?*CSSM_KEY, IterationCount: uint32, Salt: ?*Asn1Item, Seed: ?*CSSM_CRYPTO_DATA, NewContextHandle: ?*CSSM_CC_HANDLE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_CreateKeyGenContext(CSPHandle: CSSM_CSP_HANDLE, AlgorithmID: CSSM_ALGORITHMS, KeySizeInBits: uint32, Seed: ?*CSSM_CRYPTO_DATA, Salt: ?*Asn1Item, StartDate: ?*CSSM_DATE, EndDate: ?*CSSM_DATE, Params: ?*Asn1Item, NewContextHandle: ?*CSSM_CC_HANDLE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_CreatePassThroughContext(CSPHandle: CSSM_CSP_HANDLE, Key: ?*CSSM_KEY, NewContextHandle: ?*CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GetContext(CCHandle: CSSM_CC_HANDLE, Context: ?*CSSM_CONTEXT_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_FreeContext(Context: CSSM_CONTEXT_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_SetContext(CCHandle: CSSM_CC_HANDLE, Context: ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DeleteContext(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GetContextAttribute(Context: ?*CSSM_CONTEXT, AttributeType: uint32, ContextAttribute: ?*CSSM_CONTEXT_ATTRIBUTE_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_UpdateContextAttributes(CCHandle: CSSM_CC_HANDLE, NumberOfAttributes: uint32, ContextAttributes: ?*CSSM_CONTEXT_ATTRIBUTE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DeleteContextAttributes(CCHandle: CSSM_CC_HANDLE, NumberOfAttributes: uint32, ContextAttributes: ?*CSSM_CONTEXT_ATTRIBUTE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_Login(CSPHandle: CSSM_CSP_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, LoginName: ?*Asn1Item, Reserved: ?*anyopaque, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_Logout(CSPHandle: CSSM_CSP_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_GetLoginAcl(CSPHandle: CSSM_CSP_HANDLE, SelectionTag: ?*CSSM_STRING, NumberOfAclInfos: ?*uint32, AclInfos: ?*CSSM_ACL_ENTRY_INFO_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_ChangeLoginAcl(CSPHandle: CSSM_CSP_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, AclEdit: ?*CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GetKeyAcl(CSPHandle: CSSM_CSP_HANDLE, Key: ?*CSSM_KEY, SelectionTag: ?*CSSM_STRING, NumberOfAclInfos: ?*uint32, AclInfos: ?*CSSM_ACL_ENTRY_INFO_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_ChangeKeyAcl(CSPHandle: CSSM_CSP_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, AclEdit: ?*CSSM_ACL_EDIT, Key: ?*CSSM_KEY, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GetKeyOwner(CSPHandle: CSSM_CSP_HANDLE, Key: ?*CSSM_KEY, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_ChangeKeyOwner(CSPHandle: CSSM_CSP_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, Key: ?*CSSM_KEY, NewOwner: ?*CSSM_ACL_OWNER_PROTOTYPE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_GetLoginOwner(CSPHandle: CSSM_CSP_HANDLE, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_ChangeLoginOwner(CSPHandle: CSSM_CSP_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, NewOwner: ?*CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_SignData(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32, DigestAlgorithm: CSSM_ALGORITHMS, Signature: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_SignDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_SignDataUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_SignDataFinal(CCHandle: CSSM_CC_HANDLE, Signature: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_VerifyData(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32, DigestAlgorithm: CSSM_ALGORITHMS, Signature: ?*Asn1Item, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_VerifyDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_VerifyDataUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_VerifyDataFinal(CCHandle: CSSM_CC_HANDLE, Signature: ?*Asn1Item) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DigestData(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32, Digest: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DigestDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DigestDataUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DigestDataClone(CCHandle: CSSM_CC_HANDLE, ClonednewCCHandle: ?*CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DigestDataFinal(CCHandle: CSSM_CC_HANDLE, Digest: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateMac(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32, Mac: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateMacInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateMacUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateMacFinal(CCHandle: CSSM_CC_HANDLE, Mac: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_VerifyMac(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32, Mac: ?*Asn1Item, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_VerifyMacInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_VerifyMacUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_VerifyMacFinal(CCHandle: CSSM_CC_HANDLE, Mac: ?*Asn1Item) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_QuerySize(CCHandle: CSSM_CC_HANDLE, Encrypt: CSSM_BOOL, QuerySizeCount: uint32, DataBlockSizes: CSSM_QUERY_SIZE_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_EncryptData(CCHandle: CSSM_CC_HANDLE, ClearBufs: ?*Asn1Item, ClearBufCount: uint32, CipherBufs: CSSM_DATA_PTR, CipherBufCount: uint32, bytesEncrypted: ?*CSSM_SIZE, RemData: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_EncryptDataP(CCHandle: CSSM_CC_HANDLE, ClearBufs: ?*Asn1Item, ClearBufCount: uint32, CipherBufs: CSSM_DATA_PTR, CipherBufCount: uint32, bytesEncrypted: ?*CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_EncryptDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_EncryptDataInitP(CCHandle: CSSM_CC_HANDLE, Privilege: CSSM_PRIVILEGE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_EncryptDataUpdate(CCHandle: CSSM_CC_HANDLE, ClearBufs: ?*Asn1Item, ClearBufCount: uint32, CipherBufs: CSSM_DATA_PTR, CipherBufCount: uint32, bytesEncrypted: ?*CSSM_SIZE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_EncryptDataFinal(CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DecryptData(CCHandle: CSSM_CC_HANDLE, CipherBufs: ?*Asn1Item, CipherBufCount: uint32, ClearBufs: CSSM_DATA_PTR, ClearBufCount: uint32, bytesDecrypted: ?*CSSM_SIZE, RemData: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DecryptDataP(CCHandle: CSSM_CC_HANDLE, CipherBufs: ?*Asn1Item, CipherBufCount: uint32, ClearBufs: CSSM_DATA_PTR, ClearBufCount: uint32, bytesDecrypted: ?*CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DecryptDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DecryptDataInitP(CCHandle: CSSM_CC_HANDLE, Privilege: CSSM_PRIVILEGE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DecryptDataUpdate(CCHandle: CSSM_CC_HANDLE, CipherBufs: ?*Asn1Item, CipherBufCount: uint32, ClearBufs: CSSM_DATA_PTR, ClearBufCount: uint32, bytesDecrypted: ?*CSSM_SIZE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DecryptDataFinal(CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_QueryKeySizeInBits(CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Key: ?*CSSM_KEY, KeySize: CSSM_KEY_SIZE_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateKey(CCHandle: CSSM_CC_HANDLE, KeyUsage: uint32, KeyAttr: uint32, KeyLabel: ?*Asn1Item, CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT, Key: CSSM_KEY_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateKeyP(CCHandle: CSSM_CC_HANDLE, KeyUsage: uint32, KeyAttr: uint32, KeyLabel: ?*Asn1Item, CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT, Key: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateKeyPair(CCHandle: CSSM_CC_HANDLE, PublicKeyUsage: uint32, PublicKeyAttr: uint32, PublicKeyLabel: ?*Asn1Item, PublicKey: CSSM_KEY_PTR, PrivateKeyUsage: uint32, PrivateKeyAttr: uint32, PrivateKeyLabel: ?*Asn1Item, CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT, PrivateKey: CSSM_KEY_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateKeyPairP(CCHandle: CSSM_CC_HANDLE, PublicKeyUsage: uint32, PublicKeyAttr: uint32, PublicKeyLabel: ?*Asn1Item, PublicKey: CSSM_KEY_PTR, PrivateKeyUsage: uint32, PrivateKeyAttr: uint32, PrivateKeyLabel: ?*Asn1Item, CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT, PrivateKey: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateRandom(CCHandle: CSSM_CC_HANDLE, RandomNumber: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_ObtainPrivateKeyFromPublicKey(CSPHandle: CSSM_CSP_HANDLE, PublicKey: ?*CSSM_KEY, PrivateKey: CSSM_KEY_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_WrapKey(CCHandle: CSSM_CC_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, Key: ?*CSSM_KEY, DescriptiveData: ?*Asn1Item, WrappedKey: CSSM_WRAP_KEY_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_UnwrapKey(CCHandle: CSSM_CC_HANDLE, PublicKey: ?*CSSM_KEY, WrappedKey: ?*CSSM_WRAP_KEY, KeyUsage: uint32, KeyAttr: uint32, KeyLabel: ?*Asn1Item, CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT, UnwrappedKey: CSSM_KEY_PTR, DescriptiveData: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_WrapKeyP(CCHandle: CSSM_CC_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, Key: ?*CSSM_KEY, DescriptiveData: ?*Asn1Item, WrappedKey: CSSM_WRAP_KEY_PTR, Privilege: CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_UnwrapKeyP(CCHandle: CSSM_CC_HANDLE, PublicKey: ?*CSSM_KEY, WrappedKey: ?*CSSM_WRAP_KEY, KeyUsage: uint32, KeyAttr: uint32, KeyLabel: ?*Asn1Item, CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT, UnwrappedKey: CSSM_KEY_PTR, DescriptiveData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DeriveKey(CCHandle: CSSM_CC_HANDLE, Param: CSSM_DATA_PTR, KeyUsage: uint32, KeyAttr: uint32, KeyLabel: ?*Asn1Item, CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT, DerivedKey: CSSM_KEY_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_FreeKey(CSPHandle: CSSM_CSP_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, KeyPtr: CSSM_KEY_PTR, Delete: CSSM_BOOL, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GenerateAlgorithmParams(CCHandle: CSSM_CC_HANDLE, ParamBits: uint32, Param: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_GetOperationalStatistics(CSPHandle: CSSM_CSP_HANDLE, Statistics: ?*CSSM_CSP_OPERATIONAL_STATISTICS) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_GetTimeValue(CSPHandle: CSSM_CSP_HANDLE, TimeAlgorithm: CSSM_ALGORITHMS, TimeData: ?*Asn1Item) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_RetrieveUniqueId(CSPHandle: CSSM_CSP_HANDLE, UniqueID: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_RetrieveCounter(CSPHandle: CSSM_CSP_HANDLE, Counter: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_VerifyDevice(CSPHandle: CSSM_CSP_HANDLE, DeviceCert: ?*Asn1Item) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CSP_PassThrough(CCHandle: CSSM_CC_HANDLE, PassThroughId: uint32, InData: ?*anyopaque, OutData: ?*?*anyopaque, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_SubmitCredRequest(TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ?*CSSM_TP_AUTHORITY_ID, RequestType: CSSM_TP_AUTHORITY_REQUEST_TYPE, RequestInput: ?*CSSM_TP_REQUEST_SET, CallerAuthContext: ?*CSSM_TP_CALLERAUTH_CONTEXT, EstimatedTime: ?*sint32, ReferenceIdentifier: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_RetrieveCredResult(TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ?*Asn1Item, CallerAuthCredentials: ?*CSSM_TP_CALLERAUTH_CONTEXT, EstimatedTime: ?*sint32, ConfirmationRequired: ?*CSSM_BOOL, RetrieveOutput: ?*CSSM_TP_RESULT_SET_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_ConfirmCredResult(TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ?*Asn1Item, CallerAuthCredentials: ?*CSSM_TP_CALLERAUTH_CONTEXT, Responses: ?*CSSM_TP_CONFIRM_RESPONSE, PreferredAuthority: ?*CSSM_TP_AUTHORITY_ID, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_ReceiveConfirmation(TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ?*Asn1Item, Responses: ?*CSSM_TP_CONFIRM_RESPONSE_PTR, ElapsedTime: ?*sint32, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertReclaimKey(TPHandle: CSSM_TP_HANDLE, CertGroup: ?*CSSM_CERTGROUP, CertIndex: uint32, KeyCacheHandle: CSSM_LONG_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertReclaimAbort(TPHandle: CSSM_TP_HANDLE, KeyCacheHandle: CSSM_LONG_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_FormRequest(TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ?*CSSM_TP_AUTHORITY_ID, FormType: CSSM_TP_FORM_TYPE, BlankForm: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_FormSubmit(TPHandle: CSSM_TP_HANDLE, FormType: CSSM_TP_FORM_TYPE, Form: ?*Asn1Item, ClearanceAuthority: ?*CSSM_TP_AUTHORITY_ID, RepresentedAuthority: ?*CSSM_TP_AUTHORITY_ID, Credentials: CSSM_ACCESS_CREDENTIALS_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertGroupVerify(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CertGroupToBeVerified: ?*CSSM_CERTGROUP, VerifyContext: ?*CSSM_TP_VERIFY_CONTEXT, VerifyContextResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertCreateTemplate(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: uint32, CertFields: ?*CSSM_FIELD, CertTemplate: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertGetAllTemplateFields(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertTemplate: ?*Asn1Item, NumberOfFields: ?*uint32, CertFields: ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertSign(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplateToBeSigned: ?*Asn1Item, SignerCertGroup: ?*CSSM_CERTGROUP, SignerVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCert: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CrlVerify(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeVerified: ?*CSSM_ENCODED_CRL, SignerCertGroup: ?*CSSM_CERTGROUP, VerifyContext: ?*CSSM_TP_VERIFY_CONTEXT, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CrlCreateTemplate(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: uint32, CrlFields: ?*CSSM_FIELD, NewCrlTemplate: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertRevoke(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ?*Asn1Item, CertGroupToBeRevoked: ?*CSSM_CERTGROUP, RevokerCertGroup: ?*CSSM_CERTGROUP, RevokerVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, Reason: CSSM_TP_CERTCHANGE_REASON, NewCrlTemplate: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertRemoveFromCrlTemplate(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ?*Asn1Item, CertGroupToBeRemoved: ?*CSSM_CERTGROUP, RevokerCertGroup: ?*CSSM_CERTGROUP, RevokerVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, NewCrlTemplate: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CrlSign(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeSigned: ?*CSSM_ENCODED_CRL, SignerCertGroup: ?*CSSM_CERTGROUP, SignerVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCrl: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_ApplyCrlToDb(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeApplied: ?*CSSM_ENCODED_CRL, SignerCertGroup: ?*CSSM_CERTGROUP, ApplyCrlVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT, ApplyCrlVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertGroupConstruct(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, DBList: ?*CSSM_DL_DB_LIST, ConstructParams: ?*anyopaque, CertGroupFrag: ?*CSSM_CERTGROUP, CertGroup: ?*CSSM_CERTGROUP_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertGroupPrune(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, DBList: ?*CSSM_DL_DB_LIST, OrderedCertGroup: ?*CSSM_CERTGROUP, PrunedCertGroup: ?*CSSM_CERTGROUP_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_CertGroupToTupleGroup(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertGroup: ?*CSSM_CERTGROUP, TupleGroup: ?*CSSM_TUPLEGROUP_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_TupleGroupToCertGroup(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, TupleGroup: ?*CSSM_TUPLEGROUP, CertTemplates: ?*CSSM_CERTGROUP_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_TP_PassThrough(TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ?*CSSM_DL_DB_LIST, PassThroughId: uint32, InputParams: ?*anyopaque, OutputParams: ?*?*anyopaque, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_AC_AuthCompute(ACHandle: CSSM_AC_HANDLE, BaseAuthorizations: ?*CSSM_TUPLEGROUP, Credentials: ?*CSSM_TUPLEGROUP, NumberOfRequestors: uint32, Requestors: ?*CSSM_LIST, RequestedAuthorizationPeriod: ?*CSSM_LIST, RequestedAuthorization: ?*CSSM_LIST, AuthorizationResult: CSSM_TUPLEGROUP_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_AC_PassThrough(ACHandle: CSSM_AC_HANDLE, TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ?*CSSM_DL_DB_LIST, PassThroughId: uint32, InputParams: ?*anyopaque, OutputParams: ?*?*anyopaque, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertCreateTemplate(CLHandle: CSSM_CL_HANDLE, NumberOfFields: uint32, CertFields: ?*CSSM_FIELD, CertTemplate: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertGetAllTemplateFields(CLHandle: CSSM_CL_HANDLE, CertTemplate: ?*Asn1Item, NumberOfFields: ?*uint32, CertFields: ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertSign(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplate: ?*Asn1Item, SignScope: ?*CSSM_FIELD, ScopeSize: uint32, SignedCert: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertVerify(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ?*Asn1Item, SignerCert: ?*Asn1Item, VerifyScope: ?*CSSM_FIELD, ScopeSize: uint32, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertVerifyWithKey(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ?*Asn1Item) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertGetFirstFieldValue(CLHandle: CSSM_CL_HANDLE, Cert: ?*Asn1Item, CertField: ?*Asn1Oid, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ?*uint32, Value: ?*CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertGetNextFieldValue(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertAbortQuery(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertGetKeyInfo(CLHandle: CSSM_CL_HANDLE, Cert: ?*Asn1Item, Key: ?*CSSM_KEY_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertGetAllFields(CLHandle: CSSM_CL_HANDLE, Cert: ?*Asn1Item, NumberOfFields: ?*uint32, CertFields: ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_FreeFields(CLHandle: CSSM_CL_HANDLE, NumberOfFields: uint32, Fields: ?*CSSM_FIELD_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_FreeFieldValue(CLHandle: CSSM_CL_HANDLE, CertOrCrlOid: ?*Asn1Oid, Value: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertCache(CLHandle: CSSM_CL_HANDLE, Cert: ?*Asn1Item, CertHandle: CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertGetFirstCachedFieldValue(CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE, CertField: ?*Asn1Oid, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ?*uint32, Value: ?*CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertGetNextCachedFieldValue(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertAbortCache(CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertGroupToSignedBundle(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertGroupToBundle: ?*CSSM_CERTGROUP, BundleInfo: ?*CSSM_CERT_BUNDLE_HEADER, SignedBundle: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertGroupFromVerifiedBundle(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertBundle: ?*CSSM_CERT_BUNDLE, SignerCert: ?*Asn1Item, CertGroup: ?*CSSM_CERTGROUP_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CertDescribeFormat(CLHandle: CSSM_CL_HANDLE, NumberOfFields: ?*uint32, OidList: ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlCreateTemplate(CLHandle: CSSM_CL_HANDLE, NumberOfFields: uint32, CrlTemplate: ?*CSSM_FIELD, NewCrl: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlSetFields(CLHandle: CSSM_CL_HANDLE, NumberOfFields: uint32, CrlTemplate: ?*CSSM_FIELD, OldCrl: ?*Asn1Item, ModifiedCrl: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlAddCert(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, Cert: ?*Asn1Item, NumberOfFields: uint32, CrlEntryFields: ?*CSSM_FIELD, OldCrl: ?*Asn1Item, NewCrl: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlRemoveCert(CLHandle: CSSM_CL_HANDLE, Cert: ?*Asn1Item, OldCrl: ?*Asn1Item, NewCrl: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlSign(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, UnsignedCrl: ?*Asn1Item, SignScope: ?*CSSM_FIELD, ScopeSize: uint32, SignedCrl: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlVerify(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ?*Asn1Item, SignerCert: ?*Asn1Item, VerifyScope: ?*CSSM_FIELD, ScopeSize: uint32, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlVerifyWithKey(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ?*Asn1Item) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_IsCertInCrl(CLHandle: CSSM_CL_HANDLE, Cert: ?*Asn1Item, Crl: ?*Asn1Item, CertFound: ?*CSSM_BOOL, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlGetFirstFieldValue(CLHandle: CSSM_CL_HANDLE, Crl: ?*Asn1Item, CrlField: ?*Asn1Oid, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ?*uint32, Value: ?*CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlGetNextFieldValue(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlAbortQuery(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlGetAllFields(CLHandle: CSSM_CL_HANDLE, Crl: ?*Asn1Item, NumberOfCrlFields: ?*uint32, CrlFields: ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlCache(CLHandle: CSSM_CL_HANDLE, Crl: ?*Asn1Item, CrlHandle: CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_IsCertInCachedCrl(CLHandle: CSSM_CL_HANDLE, Cert: ?*Asn1Item, CrlHandle: CSSM_HANDLE, CertFound: ?*CSSM_BOOL, CrlRecordIndex: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlGetFirstCachedFieldValue(CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ?*Asn1Item, CrlField: ?*Asn1Oid, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ?*uint32, Value: ?*CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlGetNextCachedFieldValue(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlGetAllCachedRecordFields(CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ?*Asn1Item, NumberOfFields: ?*uint32, CrlFields: ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlAbortCache(CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_CrlDescribeFormat(CLHandle: CSSM_CL_HANDLE, NumberOfFields: ?*uint32, OidList: ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_CL_PassThrough(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, PassThroughId: uint32, InputParams: ?*anyopaque, OutputParams: ?*?*anyopaque, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DbOpen(DLHandle: CSSM_DL_HANDLE, DbName: ?*i8, DbLocation: ?*CSSM_NET_ADDRESS, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, OpenParameters: ?*anyopaque, DbHandle: ?*CSSM_DB_HANDLE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DbClose(DLDBHandle: CSSM_DL_DB_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DbCreate(DLHandle: CSSM_DL_HANDLE, DbName: ?*i8, DbLocation: ?*CSSM_NET_ADDRESS, DBInfo: ?*CSSM_DBINFO, AccessRequest: CSSM_DB_ACCESS_TYPE, CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT, OpenParameters: ?*anyopaque, DbHandle: ?*CSSM_DB_HANDLE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DbDelete(DLHandle: CSSM_DL_HANDLE, DbName: ?*i8, DbLocation: ?*CSSM_NET_ADDRESS, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_CreateRelation(DLDBHandle: CSSM_DL_DB_HANDLE, RelationID: CSSM_DB_RECORDTYPE, RelationName: ?*i8, NumberOfAttributes: uint32, pAttributeInfo: ?*CSSM_DB_SCHEMA_ATTRIBUTE_INFO, NumberOfIndexes: uint32, pIndexInfo: ?*CSSM_DB_SCHEMA_INDEX_INFO, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DestroyRelation(DLDBHandle: CSSM_DL_DB_HANDLE, RelationID: CSSM_DB_RECORDTYPE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_Authenticate(DLDBHandle: CSSM_DL_DB_HANDLE, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_GetDbAcl(DLDBHandle: CSSM_DL_DB_HANDLE, SelectionTag: ?*CSSM_STRING, NumberOfAclInfos: ?*uint32, AclInfos: ?*CSSM_ACL_ENTRY_INFO_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_ChangeDbAcl(DLDBHandle: CSSM_DL_DB_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, AclEdit: ?*CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_GetDbOwner(DLDBHandle: CSSM_DL_DB_HANDLE, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_ChangeDbOwner(DLDBHandle: CSSM_DL_DB_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, NewOwner: ?*CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_GetDbNames(DLHandle: CSSM_DL_HANDLE, NameList: ?*CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_GetDbNameFromHandle(DLDBHandle: CSSM_DL_DB_HANDLE, DbName: ?*?*i8) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_FreeNameList(DLHandle: CSSM_DL_HANDLE, NameList: CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DataInsert(DLDBHandle: CSSM_DL_DB_HANDLE, RecordType: CSSM_DB_RECORDTYPE, Attributes: ?*CSSM_DB_RECORD_ATTRIBUTE_DATA, Data: ?*Asn1Item, UniqueId: ?*CSSM_DB_UNIQUE_RECORD_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DataDelete(DLDBHandle: CSSM_DL_DB_HANDLE, UniqueRecordIdentifier: ?*CSSM_DB_UNIQUE_RECORD) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DataModify(DLDBHandle: CSSM_DL_DB_HANDLE, RecordType: CSSM_DB_RECORDTYPE, UniqueRecordIdentifier: CSSM_DB_UNIQUE_RECORD_PTR, AttributesToBeModified: ?*CSSM_DB_RECORD_ATTRIBUTE_DATA, DataToBeModified: ?*Asn1Item, ModifyMode: CSSM_DB_MODIFY_MODE, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DataGetFirst(DLDBHandle: CSSM_DL_DB_HANDLE, Query: ?*CSSM_QUERY, ResultsHandle: CSSM_HANDLE_PTR, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR, UniqueId: ?*CSSM_DB_UNIQUE_RECORD_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DataGetNext(DLDBHandle: CSSM_DL_DB_HANDLE, ResultsHandle: CSSM_HANDLE, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR, UniqueId: ?*CSSM_DB_UNIQUE_RECORD_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DataAbortQuery(DLDBHandle: CSSM_DL_DB_HANDLE, ResultsHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_DataGetFromUniqueRecordId(DLDBHandle: CSSM_DL_DB_HANDLE, UniqueRecord: ?*CSSM_DB_UNIQUE_RECORD, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_FreeUniqueRecord(DLDBHandle: CSSM_DL_DB_HANDLE, UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR) callconv(.C) CSSM_RETURN;
-
-pub extern "Security" fn CSSM_DL_PassThrough(DLDBHandle: CSSM_DL_DB_HANDLE, PassThroughId: uint32, InputParams: ?*anyopaque, OutputParams: ?*?*anyopaque, ) callconv(.C) CSSM_RETURN;
+extern "Security" fn CSSM_Init(
+    Version: ?*CSSM_VERSION,
+    Scope: CSSM_PRIVILEGE_SCOPE,
+    CallerGuid: ?*CSSM_GUID,
+    KeyHierarchy: CSSM_KEY_HIERARCHY,
+    PvcPolicy: ?*CSSM_PVC_MODE,
+    Reserved: ?*anyopaque,
+) callconv(.C) CSSM_RETURN;
+pub const m_Init = CSSM_Init;
+
+extern "Security" fn CSSM_Terminate() callconv(.C) CSSM_RETURN;
+pub const m_Terminate = CSSM_Terminate;
+
+extern "Security" fn CSSM_ModuleLoad(
+    ModuleGuid: ?*CSSM_GUID,
+    KeyHierarchy: CSSM_KEY_HIERARCHY,
+    AppNotifyCallback: CSSM_API_ModuleEventHandler,
+    AppNotifyCallbackCtx: ?*anyopaque,
+) callconv(.C) CSSM_RETURN;
+pub const m_ModuleLoad = CSSM_ModuleLoad;
+
+extern "Security" fn CSSM_ModuleUnload(ModuleGuid: ?*CSSM_GUID, AppNotifyCallback: CSSM_API_ModuleEventHandler, AppNotifyCallbackCtx: ?*anyopaque) callconv(.C) CSSM_RETURN;
+pub const m_ModuleUnload = CSSM_ModuleUnload;
+
+extern "Security" fn CSSM_Introduce(ModuleID: ?*CSSM_GUID, KeyHierarchy: CSSM_KEY_HIERARCHY) callconv(.C) CSSM_RETURN;
+pub const m_Introduce = CSSM_Introduce;
+
+extern "Security" fn CSSM_Unintroduce(ModuleID: ?*CSSM_GUID) callconv(.C) CSSM_RETURN;
+pub const m_Unintroduce = CSSM_Unintroduce;
+
+extern "Security" fn CSSM_ModuleAttach(
+    ModuleGuid: ?*CSSM_GUID,
+    Version: ?*CSSM_VERSION,
+    MemoryFuncs: ?*CSSM_API_MEMORY_FUNCS,
+    SubserviceID: uint32,
+    SubServiceType: CSSM_SERVICE_TYPE,
+    AttachFlags: CSSM_ATTACH_FLAGS,
+    KeyHierarchy: CSSM_KEY_HIERARCHY,
+    FunctionTable: ?*CSSM_FUNC_NAME_ADDR,
+    NumFunctionTable: uint32,
+    Reserved: ?*anyopaque,
+    NewModuleHandle: CSSM_MODULE_HANDLE_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_ModuleAttach = CSSM_ModuleAttach;
+
+extern "Security" fn CSSM_ModuleDetach(ModuleHandle: CSSM_MODULE_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_ModuleDetach = CSSM_ModuleDetach;
+
+extern "Security" fn CSSM_SetPrivilege(Privilege: CSSM_PRIVILEGE) callconv(.C) CSSM_RETURN;
+pub const m_SetPrivilege = CSSM_SetPrivilege;
+
+extern "Security" fn CSSM_GetPrivilege(Privilege: ?*CSSM_PRIVILEGE) callconv(.C) CSSM_RETURN;
+pub const m_GetPrivilege = CSSM_GetPrivilege;
+
+extern "Security" fn CSSM_GetModuleGUIDFromHandle(ModuleHandle: CSSM_MODULE_HANDLE, ModuleGUID: CSSM_GUID_PTR) callconv(.C) CSSM_RETURN;
+pub const m_GetModuleGUIDFromHandle = CSSM_GetModuleGUIDFromHandle;
+
+extern "Security" fn CSSM_GetSubserviceUIDFromHandle(ModuleHandle: CSSM_MODULE_HANDLE, SubserviceUID: CSSM_SUBSERVICE_UID_PTR) callconv(.C) CSSM_RETURN;
+pub const m_GetSubserviceUIDFromHandle = CSSM_GetSubserviceUIDFromHandle;
+
+extern "Security" fn CSSM_ListAttachedModuleManagers(NumberOfModuleManagers: ?*uint32, ModuleManagerGuids: CSSM_GUID_PTR) callconv(.C) CSSM_RETURN;
+pub const m_ListAttachedModuleManagers = CSSM_ListAttachedModuleManagers;
+
+extern "Security" fn CSSM_GetAPIMemoryFunctions(AddInHandle: CSSM_MODULE_HANDLE, AppMemoryFuncs: CSSM_API_MEMORY_FUNCS_PTR) callconv(.C) CSSM_RETURN;
+pub const m_GetAPIMemoryFunctions = CSSM_GetAPIMemoryFunctions;
+
+extern "Security" fn CSSM_CSP_CreateSignatureContext(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AlgorithmID: CSSM_ALGORITHMS,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    Key: ?*CSSM_KEY,
+    NewContextHandle: ?*CSSM_CC_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_CreateSignatureContext = CSSM_CSP_CreateSignatureContext;
+
+extern "Security" fn CSSM_CSP_CreateSymmetricContext(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AlgorithmID: CSSM_ALGORITHMS,
+    Mode: CSSM_ENCRYPT_MODE,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    Key: ?*CSSM_KEY,
+    InitVector: ?*Asn1Item,
+    Padding: CSSM_PADDING,
+    Reserved: ?*anyopaque,
+    NewContextHandle: ?*CSSM_CC_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_CreateSymmetricContext = CSSM_CSP_CreateSymmetricContext;
+
+extern "Security" fn CSSM_CSP_CreateDigestContext(CSPHandle: CSSM_CSP_HANDLE, AlgorithmID: CSSM_ALGORITHMS, NewContextHandle: ?*CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_csp_CreateDigestContext = CSSM_CSP_CreateDigestContext;
+
+extern "Security" fn CSSM_CSP_CreateMacContext(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AlgorithmID: CSSM_ALGORITHMS,
+    Key: ?*CSSM_KEY,
+    NewContextHandle: ?*CSSM_CC_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_CreateMacContext = CSSM_CSP_CreateMacContext;
+
+extern "Security" fn CSSM_CSP_CreateRandomGenContext(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AlgorithmID: CSSM_ALGORITHMS,
+    Seed: ?*CSSM_CRYPTO_DATA,
+    Length: CSSM_SIZE,
+    NewContextHandle: ?*CSSM_CC_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_CreateRandomGenContext = CSSM_CSP_CreateRandomGenContext;
+
+extern "Security" fn CSSM_CSP_CreateAsymmetricContext(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AlgorithmID: CSSM_ALGORITHMS,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    Key: ?*CSSM_KEY,
+    Padding: CSSM_PADDING,
+    NewContextHandle: ?*CSSM_CC_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_CreateAsymmetricContext = CSSM_CSP_CreateAsymmetricContext;
+
+extern "Security" fn CSSM_CSP_CreateDeriveKeyContext(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AlgorithmID: CSSM_ALGORITHMS,
+    DeriveKeyType: CSSM_KEY_TYPE,
+    DeriveKeyLengthInBits: uint32,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    BaseKey: ?*CSSM_KEY,
+    IterationCount: uint32,
+    Salt: ?*Asn1Item,
+    Seed: ?*CSSM_CRYPTO_DATA,
+    NewContextHandle: ?*CSSM_CC_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_CreateDeriveKeyContext = CSSM_CSP_CreateDeriveKeyContext;
+
+extern "Security" fn CSSM_CSP_CreateKeyGenContext(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AlgorithmID: CSSM_ALGORITHMS,
+    KeySizeInBits: uint32,
+    Seed: ?*CSSM_CRYPTO_DATA,
+    Salt: ?*Asn1Item,
+    StartDate: ?*CSSM_DATE,
+    EndDate: ?*CSSM_DATE,
+    Params: ?*Asn1Item,
+    NewContextHandle: ?*CSSM_CC_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_CreateKeyGenContext = CSSM_CSP_CreateKeyGenContext;
+
+extern "Security" fn CSSM_CSP_CreatePassThroughContext(CSPHandle: CSSM_CSP_HANDLE, Key: ?*CSSM_KEY, NewContextHandle: ?*CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_csp_CreatePassThroughContext = CSSM_CSP_CreatePassThroughContext;
+
+extern "Security" fn CSSM_GetContext(CCHandle: CSSM_CC_HANDLE, Context: ?*CSSM_CONTEXT_PTR) callconv(.C) CSSM_RETURN;
+pub const m_GetContext = CSSM_GetContext;
+
+extern "Security" fn CSSM_FreeContext(Context: CSSM_CONTEXT_PTR) callconv(.C) CSSM_RETURN;
+pub const m_FreeContext = CSSM_FreeContext;
+
+extern "Security" fn CSSM_SetContext(CCHandle: CSSM_CC_HANDLE, Context: ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN;
+pub const m_SetContext = CSSM_SetContext;
+
+extern "Security" fn CSSM_DeleteContext(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_DeleteContext = CSSM_DeleteContext;
+
+extern "Security" fn CSSM_GetContextAttribute(Context: ?*CSSM_CONTEXT, AttributeType: uint32, ContextAttribute: ?*CSSM_CONTEXT_ATTRIBUTE_PTR) callconv(.C) CSSM_RETURN;
+pub const m_GetContextAttribute = CSSM_GetContextAttribute;
+
+extern "Security" fn CSSM_UpdateContextAttributes(CCHandle: CSSM_CC_HANDLE, NumberOfAttributes: uint32, ContextAttributes: ?*CSSM_CONTEXT_ATTRIBUTE) callconv(.C) CSSM_RETURN;
+pub const m_UpdateContextAttributes = CSSM_UpdateContextAttributes;
+
+extern "Security" fn CSSM_DeleteContextAttributes(CCHandle: CSSM_CC_HANDLE, NumberOfAttributes: uint32, ContextAttributes: ?*CSSM_CONTEXT_ATTRIBUTE) callconv(.C) CSSM_RETURN;
+pub const m_DeleteContextAttributes = CSSM_DeleteContextAttributes;
+
+extern "Security" fn CSSM_CSP_Login(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    LoginName: ?*Asn1Item,
+    Reserved: ?*anyopaque,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_Login = CSSM_CSP_Login;
+
+extern "Security" fn CSSM_CSP_Logout(CSPHandle: CSSM_CSP_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_csp_Logout = CSSM_CSP_Logout;
+
+extern "Security" fn CSSM_CSP_GetLoginAcl(
+    CSPHandle: CSSM_CSP_HANDLE,
+    SelectionTag: ?*CSSM_STRING,
+    NumberOfAclInfos: ?*uint32,
+    AclInfos: ?*CSSM_ACL_ENTRY_INFO_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_GetLoginAcl = CSSM_CSP_GetLoginAcl;
+
+extern "Security" fn CSSM_CSP_ChangeLoginAcl(CSPHandle: CSSM_CSP_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, AclEdit: ?*CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN;
+pub const m_csp_ChangeLoginAcl = CSSM_CSP_ChangeLoginAcl;
+
+extern "Security" fn CSSM_GetKeyAcl(
+    CSPHandle: CSSM_CSP_HANDLE,
+    Key: ?*CSSM_KEY,
+    SelectionTag: ?*CSSM_STRING,
+    NumberOfAclInfos: ?*uint32,
+    AclInfos: ?*CSSM_ACL_ENTRY_INFO_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_GetKeyAcl = CSSM_GetKeyAcl;
+
+extern "Security" fn CSSM_ChangeKeyAcl(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    AclEdit: ?*CSSM_ACL_EDIT,
+    Key: ?*CSSM_KEY,
+) callconv(.C) CSSM_RETURN;
+pub const m_ChangeKeyAcl = CSSM_ChangeKeyAcl;
+
+extern "Security" fn CSSM_GetKeyOwner(CSPHandle: CSSM_CSP_HANDLE, Key: ?*CSSM_KEY, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN;
+pub const m_GetKeyOwner = CSSM_GetKeyOwner;
+
+extern "Security" fn CSSM_ChangeKeyOwner(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    Key: ?*CSSM_KEY,
+    NewOwner: ?*CSSM_ACL_OWNER_PROTOTYPE,
+) callconv(.C) CSSM_RETURN;
+pub const m_ChangeKeyOwner = CSSM_ChangeKeyOwner;
+
+extern "Security" fn CSSM_CSP_GetLoginOwner(CSPHandle: CSSM_CSP_HANDLE, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN;
+pub const m_csp_GetLoginOwner = CSSM_CSP_GetLoginOwner;
+
+extern "Security" fn CSSM_CSP_ChangeLoginOwner(CSPHandle: CSSM_CSP_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, NewOwner: ?*CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN;
+pub const m_csp_ChangeLoginOwner = CSSM_CSP_ChangeLoginOwner;
+
+extern "Security" fn CSSM_SignData(
+    CCHandle: CSSM_CC_HANDLE,
+    DataBufs: ?*Asn1Item,
+    DataBufCount: uint32,
+    DigestAlgorithm: CSSM_ALGORITHMS,
+    Signature: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_SignData = CSSM_SignData;
+
+extern "Security" fn CSSM_SignDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_SignDataInit = CSSM_SignDataInit;
+
+extern "Security" fn CSSM_SignDataUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
+pub const m_SignDataUpdate = CSSM_SignDataUpdate;
+
+extern "Security" fn CSSM_SignDataFinal(CCHandle: CSSM_CC_HANDLE, Signature: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_SignDataFinal = CSSM_SignDataFinal;
+
+extern "Security" fn CSSM_VerifyData(
+    CCHandle: CSSM_CC_HANDLE,
+    DataBufs: ?*Asn1Item,
+    DataBufCount: uint32,
+    DigestAlgorithm: CSSM_ALGORITHMS,
+    Signature: ?*Asn1Item,
+) callconv(.C) CSSM_RETURN;
+pub const m_VerifyData = CSSM_VerifyData;
+
+extern "Security" fn CSSM_VerifyDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_VerifyDataInit = CSSM_VerifyDataInit;
+
+extern "Security" fn CSSM_VerifyDataUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
+pub const m_VerifyDataUpdate = CSSM_VerifyDataUpdate;
+
+extern "Security" fn CSSM_VerifyDataFinal(CCHandle: CSSM_CC_HANDLE, Signature: ?*Asn1Item) callconv(.C) CSSM_RETURN;
+pub const m_VerifyDataFinal = CSSM_VerifyDataFinal;
+
+extern "Security" fn CSSM_DigestData(
+    CCHandle: CSSM_CC_HANDLE,
+    DataBufs: ?*Asn1Item,
+    DataBufCount: uint32,
+    Digest: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_DigestData = CSSM_DigestData;
+
+extern "Security" fn CSSM_DigestDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_DigestDataInit = CSSM_DigestDataInit;
+
+extern "Security" fn CSSM_DigestDataUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
+pub const m_DigestDataUpdate = CSSM_DigestDataUpdate;
+
+extern "Security" fn CSSM_DigestDataClone(CCHandle: CSSM_CC_HANDLE, ClonednewCCHandle: ?*CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_DigestDataClone = CSSM_DigestDataClone;
+
+extern "Security" fn CSSM_DigestDataFinal(CCHandle: CSSM_CC_HANDLE, Digest: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_DigestDataFinal = CSSM_DigestDataFinal;
+
+extern "Security" fn CSSM_GenerateMac(
+    CCHandle: CSSM_CC_HANDLE,
+    DataBufs: ?*Asn1Item,
+    DataBufCount: uint32,
+    Mac: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_GenerateMac = CSSM_GenerateMac;
+
+extern "Security" fn CSSM_GenerateMacInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_GenerateMacInit = CSSM_GenerateMacInit;
+
+extern "Security" fn CSSM_GenerateMacUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
+pub const m_GenerateMacUpdate = CSSM_GenerateMacUpdate;
+
+extern "Security" fn CSSM_GenerateMacFinal(CCHandle: CSSM_CC_HANDLE, Mac: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_GenerateMacFinal = CSSM_GenerateMacFinal;
+
+extern "Security" fn CSSM_VerifyMac(
+    CCHandle: CSSM_CC_HANDLE,
+    DataBufs: ?*Asn1Item,
+    DataBufCount: uint32,
+    Mac: ?*Asn1Item,
+) callconv(.C) CSSM_RETURN;
+pub const m_VerifyMac = CSSM_VerifyMac;
+
+extern "Security" fn CSSM_VerifyMacInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_VerifyMacInit = CSSM_VerifyMacInit;
+
+extern "Security" fn CSSM_VerifyMacUpdate(CCHandle: CSSM_CC_HANDLE, DataBufs: ?*Asn1Item, DataBufCount: uint32) callconv(.C) CSSM_RETURN;
+pub const m_VerifyMacUpdate = CSSM_VerifyMacUpdate;
+
+extern "Security" fn CSSM_VerifyMacFinal(CCHandle: CSSM_CC_HANDLE, Mac: ?*Asn1Item) callconv(.C) CSSM_RETURN;
+pub const m_VerifyMacFinal = CSSM_VerifyMacFinal;
+
+extern "Security" fn CSSM_QuerySize(
+    CCHandle: CSSM_CC_HANDLE,
+    Encrypt: CSSM_BOOL,
+    QuerySizeCount: uint32,
+    DataBlockSizes: CSSM_QUERY_SIZE_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_QuerySize = CSSM_QuerySize;
+
+extern "Security" fn CSSM_EncryptData(
+    CCHandle: CSSM_CC_HANDLE,
+    ClearBufs: ?*Asn1Item,
+    ClearBufCount: uint32,
+    CipherBufs: CSSM_DATA_PTR,
+    CipherBufCount: uint32,
+    bytesEncrypted: ?*CSSM_SIZE,
+    RemData: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_EncryptData = CSSM_EncryptData;
+
+extern "Security" fn CSSM_EncryptDataP(
+    CCHandle: CSSM_CC_HANDLE,
+    ClearBufs: ?*Asn1Item,
+    ClearBufCount: uint32,
+    CipherBufs: CSSM_DATA_PTR,
+    CipherBufCount: uint32,
+    bytesEncrypted: ?*CSSM_SIZE,
+    RemData: CSSM_DATA_PTR,
+    Privilege: CSSM_PRIVILEGE,
+) callconv(.C) CSSM_RETURN;
+pub const m_EncryptDataP = CSSM_EncryptDataP;
+
+extern "Security" fn CSSM_EncryptDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_EncryptDataInit = CSSM_EncryptDataInit;
+
+extern "Security" fn CSSM_EncryptDataInitP(CCHandle: CSSM_CC_HANDLE, Privilege: CSSM_PRIVILEGE) callconv(.C) CSSM_RETURN;
+pub const m_EncryptDataInitP = CSSM_EncryptDataInitP;
+
+extern "Security" fn CSSM_EncryptDataUpdate(
+    CCHandle: CSSM_CC_HANDLE,
+    ClearBufs: ?*Asn1Item,
+    ClearBufCount: uint32,
+    CipherBufs: CSSM_DATA_PTR,
+    CipherBufCount: uint32,
+    bytesEncrypted: ?*CSSM_SIZE,
+) callconv(.C) CSSM_RETURN;
+pub const m_EncryptDataUpdate = CSSM_EncryptDataUpdate;
+
+extern "Security" fn CSSM_EncryptDataFinal(CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_EncryptDataFinal = CSSM_EncryptDataFinal;
+
+extern "Security" fn CSSM_DecryptData(
+    CCHandle: CSSM_CC_HANDLE,
+    CipherBufs: ?*Asn1Item,
+    CipherBufCount: uint32,
+    ClearBufs: CSSM_DATA_PTR,
+    ClearBufCount: uint32,
+    bytesDecrypted: ?*CSSM_SIZE,
+    RemData: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_DecryptData = CSSM_DecryptData;
+
+extern "Security" fn CSSM_DecryptDataP(
+    CCHandle: CSSM_CC_HANDLE,
+    CipherBufs: ?*Asn1Item,
+    CipherBufCount: uint32,
+    ClearBufs: CSSM_DATA_PTR,
+    ClearBufCount: uint32,
+    bytesDecrypted: ?*CSSM_SIZE,
+    RemData: CSSM_DATA_PTR,
+    Privilege: CSSM_PRIVILEGE,
+) callconv(.C) CSSM_RETURN;
+pub const m_DecryptDataP = CSSM_DecryptDataP;
+
+extern "Security" fn CSSM_DecryptDataInit(CCHandle: CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_DecryptDataInit = CSSM_DecryptDataInit;
+
+extern "Security" fn CSSM_DecryptDataInitP(CCHandle: CSSM_CC_HANDLE, Privilege: CSSM_PRIVILEGE) callconv(.C) CSSM_RETURN;
+pub const m_DecryptDataInitP = CSSM_DecryptDataInitP;
+
+extern "Security" fn CSSM_DecryptDataUpdate(
+    CCHandle: CSSM_CC_HANDLE,
+    CipherBufs: ?*Asn1Item,
+    CipherBufCount: uint32,
+    ClearBufs: CSSM_DATA_PTR,
+    ClearBufCount: uint32,
+    bytesDecrypted: ?*CSSM_SIZE,
+) callconv(.C) CSSM_RETURN;
+pub const m_DecryptDataUpdate = CSSM_DecryptDataUpdate;
+
+extern "Security" fn CSSM_DecryptDataFinal(CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_DecryptDataFinal = CSSM_DecryptDataFinal;
+
+extern "Security" fn CSSM_QueryKeySizeInBits(
+    CSPHandle: CSSM_CSP_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    Key: ?*CSSM_KEY,
+    KeySize: CSSM_KEY_SIZE_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_QueryKeySizeInBits = CSSM_QueryKeySizeInBits;
+
+extern "Security" fn CSSM_GenerateKey(
+    CCHandle: CSSM_CC_HANDLE,
+    KeyUsage: uint32,
+    KeyAttr: uint32,
+    KeyLabel: ?*Asn1Item,
+    CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+    Key: CSSM_KEY_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_GenerateKey = CSSM_GenerateKey;
+
+extern "Security" fn CSSM_GenerateKeyP(
+    CCHandle: CSSM_CC_HANDLE,
+    KeyUsage: uint32,
+    KeyAttr: uint32,
+    KeyLabel: ?*Asn1Item,
+    CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+    Key: CSSM_KEY_PTR,
+    Privilege: CSSM_PRIVILEGE,
+) callconv(.C) CSSM_RETURN;
+pub const m_GenerateKeyP = CSSM_GenerateKeyP;
+
+extern "Security" fn CSSM_GenerateKeyPair(
+    CCHandle: CSSM_CC_HANDLE,
+    PublicKeyUsage: uint32,
+    PublicKeyAttr: uint32,
+    PublicKeyLabel: ?*Asn1Item,
+    PublicKey: CSSM_KEY_PTR,
+    PrivateKeyUsage: uint32,
+    PrivateKeyAttr: uint32,
+    PrivateKeyLabel: ?*Asn1Item,
+    CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+    PrivateKey: CSSM_KEY_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_GenerateKeyPair = CSSM_GenerateKeyPair;
+
+extern "Security" fn CSSM_GenerateKeyPairP(
+    CCHandle: CSSM_CC_HANDLE,
+    PublicKeyUsage: uint32,
+    PublicKeyAttr: uint32,
+    PublicKeyLabel: ?*Asn1Item,
+    PublicKey: CSSM_KEY_PTR,
+    PrivateKeyUsage: uint32,
+    PrivateKeyAttr: uint32,
+    PrivateKeyLabel: ?*Asn1Item,
+    CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+    PrivateKey: CSSM_KEY_PTR,
+    Privilege: CSSM_PRIVILEGE,
+) callconv(.C) CSSM_RETURN;
+pub const m_GenerateKeyPairP = CSSM_GenerateKeyPairP;
+
+extern "Security" fn CSSM_GenerateRandom(CCHandle: CSSM_CC_HANDLE, RandomNumber: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_GenerateRandom = CSSM_GenerateRandom;
+
+extern "Security" fn CSSM_CSP_ObtainPrivateKeyFromPublicKey(CSPHandle: CSSM_CSP_HANDLE, PublicKey: ?*CSSM_KEY, PrivateKey: CSSM_KEY_PTR) callconv(.C) CSSM_RETURN;
+pub const m_csp_ObtainPrivateKeyFromPublicKey = CSSM_CSP_ObtainPrivateKeyFromPublicKey;
+
+extern "Security" fn CSSM_WrapKey(
+    CCHandle: CSSM_CC_HANDLE,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    Key: ?*CSSM_KEY,
+    DescriptiveData: ?*Asn1Item,
+    WrappedKey: CSSM_WRAP_KEY_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_WrapKey = CSSM_WrapKey;
+
+extern "Security" fn CSSM_UnwrapKey(
+    CCHandle: CSSM_CC_HANDLE,
+    PublicKey: ?*CSSM_KEY,
+    WrappedKey: ?*CSSM_WRAP_KEY,
+    KeyUsage: uint32,
+    KeyAttr: uint32,
+    KeyLabel: ?*Asn1Item,
+    CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+    UnwrappedKey: CSSM_KEY_PTR,
+    DescriptiveData: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_UnwrapKey = CSSM_UnwrapKey;
+
+extern "Security" fn CSSM_WrapKeyP(
+    CCHandle: CSSM_CC_HANDLE,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    Key: ?*CSSM_KEY,
+    DescriptiveData: ?*Asn1Item,
+    WrappedKey: CSSM_WRAP_KEY_PTR,
+    Privilege: CSSM_PRIVILEGE,
+) callconv(.C) CSSM_RETURN;
+pub const m_WrapKeyP = CSSM_WrapKeyP;
+
+extern "Security" fn CSSM_UnwrapKeyP(
+    CCHandle: CSSM_CC_HANDLE,
+    PublicKey: ?*CSSM_KEY,
+    WrappedKey: ?*CSSM_WRAP_KEY,
+    KeyUsage: uint32,
+    KeyAttr: uint32,
+    KeyLabel: ?*Asn1Item,
+    CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+    UnwrappedKey: CSSM_KEY_PTR,
+    DescriptiveData: CSSM_DATA_PTR,
+    Privilege: CSSM_PRIVILEGE,
+) callconv(.C) CSSM_RETURN;
+pub const m_UnwrapKeyP = CSSM_UnwrapKeyP;
+
+extern "Security" fn CSSM_DeriveKey(
+    CCHandle: CSSM_CC_HANDLE,
+    Param: CSSM_DATA_PTR,
+    KeyUsage: uint32,
+    KeyAttr: uint32,
+    KeyLabel: ?*Asn1Item,
+    CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+    DerivedKey: CSSM_KEY_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_DeriveKey = CSSM_DeriveKey;
+
+extern "Security" fn CSSM_FreeKey(
+    CSPHandle: CSSM_CSP_HANDLE,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    KeyPtr: CSSM_KEY_PTR,
+    Delete: CSSM_BOOL,
+) callconv(.C) CSSM_RETURN;
+pub const m_FreeKey = CSSM_FreeKey;
+
+extern "Security" fn CSSM_GenerateAlgorithmParams(CCHandle: CSSM_CC_HANDLE, ParamBits: uint32, Param: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_GenerateAlgorithmParams = CSSM_GenerateAlgorithmParams;
+
+extern "Security" fn CSSM_CSP_GetOperationalStatistics(CSPHandle: CSSM_CSP_HANDLE, Statistics: ?*CSSM_CSP_OPERATIONAL_STATISTICS) callconv(.C) CSSM_RETURN;
+pub const m_csp_GetOperationalStatistics = CSSM_CSP_GetOperationalStatistics;
+
+extern "Security" fn CSSM_GetTimeValue(CSPHandle: CSSM_CSP_HANDLE, TimeAlgorithm: CSSM_ALGORITHMS, TimeData: ?*Asn1Item) callconv(.C) CSSM_RETURN;
+pub const m_GetTimeValue = CSSM_GetTimeValue;
+
+extern "Security" fn CSSM_RetrieveUniqueId(CSPHandle: CSSM_CSP_HANDLE, UniqueID: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_RetrieveUniqueId = CSSM_RetrieveUniqueId;
+
+extern "Security" fn CSSM_RetrieveCounter(CSPHandle: CSSM_CSP_HANDLE, Counter: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_RetrieveCounter = CSSM_RetrieveCounter;
+
+extern "Security" fn CSSM_VerifyDevice(CSPHandle: CSSM_CSP_HANDLE, DeviceCert: ?*Asn1Item) callconv(.C) CSSM_RETURN;
+pub const m_VerifyDevice = CSSM_VerifyDevice;
+
+extern "Security" fn CSSM_CSP_PassThrough(
+    CCHandle: CSSM_CC_HANDLE,
+    PassThroughId: uint32,
+    InData: ?*anyopaque,
+    OutData: ?*?*anyopaque,
+) callconv(.C) CSSM_RETURN;
+pub const m_csp_PassThrough = CSSM_CSP_PassThrough;
+
+extern "Security" fn CSSM_TP_SubmitCredRequest(
+    TPHandle: CSSM_TP_HANDLE,
+    PreferredAuthority: ?*CSSM_TP_AUTHORITY_ID,
+    RequestType: CSSM_TP_AUTHORITY_REQUEST_TYPE,
+    RequestInput: ?*CSSM_TP_REQUEST_SET,
+    CallerAuthContext: ?*CSSM_TP_CALLERAUTH_CONTEXT,
+    EstimatedTime: ?*sint32,
+    ReferenceIdentifier: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_SubmitCredRequest = CSSM_TP_SubmitCredRequest;
+
+extern "Security" fn CSSM_TP_RetrieveCredResult(
+    TPHandle: CSSM_TP_HANDLE,
+    ReferenceIdentifier: ?*Asn1Item,
+    CallerAuthCredentials: ?*CSSM_TP_CALLERAUTH_CONTEXT,
+    EstimatedTime: ?*sint32,
+    ConfirmationRequired: ?*CSSM_BOOL,
+    RetrieveOutput: ?*CSSM_TP_RESULT_SET_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_RetrieveCredResult = CSSM_TP_RetrieveCredResult;
+
+extern "Security" fn CSSM_TP_ConfirmCredResult(
+    TPHandle: CSSM_TP_HANDLE,
+    ReferenceIdentifier: ?*Asn1Item,
+    CallerAuthCredentials: ?*CSSM_TP_CALLERAUTH_CONTEXT,
+    Responses: ?*CSSM_TP_CONFIRM_RESPONSE,
+    PreferredAuthority: ?*CSSM_TP_AUTHORITY_ID,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_ConfirmCredResult = CSSM_TP_ConfirmCredResult;
+
+extern "Security" fn CSSM_TP_ReceiveConfirmation(
+    TPHandle: CSSM_TP_HANDLE,
+    ReferenceIdentifier: ?*Asn1Item,
+    Responses: ?*CSSM_TP_CONFIRM_RESPONSE_PTR,
+    ElapsedTime: ?*sint32,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_ReceiveConfirmation = CSSM_TP_ReceiveConfirmation;
+
+extern "Security" fn CSSM_TP_CertReclaimKey(
+    TPHandle: CSSM_TP_HANDLE,
+    CertGroup: ?*CSSM_CERTGROUP,
+    CertIndex: uint32,
+    KeyCacheHandle: CSSM_LONG_HANDLE,
+    CSPHandle: CSSM_CSP_HANDLE,
+    CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertReclaimKey = CSSM_TP_CertReclaimKey;
+
+extern "Security" fn CSSM_TP_CertReclaimAbort(TPHandle: CSSM_TP_HANDLE, KeyCacheHandle: CSSM_LONG_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertReclaimAbort = CSSM_TP_CertReclaimAbort;
+
+extern "Security" fn CSSM_TP_FormRequest(
+    TPHandle: CSSM_TP_HANDLE,
+    PreferredAuthority: ?*CSSM_TP_AUTHORITY_ID,
+    FormType: CSSM_TP_FORM_TYPE,
+    BlankForm: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_FormRequest = CSSM_TP_FormRequest;
+
+extern "Security" fn CSSM_TP_FormSubmit(
+    TPHandle: CSSM_TP_HANDLE,
+    FormType: CSSM_TP_FORM_TYPE,
+    Form: ?*Asn1Item,
+    ClearanceAuthority: ?*CSSM_TP_AUTHORITY_ID,
+    RepresentedAuthority: ?*CSSM_TP_AUTHORITY_ID,
+    Credentials: CSSM_ACCESS_CREDENTIALS_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_FormSubmit = CSSM_TP_FormSubmit;
+
+extern "Security" fn CSSM_TP_CertGroupVerify(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CSPHandle: CSSM_CSP_HANDLE,
+    CertGroupToBeVerified: ?*CSSM_CERTGROUP,
+    VerifyContext: ?*CSSM_TP_VERIFY_CONTEXT,
+    VerifyContextResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertGroupVerify = CSSM_TP_CertGroupVerify;
+
+extern "Security" fn CSSM_TP_CertCreateTemplate(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    NumberOfFields: uint32,
+    CertFields: ?*CSSM_FIELD,
+    CertTemplate: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertCreateTemplate = CSSM_TP_CertCreateTemplate;
+
+extern "Security" fn CSSM_TP_CertGetAllTemplateFields(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CertTemplate: ?*Asn1Item,
+    NumberOfFields: ?*uint32,
+    CertFields: ?*CSSM_FIELD_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertGetAllTemplateFields = CSSM_TP_CertGetAllTemplateFields;
+
+extern "Security" fn CSSM_TP_CertSign(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    CertTemplateToBeSigned: ?*Asn1Item,
+    SignerCertGroup: ?*CSSM_CERTGROUP,
+    SignerVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT,
+    SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    SignedCert: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertSign = CSSM_TP_CertSign;
+
+extern "Security" fn CSSM_TP_CrlVerify(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CSPHandle: CSSM_CSP_HANDLE,
+    CrlToBeVerified: ?*CSSM_ENCODED_CRL,
+    SignerCertGroup: ?*CSSM_CERTGROUP,
+    VerifyContext: ?*CSSM_TP_VERIFY_CONTEXT,
+    RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CrlVerify = CSSM_TP_CrlVerify;
+
+extern "Security" fn CSSM_TP_CrlCreateTemplate(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    NumberOfFields: uint32,
+    CrlFields: ?*CSSM_FIELD,
+    NewCrlTemplate: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CrlCreateTemplate = CSSM_TP_CrlCreateTemplate;
+
+extern "Security" fn CSSM_TP_CertRevoke(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CSPHandle: CSSM_CSP_HANDLE,
+    OldCrlTemplate: ?*Asn1Item,
+    CertGroupToBeRevoked: ?*CSSM_CERTGROUP,
+    RevokerCertGroup: ?*CSSM_CERTGROUP,
+    RevokerVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT,
+    RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    Reason: CSSM_TP_CERTCHANGE_REASON,
+    NewCrlTemplate: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertRevoke = CSSM_TP_CertRevoke;
+
+extern "Security" fn CSSM_TP_CertRemoveFromCrlTemplate(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CSPHandle: CSSM_CSP_HANDLE,
+    OldCrlTemplate: ?*Asn1Item,
+    CertGroupToBeRemoved: ?*CSSM_CERTGROUP,
+    RevokerCertGroup: ?*CSSM_CERTGROUP,
+    RevokerVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT,
+    RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    NewCrlTemplate: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertRemoveFromCrlTemplate = CSSM_TP_CertRemoveFromCrlTemplate;
+
+extern "Security" fn CSSM_TP_CrlSign(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    CrlToBeSigned: ?*CSSM_ENCODED_CRL,
+    SignerCertGroup: ?*CSSM_CERTGROUP,
+    SignerVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT,
+    SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    SignedCrl: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CrlSign = CSSM_TP_CrlSign;
+
+extern "Security" fn CSSM_TP_ApplyCrlToDb(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CSPHandle: CSSM_CSP_HANDLE,
+    CrlToBeApplied: ?*CSSM_ENCODED_CRL,
+    SignerCertGroup: ?*CSSM_CERTGROUP,
+    ApplyCrlVerifyContext: ?*CSSM_TP_VERIFY_CONTEXT,
+    ApplyCrlVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_ApplyCrlToDb = CSSM_TP_ApplyCrlToDb;
+
+extern "Security" fn CSSM_TP_CertGroupConstruct(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CSPHandle: CSSM_CSP_HANDLE,
+    DBList: ?*CSSM_DL_DB_LIST,
+    ConstructParams: ?*anyopaque,
+    CertGroupFrag: ?*CSSM_CERTGROUP,
+    CertGroup: ?*CSSM_CERTGROUP_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertGroupConstruct = CSSM_TP_CertGroupConstruct;
+
+extern "Security" fn CSSM_TP_CertGroupPrune(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    DBList: ?*CSSM_DL_DB_LIST,
+    OrderedCertGroup: ?*CSSM_CERTGROUP,
+    PrunedCertGroup: ?*CSSM_CERTGROUP_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertGroupPrune = CSSM_TP_CertGroupPrune;
+
+extern "Security" fn CSSM_TP_CertGroupToTupleGroup(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CertGroup: ?*CSSM_CERTGROUP,
+    TupleGroup: ?*CSSM_TUPLEGROUP_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_CertGroupToTupleGroup = CSSM_TP_CertGroupToTupleGroup;
+
+extern "Security" fn CSSM_TP_TupleGroupToCertGroup(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    TupleGroup: ?*CSSM_TUPLEGROUP,
+    CertTemplates: ?*CSSM_CERTGROUP_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_TupleGroupToCertGroup = CSSM_TP_TupleGroupToCertGroup;
+
+extern "Security" fn CSSM_TP_PassThrough(
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    DBList: ?*CSSM_DL_DB_LIST,
+    PassThroughId: uint32,
+    InputParams: ?*anyopaque,
+    OutputParams: ?*?*anyopaque,
+) callconv(.C) CSSM_RETURN;
+pub const m_tp_PassThrough = CSSM_TP_PassThrough;
+
+extern "Security" fn CSSM_AC_AuthCompute(
+    ACHandle: CSSM_AC_HANDLE,
+    BaseAuthorizations: ?*CSSM_TUPLEGROUP,
+    Credentials: ?*CSSM_TUPLEGROUP,
+    NumberOfRequestors: uint32,
+    Requestors: ?*CSSM_LIST,
+    RequestedAuthorizationPeriod: ?*CSSM_LIST,
+    RequestedAuthorization: ?*CSSM_LIST,
+    AuthorizationResult: CSSM_TUPLEGROUP_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_ac_AuthCompute = CSSM_AC_AuthCompute;
+
+extern "Security" fn CSSM_AC_PassThrough(
+    ACHandle: CSSM_AC_HANDLE,
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    DBList: ?*CSSM_DL_DB_LIST,
+    PassThroughId: uint32,
+    InputParams: ?*anyopaque,
+    OutputParams: ?*?*anyopaque,
+) callconv(.C) CSSM_RETURN;
+pub const m_ac_PassThrough = CSSM_AC_PassThrough;
+
+extern "Security" fn CSSM_CL_CertCreateTemplate(
+    CLHandle: CSSM_CL_HANDLE,
+    NumberOfFields: uint32,
+    CertFields: ?*CSSM_FIELD,
+    CertTemplate: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertCreateTemplate = CSSM_CL_CertCreateTemplate;
+
+extern "Security" fn CSSM_CL_CertGetAllTemplateFields(
+    CLHandle: CSSM_CL_HANDLE,
+    CertTemplate: ?*Asn1Item,
+    NumberOfFields: ?*uint32,
+    CertFields: ?*CSSM_FIELD_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertGetAllTemplateFields = CSSM_CL_CertGetAllTemplateFields;
+
+extern "Security" fn CSSM_CL_CertSign(
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    CertTemplate: ?*Asn1Item,
+    SignScope: ?*CSSM_FIELD,
+    ScopeSize: uint32,
+    SignedCert: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertSign = CSSM_CL_CertSign;
+
+extern "Security" fn CSSM_CL_CertVerify(
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    CertToBeVerified: ?*Asn1Item,
+    SignerCert: ?*Asn1Item,
+    VerifyScope: ?*CSSM_FIELD,
+    ScopeSize: uint32,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertVerify = CSSM_CL_CertVerify;
+
+extern "Security" fn CSSM_CL_CertVerifyWithKey(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ?*Asn1Item) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertVerifyWithKey = CSSM_CL_CertVerifyWithKey;
+
+extern "Security" fn CSSM_CL_CertGetFirstFieldValue(
+    CLHandle: CSSM_CL_HANDLE,
+    Cert: ?*Asn1Item,
+    CertField: ?*Asn1Oid,
+    ResultsHandle: CSSM_HANDLE_PTR,
+    NumberOfMatchedFields: ?*uint32,
+    Value: ?*CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertGetFirstFieldValue = CSSM_CL_CertGetFirstFieldValue;
+
+extern "Security" fn CSSM_CL_CertGetNextFieldValue(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertGetNextFieldValue = CSSM_CL_CertGetNextFieldValue;
+
+extern "Security" fn CSSM_CL_CertAbortQuery(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertAbortQuery = CSSM_CL_CertAbortQuery;
+
+extern "Security" fn CSSM_CL_CertGetKeyInfo(CLHandle: CSSM_CL_HANDLE, Cert: ?*Asn1Item, Key: ?*CSSM_KEY_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertGetKeyInfo = CSSM_CL_CertGetKeyInfo;
+
+extern "Security" fn CSSM_CL_CertGetAllFields(
+    CLHandle: CSSM_CL_HANDLE,
+    Cert: ?*Asn1Item,
+    NumberOfFields: ?*uint32,
+    CertFields: ?*CSSM_FIELD_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertGetAllFields = CSSM_CL_CertGetAllFields;
+
+extern "Security" fn CSSM_CL_FreeFields(CLHandle: CSSM_CL_HANDLE, NumberOfFields: uint32, Fields: ?*CSSM_FIELD_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_FreeFields = CSSM_CL_FreeFields;
+
+extern "Security" fn CSSM_CL_FreeFieldValue(CLHandle: CSSM_CL_HANDLE, CertOrCrlOid: ?*Asn1Oid, Value: CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_FreeFieldValue = CSSM_CL_FreeFieldValue;
+
+extern "Security" fn CSSM_CL_CertCache(CLHandle: CSSM_CL_HANDLE, Cert: ?*Asn1Item, CertHandle: CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertCache = CSSM_CL_CertCache;
+
+extern "Security" fn CSSM_CL_CertGetFirstCachedFieldValue(
+    CLHandle: CSSM_CL_HANDLE,
+    CertHandle: CSSM_HANDLE,
+    CertField: ?*Asn1Oid,
+    ResultsHandle: CSSM_HANDLE_PTR,
+    NumberOfMatchedFields: ?*uint32,
+    Value: ?*CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertGetFirstCachedFieldValue = CSSM_CL_CertGetFirstCachedFieldValue;
+
+extern "Security" fn CSSM_CL_CertGetNextCachedFieldValue(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertGetNextCachedFieldValue = CSSM_CL_CertGetNextCachedFieldValue;
+
+extern "Security" fn CSSM_CL_CertAbortCache(CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertAbortCache = CSSM_CL_CertAbortCache;
+
+extern "Security" fn CSSM_CL_CertGroupToSignedBundle(
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    CertGroupToBundle: ?*CSSM_CERTGROUP,
+    BundleInfo: ?*CSSM_CERT_BUNDLE_HEADER,
+    SignedBundle: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertGroupToSignedBundle = CSSM_CL_CertGroupToSignedBundle;
+
+extern "Security" fn CSSM_CL_CertGroupFromVerifiedBundle(
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    CertBundle: ?*CSSM_CERT_BUNDLE,
+    SignerCert: ?*Asn1Item,
+    CertGroup: ?*CSSM_CERTGROUP_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertGroupFromVerifiedBundle = CSSM_CL_CertGroupFromVerifiedBundle;
+
+extern "Security" fn CSSM_CL_CertDescribeFormat(CLHandle: CSSM_CL_HANDLE, NumberOfFields: ?*uint32, OidList: ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_CertDescribeFormat = CSSM_CL_CertDescribeFormat;
+
+extern "Security" fn CSSM_CL_CrlCreateTemplate(
+    CLHandle: CSSM_CL_HANDLE,
+    NumberOfFields: uint32,
+    CrlTemplate: ?*CSSM_FIELD,
+    NewCrl: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlCreateTemplate = CSSM_CL_CrlCreateTemplate;
+
+extern "Security" fn CSSM_CL_CrlSetFields(
+    CLHandle: CSSM_CL_HANDLE,
+    NumberOfFields: uint32,
+    CrlTemplate: ?*CSSM_FIELD,
+    OldCrl: ?*Asn1Item,
+    ModifiedCrl: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlSetFields = CSSM_CL_CrlSetFields;
+
+extern "Security" fn CSSM_CL_CrlAddCert(
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    Cert: ?*Asn1Item,
+    NumberOfFields: uint32,
+    CrlEntryFields: ?*CSSM_FIELD,
+    OldCrl: ?*Asn1Item,
+    NewCrl: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlAddCert = CSSM_CL_CrlAddCert;
+
+extern "Security" fn CSSM_CL_CrlRemoveCert(
+    CLHandle: CSSM_CL_HANDLE,
+    Cert: ?*Asn1Item,
+    OldCrl: ?*Asn1Item,
+    NewCrl: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlRemoveCert = CSSM_CL_CrlRemoveCert;
+
+extern "Security" fn CSSM_CL_CrlSign(
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    UnsignedCrl: ?*Asn1Item,
+    SignScope: ?*CSSM_FIELD,
+    ScopeSize: uint32,
+    SignedCrl: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlSign = CSSM_CL_CrlSign;
+
+extern "Security" fn CSSM_CL_CrlVerify(
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    CrlToBeVerified: ?*Asn1Item,
+    SignerCert: ?*Asn1Item,
+    VerifyScope: ?*CSSM_FIELD,
+    ScopeSize: uint32,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlVerify = CSSM_CL_CrlVerify;
+
+extern "Security" fn CSSM_CL_CrlVerifyWithKey(CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ?*Asn1Item) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlVerifyWithKey = CSSM_CL_CrlVerifyWithKey;
+
+extern "Security" fn CSSM_CL_IsCertInCrl(
+    CLHandle: CSSM_CL_HANDLE,
+    Cert: ?*Asn1Item,
+    Crl: ?*Asn1Item,
+    CertFound: ?*CSSM_BOOL,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_IsCertInCrl = CSSM_CL_IsCertInCrl;
+
+extern "Security" fn CSSM_CL_CrlGetFirstFieldValue(
+    CLHandle: CSSM_CL_HANDLE,
+    Crl: ?*Asn1Item,
+    CrlField: ?*Asn1Oid,
+    ResultsHandle: CSSM_HANDLE_PTR,
+    NumberOfMatchedFields: ?*uint32,
+    Value: ?*CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlGetFirstFieldValue = CSSM_CL_CrlGetFirstFieldValue;
+
+extern "Security" fn CSSM_CL_CrlGetNextFieldValue(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlGetNextFieldValue = CSSM_CL_CrlGetNextFieldValue;
+
+extern "Security" fn CSSM_CL_CrlAbortQuery(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlAbortQuery = CSSM_CL_CrlAbortQuery;
+
+extern "Security" fn CSSM_CL_CrlGetAllFields(
+    CLHandle: CSSM_CL_HANDLE,
+    Crl: ?*Asn1Item,
+    NumberOfCrlFields: ?*uint32,
+    CrlFields: ?*CSSM_FIELD_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlGetAllFields = CSSM_CL_CrlGetAllFields;
+
+extern "Security" fn CSSM_CL_CrlCache(CLHandle: CSSM_CL_HANDLE, Crl: ?*Asn1Item, CrlHandle: CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlCache = CSSM_CL_CrlCache;
+
+extern "Security" fn CSSM_CL_IsCertInCachedCrl(
+    CLHandle: CSSM_CL_HANDLE,
+    Cert: ?*Asn1Item,
+    CrlHandle: CSSM_HANDLE,
+    CertFound: ?*CSSM_BOOL,
+    CrlRecordIndex: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_IsCertInCachedCrl = CSSM_CL_IsCertInCachedCrl;
+
+extern "Security" fn CSSM_CL_CrlGetFirstCachedFieldValue(
+    CLHandle: CSSM_CL_HANDLE,
+    CrlHandle: CSSM_HANDLE,
+    CrlRecordIndex: ?*Asn1Item,
+    CrlField: ?*Asn1Oid,
+    ResultsHandle: CSSM_HANDLE_PTR,
+    NumberOfMatchedFields: ?*uint32,
+    Value: ?*CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlGetFirstCachedFieldValue = CSSM_CL_CrlGetFirstCachedFieldValue;
+
+extern "Security" fn CSSM_CL_CrlGetNextCachedFieldValue(CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlGetNextCachedFieldValue = CSSM_CL_CrlGetNextCachedFieldValue;
+
+extern "Security" fn CSSM_CL_CrlGetAllCachedRecordFields(
+    CLHandle: CSSM_CL_HANDLE,
+    CrlHandle: CSSM_HANDLE,
+    CrlRecordIndex: ?*Asn1Item,
+    NumberOfFields: ?*uint32,
+    CrlFields: ?*CSSM_FIELD_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlGetAllCachedRecordFields = CSSM_CL_CrlGetAllCachedRecordFields;
+
+extern "Security" fn CSSM_CL_CrlAbortCache(CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlAbortCache = CSSM_CL_CrlAbortCache;
+
+extern "Security" fn CSSM_CL_CrlDescribeFormat(CLHandle: CSSM_CL_HANDLE, NumberOfFields: ?*uint32, OidList: ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN;
+pub const m_cl_CrlDescribeFormat = CSSM_CL_CrlDescribeFormat;
+
+extern "Security" fn CSSM_CL_PassThrough(
+    CLHandle: CSSM_CL_HANDLE,
+    CCHandle: CSSM_CC_HANDLE,
+    PassThroughId: uint32,
+    InputParams: ?*anyopaque,
+    OutputParams: ?*?*anyopaque,
+) callconv(.C) CSSM_RETURN;
+pub const m_cl_PassThrough = CSSM_CL_PassThrough;
+
+extern "Security" fn CSSM_DL_DbOpen(
+    DLHandle: CSSM_DL_HANDLE,
+    DbName: ?*i8,
+    DbLocation: ?*CSSM_NET_ADDRESS,
+    AccessRequest: CSSM_DB_ACCESS_TYPE,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+    OpenParameters: ?*anyopaque,
+    DbHandle: ?*CSSM_DB_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_DbOpen = CSSM_DL_DbOpen;
+
+extern "Security" fn CSSM_DL_DbClose(DLDBHandle: CSSM_DL_DB_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_dl_DbClose = CSSM_DL_DbClose;
+
+extern "Security" fn CSSM_DL_DbCreate(
+    DLHandle: CSSM_DL_HANDLE,
+    DbName: ?*i8,
+    DbLocation: ?*CSSM_NET_ADDRESS,
+    DBInfo: ?*CSSM_DBINFO,
+    AccessRequest: CSSM_DB_ACCESS_TYPE,
+    CredAndAclEntry: ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+    OpenParameters: ?*anyopaque,
+    DbHandle: ?*CSSM_DB_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_DbCreate = CSSM_DL_DbCreate;
+
+extern "Security" fn CSSM_DL_DbDelete(
+    DLHandle: CSSM_DL_HANDLE,
+    DbName: ?*i8,
+    DbLocation: ?*CSSM_NET_ADDRESS,
+    AccessCred: ?*CSSM_ACCESS_CREDENTIALS,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_DbDelete = CSSM_DL_DbDelete;
+
+extern "Security" fn CSSM_DL_CreateRelation(
+    DLDBHandle: CSSM_DL_DB_HANDLE,
+    RelationID: CSSM_DB_RECORDTYPE,
+    RelationName: ?*i8,
+    NumberOfAttributes: uint32,
+    pAttributeInfo: ?*CSSM_DB_SCHEMA_ATTRIBUTE_INFO,
+    NumberOfIndexes: uint32,
+    pIndexInfo: ?*CSSM_DB_SCHEMA_INDEX_INFO,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_CreateRelation = CSSM_DL_CreateRelation;
+
+extern "Security" fn CSSM_DL_DestroyRelation(DLDBHandle: CSSM_DL_DB_HANDLE, RelationID: CSSM_DB_RECORDTYPE) callconv(.C) CSSM_RETURN;
+pub const m_dl_DestroyRelation = CSSM_DL_DestroyRelation;
+
+extern "Security" fn CSSM_DL_Authenticate(DLDBHandle: CSSM_DL_DB_HANDLE, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS) callconv(.C) CSSM_RETURN;
+pub const m_dl_Authenticate = CSSM_DL_Authenticate;
+
+extern "Security" fn CSSM_DL_GetDbAcl(
+    DLDBHandle: CSSM_DL_DB_HANDLE,
+    SelectionTag: ?*CSSM_STRING,
+    NumberOfAclInfos: ?*uint32,
+    AclInfos: ?*CSSM_ACL_ENTRY_INFO_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_GetDbAcl = CSSM_DL_GetDbAcl;
+
+extern "Security" fn CSSM_DL_ChangeDbAcl(DLDBHandle: CSSM_DL_DB_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, AclEdit: ?*CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN;
+pub const m_dl_ChangeDbAcl = CSSM_DL_ChangeDbAcl;
+
+extern "Security" fn CSSM_DL_GetDbOwner(DLDBHandle: CSSM_DL_DB_HANDLE, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN;
+pub const m_dl_GetDbOwner = CSSM_DL_GetDbOwner;
+
+extern "Security" fn CSSM_DL_ChangeDbOwner(DLDBHandle: CSSM_DL_DB_HANDLE, AccessCred: ?*CSSM_ACCESS_CREDENTIALS, NewOwner: ?*CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN;
+pub const m_dl_ChangeDbOwner = CSSM_DL_ChangeDbOwner;
+
+extern "Security" fn CSSM_DL_GetDbNames(DLHandle: CSSM_DL_HANDLE, NameList: ?*CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN;
+pub const m_dl_GetDbNames = CSSM_DL_GetDbNames;
+
+extern "Security" fn CSSM_DL_GetDbNameFromHandle(DLDBHandle: CSSM_DL_DB_HANDLE, DbName: ?*?*i8) callconv(.C) CSSM_RETURN;
+pub const m_dl_GetDbNameFromHandle = CSSM_DL_GetDbNameFromHandle;
+
+extern "Security" fn CSSM_DL_FreeNameList(DLHandle: CSSM_DL_HANDLE, NameList: CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN;
+pub const m_dl_FreeNameList = CSSM_DL_FreeNameList;
+
+extern "Security" fn CSSM_DL_DataInsert(
+    DLDBHandle: CSSM_DL_DB_HANDLE,
+    RecordType: CSSM_DB_RECORDTYPE,
+    Attributes: ?*CSSM_DB_RECORD_ATTRIBUTE_DATA,
+    Data: ?*Asn1Item,
+    UniqueId: ?*CSSM_DB_UNIQUE_RECORD_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_DataInsert = CSSM_DL_DataInsert;
+
+extern "Security" fn CSSM_DL_DataDelete(DLDBHandle: CSSM_DL_DB_HANDLE, UniqueRecordIdentifier: ?*CSSM_DB_UNIQUE_RECORD) callconv(.C) CSSM_RETURN;
+pub const m_dl_DataDelete = CSSM_DL_DataDelete;
+
+extern "Security" fn CSSM_DL_DataModify(
+    DLDBHandle: CSSM_DL_DB_HANDLE,
+    RecordType: CSSM_DB_RECORDTYPE,
+    UniqueRecordIdentifier: CSSM_DB_UNIQUE_RECORD_PTR,
+    AttributesToBeModified: ?*CSSM_DB_RECORD_ATTRIBUTE_DATA,
+    DataToBeModified: ?*Asn1Item,
+    ModifyMode: CSSM_DB_MODIFY_MODE,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_DataModify = CSSM_DL_DataModify;
+
+extern "Security" fn CSSM_DL_DataGetFirst(
+    DLDBHandle: CSSM_DL_DB_HANDLE,
+    Query: ?*CSSM_QUERY,
+    ResultsHandle: CSSM_HANDLE_PTR,
+    Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+    Data: CSSM_DATA_PTR,
+    UniqueId: ?*CSSM_DB_UNIQUE_RECORD_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_DataGetFirst = CSSM_DL_DataGetFirst;
+
+extern "Security" fn CSSM_DL_DataGetNext(
+    DLDBHandle: CSSM_DL_DB_HANDLE,
+    ResultsHandle: CSSM_HANDLE,
+    Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+    Data: CSSM_DATA_PTR,
+    UniqueId: ?*CSSM_DB_UNIQUE_RECORD_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_DataGetNext = CSSM_DL_DataGetNext;
+
+extern "Security" fn CSSM_DL_DataAbortQuery(DLDBHandle: CSSM_DL_DB_HANDLE, ResultsHandle: CSSM_HANDLE) callconv(.C) CSSM_RETURN;
+pub const m_dl_DataAbortQuery = CSSM_DL_DataAbortQuery;
+
+extern "Security" fn CSSM_DL_DataGetFromUniqueRecordId(
+    DLDBHandle: CSSM_DL_DB_HANDLE,
+    UniqueRecord: ?*CSSM_DB_UNIQUE_RECORD,
+    Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+    Data: CSSM_DATA_PTR,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_DataGetFromUniqueRecordId = CSSM_DL_DataGetFromUniqueRecordId;
+
+extern "Security" fn CSSM_DL_FreeUniqueRecord(DLDBHandle: CSSM_DL_DB_HANDLE, UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR) callconv(.C) CSSM_RETURN;
+pub const m_dl_FreeUniqueRecord = CSSM_DL_FreeUniqueRecord;
+
+extern "Security" fn CSSM_DL_PassThrough(
+    DLDBHandle: CSSM_DL_DB_HANDLE,
+    PassThroughId: uint32,
+    InputParams: ?*anyopaque,
+    OutputParams: ?*?*anyopaque,
+) callconv(.C) CSSM_RETURN;
+pub const m_dl_PassThrough = CSSM_DL_PassThrough;
 
 pub const cssm_spi_ac_funcs = extern struct {
-    AuthCompute: ?*const fn(CSSM_AC_HANDLE, ?*CSSM_TUPLEGROUP, ?*CSSM_TUPLEGROUP, uint32, ?*CSSM_LIST, ?*CSSM_LIST, ?*CSSM_LIST, CSSM_TUPLEGROUP_PTR, ) callconv(.C) CSSM_RETURN,
-    PassThrough: ?*const fn(CSSM_AC_HANDLE, CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*CSSM_DL_DB_LIST, uint32, ?*anyopaque, ?*?*anyopaque, ) callconv(.C) CSSM_RETURN,
+    AuthCompute: ?*const fn (
+        CSSM_AC_HANDLE,
+        ?*CSSM_TUPLEGROUP,
+        ?*CSSM_TUPLEGROUP,
+        uint32,
+        ?*CSSM_LIST,
+        ?*CSSM_LIST,
+        ?*CSSM_LIST,
+        CSSM_TUPLEGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_AC_HANDLE,
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_DL_DB_LIST,
+        uint32,
+        ?*anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
+
+pub const CSSM_SPI_AC_FUNCS = cssm_spi_ac_funcs;
 
 pub const CSSM_SPI_AC_FUNCS_PTR = ?*cssm_spi_ac_funcs;
 
 pub const cssm_spi_cl_funcs = extern struct {
-    CertCreateTemplate: ?*const fn(CSSM_CL_HANDLE, uint32, ?*CSSM_FIELD, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CertGetAllTemplateFields: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, ?*uint32, ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN,
-    CertSign: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, ?*CSSM_FIELD, uint32, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CertVerify: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, ?*Asn1Item, ?*CSSM_FIELD, uint32, ) callconv(.C) CSSM_RETURN,
-    CertVerifyWithKey: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
-    CertGetFirstFieldValue: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, ?*Asn1Oid, CSSM_HANDLE_PTR, ?*uint32, ?*CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CertGetNextFieldValue: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    CertAbortQuery: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
-    CertGetKeyInfo: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, ?*CSSM_KEY_PTR) callconv(.C) CSSM_RETURN,
-    CertGetAllFields: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, ?*uint32, ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN,
-    FreeFields: ?*const fn(CSSM_CL_HANDLE, uint32, ?*CSSM_FIELD_PTR) callconv(.C) CSSM_RETURN,
-    FreeFieldValue: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Oid, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    CertCache: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN,
-    CertGetFirstCachedFieldValue: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE, ?*Asn1Oid, CSSM_HANDLE_PTR, ?*uint32, ?*CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CertGetNextCachedFieldValue: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    CertAbortCache: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
-    CertGroupToSignedBundle: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CERTGROUP, ?*CSSM_CERT_BUNDLE_HEADER, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CertGroupFromVerifiedBundle: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CERT_BUNDLE, ?*Asn1Item, ?*CSSM_CERTGROUP_PTR, ) callconv(.C) CSSM_RETURN,
-    CertDescribeFormat: ?*const fn(CSSM_CL_HANDLE, ?*uint32, ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN,
-    CrlCreateTemplate: ?*const fn(CSSM_CL_HANDLE, uint32, ?*CSSM_FIELD, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlSetFields: ?*const fn(CSSM_CL_HANDLE, uint32, ?*CSSM_FIELD, ?*Asn1Item, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlAddCert: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, uint32, ?*CSSM_FIELD, ?*Asn1Item, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlRemoveCert: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, ?*Asn1Item, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlSign: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, ?*CSSM_FIELD, uint32, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlVerify: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, ?*Asn1Item, ?*CSSM_FIELD, uint32, ) callconv(.C) CSSM_RETURN,
-    CrlVerifyWithKey: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
-    IsCertInCrl: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, ?*Asn1Item, ?*CSSM_BOOL, ) callconv(.C) CSSM_RETURN,
-    CrlGetFirstFieldValue: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, ?*Asn1Oid, CSSM_HANDLE_PTR, ?*uint32, ?*CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlGetNextFieldValue: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    CrlAbortQuery: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
-    CrlGetAllFields: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, ?*uint32, ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlCache: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN,
-    IsCertInCachedCrl: ?*const fn(CSSM_CL_HANDLE, ?*Asn1Item, CSSM_HANDLE, ?*CSSM_BOOL, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlGetFirstCachedFieldValue: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE, ?*Asn1Item, ?*Asn1Oid, CSSM_HANDLE_PTR, ?*uint32, ?*CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlGetNextCachedFieldValue: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    CrlGetAllCachedRecordFields: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE, ?*Asn1Item, ?*uint32, ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlAbortCache: ?*const fn(CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
-    CrlDescribeFormat: ?*const fn(CSSM_CL_HANDLE, ?*uint32, ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN,
-    PassThrough: ?*const fn(CSSM_CL_HANDLE, CSSM_CC_HANDLE, uint32, ?*anyopaque, ?*?*anyopaque, ) callconv(.C) CSSM_RETURN,
+    CertCreateTemplate: ?*const fn (
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*CSSM_FIELD,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGetAllTemplateFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertSign: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        ?*CSSM_FIELD,
+        uint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertVerify: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        ?*Asn1Item,
+        ?*CSSM_FIELD,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    CertVerifyWithKey: ?*const fn (CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
+    CertGetFirstFieldValue: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*Asn1Item,
+        ?*Asn1Oid,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+        ?*CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGetNextFieldValue: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CertAbortQuery: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    CertGetKeyInfo: ?*const fn (CSSM_CL_HANDLE, ?*Asn1Item, ?*CSSM_KEY_PTR) callconv(.C) CSSM_RETURN,
+    CertGetAllFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FreeFields: ?*const fn (CSSM_CL_HANDLE, uint32, ?*CSSM_FIELD_PTR) callconv(.C) CSSM_RETURN,
+    FreeFieldValue: ?*const fn (CSSM_CL_HANDLE, ?*Asn1Oid, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CertCache: ?*const fn (CSSM_CL_HANDLE, ?*Asn1Item, CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN,
+    CertGetFirstCachedFieldValue: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_HANDLE,
+        ?*Asn1Oid,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+        ?*CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGetNextCachedFieldValue: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CertAbortCache: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    CertGroupToSignedBundle: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_CERT_BUNDLE_HEADER,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupFromVerifiedBundle: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CERT_BUNDLE,
+        ?*Asn1Item,
+        ?*CSSM_CERTGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertDescribeFormat: ?*const fn (CSSM_CL_HANDLE, ?*uint32, ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN,
+    CrlCreateTemplate: ?*const fn (
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*CSSM_FIELD,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlSetFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*CSSM_FIELD,
+        ?*Asn1Item,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlAddCert: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        uint32,
+        ?*CSSM_FIELD,
+        ?*Asn1Item,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlRemoveCert: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*Asn1Item,
+        ?*Asn1Item,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlSign: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        ?*CSSM_FIELD,
+        uint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlVerify: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        ?*Asn1Item,
+        ?*CSSM_FIELD,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    CrlVerifyWithKey: ?*const fn (CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
+    IsCertInCrl: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*Asn1Item,
+        ?*Asn1Item,
+        ?*CSSM_BOOL,
+    ) callconv(.C) CSSM_RETURN,
+    CrlGetFirstFieldValue: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*Asn1Item,
+        ?*Asn1Oid,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+        ?*CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlGetNextFieldValue: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CrlAbortQuery: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    CrlGetAllFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlCache: ?*const fn (CSSM_CL_HANDLE, ?*Asn1Item, CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN,
+    IsCertInCachedCrl: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*Asn1Item,
+        CSSM_HANDLE,
+        ?*CSSM_BOOL,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlGetFirstCachedFieldValue: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_HANDLE,
+        ?*Asn1Item,
+        ?*Asn1Oid,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+        ?*CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlGetNextCachedFieldValue: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CrlGetAllCachedRecordFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_HANDLE,
+        ?*Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlAbortCache: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    CrlDescribeFormat: ?*const fn (CSSM_CL_HANDLE, ?*uint32, ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        uint32,
+        ?*anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
+
+pub const CSSM_SPI_CL_FUNCS = cssm_spi_cl_funcs;
 
 pub const CSSM_SPI_CL_FUNCS_PTR = ?*cssm_spi_cl_funcs;
 
-pub const CSSM_SPI_ModuleEventHandler = ?*const fn(?*CSSM_GUID, ?*anyopaque, uint32, CSSM_SERVICE_TYPE, CSSM_MODULE_EVENT, ) callconv(.C) CSSM_RETURN;
+pub const CSSM_SPI_ModuleEventHandler = ?*const fn (
+    ?*CSSM_GUID,
+    ?*anyopaque,
+    uint32,
+    CSSM_SERVICE_TYPE,
+    CSSM_MODULE_EVENT,
+) callconv(.C) CSSM_RETURN;
 
 pub const CSSM_CONTEXT_EVENT = uint32;
 
@@ -5707,114 +7947,439 @@ pub const cssm_module_funcs = extern struct {
     ServiceFuncs: ?*CSSM_PROC_ADDR,
 };
 
+pub const CSSM_MODULE_FUNCS = cssm_module_funcs;
+
 pub const CSSM_MODULE_FUNCS_PTR = ?*cssm_module_funcs;
 
-pub const CSSM_UPCALLS_MALLOC = ?*const fn(CSSM_HANDLE, objc.size_t) callconv(.C) ?*anyopaque;
+pub const CSSM_UPCALLS_MALLOC = ?*const fn (CSSM_HANDLE, objc.size_t) callconv(.C) ?*anyopaque;
 
-pub const CSSM_UPCALLS_FREE = ?*const fn(CSSM_HANDLE, ?*anyopaque) callconv(.C) void;
+pub const CSSM_UPCALLS_FREE = ?*const fn (CSSM_HANDLE, ?*anyopaque) callconv(.C) void;
 
-pub const CSSM_UPCALLS_REALLOC = ?*const fn(CSSM_HANDLE, ?*anyopaque, objc.size_t) callconv(.C) ?*anyopaque;
+pub const CSSM_UPCALLS_REALLOC = ?*const fn (CSSM_HANDLE, ?*anyopaque, objc.size_t) callconv(.C) ?*anyopaque;
 
-pub const CSSM_UPCALLS_CALLOC = ?*const fn(CSSM_HANDLE, objc.size_t, objc.size_t) callconv(.C) ?*anyopaque;
+pub const CSSM_UPCALLS_CALLOC = ?*const fn (CSSM_HANDLE, objc.size_t, objc.size_t) callconv(.C) ?*anyopaque;
 
 pub const cssm_upcalls = extern struct {
     malloc_func: CSSM_UPCALLS_MALLOC,
     free_func: CSSM_UPCALLS_FREE,
     realloc_func: CSSM_UPCALLS_REALLOC,
     calloc_func: CSSM_UPCALLS_CALLOC,
-    CcToHandle_func: ?*const fn(CSSM_CC_HANDLE, CSSM_MODULE_HANDLE_PTR) callconv(.C) CSSM_RETURN,
-    GetModuleInfo_func: ?*const fn(CSSM_MODULE_HANDLE, CSSM_GUID_PTR, CSSM_VERSION_PTR, ?*uint32, ?*CSSM_SERVICE_TYPE, ?*CSSM_ATTACH_FLAGS, ?*CSSM_KEY_HIERARCHY, CSSM_API_MEMORY_FUNCS_PTR, CSSM_FUNC_NAME_ADDR_PTR, uint32, ) callconv(.C) CSSM_RETURN,
+    CcToHandle_func: ?*const fn (CSSM_CC_HANDLE, CSSM_MODULE_HANDLE_PTR) callconv(.C) CSSM_RETURN,
+    GetModuleInfo_func: ?*const fn (
+        CSSM_MODULE_HANDLE,
+        CSSM_GUID_PTR,
+        CSSM_VERSION_PTR,
+        ?*uint32,
+        ?*CSSM_SERVICE_TYPE,
+        ?*CSSM_ATTACH_FLAGS,
+        ?*CSSM_KEY_HIERARCHY,
+        CSSM_API_MEMORY_FUNCS_PTR,
+        CSSM_FUNC_NAME_ADDR_PTR,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
 };
+
+pub const CSSM_UPCALLS = cssm_upcalls;
 
 pub const CSSM_UPCALLS_PTR = ?*cssm_upcalls;
 
 pub const cssm_spi_csp_funcs = extern struct {
-    EventNotify: ?*const fn(CSSM_CSP_HANDLE, CSSM_CONTEXT_EVENT, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ) callconv(.C) CSSM_RETURN,
-    QuerySize: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, CSSM_BOOL, uint32, CSSM_QUERY_SIZE_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    SignData: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, uint32, CSSM_ALGORITHMS, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    SignDataInit: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
-    SignDataUpdate: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, uint32, ) callconv(.C) CSSM_RETURN,
-    SignDataFinal: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    VerifyData: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, uint32, CSSM_ALGORITHMS, ?*Asn1Item, ) callconv(.C) CSSM_RETURN,
-    VerifyDataInit: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
-    VerifyDataUpdate: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, uint32, ) callconv(.C) CSSM_RETURN,
-    VerifyDataFinal: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
-    DigestData: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, uint32, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    DigestDataInit: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
-    DigestDataUpdate: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, uint32, ) callconv(.C) CSSM_RETURN,
-    DigestDataClone: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN,
-    DigestDataFinal: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    GenerateMac: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, uint32, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    GenerateMacInit: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
-    GenerateMacUpdate: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, uint32, ) callconv(.C) CSSM_RETURN,
-    GenerateMacFinal: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    VerifyMac: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, uint32, ?*Asn1Item, ) callconv(.C) CSSM_RETURN,
-    VerifyMacInit: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
-    VerifyMacUpdate: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, uint32, ) callconv(.C) CSSM_RETURN,
-    VerifyMacFinal: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
-    EncryptData: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, uint32, CSSM_DATA_PTR, uint32, ?*CSSM_SIZE, CSSM_DATA_PTR, CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN,
-    EncryptDataInit: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN,
-    EncryptDataUpdate: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, uint32, CSSM_DATA_PTR, uint32, ?*CSSM_SIZE, ) callconv(.C) CSSM_RETURN,
-    EncryptDataFinal: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    DecryptData: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, uint32, CSSM_DATA_PTR, uint32, ?*CSSM_SIZE, CSSM_DATA_PTR, CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN,
-    DecryptDataInit: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN,
-    DecryptDataUpdate: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, uint32, CSSM_DATA_PTR, uint32, ?*CSSM_SIZE, ) callconv(.C) CSSM_RETURN,
-    DecryptDataFinal: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    QueryKeySizeInBits: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*CSSM_KEY, CSSM_KEY_SIZE_PTR, ) callconv(.C) CSSM_RETURN,
-    GenerateKey: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, uint32, uint32, ?*Asn1Item, ?*CSSM_RESOURCE_CONTROL_CONTEXT, CSSM_KEY_PTR, CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN,
-    GenerateKeyPair: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, uint32, uint32, ?*Asn1Item, CSSM_KEY_PTR, uint32, uint32, ?*Asn1Item, ?*CSSM_RESOURCE_CONTROL_CONTEXT, CSSM_KEY_PTR, CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN,
-    GenerateRandom: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    GenerateAlgorithmParams: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, uint32, CSSM_DATA_PTR, ?*uint32, ?*CSSM_CONTEXT_ATTRIBUTE_PTR, ) callconv(.C) CSSM_RETURN,
-    WrapKey: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_KEY, ?*Asn1Item, CSSM_WRAP_KEY_PTR, CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN,
-    UnwrapKey: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*CSSM_KEY, ?*CSSM_WRAP_KEY, uint32, uint32, ?*Asn1Item, ?*CSSM_RESOURCE_CONTROL_CONTEXT, CSSM_KEY_PTR, CSSM_DATA_PTR, CSSM_PRIVILEGE, ) callconv(.C) CSSM_RETURN,
-    DeriveKey: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, CSSM_DATA_PTR, uint32, uint32, ?*Asn1Item, ?*CSSM_RESOURCE_CONTROL_CONTEXT, CSSM_KEY_PTR, ) callconv(.C) CSSM_RETURN,
-    FreeKey: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, CSSM_KEY_PTR, CSSM_BOOL, ) callconv(.C) CSSM_RETURN,
-    PassThrough: ?*const fn(CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, uint32, ?*anyopaque, ?*?*anyopaque, ) callconv(.C) CSSM_RETURN,
-    Login: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*Asn1Item, ?*anyopaque, ) callconv(.C) CSSM_RETURN,
-    Logout: ?*const fn(CSSM_CSP_HANDLE) callconv(.C) CSSM_RETURN,
-    ChangeLoginAcl: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN,
-    ObtainPrivateKeyFromPublicKey: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_KEY, CSSM_KEY_PTR) callconv(.C) CSSM_RETURN,
-    RetrieveUniqueId: ?*const fn(CSSM_CSP_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    RetrieveCounter: ?*const fn(CSSM_CSP_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
-    VerifyDevice: ?*const fn(CSSM_CSP_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
-    GetTimeValue: ?*const fn(CSSM_CSP_HANDLE, CSSM_ALGORITHMS, ?*Asn1Item) callconv(.C) CSSM_RETURN,
-    GetOperationalStatistics: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_CSP_OPERATIONAL_STATISTICS) callconv(.C) CSSM_RETURN,
-    GetLoginAcl: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_STRING, ?*uint32, ?*CSSM_ACL_ENTRY_INFO_PTR, ) callconv(.C) CSSM_RETURN,
-    GetKeyAcl: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_KEY, ?*CSSM_STRING, ?*uint32, ?*CSSM_ACL_ENTRY_INFO_PTR, ) callconv(.C) CSSM_RETURN,
-    ChangeKeyAcl: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_ACL_EDIT, ?*CSSM_KEY, ) callconv(.C) CSSM_RETURN,
-    GetKeyOwner: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_KEY, CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN,
-    ChangeKeyOwner: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_KEY, ?*CSSM_ACL_OWNER_PROTOTYPE, ) callconv(.C) CSSM_RETURN,
-    GetLoginOwner: ?*const fn(CSSM_CSP_HANDLE, CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN,
-    ChangeLoginOwner: ?*const fn(CSSM_CSP_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN,
+    EventNotify: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CONTEXT_EVENT,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+    ) callconv(.C) CSSM_RETURN,
+    QuerySize: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        CSSM_BOOL,
+        uint32,
+        CSSM_QUERY_SIZE_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    SignData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        uint32,
+        CSSM_ALGORITHMS,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    SignDataInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    SignDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    SignDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    VerifyData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        uint32,
+        CSSM_ALGORITHMS,
+        ?*Asn1Item,
+    ) callconv(.C) CSSM_RETURN,
+    VerifyDataInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    VerifyDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    VerifyDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
+    DigestData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DigestDataInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    DigestDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    DigestDataClone: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN,
+    DigestDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    GenerateMac: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateMacInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    GenerateMacUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateMacFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    VerifyMac: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        uint32,
+        ?*Asn1Item,
+    ) callconv(.C) CSSM_RETURN,
+    VerifyMacInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    VerifyMacUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    VerifyMacFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
+    EncryptData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+        uint32,
+        ?*CSSM_SIZE,
+        CSSM_DATA_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    EncryptDataInit: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    EncryptDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+        uint32,
+        ?*CSSM_SIZE,
+    ) callconv(.C) CSSM_RETURN,
+    EncryptDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    DecryptData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+        uint32,
+        ?*CSSM_SIZE,
+        CSSM_DATA_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    DecryptDataInit: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    DecryptDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+        uint32,
+        ?*CSSM_SIZE,
+    ) callconv(.C) CSSM_RETURN,
+    DecryptDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    QueryKeySizeInBits: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*CSSM_KEY,
+        CSSM_KEY_SIZE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        uint32,
+        uint32,
+        ?*Asn1Item,
+        ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+        CSSM_KEY_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateKeyPair: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        uint32,
+        uint32,
+        ?*Asn1Item,
+        CSSM_KEY_PTR,
+        uint32,
+        uint32,
+        ?*Asn1Item,
+        ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+        CSSM_KEY_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateRandom: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateAlgorithmParams: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        uint32,
+        CSSM_DATA_PTR,
+        ?*uint32,
+        ?*CSSM_CONTEXT_ATTRIBUTE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    WrapKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*CSSM_ACCESS_CREDENTIALS,
+        ?*CSSM_KEY,
+        ?*Asn1Item,
+        CSSM_WRAP_KEY_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    UnwrapKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*CSSM_KEY,
+        ?*CSSM_WRAP_KEY,
+        uint32,
+        uint32,
+        ?*Asn1Item,
+        ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+        CSSM_KEY_PTR,
+        CSSM_DATA_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    DeriveKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        CSSM_DATA_PTR,
+        uint32,
+        uint32,
+        ?*Asn1Item,
+        ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+        CSSM_KEY_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FreeKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*CSSM_ACCESS_CREDENTIALS,
+        CSSM_KEY_PTR,
+        CSSM_BOOL,
+    ) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        uint32,
+        ?*anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
+    Login: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*CSSM_ACCESS_CREDENTIALS,
+        ?*Asn1Item,
+        ?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
+    Logout: ?*const fn (CSSM_CSP_HANDLE) callconv(.C) CSSM_RETURN,
+    ChangeLoginAcl: ?*const fn (CSSM_CSP_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN,
+    ObtainPrivateKeyFromPublicKey: ?*const fn (CSSM_CSP_HANDLE, ?*CSSM_KEY, CSSM_KEY_PTR) callconv(.C) CSSM_RETURN,
+    RetrieveUniqueId: ?*const fn (CSSM_CSP_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    RetrieveCounter: ?*const fn (CSSM_CSP_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    VerifyDevice: ?*const fn (CSSM_CSP_HANDLE, ?*Asn1Item) callconv(.C) CSSM_RETURN,
+    GetTimeValue: ?*const fn (CSSM_CSP_HANDLE, CSSM_ALGORITHMS, ?*Asn1Item) callconv(.C) CSSM_RETURN,
+    GetOperationalStatistics: ?*const fn (CSSM_CSP_HANDLE, ?*CSSM_CSP_OPERATIONAL_STATISTICS) callconv(.C) CSSM_RETURN,
+    GetLoginAcl: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*CSSM_STRING,
+        ?*uint32,
+        ?*CSSM_ACL_ENTRY_INFO_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GetKeyAcl: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*CSSM_KEY,
+        ?*CSSM_STRING,
+        ?*uint32,
+        ?*CSSM_ACL_ENTRY_INFO_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ChangeKeyAcl: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*CSSM_ACCESS_CREDENTIALS,
+        ?*CSSM_ACL_EDIT,
+        ?*CSSM_KEY,
+    ) callconv(.C) CSSM_RETURN,
+    GetKeyOwner: ?*const fn (CSSM_CSP_HANDLE, ?*CSSM_KEY, CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN,
+    ChangeKeyOwner: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*CSSM_ACCESS_CREDENTIALS,
+        ?*CSSM_KEY,
+        ?*CSSM_ACL_OWNER_PROTOTYPE,
+    ) callconv(.C) CSSM_RETURN,
+    GetLoginOwner: ?*const fn (CSSM_CSP_HANDLE, CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN,
+    ChangeLoginOwner: ?*const fn (CSSM_CSP_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN,
 };
+
+pub const CSSM_SPI_CSP_FUNCS = cssm_spi_csp_funcs;
 
 pub const CSSM_SPI_CSP_FUNCS_PTR = ?*cssm_spi_csp_funcs;
 
 pub const cssm_spi_dl_funcs = extern struct {
-    DbOpen: ?*const fn(CSSM_DL_HANDLE, ?*i8, ?*CSSM_NET_ADDRESS, CSSM_DB_ACCESS_TYPE, ?*CSSM_ACCESS_CREDENTIALS, ?*anyopaque, ?*CSSM_DB_HANDLE, ) callconv(.C) CSSM_RETURN,
-    DbClose: ?*const fn(CSSM_DL_DB_HANDLE) callconv(.C) CSSM_RETURN,
-    DbCreate: ?*const fn(CSSM_DL_HANDLE, ?*i8, ?*CSSM_NET_ADDRESS, ?*CSSM_DBINFO, CSSM_DB_ACCESS_TYPE, ?*CSSM_RESOURCE_CONTROL_CONTEXT, ?*anyopaque, ?*CSSM_DB_HANDLE, ) callconv(.C) CSSM_RETURN,
-    DbDelete: ?*const fn(CSSM_DL_HANDLE, ?*i8, ?*CSSM_NET_ADDRESS, ?*CSSM_ACCESS_CREDENTIALS, ) callconv(.C) CSSM_RETURN,
-    CreateRelation: ?*const fn(CSSM_DL_DB_HANDLE, CSSM_DB_RECORDTYPE, ?*i8, uint32, ?*CSSM_DB_SCHEMA_ATTRIBUTE_INFO, uint32, ?*CSSM_DB_SCHEMA_INDEX_INFO, ) callconv(.C) CSSM_RETURN,
-    DestroyRelation: ?*const fn(CSSM_DL_DB_HANDLE, CSSM_DB_RECORDTYPE) callconv(.C) CSSM_RETURN,
-    Authenticate: ?*const fn(CSSM_DL_DB_HANDLE, CSSM_DB_ACCESS_TYPE, ?*CSSM_ACCESS_CREDENTIALS) callconv(.C) CSSM_RETURN,
-    GetDbAcl: ?*const fn(CSSM_DL_DB_HANDLE, ?*CSSM_STRING, ?*uint32, ?*CSSM_ACL_ENTRY_INFO_PTR, ) callconv(.C) CSSM_RETURN,
-    ChangeDbAcl: ?*const fn(CSSM_DL_DB_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN,
-    GetDbOwner: ?*const fn(CSSM_DL_DB_HANDLE, CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN,
-    ChangeDbOwner: ?*const fn(CSSM_DL_DB_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN,
-    GetDbNames: ?*const fn(CSSM_DL_HANDLE, ?*CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
-    GetDbNameFromHandle: ?*const fn(CSSM_DL_DB_HANDLE, ?*?*i8) callconv(.C) CSSM_RETURN,
-    FreeNameList: ?*const fn(CSSM_DL_HANDLE, CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
-    DataInsert: ?*const fn(CSSM_DL_DB_HANDLE, CSSM_DB_RECORDTYPE, ?*CSSM_DB_RECORD_ATTRIBUTE_DATA, ?*Asn1Item, ?*CSSM_DB_UNIQUE_RECORD_PTR, ) callconv(.C) CSSM_RETURN,
-    DataDelete: ?*const fn(CSSM_DL_DB_HANDLE, ?*CSSM_DB_UNIQUE_RECORD) callconv(.C) CSSM_RETURN,
-    DataModify: ?*const fn(CSSM_DL_DB_HANDLE, CSSM_DB_RECORDTYPE, CSSM_DB_UNIQUE_RECORD_PTR, ?*CSSM_DB_RECORD_ATTRIBUTE_DATA, ?*Asn1Item, CSSM_DB_MODIFY_MODE, ) callconv(.C) CSSM_RETURN,
-    DataGetFirst: ?*const fn(CSSM_DL_DB_HANDLE, ?*CSSM_QUERY, CSSM_HANDLE_PTR, CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, CSSM_DATA_PTR, ?*CSSM_DB_UNIQUE_RECORD_PTR, ) callconv(.C) CSSM_RETURN,
-    DataGetNext: ?*const fn(CSSM_DL_DB_HANDLE, CSSM_HANDLE, CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, CSSM_DATA_PTR, ?*CSSM_DB_UNIQUE_RECORD_PTR, ) callconv(.C) CSSM_RETURN,
-    DataAbortQuery: ?*const fn(CSSM_DL_DB_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
-    DataGetFromUniqueRecordId: ?*const fn(CSSM_DL_DB_HANDLE, ?*CSSM_DB_UNIQUE_RECORD, CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    FreeUniqueRecord: ?*const fn(CSSM_DL_DB_HANDLE, CSSM_DB_UNIQUE_RECORD_PTR) callconv(.C) CSSM_RETURN,
-    PassThrough: ?*const fn(CSSM_DL_DB_HANDLE, uint32, ?*anyopaque, ?*?*anyopaque, ) callconv(.C) CSSM_RETURN,
+    DbOpen: ?*const fn (
+        CSSM_DL_HANDLE,
+        ?*i8,
+        ?*CSSM_NET_ADDRESS,
+        CSSM_DB_ACCESS_TYPE,
+        ?*CSSM_ACCESS_CREDENTIALS,
+        ?*anyopaque,
+        ?*CSSM_DB_HANDLE,
+    ) callconv(.C) CSSM_RETURN,
+    DbClose: ?*const fn (CSSM_DL_DB_HANDLE) callconv(.C) CSSM_RETURN,
+    DbCreate: ?*const fn (
+        CSSM_DL_HANDLE,
+        ?*i8,
+        ?*CSSM_NET_ADDRESS,
+        ?*CSSM_DBINFO,
+        CSSM_DB_ACCESS_TYPE,
+        ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+        ?*anyopaque,
+        ?*CSSM_DB_HANDLE,
+    ) callconv(.C) CSSM_RETURN,
+    DbDelete: ?*const fn (
+        CSSM_DL_HANDLE,
+        ?*i8,
+        ?*CSSM_NET_ADDRESS,
+        ?*CSSM_ACCESS_CREDENTIALS,
+    ) callconv(.C) CSSM_RETURN,
+    CreateRelation: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        ?*i8,
+        uint32,
+        ?*CSSM_DB_SCHEMA_ATTRIBUTE_INFO,
+        uint32,
+        ?*CSSM_DB_SCHEMA_INDEX_INFO,
+    ) callconv(.C) CSSM_RETURN,
+    DestroyRelation: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_DB_RECORDTYPE) callconv(.C) CSSM_RETURN,
+    Authenticate: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_DB_ACCESS_TYPE, ?*CSSM_ACCESS_CREDENTIALS) callconv(.C) CSSM_RETURN,
+    GetDbAcl: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        ?*CSSM_STRING,
+        ?*uint32,
+        ?*CSSM_ACL_ENTRY_INFO_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ChangeDbAcl: ?*const fn (CSSM_DL_DB_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN,
+    GetDbOwner: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN,
+    ChangeDbOwner: ?*const fn (CSSM_DL_DB_HANDLE, ?*CSSM_ACCESS_CREDENTIALS, ?*CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN,
+    GetDbNames: ?*const fn (CSSM_DL_HANDLE, ?*CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
+    GetDbNameFromHandle: ?*const fn (CSSM_DL_DB_HANDLE, ?*?*i8) callconv(.C) CSSM_RETURN,
+    FreeNameList: ?*const fn (CSSM_DL_HANDLE, CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
+    DataInsert: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        ?*CSSM_DB_RECORD_ATTRIBUTE_DATA,
+        ?*Asn1Item,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataDelete: ?*const fn (CSSM_DL_DB_HANDLE, ?*CSSM_DB_UNIQUE_RECORD) callconv(.C) CSSM_RETURN,
+    DataModify: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        CSSM_DB_UNIQUE_RECORD_PTR,
+        ?*CSSM_DB_RECORD_ATTRIBUTE_DATA,
+        ?*Asn1Item,
+        CSSM_DB_MODIFY_MODE,
+    ) callconv(.C) CSSM_RETURN,
+    DataGetFirst: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        ?*CSSM_QUERY,
+        CSSM_HANDLE_PTR,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataGetNext: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        CSSM_HANDLE,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataAbortQuery: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    DataGetFromUniqueRecordId: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        ?*CSSM_DB_UNIQUE_RECORD,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FreeUniqueRecord: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_DB_UNIQUE_RECORD_PTR) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        uint32,
+        ?*anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
+
+pub const CSSM_SPI_DL_FUNCS = cssm_spi_dl_funcs;
 
 pub const CSSM_SPI_DL_FUNCS_PTR = ?*cssm_spi_dl_funcs;
 
@@ -5825,6 +8390,10 @@ pub const cssm_kr_name = extern struct {
     Length: uint8,
     Name: ?*i8,
 };
+
+pub const CSSM_KR_NAME = cssm_kr_name;
+
+pub const CSSM_KR_PROFILE = cssm_kr_profile;
 
 pub const CSSM_KR_PROFILE_PTR = ?*cssm_kr_profile;
 
@@ -5837,6 +8406,8 @@ pub const cssm_kr_wrappedproductinfo = extern struct {
     ProductFlags: uint32,
 };
 
+pub const CSSM_KR_WRAPPEDPRODUCT_INFO = cssm_kr_wrappedproductinfo;
+
 pub const CSSM_KR_WRAPPEDPRODUCT_INFO_PTR = ?*cssm_kr_wrappedproductinfo;
 
 pub const cssm_krsubservice = extern struct {
@@ -5844,6 +8415,8 @@ pub const cssm_krsubservice = extern struct {
     Description: ?*i8,
     WrappedProduct: CSSM_KR_WRAPPEDPRODUCT_INFO,
 };
+
+pub const CSSM_KRSUBSERVICE = cssm_krsubservice;
 
 pub const CSSM_KRSUBSERVICE_PTR = ?*cssm_krsubservice;
 
@@ -5864,6 +8437,8 @@ pub const cssm_kr_policy_list_item = extern struct {
 
 pub const kr_policy_list_item = extern struct {};
 
+pub const CSSM_KR_POLICY_LIST_ITEM = cssm_kr_policy_list_item;
+
 pub const CSSM_KR_POLICY_LIST_ITEM_PTR = ?*cssm_kr_policy_list_item;
 
 pub const cssm_kr_policy_info = extern struct {
@@ -5872,69 +8447,314 @@ pub const cssm_kr_policy_info = extern struct {
     policyEntry: ?*CSSM_KR_POLICY_LIST_ITEM,
 };
 
+pub const CSSM_KR_POLICY_INFO = cssm_kr_policy_info;
+
 pub const CSSM_KR_POLICY_INFO_PTR = ?*cssm_kr_policy_info;
 
 pub const cssm_spi_kr_funcs = extern struct {
-    RegistrationRequest: ?*const fn(CSSM_KRSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, ?*CSSM_ACCESS_CREDENTIALS, CSSM_KR_POLICY_FLAGS, ?*sint32, CSSM_HANDLE_PTR, ) callconv(.C) CSSM_RETURN,
-    RegistrationRetrieve: ?*const fn(CSSM_KRSP_HANDLE, CSSM_HANDLE, ?*sint32, CSSM_KR_PROFILE_PTR, ) callconv(.C) CSSM_RETURN,
-    GenerateRecoveryFields: ?*const fn(CSSM_KRSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, CSSM_KR_POLICY_FLAGS, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    ProcessRecoveryFields: ?*const fn(CSSM_KRSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, CSSM_KR_POLICY_FLAGS, ?*Asn1Item, ) callconv(.C) CSSM_RETURN,
-    RecoveryRequest: ?*const fn(CSSM_KRSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, ?*Asn1Item, ?*CSSM_ACCESS_CREDENTIALS, ?*sint32, CSSM_HANDLE_PTR, ) callconv(.C) CSSM_RETURN,
-    RecoveryRetrieve: ?*const fn(CSSM_KRSP_HANDLE, CSSM_HANDLE, ?*sint32, CSSM_HANDLE_PTR, ?*uint32, ) callconv(.C) CSSM_RETURN,
-    GetRecoveredObject: ?*const fn(CSSM_KRSP_HANDLE, CSSM_HANDLE, uint32, CSSM_CSP_HANDLE, ?*CSSM_RESOURCE_CONTROL_CONTEXT, uint32, CSSM_KEY_PTR, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    RecoveryRequestAbort: ?*const fn(CSSM_KRSP_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
-    PassThrough: ?*const fn(CSSM_KRSP_HANDLE, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, CSSM_CC_HANDLE, ?*CSSM_CONTEXT, uint32, ?*anyopaque, ?*?*anyopaque, ) callconv(.C) CSSM_RETURN,
+    RegistrationRequest: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        ?*CSSM_ACCESS_CREDENTIALS,
+        CSSM_KR_POLICY_FLAGS,
+        ?*sint32,
+        CSSM_HANDLE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    RegistrationRetrieve: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_HANDLE,
+        ?*sint32,
+        CSSM_KR_PROFILE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateRecoveryFields: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        CSSM_KR_POLICY_FLAGS,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ProcessRecoveryFields: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        CSSM_KR_POLICY_FLAGS,
+        ?*Asn1Item,
+    ) callconv(.C) CSSM_RETURN,
+    RecoveryRequest: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        ?*Asn1Item,
+        ?*CSSM_ACCESS_CREDENTIALS,
+        ?*sint32,
+        CSSM_HANDLE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    RecoveryRetrieve: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_HANDLE,
+        ?*sint32,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+    ) callconv(.C) CSSM_RETURN,
+    GetRecoveredObject: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_HANDLE,
+        uint32,
+        CSSM_CSP_HANDLE,
+        ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+        uint32,
+        CSSM_KEY_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    RecoveryRequestAbort: ?*const fn (CSSM_KRSP_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        CSSM_CC_HANDLE,
+        ?*CSSM_CONTEXT,
+        uint32,
+        ?*anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
+
+pub const CSSM_SPI_KR_FUNCS = cssm_spi_kr_funcs;
 
 pub const CSSM_SPI_KR_FUNCS_PTR = ?*cssm_spi_kr_funcs;
 
 pub const cssm_spi_tp_funcs = extern struct {
-    SubmitCredRequest: ?*const fn(CSSM_TP_HANDLE, ?*CSSM_TP_AUTHORITY_ID, CSSM_TP_AUTHORITY_REQUEST_TYPE, ?*CSSM_TP_REQUEST_SET, ?*CSSM_TP_CALLERAUTH_CONTEXT, ?*sint32, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    RetrieveCredResult: ?*const fn(CSSM_TP_HANDLE, ?*Asn1Item, ?*CSSM_TP_CALLERAUTH_CONTEXT, ?*sint32, ?*CSSM_BOOL, ?*CSSM_TP_RESULT_SET_PTR, ) callconv(.C) CSSM_RETURN,
-    ConfirmCredResult: ?*const fn(CSSM_TP_HANDLE, ?*Asn1Item, ?*CSSM_TP_CALLERAUTH_CONTEXT, ?*CSSM_TP_CONFIRM_RESPONSE, ?*CSSM_TP_AUTHORITY_ID, ) callconv(.C) CSSM_RETURN,
-    ReceiveConfirmation: ?*const fn(CSSM_TP_HANDLE, ?*Asn1Item, ?*CSSM_TP_CONFIRM_RESPONSE_PTR, ?*sint32, ) callconv(.C) CSSM_RETURN,
-    CertReclaimKey: ?*const fn(CSSM_TP_HANDLE, ?*CSSM_CERTGROUP, uint32, CSSM_LONG_HANDLE, CSSM_CSP_HANDLE, ?*CSSM_RESOURCE_CONTROL_CONTEXT, ) callconv(.C) CSSM_RETURN,
-    CertReclaimAbort: ?*const fn(CSSM_TP_HANDLE, CSSM_LONG_HANDLE) callconv(.C) CSSM_RETURN,
-    FormRequest: ?*const fn(CSSM_TP_HANDLE, ?*CSSM_TP_AUTHORITY_ID, CSSM_TP_FORM_TYPE, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    FormSubmit: ?*const fn(CSSM_TP_HANDLE, CSSM_TP_FORM_TYPE, ?*Asn1Item, ?*CSSM_TP_AUTHORITY_ID, ?*CSSM_TP_AUTHORITY_ID, CSSM_ACCESS_CREDENTIALS_PTR, ) callconv(.C) CSSM_RETURN,
-    CertGroupVerify: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CSP_HANDLE, ?*CSSM_CERTGROUP, ?*CSSM_TP_VERIFY_CONTEXT, CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, ) callconv(.C) CSSM_RETURN,
-    CertCreateTemplate: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, uint32, ?*CSSM_FIELD, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CertGetAllTemplateFields: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, ?*Asn1Item, ?*uint32, ?*CSSM_FIELD_PTR, ) callconv(.C) CSSM_RETURN,
-    CertSign: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*Asn1Item, ?*CSSM_CERTGROUP, ?*CSSM_TP_VERIFY_CONTEXT, CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlVerify: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CSP_HANDLE, ?*CSSM_ENCODED_CRL, ?*CSSM_CERTGROUP, ?*CSSM_TP_VERIFY_CONTEXT, CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlCreateTemplate: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, uint32, ?*CSSM_FIELD, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CertRevoke: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CSP_HANDLE, ?*Asn1Item, ?*CSSM_CERTGROUP, ?*CSSM_CERTGROUP, ?*CSSM_TP_VERIFY_CONTEXT, CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, CSSM_TP_CERTCHANGE_REASON, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CertRemoveFromCrlTemplate: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CSP_HANDLE, ?*Asn1Item, ?*CSSM_CERTGROUP, ?*CSSM_CERTGROUP, ?*CSSM_TP_VERIFY_CONTEXT, CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    CrlSign: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*CSSM_ENCODED_CRL, ?*CSSM_CERTGROUP, ?*CSSM_TP_VERIFY_CONTEXT, CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    ApplyCrlToDb: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CSP_HANDLE, ?*CSSM_ENCODED_CRL, ?*CSSM_CERTGROUP, ?*CSSM_TP_VERIFY_CONTEXT, CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, ) callconv(.C) CSSM_RETURN,
-    CertGroupConstruct: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CSP_HANDLE, ?*CSSM_DL_DB_LIST, ?*anyopaque, ?*CSSM_CERTGROUP, ?*CSSM_CERTGROUP_PTR, ) callconv(.C) CSSM_RETURN,
-    CertGroupPrune: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, ?*CSSM_DL_DB_LIST, ?*CSSM_CERTGROUP, ?*CSSM_CERTGROUP_PTR, ) callconv(.C) CSSM_RETURN,
-    CertGroupToTupleGroup: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, ?*CSSM_CERTGROUP, ?*CSSM_TUPLEGROUP_PTR, ) callconv(.C) CSSM_RETURN,
-    TupleGroupToCertGroup: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, ?*CSSM_TUPLEGROUP, ?*CSSM_CERTGROUP_PTR, ) callconv(.C) CSSM_RETURN,
-    PassThrough: ?*const fn(CSSM_TP_HANDLE, CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*CSSM_DL_DB_LIST, uint32, ?*anyopaque, ?*?*anyopaque, ) callconv(.C) CSSM_RETURN,
+    SubmitCredRequest: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*CSSM_TP_AUTHORITY_ID,
+        CSSM_TP_AUTHORITY_REQUEST_TYPE,
+        ?*CSSM_TP_REQUEST_SET,
+        ?*CSSM_TP_CALLERAUTH_CONTEXT,
+        ?*sint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    RetrieveCredResult: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*Asn1Item,
+        ?*CSSM_TP_CALLERAUTH_CONTEXT,
+        ?*sint32,
+        ?*CSSM_BOOL,
+        ?*CSSM_TP_RESULT_SET_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ConfirmCredResult: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*Asn1Item,
+        ?*CSSM_TP_CALLERAUTH_CONTEXT,
+        ?*CSSM_TP_CONFIRM_RESPONSE,
+        ?*CSSM_TP_AUTHORITY_ID,
+    ) callconv(.C) CSSM_RETURN,
+    ReceiveConfirmation: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*Asn1Item,
+        ?*CSSM_TP_CONFIRM_RESPONSE_PTR,
+        ?*sint32,
+    ) callconv(.C) CSSM_RETURN,
+    CertReclaimKey: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*CSSM_CERTGROUP,
+        uint32,
+        CSSM_LONG_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*CSSM_RESOURCE_CONTROL_CONTEXT,
+    ) callconv(.C) CSSM_RETURN,
+    CertReclaimAbort: ?*const fn (CSSM_TP_HANDLE, CSSM_LONG_HANDLE) callconv(.C) CSSM_RETURN,
+    FormRequest: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*CSSM_TP_AUTHORITY_ID,
+        CSSM_TP_FORM_TYPE,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FormSubmit: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_TP_FORM_TYPE,
+        ?*Asn1Item,
+        ?*CSSM_TP_AUTHORITY_ID,
+        ?*CSSM_TP_AUTHORITY_ID,
+        CSSM_ACCESS_CREDENTIALS_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupVerify: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertCreateTemplate: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*CSSM_FIELD,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGetAllTemplateFields: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        ?*Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertSign: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*Asn1Item,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlVerify: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*CSSM_ENCODED_CRL,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlCreateTemplate: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*CSSM_FIELD,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertRevoke: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*Asn1Item,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        CSSM_TP_CERTCHANGE_REASON,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertRemoveFromCrlTemplate: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*Asn1Item,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlSign: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_ENCODED_CRL,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ApplyCrlToDb: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*CSSM_ENCODED_CRL,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupConstruct: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*CSSM_DL_DB_LIST,
+        ?*anyopaque,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_CERTGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupPrune: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        ?*CSSM_DL_DB_LIST,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_CERTGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupToTupleGroup: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        ?*CSSM_CERTGROUP,
+        ?*CSSM_TUPLEGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    TupleGroupToCertGroup: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        ?*CSSM_TUPLEGROUP,
+        ?*CSSM_CERTGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*CSSM_DL_DB_LIST,
+        uint32,
+        ?*anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
+
+pub const CSSM_SPI_TP_FUNCS = cssm_spi_tp_funcs;
 
 pub const CSSM_SPI_TP_FUNCS_PTR = ?*cssm_spi_tp_funcs;
 
 pub const cssm_state_funcs = extern struct {
-    cssm_GetAttachFunctions: ?*const fn(CSSM_MODULE_HANDLE, CSSM_SERVICE_MASK, ?*?*anyopaque, CSSM_GUID_PTR, ?*CSSM_BOOL, ) callconv(.C) CSSM_RETURN,
-    cssm_ReleaseAttachFunctions: ?*const fn(CSSM_MODULE_HANDLE) callconv(.C) CSSM_RETURN,
-    cssm_GetAppMemoryFunctions: ?*const fn(CSSM_MODULE_HANDLE, CSSM_UPCALLS_PTR) callconv(.C) CSSM_RETURN,
-    cssm_IsFuncCallValid: ?*const fn(CSSM_MODULE_HANDLE, CSSM_PROC_ADDR, CSSM_PROC_ADDR, CSSM_PRIVILEGE, ?*CSSM_PRIVILEGE, CSSM_BITMASK, ?*CSSM_BOOL, ) callconv(.C) CSSM_RETURN,
-    cssm_DeregisterManagerServices: ?*const fn(?*CSSM_GUID) callconv(.C) CSSM_RETURN,
-    cssm_DeliverModuleManagerEvent: ?*const fn(?*CSSM_MANAGER_EVENT_NOTIFICATION) callconv(.C) CSSM_RETURN,
+    cssm_GetAttachFunctions: ?*const fn (
+        CSSM_MODULE_HANDLE,
+        CSSM_SERVICE_MASK,
+        ?*?*anyopaque,
+        CSSM_GUID_PTR,
+        ?*CSSM_BOOL,
+    ) callconv(.C) CSSM_RETURN,
+    cssm_ReleaseAttachFunctions: ?*const fn (CSSM_MODULE_HANDLE) callconv(.C) CSSM_RETURN,
+    cssm_GetAppMemoryFunctions: ?*const fn (CSSM_MODULE_HANDLE, CSSM_UPCALLS_PTR) callconv(.C) CSSM_RETURN,
+    cssm_IsFuncCallValid: ?*const fn (
+        CSSM_MODULE_HANDLE,
+        CSSM_PROC_ADDR,
+        CSSM_PROC_ADDR,
+        CSSM_PRIVILEGE,
+        ?*CSSM_PRIVILEGE,
+        CSSM_BITMASK,
+        ?*CSSM_BOOL,
+    ) callconv(.C) CSSM_RETURN,
+    cssm_DeregisterManagerServices: ?*const fn (?*CSSM_GUID) callconv(.C) CSSM_RETURN,
+    cssm_DeliverModuleManagerEvent: ?*const fn (?*CSSM_MANAGER_EVENT_NOTIFICATION) callconv(.C) CSSM_RETURN,
 };
+
+pub const CSSM_STATE_FUNCS = cssm_state_funcs;
 
 pub const CSSM_STATE_FUNCS_PTR = ?*cssm_state_funcs;
 
 pub const cssm_manager_registration_info = extern struct {
-    Initialize: ?*const fn(uint32, uint32) callconv(.C) CSSM_RETURN,
-    Terminate: ?*const fn() callconv(.C) CSSM_RETURN,
-    RegisterDispatchTable: ?*const fn(CSSM_STATE_FUNCS_PTR) callconv(.C) CSSM_RETURN,
-    DeregisterDispatchTable: ?*const fn() callconv(.C) CSSM_RETURN,
-    EventNotifyManager: ?*const fn(?*CSSM_MANAGER_EVENT_NOTIFICATION) callconv(.C) CSSM_RETURN,
-    RefreshFunctionTable: ?*const fn(CSSM_FUNC_NAME_ADDR_PTR, uint32) callconv(.C) CSSM_RETURN,
+    Initialize: ?*const fn (uint32, uint32) callconv(.C) CSSM_RETURN,
+    Terminate: ?*const fn () callconv(.C) CSSM_RETURN,
+    RegisterDispatchTable: ?*const fn (CSSM_STATE_FUNCS_PTR) callconv(.C) CSSM_RETURN,
+    DeregisterDispatchTable: ?*const fn () callconv(.C) CSSM_RETURN,
+    EventNotifyManager: ?*const fn (?*CSSM_MANAGER_EVENT_NOTIFICATION) callconv(.C) CSSM_RETURN,
+    RefreshFunctionTable: ?*const fn (CSSM_FUNC_NAME_ADDR_PTR, uint32) callconv(.C) CSSM_RETURN,
 };
+
+pub const CSSM_MANAGER_REGISTRATION_INFO = cssm_manager_registration_info;
 
 pub const CSSM_MANAGER_REGISTRATION_INFO_PTR = ?*cssm_manager_registration_info;
 
@@ -5943,32 +8763,90 @@ pub const MDS_HANDLE = CSSM_DL_HANDLE;
 pub const MDS_DB_HANDLE = CSSM_DL_DB_HANDLE;
 
 pub const mds_funcs = extern struct {
-    DbOpen: ?*const fn(MDS_HANDLE, ?*i8, ?*CSSM_NET_ADDRESS, CSSM_DB_ACCESS_TYPE, ?*CSSM_ACCESS_CREDENTIALS, ?*anyopaque, ?*CSSM_DB_HANDLE, ) callconv(.C) CSSM_RETURN,
-    DbClose: ?*const fn(MDS_DB_HANDLE) callconv(.C) CSSM_RETURN,
-    GetDbNames: ?*const fn(MDS_HANDLE, ?*CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
-    GetDbNameFromHandle: ?*const fn(MDS_DB_HANDLE, ?*?*i8) callconv(.C) CSSM_RETURN,
-    FreeNameList: ?*const fn(MDS_HANDLE, CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
-    DataInsert: ?*const fn(MDS_DB_HANDLE, CSSM_DB_RECORDTYPE, ?*CSSM_DB_RECORD_ATTRIBUTE_DATA, ?*Asn1Item, ?*CSSM_DB_UNIQUE_RECORD_PTR, ) callconv(.C) CSSM_RETURN,
-    DataDelete: ?*const fn(MDS_DB_HANDLE, ?*CSSM_DB_UNIQUE_RECORD) callconv(.C) CSSM_RETURN,
-    DataModify: ?*const fn(MDS_DB_HANDLE, CSSM_DB_RECORDTYPE, CSSM_DB_UNIQUE_RECORD_PTR, ?*CSSM_DB_RECORD_ATTRIBUTE_DATA, ?*Asn1Item, CSSM_DB_MODIFY_MODE, ) callconv(.C) CSSM_RETURN,
-    DataGetFirst: ?*const fn(MDS_DB_HANDLE, ?*CSSM_QUERY, CSSM_HANDLE_PTR, CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, CSSM_DATA_PTR, ?*CSSM_DB_UNIQUE_RECORD_PTR, ) callconv(.C) CSSM_RETURN,
-    DataGetNext: ?*const fn(MDS_DB_HANDLE, CSSM_HANDLE, CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, CSSM_DATA_PTR, ?*CSSM_DB_UNIQUE_RECORD_PTR, ) callconv(.C) CSSM_RETURN,
-    DataAbortQuery: ?*const fn(MDS_DB_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
-    DataGetFromUniqueRecordId: ?*const fn(MDS_DB_HANDLE, ?*CSSM_DB_UNIQUE_RECORD, CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, CSSM_DATA_PTR, ) callconv(.C) CSSM_RETURN,
-    FreeUniqueRecord: ?*const fn(MDS_DB_HANDLE, CSSM_DB_UNIQUE_RECORD_PTR) callconv(.C) CSSM_RETURN,
-    CreateRelation: ?*const fn(MDS_DB_HANDLE, CSSM_DB_RECORDTYPE, ?*i8, uint32, ?*CSSM_DB_SCHEMA_ATTRIBUTE_INFO, uint32, ?*CSSM_DB_SCHEMA_INDEX_INFO, ) callconv(.C) CSSM_RETURN,
-    DestroyRelation: ?*const fn(MDS_DB_HANDLE, CSSM_DB_RECORDTYPE) callconv(.C) CSSM_RETURN,
+    DbOpen: ?*const fn (
+        MDS_HANDLE,
+        ?*i8,
+        ?*CSSM_NET_ADDRESS,
+        CSSM_DB_ACCESS_TYPE,
+        ?*CSSM_ACCESS_CREDENTIALS,
+        ?*anyopaque,
+        ?*CSSM_DB_HANDLE,
+    ) callconv(.C) CSSM_RETURN,
+    DbClose: ?*const fn (MDS_DB_HANDLE) callconv(.C) CSSM_RETURN,
+    GetDbNames: ?*const fn (MDS_HANDLE, ?*CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
+    GetDbNameFromHandle: ?*const fn (MDS_DB_HANDLE, ?*?*i8) callconv(.C) CSSM_RETURN,
+    FreeNameList: ?*const fn (MDS_HANDLE, CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
+    DataInsert: ?*const fn (
+        MDS_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        ?*CSSM_DB_RECORD_ATTRIBUTE_DATA,
+        ?*Asn1Item,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataDelete: ?*const fn (MDS_DB_HANDLE, ?*CSSM_DB_UNIQUE_RECORD) callconv(.C) CSSM_RETURN,
+    DataModify: ?*const fn (
+        MDS_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        CSSM_DB_UNIQUE_RECORD_PTR,
+        ?*CSSM_DB_RECORD_ATTRIBUTE_DATA,
+        ?*Asn1Item,
+        CSSM_DB_MODIFY_MODE,
+    ) callconv(.C) CSSM_RETURN,
+    DataGetFirst: ?*const fn (
+        MDS_DB_HANDLE,
+        ?*CSSM_QUERY,
+        CSSM_HANDLE_PTR,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataGetNext: ?*const fn (
+        MDS_DB_HANDLE,
+        CSSM_HANDLE,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataAbortQuery: ?*const fn (MDS_DB_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    DataGetFromUniqueRecordId: ?*const fn (
+        MDS_DB_HANDLE,
+        ?*CSSM_DB_UNIQUE_RECORD,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FreeUniqueRecord: ?*const fn (MDS_DB_HANDLE, CSSM_DB_UNIQUE_RECORD_PTR) callconv(.C) CSSM_RETURN,
+    CreateRelation: ?*const fn (
+        MDS_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        ?*i8,
+        uint32,
+        ?*CSSM_DB_SCHEMA_ATTRIBUTE_INFO,
+        uint32,
+        ?*CSSM_DB_SCHEMA_INDEX_INFO,
+    ) callconv(.C) CSSM_RETURN,
+    DestroyRelation: ?*const fn (MDS_DB_HANDLE, CSSM_DB_RECORDTYPE) callconv(.C) CSSM_RETURN,
 };
+
+pub const MDS_FUNCS = mds_funcs;
 
 pub const MDS_FUNCS_PTR = ?*mds_funcs;
 
-pub extern "Security" fn MDS_Initialize(pCallerGuid: ?*CSSM_GUID, pMemoryFunctions: ?*CSSM_MEMORY_FUNCS, pDlFunctions: MDS_FUNCS_PTR, hMds: ?*MDS_HANDLE, ) callconv(.C) CSSM_RETURN;
+extern "Security" fn MDS_Initialize(
+    pCallerGuid: ?*CSSM_GUID,
+    pMemoryFunctions: ?*CSSM_MEMORY_FUNCS,
+    pDlFunctions: MDS_FUNCS_PTR,
+    hMds: ?*MDS_HANDLE,
+) callconv(.C) CSSM_RETURN;
+pub const _Initialize = MDS_Initialize;
 
-pub extern "Security" fn MDS_Terminate(MdsHandle: MDS_HANDLE) callconv(.C) CSSM_RETURN;
+extern "Security" fn MDS_Terminate(MdsHandle: MDS_HANDLE) callconv(.C) CSSM_RETURN;
+pub const _Terminate = MDS_Terminate;
 
-pub extern "Security" fn MDS_Install(MdsHandle: MDS_HANDLE) callconv(.C) CSSM_RETURN;
+extern "Security" fn MDS_Install(MdsHandle: MDS_HANDLE) callconv(.C) CSSM_RETURN;
+pub const _Install = MDS_Install;
 
-pub extern "Security" fn MDS_Uninstall(MdsHandle: MDS_HANDLE) callconv(.C) CSSM_RETURN;
+extern "Security" fn MDS_Uninstall(MdsHandle: MDS_HANDLE) callconv(.C) CSSM_RETURN;
+pub const _Uninstall = MDS_Uninstall;
 
 pub const KeychainPromptSelector = enum(uint16) {
     kSecKeychainPromptRequirePassphase = 1,
@@ -5978,39 +8856,86 @@ pub const KeychainPromptSelector = enum(uint16) {
     kSecKeychainPromptInvalidAct = 128,
 };
 
-pub extern "Security" fn ACLGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecACLGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const aclGetTypeID = SecACLGetTypeID;
 
-pub extern "Security" fn ACLCreateFromSimpleContents(access: AccessRef, applicationList: core_foundation.ArrayRef, description: core_foundation.StringRef, promptSelector: ?*CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR, newAcl: ?*ACLRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLCreateFromSimpleContents(
+    access: AccessRef,
+    applicationList: core_foundation.ArrayRef,
+    description: core_foundation.StringRef,
+    promptSelector: ?*CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR,
+    newAcl: ?*ACLRef,
+) callconv(.C) objc.OSStatus;
+pub const aclCreateFromSimpleContents = SecACLCreateFromSimpleContents;
 
-pub extern "Security" fn ACLCreateWithSimpleContents(access: AccessRef, applicationList: core_foundation.ArrayRef, description: core_foundation.StringRef, promptSelector: KeychainPromptSelector, newAcl: ?*ACLRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLCreateWithSimpleContents(
+    access: AccessRef,
+    applicationList: core_foundation.ArrayRef,
+    description: core_foundation.StringRef,
+    promptSelector: KeychainPromptSelector,
+    newAcl: ?*ACLRef,
+) callconv(.C) objc.OSStatus;
+pub const aclCreateWithSimpleContents = SecACLCreateWithSimpleContents;
 
-pub extern "Security" fn ACLRemove(aclRef: ACLRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLRemove(aclRef: ACLRef) callconv(.C) objc.OSStatus;
+pub const aclRemove = SecACLRemove;
 
-pub extern "Security" fn ACLCopySimpleContents(acl: ACLRef, applicationList: ?*core_foundation.ArrayRef, description: ?*core_foundation.StringRef, promptSelector: ?*CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLCopySimpleContents(
+    acl: ACLRef,
+    applicationList: ?*core_foundation.ArrayRef,
+    description: ?*core_foundation.StringRef,
+    promptSelector: ?*CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR,
+) callconv(.C) objc.OSStatus;
+pub const aclCopySimpleContents = SecACLCopySimpleContents;
 
-pub extern "Security" fn ACLCopyContents(acl: ACLRef, applicationList: ?*core_foundation.ArrayRef, description: ?*core_foundation.StringRef, promptSelector: ?*KeychainPromptSelector, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLCopyContents(
+    acl: ACLRef,
+    applicationList: ?*core_foundation.ArrayRef,
+    description: ?*core_foundation.StringRef,
+    promptSelector: ?*KeychainPromptSelector,
+) callconv(.C) objc.OSStatus;
+pub const aclCopyContents = SecACLCopyContents;
 
-pub extern "Security" fn ACLSetSimpleContents(acl: ACLRef, applicationList: core_foundation.ArrayRef, description: core_foundation.StringRef, promptSelector: ?*CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLSetSimpleContents(
+    acl: ACLRef,
+    applicationList: core_foundation.ArrayRef,
+    description: core_foundation.StringRef,
+    promptSelector: ?*CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR,
+) callconv(.C) objc.OSStatus;
+pub const aclSetSimpleContents = SecACLSetSimpleContents;
 
-pub extern "Security" fn ACLSetContents(acl: ACLRef, applicationList: core_foundation.ArrayRef, description: core_foundation.StringRef, promptSelector: KeychainPromptSelector, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLSetContents(
+    acl: ACLRef,
+    applicationList: core_foundation.ArrayRef,
+    description: core_foundation.StringRef,
+    promptSelector: KeychainPromptSelector,
+) callconv(.C) objc.OSStatus;
+pub const aclSetContents = SecACLSetContents;
 
-pub extern "Security" fn ACLGetAuthorizations(acl: ACLRef, tags: ?*CSSM_ACL_AUTHORIZATION_TAG, tagCount: ?*uint32) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLGetAuthorizations(acl: ACLRef, tags: ?*CSSM_ACL_AUTHORIZATION_TAG, tagCount: ?*uint32) callconv(.C) objc.OSStatus;
+pub const aclGetAuthorizations = SecACLGetAuthorizations;
 
-pub extern "Security" fn ACLCopyAuthorizations(acl: ACLRef) callconv(.C) core_foundation.ArrayRef;
+extern "Security" fn SecACLCopyAuthorizations(acl: ACLRef) callconv(.C) core_foundation.ArrayRef;
+pub const aclCopyAuthorizations = SecACLCopyAuthorizations;
 
-pub extern "Security" fn ACLSetAuthorizations(acl: ACLRef, tags: ?*CSSM_ACL_AUTHORIZATION_TAG, tagCount: uint32) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLSetAuthorizations(acl: ACLRef, tags: ?*CSSM_ACL_AUTHORIZATION_TAG, tagCount: uint32) callconv(.C) objc.OSStatus;
+pub const aclSetAuthorizations = SecACLSetAuthorizations;
 
-pub extern "Security" fn ACLUpdateAuthorizations(acl: ACLRef, authorizations: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecACLUpdateAuthorizations(acl: ACLRef, authorizations: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const aclUpdateAuthorizations = SecACLUpdateAuthorizations;
 
 pub const OpaqueSecIdentitySearchRef = extern struct {};
 
 pub const IdentitySearchRef = ?*OpaqueSecIdentitySearchRef;
 
-pub extern "Security" fn IdentitySearchGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecIdentitySearchGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const identitySearchGetTypeID = SecIdentitySearchGetTypeID;
 
-pub extern "Security" fn IdentitySearchCreate(keychainOrArray: core_foundation.TypeRef, keyUsage: CSSM_KEYUSE, searchRef: ?*IdentitySearchRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentitySearchCreate(keychainOrArray: core_foundation.TypeRef, keyUsage: CSSM_KEYUSE, searchRef: ?*IdentitySearchRef) callconv(.C) objc.OSStatus;
+pub const identitySearchCreate = SecIdentitySearchCreate;
 
-pub extern "Security" fn IdentitySearchCopyNext(searchRef: IdentitySearchRef, identity: ?*IdentityRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecIdentitySearchCopyNext(searchRef: IdentitySearchRef, identity: ?*IdentityRef) callconv(.C) objc.OSStatus;
+pub const identitySearchCopyNext = SecIdentitySearchCopyNext;
 
 pub const ItemClass = enum(objc.FourCharCode) {
     kSecInternetPasswordItemClass = 1768842612,
@@ -6053,67 +8978,140 @@ pub const ItemAttr = enum(objc.FourCharCode) {
     kSecAlias = 1634494835,
 };
 
-pub const AFPServerSignature = [16] objc.UInt8;
+pub const AFPServerSignature = [16]objc.UInt8;
 
-pub const PublicKeyHash = [20] objc.UInt8;
+pub const PublicKeyHash = [20]objc.UInt8;
 
-pub extern "Security" fn KeychainItemGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecKeychainItemGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const keychainItemGetTypeID = SecKeychainItemGetTypeID;
 
-pub extern "Security" fn KeychainItemModifyAttributesAndData(itemRef: KeychainItemRef, attrList: ?*KeychainAttributeList, length: objc.UInt32, data: ?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemModifyAttributesAndData(
+    itemRef: KeychainItemRef,
+    attrList: ?*KeychainAttributeList,
+    length: objc.UInt32,
+    data: ?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const keychainItemModifyAttributesAndData = SecKeychainItemModifyAttributesAndData;
 
-pub extern "Security" fn KeychainItemCreateFromContent(itemClass: ItemClass, attrList: ?*KeychainAttributeList, length: objc.UInt32, data: ?*anyopaque, keychainRef: KeychainRef, initialAccess: AccessRef, itemRef: ?*KeychainItemRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemCreateFromContent(
+    itemClass: ItemClass,
+    attrList: ?*KeychainAttributeList,
+    length: objc.UInt32,
+    data: ?*anyopaque,
+    keychainRef: KeychainRef,
+    initialAccess: AccessRef,
+    itemRef: ?*KeychainItemRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainItemCreateFromContent = SecKeychainItemCreateFromContent;
 
-pub extern "Security" fn KeychainItemModifyContent(itemRef: KeychainItemRef, attrList: ?*KeychainAttributeList, length: objc.UInt32, data: ?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemModifyContent(
+    itemRef: KeychainItemRef,
+    attrList: ?*KeychainAttributeList,
+    length: objc.UInt32,
+    data: ?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const keychainItemModifyContent = SecKeychainItemModifyContent;
 
-pub extern "Security" fn KeychainItemCopyContent(itemRef: KeychainItemRef, itemClass: ?*ItemClass, attrList: ?*KeychainAttributeList, length: ?*objc.UInt32, outData: ?*?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemCopyContent(
+    itemRef: KeychainItemRef,
+    itemClass: ?*ItemClass,
+    attrList: ?*KeychainAttributeList,
+    length: ?*objc.UInt32,
+    outData: ?*?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const keychainItemCopyContent = SecKeychainItemCopyContent;
 
-pub extern "Security" fn KeychainItemFreeContent(attrList: ?*KeychainAttributeList, data: ?*anyopaque) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemFreeContent(attrList: ?*KeychainAttributeList, data: ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const keychainItemFreeContent = SecKeychainItemFreeContent;
 
-pub extern "Security" fn KeychainItemCopyAttributesAndData(itemRef: KeychainItemRef, info: ?*KeychainAttributeInfo, itemClass: ?*ItemClass, attrList: ?*?*KeychainAttributeList, length: ?*objc.UInt32, outData: ?*?*anyopaque, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemCopyAttributesAndData(
+    itemRef: KeychainItemRef,
+    info: ?*KeychainAttributeInfo,
+    itemClass: ?*ItemClass,
+    attrList: ?*?*KeychainAttributeList,
+    length: ?*objc.UInt32,
+    outData: ?*?*anyopaque,
+) callconv(.C) objc.OSStatus;
+pub const keychainItemCopyAttributesAndData = SecKeychainItemCopyAttributesAndData;
 
-pub extern "Security" fn KeychainItemFreeAttributesAndData(attrList: ?*KeychainAttributeList, data: ?*anyopaque) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemFreeAttributesAndData(attrList: ?*KeychainAttributeList, data: ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const keychainItemFreeAttributesAndData = SecKeychainItemFreeAttributesAndData;
 
-pub extern "Security" fn KeychainItemDelete(itemRef: KeychainItemRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemDelete(itemRef: KeychainItemRef) callconv(.C) objc.OSStatus;
+pub const keychainItemDelete = SecKeychainItemDelete;
 
-pub extern "Security" fn KeychainItemCopyKeychain(itemRef: KeychainItemRef, keychainRef: ?*KeychainRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemCopyKeychain(itemRef: KeychainItemRef, keychainRef: ?*KeychainRef) callconv(.C) objc.OSStatus;
+pub const keychainItemCopyKeychain = SecKeychainItemCopyKeychain;
 
-pub extern "Security" fn KeychainItemCreateCopy(itemRef: KeychainItemRef, destKeychainRef: KeychainRef, initialAccess: AccessRef, itemCopy: ?*KeychainItemRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemCreateCopy(
+    itemRef: KeychainItemRef,
+    destKeychainRef: KeychainRef,
+    initialAccess: AccessRef,
+    itemCopy: ?*KeychainItemRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainItemCreateCopy = SecKeychainItemCreateCopy;
 
-pub extern "Security" fn KeychainItemCreatePersistentReference(itemRef: KeychainItemRef, persistentItemRef: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemCreatePersistentReference(itemRef: KeychainItemRef, persistentItemRef: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const keychainItemCreatePersistentReference = SecKeychainItemCreatePersistentReference;
 
-pub extern "Security" fn KeychainItemCopyFromPersistentReference(persistentItemRef: core_foundation.DataRef, itemRef: ?*KeychainItemRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemCopyFromPersistentReference(persistentItemRef: core_foundation.DataRef, itemRef: ?*KeychainItemRef) callconv(.C) objc.OSStatus;
+pub const keychainItemCopyFromPersistentReference = SecKeychainItemCopyFromPersistentReference;
 
-pub extern "Security" fn KeychainItemGetDLDBHandle(keyItemRef: KeychainItemRef, dldbHandle: ?*CSSM_DL_DB_HANDLE) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemGetDLDBHandle(keyItemRef: KeychainItemRef, dldbHandle: ?*CSSM_DL_DB_HANDLE) callconv(.C) objc.OSStatus;
+pub const keychainItemGetDLDBHandle = SecKeychainItemGetDLDBHandle;
 
-pub extern "Security" fn KeychainItemGetUniqueRecordID(itemRef: KeychainItemRef, uniqueRecordID: ?*?*CSSM_DB_UNIQUE_RECORD) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemGetUniqueRecordID(itemRef: KeychainItemRef, uniqueRecordID: ?*?*CSSM_DB_UNIQUE_RECORD) callconv(.C) objc.OSStatus;
+pub const keychainItemGetUniqueRecordID = SecKeychainItemGetUniqueRecordID;
 
-pub extern "Security" fn KeychainItemCopyAccess(itemRef: KeychainItemRef, access: ?*AccessRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemCopyAccess(itemRef: KeychainItemRef, access: ?*AccessRef) callconv(.C) objc.OSStatus;
+pub const keychainItemCopyAccess = SecKeychainItemCopyAccess;
 
-pub extern "Security" fn KeychainItemSetAccess(itemRef: KeychainItemRef, access: AccessRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainItemSetAccess(itemRef: KeychainItemRef, access: AccessRef) callconv(.C) objc.OSStatus;
+pub const keychainItemSetAccess = SecKeychainItemSetAccess;
 
-pub extern "Security" fn KeychainSearchGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecKeychainSearchGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const keychainSearchGetTypeID = SecKeychainSearchGetTypeID;
 
-pub extern "Security" fn KeychainSearchCreateFromAttributes(keychainOrArray: core_foundation.TypeRef, itemClass: ItemClass, attrList: ?*KeychainAttributeList, searchRef: ?*KeychainSearchRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSearchCreateFromAttributes(
+    keychainOrArray: core_foundation.TypeRef,
+    itemClass: ItemClass,
+    attrList: ?*KeychainAttributeList,
+    searchRef: ?*KeychainSearchRef,
+) callconv(.C) objc.OSStatus;
+pub const keychainSearchCreateFromAttributes = SecKeychainSearchCreateFromAttributes;
 
-pub extern "Security" fn KeychainSearchCopyNext(searchRef: KeychainSearchRef, itemRef: ?*KeychainItemRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecKeychainSearchCopyNext(searchRef: KeychainSearchRef, itemRef: ?*KeychainItemRef) callconv(.C) objc.OSStatus;
+pub const keychainSearchCopyNext = SecKeychainSearchCopyNext;
 
 pub const OpaquePolicySearchRef = extern struct {};
 
 pub const PolicySearchRef = ?*OpaquePolicySearchRef;
 
-pub extern "Security" fn PolicySearchGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecPolicySearchGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const policySearchGetTypeID = SecPolicySearchGetTypeID;
 
-pub extern "Security" fn PolicySearchCreate(certType: CSSM_CERT_TYPE, policyOID: ?*Asn1Oid, value: ?*Asn1Item, searchRef: ?*PolicySearchRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecPolicySearchCreate(
+    certType: CSSM_CERT_TYPE,
+    policyOID: ?*Asn1Oid,
+    value: ?*Asn1Item,
+    searchRef: ?*PolicySearchRef,
+) callconv(.C) objc.OSStatus;
+pub const policySearchCreate = SecPolicySearchCreate;
 
-pub extern "Security" fn PolicySearchCopyNext(searchRef: PolicySearchRef, policyRef: ?*PolicyRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecPolicySearchCopyNext(searchRef: PolicySearchRef, policyRef: ?*PolicyRef) callconv(.C) objc.OSStatus;
+pub const policySearchCopyNext = SecPolicySearchCopyNext;
 
-pub extern "Security" fn TrustedApplicationGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecTrustedApplicationGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const trustedApplicationGetTypeID = SecTrustedApplicationGetTypeID;
 
-pub extern "Security" fn TrustedApplicationCreateFromPath(path: ?*i8, app: ?*TrustedApplicationRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustedApplicationCreateFromPath(path: ?*i8, app: ?*TrustedApplicationRef) callconv(.C) objc.OSStatus;
+pub const trustedApplicationCreateFromPath = SecTrustedApplicationCreateFromPath;
 
-pub extern "Security" fn TrustedApplicationCopyData(appRef: TrustedApplicationRef, data: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustedApplicationCopyData(appRef: TrustedApplicationRef, data: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const trustedApplicationCopyData = SecTrustedApplicationCopyData;
 
-pub extern "Security" fn TrustedApplicationSetData(appRef: TrustedApplicationRef, data: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustedApplicationSetData(appRef: TrustedApplicationRef, data: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const trustedApplicationSetData = SecTrustedApplicationSetData;
 
 pub const TrustSettingsKeyUsage = enum(objc.uint32_t) {
     kSecTrustSettingsKeyUseSignature = 1,
@@ -6139,19 +9137,26 @@ pub const TrustSettingsDomain = enum(objc.uint32_t) {
     kSecTrustSettingsDomainSystem = 2,
 };
 
-pub extern "Security" fn TrustSettingsCopyTrustSettings(certRef: CertificateRef, domain: TrustSettingsDomain, trustSettings: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSettingsCopyTrustSettings(certRef: CertificateRef, domain: TrustSettingsDomain, trustSettings: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const trustSettingsCopyTrustSettings = SecTrustSettingsCopyTrustSettings;
 
-pub extern "Security" fn TrustSettingsSetTrustSettings(certRef: CertificateRef, domain: TrustSettingsDomain, trustSettingsDictOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSettingsSetTrustSettings(certRef: CertificateRef, domain: TrustSettingsDomain, trustSettingsDictOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const trustSettingsSetTrustSettings = SecTrustSettingsSetTrustSettings;
 
-pub extern "Security" fn TrustSettingsRemoveTrustSettings(certRef: CertificateRef, domain: TrustSettingsDomain) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSettingsRemoveTrustSettings(certRef: CertificateRef, domain: TrustSettingsDomain) callconv(.C) objc.OSStatus;
+pub const trustSettingsRemoveTrustSettings = SecTrustSettingsRemoveTrustSettings;
 
-pub extern "Security" fn TrustSettingsCopyCertificates(domain: TrustSettingsDomain, certArray: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSettingsCopyCertificates(domain: TrustSettingsDomain, certArray: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const trustSettingsCopyCertificates = SecTrustSettingsCopyCertificates;
 
-pub extern "Security" fn TrustSettingsCopyModificationDate(certRef: CertificateRef, domain: TrustSettingsDomain, modificationDate: ?*core_foundation.DateRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSettingsCopyModificationDate(certRef: CertificateRef, domain: TrustSettingsDomain, modificationDate: ?*core_foundation.DateRef) callconv(.C) objc.OSStatus;
+pub const trustSettingsCopyModificationDate = SecTrustSettingsCopyModificationDate;
 
-pub extern "Security" fn TrustSettingsCreateExternalRepresentation(domain: TrustSettingsDomain, trustSettings: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSettingsCreateExternalRepresentation(domain: TrustSettingsDomain, trustSettings: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const trustSettingsCreateExternalRepresentation = SecTrustSettingsCreateExternalRepresentation;
 
-pub extern "Security" fn TrustSettingsImportExternalRepresentation(domain: TrustSettingsDomain, trustSettings: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecTrustSettingsImportExternalRepresentation(domain: TrustSettingsDomain, trustSettings: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const trustSettingsImportExternalRepresentation = SecTrustSettingsImportExternalRepresentation;
 
 pub const anon631 = enum(objc.OSStatus) {
     errSecCSUnimplemented = -67072,
@@ -6309,11 +9314,19 @@ pub const CSDigestAlgorithm = enum(objc.uint32_t) {
     kSecCodeSignatureHashSHA512 = 5,
 };
 
-pub extern "Security" fn StaticCodeGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecStaticCodeGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const staticCodeGetTypeID = SecStaticCodeGetTypeID;
 
-pub extern "Security" fn StaticCodeCreateWithPath(path: core_foundation.URLRef, flags: CSFlags, staticCode: ?*StaticCodeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecStaticCodeCreateWithPath(path: core_foundation.URLRef, flags: CSFlags, staticCode: ?*StaticCodeRef) callconv(.C) objc.OSStatus;
+pub const staticCodeCreateWithPath = SecStaticCodeCreateWithPath;
 
-pub extern "Security" fn StaticCodeCreateWithPathAndAttributes(path: core_foundation.URLRef, flags: CSFlags, attributes: core_foundation.DictionaryRef, staticCode: ?*StaticCodeRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecStaticCodeCreateWithPathAndAttributes(
+    path: core_foundation.URLRef,
+    flags: CSFlags,
+    attributes: core_foundation.DictionaryRef,
+    staticCode: ?*StaticCodeRef,
+) callconv(.C) objc.OSStatus;
+pub const staticCodeCreateWithPathAndAttributes = SecStaticCodeCreateWithPathAndAttributes;
 
 pub const anon1751 = enum(objc.uint32_t) {
     kSecCSCheckAllArchitectures = 1,
@@ -6334,35 +9347,68 @@ pub const anon1751 = enum(objc.uint32_t) {
     kSecCSFastExecutableValidation = 131072,
 };
 
-pub extern "Security" fn StaticCodeCheckValidity(staticCode: StaticCodeRef, flags: CSFlags, requirement: RequirementRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecStaticCodeCheckValidity(staticCode: StaticCodeRef, flags: CSFlags, requirement: RequirementRef) callconv(.C) objc.OSStatus;
+pub const staticCodeCheckValidity = SecStaticCodeCheckValidity;
 
-pub extern "Security" fn StaticCodeCheckValidityWithErrors(staticCode: StaticCodeRef, flags: CSFlags, requirement: RequirementRef, errors: ?*core_foundation.ErrorRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecStaticCodeCheckValidityWithErrors(
+    staticCode: StaticCodeRef,
+    flags: CSFlags,
+    requirement: RequirementRef,
+    errors: ?*core_foundation.ErrorRef,
+) callconv(.C) objc.OSStatus;
+pub const staticCodeCheckValidityWithErrors = SecStaticCodeCheckValidityWithErrors;
 
-pub extern "Security" fn CodeGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecCodeGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const codeGetTypeID = SecCodeGetTypeID;
 
-pub extern "Security" fn CodeCopySelf(flags: CSFlags, self: ?*CodeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCopySelf(flags: CSFlags, self: ?*CodeRef) callconv(.C) objc.OSStatus;
+pub const codeCopySelf = SecCodeCopySelf;
 
 pub const anon991 = enum(objc.uint32_t) {
     kSecCSUseAllArchitectures = 1,
 };
 
-pub extern "Security" fn CodeCopyStaticCode(code: CodeRef, flags: CSFlags, staticCode: ?*StaticCodeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCopyStaticCode(code: CodeRef, flags: CSFlags, staticCode: ?*StaticCodeRef) callconv(.C) objc.OSStatus;
+pub const codeCopyStaticCode = SecCodeCopyStaticCode;
 
-pub extern "Security" fn CodeCopyHost(guest: CodeRef, flags: CSFlags, host: ?*CodeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCopyHost(guest: CodeRef, flags: CSFlags, host: ?*CodeRef) callconv(.C) objc.OSStatus;
+pub const codeCopyHost = SecCodeCopyHost;
 
-pub extern "Security" fn CodeCopyGuestWithAttributes(host: CodeRef, attributes: core_foundation.DictionaryRef, flags: CSFlags, guest: ?*CodeRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCopyGuestWithAttributes(
+    host: CodeRef,
+    attributes: core_foundation.DictionaryRef,
+    flags: CSFlags,
+    guest: ?*CodeRef,
+) callconv(.C) objc.OSStatus;
+pub const codeCopyGuestWithAttributes = SecCodeCopyGuestWithAttributes;
 
-pub extern "Security" fn CodeCreateWithXPCMessage(message: objc.xpc_object_t, flags: CSFlags, target: ?*CodeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCreateWithXPCMessage(message: objc.xpc_object_t, flags: CSFlags, target: ?*CodeRef) callconv(.C) objc.OSStatus;
+pub const codeCreateWithXPCMessage = SecCodeCreateWithXPCMessage;
 
-pub extern "Security" fn CodeCheckValidity(code: CodeRef, flags: CSFlags, requirement: RequirementRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCheckValidity(code: CodeRef, flags: CSFlags, requirement: RequirementRef) callconv(.C) objc.OSStatus;
+pub const codeCheckValidity = SecCodeCheckValidity;
 
-pub extern "Security" fn CodeCheckValidityWithErrors(code: CodeRef, flags: CSFlags, requirement: RequirementRef, errors: ?*core_foundation.ErrorRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCheckValidityWithErrors(
+    code: CodeRef,
+    flags: CSFlags,
+    requirement: RequirementRef,
+    errors: ?*core_foundation.ErrorRef,
+) callconv(.C) objc.OSStatus;
+pub const codeCheckValidityWithErrors = SecCodeCheckValidityWithErrors;
 
-pub extern "Security" fn CodeValidateFileResource(code: StaticCodeRef, relativePath: core_foundation.StringRef, fileData: core_foundation.DataRef, flags: CSFlags, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeValidateFileResource(
+    code: StaticCodeRef,
+    relativePath: core_foundation.StringRef,
+    fileData: core_foundation.DataRef,
+    flags: CSFlags,
+) callconv(.C) objc.OSStatus;
+pub const codeValidateFileResource = SecCodeValidateFileResource;
 
-pub extern "Security" fn CodeCopyPath(staticCode: StaticCodeRef, flags: CSFlags, path: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCopyPath(staticCode: StaticCodeRef, flags: CSFlags, path: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
+pub const codeCopyPath = SecCodeCopyPath;
 
-pub extern "Security" fn CodeCopyDesignatedRequirement(code: StaticCodeRef, flags: CSFlags, requirement: ?*RequirementRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCopyDesignatedRequirement(code: StaticCodeRef, flags: CSFlags, requirement: ?*RequirementRef) callconv(.C) objc.OSStatus;
+pub const codeCopyDesignatedRequirement = SecCodeCopyDesignatedRequirement;
 
 pub const anon4671 = enum(objc.uint32_t) {
     kSecCSInternalInformation = 1,
@@ -6374,68 +9420,117 @@ pub const anon4671 = enum(objc.uint32_t) {
     kSecCSCalculateCMSDigest = 64,
 };
 
-pub extern "Security" fn CodeCopySigningInformation(code: StaticCodeRef, flags: CSFlags, information: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeCopySigningInformation(code: StaticCodeRef, flags: CSFlags, information: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+pub const codeCopySigningInformation = SecCodeCopySigningInformation;
 
-pub extern "Security" fn CodeMapMemory(code: StaticCodeRef, flags: CSFlags) callconv(.C) objc.OSStatus;
+extern "Security" fn SecCodeMapMemory(code: StaticCodeRef, flags: CSFlags) callconv(.C) objc.OSStatus;
+pub const codeMapMemory = SecCodeMapMemory;
 
 pub const anon351 = enum(objc.uint32_t) {
     kSecCSDedicatedHost = 1,
     kSecCSGenerateGuestHash = 2,
 };
 
-pub extern "Security" fn HostCreateGuest(host: GuestRef, status: objc.uint32_t, path: core_foundation.URLRef, attributes: core_foundation.DictionaryRef, flags: CSFlags, newGuest: ?*GuestRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecHostCreateGuest(
+    host: GuestRef,
+    status: objc.uint32_t,
+    path: core_foundation.URLRef,
+    attributes: core_foundation.DictionaryRef,
+    flags: CSFlags,
+    newGuest: ?*GuestRef,
+) callconv(.C) objc.OSStatus;
+pub const hostCreateGuest = SecHostCreateGuest;
 
-pub extern "Security" fn HostRemoveGuest(host: GuestRef, guest: GuestRef, flags: CSFlags) callconv(.C) objc.OSStatus;
+extern "Security" fn SecHostRemoveGuest(host: GuestRef, guest: GuestRef, flags: CSFlags) callconv(.C) objc.OSStatus;
+pub const hostRemoveGuest = SecHostRemoveGuest;
 
-pub extern "Security" fn HostSelectGuest(guestRef: GuestRef, flags: CSFlags) callconv(.C) objc.OSStatus;
+extern "Security" fn SecHostSelectGuest(guestRef: GuestRef, flags: CSFlags) callconv(.C) objc.OSStatus;
+pub const hostSelectGuest = SecHostSelectGuest;
 
-pub extern "Security" fn HostSelectedGuest(flags: CSFlags, guestRef: ?*GuestRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecHostSelectedGuest(flags: CSFlags, guestRef: ?*GuestRef) callconv(.C) objc.OSStatus;
+pub const hostSelectedGuest = SecHostSelectedGuest;
 
-pub extern "Security" fn HostSetGuestStatus(guestRef: GuestRef, status: objc.uint32_t, attributes: core_foundation.DictionaryRef, flags: CSFlags, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecHostSetGuestStatus(
+    guestRef: GuestRef,
+    status: objc.uint32_t,
+    attributes: core_foundation.DictionaryRef,
+    flags: CSFlags,
+) callconv(.C) objc.OSStatus;
+pub const hostSetGuestStatus = SecHostSetGuestStatus;
 
-pub extern "Security" fn HostSetHostingPort(hostingPort: objc.mach_port_t, flags: CSFlags) callconv(.C) objc.OSStatus;
+extern "Security" fn SecHostSetHostingPort(hostingPort: objc.mach_port_t, flags: CSFlags) callconv(.C) objc.OSStatus;
+pub const hostSetHostingPort = SecHostSetHostingPort;
 
-pub extern "Security" fn RequirementGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecRequirementGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const requirementGetTypeID = SecRequirementGetTypeID;
 
-pub extern "Security" fn RequirementCreateWithData(data: core_foundation.DataRef, flags: CSFlags, requirement: ?*RequirementRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecRequirementCreateWithData(data: core_foundation.DataRef, flags: CSFlags, requirement: ?*RequirementRef) callconv(.C) objc.OSStatus;
+pub const requirementCreateWithData = SecRequirementCreateWithData;
 
-pub extern "Security" fn RequirementCreateWithString(text: core_foundation.StringRef, flags: CSFlags, requirement: ?*RequirementRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecRequirementCreateWithString(text: core_foundation.StringRef, flags: CSFlags, requirement: ?*RequirementRef) callconv(.C) objc.OSStatus;
+pub const requirementCreateWithString = SecRequirementCreateWithString;
 
-pub extern "Security" fn RequirementCreateWithStringAndErrors(text: core_foundation.StringRef, flags: CSFlags, errors: ?*core_foundation.ErrorRef, requirement: ?*RequirementRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SecRequirementCreateWithStringAndErrors(
+    text: core_foundation.StringRef,
+    flags: CSFlags,
+    errors: ?*core_foundation.ErrorRef,
+    requirement: ?*RequirementRef,
+) callconv(.C) objc.OSStatus;
+pub const requirementCreateWithStringAndErrors = SecRequirementCreateWithStringAndErrors;
 
-pub extern "Security" fn RequirementCopyData(requirement: RequirementRef, flags: CSFlags, data: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecRequirementCopyData(requirement: RequirementRef, flags: CSFlags, data: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const requirementCopyData = SecRequirementCopyData;
 
-pub extern "Security" fn RequirementCopyString(requirement: RequirementRef, flags: CSFlags, text: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SecRequirementCopyString(requirement: RequirementRef, flags: CSFlags, text: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const requirementCopyString = SecRequirementCopyString;
 
 pub const __SecTask = extern struct {};
 
 pub const TaskRef = ?*__SecTask;
 
-pub extern "Security" fn TaskGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecTaskGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const taskGetTypeID = SecTaskGetTypeID;
 
-pub extern "Security" fn TaskCreateWithAuditToken(allocator: core_foundation.AllocatorRef, token: objc.audit_token_t) callconv(.C) TaskRef;
+extern "Security" fn SecTaskCreateWithAuditToken(allocator: core_foundation.AllocatorRef, token: objc.audit_token_t) callconv(.C) TaskRef;
+pub const taskCreateWithAuditToken = SecTaskCreateWithAuditToken;
 
-pub extern "Security" fn TaskCreateFromSelf(allocator: core_foundation.AllocatorRef) callconv(.C) TaskRef;
+extern "Security" fn SecTaskCreateFromSelf(allocator: core_foundation.AllocatorRef) callconv(.C) TaskRef;
+pub const taskCreateFromSelf = SecTaskCreateFromSelf;
 
-pub extern "Security" fn TaskCopyValueForEntitlement(task: TaskRef, entitlement: core_foundation.StringRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.TypeRef;
+extern "Security" fn SecTaskCopyValueForEntitlement(task: TaskRef, entitlement: core_foundation.StringRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.TypeRef;
+pub const taskCopyValueForEntitlement = SecTaskCopyValueForEntitlement;
 
-pub extern "Security" fn TaskCopyValuesForEntitlements(task: TaskRef, entitlements: core_foundation.ArrayRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DictionaryRef;
+extern "Security" fn SecTaskCopyValuesForEntitlements(task: TaskRef, entitlements: core_foundation.ArrayRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DictionaryRef;
+pub const taskCopyValuesForEntitlements = SecTaskCopyValuesForEntitlements;
 
-pub extern "Security" fn TaskCopySigningIdentifier(task: TaskRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.StringRef;
+extern "Security" fn SecTaskCopySigningIdentifier(task: TaskRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.StringRef;
+pub const taskCopySigningIdentifier = SecTaskCopySigningIdentifier;
 
-pub extern "Security" fn TaskGetCodeSignStatus(task: TaskRef) callconv(.C) objc.uint32_t;
+extern "Security" fn SecTaskGetCodeSignStatus(task: TaskRef) callconv(.C) objc.uint32_t;
+pub const taskGetCodeSignStatus = SecTaskGetCodeSignStatus;
 
-pub extern "Security" fn AuthorizationRightGet(rightName: ?*i8, rightDefinition: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationRightGet(rightName: ?*i8, rightDefinition: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
+pub const horizationRightGet = AuthorizationRightGet;
 
-pub extern "Security" fn AuthorizationRightSet(authRef: AuthorizationRef, rightName: ?*i8, rightDefinition: core_foundation.TypeRef, descriptionKey: core_foundation.StringRef, bundle: core_foundation.BundleRef, localeTableName: core_foundation.StringRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationRightSet(
+    authRef: AuthorizationRef,
+    rightName: ?*i8,
+    rightDefinition: core_foundation.TypeRef,
+    descriptionKey: core_foundation.StringRef,
+    bundle: core_foundation.BundleRef,
+    localeTableName: core_foundation.StringRef,
+) callconv(.C) objc.OSStatus;
+pub const horizationRightSet = AuthorizationRightSet;
 
-pub extern "Security" fn AuthorizationRightRemove(authRef: AuthorizationRef, rightName: ?*i8) callconv(.C) objc.OSStatus;
+extern "Security" fn AuthorizationRightRemove(authRef: AuthorizationRef, rightName: ?*i8) callconv(.C) objc.OSStatus;
+pub const horizationRightRemove = AuthorizationRightRemove;
 
 pub const _CMSDecoder = extern struct {};
 
 pub const CMSDecoderRef = ?*_CMSDecoder;
 
-pub extern "Security" fn CMSDecoderGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn CMSDecoderGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const decoderGetTypeID = CMSDecoderGetTypeID;
 
 pub const CMSSignerStatus = enum(objc.uint32_t) {
     kCMSSignerUnsigned = 0,
@@ -6446,73 +9541,118 @@ pub const CMSSignerStatus = enum(objc.uint32_t) {
     kCMSSignerInvalidIndex = 5,
 };
 
-pub extern "Security" fn CMSDecoderCreate(cmsDecoderOut: ?*CMSDecoderRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCreate(cmsDecoderOut: ?*CMSDecoderRef) callconv(.C) objc.OSStatus;
+pub const decoderCreate = CMSDecoderCreate;
 
-pub extern "Security" fn CMSDecoderUpdateMessage(cmsDecoder: CMSDecoderRef, msgBytes: ?*anyopaque, msgBytesLen: objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderUpdateMessage(cmsDecoder: CMSDecoderRef, msgBytes: ?*anyopaque, msgBytesLen: objc.size_t) callconv(.C) objc.OSStatus;
+pub const decoderUpdateMessage = CMSDecoderUpdateMessage;
 
-pub extern "Security" fn CMSDecoderFinalizeMessage(cmsDecoder: CMSDecoderRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderFinalizeMessage(cmsDecoder: CMSDecoderRef) callconv(.C) objc.OSStatus;
+pub const decoderFinalizeMessage = CMSDecoderFinalizeMessage;
 
-pub extern "Security" fn CMSDecoderSetDetachedContent(cmsDecoder: CMSDecoderRef, detachedContent: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderSetDetachedContent(cmsDecoder: CMSDecoderRef, detachedContent: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const decoderSetDetachedContent = CMSDecoderSetDetachedContent;
 
-pub extern "Security" fn CMSDecoderCopyDetachedContent(cmsDecoder: CMSDecoderRef, detachedContentOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopyDetachedContent(cmsDecoder: CMSDecoderRef, detachedContentOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const decoderCopyDetachedContent = CMSDecoderCopyDetachedContent;
 
-pub extern "Security" fn CMSDecoderSetSearchKeychain(cmsDecoder: CMSDecoderRef, keychainOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderSetSearchKeychain(cmsDecoder: CMSDecoderRef, keychainOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const decoderSetSearchKeychain = CMSDecoderSetSearchKeychain;
 
-pub extern "Security" fn CMSDecoderGetNumSigners(cmsDecoder: CMSDecoderRef, numSignersOut: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderGetNumSigners(cmsDecoder: CMSDecoderRef, numSignersOut: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const decoderGetNumSigners = CMSDecoderGetNumSigners;
 
-pub extern "Security" fn CMSDecoderCopySignerStatus(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, policyOrArray: core_foundation.TypeRef, evaluateSecTrust: objc.Boolean, signerStatusOut: ?*CMSSignerStatus, secTrustOut: ?*TrustRef, certVerifyResultCodeOut: ?*objc.OSStatus, ) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopySignerStatus(
+    cmsDecoder: CMSDecoderRef,
+    signerIndex: objc.size_t,
+    policyOrArray: core_foundation.TypeRef,
+    evaluateSecTrust: objc.Boolean,
+    signerStatusOut: ?*CMSSignerStatus,
+    secTrustOut: ?*TrustRef,
+    certVerifyResultCodeOut: ?*objc.OSStatus,
+) callconv(.C) objc.OSStatus;
+pub const decoderCopySignerStatus = CMSDecoderCopySignerStatus;
 
-pub extern "Security" fn CMSDecoderCopySignerEmailAddress(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, signerEmailAddressOut: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopySignerEmailAddress(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, signerEmailAddressOut: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const decoderCopySignerEmailAddress = CMSDecoderCopySignerEmailAddress;
 
-pub extern "Security" fn CMSDecoderCopySignerCert(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, signerCertOut: ?*CertificateRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopySignerCert(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, signerCertOut: ?*CertificateRef) callconv(.C) objc.OSStatus;
+pub const decoderCopySignerCert = CMSDecoderCopySignerCert;
 
-pub extern "Security" fn CMSDecoderIsContentEncrypted(cmsDecoder: CMSDecoderRef, isEncryptedOut: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderIsContentEncrypted(cmsDecoder: CMSDecoderRef, isEncryptedOut: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const decoderIsContentEncrypted = CMSDecoderIsContentEncrypted;
 
-pub extern "Security" fn CMSDecoderCopyEncapsulatedContentType(cmsDecoder: CMSDecoderRef, eContentTypeOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopyEncapsulatedContentType(cmsDecoder: CMSDecoderRef, eContentTypeOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const decoderCopyEncapsulatedContentType = CMSDecoderCopyEncapsulatedContentType;
 
-pub extern "Security" fn CMSDecoderCopyAllCerts(cmsDecoder: CMSDecoderRef, certsOut: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopyAllCerts(cmsDecoder: CMSDecoderRef, certsOut: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const decoderCopyAllCerts = CMSDecoderCopyAllCerts;
 
-pub extern "Security" fn CMSDecoderCopyContent(cmsDecoder: CMSDecoderRef, contentOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopyContent(cmsDecoder: CMSDecoderRef, contentOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const decoderCopyContent = CMSDecoderCopyContent;
 
-pub extern "Security" fn CMSDecoderCopySignerSigningTime(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, signingTime: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopySignerSigningTime(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, signingTime: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+pub const decoderCopySignerSigningTime = CMSDecoderCopySignerSigningTime;
 
-pub extern "Security" fn CMSDecoderCopySignerTimestamp(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, timestamp: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopySignerTimestamp(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, timestamp: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+pub const decoderCopySignerTimestamp = CMSDecoderCopySignerTimestamp;
 
-pub extern "Security" fn CMSDecoderCopySignerTimestampWithPolicy(cmsDecoder: CMSDecoderRef, timeStampPolicy: core_foundation.TypeRef, signerIndex: objc.size_t, timestamp: ?*core_foundation.AbsoluteTime, ) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopySignerTimestampWithPolicy(
+    cmsDecoder: CMSDecoderRef,
+    timeStampPolicy: core_foundation.TypeRef,
+    signerIndex: objc.size_t,
+    timestamp: ?*core_foundation.AbsoluteTime,
+) callconv(.C) objc.OSStatus;
+pub const decoderCopySignerTimestampWithPolicy = CMSDecoderCopySignerTimestampWithPolicy;
 
-pub extern "Security" fn CMSDecoderCopySignerTimestampCertificates(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, certificateRefs: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSDecoderCopySignerTimestampCertificates(cmsDecoder: CMSDecoderRef, signerIndex: objc.size_t, certificateRefs: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const decoderCopySignerTimestampCertificates = CMSDecoderCopySignerTimestampCertificates;
 
 pub const _CMSEncoder = extern struct {};
 
 pub const CMSEncoderRef = ?*_CMSEncoder;
 
-pub extern "Security" fn CMSEncoderGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn CMSEncoderGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const encoderGetTypeID = CMSEncoderGetTypeID;
 
-pub extern "Security" fn CMSEncoderCreate(cmsEncoderOut: ?*CMSEncoderRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderCreate(cmsEncoderOut: ?*CMSEncoderRef) callconv(.C) objc.OSStatus;
+pub const encoderCreate = CMSEncoderCreate;
 
-pub extern "Security" fn CMSEncoderSetSignerAlgorithm(cmsEncoder: CMSEncoderRef, digestAlgorithm: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderSetSignerAlgorithm(cmsEncoder: CMSEncoderRef, digestAlgorithm: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const encoderSetSignerAlgorithm = CMSEncoderSetSignerAlgorithm;
 
-pub extern "Security" fn CMSEncoderAddSigners(cmsEncoder: CMSEncoderRef, signerOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderAddSigners(cmsEncoder: CMSEncoderRef, signerOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const encoderAddSigners = CMSEncoderAddSigners;
 
-pub extern "Security" fn CMSEncoderCopySigners(cmsEncoder: CMSEncoderRef, signersOut: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderCopySigners(cmsEncoder: CMSEncoderRef, signersOut: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const encoderCopySigners = CMSEncoderCopySigners;
 
-pub extern "Security" fn CMSEncoderAddRecipients(cmsEncoder: CMSEncoderRef, recipientOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderAddRecipients(cmsEncoder: CMSEncoderRef, recipientOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const encoderAddRecipients = CMSEncoderAddRecipients;
 
-pub extern "Security" fn CMSEncoderCopyRecipients(cmsEncoder: CMSEncoderRef, recipientsOut: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderCopyRecipients(cmsEncoder: CMSEncoderRef, recipientsOut: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const encoderCopyRecipients = CMSEncoderCopyRecipients;
 
-pub extern "Security" fn CMSEncoderSetHasDetachedContent(cmsEncoder: CMSEncoderRef, detachedContent: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderSetHasDetachedContent(cmsEncoder: CMSEncoderRef, detachedContent: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const encoderSetHasDetachedContent = CMSEncoderSetHasDetachedContent;
 
-pub extern "Security" fn CMSEncoderGetHasDetachedContent(cmsEncoder: CMSEncoderRef, detachedContentOut: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderGetHasDetachedContent(cmsEncoder: CMSEncoderRef, detachedContentOut: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const encoderGetHasDetachedContent = CMSEncoderGetHasDetachedContent;
 
-pub extern "Security" fn CMSEncoderSetEncapsulatedContentType(cmsEncoder: CMSEncoderRef, eContentType: ?*Asn1Oid) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderSetEncapsulatedContentType(cmsEncoder: CMSEncoderRef, eContentType: ?*Asn1Oid) callconv(.C) objc.OSStatus;
+pub const encoderSetEncapsulatedContentType = CMSEncoderSetEncapsulatedContentType;
 
-pub extern "Security" fn CMSEncoderSetEncapsulatedContentTypeOID(cmsEncoder: CMSEncoderRef, eContentTypeOID: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderSetEncapsulatedContentTypeOID(cmsEncoder: CMSEncoderRef, eContentTypeOID: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const encoderSetEncapsulatedContentTypeOID = CMSEncoderSetEncapsulatedContentTypeOID;
 
-pub extern "Security" fn CMSEncoderCopyEncapsulatedContentType(cmsEncoder: CMSEncoderRef, eContentTypeOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderCopyEncapsulatedContentType(cmsEncoder: CMSEncoderRef, eContentTypeOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const encoderCopyEncapsulatedContentType = CMSEncoderCopyEncapsulatedContentType;
 
-pub extern "Security" fn CMSEncoderAddSupportingCerts(cmsEncoder: CMSEncoderRef, certOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderAddSupportingCerts(cmsEncoder: CMSEncoderRef, certOrArray: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
+pub const encoderAddSupportingCerts = CMSEncoderAddSupportingCerts;
 
-pub extern "Security" fn CMSEncoderCopySupportingCerts(cmsEncoder: CMSEncoderRef, certsOut: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderCopySupportingCerts(cmsEncoder: CMSEncoderRef, certsOut: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const encoderCopySupportingCerts = CMSEncoderCopySupportingCerts;
 
 pub const CMSSignedAttributes = enum(objc.uint32_t) {
     kCMSAttrNone = 0,
@@ -6525,7 +9665,8 @@ pub const CMSSignedAttributes = enum(objc.uint32_t) {
     kCMSAttrAppleExpirationTime = 64,
 };
 
-pub extern "Security" fn CMSEncoderAddSignedAttributes(cmsEncoder: CMSEncoderRef, signedAttributes: CMSSignedAttributes) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderAddSignedAttributes(cmsEncoder: CMSEncoderRef, signedAttributes: CMSSignedAttributes) callconv(.C) objc.OSStatus;
+pub const encoderAddSignedAttributes = CMSEncoderAddSignedAttributes;
 
 pub const CMSCertificateChainMode = enum(objc.uint32_t) {
     kCMSCertificateNone = 0,
@@ -6535,21 +9676,52 @@ pub const CMSCertificateChainMode = enum(objc.uint32_t) {
     kCMSCertificateChainWithRootOrFail = 4,
 };
 
-pub extern "Security" fn CMSEncoderSetCertificateChainMode(cmsEncoder: CMSEncoderRef, chainMode: CMSCertificateChainMode) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderSetCertificateChainMode(cmsEncoder: CMSEncoderRef, chainMode: CMSCertificateChainMode) callconv(.C) objc.OSStatus;
+pub const encoderSetCertificateChainMode = CMSEncoderSetCertificateChainMode;
 
-pub extern "Security" fn CMSEncoderGetCertificateChainMode(cmsEncoder: CMSEncoderRef, chainModeOut: ?*CMSCertificateChainMode) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderGetCertificateChainMode(cmsEncoder: CMSEncoderRef, chainModeOut: ?*CMSCertificateChainMode) callconv(.C) objc.OSStatus;
+pub const encoderGetCertificateChainMode = CMSEncoderGetCertificateChainMode;
 
-pub extern "Security" fn CMSEncoderUpdateContent(cmsEncoder: CMSEncoderRef, content: ?*anyopaque, contentLen: objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderUpdateContent(cmsEncoder: CMSEncoderRef, content: ?*anyopaque, contentLen: objc.size_t) callconv(.C) objc.OSStatus;
+pub const encoderUpdateContent = CMSEncoderUpdateContent;
 
-pub extern "Security" fn CMSEncoderCopyEncodedContent(cmsEncoder: CMSEncoderRef, encodedContentOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderCopyEncodedContent(cmsEncoder: CMSEncoderRef, encodedContentOut: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const encoderCopyEncodedContent = CMSEncoderCopyEncodedContent;
 
-pub extern "Security" fn CMSEncode(signers: core_foundation.TypeRef, recipients: core_foundation.TypeRef, eContentType: ?*Asn1Oid, detachedContent: objc.Boolean, signedAttributes: CMSSignedAttributes, content: ?*anyopaque, contentLen: objc.size_t, encodedContentOut: ?*core_foundation.DataRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncode(
+    signers: core_foundation.TypeRef,
+    recipients: core_foundation.TypeRef,
+    eContentType: ?*Asn1Oid,
+    detachedContent: objc.Boolean,
+    signedAttributes: CMSSignedAttributes,
+    content: ?*anyopaque,
+    contentLen: objc.size_t,
+    encodedContentOut: ?*core_foundation.DataRef,
+) callconv(.C) objc.OSStatus;
+pub const encode = CMSEncode;
 
-pub extern "Security" fn CMSEncodeContent(signers: core_foundation.TypeRef, recipients: core_foundation.TypeRef, eContentTypeOID: core_foundation.TypeRef, detachedContent: objc.Boolean, signedAttributes: CMSSignedAttributes, content: ?*anyopaque, contentLen: objc.size_t, encodedContentOut: ?*core_foundation.DataRef, ) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncodeContent(
+    signers: core_foundation.TypeRef,
+    recipients: core_foundation.TypeRef,
+    eContentTypeOID: core_foundation.TypeRef,
+    detachedContent: objc.Boolean,
+    signedAttributes: CMSSignedAttributes,
+    content: ?*anyopaque,
+    contentLen: objc.size_t,
+    encodedContentOut: ?*core_foundation.DataRef,
+) callconv(.C) objc.OSStatus;
+pub const encodeContent = CMSEncodeContent;
 
-pub extern "Security" fn CMSEncoderCopySignerTimestamp(cmsEncoder: CMSEncoderRef, signerIndex: objc.size_t, timestamp: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderCopySignerTimestamp(cmsEncoder: CMSEncoderRef, signerIndex: objc.size_t, timestamp: ?*core_foundation.AbsoluteTime) callconv(.C) objc.OSStatus;
+pub const encoderCopySignerTimestamp = CMSEncoderCopySignerTimestamp;
 
-pub extern "Security" fn CMSEncoderCopySignerTimestampWithPolicy(cmsEncoder: CMSEncoderRef, timeStampPolicy: core_foundation.TypeRef, signerIndex: objc.size_t, timestamp: ?*core_foundation.AbsoluteTime, ) callconv(.C) objc.OSStatus;
+extern "Security" fn CMSEncoderCopySignerTimestampWithPolicy(
+    cmsEncoder: CMSEncoderRef,
+    timeStampPolicy: core_foundation.TypeRef,
+    signerIndex: objc.size_t,
+    timestamp: ?*core_foundation.AbsoluteTime,
+) callconv(.C) objc.OSStatus;
+pub const encoderCopySignerTimestampWithPolicy = CMSEncoderCopySignerTimestampWithPolicy;
 
 pub const SSLContext = extern struct {};
 
@@ -6585,9 +9757,9 @@ pub const SSLClientCertificateState = enum(i32) {
     kSSLClientCertRejected = 3,
 };
 
-pub const SSLReadFunc = ?*const fn(SSLConnectionRef, ?*anyopaque, ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const SSLReadFunc = ?*const fn (SSLConnectionRef, ?*anyopaque, ?*objc.size_t) callconv(.C) objc.OSStatus;
 
-pub const SSLWriteFunc = ?*const fn(SSLConnectionRef, ?*anyopaque, ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const SSLWriteFunc = ?*const fn (SSLConnectionRef, ?*anyopaque, ?*objc.size_t) callconv(.C) objc.OSStatus;
 
 pub const SSLProtocolSide = enum(i32) {
     kSSLServerSide = 0,
@@ -6599,113 +9771,167 @@ pub const SSLConnectionType = enum(i32) {
     kSSLDatagramType = 1,
 };
 
-pub extern "Security" fn SSLContextGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SSLContextGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const contextGetTypeID = SSLContextGetTypeID;
 
-pub extern "Security" fn SSLCreateContext(alloc: core_foundation.AllocatorRef, protocolSide: SSLProtocolSide, connectionType: SSLConnectionType) callconv(.C) SSLContextRef;
+extern "Security" fn SSLCreateContext(alloc: core_foundation.AllocatorRef, protocolSide: SSLProtocolSide, connectionType: SSLConnectionType) callconv(.C) SSLContextRef;
+pub const createContext = SSLCreateContext;
 
-pub extern "Security" fn SSLNewContext(isServer: objc.Boolean, contextPtr: ?*SSLContextRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLNewContext(isServer: objc.Boolean, contextPtr: ?*SSLContextRef) callconv(.C) objc.OSStatus;
+pub const newContext = SSLNewContext;
 
-pub extern "Security" fn SSLDisposeContext(context: SSLContextRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLDisposeContext(context: SSLContextRef) callconv(.C) objc.OSStatus;
+pub const disposeContext = SSLDisposeContext;
 
-pub extern "Security" fn SSLGetSessionState(context: SSLContextRef, state: ?*SSLSessionState) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetSessionState(context: SSLContextRef, state: ?*SSLSessionState) callconv(.C) objc.OSStatus;
+pub const getSessionState = SSLGetSessionState;
 
-pub extern "Security" fn SSLSetSessionOption(context: SSLContextRef, option: SSLSessionOption, value: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetSessionOption(context: SSLContextRef, option: SSLSessionOption, value: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setSessionOption = SSLSetSessionOption;
 
-pub extern "Security" fn SSLGetSessionOption(context: SSLContextRef, option: SSLSessionOption, value: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetSessionOption(context: SSLContextRef, option: SSLSessionOption, value: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const getSessionOption = SSLGetSessionOption;
 
-pub extern "Security" fn SSLSetIOFuncs(context: SSLContextRef, readFunc: SSLReadFunc, writeFunc: SSLWriteFunc) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetIOFuncs(context: SSLContextRef, readFunc: SSLReadFunc, writeFunc: SSLWriteFunc) callconv(.C) objc.OSStatus;
+pub const setIOFuncs = SSLSetIOFuncs;
 
-pub extern "Security" fn SSLSetSessionConfig(context: SSLContextRef, config: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetSessionConfig(context: SSLContextRef, config: core_foundation.StringRef) callconv(.C) objc.OSStatus;
+pub const setSessionConfig = SSLSetSessionConfig;
 
-pub extern "Security" fn SSLSetProtocolVersionMin(context: SSLContextRef, minVersion: SSLProtocol) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetProtocolVersionMin(context: SSLContextRef, minVersion: SSLProtocol) callconv(.C) objc.OSStatus;
+pub const setProtocolVersionMin = SSLSetProtocolVersionMin;
 
-pub extern "Security" fn SSLGetProtocolVersionMin(context: SSLContextRef, minVersion: ?*SSLProtocol) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetProtocolVersionMin(context: SSLContextRef, minVersion: ?*SSLProtocol) callconv(.C) objc.OSStatus;
+pub const getProtocolVersionMin = SSLGetProtocolVersionMin;
 
-pub extern "Security" fn SSLSetProtocolVersionMax(context: SSLContextRef, maxVersion: SSLProtocol) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetProtocolVersionMax(context: SSLContextRef, maxVersion: SSLProtocol) callconv(.C) objc.OSStatus;
+pub const setProtocolVersionMax = SSLSetProtocolVersionMax;
 
-pub extern "Security" fn SSLGetProtocolVersionMax(context: SSLContextRef, maxVersion: ?*SSLProtocol) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetProtocolVersionMax(context: SSLContextRef, maxVersion: ?*SSLProtocol) callconv(.C) objc.OSStatus;
+pub const getProtocolVersionMax = SSLGetProtocolVersionMax;
 
-pub extern "Security" fn SSLSetProtocolVersionEnabled(context: SSLContextRef, protocol: SSLProtocol, enable: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetProtocolVersionEnabled(context: SSLContextRef, protocol: SSLProtocol, enable: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setProtocolVersionEnabled = SSLSetProtocolVersionEnabled;
 
-pub extern "Security" fn SSLGetProtocolVersionEnabled(context: SSLContextRef, protocol: SSLProtocol, enable: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetProtocolVersionEnabled(context: SSLContextRef, protocol: SSLProtocol, enable: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const getProtocolVersionEnabled = SSLGetProtocolVersionEnabled;
 
-pub extern "Security" fn SSLSetProtocolVersion(context: SSLContextRef, version: SSLProtocol) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetProtocolVersion(context: SSLContextRef, version: SSLProtocol) callconv(.C) objc.OSStatus;
+pub const setProtocolVersion = SSLSetProtocolVersion;
 
-pub extern "Security" fn SSLGetProtocolVersion(context: SSLContextRef, protocol: ?*SSLProtocol) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetProtocolVersion(context: SSLContextRef, protocol: ?*SSLProtocol) callconv(.C) objc.OSStatus;
+pub const getProtocolVersion = SSLGetProtocolVersion;
 
-pub extern "Security" fn SSLSetCertificate(context: SSLContextRef, certRefs: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetCertificate(context: SSLContextRef, certRefs: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const setCertificate = SSLSetCertificate;
 
-pub extern "Security" fn SSLSetConnection(context: SSLContextRef, connection: SSLConnectionRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetConnection(context: SSLContextRef, connection: SSLConnectionRef) callconv(.C) objc.OSStatus;
+pub const setConnection = SSLSetConnection;
 
-pub extern "Security" fn SSLGetConnection(context: SSLContextRef, connection: ?*SSLConnectionRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetConnection(context: SSLContextRef, connection: ?*SSLConnectionRef) callconv(.C) objc.OSStatus;
+pub const getConnection = SSLGetConnection;
 
-pub extern "Security" fn SSLSetPeerDomainName(context: SSLContextRef, peerName: ?*i8, peerNameLen: objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetPeerDomainName(context: SSLContextRef, peerName: ?*i8, peerNameLen: objc.size_t) callconv(.C) objc.OSStatus;
+pub const setPeerDomainName = SSLSetPeerDomainName;
 
-pub extern "Security" fn SSLGetPeerDomainNameLength(context: SSLContextRef, peerNameLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetPeerDomainNameLength(context: SSLContextRef, peerNameLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getPeerDomainNameLength = SSLGetPeerDomainNameLength;
 
-pub extern "Security" fn SSLGetPeerDomainName(context: SSLContextRef, peerName: ?*i8, peerNameLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetPeerDomainName(context: SSLContextRef, peerName: ?*i8, peerNameLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getPeerDomainName = SSLGetPeerDomainName;
 
-pub extern "Security" fn SSLCopyRequestedPeerNameLength(ctx: SSLContextRef, peerNameLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLCopyRequestedPeerNameLength(ctx: SSLContextRef, peerNameLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const copyRequestedPeerNameLength = SSLCopyRequestedPeerNameLength;
 
-pub extern "Security" fn SSLCopyRequestedPeerName(context: SSLContextRef, peerName: ?*i8, peerNameLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLCopyRequestedPeerName(context: SSLContextRef, peerName: ?*i8, peerNameLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const copyRequestedPeerName = SSLCopyRequestedPeerName;
 
-pub extern "Security" fn SSLSetDatagramHelloCookie(dtlsContext: SSLContextRef, cookie: ?*anyopaque, cookieLen: objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetDatagramHelloCookie(dtlsContext: SSLContextRef, cookie: ?*anyopaque, cookieLen: objc.size_t) callconv(.C) objc.OSStatus;
+pub const setDatagramHelloCookie = SSLSetDatagramHelloCookie;
 
-pub extern "Security" fn SSLSetMaxDatagramRecordSize(dtlsContext: SSLContextRef, maxSize: objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetMaxDatagramRecordSize(dtlsContext: SSLContextRef, maxSize: objc.size_t) callconv(.C) objc.OSStatus;
+pub const setMaxDatagramRecordSize = SSLSetMaxDatagramRecordSize;
 
-pub extern "Security" fn SSLGetMaxDatagramRecordSize(dtlsContext: SSLContextRef, maxSize: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetMaxDatagramRecordSize(dtlsContext: SSLContextRef, maxSize: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getMaxDatagramRecordSize = SSLGetMaxDatagramRecordSize;
 
-pub extern "Security" fn SSLGetNegotiatedProtocolVersion(context: SSLContextRef, protocol: ?*SSLProtocol) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetNegotiatedProtocolVersion(context: SSLContextRef, protocol: ?*SSLProtocol) callconv(.C) objc.OSStatus;
+pub const getNegotiatedProtocolVersion = SSLGetNegotiatedProtocolVersion;
 
-pub extern "Security" fn SSLGetNumberSupportedCiphers(context: SSLContextRef, numCiphers: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetNumberSupportedCiphers(context: SSLContextRef, numCiphers: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getNumberSupportedCiphers = SSLGetNumberSupportedCiphers;
 
-pub extern "Security" fn SSLGetSupportedCiphers(context: SSLContextRef, ciphers: ?*SSLCipherSuite, numCiphers: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetSupportedCiphers(context: SSLContextRef, ciphers: ?*SSLCipherSuite, numCiphers: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getSupportedCiphers = SSLGetSupportedCiphers;
 
-pub extern "Security" fn SSLGetNumberEnabledCiphers(context: SSLContextRef, numCiphers: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetNumberEnabledCiphers(context: SSLContextRef, numCiphers: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getNumberEnabledCiphers = SSLGetNumberEnabledCiphers;
 
-pub extern "Security" fn SSLSetEnabledCiphers(context: SSLContextRef, ciphers: ?*SSLCipherSuite, numCiphers: objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetEnabledCiphers(context: SSLContextRef, ciphers: ?*SSLCipherSuite, numCiphers: objc.size_t) callconv(.C) objc.OSStatus;
+pub const setEnabledCiphers = SSLSetEnabledCiphers;
 
-pub extern "Security" fn SSLGetEnabledCiphers(context: SSLContextRef, ciphers: ?*SSLCipherSuite, numCiphers: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetEnabledCiphers(context: SSLContextRef, ciphers: ?*SSLCipherSuite, numCiphers: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getEnabledCiphers = SSLGetEnabledCiphers;
 
-pub extern "Security" fn SSLSetSessionTicketsEnabled(context: SSLContextRef, enabled: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetSessionTicketsEnabled(context: SSLContextRef, enabled: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setSessionTicketsEnabled = SSLSetSessionTicketsEnabled;
 
-pub extern "Security" fn SSLSetEnableCertVerify(context: SSLContextRef, enableVerify: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetEnableCertVerify(context: SSLContextRef, enableVerify: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setEnableCertVerify = SSLSetEnableCertVerify;
 
-pub extern "Security" fn SSLGetEnableCertVerify(context: SSLContextRef, enableVerify: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetEnableCertVerify(context: SSLContextRef, enableVerify: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const getEnableCertVerify = SSLGetEnableCertVerify;
 
-pub extern "Security" fn SSLSetAllowsExpiredCerts(context: SSLContextRef, allowsExpired: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetAllowsExpiredCerts(context: SSLContextRef, allowsExpired: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setAllowsExpiredCerts = SSLSetAllowsExpiredCerts;
 
-pub extern "Security" fn SSLGetAllowsExpiredCerts(context: SSLContextRef, allowsExpired: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetAllowsExpiredCerts(context: SSLContextRef, allowsExpired: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const getAllowsExpiredCerts = SSLGetAllowsExpiredCerts;
 
-pub extern "Security" fn SSLSetAllowsExpiredRoots(context: SSLContextRef, allowsExpired: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetAllowsExpiredRoots(context: SSLContextRef, allowsExpired: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setAllowsExpiredRoots = SSLSetAllowsExpiredRoots;
 
-pub extern "Security" fn SSLGetAllowsExpiredRoots(context: SSLContextRef, allowsExpired: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetAllowsExpiredRoots(context: SSLContextRef, allowsExpired: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const getAllowsExpiredRoots = SSLGetAllowsExpiredRoots;
 
-pub extern "Security" fn SSLSetAllowsAnyRoot(context: SSLContextRef, anyRoot: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetAllowsAnyRoot(context: SSLContextRef, anyRoot: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setAllowsAnyRoot = SSLSetAllowsAnyRoot;
 
-pub extern "Security" fn SSLGetAllowsAnyRoot(context: SSLContextRef, anyRoot: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetAllowsAnyRoot(context: SSLContextRef, anyRoot: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const getAllowsAnyRoot = SSLGetAllowsAnyRoot;
 
-pub extern "Security" fn SSLSetTrustedRoots(context: SSLContextRef, trustedRoots: core_foundation.ArrayRef, replaceExisting: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetTrustedRoots(context: SSLContextRef, trustedRoots: core_foundation.ArrayRef, replaceExisting: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setTrustedRoots = SSLSetTrustedRoots;
 
-pub extern "Security" fn SSLCopyTrustedRoots(context: SSLContextRef, trustedRoots: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLCopyTrustedRoots(context: SSLContextRef, trustedRoots: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const copyTrustedRoots = SSLCopyTrustedRoots;
 
-pub extern "Security" fn SSLCopyPeerCertificates(context: SSLContextRef, certs: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLCopyPeerCertificates(context: SSLContextRef, certs: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const copyPeerCertificates = SSLCopyPeerCertificates;
 
-pub extern "Security" fn SSLCopyPeerTrust(context: SSLContextRef, trust: ?*TrustRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLCopyPeerTrust(context: SSLContextRef, trust: ?*TrustRef) callconv(.C) objc.OSStatus;
+pub const copyPeerTrust = SSLCopyPeerTrust;
 
-pub extern "Security" fn SSLSetPeerID(context: SSLContextRef, peerID: ?*anyopaque, peerIDLen: objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetPeerID(context: SSLContextRef, peerID: ?*anyopaque, peerIDLen: objc.size_t) callconv(.C) objc.OSStatus;
+pub const setPeerID = SSLSetPeerID;
 
-pub extern "Security" fn SSLGetPeerID(context: SSLContextRef, peerID: ?*?*anyopaque, peerIDLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetPeerID(context: SSLContextRef, peerID: ?*?*anyopaque, peerIDLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getPeerID = SSLGetPeerID;
 
-pub extern "Security" fn SSLGetNegotiatedCipher(context: SSLContextRef, cipherSuite: ?*SSLCipherSuite) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetNegotiatedCipher(context: SSLContextRef, cipherSuite: ?*SSLCipherSuite) callconv(.C) objc.OSStatus;
+pub const getNegotiatedCipher = SSLGetNegotiatedCipher;
 
-pub extern "Security" fn SSLSetALPNProtocols(context: SSLContextRef, protocols: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetALPNProtocols(context: SSLContextRef, protocols: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const setALPNProtocols = SSLSetALPNProtocols;
 
-pub extern "Security" fn SSLCopyALPNProtocols(context: SSLContextRef, protocols: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLCopyALPNProtocols(context: SSLContextRef, protocols: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const copyALPNProtocols = SSLCopyALPNProtocols;
 
-pub extern "Security" fn SSLSetOCSPResponse(context: SSLContextRef, response: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetOCSPResponse(context: SSLContextRef, response: core_foundation.DataRef) callconv(.C) objc.OSStatus;
+pub const setOCSPResponse = SSLSetOCSPResponse;
 
-pub extern "Security" fn SSLSetEncryptionCertificate(context: SSLContextRef, certRefs: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetEncryptionCertificate(context: SSLContextRef, certRefs: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const setEncryptionCertificate = SSLSetEncryptionCertificate;
 
 pub const SSLAuthenticate = enum(i32) {
     kNeverAuthenticate = 0,
@@ -6713,41 +9939,69 @@ pub const SSLAuthenticate = enum(i32) {
     kTryAuthenticate = 2,
 };
 
-pub extern "Security" fn SSLSetClientSideAuthenticate(context: SSLContextRef, auth: SSLAuthenticate) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetClientSideAuthenticate(context: SSLContextRef, auth: SSLAuthenticate) callconv(.C) objc.OSStatus;
+pub const setClientSideAuthenticate = SSLSetClientSideAuthenticate;
 
-pub extern "Security" fn SSLAddDistinguishedName(context: SSLContextRef, derDN: ?*anyopaque, derDNLen: objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLAddDistinguishedName(context: SSLContextRef, derDN: ?*anyopaque, derDNLen: objc.size_t) callconv(.C) objc.OSStatus;
+pub const addDistinguishedName = SSLAddDistinguishedName;
 
-pub extern "Security" fn SSLSetCertificateAuthorities(context: SSLContextRef, certificateOrArray: core_foundation.TypeRef, replaceExisting: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetCertificateAuthorities(context: SSLContextRef, certificateOrArray: core_foundation.TypeRef, replaceExisting: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setCertificateAuthorities = SSLSetCertificateAuthorities;
 
-pub extern "Security" fn SSLCopyCertificateAuthorities(context: SSLContextRef, certificates: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLCopyCertificateAuthorities(context: SSLContextRef, certificates: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const copyCertificateAuthorities = SSLCopyCertificateAuthorities;
 
-pub extern "Security" fn SSLCopyDistinguishedNames(context: SSLContextRef, names: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLCopyDistinguishedNames(context: SSLContextRef, names: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const copyDistinguishedNames = SSLCopyDistinguishedNames;
 
-pub extern "Security" fn SSLGetClientCertificateState(context: SSLContextRef, clientState: ?*SSLClientCertificateState) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetClientCertificateState(context: SSLContextRef, clientState: ?*SSLClientCertificateState) callconv(.C) objc.OSStatus;
+pub const getClientCertificateState = SSLGetClientCertificateState;
 
-pub extern "Security" fn SSLSetDiffieHellmanParams(context: SSLContextRef, dhParams: ?*anyopaque, dhParamsLen: objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetDiffieHellmanParams(context: SSLContextRef, dhParams: ?*anyopaque, dhParamsLen: objc.size_t) callconv(.C) objc.OSStatus;
+pub const setDiffieHellmanParams = SSLSetDiffieHellmanParams;
 
-pub extern "Security" fn SSLGetDiffieHellmanParams(context: SSLContextRef, dhParams: ?*?*anyopaque, dhParamsLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetDiffieHellmanParams(context: SSLContextRef, dhParams: ?*?*anyopaque, dhParamsLen: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getDiffieHellmanParams = SSLGetDiffieHellmanParams;
 
-pub extern "Security" fn SSLSetRsaBlinding(context: SSLContextRef, blinding: objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetRsaBlinding(context: SSLContextRef, blinding: objc.Boolean) callconv(.C) objc.OSStatus;
+pub const setRsaBlinding = SSLSetRsaBlinding;
 
-pub extern "Security" fn SSLGetRsaBlinding(context: SSLContextRef, blinding: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetRsaBlinding(context: SSLContextRef, blinding: ?*objc.Boolean) callconv(.C) objc.OSStatus;
+pub const getRsaBlinding = SSLGetRsaBlinding;
 
-pub extern "Security" fn SSLHandshake(context: SSLContextRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLHandshake(context: SSLContextRef) callconv(.C) objc.OSStatus;
+pub const handshake = SSLHandshake;
 
-pub extern "Security" fn SSLReHandshake(context: SSLContextRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLReHandshake(context: SSLContextRef) callconv(.C) objc.OSStatus;
+pub const reHandshake = SSLReHandshake;
 
-pub extern "Security" fn SSLWrite(context: SSLContextRef, data: ?*anyopaque, dataLength: objc.size_t, processed: ?*objc.size_t, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLWrite(
+    context: SSLContextRef,
+    data: ?*anyopaque,
+    dataLength: objc.size_t,
+    processed: ?*objc.size_t,
+) callconv(.C) objc.OSStatus;
+pub const write = SSLWrite;
 
-pub extern "Security" fn SSLRead(context: SSLContextRef, data: ?*anyopaque, dataLength: objc.size_t, processed: ?*objc.size_t, ) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLRead(
+    context: SSLContextRef,
+    data: ?*anyopaque,
+    dataLength: objc.size_t,
+    processed: ?*objc.size_t,
+) callconv(.C) objc.OSStatus;
+pub const read = SSLRead;
 
-pub extern "Security" fn SSLGetBufferedReadSize(context: SSLContextRef, bufferSize: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetBufferedReadSize(context: SSLContextRef, bufferSize: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getBufferedReadSize = SSLGetBufferedReadSize;
 
-pub extern "Security" fn SSLGetDatagramWriteSize(dtlsContext: SSLContextRef, bufSize: ?*objc.size_t) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLGetDatagramWriteSize(dtlsContext: SSLContextRef, bufSize: ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const getDatagramWriteSize = SSLGetDatagramWriteSize;
 
-pub extern "Security" fn SSLClose(context: SSLContextRef) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLClose(context: SSLContextRef) callconv(.C) objc.OSStatus;
+pub const close = SSLClose;
 
-pub extern "Security" fn SSLSetError(context: SSLContextRef, status: objc.OSStatus) callconv(.C) objc.OSStatus;
+extern "Security" fn SSLSetError(context: SSLContextRef, status: objc.OSStatus) callconv(.C) objc.OSStatus;
+pub const setError = SSLSetError;
 
 pub const anon1791 = enum(core_foundation.Index) {
     kSecTransformErrorAttributeNotFound = 1,
@@ -6776,29 +10030,52 @@ pub const TransformRef = core_foundation.TypeRef;
 
 pub const GroupTransformRef = core_foundation.TypeRef;
 
-pub extern "Security" fn TransformGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecTransformGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const transformGetTypeID = SecTransformGetTypeID;
 
-pub extern "Security" fn GroupTransformGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecGroupTransformGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const groupTransformGetTypeID = SecGroupTransformGetTypeID;
 
-pub extern "Security" fn TransformCreateFromExternalRepresentation(dictionary: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+extern "Security" fn SecTransformCreateFromExternalRepresentation(dictionary: core_foundation.DictionaryRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+pub const transformCreateFromExternalRepresentation = SecTransformCreateFromExternalRepresentation;
 
-pub extern "Security" fn TransformCopyExternalRepresentation(transformRef: TransformRef) callconv(.C) core_foundation.DictionaryRef;
+extern "Security" fn SecTransformCopyExternalRepresentation(transformRef: TransformRef) callconv(.C) core_foundation.DictionaryRef;
+pub const transformCopyExternalRepresentation = SecTransformCopyExternalRepresentation;
 
-pub extern "Security" fn TransformCreateGroupTransform() callconv(.C) GroupTransformRef;
+extern "Security" fn SecTransformCreateGroupTransform() callconv(.C) GroupTransformRef;
+pub const transformCreateGroupTransform = SecTransformCreateGroupTransform;
 
-pub extern "Security" fn TransformConnectTransforms(sourceTransformRef: TransformRef, sourceAttributeName: core_foundation.StringRef, destinationTransformRef: TransformRef, destinationAttributeName: core_foundation.StringRef, group: GroupTransformRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) GroupTransformRef;
+extern "Security" fn SecTransformConnectTransforms(
+    sourceTransformRef: TransformRef,
+    sourceAttributeName: core_foundation.StringRef,
+    destinationTransformRef: TransformRef,
+    destinationAttributeName: core_foundation.StringRef,
+    group: GroupTransformRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) GroupTransformRef;
+pub const transformConnectTransforms = SecTransformConnectTransforms;
 
-pub extern "Security" fn TransformSetAttribute(transformRef: TransformRef, key: core_foundation.StringRef, value: core_foundation.TypeRef, @"error": ?*core_foundation.ErrorRef, ) callconv(.C) objc.Boolean;
+extern "Security" fn SecTransformSetAttribute(
+    transformRef: TransformRef,
+    key: core_foundation.StringRef,
+    value: core_foundation.TypeRef,
+    @"error": ?*core_foundation.ErrorRef,
+) callconv(.C) objc.Boolean;
+pub const transformSetAttribute = SecTransformSetAttribute;
 
-pub extern "Security" fn TransformGetAttribute(transformRef: TransformRef, key: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "Security" fn SecTransformGetAttribute(transformRef: TransformRef, key: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const transformGetAttribute = SecTransformGetAttribute;
 
-pub extern "Security" fn TransformFindByName(transform: GroupTransformRef, name: core_foundation.StringRef) callconv(.C) TransformRef;
+extern "Security" fn SecTransformFindByName(transform: GroupTransformRef, name: core_foundation.StringRef) callconv(.C) TransformRef;
+pub const transformFindByName = SecTransformFindByName;
 
-pub extern "Security" fn TransformExecute(transformRef: TransformRef, errorRef: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.TypeRef;
+extern "Security" fn SecTransformExecute(transformRef: TransformRef, errorRef: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.TypeRef;
+pub const transformExecute = SecTransformExecute;
 
-pub const MessageBlock = *const fn(core_foundation.TypeRef, core_foundation.ErrorRef, objc.Boolean) callconv(.C) void;
+pub const MessageBlock = *const fn (core_foundation.TypeRef, core_foundation.ErrorRef, objc.Boolean) callconv(.C) void;
 
-pub extern "Security" fn TransformExecuteAsync(transformRef: TransformRef, deliveryQueue: objc.dispatch_queue_t, deliveryBlock: MessageBlock) callconv(.C) void;
+extern "Security" fn SecTransformExecuteAsync(transformRef: TransformRef, deliveryQueue: objc.dispatch_queue_t, deliveryBlock: MessageBlock) callconv(.C) void;
+pub const transformExecuteAsync = SecTransformExecuteAsync;
 
 pub const TransformMetaAttributeType = enum(core_foundation.Index) {
     kSecTransformMetaAttributeValue = 0,
@@ -6818,59 +10095,89 @@ pub const TransformAttributeRef = core_foundation.TypeRef;
 
 pub const TransformStringOrAttributeRef = core_foundation.TypeRef;
 
-pub const TransformActionBlock = *const fn() callconv(.C) core_foundation.TypeRef;
+pub const TransformActionBlock = *const fn () callconv(.C) core_foundation.TypeRef;
 
-pub const TransformAttributeActionBlock = *const fn(TransformAttributeRef, core_foundation.TypeRef) callconv(.C) core_foundation.TypeRef;
+pub const TransformAttributeActionBlock = *const fn (TransformAttributeRef, core_foundation.TypeRef) callconv(.C) core_foundation.TypeRef;
 
-pub const TransformDataBlock = *const fn(core_foundation.TypeRef) callconv(.C) core_foundation.TypeRef;
+pub const TransformDataBlock = *const fn (core_foundation.TypeRef) callconv(.C) core_foundation.TypeRef;
 
-pub const TransformInstanceBlock = *const fn() callconv(.C) core_foundation.ErrorRef;
+pub const TransformInstanceBlock = *const fn () callconv(.C) core_foundation.ErrorRef;
 
 pub const OpaqueSecTransformImplementation = extern struct {};
 
 pub const TransformImplementationRef = ?*OpaqueSecTransformImplementation;
 
-pub extern "Security" fn TransformSetAttributeAction(ref: TransformImplementationRef, action: core_foundation.StringRef, attribute: TransformStringOrAttributeRef, newAction: TransformAttributeActionBlock, ) callconv(.C) core_foundation.ErrorRef;
+extern "Security" fn SecTransformSetAttributeAction(
+    ref: TransformImplementationRef,
+    action: core_foundation.StringRef,
+    attribute: TransformStringOrAttributeRef,
+    newAction: TransformAttributeActionBlock,
+) callconv(.C) core_foundation.ErrorRef;
+pub const transformSetAttributeAction = SecTransformSetAttributeAction;
 
-pub extern "Security" fn TransformSetDataAction(ref: TransformImplementationRef, action: core_foundation.StringRef, newAction: TransformDataBlock) callconv(.C) core_foundation.ErrorRef;
+extern "Security" fn SecTransformSetDataAction(ref: TransformImplementationRef, action: core_foundation.StringRef, newAction: TransformDataBlock) callconv(.C) core_foundation.ErrorRef;
+pub const transformSetDataAction = SecTransformSetDataAction;
 
-pub extern "Security" fn TransformSetTransformAction(ref: TransformImplementationRef, action: core_foundation.StringRef, newAction: TransformActionBlock) callconv(.C) core_foundation.ErrorRef;
+extern "Security" fn SecTransformSetTransformAction(ref: TransformImplementationRef, action: core_foundation.StringRef, newAction: TransformActionBlock) callconv(.C) core_foundation.ErrorRef;
+pub const transformSetTransformAction = SecTransformSetTransformAction;
 
-pub extern "Security" fn TranformCustomGetAttribute(ref: TransformImplementationRef, attribute: TransformStringOrAttributeRef, @"type": TransformMetaAttributeType) callconv(.C) core_foundation.TypeRef;
+extern "Security" fn SecTranformCustomGetAttribute(ref: TransformImplementationRef, attribute: TransformStringOrAttributeRef, @"type": TransformMetaAttributeType) callconv(.C) core_foundation.TypeRef;
+pub const tranformCustomGetAttribute = SecTranformCustomGetAttribute;
 
-pub extern "Security" fn TransformCustomGetAttribute(ref: TransformImplementationRef, attribute: TransformStringOrAttributeRef, @"type": TransformMetaAttributeType) callconv(.C) core_foundation.TypeRef;
+extern "Security" fn SecTransformCustomGetAttribute(ref: TransformImplementationRef, attribute: TransformStringOrAttributeRef, @"type": TransformMetaAttributeType) callconv(.C) core_foundation.TypeRef;
+pub const transformCustomGetAttribute = SecTransformCustomGetAttribute;
 
-pub extern "Security" fn TransformCustomSetAttribute(ref: TransformImplementationRef, attribute: TransformStringOrAttributeRef, @"type": TransformMetaAttributeType, value: core_foundation.TypeRef, ) callconv(.C) core_foundation.TypeRef;
+extern "Security" fn SecTransformCustomSetAttribute(
+    ref: TransformImplementationRef,
+    attribute: TransformStringOrAttributeRef,
+    @"type": TransformMetaAttributeType,
+    value: core_foundation.TypeRef,
+) callconv(.C) core_foundation.TypeRef;
+pub const transformCustomSetAttribute = SecTransformCustomSetAttribute;
 
-pub extern "Security" fn TransformPushbackAttribute(ref: TransformImplementationRef, attribute: TransformStringOrAttributeRef, value: core_foundation.TypeRef) callconv(.C) core_foundation.TypeRef;
+extern "Security" fn SecTransformPushbackAttribute(ref: TransformImplementationRef, attribute: TransformStringOrAttributeRef, value: core_foundation.TypeRef) callconv(.C) core_foundation.TypeRef;
+pub const transformPushbackAttribute = SecTransformPushbackAttribute;
 
-pub const TransformCreateFP = ?*const fn(core_foundation.StringRef, TransformRef, TransformImplementationRef) callconv(.C) TransformInstanceBlock;
+pub const TransformCreateFP = ?*const fn (core_foundation.StringRef, TransformRef, TransformImplementationRef) callconv(.C) TransformInstanceBlock;
 
-pub extern "Security" fn TransformRegister(uniqueName: core_foundation.StringRef, createTransformFunction: TransformCreateFP, @"error": ?*core_foundation.ErrorRef) callconv(.C) objc.Boolean;
+extern "Security" fn SecTransformRegister(uniqueName: core_foundation.StringRef, createTransformFunction: TransformCreateFP, @"error": ?*core_foundation.ErrorRef) callconv(.C) objc.Boolean;
+pub const transformRegister = SecTransformRegister;
 
-pub extern "Security" fn TransformCreate(name: core_foundation.StringRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+extern "Security" fn SecTransformCreate(name: core_foundation.StringRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+pub const transformCreate = SecTransformCreate;
 
-pub extern "Security" fn TransformNoData() callconv(.C) core_foundation.TypeRef;
+extern "Security" fn SecTransformNoData() callconv(.C) core_foundation.TypeRef;
+pub const transformNoData = SecTransformNoData;
 
-pub extern "Security" fn EncodeTransformCreate(encodeType: core_foundation.TypeRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+extern "Security" fn SecEncodeTransformCreate(encodeType: core_foundation.TypeRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+pub const encodeTransformCreate = SecEncodeTransformCreate;
 
-pub extern "Security" fn DecodeTransformCreate(DecodeType: core_foundation.TypeRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+extern "Security" fn SecDecodeTransformCreate(DecodeType: core_foundation.TypeRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+pub const decodeTransformCreate = SecDecodeTransformCreate;
 
-pub extern "Security" fn DigestTransformCreate(digestType: core_foundation.TypeRef, digestLength: core_foundation.Index, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+extern "Security" fn SecDigestTransformCreate(digestType: core_foundation.TypeRef, digestLength: core_foundation.Index, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+pub const digestTransformCreate = SecDigestTransformCreate;
 
-pub extern "Security" fn DigestTransformGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecDigestTransformGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const digestTransformGetTypeID = SecDigestTransformGetTypeID;
 
-pub extern "Security" fn EncryptTransformCreate(keyRef: KeyRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+extern "Security" fn SecEncryptTransformCreate(keyRef: KeyRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+pub const encryptTransformCreate = SecEncryptTransformCreate;
 
-pub extern "Security" fn DecryptTransformCreate(keyRef: KeyRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+extern "Security" fn SecDecryptTransformCreate(keyRef: KeyRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+pub const decryptTransformCreate = SecDecryptTransformCreate;
 
-pub extern "Security" fn DecryptTransformGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecDecryptTransformGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const decryptTransformGetTypeID = SecDecryptTransformGetTypeID;
 
-pub extern "Security" fn EncryptTransformGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "Security" fn SecEncryptTransformGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const encryptTransformGetTypeID = SecEncryptTransformGetTypeID;
 
-pub extern "Security" fn SignTransformCreate(key: KeyRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+extern "Security" fn SecSignTransformCreate(key: KeyRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+pub const signTransformCreate = SecSignTransformCreate;
 
-pub extern "Security" fn VerifyTransformCreate(key: KeyRef, signature: core_foundation.DataRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+extern "Security" fn SecVerifyTransformCreate(key: KeyRef, signature: core_foundation.DataRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) TransformRef;
+pub const verifyTransformCreate = SecVerifyTransformCreate;
 
-pub extern "Security" fn TransformCreateReadTransformWithReadStream(inputStream: core_foundation.ReadStreamRef) callconv(.C) TransformRef;
-
+extern "Security" fn SecTransformCreateReadTransformWithReadStream(inputStream: core_foundation.ReadStreamRef) callconv(.C) TransformRef;
+pub const transformCreateReadTransformWithReadStream = SecTransformCreateReadTransformWithReadStream;

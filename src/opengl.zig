@@ -63,6 +63,8 @@ pub const _CGLPixelFormatAttribute = enum(u32) {
     kCGLPFAFullScreen = 54,
 };
 
+pub const PixelFormatAttribute = _CGLPixelFormatAttribute;
+
 pub const _CGLRendererProperty = enum(u32) {
     kCGLRPOffScreen = 53,
     kCGLRPRendererID = 70,
@@ -100,6 +102,8 @@ pub const _CGLRendererProperty = enum(u32) {
     kCGLRPTextureMemory = 121,
 };
 
+pub const RendererProperty = _CGLRendererProperty;
+
 pub const _CGLContextEnable = enum(u32) {
     kCGLCESwapRectangle = 201,
     kCGLCESwapLimit = 203,
@@ -111,12 +115,16 @@ pub const _CGLContextEnable = enum(u32) {
     kCGLCECrashOnRemovedFunctions = 316,
 };
 
+pub const ContextEnable = _CGLContextEnable;
+
 pub const _CGLGPURestartStatus = enum(u32) {
     kCGLCPGPURestartStatusNone = 0,
     kCGLCPGPURestartStatusCaused = 1,
     kCGLCPGPURestartStatusBlacklisted = 2,
     kCGLCPGPURestartStatusDenied = 2,
 };
+
+pub const GPURestartStatus = _CGLGPURestartStatus;
 
 pub const _CGLContextParameter = enum(u32) {
     kCGLCPSwapRectangle = 200,
@@ -142,6 +150,8 @@ pub const _CGLContextParameter = enum(u32) {
     kCGLCPContextPriorityRequest = 608,
 };
 
+pub const ContextParameter = _CGLContextParameter;
+
 pub const CPContextPriorityRequest = enum(u32) {
     kCGLCPContextPriorityRequestHigh = 0,
     kCGLCPContextPriorityRequestNormal = 1,
@@ -157,12 +167,16 @@ pub const _CGLGlobalOption = enum(u32) {
     kCGLGOUseErrorHandler = 505,
 };
 
+pub const GlobalOption = _CGLGlobalOption;
+
 pub const _CGLOpenGLProfile = enum(u32) {
     kCGLOGLPVersion_Legacy = 4096,
     kCGLOGLPVersion_3_2_Core = 12800,
     kCGLOGLPVersion_GL3_Core = 12800,
     kCGLOGLPVersion_GL4_Core = 16640,
 };
+
+pub const OpenGLProfile = _CGLOpenGLProfile;
 
 pub const _CGLError = enum(u32) {
     kCGLNoError = 0,
@@ -186,9 +200,13 @@ pub const _CGLError = enum(u32) {
     kCGLBadConnection = 10017,
 };
 
-pub extern "OpenGL" fn SetCurrentContext(ctx: ContextObj) callconv(.C) Error;
+pub const Error = _CGLError;
 
-pub extern "OpenGL" fn GetCurrentContext() callconv(.C) ContextObj;
+extern "OpenGL" fn CGLSetCurrentContext(ctx: ContextObj) callconv(.C) Error;
+pub const setCurrentContext = CGLSetCurrentContext;
+
+extern "OpenGL" fn CGLGetCurrentContext() callconv(.C) ContextObj;
+pub const getCurrentContext = CGLGetCurrentContext;
 
 pub const GLbitfield = objc.uint32_t;
 
@@ -256,13 +274,15 @@ pub const ShareGroupRec = extern struct {};
 
 pub const ShareGroupObj = ?*ShareGroupRec;
 
-pub extern "OpenGL" fn GetShareGroup(ctx: ContextObj) callconv(.C) ShareGroupObj;
+extern "OpenGL" fn CGLGetShareGroup(ctx: ContextObj) callconv(.C) ShareGroupObj;
+pub const getShareGroup = CGLGetShareGroup;
 
 pub const _cl_device_id = extern struct {};
 
 pub const cl_device_id = ?*_cl_device_id;
 
-pub extern "OpenGL" fn GetDeviceFromGLRenderer(rendererID: GLint) callconv(.C) cl_device_id;
+extern "OpenGL" fn CGLGetDeviceFromGLRenderer(rendererID: GLint) callconv(.C) cl_device_id;
+pub const getDeviceFromGLRenderer = CGLGetDeviceFromGLRenderer;
 
 pub const anon131 = enum(u32) {
     kCGLRendererGenericID = 131584,
@@ -295,99 +315,204 @@ pub const __IOSurface = extern struct {};
 
 pub const IOSurfaceRef = ?*__IOSurface;
 
-pub extern "OpenGL" fn TexImageIOSurface2D(ctx: ContextObj, target: GLenum, internal_format: GLenum, width: GLsizei, height: GLsizei, format: GLenum, @"type": GLenum, ioSurface: IOSurfaceRef, plane: GLuint, ) callconv(.C) Error;
+extern "OpenGL" fn CGLTexImageIOSurface2D(
+    ctx: ContextObj,
+    target: GLenum,
+    internal_format: GLenum,
+    width: GLsizei,
+    height: GLsizei,
+    format: GLenum,
+    @"type": GLenum,
+    ioSurface: IOSurfaceRef,
+    plane: GLuint,
+) callconv(.C) Error;
+pub const texImageIOSurface2D = CGLTexImageIOSurface2D;
 
-pub extern "OpenGL" fn ChoosePixelFormat(attribs: ?*PixelFormatAttribute, pix: ?*PixelFormatObj, npix: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLChoosePixelFormat(attribs: ?*PixelFormatAttribute, pix: ?*PixelFormatObj, npix: ?*GLint) callconv(.C) Error;
+pub const choosePixelFormat = CGLChoosePixelFormat;
 
-pub extern "OpenGL" fn DestroyPixelFormat(pix: PixelFormatObj) callconv(.C) Error;
+extern "OpenGL" fn CGLDestroyPixelFormat(pix: PixelFormatObj) callconv(.C) Error;
+pub const destroyPixelFormat = CGLDestroyPixelFormat;
 
-pub extern "OpenGL" fn DescribePixelFormat(pix: PixelFormatObj, pix_num: GLint, attrib: PixelFormatAttribute, value: ?*GLint, ) callconv(.C) Error;
+extern "OpenGL" fn CGLDescribePixelFormat(
+    pix: PixelFormatObj,
+    pix_num: GLint,
+    attrib: PixelFormatAttribute,
+    value: ?*GLint,
+) callconv(.C) Error;
+pub const describePixelFormat = CGLDescribePixelFormat;
 
-pub extern "OpenGL" fn ReleasePixelFormat(pix: PixelFormatObj) callconv(.C) void;
+extern "OpenGL" fn CGLReleasePixelFormat(pix: PixelFormatObj) callconv(.C) void;
+pub const releasePixelFormat = CGLReleasePixelFormat;
 
-pub extern "OpenGL" fn RetainPixelFormat(pix: PixelFormatObj) callconv(.C) PixelFormatObj;
+extern "OpenGL" fn CGLRetainPixelFormat(pix: PixelFormatObj) callconv(.C) PixelFormatObj;
+pub const retainPixelFormat = CGLRetainPixelFormat;
 
-pub extern "OpenGL" fn GetPixelFormatRetainCount(pix: PixelFormatObj) callconv(.C) GLuint;
+extern "OpenGL" fn CGLGetPixelFormatRetainCount(pix: PixelFormatObj) callconv(.C) GLuint;
+pub const getPixelFormatRetainCount = CGLGetPixelFormatRetainCount;
 
-pub extern "OpenGL" fn QueryRendererInfo(display_mask: GLuint, rend: ?*RendererInfoObj, nrend: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLQueryRendererInfo(display_mask: GLuint, rend: ?*RendererInfoObj, nrend: ?*GLint) callconv(.C) Error;
+pub const queryRendererInfo = CGLQueryRendererInfo;
 
-pub extern "OpenGL" fn DestroyRendererInfo(rend: RendererInfoObj) callconv(.C) Error;
+extern "OpenGL" fn CGLDestroyRendererInfo(rend: RendererInfoObj) callconv(.C) Error;
+pub const destroyRendererInfo = CGLDestroyRendererInfo;
 
-pub extern "OpenGL" fn DescribeRenderer(rend: RendererInfoObj, rend_num: GLint, prop: RendererProperty, value: ?*GLint, ) callconv(.C) Error;
+extern "OpenGL" fn CGLDescribeRenderer(
+    rend: RendererInfoObj,
+    rend_num: GLint,
+    prop: RendererProperty,
+    value: ?*GLint,
+) callconv(.C) Error;
+pub const describeRenderer = CGLDescribeRenderer;
 
-pub extern "OpenGL" fn CreateContext(pix: PixelFormatObj, share: ContextObj, ctx: ?*ContextObj) callconv(.C) Error;
+extern "OpenGL" fn CGLCreateContext(pix: PixelFormatObj, share: ContextObj, ctx: ?*ContextObj) callconv(.C) Error;
+pub const createContext = CGLCreateContext;
 
-pub extern "OpenGL" fn DestroyContext(ctx: ContextObj) callconv(.C) Error;
+extern "OpenGL" fn CGLDestroyContext(ctx: ContextObj) callconv(.C) Error;
+pub const destroyContext = CGLDestroyContext;
 
-pub extern "OpenGL" fn CopyContext(src: ContextObj, dst: ContextObj, mask: GLbitfield) callconv(.C) Error;
+extern "OpenGL" fn CGLCopyContext(src: ContextObj, dst: ContextObj, mask: GLbitfield) callconv(.C) Error;
+pub const copyContext = CGLCopyContext;
 
-pub extern "OpenGL" fn RetainContext(ctx: ContextObj) callconv(.C) ContextObj;
+extern "OpenGL" fn CGLRetainContext(ctx: ContextObj) callconv(.C) ContextObj;
+pub const retainContext = CGLRetainContext;
 
-pub extern "OpenGL" fn ReleaseContext(ctx: ContextObj) callconv(.C) void;
+extern "OpenGL" fn CGLReleaseContext(ctx: ContextObj) callconv(.C) void;
+pub const releaseContext = CGLReleaseContext;
 
-pub extern "OpenGL" fn GetContextRetainCount(ctx: ContextObj) callconv(.C) GLuint;
+extern "OpenGL" fn CGLGetContextRetainCount(ctx: ContextObj) callconv(.C) GLuint;
+pub const getContextRetainCount = CGLGetContextRetainCount;
 
-pub extern "OpenGL" fn GetPixelFormat(ctx: ContextObj) callconv(.C) PixelFormatObj;
+extern "OpenGL" fn CGLGetPixelFormat(ctx: ContextObj) callconv(.C) PixelFormatObj;
+pub const getPixelFormat = CGLGetPixelFormat;
 
-pub extern "OpenGL" fn CreatePBuffer(width: GLsizei, height: GLsizei, target: GLenum, internalFormat: GLenum, max_level: GLint, pbuffer: ?*PBufferObj, ) callconv(.C) Error;
+extern "OpenGL" fn CGLCreatePBuffer(
+    width: GLsizei,
+    height: GLsizei,
+    target: GLenum,
+    internalFormat: GLenum,
+    max_level: GLint,
+    pbuffer: ?*PBufferObj,
+) callconv(.C) Error;
+pub const createPBuffer = CGLCreatePBuffer;
 
-pub extern "OpenGL" fn DestroyPBuffer(pbuffer: PBufferObj) callconv(.C) Error;
+extern "OpenGL" fn CGLDestroyPBuffer(pbuffer: PBufferObj) callconv(.C) Error;
+pub const destroyPBuffer = CGLDestroyPBuffer;
 
-pub extern "OpenGL" fn DescribePBuffer(obj: PBufferObj, width: ?*GLsizei, height: ?*GLsizei, target: ?*GLenum, internalFormat: ?*GLenum, mipmap: ?*GLint, ) callconv(.C) Error;
+extern "OpenGL" fn CGLDescribePBuffer(
+    obj: PBufferObj,
+    width: ?*GLsizei,
+    height: ?*GLsizei,
+    target: ?*GLenum,
+    internalFormat: ?*GLenum,
+    mipmap: ?*GLint,
+) callconv(.C) Error;
+pub const describePBuffer = CGLDescribePBuffer;
 
-pub extern "OpenGL" fn TexImagePBuffer(ctx: ContextObj, pbuffer: PBufferObj, source: GLenum) callconv(.C) Error;
+extern "OpenGL" fn CGLTexImagePBuffer(ctx: ContextObj, pbuffer: PBufferObj, source: GLenum) callconv(.C) Error;
+pub const texImagePBuffer = CGLTexImagePBuffer;
 
-pub extern "OpenGL" fn RetainPBuffer(pbuffer: PBufferObj) callconv(.C) PBufferObj;
+extern "OpenGL" fn CGLRetainPBuffer(pbuffer: PBufferObj) callconv(.C) PBufferObj;
+pub const retainPBuffer = CGLRetainPBuffer;
 
-pub extern "OpenGL" fn ReleasePBuffer(pbuffer: PBufferObj) callconv(.C) void;
+extern "OpenGL" fn CGLReleasePBuffer(pbuffer: PBufferObj) callconv(.C) void;
+pub const releasePBuffer = CGLReleasePBuffer;
 
-pub extern "OpenGL" fn GetPBufferRetainCount(pbuffer: PBufferObj) callconv(.C) GLuint;
+extern "OpenGL" fn CGLGetPBufferRetainCount(pbuffer: PBufferObj) callconv(.C) GLuint;
+pub const getPBufferRetainCount = CGLGetPBufferRetainCount;
 
-pub extern "OpenGL" fn SetOffScreen(ctx: ContextObj, width: GLsizei, height: GLsizei, rowbytes: GLint, baseaddr: ?*anyopaque, ) callconv(.C) Error;
+extern "OpenGL" fn CGLSetOffScreen(
+    ctx: ContextObj,
+    width: GLsizei,
+    height: GLsizei,
+    rowbytes: GLint,
+    baseaddr: ?*anyopaque,
+) callconv(.C) Error;
+pub const setOffScreen = CGLSetOffScreen;
 
-pub extern "OpenGL" fn GetOffScreen(ctx: ContextObj, width: ?*GLsizei, height: ?*GLsizei, rowbytes: ?*GLint, baseaddr: ?*?*anyopaque, ) callconv(.C) Error;
+extern "OpenGL" fn CGLGetOffScreen(
+    ctx: ContextObj,
+    width: ?*GLsizei,
+    height: ?*GLsizei,
+    rowbytes: ?*GLint,
+    baseaddr: ?*?*anyopaque,
+) callconv(.C) Error;
+pub const getOffScreen = CGLGetOffScreen;
 
-pub extern "OpenGL" fn SetFullScreen(ctx: ContextObj) callconv(.C) Error;
+extern "OpenGL" fn CGLSetFullScreen(ctx: ContextObj) callconv(.C) Error;
+pub const setFullScreen = CGLSetFullScreen;
 
-pub extern "OpenGL" fn SetFullScreenOnDisplay(ctx: ContextObj, display_mask: GLuint) callconv(.C) Error;
+extern "OpenGL" fn CGLSetFullScreenOnDisplay(ctx: ContextObj, display_mask: GLuint) callconv(.C) Error;
+pub const setFullScreenOnDisplay = CGLSetFullScreenOnDisplay;
 
-pub extern "OpenGL" fn SetPBuffer(ctx: ContextObj, pbuffer: PBufferObj, face: GLenum, level: GLint, screen: GLint, ) callconv(.C) Error;
+extern "OpenGL" fn CGLSetPBuffer(
+    ctx: ContextObj,
+    pbuffer: PBufferObj,
+    face: GLenum,
+    level: GLint,
+    screen: GLint,
+) callconv(.C) Error;
+pub const setPBuffer = CGLSetPBuffer;
 
-pub extern "OpenGL" fn GetPBuffer(ctx: ContextObj, pbuffer: ?*PBufferObj, face: ?*GLenum, level: ?*GLint, screen: ?*GLint, ) callconv(.C) Error;
+extern "OpenGL" fn CGLGetPBuffer(
+    ctx: ContextObj,
+    pbuffer: ?*PBufferObj,
+    face: ?*GLenum,
+    level: ?*GLint,
+    screen: ?*GLint,
+) callconv(.C) Error;
+pub const getPBuffer = CGLGetPBuffer;
 
-pub extern "OpenGL" fn ClearDrawable(ctx: ContextObj) callconv(.C) Error;
+extern "OpenGL" fn CGLClearDrawable(ctx: ContextObj) callconv(.C) Error;
+pub const clearDrawable = CGLClearDrawable;
 
-pub extern "OpenGL" fn FlushDrawable(ctx: ContextObj) callconv(.C) Error;
+extern "OpenGL" fn CGLFlushDrawable(ctx: ContextObj) callconv(.C) Error;
+pub const flushDrawable = CGLFlushDrawable;
 
-pub extern "OpenGL" fn Enable(ctx: ContextObj, pname: ContextEnable) callconv(.C) Error;
+extern "OpenGL" fn CGLEnable(ctx: ContextObj, pname: ContextEnable) callconv(.C) Error;
+pub const enable = CGLEnable;
 
-pub extern "OpenGL" fn Disable(ctx: ContextObj, pname: ContextEnable) callconv(.C) Error;
+extern "OpenGL" fn CGLDisable(ctx: ContextObj, pname: ContextEnable) callconv(.C) Error;
+pub const disable = CGLDisable;
 
-pub extern "OpenGL" fn IsEnabled(ctx: ContextObj, pname: ContextEnable, enable: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLIsEnabled(ctx: ContextObj, pname: ContextEnable, enable: ?*GLint) callconv(.C) Error;
+pub const isEnabled = CGLIsEnabled;
 
-pub extern "OpenGL" fn SetParameter(ctx: ContextObj, pname: ContextParameter, params: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLSetParameter(ctx: ContextObj, pname: ContextParameter, params: ?*GLint) callconv(.C) Error;
+pub const setParameter = CGLSetParameter;
 
-pub extern "OpenGL" fn GetParameter(ctx: ContextObj, pname: ContextParameter, params: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLGetParameter(ctx: ContextObj, pname: ContextParameter, params: ?*GLint) callconv(.C) Error;
+pub const getParameter = CGLGetParameter;
 
-pub extern "OpenGL" fn SetVirtualScreen(ctx: ContextObj, screen: GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLSetVirtualScreen(ctx: ContextObj, screen: GLint) callconv(.C) Error;
+pub const setVirtualScreen = CGLSetVirtualScreen;
 
-pub extern "OpenGL" fn GetVirtualScreen(ctx: ContextObj, screen: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLGetVirtualScreen(ctx: ContextObj, screen: ?*GLint) callconv(.C) Error;
+pub const getVirtualScreen = CGLGetVirtualScreen;
 
-pub extern "OpenGL" fn UpdateContext(ctx: ContextObj) callconv(.C) Error;
+extern "OpenGL" fn CGLUpdateContext(ctx: ContextObj) callconv(.C) Error;
+pub const updateContext = CGLUpdateContext;
 
-pub extern "OpenGL" fn SetGlobalOption(pname: GlobalOption, params: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLSetGlobalOption(pname: GlobalOption, params: ?*GLint) callconv(.C) Error;
+pub const setGlobalOption = CGLSetGlobalOption;
 
-pub extern "OpenGL" fn GetGlobalOption(pname: GlobalOption, params: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLGetGlobalOption(pname: GlobalOption, params: ?*GLint) callconv(.C) Error;
+pub const getGlobalOption = CGLGetGlobalOption;
 
-pub extern "OpenGL" fn SetOption(pname: GlobalOption, param: GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLSetOption(pname: GlobalOption, param: GLint) callconv(.C) Error;
+pub const setOption = CGLSetOption;
 
-pub extern "OpenGL" fn GetOption(pname: GlobalOption, param: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLGetOption(pname: GlobalOption, param: ?*GLint) callconv(.C) Error;
+pub const getOption = CGLGetOption;
 
-pub extern "OpenGL" fn LockContext(ctx: ContextObj) callconv(.C) Error;
+extern "OpenGL" fn CGLLockContext(ctx: ContextObj) callconv(.C) Error;
+pub const lockContext = CGLLockContext;
 
-pub extern "OpenGL" fn UnlockContext(ctx: ContextObj) callconv(.C) Error;
+extern "OpenGL" fn CGLUnlockContext(ctx: ContextObj) callconv(.C) Error;
+pub const unlockContext = CGLUnlockContext;
 
-pub extern "OpenGL" fn GetVersion(majorvers: ?*GLint, minorvers: ?*GLint) callconv(.C) void;
+extern "OpenGL" fn CGLGetVersion(majorvers: ?*GLint, minorvers: ?*GLint) callconv(.C) void;
+pub const getVersion = CGLGetVersion;
 
-pub extern "OpenGL" fn ErrorString(@"error": Error) callconv(.C) ?*i8;
-
+extern "OpenGL" fn CGLErrorString(@"error": Error) callconv(.C) ?*i8;
+pub const errorString = CGLErrorString;

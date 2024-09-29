@@ -6,7 +6,7 @@ const foundation = @import("foundation.zig"); // Framework dependency Foundation
 
 /// https://developer.apple.com/documentation/CloudKit/CKAsset?language=objc
 pub const Asset = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKAsset", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKAsset", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -15,22 +15,173 @@ pub const Asset = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithFileURL(self: *@This(), fileURL: ?*foundation.URL) *@This() {
-        return objc.msgSend(self, "initWithFileURL:", *@This(), .{fileURL});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn fileURL(self: *@This()) ?*foundation.URL {
-        return objc.msgSend(self, "fileURL", ?*foundation.URL, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithFileURL(_self: *@This(), _fileURL: ?*foundation.URL) *@This() {
+        return objc.msgSend(_self, "initWithFileURL:", *@This(), .{_fileURL});
+    }
+
+    pub fn fileURL(_self: *@This()) ?*foundation.URL {
+        return objc.msgSend(_self, "fileURL", ?*foundation.URL, .{});
+    }
 };
 
 pub const ReferenceAction = enum(objc.NSUInteger) {
@@ -40,7 +191,10 @@ pub const ReferenceAction = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKReference?language=objc
 pub const Reference = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKReference", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKReference", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -49,30 +203,193 @@ pub const Reference = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithRecordIDAction(self: *@This(), recordID: ?*RecordID, action: ReferenceAction) *@This() {
-        return objc.msgSend(self, "initWithRecordID:action:", *@This(), .{recordID, action});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithRecordAction(self: *@This(), record: ?*Record, action: ReferenceAction) *@This() {
-        return objc.msgSend(self, "initWithRecord:action:", *@This(), .{record, action});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn referenceAction(self: *@This()) ReferenceAction {
-        return objc.msgSend(self, "referenceAction", ReferenceAction, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn recordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "recordID", ?*RecordID, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithRecordIDAction(_self: *@This(), _recordID: ?*RecordID, _action: ReferenceAction) *@This() {
+        return objc.msgSend(_self, "initWithRecordID:action:", *@This(), .{ _recordID, _action });
+    }
+
+    pub fn initWithRecordAction(_self: *@This(), _record: ?*Record, _action: ReferenceAction) *@This() {
+        return objc.msgSend(_self, "initWithRecord:action:", *@This(), .{ _record, _action });
+    }
+
+    pub fn referenceAction(_self: *@This()) ReferenceAction {
+        return objc.msgSend(_self, "referenceAction", ReferenceAction, .{});
+    }
+
+    pub fn recordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "recordID", ?*RecordID, .{});
+    }
 };
 
 pub const RecordType = ?*foundation.String;
@@ -81,16 +398,89 @@ pub const RecordFieldKey = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordValue?language=objc
 pub const RecordValue = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecord?language=objc
 pub const Record = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKRecord", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKRecord", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -99,140 +489,372 @@ pub const Record = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithRecordType(self: *@This(), recordType: RecordType) *@This() {
-        return objc.msgSend(self, "initWithRecordType:", *@This(), .{recordType});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithRecordTypeRecordID(self: *@This(), recordType: RecordType, recordID: ?*RecordID) *@This() {
-        return objc.msgSend(self, "initWithRecordType:recordID:", *@This(), .{recordType, recordID});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn initWithRecordTypeZoneID(self: *@This(), recordType: RecordType, zoneID: ?*RecordZoneID) *@This() {
-        return objc.msgSend(self, "initWithRecordType:zoneID:", *@This(), .{recordType, zoneID});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn objectForKey(self: *@This(), key: RecordFieldKey) ?*anyopaque {
-        return objc.msgSend(self, "objectForKey:", ?*anyopaque, .{key});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setObjectForKey(self: *@This(), object: ?*anyopaque, key: RecordFieldKey) void {
-        return objc.msgSend(self, "setObject:forKey:", void, .{object, key});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn allKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "allKeys", ?*anyopaque, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn allTokens(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "allTokens", ?*anyopaque, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn objectForKeyedSubscript(self: *@This(), key: RecordFieldKey) ?*anyopaque {
-        return objc.msgSend(self, "objectForKeyedSubscript:", ?*anyopaque, .{key});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setObjectForKeyedSubscript(self: *@This(), object: ?*anyopaque, key: RecordFieldKey) void {
-        return objc.msgSend(self, "setObject:forKeyedSubscript:", void, .{object, key});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn changedKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "changedKeys", ?*anyopaque, .{});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn encodeSystemFieldsWithCoder(self: *@This(), coder: ?*foundation.Coder) void {
-        return objc.msgSend(self, "encodeSystemFieldsWithCoder:", void, .{coder});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn setParentReferenceFromRecord(self: *@This(), parentRecord: ?*Record) void {
-        return objc.msgSend(self, "setParentReferenceFromRecord:", void, .{parentRecord});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setParentReferenceFromRecordID(self: *@This(), parentRecordID: ?*RecordID) void {
-        return objc.msgSend(self, "setParentReferenceFromRecordID:", void, .{parentRecordID});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn recordType(self: *@This()) RecordType {
-        return objc.msgSend(self, "recordType", RecordType, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn recordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "recordID", ?*RecordID, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn recordChangeTag(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "recordChangeTag", ?*NSString, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn creatorUserRecordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "creatorUserRecordID", ?*RecordID, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn creationDate(self: *@This()) ?*foundation.Date {
-        return objc.msgSend(self, "creationDate", ?*foundation.Date, .{});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn lastModifiedUserRecordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "lastModifiedUserRecordID", ?*RecordID, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn modificationDate(self: *@This()) ?*foundation.Date {
-        return objc.msgSend(self, "modificationDate", ?*foundation.Date, .{});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn share(self: *@This()) ?*Reference {
-        return objc.msgSend(self, "share", ?*Reference, .{});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn parent(self: *@This()) ?*Reference {
-        return objc.msgSend(self, "parent", ?*Reference, .{});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn setParent(self: *@This(), parent: ?*Reference) void {
-        return objc.msgSend(self, "setParent:", void, .{parent});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithRecordType(_self: *@This(), _recordType: RecordType) *@This() {
+        return objc.msgSend(_self, "initWithRecordType:", *@This(), .{_recordType});
+    }
+
+    pub fn initWithRecordTypeRecordID(_self: *@This(), _recordType: RecordType, _recordID: ?*RecordID) *@This() {
+        return objc.msgSend(_self, "initWithRecordType:recordID:", *@This(), .{ _recordType, _recordID });
+    }
+
+    pub fn initWithRecordTypeZoneID(_self: *@This(), _recordType: RecordType, _zoneID: ?*RecordZoneID) *@This() {
+        return objc.msgSend(_self, "initWithRecordType:zoneID:", *@This(), .{ _recordType, _zoneID });
+    }
+
+    pub fn objectForKey(_self: *@This(), _key: RecordFieldKey) ?*anyopaque {
+        return objc.msgSend(_self, "objectForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn setObjectForKey(_self: *@This(), _object: ?*anyopaque, _key: RecordFieldKey) void {
+        return objc.msgSend(_self, "setObject:forKey:", void, .{ _object, _key });
+    }
+
+    pub fn allKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "allKeys", ?*anyopaque, .{});
+    }
+
+    pub fn allTokens(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "allTokens", ?*anyopaque, .{});
+    }
+
+    pub fn objectForKeyedSubscript(_self: *@This(), _key: RecordFieldKey) ?*anyopaque {
+        return objc.msgSend(_self, "objectForKeyedSubscript:", ?*anyopaque, .{_key});
+    }
+
+    pub fn setObjectForKeyedSubscript(_self: *@This(), _object: ?*anyopaque, _key: RecordFieldKey) void {
+        return objc.msgSend(_self, "setObject:forKeyedSubscript:", void, .{ _object, _key });
+    }
+
+    pub fn changedKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "changedKeys", ?*anyopaque, .{});
+    }
+
+    pub fn encodeSystemFieldsWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeSystemFieldsWithCoder:", void, .{_coder});
+    }
+
+    pub fn setParentReferenceFromRecord(_self: *@This(), _parentRecord: ?*Record) void {
+        return objc.msgSend(_self, "setParentReferenceFromRecord:", void, .{_parentRecord});
+    }
+
+    pub fn setParentReferenceFromRecordID(_self: *@This(), _parentRecordID: ?*RecordID) void {
+        return objc.msgSend(_self, "setParentReferenceFromRecordID:", void, .{_parentRecordID});
+    }
+
+    pub fn recordType(_self: *@This()) RecordType {
+        return objc.msgSend(_self, "recordType", RecordType, .{});
+    }
+
+    pub fn recordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "recordID", ?*RecordID, .{});
+    }
+
+    pub fn recordChangeTag(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "recordChangeTag", ?*NSString, .{});
+    }
+
+    pub fn creatorUserRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "creatorUserRecordID", ?*RecordID, .{});
+    }
+
+    pub fn creationDate(_self: *@This()) ?*foundation.Date {
+        return objc.msgSend(_self, "creationDate", ?*foundation.Date, .{});
+    }
+
+    pub fn lastModifiedUserRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "lastModifiedUserRecordID", ?*RecordID, .{});
+    }
+
+    pub fn modificationDate(_self: *@This()) ?*foundation.Date {
+        return objc.msgSend(_self, "modificationDate", ?*foundation.Date, .{});
+    }
+
+    pub fn share(_self: *@This()) ?*Reference {
+        return objc.msgSend(_self, "share", ?*Reference, .{});
+    }
+
+    pub fn parent(_self: *@This()) ?*Reference {
+        return objc.msgSend(_self, "parent", ?*Reference, .{});
+    }
+
+    pub fn setParent(_self: *@This(), _parent: ?*Reference) void {
+        return objc.msgSend(_self, "setParent:", void, .{_parent});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordKeyValueSetting?language=objc
 pub const RecordKeyValueSetting = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn objectForKey(self: *@This(), key: RecordFieldKey) ?*anyopaque {
-        return objc.msgSend(self, "objectForKey:", ?*anyopaque, .{key});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn setObjectForKey(self: *@This(), object: ?*anyopaque, key: RecordFieldKey) void {
-        return objc.msgSend(self, "setObject:forKey:", void, .{object, key});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn objectForKeyedSubscript(self: *@This(), key: RecordFieldKey) ?*anyopaque {
-        return objc.msgSend(self, "objectForKeyedSubscript:", ?*anyopaque, .{key});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setObjectForKeyedSubscript(self: *@This(), object: ?*anyopaque, key: RecordFieldKey) void {
-        return objc.msgSend(self, "setObject:forKeyedSubscript:", void, .{object, key});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn allKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "allKeys", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn changedKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "changedKeys", ?*anyopaque, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn objectForKey(_self: *@This(), _key: RecordFieldKey) ?*anyopaque {
+        return objc.msgSend(_self, "objectForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn setObjectForKey(_self: *@This(), _object: ?*anyopaque, _key: RecordFieldKey) void {
+        return objc.msgSend(_self, "setObject:forKey:", void, .{ _object, _key });
+    }
+
+    pub fn objectForKeyedSubscript(_self: *@This(), _key: RecordFieldKey) ?*anyopaque {
+        return objc.msgSend(_self, "objectForKeyedSubscript:", ?*anyopaque, .{_key});
+    }
+
+    pub fn setObjectForKeyedSubscript(_self: *@This(), _object: ?*anyopaque, _key: RecordFieldKey) void {
+        return objc.msgSend(_self, "setObject:forKeyedSubscript:", void, .{ _object, _key });
+    }
+
+    pub fn allKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "allKeys", ?*anyopaque, .{});
+    }
+
+    pub fn changedKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "changedKeys", ?*anyopaque, .{});
+    }
 };
 
 pub const SubscriptionType = enum(objc.NSInteger) {
@@ -245,7 +867,10 @@ pub const SubscriptionID = ?*NSString;
 
 /// https://developer.apple.com/documentation/CloudKit/CKSubscription?language=objc
 pub const Subscription = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSubscription", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSubscription", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -254,30 +879,193 @@ pub const Subscription = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn subscriptionID(self: *@This()) SubscriptionID {
-        return objc.msgSend(self, "subscriptionID", SubscriptionID, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn subscriptionType(self: *@This()) SubscriptionType {
-        return objc.msgSend(self, "subscriptionType", SubscriptionType, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn notificationInfo(self: *@This()) ?*NotificationInfo {
-        return objc.msgSend(self, "notificationInfo", ?*NotificationInfo, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setNotificationInfo(self: *@This(), notificationInfo: ?*NotificationInfo) void {
-        return objc.msgSend(self, "setNotificationInfo:", void, .{notificationInfo});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn subscriptionID(_self: *@This()) SubscriptionID {
+        return objc.msgSend(_self, "subscriptionID", SubscriptionID, .{});
+    }
+
+    pub fn subscriptionType(_self: *@This()) SubscriptionType {
+        return objc.msgSend(_self, "subscriptionType", SubscriptionType, .{});
+    }
+
+    pub fn notificationInfo(_self: *@This()) ?*NotificationInfo {
+        return objc.msgSend(_self, "notificationInfo", ?*NotificationInfo, .{});
+    }
+
+    pub fn setNotificationInfo(_self: *@This(), _notificationInfo: ?*NotificationInfo) void {
+        return objc.msgSend(_self, "setNotificationInfo:", void, .{_notificationInfo});
+    }
 };
 
 pub const QuerySubscriptionOptions = enum(objc.NSUInteger) {
@@ -289,7 +1077,10 @@ pub const QuerySubscriptionOptions = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKQuerySubscription?language=objc
 pub const QuerySubscription = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKQuerySubscription", @This(), Subscription, &.{});
+    pub const InternalInfo = objc.ExternClass("CKQuerySubscription", @This(), Subscription, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -298,43 +1089,240 @@ pub const QuerySubscription = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithRecordTypePredicateOptions(self: *@This(), recordType: RecordType, predicate: ?*foundation.Predicate, querySubscriptionOptions: QuerySubscriptionOptions) *@This() {
-        return objc.msgSend(self, "initWithRecordType:predicate:options:", *@This(), .{recordType, predicate, querySubscriptionOptions});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithRecordTypePredicateSubscriptionIDOptions(self: *@This(), recordType: RecordType, predicate: ?*foundation.Predicate, subscriptionID: SubscriptionID, querySubscriptionOptions: QuerySubscriptionOptions, ) *@This() {
-        return objc.msgSend(self, "initWithRecordType:predicate:subscriptionID:options:", *@This(), .{recordType, predicate, subscriptionID, querySubscriptionOptions, });
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithCoder(self: *@This(), aDecoder: ?*foundation.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{aDecoder});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn recordType(self: *@This()) RecordType {
-        return objc.msgSend(self, "recordType", RecordType, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn predicate(self: *@This()) ?*foundation.Predicate {
-        return objc.msgSend(self, "predicate", ?*foundation.Predicate, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn zoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "zoneID", ?*RecordZoneID, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setZoneID(self: *@This(), zoneID: ?*RecordZoneID) void {
-        return objc.msgSend(self, "setZoneID:", void, .{zoneID});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn querySubscriptionOptions(self: *@This()) QuerySubscriptionOptions {
-        return objc.msgSend(self, "querySubscriptionOptions", QuerySubscriptionOptions, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn subscriptionID(_self: *@This()) SubscriptionID {
+        return objc.msgSend(_self, "subscriptionID", SubscriptionID, .{});
+    }
+
+    pub fn subscriptionType(_self: *@This()) SubscriptionType {
+        return objc.msgSend(_self, "subscriptionType", SubscriptionType, .{});
+    }
+
+    pub fn notificationInfo(_self: *@This()) ?*NotificationInfo {
+        return objc.msgSend(_self, "notificationInfo", ?*NotificationInfo, .{});
+    }
+
+    pub fn setNotificationInfo(_self: *@This(), _notificationInfo: ?*NotificationInfo) void {
+        return objc.msgSend(_self, "setNotificationInfo:", void, .{_notificationInfo});
+    }
+
+    pub fn initWithRecordTypePredicateOptions(_self: *@This(), _recordType: RecordType, _predicate: ?*foundation.Predicate, _querySubscriptionOptions: QuerySubscriptionOptions) *@This() {
+        return objc.msgSend(_self, "initWithRecordType:predicate:options:", *@This(), .{ _recordType, _predicate, _querySubscriptionOptions });
+    }
+
+    pub fn initWithRecordTypePredicateSubscriptionIDOptions(
+        _self: *@This(),
+        _recordType: RecordType,
+        _predicate: ?*foundation.Predicate,
+        _subscriptionID: SubscriptionID,
+        _querySubscriptionOptions: QuerySubscriptionOptions,
+    ) *@This() {
+        return objc.msgSend(_self, "initWithRecordType:predicate:subscriptionID:options:", *@This(), .{
+            _recordType,
+            _predicate,
+            _subscriptionID,
+            _querySubscriptionOptions,
+        });
+    }
+
+    pub fn recordType(_self: *@This()) RecordType {
+        return objc.msgSend(_self, "recordType", RecordType, .{});
+    }
+
+    pub fn predicate(_self: *@This()) ?*foundation.Predicate {
+        return objc.msgSend(_self, "predicate", ?*foundation.Predicate, .{});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn setZoneID(_self: *@This(), _zoneID: ?*RecordZoneID) void {
+        return objc.msgSend(_self, "setZoneID:", void, .{_zoneID});
+    }
+
+    pub fn querySubscriptionOptions(_self: *@This()) QuerySubscriptionOptions {
+        return objc.msgSend(_self, "querySubscriptionOptions", QuerySubscriptionOptions, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription?language=objc
 pub const RecordZoneSubscription = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKRecordZoneSubscription", @This(), Subscription, &.{});
+    pub const InternalInfo = objc.ExternClass("CKRecordZoneSubscription", @This(), Subscription, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -343,35 +1331,221 @@ pub const RecordZoneSubscription = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithZoneID(self: *@This(), zoneID: ?*RecordZoneID) *@This() {
-        return objc.msgSend(self, "initWithZoneID:", *@This(), .{zoneID});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithZoneIDSubscriptionID(self: *@This(), zoneID: ?*RecordZoneID, subscriptionID: SubscriptionID) *@This() {
-        return objc.msgSend(self, "initWithZoneID:subscriptionID:", *@This(), .{zoneID, subscriptionID});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithCoder(self: *@This(), aDecoder: ?*foundation.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{aDecoder});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn zoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "zoneID", ?*RecordZoneID, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn recordType(self: *@This()) RecordType {
-        return objc.msgSend(self, "recordType", RecordType, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setRecordType(self: *@This(), recordType: RecordType) void {
-        return objc.msgSend(self, "setRecordType:", void, .{recordType});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn subscriptionID(_self: *@This()) SubscriptionID {
+        return objc.msgSend(_self, "subscriptionID", SubscriptionID, .{});
+    }
+
+    pub fn subscriptionType(_self: *@This()) SubscriptionType {
+        return objc.msgSend(_self, "subscriptionType", SubscriptionType, .{});
+    }
+
+    pub fn notificationInfo(_self: *@This()) ?*NotificationInfo {
+        return objc.msgSend(_self, "notificationInfo", ?*NotificationInfo, .{});
+    }
+
+    pub fn setNotificationInfo(_self: *@This(), _notificationInfo: ?*NotificationInfo) void {
+        return objc.msgSend(_self, "setNotificationInfo:", void, .{_notificationInfo});
+    }
+
+    pub fn initWithZoneID(_self: *@This(), _zoneID: ?*RecordZoneID) *@This() {
+        return objc.msgSend(_self, "initWithZoneID:", *@This(), .{_zoneID});
+    }
+
+    pub fn initWithZoneIDSubscriptionID(_self: *@This(), _zoneID: ?*RecordZoneID, _subscriptionID: SubscriptionID) *@This() {
+        return objc.msgSend(_self, "initWithZoneID:subscriptionID:", *@This(), .{ _zoneID, _subscriptionID });
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn recordType(_self: *@This()) RecordType {
+        return objc.msgSend(_self, "recordType", RecordType, .{});
+    }
+
+    pub fn setRecordType(_self: *@This(), _recordType: RecordType) void {
+        return objc.msgSend(_self, "setRecordType:", void, .{_recordType});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription?language=objc
 pub const DatabaseSubscription = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKDatabaseSubscription", @This(), Subscription, &.{});
+    pub const InternalInfo = objc.ExternClass("CKDatabaseSubscription", @This(), Subscription, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -380,35 +1554,213 @@ pub const DatabaseSubscription = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithSubscriptionID(self: *@This(), subscriptionID: SubscriptionID) *@This() {
-        return objc.msgSend(self, "initWithSubscriptionID:", *@This(), .{subscriptionID});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithCoder(self: *@This(), aDecoder: ?*foundation.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{aDecoder});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn recordType(self: *@This()) RecordType {
-        return objc.msgSend(self, "recordType", RecordType, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setRecordType(self: *@This(), recordType: RecordType) void {
-        return objc.msgSend(self, "setRecordType:", void, .{recordType});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn subscriptionID(_self: *@This()) SubscriptionID {
+        return objc.msgSend(_self, "subscriptionID", SubscriptionID, .{});
+    }
+
+    pub fn subscriptionType(_self: *@This()) SubscriptionType {
+        return objc.msgSend(_self, "subscriptionType", SubscriptionType, .{});
+    }
+
+    pub fn notificationInfo(_self: *@This()) ?*NotificationInfo {
+        return objc.msgSend(_self, "notificationInfo", ?*NotificationInfo, .{});
+    }
+
+    pub fn setNotificationInfo(_self: *@This(), _notificationInfo: ?*NotificationInfo) void {
+        return objc.msgSend(_self, "setNotificationInfo:", void, .{_notificationInfo});
+    }
+
+    pub fn initWithSubscriptionID(_self: *@This(), _subscriptionID: SubscriptionID) *@This() {
+        return objc.msgSend(_self, "initWithSubscriptionID:", *@This(), .{_subscriptionID});
+    }
+
+    pub fn recordType(_self: *@This()) RecordType {
+        return objc.msgSend(_self, "recordType", RecordType, .{});
+    }
+
+    pub fn setRecordType(_self: *@This(), _recordType: RecordType) void {
+        return objc.msgSend(_self, "setRecordType:", void, .{_recordType});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKNotificationInfo?language=objc
 pub const NotificationInfo = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKNotificationInfo", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKNotificationInfo", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -417,150 +1769,321 @@ pub const NotificationInfo = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn alertBody(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "alertBody", ?*NSString, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn setAlertBody(self: *@This(), alertBody: ?*NSString) void {
-        return objc.msgSend(self, "setAlertBody:", void, .{alertBody});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn alertLocalizationKey(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "alertLocalizationKey", ?*NSString, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setAlertLocalizationKey(self: *@This(), alertLocalizationKey: ?*NSString) void {
-        return objc.msgSend(self, "setAlertLocalizationKey:", void, .{alertLocalizationKey});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn alertLocalizationArgs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "alertLocalizationArgs", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setAlertLocalizationArgs(self: *@This(), alertLocalizationArgs: ?*anyopaque) void {
-        return objc.msgSend(self, "setAlertLocalizationArgs:", void, .{alertLocalizationArgs});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn title(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "title", ?*NSString, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setTitle(self: *@This(), title: ?*NSString) void {
-        return objc.msgSend(self, "setTitle:", void, .{title});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn titleLocalizationKey(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "titleLocalizationKey", ?*NSString, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setTitleLocalizationKey(self: *@This(), titleLocalizationKey: ?*NSString) void {
-        return objc.msgSend(self, "setTitleLocalizationKey:", void, .{titleLocalizationKey});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn titleLocalizationArgs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "titleLocalizationArgs", ?*anyopaque, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setTitleLocalizationArgs(self: *@This(), titleLocalizationArgs: ?*anyopaque) void {
-        return objc.msgSend(self, "setTitleLocalizationArgs:", void, .{titleLocalizationArgs});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn subtitle(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "subtitle", ?*NSString, .{});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn setSubtitle(self: *@This(), subtitle: ?*NSString) void {
-        return objc.msgSend(self, "setSubtitle:", void, .{subtitle});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn subtitleLocalizationKey(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "subtitleLocalizationKey", ?*NSString, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setSubtitleLocalizationKey(self: *@This(), subtitleLocalizationKey: ?*NSString) void {
-        return objc.msgSend(self, "setSubtitleLocalizationKey:", void, .{subtitleLocalizationKey});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn subtitleLocalizationArgs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "subtitleLocalizationArgs", ?*anyopaque, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setSubtitleLocalizationArgs(self: *@This(), subtitleLocalizationArgs: ?*anyopaque) void {
-        return objc.msgSend(self, "setSubtitleLocalizationArgs:", void, .{subtitleLocalizationArgs});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn alertActionLocalizationKey(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "alertActionLocalizationKey", ?*NSString, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setAlertActionLocalizationKey(self: *@This(), alertActionLocalizationKey: ?*NSString) void {
-        return objc.msgSend(self, "setAlertActionLocalizationKey:", void, .{alertActionLocalizationKey});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn alertLaunchImage(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "alertLaunchImage", ?*NSString, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn setAlertLaunchImage(self: *@This(), alertLaunchImage: ?*NSString) void {
-        return objc.msgSend(self, "setAlertLaunchImage:", void, .{alertLaunchImage});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn soundName(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "soundName", ?*NSString, .{});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn setSoundName(self: *@This(), soundName: ?*NSString) void {
-        return objc.msgSend(self, "setSoundName:", void, .{soundName});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn desiredKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "desiredKeys", ?*anyopaque, .{});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn setDesiredKeys(self: *@This(), desiredKeys: ?*anyopaque) void {
-        return objc.msgSend(self, "setDesiredKeys:", void, .{desiredKeys});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn shouldBadge(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "shouldBadge", objc.BOOL, .{});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn setShouldBadge(self: *@This(), shouldBadge: objc.BOOL) void {
-        return objc.msgSend(self, "setShouldBadge:", void, .{shouldBadge});
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn shouldSendContentAvailable(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "shouldSendContentAvailable", objc.BOOL, .{});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn setShouldSendContentAvailable(self: *@This(), shouldSendContentAvailable: objc.BOOL) void {
-        return objc.msgSend(self, "setShouldSendContentAvailable:", void, .{shouldSendContentAvailable});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn shouldSendMutableContent(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "shouldSendMutableContent", objc.BOOL, .{});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn setShouldSendMutableContent(self: *@This(), shouldSendMutableContent: objc.BOOL) void {
-        return objc.msgSend(self, "setShouldSendMutableContent:", void, .{shouldSendMutableContent});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn category(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "category", ?*NSString, .{});
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn setCategory(self: *@This(), category: ?*NSString) void {
-        return objc.msgSend(self, "setCategory:", void, .{category});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn collapseIDKey(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "collapseIDKey", ?*NSString, .{});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn setCollapseIDKey(self: *@This(), collapseIDKey: ?*NSString) void {
-        return objc.msgSend(self, "setCollapseIDKey:", void, .{collapseIDKey});
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
     }
 
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn alertBody(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "alertBody", ?*NSString, .{});
+    }
+
+    pub fn setAlertBody(_self: *@This(), _alertBody: ?*NSString) void {
+        return objc.msgSend(_self, "setAlertBody:", void, .{_alertBody});
+    }
+
+    pub fn alertLocalizationKey(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "alertLocalizationKey", ?*NSString, .{});
+    }
+
+    pub fn setAlertLocalizationKey(_self: *@This(), _alertLocalizationKey: ?*NSString) void {
+        return objc.msgSend(_self, "setAlertLocalizationKey:", void, .{_alertLocalizationKey});
+    }
+
+    pub fn alertLocalizationArgs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "alertLocalizationArgs", ?*anyopaque, .{});
+    }
+
+    pub fn setAlertLocalizationArgs(_self: *@This(), _alertLocalizationArgs: ?*anyopaque) void {
+        return objc.msgSend(_self, "setAlertLocalizationArgs:", void, .{_alertLocalizationArgs});
+    }
+
+    pub fn title(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "title", ?*NSString, .{});
+    }
+
+    pub fn setTitle(_self: *@This(), _title: ?*NSString) void {
+        return objc.msgSend(_self, "setTitle:", void, .{_title});
+    }
+
+    pub fn titleLocalizationKey(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "titleLocalizationKey", ?*NSString, .{});
+    }
+
+    pub fn setTitleLocalizationKey(_self: *@This(), _titleLocalizationKey: ?*NSString) void {
+        return objc.msgSend(_self, "setTitleLocalizationKey:", void, .{_titleLocalizationKey});
+    }
+
+    pub fn titleLocalizationArgs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "titleLocalizationArgs", ?*anyopaque, .{});
+    }
+
+    pub fn setTitleLocalizationArgs(_self: *@This(), _titleLocalizationArgs: ?*anyopaque) void {
+        return objc.msgSend(_self, "setTitleLocalizationArgs:", void, .{_titleLocalizationArgs});
+    }
+
+    pub fn subtitle(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "subtitle", ?*NSString, .{});
+    }
+
+    pub fn setSubtitle(_self: *@This(), _subtitle: ?*NSString) void {
+        return objc.msgSend(_self, "setSubtitle:", void, .{_subtitle});
+    }
+
+    pub fn subtitleLocalizationKey(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "subtitleLocalizationKey", ?*NSString, .{});
+    }
+
+    pub fn setSubtitleLocalizationKey(_self: *@This(), _subtitleLocalizationKey: ?*NSString) void {
+        return objc.msgSend(_self, "setSubtitleLocalizationKey:", void, .{_subtitleLocalizationKey});
+    }
+
+    pub fn subtitleLocalizationArgs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "subtitleLocalizationArgs", ?*anyopaque, .{});
+    }
+
+    pub fn setSubtitleLocalizationArgs(_self: *@This(), _subtitleLocalizationArgs: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSubtitleLocalizationArgs:", void, .{_subtitleLocalizationArgs});
+    }
+
+    pub fn alertActionLocalizationKey(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "alertActionLocalizationKey", ?*NSString, .{});
+    }
+
+    pub fn setAlertActionLocalizationKey(_self: *@This(), _alertActionLocalizationKey: ?*NSString) void {
+        return objc.msgSend(_self, "setAlertActionLocalizationKey:", void, .{_alertActionLocalizationKey});
+    }
+
+    pub fn alertLaunchImage(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "alertLaunchImage", ?*NSString, .{});
+    }
+
+    pub fn setAlertLaunchImage(_self: *@This(), _alertLaunchImage: ?*NSString) void {
+        return objc.msgSend(_self, "setAlertLaunchImage:", void, .{_alertLaunchImage});
+    }
+
+    pub fn soundName(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "soundName", ?*NSString, .{});
+    }
+
+    pub fn setSoundName(_self: *@This(), _soundName: ?*NSString) void {
+        return objc.msgSend(_self, "setSoundName:", void, .{_soundName});
+    }
+
+    pub fn desiredKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "desiredKeys", ?*anyopaque, .{});
+    }
+
+    pub fn setDesiredKeys(_self: *@This(), _desiredKeys: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDesiredKeys:", void, .{_desiredKeys});
+    }
+
+    pub fn shouldBadge(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldBadge", objc.BOOL, .{});
+    }
+
+    pub fn setShouldBadge(_self: *@This(), _shouldBadge: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldBadge:", void, .{_shouldBadge});
+    }
+
+    pub fn shouldSendContentAvailable(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldSendContentAvailable", objc.BOOL, .{});
+    }
+
+    pub fn setShouldSendContentAvailable(_self: *@This(), _shouldSendContentAvailable: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldSendContentAvailable:", void, .{_shouldSendContentAvailable});
+    }
+
+    pub fn shouldSendMutableContent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldSendMutableContent", objc.BOOL, .{});
+    }
+
+    pub fn setShouldSendMutableContent(_self: *@This(), _shouldSendMutableContent: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldSendMutableContent:", void, .{_shouldSendMutableContent});
+    }
+
+    pub fn category(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "category", ?*NSString, .{});
+    }
+
+    pub fn setCategory(_self: *@This(), _category: ?*NSString) void {
+        return objc.msgSend(_self, "setCategory:", void, .{_category});
+    }
+
+    pub fn collapseIDKey(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "collapseIDKey", ?*NSString, .{});
+    }
+
+    pub fn setCollapseIDKey(_self: *@This(), _collapseIDKey: ?*NSString) void {
+        return objc.msgSend(_self, "setCollapseIDKey:", void, .{_collapseIDKey});
+    }
 };
 
 pub const DatabaseScope = enum(objc.NSInteger) {
@@ -571,7 +2094,7 @@ pub const DatabaseScope = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKDatabase?language=objc
 pub const Database = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKDatabase", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKDatabase", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -580,29 +2103,180 @@ pub const Database = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn addOperation(self: *@This(), operation: ?*DatabaseOperation) void {
-        return objc.msgSend(self, "addOperation:", void, .{operation});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn databaseScope(self: *@This()) DatabaseScope {
-        return objc.msgSend(self, "databaseScope", DatabaseScope, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn addOperation(_self: *@This(), _operation: ?*DatabaseOperation) void {
+        return objc.msgSend(_self, "addOperation:", void, .{_operation});
+    }
+
+    pub fn databaseScope(_self: *@This()) DatabaseScope {
+        return objc.msgSend(_self, "databaseScope", DatabaseScope, .{});
+    }
 };
 
 pub const OperationID = ?*NSString;
 
 /// https://developer.apple.com/documentation/CloudKit/CKOperation?language=objc
 pub const Operation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKOperation", @This(), NSOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKOperation", @This(), NSOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -611,43 +2285,290 @@ pub const Operation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn configuration(self: *@This()) ?*OperationConfiguration {
-        return objc.msgSend(self, "configuration", ?*OperationConfiguration, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setConfiguration(self: *@This(), configuration: ?*OperationConfiguration) void {
-        return objc.msgSend(self, "setConfiguration:", void, .{configuration});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn group(self: *@This()) ?*OperationGroup {
-        return objc.msgSend(self, "group", ?*OperationGroup, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setGroup(self: *@This(), group: ?*OperationGroup) void {
-        return objc.msgSend(self, "setGroup:", void, .{group});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn operationID(self: *@This()) OperationID {
-        return objc.msgSend(self, "operationID", OperationID, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn longLivedOperationWasPersistedBlock(self: *@This()) *const fn() callconv(.C) void {
-        return objc.msgSend(self, "longLivedOperationWasPersistedBlock", *const fn() callconv(.C) void, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setLongLivedOperationWasPersistedBlock(self: *@This(), longLivedOperationWasPersistedBlock: *const fn() callconv(.C) void) void {
-        return objc.msgSend(self, "setLongLivedOperationWasPersistedBlock:", void, .{longLivedOperationWasPersistedBlock});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKOperationConfiguration?language=objc
 pub const OperationConfiguration = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKOperationConfiguration", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKOperationConfiguration", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -656,59 +2577,218 @@ pub const OperationConfiguration = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn container(self: *@This()) ?*Container {
-        return objc.msgSend(self, "container", ?*Container, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn setContainer(self: *@This(), container: ?*Container) void {
-        return objc.msgSend(self, "setContainer:", void, .{container});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn qualityOfService(self: *@This()) foundation.QualityOfService {
-        return objc.msgSend(self, "qualityOfService", foundation.QualityOfService, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setQualityOfService(self: *@This(), qualityOfService: foundation.QualityOfService) void {
-        return objc.msgSend(self, "setQualityOfService:", void, .{qualityOfService});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn allowsCellularAccess(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "allowsCellularAccess", objc.BOOL, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setAllowsCellularAccess(self: *@This(), allowsCellularAccess: objc.BOOL) void {
-        return objc.msgSend(self, "setAllowsCellularAccess:", void, .{allowsCellularAccess});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn isLongLived(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isLongLived", objc.BOOL, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setLongLived(self: *@This(), longLived: objc.BOOL) void {
-        return objc.msgSend(self, "setLongLived:", void, .{longLived});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn timeoutIntervalForRequest(self: *@This()) foundation.TimeInterval {
-        return objc.msgSend(self, "timeoutIntervalForRequest", foundation.TimeInterval, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setTimeoutIntervalForRequest(self: *@This(), timeoutIntervalForRequest: foundation.TimeInterval) void {
-        return objc.msgSend(self, "setTimeoutIntervalForRequest:", void, .{timeoutIntervalForRequest});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn timeoutIntervalForResource(self: *@This()) foundation.TimeInterval {
-        return objc.msgSend(self, "timeoutIntervalForResource", foundation.TimeInterval, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setTimeoutIntervalForResource(self: *@This(), timeoutIntervalForResource: foundation.TimeInterval) void {
-        return objc.msgSend(self, "setTimeoutIntervalForResource:", void, .{timeoutIntervalForResource});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn container(_self: *@This()) ?*Container {
+        return objc.msgSend(_self, "container", ?*Container, .{});
+    }
+
+    pub fn setContainer(_self: *@This(), _container: ?*Container) void {
+        return objc.msgSend(_self, "setContainer:", void, .{_container});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn allowsCellularAccess(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsCellularAccess", objc.BOOL, .{});
+    }
+
+    pub fn setAllowsCellularAccess(_self: *@This(), _allowsCellularAccess: objc.BOOL) void {
+        return objc.msgSend(_self, "setAllowsCellularAccess:", void, .{_allowsCellularAccess});
+    }
+
+    pub fn isLongLived(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isLongLived", objc.BOOL, .{});
+    }
+
+    pub fn setLongLived(_self: *@This(), _longLived: objc.BOOL) void {
+        return objc.msgSend(_self, "setLongLived:", void, .{_longLived});
+    }
+
+    pub fn timeoutIntervalForRequest(_self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(_self, "timeoutIntervalForRequest", foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeoutIntervalForRequest(_self: *@This(), _timeoutIntervalForRequest: foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeoutIntervalForRequest:", void, .{_timeoutIntervalForRequest});
+    }
+
+    pub fn timeoutIntervalForResource(_self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(_self, "timeoutIntervalForResource", foundation.TimeInterval, .{});
+    }
+
+    pub fn setTimeoutIntervalForResource(_self: *@This(), _timeoutIntervalForResource: foundation.TimeInterval) void {
+        return objc.msgSend(_self, "setTimeoutIntervalForResource:", void, .{_timeoutIntervalForResource});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKContainer?language=objc
 pub const Container = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKContainer", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKContainer", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -717,30 +2797,181 @@ pub const Container = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn defaultContainer(self: *@This()) ?*Container {
-        return objc.msgSend(self, "defaultContainer", ?*Container, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn containerWithIdentifier(self: *@This(), containerIdentifier: ?*NSString) ?*Container {
-        return objc.msgSend(self, "containerWithIdentifier:", ?*Container, .{containerIdentifier});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn addOperation(self: *@This(), operation: ?*Operation) void {
-        return objc.msgSend(self, "addOperation:", void, .{operation});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn containerIdentifier(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "containerIdentifier", ?*NSString, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn defaultContainer(_self: *@This()) ?*Container {
+        return objc.msgSend(_self, "defaultContainer", ?*Container, .{});
+    }
+
+    pub fn containerWithIdentifier(_self: *@This(), _containerIdentifier: ?*NSString) ?*Container {
+        return objc.msgSend(_self, "containerWithIdentifier:", ?*Container, .{_containerIdentifier});
+    }
+
+    pub fn addOperation(_self: *@This(), _operation: ?*Operation) void {
+        return objc.msgSend(_self, "addOperation:", void, .{_operation});
+    }
+
+    pub fn containerIdentifier(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    }
 };
 
 pub const AccountStatus = enum(objc.NSInteger) {
@@ -762,7 +2993,7 @@ pub const ApplicationPermissionStatus = enum(objc.NSInteger) {
     Granted = 3,
 };
 
-pub const ApplicationPermissionBlock = *const fn(ApplicationPermissionStatus, ?*foundation.Error) callconv(.C) void;
+pub const ApplicationPermissionBlock = *const fn (ApplicationPermissionStatus, ?*foundation.Error) callconv(.C) void;
 
 pub const ErrorCode = enum(objc.NSInteger) {
     InternalError = 1,
@@ -805,7 +3036,9 @@ pub const ErrorCode = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor?language=objc
 pub const LocationSortDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKLocationSortDescriptor", @This(), NSSortDescriptor, &.{});
+    pub const InternalInfo = objc.ExternClass("CKLocationSortDescriptor", @This(), NSSortDescriptor, &.{
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -814,31 +3047,245 @@ pub const LocationSortDescriptor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithKeyRelativeLocation(self: *@This(), key: ?*NSString, relativeLocation: ?*CLLocation) *@This() {
-        return objc.msgSend(self, "initWithKey:relativeLocation:", *@This(), .{key, relativeLocation});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithCoder(self: *@This(), aDecoder: ?*foundation.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{aDecoder});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn relativeLocation(self: *@This()) ?*CLLocation {
-        return objc.msgSend(self, "relativeLocation", ?*CLLocation, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn sortDescriptorWithKeyAscending(_self: *@This(), _key: ?*foundation.String, _ascending: objc.BOOL) *@This() {
+        return objc.msgSend(_self, "sortDescriptorWithKey:ascending:", *@This(), .{ _key, _ascending });
+    }
+
+    pub fn sortDescriptorWithKeyAscendingSelector(_self: *@This(), _key: ?*foundation.String, _ascending: objc.BOOL, _selector: *objc.SEL) *@This() {
+        return objc.msgSend(_self, "sortDescriptorWithKey:ascending:selector:", *@This(), .{ _key, _ascending, _selector });
+    }
+
+    pub fn initWithKeyAscending(_self: *@This(), _key: ?*foundation.String, _ascending: objc.BOOL) *@This() {
+        return objc.msgSend(_self, "initWithKey:ascending:", *@This(), .{ _key, _ascending });
+    }
+
+    pub fn initWithKeyAscendingSelector(_self: *@This(), _key: ?*foundation.String, _ascending: objc.BOOL, _selector: *objc.SEL) *@This() {
+        return objc.msgSend(_self, "initWithKey:ascending:selector:", *@This(), .{ _key, _ascending, _selector });
+    }
+
+    pub fn allowEvaluation(_self: *@This()) void {
+        return objc.msgSend(_self, "allowEvaluation", void, .{});
+    }
+
+    pub fn sortDescriptorWithKeyAscendingComparator(_self: *@This(), _key: ?*foundation.String, _ascending: objc.BOOL, _cmptr: foundation.Comparator) *@This() {
+        return objc.msgSend(_self, "sortDescriptorWithKey:ascending:comparator:", *@This(), .{ _key, _ascending, _cmptr });
+    }
+
+    pub fn initWithKeyAscendingComparator(_self: *@This(), _key: ?*foundation.String, _ascending: objc.BOOL, _cmptr: foundation.Comparator) *@This() {
+        return objc.msgSend(_self, "initWithKey:ascending:comparator:", *@This(), .{ _key, _ascending, _cmptr });
+    }
+
+    pub fn compareObjectToObject(_self: *@This(), _object1: *objc.Id, _object2: *objc.Id) foundation.ComparisonResult {
+        return objc.msgSend(_self, "compareObject:toObject:", foundation.ComparisonResult, .{ _object1, _object2 });
+    }
+
+    pub fn key(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "key", ?*foundation.String, .{});
+    }
+
+    pub fn ascending(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "ascending", objc.BOOL, .{});
+    }
+
+    pub fn selector(_self: *@This()) *objc.SEL {
+        return objc.msgSend(_self, "selector", *objc.SEL, .{});
+    }
+
+    pub fn comparator(_self: *@This()) foundation.Comparator {
+        return objc.msgSend(_self, "comparator", foundation.Comparator, .{});
+    }
+
+    pub fn reversedSortDescriptor(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "reversedSortDescriptor", *objc.Id, .{});
+    }
+
+    pub fn initWithKeyRelativeLocation(_self: *@This(), _key: ?*NSString, _relativeLocation: ?*CLLocation) *@This() {
+        return objc.msgSend(_self, "initWithKey:relativeLocation:", *@This(), .{ _key, _relativeLocation });
+    }
+
+    pub fn relativeLocation(_self: *@This()) ?*CLLocation {
+        return objc.msgSend(_self, "relativeLocation", ?*CLLocation, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKNotificationID?language=objc
 pub const NotificationID = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKNotificationID", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKNotificationID", @This(), objc.NSObject, &.{
+        foundation.Copying,
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -846,6 +3293,178 @@ pub const NotificationID = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
 };
 
 pub const NotificationType = enum(objc.NSInteger) {
@@ -857,7 +3476,7 @@ pub const NotificationType = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKNotification?language=objc
 pub const Notification = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKNotification", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKNotification", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -866,42 +3485,193 @@ pub const Notification = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn notificationFromRemoteNotificationDictionary(self: *@This(), notificationDictionary: ?*foundation.Dictionary) *@This() {
-        return objc.msgSend(self, "notificationFromRemoteNotificationDictionary:", *@This(), .{notificationDictionary});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn notificationType(self: *@This()) NotificationType {
-        return objc.msgSend(self, "notificationType", NotificationType, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn notificationID(self: *@This()) ?*NotificationID {
-        return objc.msgSend(self, "notificationID", ?*NotificationID, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn containerIdentifier(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "containerIdentifier", ?*NSString, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn subscriptionOwnerUserRecordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "subscriptionOwnerUserRecordID", ?*RecordID, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn isPruned(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isPruned", objc.BOOL, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn subscriptionID(self: *@This()) SubscriptionID {
-        return objc.msgSend(self, "subscriptionID", SubscriptionID, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn notificationFromRemoteNotificationDictionary(_self: *@This(), _notificationDictionary: ?*foundation.Dictionary) *@This() {
+        return objc.msgSend(_self, "notificationFromRemoteNotificationDictionary:", *@This(), .{_notificationDictionary});
+    }
+
+    pub fn notificationType(_self: *@This()) NotificationType {
+        return objc.msgSend(_self, "notificationType", NotificationType, .{});
+    }
+
+    pub fn notificationID(_self: *@This()) ?*NotificationID {
+        return objc.msgSend(_self, "notificationID", ?*NotificationID, .{});
+    }
+
+    pub fn containerIdentifier(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    }
+
+    pub fn subscriptionOwnerUserRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "subscriptionOwnerUserRecordID", ?*RecordID, .{});
+    }
+
+    pub fn isPruned(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isPruned", objc.BOOL, .{});
+    }
+
+    pub fn subscriptionID(_self: *@This()) SubscriptionID {
+        return objc.msgSend(_self, "subscriptionID", SubscriptionID, .{});
+    }
 };
 
 pub const QueryNotificationReason = enum(objc.NSInteger) {
@@ -912,7 +3682,7 @@ pub const QueryNotificationReason = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKQueryNotification?language=objc
 pub const QueryNotification = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKQueryNotification", @This(), Notification, &.{});
+    pub const InternalInfo = objc.ExternClass("CKQueryNotification", @This(), Notification, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -921,27 +3691,214 @@ pub const QueryNotification = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn queryNotificationReason(self: *@This()) QueryNotificationReason {
-        return objc.msgSend(self, "queryNotificationReason", QueryNotificationReason, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn recordFields(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordFields", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn recordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "recordID", ?*RecordID, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn databaseScope(self: *@This()) DatabaseScope {
-        return objc.msgSend(self, "databaseScope", DatabaseScope, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn notificationFromRemoteNotificationDictionary(_self: *@This(), _notificationDictionary: ?*foundation.Dictionary) *@This() {
+        return objc.msgSend(_self, "notificationFromRemoteNotificationDictionary:", *@This(), .{_notificationDictionary});
+    }
+
+    pub fn notificationType(_self: *@This()) NotificationType {
+        return objc.msgSend(_self, "notificationType", NotificationType, .{});
+    }
+
+    pub fn notificationID(_self: *@This()) ?*NotificationID {
+        return objc.msgSend(_self, "notificationID", ?*NotificationID, .{});
+    }
+
+    pub fn containerIdentifier(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    }
+
+    pub fn subscriptionOwnerUserRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "subscriptionOwnerUserRecordID", ?*RecordID, .{});
+    }
+
+    pub fn isPruned(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isPruned", objc.BOOL, .{});
+    }
+
+    pub fn subscriptionID(_self: *@This()) SubscriptionID {
+        return objc.msgSend(_self, "subscriptionID", SubscriptionID, .{});
+    }
+
+    pub fn queryNotificationReason(_self: *@This()) QueryNotificationReason {
+        return objc.msgSend(_self, "queryNotificationReason", QueryNotificationReason, .{});
+    }
+
+    pub fn recordFields(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordFields", ?*anyopaque, .{});
+    }
+
+    pub fn recordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "recordID", ?*RecordID, .{});
+    }
+
+    pub fn databaseScope(_self: *@This()) DatabaseScope {
+        return objc.msgSend(_self, "databaseScope", DatabaseScope, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordZoneNotification?language=objc
 pub const RecordZoneNotification = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKRecordZoneNotification", @This(), Notification, &.{});
+    pub const InternalInfo = objc.ExternClass("CKRecordZoneNotification", @This(), Notification, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -950,19 +3907,206 @@ pub const RecordZoneNotification = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn recordZoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "recordZoneID", ?*RecordZoneID, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn databaseScope(self: *@This()) DatabaseScope {
-        return objc.msgSend(self, "databaseScope", DatabaseScope, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn notificationFromRemoteNotificationDictionary(_self: *@This(), _notificationDictionary: ?*foundation.Dictionary) *@This() {
+        return objc.msgSend(_self, "notificationFromRemoteNotificationDictionary:", *@This(), .{_notificationDictionary});
+    }
+
+    pub fn notificationType(_self: *@This()) NotificationType {
+        return objc.msgSend(_self, "notificationType", NotificationType, .{});
+    }
+
+    pub fn notificationID(_self: *@This()) ?*NotificationID {
+        return objc.msgSend(_self, "notificationID", ?*NotificationID, .{});
+    }
+
+    pub fn containerIdentifier(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    }
+
+    pub fn subscriptionOwnerUserRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "subscriptionOwnerUserRecordID", ?*RecordID, .{});
+    }
+
+    pub fn isPruned(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isPruned", objc.BOOL, .{});
+    }
+
+    pub fn subscriptionID(_self: *@This()) SubscriptionID {
+        return objc.msgSend(_self, "subscriptionID", SubscriptionID, .{});
+    }
+
+    pub fn recordZoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "recordZoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn databaseScope(_self: *@This()) DatabaseScope {
+        return objc.msgSend(_self, "databaseScope", DatabaseScope, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKDatabaseNotification?language=objc
 pub const DatabaseNotification = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKDatabaseNotification", @This(), Notification, &.{});
+    pub const InternalInfo = objc.ExternClass("CKDatabaseNotification", @This(), Notification, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -971,15 +4115,205 @@ pub const DatabaseNotification = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn databaseScope(self: *@This()) DatabaseScope {
-        return objc.msgSend(self, "databaseScope", DatabaseScope, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn notificationFromRemoteNotificationDictionary(_self: *@This(), _notificationDictionary: ?*foundation.Dictionary) *@This() {
+        return objc.msgSend(_self, "notificationFromRemoteNotificationDictionary:", *@This(), .{_notificationDictionary});
+    }
+
+    pub fn notificationType(_self: *@This()) NotificationType {
+        return objc.msgSend(_self, "notificationType", NotificationType, .{});
+    }
+
+    pub fn notificationID(_self: *@This()) ?*NotificationID {
+        return objc.msgSend(_self, "notificationID", ?*NotificationID, .{});
+    }
+
+    pub fn containerIdentifier(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    }
+
+    pub fn subscriptionOwnerUserRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "subscriptionOwnerUserRecordID", ?*RecordID, .{});
+    }
+
+    pub fn isPruned(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isPruned", objc.BOOL, .{});
+    }
+
+    pub fn subscriptionID(_self: *@This()) SubscriptionID {
+        return objc.msgSend(_self, "subscriptionID", SubscriptionID, .{});
+    }
+
+    pub fn databaseScope(_self: *@This()) DatabaseScope {
+        return objc.msgSend(_self, "databaseScope", DatabaseScope, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKQuery?language=objc
 pub const Query = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKQuery", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKQuery", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -988,38 +4322,197 @@ pub const Query = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithCoder(self: *@This(), aDecoder: ?*foundation.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{aDecoder});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithRecordTypePredicate(self: *@This(), recordType: RecordType, predicate: ?*foundation.Predicate) *@This() {
-        return objc.msgSend(self, "initWithRecordType:predicate:", *@This(), .{recordType, predicate});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn recordType(self: *@This()) RecordType {
-        return objc.msgSend(self, "recordType", RecordType, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn predicate(self: *@This()) ?*foundation.Predicate {
-        return objc.msgSend(self, "predicate", ?*foundation.Predicate, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn sortDescriptors(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "sortDescriptors", ?*anyopaque, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setSortDescriptors(self: *@This(), sortDescriptors: ?*anyopaque) void {
-        return objc.msgSend(self, "setSortDescriptors:", void, .{sortDescriptors});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithRecordTypePredicate(_self: *@This(), _recordType: RecordType, _predicate: ?*foundation.Predicate) *@This() {
+        return objc.msgSend(_self, "initWithRecordType:predicate:", *@This(), .{ _recordType, _predicate });
+    }
+
+    pub fn recordType(_self: *@This()) RecordType {
+        return objc.msgSend(_self, "recordType", RecordType, .{});
+    }
+
+    pub fn predicate(_self: *@This()) ?*foundation.Predicate {
+        return objc.msgSend(_self, "predicate", ?*foundation.Predicate, .{});
+    }
+
+    pub fn sortDescriptors(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "sortDescriptors", ?*anyopaque, .{});
+    }
+
+    pub fn setSortDescriptors(_self: *@This(), _sortDescriptors: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSortDescriptors:", void, .{_sortDescriptors});
+    }
 };
 
 pub const RecordZoneCapabilities = enum(objc.NSUInteger) {
@@ -1031,7 +4524,10 @@ pub const RecordZoneCapabilities = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordZone?language=objc
 pub const RecordZone = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKRecordZone", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKRecordZone", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1040,43 +4536,209 @@ pub const RecordZone = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn defaultRecordZone(self: *@This()) ?*RecordZone {
-        return objc.msgSend(self, "defaultRecordZone", ?*RecordZone, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithZoneName(self: *@This(), zoneName: ?*NSString) *@This() {
-        return objc.msgSend(self, "initWithZoneName:", *@This(), .{zoneName});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn initWithZoneID(self: *@This(), zoneID: ?*RecordZoneID) *@This() {
-        return objc.msgSend(self, "initWithZoneID:", *@This(), .{zoneID});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn zoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "zoneID", ?*RecordZoneID, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn capabilities(self: *@This()) RecordZoneCapabilities {
-        return objc.msgSend(self, "capabilities", RecordZoneCapabilities, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn share(self: *@This()) ?*Reference {
-        return objc.msgSend(self, "share", ?*Reference, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn defaultRecordZone(_self: *@This()) ?*RecordZone {
+        return objc.msgSend(_self, "defaultRecordZone", ?*RecordZone, .{});
+    }
+
+    pub fn initWithZoneName(_self: *@This(), _zoneName: ?*NSString) *@This() {
+        return objc.msgSend(_self, "initWithZoneName:", *@This(), .{_zoneName});
+    }
+
+    pub fn initWithZoneID(_self: *@This(), _zoneID: ?*RecordZoneID) *@This() {
+        return objc.msgSend(_self, "initWithZoneID:", *@This(), .{_zoneID});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn capabilities(_self: *@This()) RecordZoneCapabilities {
+        return objc.msgSend(_self, "capabilities", RecordZoneCapabilities, .{});
+    }
+
+    pub fn share(_self: *@This()) ?*Reference {
+        return objc.msgSend(_self, "share", ?*Reference, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordID?language=objc
 pub const RecordID = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKRecordID", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKRecordID", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1085,35 +4747,201 @@ pub const RecordID = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithRecordName(self: *@This(), recordName: ?*NSString) *@This() {
-        return objc.msgSend(self, "initWithRecordName:", *@This(), .{recordName});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithRecordNameZoneID(self: *@This(), recordName: ?*NSString, zoneID: ?*RecordZoneID) *@This() {
-        return objc.msgSend(self, "initWithRecordName:zoneID:", *@This(), .{recordName, zoneID});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn recordName(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "recordName", ?*NSString, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn zoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "zoneID", ?*RecordZoneID, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithRecordName(_self: *@This(), _recordName: ?*NSString) *@This() {
+        return objc.msgSend(_self, "initWithRecordName:", *@This(), .{_recordName});
+    }
+
+    pub fn initWithRecordNameZoneID(_self: *@This(), _recordName: ?*NSString, _zoneID: ?*RecordZoneID) *@This() {
+        return objc.msgSend(_self, "initWithRecordName:zoneID:", *@This(), .{ _recordName, _zoneID });
+    }
+
+    pub fn recordName(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "recordName", ?*NSString, .{});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordZoneID?language=objc
 pub const RecordZoneID = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKRecordZoneID", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKRecordZoneID", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1122,31 +4950,194 @@ pub const RecordZoneID = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithZoneNameOwnerName(self: *@This(), zoneName: ?*NSString, ownerName: ?*NSString) *@This() {
-        return objc.msgSend(self, "initWithZoneName:ownerName:", *@This(), .{zoneName, ownerName});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn zoneName(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "zoneName", ?*NSString, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn ownerName(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "ownerName", ?*NSString, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithZoneNameOwnerName(_self: *@This(), _zoneName: ?*NSString, _ownerName: ?*NSString) *@This() {
+        return objc.msgSend(_self, "initWithZoneName:ownerName:", *@This(), .{ _zoneName, _ownerName });
+    }
+
+    pub fn zoneName(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "zoneName", ?*NSString, .{});
+    }
+
+    pub fn ownerName(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "ownerName", ?*NSString, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKDatabaseOperation?language=objc
 pub const DatabaseOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKDatabaseOperation", @This(), Operation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKDatabaseOperation", @This(), Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1155,19 +5146,301 @@ pub const DatabaseOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn database(self: *@This()) ?*Database {
-        return objc.msgSend(self, "database", ?*Database, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn setDatabase(self: *@This(), database: ?*Database) void {
-        return objc.msgSend(self, "setDatabase:", void, .{database});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKServerChangeToken?language=objc
 pub const ServerChangeToken = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKServerChangeToken", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKServerChangeToken", @This(), objc.NSObject, &.{
+        foundation.Copying,
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1176,14 +5449,177 @@ pub const ServerChangeToken = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
 };
 
 pub const ShareParticipantAcceptanceStatus = enum(objc.NSInteger) {
@@ -1216,7 +5652,10 @@ pub const ShareParticipantType = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKShareParticipant?language=objc
 pub const ShareParticipant = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKShareParticipant", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKShareParticipant", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1225,55 +5664,221 @@ pub const ShareParticipant = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn userIdentity(self: *@This()) ?*UserIdentity {
-        return objc.msgSend(self, "userIdentity", ?*UserIdentity, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn role(self: *@This()) ShareParticipantRole {
-        return objc.msgSend(self, "role", ShareParticipantRole, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setRole(self: *@This(), role: ShareParticipantRole) void {
-        return objc.msgSend(self, "setRole:", void, .{role});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn @"type"(self: *@This()) ShareParticipantType {
-        return objc.msgSend(self, "type", ShareParticipantType, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setType(self: *@This(), @"type": ShareParticipantType) void {
-        return objc.msgSend(self, "setType:", void, .{@"type"});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn acceptanceStatus(self: *@This()) ShareParticipantAcceptanceStatus {
-        return objc.msgSend(self, "acceptanceStatus", ShareParticipantAcceptanceStatus, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn permission(self: *@This()) ShareParticipantPermission {
-        return objc.msgSend(self, "permission", ShareParticipantPermission, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setPermission(self: *@This(), permission: ShareParticipantPermission) void {
-        return objc.msgSend(self, "setPermission:", void, .{permission});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn participantID(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "participantID", ?*NSString, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn userIdentity(_self: *@This()) ?*UserIdentity {
+        return objc.msgSend(_self, "userIdentity", ?*UserIdentity, .{});
+    }
+
+    pub fn role(_self: *@This()) ShareParticipantRole {
+        return objc.msgSend(_self, "role", ShareParticipantRole, .{});
+    }
+
+    pub fn setRole(_self: *@This(), _role: ShareParticipantRole) void {
+        return objc.msgSend(_self, "setRole:", void, .{_role});
+    }
+
+    pub fn @"type"(_self: *@This()) ShareParticipantType {
+        return objc.msgSend(_self, "type", ShareParticipantType, .{});
+    }
+
+    pub fn setType(_self: *@This(), _type: ShareParticipantType) void {
+        return objc.msgSend(_self, "setType:", void, .{_type});
+    }
+
+    pub fn acceptanceStatus(_self: *@This()) ShareParticipantAcceptanceStatus {
+        return objc.msgSend(_self, "acceptanceStatus", ShareParticipantAcceptanceStatus, .{});
+    }
+
+    pub fn permission(_self: *@This()) ShareParticipantPermission {
+        return objc.msgSend(_self, "permission", ShareParticipantPermission, .{});
+    }
+
+    pub fn setPermission(_self: *@This(), _permission: ShareParticipantPermission) void {
+        return objc.msgSend(_self, "setPermission:", void, .{_permission});
+    }
+
+    pub fn participantID(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "participantID", ?*NSString, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKShare?language=objc
 pub const Share = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKShare", @This(), Record, &.{});
+    pub const InternalInfo = objc.ExternClass("CKShare", @This(), Record, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1282,79 +5887,321 @@ pub const Share = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithRootRecord(self: *@This(), rootRecord: ?*Record) *@This() {
-        return objc.msgSend(self, "initWithRootRecord:", *@This(), .{rootRecord});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithRootRecordShareID(self: *@This(), rootRecord: ?*Record, shareID: ?*RecordID) *@This() {
-        return objc.msgSend(self, "initWithRootRecord:shareID:", *@This(), .{rootRecord, shareID});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithRecordZoneID(self: *@This(), recordZoneID: ?*RecordZoneID) *@This() {
-        return objc.msgSend(self, "initWithRecordZoneID:", *@This(), .{recordZoneID});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithCoder(self: *@This(), aDecoder: ?*foundation.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{aDecoder});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn addParticipant(self: *@This(), participant: ?*ShareParticipant) void {
-        return objc.msgSend(self, "addParticipant:", void, .{participant});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn removeParticipant(self: *@This(), participant: ?*ShareParticipant) void {
-        return objc.msgSend(self, "removeParticipant:", void, .{participant});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn initWithRecordType(self: *@This(), recordType: RecordType) *@This() {
-        return objc.msgSend(self, "initWithRecordType:", *@This(), .{recordType});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn initWithRecordTypeRecordID(self: *@This(), recordType: RecordType, recordID: ?*RecordID) *@This() {
-        return objc.msgSend(self, "initWithRecordType:recordID:", *@This(), .{recordType, recordID});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn initWithRecordTypeZoneID(self: *@This(), recordType: RecordType, zoneID: ?*RecordZoneID) *@This() {
-        return objc.msgSend(self, "initWithRecordType:zoneID:", *@This(), .{recordType, zoneID});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn publicPermission(self: *@This()) ShareParticipantPermission {
-        return objc.msgSend(self, "publicPermission", ShareParticipantPermission, .{});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn setPublicPermission(self: *@This(), publicPermission: ShareParticipantPermission) void {
-        return objc.msgSend(self, "setPublicPermission:", void, .{publicPermission});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn URL(self: *@This()) ?*foundation.URL {
-        return objc.msgSend(self, "URL", ?*foundation.URL, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn participants(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "participants", ?*anyopaque, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn owner(self: *@This()) ?*ShareParticipant {
-        return objc.msgSend(self, "owner", ?*ShareParticipant, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn currentUserParticipant(self: *@This()) ?*ShareParticipant {
-        return objc.msgSend(self, "currentUserParticipant", ?*ShareParticipant, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithRecordType(_self: *@This(), _recordType: RecordType) *@This() {
+        return objc.msgSend(_self, "initWithRecordType:", *@This(), .{_recordType});
+    }
+
+    pub fn initWithRecordTypeRecordID(_self: *@This(), _recordType: RecordType, _recordID: ?*RecordID) *@This() {
+        return objc.msgSend(_self, "initWithRecordType:recordID:", *@This(), .{ _recordType, _recordID });
+    }
+
+    pub fn initWithRecordTypeZoneID(_self: *@This(), _recordType: RecordType, _zoneID: ?*RecordZoneID) *@This() {
+        return objc.msgSend(_self, "initWithRecordType:zoneID:", *@This(), .{ _recordType, _zoneID });
+    }
+
+    pub fn objectForKey(_self: *@This(), _key: RecordFieldKey) ?*anyopaque {
+        return objc.msgSend(_self, "objectForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn setObjectForKey(_self: *@This(), _object: ?*anyopaque, _key: RecordFieldKey) void {
+        return objc.msgSend(_self, "setObject:forKey:", void, .{ _object, _key });
+    }
+
+    pub fn allKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "allKeys", ?*anyopaque, .{});
+    }
+
+    pub fn allTokens(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "allTokens", ?*anyopaque, .{});
+    }
+
+    pub fn objectForKeyedSubscript(_self: *@This(), _key: RecordFieldKey) ?*anyopaque {
+        return objc.msgSend(_self, "objectForKeyedSubscript:", ?*anyopaque, .{_key});
+    }
+
+    pub fn setObjectForKeyedSubscript(_self: *@This(), _object: ?*anyopaque, _key: RecordFieldKey) void {
+        return objc.msgSend(_self, "setObject:forKeyedSubscript:", void, .{ _object, _key });
+    }
+
+    pub fn changedKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "changedKeys", ?*anyopaque, .{});
+    }
+
+    pub fn encodeSystemFieldsWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeSystemFieldsWithCoder:", void, .{_coder});
+    }
+
+    pub fn setParentReferenceFromRecord(_self: *@This(), _parentRecord: ?*Record) void {
+        return objc.msgSend(_self, "setParentReferenceFromRecord:", void, .{_parentRecord});
+    }
+
+    pub fn setParentReferenceFromRecordID(_self: *@This(), _parentRecordID: ?*RecordID) void {
+        return objc.msgSend(_self, "setParentReferenceFromRecordID:", void, .{_parentRecordID});
+    }
+
+    pub fn recordType(_self: *@This()) RecordType {
+        return objc.msgSend(_self, "recordType", RecordType, .{});
+    }
+
+    pub fn recordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "recordID", ?*RecordID, .{});
+    }
+
+    pub fn recordChangeTag(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "recordChangeTag", ?*NSString, .{});
+    }
+
+    pub fn creatorUserRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "creatorUserRecordID", ?*RecordID, .{});
+    }
+
+    pub fn creationDate(_self: *@This()) ?*foundation.Date {
+        return objc.msgSend(_self, "creationDate", ?*foundation.Date, .{});
+    }
+
+    pub fn lastModifiedUserRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "lastModifiedUserRecordID", ?*RecordID, .{});
+    }
+
+    pub fn modificationDate(_self: *@This()) ?*foundation.Date {
+        return objc.msgSend(_self, "modificationDate", ?*foundation.Date, .{});
+    }
+
+    pub fn share(_self: *@This()) ?*Reference {
+        return objc.msgSend(_self, "share", ?*Reference, .{});
+    }
+
+    pub fn parent(_self: *@This()) ?*Reference {
+        return objc.msgSend(_self, "parent", ?*Reference, .{});
+    }
+
+    pub fn setParent(_self: *@This(), _parent: ?*Reference) void {
+        return objc.msgSend(_self, "setParent:", void, .{_parent});
+    }
+
+    pub fn initWithRootRecord(_self: *@This(), _rootRecord: ?*Record) *@This() {
+        return objc.msgSend(_self, "initWithRootRecord:", *@This(), .{_rootRecord});
+    }
+
+    pub fn initWithRootRecordShareID(_self: *@This(), _rootRecord: ?*Record, _shareID: ?*RecordID) *@This() {
+        return objc.msgSend(_self, "initWithRootRecord:shareID:", *@This(), .{ _rootRecord, _shareID });
+    }
+
+    pub fn initWithRecordZoneID(_self: *@This(), _recordZoneID: ?*RecordZoneID) *@This() {
+        return objc.msgSend(_self, "initWithRecordZoneID:", *@This(), .{_recordZoneID});
+    }
+
+    pub fn addParticipant(_self: *@This(), _participant: ?*ShareParticipant) void {
+        return objc.msgSend(_self, "addParticipant:", void, .{_participant});
+    }
+
+    pub fn removeParticipant(_self: *@This(), _participant: ?*ShareParticipant) void {
+        return objc.msgSend(_self, "removeParticipant:", void, .{_participant});
+    }
+
+    pub fn publicPermission(_self: *@This()) ShareParticipantPermission {
+        return objc.msgSend(_self, "publicPermission", ShareParticipantPermission, .{});
+    }
+
+    pub fn setPublicPermission(_self: *@This(), _publicPermission: ShareParticipantPermission) void {
+        return objc.msgSend(_self, "setPublicPermission:", void, .{_publicPermission});
+    }
+
+    pub fn url(_self: *@This()) ?*foundation.URL {
+        return objc.msgSend(_self, "URL", ?*foundation.URL, .{});
+    }
+
+    pub fn participants(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "participants", ?*anyopaque, .{});
+    }
+
+    pub fn owner(_self: *@This()) ?*ShareParticipant {
+        return objc.msgSend(_self, "owner", ?*ShareParticipant, .{});
+    }
+
+    pub fn currentUserParticipant(_self: *@This()) ?*ShareParticipant {
+        return objc.msgSend(_self, "currentUserParticipant", ?*ShareParticipant, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKShareMetadata?language=objc
 pub const ShareMetadata = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKShareMetadata", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKShareMetadata", @This(), objc.NSObject, &.{
+        foundation.Copying,
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1363,59 +6210,225 @@ pub const ShareMetadata = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn containerIdentifier(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "containerIdentifier", ?*NSString, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn share(self: *@This()) ?*Share {
-        return objc.msgSend(self, "share", ?*Share, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn hierarchicalRootRecordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "hierarchicalRootRecordID", ?*RecordID, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn participantRole(self: *@This()) ShareParticipantRole {
-        return objc.msgSend(self, "participantRole", ShareParticipantRole, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn participantStatus(self: *@This()) ShareParticipantAcceptanceStatus {
-        return objc.msgSend(self, "participantStatus", ShareParticipantAcceptanceStatus, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn participantPermission(self: *@This()) ShareParticipantPermission {
-        return objc.msgSend(self, "participantPermission", ShareParticipantPermission, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn ownerIdentity(self: *@This()) ?*UserIdentity {
-        return objc.msgSend(self, "ownerIdentity", ?*UserIdentity, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn rootRecord(self: *@This()) ?*Record {
-        return objc.msgSend(self, "rootRecord", ?*Record, .{});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn participantType(self: *@This()) ShareParticipantType {
-        return objc.msgSend(self, "participantType", ShareParticipantType, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn rootRecordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "rootRecordID", ?*RecordID, .{});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn containerIdentifier(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    }
+
+    pub fn share(_self: *@This()) ?*Share {
+        return objc.msgSend(_self, "share", ?*Share, .{});
+    }
+
+    pub fn hierarchicalRootRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "hierarchicalRootRecordID", ?*RecordID, .{});
+    }
+
+    pub fn participantRole(_self: *@This()) ShareParticipantRole {
+        return objc.msgSend(_self, "participantRole", ShareParticipantRole, .{});
+    }
+
+    pub fn participantStatus(_self: *@This()) ShareParticipantAcceptanceStatus {
+        return objc.msgSend(_self, "participantStatus", ShareParticipantAcceptanceStatus, .{});
+    }
+
+    pub fn participantPermission(_self: *@This()) ShareParticipantPermission {
+        return objc.msgSend(_self, "participantPermission", ShareParticipantPermission, .{});
+    }
+
+    pub fn ownerIdentity(_self: *@This()) ?*UserIdentity {
+        return objc.msgSend(_self, "ownerIdentity", ?*UserIdentity, .{});
+    }
+
+    pub fn rootRecord(_self: *@This()) ?*Record {
+        return objc.msgSend(_self, "rootRecord", ?*Record, .{});
+    }
+
+    pub fn participantType(_self: *@This()) ShareParticipantType {
+        return objc.msgSend(_self, "participantType", ShareParticipantType, .{});
+    }
+
+    pub fn rootRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "rootRecordID", ?*RecordID, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKUserIdentity?language=objc
 pub const UserIdentity = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKUserIdentity", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKUserIdentity", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1424,39 +6437,205 @@ pub const UserIdentity = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn userRecordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "userRecordID", ?*RecordID, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn lookupInfo(self: *@This()) ?*UserIdentityLookupInfo {
-        return objc.msgSend(self, "lookupInfo", ?*UserIdentityLookupInfo, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn nameComponents(self: *@This()) ?*foundation.PersonNameComponents {
-        return objc.msgSend(self, "nameComponents", ?*foundation.PersonNameComponents, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn hasiCloudAccount(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "hasiCloudAccount", objc.BOOL, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn contactIdentifiers(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "contactIdentifiers", ?*anyopaque, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn userRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "userRecordID", ?*RecordID, .{});
+    }
+
+    pub fn lookupInfo(_self: *@This()) ?*UserIdentityLookupInfo {
+        return objc.msgSend(_self, "lookupInfo", ?*UserIdentityLookupInfo, .{});
+    }
+
+    pub fn nameComponents(_self: *@This()) ?*foundation.PersonNameComponents {
+        return objc.msgSend(_self, "nameComponents", ?*foundation.PersonNameComponents, .{});
+    }
+
+    pub fn hasiCloudAccount(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "hasiCloudAccount", objc.BOOL, .{});
+    }
+
+    pub fn contactIdentifiers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "contactIdentifiers", ?*anyopaque, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKUserIdentityLookupInfo?language=objc
 pub const UserIdentityLookupInfo = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKUserIdentityLookupInfo", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKUserIdentityLookupInfo", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1465,55 +6644,218 @@ pub const UserIdentityLookupInfo = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithEmailAddress(self: *@This(), emailAddress: ?*NSString) *@This() {
-        return objc.msgSend(self, "initWithEmailAddress:", *@This(), .{emailAddress});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithPhoneNumber(self: *@This(), phoneNumber: ?*NSString) *@This() {
-        return objc.msgSend(self, "initWithPhoneNumber:", *@This(), .{phoneNumber});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn initWithUserRecordID(self: *@This(), userRecordID: ?*RecordID) *@This() {
-        return objc.msgSend(self, "initWithUserRecordID:", *@This(), .{userRecordID});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn lookupInfosWithEmails(self: *@This(), emails: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "lookupInfosWithEmails:", ?*anyopaque, .{emails});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn lookupInfosWithPhoneNumbers(self: *@This(), phoneNumbers: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "lookupInfosWithPhoneNumbers:", ?*anyopaque, .{phoneNumbers});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn lookupInfosWithRecordIDs(self: *@This(), recordIDs: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "lookupInfosWithRecordIDs:", ?*anyopaque, .{recordIDs});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn emailAddress(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "emailAddress", ?*NSString, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn phoneNumber(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "phoneNumber", ?*NSString, .{});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn userRecordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "userRecordID", ?*RecordID, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithEmailAddress(_self: *@This(), _emailAddress: ?*NSString) *@This() {
+        return objc.msgSend(_self, "initWithEmailAddress:", *@This(), .{_emailAddress});
+    }
+
+    pub fn initWithPhoneNumber(_self: *@This(), _phoneNumber: ?*NSString) *@This() {
+        return objc.msgSend(_self, "initWithPhoneNumber:", *@This(), .{_phoneNumber});
+    }
+
+    pub fn initWithUserRecordID(_self: *@This(), _userRecordID: ?*RecordID) *@This() {
+        return objc.msgSend(_self, "initWithUserRecordID:", *@This(), .{_userRecordID});
+    }
+
+    pub fn lookupInfosWithEmails(_self: *@This(), _emails: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(_self, "lookupInfosWithEmails:", ?*anyopaque, .{_emails});
+    }
+
+    pub fn lookupInfosWithPhoneNumbers(_self: *@This(), _phoneNumbers: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(_self, "lookupInfosWithPhoneNumbers:", ?*anyopaque, .{_phoneNumbers});
+    }
+
+    pub fn lookupInfosWithRecordIDs(_self: *@This(), _recordIDs: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(_self, "lookupInfosWithRecordIDs:", ?*anyopaque, .{_recordIDs});
+    }
+
+    pub fn emailAddress(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "emailAddress", ?*NSString, .{});
+    }
+
+    pub fn phoneNumber(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "phoneNumber", ?*NSString, .{});
+    }
+
+    pub fn userRecordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "userRecordID", ?*RecordID, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation?language=objc
 pub const AcceptSharesOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKAcceptSharesOperation", @This(), Operation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKAcceptSharesOperation", @This(), Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1522,43 +6864,318 @@ pub const AcceptSharesOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithShareMetadatas(self: *@This(), shareMetadatas: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithShareMetadatas:", *@This(), .{shareMetadatas});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn shareMetadatas(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "shareMetadatas", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setShareMetadatas(self: *@This(), shareMetadatas: ?*anyopaque) void {
-        return objc.msgSend(self, "setShareMetadatas:", void, .{shareMetadatas});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn perShareCompletionBlock(self: *@This()) *const fn(?*ShareMetadata, ?*Share, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perShareCompletionBlock", *const fn(?*ShareMetadata, ?*Share, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setPerShareCompletionBlock(self: *@This(), perShareCompletionBlock: *const fn(?*ShareMetadata, ?*Share, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerShareCompletionBlock:", void, .{perShareCompletionBlock});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn acceptSharesCompletionBlock(self: *@This()) *const fn(?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "acceptSharesCompletionBlock", *const fn(?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setAcceptSharesCompletionBlock(self: *@This(), acceptSharesCompletionBlock: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setAcceptSharesCompletionBlock:", void, .{acceptSharesCompletionBlock});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn initWithShareMetadatas(_self: *@This(), _shareMetadatas: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithShareMetadatas:", *@This(), .{_shareMetadatas});
+    }
+
+    pub fn shareMetadatas(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "shareMetadatas", ?*anyopaque, .{});
+    }
+
+    pub fn setShareMetadatas(_self: *@This(), _shareMetadatas: ?*anyopaque) void {
+        return objc.msgSend(_self, "setShareMetadatas:", void, .{_shareMetadatas});
+    }
+
+    pub fn perShareCompletionBlock(_self: *@This()) *const fn (?*ShareMetadata, ?*Share, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perShareCompletionBlock", *const fn (?*ShareMetadata, ?*Share, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerShareCompletionBlock(_self: *@This(), _perShareCompletionBlock: *const fn (?*ShareMetadata, ?*Share, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerShareCompletionBlock:", void, .{_perShareCompletionBlock});
+    }
+
+    pub fn acceptSharesCompletionBlock(_self: *@This()) *const fn (?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "acceptSharesCompletionBlock", *const fn (?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setAcceptSharesCompletionBlock(_self: *@This(), _acceptSharesCompletionBlock: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setAcceptSharesCompletionBlock:", void, .{_acceptSharesCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation?language=objc
 pub const DiscoverAllUserIdentitiesOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKDiscoverAllUserIdentitiesOperation", @This(), Operation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKDiscoverAllUserIdentitiesOperation", @This(), Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1567,31 +7184,306 @@ pub const DiscoverAllUserIdentitiesOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn userIdentityDiscoveredBlock(self: *@This()) *const fn(?*UserIdentity) callconv(.C) void {
-        return objc.msgSend(self, "userIdentityDiscoveredBlock", *const fn(?*UserIdentity) callconv(.C) void, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setUserIdentityDiscoveredBlock(self: *@This(), userIdentityDiscoveredBlock: *const fn(?*UserIdentity) callconv(.C) void) void {
-        return objc.msgSend(self, "setUserIdentityDiscoveredBlock:", void, .{userIdentityDiscoveredBlock});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn discoverAllUserIdentitiesCompletionBlock(self: *@This()) *const fn(?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "discoverAllUserIdentitiesCompletionBlock", *const fn(?*foundation.Error) callconv(.C) void, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setDiscoverAllUserIdentitiesCompletionBlock(self: *@This(), discoverAllUserIdentitiesCompletionBlock: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setDiscoverAllUserIdentitiesCompletionBlock:", void, .{discoverAllUserIdentitiesCompletionBlock});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn userIdentityDiscoveredBlock(_self: *@This()) *const fn (?*UserIdentity) callconv(.C) void {
+        return objc.msgSend(_self, "userIdentityDiscoveredBlock", *const fn (?*UserIdentity) callconv(.C) void, .{});
+    }
+
+    pub fn setUserIdentityDiscoveredBlock(_self: *@This(), _userIdentityDiscoveredBlock: *const fn (?*UserIdentity) callconv(.C) void) void {
+        return objc.msgSend(_self, "setUserIdentityDiscoveredBlock:", void, .{_userIdentityDiscoveredBlock});
+    }
+
+    pub fn discoverAllUserIdentitiesCompletionBlock(_self: *@This()) *const fn (?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "discoverAllUserIdentitiesCompletionBlock", *const fn (?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setDiscoverAllUserIdentitiesCompletionBlock(_self: *@This(), _discoverAllUserIdentitiesCompletionBlock: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setDiscoverAllUserIdentitiesCompletionBlock:", void, .{_discoverAllUserIdentitiesCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation?language=objc
 pub const DiscoverUserIdentitiesOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKDiscoverUserIdentitiesOperation", @This(), Operation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKDiscoverUserIdentitiesOperation", @This(), Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1600,43 +7492,318 @@ pub const DiscoverUserIdentitiesOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithUserIdentityLookupInfos(self: *@This(), userIdentityLookupInfos: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithUserIdentityLookupInfos:", *@This(), .{userIdentityLookupInfos});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn userIdentityLookupInfos(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "userIdentityLookupInfos", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setUserIdentityLookupInfos(self: *@This(), userIdentityLookupInfos: ?*anyopaque) void {
-        return objc.msgSend(self, "setUserIdentityLookupInfos:", void, .{userIdentityLookupInfos});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn userIdentityDiscoveredBlock(self: *@This()) *const fn(?*UserIdentity, ?*UserIdentityLookupInfo) callconv(.C) void {
-        return objc.msgSend(self, "userIdentityDiscoveredBlock", *const fn(?*UserIdentity, ?*UserIdentityLookupInfo) callconv(.C) void, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setUserIdentityDiscoveredBlock(self: *@This(), userIdentityDiscoveredBlock: *const fn(?*UserIdentity, ?*UserIdentityLookupInfo) callconv(.C) void) void {
-        return objc.msgSend(self, "setUserIdentityDiscoveredBlock:", void, .{userIdentityDiscoveredBlock});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn discoverUserIdentitiesCompletionBlock(self: *@This()) *const fn(?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "discoverUserIdentitiesCompletionBlock", *const fn(?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setDiscoverUserIdentitiesCompletionBlock(self: *@This(), discoverUserIdentitiesCompletionBlock: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setDiscoverUserIdentitiesCompletionBlock:", void, .{discoverUserIdentitiesCompletionBlock});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn initWithUserIdentityLookupInfos(_self: *@This(), _userIdentityLookupInfos: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithUserIdentityLookupInfos:", *@This(), .{_userIdentityLookupInfos});
+    }
+
+    pub fn userIdentityLookupInfos(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "userIdentityLookupInfos", ?*anyopaque, .{});
+    }
+
+    pub fn setUserIdentityLookupInfos(_self: *@This(), _userIdentityLookupInfos: ?*anyopaque) void {
+        return objc.msgSend(_self, "setUserIdentityLookupInfos:", void, .{_userIdentityLookupInfos});
+    }
+
+    pub fn userIdentityDiscoveredBlock(_self: *@This()) *const fn (?*UserIdentity, ?*UserIdentityLookupInfo) callconv(.C) void {
+        return objc.msgSend(_self, "userIdentityDiscoveredBlock", *const fn (?*UserIdentity, ?*UserIdentityLookupInfo) callconv(.C) void, .{});
+    }
+
+    pub fn setUserIdentityDiscoveredBlock(_self: *@This(), _userIdentityDiscoveredBlock: *const fn (?*UserIdentity, ?*UserIdentityLookupInfo) callconv(.C) void) void {
+        return objc.msgSend(_self, "setUserIdentityDiscoveredBlock:", void, .{_userIdentityDiscoveredBlock});
+    }
+
+    pub fn discoverUserIdentitiesCompletionBlock(_self: *@This()) *const fn (?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "discoverUserIdentitiesCompletionBlock", *const fn (?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setDiscoverUserIdentitiesCompletionBlock(_self: *@This(), _discoverUserIdentitiesCompletionBlock: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setDiscoverUserIdentitiesCompletionBlock:", void, .{_discoverUserIdentitiesCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation?language=objc
 pub const FetchDatabaseChangesOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchDatabaseChangesOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchDatabaseChangesOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1645,91 +7812,374 @@ pub const FetchDatabaseChangesOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithPreviousServerChangeToken(self: *@This(), previousServerChangeToken: ?*ServerChangeToken) *@This() {
-        return objc.msgSend(self, "initWithPreviousServerChangeToken:", *@This(), .{previousServerChangeToken});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn previousServerChangeToken(self: *@This()) ?*ServerChangeToken {
-        return objc.msgSend(self, "previousServerChangeToken", ?*ServerChangeToken, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setPreviousServerChangeToken(self: *@This(), previousServerChangeToken: ?*ServerChangeToken) void {
-        return objc.msgSend(self, "setPreviousServerChangeToken:", void, .{previousServerChangeToken});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn resultsLimit(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "resultsLimit", objc.NSUInteger, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setResultsLimit(self: *@This(), resultsLimit: objc.NSUInteger) void {
-        return objc.msgSend(self, "setResultsLimit:", void, .{resultsLimit});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn fetchAllChanges(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "fetchAllChanges", objc.BOOL, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setFetchAllChanges(self: *@This(), fetchAllChanges: objc.BOOL) void {
-        return objc.msgSend(self, "setFetchAllChanges:", void, .{fetchAllChanges});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn recordZoneWithIDChangedBlock(self: *@This()) *const fn(?*RecordZoneID) callconv(.C) void {
-        return objc.msgSend(self, "recordZoneWithIDChangedBlock", *const fn(?*RecordZoneID) callconv(.C) void, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setRecordZoneWithIDChangedBlock(self: *@This(), recordZoneWithIDChangedBlock: *const fn(?*RecordZoneID) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordZoneWithIDChangedBlock:", void, .{recordZoneWithIDChangedBlock});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn recordZoneWithIDWasDeletedBlock(self: *@This()) *const fn(?*RecordZoneID) callconv(.C) void {
-        return objc.msgSend(self, "recordZoneWithIDWasDeletedBlock", *const fn(?*RecordZoneID) callconv(.C) void, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setRecordZoneWithIDWasDeletedBlock(self: *@This(), recordZoneWithIDWasDeletedBlock: *const fn(?*RecordZoneID) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordZoneWithIDWasDeletedBlock:", void, .{recordZoneWithIDWasDeletedBlock});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn recordZoneWithIDWasPurgedBlock(self: *@This()) *const fn(?*RecordZoneID) callconv(.C) void {
-        return objc.msgSend(self, "recordZoneWithIDWasPurgedBlock", *const fn(?*RecordZoneID) callconv(.C) void, .{});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn setRecordZoneWithIDWasPurgedBlock(self: *@This(), recordZoneWithIDWasPurgedBlock: *const fn(?*RecordZoneID) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordZoneWithIDWasPurgedBlock:", void, .{recordZoneWithIDWasPurgedBlock});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(self: *@This()) *const fn(?*RecordZoneID) callconv(.C) void {
-        return objc.msgSend(self, "recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock", *const fn(?*RecordZoneID) callconv(.C) void, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(self: *@This(), recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock: *const fn(?*RecordZoneID) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:", void, .{recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn changeTokenUpdatedBlock(self: *@This()) *const fn(?*ServerChangeToken) callconv(.C) void {
-        return objc.msgSend(self, "changeTokenUpdatedBlock", *const fn(?*ServerChangeToken) callconv(.C) void, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setChangeTokenUpdatedBlock(self: *@This(), changeTokenUpdatedBlock: *const fn(?*ServerChangeToken) callconv(.C) void) void {
-        return objc.msgSend(self, "setChangeTokenUpdatedBlock:", void, .{changeTokenUpdatedBlock});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn fetchDatabaseChangesCompletionBlock(self: *@This()) *const fn(?*ServerChangeToken, objc.BOOL, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "fetchDatabaseChangesCompletionBlock", *const fn(?*ServerChangeToken, objc.BOOL, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setFetchDatabaseChangesCompletionBlock(self: *@This(), fetchDatabaseChangesCompletionBlock: *const fn(?*ServerChangeToken, objc.BOOL, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setFetchDatabaseChangesCompletionBlock:", void, .{fetchDatabaseChangesCompletionBlock});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn initWithPreviousServerChangeToken(_self: *@This(), _previousServerChangeToken: ?*ServerChangeToken) *@This() {
+        return objc.msgSend(_self, "initWithPreviousServerChangeToken:", *@This(), .{_previousServerChangeToken});
+    }
+
+    pub fn previousServerChangeToken(_self: *@This()) ?*ServerChangeToken {
+        return objc.msgSend(_self, "previousServerChangeToken", ?*ServerChangeToken, .{});
+    }
+
+    pub fn setPreviousServerChangeToken(_self: *@This(), _previousServerChangeToken: ?*ServerChangeToken) void {
+        return objc.msgSend(_self, "setPreviousServerChangeToken:", void, .{_previousServerChangeToken});
+    }
+
+    pub fn resultsLimit(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "resultsLimit", objc.NSUInteger, .{});
+    }
+
+    pub fn setResultsLimit(_self: *@This(), _resultsLimit: objc.NSUInteger) void {
+        return objc.msgSend(_self, "setResultsLimit:", void, .{_resultsLimit});
+    }
+
+    pub fn fetchAllChanges(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "fetchAllChanges", objc.BOOL, .{});
+    }
+
+    pub fn setFetchAllChanges(_self: *@This(), _fetchAllChanges: objc.BOOL) void {
+        return objc.msgSend(_self, "setFetchAllChanges:", void, .{_fetchAllChanges});
+    }
+
+    pub fn recordZoneWithIDChangedBlock(_self: *@This()) *const fn (?*RecordZoneID) callconv(.C) void {
+        return objc.msgSend(_self, "recordZoneWithIDChangedBlock", *const fn (?*RecordZoneID) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordZoneWithIDChangedBlock(_self: *@This(), _recordZoneWithIDChangedBlock: *const fn (?*RecordZoneID) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordZoneWithIDChangedBlock:", void, .{_recordZoneWithIDChangedBlock});
+    }
+
+    pub fn recordZoneWithIDWasDeletedBlock(_self: *@This()) *const fn (?*RecordZoneID) callconv(.C) void {
+        return objc.msgSend(_self, "recordZoneWithIDWasDeletedBlock", *const fn (?*RecordZoneID) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordZoneWithIDWasDeletedBlock(_self: *@This(), _recordZoneWithIDWasDeletedBlock: *const fn (?*RecordZoneID) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordZoneWithIDWasDeletedBlock:", void, .{_recordZoneWithIDWasDeletedBlock});
+    }
+
+    pub fn recordZoneWithIDWasPurgedBlock(_self: *@This()) *const fn (?*RecordZoneID) callconv(.C) void {
+        return objc.msgSend(_self, "recordZoneWithIDWasPurgedBlock", *const fn (?*RecordZoneID) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordZoneWithIDWasPurgedBlock(_self: *@This(), _recordZoneWithIDWasPurgedBlock: *const fn (?*RecordZoneID) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordZoneWithIDWasPurgedBlock:", void, .{_recordZoneWithIDWasPurgedBlock});
+    }
+
+    pub fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(_self: *@This()) *const fn (?*RecordZoneID) callconv(.C) void {
+        return objc.msgSend(_self, "recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock", *const fn (?*RecordZoneID) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(_self: *@This(), _recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock: *const fn (?*RecordZoneID) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:", void, .{_recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock});
+    }
+
+    pub fn changeTokenUpdatedBlock(_self: *@This()) *const fn (?*ServerChangeToken) callconv(.C) void {
+        return objc.msgSend(_self, "changeTokenUpdatedBlock", *const fn (?*ServerChangeToken) callconv(.C) void, .{});
+    }
+
+    pub fn setChangeTokenUpdatedBlock(_self: *@This(), _changeTokenUpdatedBlock: *const fn (?*ServerChangeToken) callconv(.C) void) void {
+        return objc.msgSend(_self, "setChangeTokenUpdatedBlock:", void, .{_changeTokenUpdatedBlock});
+    }
+
+    pub fn fetchDatabaseChangesCompletionBlock(_self: *@This()) *const fn (?*ServerChangeToken, objc.BOOL, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchDatabaseChangesCompletionBlock", *const fn (?*ServerChangeToken, objc.BOOL, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setFetchDatabaseChangesCompletionBlock(_self: *@This(), _fetchDatabaseChangesCompletionBlock: *const fn (?*ServerChangeToken, objc.BOOL, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setFetchDatabaseChangesCompletionBlock:", void, .{_fetchDatabaseChangesCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchNotificationChangesOperation?language=objc
 pub const FetchNotificationChangesOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchNotificationChangesOperation", @This(), Operation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchNotificationChangesOperation", @This(), Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1737,11 +8187,291 @@ pub const FetchNotificationChangesOperation = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation?language=objc
 pub const FetchRecordChangesOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchRecordChangesOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchRecordChangesOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1750,79 +8480,362 @@ pub const FetchRecordChangesOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithRecordZoneIDPreviousServerChangeToken(self: *@This(), recordZoneID: ?*RecordZoneID, previousServerChangeToken: ?*ServerChangeToken) *@This() {
-        return objc.msgSend(self, "initWithRecordZoneID:previousServerChangeToken:", *@This(), .{recordZoneID, previousServerChangeToken});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn recordZoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "recordZoneID", ?*RecordZoneID, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setRecordZoneID(self: *@This(), recordZoneID: ?*RecordZoneID) void {
-        return objc.msgSend(self, "setRecordZoneID:", void, .{recordZoneID});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn previousServerChangeToken(self: *@This()) ?*ServerChangeToken {
-        return objc.msgSend(self, "previousServerChangeToken", ?*ServerChangeToken, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setPreviousServerChangeToken(self: *@This(), previousServerChangeToken: ?*ServerChangeToken) void {
-        return objc.msgSend(self, "setPreviousServerChangeToken:", void, .{previousServerChangeToken});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn resultsLimit(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "resultsLimit", objc.NSUInteger, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setResultsLimit(self: *@This(), resultsLimit: objc.NSUInteger) void {
-        return objc.msgSend(self, "setResultsLimit:", void, .{resultsLimit});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn desiredKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "desiredKeys", ?*anyopaque, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setDesiredKeys(self: *@This(), desiredKeys: ?*anyopaque) void {
-        return objc.msgSend(self, "setDesiredKeys:", void, .{desiredKeys});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn recordChangedBlock(self: *@This()) *const fn(?*Record) callconv(.C) void {
-        return objc.msgSend(self, "recordChangedBlock", *const fn(?*Record) callconv(.C) void, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setRecordChangedBlock(self: *@This(), recordChangedBlock: *const fn(?*Record) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordChangedBlock:", void, .{recordChangedBlock});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn recordWithIDWasDeletedBlock(self: *@This()) *const fn(?*RecordID) callconv(.C) void {
-        return objc.msgSend(self, "recordWithIDWasDeletedBlock", *const fn(?*RecordID) callconv(.C) void, .{});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn setRecordWithIDWasDeletedBlock(self: *@This(), recordWithIDWasDeletedBlock: *const fn(?*RecordID) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordWithIDWasDeletedBlock:", void, .{recordWithIDWasDeletedBlock});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn moreComing(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "moreComing", objc.BOOL, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn fetchRecordChangesCompletionBlock(self: *@This()) *const fn(?*ServerChangeToken, ?*foundation.Data, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "fetchRecordChangesCompletionBlock", *const fn(?*ServerChangeToken, ?*foundation.Data, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn setFetchRecordChangesCompletionBlock(self: *@This(), fetchRecordChangesCompletionBlock: *const fn(?*ServerChangeToken, ?*foundation.Data, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setFetchRecordChangesCompletionBlock:", void, .{fetchRecordChangesCompletionBlock});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn initWithRecordZoneIDPreviousServerChangeToken(_self: *@This(), _recordZoneID: ?*RecordZoneID, _previousServerChangeToken: ?*ServerChangeToken) *@This() {
+        return objc.msgSend(_self, "initWithRecordZoneID:previousServerChangeToken:", *@This(), .{ _recordZoneID, _previousServerChangeToken });
+    }
+
+    pub fn recordZoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "recordZoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn setRecordZoneID(_self: *@This(), _recordZoneID: ?*RecordZoneID) void {
+        return objc.msgSend(_self, "setRecordZoneID:", void, .{_recordZoneID});
+    }
+
+    pub fn previousServerChangeToken(_self: *@This()) ?*ServerChangeToken {
+        return objc.msgSend(_self, "previousServerChangeToken", ?*ServerChangeToken, .{});
+    }
+
+    pub fn setPreviousServerChangeToken(_self: *@This(), _previousServerChangeToken: ?*ServerChangeToken) void {
+        return objc.msgSend(_self, "setPreviousServerChangeToken:", void, .{_previousServerChangeToken});
+    }
+
+    pub fn resultsLimit(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "resultsLimit", objc.NSUInteger, .{});
+    }
+
+    pub fn setResultsLimit(_self: *@This(), _resultsLimit: objc.NSUInteger) void {
+        return objc.msgSend(_self, "setResultsLimit:", void, .{_resultsLimit});
+    }
+
+    pub fn desiredKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "desiredKeys", ?*anyopaque, .{});
+    }
+
+    pub fn setDesiredKeys(_self: *@This(), _desiredKeys: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDesiredKeys:", void, .{_desiredKeys});
+    }
+
+    pub fn recordChangedBlock(_self: *@This()) *const fn (?*Record) callconv(.C) void {
+        return objc.msgSend(_self, "recordChangedBlock", *const fn (?*Record) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordChangedBlock(_self: *@This(), _recordChangedBlock: *const fn (?*Record) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordChangedBlock:", void, .{_recordChangedBlock});
+    }
+
+    pub fn recordWithIDWasDeletedBlock(_self: *@This()) *const fn (?*RecordID) callconv(.C) void {
+        return objc.msgSend(_self, "recordWithIDWasDeletedBlock", *const fn (?*RecordID) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordWithIDWasDeletedBlock(_self: *@This(), _recordWithIDWasDeletedBlock: *const fn (?*RecordID) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordWithIDWasDeletedBlock:", void, .{_recordWithIDWasDeletedBlock});
+    }
+
+    pub fn moreComing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "moreComing", objc.BOOL, .{});
+    }
+
+    pub fn fetchRecordChangesCompletionBlock(_self: *@This()) *const fn (?*ServerChangeToken, ?*foundation.Data, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchRecordChangesCompletionBlock", *const fn (?*ServerChangeToken, ?*foundation.Data, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setFetchRecordChangesCompletionBlock(_self: *@This(), _fetchRecordChangesCompletionBlock: *const fn (?*ServerChangeToken, ?*foundation.Data, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setFetchRecordChangesCompletionBlock:", void, .{_fetchRecordChangesCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation?language=objc
 pub const FetchRecordsOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchRecordsOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchRecordsOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1831,63 +8844,346 @@ pub const FetchRecordsOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithRecordIDs(self: *@This(), recordIDs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithRecordIDs:", *@This(), .{recordIDs});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn fetchCurrentUserRecordOperation(self: *@This()) *@This() {
-        return objc.msgSend(self, "fetchCurrentUserRecordOperation", *@This(), .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn recordIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordIDs", ?*anyopaque, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setRecordIDs(self: *@This(), recordIDs: ?*anyopaque) void {
-        return objc.msgSend(self, "setRecordIDs:", void, .{recordIDs});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn desiredKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "desiredKeys", ?*anyopaque, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setDesiredKeys(self: *@This(), desiredKeys: ?*anyopaque) void {
-        return objc.msgSend(self, "setDesiredKeys:", void, .{desiredKeys});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn perRecordProgressBlock(self: *@This()) *const fn(?*RecordID, f64) callconv(.C) void {
-        return objc.msgSend(self, "perRecordProgressBlock", *const fn(?*RecordID, f64) callconv(.C) void, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setPerRecordProgressBlock(self: *@This(), perRecordProgressBlock: *const fn(?*RecordID, f64) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerRecordProgressBlock:", void, .{perRecordProgressBlock});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn perRecordCompletionBlock(self: *@This()) *const fn(?*Record, ?*RecordID, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perRecordCompletionBlock", *const fn(?*Record, ?*RecordID, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setPerRecordCompletionBlock(self: *@This(), perRecordCompletionBlock: *const fn(?*Record, ?*RecordID, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerRecordCompletionBlock:", void, .{perRecordCompletionBlock});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn fetchRecordsCompletionBlock(self: *@This()) *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "fetchRecordsCompletionBlock", *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn setFetchRecordsCompletionBlock(self: *@This(), fetchRecordsCompletionBlock: *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setFetchRecordsCompletionBlock:", void, .{fetchRecordsCompletionBlock});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn initWithRecordIDs(_self: *@This(), _recordIDs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithRecordIDs:", *@This(), .{_recordIDs});
+    }
+
+    pub fn fetchCurrentUserRecordOperation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "fetchCurrentUserRecordOperation", *@This(), .{});
+    }
+
+    pub fn recordIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordIDs", ?*anyopaque, .{});
+    }
+
+    pub fn setRecordIDs(_self: *@This(), _recordIDs: ?*anyopaque) void {
+        return objc.msgSend(_self, "setRecordIDs:", void, .{_recordIDs});
+    }
+
+    pub fn desiredKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "desiredKeys", ?*anyopaque, .{});
+    }
+
+    pub fn setDesiredKeys(_self: *@This(), _desiredKeys: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDesiredKeys:", void, .{_desiredKeys});
+    }
+
+    pub fn perRecordProgressBlock(_self: *@This()) *const fn (?*RecordID, f64) callconv(.C) void {
+        return objc.msgSend(_self, "perRecordProgressBlock", *const fn (?*RecordID, f64) callconv(.C) void, .{});
+    }
+
+    pub fn setPerRecordProgressBlock(_self: *@This(), _perRecordProgressBlock: *const fn (?*RecordID, f64) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerRecordProgressBlock:", void, .{_perRecordProgressBlock});
+    }
+
+    pub fn perRecordCompletionBlock(_self: *@This()) *const fn (?*Record, ?*RecordID, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perRecordCompletionBlock", *const fn (?*Record, ?*RecordID, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerRecordCompletionBlock(_self: *@This(), _perRecordCompletionBlock: *const fn (?*Record, ?*RecordID, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerRecordCompletionBlock:", void, .{_perRecordCompletionBlock});
+    }
+
+    pub fn fetchRecordsCompletionBlock(_self: *@This()) *const fn (?*anyopaque, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchRecordsCompletionBlock", *const fn (?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setFetchRecordsCompletionBlock(_self: *@This(), _fetchRecordsCompletionBlock: *const fn (?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setFetchRecordsCompletionBlock:", void, .{_fetchRecordsCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOperation?language=objc
 pub const FetchRecordZoneChangesOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchRecordZoneChangesOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchRecordZoneChangesOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1896,91 +9192,395 @@ pub const FetchRecordZoneChangesOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithRecordZoneIDsConfigurationsByRecordZoneID(self: *@This(), recordZoneIDs: ?*anyopaque, configurationsByRecordZoneID: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithRecordZoneIDs:configurationsByRecordZoneID:", *@This(), .{recordZoneIDs, configurationsByRecordZoneID});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn recordZoneIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordZoneIDs", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setRecordZoneIDs(self: *@This(), recordZoneIDs: ?*anyopaque) void {
-        return objc.msgSend(self, "setRecordZoneIDs:", void, .{recordZoneIDs});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn configurationsByRecordZoneID(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "configurationsByRecordZoneID", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setConfigurationsByRecordZoneID(self: *@This(), configurationsByRecordZoneID: ?*anyopaque) void {
-        return objc.msgSend(self, "setConfigurationsByRecordZoneID:", void, .{configurationsByRecordZoneID});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn fetchAllChanges(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "fetchAllChanges", objc.BOOL, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setFetchAllChanges(self: *@This(), fetchAllChanges: objc.BOOL) void {
-        return objc.msgSend(self, "setFetchAllChanges:", void, .{fetchAllChanges});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn recordChangedBlock(self: *@This()) *const fn(?*Record) callconv(.C) void {
-        return objc.msgSend(self, "recordChangedBlock", *const fn(?*Record) callconv(.C) void, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setRecordChangedBlock(self: *@This(), recordChangedBlock: *const fn(?*Record) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordChangedBlock:", void, .{recordChangedBlock});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn recordWasChangedBlock(self: *@This()) *const fn(?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "recordWasChangedBlock", *const fn(?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setRecordWasChangedBlock(self: *@This(), recordWasChangedBlock: *const fn(?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordWasChangedBlock:", void, .{recordWasChangedBlock});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn recordWithIDWasDeletedBlock(self: *@This()) *const fn(?*RecordID, RecordType) callconv(.C) void {
-        return objc.msgSend(self, "recordWithIDWasDeletedBlock", *const fn(?*RecordID, RecordType) callconv(.C) void, .{});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn setRecordWithIDWasDeletedBlock(self: *@This(), recordWithIDWasDeletedBlock: *const fn(?*RecordID, RecordType) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordWithIDWasDeletedBlock:", void, .{recordWithIDWasDeletedBlock});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn recordZoneChangeTokensUpdatedBlock(self: *@This()) *const fn(?*RecordZoneID, ?*ServerChangeToken, ?*foundation.Data) callconv(.C) void {
-        return objc.msgSend(self, "recordZoneChangeTokensUpdatedBlock", *const fn(?*RecordZoneID, ?*ServerChangeToken, ?*foundation.Data) callconv(.C) void, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setRecordZoneChangeTokensUpdatedBlock(self: *@This(), recordZoneChangeTokensUpdatedBlock: *const fn(?*RecordZoneID, ?*ServerChangeToken, ?*foundation.Data) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordZoneChangeTokensUpdatedBlock:", void, .{recordZoneChangeTokensUpdatedBlock});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn recordZoneFetchCompletionBlock(self: *@This()) *const fn(?*RecordZoneID, ?*ServerChangeToken, ?*foundation.Data, objc.BOOL, ?*foundation.Error, ) callconv(.C) void {
-        return objc.msgSend(self, "recordZoneFetchCompletionBlock", *const fn(?*RecordZoneID, ?*ServerChangeToken, ?*foundation.Data, objc.BOOL, ?*foundation.Error, ) callconv(.C) void, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setRecordZoneFetchCompletionBlock(self: *@This(), recordZoneFetchCompletionBlock: *const fn(?*RecordZoneID, ?*ServerChangeToken, ?*foundation.Data, objc.BOOL, ?*foundation.Error, ) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordZoneFetchCompletionBlock:", void, .{recordZoneFetchCompletionBlock});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn fetchRecordZoneChangesCompletionBlock(self: *@This()) *const fn(?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "fetchRecordZoneChangesCompletionBlock", *const fn(?*foundation.Error) callconv(.C) void, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setFetchRecordZoneChangesCompletionBlock(self: *@This(), fetchRecordZoneChangesCompletionBlock: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setFetchRecordZoneChangesCompletionBlock:", void, .{fetchRecordZoneChangesCompletionBlock});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn initWithRecordZoneIDsConfigurationsByRecordZoneID(_self: *@This(), _recordZoneIDs: ?*anyopaque, _configurationsByRecordZoneID: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithRecordZoneIDs:configurationsByRecordZoneID:", *@This(), .{ _recordZoneIDs, _configurationsByRecordZoneID });
+    }
+
+    pub fn recordZoneIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordZoneIDs", ?*anyopaque, .{});
+    }
+
+    pub fn setRecordZoneIDs(_self: *@This(), _recordZoneIDs: ?*anyopaque) void {
+        return objc.msgSend(_self, "setRecordZoneIDs:", void, .{_recordZoneIDs});
+    }
+
+    pub fn configurationsByRecordZoneID(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "configurationsByRecordZoneID", ?*anyopaque, .{});
+    }
+
+    pub fn setConfigurationsByRecordZoneID(_self: *@This(), _configurationsByRecordZoneID: ?*anyopaque) void {
+        return objc.msgSend(_self, "setConfigurationsByRecordZoneID:", void, .{_configurationsByRecordZoneID});
+    }
+
+    pub fn fetchAllChanges(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "fetchAllChanges", objc.BOOL, .{});
+    }
+
+    pub fn setFetchAllChanges(_self: *@This(), _fetchAllChanges: objc.BOOL) void {
+        return objc.msgSend(_self, "setFetchAllChanges:", void, .{_fetchAllChanges});
+    }
+
+    pub fn recordChangedBlock(_self: *@This()) *const fn (?*Record) callconv(.C) void {
+        return objc.msgSend(_self, "recordChangedBlock", *const fn (?*Record) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordChangedBlock(_self: *@This(), _recordChangedBlock: *const fn (?*Record) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordChangedBlock:", void, .{_recordChangedBlock});
+    }
+
+    pub fn recordWasChangedBlock(_self: *@This()) *const fn (?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "recordWasChangedBlock", *const fn (?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordWasChangedBlock(_self: *@This(), _recordWasChangedBlock: *const fn (?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordWasChangedBlock:", void, .{_recordWasChangedBlock});
+    }
+
+    pub fn recordWithIDWasDeletedBlock(_self: *@This()) *const fn (?*RecordID, RecordType) callconv(.C) void {
+        return objc.msgSend(_self, "recordWithIDWasDeletedBlock", *const fn (?*RecordID, RecordType) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordWithIDWasDeletedBlock(_self: *@This(), _recordWithIDWasDeletedBlock: *const fn (?*RecordID, RecordType) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordWithIDWasDeletedBlock:", void, .{_recordWithIDWasDeletedBlock});
+    }
+
+    pub fn recordZoneChangeTokensUpdatedBlock(_self: *@This()) *const fn (?*RecordZoneID, ?*ServerChangeToken, ?*foundation.Data) callconv(.C) void {
+        return objc.msgSend(_self, "recordZoneChangeTokensUpdatedBlock", *const fn (?*RecordZoneID, ?*ServerChangeToken, ?*foundation.Data) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordZoneChangeTokensUpdatedBlock(_self: *@This(), _recordZoneChangeTokensUpdatedBlock: *const fn (?*RecordZoneID, ?*ServerChangeToken, ?*foundation.Data) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordZoneChangeTokensUpdatedBlock:", void, .{_recordZoneChangeTokensUpdatedBlock});
+    }
+
+    pub fn recordZoneFetchCompletionBlock(_self: *@This()) *const fn (
+        ?*RecordZoneID,
+        ?*ServerChangeToken,
+        ?*foundation.Data,
+        objc.BOOL,
+        ?*foundation.Error,
+    ) callconv(.C) void {
+        return objc.msgSend(_self, "recordZoneFetchCompletionBlock", *const fn (
+            ?*RecordZoneID,
+            ?*ServerChangeToken,
+            ?*foundation.Data,
+            objc.BOOL,
+            ?*foundation.Error,
+        ) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordZoneFetchCompletionBlock(_self: *@This(), _recordZoneFetchCompletionBlock: *const fn (
+        ?*RecordZoneID,
+        ?*ServerChangeToken,
+        ?*foundation.Data,
+        objc.BOOL,
+        ?*foundation.Error,
+    ) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordZoneFetchCompletionBlock:", void, .{_recordZoneFetchCompletionBlock});
+    }
+
+    pub fn fetchRecordZoneChangesCompletionBlock(_self: *@This()) *const fn (?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchRecordZoneChangesCompletionBlock", *const fn (?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setFetchRecordZoneChangesCompletionBlock(_self: *@This(), _fetchRecordZoneChangesCompletionBlock: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setFetchRecordZoneChangesCompletionBlock:", void, .{_fetchRecordZoneChangesCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesConfiguration?language=objc
 pub const FetchRecordZoneChangesConfiguration = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchRecordZoneChangesConfiguration", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchRecordZoneChangesConfiguration", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1989,35 +9589,209 @@ pub const FetchRecordZoneChangesConfiguration = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn previousServerChangeToken(self: *@This()) ?*ServerChangeToken {
-        return objc.msgSend(self, "previousServerChangeToken", ?*ServerChangeToken, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn setPreviousServerChangeToken(self: *@This(), previousServerChangeToken: ?*ServerChangeToken) void {
-        return objc.msgSend(self, "setPreviousServerChangeToken:", void, .{previousServerChangeToken});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn resultsLimit(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "resultsLimit", objc.NSUInteger, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setResultsLimit(self: *@This(), resultsLimit: objc.NSUInteger) void {
-        return objc.msgSend(self, "setResultsLimit:", void, .{resultsLimit});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn desiredKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "desiredKeys", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setDesiredKeys(self: *@This(), desiredKeys: ?*anyopaque) void {
-        return objc.msgSend(self, "setDesiredKeys:", void, .{desiredKeys});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn previousServerChangeToken(_self: *@This()) ?*ServerChangeToken {
+        return objc.msgSend(_self, "previousServerChangeToken", ?*ServerChangeToken, .{});
+    }
+
+    pub fn setPreviousServerChangeToken(_self: *@This(), _previousServerChangeToken: ?*ServerChangeToken) void {
+        return objc.msgSend(_self, "setPreviousServerChangeToken:", void, .{_previousServerChangeToken});
+    }
+
+    pub fn resultsLimit(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "resultsLimit", objc.NSUInteger, .{});
+    }
+
+    pub fn setResultsLimit(_self: *@This(), _resultsLimit: objc.NSUInteger) void {
+        return objc.msgSend(_self, "setResultsLimit:", void, .{_resultsLimit});
+    }
+
+    pub fn desiredKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "desiredKeys", ?*anyopaque, .{});
+    }
+
+    pub fn setDesiredKeys(_self: *@This(), _desiredKeys: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDesiredKeys:", void, .{_desiredKeys});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOptions?language=objc
 pub const FetchRecordZoneChangesOptions = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchRecordZoneChangesOptions", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchRecordZoneChangesOptions", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2026,35 +9800,206 @@ pub const FetchRecordZoneChangesOptions = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn previousServerChangeToken(self: *@This()) ?*ServerChangeToken {
-        return objc.msgSend(self, "previousServerChangeToken", ?*ServerChangeToken, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn setPreviousServerChangeToken(self: *@This(), previousServerChangeToken: ?*ServerChangeToken) void {
-        return objc.msgSend(self, "setPreviousServerChangeToken:", void, .{previousServerChangeToken});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn resultsLimit(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "resultsLimit", objc.NSUInteger, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setResultsLimit(self: *@This(), resultsLimit: objc.NSUInteger) void {
-        return objc.msgSend(self, "setResultsLimit:", void, .{resultsLimit});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn desiredKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "desiredKeys", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setDesiredKeys(self: *@This(), desiredKeys: ?*anyopaque) void {
-        return objc.msgSend(self, "setDesiredKeys:", void, .{desiredKeys});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn previousServerChangeToken(_self: *@This()) ?*ServerChangeToken {
+        return objc.msgSend(_self, "previousServerChangeToken", ?*ServerChangeToken, .{});
+    }
+
+    pub fn setPreviousServerChangeToken(_self: *@This(), _previousServerChangeToken: ?*ServerChangeToken) void {
+        return objc.msgSend(_self, "setPreviousServerChangeToken:", void, .{_previousServerChangeToken});
+    }
+
+    pub fn resultsLimit(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "resultsLimit", objc.NSUInteger, .{});
+    }
+
+    pub fn setResultsLimit(_self: *@This(), _resultsLimit: objc.NSUInteger) void {
+        return objc.msgSend(_self, "setResultsLimit:", void, .{_resultsLimit});
+    }
+
+    pub fn desiredKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "desiredKeys", ?*anyopaque, .{});
+    }
+
+    pub fn setDesiredKeys(_self: *@This(), _desiredKeys: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDesiredKeys:", void, .{_desiredKeys});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation?language=objc
 pub const FetchRecordZonesOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchRecordZonesOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchRecordZonesOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2063,47 +10008,330 @@ pub const FetchRecordZonesOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn fetchAllRecordZonesOperation(self: *@This()) *@This() {
-        return objc.msgSend(self, "fetchAllRecordZonesOperation", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithRecordZoneIDs(self: *@This(), zoneIDs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithRecordZoneIDs:", *@This(), .{zoneIDs});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn recordZoneIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordZoneIDs", ?*anyopaque, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setRecordZoneIDs(self: *@This(), recordZoneIDs: ?*anyopaque) void {
-        return objc.msgSend(self, "setRecordZoneIDs:", void, .{recordZoneIDs});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn perRecordZoneCompletionBlock(self: *@This()) *const fn(?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perRecordZoneCompletionBlock", *const fn(?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setPerRecordZoneCompletionBlock(self: *@This(), perRecordZoneCompletionBlock: *const fn(?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerRecordZoneCompletionBlock:", void, .{perRecordZoneCompletionBlock});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn fetchRecordZonesCompletionBlock(self: *@This()) *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "fetchRecordZonesCompletionBlock", *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setFetchRecordZonesCompletionBlock(self: *@This(), fetchRecordZonesCompletionBlock: *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setFetchRecordZonesCompletionBlock:", void, .{fetchRecordZonesCompletionBlock});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn fetchAllRecordZonesOperation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "fetchAllRecordZonesOperation", *@This(), .{});
+    }
+
+    pub fn initWithRecordZoneIDs(_self: *@This(), _zoneIDs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithRecordZoneIDs:", *@This(), .{_zoneIDs});
+    }
+
+    pub fn recordZoneIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordZoneIDs", ?*anyopaque, .{});
+    }
+
+    pub fn setRecordZoneIDs(_self: *@This(), _recordZoneIDs: ?*anyopaque) void {
+        return objc.msgSend(_self, "setRecordZoneIDs:", void, .{_recordZoneIDs});
+    }
+
+    pub fn perRecordZoneCompletionBlock(_self: *@This()) *const fn (?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perRecordZoneCompletionBlock", *const fn (?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerRecordZoneCompletionBlock(_self: *@This(), _perRecordZoneCompletionBlock: *const fn (?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerRecordZoneCompletionBlock:", void, .{_perRecordZoneCompletionBlock});
+    }
+
+    pub fn fetchRecordZonesCompletionBlock(_self: *@This()) *const fn (?*anyopaque, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchRecordZonesCompletionBlock", *const fn (?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setFetchRecordZonesCompletionBlock(_self: *@This(), _fetchRecordZonesCompletionBlock: *const fn (?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setFetchRecordZonesCompletionBlock:", void, .{_fetchRecordZonesCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchShareMetadataOperation?language=objc
 pub const FetchShareMetadataOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchShareMetadataOperation", @This(), Operation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchShareMetadataOperation", @This(), Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2112,59 +10340,334 @@ pub const FetchShareMetadataOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithShareURLs(self: *@This(), shareURLs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithShareURLs:", *@This(), .{shareURLs});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn shareURLs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "shareURLs", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setShareURLs(self: *@This(), shareURLs: ?*anyopaque) void {
-        return objc.msgSend(self, "setShareURLs:", void, .{shareURLs});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn shouldFetchRootRecord(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "shouldFetchRootRecord", objc.BOOL, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setShouldFetchRootRecord(self: *@This(), shouldFetchRootRecord: objc.BOOL) void {
-        return objc.msgSend(self, "setShouldFetchRootRecord:", void, .{shouldFetchRootRecord});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn rootRecordDesiredKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "rootRecordDesiredKeys", ?*anyopaque, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setRootRecordDesiredKeys(self: *@This(), rootRecordDesiredKeys: ?*anyopaque) void {
-        return objc.msgSend(self, "setRootRecordDesiredKeys:", void, .{rootRecordDesiredKeys});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn perShareMetadataBlock(self: *@This()) *const fn(?*foundation.URL, ?*ShareMetadata, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perShareMetadataBlock", *const fn(?*foundation.URL, ?*ShareMetadata, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setPerShareMetadataBlock(self: *@This(), perShareMetadataBlock: *const fn(?*foundation.URL, ?*ShareMetadata, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerShareMetadataBlock:", void, .{perShareMetadataBlock});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn fetchShareMetadataCompletionBlock(self: *@This()) *const fn(?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "fetchShareMetadataCompletionBlock", *const fn(?*foundation.Error) callconv(.C) void, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setFetchShareMetadataCompletionBlock(self: *@This(), fetchShareMetadataCompletionBlock: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setFetchShareMetadataCompletionBlock:", void, .{fetchShareMetadataCompletionBlock});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn initWithShareURLs(_self: *@This(), _shareURLs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithShareURLs:", *@This(), .{_shareURLs});
+    }
+
+    pub fn shareURLs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "shareURLs", ?*anyopaque, .{});
+    }
+
+    pub fn setShareURLs(_self: *@This(), _shareURLs: ?*anyopaque) void {
+        return objc.msgSend(_self, "setShareURLs:", void, .{_shareURLs});
+    }
+
+    pub fn shouldFetchRootRecord(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldFetchRootRecord", objc.BOOL, .{});
+    }
+
+    pub fn setShouldFetchRootRecord(_self: *@This(), _shouldFetchRootRecord: objc.BOOL) void {
+        return objc.msgSend(_self, "setShouldFetchRootRecord:", void, .{_shouldFetchRootRecord});
+    }
+
+    pub fn rootRecordDesiredKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "rootRecordDesiredKeys", ?*anyopaque, .{});
+    }
+
+    pub fn setRootRecordDesiredKeys(_self: *@This(), _rootRecordDesiredKeys: ?*anyopaque) void {
+        return objc.msgSend(_self, "setRootRecordDesiredKeys:", void, .{_rootRecordDesiredKeys});
+    }
+
+    pub fn perShareMetadataBlock(_self: *@This()) *const fn (?*foundation.URL, ?*ShareMetadata, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perShareMetadataBlock", *const fn (?*foundation.URL, ?*ShareMetadata, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerShareMetadataBlock(_self: *@This(), _perShareMetadataBlock: *const fn (?*foundation.URL, ?*ShareMetadata, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerShareMetadataBlock:", void, .{_perShareMetadataBlock});
+    }
+
+    pub fn fetchShareMetadataCompletionBlock(_self: *@This()) *const fn (?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchShareMetadataCompletionBlock", *const fn (?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setFetchShareMetadataCompletionBlock(_self: *@This(), _fetchShareMetadataCompletionBlock: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setFetchShareMetadataCompletionBlock:", void, .{_fetchShareMetadataCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchShareParticipantsOperation?language=objc
 pub const FetchShareParticipantsOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchShareParticipantsOperation", @This(), Operation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchShareParticipantsOperation", @This(), Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2173,51 +10676,326 @@ pub const FetchShareParticipantsOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithUserIdentityLookupInfos(self: *@This(), userIdentityLookupInfos: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithUserIdentityLookupInfos:", *@This(), .{userIdentityLookupInfos});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn userIdentityLookupInfos(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "userIdentityLookupInfos", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setUserIdentityLookupInfos(self: *@This(), userIdentityLookupInfos: ?*anyopaque) void {
-        return objc.msgSend(self, "setUserIdentityLookupInfos:", void, .{userIdentityLookupInfos});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn shareParticipantFetchedBlock(self: *@This()) *const fn(?*ShareParticipant) callconv(.C) void {
-        return objc.msgSend(self, "shareParticipantFetchedBlock", *const fn(?*ShareParticipant) callconv(.C) void, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setShareParticipantFetchedBlock(self: *@This(), shareParticipantFetchedBlock: *const fn(?*ShareParticipant) callconv(.C) void) void {
-        return objc.msgSend(self, "setShareParticipantFetchedBlock:", void, .{shareParticipantFetchedBlock});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn perShareParticipantCompletionBlock(self: *@This()) *const fn(?*UserIdentityLookupInfo, ?*ShareParticipant, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perShareParticipantCompletionBlock", *const fn(?*UserIdentityLookupInfo, ?*ShareParticipant, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setPerShareParticipantCompletionBlock(self: *@This(), perShareParticipantCompletionBlock: *const fn(?*UserIdentityLookupInfo, ?*ShareParticipant, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerShareParticipantCompletionBlock:", void, .{perShareParticipantCompletionBlock});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn fetchShareParticipantsCompletionBlock(self: *@This()) *const fn(?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "fetchShareParticipantsCompletionBlock", *const fn(?*foundation.Error) callconv(.C) void, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setFetchShareParticipantsCompletionBlock(self: *@This(), fetchShareParticipantsCompletionBlock: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setFetchShareParticipantsCompletionBlock:", void, .{fetchShareParticipantsCompletionBlock});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn initWithUserIdentityLookupInfos(_self: *@This(), _userIdentityLookupInfos: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithUserIdentityLookupInfos:", *@This(), .{_userIdentityLookupInfos});
+    }
+
+    pub fn userIdentityLookupInfos(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "userIdentityLookupInfos", ?*anyopaque, .{});
+    }
+
+    pub fn setUserIdentityLookupInfos(_self: *@This(), _userIdentityLookupInfos: ?*anyopaque) void {
+        return objc.msgSend(_self, "setUserIdentityLookupInfos:", void, .{_userIdentityLookupInfos});
+    }
+
+    pub fn shareParticipantFetchedBlock(_self: *@This()) *const fn (?*ShareParticipant) callconv(.C) void {
+        return objc.msgSend(_self, "shareParticipantFetchedBlock", *const fn (?*ShareParticipant) callconv(.C) void, .{});
+    }
+
+    pub fn setShareParticipantFetchedBlock(_self: *@This(), _shareParticipantFetchedBlock: *const fn (?*ShareParticipant) callconv(.C) void) void {
+        return objc.msgSend(_self, "setShareParticipantFetchedBlock:", void, .{_shareParticipantFetchedBlock});
+    }
+
+    pub fn perShareParticipantCompletionBlock(_self: *@This()) *const fn (?*UserIdentityLookupInfo, ?*ShareParticipant, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perShareParticipantCompletionBlock", *const fn (?*UserIdentityLookupInfo, ?*ShareParticipant, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerShareParticipantCompletionBlock(_self: *@This(), _perShareParticipantCompletionBlock: *const fn (?*UserIdentityLookupInfo, ?*ShareParticipant, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerShareParticipantCompletionBlock:", void, .{_perShareParticipantCompletionBlock});
+    }
+
+    pub fn fetchShareParticipantsCompletionBlock(_self: *@This()) *const fn (?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchShareParticipantsCompletionBlock", *const fn (?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setFetchShareParticipantsCompletionBlock(_self: *@This(), _fetchShareParticipantsCompletionBlock: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setFetchShareParticipantsCompletionBlock:", void, .{_fetchShareParticipantsCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchSubscriptionsOperation?language=objc
 pub const FetchSubscriptionsOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchSubscriptionsOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchSubscriptionsOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2226,47 +11004,330 @@ pub const FetchSubscriptionsOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn fetchAllSubscriptionsOperation(self: *@This()) *@This() {
-        return objc.msgSend(self, "fetchAllSubscriptionsOperation", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithSubscriptionIDs(self: *@This(), subscriptionIDs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithSubscriptionIDs:", *@This(), .{subscriptionIDs});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn subscriptionIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "subscriptionIDs", ?*anyopaque, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setSubscriptionIDs(self: *@This(), subscriptionIDs: ?*anyopaque) void {
-        return objc.msgSend(self, "setSubscriptionIDs:", void, .{subscriptionIDs});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn perSubscriptionCompletionBlock(self: *@This()) *const fn(SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perSubscriptionCompletionBlock", *const fn(SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setPerSubscriptionCompletionBlock(self: *@This(), perSubscriptionCompletionBlock: *const fn(SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerSubscriptionCompletionBlock:", void, .{perSubscriptionCompletionBlock});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn fetchSubscriptionCompletionBlock(self: *@This()) *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "fetchSubscriptionCompletionBlock", *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setFetchSubscriptionCompletionBlock(self: *@This(), fetchSubscriptionCompletionBlock: *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setFetchSubscriptionCompletionBlock:", void, .{fetchSubscriptionCompletionBlock});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn fetchAllSubscriptionsOperation(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "fetchAllSubscriptionsOperation", *@This(), .{});
+    }
+
+    pub fn initWithSubscriptionIDs(_self: *@This(), _subscriptionIDs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithSubscriptionIDs:", *@This(), .{_subscriptionIDs});
+    }
+
+    pub fn subscriptionIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "subscriptionIDs", ?*anyopaque, .{});
+    }
+
+    pub fn setSubscriptionIDs(_self: *@This(), _subscriptionIDs: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSubscriptionIDs:", void, .{_subscriptionIDs});
+    }
+
+    pub fn perSubscriptionCompletionBlock(_self: *@This()) *const fn (SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perSubscriptionCompletionBlock", *const fn (SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerSubscriptionCompletionBlock(_self: *@This(), _perSubscriptionCompletionBlock: *const fn (SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerSubscriptionCompletionBlock:", void, .{_perSubscriptionCompletionBlock});
+    }
+
+    pub fn fetchSubscriptionCompletionBlock(_self: *@This()) *const fn (?*anyopaque, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchSubscriptionCompletionBlock", *const fn (?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setFetchSubscriptionCompletionBlock(_self: *@This(), _fetchSubscriptionCompletionBlock: *const fn (?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setFetchSubscriptionCompletionBlock:", void, .{_fetchSubscriptionCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation?language=objc
 pub const FetchWebAuthTokenOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKFetchWebAuthTokenOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKFetchWebAuthTokenOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2275,35 +11336,318 @@ pub const FetchWebAuthTokenOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithAPIToken(self: *@This(), APIToken: ?*NSString) *@This() {
-        return objc.msgSend(self, "initWithAPIToken:", *@This(), .{APIToken});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn APIToken(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "APIToken", ?*NSString, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setAPIToken(self: *@This(), APIToken: ?*NSString) void {
-        return objc.msgSend(self, "setAPIToken:", void, .{APIToken});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn fetchWebAuthTokenCompletionBlock(self: *@This()) *const fn(?*NSString, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "fetchWebAuthTokenCompletionBlock", *const fn(?*NSString, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setFetchWebAuthTokenCompletionBlock(self: *@This(), fetchWebAuthTokenCompletionBlock: *const fn(?*NSString, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setFetchWebAuthTokenCompletionBlock:", void, .{fetchWebAuthTokenCompletionBlock});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn initWithAPIToken(_self: *@This(), _APIToken: ?*NSString) *@This() {
+        return objc.msgSend(_self, "initWithAPIToken:", *@This(), .{_APIToken});
+    }
+
+    pub fn apiToken(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "APIToken", ?*NSString, .{});
+    }
+
+    pub fn setAPIToken(_self: *@This(), _APIToken: ?*NSString) void {
+        return objc.msgSend(_self, "setAPIToken:", void, .{_APIToken});
+    }
+
+    pub fn fetchWebAuthTokenCompletionBlock(_self: *@This()) *const fn (?*NSString, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchWebAuthTokenCompletionBlock", *const fn (?*NSString, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setFetchWebAuthTokenCompletionBlock(_self: *@This(), _fetchWebAuthTokenCompletionBlock: *const fn (?*NSString, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setFetchWebAuthTokenCompletionBlock:", void, .{_fetchWebAuthTokenCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKMarkNotificationsReadOperation?language=objc
 pub const MarkNotificationsReadOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKMarkNotificationsReadOperation", @This(), Operation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKMarkNotificationsReadOperation", @This(), Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2311,11 +11655,291 @@ pub const MarkNotificationsReadOperation = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKModifyBadgeOperation?language=objc
 pub const ModifyBadgeOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKModifyBadgeOperation", @This(), Operation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKModifyBadgeOperation", @This(), Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2323,6 +11947,286 @@ pub const ModifyBadgeOperation = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
+
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
+    }
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
 };
 
 pub const RecordSavePolicy = enum(objc.NSInteger) {
@@ -2333,7 +12237,7 @@ pub const RecordSavePolicy = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation?language=objc
 pub const ModifyRecordsOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKModifyRecordsOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKModifyRecordsOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2342,99 +12246,382 @@ pub const ModifyRecordsOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithRecordsToSaveRecordIDsToDelete(self: *@This(), records: ?*anyopaque, recordIDs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithRecordsToSave:recordIDsToDelete:", *@This(), .{records, recordIDs});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn recordsToSave(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordsToSave", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setRecordsToSave(self: *@This(), recordsToSave: ?*anyopaque) void {
-        return objc.msgSend(self, "setRecordsToSave:", void, .{recordsToSave});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn recordIDsToDelete(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordIDsToDelete", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setRecordIDsToDelete(self: *@This(), recordIDsToDelete: ?*anyopaque) void {
-        return objc.msgSend(self, "setRecordIDsToDelete:", void, .{recordIDsToDelete});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn savePolicy(self: *@This()) RecordSavePolicy {
-        return objc.msgSend(self, "savePolicy", RecordSavePolicy, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setSavePolicy(self: *@This(), savePolicy: RecordSavePolicy) void {
-        return objc.msgSend(self, "setSavePolicy:", void, .{savePolicy});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn clientChangeTokenData(self: *@This()) ?*foundation.Data {
-        return objc.msgSend(self, "clientChangeTokenData", ?*foundation.Data, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setClientChangeTokenData(self: *@This(), clientChangeTokenData: ?*foundation.Data) void {
-        return objc.msgSend(self, "setClientChangeTokenData:", void, .{clientChangeTokenData});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn atomic(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "atomic", objc.BOOL, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setAtomic(self: *@This(), atomic: objc.BOOL) void {
-        return objc.msgSend(self, "setAtomic:", void, .{atomic});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn perRecordProgressBlock(self: *@This()) *const fn(?*Record, f64) callconv(.C) void {
-        return objc.msgSend(self, "perRecordProgressBlock", *const fn(?*Record, f64) callconv(.C) void, .{});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn setPerRecordProgressBlock(self: *@This(), perRecordProgressBlock: *const fn(?*Record, f64) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerRecordProgressBlock:", void, .{perRecordProgressBlock});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn perRecordCompletionBlock(self: *@This()) *const fn(?*Record, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perRecordCompletionBlock", *const fn(?*Record, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn setPerRecordCompletionBlock(self: *@This(), perRecordCompletionBlock: *const fn(?*Record, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerRecordCompletionBlock:", void, .{perRecordCompletionBlock});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn perRecordSaveBlock(self: *@This()) *const fn(?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perRecordSaveBlock", *const fn(?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn setPerRecordSaveBlock(self: *@This(), perRecordSaveBlock: *const fn(?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerRecordSaveBlock:", void, .{perRecordSaveBlock});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn perRecordDeleteBlock(self: *@This()) *const fn(?*RecordID, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perRecordDeleteBlock", *const fn(?*RecordID, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setPerRecordDeleteBlock(self: *@This(), perRecordDeleteBlock: *const fn(?*RecordID, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerRecordDeleteBlock:", void, .{perRecordDeleteBlock});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn modifyRecordsCompletionBlock(self: *@This()) *const fn(?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "modifyRecordsCompletionBlock", *const fn(?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn setModifyRecordsCompletionBlock(self: *@This(), modifyRecordsCompletionBlock: *const fn(?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setModifyRecordsCompletionBlock:", void, .{modifyRecordsCompletionBlock});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn initWithRecordsToSaveRecordIDsToDelete(_self: *@This(), _records: ?*anyopaque, _recordIDs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithRecordsToSave:recordIDsToDelete:", *@This(), .{ _records, _recordIDs });
+    }
+
+    pub fn recordsToSave(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordsToSave", ?*anyopaque, .{});
+    }
+
+    pub fn setRecordsToSave(_self: *@This(), _recordsToSave: ?*anyopaque) void {
+        return objc.msgSend(_self, "setRecordsToSave:", void, .{_recordsToSave});
+    }
+
+    pub fn recordIDsToDelete(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordIDsToDelete", ?*anyopaque, .{});
+    }
+
+    pub fn setRecordIDsToDelete(_self: *@This(), _recordIDsToDelete: ?*anyopaque) void {
+        return objc.msgSend(_self, "setRecordIDsToDelete:", void, .{_recordIDsToDelete});
+    }
+
+    pub fn savePolicy(_self: *@This()) RecordSavePolicy {
+        return objc.msgSend(_self, "savePolicy", RecordSavePolicy, .{});
+    }
+
+    pub fn setSavePolicy(_self: *@This(), _savePolicy: RecordSavePolicy) void {
+        return objc.msgSend(_self, "setSavePolicy:", void, .{_savePolicy});
+    }
+
+    pub fn clientChangeTokenData(_self: *@This()) ?*foundation.Data {
+        return objc.msgSend(_self, "clientChangeTokenData", ?*foundation.Data, .{});
+    }
+
+    pub fn setClientChangeTokenData(_self: *@This(), _clientChangeTokenData: ?*foundation.Data) void {
+        return objc.msgSend(_self, "setClientChangeTokenData:", void, .{_clientChangeTokenData});
+    }
+
+    pub fn atomic(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "atomic", objc.BOOL, .{});
+    }
+
+    pub fn setAtomic(_self: *@This(), _atomic: objc.BOOL) void {
+        return objc.msgSend(_self, "setAtomic:", void, .{_atomic});
+    }
+
+    pub fn perRecordProgressBlock(_self: *@This()) *const fn (?*Record, f64) callconv(.C) void {
+        return objc.msgSend(_self, "perRecordProgressBlock", *const fn (?*Record, f64) callconv(.C) void, .{});
+    }
+
+    pub fn setPerRecordProgressBlock(_self: *@This(), _perRecordProgressBlock: *const fn (?*Record, f64) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerRecordProgressBlock:", void, .{_perRecordProgressBlock});
+    }
+
+    pub fn perRecordCompletionBlock(_self: *@This()) *const fn (?*Record, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perRecordCompletionBlock", *const fn (?*Record, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerRecordCompletionBlock(_self: *@This(), _perRecordCompletionBlock: *const fn (?*Record, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerRecordCompletionBlock:", void, .{_perRecordCompletionBlock});
+    }
+
+    pub fn perRecordSaveBlock(_self: *@This()) *const fn (?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perRecordSaveBlock", *const fn (?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerRecordSaveBlock(_self: *@This(), _perRecordSaveBlock: *const fn (?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerRecordSaveBlock:", void, .{_perRecordSaveBlock});
+    }
+
+    pub fn perRecordDeleteBlock(_self: *@This()) *const fn (?*RecordID, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perRecordDeleteBlock", *const fn (?*RecordID, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerRecordDeleteBlock(_self: *@This(), _perRecordDeleteBlock: *const fn (?*RecordID, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerRecordDeleteBlock:", void, .{_perRecordDeleteBlock});
+    }
+
+    pub fn modifyRecordsCompletionBlock(_self: *@This()) *const fn (?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "modifyRecordsCompletionBlock", *const fn (?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setModifyRecordsCompletionBlock(_self: *@This(), _modifyRecordsCompletionBlock: *const fn (?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setModifyRecordsCompletionBlock:", void, .{_modifyRecordsCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation?language=objc
 pub const ModifyRecordZonesOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKModifyRecordZonesOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKModifyRecordZonesOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2443,59 +12630,342 @@ pub const ModifyRecordZonesOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithRecordZonesToSaveRecordZoneIDsToDelete(self: *@This(), recordZonesToSave: ?*anyopaque, recordZoneIDsToDelete: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithRecordZonesToSave:recordZoneIDsToDelete:", *@This(), .{recordZonesToSave, recordZoneIDsToDelete});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn recordZonesToSave(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordZonesToSave", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setRecordZonesToSave(self: *@This(), recordZonesToSave: ?*anyopaque) void {
-        return objc.msgSend(self, "setRecordZonesToSave:", void, .{recordZonesToSave});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn recordZoneIDsToDelete(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordZoneIDsToDelete", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setRecordZoneIDsToDelete(self: *@This(), recordZoneIDsToDelete: ?*anyopaque) void {
-        return objc.msgSend(self, "setRecordZoneIDsToDelete:", void, .{recordZoneIDsToDelete});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn perRecordZoneSaveBlock(self: *@This()) *const fn(?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perRecordZoneSaveBlock", *const fn(?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setPerRecordZoneSaveBlock(self: *@This(), perRecordZoneSaveBlock: *const fn(?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerRecordZoneSaveBlock:", void, .{perRecordZoneSaveBlock});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn perRecordZoneDeleteBlock(self: *@This()) *const fn(?*RecordZoneID, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perRecordZoneDeleteBlock", *const fn(?*RecordZoneID, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setPerRecordZoneDeleteBlock(self: *@This(), perRecordZoneDeleteBlock: *const fn(?*RecordZoneID, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerRecordZoneDeleteBlock:", void, .{perRecordZoneDeleteBlock});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn modifyRecordZonesCompletionBlock(self: *@This()) *const fn(?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "modifyRecordZonesCompletionBlock", *const fn(?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setModifyRecordZonesCompletionBlock(self: *@This(), modifyRecordZonesCompletionBlock: *const fn(?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setModifyRecordZonesCompletionBlock:", void, .{modifyRecordZonesCompletionBlock});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn initWithRecordZonesToSaveRecordZoneIDsToDelete(_self: *@This(), _recordZonesToSave: ?*anyopaque, _recordZoneIDsToDelete: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithRecordZonesToSave:recordZoneIDsToDelete:", *@This(), .{ _recordZonesToSave, _recordZoneIDsToDelete });
+    }
+
+    pub fn recordZonesToSave(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordZonesToSave", ?*anyopaque, .{});
+    }
+
+    pub fn setRecordZonesToSave(_self: *@This(), _recordZonesToSave: ?*anyopaque) void {
+        return objc.msgSend(_self, "setRecordZonesToSave:", void, .{_recordZonesToSave});
+    }
+
+    pub fn recordZoneIDsToDelete(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordZoneIDsToDelete", ?*anyopaque, .{});
+    }
+
+    pub fn setRecordZoneIDsToDelete(_self: *@This(), _recordZoneIDsToDelete: ?*anyopaque) void {
+        return objc.msgSend(_self, "setRecordZoneIDsToDelete:", void, .{_recordZoneIDsToDelete});
+    }
+
+    pub fn perRecordZoneSaveBlock(_self: *@This()) *const fn (?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perRecordZoneSaveBlock", *const fn (?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerRecordZoneSaveBlock(_self: *@This(), _perRecordZoneSaveBlock: *const fn (?*RecordZoneID, ?*RecordZone, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerRecordZoneSaveBlock:", void, .{_perRecordZoneSaveBlock});
+    }
+
+    pub fn perRecordZoneDeleteBlock(_self: *@This()) *const fn (?*RecordZoneID, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perRecordZoneDeleteBlock", *const fn (?*RecordZoneID, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerRecordZoneDeleteBlock(_self: *@This(), _perRecordZoneDeleteBlock: *const fn (?*RecordZoneID, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerRecordZoneDeleteBlock:", void, .{_perRecordZoneDeleteBlock});
+    }
+
+    pub fn modifyRecordZonesCompletionBlock(_self: *@This()) *const fn (?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "modifyRecordZonesCompletionBlock", *const fn (?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setModifyRecordZonesCompletionBlock(_self: *@This(), _modifyRecordZonesCompletionBlock: *const fn (?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setModifyRecordZonesCompletionBlock:", void, .{_modifyRecordZonesCompletionBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKModifySubscriptionsOperation?language=objc
 pub const ModifySubscriptionsOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKModifySubscriptionsOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKModifySubscriptionsOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2504,54 +12974,337 @@ pub const ModifySubscriptionsOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithSubscriptionsToSaveSubscriptionIDsToDelete(self: *@This(), subscriptionsToSave: ?*anyopaque, subscriptionIDsToDelete: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithSubscriptionsToSave:subscriptionIDsToDelete:", *@This(), .{subscriptionsToSave, subscriptionIDsToDelete});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn subscriptionsToSave(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "subscriptionsToSave", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setSubscriptionsToSave(self: *@This(), subscriptionsToSave: ?*anyopaque) void {
-        return objc.msgSend(self, "setSubscriptionsToSave:", void, .{subscriptionsToSave});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn subscriptionIDsToDelete(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "subscriptionIDsToDelete", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setSubscriptionIDsToDelete(self: *@This(), subscriptionIDsToDelete: ?*anyopaque) void {
-        return objc.msgSend(self, "setSubscriptionIDsToDelete:", void, .{subscriptionIDsToDelete});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn perSubscriptionSaveBlock(self: *@This()) *const fn(SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perSubscriptionSaveBlock", *const fn(SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setPerSubscriptionSaveBlock(self: *@This(), perSubscriptionSaveBlock: *const fn(SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerSubscriptionSaveBlock:", void, .{perSubscriptionSaveBlock});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn perSubscriptionDeleteBlock(self: *@This()) *const fn(SubscriptionID, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "perSubscriptionDeleteBlock", *const fn(SubscriptionID, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setPerSubscriptionDeleteBlock(self: *@This(), perSubscriptionDeleteBlock: *const fn(SubscriptionID, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setPerSubscriptionDeleteBlock:", void, .{perSubscriptionDeleteBlock});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn modifySubscriptionsCompletionBlock(self: *@This()) *const fn(?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "modifySubscriptionsCompletionBlock", *const fn(?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setModifySubscriptionsCompletionBlock(self: *@This(), modifySubscriptionsCompletionBlock: *const fn(?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setModifySubscriptionsCompletionBlock:", void, .{modifySubscriptionsCompletionBlock});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn initWithSubscriptionsToSaveSubscriptionIDsToDelete(_self: *@This(), _subscriptionsToSave: ?*anyopaque, _subscriptionIDsToDelete: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithSubscriptionsToSave:subscriptionIDsToDelete:", *@This(), .{ _subscriptionsToSave, _subscriptionIDsToDelete });
+    }
+
+    pub fn subscriptionsToSave(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "subscriptionsToSave", ?*anyopaque, .{});
+    }
+
+    pub fn setSubscriptionsToSave(_self: *@This(), _subscriptionsToSave: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSubscriptionsToSave:", void, .{_subscriptionsToSave});
+    }
+
+    pub fn subscriptionIDsToDelete(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "subscriptionIDsToDelete", ?*anyopaque, .{});
+    }
+
+    pub fn setSubscriptionIDsToDelete(_self: *@This(), _subscriptionIDsToDelete: ?*anyopaque) void {
+        return objc.msgSend(_self, "setSubscriptionIDsToDelete:", void, .{_subscriptionIDsToDelete});
+    }
+
+    pub fn perSubscriptionSaveBlock(_self: *@This()) *const fn (SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perSubscriptionSaveBlock", *const fn (SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerSubscriptionSaveBlock(_self: *@This(), _perSubscriptionSaveBlock: *const fn (SubscriptionID, ?*Subscription, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerSubscriptionSaveBlock:", void, .{_perSubscriptionSaveBlock});
+    }
+
+    pub fn perSubscriptionDeleteBlock(_self: *@This()) *const fn (SubscriptionID, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "perSubscriptionDeleteBlock", *const fn (SubscriptionID, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setPerSubscriptionDeleteBlock(_self: *@This(), _perSubscriptionDeleteBlock: *const fn (SubscriptionID, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setPerSubscriptionDeleteBlock:", void, .{_perSubscriptionDeleteBlock});
+    }
+
+    pub fn modifySubscriptionsCompletionBlock(_self: *@This()) *const fn (?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "modifySubscriptionsCompletionBlock", *const fn (?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setModifySubscriptionsCompletionBlock(_self: *@This(), _modifySubscriptionsCompletionBlock: *const fn (?*anyopaque, ?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setModifySubscriptionsCompletionBlock:", void, .{_modifySubscriptionsCompletionBlock});
+    }
 };
 
 pub const OperationGroupTransferSize = enum(objc.NSInteger) {
@@ -2567,7 +13320,9 @@ pub const OperationGroupTransferSize = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKOperationGroup?language=objc
 pub const OperationGroup = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKOperationGroup", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKOperationGroup", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2576,63 +13331,229 @@ pub const OperationGroup = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithCoder(self: *@This(), aDecoder: ?*foundation.Coder) *@This() {
-        return objc.msgSend(self, "initWithCoder:", *@This(), .{aDecoder});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn operationGroupID(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "operationGroupID", ?*NSString, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn defaultConfiguration(self: *@This()) ?*OperationConfiguration {
-        return objc.msgSend(self, "defaultConfiguration", ?*OperationConfiguration, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setDefaultConfiguration(self: *@This(), defaultConfiguration: ?*OperationConfiguration) void {
-        return objc.msgSend(self, "setDefaultConfiguration:", void, .{defaultConfiguration});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn name(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "name", ?*NSString, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setName(self: *@This(), name: ?*NSString) void {
-        return objc.msgSend(self, "setName:", void, .{name});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn quantity(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "quantity", objc.NSUInteger, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setQuantity(self: *@This(), quantity: objc.NSUInteger) void {
-        return objc.msgSend(self, "setQuantity:", void, .{quantity});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn expectedSendSize(self: *@This()) OperationGroupTransferSize {
-        return objc.msgSend(self, "expectedSendSize", OperationGroupTransferSize, .{});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setExpectedSendSize(self: *@This(), expectedSendSize: OperationGroupTransferSize) void {
-        return objc.msgSend(self, "setExpectedSendSize:", void, .{expectedSendSize});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn expectedReceiveSize(self: *@This()) OperationGroupTransferSize {
-        return objc.msgSend(self, "expectedReceiveSize", OperationGroupTransferSize, .{});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn setExpectedReceiveSize(self: *@This(), expectedReceiveSize: OperationGroupTransferSize) void {
-        return objc.msgSend(self, "setExpectedReceiveSize:", void, .{expectedReceiveSize});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn operationGroupID(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "operationGroupID", ?*NSString, .{});
+    }
+
+    pub fn defaultConfiguration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "defaultConfiguration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setDefaultConfiguration(_self: *@This(), _defaultConfiguration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setDefaultConfiguration:", void, .{_defaultConfiguration});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn quantity(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "quantity", objc.NSUInteger, .{});
+    }
+
+    pub fn setQuantity(_self: *@This(), _quantity: objc.NSUInteger) void {
+        return objc.msgSend(_self, "setQuantity:", void, .{_quantity});
+    }
+
+    pub fn expectedSendSize(_self: *@This()) OperationGroupTransferSize {
+        return objc.msgSend(_self, "expectedSendSize", OperationGroupTransferSize, .{});
+    }
+
+    pub fn setExpectedSendSize(_self: *@This(), _expectedSendSize: OperationGroupTransferSize) void {
+        return objc.msgSend(_self, "setExpectedSendSize:", void, .{_expectedSendSize});
+    }
+
+    pub fn expectedReceiveSize(_self: *@This()) OperationGroupTransferSize {
+        return objc.msgSend(_self, "expectedReceiveSize", OperationGroupTransferSize, .{});
+    }
+
+    pub fn setExpectedReceiveSize(_self: *@This(), _expectedReceiveSize: OperationGroupTransferSize) void {
+        return objc.msgSend(_self, "setExpectedReceiveSize:", void, .{_expectedReceiveSize});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKQueryCursor?language=objc
 pub const QueryCursor = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKQueryCursor", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKQueryCursor", @This(), objc.NSObject, &.{
+        foundation.Copying,
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2641,19 +13562,182 @@ pub const QueryCursor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKQueryOperation?language=objc
 pub const QueryOperation = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKQueryOperation", @This(), DatabaseOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKQueryOperation", @This(), DatabaseOperation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2662,87 +13746,370 @@ pub const QueryOperation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithQuery(self: *@This(), query: ?*Query) *@This() {
-        return objc.msgSend(self, "initWithQuery:", *@This(), .{query});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithCursor(self: *@This(), cursor: ?*QueryCursor) *@This() {
-        return objc.msgSend(self, "initWithCursor:", *@This(), .{cursor});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn query(self: *@This()) ?*Query {
-        return objc.msgSend(self, "query", ?*Query, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setQuery(self: *@This(), query: ?*Query) void {
-        return objc.msgSend(self, "setQuery:", void, .{query});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn cursor(self: *@This()) ?*QueryCursor {
-        return objc.msgSend(self, "cursor", ?*QueryCursor, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setCursor(self: *@This(), cursor: ?*QueryCursor) void {
-        return objc.msgSend(self, "setCursor:", void, .{cursor});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn zoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "zoneID", ?*RecordZoneID, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setZoneID(self: *@This(), zoneID: ?*RecordZoneID) void {
-        return objc.msgSend(self, "setZoneID:", void, .{zoneID});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn resultsLimit(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "resultsLimit", objc.NSUInteger, .{});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setResultsLimit(self: *@This(), resultsLimit: objc.NSUInteger) void {
-        return objc.msgSend(self, "setResultsLimit:", void, .{resultsLimit});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn desiredKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "desiredKeys", ?*anyopaque, .{});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn setDesiredKeys(self: *@This(), desiredKeys: ?*anyopaque) void {
-        return objc.msgSend(self, "setDesiredKeys:", void, .{desiredKeys});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn recordFetchedBlock(self: *@This()) *const fn(?*Record) callconv(.C) void {
-        return objc.msgSend(self, "recordFetchedBlock", *const fn(?*Record) callconv(.C) void, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setRecordFetchedBlock(self: *@This(), recordFetchedBlock: *const fn(?*Record) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordFetchedBlock:", void, .{recordFetchedBlock});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn recordMatchedBlock(self: *@This()) *const fn(?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "recordMatchedBlock", *const fn(?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn setRecordMatchedBlock(self: *@This(), recordMatchedBlock: *const fn(?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setRecordMatchedBlock:", void, .{recordMatchedBlock});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn queryCompletionBlock(self: *@This()) *const fn(?*QueryCursor, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "queryCompletionBlock", *const fn(?*QueryCursor, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn setQueryCompletionBlock(self: *@This(), queryCompletionBlock: *const fn(?*QueryCursor, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setQueryCompletionBlock:", void, .{queryCompletionBlock});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn start(_self: *@This()) void {
+        return objc.msgSend(_self, "start", void, .{});
+    }
+
+    pub fn main(_self: *@This()) void {
+        return objc.msgSend(_self, "main", void, .{});
+    }
+
+    pub fn isCancelled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isCancelled", objc.BOOL, .{});
+    }
+
+    pub fn cancel(_self: *@This()) void {
+        return objc.msgSend(_self, "cancel", void, .{});
+    }
+
+    pub fn isExecuting(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isExecuting", objc.BOOL, .{});
+    }
+
+    pub fn isFinished(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFinished", objc.BOOL, .{});
+    }
+
+    pub fn isConcurrent(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isConcurrent", objc.BOOL, .{});
+    }
+
+    pub fn isAsynchronous(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isAsynchronous", objc.BOOL, .{});
+    }
+
+    pub fn isReady(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isReady", objc.BOOL, .{});
+    }
+
+    pub fn addDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "addDependency:", void, .{_op});
+    }
+
+    pub fn removeDependency(_self: *@This(), _op: ?*foundation.Operation) void {
+        return objc.msgSend(_self, "removeDependency:", void, .{_op});
+    }
+
+    pub fn dependencies(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "dependencies", ?*anyopaque, .{});
+    }
+
+    pub fn setQueuePriority(_self: *@This(), _queuePriority: foundation.OperationQueuePriority) void {
+        return objc.msgSend(_self, "setQueuePriority:", void, .{_queuePriority});
+    }
+
+    pub fn queuePriority(_self: *@This()) foundation.OperationQueuePriority {
+        return objc.msgSend(_self, "queuePriority", foundation.OperationQueuePriority, .{});
+    }
+
+    pub fn setCompletionBlock(_self: *@This(), _completionBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setCompletionBlock:", void, .{_completionBlock});
+    }
+
+    pub fn completionBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "completionBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn waitUntilFinished(_self: *@This()) void {
+        return objc.msgSend(_self, "waitUntilFinished", void, .{});
+    }
+
+    pub fn setThreadPriority(_self: *@This(), _threadPriority: f64) void {
+        return objc.msgSend(_self, "setThreadPriority:", void, .{_threadPriority});
+    }
+
+    pub fn threadPriority(_self: *@This()) f64 {
+        return objc.msgSend(_self, "threadPriority", f64, .{});
+    }
+
+    pub fn qualityOfService(_self: *@This()) foundation.QualityOfService {
+        return objc.msgSend(_self, "qualityOfService", foundation.QualityOfService, .{});
+    }
+
+    pub fn setQualityOfService(_self: *@This(), _qualityOfService: foundation.QualityOfService) void {
+        return objc.msgSend(_self, "setQualityOfService:", void, .{_qualityOfService});
+    }
+
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
+    }
+
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
+        return objc.msgSend(_self, "setName:", void, .{_name});
+    }
+
+    pub fn configuration(_self: *@This()) ?*OperationConfiguration {
+        return objc.msgSend(_self, "configuration", ?*OperationConfiguration, .{});
+    }
+
+    pub fn setConfiguration(_self: *@This(), _configuration: ?*OperationConfiguration) void {
+        return objc.msgSend(_self, "setConfiguration:", void, .{_configuration});
+    }
+
+    pub fn group(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "group", ?*OperationGroup, .{});
+    }
+
+    pub fn setGroup(_self: *@This(), _group: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setGroup:", void, .{_group});
+    }
+
+    pub fn operationID(_self: *@This()) OperationID {
+        return objc.msgSend(_self, "operationID", OperationID, .{});
+    }
+
+    pub fn longLivedOperationWasPersistedBlock(_self: *@This()) *const fn () callconv(.C) void {
+        return objc.msgSend(_self, "longLivedOperationWasPersistedBlock", *const fn () callconv(.C) void, .{});
+    }
+
+    pub fn setLongLivedOperationWasPersistedBlock(_self: *@This(), _longLivedOperationWasPersistedBlock: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "setLongLivedOperationWasPersistedBlock:", void, .{_longLivedOperationWasPersistedBlock});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn initWithQuery(_self: *@This(), _query: ?*Query) *@This() {
+        return objc.msgSend(_self, "initWithQuery:", *@This(), .{_query});
+    }
+
+    pub fn initWithCursor(_self: *@This(), _cursor: ?*QueryCursor) *@This() {
+        return objc.msgSend(_self, "initWithCursor:", *@This(), .{_cursor});
+    }
+
+    pub fn query(_self: *@This()) ?*Query {
+        return objc.msgSend(_self, "query", ?*Query, .{});
+    }
+
+    pub fn setQuery(_self: *@This(), _query: ?*Query) void {
+        return objc.msgSend(_self, "setQuery:", void, .{_query});
+    }
+
+    pub fn cursor(_self: *@This()) ?*QueryCursor {
+        return objc.msgSend(_self, "cursor", ?*QueryCursor, .{});
+    }
+
+    pub fn setCursor(_self: *@This(), _cursor: ?*QueryCursor) void {
+        return objc.msgSend(_self, "setCursor:", void, .{_cursor});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn setZoneID(_self: *@This(), _zoneID: ?*RecordZoneID) void {
+        return objc.msgSend(_self, "setZoneID:", void, .{_zoneID});
+    }
+
+    pub fn resultsLimit(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "resultsLimit", objc.NSUInteger, .{});
+    }
+
+    pub fn setResultsLimit(_self: *@This(), _resultsLimit: objc.NSUInteger) void {
+        return objc.msgSend(_self, "setResultsLimit:", void, .{_resultsLimit});
+    }
+
+    pub fn desiredKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "desiredKeys", ?*anyopaque, .{});
+    }
+
+    pub fn setDesiredKeys(_self: *@This(), _desiredKeys: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDesiredKeys:", void, .{_desiredKeys});
+    }
+
+    pub fn recordFetchedBlock(_self: *@This()) *const fn (?*Record) callconv(.C) void {
+        return objc.msgSend(_self, "recordFetchedBlock", *const fn (?*Record) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordFetchedBlock(_self: *@This(), _recordFetchedBlock: *const fn (?*Record) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordFetchedBlock:", void, .{_recordFetchedBlock});
+    }
+
+    pub fn recordMatchedBlock(_self: *@This()) *const fn (?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "recordMatchedBlock", *const fn (?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setRecordMatchedBlock(_self: *@This(), _recordMatchedBlock: *const fn (?*RecordID, ?*Record, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setRecordMatchedBlock:", void, .{_recordMatchedBlock});
+    }
+
+    pub fn queryCompletionBlock(_self: *@This()) *const fn (?*QueryCursor, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "queryCompletionBlock", *const fn (?*QueryCursor, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setQueryCompletionBlock(_self: *@This(), _queryCompletionBlock: *const fn (?*QueryCursor, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setQueryCompletionBlock:", void, .{_queryCompletionBlock});
+    }
 };
 
-pub const SharePreparationCompletionHandler = *const fn(?*Share, ?*foundation.Error) callconv(.C) void;
+pub const SharePreparationCompletionHandler = *const fn (?*Share, ?*foundation.Error) callconv(.C) void;
 
-pub const SharePreparationHandler = *const fn(SharePreparationCompletionHandler) callconv(.C) void;
+pub const SharePreparationHandler = *const fn (SharePreparationCompletionHandler) callconv(.C) void;
 
 pub const SharingParticipantAccessOption = enum(objc.NSUInteger) {
     AnyoneWithLink = 1,
@@ -2758,7 +14125,10 @@ pub const SharingParticipantPermissionOption = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKAllowedSharingOptions?language=objc
 pub const AllowedSharingOptions = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKAllowedSharingOptions", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKAllowedSharingOptions", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2767,35 +14137,206 @@ pub const AllowedSharingOptions = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithAllowedParticipantPermissionOptionsAllowedParticipantAccessOptions(self: *@This(), allowedParticipantPermissionOptions: SharingParticipantPermissionOption, allowedParticipantAccessOptions: SharingParticipantAccessOption) *@This() {
-        return objc.msgSend(self, "initWithAllowedParticipantPermissionOptions:allowedParticipantAccessOptions:", *@This(), .{allowedParticipantPermissionOptions, allowedParticipantAccessOptions});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn allowedParticipantPermissionOptions(self: *@This()) SharingParticipantPermissionOption {
-        return objc.msgSend(self, "allowedParticipantPermissionOptions", SharingParticipantPermissionOption, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setAllowedParticipantPermissionOptions(self: *@This(), allowedParticipantPermissionOptions: SharingParticipantPermissionOption) void {
-        return objc.msgSend(self, "setAllowedParticipantPermissionOptions:", void, .{allowedParticipantPermissionOptions});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn allowedParticipantAccessOptions(self: *@This()) SharingParticipantAccessOption {
-        return objc.msgSend(self, "allowedParticipantAccessOptions", SharingParticipantAccessOption, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setAllowedParticipantAccessOptions(self: *@This(), allowedParticipantAccessOptions: SharingParticipantAccessOption) void {
-        return objc.msgSend(self, "setAllowedParticipantAccessOptions:", void, .{allowedParticipantAccessOptions});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn standardOptions(self: *@This()) ?*AllowedSharingOptions {
-        return objc.msgSend(self, "standardOptions", ?*AllowedSharingOptions, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithAllowedParticipantPermissionOptionsAllowedParticipantAccessOptions(_self: *@This(), _allowedParticipantPermissionOptions: SharingParticipantPermissionOption, _allowedParticipantAccessOptions: SharingParticipantAccessOption) *@This() {
+        return objc.msgSend(_self, "initWithAllowedParticipantPermissionOptions:allowedParticipantAccessOptions:", *@This(), .{ _allowedParticipantPermissionOptions, _allowedParticipantAccessOptions });
+    }
+
+    pub fn allowedParticipantPermissionOptions(_self: *@This()) SharingParticipantPermissionOption {
+        return objc.msgSend(_self, "allowedParticipantPermissionOptions", SharingParticipantPermissionOption, .{});
+    }
+
+    pub fn setAllowedParticipantPermissionOptions(_self: *@This(), _allowedParticipantPermissionOptions: SharingParticipantPermissionOption) void {
+        return objc.msgSend(_self, "setAllowedParticipantPermissionOptions:", void, .{_allowedParticipantPermissionOptions});
+    }
+
+    pub fn allowedParticipantAccessOptions(_self: *@This()) SharingParticipantAccessOption {
+        return objc.msgSend(_self, "allowedParticipantAccessOptions", SharingParticipantAccessOption, .{});
+    }
+
+    pub fn setAllowedParticipantAccessOptions(_self: *@This(), _allowedParticipantAccessOptions: SharingParticipantAccessOption) void {
+        return objc.msgSend(_self, "setAllowedParticipantAccessOptions:", void, .{_allowedParticipantAccessOptions});
+    }
+
+    pub fn standardOptions(_self: *@This()) ?*AllowedSharingOptions {
+        return objc.msgSend(_self, "standardOptions", ?*AllowedSharingOptions, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver?language=objc
 pub const SystemSharingUIObserver = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSystemSharingUIObserver", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSystemSharingUIObserver", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2804,39 +14345,190 @@ pub const SystemSharingUIObserver = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithContainer(self: *@This(), container: ?*Container) *@This() {
-        return objc.msgSend(self, "initWithContainer:", *@This(), .{container});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn systemSharingUIDidSaveShareBlock(self: *@This()) *const fn(?*RecordID, ?*Share, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "systemSharingUIDidSaveShareBlock", *const fn(?*RecordID, ?*Share, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setSystemSharingUIDidSaveShareBlock(self: *@This(), systemSharingUIDidSaveShareBlock: *const fn(?*RecordID, ?*Share, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setSystemSharingUIDidSaveShareBlock:", void, .{systemSharingUIDidSaveShareBlock});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn systemSharingUIDidStopSharingBlock(self: *@This()) *const fn(?*RecordID, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(self, "systemSharingUIDidStopSharingBlock", *const fn(?*RecordID, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setSystemSharingUIDidStopSharingBlock(self: *@This(), systemSharingUIDidStopSharingBlock: *const fn(?*RecordID, ?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "setSystemSharingUIDidStopSharingBlock:", void, .{systemSharingUIDidStopSharingBlock});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithContainer(_self: *@This(), _container: ?*Container) *@This() {
+        return objc.msgSend(_self, "initWithContainer:", *@This(), .{_container});
+    }
+
+    pub fn systemSharingUIDidSaveShareBlock(_self: *@This()) *const fn (?*RecordID, ?*Share, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "systemSharingUIDidSaveShareBlock", *const fn (?*RecordID, ?*Share, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setSystemSharingUIDidSaveShareBlock(_self: *@This(), _systemSharingUIDidSaveShareBlock: *const fn (?*RecordID, ?*Share, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setSystemSharingUIDidSaveShareBlock:", void, .{_systemSharingUIDidSaveShareBlock});
+    }
+
+    pub fn systemSharingUIDidStopSharingBlock(_self: *@This()) *const fn (?*RecordID, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "systemSharingUIDidStopSharingBlock", *const fn (?*RecordID, ?*foundation.Error) callconv(.C) void, .{});
+    }
+
+    pub fn setSystemSharingUIDidStopSharingBlock(_self: *@This(), _systemSharingUIDidStopSharingBlock: *const fn (?*RecordID, ?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "setSystemSharingUIDidStopSharingBlock:", void, .{_systemSharingUIDidStopSharingBlock});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineState?language=objc
 pub const SyncEngineState = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineState", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineState", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2845,55 +14537,208 @@ pub const SyncEngineState = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn addPendingRecordZoneChanges(self: *@This(), changes: ?*anyopaque) void {
-        return objc.msgSend(self, "addPendingRecordZoneChanges:", void, .{changes});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn removePendingRecordZoneChanges(self: *@This(), changes: ?*anyopaque) void {
-        return objc.msgSend(self, "removePendingRecordZoneChanges:", void, .{changes});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn addPendingDatabaseChanges(self: *@This(), changes: ?*anyopaque) void {
-        return objc.msgSend(self, "addPendingDatabaseChanges:", void, .{changes});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn removePendingDatabaseChanges(self: *@This(), changes: ?*anyopaque) void {
-        return objc.msgSend(self, "removePendingDatabaseChanges:", void, .{changes});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn pendingRecordZoneChanges(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "pendingRecordZoneChanges", ?*anyopaque, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn pendingDatabaseChanges(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "pendingDatabaseChanges", ?*anyopaque, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn hasPendingUntrackedChanges(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "hasPendingUntrackedChanges", objc.BOOL, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn setHasPendingUntrackedChanges(self: *@This(), hasPendingUntrackedChanges: objc.BOOL) void {
-        return objc.msgSend(self, "setHasPendingUntrackedChanges:", void, .{hasPendingUntrackedChanges});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn zoneIDsWithUnfetchedServerChanges(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "zoneIDsWithUnfetchedServerChanges", ?*anyopaque, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn addPendingRecordZoneChanges(_self: *@This(), _changes: ?*anyopaque) void {
+        return objc.msgSend(_self, "addPendingRecordZoneChanges:", void, .{_changes});
+    }
+
+    pub fn removePendingRecordZoneChanges(_self: *@This(), _changes: ?*anyopaque) void {
+        return objc.msgSend(_self, "removePendingRecordZoneChanges:", void, .{_changes});
+    }
+
+    pub fn addPendingDatabaseChanges(_self: *@This(), _changes: ?*anyopaque) void {
+        return objc.msgSend(_self, "addPendingDatabaseChanges:", void, .{_changes});
+    }
+
+    pub fn removePendingDatabaseChanges(_self: *@This(), _changes: ?*anyopaque) void {
+        return objc.msgSend(_self, "removePendingDatabaseChanges:", void, .{_changes});
+    }
+
+    pub fn pendingRecordZoneChanges(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "pendingRecordZoneChanges", ?*anyopaque, .{});
+    }
+
+    pub fn pendingDatabaseChanges(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "pendingDatabaseChanges", ?*anyopaque, .{});
+    }
+
+    pub fn hasPendingUntrackedChanges(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "hasPendingUntrackedChanges", objc.BOOL, .{});
+    }
+
+    pub fn setHasPendingUntrackedChanges(_self: *@This(), _hasPendingUntrackedChanges: objc.BOOL) void {
+        return objc.msgSend(_self, "setHasPendingUntrackedChanges:", void, .{_hasPendingUntrackedChanges});
+    }
+
+    pub fn zoneIDsWithUnfetchedServerChanges(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "zoneIDsWithUnfetchedServerChanges", ?*anyopaque, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineStateSerialization?language=objc
 pub const SyncEngineStateSerialization = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineStateSerialization", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineStateSerialization", @This(), objc.NSObject, &.{
+        foundation.SecureCoding,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2902,14 +14747,177 @@ pub const SyncEngineStateSerialization = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
 };
 
 pub const SyncEnginePendingRecordZoneChangeType = enum(objc.NSInteger) {
@@ -2919,7 +14927,7 @@ pub const SyncEnginePendingRecordZoneChangeType = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange?language=objc
 pub const SyncEnginePendingRecordZoneChange = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEnginePendingRecordZoneChange", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEnginePendingRecordZoneChange", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2928,26 +14936,177 @@ pub const SyncEnginePendingRecordZoneChange = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithRecordIDType(self: *@This(), recordID: ?*RecordID, @"type": SyncEnginePendingRecordZoneChangeType) *@This() {
-        return objc.msgSend(self, "initWithRecordID:type:", *@This(), .{recordID, @"type"});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn recordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "recordID", ?*RecordID, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn @"type"(self: *@This()) SyncEnginePendingRecordZoneChangeType {
-        return objc.msgSend(self, "type", SyncEnginePendingRecordZoneChangeType, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithRecordIDType(_self: *@This(), _recordID: ?*RecordID, _type: SyncEnginePendingRecordZoneChangeType) *@This() {
+        return objc.msgSend(_self, "initWithRecordID:type:", *@This(), .{ _recordID, _type });
+    }
+
+    pub fn recordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "recordID", ?*RecordID, .{});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEnginePendingRecordZoneChangeType {
+        return objc.msgSend(_self, "type", SyncEnginePendingRecordZoneChangeType, .{});
+    }
 };
 
 pub const SyncEnginePendingDatabaseChangeType = enum(objc.NSInteger) {
@@ -2957,7 +15116,7 @@ pub const SyncEnginePendingDatabaseChangeType = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChange?language=objc
 pub const SyncEnginePendingDatabaseChange = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEnginePendingDatabaseChange", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEnginePendingDatabaseChange", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2966,27 +15125,178 @@ pub const SyncEnginePendingDatabaseChange = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn zoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "zoneID", ?*RecordZoneID, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn @"type"(self: *@This()) SyncEnginePendingDatabaseChangeType {
-        return objc.msgSend(self, "type", SyncEnginePendingDatabaseChangeType, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEnginePendingDatabaseChangeType {
+        return objc.msgSend(_self, "type", SyncEnginePendingDatabaseChangeType, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingZoneSave?language=objc
 pub const SyncEnginePendingZoneSave = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEnginePendingZoneSave", @This(), SyncEnginePendingDatabaseChange, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEnginePendingZoneSave", @This(), SyncEnginePendingDatabaseChange, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2995,19 +15305,182 @@ pub const SyncEnginePendingZoneSave = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithZone(self: *@This(), zone: ?*RecordZone) *@This() {
-        return objc.msgSend(self, "initWithZone:", *@This(), .{zone});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn zone(self: *@This()) ?*RecordZone {
-        return objc.msgSend(self, "zone", ?*RecordZone, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEnginePendingDatabaseChangeType {
+        return objc.msgSend(_self, "type", SyncEnginePendingDatabaseChangeType, .{});
+    }
+
+    pub fn initWithZone(_self: *@This(), _zone: ?*RecordZone) *@This() {
+        return objc.msgSend(_self, "initWithZone:", *@This(), .{_zone});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingZoneDelete?language=objc
 pub const SyncEnginePendingZoneDelete = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEnginePendingZoneDelete", @This(), SyncEnginePendingDatabaseChange, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEnginePendingZoneDelete", @This(), SyncEnginePendingDatabaseChange, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3016,15 +15489,182 @@ pub const SyncEnginePendingZoneDelete = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithZoneID(self: *@This(), zoneID: ?*RecordZoneID) *@This() {
-        return objc.msgSend(self, "initWithZoneID:", *@This(), .{zoneID});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEnginePendingDatabaseChangeType {
+        return objc.msgSend(_self, "type", SyncEnginePendingDatabaseChangeType, .{});
+    }
+
+    pub fn initWithZoneID(_self: *@This(), _zoneID: ?*RecordZoneID) *@This() {
+        return objc.msgSend(_self, "initWithZoneID:", *@This(), .{_zoneID});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineRecordZoneChangeBatch?language=objc
 pub const SyncEngineRecordZoneChangeBatch = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineRecordZoneChangeBatch", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineRecordZoneChangeBatch", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3033,43 +15673,194 @@ pub const SyncEngineRecordZoneChangeBatch = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithPendingChangesRecordProvider(self: *@This(), pendingChanges: ?*anyopaque, recordProvider: *const fn(?*RecordID) callconv(.C) ?*Record) *@This() {
-        return objc.msgSend(self, "initWithPendingChanges:recordProvider:", *@This(), .{pendingChanges, recordProvider});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithRecordsToSaveRecordIDsToDeleteAtomicByZone(self: *@This(), recordsToSave: ?*anyopaque, recordIDsToDelete: ?*anyopaque, atomicByZone: objc.BOOL) *@This() {
-        return objc.msgSend(self, "initWithRecordsToSave:recordIDsToDelete:atomicByZone:", *@This(), .{recordsToSave, recordIDsToDelete, atomicByZone});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn recordsToSave(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordsToSave", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn recordIDsToDelete(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordIDsToDelete", ?*anyopaque, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn atomicByZone(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "atomicByZone", objc.BOOL, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn setAtomicByZone(self: *@This(), atomicByZone: objc.BOOL) void {
-        return objc.msgSend(self, "setAtomicByZone:", void, .{atomicByZone});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithPendingChangesRecordProvider(_self: *@This(), _pendingChanges: ?*anyopaque, _recordProvider: *const fn (?*RecordID) callconv(.C) ?*Record) *@This() {
+        return objc.msgSend(_self, "initWithPendingChanges:recordProvider:", *@This(), .{ _pendingChanges, _recordProvider });
+    }
+
+    pub fn initWithRecordsToSaveRecordIDsToDeleteAtomicByZone(_self: *@This(), _recordsToSave: ?*anyopaque, _recordIDsToDelete: ?*anyopaque, _atomicByZone: objc.BOOL) *@This() {
+        return objc.msgSend(_self, "initWithRecordsToSave:recordIDsToDelete:atomicByZone:", *@This(), .{ _recordsToSave, _recordIDsToDelete, _atomicByZone });
+    }
+
+    pub fn recordsToSave(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordsToSave", ?*anyopaque, .{});
+    }
+
+    pub fn recordIDsToDelete(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordIDsToDelete", ?*anyopaque, .{});
+    }
+
+    pub fn atomicByZone(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "atomicByZone", objc.BOOL, .{});
+    }
+
+    pub fn setAtomicByZone(_self: *@This(), _atomicByZone: objc.BOOL) void {
+        return objc.msgSend(_self, "setAtomicByZone:", void, .{_atomicByZone});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngine?language=objc
 pub const SyncEngine = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngine", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngine", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3078,73 +15869,295 @@ pub const SyncEngine = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithConfiguration(self: *@This(), configuration: ?*SyncEngineConfiguration) *@This() {
-        return objc.msgSend(self, "initWithConfiguration:", *@This(), .{configuration});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn fetchChangesWithCompletionHandler(self: *@This(), completionHandler: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "fetchChangesWithCompletionHandler:", void, .{completionHandler});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn fetchChangesWithOptionsCompletionHandler(self: *@This(), options: ?*SyncEngineFetchChangesOptions, completionHandler: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "fetchChangesWithOptions:completionHandler:", void, .{options, completionHandler});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn sendChangesWithCompletionHandler(self: *@This(), completionHandler: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "sendChangesWithCompletionHandler:", void, .{completionHandler});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn sendChangesWithOptionsCompletionHandler(self: *@This(), options: ?*SyncEngineSendChangesOptions, completionHandler: *const fn(?*foundation.Error) callconv(.C) void) void {
-        return objc.msgSend(self, "sendChangesWithOptions:completionHandler:", void, .{options, completionHandler});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn cancelOperationsWithCompletionHandler(self: *@This(), completionHandler: *const fn() callconv(.C) void) void {
-        return objc.msgSend(self, "cancelOperationsWithCompletionHandler:", void, .{completionHandler});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn database(self: *@This()) ?*Database {
-        return objc.msgSend(self, "database", ?*Database, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn state(self: *@This()) ?*SyncEngineState {
-        return objc.msgSend(self, "state", ?*SyncEngineState, .{});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithConfiguration(_self: *@This(), _configuration: ?*SyncEngineConfiguration) *@This() {
+        return objc.msgSend(_self, "initWithConfiguration:", *@This(), .{_configuration});
+    }
+
+    pub fn fetchChangesWithCompletionHandler(_self: *@This(), _completionHandler: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "fetchChangesWithCompletionHandler:", void, .{_completionHandler});
+    }
+
+    pub fn fetchChangesWithOptionsCompletionHandler(_self: *@This(), _options: ?*SyncEngineFetchChangesOptions, _completionHandler: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "fetchChangesWithOptions:completionHandler:", void, .{ _options, _completionHandler });
+    }
+
+    pub fn sendChangesWithCompletionHandler(_self: *@This(), _completionHandler: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "sendChangesWithCompletionHandler:", void, .{_completionHandler});
+    }
+
+    pub fn sendChangesWithOptionsCompletionHandler(_self: *@This(), _options: ?*SyncEngineSendChangesOptions, _completionHandler: *const fn (?*foundation.Error) callconv(.C) void) void {
+        return objc.msgSend(_self, "sendChangesWithOptions:completionHandler:", void, .{ _options, _completionHandler });
+    }
+
+    pub fn cancelOperationsWithCompletionHandler(_self: *@This(), _completionHandler: *const fn () callconv(.C) void) void {
+        return objc.msgSend(_self, "cancelOperationsWithCompletionHandler:", void, .{_completionHandler});
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn state(_self: *@This()) ?*SyncEngineState {
+        return objc.msgSend(_self, "state", ?*SyncEngineState, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineDelegate?language=objc
 pub const SyncEngineDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
+        objc.NSObject,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn syncEngineHandleEvent(self: *@This(), syncEngine: ?*SyncEngine, event: ?*SyncEngineEvent) void {
-        return objc.msgSend(self, "syncEngine:handleEvent:", void, .{syncEngine, event});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn syncEngineNextRecordZoneChangeBatchForContext(self: *@This(), syncEngine: ?*SyncEngine, context: ?*SyncEngineSendChangesContext) ?*SyncEngineRecordZoneChangeBatch {
-        return objc.msgSend(self, "syncEngine:nextRecordZoneChangeBatchForContext:", ?*SyncEngineRecordZoneChangeBatch, .{syncEngine, context});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn syncEngineNextFetchChangesOptionsForContext(self: *@This(), syncEngine: ?*SyncEngine, context: ?*SyncEngineFetchChangesContext) ?*SyncEngineFetchChangesOptions {
-        return objc.msgSend(self, "syncEngine:nextFetchChangesOptionsForContext:", ?*SyncEngineFetchChangesOptions, .{syncEngine, context});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn syncEngineHandleEvent(_self: *@This(), _syncEngine: ?*SyncEngine, _event: ?*SyncEngineEvent) void {
+        return objc.msgSend(_self, "syncEngine:handleEvent:", void, .{ _syncEngine, _event });
+    }
+
+    pub fn syncEngineNextRecordZoneChangeBatchForContext(_self: *@This(), _syncEngine: ?*SyncEngine, _context: ?*SyncEngineSendChangesContext) ?*SyncEngineRecordZoneChangeBatch {
+        return objc.msgSend(_self, "syncEngine:nextRecordZoneChangeBatchForContext:", ?*SyncEngineRecordZoneChangeBatch, .{ _syncEngine, _context });
+    }
+
+    pub fn syncEngineNextFetchChangesOptionsForContext(_self: *@This(), _syncEngine: ?*SyncEngine, _context: ?*SyncEngineFetchChangesContext) ?*SyncEngineFetchChangesOptions {
+        return objc.msgSend(_self, "syncEngine:nextFetchChangesOptionsForContext:", ?*SyncEngineFetchChangesOptions, .{ _syncEngine, _context });
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesOptions?language=objc
 pub const SyncEngineFetchChangesOptions = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineFetchChangesOptions", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchChangesOptions", @This(), objc.NSObject, &.{
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3153,39 +16166,200 @@ pub const SyncEngineFetchChangesOptions = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithScope(self: *@This(), scope: ?*SyncEngineFetchChangesScope) *@This() {
-        return objc.msgSend(self, "initWithScope:", *@This(), .{scope});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn scope(self: *@This()) ?*SyncEngineFetchChangesScope {
-        return objc.msgSend(self, "scope", ?*SyncEngineFetchChangesScope, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setScope(self: *@This(), scope: ?*SyncEngineFetchChangesScope) void {
-        return objc.msgSend(self, "setScope:", void, .{scope});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn operationGroup(self: *@This()) ?*OperationGroup {
-        return objc.msgSend(self, "operationGroup", ?*OperationGroup, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setOperationGroup(self: *@This(), operationGroup: ?*OperationGroup) void {
-        return objc.msgSend(self, "setOperationGroup:", void, .{operationGroup});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn prioritizedZoneIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "prioritizedZoneIDs", ?*anyopaque, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setPrioritizedZoneIDs(self: *@This(), prioritizedZoneIDs: ?*anyopaque) void {
-        return objc.msgSend(self, "setPrioritizedZoneIDs:", void, .{prioritizedZoneIDs});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithScope(_self: *@This(), _scope: ?*SyncEngineFetchChangesScope) *@This() {
+        return objc.msgSend(_self, "initWithScope:", *@This(), .{_scope});
+    }
+
+    pub fn scope(_self: *@This()) ?*SyncEngineFetchChangesScope {
+        return objc.msgSend(_self, "scope", ?*SyncEngineFetchChangesScope, .{});
+    }
+
+    pub fn setScope(_self: *@This(), _scope: ?*SyncEngineFetchChangesScope) void {
+        return objc.msgSend(_self, "setScope:", void, .{_scope});
+    }
+
+    pub fn operationGroup(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "operationGroup", ?*OperationGroup, .{});
+    }
+
+    pub fn setOperationGroup(_self: *@This(), _operationGroup: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setOperationGroup:", void, .{_operationGroup});
+    }
+
+    pub fn prioritizedZoneIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "prioritizedZoneIDs", ?*anyopaque, .{});
+    }
+
+    pub fn setPrioritizedZoneIDs(_self: *@This(), _prioritizedZoneIDs: ?*anyopaque) void {
+        return objc.msgSend(_self, "setPrioritizedZoneIDs:", void, .{_prioritizedZoneIDs});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesScope?language=objc
 pub const SyncEngineFetchChangesScope = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineFetchChangesScope", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchChangesScope", @This(), objc.NSObject, &.{
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3194,31 +16368,192 @@ pub const SyncEngineFetchChangesScope = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithZoneIDs(self: *@This(), zoneIDs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithZoneIDs:", *@This(), .{zoneIDs});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithExcludedZoneIDs(self: *@This(), zoneIDs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithExcludedZoneIDs:", *@This(), .{zoneIDs});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn containsZoneID(self: *@This(), zoneID: ?*RecordZoneID) objc.BOOL {
-        return objc.msgSend(self, "containsZoneID:", objc.BOOL, .{zoneID});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn zoneIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "zoneIDs", ?*anyopaque, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn excludedZoneIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "excludedZoneIDs", ?*anyopaque, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithZoneIDs(_self: *@This(), _zoneIDs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithZoneIDs:", *@This(), .{_zoneIDs});
+    }
+
+    pub fn initWithExcludedZoneIDs(_self: *@This(), _zoneIDs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithExcludedZoneIDs:", *@This(), .{_zoneIDs});
+    }
+
+    pub fn containsZoneID(_self: *@This(), _zoneID: ?*RecordZoneID) objc.BOOL {
+        return objc.msgSend(_self, "containsZoneID:", objc.BOOL, .{_zoneID});
+    }
+
+    pub fn zoneIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "zoneIDs", ?*anyopaque, .{});
+    }
+
+    pub fn excludedZoneIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "excludedZoneIDs", ?*anyopaque, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesOptions?language=objc
 pub const SyncEngineSendChangesOptions = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineSendChangesOptions", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineSendChangesOptions", @This(), objc.NSObject, &.{
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3227,31 +16562,192 @@ pub const SyncEngineSendChangesOptions = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithScope(self: *@This(), scope: ?*SyncEngineSendChangesScope) *@This() {
-        return objc.msgSend(self, "initWithScope:", *@This(), .{scope});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn scope(self: *@This()) ?*SyncEngineSendChangesScope {
-        return objc.msgSend(self, "scope", ?*SyncEngineSendChangesScope, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setScope(self: *@This(), scope: ?*SyncEngineSendChangesScope) void {
-        return objc.msgSend(self, "setScope:", void, .{scope});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn operationGroup(self: *@This()) ?*OperationGroup {
-        return objc.msgSend(self, "operationGroup", ?*OperationGroup, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setOperationGroup(self: *@This(), operationGroup: ?*OperationGroup) void {
-        return objc.msgSend(self, "setOperationGroup:", void, .{operationGroup});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithScope(_self: *@This(), _scope: ?*SyncEngineSendChangesScope) *@This() {
+        return objc.msgSend(_self, "initWithScope:", *@This(), .{_scope});
+    }
+
+    pub fn scope(_self: *@This()) ?*SyncEngineSendChangesScope {
+        return objc.msgSend(_self, "scope", ?*SyncEngineSendChangesScope, .{});
+    }
+
+    pub fn setScope(_self: *@This(), _scope: ?*SyncEngineSendChangesScope) void {
+        return objc.msgSend(_self, "setScope:", void, .{_scope});
+    }
+
+    pub fn operationGroup(_self: *@This()) ?*OperationGroup {
+        return objc.msgSend(_self, "operationGroup", ?*OperationGroup, .{});
+    }
+
+    pub fn setOperationGroup(_self: *@This(), _operationGroup: ?*OperationGroup) void {
+        return objc.msgSend(_self, "setOperationGroup:", void, .{_operationGroup});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope?language=objc
 pub const SyncEngineSendChangesScope = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineSendChangesScope", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineSendChangesScope", @This(), objc.NSObject, &.{
+        foundation.Copying,
+    });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3260,38 +16756,197 @@ pub const SyncEngineSendChangesScope = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithZoneIDs(self: *@This(), zoneIDs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithZoneIDs:", *@This(), .{zoneIDs});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn initWithExcludedZoneIDs(self: *@This(), excludedZoneIDs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithExcludedZoneIDs:", *@This(), .{excludedZoneIDs});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithRecordIDs(self: *@This(), recordIDs: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithRecordIDs:", *@This(), .{recordIDs});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn containsRecordID(self: *@This(), recordID: ?*RecordID) objc.BOOL {
-        return objc.msgSend(self, "containsRecordID:", objc.BOOL, .{recordID});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn containsPendingRecordZoneChange(self: *@This(), pendingRecordZoneChange: ?*SyncEnginePendingRecordZoneChange) objc.BOOL {
-        return objc.msgSend(self, "containsPendingRecordZoneChange:", objc.BOOL, .{pendingRecordZoneChange});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn zoneIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "zoneIDs", ?*anyopaque, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn excludedZoneIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "excludedZoneIDs", ?*anyopaque, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn recordIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "recordIDs", ?*anyopaque, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithZoneIDs(_self: *@This(), _zoneIDs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithZoneIDs:", *@This(), .{_zoneIDs});
+    }
+
+    pub fn initWithExcludedZoneIDs(_self: *@This(), _excludedZoneIDs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithExcludedZoneIDs:", *@This(), .{_excludedZoneIDs});
+    }
+
+    pub fn initWithRecordIDs(_self: *@This(), _recordIDs: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithRecordIDs:", *@This(), .{_recordIDs});
+    }
+
+    pub fn containsRecordID(_self: *@This(), _recordID: ?*RecordID) objc.BOOL {
+        return objc.msgSend(_self, "containsRecordID:", objc.BOOL, .{_recordID});
+    }
+
+    pub fn containsPendingRecordZoneChange(_self: *@This(), _pendingRecordZoneChange: ?*SyncEnginePendingRecordZoneChange) objc.BOOL {
+        return objc.msgSend(_self, "containsPendingRecordZoneChange:", objc.BOOL, .{_pendingRecordZoneChange});
+    }
+
+    pub fn zoneIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "zoneIDs", ?*anyopaque, .{});
+    }
+
+    pub fn excludedZoneIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "excludedZoneIDs", ?*anyopaque, .{});
+    }
+
+    pub fn recordIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "recordIDs", ?*anyopaque, .{});
+    }
 };
 
 pub const SyncEngineSyncReason = enum(objc.NSInteger) {
@@ -3301,7 +16956,7 @@ pub const SyncEngineSyncReason = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext?language=objc
 pub const SyncEngineFetchChangesContext = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineFetchChangesContext", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchChangesContext", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3310,27 +16965,178 @@ pub const SyncEngineFetchChangesContext = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn reason(self: *@This()) SyncEngineSyncReason {
-        return objc.msgSend(self, "reason", SyncEngineSyncReason, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn options(self: *@This()) ?*SyncEngineFetchChangesOptions {
-        return objc.msgSend(self, "options", ?*SyncEngineFetchChangesOptions, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn reason(_self: *@This()) SyncEngineSyncReason {
+        return objc.msgSend(_self, "reason", SyncEngineSyncReason, .{});
+    }
+
+    pub fn options(_self: *@This()) ?*SyncEngineFetchChangesOptions {
+        return objc.msgSend(_self, "options", ?*SyncEngineFetchChangesOptions, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesContext?language=objc
 pub const SyncEngineSendChangesContext = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineSendChangesContext", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineSendChangesContext", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3339,27 +17145,178 @@ pub const SyncEngineSendChangesContext = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn reason(self: *@This()) SyncEngineSyncReason {
-        return objc.msgSend(self, "reason", SyncEngineSyncReason, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn options(self: *@This()) ?*SyncEngineSendChangesOptions {
-        return objc.msgSend(self, "options", ?*SyncEngineSendChangesOptions, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn reason(_self: *@This()) SyncEngineSyncReason {
+        return objc.msgSend(_self, "reason", SyncEngineSyncReason, .{});
+    }
+
+    pub fn options(_self: *@This()) ?*SyncEngineSendChangesOptions {
+        return objc.msgSend(_self, "options", ?*SyncEngineSendChangesOptions, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineConfiguration?language=objc
 pub const SyncEngineConfiguration = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineConfiguration", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineConfiguration", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3368,58 +17325,209 @@ pub const SyncEngineConfiguration = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithDatabaseStateSerializationDelegate(self: *@This(), database: ?*Database, stateSerialization: ?*SyncEngineStateSerialization, delegate: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithDatabase:stateSerialization:delegate:", *@This(), .{database, stateSerialization, delegate});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn database(self: *@This()) ?*Database {
-        return objc.msgSend(self, "database", ?*Database, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn setDatabase(self: *@This(), database: ?*Database) void {
-        return objc.msgSend(self, "setDatabase:", void, .{database});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn stateSerialization(self: *@This()) ?*SyncEngineStateSerialization {
-        return objc.msgSend(self, "stateSerialization", ?*SyncEngineStateSerialization, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setStateSerialization(self: *@This(), stateSerialization: ?*SyncEngineStateSerialization) void {
-        return objc.msgSend(self, "setStateSerialization:", void, .{stateSerialization});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn delegate(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "delegate", ?*anyopaque, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn setDelegate(self: *@This(), delegate: ?*anyopaque) void {
-        return objc.msgSend(self, "setDelegate:", void, .{delegate});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn automaticallySync(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "automaticallySync", objc.BOOL, .{});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn setAutomaticallySync(self: *@This(), automaticallySync: objc.BOOL) void {
-        return objc.msgSend(self, "setAutomaticallySync:", void, .{automaticallySync});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn subscriptionID(self: *@This()) SubscriptionID {
-        return objc.msgSend(self, "subscriptionID", SubscriptionID, .{});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn setSubscriptionID(self: *@This(), subscriptionID: SubscriptionID) void {
-        return objc.msgSend(self, "setSubscriptionID:", void, .{subscriptionID});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn initWithDatabaseStateSerializationDelegate(_self: *@This(), _database: ?*Database, _stateSerialization: ?*SyncEngineStateSerialization, _delegate: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithDatabase:stateSerialization:delegate:", *@This(), .{ _database, _stateSerialization, _delegate });
+    }
+
+    pub fn database(_self: *@This()) ?*Database {
+        return objc.msgSend(_self, "database", ?*Database, .{});
+    }
+
+    pub fn setDatabase(_self: *@This(), _database: ?*Database) void {
+        return objc.msgSend(_self, "setDatabase:", void, .{_database});
+    }
+
+    pub fn stateSerialization(_self: *@This()) ?*SyncEngineStateSerialization {
+        return objc.msgSend(_self, "stateSerialization", ?*SyncEngineStateSerialization, .{});
+    }
+
+    pub fn setStateSerialization(_self: *@This(), _stateSerialization: ?*SyncEngineStateSerialization) void {
+        return objc.msgSend(_self, "setStateSerialization:", void, .{_stateSerialization});
+    }
+
+    pub fn delegate(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "delegate", ?*anyopaque, .{});
+    }
+
+    pub fn setDelegate(_self: *@This(), _delegate: ?*anyopaque) void {
+        return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
+    }
+
+    pub fn automaticallySync(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "automaticallySync", objc.BOOL, .{});
+    }
+
+    pub fn setAutomaticallySync(_self: *@This(), _automaticallySync: objc.BOOL) void {
+        return objc.msgSend(_self, "setAutomaticallySync:", void, .{_automaticallySync});
+    }
+
+    pub fn subscriptionID(_self: *@This()) SubscriptionID {
+        return objc.msgSend(_self, "subscriptionID", SubscriptionID, .{});
+    }
+
+    pub fn setSubscriptionID(_self: *@This(), _subscriptionID: SubscriptionID) void {
+        return objc.msgSend(_self, "setSubscriptionID:", void, .{_subscriptionID});
+    }
 };
 
 pub const SyncEngineEventType = enum(objc.NSInteger) {
@@ -3439,7 +17547,7 @@ pub const SyncEngineEventType = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent?language=objc
 pub const SyncEngineEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineEvent", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineEvent", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3448,71 +17556,222 @@ pub const SyncEngineEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn @"type"(self: *@This()) SyncEngineEventType {
-        return objc.msgSend(self, "type", SyncEngineEventType, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn stateUpdateEvent(self: *@This()) ?*SyncEngineStateUpdateEvent {
-        return objc.msgSend(self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn accountChangeEvent(self: *@This()) ?*SyncEngineAccountChangeEvent {
-        return objc.msgSend(self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn fetchedDatabaseChangesEvent(self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
-        return objc.msgSend(self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn fetchedRecordZoneChangesEvent(self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
-        return objc.msgSend(self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn sentDatabaseChangesEvent(self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
-        return objc.msgSend(self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
-    pub fn sentRecordZoneChangesEvent(self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
-        return objc.msgSend(self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn willFetchChangesEvent(self: *@This()) ?*SyncEngineWillFetchChangesEvent {
-        return objc.msgSend(self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn willFetchRecordZoneChangesEvent(self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
-        return objc.msgSend(self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn didFetchRecordZoneChangesEvent(self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
-        return objc.msgSend(self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn didFetchChangesEvent(self: *@This()) ?*SyncEngineDidFetchChangesEvent {
-        return objc.msgSend(self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn willSendChangesEvent(self: *@This()) ?*SyncEngineWillSendChangesEvent {
-        return objc.msgSend(self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn didSendChangesEvent(self: *@This()) ?*SyncEngineDidSendChangesEvent {
-        return objc.msgSend(self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineStateUpdateEvent?language=objc
 pub const SyncEngineStateUpdateEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineStateUpdateEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineStateUpdateEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3521,10 +17780,221 @@ pub const SyncEngineStateUpdateEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn stateSerialization(self: *@This()) ?*SyncEngineStateSerialization {
-        return objc.msgSend(self, "stateSerialization", ?*SyncEngineStateSerialization, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn stateSerialization(_self: *@This()) ?*SyncEngineStateSerialization {
+        return objc.msgSend(_self, "stateSerialization", ?*SyncEngineStateSerialization, .{});
+    }
 };
 
 pub const SyncEngineAccountChangeType = enum(objc.NSInteger) {
@@ -3535,7 +18005,7 @@ pub const SyncEngineAccountChangeType = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineAccountChangeEvent?language=objc
 pub const SyncEngineAccountChangeEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineAccountChangeEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineAccountChangeEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3544,23 +18014,234 @@ pub const SyncEngineAccountChangeEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn changeType(self: *@This()) SyncEngineAccountChangeType {
-        return objc.msgSend(self, "changeType", SyncEngineAccountChangeType, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn previousUser(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "previousUser", ?*RecordID, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn currentUser(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "currentUser", ?*RecordID, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn changeType(_self: *@This()) SyncEngineAccountChangeType {
+        return objc.msgSend(_self, "changeType", SyncEngineAccountChangeType, .{});
+    }
+
+    pub fn previousUser(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "previousUser", ?*RecordID, .{});
+    }
+
+    pub fn currentUser(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "currentUser", ?*RecordID, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedDatabaseChangesEvent?language=objc
 pub const SyncEngineFetchedDatabaseChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineFetchedDatabaseChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchedDatabaseChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3569,19 +18250,230 @@ pub const SyncEngineFetchedDatabaseChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn modifications(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "modifications", ?*anyopaque, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn deletions(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "deletions", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn modifications(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "modifications", ?*anyopaque, .{});
+    }
+
+    pub fn deletions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "deletions", ?*anyopaque, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent?language=objc
 pub const SyncEngineFetchedRecordZoneChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineFetchedRecordZoneChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchedRecordZoneChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3590,19 +18482,230 @@ pub const SyncEngineFetchedRecordZoneChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn modifications(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "modifications", ?*anyopaque, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn deletions(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "deletions", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn modifications(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "modifications", ?*anyopaque, .{});
+    }
+
+    pub fn deletions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "deletions", ?*anyopaque, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent?language=objc
 pub const SyncEngineSentDatabaseChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineSentDatabaseChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineSentDatabaseChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3611,27 +18714,238 @@ pub const SyncEngineSentDatabaseChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn savedZones(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "savedZones", ?*anyopaque, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn failedZoneSaves(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "failedZoneSaves", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn deletedZoneIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "deletedZoneIDs", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn failedZoneDeletes(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "failedZoneDeletes", ?*anyopaque, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn savedZones(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "savedZones", ?*anyopaque, .{});
+    }
+
+    pub fn failedZoneSaves(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "failedZoneSaves", ?*anyopaque, .{});
+    }
+
+    pub fn deletedZoneIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "deletedZoneIDs", ?*anyopaque, .{});
+    }
+
+    pub fn failedZoneDeletes(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "failedZoneDeletes", ?*anyopaque, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent?language=objc
 pub const SyncEngineSentRecordZoneChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineSentRecordZoneChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineSentRecordZoneChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3640,27 +18954,238 @@ pub const SyncEngineSentRecordZoneChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn savedRecords(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "savedRecords", ?*anyopaque, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn failedRecordSaves(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "failedRecordSaves", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn deletedRecordIDs(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "deletedRecordIDs", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn failedRecordDeletes(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "failedRecordDeletes", ?*anyopaque, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn savedRecords(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "savedRecords", ?*anyopaque, .{});
+    }
+
+    pub fn failedRecordSaves(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "failedRecordSaves", ?*anyopaque, .{});
+    }
+
+    pub fn deletedRecordIDs(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "deletedRecordIDs", ?*anyopaque, .{});
+    }
+
+    pub fn failedRecordDeletes(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "failedRecordDeletes", ?*anyopaque, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent?language=objc
 pub const SyncEngineWillFetchChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineWillFetchChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineWillFetchChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3669,15 +19194,226 @@ pub const SyncEngineWillFetchChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn context(self: *@This()) ?*SyncEngineFetchChangesContext {
-        return objc.msgSend(self, "context", ?*SyncEngineFetchChangesContext, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn context(_self: *@This()) ?*SyncEngineFetchChangesContext {
+        return objc.msgSend(_self, "context", ?*SyncEngineFetchChangesContext, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent?language=objc
 pub const SyncEngineWillFetchRecordZoneChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineWillFetchRecordZoneChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineWillFetchRecordZoneChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3686,15 +19422,226 @@ pub const SyncEngineWillFetchRecordZoneChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn zoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "zoneID", ?*RecordZoneID, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent?language=objc
 pub const SyncEngineDidFetchRecordZoneChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineDidFetchRecordZoneChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineDidFetchRecordZoneChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3703,19 +19650,230 @@ pub const SyncEngineDidFetchRecordZoneChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn zoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "zoneID", ?*RecordZoneID, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn @"error"(self: *@This()) ?*foundation.Error {
-        return objc.msgSend(self, "error", ?*foundation.Error, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn @"error"(_self: *@This()) ?*foundation.Error {
+        return objc.msgSend(_self, "error", ?*foundation.Error, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent?language=objc
 pub const SyncEngineDidFetchChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineDidFetchChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineDidFetchChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3724,15 +19882,226 @@ pub const SyncEngineDidFetchChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn context(self: *@This()) ?*SyncEngineFetchChangesContext {
-        return objc.msgSend(self, "context", ?*SyncEngineFetchChangesContext, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn context(_self: *@This()) ?*SyncEngineFetchChangesContext {
+        return objc.msgSend(_self, "context", ?*SyncEngineFetchChangesContext, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillSendChangesEvent?language=objc
 pub const SyncEngineWillSendChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineWillSendChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineWillSendChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3741,15 +20110,226 @@ pub const SyncEngineWillSendChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn context(self: *@This()) ?*SyncEngineSendChangesContext {
-        return objc.msgSend(self, "context", ?*SyncEngineSendChangesContext, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn context(_self: *@This()) ?*SyncEngineSendChangesContext {
+        return objc.msgSend(_self, "context", ?*SyncEngineSendChangesContext, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidSendChangesEvent?language=objc
 pub const SyncEngineDidSendChangesEvent = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineDidSendChangesEvent", @This(), SyncEngineEvent, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineDidSendChangesEvent", @This(), SyncEngineEvent, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3758,15 +20338,226 @@ pub const SyncEngineDidSendChangesEvent = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn context(self: *@This()) ?*SyncEngineSendChangesContext {
-        return objc.msgSend(self, "context", ?*SyncEngineSendChangesContext, .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn @"type"(_self: *@This()) SyncEngineEventType {
+        return objc.msgSend(_self, "type", SyncEngineEventType, .{});
+    }
+
+    pub fn stateUpdateEvent(_self: *@This()) ?*SyncEngineStateUpdateEvent {
+        return objc.msgSend(_self, "stateUpdateEvent", ?*SyncEngineStateUpdateEvent, .{});
+    }
+
+    pub fn accountChangeEvent(_self: *@This()) ?*SyncEngineAccountChangeEvent {
+        return objc.msgSend(_self, "accountChangeEvent", ?*SyncEngineAccountChangeEvent, .{});
+    }
+
+    pub fn fetchedDatabaseChangesEvent(_self: *@This()) ?*SyncEngineFetchedDatabaseChangesEvent {
+        return objc.msgSend(_self, "fetchedDatabaseChangesEvent", ?*SyncEngineFetchedDatabaseChangesEvent, .{});
+    }
+
+    pub fn fetchedRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineFetchedRecordZoneChangesEvent {
+        return objc.msgSend(_self, "fetchedRecordZoneChangesEvent", ?*SyncEngineFetchedRecordZoneChangesEvent, .{});
+    }
+
+    pub fn sentDatabaseChangesEvent(_self: *@This()) ?*SyncEngineSentDatabaseChangesEvent {
+        return objc.msgSend(_self, "sentDatabaseChangesEvent", ?*SyncEngineSentDatabaseChangesEvent, .{});
+    }
+
+    pub fn sentRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineSentRecordZoneChangesEvent {
+        return objc.msgSend(_self, "sentRecordZoneChangesEvent", ?*SyncEngineSentRecordZoneChangesEvent, .{});
+    }
+
+    pub fn willFetchChangesEvent(_self: *@This()) ?*SyncEngineWillFetchChangesEvent {
+        return objc.msgSend(_self, "willFetchChangesEvent", ?*SyncEngineWillFetchChangesEvent, .{});
+    }
+
+    pub fn willFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineWillFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "willFetchRecordZoneChangesEvent", ?*SyncEngineWillFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchRecordZoneChangesEvent(_self: *@This()) ?*SyncEngineDidFetchRecordZoneChangesEvent {
+        return objc.msgSend(_self, "didFetchRecordZoneChangesEvent", ?*SyncEngineDidFetchRecordZoneChangesEvent, .{});
+    }
+
+    pub fn didFetchChangesEvent(_self: *@This()) ?*SyncEngineDidFetchChangesEvent {
+        return objc.msgSend(_self, "didFetchChangesEvent", ?*SyncEngineDidFetchChangesEvent, .{});
+    }
+
+    pub fn willSendChangesEvent(_self: *@This()) ?*SyncEngineWillSendChangesEvent {
+        return objc.msgSend(_self, "willSendChangesEvent", ?*SyncEngineWillSendChangesEvent, .{});
+    }
+
+    pub fn didSendChangesEvent(_self: *@This()) ?*SyncEngineDidSendChangesEvent {
+        return objc.msgSend(_self, "didSendChangesEvent", ?*SyncEngineDidSendChangesEvent, .{});
+    }
+
+    pub fn context(_self: *@This()) ?*SyncEngineSendChangesContext {
+        return objc.msgSend(_self, "context", ?*SyncEngineSendChangesContext, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordDeletion?language=objc
 pub const SyncEngineFetchedRecordDeletion = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineFetchedRecordDeletion", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchedRecordDeletion", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3775,22 +20566,173 @@ pub const SyncEngineFetchedRecordDeletion = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn recordID(self: *@This()) ?*RecordID {
-        return objc.msgSend(self, "recordID", ?*RecordID, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn recordType(self: *@This()) RecordType {
-        return objc.msgSend(self, "recordType", RecordType, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn recordID(_self: *@This()) ?*RecordID {
+        return objc.msgSend(_self, "recordID", ?*RecordID, .{});
+    }
+
+    pub fn recordType(_self: *@This()) RecordType {
+        return objc.msgSend(_self, "recordType", RecordType, .{});
+    }
 };
 
 pub const SyncEngineZoneDeletionReason = enum(objc.NSInteger) {
@@ -3801,7 +20743,7 @@ pub const SyncEngineZoneDeletionReason = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedZoneDeletion?language=objc
 pub const SyncEngineFetchedZoneDeletion = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineFetchedZoneDeletion", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchedZoneDeletion", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3810,27 +20752,178 @@ pub const SyncEngineFetchedZoneDeletion = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn zoneID(self: *@This()) ?*RecordZoneID {
-        return objc.msgSend(self, "zoneID", ?*RecordZoneID, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn reason(self: *@This()) SyncEngineZoneDeletionReason {
-        return objc.msgSend(self, "reason", SyncEngineZoneDeletionReason, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn zoneID(_self: *@This()) ?*RecordZoneID {
+        return objc.msgSend(_self, "zoneID", ?*RecordZoneID, .{});
+    }
+
+    pub fn reason(_self: *@This()) SyncEngineZoneDeletionReason {
+        return objc.msgSend(_self, "reason", SyncEngineZoneDeletionReason, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFailedRecordSave?language=objc
 pub const SyncEngineFailedRecordSave = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineFailedRecordSave", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFailedRecordSave", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3839,27 +20932,178 @@ pub const SyncEngineFailedRecordSave = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn record(self: *@This()) ?*Record {
-        return objc.msgSend(self, "record", ?*Record, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn @"error"(self: *@This()) ?*foundation.Error {
-        return objc.msgSend(self, "error", ?*foundation.Error, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn record(_self: *@This()) ?*Record {
+        return objc.msgSend(_self, "record", ?*Record, .{});
+    }
+
+    pub fn @"error"(_self: *@This()) ?*foundation.Error {
+        return objc.msgSend(_self, "error", ?*foundation.Error, .{});
+    }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFailedZoneSave?language=objc
 pub const SyncEngineFailedZoneSave = opaque {
-    pub const InternalInfo = objc.ExternalClass("CKSyncEngineFailedZoneSave", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFailedZoneSave", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3868,21 +21112,171 @@ pub const SyncEngineFailedZoneSave = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
-    pub fn new(self: *@This()) *@This() {
-        return objc.msgSend(self, "new", *@This(), .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn recordZone(self: *@This()) ?*RecordZone {
-        return objc.msgSend(self, "recordZone", ?*RecordZone, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn @"error"(self: *@This()) ?*foundation.Error {
-        return objc.msgSend(self, "error", ?*foundation.Error, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    }
+
+    pub fn isProxy(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
+    }
+
+    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+        return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
+    }
+
+    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "allowsWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn retainWeakReference(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
+    }
+
+    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    }
+
+    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
+        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    }
+
+    pub fn recordZone(_self: *@This()) ?*RecordZone {
+        return objc.msgSend(_self, "recordZone", ?*RecordZone, .{});
+    }
+
+    pub fn @"error"(_self: *@This()) ?*foundation.Error {
+        return objc.msgSend(_self, "error", ?*foundation.Error, .{});
+    }
 };
-

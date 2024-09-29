@@ -25,45 +25,62 @@ pub const __DASession = extern struct {};
 
 pub const SessionRef = ?*__DASession;
 
-pub extern "DiskArbitration" fn SessionGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "DiskArbitration" fn DASessionGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const sessionGetTypeID = DASessionGetTypeID;
 
-pub extern "DiskArbitration" fn SessionCreate(allocator: core_foundation.AllocatorRef) callconv(.C) SessionRef;
+extern "DiskArbitration" fn DASessionCreate(allocator: core_foundation.AllocatorRef) callconv(.C) SessionRef;
+pub const sessionCreate = DASessionCreate;
 
-pub extern "DiskArbitration" fn SessionScheduleWithRunLoop(session: SessionRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+extern "DiskArbitration" fn DASessionScheduleWithRunLoop(session: SessionRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+pub const sessionScheduleWithRunLoop = DASessionScheduleWithRunLoop;
 
-pub extern "DiskArbitration" fn SessionUnscheduleFromRunLoop(session: SessionRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+extern "DiskArbitration" fn DASessionUnscheduleFromRunLoop(session: SessionRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+pub const sessionUnscheduleFromRunLoop = DASessionUnscheduleFromRunLoop;
 
-pub extern "DiskArbitration" fn SessionSetDispatchQueue(session: SessionRef, queue: objc.dispatch_queue_t) callconv(.C) void;
+extern "DiskArbitration" fn DASessionSetDispatchQueue(session: SessionRef, queue: objc.dispatch_queue_t) callconv(.C) void;
+pub const sessionSetDispatchQueue = DASessionSetDispatchQueue;
 
 pub const ApprovalSessionRef = ?*__DASession;
 
-pub extern "DiskArbitration" fn ApprovalSessionGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "DiskArbitration" fn DAApprovalSessionGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const approvalSessionGetTypeID = DAApprovalSessionGetTypeID;
 
-pub extern "DiskArbitration" fn ApprovalSessionCreate(allocator: core_foundation.AllocatorRef) callconv(.C) ApprovalSessionRef;
+extern "DiskArbitration" fn DAApprovalSessionCreate(allocator: core_foundation.AllocatorRef) callconv(.C) ApprovalSessionRef;
+pub const approvalSessionCreate = DAApprovalSessionCreate;
 
-pub extern "DiskArbitration" fn ApprovalSessionScheduleWithRunLoop(session: ApprovalSessionRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+extern "DiskArbitration" fn DAApprovalSessionScheduleWithRunLoop(session: ApprovalSessionRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+pub const approvalSessionScheduleWithRunLoop = DAApprovalSessionScheduleWithRunLoop;
 
-pub extern "DiskArbitration" fn ApprovalSessionUnscheduleFromRunLoop(session: ApprovalSessionRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+extern "DiskArbitration" fn DAApprovalSessionUnscheduleFromRunLoop(session: ApprovalSessionRef, runLoop: core_foundation.RunLoopRef, runLoopMode: core_foundation.StringRef) callconv(.C) void;
+pub const approvalSessionUnscheduleFromRunLoop = DAApprovalSessionUnscheduleFromRunLoop;
 
 pub const __DADisk = extern struct {};
 
 pub const DiskRef = ?*__DADisk;
 
-pub extern "DiskArbitration" fn DiskGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "DiskArbitration" fn DADiskGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const diskGetTypeID = DADiskGetTypeID;
 
-pub extern "DiskArbitration" fn DiskCreateFromBSDName(allocator: core_foundation.AllocatorRef, session: SessionRef, name: ?*i8) callconv(.C) DiskRef;
+extern "DiskArbitration" fn DADiskCreateFromBSDName(allocator: core_foundation.AllocatorRef, session: SessionRef, name: ?*i8) callconv(.C) DiskRef;
+pub const diskCreateFromBSDName = DADiskCreateFromBSDName;
 
-pub extern "DiskArbitration" fn DiskCreateFromIOMedia(allocator: core_foundation.AllocatorRef, session: SessionRef, media: io_kit.io_service_t) callconv(.C) DiskRef;
+extern "DiskArbitration" fn DADiskCreateFromIOMedia(allocator: core_foundation.AllocatorRef, session: SessionRef, media: io_kit.io_service_t) callconv(.C) DiskRef;
+pub const diskCreateFromIOMedia = DADiskCreateFromIOMedia;
 
-pub extern "DiskArbitration" fn DiskCreateFromVolumePath(allocator: core_foundation.AllocatorRef, session: SessionRef, path: core_foundation.URLRef) callconv(.C) DiskRef;
+extern "DiskArbitration" fn DADiskCreateFromVolumePath(allocator: core_foundation.AllocatorRef, session: SessionRef, path: core_foundation.URLRef) callconv(.C) DiskRef;
+pub const diskCreateFromVolumePath = DADiskCreateFromVolumePath;
 
-pub extern "DiskArbitration" fn DiskGetBSDName(disk: DiskRef) callconv(.C) ?*i8;
+extern "DiskArbitration" fn DADiskGetBSDName(disk: DiskRef) callconv(.C) ?*i8;
+pub const diskGetBSDName = DADiskGetBSDName;
 
-pub extern "DiskArbitration" fn DiskCopyIOMedia(disk: DiskRef) callconv(.C) io_kit.io_service_t;
+extern "DiskArbitration" fn DADiskCopyIOMedia(disk: DiskRef) callconv(.C) io_kit.io_service_t;
+pub const diskCopyIOMedia = DADiskCopyIOMedia;
 
-pub extern "DiskArbitration" fn DiskCopyDescription(disk: DiskRef) callconv(.C) core_foundation.DictionaryRef;
+extern "DiskArbitration" fn DADiskCopyDescription(disk: DiskRef) callconv(.C) core_foundation.DictionaryRef;
+pub const diskCopyDescription = DADiskCopyDescription;
 
-pub extern "DiskArbitration" fn DiskCopyWholeDisk(disk: DiskRef) callconv(.C) DiskRef;
+extern "DiskArbitration" fn DADiskCopyWholeDisk(disk: DiskRef) callconv(.C) DiskRef;
+pub const diskCopyWholeDisk = DADiskCopyWholeDisk;
 
 pub const anon441 = enum(i32) {
     kDAReturnSuccess = 0,
@@ -87,11 +104,14 @@ pub const __DADissenter = extern struct {};
 
 pub const DissenterRef = ?*__DADissenter;
 
-pub extern "DiskArbitration" fn DissenterCreate(allocator: core_foundation.AllocatorRef, status: Return, string: core_foundation.StringRef) callconv(.C) DissenterRef;
+extern "DiskArbitration" fn DADissenterCreate(allocator: core_foundation.AllocatorRef, status: Return, string: core_foundation.StringRef) callconv(.C) DissenterRef;
+pub const dissenterCreate = DADissenterCreate;
 
-pub extern "DiskArbitration" fn DissenterGetStatus(dissenter: DissenterRef) callconv(.C) Return;
+extern "DiskArbitration" fn DADissenterGetStatus(dissenter: DissenterRef) callconv(.C) Return;
+pub const dissenterGetStatus = DADissenterGetStatus;
 
-pub extern "DiskArbitration" fn DissenterGetStatusString(dissenter: DissenterRef) callconv(.C) core_foundation.StringRef;
+extern "DiskArbitration" fn DADissenterGetStatusString(dissenter: DissenterRef) callconv(.C) core_foundation.StringRef;
+pub const dissenterGetStatusString = DADissenterGetStatusString;
 
 pub const DiskMountOptions = objc.UInt32;
 
@@ -117,67 +137,158 @@ pub const anon1121 = enum(u32) {
 
 pub const DiskOptions = objc.UInt32;
 
-pub const DiskAppearedCallback = ?*const fn(DiskRef, ?*anyopaque) callconv(.C) void;
+pub const DiskAppearedCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "DiskArbitration" fn RegisterDiskAppearedCallback(session: SessionRef, match: core_foundation.DictionaryRef, callback: DiskAppearedCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DARegisterDiskAppearedCallback(
+    session: SessionRef,
+    match: core_foundation.DictionaryRef,
+    callback: DiskAppearedCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const registerDiskAppearedCallback = DARegisterDiskAppearedCallback;
 
-pub const DiskDescriptionChangedCallback = ?*const fn(DiskRef, core_foundation.ArrayRef, ?*anyopaque) callconv(.C) void;
+pub const DiskDescriptionChangedCallback = ?*const fn (DiskRef, core_foundation.ArrayRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "DiskArbitration" fn RegisterDiskDescriptionChangedCallback(session: SessionRef, match: core_foundation.DictionaryRef, watch: core_foundation.ArrayRef, callback: DiskDescriptionChangedCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DARegisterDiskDescriptionChangedCallback(
+    session: SessionRef,
+    match: core_foundation.DictionaryRef,
+    watch: core_foundation.ArrayRef,
+    callback: DiskDescriptionChangedCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const registerDiskDescriptionChangedCallback = DARegisterDiskDescriptionChangedCallback;
 
-pub const DiskDisappearedCallback = ?*const fn(DiskRef, ?*anyopaque) callconv(.C) void;
+pub const DiskDisappearedCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "DiskArbitration" fn RegisterDiskDisappearedCallback(session: SessionRef, match: core_foundation.DictionaryRef, callback: DiskDisappearedCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DARegisterDiskDisappearedCallback(
+    session: SessionRef,
+    match: core_foundation.DictionaryRef,
+    callback: DiskDisappearedCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const registerDiskDisappearedCallback = DARegisterDiskDisappearedCallback;
 
-pub const DiskMountCallback = ?*const fn(DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
+pub const DiskMountCallback = ?*const fn (DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "DiskArbitration" fn DiskMount(disk: DiskRef, path: core_foundation.URLRef, options: DiskMountOptions, callback: DiskMountCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DADiskMount(
+    disk: DiskRef,
+    path: core_foundation.URLRef,
+    options: DiskMountOptions,
+    callback: DiskMountCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const diskMount = DADiskMount;
 
-pub extern "DiskArbitration" fn DiskMountWithArguments(disk: DiskRef, path: core_foundation.URLRef, options: DiskMountOptions, callback: DiskMountCallback, context: ?*anyopaque, arguments: ?*core_foundation.StringRef, ) callconv(.C) void;
+extern "DiskArbitration" fn DADiskMountWithArguments(
+    disk: DiskRef,
+    path: core_foundation.URLRef,
+    options: DiskMountOptions,
+    callback: DiskMountCallback,
+    context: ?*anyopaque,
+    arguments: ?*core_foundation.StringRef,
+) callconv(.C) void;
+pub const diskMountWithArguments = DADiskMountWithArguments;
 
-pub const DiskMountApprovalCallback = ?*const fn(DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
+pub const DiskMountApprovalCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
 
-pub extern "DiskArbitration" fn RegisterDiskMountApprovalCallback(session: SessionRef, match: core_foundation.DictionaryRef, callback: DiskMountApprovalCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DARegisterDiskMountApprovalCallback(
+    session: SessionRef,
+    match: core_foundation.DictionaryRef,
+    callback: DiskMountApprovalCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const registerDiskMountApprovalCallback = DARegisterDiskMountApprovalCallback;
 
-pub const DiskRenameCallback = ?*const fn(DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
+pub const DiskRenameCallback = ?*const fn (DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "DiskArbitration" fn DiskRename(disk: DiskRef, name: core_foundation.StringRef, options: DiskRenameOptions, callback: DiskRenameCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DADiskRename(
+    disk: DiskRef,
+    name: core_foundation.StringRef,
+    options: DiskRenameOptions,
+    callback: DiskRenameCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const diskRename = DADiskRename;
 
-pub const DiskUnmountCallback = ?*const fn(DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
+pub const DiskUnmountCallback = ?*const fn (DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "DiskArbitration" fn DiskUnmount(disk: DiskRef, options: DiskUnmountOptions, callback: DiskUnmountCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DADiskUnmount(
+    disk: DiskRef,
+    options: DiskUnmountOptions,
+    callback: DiskUnmountCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const diskUnmount = DADiskUnmount;
 
-pub const DiskUnmountApprovalCallback = ?*const fn(DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
+pub const DiskUnmountApprovalCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
 
-pub extern "DiskArbitration" fn RegisterDiskUnmountApprovalCallback(session: SessionRef, match: core_foundation.DictionaryRef, callback: DiskUnmountApprovalCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DARegisterDiskUnmountApprovalCallback(
+    session: SessionRef,
+    match: core_foundation.DictionaryRef,
+    callback: DiskUnmountApprovalCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const registerDiskUnmountApprovalCallback = DARegisterDiskUnmountApprovalCallback;
 
-pub const DiskEjectCallback = ?*const fn(DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
+pub const DiskEjectCallback = ?*const fn (DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "DiskArbitration" fn DiskEject(disk: DiskRef, options: DiskEjectOptions, callback: DiskEjectCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DADiskEject(
+    disk: DiskRef,
+    options: DiskEjectOptions,
+    callback: DiskEjectCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const diskEject = DADiskEject;
 
-pub const DiskEjectApprovalCallback = ?*const fn(DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
+pub const DiskEjectApprovalCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
 
-pub extern "DiskArbitration" fn RegisterDiskEjectApprovalCallback(session: SessionRef, match: core_foundation.DictionaryRef, callback: DiskEjectApprovalCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DARegisterDiskEjectApprovalCallback(
+    session: SessionRef,
+    match: core_foundation.DictionaryRef,
+    callback: DiskEjectApprovalCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const registerDiskEjectApprovalCallback = DARegisterDiskEjectApprovalCallback;
 
-pub const DiskClaimCallback = ?*const fn(DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
+pub const DiskClaimCallback = ?*const fn (DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
 
-pub const DiskClaimReleaseCallback = ?*const fn(DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
+pub const DiskClaimReleaseCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
 
-pub extern "DiskArbitration" fn DiskClaim(disk: DiskRef, options: DiskClaimOptions, release: DiskClaimReleaseCallback, releaseContext: ?*anyopaque, callback: DiskClaimCallback, callbackContext: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DADiskClaim(
+    disk: DiskRef,
+    options: DiskClaimOptions,
+    release: DiskClaimReleaseCallback,
+    releaseContext: ?*anyopaque,
+    callback: DiskClaimCallback,
+    callbackContext: ?*anyopaque,
+) callconv(.C) void;
+pub const diskClaim = DADiskClaim;
 
-pub extern "DiskArbitration" fn DiskIsClaimed(disk: DiskRef) callconv(.C) objc.Boolean;
+extern "DiskArbitration" fn DADiskIsClaimed(disk: DiskRef) callconv(.C) objc.Boolean;
+pub const diskIsClaimed = DADiskIsClaimed;
 
-pub extern "DiskArbitration" fn DiskUnclaim(disk: DiskRef) callconv(.C) void;
+extern "DiskArbitration" fn DADiskUnclaim(disk: DiskRef) callconv(.C) void;
+pub const diskUnclaim = DADiskUnclaim;
 
-pub const DiskPeekCallback = ?*const fn(DiskRef, ?*anyopaque) callconv(.C) void;
+pub const DiskPeekCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "DiskArbitration" fn RegisterDiskPeekCallback(session: SessionRef, match: core_foundation.DictionaryRef, order: core_foundation.Index, callback: DiskPeekCallback, context: ?*anyopaque, ) callconv(.C) void;
+extern "DiskArbitration" fn DARegisterDiskPeekCallback(
+    session: SessionRef,
+    match: core_foundation.DictionaryRef,
+    order: core_foundation.Index,
+    callback: DiskPeekCallback,
+    context: ?*anyopaque,
+) callconv(.C) void;
+pub const registerDiskPeekCallback = DARegisterDiskPeekCallback;
 
-pub extern "DiskArbitration" fn DiskGetOptions(disk: DiskRef) callconv(.C) DiskOptions;
+extern "DiskArbitration" fn DADiskGetOptions(disk: DiskRef) callconv(.C) DiskOptions;
+pub const diskGetOptions = DADiskGetOptions;
 
-pub extern "DiskArbitration" fn DiskSetOptions(disk: DiskRef, options: DiskOptions, value: objc.Boolean) callconv(.C) Return;
+extern "DiskArbitration" fn DADiskSetOptions(disk: DiskRef, options: DiskOptions, value: objc.Boolean) callconv(.C) Return;
+pub const diskSetOptions = DADiskSetOptions;
 
-pub extern "DiskArbitration" fn UnregisterCallback(session: SessionRef, callback: ?*anyopaque, context: ?*anyopaque) callconv(.C) void;
+extern "DiskArbitration" fn DAUnregisterCallback(session: SessionRef, callback: ?*anyopaque, context: ?*anyopaque) callconv(.C) void;
+pub const unregisterCallback = DAUnregisterCallback;
 
-pub extern "DiskArbitration" fn UnregisterApprovalCallback(session: SessionRef, callback: ?*anyopaque, context: ?*anyopaque) callconv(.C) void;
-
+extern "DiskArbitration" fn DAUnregisterApprovalCallback(session: SessionRef, callback: ?*anyopaque, context: ?*anyopaque) callconv(.C) void;
+pub const unregisterApprovalCallback = DAUnregisterApprovalCallback;

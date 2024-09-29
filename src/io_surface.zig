@@ -75,101 +75,149 @@ pub const Subsampling = enum(objc.int32_t) {
     kIOSurfaceSubsampling411 = 4,
 };
 
-pub extern "IOSurface" fn GetTypeID() callconv(.C) core_foundation.TypeID;
+extern "IOSurface" fn IOSurfaceGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const getTypeID = IOSurfaceGetTypeID;
 
-pub extern "IOSurface" fn Create(properties: core_foundation.DictionaryRef) callconv(.C) Ref;
+extern "IOSurface" fn IOSurfaceCreate(properties: core_foundation.DictionaryRef) callconv(.C) Ref;
+pub const create = IOSurfaceCreate;
 
-pub extern "IOSurface" fn Lookup(csid: ID) callconv(.C) Ref;
+extern "IOSurface" fn IOSurfaceLookup(csid: ID) callconv(.C) Ref;
+pub const lookup = IOSurfaceLookup;
 
-pub extern "IOSurface" fn GetID(buffer: Ref) callconv(.C) ID;
+extern "IOSurface" fn IOSurfaceGetID(buffer: Ref) callconv(.C) ID;
+pub const getID = IOSurfaceGetID;
 
-pub extern "IOSurface" fn Lock(buffer: Ref, options: LockOptions, seed: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+extern "IOSurface" fn IOSurfaceLock(buffer: Ref, options: LockOptions, seed: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+pub const lock = IOSurfaceLock;
 
-pub extern "IOSurface" fn Unlock(buffer: Ref, options: LockOptions, seed: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+extern "IOSurface" fn IOSurfaceUnlock(buffer: Ref, options: LockOptions, seed: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+pub const unlock = IOSurfaceUnlock;
 
-pub extern "IOSurface" fn GetAllocSize(buffer: Ref) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetAllocSize(buffer: Ref) callconv(.C) objc.size_t;
+pub const getAllocSize = IOSurfaceGetAllocSize;
 
-pub extern "IOSurface" fn GetWidth(buffer: Ref) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetWidth(buffer: Ref) callconv(.C) objc.size_t;
+pub const getWidth = IOSurfaceGetWidth;
 
-pub extern "IOSurface" fn GetHeight(buffer: Ref) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetHeight(buffer: Ref) callconv(.C) objc.size_t;
+pub const getHeight = IOSurfaceGetHeight;
 
-pub extern "IOSurface" fn GetBytesPerElement(buffer: Ref) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetBytesPerElement(buffer: Ref) callconv(.C) objc.size_t;
+pub const getBytesPerElement = IOSurfaceGetBytesPerElement;
 
-pub extern "IOSurface" fn GetBytesPerRow(buffer: Ref) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetBytesPerRow(buffer: Ref) callconv(.C) objc.size_t;
+pub const getBytesPerRow = IOSurfaceGetBytesPerRow;
 
-pub extern "IOSurface" fn GetBaseAddress(buffer: Ref) callconv(.C) ?*anyopaque;
+extern "IOSurface" fn IOSurfaceGetBaseAddress(buffer: Ref) callconv(.C) ?*anyopaque;
+pub const getBaseAddress = IOSurfaceGetBaseAddress;
 
-pub extern "IOSurface" fn GetElementWidth(buffer: Ref) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetElementWidth(buffer: Ref) callconv(.C) objc.size_t;
+pub const getElementWidth = IOSurfaceGetElementWidth;
 
-pub extern "IOSurface" fn GetElementHeight(buffer: Ref) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetElementHeight(buffer: Ref) callconv(.C) objc.size_t;
+pub const getElementHeight = IOSurfaceGetElementHeight;
 
-pub extern "IOSurface" fn GetPixelFormat(buffer: Ref) callconv(.C) objc.OSType;
+extern "IOSurface" fn IOSurfaceGetPixelFormat(buffer: Ref) callconv(.C) objc.OSType;
+pub const getPixelFormat = IOSurfaceGetPixelFormat;
 
-pub extern "IOSurface" fn GetSeed(buffer: Ref) callconv(.C) objc.uint32_t;
+extern "IOSurface" fn IOSurfaceGetSeed(buffer: Ref) callconv(.C) objc.uint32_t;
+pub const getSeed = IOSurfaceGetSeed;
 
-pub extern "IOSurface" fn GetPlaneCount(buffer: Ref) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetPlaneCount(buffer: Ref) callconv(.C) objc.size_t;
+pub const getPlaneCount = IOSurfaceGetPlaneCount;
 
-pub extern "IOSurface" fn GetWidthOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetWidthOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const getWidthOfPlane = IOSurfaceGetWidthOfPlane;
 
-pub extern "IOSurface" fn GetHeightOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetHeightOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const getHeightOfPlane = IOSurfaceGetHeightOfPlane;
 
-pub extern "IOSurface" fn GetBytesPerElementOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetBytesPerElementOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const getBytesPerElementOfPlane = IOSurfaceGetBytesPerElementOfPlane;
 
-pub extern "IOSurface" fn GetBytesPerRowOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetBytesPerRowOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const getBytesPerRowOfPlane = IOSurfaceGetBytesPerRowOfPlane;
 
-pub extern "IOSurface" fn GetBaseAddressOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) ?*anyopaque;
+extern "IOSurface" fn IOSurfaceGetBaseAddressOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) ?*anyopaque;
+pub const getBaseAddressOfPlane = IOSurfaceGetBaseAddressOfPlane;
 
-pub extern "IOSurface" fn GetElementWidthOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetElementWidthOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const getElementWidthOfPlane = IOSurfaceGetElementWidthOfPlane;
 
-pub extern "IOSurface" fn GetElementHeightOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetElementHeightOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const getElementHeightOfPlane = IOSurfaceGetElementHeightOfPlane;
 
-pub extern "IOSurface" fn GetNumberOfComponentsOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetNumberOfComponentsOfPlane(buffer: Ref, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const getNumberOfComponentsOfPlane = IOSurfaceGetNumberOfComponentsOfPlane;
 
-pub extern "IOSurface" fn GetNameOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) ComponentName;
+extern "IOSurface" fn IOSurfaceGetNameOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) ComponentName;
+pub const getNameOfComponentOfPlane = IOSurfaceGetNameOfComponentOfPlane;
 
-pub extern "IOSurface" fn GetTypeOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) ComponentType;
+extern "IOSurface" fn IOSurfaceGetTypeOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) ComponentType;
+pub const getTypeOfComponentOfPlane = IOSurfaceGetTypeOfComponentOfPlane;
 
-pub extern "IOSurface" fn GetRangeOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) ComponentRange;
+extern "IOSurface" fn IOSurfaceGetRangeOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) ComponentRange;
+pub const getRangeOfComponentOfPlane = IOSurfaceGetRangeOfComponentOfPlane;
 
-pub extern "IOSurface" fn GetBitDepthOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetBitDepthOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const getBitDepthOfComponentOfPlane = IOSurfaceGetBitDepthOfComponentOfPlane;
 
-pub extern "IOSurface" fn GetBitOffsetOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetBitOffsetOfComponentOfPlane(buffer: Ref, planeIndex: objc.size_t, componentIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const getBitOffsetOfComponentOfPlane = IOSurfaceGetBitOffsetOfComponentOfPlane;
 
-pub extern "IOSurface" fn GetSubsampling(buffer: Ref) callconv(.C) Subsampling;
+extern "IOSurface" fn IOSurfaceGetSubsampling(buffer: Ref) callconv(.C) Subsampling;
+pub const getSubsampling = IOSurfaceGetSubsampling;
 
-pub extern "IOSurface" fn SetValue(buffer: Ref, key: core_foundation.StringRef, value: core_foundation.TypeRef) callconv(.C) void;
+extern "IOSurface" fn IOSurfaceSetValue(buffer: Ref, key: core_foundation.StringRef, value: core_foundation.TypeRef) callconv(.C) void;
+pub const setValue = IOSurfaceSetValue;
 
-pub extern "IOSurface" fn CopyValue(buffer: Ref, key: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "IOSurface" fn IOSurfaceCopyValue(buffer: Ref, key: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const copyValue = IOSurfaceCopyValue;
 
-pub extern "IOSurface" fn RemoveValue(buffer: Ref, key: core_foundation.StringRef) callconv(.C) void;
+extern "IOSurface" fn IOSurfaceRemoveValue(buffer: Ref, key: core_foundation.StringRef) callconv(.C) void;
+pub const removeValue = IOSurfaceRemoveValue;
 
-pub extern "IOSurface" fn SetValues(buffer: Ref, keysAndValues: core_foundation.DictionaryRef) callconv(.C) void;
+extern "IOSurface" fn IOSurfaceSetValues(buffer: Ref, keysAndValues: core_foundation.DictionaryRef) callconv(.C) void;
+pub const setValues = IOSurfaceSetValues;
 
-pub extern "IOSurface" fn CopyAllValues(buffer: Ref) callconv(.C) core_foundation.DictionaryRef;
+extern "IOSurface" fn IOSurfaceCopyAllValues(buffer: Ref) callconv(.C) core_foundation.DictionaryRef;
+pub const copyAllValues = IOSurfaceCopyAllValues;
 
-pub extern "IOSurface" fn RemoveAllValues(buffer: Ref) callconv(.C) void;
+extern "IOSurface" fn IOSurfaceRemoveAllValues(buffer: Ref) callconv(.C) void;
+pub const removeAllValues = IOSurfaceRemoveAllValues;
 
-pub extern "IOSurface" fn CreateMachPort(buffer: Ref) callconv(.C) objc.mach_port_t;
+extern "IOSurface" fn IOSurfaceCreateMachPort(buffer: Ref) callconv(.C) objc.mach_port_t;
+pub const createMachPort = IOSurfaceCreateMachPort;
 
-pub extern "IOSurface" fn LookupFromMachPort(port: objc.mach_port_t) callconv(.C) Ref;
+extern "IOSurface" fn IOSurfaceLookupFromMachPort(port: objc.mach_port_t) callconv(.C) Ref;
+pub const lookupFromMachPort = IOSurfaceLookupFromMachPort;
 
-pub extern "IOSurface" fn GetPropertyMaximum(property: core_foundation.StringRef) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetPropertyMaximum(property: core_foundation.StringRef) callconv(.C) objc.size_t;
+pub const getPropertyMaximum = IOSurfaceGetPropertyMaximum;
 
-pub extern "IOSurface" fn GetPropertyAlignment(property: core_foundation.StringRef) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceGetPropertyAlignment(property: core_foundation.StringRef) callconv(.C) objc.size_t;
+pub const getPropertyAlignment = IOSurfaceGetPropertyAlignment;
 
-pub extern "IOSurface" fn AlignProperty(property: core_foundation.StringRef, value: objc.size_t) callconv(.C) objc.size_t;
+extern "IOSurface" fn IOSurfaceAlignProperty(property: core_foundation.StringRef, value: objc.size_t) callconv(.C) objc.size_t;
+pub const alignProperty = IOSurfaceAlignProperty;
 
-pub extern "IOSurface" fn IncrementUseCount(buffer: Ref) callconv(.C) void;
+extern "IOSurface" fn IOSurfaceIncrementUseCount(buffer: Ref) callconv(.C) void;
+pub const incrementUseCount = IOSurfaceIncrementUseCount;
 
-pub extern "IOSurface" fn DecrementUseCount(buffer: Ref) callconv(.C) void;
+extern "IOSurface" fn IOSurfaceDecrementUseCount(buffer: Ref) callconv(.C) void;
+pub const decrementUseCount = IOSurfaceDecrementUseCount;
 
-pub extern "IOSurface" fn GetUseCount(buffer: Ref) callconv(.C) objc.int32_t;
+extern "IOSurface" fn IOSurfaceGetUseCount(buffer: Ref) callconv(.C) objc.int32_t;
+pub const getUseCount = IOSurfaceGetUseCount;
 
-pub extern "IOSurface" fn IsInUse(buffer: Ref) callconv(.C) objc.Boolean;
+extern "IOSurface" fn IOSurfaceIsInUse(buffer: Ref) callconv(.C) objc.Boolean;
+pub const isInUse = IOSurfaceIsInUse;
 
-pub extern "IOSurface" fn AllowsPixelSizeCasting(buffer: Ref) callconv(.C) objc.Boolean;
+extern "IOSurface" fn IOSurfaceAllowsPixelSizeCasting(buffer: Ref) callconv(.C) objc.Boolean;
+pub const allowsPixelSizeCasting = IOSurfaceAllowsPixelSizeCasting;
 
-pub extern "IOSurface" fn SetPurgeable(buffer: Ref, newState: objc.uint32_t, oldState: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+extern "IOSurface" fn IOSurfaceSetPurgeable(buffer: Ref, newState: objc.uint32_t, oldState: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+pub const setPurgeable = IOSurfaceSetPurgeable;
 
 pub const MemoryLedgerTags = enum(i32) {
     kIOSurfaceMemoryLedgerTagDefault = 1,
@@ -183,9 +231,16 @@ pub const MemoryLedgerFlags = enum(objc.uint32_t) {
     kIOSurfaceMemoryLedgerFlagNoFootprint = 1,
 };
 
-pub extern "IOSurface" fn SetOwnershipIdentity(buffer: Ref, task_id_token: objc.task_id_token_t, newLedgerTag: i32, newLedgerOptions: objc.uint32_t, ) callconv(.C) objc.kern_return_t;
+extern "IOSurface" fn IOSurfaceSetOwnershipIdentity(
+    buffer: Ref,
+    task_id_token: objc.task_id_token_t,
+    newLedgerTag: i32,
+    newLedgerOptions: objc.uint32_t,
+) callconv(.C) objc.kern_return_t;
+pub const setOwnershipIdentity = IOSurfaceSetOwnershipIdentity;
 
-pub extern "IOSurface" fn CreateXPCObject(aSurface: Ref) callconv(.C) objc.xpc_object_t;
+extern "IOSurface" fn IOSurfaceCreateXPCObject(aSurface: Ref) callconv(.C) objc.xpc_object_t;
+pub const createXPCObject = IOSurfaceCreateXPCObject;
 
-pub extern "IOSurface" fn LookupFromXPCObject(xobj: objc.xpc_object_t) callconv(.C) Ref;
-
+extern "IOSurface" fn IOSurfaceLookupFromXPCObject(xobj: objc.xpc_object_t) callconv(.C) Ref;
+pub const lookupFromXPCObject = IOSurfaceLookupFromXPCObject;

@@ -188,7 +188,8 @@ pub const __CTFontDescriptor = extern struct {};
 
 pub const FontDescriptorRef = ?*__CTFontDescriptor;
 
-pub extern "CoreText" fn FontDescriptorGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTFontDescriptorGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const fontDescriptorGetTypeID = CTFontDescriptorGetTypeID;
 
 pub const FontOrientation = enum(objc.uint32_t) {
     kCTFontOrientationDefault = 0,
@@ -214,23 +215,32 @@ pub const anon2541 = enum(u32) {
 
 pub const FontPriority = objc.uint32_t;
 
-pub extern "CoreText" fn FontDescriptorCreateWithNameAndSize(name: core_foundation.StringRef, size: core_foundation.CGFloat) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontDescriptorCreateWithNameAndSize(name: core_foundation.StringRef, size: core_foundation.CGFloat) callconv(.C) FontDescriptorRef;
+pub const fontDescriptorCreateWithNameAndSize = CTFontDescriptorCreateWithNameAndSize;
 
-pub extern "CoreText" fn FontDescriptorCreateWithAttributes(attributes: core_foundation.DictionaryRef) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontDescriptorCreateWithAttributes(attributes: core_foundation.DictionaryRef) callconv(.C) FontDescriptorRef;
+pub const fontDescriptorCreateWithAttributes = CTFontDescriptorCreateWithAttributes;
 
-pub extern "CoreText" fn FontDescriptorCreateCopyWithAttributes(original: FontDescriptorRef, attributes: core_foundation.DictionaryRef) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontDescriptorCreateCopyWithAttributes(original: FontDescriptorRef, attributes: core_foundation.DictionaryRef) callconv(.C) FontDescriptorRef;
+pub const fontDescriptorCreateCopyWithAttributes = CTFontDescriptorCreateCopyWithAttributes;
 
-pub extern "CoreText" fn FontDescriptorCreateCopyWithFamily(original: FontDescriptorRef, family: core_foundation.StringRef) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontDescriptorCreateCopyWithFamily(original: FontDescriptorRef, family: core_foundation.StringRef) callconv(.C) FontDescriptorRef;
+pub const fontDescriptorCreateCopyWithFamily = CTFontDescriptorCreateCopyWithFamily;
 
-pub extern "CoreText" fn FontDescriptorCreateCopyWithSymbolicTraits(original: FontDescriptorRef, symTraitValue: FontSymbolicTraits, symTraitMask: FontSymbolicTraits) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontDescriptorCreateCopyWithSymbolicTraits(original: FontDescriptorRef, symTraitValue: FontSymbolicTraits, symTraitMask: FontSymbolicTraits) callconv(.C) FontDescriptorRef;
+pub const fontDescriptorCreateCopyWithSymbolicTraits = CTFontDescriptorCreateCopyWithSymbolicTraits;
 
-pub extern "CoreText" fn FontDescriptorCreateCopyWithVariation(original: FontDescriptorRef, variationIdentifier: core_foundation.NumberRef, variationValue: core_foundation.CGFloat) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontDescriptorCreateCopyWithVariation(original: FontDescriptorRef, variationIdentifier: core_foundation.NumberRef, variationValue: core_foundation.CGFloat) callconv(.C) FontDescriptorRef;
+pub const fontDescriptorCreateCopyWithVariation = CTFontDescriptorCreateCopyWithVariation;
 
-pub extern "CoreText" fn FontDescriptorCreateCopyWithFeature(original: FontDescriptorRef, featureTypeIdentifier: core_foundation.NumberRef, featureSelectorIdentifier: core_foundation.NumberRef) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontDescriptorCreateCopyWithFeature(original: FontDescriptorRef, featureTypeIdentifier: core_foundation.NumberRef, featureSelectorIdentifier: core_foundation.NumberRef) callconv(.C) FontDescriptorRef;
+pub const fontDescriptorCreateCopyWithFeature = CTFontDescriptorCreateCopyWithFeature;
 
-pub extern "CoreText" fn FontDescriptorCreateMatchingFontDescriptors(descriptor: FontDescriptorRef, mandatoryAttributes: core_foundation.SetRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontDescriptorCreateMatchingFontDescriptors(descriptor: FontDescriptorRef, mandatoryAttributes: core_foundation.SetRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontDescriptorCreateMatchingFontDescriptors = CTFontDescriptorCreateMatchingFontDescriptors;
 
-pub extern "CoreText" fn FontDescriptorCreateMatchingFontDescriptor(descriptor: FontDescriptorRef, mandatoryAttributes: core_foundation.SetRef) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontDescriptorCreateMatchingFontDescriptor(descriptor: FontDescriptorRef, mandatoryAttributes: core_foundation.SetRef) callconv(.C) FontDescriptorRef;
+pub const fontDescriptorCreateMatchingFontDescriptor = CTFontDescriptorCreateMatchingFontDescriptor;
 
 pub const FontDescriptorMatchingState = enum(objc.uint32_t) {
     kCTFontDescriptorMatchingDidBegin = 0,
@@ -244,25 +254,32 @@ pub const FontDescriptorMatchingState = enum(objc.uint32_t) {
     kCTFontDescriptorMatchingDidFailWithError = 8,
 };
 
-pub const FontDescriptorProgressHandler = *const fn(FontDescriptorMatchingState, core_foundation.DictionaryRef) callconv(.C) i32;
+pub const FontDescriptorProgressHandler = *const fn (FontDescriptorMatchingState, core_foundation.DictionaryRef) callconv(.C) i32;
 
-pub extern "CoreText" fn FontDescriptorMatchFontDescriptorsWithProgressHandler() callconv(.C) i32;
+extern "CoreText" fn CTFontDescriptorMatchFontDescriptorsWithProgressHandler() callconv(.C) i32;
+pub const fontDescriptorMatchFontDescriptorsWithProgressHandler = CTFontDescriptorMatchFontDescriptorsWithProgressHandler;
 
-pub extern "CoreText" fn FontDescriptorCopyAttributes(descriptor: FontDescriptorRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreText" fn CTFontDescriptorCopyAttributes(descriptor: FontDescriptorRef) callconv(.C) core_foundation.DictionaryRef;
+pub const fontDescriptorCopyAttributes = CTFontDescriptorCopyAttributes;
 
-pub extern "CoreText" fn FontDescriptorCopyAttribute(descriptor: FontDescriptorRef, attribute: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "CoreText" fn CTFontDescriptorCopyAttribute(descriptor: FontDescriptorRef, attribute: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const fontDescriptorCopyAttribute = CTFontDescriptorCopyAttribute;
 
-pub extern "CoreText" fn FontDescriptorCopyLocalizedAttribute(descriptor: FontDescriptorRef, attribute: core_foundation.StringRef, language: ?*core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "CoreText" fn CTFontDescriptorCopyLocalizedAttribute(descriptor: FontDescriptorRef, attribute: core_foundation.StringRef, language: ?*core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const fontDescriptorCopyLocalizedAttribute = CTFontDescriptorCopyLocalizedAttribute;
 
 pub const __CTFont = extern struct {};
 
 pub const FontRef = ?*__CTFont;
 
-pub extern "CoreText" fn FontGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTFontGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const fontGetTypeID = CTFontGetTypeID;
 
-pub extern "CoreText" fn FontCreateWithName(name: core_foundation.StringRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateWithName(name: core_foundation.StringRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) FontRef;
+pub const fontCreateWithName = CTFontCreateWithName;
 
-pub extern "CoreText" fn FontCreateWithFontDescriptor(descriptor: FontDescriptorRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateWithFontDescriptor(descriptor: FontDescriptorRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) FontRef;
+pub const fontCreateWithFontDescriptor = CTFontCreateWithFontDescriptor;
 
 pub const FontOptions = enum(core_foundation.OptionFlags) {
     kCTFontOptionsDefault = 0,
@@ -271,9 +288,21 @@ pub const FontOptions = enum(core_foundation.OptionFlags) {
     kCTFontOptionsPreferSystemFont = 4,
 };
 
-pub extern "CoreText" fn FontCreateWithNameAndOptions(name: core_foundation.StringRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform, options: FontOptions, ) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateWithNameAndOptions(
+    name: core_foundation.StringRef,
+    size: core_foundation.CGFloat,
+    matrix: ?*core_foundation.CGAffineTransform,
+    options: FontOptions,
+) callconv(.C) FontRef;
+pub const fontCreateWithNameAndOptions = CTFontCreateWithNameAndOptions;
 
-pub extern "CoreText" fn FontCreateWithFontDescriptorAndOptions(descriptor: FontDescriptorRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform, options: FontOptions, ) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateWithFontDescriptorAndOptions(
+    descriptor: FontDescriptorRef,
+    size: core_foundation.CGFloat,
+    matrix: ?*core_foundation.CGAffineTransform,
+    options: FontOptions,
+) callconv(.C) FontRef;
+pub const fontCreateWithFontDescriptorAndOptions = CTFontCreateWithFontDescriptorAndOptions;
 
 pub const FontUIFontType = enum(objc.uint32_t) {
     kCTFontUIFontNone = -1,
@@ -334,107 +363,216 @@ pub const FontUIFontType = enum(objc.uint32_t) {
     kCTFontControlContentFontType = 26,
 };
 
-pub extern "CoreText" fn FontCreateUIFontForLanguage(uiType: FontUIFontType, size: core_foundation.CGFloat, language: core_foundation.StringRef) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateUIFontForLanguage(uiType: FontUIFontType, size: core_foundation.CGFloat, language: core_foundation.StringRef) callconv(.C) FontRef;
+pub const fontCreateUIFontForLanguage = CTFontCreateUIFontForLanguage;
 
-pub extern "CoreText" fn FontCreateCopyWithAttributes(font: FontRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform, attributes: FontDescriptorRef, ) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateCopyWithAttributes(
+    font: FontRef,
+    size: core_foundation.CGFloat,
+    matrix: ?*core_foundation.CGAffineTransform,
+    attributes: FontDescriptorRef,
+) callconv(.C) FontRef;
+pub const fontCreateCopyWithAttributes = CTFontCreateCopyWithAttributes;
 
-pub extern "CoreText" fn FontCreateCopyWithSymbolicTraits(font: FontRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform, symTraitValue: FontSymbolicTraits, symTraitMask: FontSymbolicTraits, ) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateCopyWithSymbolicTraits(
+    font: FontRef,
+    size: core_foundation.CGFloat,
+    matrix: ?*core_foundation.CGAffineTransform,
+    symTraitValue: FontSymbolicTraits,
+    symTraitMask: FontSymbolicTraits,
+) callconv(.C) FontRef;
+pub const fontCreateCopyWithSymbolicTraits = CTFontCreateCopyWithSymbolicTraits;
 
-pub extern "CoreText" fn FontCreateCopyWithFamily(font: FontRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform, family: core_foundation.StringRef, ) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateCopyWithFamily(
+    font: FontRef,
+    size: core_foundation.CGFloat,
+    matrix: ?*core_foundation.CGAffineTransform,
+    family: core_foundation.StringRef,
+) callconv(.C) FontRef;
+pub const fontCreateCopyWithFamily = CTFontCreateCopyWithFamily;
 
-pub extern "CoreText" fn FontCreateForString(currentFont: FontRef, string: core_foundation.StringRef, range: core_foundation.Range) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateForString(currentFont: FontRef, string: core_foundation.StringRef, range: core_foundation.Range) callconv(.C) FontRef;
+pub const fontCreateForString = CTFontCreateForString;
 
-pub extern "CoreText" fn FontCreateForStringWithLanguage(currentFont: FontRef, string: core_foundation.StringRef, range: core_foundation.Range, language: core_foundation.StringRef, ) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateForStringWithLanguage(
+    currentFont: FontRef,
+    string: core_foundation.StringRef,
+    range: core_foundation.Range,
+    language: core_foundation.StringRef,
+) callconv(.C) FontRef;
+pub const fontCreateForStringWithLanguage = CTFontCreateForStringWithLanguage;
 
-pub extern "CoreText" fn FontCopyFontDescriptor(font: FontRef) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontCopyFontDescriptor(font: FontRef) callconv(.C) FontDescriptorRef;
+pub const fontCopyFontDescriptor = CTFontCopyFontDescriptor;
 
-pub extern "CoreText" fn FontCopyAttribute(font: FontRef, attribute: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+extern "CoreText" fn CTFontCopyAttribute(font: FontRef, attribute: core_foundation.StringRef) callconv(.C) core_foundation.TypeRef;
+pub const fontCopyAttribute = CTFontCopyAttribute;
 
-pub extern "CoreText" fn FontGetSize(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTFontGetSize(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetSize = CTFontGetSize;
 
-pub extern "CoreText" fn FontGetMatrix(font: FontRef) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreText" fn CTFontGetMatrix(font: FontRef) callconv(.C) core_foundation.CGAffineTransform;
+pub const fontGetMatrix = CTFontGetMatrix;
 
-pub extern "CoreText" fn FontGetSymbolicTraits(font: FontRef) callconv(.C) FontSymbolicTraits;
+extern "CoreText" fn CTFontGetSymbolicTraits(font: FontRef) callconv(.C) FontSymbolicTraits;
+pub const fontGetSymbolicTraits = CTFontGetSymbolicTraits;
 
-pub extern "CoreText" fn FontCopyTraits(font: FontRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreText" fn CTFontCopyTraits(font: FontRef) callconv(.C) core_foundation.DictionaryRef;
+pub const fontCopyTraits = CTFontCopyTraits;
 
-pub extern "CoreText" fn FontCopyDefaultCascadeListForLanguages(font: FontRef, languagePrefList: core_foundation.ArrayRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCopyDefaultCascadeListForLanguages(font: FontRef, languagePrefList: core_foundation.ArrayRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCopyDefaultCascadeListForLanguages = CTFontCopyDefaultCascadeListForLanguages;
 
-pub extern "CoreText" fn FontCopyPostScriptName(font: FontRef) callconv(.C) core_foundation.StringRef;
+extern "CoreText" fn CTFontCopyPostScriptName(font: FontRef) callconv(.C) core_foundation.StringRef;
+pub const fontCopyPostScriptName = CTFontCopyPostScriptName;
 
-pub extern "CoreText" fn FontCopyFamilyName(font: FontRef) callconv(.C) core_foundation.StringRef;
+extern "CoreText" fn CTFontCopyFamilyName(font: FontRef) callconv(.C) core_foundation.StringRef;
+pub const fontCopyFamilyName = CTFontCopyFamilyName;
 
-pub extern "CoreText" fn FontCopyFullName(font: FontRef) callconv(.C) core_foundation.StringRef;
+extern "CoreText" fn CTFontCopyFullName(font: FontRef) callconv(.C) core_foundation.StringRef;
+pub const fontCopyFullName = CTFontCopyFullName;
 
-pub extern "CoreText" fn FontCopyDisplayName(font: FontRef) callconv(.C) core_foundation.StringRef;
+extern "CoreText" fn CTFontCopyDisplayName(font: FontRef) callconv(.C) core_foundation.StringRef;
+pub const fontCopyDisplayName = CTFontCopyDisplayName;
 
-pub extern "CoreText" fn FontCopyName(font: FontRef, nameKey: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "CoreText" fn CTFontCopyName(font: FontRef, nameKey: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const fontCopyName = CTFontCopyName;
 
-pub extern "CoreText" fn FontCopyLocalizedName(font: FontRef, nameKey: core_foundation.StringRef, actualLanguage: ?*core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "CoreText" fn CTFontCopyLocalizedName(font: FontRef, nameKey: core_foundation.StringRef, actualLanguage: ?*core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const fontCopyLocalizedName = CTFontCopyLocalizedName;
 
-pub extern "CoreText" fn FontCopyCharacterSet(font: FontRef) callconv(.C) core_foundation.CharacterSetRef;
+extern "CoreText" fn CTFontCopyCharacterSet(font: FontRef) callconv(.C) core_foundation.CharacterSetRef;
+pub const fontCopyCharacterSet = CTFontCopyCharacterSet;
 
-pub extern "CoreText" fn FontGetStringEncoding(font: FontRef) callconv(.C) core_foundation.StringEncoding;
+extern "CoreText" fn CTFontGetStringEncoding(font: FontRef) callconv(.C) core_foundation.StringEncoding;
+pub const fontGetStringEncoding = CTFontGetStringEncoding;
 
-pub extern "CoreText" fn FontCopySupportedLanguages(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCopySupportedLanguages(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCopySupportedLanguages = CTFontCopySupportedLanguages;
 
-pub extern "CoreText" fn FontGetGlyphsForCharacters() callconv(.C) i32;
+extern "CoreText" fn CTFontGetGlyphsForCharacters() callconv(.C) i32;
+pub const fontGetGlyphsForCharacters = CTFontGetGlyphsForCharacters;
 
-pub extern "CoreText" fn FontGetAscent(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTFontGetAscent(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetAscent = CTFontGetAscent;
 
-pub extern "CoreText" fn FontGetDescent(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTFontGetDescent(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetDescent = CTFontGetDescent;
 
-pub extern "CoreText" fn FontGetLeading(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTFontGetLeading(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetLeading = CTFontGetLeading;
 
-pub extern "CoreText" fn FontGetUnitsPerEm(font: FontRef) callconv(.C) u32;
+extern "CoreText" fn CTFontGetUnitsPerEm(font: FontRef) callconv(.C) u32;
+pub const fontGetUnitsPerEm = CTFontGetUnitsPerEm;
 
-pub extern "CoreText" fn FontGetGlyphCount(font: FontRef) callconv(.C) core_foundation.Index;
+extern "CoreText" fn CTFontGetGlyphCount(font: FontRef) callconv(.C) core_foundation.Index;
+pub const fontGetGlyphCount = CTFontGetGlyphCount;
 
-pub extern "CoreText" fn FontGetBoundingBox(font: FontRef) callconv(.C) core_foundation.CGRect;
+extern "CoreText" fn CTFontGetBoundingBox(font: FontRef) callconv(.C) core_foundation.CGRect;
+pub const fontGetBoundingBox = CTFontGetBoundingBox;
 
-pub extern "CoreText" fn FontGetUnderlinePosition(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTFontGetUnderlinePosition(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetUnderlinePosition = CTFontGetUnderlinePosition;
 
-pub extern "CoreText" fn FontGetUnderlineThickness(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTFontGetUnderlineThickness(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetUnderlineThickness = CTFontGetUnderlineThickness;
 
-pub extern "CoreText" fn FontGetSlantAngle(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTFontGetSlantAngle(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetSlantAngle = CTFontGetSlantAngle;
 
-pub extern "CoreText" fn FontGetCapHeight(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTFontGetCapHeight(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetCapHeight = CTFontGetCapHeight;
 
-pub extern "CoreText" fn FontGetXHeight(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTFontGetXHeight(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetXHeight = CTFontGetXHeight;
 
-pub extern "CoreText" fn FontGetGlyphWithName(font: FontRef, glyphName: core_foundation.StringRef) callconv(.C) core_graphics.Glyph;
+extern "CoreText" fn CTFontGetGlyphWithName(font: FontRef, glyphName: core_foundation.StringRef) callconv(.C) core_graphics.Glyph;
+pub const fontGetGlyphWithName = CTFontGetGlyphWithName;
 
-pub extern "CoreText" fn FontCopyNameForGlyph(font: FontRef, glyph: core_graphics.Glyph) callconv(.C) core_foundation.StringRef;
+extern "CoreText" fn CTFontCopyNameForGlyph(font: FontRef, glyph: core_graphics.Glyph) callconv(.C) core_foundation.StringRef;
+pub const fontCopyNameForGlyph = CTFontCopyNameForGlyph;
 
-pub extern "CoreText" fn FontGetBoundingRectsForGlyphs(font: FontRef, orientation: FontOrientation, glyphs: ?*core_graphics.Glyph, boundingRects: ?*core_foundation.CGRect, count: core_foundation.Index, ) callconv(.C) core_foundation.CGRect;
+extern "CoreText" fn CTFontGetBoundingRectsForGlyphs(
+    font: FontRef,
+    orientation: FontOrientation,
+    glyphs: ?*core_graphics.Glyph,
+    boundingRects: ?*core_foundation.CGRect,
+    count: core_foundation.Index,
+) callconv(.C) core_foundation.CGRect;
+pub const fontGetBoundingRectsForGlyphs = CTFontGetBoundingRectsForGlyphs;
 
-pub extern "CoreText" fn FontGetOpticalBoundsForGlyphs(font: FontRef, glyphs: ?*core_graphics.Glyph, boundingRects: ?*core_foundation.CGRect, count: core_foundation.Index, options: core_foundation.OptionFlags, ) callconv(.C) core_foundation.CGRect;
+extern "CoreText" fn CTFontGetOpticalBoundsForGlyphs(
+    font: FontRef,
+    glyphs: ?*core_graphics.Glyph,
+    boundingRects: ?*core_foundation.CGRect,
+    count: core_foundation.Index,
+    options: core_foundation.OptionFlags,
+) callconv(.C) core_foundation.CGRect;
+pub const fontGetOpticalBoundsForGlyphs = CTFontGetOpticalBoundsForGlyphs;
 
-pub extern "CoreText" fn FontGetAdvancesForGlyphs(font: FontRef, orientation: FontOrientation, glyphs: ?*core_graphics.Glyph, advances: ?*core_foundation.CGSize, count: core_foundation.Index, ) callconv(.C) f64;
+extern "CoreText" fn CTFontGetAdvancesForGlyphs(
+    font: FontRef,
+    orientation: FontOrientation,
+    glyphs: ?*core_graphics.Glyph,
+    advances: ?*core_foundation.CGSize,
+    count: core_foundation.Index,
+) callconv(.C) f64;
+pub const fontGetAdvancesForGlyphs = CTFontGetAdvancesForGlyphs;
 
-pub extern "CoreText" fn FontGetVerticalTranslationsForGlyphs(font: FontRef, glyphs: ?*core_graphics.Glyph, translations: ?*core_foundation.CGSize, count: core_foundation.Index, ) callconv(.C) void;
+extern "CoreText" fn CTFontGetVerticalTranslationsForGlyphs(
+    font: FontRef,
+    glyphs: ?*core_graphics.Glyph,
+    translations: ?*core_foundation.CGSize,
+    count: core_foundation.Index,
+) callconv(.C) void;
+pub const fontGetVerticalTranslationsForGlyphs = CTFontGetVerticalTranslationsForGlyphs;
 
-pub extern "CoreText" fn FontCreatePathForGlyph(font: FontRef, glyph: core_graphics.Glyph, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) core_graphics.PathRef;
+extern "CoreText" fn CTFontCreatePathForGlyph(font: FontRef, glyph: core_graphics.Glyph, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) core_graphics.PathRef;
+pub const fontCreatePathForGlyph = CTFontCreatePathForGlyph;
 
-pub extern "CoreText" fn FontCopyVariationAxes(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCopyVariationAxes(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCopyVariationAxes = CTFontCopyVariationAxes;
 
-pub extern "CoreText" fn FontCopyVariation(font: FontRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreText" fn CTFontCopyVariation(font: FontRef) callconv(.C) core_foundation.DictionaryRef;
+pub const fontCopyVariation = CTFontCopyVariation;
 
-pub extern "CoreText" fn FontCopyFeatures(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCopyFeatures(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCopyFeatures = CTFontCopyFeatures;
 
-pub extern "CoreText" fn FontCopyFeatureSettings(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCopyFeatureSettings(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCopyFeatureSettings = CTFontCopyFeatureSettings;
 
-pub extern "CoreText" fn FontCopyGraphicsFont(font: FontRef, attributes: ?*FontDescriptorRef) callconv(.C) core_graphics.FontRef;
+extern "CoreText" fn CTFontCopyGraphicsFont(font: FontRef, attributes: ?*FontDescriptorRef) callconv(.C) core_graphics.FontRef;
+pub const fontCopyGraphicsFont = CTFontCopyGraphicsFont;
 
-pub extern "CoreText" fn FontCreateWithGraphicsFont(graphicsFont: core_graphics.FontRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform, attributes: FontDescriptorRef, ) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateWithGraphicsFont(
+    graphicsFont: core_graphics.FontRef,
+    size: core_foundation.CGFloat,
+    matrix: ?*core_foundation.CGAffineTransform,
+    attributes: FontDescriptorRef,
+) callconv(.C) FontRef;
+pub const fontCreateWithGraphicsFont = CTFontCreateWithGraphicsFont;
 
 pub const ATSFontRef = objc.UInt32;
 
-pub extern "CoreText" fn FontGetPlatformFont(font: FontRef, attributes: ?*FontDescriptorRef) callconv(.C) ATSFontRef;
+extern "CoreText" fn CTFontGetPlatformFont(font: FontRef, attributes: ?*FontDescriptorRef) callconv(.C) ATSFontRef;
+pub const fontGetPlatformFont = CTFontGetPlatformFont;
 
-pub extern "CoreText" fn FontCreateWithPlatformFont(platformFont: ATSFontRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform, attributes: FontDescriptorRef, ) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateWithPlatformFont(
+    platformFont: ATSFontRef,
+    size: core_foundation.CGFloat,
+    matrix: ?*core_foundation.CGAffineTransform,
+    attributes: FontDescriptorRef,
+) callconv(.C) FontRef;
+pub const fontCreateWithPlatformFont = CTFontCreateWithPlatformFont;
 
-pub extern "CoreText" fn FontCreateWithQuickdrawInstance(name: objc.ConstStr255Param, identifier: objc.int16_t, style: objc.uint8_t, size: core_foundation.CGFloat, ) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateWithQuickdrawInstance(
+    name: objc.ConstStr255Param,
+    identifier: objc.int16_t,
+    style: objc.uint8_t,
+    size: core_foundation.CGFloat,
+) callconv(.C) FontRef;
+pub const fontCreateWithQuickdrawInstance = CTFontCreateWithQuickdrawInstance;
 
 pub const anon14481 = enum(u32) {
     kCTFontTableBASE = 1111577413,
@@ -520,19 +658,42 @@ pub const FontTableOptions = enum(objc.uint32_t) {
     kCTFontTableOptionExcludeSynthetic = 1,
 };
 
-pub extern "CoreText" fn FontCopyAvailableTables(font: FontRef, options: FontTableOptions) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCopyAvailableTables(font: FontRef, options: FontTableOptions) callconv(.C) core_foundation.ArrayRef;
+pub const fontCopyAvailableTables = CTFontCopyAvailableTables;
 
-pub extern "CoreText" fn FontHasTable() callconv(.C) i32;
+extern "CoreText" fn CTFontHasTable() callconv(.C) i32;
+pub const fontHasTable = CTFontHasTable;
 
-pub extern "CoreText" fn FontCopyTable(font: FontRef, table: FontTableTag, options: FontTableOptions) callconv(.C) core_foundation.DataRef;
+extern "CoreText" fn CTFontCopyTable(font: FontRef, table: FontTableTag, options: FontTableOptions) callconv(.C) core_foundation.DataRef;
+pub const fontCopyTable = CTFontCopyTable;
 
-pub extern "CoreText" fn FontDrawGlyphs(font: FontRef, glyphs: ?*core_graphics.Glyph, positions: ?*core_foundation.CGPoint, count: objc.size_t, context: core_graphics.ContextRef, ) callconv(.C) void;
+extern "CoreText" fn CTFontDrawGlyphs(
+    font: FontRef,
+    glyphs: ?*core_graphics.Glyph,
+    positions: ?*core_foundation.CGPoint,
+    count: objc.size_t,
+    context: core_graphics.ContextRef,
+) callconv(.C) void;
+pub const fontDrawGlyphs = CTFontDrawGlyphs;
 
-pub extern "CoreText" fn FontGetLigatureCaretPositions(font: FontRef, glyph: core_graphics.Glyph, positions: ?*core_foundation.CGFloat, maxPositions: core_foundation.Index, ) callconv(.C) core_foundation.Index;
+extern "CoreText" fn CTFontGetLigatureCaretPositions(
+    font: FontRef,
+    glyph: core_graphics.Glyph,
+    positions: ?*core_foundation.CGFloat,
+    maxPositions: core_foundation.Index,
+) callconv(.C) core_foundation.Index;
+pub const fontGetLigatureCaretPositions = CTFontGetLigatureCaretPositions;
 
-pub extern "CoreText" fn FontGetTypographicBoundsForAdaptiveImageProvider(font: FontRef, provider: ?*anyopaque) callconv(.C) core_foundation.CGRect;
+extern "CoreText" fn CTFontGetTypographicBoundsForAdaptiveImageProvider(font: FontRef, provider: ?*anyopaque) callconv(.C) core_foundation.CGRect;
+pub const fontGetTypographicBoundsForAdaptiveImageProvider = CTFontGetTypographicBoundsForAdaptiveImageProvider;
 
-pub extern "CoreText" fn FontDrawImageFromAdaptiveImageProviderAtPoint(font: FontRef, provider: ?*anyopaque, point: core_foundation.CGPoint, context: core_graphics.ContextRef, ) callconv(.C) void;
+extern "CoreText" fn CTFontDrawImageFromAdaptiveImageProviderAtPoint(
+    font: FontRef,
+    provider: ?*anyopaque,
+    point: core_foundation.CGPoint,
+    context: core_graphics.ContextRef,
+) callconv(.C) void;
+pub const fontDrawImageFromAdaptiveImageProviderAtPoint = CTFontDrawImageFromAdaptiveImageProviderAtPoint;
 
 pub const __CTFontCollection = extern struct {};
 
@@ -540,33 +701,46 @@ pub const FontCollectionRef = ?*__CTFontCollection;
 
 pub const MutableFontCollectionRef = ?*__CTFontCollection;
 
-pub extern "CoreText" fn FontCollectionGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTFontCollectionGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const fontCollectionGetTypeID = CTFontCollectionGetTypeID;
 
-pub const FontCollectionSortDescriptorsCallback = ?*const fn(FontDescriptorRef, FontDescriptorRef, ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
+pub const FontCollectionSortDescriptorsCallback = ?*const fn (FontDescriptorRef, FontDescriptorRef, ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
 
-pub extern "CoreText" fn FontCollectionCreateFromAvailableFonts(options: core_foundation.DictionaryRef) callconv(.C) FontCollectionRef;
+extern "CoreText" fn CTFontCollectionCreateFromAvailableFonts(options: core_foundation.DictionaryRef) callconv(.C) FontCollectionRef;
+pub const fontCollectionCreateFromAvailableFonts = CTFontCollectionCreateFromAvailableFonts;
 
-pub extern "CoreText" fn FontCollectionCreateWithFontDescriptors(queryDescriptors: core_foundation.ArrayRef, options: core_foundation.DictionaryRef) callconv(.C) FontCollectionRef;
+extern "CoreText" fn CTFontCollectionCreateWithFontDescriptors(queryDescriptors: core_foundation.ArrayRef, options: core_foundation.DictionaryRef) callconv(.C) FontCollectionRef;
+pub const fontCollectionCreateWithFontDescriptors = CTFontCollectionCreateWithFontDescriptors;
 
-pub extern "CoreText" fn FontCollectionCreateCopyWithFontDescriptors(original: FontCollectionRef, queryDescriptors: core_foundation.ArrayRef, options: core_foundation.DictionaryRef) callconv(.C) FontCollectionRef;
+extern "CoreText" fn CTFontCollectionCreateCopyWithFontDescriptors(original: FontCollectionRef, queryDescriptors: core_foundation.ArrayRef, options: core_foundation.DictionaryRef) callconv(.C) FontCollectionRef;
+pub const fontCollectionCreateCopyWithFontDescriptors = CTFontCollectionCreateCopyWithFontDescriptors;
 
-pub extern "CoreText" fn FontCollectionCreateMutableCopy(original: FontCollectionRef) callconv(.C) MutableFontCollectionRef;
+extern "CoreText" fn CTFontCollectionCreateMutableCopy(original: FontCollectionRef) callconv(.C) MutableFontCollectionRef;
+pub const fontCollectionCreateMutableCopy = CTFontCollectionCreateMutableCopy;
 
-pub extern "CoreText" fn FontCollectionCopyQueryDescriptors(collection: FontCollectionRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCollectionCopyQueryDescriptors(collection: FontCollectionRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCollectionCopyQueryDescriptors = CTFontCollectionCopyQueryDescriptors;
 
-pub extern "CoreText" fn FontCollectionSetQueryDescriptors(collection: MutableFontCollectionRef, descriptors: core_foundation.ArrayRef) callconv(.C) void;
+extern "CoreText" fn CTFontCollectionSetQueryDescriptors(collection: MutableFontCollectionRef, descriptors: core_foundation.ArrayRef) callconv(.C) void;
+pub const fontCollectionSetQueryDescriptors = CTFontCollectionSetQueryDescriptors;
 
-pub extern "CoreText" fn FontCollectionCopyExclusionDescriptors(collection: FontCollectionRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCollectionCopyExclusionDescriptors(collection: FontCollectionRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCollectionCopyExclusionDescriptors = CTFontCollectionCopyExclusionDescriptors;
 
-pub extern "CoreText" fn FontCollectionSetExclusionDescriptors(collection: MutableFontCollectionRef, descriptors: core_foundation.ArrayRef) callconv(.C) void;
+extern "CoreText" fn CTFontCollectionSetExclusionDescriptors(collection: MutableFontCollectionRef, descriptors: core_foundation.ArrayRef) callconv(.C) void;
+pub const fontCollectionSetExclusionDescriptors = CTFontCollectionSetExclusionDescriptors;
 
-pub extern "CoreText" fn FontCollectionCreateMatchingFontDescriptors(collection: FontCollectionRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCollectionCreateMatchingFontDescriptors(collection: FontCollectionRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCollectionCreateMatchingFontDescriptors = CTFontCollectionCreateMatchingFontDescriptors;
 
-pub extern "CoreText" fn FontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection: FontCollectionRef, sortCallback: FontCollectionSortDescriptorsCallback, refCon: ?*anyopaque) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection: FontCollectionRef, sortCallback: FontCollectionSortDescriptorsCallback, refCon: ?*anyopaque) callconv(.C) core_foundation.ArrayRef;
+pub const fontCollectionCreateMatchingFontDescriptorsSortedWithCallback = CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback;
 
-pub extern "CoreText" fn FontCollectionCreateMatchingFontDescriptorsWithOptions(collection: FontCollectionRef, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection: FontCollectionRef, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCollectionCreateMatchingFontDescriptorsWithOptions = CTFontCollectionCreateMatchingFontDescriptorsWithOptions;
 
-pub extern "CoreText" fn FontCollectionCreateMatchingFontDescriptorsForFamily(collection: FontCollectionRef, familyName: core_foundation.StringRef, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection: FontCollectionRef, familyName: core_foundation.StringRef, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCollectionCreateMatchingFontDescriptorsForFamily = CTFontCollectionCreateMatchingFontDescriptorsForFamily;
 
 pub const FontCollectionCopyOptions = enum(objc.uint32_t) {
     kCTFontCollectionCopyDefaultOptions = 0,
@@ -574,9 +748,11 @@ pub const FontCollectionCopyOptions = enum(objc.uint32_t) {
     kCTFontCollectionCopyStandardSort = 2,
 };
 
-pub extern "CoreText" fn FontCollectionCopyFontAttribute(collection: FontCollectionRef, attributeName: core_foundation.StringRef, options: FontCollectionCopyOptions) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCollectionCopyFontAttribute(collection: FontCollectionRef, attributeName: core_foundation.StringRef, options: FontCollectionCopyOptions) callconv(.C) core_foundation.ArrayRef;
+pub const fontCollectionCopyFontAttribute = CTFontCollectionCopyFontAttribute;
 
-pub extern "CoreText" fn FontCollectionCopyFontAttributes(collection: FontCollectionRef, attributeNames: core_foundation.SetRef, options: FontCollectionCopyOptions) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontCollectionCopyFontAttributes(collection: FontCollectionRef, attributeNames: core_foundation.SetRef, options: FontCollectionCopyOptions) callconv(.C) core_foundation.ArrayRef;
+pub const fontCollectionCopyFontAttributes = CTFontCollectionCopyFontAttributes;
 
 pub const FontManagerError = enum(core_foundation.Index) {
     kCTFontManagerErrorFileNotFound = 101,
@@ -598,19 +774,26 @@ pub const FontManagerError = enum(core_foundation.Index) {
     kCTFontManagerErrorUnsupportedScope = 307,
 };
 
-pub extern "CoreText" fn FontManagerCopyAvailablePostScriptNames() callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontManagerCopyAvailablePostScriptNames() callconv(.C) core_foundation.ArrayRef;
+pub const fontManagerCopyAvailablePostScriptNames = CTFontManagerCopyAvailablePostScriptNames;
 
-pub extern "CoreText" fn FontManagerCopyAvailableFontFamilyNames() callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontManagerCopyAvailableFontFamilyNames() callconv(.C) core_foundation.ArrayRef;
+pub const fontManagerCopyAvailableFontFamilyNames = CTFontManagerCopyAvailableFontFamilyNames;
 
-pub extern "CoreText" fn FontManagerCopyAvailableFontURLs() callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontManagerCopyAvailableFontURLs() callconv(.C) core_foundation.ArrayRef;
+pub const fontManagerCopyAvailableFontURLs = CTFontManagerCopyAvailableFontURLs;
 
-pub extern "CoreText" fn FontManagerCompareFontFamilyNames(family1: ?*anyopaque, family2: ?*anyopaque, context: ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
+extern "CoreText" fn CTFontManagerCompareFontFamilyNames(family1: ?*anyopaque, family2: ?*anyopaque, context: ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
+pub const fontManagerCompareFontFamilyNames = CTFontManagerCompareFontFamilyNames;
 
-pub extern "CoreText" fn FontManagerCreateFontDescriptorsFromURL(fileURL: core_foundation.URLRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontManagerCreateFontDescriptorsFromURL(fileURL: core_foundation.URLRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontManagerCreateFontDescriptorsFromURL = CTFontManagerCreateFontDescriptorsFromURL;
 
-pub extern "CoreText" fn FontManagerCreateFontDescriptorFromData(data: core_foundation.DataRef) callconv(.C) FontDescriptorRef;
+extern "CoreText" fn CTFontManagerCreateFontDescriptorFromData(data: core_foundation.DataRef) callconv(.C) FontDescriptorRef;
+pub const fontManagerCreateFontDescriptorFromData = CTFontManagerCreateFontDescriptorFromData;
 
-pub extern "CoreText" fn FontManagerCreateFontDescriptorsFromData(data: core_foundation.DataRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontManagerCreateFontDescriptorsFromData(data: core_foundation.DataRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontManagerCreateFontDescriptorsFromData = CTFontManagerCreateFontDescriptorsFromData;
 
 pub const FontManagerScope = enum(objc.uint32_t) {
     kCTFontManagerScopeNone = 0,
@@ -620,39 +803,72 @@ pub const FontManagerScope = enum(objc.uint32_t) {
     kCTFontManagerScopeUser = 2,
 };
 
-pub extern "CoreText" fn FontManagerRegisterFontsForURL() callconv(.C) i32;
+extern "CoreText" fn CTFontManagerRegisterFontsForURL() callconv(.C) i32;
+pub const fontManagerRegisterFontsForURL = CTFontManagerRegisterFontsForURL;
 
-pub extern "CoreText" fn FontManagerUnregisterFontsForURL() callconv(.C) i32;
+extern "CoreText" fn CTFontManagerUnregisterFontsForURL() callconv(.C) i32;
+pub const fontManagerUnregisterFontsForURL = CTFontManagerUnregisterFontsForURL;
 
-pub extern "CoreText" fn FontManagerRegisterGraphicsFont() callconv(.C) i32;
+extern "CoreText" fn CTFontManagerRegisterGraphicsFont() callconv(.C) i32;
+pub const fontManagerRegisterGraphicsFont = CTFontManagerRegisterGraphicsFont;
 
-pub extern "CoreText" fn FontManagerUnregisterGraphicsFont() callconv(.C) i32;
+extern "CoreText" fn CTFontManagerUnregisterGraphicsFont() callconv(.C) i32;
+pub const fontManagerUnregisterGraphicsFont = CTFontManagerUnregisterGraphicsFont;
 
-pub extern "CoreText" fn FontManagerRegisterFontsForURLs() callconv(.C) i32;
+extern "CoreText" fn CTFontManagerRegisterFontsForURLs() callconv(.C) i32;
+pub const fontManagerRegisterFontsForURLs = CTFontManagerRegisterFontsForURLs;
 
-pub extern "CoreText" fn FontManagerUnregisterFontsForURLs() callconv(.C) i32;
+extern "CoreText" fn CTFontManagerUnregisterFontsForURLs() callconv(.C) i32;
+pub const fontManagerUnregisterFontsForURLs = CTFontManagerUnregisterFontsForURLs;
 
-pub extern "CoreText" fn FontManagerRegisterFontURLs(fontURLs: core_foundation.ArrayRef, scope: FontManagerScope, enabled: objc.bool, registrationHandler: *const fn(core_foundation.ArrayRef, objc.bool) callconv(.C) i32, ) callconv(.C) void;
+extern "CoreText" fn CTFontManagerRegisterFontURLs(
+    fontURLs: core_foundation.ArrayRef,
+    scope: FontManagerScope,
+    enabled: objc.bool,
+    registrationHandler: *const fn (core_foundation.ArrayRef, objc.bool) callconv(.C) i32,
+) callconv(.C) void;
+pub const fontManagerRegisterFontURLs = CTFontManagerRegisterFontURLs;
 
-pub extern "CoreText" fn FontManagerUnregisterFontURLs(fontURLs: core_foundation.ArrayRef, scope: FontManagerScope, registrationHandler: *const fn(core_foundation.ArrayRef, objc.bool) callconv(.C) i32) callconv(.C) void;
+extern "CoreText" fn CTFontManagerUnregisterFontURLs(fontURLs: core_foundation.ArrayRef, scope: FontManagerScope, registrationHandler: *const fn (core_foundation.ArrayRef, objc.bool) callconv(.C) i32) callconv(.C) void;
+pub const fontManagerUnregisterFontURLs = CTFontManagerUnregisterFontURLs;
 
-pub extern "CoreText" fn FontManagerRegisterFontDescriptors(fontDescriptors: core_foundation.ArrayRef, scope: FontManagerScope, enabled: objc.bool, registrationHandler: *const fn(core_foundation.ArrayRef, objc.bool) callconv(.C) i32, ) callconv(.C) void;
+extern "CoreText" fn CTFontManagerRegisterFontDescriptors(
+    fontDescriptors: core_foundation.ArrayRef,
+    scope: FontManagerScope,
+    enabled: objc.bool,
+    registrationHandler: *const fn (core_foundation.ArrayRef, objc.bool) callconv(.C) i32,
+) callconv(.C) void;
+pub const fontManagerRegisterFontDescriptors = CTFontManagerRegisterFontDescriptors;
 
-pub extern "CoreText" fn FontManagerUnregisterFontDescriptors(fontDescriptors: core_foundation.ArrayRef, scope: FontManagerScope, registrationHandler: *const fn(core_foundation.ArrayRef, objc.bool) callconv(.C) i32) callconv(.C) void;
+extern "CoreText" fn CTFontManagerUnregisterFontDescriptors(fontDescriptors: core_foundation.ArrayRef, scope: FontManagerScope, registrationHandler: *const fn (core_foundation.ArrayRef, objc.bool) callconv(.C) i32) callconv(.C) void;
+pub const fontManagerUnregisterFontDescriptors = CTFontManagerUnregisterFontDescriptors;
 
-pub extern "CoreText" fn FontManagerRegisterFontsWithAssetNames(fontAssetNames: core_foundation.ArrayRef, bundle: core_foundation.BundleRef, scope: FontManagerScope, enabled: objc.bool, registrationHandler: *const fn(core_foundation.ArrayRef, objc.bool) callconv(.C) i32, ) callconv(.C) void;
+extern "CoreText" fn CTFontManagerRegisterFontsWithAssetNames(
+    fontAssetNames: core_foundation.ArrayRef,
+    bundle: core_foundation.BundleRef,
+    scope: FontManagerScope,
+    enabled: objc.bool,
+    registrationHandler: *const fn (core_foundation.ArrayRef, objc.bool) callconv(.C) i32,
+) callconv(.C) void;
+pub const fontManagerRegisterFontsWithAssetNames = CTFontManagerRegisterFontsWithAssetNames;
 
-pub extern "CoreText" fn FontManagerEnableFontDescriptors(descriptors: core_foundation.ArrayRef, enable: objc.bool) callconv(.C) void;
+extern "CoreText" fn CTFontManagerEnableFontDescriptors(descriptors: core_foundation.ArrayRef, enable: objc.bool) callconv(.C) void;
+pub const fontManagerEnableFontDescriptors = CTFontManagerEnableFontDescriptors;
 
-pub extern "CoreText" fn FontManagerGetScopeForURL(fontURL: core_foundation.URLRef) callconv(.C) FontManagerScope;
+extern "CoreText" fn CTFontManagerGetScopeForURL(fontURL: core_foundation.URLRef) callconv(.C) FontManagerScope;
+pub const fontManagerGetScopeForURL = CTFontManagerGetScopeForURL;
 
-pub extern "CoreText" fn FontManagerCopyRegisteredFontDescriptors(scope: FontManagerScope, enabled: objc.bool) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFontManagerCopyRegisteredFontDescriptors(scope: FontManagerScope, enabled: objc.bool) callconv(.C) core_foundation.ArrayRef;
+pub const fontManagerCopyRegisteredFontDescriptors = CTFontManagerCopyRegisteredFontDescriptors;
 
-pub extern "CoreText" fn FontManagerRequestFonts(fontDescriptors: core_foundation.ArrayRef, completionHandler: *const fn(core_foundation.ArrayRef) callconv(.C) void) callconv(.C) void;
+extern "CoreText" fn CTFontManagerRequestFonts(fontDescriptors: core_foundation.ArrayRef, completionHandler: *const fn (core_foundation.ArrayRef) callconv(.C) void) callconv(.C) void;
+pub const fontManagerRequestFonts = CTFontManagerRequestFonts;
 
-pub extern "CoreText" fn FontManagerIsSupportedFont() callconv(.C) i32;
+extern "CoreText" fn CTFontManagerIsSupportedFont() callconv(.C) i32;
+pub const fontManagerIsSupportedFont = CTFontManagerIsSupportedFont;
 
-pub extern "CoreText" fn FontManagerCreateFontRequestRunLoopSource(sourceOrder: core_foundation.Index, createMatchesCallback: *const fn(core_foundation.DictionaryRef, objc.pid_t) callconv(.C) core_foundation.ArrayRef) callconv(.C) core_foundation.RunLoopSourceRef;
+extern "CoreText" fn CTFontManagerCreateFontRequestRunLoopSource(sourceOrder: core_foundation.Index, createMatchesCallback: *const fn (core_foundation.DictionaryRef, objc.pid_t) callconv(.C) core_foundation.ArrayRef) callconv(.C) core_foundation.RunLoopSourceRef;
+pub const fontManagerCreateFontRequestRunLoopSource = CTFontManagerCreateFontRequestRunLoopSource;
 
 pub const FontManagerAutoActivationSetting = enum(objc.uint32_t) {
     kCTFontManagerAutoActivationDefault = 0,
@@ -661,15 +877,18 @@ pub const FontManagerAutoActivationSetting = enum(objc.uint32_t) {
     kCTFontManagerAutoActivationPromptUser = 3,
 };
 
-pub extern "CoreText" fn FontManagerSetAutoActivationSetting(bundleIdentifier: core_foundation.StringRef, setting: FontManagerAutoActivationSetting) callconv(.C) void;
+extern "CoreText" fn CTFontManagerSetAutoActivationSetting(bundleIdentifier: core_foundation.StringRef, setting: FontManagerAutoActivationSetting) callconv(.C) void;
+pub const fontManagerSetAutoActivationSetting = CTFontManagerSetAutoActivationSetting;
 
-pub extern "CoreText" fn FontManagerGetAutoActivationSetting(bundleIdentifier: core_foundation.StringRef) callconv(.C) FontManagerAutoActivationSetting;
+extern "CoreText" fn CTFontManagerGetAutoActivationSetting(bundleIdentifier: core_foundation.StringRef) callconv(.C) FontManagerAutoActivationSetting;
+pub const fontManagerGetAutoActivationSetting = CTFontManagerGetAutoActivationSetting;
 
 pub const __CTFrame = extern struct {};
 
 pub const FrameRef = ?*__CTFrame;
 
-pub extern "CoreText" fn FrameGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTFrameGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const frameGetTypeID = CTFrameGetTypeID;
 
 pub const FrameProgression = enum(objc.uint32_t) {
     kCTFrameProgressionTopToBottom = 0,
@@ -682,19 +901,26 @@ pub const FramePathFillRule = enum(objc.uint32_t) {
     kCTFramePathFillWindingNumber = 1,
 };
 
-pub extern "CoreText" fn FrameGetStringRange(frame: FrameRef) callconv(.C) core_foundation.Range;
+extern "CoreText" fn CTFrameGetStringRange(frame: FrameRef) callconv(.C) core_foundation.Range;
+pub const frameGetStringRange = CTFrameGetStringRange;
 
-pub extern "CoreText" fn FrameGetVisibleStringRange(frame: FrameRef) callconv(.C) core_foundation.Range;
+extern "CoreText" fn CTFrameGetVisibleStringRange(frame: FrameRef) callconv(.C) core_foundation.Range;
+pub const frameGetVisibleStringRange = CTFrameGetVisibleStringRange;
 
-pub extern "CoreText" fn FrameGetPath(frame: FrameRef) callconv(.C) core_graphics.PathRef;
+extern "CoreText" fn CTFrameGetPath(frame: FrameRef) callconv(.C) core_graphics.PathRef;
+pub const frameGetPath = CTFrameGetPath;
 
-pub extern "CoreText" fn FrameGetFrameAttributes(frame: FrameRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreText" fn CTFrameGetFrameAttributes(frame: FrameRef) callconv(.C) core_foundation.DictionaryRef;
+pub const frameGetFrameAttributes = CTFrameGetFrameAttributes;
 
-pub extern "CoreText" fn FrameGetLines(frame: FrameRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTFrameGetLines(frame: FrameRef) callconv(.C) core_foundation.ArrayRef;
+pub const frameGetLines = CTFrameGetLines;
 
-pub extern "CoreText" fn FrameGetLineOrigins(frame: FrameRef, range: core_foundation.Range, origins: ?*core_foundation.CGPoint) callconv(.C) void;
+extern "CoreText" fn CTFrameGetLineOrigins(frame: FrameRef, range: core_foundation.Range, origins: ?*core_foundation.CGPoint) callconv(.C) void;
+pub const frameGetLineOrigins = CTFrameGetLineOrigins;
 
-pub extern "CoreText" fn FrameDraw(frame: FrameRef, context: core_graphics.ContextRef) callconv(.C) void;
+extern "CoreText" fn CTFrameDraw(frame: FrameRef, context: core_graphics.ContextRef) callconv(.C) void;
+pub const frameDraw = CTFrameDraw;
 
 pub const __CTLine = extern struct {};
 
@@ -715,81 +941,149 @@ pub const LineTruncationType = enum(objc.uint32_t) {
     kCTLineTruncationMiddle = 2,
 };
 
-pub extern "CoreText" fn LineGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTLineGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const lineGetTypeID = CTLineGetTypeID;
 
-pub extern "CoreText" fn LineCreateWithAttributedString(attrString: core_foundation.AttributedStringRef) callconv(.C) LineRef;
+extern "CoreText" fn CTLineCreateWithAttributedString(attrString: core_foundation.AttributedStringRef) callconv(.C) LineRef;
+pub const lineCreateWithAttributedString = CTLineCreateWithAttributedString;
 
-pub extern "CoreText" fn LineCreateTruncatedLine(line: LineRef, width: f64, truncationType: LineTruncationType, truncationToken: LineRef, ) callconv(.C) LineRef;
+extern "CoreText" fn CTLineCreateTruncatedLine(
+    line: LineRef,
+    width: f64,
+    truncationType: LineTruncationType,
+    truncationToken: LineRef,
+) callconv(.C) LineRef;
+pub const lineCreateTruncatedLine = CTLineCreateTruncatedLine;
 
-pub extern "CoreText" fn LineCreateJustifiedLine(line: LineRef, justificationFactor: core_foundation.CGFloat, justificationWidth: f64) callconv(.C) LineRef;
+extern "CoreText" fn CTLineCreateJustifiedLine(line: LineRef, justificationFactor: core_foundation.CGFloat, justificationWidth: f64) callconv(.C) LineRef;
+pub const lineCreateJustifiedLine = CTLineCreateJustifiedLine;
 
-pub extern "CoreText" fn LineGetGlyphCount(line: LineRef) callconv(.C) core_foundation.Index;
+extern "CoreText" fn CTLineGetGlyphCount(line: LineRef) callconv(.C) core_foundation.Index;
+pub const lineGetGlyphCount = CTLineGetGlyphCount;
 
-pub extern "CoreText" fn LineGetGlyphRuns(line: LineRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreText" fn CTLineGetGlyphRuns(line: LineRef) callconv(.C) core_foundation.ArrayRef;
+pub const lineGetGlyphRuns = CTLineGetGlyphRuns;
 
-pub extern "CoreText" fn LineGetStringRange(line: LineRef) callconv(.C) core_foundation.Range;
+extern "CoreText" fn CTLineGetStringRange(line: LineRef) callconv(.C) core_foundation.Range;
+pub const lineGetStringRange = CTLineGetStringRange;
 
-pub extern "CoreText" fn LineGetPenOffsetForFlush(line: LineRef, flushFactor: core_foundation.CGFloat, flushWidth: f64) callconv(.C) f64;
+extern "CoreText" fn CTLineGetPenOffsetForFlush(line: LineRef, flushFactor: core_foundation.CGFloat, flushWidth: f64) callconv(.C) f64;
+pub const lineGetPenOffsetForFlush = CTLineGetPenOffsetForFlush;
 
-pub extern "CoreText" fn LineDraw(line: LineRef, context: core_graphics.ContextRef) callconv(.C) void;
+extern "CoreText" fn CTLineDraw(line: LineRef, context: core_graphics.ContextRef) callconv(.C) void;
+pub const lineDraw = CTLineDraw;
 
-pub extern "CoreText" fn LineGetTypographicBounds(line: LineRef, ascent: ?*core_foundation.CGFloat, descent: ?*core_foundation.CGFloat, leading: ?*core_foundation.CGFloat, ) callconv(.C) f64;
+extern "CoreText" fn CTLineGetTypographicBounds(
+    line: LineRef,
+    ascent: ?*core_foundation.CGFloat,
+    descent: ?*core_foundation.CGFloat,
+    leading: ?*core_foundation.CGFloat,
+) callconv(.C) f64;
+pub const lineGetTypographicBounds = CTLineGetTypographicBounds;
 
-pub extern "CoreText" fn LineGetBoundsWithOptions(line: LineRef, options: LineBoundsOptions) callconv(.C) core_foundation.CGRect;
+extern "CoreText" fn CTLineGetBoundsWithOptions(line: LineRef, options: LineBoundsOptions) callconv(.C) core_foundation.CGRect;
+pub const lineGetBoundsWithOptions = CTLineGetBoundsWithOptions;
 
-pub extern "CoreText" fn LineGetTrailingWhitespaceWidth(line: LineRef) callconv(.C) f64;
+extern "CoreText" fn CTLineGetTrailingWhitespaceWidth(line: LineRef) callconv(.C) f64;
+pub const lineGetTrailingWhitespaceWidth = CTLineGetTrailingWhitespaceWidth;
 
-pub extern "CoreText" fn LineGetImageBounds(line: LineRef, context: core_graphics.ContextRef) callconv(.C) core_foundation.CGRect;
+extern "CoreText" fn CTLineGetImageBounds(line: LineRef, context: core_graphics.ContextRef) callconv(.C) core_foundation.CGRect;
+pub const lineGetImageBounds = CTLineGetImageBounds;
 
-pub extern "CoreText" fn LineGetStringIndexForPosition(line: LineRef, position: core_foundation.CGPoint) callconv(.C) core_foundation.Index;
+extern "CoreText" fn CTLineGetStringIndexForPosition(line: LineRef, position: core_foundation.CGPoint) callconv(.C) core_foundation.Index;
+pub const lineGetStringIndexForPosition = CTLineGetStringIndexForPosition;
 
-pub extern "CoreText" fn LineGetOffsetForStringIndex(line: LineRef, charIndex: core_foundation.Index, secondaryOffset: ?*core_foundation.CGFloat) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTLineGetOffsetForStringIndex(line: LineRef, charIndex: core_foundation.Index, secondaryOffset: ?*core_foundation.CGFloat) callconv(.C) core_foundation.CGFloat;
+pub const lineGetOffsetForStringIndex = CTLineGetOffsetForStringIndex;
 
-pub extern "CoreText" fn LineEnumerateCaretOffsets(line: LineRef, block: *const fn(f64, core_foundation.Index, objc.bool, ?*objc.bool, ) callconv(.C) void) callconv(.C) void;
+extern "CoreText" fn CTLineEnumerateCaretOffsets(line: LineRef, block: *const fn (
+    f64,
+    core_foundation.Index,
+    objc.bool,
+    ?*objc.bool,
+) callconv(.C) void) callconv(.C) void;
+pub const lineEnumerateCaretOffsets = CTLineEnumerateCaretOffsets;
 
 pub const __CTTypesetter = extern struct {};
 
 pub const TypesetterRef = ?*__CTTypesetter;
 
-pub extern "CoreText" fn TypesetterGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTTypesetterGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const typesetterGetTypeID = CTTypesetterGetTypeID;
 
-pub extern "CoreText" fn TypesetterCreateWithAttributedString(string: core_foundation.AttributedStringRef) callconv(.C) TypesetterRef;
+extern "CoreText" fn CTTypesetterCreateWithAttributedString(string: core_foundation.AttributedStringRef) callconv(.C) TypesetterRef;
+pub const typesetterCreateWithAttributedString = CTTypesetterCreateWithAttributedString;
 
-pub extern "CoreText" fn TypesetterCreateWithAttributedStringAndOptions(string: core_foundation.AttributedStringRef, options: core_foundation.DictionaryRef) callconv(.C) TypesetterRef;
+extern "CoreText" fn CTTypesetterCreateWithAttributedStringAndOptions(string: core_foundation.AttributedStringRef, options: core_foundation.DictionaryRef) callconv(.C) TypesetterRef;
+pub const typesetterCreateWithAttributedStringAndOptions = CTTypesetterCreateWithAttributedStringAndOptions;
 
-pub extern "CoreText" fn TypesetterCreateLineWithOffset(typesetter: TypesetterRef, stringRange: core_foundation.Range, offset: f64) callconv(.C) LineRef;
+extern "CoreText" fn CTTypesetterCreateLineWithOffset(typesetter: TypesetterRef, stringRange: core_foundation.Range, offset: f64) callconv(.C) LineRef;
+pub const typesetterCreateLineWithOffset = CTTypesetterCreateLineWithOffset;
 
-pub extern "CoreText" fn TypesetterCreateLine(typesetter: TypesetterRef, stringRange: core_foundation.Range) callconv(.C) LineRef;
+extern "CoreText" fn CTTypesetterCreateLine(typesetter: TypesetterRef, stringRange: core_foundation.Range) callconv(.C) LineRef;
+pub const typesetterCreateLine = CTTypesetterCreateLine;
 
-pub extern "CoreText" fn TypesetterSuggestLineBreakWithOffset(typesetter: TypesetterRef, startIndex: core_foundation.Index, width: f64, offset: f64, ) callconv(.C) core_foundation.Index;
+extern "CoreText" fn CTTypesetterSuggestLineBreakWithOffset(
+    typesetter: TypesetterRef,
+    startIndex: core_foundation.Index,
+    width: f64,
+    offset: f64,
+) callconv(.C) core_foundation.Index;
+pub const typesetterSuggestLineBreakWithOffset = CTTypesetterSuggestLineBreakWithOffset;
 
-pub extern "CoreText" fn TypesetterSuggestLineBreak(typesetter: TypesetterRef, startIndex: core_foundation.Index, width: f64) callconv(.C) core_foundation.Index;
+extern "CoreText" fn CTTypesetterSuggestLineBreak(typesetter: TypesetterRef, startIndex: core_foundation.Index, width: f64) callconv(.C) core_foundation.Index;
+pub const typesetterSuggestLineBreak = CTTypesetterSuggestLineBreak;
 
-pub extern "CoreText" fn TypesetterSuggestClusterBreakWithOffset(typesetter: TypesetterRef, startIndex: core_foundation.Index, width: f64, offset: f64, ) callconv(.C) core_foundation.Index;
+extern "CoreText" fn CTTypesetterSuggestClusterBreakWithOffset(
+    typesetter: TypesetterRef,
+    startIndex: core_foundation.Index,
+    width: f64,
+    offset: f64,
+) callconv(.C) core_foundation.Index;
+pub const typesetterSuggestClusterBreakWithOffset = CTTypesetterSuggestClusterBreakWithOffset;
 
-pub extern "CoreText" fn TypesetterSuggestClusterBreak(typesetter: TypesetterRef, startIndex: core_foundation.Index, width: f64) callconv(.C) core_foundation.Index;
+extern "CoreText" fn CTTypesetterSuggestClusterBreak(typesetter: TypesetterRef, startIndex: core_foundation.Index, width: f64) callconv(.C) core_foundation.Index;
+pub const typesetterSuggestClusterBreak = CTTypesetterSuggestClusterBreak;
 
 pub const __CTFramesetter = extern struct {};
 
 pub const FramesetterRef = ?*__CTFramesetter;
 
-pub extern "CoreText" fn FramesetterGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTFramesetterGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const framesetterGetTypeID = CTFramesetterGetTypeID;
 
-pub extern "CoreText" fn FramesetterCreateWithTypesetter(typesetter: TypesetterRef) callconv(.C) FramesetterRef;
+extern "CoreText" fn CTFramesetterCreateWithTypesetter(typesetter: TypesetterRef) callconv(.C) FramesetterRef;
+pub const framesetterCreateWithTypesetter = CTFramesetterCreateWithTypesetter;
 
-pub extern "CoreText" fn FramesetterCreateWithAttributedString(attrString: core_foundation.AttributedStringRef) callconv(.C) FramesetterRef;
+extern "CoreText" fn CTFramesetterCreateWithAttributedString(attrString: core_foundation.AttributedStringRef) callconv(.C) FramesetterRef;
+pub const framesetterCreateWithAttributedString = CTFramesetterCreateWithAttributedString;
 
-pub extern "CoreText" fn FramesetterCreateFrame(framesetter: FramesetterRef, stringRange: core_foundation.Range, path: core_graphics.PathRef, frameAttributes: core_foundation.DictionaryRef, ) callconv(.C) FrameRef;
+extern "CoreText" fn CTFramesetterCreateFrame(
+    framesetter: FramesetterRef,
+    stringRange: core_foundation.Range,
+    path: core_graphics.PathRef,
+    frameAttributes: core_foundation.DictionaryRef,
+) callconv(.C) FrameRef;
+pub const framesetterCreateFrame = CTFramesetterCreateFrame;
 
-pub extern "CoreText" fn FramesetterGetTypesetter(framesetter: FramesetterRef) callconv(.C) TypesetterRef;
+extern "CoreText" fn CTFramesetterGetTypesetter(framesetter: FramesetterRef) callconv(.C) TypesetterRef;
+pub const framesetterGetTypesetter = CTFramesetterGetTypesetter;
 
-pub extern "CoreText" fn FramesetterSuggestFrameSizeWithConstraints(framesetter: FramesetterRef, stringRange: core_foundation.Range, frameAttributes: core_foundation.DictionaryRef, constraints: core_foundation.CGSize, fitRange: ?*core_foundation.Range, ) callconv(.C) core_foundation.CGSize;
+extern "CoreText" fn CTFramesetterSuggestFrameSizeWithConstraints(
+    framesetter: FramesetterRef,
+    stringRange: core_foundation.Range,
+    frameAttributes: core_foundation.DictionaryRef,
+    constraints: core_foundation.CGSize,
+    fitRange: ?*core_foundation.Range,
+) callconv(.C) core_foundation.CGSize;
+pub const framesetterSuggestFrameSizeWithConstraints = CTFramesetterSuggestFrameSizeWithConstraints;
 
 pub const __CTGlyphInfo = extern struct {};
 
 pub const GlyphInfoRef = ?*__CTGlyphInfo;
 
-pub extern "CoreText" fn GlyphInfoGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTGlyphInfoGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const glyphInfoGetTypeID = CTGlyphInfoGetTypeID;
 
 pub const CharacterCollection = enum(objc.uint16_t) {
     kCTCharacterCollectionIdentityMapping = 0,
@@ -806,25 +1100,33 @@ pub const CharacterCollection = enum(objc.uint16_t) {
     kCTAdobeKorea1CharacterCollection = 5,
 };
 
-pub extern "CoreText" fn GlyphInfoCreateWithGlyphName(glyphName: core_foundation.StringRef, font: FontRef, baseString: core_foundation.StringRef) callconv(.C) GlyphInfoRef;
+extern "CoreText" fn CTGlyphInfoCreateWithGlyphName(glyphName: core_foundation.StringRef, font: FontRef, baseString: core_foundation.StringRef) callconv(.C) GlyphInfoRef;
+pub const glyphInfoCreateWithGlyphName = CTGlyphInfoCreateWithGlyphName;
 
-pub extern "CoreText" fn GlyphInfoCreateWithGlyph(glyph: core_graphics.Glyph, font: FontRef, baseString: core_foundation.StringRef) callconv(.C) GlyphInfoRef;
+extern "CoreText" fn CTGlyphInfoCreateWithGlyph(glyph: core_graphics.Glyph, font: FontRef, baseString: core_foundation.StringRef) callconv(.C) GlyphInfoRef;
+pub const glyphInfoCreateWithGlyph = CTGlyphInfoCreateWithGlyph;
 
-pub extern "CoreText" fn GlyphInfoCreateWithCharacterIdentifier(cid: core_graphics.FontIndex, collection: CharacterCollection, baseString: core_foundation.StringRef) callconv(.C) GlyphInfoRef;
+extern "CoreText" fn CTGlyphInfoCreateWithCharacterIdentifier(cid: core_graphics.FontIndex, collection: CharacterCollection, baseString: core_foundation.StringRef) callconv(.C) GlyphInfoRef;
+pub const glyphInfoCreateWithCharacterIdentifier = CTGlyphInfoCreateWithCharacterIdentifier;
 
-pub extern "CoreText" fn GlyphInfoGetGlyphName(glyphInfo: GlyphInfoRef) callconv(.C) core_foundation.StringRef;
+extern "CoreText" fn CTGlyphInfoGetGlyphName(glyphInfo: GlyphInfoRef) callconv(.C) core_foundation.StringRef;
+pub const glyphInfoGetGlyphName = CTGlyphInfoGetGlyphName;
 
-pub extern "CoreText" fn GlyphInfoGetGlyph(glyphInfo: GlyphInfoRef) callconv(.C) core_graphics.Glyph;
+extern "CoreText" fn CTGlyphInfoGetGlyph(glyphInfo: GlyphInfoRef) callconv(.C) core_graphics.Glyph;
+pub const glyphInfoGetGlyph = CTGlyphInfoGetGlyph;
 
-pub extern "CoreText" fn GlyphInfoGetCharacterIdentifier(glyphInfo: GlyphInfoRef) callconv(.C) core_graphics.FontIndex;
+extern "CoreText" fn CTGlyphInfoGetCharacterIdentifier(glyphInfo: GlyphInfoRef) callconv(.C) core_graphics.FontIndex;
+pub const glyphInfoGetCharacterIdentifier = CTGlyphInfoGetCharacterIdentifier;
 
-pub extern "CoreText" fn GlyphInfoGetCharacterCollection(glyphInfo: GlyphInfoRef) callconv(.C) CharacterCollection;
+extern "CoreText" fn CTGlyphInfoGetCharacterCollection(glyphInfo: GlyphInfoRef) callconv(.C) CharacterCollection;
+pub const glyphInfoGetCharacterCollection = CTGlyphInfoGetCharacterCollection;
 
 pub const __CTParagraphStyle = extern struct {};
 
 pub const ParagraphStyleRef = ?*__CTParagraphStyle;
 
-pub extern "CoreText" fn ParagraphStyleGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTParagraphStyleGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const paragraphStyleGetTypeID = CTParagraphStyleGetTypeID;
 
 pub const TextAlignment = enum(objc.uint8_t) {
     kCTTextAlignmentLeft = 0,
@@ -882,17 +1184,21 @@ pub const ParagraphStyleSetting = extern struct {
     value: ?*anyopaque,
 };
 
-pub extern "CoreText" fn ParagraphStyleCreate(settings: ?*ParagraphStyleSetting, settingCount: objc.size_t) callconv(.C) ParagraphStyleRef;
+extern "CoreText" fn CTParagraphStyleCreate(settings: ?*ParagraphStyleSetting, settingCount: objc.size_t) callconv(.C) ParagraphStyleRef;
+pub const paragraphStyleCreate = CTParagraphStyleCreate;
 
-pub extern "CoreText" fn ParagraphStyleCreateCopy(paragraphStyle: ParagraphStyleRef) callconv(.C) ParagraphStyleRef;
+extern "CoreText" fn CTParagraphStyleCreateCopy(paragraphStyle: ParagraphStyleRef) callconv(.C) ParagraphStyleRef;
+pub const paragraphStyleCreateCopy = CTParagraphStyleCreateCopy;
 
-pub extern "CoreText" fn ParagraphStyleGetValueForSpecifier() callconv(.C) i32;
+extern "CoreText" fn CTParagraphStyleGetValueForSpecifier() callconv(.C) i32;
+pub const paragraphStyleGetValueForSpecifier = CTParagraphStyleGetValueForSpecifier;
 
 pub const __CTRubyAnnotation = extern struct {};
 
 pub const RubyAnnotationRef = ?*__CTRubyAnnotation;
 
-pub extern "CoreText" fn RubyAnnotationGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTRubyAnnotationGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const rubyAnnotationGetTypeID = CTRubyAnnotationGetTypeID;
 
 pub const RubyAlignment = enum(objc.uint8_t) {
     kCTRubyAlignmentInvalid = -1,
@@ -921,19 +1227,37 @@ pub const RubyPosition = enum(objc.uint8_t) {
     kCTRubyPositionCount = 4,
 };
 
-pub extern "CoreText" fn RubyAnnotationCreate(alignment: RubyAlignment, overhang: RubyOverhang, sizeFactor: core_foundation.CGFloat, text: ?*core_foundation.StringRef, ) callconv(.C) RubyAnnotationRef;
+extern "CoreText" fn CTRubyAnnotationCreate(
+    alignment: RubyAlignment,
+    overhang: RubyOverhang,
+    sizeFactor: core_foundation.CGFloat,
+    text: ?*core_foundation.StringRef,
+) callconv(.C) RubyAnnotationRef;
+pub const rubyAnnotationCreate = CTRubyAnnotationCreate;
 
-pub extern "CoreText" fn RubyAnnotationCreateWithAttributes(alignment: RubyAlignment, overhang: RubyOverhang, position: RubyPosition, string: core_foundation.StringRef, attributes: core_foundation.DictionaryRef, ) callconv(.C) RubyAnnotationRef;
+extern "CoreText" fn CTRubyAnnotationCreateWithAttributes(
+    alignment: RubyAlignment,
+    overhang: RubyOverhang,
+    position: RubyPosition,
+    string: core_foundation.StringRef,
+    attributes: core_foundation.DictionaryRef,
+) callconv(.C) RubyAnnotationRef;
+pub const rubyAnnotationCreateWithAttributes = CTRubyAnnotationCreateWithAttributes;
 
-pub extern "CoreText" fn RubyAnnotationCreateCopy(rubyAnnotation: RubyAnnotationRef) callconv(.C) RubyAnnotationRef;
+extern "CoreText" fn CTRubyAnnotationCreateCopy(rubyAnnotation: RubyAnnotationRef) callconv(.C) RubyAnnotationRef;
+pub const rubyAnnotationCreateCopy = CTRubyAnnotationCreateCopy;
 
-pub extern "CoreText" fn RubyAnnotationGetAlignment(rubyAnnotation: RubyAnnotationRef) callconv(.C) RubyAlignment;
+extern "CoreText" fn CTRubyAnnotationGetAlignment(rubyAnnotation: RubyAnnotationRef) callconv(.C) RubyAlignment;
+pub const rubyAnnotationGetAlignment = CTRubyAnnotationGetAlignment;
 
-pub extern "CoreText" fn RubyAnnotationGetOverhang(rubyAnnotation: RubyAnnotationRef) callconv(.C) RubyOverhang;
+extern "CoreText" fn CTRubyAnnotationGetOverhang(rubyAnnotation: RubyAnnotationRef) callconv(.C) RubyOverhang;
+pub const rubyAnnotationGetOverhang = CTRubyAnnotationGetOverhang;
 
-pub extern "CoreText" fn RubyAnnotationGetSizeFactor(rubyAnnotation: RubyAnnotationRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreText" fn CTRubyAnnotationGetSizeFactor(rubyAnnotation: RubyAnnotationRef) callconv(.C) core_foundation.CGFloat;
+pub const rubyAnnotationGetSizeFactor = CTRubyAnnotationGetSizeFactor;
 
-pub extern "CoreText" fn RubyAnnotationGetTextForPosition(rubyAnnotation: RubyAnnotationRef, position: RubyPosition) callconv(.C) core_foundation.StringRef;
+extern "CoreText" fn CTRubyAnnotationGetTextForPosition(rubyAnnotation: RubyAnnotationRef, position: RubyPosition) callconv(.C) core_foundation.StringRef;
+pub const rubyAnnotationGetTextForPosition = CTRubyAnnotationGetTextForPosition;
 
 pub const __CTRun = extern struct {};
 
@@ -946,55 +1270,85 @@ pub const RunStatus = enum(objc.uint32_t) {
     kCTRunStatusHasNonIdentityMatrix = 4,
 };
 
-pub extern "CoreText" fn RunGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTRunGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const runGetTypeID = CTRunGetTypeID;
 
-pub extern "CoreText" fn RunGetGlyphCount(run: RunRef) callconv(.C) core_foundation.Index;
+extern "CoreText" fn CTRunGetGlyphCount(run: RunRef) callconv(.C) core_foundation.Index;
+pub const runGetGlyphCount = CTRunGetGlyphCount;
 
-pub extern "CoreText" fn RunGetAttributes(run: RunRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreText" fn CTRunGetAttributes(run: RunRef) callconv(.C) core_foundation.DictionaryRef;
+pub const runGetAttributes = CTRunGetAttributes;
 
-pub extern "CoreText" fn RunGetStatus(run: RunRef) callconv(.C) RunStatus;
+extern "CoreText" fn CTRunGetStatus(run: RunRef) callconv(.C) RunStatus;
+pub const runGetStatus = CTRunGetStatus;
 
-pub extern "CoreText" fn RunGetGlyphsPtr(run: RunRef) callconv(.C) ?*core_graphics.Glyph;
+extern "CoreText" fn CTRunGetGlyphsPtr(run: RunRef) callconv(.C) ?*core_graphics.Glyph;
+pub const runGetGlyphsPtr = CTRunGetGlyphsPtr;
 
-pub extern "CoreText" fn RunGetGlyphs(run: RunRef, range: core_foundation.Range, buffer: ?*core_graphics.Glyph) callconv(.C) void;
+extern "CoreText" fn CTRunGetGlyphs(run: RunRef, range: core_foundation.Range, buffer: ?*core_graphics.Glyph) callconv(.C) void;
+pub const runGetGlyphs = CTRunGetGlyphs;
 
-pub extern "CoreText" fn RunGetPositionsPtr(run: RunRef) callconv(.C) ?*core_foundation.CGPoint;
+extern "CoreText" fn CTRunGetPositionsPtr(run: RunRef) callconv(.C) ?*core_foundation.CGPoint;
+pub const runGetPositionsPtr = CTRunGetPositionsPtr;
 
-pub extern "CoreText" fn RunGetPositions(run: RunRef, range: core_foundation.Range, buffer: ?*core_foundation.CGPoint) callconv(.C) void;
+extern "CoreText" fn CTRunGetPositions(run: RunRef, range: core_foundation.Range, buffer: ?*core_foundation.CGPoint) callconv(.C) void;
+pub const runGetPositions = CTRunGetPositions;
 
-pub extern "CoreText" fn RunGetAdvancesPtr(run: RunRef) callconv(.C) ?*core_foundation.CGSize;
+extern "CoreText" fn CTRunGetAdvancesPtr(run: RunRef) callconv(.C) ?*core_foundation.CGSize;
+pub const runGetAdvancesPtr = CTRunGetAdvancesPtr;
 
-pub extern "CoreText" fn RunGetAdvances(run: RunRef, range: core_foundation.Range, buffer: ?*core_foundation.CGSize) callconv(.C) void;
+extern "CoreText" fn CTRunGetAdvances(run: RunRef, range: core_foundation.Range, buffer: ?*core_foundation.CGSize) callconv(.C) void;
+pub const runGetAdvances = CTRunGetAdvances;
 
-pub extern "CoreText" fn RunGetStringIndicesPtr(run: RunRef) callconv(.C) ?*core_foundation.Index;
+extern "CoreText" fn CTRunGetStringIndicesPtr(run: RunRef) callconv(.C) ?*core_foundation.Index;
+pub const runGetStringIndicesPtr = CTRunGetStringIndicesPtr;
 
-pub extern "CoreText" fn RunGetStringIndices(run: RunRef, range: core_foundation.Range, buffer: ?*core_foundation.Index) callconv(.C) void;
+extern "CoreText" fn CTRunGetStringIndices(run: RunRef, range: core_foundation.Range, buffer: ?*core_foundation.Index) callconv(.C) void;
+pub const runGetStringIndices = CTRunGetStringIndices;
 
-pub extern "CoreText" fn RunGetStringRange(run: RunRef) callconv(.C) core_foundation.Range;
+extern "CoreText" fn CTRunGetStringRange(run: RunRef) callconv(.C) core_foundation.Range;
+pub const runGetStringRange = CTRunGetStringRange;
 
-pub extern "CoreText" fn RunGetTypographicBounds(run: RunRef, range: core_foundation.Range, ascent: ?*core_foundation.CGFloat, descent: ?*core_foundation.CGFloat, leading: ?*core_foundation.CGFloat, ) callconv(.C) f64;
+extern "CoreText" fn CTRunGetTypographicBounds(
+    run: RunRef,
+    range: core_foundation.Range,
+    ascent: ?*core_foundation.CGFloat,
+    descent: ?*core_foundation.CGFloat,
+    leading: ?*core_foundation.CGFloat,
+) callconv(.C) f64;
+pub const runGetTypographicBounds = CTRunGetTypographicBounds;
 
-pub extern "CoreText" fn RunGetImageBounds(run: RunRef, context: core_graphics.ContextRef, range: core_foundation.Range) callconv(.C) core_foundation.CGRect;
+extern "CoreText" fn CTRunGetImageBounds(run: RunRef, context: core_graphics.ContextRef, range: core_foundation.Range) callconv(.C) core_foundation.CGRect;
+pub const runGetImageBounds = CTRunGetImageBounds;
 
-pub extern "CoreText" fn RunGetTextMatrix(run: RunRef) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreText" fn CTRunGetTextMatrix(run: RunRef) callconv(.C) core_foundation.CGAffineTransform;
+pub const runGetTextMatrix = CTRunGetTextMatrix;
 
-pub extern "CoreText" fn RunGetBaseAdvancesAndOrigins(runRef: RunRef, range: core_foundation.Range, advancesBuffer: ?*core_foundation.CGSize, originsBuffer: ?*core_foundation.CGPoint, ) callconv(.C) void;
+extern "CoreText" fn CTRunGetBaseAdvancesAndOrigins(
+    runRef: RunRef,
+    range: core_foundation.Range,
+    advancesBuffer: ?*core_foundation.CGSize,
+    originsBuffer: ?*core_foundation.CGPoint,
+) callconv(.C) void;
+pub const runGetBaseAdvancesAndOrigins = CTRunGetBaseAdvancesAndOrigins;
 
-pub extern "CoreText" fn RunDraw(run: RunRef, context: core_graphics.ContextRef, range: core_foundation.Range) callconv(.C) void;
+extern "CoreText" fn CTRunDraw(run: RunRef, context: core_graphics.ContextRef, range: core_foundation.Range) callconv(.C) void;
+pub const runDraw = CTRunDraw;
 
 pub const __CTRunDelegate = extern struct {};
 
 pub const RunDelegateRef = ?*__CTRunDelegate;
 
-pub extern "CoreText" fn RunDelegateGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTRunDelegateGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const runDelegateGetTypeID = CTRunDelegateGetTypeID;
 
-pub const RunDelegateDeallocateCallback = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const RunDelegateDeallocateCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const RunDelegateGetAscentCallback = ?*const fn(?*anyopaque) callconv(.C) core_foundation.CGFloat;
+pub const RunDelegateGetAscentCallback = ?*const fn (?*anyopaque) callconv(.C) core_foundation.CGFloat;
 
-pub const RunDelegateGetDescentCallback = ?*const fn(?*anyopaque) callconv(.C) core_foundation.CGFloat;
+pub const RunDelegateGetDescentCallback = ?*const fn (?*anyopaque) callconv(.C) core_foundation.CGFloat;
 
-pub const RunDelegateGetWidthCallback = ?*const fn(?*anyopaque) callconv(.C) core_foundation.CGFloat;
+pub const RunDelegateGetWidthCallback = ?*const fn (?*anyopaque) callconv(.C) core_foundation.CGFloat;
 
 pub const RunDelegateCallbacks = extern struct {
     version: core_foundation.Index,
@@ -1009,9 +1363,11 @@ pub const anon1441 = enum(u32) {
     kCTRunDelegateCurrentVersion = 1,
 };
 
-pub extern "CoreText" fn RunDelegateCreate(callbacks: ?*RunDelegateCallbacks, refCon: ?*anyopaque) callconv(.C) RunDelegateRef;
+extern "CoreText" fn CTRunDelegateCreate(callbacks: ?*RunDelegateCallbacks, refCon: ?*anyopaque) callconv(.C) RunDelegateRef;
+pub const runDelegateCreate = CTRunDelegateCreate;
 
-pub extern "CoreText" fn RunDelegateGetRefCon(runDelegate: RunDelegateRef) callconv(.C) ?*anyopaque;
+extern "CoreText" fn CTRunDelegateGetRefCon(runDelegate: RunDelegateRef) callconv(.C) ?*anyopaque;
+pub const runDelegateGetRefCon = CTRunDelegateGetRefCon;
 
 /// https://developer.apple.com/documentation/CoreText/CTAdaptiveImageProviding?language=objc
 pub const AdaptiveImageProviding = opaque {
@@ -1021,10 +1377,20 @@ pub const AdaptiveImageProviding = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn imageForProposedSizeScaleFactorImageOffsetImageSize(self: *@This(), proposedSize: core_foundation.CGSize, scaleFactor: core_foundation.CGFloat, outImageOffset: ?*core_foundation.CGPoint, outImageSize: ?*core_foundation.CGSize, ) core_graphics.ImageRef {
-        return objc.msgSend(self, "imageForProposedSize:scaleFactor:imageOffset:imageSize:", core_graphics.ImageRef, .{proposedSize, scaleFactor, outImageOffset, outImageSize, });
+    pub fn imageForProposedSizeScaleFactorImageOffsetImageSize(
+        _self: *@This(),
+        _proposedSize: core_foundation.CGSize,
+        _scaleFactor: core_foundation.CGFloat,
+        _outImageOffset: ?*core_foundation.CGPoint,
+        _outImageSize: ?*core_foundation.CGSize,
+    ) core_graphics.ImageRef {
+        return objc.msgSend(_self, "imageForProposedSize:scaleFactor:imageOffset:imageSize:", core_graphics.ImageRef, .{
+            _proposedSize,
+            _scaleFactor,
+            _outImageOffset,
+            _outImageSize,
+        });
     }
-
 };
 
 pub const UnderlineStyle = enum(objc.int32_t) {
@@ -1051,15 +1417,20 @@ pub const __CTTextTab = extern struct {};
 
 pub const TextTabRef = ?*__CTTextTab;
 
-pub extern "CoreText" fn TextTabGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreText" fn CTTextTabGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const textTabGetTypeID = CTTextTabGetTypeID;
 
-pub extern "CoreText" fn TextTabCreate(alignment: TextAlignment, location: f64, options: core_foundation.DictionaryRef) callconv(.C) TextTabRef;
+extern "CoreText" fn CTTextTabCreate(alignment: TextAlignment, location: f64, options: core_foundation.DictionaryRef) callconv(.C) TextTabRef;
+pub const textTabCreate = CTTextTabCreate;
 
-pub extern "CoreText" fn TextTabGetAlignment(tab: TextTabRef) callconv(.C) TextAlignment;
+extern "CoreText" fn CTTextTabGetAlignment(tab: TextTabRef) callconv(.C) TextAlignment;
+pub const textTabGetAlignment = CTTextTabGetAlignment;
 
-pub extern "CoreText" fn TextTabGetLocation(tab: TextTabRef) callconv(.C) f64;
+extern "CoreText" fn CTTextTabGetLocation(tab: TextTabRef) callconv(.C) f64;
+pub const textTabGetLocation = CTTextTabGetLocation;
 
-pub extern "CoreText" fn TextTabGetOptions(tab: TextTabRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreText" fn CTTextTabGetOptions(tab: TextTabRef) callconv(.C) core_foundation.DictionaryRef;
+pub const textTabGetOptions = CTTextTabGetOptions;
 
 pub const anon411 = enum(i32) {
     kAllTypographicFeaturesType = 0,
@@ -1415,41 +1786,41 @@ pub const SFNTLookupBinarySearchHeader = extern struct {
 };
 
 pub const SFNTLookupArrayHeader = extern struct {
-    lookupValues: [1] SFNTLookupValue,
+    lookupValues: [1]SFNTLookupValue,
 };
 
 pub const SFNTLookupTrimmedArrayHeader = extern struct {
     firstGlyph: objc.UInt16,
     count: objc.UInt16,
-    valueArray: [1] SFNTLookupValue,
+    valueArray: [1]SFNTLookupValue,
 };
 
 pub const SFNTLookupVectorHeader = extern struct {
     valueSize: objc.UInt16,
     firstGlyph: objc.UInt16,
     count: objc.UInt16,
-    values: [1] objc.UInt8,
+    values: [1]objc.UInt8,
 };
 
 pub const SFNTLookupSegment = extern struct {
     lastGlyph: objc.UInt16,
     firstGlyph: objc.UInt16,
-    value: [1] objc.UInt16,
+    value: [1]objc.UInt16,
 };
 
 pub const SFNTLookupSegmentHeader = extern struct {
     binSearch: SFNTLookupBinarySearchHeader,
-    segments: [1] SFNTLookupSegment,
+    segments: [1]SFNTLookupSegment,
 };
 
 pub const SFNTLookupSingle = extern struct {
     glyph: objc.UInt16,
-    value: [1] objc.UInt16,
+    value: [1]objc.UInt16,
 };
 
 pub const SFNTLookupSingleHeader = extern struct {
     binSearch: SFNTLookupBinarySearchHeader,
-    entries: [1] SFNTLookupSingle,
+    entries: [1]SFNTLookupSingle,
 };
 
 pub const SFNTLookupFormatSpecificHeader = extern union {
@@ -1496,7 +1867,7 @@ pub const STHeader = extern struct {
 pub const STClassTable = extern struct {
     firstGlyph: objc.UInt16,
     nGlyphs: objc.UInt16,
-    classes: [1] STClass,
+    classes: [1]STClass,
 };
 
 pub const STEntryZero = extern struct {
@@ -1567,7 +1938,7 @@ pub const anon8281 = enum(u32) {
 
 pub const LcarCaretClassEntry = extern struct {
     count: objc.UInt16,
-    partials: [1] objc.UInt16,
+    partials: [1]objc.UInt16,
 };
 
 pub const LcarCaretTable = extern struct {
@@ -1616,7 +1987,7 @@ pub const JustPCDecompositionAction = extern struct {
     upperLimit: objc.Fixed,
     order: objc.UInt16,
     count: objc.UInt16,
-    glyphs: [1] objc.UInt16,
+    glyphs: [1]objc.UInt16,
 };
 
 pub const JustPCUnconditionalAddAction = objc.UInt16;
@@ -1648,7 +2019,7 @@ pub const JustPCActionSubrecord = extern struct {
 
 pub const JustPCAction = extern struct {
     actionCount: objc.UInt32,
-    actions: [1] JustPCActionSubrecord,
+    actions: [1]JustPCActionSubrecord,
 };
 
 pub const JustWidthDeltaEntry = extern struct {
@@ -1663,7 +2034,7 @@ pub const JustWidthDeltaEntry = extern struct {
 
 pub const JustWidthDeltaGroup = extern struct {
     count: objc.UInt32,
-    entries: [1] JustWidthDeltaEntry,
+    entries: [1]JustWidthDeltaEntry,
 };
 
 pub const JustPostcompTable = extern struct {
@@ -1810,13 +2181,13 @@ pub const MortChain = extern struct {
     length: objc.UInt32,
     nFeatures: objc.UInt16,
     nSubtables: objc.UInt16,
-    featureEntries: [1] MortFeatureEntry,
+    featureEntries: [1]MortFeatureEntry,
 };
 
 pub const MortTable = extern struct {
     version: objc.Fixed,
     nChains: objc.UInt32,
-    chains: [1] MortChain,
+    chains: [1]MortChain,
 };
 
 pub const anon11321 = enum(i32) {
@@ -1870,13 +2241,13 @@ pub const MorxChain = extern struct {
     length: objc.UInt32,
     nFeatures: objc.UInt32,
     nSubtables: objc.UInt32,
-    featureEntries: [1] MortFeatureEntry,
+    featureEntries: [1]MortFeatureEntry,
 };
 
 pub const MorxTable = extern struct {
     version: objc.Fixed,
     nChains: objc.UInt32,
-    chains: [1] MorxChain,
+    chains: [1]MorxChain,
 };
 
 pub const anon11981 = enum(u32) {
@@ -1956,7 +2327,7 @@ pub const TrakTableData = extern struct {
     nTracks: objc.UInt16,
     nSizes: objc.UInt16,
     sizeTableOffset: objc.UInt32,
-    trakTable: [1] TrakTableEntry,
+    trakTable: [1]TrakTableEntry,
 };
 
 pub const TrakTable = extern struct {
@@ -2005,13 +2376,13 @@ pub const KernArrayOffset = objc.UInt16;
 pub const KernVersion0Header = extern struct {
     version: objc.UInt16,
     nTables: objc.UInt16,
-    firstSubtable: [1] objc.UInt16,
+    firstSubtable: [1]objc.UInt16,
 };
 
 pub const KernTableHeader = extern struct {
     version: objc.Fixed,
     nTables: objc.SInt32,
-    firstSubtable: [1] objc.UInt16,
+    firstSubtable: [1]objc.UInt16,
 };
 
 pub const KernTableHeaderPtr = ?*KernTableHeader;
@@ -2035,13 +2406,13 @@ pub const KernOrderedListHeader = extern struct {
     searchRange: objc.UInt16,
     entrySelector: objc.UInt16,
     rangeShift: objc.UInt16,
-    table: [1] objc.UInt16,
+    table: [1]objc.UInt16,
 };
 
 pub const KernStateHeader = extern struct {
     header: STHeader,
     valueTable: objc.UInt16,
-    firstTable: [1] objc.UInt8,
+    firstTable: [1]objc.UInt8,
 };
 
 pub const KernStateEntry = extern struct {
@@ -2052,7 +2423,7 @@ pub const KernStateEntry = extern struct {
 pub const KernOffsetTable = extern struct {
     firstGlyph: objc.UInt16,
     nGlyphs: objc.UInt16,
-    offsetTable: [1] KernArrayOffset,
+    offsetTable: [1]KernArrayOffset,
 };
 
 pub const KernOffsetTablePtr = ?*KernOffsetTable;
@@ -2062,7 +2433,7 @@ pub const KernSimpleArrayHeader = extern struct {
     leftOffsetTable: objc.UInt16,
     rightOffsetTable: objc.UInt16,
     theArray: KernArrayOffset,
-    firstTable: [1] objc.UInt16,
+    firstTable: [1]objc.UInt16,
 };
 
 pub const KernIndexArrayHeader = extern struct {
@@ -2071,10 +2442,10 @@ pub const KernIndexArrayHeader = extern struct {
     leftClassCount: objc.UInt8,
     rightClassCount: objc.UInt8,
     flags: objc.UInt8,
-    kernValue: [1] objc.SInt16,
-    leftClass: [1] objc.UInt8,
-    rightClass: [1] objc.UInt8,
-    kernIndex: [1] objc.UInt8,
+    kernValue: [1]objc.SInt16,
+    leftClass: [1]objc.UInt8,
+    rightClass: [1]objc.UInt8,
+    kernIndex: [1]objc.UInt8,
 };
 
 pub const KernFormatSpecificHeader = extern union {
@@ -2150,7 +2521,7 @@ pub const KerxArrayOffset = objc.UInt32;
 pub const KerxTableHeader = extern struct {
     version: objc.Fixed,
     nTables: objc.UInt32,
-    firstSubtable: [1] objc.UInt32,
+    firstSubtable: [1]objc.UInt32,
 };
 
 pub const KerxTableHeaderPtr = ?*KerxTableHeader;
@@ -2174,13 +2545,13 @@ pub const KerxOrderedListHeader = extern struct {
     searchRange: objc.UInt32,
     entrySelector: objc.UInt32,
     rangeShift: objc.UInt32,
-    table: [1] objc.UInt32,
+    table: [1]objc.UInt32,
 };
 
 pub const KerxStateHeader = extern struct {
     header: STXHeader,
     valueTable: objc.UInt32,
-    firstTable: [1] objc.UInt8,
+    firstTable: [1]objc.UInt8,
 };
 
 pub const KerxStateEntry = extern struct {
@@ -2192,7 +2563,7 @@ pub const KerxStateEntry = extern struct {
 pub const KerxControlPointHeader = extern struct {
     header: STXHeader,
     flags: objc.UInt32,
-    firstTable: [1] objc.UInt8,
+    firstTable: [1]objc.UInt8,
 };
 
 pub const KerxControlPointEntry = extern struct {
@@ -2223,7 +2594,7 @@ pub const KerxSimpleArrayHeader = extern struct {
     leftOffsetTable: objc.UInt32,
     rightOffsetTable: objc.UInt32,
     theArray: KerxArrayOffset,
-    firstTable: [1] objc.UInt32,
+    firstTable: [1]objc.UInt32,
 };
 
 pub const KerxIndexArrayHeader = extern struct {
@@ -2277,25 +2648,25 @@ pub const anon16641 = enum(u32) {
 
 pub const BslnBaselineClass = objc.UInt32;
 
-pub const BslnBaselineRecord = [32] objc.Fixed;
+pub const BslnBaselineRecord = [32]objc.Fixed;
 
 pub const BslnFormat0Part = extern struct {
-    deltas: [32] objc.SInt16,
+    deltas: [32]objc.SInt16,
 };
 
 pub const BslnFormat1Part = extern struct {
-    deltas: [32] objc.SInt16,
+    deltas: [32]objc.SInt16,
     mappingData: SFNTLookupTable,
 };
 
 pub const BslnFormat2Part = extern struct {
     stdGlyph: objc.UInt16,
-    ctlPoints: [32] objc.SInt16,
+    ctlPoints: [32]objc.SInt16,
 };
 
 pub const BslnFormat3Part = extern struct {
     stdGlyph: objc.UInt16,
-    ctlPoints: [32] objc.SInt16,
+    ctlPoints: [32]objc.SInt16,
     mappingData: SFNTLookupTable,
 };
 
@@ -2360,7 +2731,7 @@ pub const AnchorPoint = extern struct {
 
 pub const AnchorPointTable = extern struct {
     nPoints: objc.UInt32,
-    points: [1] AnchorPoint,
+    points: [1]AnchorPoint,
 };
 
 pub const AnkrTable = extern struct {
@@ -2383,7 +2754,7 @@ pub const LtagTable = extern struct {
     version: objc.UInt32,
     flags: objc.UInt32,
     numTags: objc.UInt32,
-    tagRange: [1] LtagStringRange,
+    tagRange: [1]LtagStringRange,
 };
 
 pub const sfntDirectoryEntry = extern struct {
@@ -2399,7 +2770,7 @@ pub const sfntDirectory = extern struct {
     searchRange: objc.UInt16,
     entrySelector: objc.UInt16,
     rangeShift: objc.UInt16,
-    table: [1] sfntDirectoryEntry,
+    table: [1]sfntDirectoryEntry,
 };
 
 pub const anon481 = enum(u32) {
@@ -2586,7 +2957,7 @@ pub const anon2751 = enum(u32) {
 pub const sfntCMapHeader = extern struct {
     version: objc.UInt16,
     numTables: objc.UInt16,
-    encoding: [1] sfntCMapEncoding,
+    encoding: [1]sfntCMapEncoding,
 };
 
 pub const anon2851 = enum(u32) {
@@ -2638,7 +3009,7 @@ pub const sfntNameHeader = extern struct {
     format: objc.UInt16,
     count: objc.UInt16,
     stringOffset: objc.UInt16,
-    rec: [1] sfntNameRecord,
+    rec: [1]sfntNameRecord,
 };
 
 pub const anon3441 = enum(u32) {
@@ -2665,7 +3036,7 @@ pub const anon3631 = enum(u32) {
 pub const sfntInstance = extern struct {
     nameID: objc.SInt16,
     flags: objc.SInt16,
-    coord: [1] objc.Fixed,
+    coord: [1]objc.Fixed,
 };
 
 pub const anon3751 = enum(u32) {
@@ -2680,8 +3051,8 @@ pub const sfntVariationHeader = extern struct {
     axisSize: objc.UInt16,
     instanceCount: objc.UInt16,
     instanceSize: objc.UInt16,
-    axis: [1] sfntVariationAxis,
-    instance: [1] sfntInstance,
+    axis: [1]sfntVariationAxis,
+    instance: [1]sfntInstance,
 };
 
 pub const sfntFontDescriptor = extern struct {
@@ -2692,7 +3063,7 @@ pub const sfntFontDescriptor = extern struct {
 pub const sfntDescriptorHeader = extern struct {
     version: objc.Fixed,
     descriptorCount: objc.SInt32,
-    descriptor: [1] sfntFontDescriptor,
+    descriptor: [1]sfntFontDescriptor,
 };
 
 pub const anon4121 = enum(u32) {
@@ -2726,9 +3097,9 @@ pub const sfntFeatureHeader = extern struct {
     featureNameCount: objc.UInt16,
     featureSetCount: objc.UInt16,
     reserved: objc.SInt32,
-    names: [1] sfntFeatureName,
-    settings: [1] sfntFontFeatureSetting,
-    runs: [1] sfntFontRunFeature,
+    names: [1]sfntFeatureName,
+    settings: [1]sfntFontFeatureSetting,
+    runs: [1]sfntFontRunFeature,
 };
 
 pub const anon4501 = enum(u32) {
@@ -2752,5 +3123,5 @@ pub const FontVariation = extern struct {
     value: objc.Fixed,
 };
 
-pub extern "CoreText" fn GetCoreTextVersion() callconv(.C) objc.uint32_t;
-
+extern "CoreText" fn CTGetCoreTextVersion() callconv(.C) objc.uint32_t;
+pub const getCoreTextVersion = CTGetCoreTextVersion;

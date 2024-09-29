@@ -14,7 +14,7 @@ const metal = @import("metal.zig"); // Framework dependency Metal.
 
 /// https://developer.apple.com/documentation/CoreImage/CIVector?language=objc
 pub const Vector = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIVector", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIVector", @This(), objc.NSObject, &.{foundation.Copying, foundation.SecureCoding, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -23,116 +23,240 @@ pub const Vector = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn vectorWithValuesCount(self: *@This(), values: ?*core_foundation.CGFloat, count: objc.size_t) *@This() {
-        return objc.msgSend(self, "vectorWithValues:count:", *@This(), .{values, count});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn vectorWithX(self: *@This(), x: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(self, "vectorWithX:", *@This(), .{x});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn vectorWithXY(self: *@This(), x: core_foundation.CGFloat, y: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(self, "vectorWithX:Y:", *@This(), .{x, y});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn vectorWithXYZ(self: *@This(), x: core_foundation.CGFloat, y: core_foundation.CGFloat, z: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(self, "vectorWithX:Y:Z:", *@This(), .{x, y, z});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn vectorWithXYZW(self: *@This(), x: core_foundation.CGFloat, y: core_foundation.CGFloat, z: core_foundation.CGFloat, w: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(self, "vectorWithX:Y:Z:W:", *@This(), .{x, y, z, w, });
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn vectorWithCGPoint(self: *@This(), p: core_foundation.CGPoint) *@This() {
-        return objc.msgSend(self, "vectorWithCGPoint:", *@This(), .{p});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn vectorWithCGRect(self: *@This(), r: core_foundation.CGRect) *@This() {
-        return objc.msgSend(self, "vectorWithCGRect:", *@This(), .{r});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn vectorWithCGAffineTransform(self: *@This(), t: core_foundation.CGAffineTransform) *@This() {
-        return objc.msgSend(self, "vectorWithCGAffineTransform:", *@This(), .{t});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn vectorWithString(self: *@This(), representation: ?*foundation.String) *@This() {
-        return objc.msgSend(self, "vectorWithString:", *@This(), .{representation});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn initWithValuesCount(self: *@This(), values: ?*core_foundation.CGFloat, count: objc.size_t) *@This() {
-        return objc.msgSend(self, "initWithValues:count:", *@This(), .{values, count});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn initWithX(self: *@This(), x: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(self, "initWithX:", *@This(), .{x});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn initWithXY(self: *@This(), x: core_foundation.CGFloat, y: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(self, "initWithX:Y:", *@This(), .{x, y});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn initWithXYZ(self: *@This(), x: core_foundation.CGFloat, y: core_foundation.CGFloat, z: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(self, "initWithX:Y:Z:", *@This(), .{x, y, z});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn initWithXYZW(self: *@This(), x: core_foundation.CGFloat, y: core_foundation.CGFloat, z: core_foundation.CGFloat, w: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(self, "initWithX:Y:Z:W:", *@This(), .{x, y, z, w, });
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn initWithCGPoint(self: *@This(), p: core_foundation.CGPoint) *@This() {
-        return objc.msgSend(self, "initWithCGPoint:", *@This(), .{p});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn initWithCGRect(self: *@This(), r: core_foundation.CGRect) *@This() {
-        return objc.msgSend(self, "initWithCGRect:", *@This(), .{r});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn initWithCGAffineTransform(self: *@This(), r: core_foundation.CGAffineTransform) *@This() {
-        return objc.msgSend(self, "initWithCGAffineTransform:", *@This(), .{r});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn initWithString(self: *@This(), representation: ?*foundation.String) *@This() {
-        return objc.msgSend(self, "initWithString:", *@This(), .{representation});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn valueAtIndex(self: *@This(), index: objc.size_t) core_foundation.CGFloat {
-        return objc.msgSend(self, "valueAtIndex:", core_foundation.CGFloat, .{index});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn count(self: *@This()) objc.size_t {
-        return objc.msgSend(self, "count", objc.size_t, .{});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn X(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "X", core_foundation.CGFloat, .{});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn Y(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "Y", core_foundation.CGFloat, .{});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn Z(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "Z", core_foundation.CGFloat, .{});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn W(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "W", core_foundation.CGFloat, .{});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn CGPointValue(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "CGPointValue", core_foundation.CGPoint, .{});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn CGRectValue(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "CGRectValue", core_foundation.CGRect, .{});
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn CGAffineTransformValue(self: *@This()) core_foundation.CGAffineTransform {
-        return objc.msgSend(self, "CGAffineTransformValue", core_foundation.CGAffineTransform, .{});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn stringRepresentation(self: *@This()) ?*foundation.String {
-        return objc.msgSend(self, "stringRepresentation", ?*foundation.String, .{});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn vectorWithValuesCount(_self: *@This(), _values: ?*core_foundation.CGFloat, _count: objc.size_t) *@This() {
+        return objc.msgSend(_self, "vectorWithValues:count:", *@This(), .{_values, _count});
+    }
+
+    pub fn vectorWithX(_self: *@This(), _x: core_foundation.CGFloat) *@This() {
+        return objc.msgSend(_self, "vectorWithX:", *@This(), .{_x});
+    }
+
+    pub fn vectorWithXY(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat) *@This() {
+        return objc.msgSend(_self, "vectorWithX:Y:", *@This(), .{_x, _y});
+    }
+
+    pub fn vectorWithXYZ(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat, _z: core_foundation.CGFloat) *@This() {
+        return objc.msgSend(_self, "vectorWithX:Y:Z:", *@This(), .{_x, _y, _z});
+    }
+
+    pub fn vectorWithXYZW(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat, _z: core_foundation.CGFloat, _w: core_foundation.CGFloat, ) *@This() {
+        return objc.msgSend(_self, "vectorWithX:Y:Z:W:", *@This(), .{_x, _y, _z, _w, });
+    }
+
+    pub fn vectorWithCGPoint(_self: *@This(), _p: core_foundation.CGPoint) *@This() {
+        return objc.msgSend(_self, "vectorWithCGPoint:", *@This(), .{_p});
+    }
+
+    pub fn vectorWithCGRect(_self: *@This(), _r: core_foundation.CGRect) *@This() {
+        return objc.msgSend(_self, "vectorWithCGRect:", *@This(), .{_r});
+    }
+
+    pub fn vectorWithCGAffineTransform(_self: *@This(), _t: core_foundation.CGAffineTransform) *@This() {
+        return objc.msgSend(_self, "vectorWithCGAffineTransform:", *@This(), .{_t});
+    }
+
+    pub fn vectorWithString(_self: *@This(), _representation: ?*foundation.String) *@This() {
+        return objc.msgSend(_self, "vectorWithString:", *@This(), .{_representation});
+    }
+
+    pub fn initWithValuesCount(_self: *@This(), _values: ?*core_foundation.CGFloat, _count: objc.size_t) *@This() {
+        return objc.msgSend(_self, "initWithValues:count:", *@This(), .{_values, _count});
+    }
+
+    pub fn initWithX(_self: *@This(), _x: core_foundation.CGFloat) *@This() {
+        return objc.msgSend(_self, "initWithX:", *@This(), .{_x});
+    }
+
+    pub fn initWithXY(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat) *@This() {
+        return objc.msgSend(_self, "initWithX:Y:", *@This(), .{_x, _y});
+    }
+
+    pub fn initWithXYZ(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat, _z: core_foundation.CGFloat) *@This() {
+        return objc.msgSend(_self, "initWithX:Y:Z:", *@This(), .{_x, _y, _z});
+    }
+
+    pub fn initWithXYZW(_self: *@This(), _x: core_foundation.CGFloat, _y: core_foundation.CGFloat, _z: core_foundation.CGFloat, _w: core_foundation.CGFloat, ) *@This() {
+        return objc.msgSend(_self, "initWithX:Y:Z:W:", *@This(), .{_x, _y, _z, _w, });
+    }
+
+    pub fn initWithCGPoint(_self: *@This(), _p: core_foundation.CGPoint) *@This() {
+        return objc.msgSend(_self, "initWithCGPoint:", *@This(), .{_p});
+    }
+
+    pub fn initWithCGRect(_self: *@This(), _r: core_foundation.CGRect) *@This() {
+        return objc.msgSend(_self, "initWithCGRect:", *@This(), .{_r});
+    }
+
+    pub fn initWithCGAffineTransform(_self: *@This(), _r: core_foundation.CGAffineTransform) *@This() {
+        return objc.msgSend(_self, "initWithCGAffineTransform:", *@This(), .{_r});
+    }
+
+    pub fn initWithString(_self: *@This(), _representation: ?*foundation.String) *@This() {
+        return objc.msgSend(_self, "initWithString:", *@This(), .{_representation});
+    }
+
+    pub fn valueAtIndex(_self: *@This(), _index: objc.size_t) core_foundation.CGFloat {
+        return objc.msgSend(_self, "valueAtIndex:", core_foundation.CGFloat, .{_index});
+    }
+
+    pub fn count(_self: *@This()) objc.size_t {
+        return objc.msgSend(_self, "count", objc.size_t, .{});
+    }
+
+    pub fn x(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "X", core_foundation.CGFloat, .{});
+    }
+
+    pub fn y(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "Y", core_foundation.CGFloat, .{});
+    }
+
+    pub fn z(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "Z", core_foundation.CGFloat, .{});
+    }
+
+    pub fn w(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "W", core_foundation.CGFloat, .{});
+    }
+
+    pub fn cgPointValue(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "CGPointValue", core_foundation.CGPoint, .{});
+    }
+
+    pub fn cgRectValue(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "CGRectValue", core_foundation.CGRect, .{});
+    }
+
+    pub fn cgAffineTransformValue(_self: *@This()) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "CGAffineTransformValue", core_foundation.CGAffineTransform, .{});
+    }
+
+    pub fn stringRepresentation(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "stringRepresentation", ?*foundation.String, .{});
     }
 
 };
@@ -144,7 +268,7 @@ pub const anon235 = extern union {
 
 /// https://developer.apple.com/documentation/CoreImage/CIColor?language=objc
 pub const Color = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIColor", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIColor", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -153,127 +277,251 @@ pub const Color = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn colorWithCGColor(self: *@This(), c: core_graphics.ColorRef) *@This() {
-        return objc.msgSend(self, "colorWithCGColor:", *@This(), .{c});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn colorWithRedGreenBlueAlpha(self: *@This(), r: core_foundation.CGFloat, g: core_foundation.CGFloat, b: core_foundation.CGFloat, a: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(self, "colorWithRed:green:blue:alpha:", *@This(), .{r, g, b, a, });
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn colorWithRedGreenBlue(self: *@This(), r: core_foundation.CGFloat, g: core_foundation.CGFloat, b: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(self, "colorWithRed:green:blue:", *@This(), .{r, g, b});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn colorWithRedGreenBlueAlphaColorSpace(self: *@This(), r: core_foundation.CGFloat, g: core_foundation.CGFloat, b: core_foundation.CGFloat, a: core_foundation.CGFloat, colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(self, "colorWithRed:green:blue:alpha:colorSpace:", *@This(), .{r, g, b, a, colorSpace, });
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn colorWithRedGreenBlueColorSpace(self: *@This(), r: core_foundation.CGFloat, g: core_foundation.CGFloat, b: core_foundation.CGFloat, colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(self, "colorWithRed:green:blue:colorSpace:", *@This(), .{r, g, b, colorSpace, });
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn colorWithString(self: *@This(), representation: ?*foundation.String) *@This() {
-        return objc.msgSend(self, "colorWithString:", *@This(), .{representation});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn initWithCGColor(self: *@This(), c: core_graphics.ColorRef) *@This() {
-        return objc.msgSend(self, "initWithCGColor:", *@This(), .{c});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn initWithRedGreenBlueAlpha(self: *@This(), r: core_foundation.CGFloat, g: core_foundation.CGFloat, b: core_foundation.CGFloat, a: core_foundation.CGFloat, ) *@This() {
-        return objc.msgSend(self, "initWithRed:green:blue:alpha:", *@This(), .{r, g, b, a, });
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn initWithRedGreenBlue(self: *@This(), r: core_foundation.CGFloat, g: core_foundation.CGFloat, b: core_foundation.CGFloat) *@This() {
-        return objc.msgSend(self, "initWithRed:green:blue:", *@This(), .{r, g, b});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn initWithRedGreenBlueAlphaColorSpace(self: *@This(), r: core_foundation.CGFloat, g: core_foundation.CGFloat, b: core_foundation.CGFloat, a: core_foundation.CGFloat, colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(self, "initWithRed:green:blue:alpha:colorSpace:", *@This(), .{r, g, b, a, colorSpace, });
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn initWithRedGreenBlueColorSpace(self: *@This(), r: core_foundation.CGFloat, g: core_foundation.CGFloat, b: core_foundation.CGFloat, colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(self, "initWithRed:green:blue:colorSpace:", *@This(), .{r, g, b, colorSpace, });
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn numberOfComponents(self: *@This()) objc.size_t {
-        return objc.msgSend(self, "numberOfComponents", objc.size_t, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn components(self: *@This()) ?*core_foundation.CGFloat {
-        return objc.msgSend(self, "components", ?*core_foundation.CGFloat, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn alpha(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "alpha", core_foundation.CGFloat, .{});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn colorSpace(self: *@This()) core_graphics.ColorSpaceRef {
-        return objc.msgSend(self, "colorSpace", core_graphics.ColorSpaceRef, .{});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn red(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "red", core_foundation.CGFloat, .{});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn green(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "green", core_foundation.CGFloat, .{});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn blue(self: *@This()) core_foundation.CGFloat {
-        return objc.msgSend(self, "blue", core_foundation.CGFloat, .{});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn stringRepresentation(self: *@This()) ?*foundation.String {
-        return objc.msgSend(self, "stringRepresentation", ?*foundation.String, .{});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn blackColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "blackColor", ?*Color, .{});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn whiteColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "whiteColor", ?*Color, .{});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn grayColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "grayColor", ?*Color, .{});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn redColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "redColor", ?*Color, .{});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn greenColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "greenColor", ?*Color, .{});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn blueColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "blueColor", ?*Color, .{});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn cyanColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "cyanColor", ?*Color, .{});
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn magentaColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "magentaColor", ?*Color, .{});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn yellowColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "yellowColor", ?*Color, .{});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn clearColor(self: *@This()) ?*Color {
-        return objc.msgSend(self, "clearColor", ?*Color, .{});
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn colorWithCGColor(_self: *@This(), _c: core_graphics.ColorRef) *@This() {
+        return objc.msgSend(_self, "colorWithCGColor:", *@This(), .{_c});
+    }
+
+    pub fn colorWithRedGreenBlueAlpha(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _a: core_foundation.CGFloat, ) *@This() {
+        return objc.msgSend(_self, "colorWithRed:green:blue:alpha:", *@This(), .{_r, _g, _b, _a, });
+    }
+
+    pub fn colorWithRedGreenBlue(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat) *@This() {
+        return objc.msgSend(_self, "colorWithRed:green:blue:", *@This(), .{_r, _g, _b});
+    }
+
+    pub fn colorWithRedGreenBlueAlphaColorSpace(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _a: core_foundation.CGFloat, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
+        return objc.msgSend(_self, "colorWithRed:green:blue:alpha:colorSpace:", *@This(), .{_r, _g, _b, _a, _colorSpace, });
+    }
+
+    pub fn colorWithRedGreenBlueColorSpace(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
+        return objc.msgSend(_self, "colorWithRed:green:blue:colorSpace:", *@This(), .{_r, _g, _b, _colorSpace, });
+    }
+
+    pub fn colorWithString(_self: *@This(), _representation: ?*foundation.String) *@This() {
+        return objc.msgSend(_self, "colorWithString:", *@This(), .{_representation});
+    }
+
+    pub fn initWithCGColor(_self: *@This(), _c: core_graphics.ColorRef) *@This() {
+        return objc.msgSend(_self, "initWithCGColor:", *@This(), .{_c});
+    }
+
+    pub fn initWithRedGreenBlueAlpha(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _a: core_foundation.CGFloat, ) *@This() {
+        return objc.msgSend(_self, "initWithRed:green:blue:alpha:", *@This(), .{_r, _g, _b, _a, });
+    }
+
+    pub fn initWithRedGreenBlue(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat) *@This() {
+        return objc.msgSend(_self, "initWithRed:green:blue:", *@This(), .{_r, _g, _b});
+    }
+
+    pub fn initWithRedGreenBlueAlphaColorSpace(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _a: core_foundation.CGFloat, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
+        return objc.msgSend(_self, "initWithRed:green:blue:alpha:colorSpace:", *@This(), .{_r, _g, _b, _a, _colorSpace, });
+    }
+
+    pub fn initWithRedGreenBlueColorSpace(_self: *@This(), _r: core_foundation.CGFloat, _g: core_foundation.CGFloat, _b: core_foundation.CGFloat, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
+        return objc.msgSend(_self, "initWithRed:green:blue:colorSpace:", *@This(), .{_r, _g, _b, _colorSpace, });
+    }
+
+    pub fn numberOfComponents(_self: *@This()) objc.size_t {
+        return objc.msgSend(_self, "numberOfComponents", objc.size_t, .{});
+    }
+
+    pub fn components(_self: *@This()) ?*core_foundation.CGFloat {
+        return objc.msgSend(_self, "components", ?*core_foundation.CGFloat, .{});
+    }
+
+    pub fn alpha(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "alpha", core_foundation.CGFloat, .{});
+    }
+
+    pub fn colorSpace(_self: *@This()) core_graphics.ColorSpaceRef {
+        return objc.msgSend(_self, "colorSpace", core_graphics.ColorSpaceRef, .{});
+    }
+
+    pub fn red(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "red", core_foundation.CGFloat, .{});
+    }
+
+    pub fn green(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "green", core_foundation.CGFloat, .{});
+    }
+
+    pub fn blue(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "blue", core_foundation.CGFloat, .{});
+    }
+
+    pub fn stringRepresentation(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "stringRepresentation", ?*foundation.String, .{});
+    }
+
+    pub fn blackColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "blackColor", ?*Color, .{});
+    }
+
+    pub fn whiteColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "whiteColor", ?*Color, .{});
+    }
+
+    pub fn grayColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "grayColor", ?*Color, .{});
+    }
+
+    pub fn redColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "redColor", ?*Color, .{});
+    }
+
+    pub fn greenColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "greenColor", ?*Color, .{});
+    }
+
+    pub fn blueColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "blueColor", ?*Color, .{});
+    }
+
+    pub fn cyanColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "cyanColor", ?*Color, .{});
+    }
+
+    pub fn magentaColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "magentaColor", ?*Color, .{});
+    }
+
+    pub fn yellowColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "yellowColor", ?*Color, .{});
+    }
+
+    pub fn clearColor(_self: *@This()) ?*Color {
+        return objc.msgSend(_self, "clearColor", ?*Color, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIImage?language=objc
 pub const Image = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIImage", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIImage", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -282,356 +530,480 @@ pub const Image = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn imageWithCGImage(self: *@This(), image: core_graphics.ImageRef) ?*Image {
-        return objc.msgSend(self, "imageWithCGImage:", ?*Image, .{image});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn imageWithCGImageOptions(self: *@This(), image: core_graphics.ImageRef, options: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageWithCGImage:options:", ?*Image, .{image, options});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn imageWithCGImageSourceIndexOptions(self: *@This(), source: image_io.SourceRef, index: objc.size_t, dict: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageWithCGImageSource:index:options:", ?*Image, .{source, index, dict});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn imageWithCGLayer(self: *@This(), layer: core_graphics.LayerRef) ?*Image {
-        return objc.msgSend(self, "imageWithCGLayer:", ?*Image, .{layer});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn imageWithCGLayerOptions(self: *@This(), layer: core_graphics.LayerRef, options: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageWithCGLayer:options:", ?*Image, .{layer, options});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn imageWithBitmapDataBytesPerRowSizeFormatColorSpace(self: *@This(), data: ?*foundation.Data, bytesPerRow: objc.size_t, size: core_foundation.CGSize, format: Format, colorSpace: core_graphics.ColorSpaceRef, ) ?*Image {
-        return objc.msgSend(self, "imageWithBitmapData:bytesPerRow:size:format:colorSpace:", ?*Image, .{data, bytesPerRow, size, format, colorSpace, });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn imageWithTextureSizeFlippedColorSpace(self: *@This(), name: u32, size: core_foundation.CGSize, flipped: objc.BOOL, colorSpace: core_graphics.ColorSpaceRef, ) ?*Image {
-        return objc.msgSend(self, "imageWithTexture:size:flipped:colorSpace:", ?*Image, .{name, size, flipped, colorSpace, });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn imageWithTextureSizeFlippedOptions(self: *@This(), name: u32, size: core_foundation.CGSize, flipped: objc.BOOL, options: ?*anyopaque, ) ?*Image {
-        return objc.msgSend(self, "imageWithTexture:size:flipped:options:", ?*Image, .{name, size, flipped, options, });
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn imageWithMTLTextureOptions(self: *@This(), texture: ?*anyopaque, options: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageWithMTLTexture:options:", ?*Image, .{texture, options});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn imageWithContentsOfURL(self: *@This(), url: ?*foundation.URL) ?*Image {
-        return objc.msgSend(self, "imageWithContentsOfURL:", ?*Image, .{url});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn imageWithContentsOfURLOptions(self: *@This(), url: ?*foundation.URL, options: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageWithContentsOfURL:options:", ?*Image, .{url, options});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn imageWithData(self: *@This(), data: ?*foundation.Data) ?*Image {
-        return objc.msgSend(self, "imageWithData:", ?*Image, .{data});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn imageWithDataOptions(self: *@This(), data: ?*foundation.Data, options: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageWithData:options:", ?*Image, .{data, options});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn imageWithCVImageBuffer(self: *@This(), imageBuffer: core_video.ImageBufferRef) ?*Image {
-        return objc.msgSend(self, "imageWithCVImageBuffer:", ?*Image, .{imageBuffer});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn imageWithCVImageBufferOptions(self: *@This(), imageBuffer: core_video.ImageBufferRef, options: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageWithCVImageBuffer:options:", ?*Image, .{imageBuffer, options});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn imageWithCVPixelBuffer(self: *@This(), pixelBuffer: core_video.PixelBufferRef) ?*Image {
-        return objc.msgSend(self, "imageWithCVPixelBuffer:", ?*Image, .{pixelBuffer});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn imageWithCVPixelBufferOptions(self: *@This(), pixelBuffer: core_video.PixelBufferRef, options: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageWithCVPixelBuffer:options:", ?*Image, .{pixelBuffer, options});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn imageWithIOSurface(self: *@This(), surface: io_surface.Ref) ?*Image {
-        return objc.msgSend(self, "imageWithIOSurface:", ?*Image, .{surface});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn imageWithIOSurfaceOptions(self: *@This(), surface: io_surface.Ref, options: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageWithIOSurface:options:", ?*Image, .{surface, options});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn imageWithColor(self: *@This(), color: ?*Color) ?*Image {
-        return objc.msgSend(self, "imageWithColor:", ?*Image, .{color});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn emptyImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "emptyImage", ?*Image, .{});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn blackImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "blackImage", ?*Image, .{});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn whiteImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "whiteImage", ?*Image, .{});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn grayImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "grayImage", ?*Image, .{});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn redImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "redImage", ?*Image, .{});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn greenImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "greenImage", ?*Image, .{});
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn blueImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "blueImage", ?*Image, .{});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn cyanImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "cyanImage", ?*Image, .{});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn magentaImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "magentaImage", ?*Image, .{});
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
     }
 
-    pub fn yellowImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "yellowImage", ?*Image, .{});
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
     }
 
-    pub fn clearImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "clearImage", ?*Image, .{});
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithCGImage(self: *@This(), image: core_graphics.ImageRef) *@This() {
-        return objc.msgSend(self, "initWithCGImage:", *@This(), .{image});
+    pub fn imageWithCGImage(_self: *@This(), _image: core_graphics.ImageRef) ?*Image {
+        return objc.msgSend(_self, "imageWithCGImage:", ?*Image, .{_image});
     }
 
-    pub fn initWithCGImageOptions(self: *@This(), image: core_graphics.ImageRef, options: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithCGImage:options:", *@This(), .{image, options});
+    pub fn imageWithCGImageOptions(_self: *@This(), _image: core_graphics.ImageRef, _options: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageWithCGImage:options:", ?*Image, .{_image, _options});
     }
 
-    pub fn initWithCGImageSourceIndexOptions(self: *@This(), source: image_io.SourceRef, index: objc.size_t, dict: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithCGImageSource:index:options:", *@This(), .{source, index, dict});
+    pub fn imageWithCGImageSourceIndexOptions(_self: *@This(), _source: image_io.SourceRef, _index: objc.size_t, _dict: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageWithCGImageSource:index:options:", ?*Image, .{_source, _index, _dict});
     }
 
-    pub fn initWithCGLayer(self: *@This(), layer: core_graphics.LayerRef) *@This() {
-        return objc.msgSend(self, "initWithCGLayer:", *@This(), .{layer});
+    pub fn imageWithCGLayer(_self: *@This(), _layer: core_graphics.LayerRef) ?*Image {
+        return objc.msgSend(_self, "imageWithCGLayer:", ?*Image, .{_layer});
     }
 
-    pub fn initWithCGLayerOptions(self: *@This(), layer: core_graphics.LayerRef, options: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithCGLayer:options:", *@This(), .{layer, options});
+    pub fn imageWithCGLayerOptions(_self: *@This(), _layer: core_graphics.LayerRef, _options: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageWithCGLayer:options:", ?*Image, .{_layer, _options});
     }
 
-    pub fn initWithData(self: *@This(), data: ?*foundation.Data) *@This() {
-        return objc.msgSend(self, "initWithData:", *@This(), .{data});
+    pub fn imageWithBitmapDataBytesPerRowSizeFormatColorSpace(_self: *@This(), _data: ?*foundation.Data, _bytesPerRow: objc.size_t, _size: core_foundation.CGSize, _format: Format, _colorSpace: core_graphics.ColorSpaceRef, ) ?*Image {
+        return objc.msgSend(_self, "imageWithBitmapData:bytesPerRow:size:format:colorSpace:", ?*Image, .{_data, _bytesPerRow, _size, _format, _colorSpace, });
     }
 
-    pub fn initWithDataOptions(self: *@This(), data: ?*foundation.Data, options: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithData:options:", *@This(), .{data, options});
+    pub fn imageWithTextureSizeFlippedColorSpace(_self: *@This(), _name: u32, _size: core_foundation.CGSize, _flipped: objc.BOOL, _colorSpace: core_graphics.ColorSpaceRef, ) ?*Image {
+        return objc.msgSend(_self, "imageWithTexture:size:flipped:colorSpace:", ?*Image, .{_name, _size, _flipped, _colorSpace, });
     }
 
-    pub fn initWithBitmapDataBytesPerRowSizeFormatColorSpace(self: *@This(), data: ?*foundation.Data, bytesPerRow: objc.size_t, size: core_foundation.CGSize, format: Format, colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(self, "initWithBitmapData:bytesPerRow:size:format:colorSpace:", *@This(), .{data, bytesPerRow, size, format, colorSpace, });
+    pub fn imageWithTextureSizeFlippedOptions(_self: *@This(), _name: u32, _size: core_foundation.CGSize, _flipped: objc.BOOL, _options: ?*anyopaque, ) ?*Image {
+        return objc.msgSend(_self, "imageWithTexture:size:flipped:options:", ?*Image, .{_name, _size, _flipped, _options, });
     }
 
-    pub fn initWithTextureSizeFlippedColorSpace(self: *@This(), name: u32, size: core_foundation.CGSize, flipped: objc.BOOL, colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
-        return objc.msgSend(self, "initWithTexture:size:flipped:colorSpace:", *@This(), .{name, size, flipped, colorSpace, });
+    pub fn imageWithMTLTextureOptions(_self: *@This(), _texture: ?*anyopaque, _options: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageWithMTLTexture:options:", ?*Image, .{_texture, _options});
     }
 
-    pub fn initWithTextureSizeFlippedOptions(self: *@This(), name: u32, size: core_foundation.CGSize, flipped: objc.BOOL, options: ?*anyopaque, ) *@This() {
-        return objc.msgSend(self, "initWithTexture:size:flipped:options:", *@This(), .{name, size, flipped, options, });
+    pub fn imageWithContentsOfURL(_self: *@This(), _url: ?*foundation.URL) ?*Image {
+        return objc.msgSend(_self, "imageWithContentsOfURL:", ?*Image, .{_url});
     }
 
-    pub fn initWithMTLTextureOptions(self: *@This(), texture: ?*anyopaque, options: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithMTLTexture:options:", *@This(), .{texture, options});
+    pub fn imageWithContentsOfURLOptions(_self: *@This(), _url: ?*foundation.URL, _options: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageWithContentsOfURL:options:", ?*Image, .{_url, _options});
     }
 
-    pub fn initWithContentsOfURL(self: *@This(), url: ?*foundation.URL) *@This() {
-        return objc.msgSend(self, "initWithContentsOfURL:", *@This(), .{url});
+    pub fn imageWithData(_self: *@This(), _data: ?*foundation.Data) ?*Image {
+        return objc.msgSend(_self, "imageWithData:", ?*Image, .{_data});
     }
 
-    pub fn initWithContentsOfURLOptions(self: *@This(), url: ?*foundation.URL, options: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithContentsOfURL:options:", *@This(), .{url, options});
+    pub fn imageWithDataOptions(_self: *@This(), _data: ?*foundation.Data, _options: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageWithData:options:", ?*Image, .{_data, _options});
     }
 
-    pub fn initWithIOSurface(self: *@This(), surface: io_surface.Ref) *@This() {
-        return objc.msgSend(self, "initWithIOSurface:", *@This(), .{surface});
+    pub fn imageWithCVImageBuffer(_self: *@This(), _imageBuffer: core_video.ImageBufferRef) ?*Image {
+        return objc.msgSend(_self, "imageWithCVImageBuffer:", ?*Image, .{_imageBuffer});
     }
 
-    pub fn initWithIOSurfaceOptions(self: *@This(), surface: io_surface.Ref, options: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithIOSurface:options:", *@This(), .{surface, options});
+    pub fn imageWithCVImageBufferOptions(_self: *@This(), _imageBuffer: core_video.ImageBufferRef, _options: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageWithCVImageBuffer:options:", ?*Image, .{_imageBuffer, _options});
     }
 
-    pub fn initWithIOSurfacePlaneFormatOptions(self: *@This(), surface: io_surface.Ref, plane: objc.size_t, format: Format, options: ?*anyopaque, ) *@This() {
-        return objc.msgSend(self, "initWithIOSurface:plane:format:options:", *@This(), .{surface, plane, format, options, });
+    pub fn imageWithCVPixelBuffer(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef) ?*Image {
+        return objc.msgSend(_self, "imageWithCVPixelBuffer:", ?*Image, .{_pixelBuffer});
     }
 
-    pub fn initWithCVImageBuffer(self: *@This(), imageBuffer: core_video.ImageBufferRef) *@This() {
-        return objc.msgSend(self, "initWithCVImageBuffer:", *@This(), .{imageBuffer});
+    pub fn imageWithCVPixelBufferOptions(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef, _options: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageWithCVPixelBuffer:options:", ?*Image, .{_pixelBuffer, _options});
     }
 
-    pub fn initWithCVImageBufferOptions(self: *@This(), imageBuffer: core_video.ImageBufferRef, options: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithCVImageBuffer:options:", *@This(), .{imageBuffer, options});
+    pub fn imageWithIOSurface(_self: *@This(), _surface: io_surface.Ref) ?*Image {
+        return objc.msgSend(_self, "imageWithIOSurface:", ?*Image, .{_surface});
     }
 
-    pub fn initWithCVPixelBuffer(self: *@This(), pixelBuffer: core_video.PixelBufferRef) *@This() {
-        return objc.msgSend(self, "initWithCVPixelBuffer:", *@This(), .{pixelBuffer});
+    pub fn imageWithIOSurfaceOptions(_self: *@This(), _surface: io_surface.Ref, _options: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageWithIOSurface:options:", ?*Image, .{_surface, _options});
     }
 
-    pub fn initWithCVPixelBufferOptions(self: *@This(), pixelBuffer: core_video.PixelBufferRef, options: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithCVPixelBuffer:options:", *@This(), .{pixelBuffer, options});
+    pub fn imageWithColor(_self: *@This(), _color: ?*Color) ?*Image {
+        return objc.msgSend(_self, "imageWithColor:", ?*Image, .{_color});
     }
 
-    pub fn initWithColor(self: *@This(), color: ?*Color) *@This() {
-        return objc.msgSend(self, "initWithColor:", *@This(), .{color});
+    pub fn emptyImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "emptyImage", ?*Image, .{});
     }
 
-    pub fn imageByApplyingTransform(self: *@This(), matrix: core_foundation.CGAffineTransform) ?*Image {
-        return objc.msgSend(self, "imageByApplyingTransform:", ?*Image, .{matrix});
+    pub fn blackImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "blackImage", ?*Image, .{});
     }
 
-    pub fn imageByApplyingTransformHighQualityDownsample(self: *@This(), matrix: core_foundation.CGAffineTransform, highQualityDownsample: objc.BOOL) ?*Image {
-        return objc.msgSend(self, "imageByApplyingTransform:highQualityDownsample:", ?*Image, .{matrix, highQualityDownsample});
+    pub fn whiteImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "whiteImage", ?*Image, .{});
     }
 
-    pub fn imageByApplyingOrientation(self: *@This(), orientation: i32) ?*Image {
-        return objc.msgSend(self, "imageByApplyingOrientation:", ?*Image, .{orientation});
+    pub fn grayImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "grayImage", ?*Image, .{});
     }
 
-    pub fn imageTransformForOrientation(self: *@This(), orientation: i32) core_foundation.CGAffineTransform {
-        return objc.msgSend(self, "imageTransformForOrientation:", core_foundation.CGAffineTransform, .{orientation});
+    pub fn redImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "redImage", ?*Image, .{});
     }
 
-    pub fn imageByApplyingCGOrientation(self: *@This(), orientation: image_io.PropertyOrientation) ?*Image {
-        return objc.msgSend(self, "imageByApplyingCGOrientation:", ?*Image, .{orientation});
+    pub fn greenImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "greenImage", ?*Image, .{});
     }
 
-    pub fn imageTransformForCGOrientation(self: *@This(), orientation: image_io.PropertyOrientation) core_foundation.CGAffineTransform {
-        return objc.msgSend(self, "imageTransformForCGOrientation:", core_foundation.CGAffineTransform, .{orientation});
+    pub fn blueImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "blueImage", ?*Image, .{});
     }
 
-    pub fn imageByCompositingOverImage(self: *@This(), dest: ?*Image) ?*Image {
-        return objc.msgSend(self, "imageByCompositingOverImage:", ?*Image, .{dest});
+    pub fn cyanImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "cyanImage", ?*Image, .{});
     }
 
-    pub fn imageByCroppingToRect(self: *@This(), rect: core_foundation.CGRect) ?*Image {
-        return objc.msgSend(self, "imageByCroppingToRect:", ?*Image, .{rect});
+    pub fn magentaImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "magentaImage", ?*Image, .{});
     }
 
-    pub fn imageByClampingToExtent(self: *@This()) ?*Image {
-        return objc.msgSend(self, "imageByClampingToExtent", ?*Image, .{});
+    pub fn yellowImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "yellowImage", ?*Image, .{});
     }
 
-    pub fn imageByClampingToRect(self: *@This(), rect: core_foundation.CGRect) ?*Image {
-        return objc.msgSend(self, "imageByClampingToRect:", ?*Image, .{rect});
+    pub fn clearImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "clearImage", ?*Image, .{});
     }
 
-    pub fn imageByApplyingFilterWithInputParameters(self: *@This(), filterName: ?*application_services.NSString, params: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "imageByApplyingFilter:withInputParameters:", ?*Image, .{filterName, params});
+    pub fn initWithCGImage(_self: *@This(), _image: core_graphics.ImageRef) *@This() {
+        return objc.msgSend(_self, "initWithCGImage:", *@This(), .{_image});
     }
 
-    pub fn imageByApplyingFilter(self: *@This(), filterName: ?*application_services.NSString) ?*Image {
-        return objc.msgSend(self, "imageByApplyingFilter:", ?*Image, .{filterName});
+    pub fn initWithCGImageOptions(_self: *@This(), _image: core_graphics.ImageRef, _options: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithCGImage:options:", *@This(), .{_image, _options});
     }
 
-    pub fn imageByColorMatchingColorSpaceToWorkingSpace(self: *@This(), colorSpace: core_graphics.ColorSpaceRef) ?*Image {
-        return objc.msgSend(self, "imageByColorMatchingColorSpaceToWorkingSpace:", ?*Image, .{colorSpace});
+    pub fn initWithCGImageSourceIndexOptions(_self: *@This(), _source: image_io.SourceRef, _index: objc.size_t, _dict: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithCGImageSource:index:options:", *@This(), .{_source, _index, _dict});
     }
 
-    pub fn imageByColorMatchingWorkingSpaceToColorSpace(self: *@This(), colorSpace: core_graphics.ColorSpaceRef) ?*Image {
-        return objc.msgSend(self, "imageByColorMatchingWorkingSpaceToColorSpace:", ?*Image, .{colorSpace});
+    pub fn initWithCGLayer(_self: *@This(), _layer: core_graphics.LayerRef) *@This() {
+        return objc.msgSend(_self, "initWithCGLayer:", *@This(), .{_layer});
     }
 
-    pub fn imageByPremultiplyingAlpha(self: *@This()) ?*Image {
-        return objc.msgSend(self, "imageByPremultiplyingAlpha", ?*Image, .{});
+    pub fn initWithCGLayerOptions(_self: *@This(), _layer: core_graphics.LayerRef, _options: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithCGLayer:options:", *@This(), .{_layer, _options});
     }
 
-    pub fn imageByUnpremultiplyingAlpha(self: *@This()) ?*Image {
-        return objc.msgSend(self, "imageByUnpremultiplyingAlpha", ?*Image, .{});
+    pub fn initWithData(_self: *@This(), _data: ?*foundation.Data) *@This() {
+        return objc.msgSend(_self, "initWithData:", *@This(), .{_data});
     }
 
-    pub fn imageBySettingAlphaOneInExtent(self: *@This(), extent: core_foundation.CGRect) ?*Image {
-        return objc.msgSend(self, "imageBySettingAlphaOneInExtent:", ?*Image, .{extent});
+    pub fn initWithDataOptions(_self: *@This(), _data: ?*foundation.Data, _options: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithData:options:", *@This(), .{_data, _options});
     }
 
-    pub fn imageByApplyingGaussianBlurWithSigma(self: *@This(), sigma: f64) ?*Image {
-        return objc.msgSend(self, "imageByApplyingGaussianBlurWithSigma:", ?*Image, .{sigma});
+    pub fn initWithBitmapDataBytesPerRowSizeFormatColorSpace(_self: *@This(), _data: ?*foundation.Data, _bytesPerRow: objc.size_t, _size: core_foundation.CGSize, _format: Format, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
+        return objc.msgSend(_self, "initWithBitmapData:bytesPerRow:size:format:colorSpace:", *@This(), .{_data, _bytesPerRow, _size, _format, _colorSpace, });
     }
 
-    pub fn imageBySettingProperties(self: *@This(), properties: ?*application_services.NSDictionary) ?*Image {
-        return objc.msgSend(self, "imageBySettingProperties:", ?*Image, .{properties});
+    pub fn initWithTextureSizeFlippedColorSpace(_self: *@This(), _name: u32, _size: core_foundation.CGSize, _flipped: objc.BOOL, _colorSpace: core_graphics.ColorSpaceRef, ) *@This() {
+        return objc.msgSend(_self, "initWithTexture:size:flipped:colorSpace:", *@This(), .{_name, _size, _flipped, _colorSpace, });
     }
 
-    pub fn imageBySamplingLinear(self: *@This()) ?*Image {
-        return objc.msgSend(self, "imageBySamplingLinear", ?*Image, .{});
+    pub fn initWithTextureSizeFlippedOptions(_self: *@This(), _name: u32, _size: core_foundation.CGSize, _flipped: objc.BOOL, _options: ?*anyopaque, ) *@This() {
+        return objc.msgSend(_self, "initWithTexture:size:flipped:options:", *@This(), .{_name, _size, _flipped, _options, });
     }
 
-    pub fn imageBySamplingNearest(self: *@This()) ?*Image {
-        return objc.msgSend(self, "imageBySamplingNearest", ?*Image, .{});
+    pub fn initWithMTLTextureOptions(_self: *@This(), _texture: ?*anyopaque, _options: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithMTLTexture:options:", *@This(), .{_texture, _options});
     }
 
-    pub fn imageByInsertingIntermediate(self: *@This()) ?*Image {
-        return objc.msgSend(self, "imageByInsertingIntermediate", ?*Image, .{});
+    pub fn initWithContentsOfURL(_self: *@This(), _url: ?*foundation.URL) *@This() {
+        return objc.msgSend(_self, "initWithContentsOfURL:", *@This(), .{_url});
     }
 
-    pub fn imageByInsertingIntermediate(self: *@This(), cache: objc.BOOL) ?*Image {
-        return objc.msgSend(self, "imageByInsertingIntermediate:", ?*Image, .{cache});
+    pub fn initWithContentsOfURLOptions(_self: *@This(), _url: ?*foundation.URL, _options: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithContentsOfURL:options:", *@This(), .{_url, _options});
     }
 
-    pub fn imageByApplyingGainMap(self: *@This(), gainmap: ?*Image) ?*Image {
-        return objc.msgSend(self, "imageByApplyingGainMap:", ?*Image, .{gainmap});
+    pub fn initWithIOSurface(_self: *@This(), _surface: io_surface.Ref) *@This() {
+        return objc.msgSend(_self, "initWithIOSurface:", *@This(), .{_surface});
     }
 
-    pub fn imageByApplyingGainMapHeadroom(self: *@This(), gainmap: ?*Image, headroom: f32) ?*Image {
-        return objc.msgSend(self, "imageByApplyingGainMap:headroom:", ?*Image, .{gainmap, headroom});
+    pub fn initWithIOSurfaceOptions(_self: *@This(), _surface: io_surface.Ref, _options: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithIOSurface:options:", *@This(), .{_surface, _options});
     }
 
-    pub fn extent(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "extent", core_foundation.CGRect, .{});
+    pub fn initWithIOSurfacePlaneFormatOptions(_self: *@This(), _surface: io_surface.Ref, _plane: objc.size_t, _format: Format, _options: ?*anyopaque, ) *@This() {
+        return objc.msgSend(_self, "initWithIOSurface:plane:format:options:", *@This(), .{_surface, _plane, _format, _options, });
     }
 
-    pub fn isOpaque(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isOpaque", objc.BOOL, .{});
+    pub fn initWithCVImageBuffer(_self: *@This(), _imageBuffer: core_video.ImageBufferRef) *@This() {
+        return objc.msgSend(_self, "initWithCVImageBuffer:", *@This(), .{_imageBuffer});
     }
 
-    pub fn properties(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "properties", ?*anyopaque, .{});
+    pub fn initWithCVImageBufferOptions(_self: *@This(), _imageBuffer: core_video.ImageBufferRef, _options: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithCVImageBuffer:options:", *@This(), .{_imageBuffer, _options});
     }
 
-    pub fn definition(self: *@This()) ?*FilterShape {
-        return objc.msgSend(self, "definition", ?*FilterShape, .{});
+    pub fn initWithCVPixelBuffer(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef) *@This() {
+        return objc.msgSend(_self, "initWithCVPixelBuffer:", *@This(), .{_pixelBuffer});
     }
 
-    pub fn url(self: *@This()) ?*foundation.URL {
-        return objc.msgSend(self, "url", ?*foundation.URL, .{});
+    pub fn initWithCVPixelBufferOptions(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef, _options: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithCVPixelBuffer:options:", *@This(), .{_pixelBuffer, _options});
     }
 
-    pub fn colorSpace(self: *@This()) core_graphics.ColorSpaceRef {
-        return objc.msgSend(self, "colorSpace", core_graphics.ColorSpaceRef, .{});
+    pub fn initWithColor(_self: *@This(), _color: ?*Color) *@This() {
+        return objc.msgSend(_self, "initWithColor:", *@This(), .{_color});
     }
 
-    pub fn contentHeadroom(self: *@This()) f32 {
-        return objc.msgSend(self, "contentHeadroom", f32, .{});
+    pub fn imageByApplyingTransform(_self: *@This(), _matrix: core_foundation.CGAffineTransform) ?*Image {
+        return objc.msgSend(_self, "imageByApplyingTransform:", ?*Image, .{_matrix});
     }
 
-    pub fn pixelBuffer(self: *@This()) core_video.PixelBufferRef {
-        return objc.msgSend(self, "pixelBuffer", core_video.PixelBufferRef, .{});
+    pub fn imageByApplyingTransformHighQualityDownsample(_self: *@This(), _matrix: core_foundation.CGAffineTransform, _highQualityDownsample: objc.BOOL) ?*Image {
+        return objc.msgSend(_self, "imageByApplyingTransform:highQualityDownsample:", ?*Image, .{_matrix, _highQualityDownsample});
     }
 
-    pub fn CGImage(self: *@This()) core_graphics.ImageRef {
-        return objc.msgSend(self, "CGImage", core_graphics.ImageRef, .{});
+    pub fn imageByApplyingOrientation(_self: *@This(), _orientation: i32) ?*Image {
+        return objc.msgSend(_self, "imageByApplyingOrientation:", ?*Image, .{_orientation});
     }
 
-    pub fn metalTexture(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "metalTexture", ?*anyopaque, .{});
+    pub fn imageTransformForOrientation(_self: *@This(), _orientation: i32) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "imageTransformForOrientation:", core_foundation.CGAffineTransform, .{_orientation});
     }
 
-    pub fn regionOfInterestForImageInRect(self: *@This(), image: ?*Image, rect: core_foundation.CGRect) core_foundation.CGRect {
-        return objc.msgSend(self, "regionOfInterestForImage:inRect:", core_foundation.CGRect, .{image, rect});
+    pub fn imageByApplyingCGOrientation(_self: *@This(), _orientation: image_io.PropertyOrientation) ?*Image {
+        return objc.msgSend(_self, "imageByApplyingCGOrientation:", ?*Image, .{_orientation});
+    }
+
+    pub fn imageTransformForCGOrientation(_self: *@This(), _orientation: image_io.PropertyOrientation) core_foundation.CGAffineTransform {
+        return objc.msgSend(_self, "imageTransformForCGOrientation:", core_foundation.CGAffineTransform, .{_orientation});
+    }
+
+    pub fn imageByCompositingOverImage(_self: *@This(), _dest: ?*Image) ?*Image {
+        return objc.msgSend(_self, "imageByCompositingOverImage:", ?*Image, .{_dest});
+    }
+
+    pub fn imageByCroppingToRect(_self: *@This(), _rect: core_foundation.CGRect) ?*Image {
+        return objc.msgSend(_self, "imageByCroppingToRect:", ?*Image, .{_rect});
+    }
+
+    pub fn imageByClampingToExtent(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "imageByClampingToExtent", ?*Image, .{});
+    }
+
+    pub fn imageByClampingToRect(_self: *@This(), _rect: core_foundation.CGRect) ?*Image {
+        return objc.msgSend(_self, "imageByClampingToRect:", ?*Image, .{_rect});
+    }
+
+    pub fn imageByApplyingFilterWithInputParameters(_self: *@This(), _filterName: ?*application_services.NSString, _params: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "imageByApplyingFilter:withInputParameters:", ?*Image, .{_filterName, _params});
+    }
+
+    pub fn imageByApplyingFilter(_self: *@This(), _filterName: ?*application_services.NSString) ?*Image {
+        return objc.msgSend(_self, "imageByApplyingFilter:", ?*Image, .{_filterName});
+    }
+
+    pub fn imageByColorMatchingColorSpaceToWorkingSpace(_self: *@This(), _colorSpace: core_graphics.ColorSpaceRef) ?*Image {
+        return objc.msgSend(_self, "imageByColorMatchingColorSpaceToWorkingSpace:", ?*Image, .{_colorSpace});
+    }
+
+    pub fn imageByColorMatchingWorkingSpaceToColorSpace(_self: *@This(), _colorSpace: core_graphics.ColorSpaceRef) ?*Image {
+        return objc.msgSend(_self, "imageByColorMatchingWorkingSpaceToColorSpace:", ?*Image, .{_colorSpace});
+    }
+
+    pub fn imageByPremultiplyingAlpha(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "imageByPremultiplyingAlpha", ?*Image, .{});
+    }
+
+    pub fn imageByUnpremultiplyingAlpha(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "imageByUnpremultiplyingAlpha", ?*Image, .{});
+    }
+
+    pub fn imageBySettingAlphaOneInExtent(_self: *@This(), _extent: core_foundation.CGRect) ?*Image {
+        return objc.msgSend(_self, "imageBySettingAlphaOneInExtent:", ?*Image, .{_extent});
+    }
+
+    pub fn imageByApplyingGaussianBlurWithSigma(_self: *@This(), _sigma: f64) ?*Image {
+        return objc.msgSend(_self, "imageByApplyingGaussianBlurWithSigma:", ?*Image, .{_sigma});
+    }
+
+    pub fn imageBySettingProperties(_self: *@This(), _properties: ?*application_services.NSDictionary) ?*Image {
+        return objc.msgSend(_self, "imageBySettingProperties:", ?*Image, .{_properties});
+    }
+
+    pub fn imageBySamplingLinear(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "imageBySamplingLinear", ?*Image, .{});
+    }
+
+    pub fn imageBySamplingNearest(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "imageBySamplingNearest", ?*Image, .{});
+    }
+
+    pub fn imageByInsertingIntermediate(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "imageByInsertingIntermediate", ?*Image, .{});
+    }
+
+    pub fn imageByInsertingIntermediate(_self: *@This(), _cache: objc.BOOL) ?*Image {
+        return objc.msgSend(_self, "imageByInsertingIntermediate:", ?*Image, .{_cache});
+    }
+
+    pub fn imageByApplyingGainMap(_self: *@This(), _gainmap: ?*Image) ?*Image {
+        return objc.msgSend(_self, "imageByApplyingGainMap:", ?*Image, .{_gainmap});
+    }
+
+    pub fn imageByApplyingGainMapHeadroom(_self: *@This(), _gainmap: ?*Image, _headroom: f32) ?*Image {
+        return objc.msgSend(_self, "imageByApplyingGainMap:headroom:", ?*Image, .{_gainmap, _headroom});
+    }
+
+    pub fn extent(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "extent", core_foundation.CGRect, .{});
+    }
+
+    pub fn isOpaque(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isOpaque", objc.BOOL, .{});
+    }
+
+    pub fn properties(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "properties", ?*anyopaque, .{});
+    }
+
+    pub fn definition(_self: *@This()) ?*FilterShape {
+        return objc.msgSend(_self, "definition", ?*FilterShape, .{});
+    }
+
+    pub fn url(_self: *@This()) ?*foundation.URL {
+        return objc.msgSend(_self, "url", ?*foundation.URL, .{});
+    }
+
+    pub fn colorSpace(_self: *@This()) core_graphics.ColorSpaceRef {
+        return objc.msgSend(_self, "colorSpace", core_graphics.ColorSpaceRef, .{});
+    }
+
+    pub fn contentHeadroom(_self: *@This()) f32 {
+        return objc.msgSend(_self, "contentHeadroom", f32, .{});
+    }
+
+    pub fn pixelBuffer(_self: *@This()) core_video.PixelBufferRef {
+        return objc.msgSend(_self, "pixelBuffer", core_video.PixelBufferRef, .{});
+    }
+
+    pub fn cgImage(_self: *@This()) core_graphics.ImageRef {
+        return objc.msgSend(_self, "CGImage", core_graphics.ImageRef, .{});
+    }
+
+    pub fn metalTexture(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "metalTexture", ?*anyopaque, .{});
+    }
+
+    pub fn regionOfInterestForImageInRect(_self: *@This(), _image: ?*Image, _rect: core_foundation.CGRect) core_foundation.CGRect {
+        return objc.msgSend(_self, "regionOfInterestForImage:inRect:", core_foundation.CGRect, .{_image, _rect});
     }
 
 };
@@ -644,7 +1016,7 @@ pub const ImageAutoAdjustmentOption = ?*application_services.NSString;
 
 /// https://developer.apple.com/documentation/CoreImage/CIContext?language=objc
 pub const Context = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIContext", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIContext", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -653,104 +1025,212 @@ pub const Context = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn contextWithCGLContextPixelFormatColorSpaceOptions(self: *@This(), cglctx: opengl.ContextObj, pixelFormat: opengl.PixelFormatObj, colorSpace: core_graphics.ColorSpaceRef, options: ?*anyopaque, ) ?*Context {
-        return objc.msgSend(self, "contextWithCGLContext:pixelFormat:colorSpace:options:", ?*Context, .{cglctx, pixelFormat, colorSpace, options, });
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn contextWithCGLContextPixelFormatOptions(self: *@This(), cglctx: opengl.ContextObj, pixelFormat: opengl.PixelFormatObj, options: ?*anyopaque) ?*Context {
-        return objc.msgSend(self, "contextWithCGLContext:pixelFormat:options:", ?*Context, .{cglctx, pixelFormat, options});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn contextWithCGContextOptions(self: *@This(), cgctx: core_graphics.ContextRef, options: ?*anyopaque) ?*Context {
-        return objc.msgSend(self, "contextWithCGContext:options:", ?*Context, .{cgctx, options});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn contextWithOptions(self: *@This(), options: ?*anyopaque) ?*Context {
-        return objc.msgSend(self, "contextWithOptions:", ?*Context, .{options});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn context(self: *@This()) ?*Context {
-        return objc.msgSend(self, "context", ?*Context, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn initWithOptions(self: *@This(), options: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithOptions:", *@This(), .{options});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn init(self: *@This()) *@This() {
-        return objc.msgSend(self, "init", *@This(), .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn contextWithMTLDevice(self: *@This(), device: ?*anyopaque) ?*Context {
-        return objc.msgSend(self, "contextWithMTLDevice:", ?*Context, .{device});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn contextWithMTLDeviceOptions(self: *@This(), device: ?*anyopaque, options: ?*anyopaque) ?*Context {
-        return objc.msgSend(self, "contextWithMTLDevice:options:", ?*Context, .{device, options});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn contextWithMTLCommandQueue(self: *@This(), commandQueue: ?*anyopaque) ?*Context {
-        return objc.msgSend(self, "contextWithMTLCommandQueue:", ?*Context, .{commandQueue});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn contextWithMTLCommandQueueOptions(self: *@This(), commandQueue: ?*anyopaque, options: ?*anyopaque) ?*Context {
-        return objc.msgSend(self, "contextWithMTLCommandQueue:options:", ?*Context, .{commandQueue, options});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn workingColorSpace(self: *@This()) core_graphics.ColorSpaceRef {
-        return objc.msgSend(self, "workingColorSpace", core_graphics.ColorSpaceRef, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn workingFormat(self: *@This()) Format {
-        return objc.msgSend(self, "workingFormat", Format, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn drawImageAtPointFromRect(self: *@This(), image: ?*Image, atPoint: core_foundation.CGPoint, fromRect: core_foundation.CGRect) void {
-        return objc.msgSend(self, "drawImage:atPoint:fromRect:", void, .{image, atPoint, fromRect});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn drawImageInRectFromRect(self: *@This(), image: ?*Image, inRect: core_foundation.CGRect, fromRect: core_foundation.CGRect) void {
-        return objc.msgSend(self, "drawImage:inRect:fromRect:", void, .{image, inRect, fromRect});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn createCGLayerWithSizeInfo(self: *@This(), size: core_foundation.CGSize, info: core_foundation.DictionaryRef) core_graphics.LayerRef {
-        return objc.msgSend(self, "createCGLayerWithSize:info:", core_graphics.LayerRef, .{size, info});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn renderToBitmapRowBytesBoundsFormatColorSpace(self: *@This(), image: ?*Image, data: ?*anyopaque, rowBytes: objc.ptrdiff_t, bounds: core_foundation.CGRect, format: Format, colorSpace: core_graphics.ColorSpaceRef, ) void {
-        return objc.msgSend(self, "render:toBitmap:rowBytes:bounds:format:colorSpace:", void, .{image, data, rowBytes, bounds, format, colorSpace, });
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn renderToIOSurfaceBoundsColorSpace(self: *@This(), image: ?*Image, surface: io_surface.Ref, bounds: core_foundation.CGRect, colorSpace: core_graphics.ColorSpaceRef, ) void {
-        return objc.msgSend(self, "render:toIOSurface:bounds:colorSpace:", void, .{image, surface, bounds, colorSpace, });
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn renderToCVPixelBuffer(self: *@This(), image: ?*Image, buffer: core_video.PixelBufferRef) void {
-        return objc.msgSend(self, "render:toCVPixelBuffer:", void, .{image, buffer});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn renderToCVPixelBufferBoundsColorSpace(self: *@This(), image: ?*Image, buffer: core_video.PixelBufferRef, bounds: core_foundation.CGRect, colorSpace: core_graphics.ColorSpaceRef, ) void {
-        return objc.msgSend(self, "render:toCVPixelBuffer:bounds:colorSpace:", void, .{image, buffer, bounds, colorSpace, });
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn renderToMTLTextureCommandBufferBoundsColorSpace(self: *@This(), image: ?*Image, texture: ?*anyopaque, commandBuffer: ?*anyopaque, bounds: core_foundation.CGRect, colorSpace: core_graphics.ColorSpaceRef, ) void {
-        return objc.msgSend(self, "render:toMTLTexture:commandBuffer:bounds:colorSpace:", void, .{image, texture, commandBuffer, bounds, colorSpace, });
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn reclaimResources(self: *@This()) void {
-        return objc.msgSend(self, "reclaimResources", void, .{});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn clearCaches(self: *@This()) void {
-        return objc.msgSend(self, "clearCaches", void, .{});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn inputImageMaximumSize(self: *@This()) core_foundation.CGSize {
-        return objc.msgSend(self, "inputImageMaximumSize", core_foundation.CGSize, .{});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn outputImageMaximumSize(self: *@This()) core_foundation.CGSize {
-        return objc.msgSend(self, "outputImageMaximumSize", core_foundation.CGSize, .{});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn contextWithCGLContextPixelFormatColorSpaceOptions(_self: *@This(), _cglctx: opengl.ContextObj, _pixelFormat: opengl.PixelFormatObj, _colorSpace: core_graphics.ColorSpaceRef, _options: ?*anyopaque, ) ?*Context {
+        return objc.msgSend(_self, "contextWithCGLContext:pixelFormat:colorSpace:options:", ?*Context, .{_cglctx, _pixelFormat, _colorSpace, _options, });
+    }
+
+    pub fn contextWithCGLContextPixelFormatOptions(_self: *@This(), _cglctx: opengl.ContextObj, _pixelFormat: opengl.PixelFormatObj, _options: ?*anyopaque) ?*Context {
+        return objc.msgSend(_self, "contextWithCGLContext:pixelFormat:options:", ?*Context, .{_cglctx, _pixelFormat, _options});
+    }
+
+    pub fn contextWithCGContextOptions(_self: *@This(), _cgctx: core_graphics.ContextRef, _options: ?*anyopaque) ?*Context {
+        return objc.msgSend(_self, "contextWithCGContext:options:", ?*Context, .{_cgctx, _options});
+    }
+
+    pub fn contextWithOptions(_self: *@This(), _options: ?*anyopaque) ?*Context {
+        return objc.msgSend(_self, "contextWithOptions:", ?*Context, .{_options});
+    }
+
+    pub fn context(_self: *@This()) ?*Context {
+        return objc.msgSend(_self, "context", ?*Context, .{});
+    }
+
+    pub fn initWithOptions(_self: *@This(), _options: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithOptions:", *@This(), .{_options});
+    }
+
+    pub fn contextWithMTLDevice(_self: *@This(), _device: ?*anyopaque) ?*Context {
+        return objc.msgSend(_self, "contextWithMTLDevice:", ?*Context, .{_device});
+    }
+
+    pub fn contextWithMTLDeviceOptions(_self: *@This(), _device: ?*anyopaque, _options: ?*anyopaque) ?*Context {
+        return objc.msgSend(_self, "contextWithMTLDevice:options:", ?*Context, .{_device, _options});
+    }
+
+    pub fn contextWithMTLCommandQueue(_self: *@This(), _commandQueue: ?*anyopaque) ?*Context {
+        return objc.msgSend(_self, "contextWithMTLCommandQueue:", ?*Context, .{_commandQueue});
+    }
+
+    pub fn contextWithMTLCommandQueueOptions(_self: *@This(), _commandQueue: ?*anyopaque, _options: ?*anyopaque) ?*Context {
+        return objc.msgSend(_self, "contextWithMTLCommandQueue:options:", ?*Context, .{_commandQueue, _options});
+    }
+
+    pub fn workingColorSpace(_self: *@This()) core_graphics.ColorSpaceRef {
+        return objc.msgSend(_self, "workingColorSpace", core_graphics.ColorSpaceRef, .{});
+    }
+
+    pub fn workingFormat(_self: *@This()) Format {
+        return objc.msgSend(_self, "workingFormat", Format, .{});
+    }
+
+    pub fn drawImageAtPointFromRect(_self: *@This(), _image: ?*Image, _atPoint: core_foundation.CGPoint, _fromRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "drawImage:atPoint:fromRect:", void, .{_image, _atPoint, _fromRect});
+    }
+
+    pub fn drawImageInRectFromRect(_self: *@This(), _image: ?*Image, _inRect: core_foundation.CGRect, _fromRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "drawImage:inRect:fromRect:", void, .{_image, _inRect, _fromRect});
+    }
+
+    pub fn createCGLayerWithSizeInfo(_self: *@This(), _size: core_foundation.CGSize, _info: core_foundation.DictionaryRef) core_graphics.LayerRef {
+        return objc.msgSend(_self, "createCGLayerWithSize:info:", core_graphics.LayerRef, .{_size, _info});
+    }
+
+    pub fn renderToBitmapRowBytesBoundsFormatColorSpace(_self: *@This(), _image: ?*Image, _data: ?*anyopaque, _rowBytes: objc.ptrdiff_t, _bounds: core_foundation.CGRect, _format: Format, _colorSpace: core_graphics.ColorSpaceRef, ) void {
+        return objc.msgSend(_self, "render:toBitmap:rowBytes:bounds:format:colorSpace:", void, .{_image, _data, _rowBytes, _bounds, _format, _colorSpace, });
+    }
+
+    pub fn renderToIOSurfaceBoundsColorSpace(_self: *@This(), _image: ?*Image, _surface: io_surface.Ref, _bounds: core_foundation.CGRect, _colorSpace: core_graphics.ColorSpaceRef, ) void {
+        return objc.msgSend(_self, "render:toIOSurface:bounds:colorSpace:", void, .{_image, _surface, _bounds, _colorSpace, });
+    }
+
+    pub fn renderToCVPixelBuffer(_self: *@This(), _image: ?*Image, _buffer: core_video.PixelBufferRef) void {
+        return objc.msgSend(_self, "render:toCVPixelBuffer:", void, .{_image, _buffer});
+    }
+
+    pub fn renderToCVPixelBufferBoundsColorSpace(_self: *@This(), _image: ?*Image, _buffer: core_video.PixelBufferRef, _bounds: core_foundation.CGRect, _colorSpace: core_graphics.ColorSpaceRef, ) void {
+        return objc.msgSend(_self, "render:toCVPixelBuffer:bounds:colorSpace:", void, .{_image, _buffer, _bounds, _colorSpace, });
+    }
+
+    pub fn renderToMTLTextureCommandBufferBoundsColorSpace(_self: *@This(), _image: ?*Image, _texture: ?*anyopaque, _commandBuffer: ?*anyopaque, _bounds: core_foundation.CGRect, _colorSpace: core_graphics.ColorSpaceRef, ) void {
+        return objc.msgSend(_self, "render:toMTLTexture:commandBuffer:bounds:colorSpace:", void, .{_image, _texture, _commandBuffer, _bounds, _colorSpace, });
+    }
+
+    pub fn reclaimResources(_self: *@This()) void {
+        return objc.msgSend(_self, "reclaimResources", void, .{});
+    }
+
+    pub fn clearCaches(_self: *@This()) void {
+        return objc.msgSend(_self, "clearCaches", void, .{});
+    }
+
+    pub fn inputImageMaximumSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "inputImageMaximumSize", core_foundation.CGSize, .{});
+    }
+
+    pub fn outputImageMaximumSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "outputImageMaximumSize", core_foundation.CGSize, .{});
     }
 
 };
@@ -767,15 +1247,15 @@ pub const FilterConstructor = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn filterWithName(self: *@This(), name: ?*application_services.NSString) ?*Filter {
-        return objc.msgSend(self, "filterWithName:", ?*Filter, .{name});
+    pub fn filterWithName(_self: *@This(), _name: ?*application_services.NSString) ?*Filter {
+        return objc.msgSend(_self, "filterWithName:", ?*Filter, .{_name});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilter?language=objc
 pub const Filter = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIFilter", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIFilter", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -784,48 +1264,172 @@ pub const Filter = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn name(self: *@This()) ?*application_services.NSString {
-        return objc.msgSend(self, "name", ?*application_services.NSString, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn setName(self: *@This(), aString: ?*NSString) void {
-        return objc.msgSend(self, "setName:", void, .{aString});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn setDefaults(self: *@This()) void {
-        return objc.msgSend(self, "setDefaults", void, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn applyArgumentsOptions(self: *@This(), k: ?*Kernel, args: ?*application_services.NSArray, dict: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "apply:arguments:options:", ?*Image, .{k, args, dict});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn apply(self: *@This(), k: ?*Kernel) ?*Image {
-        return objc.msgSend(self, "apply:", ?*Image, .{k});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn outputImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "outputImage", ?*Image, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn isEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isEnabled", objc.BOOL, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn setEnabled(self: *@This(), enabled: objc.BOOL) void {
-        return objc.msgSend(self, "setEnabled:", void, .{enabled});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn inputKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "inputKeys", ?*anyopaque, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn outputKeys(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "outputKeys", ?*anyopaque, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn attributes(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "attributes", ?*anyopaque, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn name(_self: *@This()) ?*application_services.NSString {
+        return objc.msgSend(_self, "name", ?*application_services.NSString, .{});
+    }
+
+    pub fn setName(_self: *@This(), _aString: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_aString});
+    }
+
+    pub fn setDefaults(_self: *@This()) void {
+        return objc.msgSend(_self, "setDefaults", void, .{});
+    }
+
+    pub fn applyArgumentsOptions(_self: *@This(), _k: ?*Kernel, _args: ?*application_services.NSArray, _dict: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "apply:arguments:options:", ?*Image, .{_k, _args, _dict});
+    }
+
+    pub fn apply(_self: *@This(), _k: ?*Kernel) ?*Image {
+        return objc.msgSend(_self, "apply:", ?*Image, .{_k});
+    }
+
+    pub fn outputImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "outputImage", ?*Image, .{});
+    }
+
+    pub fn isEnabled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isEnabled", objc.BOOL, .{});
+    }
+
+    pub fn setEnabled(_self: *@This(), _enabled: objc.BOOL) void {
+        return objc.msgSend(_self, "setEnabled:", void, .{_enabled});
+    }
+
+    pub fn inputKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "inputKeys", ?*anyopaque, .{});
+    }
+
+    pub fn outputKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "outputKeys", ?*anyopaque, .{});
+    }
+
+    pub fn attributes(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "attributes", ?*anyopaque, .{});
     }
 
 };
@@ -838,12 +1442,12 @@ pub const Filter = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn customAttributes(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "customAttributes", ?*anyopaque, .{});
+    pub fn customAttributes(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "customAttributes", ?*anyopaque, .{});
     }
 
-    pub fn outputImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "outputImage", ?*Image, .{});
+    pub fn outputImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "outputImage", ?*Image, .{});
     }
 
 };
@@ -852,7 +1456,7 @@ pub const KernelROICallback = *const fn(i32, core_foundation.CGRect) callconv(.C
 
 /// https://developer.apple.com/documentation/CoreImage/CIKernel?language=objc
 pub const Kernel = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIKernel", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIKernel", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -861,47 +1465,159 @@ pub const Kernel = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn kernelsWithString(self: *@This(), string: ?*NSString) ?*anyopaque {
-        return objc.msgSend(self, "kernelsWithString:", ?*anyopaque, .{string});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn kernelsWithMetalStringError(self: *@This(), source: ?*NSString, @"error": ?*?*foundation.Error) ?*anyopaque {
-        return objc.msgSend(self, "kernelsWithMetalString:error:", ?*anyopaque, .{source, @"error"});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn kernelWithString(self: *@This(), string: ?*NSString) *@This() {
-        return objc.msgSend(self, "kernelWithString:", *@This(), .{string});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataError(self: *@This(), name: ?*NSString, data: ?*foundation.Data, @"error": ?*?*foundation.Error) *@This() {
-        return objc.msgSend(self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{name, data, @"error"});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(self: *@This(), name: ?*NSString, data: ?*foundation.Data, format: Format, @"error": ?*?*foundation.Error, ) *@This() {
-        return objc.msgSend(self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{name, data, format, @"error", });
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn kernelNamesFromMetalLibraryData(self: *@This(), data: ?*foundation.Data) ?*anyopaque {
-        return objc.msgSend(self, "kernelNamesFromMetalLibraryData:", ?*anyopaque, .{data});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn setROISelector(self: *@This(), method: *objc.SEL) void {
-        return objc.msgSend(self, "setROISelector:", void, .{method});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn applyWithExtentRoiCallbackArguments(self: *@This(), extent: core_foundation.CGRect, callback: KernelROICallback, args: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{extent, callback, args});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn name(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "name", ?*NSString, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn kernelsWithString(_self: *@This(), _string: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "kernelsWithString:", ?*anyopaque, .{_string});
+    }
+
+    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*NSString, _error: ?*?*foundation.Error) ?*anyopaque {
+        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
+    }
+
+    pub fn kernelWithString(_self: *@This(), _string: ?*NSString) *@This() {
+        return objc.msgSend(_self, "kernelWithString:", *@This(), .{_string});
+    }
+
+    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
+    }
+
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
+    }
+
+    pub fn kernelNamesFromMetalLibraryData(_self: *@This(), _data: ?*foundation.Data) ?*anyopaque {
+        return objc.msgSend(_self, "kernelNamesFromMetalLibraryData:", ?*anyopaque, .{_data});
+    }
+
+    pub fn setROISelector(_self: *@This(), _method: *objc.SEL) void {
+        return objc.msgSend(_self, "setROISelector:", void, .{_method});
+    }
+
+    pub fn applyWithExtentRoiCallbackArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _args: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIColorKernel?language=objc
 pub const ColorKernel = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIColorKernel", @This(), Kernel, &.{});
+    pub const InternalInfo = objc.ExternClass("CIColorKernel", @This(), Kernel, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -910,19 +1626,163 @@ pub const ColorKernel = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn kernelWithString(self: *@This(), string: ?*NSString) *@This() {
-        return objc.msgSend(self, "kernelWithString:", *@This(), .{string});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn applyWithExtentArguments(self: *@This(), extent: core_foundation.CGRect, args: ?*anyopaque) ?*Image {
-        return objc.msgSend(self, "applyWithExtent:arguments:", ?*Image, .{extent, args});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn kernelsWithString(_self: *@This(), _string: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "kernelsWithString:", ?*anyopaque, .{_string});
+    }
+
+    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*NSString, _error: ?*?*foundation.Error) ?*anyopaque {
+        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
+    }
+
+    pub fn kernelWithString(_self: *@This(), _string: ?*NSString) *@This() {
+        return objc.msgSend(_self, "kernelWithString:", *@This(), .{_string});
+    }
+
+    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
+    }
+
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
+    }
+
+    pub fn kernelNamesFromMetalLibraryData(_self: *@This(), _data: ?*foundation.Data) ?*anyopaque {
+        return objc.msgSend(_self, "kernelNamesFromMetalLibraryData:", ?*anyopaque, .{_data});
+    }
+
+    pub fn setROISelector(_self: *@This(), _method: *objc.SEL) void {
+        return objc.msgSend(_self, "setROISelector:", void, .{_method});
+    }
+
+    pub fn applyWithExtentRoiCallbackArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _args: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn applyWithExtentArguments(_self: *@This(), _extent: core_foundation.CGRect, _args: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:arguments:", ?*Image, .{_extent, _args});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIWarpKernel?language=objc
 pub const WarpKernel = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIWarpKernel", @This(), Kernel, &.{});
+    pub const InternalInfo = objc.ExternClass("CIWarpKernel", @This(), Kernel, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -931,19 +1791,163 @@ pub const WarpKernel = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn kernelWithString(self: *@This(), string: ?*NSString) *@This() {
-        return objc.msgSend(self, "kernelWithString:", *@This(), .{string});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn applyWithExtentRoiCallbackInputImageArguments(self: *@This(), extent: core_foundation.CGRect, callback: KernelROICallback, image: ?*Image, args: ?*anyopaque, ) ?*Image {
-        return objc.msgSend(self, "applyWithExtent:roiCallback:inputImage:arguments:", ?*Image, .{extent, callback, image, args, });
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn kernelsWithString(_self: *@This(), _string: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "kernelsWithString:", ?*anyopaque, .{_string});
+    }
+
+    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*NSString, _error: ?*?*foundation.Error) ?*anyopaque {
+        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
+    }
+
+    pub fn kernelWithString(_self: *@This(), _string: ?*NSString) *@This() {
+        return objc.msgSend(_self, "kernelWithString:", *@This(), .{_string});
+    }
+
+    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
+    }
+
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
+    }
+
+    pub fn kernelNamesFromMetalLibraryData(_self: *@This(), _data: ?*foundation.Data) ?*anyopaque {
+        return objc.msgSend(_self, "kernelNamesFromMetalLibraryData:", ?*anyopaque, .{_data});
+    }
+
+    pub fn setROISelector(_self: *@This(), _method: *objc.SEL) void {
+        return objc.msgSend(_self, "setROISelector:", void, .{_method});
+    }
+
+    pub fn applyWithExtentRoiCallbackArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _args: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn applyWithExtentRoiCallbackInputImageArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _image: ?*Image, _args: ?*anyopaque, ) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:inputImage:arguments:", ?*Image, .{_extent, _callback, _image, _args, });
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIBlendKernel?language=objc
 pub const BlendKernel = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIBlendKernel", @This(), ColorKernel, &.{});
+    pub const InternalInfo = objc.ExternClass("CIBlendKernel", @This(), ColorKernel, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -952,23 +1956,171 @@ pub const BlendKernel = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn kernelWithString(self: *@This(), string: ?*NSString) *@This() {
-        return objc.msgSend(self, "kernelWithString:", *@This(), .{string});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn applyWithForegroundBackground(self: *@This(), foreground: ?*Image, background: ?*Image) ?*Image {
-        return objc.msgSend(self, "applyWithForeground:background:", ?*Image, .{foreground, background});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn applyWithForegroundBackgroundColorSpace(self: *@This(), foreground: ?*Image, background: ?*Image, colorSpace: core_graphics.ColorSpaceRef) ?*Image {
-        return objc.msgSend(self, "applyWithForeground:background:colorSpace:", ?*Image, .{foreground, background, colorSpace});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn kernelsWithString(_self: *@This(), _string: ?*NSString) ?*anyopaque {
+        return objc.msgSend(_self, "kernelsWithString:", ?*anyopaque, .{_string});
+    }
+
+    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*NSString, _error: ?*?*foundation.Error) ?*anyopaque {
+        return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
+    }
+
+    pub fn kernelWithString(_self: *@This(), _string: ?*NSString) *@This() {
+        return objc.msgSend(_self, "kernelWithString:", *@This(), .{_string});
+    }
+
+    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
+    }
+
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
+        return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
+    }
+
+    pub fn kernelNamesFromMetalLibraryData(_self: *@This(), _data: ?*foundation.Data) ?*anyopaque {
+        return objc.msgSend(_self, "kernelNamesFromMetalLibraryData:", ?*anyopaque, .{_data});
+    }
+
+    pub fn setROISelector(_self: *@This(), _method: *objc.SEL) void {
+        return objc.msgSend(_self, "setROISelector:", void, .{_method});
+    }
+
+    pub fn applyWithExtentRoiCallbackArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _args: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
+    }
+
+    pub fn name(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "name", ?*NSString, .{});
+    }
+
+    pub fn applyWithExtentArguments(_self: *@This(), _extent: core_foundation.CGRect, _args: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:arguments:", ?*Image, .{_extent, _args});
+    }
+
+    pub fn applyWithForegroundBackground(_self: *@This(), _foreground: ?*Image, _background: ?*Image) ?*Image {
+        return objc.msgSend(_self, "applyWithForeground:background:", ?*Image, .{_foreground, _background});
+    }
+
+    pub fn applyWithForegroundBackgroundColorSpace(_self: *@This(), _foreground: ?*Image, _background: ?*Image, _colorSpace: core_graphics.ColorSpaceRef) ?*Image {
+        return objc.msgSend(_self, "applyWithForeground:background:colorSpace:", ?*Image, .{_foreground, _background, _colorSpace});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIDetector?language=objc
 pub const Detector = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIDetector", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIDetector", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -977,23 +2129,135 @@ pub const Detector = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn detectorOfTypeContextOptions(self: *@This(), @"type": ?*NSString, context: ?*Context, options: ?*anyopaque) ?*Detector {
-        return objc.msgSend(self, "detectorOfType:context:options:", ?*Detector, .{@"type", context, options});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn featuresInImage(self: *@This(), image: ?*Image) ?*anyopaque {
-        return objc.msgSend(self, "featuresInImage:", ?*anyopaque, .{image});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn featuresInImageOptions(self: *@This(), image: ?*Image, options: ?*anyopaque) ?*anyopaque {
-        return objc.msgSend(self, "featuresInImage:options:", ?*anyopaque, .{image, options});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn detectorOfTypeContextOptions(_self: *@This(), _type: ?*NSString, _context: ?*Context, _options: ?*anyopaque) ?*Detector {
+        return objc.msgSend(_self, "detectorOfType:context:options:", ?*Detector, .{_type, _context, _options});
+    }
+
+    pub fn featuresInImage(_self: *@This(), _image: ?*Image) ?*anyopaque {
+        return objc.msgSend(_self, "featuresInImage:", ?*anyopaque, .{_image});
+    }
+
+    pub fn featuresInImageOptions(_self: *@This(), _image: ?*Image, _options: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(_self, "featuresInImage:options:", ?*anyopaque, .{_image, _options});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFeature?language=objc
 pub const Feature = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIFeature", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIFeature", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1002,19 +2266,131 @@ pub const Feature = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn @"type"(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "type", ?*NSString, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn bounds(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "bounds", core_foundation.CGRect, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn @"type"(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "type", ?*NSString, .{});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFaceFeature?language=objc
 pub const FaceFeature = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIFaceFeature", @This(), Feature, &.{});
+    pub const InternalInfo = objc.ExternClass("CIFaceFeature", @This(), Feature, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1022,11 +2398,132 @@ pub const FaceFeature = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn @"type"(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "type", ?*NSString, .{});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIRectangleFeature?language=objc
 pub const RectangleFeature = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIRectangleFeature", @This(), Feature, &.{});
+    pub const InternalInfo = objc.ExternClass("CIRectangleFeature", @This(), Feature, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1035,31 +2532,147 @@ pub const RectangleFeature = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn bounds(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "bounds", core_foundation.CGRect, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn topLeft(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "topLeft", core_foundation.CGPoint, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn topRight(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "topRight", core_foundation.CGPoint, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn bottomLeft(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "bottomLeft", core_foundation.CGPoint, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn bottomRight(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "bottomRight", core_foundation.CGPoint, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn @"type"(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "type", ?*NSString, .{});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn topLeft(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "topLeft", core_foundation.CGPoint, .{});
+    }
+
+    pub fn topRight(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "topRight", core_foundation.CGPoint, .{});
+    }
+
+    pub fn bottomLeft(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "bottomLeft", core_foundation.CGPoint, .{});
+    }
+
+    pub fn bottomRight(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "bottomRight", core_foundation.CGPoint, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature?language=objc
 pub const QRCodeFeature = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIQRCodeFeature", @This(), Feature, &.{});
+    pub const InternalInfo = objc.ExternClass("CIQRCodeFeature", @This(), Feature, &.{foundation.SecureCoding, foundation.Copying, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1068,39 +2681,167 @@ pub const QRCodeFeature = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn bounds(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "bounds", core_foundation.CGRect, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn topLeft(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "topLeft", core_foundation.CGPoint, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn topRight(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "topRight", core_foundation.CGPoint, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn bottomLeft(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "bottomLeft", core_foundation.CGPoint, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn bottomRight(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "bottomRight", core_foundation.CGPoint, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn messageString(self: *@This()) ?*NSString {
-        return objc.msgSend(self, "messageString", ?*NSString, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn symbolDescriptor(self: *@This()) ?*QRCodeDescriptor {
-        return objc.msgSend(self, "symbolDescriptor", ?*QRCodeDescriptor, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn @"type"(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "type", ?*NSString, .{});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn topLeft(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "topLeft", core_foundation.CGPoint, .{});
+    }
+
+    pub fn topRight(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "topRight", core_foundation.CGPoint, .{});
+    }
+
+    pub fn bottomLeft(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "bottomLeft", core_foundation.CGPoint, .{});
+    }
+
+    pub fn bottomRight(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "bottomRight", core_foundation.CGPoint, .{});
+    }
+
+    pub fn messageString(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "messageString", ?*NSString, .{});
+    }
+
+    pub fn symbolDescriptor(_self: *@This()) ?*QRCodeDescriptor {
+        return objc.msgSend(_self, "symbolDescriptor", ?*QRCodeDescriptor, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CITextFeature?language=objc
 pub const TextFeature = opaque {
-    pub const InternalInfo = objc.ExternalClass("CITextFeature", @This(), Feature, &.{});
+    pub const InternalInfo = objc.ExternClass("CITextFeature", @This(), Feature, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1109,35 +2850,151 @@ pub const TextFeature = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn bounds(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "bounds", core_foundation.CGRect, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn topLeft(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "topLeft", core_foundation.CGPoint, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn topRight(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "topRight", core_foundation.CGPoint, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn bottomLeft(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "bottomLeft", core_foundation.CGPoint, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn bottomRight(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "bottomRight", core_foundation.CGPoint, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn subFeatures(self: *@This()) ?*NSArray {
-        return objc.msgSend(self, "subFeatures", ?*NSArray, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn @"type"(_self: *@This()) ?*NSString {
+        return objc.msgSend(_self, "type", ?*NSString, .{});
+    }
+
+    pub fn bounds(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "bounds", core_foundation.CGRect, .{});
+    }
+
+    pub fn topLeft(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "topLeft", core_foundation.CGPoint, .{});
+    }
+
+    pub fn topRight(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "topRight", core_foundation.CGPoint, .{});
+    }
+
+    pub fn bottomLeft(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "bottomLeft", core_foundation.CGPoint, .{});
+    }
+
+    pub fn bottomRight(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "bottomRight", core_foundation.CGPoint, .{});
+    }
+
+    pub fn subFeatures(_self: *@This()) ?*NSArray {
+        return objc.msgSend(_self, "subFeatures", ?*NSArray, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel?language=objc
 pub const ImageProcessorKernel = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIImageProcessorKernel", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIImageProcessorKernel", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1146,32 +3003,144 @@ pub const ImageProcessorKernel = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn roiForInputArgumentsOutputRect(self: *@This(), input: i32, arguments: ?*anyopaque, outputRect: core_foundation.CGRect) core_foundation.CGRect {
-        return objc.msgSend(self, "roiForInput:arguments:outputRect:", core_foundation.CGRect, .{input, arguments, outputRect});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn roiTileArrayForInputArgumentsOutputRect(self: *@This(), input: i32, arguments: ?*anyopaque, outputRect: core_foundation.CGRect) ?*anyopaque {
-        return objc.msgSend(self, "roiTileArrayForInput:arguments:outputRect:", ?*anyopaque, .{input, arguments, outputRect});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn formatForInputAtIndex(self: *@This(), input: i32) Format {
-        return objc.msgSend(self, "formatForInputAtIndex:", Format, .{input});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn applyWithExtentInputsArgumentsError(self: *@This(), extent: core_foundation.CGRect, inputs: ?*anyopaque, args: ?*anyopaque, @"error": ?*?*foundation.Error, ) ?*Image {
-        return objc.msgSend(self, "applyWithExtent:inputs:arguments:error:", ?*Image, .{extent, inputs, args, @"error", });
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn outputFormat(self: *@This()) Format {
-        return objc.msgSend(self, "outputFormat", Format, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn outputIsOpaque(self: *@This()) core_graphics.bool {
-        return objc.msgSend(self, "outputIsOpaque", core_graphics.bool, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn synchronizeInputs(self: *@This()) core_graphics.bool {
-        return objc.msgSend(self, "synchronizeInputs", core_graphics.bool, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn roiForInputArgumentsOutputRect(_self: *@This(), _input: i32, _arguments: ?*anyopaque, _outputRect: core_foundation.CGRect) core_foundation.CGRect {
+        return objc.msgSend(_self, "roiForInput:arguments:outputRect:", core_foundation.CGRect, .{_input, _arguments, _outputRect});
+    }
+
+    pub fn roiTileArrayForInputArgumentsOutputRect(_self: *@This(), _input: i32, _arguments: ?*anyopaque, _outputRect: core_foundation.CGRect) ?*anyopaque {
+        return objc.msgSend(_self, "roiTileArrayForInput:arguments:outputRect:", ?*anyopaque, .{_input, _arguments, _outputRect});
+    }
+
+    pub fn formatForInputAtIndex(_self: *@This(), _input: i32) Format {
+        return objc.msgSend(_self, "formatForInputAtIndex:", Format, .{_input});
+    }
+
+    pub fn applyWithExtentInputsArgumentsError(_self: *@This(), _extent: core_foundation.CGRect, _inputs: ?*anyopaque, _args: ?*anyopaque, _error: ?*?*foundation.Error, ) ?*Image {
+        return objc.msgSend(_self, "applyWithExtent:inputs:arguments:error:", ?*Image, .{_extent, _inputs, _args, _error, });
+    }
+
+    pub fn outputFormat(_self: *@This()) Format {
+        return objc.msgSend(_self, "outputFormat", Format, .{});
+    }
+
+    pub fn outputIsOpaque(_self: *@This()) core_graphics.bool {
+        return objc.msgSend(_self, "outputIsOpaque", core_graphics.bool, .{});
+    }
+
+    pub fn synchronizeInputs(_self: *@This()) core_graphics.bool {
+        return objc.msgSend(_self, "synchronizeInputs", core_graphics.bool, .{});
     }
 
 };
@@ -1184,44 +3153,44 @@ pub const ImageProcessorInput = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn region(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "region", core_foundation.CGRect, .{});
+    pub fn region(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "region", core_foundation.CGRect, .{});
     }
 
-    pub fn bytesPerRow(self: *@This()) objc.size_t {
-        return objc.msgSend(self, "bytesPerRow", objc.size_t, .{});
+    pub fn bytesPerRow(_self: *@This()) objc.size_t {
+        return objc.msgSend(_self, "bytesPerRow", objc.size_t, .{});
     }
 
-    pub fn format(self: *@This()) Format {
-        return objc.msgSend(self, "format", Format, .{});
+    pub fn format(_self: *@This()) Format {
+        return objc.msgSend(_self, "format", Format, .{});
     }
 
-    pub fn baseAddress(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "baseAddress", ?*anyopaque, .{});
+    pub fn baseAddress(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "baseAddress", ?*anyopaque, .{});
     }
 
-    pub fn surface(self: *@This()) io_surface.Ref {
-        return objc.msgSend(self, "surface", io_surface.Ref, .{});
+    pub fn surface(_self: *@This()) io_surface.Ref {
+        return objc.msgSend(_self, "surface", io_surface.Ref, .{});
     }
 
-    pub fn pixelBuffer(self: *@This()) core_video.PixelBufferRef {
-        return objc.msgSend(self, "pixelBuffer", core_video.PixelBufferRef, .{});
+    pub fn pixelBuffer(_self: *@This()) core_video.PixelBufferRef {
+        return objc.msgSend(_self, "pixelBuffer", core_video.PixelBufferRef, .{});
     }
 
-    pub fn metalTexture(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "metalTexture", ?*anyopaque, .{});
+    pub fn metalTexture(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "metalTexture", ?*anyopaque, .{});
     }
 
-    pub fn digest(self: *@This()) objc.uint64_t {
-        return objc.msgSend(self, "digest", objc.uint64_t, .{});
+    pub fn digest(_self: *@This()) objc.uint64_t {
+        return objc.msgSend(_self, "digest", objc.uint64_t, .{});
     }
 
-    pub fn roiTileIndex(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "roiTileIndex", objc.NSUInteger, .{});
+    pub fn roiTileIndex(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "roiTileIndex", objc.NSUInteger, .{});
     }
 
-    pub fn roiTileCount(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "roiTileCount", objc.NSUInteger, .{});
+    pub fn roiTileCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "roiTileCount", objc.NSUInteger, .{});
     }
 
 };
@@ -1234,47 +3203,47 @@ pub const ImageProcessorOutput = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn region(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "region", core_foundation.CGRect, .{});
+    pub fn region(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "region", core_foundation.CGRect, .{});
     }
 
-    pub fn bytesPerRow(self: *@This()) objc.size_t {
-        return objc.msgSend(self, "bytesPerRow", objc.size_t, .{});
+    pub fn bytesPerRow(_self: *@This()) objc.size_t {
+        return objc.msgSend(_self, "bytesPerRow", objc.size_t, .{});
     }
 
-    pub fn format(self: *@This()) Format {
-        return objc.msgSend(self, "format", Format, .{});
+    pub fn format(_self: *@This()) Format {
+        return objc.msgSend(_self, "format", Format, .{});
     }
 
-    pub fn baseAddress(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "baseAddress", ?*anyopaque, .{});
+    pub fn baseAddress(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "baseAddress", ?*anyopaque, .{});
     }
 
-    pub fn surface(self: *@This()) io_surface.Ref {
-        return objc.msgSend(self, "surface", io_surface.Ref, .{});
+    pub fn surface(_self: *@This()) io_surface.Ref {
+        return objc.msgSend(_self, "surface", io_surface.Ref, .{});
     }
 
-    pub fn pixelBuffer(self: *@This()) core_video.PixelBufferRef {
-        return objc.msgSend(self, "pixelBuffer", core_video.PixelBufferRef, .{});
+    pub fn pixelBuffer(_self: *@This()) core_video.PixelBufferRef {
+        return objc.msgSend(_self, "pixelBuffer", core_video.PixelBufferRef, .{});
     }
 
-    pub fn metalTexture(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "metalTexture", ?*anyopaque, .{});
+    pub fn metalTexture(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "metalTexture", ?*anyopaque, .{});
     }
 
-    pub fn metalCommandBuffer(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "metalCommandBuffer", ?*anyopaque, .{});
+    pub fn metalCommandBuffer(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "metalCommandBuffer", ?*anyopaque, .{});
     }
 
-    pub fn digest(self: *@This()) objc.uint64_t {
-        return objc.msgSend(self, "digest", objc.uint64_t, .{});
+    pub fn digest(_self: *@This()) objc.uint64_t {
+        return objc.msgSend(_self, "digest", objc.uint64_t, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIImageAccumulator?language=objc
 pub const ImageAccumulator = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIImageAccumulator", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIImageAccumulator", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1283,51 +3252,163 @@ pub const ImageAccumulator = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn imageAccumulatorWithExtentFormat(self: *@This(), extent: core_foundation.CGRect, format: Format) *@This() {
-        return objc.msgSend(self, "imageAccumulatorWithExtent:format:", *@This(), .{extent, format});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn imageAccumulatorWithExtentFormatColorSpace(self: *@This(), extent: core_foundation.CGRect, format: Format, colorSpace: core_graphics.ColorSpaceRef) *@This() {
-        return objc.msgSend(self, "imageAccumulatorWithExtent:format:colorSpace:", *@This(), .{extent, format, colorSpace});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithExtentFormat(self: *@This(), extent: core_foundation.CGRect, format: Format) *@This() {
-        return objc.msgSend(self, "initWithExtent:format:", *@This(), .{extent, format});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn initWithExtentFormatColorSpace(self: *@This(), extent: core_foundation.CGRect, format: Format, colorSpace: core_graphics.ColorSpaceRef) *@This() {
-        return objc.msgSend(self, "initWithExtent:format:colorSpace:", *@This(), .{extent, format, colorSpace});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn image(self: *@This()) ?*Image {
-        return objc.msgSend(self, "image", ?*Image, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setImage(self: *@This(), image: ?*Image) void {
-        return objc.msgSend(self, "setImage:", void, .{image});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn setImageDirtyRect(self: *@This(), image: ?*Image, dirtyRect: core_foundation.CGRect) void {
-        return objc.msgSend(self, "setImage:dirtyRect:", void, .{image, dirtyRect});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn clear(self: *@This()) void {
-        return objc.msgSend(self, "clear", void, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn extent(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "extent", core_foundation.CGRect, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn format(self: *@This()) Format {
-        return objc.msgSend(self, "format", Format, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn imageAccumulatorWithExtentFormat(_self: *@This(), _extent: core_foundation.CGRect, _format: Format) *@This() {
+        return objc.msgSend(_self, "imageAccumulatorWithExtent:format:", *@This(), .{_extent, _format});
+    }
+
+    pub fn imageAccumulatorWithExtentFormatColorSpace(_self: *@This(), _extent: core_foundation.CGRect, _format: Format, _colorSpace: core_graphics.ColorSpaceRef) *@This() {
+        return objc.msgSend(_self, "imageAccumulatorWithExtent:format:colorSpace:", *@This(), .{_extent, _format, _colorSpace});
+    }
+
+    pub fn initWithExtentFormat(_self: *@This(), _extent: core_foundation.CGRect, _format: Format) *@This() {
+        return objc.msgSend(_self, "initWithExtent:format:", *@This(), .{_extent, _format});
+    }
+
+    pub fn initWithExtentFormatColorSpace(_self: *@This(), _extent: core_foundation.CGRect, _format: Format, _colorSpace: core_graphics.ColorSpaceRef) *@This() {
+        return objc.msgSend(_self, "initWithExtent:format:colorSpace:", *@This(), .{_extent, _format, _colorSpace});
+    }
+
+    pub fn image(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "image", ?*Image, .{});
+    }
+
+    pub fn setImage(_self: *@This(), _image: ?*Image) void {
+        return objc.msgSend(_self, "setImage:", void, .{_image});
+    }
+
+    pub fn setImageDirtyRect(_self: *@This(), _image: ?*Image, _dirtyRect: core_foundation.CGRect) void {
+        return objc.msgSend(_self, "setImage:dirtyRect:", void, .{_image, _dirtyRect});
+    }
+
+    pub fn clear(_self: *@This()) void {
+        return objc.msgSend(_self, "clear", void, .{});
+    }
+
+    pub fn extent(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "extent", core_foundation.CGRect, .{});
+    }
+
+    pub fn format(_self: *@This()) Format {
+        return objc.msgSend(_self, "format", Format, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilterShape?language=objc
 pub const FilterShape = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIFilterShape", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIFilterShape", @This(), objc.NSObject, &.{foundation.Copying, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1336,47 +3417,159 @@ pub const FilterShape = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn shapeWithRect(self: *@This(), r: core_foundation.CGRect) *@This() {
-        return objc.msgSend(self, "shapeWithRect:", *@This(), .{r});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithRect(self: *@This(), r: core_foundation.CGRect) *@This() {
-        return objc.msgSend(self, "initWithRect:", *@This(), .{r});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn transformByInterior(self: *@This(), m: core_foundation.CGAffineTransform, flag: objc.BOOL) ?*FilterShape {
-        return objc.msgSend(self, "transformBy:interior:", ?*FilterShape, .{m, flag});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn insetByXY(self: *@This(), dx: i32, dy: i32) ?*FilterShape {
-        return objc.msgSend(self, "insetByX:Y:", ?*FilterShape, .{dx, dy});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn unionWith(self: *@This(), s2: ?*FilterShape) ?*FilterShape {
-        return objc.msgSend(self, "unionWith:", ?*FilterShape, .{s2});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn unionWithRect(self: *@This(), r: core_foundation.CGRect) ?*FilterShape {
-        return objc.msgSend(self, "unionWithRect:", ?*FilterShape, .{r});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn intersectWith(self: *@This(), s2: ?*FilterShape) ?*FilterShape {
-        return objc.msgSend(self, "intersectWith:", ?*FilterShape, .{s2});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn intersectWithRect(self: *@This(), r: core_foundation.CGRect) ?*FilterShape {
-        return objc.msgSend(self, "intersectWithRect:", ?*FilterShape, .{r});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn extent(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "extent", core_foundation.CGRect, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn shapeWithRect(_self: *@This(), _r: core_foundation.CGRect) *@This() {
+        return objc.msgSend(_self, "shapeWithRect:", *@This(), .{_r});
+    }
+
+    pub fn initWithRect(_self: *@This(), _r: core_foundation.CGRect) *@This() {
+        return objc.msgSend(_self, "initWithRect:", *@This(), .{_r});
+    }
+
+    pub fn transformByInterior(_self: *@This(), _m: core_foundation.CGAffineTransform, _flag: objc.BOOL) ?*FilterShape {
+        return objc.msgSend(_self, "transformBy:interior:", ?*FilterShape, .{_m, _flag});
+    }
+
+    pub fn insetByXY(_self: *@This(), _dx: i32, _dy: i32) ?*FilterShape {
+        return objc.msgSend(_self, "insetByX:Y:", ?*FilterShape, .{_dx, _dy});
+    }
+
+    pub fn unionWith(_self: *@This(), _s2: ?*FilterShape) ?*FilterShape {
+        return objc.msgSend(_self, "unionWith:", ?*FilterShape, .{_s2});
+    }
+
+    pub fn unionWithRect(_self: *@This(), _r: core_foundation.CGRect) ?*FilterShape {
+        return objc.msgSend(_self, "unionWithRect:", ?*FilterShape, .{_r});
+    }
+
+    pub fn intersectWith(_self: *@This(), _s2: ?*FilterShape) ?*FilterShape {
+        return objc.msgSend(_self, "intersectWith:", ?*FilterShape, .{_s2});
+    }
+
+    pub fn intersectWithRect(_self: *@This(), _r: core_foundation.CGRect) ?*FilterShape {
+        return objc.msgSend(_self, "intersectWithRect:", ?*FilterShape, .{_r});
+    }
+
+    pub fn extent(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "extent", core_foundation.CGRect, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CISampler?language=objc
 pub const Sampler = opaque {
-    pub const InternalInfo = objc.ExternalClass("CISampler", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CISampler", @This(), objc.NSObject, &.{foundation.Copying, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1385,36 +3578,148 @@ pub const Sampler = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn samplerWithImage(self: *@This(), im: ?*Image) *@This() {
-        return objc.msgSend(self, "samplerWithImage:", *@This(), .{im});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn samplerWithImageKeysAndValues(self: *@This(), im: ?*Image, key0: *objc.Id) *@This() {
-        return objc.msgSend(self, "samplerWithImage:keysAndValues:", *@This(), .{im, key0});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn samplerWithImageOptions(self: *@This(), im: ?*Image, dict: ?*NSDictionary) *@This() {
-        return objc.msgSend(self, "samplerWithImage:options:", *@This(), .{im, dict});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn initWithImage(self: *@This(), im: ?*Image) *@This() {
-        return objc.msgSend(self, "initWithImage:", *@This(), .{im});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn initWithImageKeysAndValues(self: *@This(), im: ?*Image, key0: *objc.Id) *@This() {
-        return objc.msgSend(self, "initWithImage:keysAndValues:", *@This(), .{im, key0});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn initWithImageOptions(self: *@This(), im: ?*Image, dict: ?*NSDictionary) *@This() {
-        return objc.msgSend(self, "initWithImage:options:", *@This(), .{im, dict});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn definition(self: *@This()) ?*FilterShape {
-        return objc.msgSend(self, "definition", ?*FilterShape, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn extent(self: *@This()) core_foundation.CGRect {
-        return objc.msgSend(self, "extent", core_foundation.CGRect, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn samplerWithImage(_self: *@This(), _im: ?*Image) *@This() {
+        return objc.msgSend(_self, "samplerWithImage:", *@This(), .{_im});
+    }
+
+    pub fn samplerWithImageKeysAndValues(_self: *@This(), _im: ?*Image, _key0: *objc.Id) *@This() {
+        return objc.msgSend(_self, "samplerWithImage:keysAndValues:", *@This(), .{_im, _key0});
+    }
+
+    pub fn samplerWithImageOptions(_self: *@This(), _im: ?*Image, _dict: ?*NSDictionary) *@This() {
+        return objc.msgSend(_self, "samplerWithImage:options:", *@This(), .{_im, _dict});
+    }
+
+    pub fn initWithImage(_self: *@This(), _im: ?*Image) *@This() {
+        return objc.msgSend(_self, "initWithImage:", *@This(), .{_im});
+    }
+
+    pub fn initWithImageKeysAndValues(_self: *@This(), _im: ?*Image, _key0: *objc.Id) *@This() {
+        return objc.msgSend(_self, "initWithImage:keysAndValues:", *@This(), .{_im, _key0});
+    }
+
+    pub fn initWithImageOptions(_self: *@This(), _im: ?*Image, _dict: ?*NSDictionary) *@This() {
+        return objc.msgSend(_self, "initWithImage:options:", *@This(), .{_im, _dict});
+    }
+
+    pub fn definition(_self: *@This()) ?*FilterShape {
+        return objc.msgSend(_self, "definition", ?*FilterShape, .{});
+    }
+
+    pub fn extent(_self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(_self, "extent", core_foundation.CGRect, .{});
     }
 
 };
@@ -1423,7 +3728,7 @@ pub const RAWFilterOption = ?*NSString;
 
 /// https://developer.apple.com/documentation/CoreImage/CIRAWFilter?language=objc
 pub const RAWFilter = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIRAWFilter", @This(), Filter, &.{});
+    pub const InternalInfo = objc.ExternClass("CIRAWFilter", @This(), Filter, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1432,284 +3737,452 @@ pub const RAWFilter = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn supportedCameraModels(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "supportedCameraModels", ?*anyopaque, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn supportedDecoderVersions(self: *@This()) ?*anyopaque {
-        return objc.msgSend(self, "supportedDecoderVersions", ?*anyopaque, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn nativeSize(self: *@This()) core_foundation.CGSize {
-        return objc.msgSend(self, "nativeSize", core_foundation.CGSize, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn properties(self: *@This()) ?*NSDictionary {
-        return objc.msgSend(self, "properties", ?*NSDictionary, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn setOrientation(self: *@This(), orientation: image_io.PropertyOrientation) void {
-        return objc.msgSend(self, "setOrientation:", void, .{orientation});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn orientation(self: *@This()) image_io.PropertyOrientation {
-        return objc.msgSend(self, "orientation", image_io.PropertyOrientation, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn isDraftModeEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isDraftModeEnabled", objc.BOOL, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn setDraftModeEnabled(self: *@This(), draftModeEnabled: objc.BOOL) void {
-        return objc.msgSend(self, "setDraftModeEnabled:", void, .{draftModeEnabled});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setDecoderVersion(self: *@This(), decoderVersion: RAWDecoderVersion) void {
-        return objc.msgSend(self, "setDecoderVersion:", void, .{decoderVersion});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn decoderVersion(self: *@This()) RAWDecoderVersion {
-        return objc.msgSend(self, "decoderVersion", RAWDecoderVersion, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn setScaleFactor(self: *@This(), scaleFactor: f32) void {
-        return objc.msgSend(self, "setScaleFactor:", void, .{scaleFactor});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn scaleFactor(self: *@This()) f32 {
-        return objc.msgSend(self, "scaleFactor", f32, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn setExposure(self: *@This(), exposure: f32) void {
-        return objc.msgSend(self, "setExposure:", void, .{exposure});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn exposure(self: *@This()) f32 {
-        return objc.msgSend(self, "exposure", f32, .{});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn setBaselineExposure(self: *@This(), baselineExposure: f32) void {
-        return objc.msgSend(self, "setBaselineExposure:", void, .{baselineExposure});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn baselineExposure(self: *@This()) f32 {
-        return objc.msgSend(self, "baselineExposure", f32, .{});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn setShadowBias(self: *@This(), shadowBias: f32) void {
-        return objc.msgSend(self, "setShadowBias:", void, .{shadowBias});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn shadowBias(self: *@This()) f32 {
-        return objc.msgSend(self, "shadowBias", f32, .{});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn setBoostAmount(self: *@This(), boostAmount: f32) void {
-        return objc.msgSend(self, "setBoostAmount:", void, .{boostAmount});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn boostAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "boostAmount", f32, .{});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn setBoostShadowAmount(self: *@This(), boostShadowAmount: f32) void {
-        return objc.msgSend(self, "setBoostShadowAmount:", void, .{boostShadowAmount});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn boostShadowAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "boostShadowAmount", f32, .{});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn setGamutMappingEnabled(self: *@This(), gamutMappingEnabled: objc.BOOL) void {
-        return objc.msgSend(self, "setGamutMappingEnabled:", void, .{gamutMappingEnabled});
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn isGamutMappingEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isGamutMappingEnabled", objc.BOOL, .{});
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn isLensCorrectionSupported(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isLensCorrectionSupported", objc.BOOL, .{});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn setLensCorrectionEnabled(self: *@This(), lensCorrectionEnabled: objc.BOOL) void {
-        return objc.msgSend(self, "setLensCorrectionEnabled:", void, .{lensCorrectionEnabled});
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn isLensCorrectionEnabled(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isLensCorrectionEnabled", objc.BOOL, .{});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn isLuminanceNoiseReductionSupported(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isLuminanceNoiseReductionSupported", objc.BOOL, .{});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
     }
 
-    pub fn setLuminanceNoiseReductionAmount(self: *@This(), luminanceNoiseReductionAmount: f32) void {
-        return objc.msgSend(self, "setLuminanceNoiseReductionAmount:", void, .{luminanceNoiseReductionAmount});
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
     }
 
-    pub fn luminanceNoiseReductionAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "luminanceNoiseReductionAmount", f32, .{});
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
     }
 
-    pub fn isColorNoiseReductionSupported(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isColorNoiseReductionSupported", objc.BOOL, .{});
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn setColorNoiseReductionAmount(self: *@This(), colorNoiseReductionAmount: f32) void {
-        return objc.msgSend(self, "setColorNoiseReductionAmount:", void, .{colorNoiseReductionAmount});
+    pub fn name(_self: *@This()) ?*application_services.NSString {
+        return objc.msgSend(_self, "name", ?*application_services.NSString, .{});
     }
 
-    pub fn colorNoiseReductionAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "colorNoiseReductionAmount", f32, .{});
+    pub fn setName(_self: *@This(), _aString: ?*NSString) void {
+        return objc.msgSend(_self, "setName:", void, .{_aString});
     }
 
-    pub fn isSharpnessSupported(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isSharpnessSupported", objc.BOOL, .{});
+    pub fn setDefaults(_self: *@This()) void {
+        return objc.msgSend(_self, "setDefaults", void, .{});
     }
 
-    pub fn sharpnessAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "sharpnessAmount", f32, .{});
+    pub fn applyArgumentsOptions(_self: *@This(), _k: ?*Kernel, _args: ?*application_services.NSArray, _dict: ?*anyopaque) ?*Image {
+        return objc.msgSend(_self, "apply:arguments:options:", ?*Image, .{_k, _args, _dict});
     }
 
-    pub fn setSharpnessAmount(self: *@This(), sharpnessAmount: f32) void {
-        return objc.msgSend(self, "setSharpnessAmount:", void, .{sharpnessAmount});
+    pub fn apply(_self: *@This(), _k: ?*Kernel) ?*Image {
+        return objc.msgSend(_self, "apply:", ?*Image, .{_k});
     }
 
-    pub fn isContrastSupported(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isContrastSupported", objc.BOOL, .{});
+    pub fn outputImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "outputImage", ?*Image, .{});
     }
 
-    pub fn setContrastAmount(self: *@This(), contrastAmount: f32) void {
-        return objc.msgSend(self, "setContrastAmount:", void, .{contrastAmount});
+    pub fn isEnabled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isEnabled", objc.BOOL, .{});
     }
 
-    pub fn contrastAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "contrastAmount", f32, .{});
+    pub fn setEnabled(_self: *@This(), _enabled: objc.BOOL) void {
+        return objc.msgSend(_self, "setEnabled:", void, .{_enabled});
     }
 
-    pub fn isDetailSupported(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isDetailSupported", objc.BOOL, .{});
+    pub fn inputKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "inputKeys", ?*anyopaque, .{});
     }
 
-    pub fn detailAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "detailAmount", f32, .{});
+    pub fn outputKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "outputKeys", ?*anyopaque, .{});
     }
 
-    pub fn setDetailAmount(self: *@This(), detailAmount: f32) void {
-        return objc.msgSend(self, "setDetailAmount:", void, .{detailAmount});
+    pub fn attributes(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "attributes", ?*anyopaque, .{});
     }
 
-    pub fn isMoireReductionSupported(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isMoireReductionSupported", objc.BOOL, .{});
+    pub fn supportedCameraModels(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "supportedCameraModels", ?*anyopaque, .{});
     }
 
-    pub fn moireReductionAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "moireReductionAmount", f32, .{});
+    pub fn supportedDecoderVersions(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "supportedDecoderVersions", ?*anyopaque, .{});
     }
 
-    pub fn setMoireReductionAmount(self: *@This(), moireReductionAmount: f32) void {
-        return objc.msgSend(self, "setMoireReductionAmount:", void, .{moireReductionAmount});
+    pub fn nativeSize(_self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(_self, "nativeSize", core_foundation.CGSize, .{});
     }
 
-    pub fn isLocalToneMapSupported(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isLocalToneMapSupported", objc.BOOL, .{});
+    pub fn properties(_self: *@This()) ?*NSDictionary {
+        return objc.msgSend(_self, "properties", ?*NSDictionary, .{});
     }
 
-    pub fn localToneMapAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "localToneMapAmount", f32, .{});
+    pub fn setOrientation(_self: *@This(), _orientation: image_io.PropertyOrientation) void {
+        return objc.msgSend(_self, "setOrientation:", void, .{_orientation});
     }
 
-    pub fn setLocalToneMapAmount(self: *@This(), localToneMapAmount: f32) void {
-        return objc.msgSend(self, "setLocalToneMapAmount:", void, .{localToneMapAmount});
+    pub fn orientation(_self: *@This()) image_io.PropertyOrientation {
+        return objc.msgSend(_self, "orientation", image_io.PropertyOrientation, .{});
     }
 
-    pub fn setExtendedDynamicRangeAmount(self: *@This(), extendedDynamicRangeAmount: f32) void {
-        return objc.msgSend(self, "setExtendedDynamicRangeAmount:", void, .{extendedDynamicRangeAmount});
+    pub fn isDraftModeEnabled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDraftModeEnabled", objc.BOOL, .{});
     }
 
-    pub fn extendedDynamicRangeAmount(self: *@This()) f32 {
-        return objc.msgSend(self, "extendedDynamicRangeAmount", f32, .{});
+    pub fn setDraftModeEnabled(_self: *@This(), _draftModeEnabled: objc.BOOL) void {
+        return objc.msgSend(_self, "setDraftModeEnabled:", void, .{_draftModeEnabled});
     }
 
-    pub fn setNeutralChromaticity(self: *@This(), neutralChromaticity: core_foundation.CGPoint) void {
-        return objc.msgSend(self, "setNeutralChromaticity:", void, .{neutralChromaticity});
+    pub fn setDecoderVersion(_self: *@This(), _decoderVersion: RAWDecoderVersion) void {
+        return objc.msgSend(_self, "setDecoderVersion:", void, .{_decoderVersion});
     }
 
-    pub fn neutralChromaticity(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "neutralChromaticity", core_foundation.CGPoint, .{});
+    pub fn decoderVersion(_self: *@This()) RAWDecoderVersion {
+        return objc.msgSend(_self, "decoderVersion", RAWDecoderVersion, .{});
     }
 
-    pub fn neutralLocation(self: *@This()) core_foundation.CGPoint {
-        return objc.msgSend(self, "neutralLocation", core_foundation.CGPoint, .{});
+    pub fn setScaleFactor(_self: *@This(), _scaleFactor: f32) void {
+        return objc.msgSend(_self, "setScaleFactor:", void, .{_scaleFactor});
     }
 
-    pub fn setNeutralLocation(self: *@This(), neutralLocation: core_foundation.CGPoint) void {
-        return objc.msgSend(self, "setNeutralLocation:", void, .{neutralLocation});
+    pub fn scaleFactor(_self: *@This()) f32 {
+        return objc.msgSend(_self, "scaleFactor", f32, .{});
     }
 
-    pub fn neutralTemperature(self: *@This()) f32 {
-        return objc.msgSend(self, "neutralTemperature", f32, .{});
+    pub fn setExposure(_self: *@This(), _exposure: f32) void {
+        return objc.msgSend(_self, "setExposure:", void, .{_exposure});
     }
 
-    pub fn setNeutralTemperature(self: *@This(), neutralTemperature: f32) void {
-        return objc.msgSend(self, "setNeutralTemperature:", void, .{neutralTemperature});
+    pub fn exposure(_self: *@This()) f32 {
+        return objc.msgSend(_self, "exposure", f32, .{});
     }
 
-    pub fn neutralTint(self: *@This()) f32 {
-        return objc.msgSend(self, "neutralTint", f32, .{});
+    pub fn setBaselineExposure(_self: *@This(), _baselineExposure: f32) void {
+        return objc.msgSend(_self, "setBaselineExposure:", void, .{_baselineExposure});
     }
 
-    pub fn setNeutralTint(self: *@This(), neutralTint: f32) void {
-        return objc.msgSend(self, "setNeutralTint:", void, .{neutralTint});
+    pub fn baselineExposure(_self: *@This()) f32 {
+        return objc.msgSend(_self, "baselineExposure", f32, .{});
     }
 
-    pub fn linearSpaceFilter(self: *@This()) ?*Filter {
-        return objc.msgSend(self, "linearSpaceFilter", ?*Filter, .{});
+    pub fn setShadowBias(_self: *@This(), _shadowBias: f32) void {
+        return objc.msgSend(_self, "setShadowBias:", void, .{_shadowBias});
     }
 
-    pub fn setLinearSpaceFilter(self: *@This(), linearSpaceFilter: ?*Filter) void {
-        return objc.msgSend(self, "setLinearSpaceFilter:", void, .{linearSpaceFilter});
+    pub fn shadowBias(_self: *@This()) f32 {
+        return objc.msgSend(_self, "shadowBias", f32, .{});
     }
 
-    pub fn previewImage(self: *@This()) ?*Image {
-        return objc.msgSend(self, "previewImage", ?*Image, .{});
+    pub fn setBoostAmount(_self: *@This(), _boostAmount: f32) void {
+        return objc.msgSend(_self, "setBoostAmount:", void, .{_boostAmount});
     }
 
-    pub fn portraitEffectsMatte(self: *@This()) ?*Image {
-        return objc.msgSend(self, "portraitEffectsMatte", ?*Image, .{});
+    pub fn boostAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "boostAmount", f32, .{});
     }
 
-    pub fn semanticSegmentationSkinMatte(self: *@This()) ?*Image {
-        return objc.msgSend(self, "semanticSegmentationSkinMatte", ?*Image, .{});
+    pub fn setBoostShadowAmount(_self: *@This(), _boostShadowAmount: f32) void {
+        return objc.msgSend(_self, "setBoostShadowAmount:", void, .{_boostShadowAmount});
     }
 
-    pub fn semanticSegmentationHairMatte(self: *@This()) ?*Image {
-        return objc.msgSend(self, "semanticSegmentationHairMatte", ?*Image, .{});
+    pub fn boostShadowAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "boostShadowAmount", f32, .{});
     }
 
-    pub fn semanticSegmentationGlassesMatte(self: *@This()) ?*Image {
-        return objc.msgSend(self, "semanticSegmentationGlassesMatte", ?*Image, .{});
+    pub fn setGamutMappingEnabled(_self: *@This(), _gamutMappingEnabled: objc.BOOL) void {
+        return objc.msgSend(_self, "setGamutMappingEnabled:", void, .{_gamutMappingEnabled});
     }
 
-    pub fn semanticSegmentationSkyMatte(self: *@This()) ?*Image {
-        return objc.msgSend(self, "semanticSegmentationSkyMatte", ?*Image, .{});
+    pub fn isGamutMappingEnabled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isGamutMappingEnabled", objc.BOOL, .{});
     }
 
-    pub fn semanticSegmentationTeethMatte(self: *@This()) ?*Image {
-        return objc.msgSend(self, "semanticSegmentationTeethMatte", ?*Image, .{});
+    pub fn isLensCorrectionSupported(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isLensCorrectionSupported", objc.BOOL, .{});
     }
 
-    pub fn filterWithImageURL(self: *@This(), url: ?*NSURL) *@This() {
-        return objc.msgSend(self, "filterWithImageURL:", *@This(), .{url});
+    pub fn setLensCorrectionEnabled(_self: *@This(), _lensCorrectionEnabled: objc.BOOL) void {
+        return objc.msgSend(_self, "setLensCorrectionEnabled:", void, .{_lensCorrectionEnabled});
     }
 
-    pub fn filterWithImageDataIdentifierHint(self: *@This(), data: ?*NSData, identifierHint: ?*NSString) *@This() {
-        return objc.msgSend(self, "filterWithImageData:identifierHint:", *@This(), .{data, identifierHint});
+    pub fn isLensCorrectionEnabled(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isLensCorrectionEnabled", objc.BOOL, .{});
     }
 
-    pub fn filterWithCVPixelBufferProperties(self: *@This(), buffer: core_video.PixelBufferRef, properties: ?*NSDictionary) *@This() {
-        return objc.msgSend(self, "filterWithCVPixelBuffer:properties:", *@This(), .{buffer, properties});
+    pub fn isLuminanceNoiseReductionSupported(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isLuminanceNoiseReductionSupported", objc.BOOL, .{});
+    }
+
+    pub fn setLuminanceNoiseReductionAmount(_self: *@This(), _luminanceNoiseReductionAmount: f32) void {
+        return objc.msgSend(_self, "setLuminanceNoiseReductionAmount:", void, .{_luminanceNoiseReductionAmount});
+    }
+
+    pub fn luminanceNoiseReductionAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "luminanceNoiseReductionAmount", f32, .{});
+    }
+
+    pub fn isColorNoiseReductionSupported(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isColorNoiseReductionSupported", objc.BOOL, .{});
+    }
+
+    pub fn setColorNoiseReductionAmount(_self: *@This(), _colorNoiseReductionAmount: f32) void {
+        return objc.msgSend(_self, "setColorNoiseReductionAmount:", void, .{_colorNoiseReductionAmount});
+    }
+
+    pub fn colorNoiseReductionAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "colorNoiseReductionAmount", f32, .{});
+    }
+
+    pub fn isSharpnessSupported(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isSharpnessSupported", objc.BOOL, .{});
+    }
+
+    pub fn sharpnessAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "sharpnessAmount", f32, .{});
+    }
+
+    pub fn setSharpnessAmount(_self: *@This(), _sharpnessAmount: f32) void {
+        return objc.msgSend(_self, "setSharpnessAmount:", void, .{_sharpnessAmount});
+    }
+
+    pub fn isContrastSupported(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isContrastSupported", objc.BOOL, .{});
+    }
+
+    pub fn setContrastAmount(_self: *@This(), _contrastAmount: f32) void {
+        return objc.msgSend(_self, "setContrastAmount:", void, .{_contrastAmount});
+    }
+
+    pub fn contrastAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "contrastAmount", f32, .{});
+    }
+
+    pub fn isDetailSupported(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDetailSupported", objc.BOOL, .{});
+    }
+
+    pub fn detailAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "detailAmount", f32, .{});
+    }
+
+    pub fn setDetailAmount(_self: *@This(), _detailAmount: f32) void {
+        return objc.msgSend(_self, "setDetailAmount:", void, .{_detailAmount});
+    }
+
+    pub fn isMoireReductionSupported(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isMoireReductionSupported", objc.BOOL, .{});
+    }
+
+    pub fn moireReductionAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "moireReductionAmount", f32, .{});
+    }
+
+    pub fn setMoireReductionAmount(_self: *@This(), _moireReductionAmount: f32) void {
+        return objc.msgSend(_self, "setMoireReductionAmount:", void, .{_moireReductionAmount});
+    }
+
+    pub fn isLocalToneMapSupported(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isLocalToneMapSupported", objc.BOOL, .{});
+    }
+
+    pub fn localToneMapAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "localToneMapAmount", f32, .{});
+    }
+
+    pub fn setLocalToneMapAmount(_self: *@This(), _localToneMapAmount: f32) void {
+        return objc.msgSend(_self, "setLocalToneMapAmount:", void, .{_localToneMapAmount});
+    }
+
+    pub fn setExtendedDynamicRangeAmount(_self: *@This(), _extendedDynamicRangeAmount: f32) void {
+        return objc.msgSend(_self, "setExtendedDynamicRangeAmount:", void, .{_extendedDynamicRangeAmount});
+    }
+
+    pub fn extendedDynamicRangeAmount(_self: *@This()) f32 {
+        return objc.msgSend(_self, "extendedDynamicRangeAmount", f32, .{});
+    }
+
+    pub fn setNeutralChromaticity(_self: *@This(), _neutralChromaticity: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setNeutralChromaticity:", void, .{_neutralChromaticity});
+    }
+
+    pub fn neutralChromaticity(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "neutralChromaticity", core_foundation.CGPoint, .{});
+    }
+
+    pub fn neutralLocation(_self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(_self, "neutralLocation", core_foundation.CGPoint, .{});
+    }
+
+    pub fn setNeutralLocation(_self: *@This(), _neutralLocation: core_foundation.CGPoint) void {
+        return objc.msgSend(_self, "setNeutralLocation:", void, .{_neutralLocation});
+    }
+
+    pub fn neutralTemperature(_self: *@This()) f32 {
+        return objc.msgSend(_self, "neutralTemperature", f32, .{});
+    }
+
+    pub fn setNeutralTemperature(_self: *@This(), _neutralTemperature: f32) void {
+        return objc.msgSend(_self, "setNeutralTemperature:", void, .{_neutralTemperature});
+    }
+
+    pub fn neutralTint(_self: *@This()) f32 {
+        return objc.msgSend(_self, "neutralTint", f32, .{});
+    }
+
+    pub fn setNeutralTint(_self: *@This(), _neutralTint: f32) void {
+        return objc.msgSend(_self, "setNeutralTint:", void, .{_neutralTint});
+    }
+
+    pub fn linearSpaceFilter(_self: *@This()) ?*Filter {
+        return objc.msgSend(_self, "linearSpaceFilter", ?*Filter, .{});
+    }
+
+    pub fn setLinearSpaceFilter(_self: *@This(), _linearSpaceFilter: ?*Filter) void {
+        return objc.msgSend(_self, "setLinearSpaceFilter:", void, .{_linearSpaceFilter});
+    }
+
+    pub fn previewImage(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "previewImage", ?*Image, .{});
+    }
+
+    pub fn portraitEffectsMatte(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "portraitEffectsMatte", ?*Image, .{});
+    }
+
+    pub fn semanticSegmentationSkinMatte(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "semanticSegmentationSkinMatte", ?*Image, .{});
+    }
+
+    pub fn semanticSegmentationHairMatte(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "semanticSegmentationHairMatte", ?*Image, .{});
+    }
+
+    pub fn semanticSegmentationGlassesMatte(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "semanticSegmentationGlassesMatte", ?*Image, .{});
+    }
+
+    pub fn semanticSegmentationSkyMatte(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "semanticSegmentationSkyMatte", ?*Image, .{});
+    }
+
+    pub fn semanticSegmentationTeethMatte(_self: *@This()) ?*Image {
+        return objc.msgSend(_self, "semanticSegmentationTeethMatte", ?*Image, .{});
+    }
+
+    pub fn filterWithImageURL(_self: *@This(), _url: ?*NSURL) *@This() {
+        return objc.msgSend(_self, "filterWithImageURL:", *@This(), .{_url});
+    }
+
+    pub fn filterWithImageDataIdentifierHint(_self: *@This(), _data: ?*NSData, _identifierHint: ?*NSString) *@This() {
+        return objc.msgSend(_self, "filterWithImageData:identifierHint:", *@This(), .{_data, _identifierHint});
+    }
+
+    pub fn filterWithCVPixelBufferProperties(_self: *@This(), _buffer: core_video.PixelBufferRef, _properties: ?*NSDictionary) *@This() {
+        return objc.msgSend(_self, "filterWithCVPixelBuffer:properties:", *@This(), .{_buffer, _properties});
     }
 
 };
@@ -1718,7 +4191,7 @@ pub const RAWDecoderVersion = ?*NSString;
 
 /// https://developer.apple.com/documentation/CoreImage/CIRenderDestination?language=objc
 pub const RenderDestination = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIRenderDestination", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIRenderDestination", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1727,97 +4200,207 @@ pub const RenderDestination = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithPixelBuffer(self: *@This(), pixelBuffer: core_video.PixelBufferRef) *@This() {
-        return objc.msgSend(self, "initWithPixelBuffer:", *@This(), .{pixelBuffer});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn initWithIOSurface(self: *@This(), surface: ?*io_surface.) *@This() {
-        return objc.msgSend(self, "initWithIOSurface:", *@This(), .{surface});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithMTLTextureCommandBuffer(self: *@This(), texture: ?*anyopaque, commandBuffer: ?*anyopaque) *@This() {
-        return objc.msgSend(self, "initWithMTLTexture:commandBuffer:", *@This(), .{texture, commandBuffer});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn initWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(self: *@This(), width: objc.NSUInteger, height: objc.NSUInteger, pixelFormat: metal.PixelFormat, commandBuffer: ?*anyopaque, block: *const fn() callconv(.C) ?*anyopaque, ) *@This() {
-        return objc.msgSend(self, "initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:", *@This(), .{width, height, pixelFormat, commandBuffer, block, });
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn initWithGLTextureTargetWidthHeight(self: *@This(), texture: u32, target: u32, width: objc.NSUInteger, height: objc.NSUInteger, ) *@This() {
-        return objc.msgSend(self, "initWithGLTexture:target:width:height:", *@This(), .{texture, target, width, height, });
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn initWithBitmapDataWidthHeightBytesPerRowFormat(self: *@This(), data: ?*anyopaque, width: objc.NSUInteger, height: objc.NSUInteger, bytesPerRow: objc.NSUInteger, format: Format, ) *@This() {
-        return objc.msgSend(self, "initWithBitmapData:width:height:bytesPerRow:format:", *@This(), .{data, width, height, bytesPerRow, format, });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn width(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "width", objc.NSUInteger, .{});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn height(self: *@This()) objc.NSUInteger {
-        return objc.msgSend(self, "height", objc.NSUInteger, .{});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn setAlphaMode(self: *@This(), alphaMode: RenderDestinationAlphaMode) void {
-        return objc.msgSend(self, "setAlphaMode:", void, .{alphaMode});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn alphaMode(self: *@This()) RenderDestinationAlphaMode {
-        return objc.msgSend(self, "alphaMode", RenderDestinationAlphaMode, .{});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn setFlipped(self: *@This(), flipped: objc.BOOL) void {
-        return objc.msgSend(self, "setFlipped:", void, .{flipped});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn isFlipped(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isFlipped", objc.BOOL, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn isDithered(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isDithered", objc.BOOL, .{});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
     }
 
-    pub fn setDithered(self: *@This(), dithered: objc.BOOL) void {
-        return objc.msgSend(self, "setDithered:", void, .{dithered});
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn setClamped(self: *@This(), clamped: objc.BOOL) void {
-        return objc.msgSend(self, "setClamped:", void, .{clamped});
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
     }
 
-    pub fn isClamped(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "isClamped", objc.BOOL, .{});
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
     }
 
-    pub fn setColorSpace(self: *@This(), colorSpace: core_graphics.ColorSpaceRef) void {
-        return objc.msgSend(self, "setColorSpace:", void, .{colorSpace});
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn colorSpace(self: *@This()) core_graphics.ColorSpaceRef {
-        return objc.msgSend(self, "colorSpace", core_graphics.ColorSpaceRef, .{});
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
     }
 
-    pub fn blendKernel(self: *@This()) ?*BlendKernel {
-        return objc.msgSend(self, "blendKernel", ?*BlendKernel, .{});
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
     }
 
-    pub fn setBlendKernel(self: *@This(), blendKernel: ?*BlendKernel) void {
-        return objc.msgSend(self, "setBlendKernel:", void, .{blendKernel});
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn blendsInDestinationColorSpace(self: *@This()) objc.BOOL {
-        return objc.msgSend(self, "blendsInDestinationColorSpace", objc.BOOL, .{});
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
     }
 
-    pub fn setBlendsInDestinationColorSpace(self: *@This(), blendsInDestinationColorSpace: objc.BOOL) void {
-        return objc.msgSend(self, "setBlendsInDestinationColorSpace:", void, .{blendsInDestinationColorSpace});
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn initWithPixelBuffer(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef) *@This() {
+        return objc.msgSend(_self, "initWithPixelBuffer:", *@This(), .{_pixelBuffer});
+    }
+
+    pub fn initWithIOSurface(_self: *@This(), _surface: ?*io_surface.) *@This() {
+        return objc.msgSend(_self, "initWithIOSurface:", *@This(), .{_surface});
+    }
+
+    pub fn initWithMTLTextureCommandBuffer(_self: *@This(), _texture: ?*anyopaque, _commandBuffer: ?*anyopaque) *@This() {
+        return objc.msgSend(_self, "initWithMTLTexture:commandBuffer:", *@This(), .{_texture, _commandBuffer});
+    }
+
+    pub fn initWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(_self: *@This(), _width: objc.NSUInteger, _height: objc.NSUInteger, _pixelFormat: metal.PixelFormat, _commandBuffer: ?*anyopaque, _block: *const fn() callconv(.C) ?*anyopaque, ) *@This() {
+        return objc.msgSend(_self, "initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:", *@This(), .{_width, _height, _pixelFormat, _commandBuffer, _block, });
+    }
+
+    pub fn initWithGLTextureTargetWidthHeight(_self: *@This(), _texture: u32, _target: u32, _width: objc.NSUInteger, _height: objc.NSUInteger, ) *@This() {
+        return objc.msgSend(_self, "initWithGLTexture:target:width:height:", *@This(), .{_texture, _target, _width, _height, });
+    }
+
+    pub fn initWithBitmapDataWidthHeightBytesPerRowFormat(_self: *@This(), _data: ?*anyopaque, _width: objc.NSUInteger, _height: objc.NSUInteger, _bytesPerRow: objc.NSUInteger, _format: Format, ) *@This() {
+        return objc.msgSend(_self, "initWithBitmapData:width:height:bytesPerRow:format:", *@This(), .{_data, _width, _height, _bytesPerRow, _format, });
+    }
+
+    pub fn width(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "width", objc.NSUInteger, .{});
+    }
+
+    pub fn height(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "height", objc.NSUInteger, .{});
+    }
+
+    pub fn setAlphaMode(_self: *@This(), _alphaMode: RenderDestinationAlphaMode) void {
+        return objc.msgSend(_self, "setAlphaMode:", void, .{_alphaMode});
+    }
+
+    pub fn alphaMode(_self: *@This()) RenderDestinationAlphaMode {
+        return objc.msgSend(_self, "alphaMode", RenderDestinationAlphaMode, .{});
+    }
+
+    pub fn setFlipped(_self: *@This(), _flipped: objc.BOOL) void {
+        return objc.msgSend(_self, "setFlipped:", void, .{_flipped});
+    }
+
+    pub fn isFlipped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isFlipped", objc.BOOL, .{});
+    }
+
+    pub fn isDithered(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDithered", objc.BOOL, .{});
+    }
+
+    pub fn setDithered(_self: *@This(), _dithered: objc.BOOL) void {
+        return objc.msgSend(_self, "setDithered:", void, .{_dithered});
+    }
+
+    pub fn setClamped(_self: *@This(), _clamped: objc.BOOL) void {
+        return objc.msgSend(_self, "setClamped:", void, .{_clamped});
+    }
+
+    pub fn isClamped(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isClamped", objc.BOOL, .{});
+    }
+
+    pub fn setColorSpace(_self: *@This(), _colorSpace: core_graphics.ColorSpaceRef) void {
+        return objc.msgSend(_self, "setColorSpace:", void, .{_colorSpace});
+    }
+
+    pub fn colorSpace(_self: *@This()) core_graphics.ColorSpaceRef {
+        return objc.msgSend(_self, "colorSpace", core_graphics.ColorSpaceRef, .{});
+    }
+
+    pub fn blendKernel(_self: *@This()) ?*BlendKernel {
+        return objc.msgSend(_self, "blendKernel", ?*BlendKernel, .{});
+    }
+
+    pub fn setBlendKernel(_self: *@This(), _blendKernel: ?*BlendKernel) void {
+        return objc.msgSend(_self, "setBlendKernel:", void, .{_blendKernel});
+    }
+
+    pub fn blendsInDestinationColorSpace(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "blendsInDestinationColorSpace", objc.BOOL, .{});
+    }
+
+    pub fn setBlendsInDestinationColorSpace(_self: *@This(), _blendsInDestinationColorSpace: objc.BOOL) void {
+        return objc.msgSend(_self, "setBlendsInDestinationColorSpace:", void, .{_blendsInDestinationColorSpace});
     }
 
 };
-
-pub const RenderDestinationAlphaMode = RenderDestinationAlphaMode;
 
 pub const RenderDestinationAlphaMode = enum(objc.NSUInteger) {
     None = 0,
@@ -1827,7 +4410,7 @@ pub const RenderDestinationAlphaMode = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/CoreImage/CIRenderInfo?language=objc
 pub const RenderInfo = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIRenderInfo", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIRenderInfo", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1836,27 +4419,139 @@ pub const RenderInfo = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn kernelExecutionTime(self: *@This()) foundation.TimeInterval {
-        return objc.msgSend(self, "kernelExecutionTime", foundation.TimeInterval, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn kernelCompileTime(self: *@This()) foundation.TimeInterval {
-        return objc.msgSend(self, "kernelCompileTime", foundation.TimeInterval, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn passCount(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "passCount", objc.NSInteger, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn pixelsProcessed(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "pixelsProcessed", objc.NSInteger, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn kernelExecutionTime(_self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(_self, "kernelExecutionTime", foundation.TimeInterval, .{});
+    }
+
+    pub fn kernelCompileTime(_self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(_self, "kernelCompileTime", foundation.TimeInterval, .{});
+    }
+
+    pub fn passCount(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "passCount", objc.NSInteger, .{});
+    }
+
+    pub fn pixelsProcessed(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "pixelsProcessed", objc.NSInteger, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIRenderTask?language=objc
 pub const RenderTask = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIRenderTask", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIRenderTask", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1865,15 +4560,127 @@ pub const RenderTask = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn waitUntilCompletedAndReturnError(self: *@This(), @"error": ?*?*foundation.Error) ?*RenderInfo {
-        return objc.msgSend(self, "waitUntilCompletedAndReturnError:", ?*RenderInfo, .{@"error"});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn waitUntilCompletedAndReturnError(_self: *@This(), _error: ?*?*foundation.Error) ?*RenderInfo {
+        return objc.msgSend(_self, "waitUntilCompletedAndReturnError:", ?*RenderInfo, .{_error});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIBarcodeDescriptor?language=objc
 pub const BarcodeDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIBarcodeDescriptor", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIBarcodeDescriptor", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1881,6 +4688,131 @@ pub const BarcodeDescriptor = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
+
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
+    }
+
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
 };
 
 pub const QRCodeErrorCorrectionLevel = enum(objc.NSInteger) {
@@ -1892,7 +4824,7 @@ pub const QRCodeErrorCorrectionLevel = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor?language=objc
 pub const QRCodeDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIQRCodeDescriptor", @This(), BarcodeDescriptor, &.{});
+    pub const InternalInfo = objc.ExternClass("CIQRCodeDescriptor", @This(), BarcodeDescriptor, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1901,35 +4833,159 @@ pub const QRCodeDescriptor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(self: *@This(), errorCorrectedPayload: ?*NSData, symbolVersion: objc.NSInteger, maskPattern: objc.uint8_t, errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
-        return objc.msgSend(self, "initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel, });
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn descriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(self: *@This(), errorCorrectedPayload: ?*NSData, symbolVersion: objc.NSInteger, maskPattern: objc.uint8_t, errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
-        return objc.msgSend(self, "descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel, });
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn errorCorrectedPayload(self: *@This()) ?*NSData {
-        return objc.msgSend(self, "errorCorrectedPayload", ?*NSData, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn symbolVersion(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "symbolVersion", objc.NSInteger, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn maskPattern(self: *@This()) objc.uint8_t {
-        return objc.msgSend(self, "maskPattern", objc.uint8_t, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn errorCorrectionLevel(self: *@This()) QRCodeErrorCorrectionLevel {
-        return objc.msgSend(self, "errorCorrectionLevel", QRCodeErrorCorrectionLevel, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(_self: *@This(), _errorCorrectedPayload: ?*NSData, _symbolVersion: objc.NSInteger, _maskPattern: objc.uint8_t, _errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
+        return objc.msgSend(_self, "initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{_errorCorrectedPayload, _symbolVersion, _maskPattern, _errorCorrectionLevel, });
+    }
+
+    pub fn descriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(_self: *@This(), _errorCorrectedPayload: ?*NSData, _symbolVersion: objc.NSInteger, _maskPattern: objc.uint8_t, _errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
+        return objc.msgSend(_self, "descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{_errorCorrectedPayload, _symbolVersion, _maskPattern, _errorCorrectionLevel, });
+    }
+
+    pub fn errorCorrectedPayload(_self: *@This()) ?*NSData {
+        return objc.msgSend(_self, "errorCorrectedPayload", ?*NSData, .{});
+    }
+
+    pub fn symbolVersion(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "symbolVersion", objc.NSInteger, .{});
+    }
+
+    pub fn maskPattern(_self: *@This()) objc.uint8_t {
+        return objc.msgSend(_self, "maskPattern", objc.uint8_t, .{});
+    }
+
+    pub fn errorCorrectionLevel(_self: *@This()) QRCodeErrorCorrectionLevel {
+        return objc.msgSend(_self, "errorCorrectionLevel", QRCodeErrorCorrectionLevel, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor?language=objc
 pub const AztecCodeDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIAztecCodeDescriptor", @This(), BarcodeDescriptor, &.{});
+    pub const InternalInfo = objc.ExternClass("CIAztecCodeDescriptor", @This(), BarcodeDescriptor, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1938,19 +4994,143 @@ pub const AztecCodeDescriptor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithPayloadIsCompactLayerCountDataCodewordCount(self: *@This(), errorCorrectedPayload: ?*NSData, isCompact: objc.BOOL, layerCount: objc.NSInteger, dataCodewordCount: objc.NSInteger, ) *@This() {
-        return objc.msgSend(self, "initWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{errorCorrectedPayload, isCompact, layerCount, dataCodewordCount, });
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn descriptorWithPayloadIsCompactLayerCountDataCodewordCount(self: *@This(), errorCorrectedPayload: ?*NSData, isCompact: objc.BOOL, layerCount: objc.NSInteger, dataCodewordCount: objc.NSInteger, ) *@This() {
-        return objc.msgSend(self, "descriptorWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{errorCorrectedPayload, isCompact, layerCount, dataCodewordCount, });
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithPayloadIsCompactLayerCountDataCodewordCount(_self: *@This(), _errorCorrectedPayload: ?*NSData, _isCompact: objc.BOOL, _layerCount: objc.NSInteger, _dataCodewordCount: objc.NSInteger, ) *@This() {
+        return objc.msgSend(_self, "initWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _layerCount, _dataCodewordCount, });
+    }
+
+    pub fn descriptorWithPayloadIsCompactLayerCountDataCodewordCount(_self: *@This(), _errorCorrectedPayload: ?*NSData, _isCompact: objc.BOOL, _layerCount: objc.NSInteger, _dataCodewordCount: objc.NSInteger, ) *@This() {
+        return objc.msgSend(_self, "descriptorWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _layerCount, _dataCodewordCount, });
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor?language=objc
 pub const PDF417CodeDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIPDF417CodeDescriptor", @This(), BarcodeDescriptor, &.{});
+    pub const InternalInfo = objc.ExternClass("CIPDF417CodeDescriptor", @This(), BarcodeDescriptor, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1959,12 +5139,136 @@ pub const PDF417CodeDescriptor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithPayloadIsCompactRowCountColumnCount(self: *@This(), errorCorrectedPayload: ?*NSData, isCompact: objc.BOOL, rowCount: objc.NSInteger, columnCount: objc.NSInteger, ) *@This() {
-        return objc.msgSend(self, "initWithPayload:isCompact:rowCount:columnCount:", *@This(), .{errorCorrectedPayload, isCompact, rowCount, columnCount, });
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn descriptorWithPayloadIsCompactRowCountColumnCount(self: *@This(), errorCorrectedPayload: ?*NSData, isCompact: objc.BOOL, rowCount: objc.NSInteger, columnCount: objc.NSInteger, ) *@This() {
-        return objc.msgSend(self, "descriptorWithPayload:isCompact:rowCount:columnCount:", *@This(), .{errorCorrectedPayload, isCompact, rowCount, columnCount, });
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    }
+
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
+    }
+
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
+    }
+
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithPayloadIsCompactRowCountColumnCount(_self: *@This(), _errorCorrectedPayload: ?*NSData, _isCompact: objc.BOOL, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, ) *@This() {
+        return objc.msgSend(_self, "initWithPayload:isCompact:rowCount:columnCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _rowCount, _columnCount, });
+    }
+
+    pub fn descriptorWithPayloadIsCompactRowCountColumnCount(_self: *@This(), _errorCorrectedPayload: ?*NSData, _isCompact: objc.BOOL, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, ) *@This() {
+        return objc.msgSend(_self, "descriptorWithPayload:isCompact:rowCount:columnCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _rowCount, _columnCount, });
     }
 
 };
@@ -1980,7 +5284,7 @@ pub const DataMatrixCodeECCVersion = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor?language=objc
 pub const DataMatrixCodeDescriptor = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIDataMatrixCodeDescriptor", @This(), BarcodeDescriptor, &.{});
+    pub const InternalInfo = objc.ExternClass("CIDataMatrixCodeDescriptor", @This(), BarcodeDescriptor, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1989,35 +5293,159 @@ pub const DataMatrixCodeDescriptor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithPayloadRowCountColumnCountEccVersion(self: *@This(), errorCorrectedPayload: ?*NSData, rowCount: objc.NSInteger, columnCount: objc.NSInteger, eccVersion: DataMatrixCodeECCVersion, ) *@This() {
-        return objc.msgSend(self, "initWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{errorCorrectedPayload, rowCount, columnCount, eccVersion, });
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn descriptorWithPayloadRowCountColumnCountEccVersion(self: *@This(), errorCorrectedPayload: ?*NSData, rowCount: objc.NSInteger, columnCount: objc.NSInteger, eccVersion: DataMatrixCodeECCVersion, ) *@This() {
-        return objc.msgSend(self, "descriptorWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{errorCorrectedPayload, rowCount, columnCount, eccVersion, });
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn errorCorrectedPayload(self: *@This()) ?*NSData {
-        return objc.msgSend(self, "errorCorrectedPayload", ?*NSData, .{});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn rowCount(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "rowCount", objc.NSInteger, .{});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn columnCount(self: *@This()) objc.NSInteger {
-        return objc.msgSend(self, "columnCount", objc.NSInteger, .{});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn eccVersion(self: *@This()) DataMatrixCodeECCVersion {
-        return objc.msgSend(self, "eccVersion", DataMatrixCodeECCVersion, .{});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn initWithPayloadRowCountColumnCountEccVersion(_self: *@This(), _errorCorrectedPayload: ?*NSData, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, _eccVersion: DataMatrixCodeECCVersion, ) *@This() {
+        return objc.msgSend(_self, "initWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{_errorCorrectedPayload, _rowCount, _columnCount, _eccVersion, });
+    }
+
+    pub fn descriptorWithPayloadRowCountColumnCountEccVersion(_self: *@This(), _errorCorrectedPayload: ?*NSData, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, _eccVersion: DataMatrixCodeECCVersion, ) *@This() {
+        return objc.msgSend(_self, "descriptorWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{_errorCorrectedPayload, _rowCount, _columnCount, _eccVersion, });
+    }
+
+    pub fn errorCorrectedPayload(_self: *@This()) ?*NSData {
+        return objc.msgSend(_self, "errorCorrectedPayload", ?*NSData, .{});
+    }
+
+    pub fn rowCount(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "rowCount", objc.NSInteger, .{});
+    }
+
+    pub fn columnCount(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "columnCount", objc.NSInteger, .{});
+    }
+
+    pub fn eccVersion(_self: *@This()) DataMatrixCodeECCVersion {
+        return objc.msgSend(_self, "eccVersion", DataMatrixCodeECCVersion, .{});
     }
 
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilterGenerator?language=objc
 pub const FilterGenerator = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIFilterGenerator", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIFilterGenerator", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, FilterConstructor, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2026,56 +5454,184 @@ pub const FilterGenerator = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn filterGenerator(self: *@This()) ?*FilterGenerator {
-        return objc.msgSend(self, "filterGenerator", ?*FilterGenerator, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn filterGeneratorWithContentsOfURL(self: *@This(), aURL: ?*NSURL) ?*FilterGenerator {
-        return objc.msgSend(self, "filterGeneratorWithContentsOfURL:", ?*FilterGenerator, .{aURL});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn initWithContentsOfURL(self: *@This(), aURL: ?*NSURL) *objc.Id {
-        return objc.msgSend(self, "initWithContentsOfURL:", *objc.Id, .{aURL});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn connectObjectWithKeyToObjectWithKey(self: *@This(), sourceObject: *objc.Id, sourceKey: ?*io_surface.NSString, targetObject: *objc.Id, targetKey: ?*io_surface.NSString, ) void {
-        return objc.msgSend(self, "connectObject:withKey:toObject:withKey:", void, .{sourceObject, sourceKey, targetObject, targetKey, });
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn disconnectObjectWithKeyToObjectWithKey(self: *@This(), sourceObject: *objc.Id, sourceKey: ?*io_surface.NSString, targetObject: *objc.Id, targetKey: ?*io_surface.NSString, ) void {
-        return objc.msgSend(self, "disconnectObject:withKey:toObject:withKey:", void, .{sourceObject, sourceKey, targetObject, targetKey, });
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn exportKeyFromObjectWithName(self: *@This(), key: ?*io_surface.NSString, targetObject: *objc.Id, exportedKeyName: ?*io_surface.NSString) void {
-        return objc.msgSend(self, "exportKey:fromObject:withName:", void, .{key, targetObject, exportedKeyName});
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
     }
 
-    pub fn removeExportedKey(self: *@This(), exportedKeyName: ?*io_surface.NSString) void {
-        return objc.msgSend(self, "removeExportedKey:", void, .{exportedKeyName});
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
     }
 
-    pub fn setAttributesForExportedKey(self: *@This(), attributes: ?*NSDictionary, key: ?*io_surface.NSString) void {
-        return objc.msgSend(self, "setAttributes:forExportedKey:", void, .{attributes, key});
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
     }
 
-    pub fn filter(self: *@This()) ?*Filter {
-        return objc.msgSend(self, "filter", ?*Filter, .{});
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn registerFilterName(self: *@This(), name: ?*io_surface.NSString) void {
-        return objc.msgSend(self, "registerFilterName:", void, .{name});
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
     }
 
-    pub fn exportedKeys(self: *@This()) ?*NSDictionary {
-        return objc.msgSend(self, "exportedKeys", ?*NSDictionary, .{});
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
     }
 
-    pub fn classAttributes(self: *@This()) ?*NSDictionary {
-        return objc.msgSend(self, "classAttributes", ?*NSDictionary, .{});
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
     }
 
-    pub fn setClassAttributes(self: *@This(), classAttributes: ?*NSDictionary) void {
-        return objc.msgSend(self, "setClassAttributes:", void, .{classAttributes});
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
+    }
+
+    pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
+        return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    }
+
+    pub fn filterWithName(_self: *@This(), _name: ?*application_services.NSString) ?*Filter {
+        return objc.msgSend(_self, "filterWithName:", ?*Filter, .{_name});
+    }
+
+    pub fn filterGenerator(_self: *@This()) ?*FilterGenerator {
+        return objc.msgSend(_self, "filterGenerator", ?*FilterGenerator, .{});
+    }
+
+    pub fn filterGeneratorWithContentsOfURL(_self: *@This(), _aURL: ?*NSURL) ?*FilterGenerator {
+        return objc.msgSend(_self, "filterGeneratorWithContentsOfURL:", ?*FilterGenerator, .{_aURL});
+    }
+
+    pub fn initWithContentsOfURL(_self: *@This(), _aURL: ?*NSURL) *objc.Id {
+        return objc.msgSend(_self, "initWithContentsOfURL:", *objc.Id, .{_aURL});
+    }
+
+    pub fn connectObjectWithKeyToObjectWithKey(_self: *@This(), _sourceObject: *objc.Id, _sourceKey: ?*io_surface.NSString, _targetObject: *objc.Id, _targetKey: ?*io_surface.NSString, ) void {
+        return objc.msgSend(_self, "connectObject:withKey:toObject:withKey:", void, .{_sourceObject, _sourceKey, _targetObject, _targetKey, });
+    }
+
+    pub fn disconnectObjectWithKeyToObjectWithKey(_self: *@This(), _sourceObject: *objc.Id, _sourceKey: ?*io_surface.NSString, _targetObject: *objc.Id, _targetKey: ?*io_surface.NSString, ) void {
+        return objc.msgSend(_self, "disconnectObject:withKey:toObject:withKey:", void, .{_sourceObject, _sourceKey, _targetObject, _targetKey, });
+    }
+
+    pub fn exportKeyFromObjectWithName(_self: *@This(), _key: ?*io_surface.NSString, _targetObject: *objc.Id, _exportedKeyName: ?*io_surface.NSString) void {
+        return objc.msgSend(_self, "exportKey:fromObject:withName:", void, .{_key, _targetObject, _exportedKeyName});
+    }
+
+    pub fn removeExportedKey(_self: *@This(), _exportedKeyName: ?*io_surface.NSString) void {
+        return objc.msgSend(_self, "removeExportedKey:", void, .{_exportedKeyName});
+    }
+
+    pub fn setAttributesForExportedKey(_self: *@This(), _attributes: ?*NSDictionary, _key: ?*io_surface.NSString) void {
+        return objc.msgSend(_self, "setAttributes:forExportedKey:", void, .{_attributes, _key});
+    }
+
+    pub fn filter(_self: *@This()) ?*Filter {
+        return objc.msgSend(_self, "filter", ?*Filter, .{});
+    }
+
+    pub fn registerFilterName(_self: *@This(), _name: ?*io_surface.NSString) void {
+        return objc.msgSend(_self, "registerFilterName:", void, .{_name});
+    }
+
+    pub fn exportedKeys(_self: *@This()) ?*NSDictionary {
+        return objc.msgSend(_self, "exportedKeys", ?*NSDictionary, .{});
+    }
+
+    pub fn classAttributes(_self: *@This()) ?*NSDictionary {
+        return objc.msgSend(_self, "classAttributes", ?*NSDictionary, .{});
+    }
+
+    pub fn setClassAttributes(_self: *@This(), _classAttributes: ?*NSDictionary) void {
+        return objc.msgSend(_self, "setClassAttributes:", void, .{_classAttributes});
     }
 
 };
@@ -2089,11 +5645,12 @@ pub const PlugInRegistration = opaque {
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
+
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIPlugIn?language=objc
 pub const PlugIn = opaque {
-    pub const InternalInfo = objc.ExternalClass("CIPlugIn", @This(), NSObject, &.{});
+    pub const InternalInfo = objc.ExternClass("CIPlugIn", @This(), objc.NSObject, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2102,24 +5659,136 @@ pub const PlugIn = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn loadAllPlugIns(self: *@This()) void {
-        return objc.msgSend(self, "loadAllPlugIns", void, .{});
+    pub fn hash(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn loadNonExecutablePlugIns(self: *@This()) void {
-        return objc.msgSend(self, "loadNonExecutablePlugIns", void, .{});
+    pub fn superclass(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "superclass", *objc.Class, .{});
     }
 
-    pub fn loadPlugInAllowNonExecutable(self: *@This(), url: ?*NSURL, allowNonExecutable: objc.BOOL) void {
-        return objc.msgSend(self, "loadPlugIn:allowNonExecutable:", void, .{url, allowNonExecutable});
+    pub fn class(_self: *@This()) *objc.Class {
+        return objc.msgSend(_self, "class", *objc.Class, .{});
     }
 
-    pub fn loadPlugInAllowExecutableCode(self: *@This(), url: ?*NSURL, allowExecutableCode: objc.BOOL) void {
-        return objc.msgSend(self, "loadPlugIn:allowExecutableCode:", void, .{url, allowExecutableCode});
+    pub fn self(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn loadNonExecutablePlugIn(self: *@This(), url: ?*NSURL) void {
-        return objc.msgSend(self, "loadNonExecutablePlugIn:", void, .{url});
+    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{_aSelector, _object});
+    }
+
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{_aSelector, _object1, _object2});
+    }
+
+    pub fn retainCount(_self: *@This()) objc.NSUInteger {
+        return objc.msgSend(_self, "retainCount", objc.NSUInteger, .{});
+    }
+
+    pub fn zone(_self: *@This()) ?*objc._NSZone {
+        return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
+    }
+
+    pub fn description(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    }
+
+    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
+        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    }
+
+    pub fn load(_self: *@This()) void {
+        return objc.msgSend(_self, "load", void, .{});
+    }
+
+    pub fn initialize(_self: *@This()) void {
+        return objc.msgSend(_self, "initialize", void, .{});
+    }
+
+    pub fn init(_self: *@This()) *@This() {
+        return objc.msgSend(_self, "init", *@This(), .{});
+    }
+
+    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    }
+
+    pub fn dealloc(_self: *@This()) void {
+        return objc.msgSend(_self, "dealloc", void, .{});
+    }
+
+    pub fn finalize(_self: *@This()) void {
+        return objc.msgSend(_self, "finalize", void, .{});
+    }
+
+    pub fn copy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    }
+
+    pub fn mutableCopy(_self: *@This()) *objc.Id {
+        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    }
+
+    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
+        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    }
+
+    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    }
+
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+        return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
+    }
+
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    }
+
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+        return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
+    }
+
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    }
+
+    pub fn loadAllPlugIns(_self: *@This()) void {
+        return objc.msgSend(_self, "loadAllPlugIns", void, .{});
+    }
+
+    pub fn loadNonExecutablePlugIns(_self: *@This()) void {
+        return objc.msgSend(_self, "loadNonExecutablePlugIns", void, .{});
+    }
+
+    pub fn loadPlugInAllowNonExecutable(_self: *@This(), _url: ?*NSURL, _allowNonExecutable: objc.BOOL) void {
+        return objc.msgSend(_self, "loadPlugIn:allowNonExecutable:", void, .{_url, _allowNonExecutable});
+    }
+
+    pub fn loadPlugInAllowExecutableCode(_self: *@This(), _url: ?*NSURL, _allowExecutableCode: objc.BOOL) void {
+        return objc.msgSend(_self, "loadPlugIn:allowExecutableCode:", void, .{_url, _allowExecutableCode});
+    }
+
+    pub fn loadNonExecutablePlugIn(_self: *@This(), _url: ?*NSURL) void {
+        return objc.msgSend(_self, "loadNonExecutablePlugIn:", void, .{_url});
     }
 
 };

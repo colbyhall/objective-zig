@@ -9,115 +9,195 @@ pub const __IOSurface = extern struct {};
 
 pub const IOSurfaceRef = ?*__IOSurface;
 
-pub extern "CoreGraphics" fn PointMake(x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn CGPointMake(x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) core_foundation.CGPoint;
+pub const pointMake = CGPointMake;
 
-pub extern "CoreGraphics" fn SizeMake(width: core_foundation.CGFloat, height: core_foundation.CGFloat) callconv(.C) core_foundation.CGSize;
+extern "CoreGraphics" fn CGSizeMake(width: core_foundation.CGFloat, height: core_foundation.CGFloat) callconv(.C) core_foundation.CGSize;
+pub const sizeMake = CGSizeMake;
 
-pub extern "CoreGraphics" fn VectorMake(dx: core_foundation.CGFloat, dy: core_foundation.CGFloat) callconv(.C) core_foundation.CGVector;
+extern "CoreGraphics" fn CGVectorMake(dx: core_foundation.CGFloat, dy: core_foundation.CGFloat) callconv(.C) core_foundation.CGVector;
+pub const vectorMake = CGVectorMake;
 
-pub extern "CoreGraphics" fn RectMake(x: core_foundation.CGFloat, y: core_foundation.CGFloat, width: core_foundation.CGFloat, height: core_foundation.CGFloat, ) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGRectMake(
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+    width: core_foundation.CGFloat,
+    height: core_foundation.CGFloat,
+) callconv(.C) core_foundation.CGRect;
+pub const rectMake = CGRectMake;
 
-pub extern "CoreGraphics" fn RectGetMinX(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGRectGetMinX(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+pub const rectGetMinX = CGRectGetMinX;
 
-pub extern "CoreGraphics" fn RectGetMidX(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGRectGetMidX(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+pub const rectGetMidX = CGRectGetMidX;
 
-pub extern "CoreGraphics" fn RectGetMaxX(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGRectGetMaxX(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+pub const rectGetMaxX = CGRectGetMaxX;
 
-pub extern "CoreGraphics" fn RectGetMinY(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGRectGetMinY(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+pub const rectGetMinY = CGRectGetMinY;
 
-pub extern "CoreGraphics" fn RectGetMidY(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGRectGetMidY(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+pub const rectGetMidY = CGRectGetMidY;
 
-pub extern "CoreGraphics" fn RectGetMaxY(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGRectGetMaxY(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+pub const rectGetMaxY = CGRectGetMaxY;
 
-pub extern "CoreGraphics" fn RectGetWidth(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGRectGetWidth(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+pub const rectGetWidth = CGRectGetWidth;
 
-pub extern "CoreGraphics" fn RectGetHeight(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGRectGetHeight(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
+pub const rectGetHeight = CGRectGetHeight;
 
-pub extern "CoreGraphics" fn PointEqualToPoint(point1: core_foundation.CGPoint, point2: core_foundation.CGPoint) callconv(.C) i32;
+extern "CoreGraphics" fn CGPointEqualToPoint(point1: core_foundation.CGPoint, point2: core_foundation.CGPoint) callconv(.C) i32;
+pub const pointEqualToPoint = CGPointEqualToPoint;
 
-pub extern "CoreGraphics" fn SizeEqualToSize(size1: core_foundation.CGSize, size2: core_foundation.CGSize) callconv(.C) i32;
+extern "CoreGraphics" fn CGSizeEqualToSize(size1: core_foundation.CGSize, size2: core_foundation.CGSize) callconv(.C) i32;
+pub const sizeEqualToSize = CGSizeEqualToSize;
 
-pub extern "CoreGraphics" fn RectEqualToRect(rect1: core_foundation.CGRect, rect2: core_foundation.CGRect) callconv(.C) i32;
+extern "CoreGraphics" fn CGRectEqualToRect(rect1: core_foundation.CGRect, rect2: core_foundation.CGRect) callconv(.C) i32;
+pub const rectEqualToRect = CGRectEqualToRect;
 
-pub extern "CoreGraphics" fn RectStandardize(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGRectStandardize(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+pub const rectStandardize = CGRectStandardize;
 
-pub extern "CoreGraphics" fn RectIsEmpty(rect: core_foundation.CGRect) callconv(.C) i32;
+extern "CoreGraphics" fn CGRectIsEmpty(rect: core_foundation.CGRect) callconv(.C) i32;
+pub const rectIsEmpty = CGRectIsEmpty;
 
-pub extern "CoreGraphics" fn RectIsNull(rect: core_foundation.CGRect) callconv(.C) i32;
+extern "CoreGraphics" fn CGRectIsNull(rect: core_foundation.CGRect) callconv(.C) i32;
+pub const rectIsNull = CGRectIsNull;
 
-pub extern "CoreGraphics" fn RectIsInfinite(rect: core_foundation.CGRect) callconv(.C) i32;
+extern "CoreGraphics" fn CGRectIsInfinite(rect: core_foundation.CGRect) callconv(.C) i32;
+pub const rectIsInfinite = CGRectIsInfinite;
 
-pub extern "CoreGraphics" fn RectInset(rect: core_foundation.CGRect, dx: core_foundation.CGFloat, dy: core_foundation.CGFloat) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGRectInset(rect: core_foundation.CGRect, dx: core_foundation.CGFloat, dy: core_foundation.CGFloat) callconv(.C) core_foundation.CGRect;
+pub const rectInset = CGRectInset;
 
-pub extern "CoreGraphics" fn RectIntegral(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGRectIntegral(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+pub const rectIntegral = CGRectIntegral;
 
-pub extern "CoreGraphics" fn RectUnion(r1: core_foundation.CGRect, r2: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGRectUnion(r1: core_foundation.CGRect, r2: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+pub const rectUnion = CGRectUnion;
 
-pub extern "CoreGraphics" fn RectIntersection(r1: core_foundation.CGRect, r2: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGRectIntersection(r1: core_foundation.CGRect, r2: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+pub const rectIntersection = CGRectIntersection;
 
-pub extern "CoreGraphics" fn RectOffset(rect: core_foundation.CGRect, dx: core_foundation.CGFloat, dy: core_foundation.CGFloat) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGRectOffset(rect: core_foundation.CGRect, dx: core_foundation.CGFloat, dy: core_foundation.CGFloat) callconv(.C) core_foundation.CGRect;
+pub const rectOffset = CGRectOffset;
 
-pub extern "CoreGraphics" fn RectDivide(rect: core_foundation.CGRect, slice: ?*core_foundation.CGRect, remainder: ?*core_foundation.CGRect, amount: core_foundation.CGFloat, edge: core_foundation.CGRectEdge, ) callconv(.C) void;
+extern "CoreGraphics" fn CGRectDivide(
+    rect: core_foundation.CGRect,
+    slice: ?*core_foundation.CGRect,
+    remainder: ?*core_foundation.CGRect,
+    amount: core_foundation.CGFloat,
+    edge: core_foundation.CGRectEdge,
+) callconv(.C) void;
+pub const rectDivide = CGRectDivide;
 
-pub extern "CoreGraphics" fn RectContainsPoint(rect: core_foundation.CGRect, point: core_foundation.CGPoint) callconv(.C) i32;
+extern "CoreGraphics" fn CGRectContainsPoint(rect: core_foundation.CGRect, point: core_foundation.CGPoint) callconv(.C) i32;
+pub const rectContainsPoint = CGRectContainsPoint;
 
-pub extern "CoreGraphics" fn RectContainsRect(rect1: core_foundation.CGRect, rect2: core_foundation.CGRect) callconv(.C) i32;
+extern "CoreGraphics" fn CGRectContainsRect(rect1: core_foundation.CGRect, rect2: core_foundation.CGRect) callconv(.C) i32;
+pub const rectContainsRect = CGRectContainsRect;
 
-pub extern "CoreGraphics" fn RectIntersectsRect(rect1: core_foundation.CGRect, rect2: core_foundation.CGRect) callconv(.C) i32;
+extern "CoreGraphics" fn CGRectIntersectsRect(rect1: core_foundation.CGRect, rect2: core_foundation.CGRect) callconv(.C) i32;
+pub const rectIntersectsRect = CGRectIntersectsRect;
 
-pub extern "CoreGraphics" fn PointCreateDictionaryRepresentation(point: core_foundation.CGPoint) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreGraphics" fn CGPointCreateDictionaryRepresentation(point: core_foundation.CGPoint) callconv(.C) core_foundation.DictionaryRef;
+pub const pointCreateDictionaryRepresentation = CGPointCreateDictionaryRepresentation;
 
-pub extern "CoreGraphics" fn PointMakeWithDictionaryRepresentation(dict: core_foundation.DictionaryRef, point: ?*core_foundation.CGPoint) callconv(.C) i32;
+extern "CoreGraphics" fn CGPointMakeWithDictionaryRepresentation(dict: core_foundation.DictionaryRef, point: ?*core_foundation.CGPoint) callconv(.C) i32;
+pub const pointMakeWithDictionaryRepresentation = CGPointMakeWithDictionaryRepresentation;
 
-pub extern "CoreGraphics" fn SizeCreateDictionaryRepresentation(size: core_foundation.CGSize) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreGraphics" fn CGSizeCreateDictionaryRepresentation(size: core_foundation.CGSize) callconv(.C) core_foundation.DictionaryRef;
+pub const sizeCreateDictionaryRepresentation = CGSizeCreateDictionaryRepresentation;
 
-pub extern "CoreGraphics" fn SizeMakeWithDictionaryRepresentation(dict: core_foundation.DictionaryRef, size: ?*core_foundation.CGSize) callconv(.C) i32;
+extern "CoreGraphics" fn CGSizeMakeWithDictionaryRepresentation(dict: core_foundation.DictionaryRef, size: ?*core_foundation.CGSize) callconv(.C) i32;
+pub const sizeMakeWithDictionaryRepresentation = CGSizeMakeWithDictionaryRepresentation;
 
-pub extern "CoreGraphics" fn RectCreateDictionaryRepresentation(core_foundation.CGRect) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreGraphics" fn CGRectCreateDictionaryRepresentation(core_foundation.CGRect) callconv(.C) core_foundation.DictionaryRef;
+pub const rectCreateDictionaryRepresentation = CGRectCreateDictionaryRepresentation;
 
-pub extern "CoreGraphics" fn RectMakeWithDictionaryRepresentation(dict: core_foundation.DictionaryRef, rect: ?*core_foundation.CGRect) callconv(.C) i32;
+extern "CoreGraphics" fn CGRectMakeWithDictionaryRepresentation(dict: core_foundation.DictionaryRef, rect: ?*core_foundation.CGRect) callconv(.C) i32;
+pub const rectMakeWithDictionaryRepresentation = CGRectMakeWithDictionaryRepresentation;
 
-pub extern "CoreGraphics" fn __CGPointEqualToPoint(point1: core_foundation.CGPoint, point2: core_foundation.CGPoint) callconv(.C) i32;
+extern "CoreGraphics" fn __CGPointEqualToPoint(point1: core_foundation.CGPoint, point2: core_foundation.CGPoint) callconv(.C) i32;
+pub const cgPointEqualToPoint = __CGPointEqualToPoint;
 
-pub extern "CoreGraphics" fn __CGSizeEqualToSize(size1: core_foundation.CGSize, size2: core_foundation.CGSize) callconv(.C) i32;
+extern "CoreGraphics" fn __CGSizeEqualToSize(size1: core_foundation.CGSize, size2: core_foundation.CGSize) callconv(.C) i32;
+pub const cgSizeEqualToSize = __CGSizeEqualToSize;
 
-pub extern "CoreGraphics" fn AffineTransformMake(a: core_foundation.CGFloat, b: core_foundation.CGFloat, c: core_foundation.CGFloat, d: core_foundation.CGFloat, tx: core_foundation.CGFloat, ty: core_foundation.CGFloat, ) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformMake(
+    a: core_foundation.CGFloat,
+    b: core_foundation.CGFloat,
+    c: core_foundation.CGFloat,
+    d: core_foundation.CGFloat,
+    tx: core_foundation.CGFloat,
+    ty: core_foundation.CGFloat,
+) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformMake = CGAffineTransformMake;
 
-pub extern "CoreGraphics" fn AffineTransformMakeTranslation(tx: core_foundation.CGFloat, ty: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformMakeTranslation(tx: core_foundation.CGFloat, ty: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformMakeTranslation = CGAffineTransformMakeTranslation;
 
-pub extern "CoreGraphics" fn AffineTransformMakeScale(sx: core_foundation.CGFloat, sy: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformMakeScale(sx: core_foundation.CGFloat, sy: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformMakeScale = CGAffineTransformMakeScale;
 
-pub extern "CoreGraphics" fn AffineTransformMakeRotation(angle: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformMakeRotation(angle: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformMakeRotation = CGAffineTransformMakeRotation;
 
-pub extern "CoreGraphics" fn AffineTransformIsIdentity(t: core_foundation.CGAffineTransform) callconv(.C) i32;
+extern "CoreGraphics" fn CGAffineTransformIsIdentity(t: core_foundation.CGAffineTransform) callconv(.C) i32;
+pub const affineTransformIsIdentity = CGAffineTransformIsIdentity;
 
-pub extern "CoreGraphics" fn AffineTransformTranslate(t: core_foundation.CGAffineTransform, tx: core_foundation.CGFloat, ty: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformTranslate(t: core_foundation.CGAffineTransform, tx: core_foundation.CGFloat, ty: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformTranslate = CGAffineTransformTranslate;
 
-pub extern "CoreGraphics" fn AffineTransformScale(t: core_foundation.CGAffineTransform, sx: core_foundation.CGFloat, sy: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformScale(t: core_foundation.CGAffineTransform, sx: core_foundation.CGFloat, sy: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformScale = CGAffineTransformScale;
 
-pub extern "CoreGraphics" fn AffineTransformRotate(t: core_foundation.CGAffineTransform, angle: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformRotate(t: core_foundation.CGAffineTransform, angle: core_foundation.CGFloat) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformRotate = CGAffineTransformRotate;
 
-pub extern "CoreGraphics" fn AffineTransformInvert(t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformInvert(t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformInvert = CGAffineTransformInvert;
 
-pub extern "CoreGraphics" fn AffineTransformConcat(t1: core_foundation.CGAffineTransform, t2: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformConcat(t1: core_foundation.CGAffineTransform, t2: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformConcat = CGAffineTransformConcat;
 
-pub extern "CoreGraphics" fn AffineTransformEqualToTransform(t1: core_foundation.CGAffineTransform, t2: core_foundation.CGAffineTransform) callconv(.C) i32;
+extern "CoreGraphics" fn CGAffineTransformEqualToTransform(t1: core_foundation.CGAffineTransform, t2: core_foundation.CGAffineTransform) callconv(.C) i32;
+pub const affineTransformEqualToTransform = CGAffineTransformEqualToTransform;
 
-pub extern "CoreGraphics" fn PointApplyAffineTransform(point: core_foundation.CGPoint, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn CGPointApplyAffineTransform(point: core_foundation.CGPoint, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGPoint;
+pub const pointApplyAffineTransform = CGPointApplyAffineTransform;
 
-pub extern "CoreGraphics" fn SizeApplyAffineTransform(size: core_foundation.CGSize, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGSize;
+extern "CoreGraphics" fn CGSizeApplyAffineTransform(size: core_foundation.CGSize, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGSize;
+pub const sizeApplyAffineTransform = CGSizeApplyAffineTransform;
 
-pub extern "CoreGraphics" fn RectApplyAffineTransform(rect: core_foundation.CGRect, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGRectApplyAffineTransform(rect: core_foundation.CGRect, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGRect;
+pub const rectApplyAffineTransform = CGRectApplyAffineTransform;
 
-pub extern "CoreGraphics" fn AffineTransformDecompose(transform: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGAffineTransformComponents;
+extern "CoreGraphics" fn CGAffineTransformDecompose(transform: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGAffineTransformComponents;
+pub const affineTransformDecompose = CGAffineTransformDecompose;
 
-pub extern "CoreGraphics" fn AffineTransformMakeWithComponents(components: core_foundation.CGAffineTransformComponents) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGAffineTransformMakeWithComponents(components: core_foundation.CGAffineTransformComponents) callconv(.C) core_foundation.CGAffineTransform;
+pub const affineTransformMakeWithComponents = CGAffineTransformMakeWithComponents;
 
-pub extern "CoreGraphics" fn __CGAffineTransformMake(a: core_foundation.CGFloat, b: core_foundation.CGFloat, c: core_foundation.CGFloat, d: core_foundation.CGFloat, tx: core_foundation.CGFloat, ty: core_foundation.CGFloat, ) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn __CGAffineTransformMake(
+    a: core_foundation.CGFloat,
+    b: core_foundation.CGFloat,
+    c: core_foundation.CGFloat,
+    d: core_foundation.CGFloat,
+    tx: core_foundation.CGFloat,
+    ty: core_foundation.CGFloat,
+) callconv(.C) core_foundation.CGAffineTransform;
+pub const cgAffineTransformMake = __CGAffineTransformMake;
 
-pub extern "CoreGraphics" fn __CGPointApplyAffineTransform(point: core_foundation.CGPoint, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn __CGPointApplyAffineTransform(point: core_foundation.CGPoint, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGPoint;
+pub const cgPointApplyAffineTransform = __CGPointApplyAffineTransform;
 
-pub extern "CoreGraphics" fn __CGSizeApplyAffineTransform(size: core_foundation.CGSize, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGSize;
+extern "CoreGraphics" fn __CGSizeApplyAffineTransform(size: core_foundation.CGSize, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGSize;
+pub const cgSizeApplyAffineTransform = __CGSizeApplyAffineTransform;
 
 pub const Context = extern struct {};
 
@@ -135,13 +215,13 @@ pub const DataProvider = extern struct {};
 
 pub const DataProviderRef = ?*DataProvider;
 
-pub const DataProviderGetBytesCallback = ?*const fn(?*anyopaque, ?*anyopaque, objc.size_t) callconv(.C) objc.size_t;
+pub const DataProviderGetBytesCallback = ?*const fn (?*anyopaque, ?*anyopaque, objc.size_t) callconv(.C) objc.size_t;
 
-pub const DataProviderSkipForwardCallback = ?*const fn(?*anyopaque, objc.off_t) callconv(.C) objc.off_t;
+pub const DataProviderSkipForwardCallback = ?*const fn (?*anyopaque, objc.off_t) callconv(.C) objc.off_t;
 
-pub const DataProviderRewindCallback = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const DataProviderRewindCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const DataProviderReleaseInfoCallback = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const DataProviderReleaseInfoCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
 pub const DataProviderSequentialCallbacks = extern struct {
     version: u32,
@@ -151,11 +231,16 @@ pub const DataProviderSequentialCallbacks = extern struct {
     releaseInfo: DataProviderReleaseInfoCallback,
 };
 
-pub const DataProviderGetBytePointerCallback = ?*const fn(?*anyopaque) callconv(.C) ?*anyopaque;
+pub const DataProviderGetBytePointerCallback = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
 
-pub const DataProviderReleaseBytePointerCallback = ?*const fn(?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const DataProviderReleaseBytePointerCallback = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
 
-pub const DataProviderGetBytesAtPositionCallback = ?*const fn(?*anyopaque, ?*anyopaque, objc.off_t, objc.size_t, ) callconv(.C) objc.size_t;
+pub const DataProviderGetBytesAtPositionCallback = ?*const fn (
+    ?*anyopaque,
+    ?*anyopaque,
+    objc.off_t,
+    objc.size_t,
+) callconv(.C) objc.size_t;
 
 pub const DataProviderDirectCallbacks = extern struct {
     version: u32,
@@ -165,29 +250,45 @@ pub const DataProviderDirectCallbacks = extern struct {
     releaseInfo: DataProviderReleaseInfoCallback,
 };
 
-pub extern "CoreGraphics" fn DataProviderGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGDataProviderGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const dataProviderGetTypeID = CGDataProviderGetTypeID;
 
-pub extern "CoreGraphics" fn DataProviderCreateSequential(info: ?*anyopaque, callbacks: ?*DataProviderSequentialCallbacks) callconv(.C) DataProviderRef;
+extern "CoreGraphics" fn CGDataProviderCreateSequential(info: ?*anyopaque, callbacks: ?*DataProviderSequentialCallbacks) callconv(.C) DataProviderRef;
+pub const dataProviderCreateSequential = CGDataProviderCreateSequential;
 
-pub extern "CoreGraphics" fn DataProviderCreateDirect(info: ?*anyopaque, size: objc.off_t, callbacks: ?*DataProviderDirectCallbacks) callconv(.C) DataProviderRef;
+extern "CoreGraphics" fn CGDataProviderCreateDirect(info: ?*anyopaque, size: objc.off_t, callbacks: ?*DataProviderDirectCallbacks) callconv(.C) DataProviderRef;
+pub const dataProviderCreateDirect = CGDataProviderCreateDirect;
 
-pub const DataProviderReleaseDataCallback = ?*const fn(?*anyopaque, ?*anyopaque, objc.size_t) callconv(.C) void;
+pub const DataProviderReleaseDataCallback = ?*const fn (?*anyopaque, ?*anyopaque, objc.size_t) callconv(.C) void;
 
-pub extern "CoreGraphics" fn DataProviderCreateWithData(info: ?*anyopaque, data: ?*anyopaque, size: objc.size_t, releaseData: DataProviderReleaseDataCallback, ) callconv(.C) DataProviderRef;
+extern "CoreGraphics" fn CGDataProviderCreateWithData(
+    info: ?*anyopaque,
+    data: ?*anyopaque,
+    size: objc.size_t,
+    releaseData: DataProviderReleaseDataCallback,
+) callconv(.C) DataProviderRef;
+pub const dataProviderCreateWithData = CGDataProviderCreateWithData;
 
-pub extern "CoreGraphics" fn DataProviderCreateWithCFData(data: core_foundation.DataRef) callconv(.C) DataProviderRef;
+extern "CoreGraphics" fn CGDataProviderCreateWithCFData(data: core_foundation.DataRef) callconv(.C) DataProviderRef;
+pub const dataProviderCreateWithCFData = CGDataProviderCreateWithCFData;
 
-pub extern "CoreGraphics" fn DataProviderCreateWithURL(url: core_foundation.URLRef) callconv(.C) DataProviderRef;
+extern "CoreGraphics" fn CGDataProviderCreateWithURL(url: core_foundation.URLRef) callconv(.C) DataProviderRef;
+pub const dataProviderCreateWithURL = CGDataProviderCreateWithURL;
 
-pub extern "CoreGraphics" fn DataProviderCreateWithFilename(filename: ?*i8) callconv(.C) DataProviderRef;
+extern "CoreGraphics" fn CGDataProviderCreateWithFilename(filename: ?*i8) callconv(.C) DataProviderRef;
+pub const dataProviderCreateWithFilename = CGDataProviderCreateWithFilename;
 
-pub extern "CoreGraphics" fn DataProviderRetain(provider: DataProviderRef) callconv(.C) DataProviderRef;
+extern "CoreGraphics" fn CGDataProviderRetain(provider: DataProviderRef) callconv(.C) DataProviderRef;
+pub const dataProviderRetain = CGDataProviderRetain;
 
-pub extern "CoreGraphics" fn DataProviderRelease(provider: DataProviderRef) callconv(.C) void;
+extern "CoreGraphics" fn CGDataProviderRelease(provider: DataProviderRef) callconv(.C) void;
+pub const dataProviderRelease = CGDataProviderRelease;
 
-pub extern "CoreGraphics" fn DataProviderCopyData(provider: DataProviderRef) callconv(.C) core_foundation.DataRef;
+extern "CoreGraphics" fn CGDataProviderCopyData(provider: DataProviderRef) callconv(.C) core_foundation.DataRef;
+pub const dataProviderCopyData = CGDataProviderCopyData;
 
-pub extern "CoreGraphics" fn DataProviderGetInfo(provider: DataProviderRef) callconv(.C) ?*anyopaque;
+extern "CoreGraphics" fn CGDataProviderGetInfo(provider: DataProviderRef) callconv(.C) ?*anyopaque;
+pub const dataProviderGetInfo = CGDataProviderGetInfo;
 
 pub const ColorRenderingIntent = enum(objc.int32_t) {
     kCGRenderingIntentDefault = 0,
@@ -209,89 +310,139 @@ pub const ColorSpaceModel = enum(objc.int32_t) {
     kCGColorSpaceModelXYZ = 7,
 };
 
-pub extern "CoreGraphics" fn ColorSpaceCreateDeviceGray() callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateDeviceGray() callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateDeviceGray = CGColorSpaceCreateDeviceGray;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateDeviceRGB() callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateDeviceRGB() callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateDeviceRGB = CGColorSpaceCreateDeviceRGB;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateDeviceCMYK() callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateDeviceCMYK() callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateDeviceCMYK = CGColorSpaceCreateDeviceCMYK;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateCalibratedGray(whitePoint: ?*core_foundation.CGFloat, blackPoint: ?*core_foundation.CGFloat, gamma: core_foundation.CGFloat) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateCalibratedGray(whitePoint: ?*core_foundation.CGFloat, blackPoint: ?*core_foundation.CGFloat, gamma: core_foundation.CGFloat) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateCalibratedGray = CGColorSpaceCreateCalibratedGray;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateCalibratedRGB(whitePoint: ?*core_foundation.CGFloat, blackPoint: ?*core_foundation.CGFloat, gamma: ?*core_foundation.CGFloat, matrix: ?*core_foundation.CGFloat, ) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateCalibratedRGB(
+    whitePoint: ?*core_foundation.CGFloat,
+    blackPoint: ?*core_foundation.CGFloat,
+    gamma: ?*core_foundation.CGFloat,
+    matrix: ?*core_foundation.CGFloat,
+) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateCalibratedRGB = CGColorSpaceCreateCalibratedRGB;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateLab(whitePoint: ?*core_foundation.CGFloat, blackPoint: ?*core_foundation.CGFloat, range: ?*core_foundation.CGFloat) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateLab(whitePoint: ?*core_foundation.CGFloat, blackPoint: ?*core_foundation.CGFloat, range: ?*core_foundation.CGFloat) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateLab = CGColorSpaceCreateLab;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateWithICCData(data: core_foundation.TypeRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateWithICCData(data: core_foundation.TypeRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateWithICCData = CGColorSpaceCreateWithICCData;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateICCBased(nComponents: objc.size_t, range: ?*core_foundation.CGFloat, profile: DataProviderRef, alternate: ColorSpaceRef, ) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateICCBased(
+    nComponents: objc.size_t,
+    range: ?*core_foundation.CGFloat,
+    profile: DataProviderRef,
+    alternate: ColorSpaceRef,
+) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateICCBased = CGColorSpaceCreateICCBased;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateIndexed(baseSpace: ColorSpaceRef, lastIndex: objc.size_t, colorTable: ?*u8) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateIndexed(baseSpace: ColorSpaceRef, lastIndex: objc.size_t, colorTable: ?*u8) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateIndexed = CGColorSpaceCreateIndexed;
 
-pub extern "CoreGraphics" fn ColorSpaceCreatePattern(baseSpace: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreatePattern(baseSpace: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreatePattern = CGColorSpaceCreatePattern;
 
 pub const ColorSyncProfile = extern struct {};
 
 pub const ColorSyncProfileRef = ?*ColorSyncProfile;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateWithColorSyncProfile(ColorSyncProfileRef, options: core_foundation.DictionaryRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateWithColorSyncProfile(ColorSyncProfileRef, options: core_foundation.DictionaryRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateWithColorSyncProfile = CGColorSpaceCreateWithColorSyncProfile;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateWithName(name: core_foundation.StringRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateWithName(name: core_foundation.StringRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateWithName = CGColorSpaceCreateWithName;
 
-pub extern "CoreGraphics" fn ColorSpaceRetain(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceRetain(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceRetain = CGColorSpaceRetain;
 
-pub extern "CoreGraphics" fn ColorSpaceRelease(space: ColorSpaceRef) callconv(.C) void;
+extern "CoreGraphics" fn CGColorSpaceRelease(space: ColorSpaceRef) callconv(.C) void;
+pub const colorSpaceRelease = CGColorSpaceRelease;
 
-pub extern "CoreGraphics" fn ColorSpaceGetName(space: ColorSpaceRef) callconv(.C) core_foundation.StringRef;
+extern "CoreGraphics" fn CGColorSpaceGetName(space: ColorSpaceRef) callconv(.C) core_foundation.StringRef;
+pub const colorSpaceGetName = CGColorSpaceGetName;
 
-pub extern "CoreGraphics" fn ColorSpaceCopyName(space: ColorSpaceRef) callconv(.C) core_foundation.StringRef;
+extern "CoreGraphics" fn CGColorSpaceCopyName(space: ColorSpaceRef) callconv(.C) core_foundation.StringRef;
+pub const colorSpaceCopyName = CGColorSpaceCopyName;
 
-pub extern "CoreGraphics" fn ColorSpaceGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGColorSpaceGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const colorSpaceGetTypeID = CGColorSpaceGetTypeID;
 
-pub extern "CoreGraphics" fn ColorSpaceGetNumberOfComponents(space: ColorSpaceRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGColorSpaceGetNumberOfComponents(space: ColorSpaceRef) callconv(.C) objc.size_t;
+pub const colorSpaceGetNumberOfComponents = CGColorSpaceGetNumberOfComponents;
 
-pub extern "CoreGraphics" fn ColorSpaceGetModel(space: ColorSpaceRef) callconv(.C) ColorSpaceModel;
+extern "CoreGraphics" fn CGColorSpaceGetModel(space: ColorSpaceRef) callconv(.C) ColorSpaceModel;
+pub const colorSpaceGetModel = CGColorSpaceGetModel;
 
-pub extern "CoreGraphics" fn ColorSpaceGetBaseColorSpace(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceGetBaseColorSpace(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceGetBaseColorSpace = CGColorSpaceGetBaseColorSpace;
 
-pub extern "CoreGraphics" fn ColorSpaceCopyBaseColorSpace(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCopyBaseColorSpace(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCopyBaseColorSpace = CGColorSpaceCopyBaseColorSpace;
 
-pub extern "CoreGraphics" fn ColorSpaceGetColorTableCount(space: ColorSpaceRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGColorSpaceGetColorTableCount(space: ColorSpaceRef) callconv(.C) objc.size_t;
+pub const colorSpaceGetColorTableCount = CGColorSpaceGetColorTableCount;
 
-pub extern "CoreGraphics" fn ColorSpaceGetColorTable(space: ColorSpaceRef, table: ?*objc.uint8_t) callconv(.C) void;
+extern "CoreGraphics" fn CGColorSpaceGetColorTable(space: ColorSpaceRef, table: ?*objc.uint8_t) callconv(.C) void;
+pub const colorSpaceGetColorTable = CGColorSpaceGetColorTable;
 
-pub extern "CoreGraphics" fn ColorSpaceCopyICCData(space: ColorSpaceRef) callconv(.C) core_foundation.DataRef;
+extern "CoreGraphics" fn CGColorSpaceCopyICCData(space: ColorSpaceRef) callconv(.C) core_foundation.DataRef;
+pub const colorSpaceCopyICCData = CGColorSpaceCopyICCData;
 
-pub extern "CoreGraphics" fn ColorSpaceIsWideGamutRGB(ColorSpaceRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGColorSpaceIsWideGamutRGB(ColorSpaceRef) callconv(.C) i32;
+pub const colorSpaceIsWideGamutRGB = CGColorSpaceIsWideGamutRGB;
 
-pub extern "CoreGraphics" fn ColorSpaceIsHDR(ColorSpaceRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGColorSpaceIsHDR(ColorSpaceRef) callconv(.C) i32;
+pub const colorSpaceIsHDR = CGColorSpaceIsHDR;
 
-pub extern "CoreGraphics" fn ColorSpaceUsesITUR_2100TF(ColorSpaceRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGColorSpaceUsesITUR_2100TF(ColorSpaceRef) callconv(.C) i32;
+pub const colorSpaceUsesITUR_2100TF = CGColorSpaceUsesITUR_2100TF;
 
-pub extern "CoreGraphics" fn ColorSpaceIsPQBased(s: ColorSpaceRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGColorSpaceIsPQBased(s: ColorSpaceRef) callconv(.C) i32;
+pub const colorSpaceIsPQBased = CGColorSpaceIsPQBased;
 
-pub extern "CoreGraphics" fn ColorSpaceIsHLGBased(s: ColorSpaceRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGColorSpaceIsHLGBased(s: ColorSpaceRef) callconv(.C) i32;
+pub const colorSpaceIsHLGBased = CGColorSpaceIsHLGBased;
 
-pub extern "CoreGraphics" fn ColorSpaceSupportsOutput(space: ColorSpaceRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGColorSpaceSupportsOutput(space: ColorSpaceRef) callconv(.C) i32;
+pub const colorSpaceSupportsOutput = CGColorSpaceSupportsOutput;
 
-pub extern "CoreGraphics" fn ColorSpaceCopyPropertyList(space: ColorSpaceRef) callconv(.C) core_foundation.PropertyListRef;
+extern "CoreGraphics" fn CGColorSpaceCopyPropertyList(space: ColorSpaceRef) callconv(.C) core_foundation.PropertyListRef;
+pub const colorSpaceCopyPropertyList = CGColorSpaceCopyPropertyList;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateWithPropertyList(plist: core_foundation.PropertyListRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateWithPropertyList(plist: core_foundation.PropertyListRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateWithPropertyList = CGColorSpaceCreateWithPropertyList;
 
-pub extern "CoreGraphics" fn ColorSpaceUsesExtendedRange(space: ColorSpaceRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGColorSpaceUsesExtendedRange(space: ColorSpaceRef) callconv(.C) i32;
+pub const colorSpaceUsesExtendedRange = CGColorSpaceUsesExtendedRange;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateLinearized(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateLinearized(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateLinearized = CGColorSpaceCreateLinearized;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateExtended(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateExtended(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateExtended = CGColorSpaceCreateExtended;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateExtendedLinearized(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateExtendedLinearized(space: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateExtendedLinearized = CGColorSpaceCreateExtendedLinearized;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateCopyWithStandardRange(s: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateCopyWithStandardRange(s: ColorSpaceRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateCopyWithStandardRange = CGColorSpaceCreateCopyWithStandardRange;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateWithICCProfile(data: core_foundation.DataRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateWithICCProfile(data: core_foundation.DataRef) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateWithICCProfile = CGColorSpaceCreateWithICCProfile;
 
-pub extern "CoreGraphics" fn ColorSpaceCopyICCProfile(space: ColorSpaceRef) callconv(.C) core_foundation.DataRef;
+extern "CoreGraphics" fn CGColorSpaceCopyICCProfile(space: ColorSpaceRef) callconv(.C) core_foundation.DataRef;
+pub const colorSpaceCopyICCProfile = CGColorSpaceCopyICCProfile;
 
-pub extern "CoreGraphics" fn ColorSpaceCreateWithPlatformColorSpace(ref: ?*anyopaque) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorSpaceCreateWithPlatformColorSpace(ref: ?*anyopaque) callconv(.C) ColorSpaceRef;
+pub const colorSpaceCreateWithPlatformColorSpace = CGColorSpaceCreateWithPlatformColorSpace;
 
 pub const Pattern = extern struct {};
 
@@ -303,9 +454,9 @@ pub const PatternTiling = enum(objc.int32_t) {
     kCGPatternTilingConstantSpacing = 2,
 };
 
-pub const PatternDrawPatternCallback = ?*const fn(?*anyopaque, ContextRef) callconv(.C) void;
+pub const PatternDrawPatternCallback = ?*const fn (?*anyopaque, ContextRef) callconv(.C) void;
 
-pub const PatternReleaseInfoCallback = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const PatternReleaseInfoCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
 pub const PatternCallbacks = extern struct {
     version: u32,
@@ -313,53 +464,107 @@ pub const PatternCallbacks = extern struct {
     releaseInfo: PatternReleaseInfoCallback,
 };
 
-pub extern "CoreGraphics" fn PatternGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGPatternGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const patternGetTypeID = CGPatternGetTypeID;
 
-pub extern "CoreGraphics" fn PatternCreate(info: ?*anyopaque, bounds: core_foundation.CGRect, matrix: core_foundation.CGAffineTransform, xStep: core_foundation.CGFloat, yStep: core_foundation.CGFloat, tiling: PatternTiling, isColored: i32, callbacks: ?*PatternCallbacks, ) callconv(.C) PatternRef;
+extern "CoreGraphics" fn CGPatternCreate(
+    info: ?*anyopaque,
+    bounds: core_foundation.CGRect,
+    matrix: core_foundation.CGAffineTransform,
+    xStep: core_foundation.CGFloat,
+    yStep: core_foundation.CGFloat,
+    tiling: PatternTiling,
+    isColored: i32,
+    callbacks: ?*PatternCallbacks,
+) callconv(.C) PatternRef;
+pub const patternCreate = CGPatternCreate;
 
-pub extern "CoreGraphics" fn PatternRetain(pattern: PatternRef) callconv(.C) PatternRef;
+extern "CoreGraphics" fn CGPatternRetain(pattern: PatternRef) callconv(.C) PatternRef;
+pub const patternRetain = CGPatternRetain;
 
-pub extern "CoreGraphics" fn PatternRelease(pattern: PatternRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPatternRelease(pattern: PatternRef) callconv(.C) void;
+pub const patternRelease = CGPatternRelease;
 
-pub extern "CoreGraphics" fn ColorCreate(space: ColorSpaceRef, components: ?*core_foundation.CGFloat) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreate(space: ColorSpaceRef, components: ?*core_foundation.CGFloat) callconv(.C) ColorRef;
+pub const colorCreate = CGColorCreate;
 
-pub extern "CoreGraphics" fn ColorCreateGenericGray(gray: core_foundation.CGFloat, alpha: core_foundation.CGFloat) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreateGenericGray(gray: core_foundation.CGFloat, alpha: core_foundation.CGFloat) callconv(.C) ColorRef;
+pub const colorCreateGenericGray = CGColorCreateGenericGray;
 
-pub extern "CoreGraphics" fn ColorCreateGenericRGB(red: core_foundation.CGFloat, green: core_foundation.CGFloat, blue: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreateGenericRGB(
+    red: core_foundation.CGFloat,
+    green: core_foundation.CGFloat,
+    blue: core_foundation.CGFloat,
+    alpha: core_foundation.CGFloat,
+) callconv(.C) ColorRef;
+pub const colorCreateGenericRGB = CGColorCreateGenericRGB;
 
-pub extern "CoreGraphics" fn ColorCreateGenericCMYK(cyan: core_foundation.CGFloat, magenta: core_foundation.CGFloat, yellow: core_foundation.CGFloat, black: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreateGenericCMYK(
+    cyan: core_foundation.CGFloat,
+    magenta: core_foundation.CGFloat,
+    yellow: core_foundation.CGFloat,
+    black: core_foundation.CGFloat,
+    alpha: core_foundation.CGFloat,
+) callconv(.C) ColorRef;
+pub const colorCreateGenericCMYK = CGColorCreateGenericCMYK;
 
-pub extern "CoreGraphics" fn ColorCreateGenericGrayGamma2_2(gray: core_foundation.CGFloat, alpha: core_foundation.CGFloat) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreateGenericGrayGamma2_2(gray: core_foundation.CGFloat, alpha: core_foundation.CGFloat) callconv(.C) ColorRef;
+pub const colorCreateGenericGrayGamma2_2 = CGColorCreateGenericGrayGamma2_2;
 
-pub extern "CoreGraphics" fn ColorCreateSRGB(red: core_foundation.CGFloat, green: core_foundation.CGFloat, blue: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreateSRGB(
+    red: core_foundation.CGFloat,
+    green: core_foundation.CGFloat,
+    blue: core_foundation.CGFloat,
+    alpha: core_foundation.CGFloat,
+) callconv(.C) ColorRef;
+pub const colorCreateSRGB = CGColorCreateSRGB;
 
-pub extern "CoreGraphics" fn ColorGetConstantColor(colorName: core_foundation.StringRef) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorGetConstantColor(colorName: core_foundation.StringRef) callconv(.C) ColorRef;
+pub const colorGetConstantColor = CGColorGetConstantColor;
 
-pub extern "CoreGraphics" fn ColorCreateWithPattern(space: ColorSpaceRef, pattern: PatternRef, components: ?*core_foundation.CGFloat) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreateWithPattern(space: ColorSpaceRef, pattern: PatternRef, components: ?*core_foundation.CGFloat) callconv(.C) ColorRef;
+pub const colorCreateWithPattern = CGColorCreateWithPattern;
 
-pub extern "CoreGraphics" fn ColorCreateCopy(color: ColorRef) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreateCopy(color: ColorRef) callconv(.C) ColorRef;
+pub const colorCreateCopy = CGColorCreateCopy;
 
-pub extern "CoreGraphics" fn ColorCreateCopyWithAlpha(color: ColorRef, alpha: core_foundation.CGFloat) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreateCopyWithAlpha(color: ColorRef, alpha: core_foundation.CGFloat) callconv(.C) ColorRef;
+pub const colorCreateCopyWithAlpha = CGColorCreateCopyWithAlpha;
 
-pub extern "CoreGraphics" fn ColorCreateCopyByMatchingToColorSpace(ColorSpaceRef, intent: ColorRenderingIntent, color: ColorRef, options: core_foundation.DictionaryRef, ) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorCreateCopyByMatchingToColorSpace(
+    ColorSpaceRef,
+    intent: ColorRenderingIntent,
+    color: ColorRef,
+    options: core_foundation.DictionaryRef,
+) callconv(.C) ColorRef;
+pub const colorCreateCopyByMatchingToColorSpace = CGColorCreateCopyByMatchingToColorSpace;
 
-pub extern "CoreGraphics" fn ColorRetain(color: ColorRef) callconv(.C) ColorRef;
+extern "CoreGraphics" fn CGColorRetain(color: ColorRef) callconv(.C) ColorRef;
+pub const colorRetain = CGColorRetain;
 
-pub extern "CoreGraphics" fn ColorRelease(color: ColorRef) callconv(.C) void;
+extern "CoreGraphics" fn CGColorRelease(color: ColorRef) callconv(.C) void;
+pub const colorRelease = CGColorRelease;
 
-pub extern "CoreGraphics" fn ColorEqualToColor(color1: ColorRef, color2: ColorRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGColorEqualToColor(color1: ColorRef, color2: ColorRef) callconv(.C) i32;
+pub const colorEqualToColor = CGColorEqualToColor;
 
-pub extern "CoreGraphics" fn ColorGetNumberOfComponents(color: ColorRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGColorGetNumberOfComponents(color: ColorRef) callconv(.C) objc.size_t;
+pub const colorGetNumberOfComponents = CGColorGetNumberOfComponents;
 
-pub extern "CoreGraphics" fn ColorGetComponents(color: ColorRef) callconv(.C) ?*core_foundation.CGFloat;
+extern "CoreGraphics" fn CGColorGetComponents(color: ColorRef) callconv(.C) ?*core_foundation.CGFloat;
+pub const colorGetComponents = CGColorGetComponents;
 
-pub extern "CoreGraphics" fn ColorGetAlpha(color: ColorRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGColorGetAlpha(color: ColorRef) callconv(.C) core_foundation.CGFloat;
+pub const colorGetAlpha = CGColorGetAlpha;
 
-pub extern "CoreGraphics" fn ColorGetColorSpace(color: ColorRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGColorGetColorSpace(color: ColorRef) callconv(.C) ColorSpaceRef;
+pub const colorGetColorSpace = CGColorGetColorSpace;
 
-pub extern "CoreGraphics" fn ColorGetPattern(color: ColorRef) callconv(.C) PatternRef;
+extern "CoreGraphics" fn CGColorGetPattern(color: ColorRef) callconv(.C) PatternRef;
+pub const colorGetPattern = CGColorGetPattern;
 
-pub extern "CoreGraphics" fn ColorGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGColorGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const colorGetTypeID = CGColorGetTypeID;
 
 pub const Font = extern struct {};
 
@@ -375,65 +580,112 @@ pub const FontPostScriptFormat = enum(objc.int32_t) {
     kCGFontPostScriptFormatType42 = 42,
 };
 
-pub extern "CoreGraphics" fn FontGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGFontGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const fontGetTypeID = CGFontGetTypeID;
 
-pub extern "CoreGraphics" fn FontCreateWithPlatformFont(platformFontReference: ?*anyopaque) callconv(.C) FontRef;
+extern "CoreGraphics" fn CGFontCreateWithPlatformFont(platformFontReference: ?*anyopaque) callconv(.C) FontRef;
+pub const fontCreateWithPlatformFont = CGFontCreateWithPlatformFont;
 
-pub extern "CoreGraphics" fn FontCreateWithDataProvider(provider: DataProviderRef) callconv(.C) FontRef;
+extern "CoreGraphics" fn CGFontCreateWithDataProvider(provider: DataProviderRef) callconv(.C) FontRef;
+pub const fontCreateWithDataProvider = CGFontCreateWithDataProvider;
 
-pub extern "CoreGraphics" fn FontCreateWithFontName(name: core_foundation.StringRef) callconv(.C) FontRef;
+extern "CoreGraphics" fn CGFontCreateWithFontName(name: core_foundation.StringRef) callconv(.C) FontRef;
+pub const fontCreateWithFontName = CGFontCreateWithFontName;
 
-pub extern "CoreGraphics" fn FontCreateCopyWithVariations(font: FontRef, variations: core_foundation.DictionaryRef) callconv(.C) FontRef;
+extern "CoreGraphics" fn CGFontCreateCopyWithVariations(font: FontRef, variations: core_foundation.DictionaryRef) callconv(.C) FontRef;
+pub const fontCreateCopyWithVariations = CGFontCreateCopyWithVariations;
 
-pub extern "CoreGraphics" fn FontRetain(font: FontRef) callconv(.C) FontRef;
+extern "CoreGraphics" fn CGFontRetain(font: FontRef) callconv(.C) FontRef;
+pub const fontRetain = CGFontRetain;
 
-pub extern "CoreGraphics" fn FontRelease(font: FontRef) callconv(.C) void;
+extern "CoreGraphics" fn CGFontRelease(font: FontRef) callconv(.C) void;
+pub const fontRelease = CGFontRelease;
 
-pub extern "CoreGraphics" fn FontGetNumberOfGlyphs(font: FontRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGFontGetNumberOfGlyphs(font: FontRef) callconv(.C) objc.size_t;
+pub const fontGetNumberOfGlyphs = CGFontGetNumberOfGlyphs;
 
-pub extern "CoreGraphics" fn FontGetUnitsPerEm(font: FontRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGFontGetUnitsPerEm(font: FontRef) callconv(.C) i32;
+pub const fontGetUnitsPerEm = CGFontGetUnitsPerEm;
 
-pub extern "CoreGraphics" fn FontCopyPostScriptName(font: FontRef) callconv(.C) core_foundation.StringRef;
+extern "CoreGraphics" fn CGFontCopyPostScriptName(font: FontRef) callconv(.C) core_foundation.StringRef;
+pub const fontCopyPostScriptName = CGFontCopyPostScriptName;
 
-pub extern "CoreGraphics" fn FontCopyFullName(font: FontRef) callconv(.C) core_foundation.StringRef;
+extern "CoreGraphics" fn CGFontCopyFullName(font: FontRef) callconv(.C) core_foundation.StringRef;
+pub const fontCopyFullName = CGFontCopyFullName;
 
-pub extern "CoreGraphics" fn FontGetAscent(font: FontRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGFontGetAscent(font: FontRef) callconv(.C) i32;
+pub const fontGetAscent = CGFontGetAscent;
 
-pub extern "CoreGraphics" fn FontGetDescent(font: FontRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGFontGetDescent(font: FontRef) callconv(.C) i32;
+pub const fontGetDescent = CGFontGetDescent;
 
-pub extern "CoreGraphics" fn FontGetLeading(font: FontRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGFontGetLeading(font: FontRef) callconv(.C) i32;
+pub const fontGetLeading = CGFontGetLeading;
 
-pub extern "CoreGraphics" fn FontGetCapHeight(font: FontRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGFontGetCapHeight(font: FontRef) callconv(.C) i32;
+pub const fontGetCapHeight = CGFontGetCapHeight;
 
-pub extern "CoreGraphics" fn FontGetXHeight(font: FontRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGFontGetXHeight(font: FontRef) callconv(.C) i32;
+pub const fontGetXHeight = CGFontGetXHeight;
 
-pub extern "CoreGraphics" fn FontGetFontBBox(font: FontRef) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGFontGetFontBBox(font: FontRef) callconv(.C) core_foundation.CGRect;
+pub const fontGetFontBBox = CGFontGetFontBBox;
 
-pub extern "CoreGraphics" fn FontGetItalicAngle(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGFontGetItalicAngle(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetItalicAngle = CGFontGetItalicAngle;
 
-pub extern "CoreGraphics" fn FontGetStemV(font: FontRef) callconv(.C) core_foundation.CGFloat;
+extern "CoreGraphics" fn CGFontGetStemV(font: FontRef) callconv(.C) core_foundation.CGFloat;
+pub const fontGetStemV = CGFontGetStemV;
 
-pub extern "CoreGraphics" fn FontCopyVariationAxes(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreGraphics" fn CGFontCopyVariationAxes(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCopyVariationAxes = CGFontCopyVariationAxes;
 
-pub extern "CoreGraphics" fn FontCopyVariations(font: FontRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreGraphics" fn CGFontCopyVariations(font: FontRef) callconv(.C) core_foundation.DictionaryRef;
+pub const fontCopyVariations = CGFontCopyVariations;
 
-pub extern "CoreGraphics" fn FontGetGlyphAdvances(font: FontRef, glyphs: ?*Glyph, count: objc.size_t, advances: ?*i32, ) callconv(.C) i32;
+extern "CoreGraphics" fn CGFontGetGlyphAdvances(
+    font: FontRef,
+    glyphs: ?*Glyph,
+    count: objc.size_t,
+    advances: ?*i32,
+) callconv(.C) i32;
+pub const fontGetGlyphAdvances = CGFontGetGlyphAdvances;
 
-pub extern "CoreGraphics" fn FontGetGlyphBBoxes(font: FontRef, glyphs: ?*Glyph, count: objc.size_t, bboxes: ?*core_foundation.CGRect, ) callconv(.C) i32;
+extern "CoreGraphics" fn CGFontGetGlyphBBoxes(
+    font: FontRef,
+    glyphs: ?*Glyph,
+    count: objc.size_t,
+    bboxes: ?*core_foundation.CGRect,
+) callconv(.C) i32;
+pub const fontGetGlyphBBoxes = CGFontGetGlyphBBoxes;
 
-pub extern "CoreGraphics" fn FontGetGlyphWithGlyphName(font: FontRef, name: core_foundation.StringRef) callconv(.C) Glyph;
+extern "CoreGraphics" fn CGFontGetGlyphWithGlyphName(font: FontRef, name: core_foundation.StringRef) callconv(.C) Glyph;
+pub const fontGetGlyphWithGlyphName = CGFontGetGlyphWithGlyphName;
 
-pub extern "CoreGraphics" fn FontCopyGlyphNameForGlyph(font: FontRef, glyph: Glyph) callconv(.C) core_foundation.StringRef;
+extern "CoreGraphics" fn CGFontCopyGlyphNameForGlyph(font: FontRef, glyph: Glyph) callconv(.C) core_foundation.StringRef;
+pub const fontCopyGlyphNameForGlyph = CGFontCopyGlyphNameForGlyph;
 
-pub extern "CoreGraphics" fn FontCanCreatePostScriptSubset(font: FontRef, format: FontPostScriptFormat) callconv(.C) i32;
+extern "CoreGraphics" fn CGFontCanCreatePostScriptSubset(font: FontRef, format: FontPostScriptFormat) callconv(.C) i32;
+pub const fontCanCreatePostScriptSubset = CGFontCanCreatePostScriptSubset;
 
-pub extern "CoreGraphics" fn FontCreatePostScriptSubset(font: FontRef, subsetName: core_foundation.StringRef, format: FontPostScriptFormat, glyphs: ?*Glyph, count: objc.size_t, encoding: ?*Glyph, ) callconv(.C) core_foundation.DataRef;
+extern "CoreGraphics" fn CGFontCreatePostScriptSubset(
+    font: FontRef,
+    subsetName: core_foundation.StringRef,
+    format: FontPostScriptFormat,
+    glyphs: ?*Glyph,
+    count: objc.size_t,
+    encoding: ?*Glyph,
+) callconv(.C) core_foundation.DataRef;
+pub const fontCreatePostScriptSubset = CGFontCreatePostScriptSubset;
 
-pub extern "CoreGraphics" fn FontCreatePostScriptEncoding(font: FontRef, encoding: ?*Glyph) callconv(.C) core_foundation.DataRef;
+extern "CoreGraphics" fn CGFontCreatePostScriptEncoding(font: FontRef, encoding: ?*Glyph) callconv(.C) core_foundation.DataRef;
+pub const fontCreatePostScriptEncoding = CGFontCreatePostScriptEncoding;
 
-pub extern "CoreGraphics" fn FontCopyTableTags(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreGraphics" fn CGFontCopyTableTags(font: FontRef) callconv(.C) core_foundation.ArrayRef;
+pub const fontCopyTableTags = CGFontCopyTableTags;
 
-pub extern "CoreGraphics" fn FontCopyTableForTag(font: FontRef, tag: objc.uint32_t) callconv(.C) core_foundation.DataRef;
+extern "CoreGraphics" fn CGFontCopyTableForTag(font: FontRef, tag: objc.uint32_t) callconv(.C) core_foundation.DataRef;
+pub const fontCopyTableForTag = CGFontCopyTableForTag;
 
 pub const GlyphDeprecatedEnum = enum(objc.int32_t) {
     Min = 0,
@@ -449,15 +701,25 @@ pub const GradientDrawingOptions = enum(objc.uint32_t) {
     kCGGradientDrawsAfterEndLocation = 2,
 };
 
-pub extern "CoreGraphics" fn GradientGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGGradientGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const gradientGetTypeID = CGGradientGetTypeID;
 
-pub extern "CoreGraphics" fn GradientCreateWithColorComponents(space: ColorSpaceRef, components: ?*core_foundation.CGFloat, locations: ?*core_foundation.CGFloat, count: objc.size_t, ) callconv(.C) GradientRef;
+extern "CoreGraphics" fn CGGradientCreateWithColorComponents(
+    space: ColorSpaceRef,
+    components: ?*core_foundation.CGFloat,
+    locations: ?*core_foundation.CGFloat,
+    count: objc.size_t,
+) callconv(.C) GradientRef;
+pub const gradientCreateWithColorComponents = CGGradientCreateWithColorComponents;
 
-pub extern "CoreGraphics" fn GradientCreateWithColors(space: ColorSpaceRef, colors: core_foundation.ArrayRef, locations: ?*core_foundation.CGFloat) callconv(.C) GradientRef;
+extern "CoreGraphics" fn CGGradientCreateWithColors(space: ColorSpaceRef, colors: core_foundation.ArrayRef, locations: ?*core_foundation.CGFloat) callconv(.C) GradientRef;
+pub const gradientCreateWithColors = CGGradientCreateWithColors;
 
-pub extern "CoreGraphics" fn GradientRetain(gradient: GradientRef) callconv(.C) GradientRef;
+extern "CoreGraphics" fn CGGradientRetain(gradient: GradientRef) callconv(.C) GradientRef;
+pub const gradientRetain = CGGradientRetain;
 
-pub extern "CoreGraphics" fn GradientRelease(gradient: GradientRef) callconv(.C) void;
+extern "CoreGraphics" fn CGGradientRelease(gradient: GradientRef) callconv(.C) void;
+pub const gradientRelease = CGGradientRelease;
 
 pub const Image = extern struct {};
 
@@ -504,71 +766,148 @@ pub const BitmapInfo = enum(objc.uint32_t) {
     kCGBitmapByteOrder32Big = 16384,
 };
 
-pub extern "CoreGraphics" fn ImageGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGImageGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const imageGetTypeID = CGImageGetTypeID;
 
-pub extern "CoreGraphics" fn ImageCreate(width: objc.size_t, height: objc.size_t, bitsPerComponent: objc.size_t, bitsPerPixel: objc.size_t, bytesPerRow: objc.size_t, space: ColorSpaceRef, bitmapInfo: BitmapInfo, provider: DataProviderRef, decode: ?*core_foundation.CGFloat, shouldInterpolate: i32, intent: ColorRenderingIntent, ) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreate(
+    width: objc.size_t,
+    height: objc.size_t,
+    bitsPerComponent: objc.size_t,
+    bitsPerPixel: objc.size_t,
+    bytesPerRow: objc.size_t,
+    space: ColorSpaceRef,
+    bitmapInfo: BitmapInfo,
+    provider: DataProviderRef,
+    decode: ?*core_foundation.CGFloat,
+    shouldInterpolate: i32,
+    intent: ColorRenderingIntent,
+) callconv(.C) ImageRef;
+pub const imageCreate = CGImageCreate;
 
-pub extern "CoreGraphics" fn ImageMaskCreate(width: objc.size_t, height: objc.size_t, bitsPerComponent: objc.size_t, bitsPerPixel: objc.size_t, bytesPerRow: objc.size_t, provider: DataProviderRef, decode: ?*core_foundation.CGFloat, shouldInterpolate: i32, ) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageMaskCreate(
+    width: objc.size_t,
+    height: objc.size_t,
+    bitsPerComponent: objc.size_t,
+    bitsPerPixel: objc.size_t,
+    bytesPerRow: objc.size_t,
+    provider: DataProviderRef,
+    decode: ?*core_foundation.CGFloat,
+    shouldInterpolate: i32,
+) callconv(.C) ImageRef;
+pub const imageMaskCreate = CGImageMaskCreate;
 
-pub extern "CoreGraphics" fn ImageCreateCopy(image: ImageRef) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreateCopy(image: ImageRef) callconv(.C) ImageRef;
+pub const imageCreateCopy = CGImageCreateCopy;
 
-pub extern "CoreGraphics" fn ImageCreateWithJPEGDataProvider(source: DataProviderRef, decode: ?*core_foundation.CGFloat, shouldInterpolate: i32, intent: ColorRenderingIntent, ) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreateWithJPEGDataProvider(
+    source: DataProviderRef,
+    decode: ?*core_foundation.CGFloat,
+    shouldInterpolate: i32,
+    intent: ColorRenderingIntent,
+) callconv(.C) ImageRef;
+pub const imageCreateWithJPEGDataProvider = CGImageCreateWithJPEGDataProvider;
 
-pub extern "CoreGraphics" fn ImageCreateWithPNGDataProvider(source: DataProviderRef, decode: ?*core_foundation.CGFloat, shouldInterpolate: i32, intent: ColorRenderingIntent, ) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreateWithPNGDataProvider(
+    source: DataProviderRef,
+    decode: ?*core_foundation.CGFloat,
+    shouldInterpolate: i32,
+    intent: ColorRenderingIntent,
+) callconv(.C) ImageRef;
+pub const imageCreateWithPNGDataProvider = CGImageCreateWithPNGDataProvider;
 
-pub extern "CoreGraphics" fn ImageCreateWithImageInRect(image: ImageRef, rect: core_foundation.CGRect) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreateWithImageInRect(image: ImageRef, rect: core_foundation.CGRect) callconv(.C) ImageRef;
+pub const imageCreateWithImageInRect = CGImageCreateWithImageInRect;
 
-pub extern "CoreGraphics" fn ImageCreateWithMask(image: ImageRef, mask: ImageRef) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreateWithMask(image: ImageRef, mask: ImageRef) callconv(.C) ImageRef;
+pub const imageCreateWithMask = CGImageCreateWithMask;
 
-pub extern "CoreGraphics" fn ImageCreateWithMaskingColors(image: ImageRef, components: ?*core_foundation.CGFloat) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreateWithMaskingColors(image: ImageRef, components: ?*core_foundation.CGFloat) callconv(.C) ImageRef;
+pub const imageCreateWithMaskingColors = CGImageCreateWithMaskingColors;
 
-pub extern "CoreGraphics" fn ImageCreateCopyWithColorSpace(image: ImageRef, space: ColorSpaceRef) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreateCopyWithColorSpace(image: ImageRef, space: ColorSpaceRef) callconv(.C) ImageRef;
+pub const imageCreateCopyWithColorSpace = CGImageCreateCopyWithColorSpace;
 
-pub extern "CoreGraphics" fn ImageCreateWithContentHeadroom(headroom: f32, width: objc.size_t, height: objc.size_t, bitsPerComponent: objc.size_t, bitsPerPixel: objc.size_t, bytesPerRow: objc.size_t, space: ColorSpaceRef, bitmapInfo: BitmapInfo, provider: DataProviderRef, decode: ?*core_foundation.CGFloat, shouldInterpolate: i32, intent: ColorRenderingIntent, ) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreateWithContentHeadroom(
+    headroom: f32,
+    width: objc.size_t,
+    height: objc.size_t,
+    bitsPerComponent: objc.size_t,
+    bitsPerPixel: objc.size_t,
+    bytesPerRow: objc.size_t,
+    space: ColorSpaceRef,
+    bitmapInfo: BitmapInfo,
+    provider: DataProviderRef,
+    decode: ?*core_foundation.CGFloat,
+    shouldInterpolate: i32,
+    intent: ColorRenderingIntent,
+) callconv(.C) ImageRef;
+pub const imageCreateWithContentHeadroom = CGImageCreateWithContentHeadroom;
 
-pub extern "CoreGraphics" fn ImageCreateCopyWithContentHeadroom(headroom: f32, image: ImageRef) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageCreateCopyWithContentHeadroom(headroom: f32, image: ImageRef) callconv(.C) ImageRef;
+pub const imageCreateCopyWithContentHeadroom = CGImageCreateCopyWithContentHeadroom;
 
-pub extern "CoreGraphics" fn ImageGetContentHeadroom(image: ImageRef) callconv(.C) f32;
+extern "CoreGraphics" fn CGImageGetContentHeadroom(image: ImageRef) callconv(.C) f32;
+pub const imageGetContentHeadroom = CGImageGetContentHeadroom;
 
-pub extern "CoreGraphics" fn ImageRetain(image: ImageRef) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGImageRetain(image: ImageRef) callconv(.C) ImageRef;
+pub const imageRetain = CGImageRetain;
 
-pub extern "CoreGraphics" fn ImageRelease(image: ImageRef) callconv(.C) void;
+extern "CoreGraphics" fn CGImageRelease(image: ImageRef) callconv(.C) void;
+pub const imageRelease = CGImageRelease;
 
-pub extern "CoreGraphics" fn ImageIsMask(image: ImageRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGImageIsMask(image: ImageRef) callconv(.C) i32;
+pub const imageIsMask = CGImageIsMask;
 
-pub extern "CoreGraphics" fn ImageGetWidth(image: ImageRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGImageGetWidth(image: ImageRef) callconv(.C) objc.size_t;
+pub const imageGetWidth = CGImageGetWidth;
 
-pub extern "CoreGraphics" fn ImageGetHeight(image: ImageRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGImageGetHeight(image: ImageRef) callconv(.C) objc.size_t;
+pub const imageGetHeight = CGImageGetHeight;
 
-pub extern "CoreGraphics" fn ImageGetBitsPerComponent(image: ImageRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGImageGetBitsPerComponent(image: ImageRef) callconv(.C) objc.size_t;
+pub const imageGetBitsPerComponent = CGImageGetBitsPerComponent;
 
-pub extern "CoreGraphics" fn ImageGetBitsPerPixel(image: ImageRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGImageGetBitsPerPixel(image: ImageRef) callconv(.C) objc.size_t;
+pub const imageGetBitsPerPixel = CGImageGetBitsPerPixel;
 
-pub extern "CoreGraphics" fn ImageGetBytesPerRow(image: ImageRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGImageGetBytesPerRow(image: ImageRef) callconv(.C) objc.size_t;
+pub const imageGetBytesPerRow = CGImageGetBytesPerRow;
 
-pub extern "CoreGraphics" fn ImageGetColorSpace(image: ImageRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGImageGetColorSpace(image: ImageRef) callconv(.C) ColorSpaceRef;
+pub const imageGetColorSpace = CGImageGetColorSpace;
 
-pub extern "CoreGraphics" fn ImageGetAlphaInfo(image: ImageRef) callconv(.C) ImageAlphaInfo;
+extern "CoreGraphics" fn CGImageGetAlphaInfo(image: ImageRef) callconv(.C) ImageAlphaInfo;
+pub const imageGetAlphaInfo = CGImageGetAlphaInfo;
 
-pub extern "CoreGraphics" fn ImageGetDataProvider(image: ImageRef) callconv(.C) DataProviderRef;
+extern "CoreGraphics" fn CGImageGetDataProvider(image: ImageRef) callconv(.C) DataProviderRef;
+pub const imageGetDataProvider = CGImageGetDataProvider;
 
-pub extern "CoreGraphics" fn ImageGetDecode(image: ImageRef) callconv(.C) ?*core_foundation.CGFloat;
+extern "CoreGraphics" fn CGImageGetDecode(image: ImageRef) callconv(.C) ?*core_foundation.CGFloat;
+pub const imageGetDecode = CGImageGetDecode;
 
-pub extern "CoreGraphics" fn ImageGetShouldInterpolate(image: ImageRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGImageGetShouldInterpolate(image: ImageRef) callconv(.C) i32;
+pub const imageGetShouldInterpolate = CGImageGetShouldInterpolate;
 
-pub extern "CoreGraphics" fn ImageGetRenderingIntent(image: ImageRef) callconv(.C) ColorRenderingIntent;
+extern "CoreGraphics" fn CGImageGetRenderingIntent(image: ImageRef) callconv(.C) ColorRenderingIntent;
+pub const imageGetRenderingIntent = CGImageGetRenderingIntent;
 
-pub extern "CoreGraphics" fn ImageGetBitmapInfo(image: ImageRef) callconv(.C) BitmapInfo;
+extern "CoreGraphics" fn CGImageGetBitmapInfo(image: ImageRef) callconv(.C) BitmapInfo;
+pub const imageGetBitmapInfo = CGImageGetBitmapInfo;
 
-pub extern "CoreGraphics" fn ImageGetByteOrderInfo(image: ImageRef) callconv(.C) ImageByteOrderInfo;
+extern "CoreGraphics" fn CGImageGetByteOrderInfo(image: ImageRef) callconv(.C) ImageByteOrderInfo;
+pub const imageGetByteOrderInfo = CGImageGetByteOrderInfo;
 
-pub extern "CoreGraphics" fn ImageGetPixelFormatInfo(image: ImageRef) callconv(.C) ImagePixelFormatInfo;
+extern "CoreGraphics" fn CGImageGetPixelFormatInfo(image: ImageRef) callconv(.C) ImagePixelFormatInfo;
+pub const imageGetPixelFormatInfo = CGImageGetPixelFormatInfo;
 
-pub extern "CoreGraphics" fn ImageShouldToneMap(image: ImageRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGImageShouldToneMap(image: ImageRef) callconv(.C) i32;
+pub const imageShouldToneMap = CGImageShouldToneMap;
 
-pub extern "CoreGraphics" fn ImageContainsImageSpecificToneMappingMetadata(image: ImageRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGImageContainsImageSpecificToneMappingMetadata(image: ImageRef) callconv(.C) i32;
+pub const imageContainsImageSpecificToneMappingMetadata = CGImageContainsImageSpecificToneMappingMetadata;
 
-pub extern "CoreGraphics" fn ImageGetUTType(image: ImageRef) callconv(.C) core_foundation.StringRef;
+extern "CoreGraphics" fn CGImageGetUTType(image: ImageRef) callconv(.C) core_foundation.StringRef;
+pub const imageGetUTType = CGImageGetUTType;
 
 pub const Path = extern struct {};
 
@@ -588,73 +927,197 @@ pub const LineCap = enum(objc.int32_t) {
     kCGLineCapSquare = 2,
 };
 
-pub extern "CoreGraphics" fn PathGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGPathGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const pathGetTypeID = CGPathGetTypeID;
 
-pub extern "CoreGraphics" fn PathCreateMutable() callconv(.C) MutablePathRef;
+extern "CoreGraphics" fn CGPathCreateMutable() callconv(.C) MutablePathRef;
+pub const pathCreateMutable = CGPathCreateMutable;
 
-pub extern "CoreGraphics" fn PathCreateCopy(path: PathRef) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopy(path: PathRef) callconv(.C) PathRef;
+pub const pathCreateCopy = CGPathCreateCopy;
 
-pub extern "CoreGraphics" fn PathCreateCopyByTransformingPath(path: PathRef, transform: ?*core_foundation.CGAffineTransform) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyByTransformingPath(path: PathRef, transform: ?*core_foundation.CGAffineTransform) callconv(.C) PathRef;
+pub const pathCreateCopyByTransformingPath = CGPathCreateCopyByTransformingPath;
 
-pub extern "CoreGraphics" fn PathCreateMutableCopy(path: PathRef) callconv(.C) MutablePathRef;
+extern "CoreGraphics" fn CGPathCreateMutableCopy(path: PathRef) callconv(.C) MutablePathRef;
+pub const pathCreateMutableCopy = CGPathCreateMutableCopy;
 
-pub extern "CoreGraphics" fn PathCreateMutableCopyByTransformingPath(path: PathRef, transform: ?*core_foundation.CGAffineTransform) callconv(.C) MutablePathRef;
+extern "CoreGraphics" fn CGPathCreateMutableCopyByTransformingPath(path: PathRef, transform: ?*core_foundation.CGAffineTransform) callconv(.C) MutablePathRef;
+pub const pathCreateMutableCopyByTransformingPath = CGPathCreateMutableCopyByTransformingPath;
 
-pub extern "CoreGraphics" fn PathCreateWithRect(rect: core_foundation.CGRect, transform: ?*core_foundation.CGAffineTransform) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateWithRect(rect: core_foundation.CGRect, transform: ?*core_foundation.CGAffineTransform) callconv(.C) PathRef;
+pub const pathCreateWithRect = CGPathCreateWithRect;
 
-pub extern "CoreGraphics" fn PathCreateWithEllipseInRect(rect: core_foundation.CGRect, transform: ?*core_foundation.CGAffineTransform) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateWithEllipseInRect(rect: core_foundation.CGRect, transform: ?*core_foundation.CGAffineTransform) callconv(.C) PathRef;
+pub const pathCreateWithEllipseInRect = CGPathCreateWithEllipseInRect;
 
-pub extern "CoreGraphics" fn PathCreateWithRoundedRect(rect: core_foundation.CGRect, cornerWidth: core_foundation.CGFloat, cornerHeight: core_foundation.CGFloat, transform: ?*core_foundation.CGAffineTransform, ) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateWithRoundedRect(
+    rect: core_foundation.CGRect,
+    cornerWidth: core_foundation.CGFloat,
+    cornerHeight: core_foundation.CGFloat,
+    transform: ?*core_foundation.CGAffineTransform,
+) callconv(.C) PathRef;
+pub const pathCreateWithRoundedRect = CGPathCreateWithRoundedRect;
 
-pub extern "CoreGraphics" fn PathAddRoundedRect(path: MutablePathRef, transform: ?*core_foundation.CGAffineTransform, rect: core_foundation.CGRect, cornerWidth: core_foundation.CGFloat, cornerHeight: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddRoundedRect(
+    path: MutablePathRef,
+    transform: ?*core_foundation.CGAffineTransform,
+    rect: core_foundation.CGRect,
+    cornerWidth: core_foundation.CGFloat,
+    cornerHeight: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const pathAddRoundedRect = CGPathAddRoundedRect;
 
-pub extern "CoreGraphics" fn PathCreateCopyByDashingPath(path: PathRef, transform: ?*core_foundation.CGAffineTransform, phase: core_foundation.CGFloat, lengths: ?*core_foundation.CGFloat, count: objc.size_t, ) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyByDashingPath(
+    path: PathRef,
+    transform: ?*core_foundation.CGAffineTransform,
+    phase: core_foundation.CGFloat,
+    lengths: ?*core_foundation.CGFloat,
+    count: objc.size_t,
+) callconv(.C) PathRef;
+pub const pathCreateCopyByDashingPath = CGPathCreateCopyByDashingPath;
 
-pub extern "CoreGraphics" fn PathCreateCopyByStrokingPath(path: PathRef, transform: ?*core_foundation.CGAffineTransform, lineWidth: core_foundation.CGFloat, lineCap: LineCap, lineJoin: LineJoin, miterLimit: core_foundation.CGFloat, ) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyByStrokingPath(
+    path: PathRef,
+    transform: ?*core_foundation.CGAffineTransform,
+    lineWidth: core_foundation.CGFloat,
+    lineCap: LineCap,
+    lineJoin: LineJoin,
+    miterLimit: core_foundation.CGFloat,
+) callconv(.C) PathRef;
+pub const pathCreateCopyByStrokingPath = CGPathCreateCopyByStrokingPath;
 
-pub extern "CoreGraphics" fn PathRetain(path: PathRef) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathRetain(path: PathRef) callconv(.C) PathRef;
+pub const pathRetain = CGPathRetain;
 
-pub extern "CoreGraphics" fn PathRelease(path: PathRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPathRelease(path: PathRef) callconv(.C) void;
+pub const pathRelease = CGPathRelease;
 
-pub extern "CoreGraphics" fn PathEqualToPath(path1: PathRef, path2: PathRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGPathEqualToPath(path1: PathRef, path2: PathRef) callconv(.C) i32;
+pub const pathEqualToPath = CGPathEqualToPath;
 
-pub extern "CoreGraphics" fn PathMoveToPoint(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, x: core_foundation.CGFloat, y: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathMoveToPoint(
+    path: MutablePathRef,
+    m: ?*core_foundation.CGAffineTransform,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const pathMoveToPoint = CGPathMoveToPoint;
 
-pub extern "CoreGraphics" fn PathAddLineToPoint(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, x: core_foundation.CGFloat, y: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddLineToPoint(
+    path: MutablePathRef,
+    m: ?*core_foundation.CGAffineTransform,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const pathAddLineToPoint = CGPathAddLineToPoint;
 
-pub extern "CoreGraphics" fn PathAddQuadCurveToPoint(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, cpx: core_foundation.CGFloat, cpy: core_foundation.CGFloat, x: core_foundation.CGFloat, y: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddQuadCurveToPoint(
+    path: MutablePathRef,
+    m: ?*core_foundation.CGAffineTransform,
+    cpx: core_foundation.CGFloat,
+    cpy: core_foundation.CGFloat,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const pathAddQuadCurveToPoint = CGPathAddQuadCurveToPoint;
 
-pub extern "CoreGraphics" fn PathAddCurveToPoint(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, cp1x: core_foundation.CGFloat, cp1y: core_foundation.CGFloat, cp2x: core_foundation.CGFloat, cp2y: core_foundation.CGFloat, x: core_foundation.CGFloat, y: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddCurveToPoint(
+    path: MutablePathRef,
+    m: ?*core_foundation.CGAffineTransform,
+    cp1x: core_foundation.CGFloat,
+    cp1y: core_foundation.CGFloat,
+    cp2x: core_foundation.CGFloat,
+    cp2y: core_foundation.CGFloat,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const pathAddCurveToPoint = CGPathAddCurveToPoint;
 
-pub extern "CoreGraphics" fn PathCloseSubpath(path: MutablePathRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPathCloseSubpath(path: MutablePathRef) callconv(.C) void;
+pub const pathCloseSubpath = CGPathCloseSubpath;
 
-pub extern "CoreGraphics" fn PathAddRect(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddRect(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, rect: core_foundation.CGRect) callconv(.C) void;
+pub const pathAddRect = CGPathAddRect;
 
-pub extern "CoreGraphics" fn PathAddRects(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, rects: ?*core_foundation.CGRect, count: objc.size_t, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddRects(
+    path: MutablePathRef,
+    m: ?*core_foundation.CGAffineTransform,
+    rects: ?*core_foundation.CGRect,
+    count: objc.size_t,
+) callconv(.C) void;
+pub const pathAddRects = CGPathAddRects;
 
-pub extern "CoreGraphics" fn PathAddLines(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, points: ?*core_foundation.CGPoint, count: objc.size_t, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddLines(
+    path: MutablePathRef,
+    m: ?*core_foundation.CGAffineTransform,
+    points: ?*core_foundation.CGPoint,
+    count: objc.size_t,
+) callconv(.C) void;
+pub const pathAddLines = CGPathAddLines;
 
-pub extern "CoreGraphics" fn PathAddEllipseInRect(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddEllipseInRect(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, rect: core_foundation.CGRect) callconv(.C) void;
+pub const pathAddEllipseInRect = CGPathAddEllipseInRect;
 
-pub extern "CoreGraphics" fn PathAddRelativeArc(path: MutablePathRef, matrix: ?*core_foundation.CGAffineTransform, x: core_foundation.CGFloat, y: core_foundation.CGFloat, radius: core_foundation.CGFloat, startAngle: core_foundation.CGFloat, delta: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddRelativeArc(
+    path: MutablePathRef,
+    matrix: ?*core_foundation.CGAffineTransform,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+    radius: core_foundation.CGFloat,
+    startAngle: core_foundation.CGFloat,
+    delta: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const pathAddRelativeArc = CGPathAddRelativeArc;
 
-pub extern "CoreGraphics" fn PathAddArc(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, x: core_foundation.CGFloat, y: core_foundation.CGFloat, radius: core_foundation.CGFloat, startAngle: core_foundation.CGFloat, endAngle: core_foundation.CGFloat, clockwise: i32, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddArc(
+    path: MutablePathRef,
+    m: ?*core_foundation.CGAffineTransform,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+    radius: core_foundation.CGFloat,
+    startAngle: core_foundation.CGFloat,
+    endAngle: core_foundation.CGFloat,
+    clockwise: i32,
+) callconv(.C) void;
+pub const pathAddArc = CGPathAddArc;
 
-pub extern "CoreGraphics" fn PathAddArcToPoint(path: MutablePathRef, m: ?*core_foundation.CGAffineTransform, x1: core_foundation.CGFloat, y1: core_foundation.CGFloat, x2: core_foundation.CGFloat, y2: core_foundation.CGFloat, radius: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddArcToPoint(
+    path: MutablePathRef,
+    m: ?*core_foundation.CGAffineTransform,
+    x1: core_foundation.CGFloat,
+    y1: core_foundation.CGFloat,
+    x2: core_foundation.CGFloat,
+    y2: core_foundation.CGFloat,
+    radius: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const pathAddArcToPoint = CGPathAddArcToPoint;
 
-pub extern "CoreGraphics" fn PathAddPath(path1: MutablePathRef, m: ?*core_foundation.CGAffineTransform, path2: PathRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPathAddPath(path1: MutablePathRef, m: ?*core_foundation.CGAffineTransform, path2: PathRef) callconv(.C) void;
+pub const pathAddPath = CGPathAddPath;
 
-pub extern "CoreGraphics" fn PathIsEmpty(path: PathRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGPathIsEmpty(path: PathRef) callconv(.C) i32;
+pub const pathIsEmpty = CGPathIsEmpty;
 
-pub extern "CoreGraphics" fn PathIsRect(path: PathRef, rect: ?*core_foundation.CGRect) callconv(.C) i32;
+extern "CoreGraphics" fn CGPathIsRect(path: PathRef, rect: ?*core_foundation.CGRect) callconv(.C) i32;
+pub const pathIsRect = CGPathIsRect;
 
-pub extern "CoreGraphics" fn PathGetCurrentPoint(path: PathRef) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn CGPathGetCurrentPoint(path: PathRef) callconv(.C) core_foundation.CGPoint;
+pub const pathGetCurrentPoint = CGPathGetCurrentPoint;
 
-pub extern "CoreGraphics" fn PathGetBoundingBox(path: PathRef) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGPathGetBoundingBox(path: PathRef) callconv(.C) core_foundation.CGRect;
+pub const pathGetBoundingBox = CGPathGetBoundingBox;
 
-pub extern "CoreGraphics" fn PathGetPathBoundingBox(path: PathRef) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGPathGetPathBoundingBox(path: PathRef) callconv(.C) core_foundation.CGRect;
+pub const pathGetPathBoundingBox = CGPathGetPathBoundingBox;
 
-pub extern "CoreGraphics" fn PathContainsPoint(path: PathRef, m: ?*core_foundation.CGAffineTransform, point: core_foundation.CGPoint, eoFill: i32, ) callconv(.C) i32;
+extern "CoreGraphics" fn CGPathContainsPoint(
+    path: PathRef,
+    m: ?*core_foundation.CGAffineTransform,
+    point: core_foundation.CGPoint,
+    eoFill: i32,
+) callconv(.C) i32;
+pub const pathContainsPoint = CGPathContainsPoint;
 
 pub const PathElementType = enum(objc.int32_t) {
     kCGPathElementMoveToPoint = 0,
@@ -665,37 +1128,49 @@ pub const PathElementType = enum(objc.int32_t) {
 };
 
 pub const PathElement = extern struct {
-    @"type": PathElementType,
+    type: PathElementType,
     points: ?*core_foundation.CGPoint,
 };
 
-pub const PathApplierFunction = ?*const fn(?*anyopaque, ?*PathElement) callconv(.C) void;
+pub const PathApplierFunction = ?*const fn (?*anyopaque, ?*PathElement) callconv(.C) void;
 
-pub extern "CoreGraphics" fn PathApply(path: PathRef, info: ?*anyopaque, function: PathApplierFunction) callconv(.C) void;
+extern "CoreGraphics" fn CGPathApply(path: PathRef, info: ?*anyopaque, function: PathApplierFunction) callconv(.C) void;
+pub const pathApply = CGPathApply;
 
-pub const PathApplyBlock = *const fn(?*PathElement) callconv(.C) void;
+pub const PathApplyBlock = *const fn (?*PathElement) callconv(.C) void;
 
-pub extern "CoreGraphics" fn PathApplyWithBlock(path: PathRef, block: PathApplyBlock) callconv(.C) void;
+extern "CoreGraphics" fn CGPathApplyWithBlock(path: PathRef, block: PathApplyBlock) callconv(.C) void;
+pub const pathApplyWithBlock = CGPathApplyWithBlock;
 
-pub extern "CoreGraphics" fn PathCreateCopyByNormalizing(path: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyByNormalizing(path: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+pub const pathCreateCopyByNormalizing = CGPathCreateCopyByNormalizing;
 
-pub extern "CoreGraphics" fn PathCreateCopyByUnioningPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyByUnioningPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+pub const pathCreateCopyByUnioningPath = CGPathCreateCopyByUnioningPath;
 
-pub extern "CoreGraphics" fn PathCreateCopyByIntersectingPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyByIntersectingPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+pub const pathCreateCopyByIntersectingPath = CGPathCreateCopyByIntersectingPath;
 
-pub extern "CoreGraphics" fn PathCreateCopyBySubtractingPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyBySubtractingPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+pub const pathCreateCopyBySubtractingPath = CGPathCreateCopyBySubtractingPath;
 
-pub extern "CoreGraphics" fn PathCreateCopyBySymmetricDifferenceOfPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyBySymmetricDifferenceOfPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+pub const pathCreateCopyBySymmetricDifferenceOfPath = CGPathCreateCopyBySymmetricDifferenceOfPath;
 
-pub extern "CoreGraphics" fn PathCreateCopyOfLineBySubtractingPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyOfLineBySubtractingPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+pub const pathCreateCopyOfLineBySubtractingPath = CGPathCreateCopyOfLineBySubtractingPath;
 
-pub extern "CoreGraphics" fn PathCreateCopyOfLineByIntersectingPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyOfLineByIntersectingPath(path: PathRef, maskPath: PathRef, evenOddFillRule: i32) callconv(.C) PathRef;
+pub const pathCreateCopyOfLineByIntersectingPath = CGPathCreateCopyOfLineByIntersectingPath;
 
-pub extern "CoreGraphics" fn PathCreateSeparateComponents(path: PathRef, evenOddFillRule: i32) callconv(.C) core_foundation.ArrayRef;
+extern "CoreGraphics" fn CGPathCreateSeparateComponents(path: PathRef, evenOddFillRule: i32) callconv(.C) core_foundation.ArrayRef;
+pub const pathCreateSeparateComponents = CGPathCreateSeparateComponents;
 
-pub extern "CoreGraphics" fn PathCreateCopyByFlattening(path: PathRef, flatteningThreshold: core_foundation.CGFloat) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGPathCreateCopyByFlattening(path: PathRef, flatteningThreshold: core_foundation.CGFloat) callconv(.C) PathRef;
+pub const pathCreateCopyByFlattening = CGPathCreateCopyByFlattening;
 
-pub extern "CoreGraphics" fn PathIntersectsPath(path1: PathRef, path2: PathRef, evenOddFillRule: i32) callconv(.C) i32;
+extern "CoreGraphics" fn CGPathIntersectsPath(path1: PathRef, path2: PathRef, evenOddFillRule: i32) callconv(.C) i32;
+pub const pathIntersectsPath = CGPathIntersectsPath;
 
 pub const PDFDocument = extern struct {};
 
@@ -735,9 +1210,11 @@ pub const PDFObjectType = enum(objc.int32_t) {
     kCGPDFObjectTypeStream = 9,
 };
 
-pub extern "CoreGraphics" fn PDFObjectGetType(object: PDFObjectRef) callconv(.C) PDFObjectType;
+extern "CoreGraphics" fn CGPDFObjectGetType(object: PDFObjectRef) callconv(.C) PDFObjectType;
+pub const pdfObjectGetType = CGPDFObjectGetType;
 
-pub extern "CoreGraphics" fn PDFObjectGetValue(object: PDFObjectRef, @"type": PDFObjectType, value: ?*anyopaque) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFObjectGetValue(object: PDFObjectRef, @"type": PDFObjectType, value: ?*anyopaque) callconv(.C) i32;
+pub const pdfObjectGetValue = CGPDFObjectGetValue;
 
 pub const PDFStream = extern struct {};
 
@@ -749,75 +1226,105 @@ pub const PDFDataFormat = enum(objc.int32_t) {
     JPEG2000 = 2,
 };
 
-pub extern "CoreGraphics" fn PDFStreamGetDictionary(stream: PDFStreamRef) callconv(.C) PDFDictionaryRef;
+extern "CoreGraphics" fn CGPDFStreamGetDictionary(stream: PDFStreamRef) callconv(.C) PDFDictionaryRef;
+pub const pdfStreamGetDictionary = CGPDFStreamGetDictionary;
 
-pub extern "CoreGraphics" fn PDFStreamCopyData(stream: PDFStreamRef, format: ?*PDFDataFormat) callconv(.C) core_foundation.DataRef;
+extern "CoreGraphics" fn CGPDFStreamCopyData(stream: PDFStreamRef, format: ?*PDFDataFormat) callconv(.C) core_foundation.DataRef;
+pub const pdfStreamCopyData = CGPDFStreamCopyData;
 
 pub const PDFString = extern struct {};
 
 pub const PDFStringRef = ?*PDFString;
 
-pub extern "CoreGraphics" fn PDFStringGetLength(string: PDFStringRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGPDFStringGetLength(string: PDFStringRef) callconv(.C) objc.size_t;
+pub const pdfStringGetLength = CGPDFStringGetLength;
 
-pub extern "CoreGraphics" fn PDFStringGetBytePtr(string: PDFStringRef) callconv(.C) ?*u8;
+extern "CoreGraphics" fn CGPDFStringGetBytePtr(string: PDFStringRef) callconv(.C) ?*u8;
+pub const pdfStringGetBytePtr = CGPDFStringGetBytePtr;
 
-pub extern "CoreGraphics" fn PDFStringCopyTextString(string: PDFStringRef) callconv(.C) core_foundation.StringRef;
+extern "CoreGraphics" fn CGPDFStringCopyTextString(string: PDFStringRef) callconv(.C) core_foundation.StringRef;
+pub const pdfStringCopyTextString = CGPDFStringCopyTextString;
 
-pub extern "CoreGraphics" fn PDFStringCopyDate(string: PDFStringRef) callconv(.C) core_foundation.DateRef;
+extern "CoreGraphics" fn CGPDFStringCopyDate(string: PDFStringRef) callconv(.C) core_foundation.DateRef;
+pub const pdfStringCopyDate = CGPDFStringCopyDate;
 
-pub extern "CoreGraphics" fn PDFArrayGetCount(array: PDFArrayRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGPDFArrayGetCount(array: PDFArrayRef) callconv(.C) objc.size_t;
+pub const pdfArrayGetCount = CGPDFArrayGetCount;
 
-pub extern "CoreGraphics" fn PDFArrayGetObject(array: PDFArrayRef, index: objc.size_t, value: ?*PDFObjectRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetObject(array: PDFArrayRef, index: objc.size_t, value: ?*PDFObjectRef) callconv(.C) i32;
+pub const pdfArrayGetObject = CGPDFArrayGetObject;
 
-pub extern "CoreGraphics" fn PDFArrayGetNull(array: PDFArrayRef, index: objc.size_t) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetNull(array: PDFArrayRef, index: objc.size_t) callconv(.C) i32;
+pub const pdfArrayGetNull = CGPDFArrayGetNull;
 
-pub extern "CoreGraphics" fn PDFArrayGetBoolean(array: PDFArrayRef, index: objc.size_t, value: ?*PDFBoolean) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetBoolean(array: PDFArrayRef, index: objc.size_t, value: ?*PDFBoolean) callconv(.C) i32;
+pub const pdfArrayGetBoolean = CGPDFArrayGetBoolean;
 
-pub extern "CoreGraphics" fn PDFArrayGetInteger(array: PDFArrayRef, index: objc.size_t, value: ?*PDFInteger) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetInteger(array: PDFArrayRef, index: objc.size_t, value: ?*PDFInteger) callconv(.C) i32;
+pub const pdfArrayGetInteger = CGPDFArrayGetInteger;
 
-pub extern "CoreGraphics" fn PDFArrayGetNumber(array: PDFArrayRef, index: objc.size_t, value: ?*PDFReal) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetNumber(array: PDFArrayRef, index: objc.size_t, value: ?*PDFReal) callconv(.C) i32;
+pub const pdfArrayGetNumber = CGPDFArrayGetNumber;
 
-pub extern "CoreGraphics" fn PDFArrayGetName(array: PDFArrayRef, index: objc.size_t, value: ?*?*i8) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetName(array: PDFArrayRef, index: objc.size_t, value: ?*?*i8) callconv(.C) i32;
+pub const pdfArrayGetName = CGPDFArrayGetName;
 
-pub extern "CoreGraphics" fn PDFArrayGetString(array: PDFArrayRef, index: objc.size_t, value: ?*PDFStringRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetString(array: PDFArrayRef, index: objc.size_t, value: ?*PDFStringRef) callconv(.C) i32;
+pub const pdfArrayGetString = CGPDFArrayGetString;
 
-pub extern "CoreGraphics" fn PDFArrayGetArray(array: PDFArrayRef, index: objc.size_t, value: ?*PDFArrayRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetArray(array: PDFArrayRef, index: objc.size_t, value: ?*PDFArrayRef) callconv(.C) i32;
+pub const pdfArrayGetArray = CGPDFArrayGetArray;
 
-pub extern "CoreGraphics" fn PDFArrayGetDictionary(array: PDFArrayRef, index: objc.size_t, value: ?*PDFDictionaryRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetDictionary(array: PDFArrayRef, index: objc.size_t, value: ?*PDFDictionaryRef) callconv(.C) i32;
+pub const pdfArrayGetDictionary = CGPDFArrayGetDictionary;
 
-pub extern "CoreGraphics" fn PDFArrayGetStream(array: PDFArrayRef, index: objc.size_t, value: ?*PDFStreamRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFArrayGetStream(array: PDFArrayRef, index: objc.size_t, value: ?*PDFStreamRef) callconv(.C) i32;
+pub const pdfArrayGetStream = CGPDFArrayGetStream;
 
-pub const bool = fn(i32) callconv(.C) i32;
+pub const bool = fn (i32) callconv(.C) i32;
 
-pub extern "CoreGraphics" fn PDFArrayApplyBlock(array: PDFArrayRef, block: i32, info: ?*anyopaque) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFArrayApplyBlock(array: PDFArrayRef, block: i32, info: ?*anyopaque) callconv(.C) void;
+pub const pdfArrayApplyBlock = CGPDFArrayApplyBlock;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetCount(dict: PDFDictionaryRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGPDFDictionaryGetCount(dict: PDFDictionaryRef) callconv(.C) objc.size_t;
+pub const pdfDictionaryGetCount = CGPDFDictionaryGetCount;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetObject() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDictionaryGetObject() callconv(.C) i32;
+pub const pdfDictionaryGetObject = CGPDFDictionaryGetObject;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetBoolean() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDictionaryGetBoolean() callconv(.C) i32;
+pub const pdfDictionaryGetBoolean = CGPDFDictionaryGetBoolean;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetInteger() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDictionaryGetInteger() callconv(.C) i32;
+pub const pdfDictionaryGetInteger = CGPDFDictionaryGetInteger;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetNumber() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDictionaryGetNumber() callconv(.C) i32;
+pub const pdfDictionaryGetNumber = CGPDFDictionaryGetNumber;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetName() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDictionaryGetName() callconv(.C) i32;
+pub const pdfDictionaryGetName = CGPDFDictionaryGetName;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetString() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDictionaryGetString() callconv(.C) i32;
+pub const pdfDictionaryGetString = CGPDFDictionaryGetString;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetArray() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDictionaryGetArray() callconv(.C) i32;
+pub const pdfDictionaryGetArray = CGPDFDictionaryGetArray;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetDictionary() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDictionaryGetDictionary() callconv(.C) i32;
+pub const pdfDictionaryGetDictionary = CGPDFDictionaryGetDictionary;
 
-pub extern "CoreGraphics" fn PDFDictionaryGetStream() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDictionaryGetStream() callconv(.C) i32;
+pub const pdfDictionaryGetStream = CGPDFDictionaryGetStream;
 
-pub const PDFDictionaryApplierFunction = ?*const fn(?*i8, PDFObjectRef, ?*anyopaque) callconv(.C) void;
+pub const PDFDictionaryApplierFunction = ?*const fn (?*i8, PDFObjectRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "CoreGraphics" fn PDFDictionaryApplyFunction(dict: PDFDictionaryRef, function: PDFDictionaryApplierFunction, info: ?*anyopaque) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFDictionaryApplyFunction(dict: PDFDictionaryRef, function: PDFDictionaryApplierFunction, info: ?*anyopaque) callconv(.C) void;
+pub const pdfDictionaryApplyFunction = CGPDFDictionaryApplyFunction;
 
-pub const PDFDictionaryApplierBlock = *const fn(?*i8, PDFObjectRef, ?*anyopaque) callconv(.C) i32;
+pub const PDFDictionaryApplierBlock = *const fn (?*i8, PDFObjectRef, ?*anyopaque) callconv(.C) i32;
 
-pub extern "CoreGraphics" fn PDFDictionaryApplyBlock(dict: PDFDictionaryRef, block: PDFDictionaryApplierBlock, info: ?*anyopaque) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFDictionaryApplyBlock(dict: PDFDictionaryRef, block: PDFDictionaryApplierBlock, info: ?*anyopaque) callconv(.C) void;
+pub const pdfDictionaryApplyBlock = CGPDFDictionaryApplyBlock;
 
 pub const PDFBox = enum(objc.int32_t) {
     kCGPDFMediaBox = 0,
@@ -827,23 +1334,38 @@ pub const PDFBox = enum(objc.int32_t) {
     kCGPDFArtBox = 4,
 };
 
-pub extern "CoreGraphics" fn PDFPageRetain(page: PDFPageRef) callconv(.C) PDFPageRef;
+extern "CoreGraphics" fn CGPDFPageRetain(page: PDFPageRef) callconv(.C) PDFPageRef;
+pub const pdfPageRetain = CGPDFPageRetain;
 
-pub extern "CoreGraphics" fn PDFPageRelease(page: PDFPageRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFPageRelease(page: PDFPageRef) callconv(.C) void;
+pub const pdfPageRelease = CGPDFPageRelease;
 
-pub extern "CoreGraphics" fn PDFPageGetDocument(page: PDFPageRef) callconv(.C) PDFDocumentRef;
+extern "CoreGraphics" fn CGPDFPageGetDocument(page: PDFPageRef) callconv(.C) PDFDocumentRef;
+pub const pdfPageGetDocument = CGPDFPageGetDocument;
 
-pub extern "CoreGraphics" fn PDFPageGetPageNumber(page: PDFPageRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGPDFPageGetPageNumber(page: PDFPageRef) callconv(.C) objc.size_t;
+pub const pdfPageGetPageNumber = CGPDFPageGetPageNumber;
 
-pub extern "CoreGraphics" fn PDFPageGetBoxRect(page: PDFPageRef, box: PDFBox) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGPDFPageGetBoxRect(page: PDFPageRef, box: PDFBox) callconv(.C) core_foundation.CGRect;
+pub const pdfPageGetBoxRect = CGPDFPageGetBoxRect;
 
-pub extern "CoreGraphics" fn PDFPageGetRotationAngle(page: PDFPageRef) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFPageGetRotationAngle(page: PDFPageRef) callconv(.C) i32;
+pub const pdfPageGetRotationAngle = CGPDFPageGetRotationAngle;
 
-pub extern "CoreGraphics" fn PDFPageGetDrawingTransform(page: PDFPageRef, box: PDFBox, rect: core_foundation.CGRect, rotate: i32, preserveAspectRatio: bool, ) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGPDFPageGetDrawingTransform(
+    page: PDFPageRef,
+    box: PDFBox,
+    rect: core_foundation.CGRect,
+    rotate: i32,
+    preserveAspectRatio: bool,
+) callconv(.C) core_foundation.CGAffineTransform;
+pub const pdfPageGetDrawingTransform = CGPDFPageGetDrawingTransform;
 
-pub extern "CoreGraphics" fn PDFPageGetDictionary(page: PDFPageRef) callconv(.C) PDFDictionaryRef;
+extern "CoreGraphics" fn CGPDFPageGetDictionary(page: PDFPageRef) callconv(.C) PDFDictionaryRef;
+pub const pdfPageGetDictionary = CGPDFPageGetDictionary;
 
-pub extern "CoreGraphics" fn PDFPageGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGPDFPageGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const pdfPageGetTypeID = CGPDFPageGetTypeID;
 
 pub const PDFAccessPermissions = enum(objc.uint32_t) {
     kCGPDFAllowsLowQualityPrinting = 1,
@@ -856,53 +1378,77 @@ pub const PDFAccessPermissions = enum(objc.uint32_t) {
     kCGPDFAllowsFormFieldEntry = 128,
 };
 
-pub extern "CoreGraphics" fn PDFDocumentCreateWithProvider(provider: DataProviderRef) callconv(.C) PDFDocumentRef;
+extern "CoreGraphics" fn CGPDFDocumentCreateWithProvider(provider: DataProviderRef) callconv(.C) PDFDocumentRef;
+pub const pdfDocumentCreateWithProvider = CGPDFDocumentCreateWithProvider;
 
-pub extern "CoreGraphics" fn PDFDocumentCreateWithURL(url: core_foundation.URLRef) callconv(.C) PDFDocumentRef;
+extern "CoreGraphics" fn CGPDFDocumentCreateWithURL(url: core_foundation.URLRef) callconv(.C) PDFDocumentRef;
+pub const pdfDocumentCreateWithURL = CGPDFDocumentCreateWithURL;
 
-pub extern "CoreGraphics" fn PDFDocumentRetain(document: PDFDocumentRef) callconv(.C) PDFDocumentRef;
+extern "CoreGraphics" fn CGPDFDocumentRetain(document: PDFDocumentRef) callconv(.C) PDFDocumentRef;
+pub const pdfDocumentRetain = CGPDFDocumentRetain;
 
-pub extern "CoreGraphics" fn PDFDocumentRelease(document: PDFDocumentRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFDocumentRelease(document: PDFDocumentRef) callconv(.C) void;
+pub const pdfDocumentRelease = CGPDFDocumentRelease;
 
-pub extern "CoreGraphics" fn PDFDocumentGetVersion(document: PDFDocumentRef, majorVersion: ?*i32, minorVersion: ?*i32) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFDocumentGetVersion(document: PDFDocumentRef, majorVersion: ?*i32, minorVersion: ?*i32) callconv(.C) void;
+pub const pdfDocumentGetVersion = CGPDFDocumentGetVersion;
 
-pub extern "CoreGraphics" fn PDFDocumentIsEncrypted() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDocumentIsEncrypted() callconv(.C) i32;
+pub const pdfDocumentIsEncrypted = CGPDFDocumentIsEncrypted;
 
-pub extern "CoreGraphics" fn PDFDocumentUnlockWithPassword() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDocumentUnlockWithPassword() callconv(.C) i32;
+pub const pdfDocumentUnlockWithPassword = CGPDFDocumentUnlockWithPassword;
 
-pub extern "CoreGraphics" fn PDFDocumentIsUnlocked() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDocumentIsUnlocked() callconv(.C) i32;
+pub const pdfDocumentIsUnlocked = CGPDFDocumentIsUnlocked;
 
-pub extern "CoreGraphics" fn PDFDocumentAllowsPrinting() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDocumentAllowsPrinting() callconv(.C) i32;
+pub const pdfDocumentAllowsPrinting = CGPDFDocumentAllowsPrinting;
 
-pub extern "CoreGraphics" fn PDFDocumentAllowsCopying() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDocumentAllowsCopying() callconv(.C) i32;
+pub const pdfDocumentAllowsCopying = CGPDFDocumentAllowsCopying;
 
-pub extern "CoreGraphics" fn PDFDocumentGetNumberOfPages(document: PDFDocumentRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGPDFDocumentGetNumberOfPages(document: PDFDocumentRef) callconv(.C) objc.size_t;
+pub const pdfDocumentGetNumberOfPages = CGPDFDocumentGetNumberOfPages;
 
-pub extern "CoreGraphics" fn PDFDocumentGetPage(document: PDFDocumentRef, pageNumber: objc.size_t) callconv(.C) PDFPageRef;
+extern "CoreGraphics" fn CGPDFDocumentGetPage(document: PDFDocumentRef, pageNumber: objc.size_t) callconv(.C) PDFPageRef;
+pub const pdfDocumentGetPage = CGPDFDocumentGetPage;
 
-pub extern "CoreGraphics" fn PDFDocumentGetCatalog(document: PDFDocumentRef) callconv(.C) PDFDictionaryRef;
+extern "CoreGraphics" fn CGPDFDocumentGetCatalog(document: PDFDocumentRef) callconv(.C) PDFDictionaryRef;
+pub const pdfDocumentGetCatalog = CGPDFDocumentGetCatalog;
 
-pub extern "CoreGraphics" fn PDFDocumentGetInfo(document: PDFDocumentRef) callconv(.C) PDFDictionaryRef;
+extern "CoreGraphics" fn CGPDFDocumentGetInfo(document: PDFDocumentRef) callconv(.C) PDFDictionaryRef;
+pub const pdfDocumentGetInfo = CGPDFDocumentGetInfo;
 
-pub extern "CoreGraphics" fn PDFDocumentGetID(document: PDFDocumentRef) callconv(.C) PDFArrayRef;
+extern "CoreGraphics" fn CGPDFDocumentGetID(document: PDFDocumentRef) callconv(.C) PDFArrayRef;
+pub const pdfDocumentGetID = CGPDFDocumentGetID;
 
-pub extern "CoreGraphics" fn PDFDocumentGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGPDFDocumentGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const pdfDocumentGetTypeID = CGPDFDocumentGetTypeID;
 
-pub extern "CoreGraphics" fn PDFDocumentGetOutline(document: PDFDocumentRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreGraphics" fn CGPDFDocumentGetOutline(document: PDFDocumentRef) callconv(.C) core_foundation.DictionaryRef;
+pub const pdfDocumentGetOutline = CGPDFDocumentGetOutline;
 
-pub extern "CoreGraphics" fn PDFDocumentGetAccessPermissions(document: PDFDocumentRef) callconv(.C) PDFAccessPermissions;
+extern "CoreGraphics" fn CGPDFDocumentGetAccessPermissions(document: PDFDocumentRef) callconv(.C) PDFAccessPermissions;
+pub const pdfDocumentGetAccessPermissions = CGPDFDocumentGetAccessPermissions;
 
-pub extern "CoreGraphics" fn PDFDocumentGetMediaBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGPDFDocumentGetMediaBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+pub const pdfDocumentGetMediaBox = CGPDFDocumentGetMediaBox;
 
-pub extern "CoreGraphics" fn PDFDocumentGetCropBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGPDFDocumentGetCropBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+pub const pdfDocumentGetCropBox = CGPDFDocumentGetCropBox;
 
-pub extern "CoreGraphics" fn PDFDocumentGetBleedBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGPDFDocumentGetBleedBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+pub const pdfDocumentGetBleedBox = CGPDFDocumentGetBleedBox;
 
-pub extern "CoreGraphics" fn PDFDocumentGetTrimBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGPDFDocumentGetTrimBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+pub const pdfDocumentGetTrimBox = CGPDFDocumentGetTrimBox;
 
-pub extern "CoreGraphics" fn PDFDocumentGetArtBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGPDFDocumentGetArtBox(document: PDFDocumentRef, page: i32) callconv(.C) core_foundation.CGRect;
+pub const pdfDocumentGetArtBox = CGPDFDocumentGetArtBox;
 
-pub extern "CoreGraphics" fn PDFDocumentGetRotationAngle(document: PDFDocumentRef, page: i32) callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFDocumentGetRotationAngle(document: PDFDocumentRef, page: i32) callconv(.C) i32;
+pub const pdfDocumentGetRotationAngle = CGPDFDocumentGetRotationAngle;
 
 pub const Shading = extern struct {};
 
@@ -912,9 +1458,9 @@ pub const Function = extern struct {};
 
 pub const FunctionRef = ?*Function;
 
-pub const FunctionEvaluateCallback = ?*const fn(?*anyopaque, ?*core_foundation.CGFloat, ?*core_foundation.CGFloat) callconv(.C) void;
+pub const FunctionEvaluateCallback = ?*const fn (?*anyopaque, ?*core_foundation.CGFloat, ?*core_foundation.CGFloat) callconv(.C) void;
 
-pub const FunctionReleaseInfoCallback = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const FunctionReleaseInfoCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
 pub const FunctionCallbacks = extern struct {
     version: u32,
@@ -922,23 +1468,55 @@ pub const FunctionCallbacks = extern struct {
     releaseInfo: FunctionReleaseInfoCallback,
 };
 
-pub extern "CoreGraphics" fn FunctionGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGFunctionGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const functionGetTypeID = CGFunctionGetTypeID;
 
-pub extern "CoreGraphics" fn FunctionCreate(info: ?*anyopaque, domainDimension: objc.size_t, domain: ?*core_foundation.CGFloat, rangeDimension: objc.size_t, range: ?*core_foundation.CGFloat, callbacks: ?*FunctionCallbacks, ) callconv(.C) FunctionRef;
+extern "CoreGraphics" fn CGFunctionCreate(
+    info: ?*anyopaque,
+    domainDimension: objc.size_t,
+    domain: ?*core_foundation.CGFloat,
+    rangeDimension: objc.size_t,
+    range: ?*core_foundation.CGFloat,
+    callbacks: ?*FunctionCallbacks,
+) callconv(.C) FunctionRef;
+pub const functionCreate = CGFunctionCreate;
 
-pub extern "CoreGraphics" fn FunctionRetain(function: FunctionRef) callconv(.C) FunctionRef;
+extern "CoreGraphics" fn CGFunctionRetain(function: FunctionRef) callconv(.C) FunctionRef;
+pub const functionRetain = CGFunctionRetain;
 
-pub extern "CoreGraphics" fn FunctionRelease(function: FunctionRef) callconv(.C) void;
+extern "CoreGraphics" fn CGFunctionRelease(function: FunctionRef) callconv(.C) void;
+pub const functionRelease = CGFunctionRelease;
 
-pub extern "CoreGraphics" fn ShadingGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGShadingGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const shadingGetTypeID = CGShadingGetTypeID;
 
-pub extern "CoreGraphics" fn ShadingCreateAxial(space: ColorSpaceRef, start: core_foundation.CGPoint, end: core_foundation.CGPoint, function: FunctionRef, extendStart: bool, extendEnd: bool, ) callconv(.C) ShadingRef;
+extern "CoreGraphics" fn CGShadingCreateAxial(
+    space: ColorSpaceRef,
+    start: core_foundation.CGPoint,
+    end: core_foundation.CGPoint,
+    function: FunctionRef,
+    extendStart: bool,
+    extendEnd: bool,
+) callconv(.C) ShadingRef;
+pub const shadingCreateAxial = CGShadingCreateAxial;
 
-pub extern "CoreGraphics" fn ShadingCreateRadial(space: ColorSpaceRef, start: core_foundation.CGPoint, startRadius: core_foundation.CGFloat, end: core_foundation.CGPoint, endRadius: core_foundation.CGFloat, function: FunctionRef, extendStart: bool, extendEnd: bool, ) callconv(.C) ShadingRef;
+extern "CoreGraphics" fn CGShadingCreateRadial(
+    space: ColorSpaceRef,
+    start: core_foundation.CGPoint,
+    startRadius: core_foundation.CGFloat,
+    end: core_foundation.CGPoint,
+    endRadius: core_foundation.CGFloat,
+    function: FunctionRef,
+    extendStart: bool,
+    extendEnd: bool,
+) callconv(.C) ShadingRef;
+pub const shadingCreateRadial = CGShadingCreateRadial;
 
-pub extern "CoreGraphics" fn ShadingRetain(shading: ShadingRef) callconv(.C) ShadingRef;
+extern "CoreGraphics" fn CGShadingRetain(shading: ShadingRef) callconv(.C) ShadingRef;
+pub const shadingRetain = CGShadingRetain;
 
-pub extern "CoreGraphics" fn ShadingRelease(shading: ShadingRef) callconv(.C) void;
+extern "CoreGraphics" fn CGShadingRelease(shading: ShadingRef) callconv(.C) void;
+pub const shadingRelease = CGShadingRelease;
 
 pub const PathDrawingMode = enum(objc.int32_t) {
     kCGPathFill = 0,
@@ -1003,153 +1581,287 @@ pub const BlendMode = enum(objc.int32_t) {
     kCGBlendModePlusLighter = 27,
 };
 
-pub extern "CoreGraphics" fn ContextGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGContextGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const contextGetTypeID = CGContextGetTypeID;
 
-pub extern "CoreGraphics" fn ContextSaveGState(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSaveGState(c: ContextRef) callconv(.C) void;
+pub const contextSaveGState = CGContextSaveGState;
+
+extern "CoreGraphics" fn CGContextRestoreGState(c: ContextRef) callconv(.C) void;
+pub const contextRestoreGState = CGContextRestoreGState;
 
-pub extern "CoreGraphics" fn ContextRestoreGState(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextScaleCTM(c: ContextRef, sx: core_foundation.CGFloat, sy: core_foundation.CGFloat) callconv(.C) void;
+pub const contextScaleCTM = CGContextScaleCTM;
+
+extern "CoreGraphics" fn CGContextTranslateCTM(c: ContextRef, tx: core_foundation.CGFloat, ty: core_foundation.CGFloat) callconv(.C) void;
+pub const contextTranslateCTM = CGContextTranslateCTM;
+
+extern "CoreGraphics" fn CGContextRotateCTM(c: ContextRef, angle: core_foundation.CGFloat) callconv(.C) void;
+pub const contextRotateCTM = CGContextRotateCTM;
+
+extern "CoreGraphics" fn CGContextConcatCTM(c: ContextRef, transform: core_foundation.CGAffineTransform) callconv(.C) void;
+pub const contextConcatCTM = CGContextConcatCTM;
+
+extern "CoreGraphics" fn CGContextGetCTM(c: ContextRef) callconv(.C) core_foundation.CGAffineTransform;
+pub const contextGetCTM = CGContextGetCTM;
+
+extern "CoreGraphics" fn CGContextSetLineWidth(c: ContextRef, width: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetLineWidth = CGContextSetLineWidth;
+
+extern "CoreGraphics" fn CGContextSetLineCap(c: ContextRef, cap: LineCap) callconv(.C) void;
+pub const contextSetLineCap = CGContextSetLineCap;
+
+extern "CoreGraphics" fn CGContextSetLineJoin(c: ContextRef, join: LineJoin) callconv(.C) void;
+pub const contextSetLineJoin = CGContextSetLineJoin;
+
+extern "CoreGraphics" fn CGContextSetMiterLimit(c: ContextRef, limit: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetMiterLimit = CGContextSetMiterLimit;
+
+extern "CoreGraphics" fn CGContextSetLineDash(
+    c: ContextRef,
+    phase: core_foundation.CGFloat,
+    lengths: ?*core_foundation.CGFloat,
+    count: objc.size_t,
+) callconv(.C) void;
+pub const contextSetLineDash = CGContextSetLineDash;
 
-pub extern "CoreGraphics" fn ContextScaleCTM(c: ContextRef, sx: core_foundation.CGFloat, sy: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetFlatness(c: ContextRef, flatness: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetFlatness = CGContextSetFlatness;
 
-pub extern "CoreGraphics" fn ContextTranslateCTM(c: ContextRef, tx: core_foundation.CGFloat, ty: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetAlpha(c: ContextRef, alpha: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetAlpha = CGContextSetAlpha;
 
-pub extern "CoreGraphics" fn ContextRotateCTM(c: ContextRef, angle: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetBlendMode(c: ContextRef, mode: BlendMode) callconv(.C) void;
+pub const contextSetBlendMode = CGContextSetBlendMode;
 
-pub extern "CoreGraphics" fn ContextConcatCTM(c: ContextRef, transform: core_foundation.CGAffineTransform) callconv(.C) void;
+extern "CoreGraphics" fn CGContextBeginPath(c: ContextRef) callconv(.C) void;
+pub const contextBeginPath = CGContextBeginPath;
 
-pub extern "CoreGraphics" fn ContextGetCTM(c: ContextRef) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGContextMoveToPoint(c: ContextRef, x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) void;
+pub const contextMoveToPoint = CGContextMoveToPoint;
 
-pub extern "CoreGraphics" fn ContextSetLineWidth(c: ContextRef, width: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddLineToPoint(c: ContextRef, x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) void;
+pub const contextAddLineToPoint = CGContextAddLineToPoint;
 
-pub extern "CoreGraphics" fn ContextSetLineCap(c: ContextRef, cap: LineCap) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddCurveToPoint(
+    c: ContextRef,
+    cp1x: core_foundation.CGFloat,
+    cp1y: core_foundation.CGFloat,
+    cp2x: core_foundation.CGFloat,
+    cp2y: core_foundation.CGFloat,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const contextAddCurveToPoint = CGContextAddCurveToPoint;
 
-pub extern "CoreGraphics" fn ContextSetLineJoin(c: ContextRef, join: LineJoin) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddQuadCurveToPoint(
+    c: ContextRef,
+    cpx: core_foundation.CGFloat,
+    cpy: core_foundation.CGFloat,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const contextAddQuadCurveToPoint = CGContextAddQuadCurveToPoint;
 
-pub extern "CoreGraphics" fn ContextSetMiterLimit(c: ContextRef, limit: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextClosePath(c: ContextRef) callconv(.C) void;
+pub const contextClosePath = CGContextClosePath;
 
-pub extern "CoreGraphics" fn ContextSetLineDash(c: ContextRef, phase: core_foundation.CGFloat, lengths: ?*core_foundation.CGFloat, count: objc.size_t, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const contextAddRect = CGContextAddRect;
 
-pub extern "CoreGraphics" fn ContextSetFlatness(c: ContextRef, flatness: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddRects(c: ContextRef, rects: ?*core_foundation.CGRect, count: objc.size_t) callconv(.C) void;
+pub const contextAddRects = CGContextAddRects;
 
-pub extern "CoreGraphics" fn ContextSetAlpha(c: ContextRef, alpha: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddLines(c: ContextRef, points: ?*core_foundation.CGPoint, count: objc.size_t) callconv(.C) void;
+pub const contextAddLines = CGContextAddLines;
 
-pub extern "CoreGraphics" fn ContextSetBlendMode(c: ContextRef, mode: BlendMode) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddEllipseInRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const contextAddEllipseInRect = CGContextAddEllipseInRect;
 
-pub extern "CoreGraphics" fn ContextBeginPath(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddArc(
+    c: ContextRef,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+    radius: core_foundation.CGFloat,
+    startAngle: core_foundation.CGFloat,
+    endAngle: core_foundation.CGFloat,
+    clockwise: i32,
+) callconv(.C) void;
+pub const contextAddArc = CGContextAddArc;
 
-pub extern "CoreGraphics" fn ContextMoveToPoint(c: ContextRef, x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddArcToPoint(
+    c: ContextRef,
+    x1: core_foundation.CGFloat,
+    y1: core_foundation.CGFloat,
+    x2: core_foundation.CGFloat,
+    y2: core_foundation.CGFloat,
+    radius: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const contextAddArcToPoint = CGContextAddArcToPoint;
 
-pub extern "CoreGraphics" fn ContextAddLineToPoint(c: ContextRef, x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextAddPath(c: ContextRef, path: PathRef) callconv(.C) void;
+pub const contextAddPath = CGContextAddPath;
 
-pub extern "CoreGraphics" fn ContextAddCurveToPoint(c: ContextRef, cp1x: core_foundation.CGFloat, cp1y: core_foundation.CGFloat, cp2x: core_foundation.CGFloat, cp2y: core_foundation.CGFloat, x: core_foundation.CGFloat, y: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextReplacePathWithStrokedPath(c: ContextRef) callconv(.C) void;
+pub const contextReplacePathWithStrokedPath = CGContextReplacePathWithStrokedPath;
 
-pub extern "CoreGraphics" fn ContextAddQuadCurveToPoint(c: ContextRef, cpx: core_foundation.CGFloat, cpy: core_foundation.CGFloat, x: core_foundation.CGFloat, y: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextIsPathEmpty() callconv(.C) i32;
+pub const contextIsPathEmpty = CGContextIsPathEmpty;
 
-pub extern "CoreGraphics" fn ContextClosePath(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextGetPathCurrentPoint(c: ContextRef) callconv(.C) core_foundation.CGPoint;
+pub const contextGetPathCurrentPoint = CGContextGetPathCurrentPoint;
 
-pub extern "CoreGraphics" fn ContextAddRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGContextGetPathBoundingBox(c: ContextRef) callconv(.C) core_foundation.CGRect;
+pub const contextGetPathBoundingBox = CGContextGetPathBoundingBox;
 
-pub extern "CoreGraphics" fn ContextAddRects(c: ContextRef, rects: ?*core_foundation.CGRect, count: objc.size_t) callconv(.C) void;
+extern "CoreGraphics" fn CGContextCopyPath(c: ContextRef) callconv(.C) PathRef;
+pub const contextCopyPath = CGContextCopyPath;
 
-pub extern "CoreGraphics" fn ContextAddLines(c: ContextRef, points: ?*core_foundation.CGPoint, count: objc.size_t) callconv(.C) void;
+extern "CoreGraphics" fn CGContextPathContainsPoint() callconv(.C) i32;
+pub const contextPathContainsPoint = CGContextPathContainsPoint;
 
-pub extern "CoreGraphics" fn ContextAddEllipseInRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawPath(c: ContextRef, mode: PathDrawingMode) callconv(.C) void;
+pub const contextDrawPath = CGContextDrawPath;
 
-pub extern "CoreGraphics" fn ContextAddArc(c: ContextRef, x: core_foundation.CGFloat, y: core_foundation.CGFloat, radius: core_foundation.CGFloat, startAngle: core_foundation.CGFloat, endAngle: core_foundation.CGFloat, clockwise: i32, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextFillPath(c: ContextRef) callconv(.C) void;
+pub const contextFillPath = CGContextFillPath;
 
-pub extern "CoreGraphics" fn ContextAddArcToPoint(c: ContextRef, x1: core_foundation.CGFloat, y1: core_foundation.CGFloat, x2: core_foundation.CGFloat, y2: core_foundation.CGFloat, radius: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextEOFillPath(c: ContextRef) callconv(.C) void;
+pub const contextEOFillPath = CGContextEOFillPath;
 
-pub extern "CoreGraphics" fn ContextAddPath(c: ContextRef, path: PathRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextStrokePath(c: ContextRef) callconv(.C) void;
+pub const contextStrokePath = CGContextStrokePath;
 
-pub extern "CoreGraphics" fn ContextReplacePathWithStrokedPath(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextFillRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const contextFillRect = CGContextFillRect;
 
-pub extern "CoreGraphics" fn ContextIsPathEmpty() callconv(.C) i32;
+extern "CoreGraphics" fn CGContextFillRects(c: ContextRef, rects: ?*core_foundation.CGRect, count: objc.size_t) callconv(.C) void;
+pub const contextFillRects = CGContextFillRects;
 
-pub extern "CoreGraphics" fn ContextGetPathCurrentPoint(c: ContextRef) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn CGContextStrokeRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const contextStrokeRect = CGContextStrokeRect;
 
-pub extern "CoreGraphics" fn ContextGetPathBoundingBox(c: ContextRef) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGContextStrokeRectWithWidth(c: ContextRef, rect: core_foundation.CGRect, width: core_foundation.CGFloat) callconv(.C) void;
+pub const contextStrokeRectWithWidth = CGContextStrokeRectWithWidth;
 
-pub extern "CoreGraphics" fn ContextCopyPath(c: ContextRef) callconv(.C) PathRef;
+extern "CoreGraphics" fn CGContextClearRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const contextClearRect = CGContextClearRect;
 
-pub extern "CoreGraphics" fn ContextPathContainsPoint() callconv(.C) i32;
+extern "CoreGraphics" fn CGContextFillEllipseInRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const contextFillEllipseInRect = CGContextFillEllipseInRect;
 
-pub extern "CoreGraphics" fn ContextDrawPath(c: ContextRef, mode: PathDrawingMode) callconv(.C) void;
+extern "CoreGraphics" fn CGContextStrokeEllipseInRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const contextStrokeEllipseInRect = CGContextStrokeEllipseInRect;
 
-pub extern "CoreGraphics" fn ContextFillPath(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextStrokeLineSegments(c: ContextRef, points: ?*core_foundation.CGPoint, count: objc.size_t) callconv(.C) void;
+pub const contextStrokeLineSegments = CGContextStrokeLineSegments;
 
-pub extern "CoreGraphics" fn ContextEOFillPath(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextClip(c: ContextRef) callconv(.C) void;
+pub const contextClip = CGContextClip;
 
-pub extern "CoreGraphics" fn ContextStrokePath(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextEOClip(c: ContextRef) callconv(.C) void;
+pub const contextEOClip = CGContextEOClip;
 
-pub extern "CoreGraphics" fn ContextFillRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGContextResetClip(c: ContextRef) callconv(.C) void;
+pub const contextResetClip = CGContextResetClip;
 
-pub extern "CoreGraphics" fn ContextFillRects(c: ContextRef, rects: ?*core_foundation.CGRect, count: objc.size_t) callconv(.C) void;
+extern "CoreGraphics" fn CGContextClipToMask(c: ContextRef, rect: core_foundation.CGRect, mask: ImageRef) callconv(.C) void;
+pub const contextClipToMask = CGContextClipToMask;
 
-pub extern "CoreGraphics" fn ContextStrokeRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGContextGetClipBoundingBox(c: ContextRef) callconv(.C) core_foundation.CGRect;
+pub const contextGetClipBoundingBox = CGContextGetClipBoundingBox;
 
-pub extern "CoreGraphics" fn ContextStrokeRectWithWidth(c: ContextRef, rect: core_foundation.CGRect, width: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextClipToRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const contextClipToRect = CGContextClipToRect;
 
-pub extern "CoreGraphics" fn ContextClearRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGContextClipToRects(c: ContextRef, rects: ?*core_foundation.CGRect, count: objc.size_t) callconv(.C) void;
+pub const contextClipToRects = CGContextClipToRects;
 
-pub extern "CoreGraphics" fn ContextFillEllipseInRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetFillColorWithColor(c: ContextRef, color: ColorRef) callconv(.C) void;
+pub const contextSetFillColorWithColor = CGContextSetFillColorWithColor;
 
-pub extern "CoreGraphics" fn ContextStrokeEllipseInRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetStrokeColorWithColor(c: ContextRef, color: ColorRef) callconv(.C) void;
+pub const contextSetStrokeColorWithColor = CGContextSetStrokeColorWithColor;
 
-pub extern "CoreGraphics" fn ContextStrokeLineSegments(c: ContextRef, points: ?*core_foundation.CGPoint, count: objc.size_t) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetFillColorSpace(c: ContextRef, space: ColorSpaceRef) callconv(.C) void;
+pub const contextSetFillColorSpace = CGContextSetFillColorSpace;
 
-pub extern "CoreGraphics" fn ContextClip(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetStrokeColorSpace(c: ContextRef, space: ColorSpaceRef) callconv(.C) void;
+pub const contextSetStrokeColorSpace = CGContextSetStrokeColorSpace;
 
-pub extern "CoreGraphics" fn ContextEOClip(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetFillColor(c: ContextRef, components: ?*core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetFillColor = CGContextSetFillColor;
 
-pub extern "CoreGraphics" fn ContextResetClip(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetStrokeColor(c: ContextRef, components: ?*core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetStrokeColor = CGContextSetStrokeColor;
 
-pub extern "CoreGraphics" fn ContextClipToMask(c: ContextRef, rect: core_foundation.CGRect, mask: ImageRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetFillPattern(c: ContextRef, pattern: PatternRef, components: ?*core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetFillPattern = CGContextSetFillPattern;
 
-pub extern "CoreGraphics" fn ContextGetClipBoundingBox(c: ContextRef) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGContextSetStrokePattern(c: ContextRef, pattern: PatternRef, components: ?*core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetStrokePattern = CGContextSetStrokePattern;
 
-pub extern "CoreGraphics" fn ContextClipToRect(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetPatternPhase(c: ContextRef, phase: core_foundation.CGSize) callconv(.C) void;
+pub const contextSetPatternPhase = CGContextSetPatternPhase;
 
-pub extern "CoreGraphics" fn ContextClipToRects(c: ContextRef, rects: ?*core_foundation.CGRect, count: objc.size_t) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetGrayFillColor(c: ContextRef, gray: core_foundation.CGFloat, alpha: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetGrayFillColor = CGContextSetGrayFillColor;
 
-pub extern "CoreGraphics" fn ContextSetFillColorWithColor(c: ContextRef, color: ColorRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetGrayStrokeColor(c: ContextRef, gray: core_foundation.CGFloat, alpha: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetGrayStrokeColor = CGContextSetGrayStrokeColor;
 
-pub extern "CoreGraphics" fn ContextSetStrokeColorWithColor(c: ContextRef, color: ColorRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetRGBFillColor(
+    c: ContextRef,
+    red: core_foundation.CGFloat,
+    green: core_foundation.CGFloat,
+    blue: core_foundation.CGFloat,
+    alpha: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const contextSetRGBFillColor = CGContextSetRGBFillColor;
 
-pub extern "CoreGraphics" fn ContextSetFillColorSpace(c: ContextRef, space: ColorSpaceRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetRGBStrokeColor(
+    c: ContextRef,
+    red: core_foundation.CGFloat,
+    green: core_foundation.CGFloat,
+    blue: core_foundation.CGFloat,
+    alpha: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const contextSetRGBStrokeColor = CGContextSetRGBStrokeColor;
 
-pub extern "CoreGraphics" fn ContextSetStrokeColorSpace(c: ContextRef, space: ColorSpaceRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetCMYKFillColor(
+    c: ContextRef,
+    cyan: core_foundation.CGFloat,
+    magenta: core_foundation.CGFloat,
+    yellow: core_foundation.CGFloat,
+    black: core_foundation.CGFloat,
+    alpha: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const contextSetCMYKFillColor = CGContextSetCMYKFillColor;
 
-pub extern "CoreGraphics" fn ContextSetFillColor(c: ContextRef, components: ?*core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetCMYKStrokeColor(
+    c: ContextRef,
+    cyan: core_foundation.CGFloat,
+    magenta: core_foundation.CGFloat,
+    yellow: core_foundation.CGFloat,
+    black: core_foundation.CGFloat,
+    alpha: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const contextSetCMYKStrokeColor = CGContextSetCMYKStrokeColor;
 
-pub extern "CoreGraphics" fn ContextSetStrokeColor(c: ContextRef, components: ?*core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetRenderingIntent(c: ContextRef, intent: ColorRenderingIntent) callconv(.C) void;
+pub const contextSetRenderingIntent = CGContextSetRenderingIntent;
 
-pub extern "CoreGraphics" fn ContextSetFillPattern(c: ContextRef, pattern: PatternRef, components: ?*core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetEDRTargetHeadroom() callconv(.C) i32;
+pub const contextSetEDRTargetHeadroom = CGContextSetEDRTargetHeadroom;
 
-pub extern "CoreGraphics" fn ContextSetStrokePattern(c: ContextRef, pattern: PatternRef, components: ?*core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextGetEDRTargetHeadroom(c: ContextRef) callconv(.C) f32;
+pub const contextGetEDRTargetHeadroom = CGContextGetEDRTargetHeadroom;
 
-pub extern "CoreGraphics" fn ContextSetPatternPhase(c: ContextRef, phase: core_foundation.CGSize) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawImage(c: ContextRef, rect: core_foundation.CGRect, image: ImageRef) callconv(.C) void;
+pub const contextDrawImage = CGContextDrawImage;
 
-pub extern "CoreGraphics" fn ContextSetGrayFillColor(c: ContextRef, gray: core_foundation.CGFloat, alpha: core_foundation.CGFloat) callconv(.C) void;
-
-pub extern "CoreGraphics" fn ContextSetGrayStrokeColor(c: ContextRef, gray: core_foundation.CGFloat, alpha: core_foundation.CGFloat) callconv(.C) void;
-
-pub extern "CoreGraphics" fn ContextSetRGBFillColor(c: ContextRef, red: core_foundation.CGFloat, green: core_foundation.CGFloat, blue: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) callconv(.C) void;
-
-pub extern "CoreGraphics" fn ContextSetRGBStrokeColor(c: ContextRef, red: core_foundation.CGFloat, green: core_foundation.CGFloat, blue: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) callconv(.C) void;
-
-pub extern "CoreGraphics" fn ContextSetCMYKFillColor(c: ContextRef, cyan: core_foundation.CGFloat, magenta: core_foundation.CGFloat, yellow: core_foundation.CGFloat, black: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) callconv(.C) void;
-
-pub extern "CoreGraphics" fn ContextSetCMYKStrokeColor(c: ContextRef, cyan: core_foundation.CGFloat, magenta: core_foundation.CGFloat, yellow: core_foundation.CGFloat, black: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) callconv(.C) void;
-
-pub extern "CoreGraphics" fn ContextSetRenderingIntent(c: ContextRef, intent: ColorRenderingIntent) callconv(.C) void;
-
-pub extern "CoreGraphics" fn ContextSetEDRTargetHeadroom() callconv(.C) i32;
-
-pub extern "CoreGraphics" fn ContextGetEDRTargetHeadroom(c: ContextRef) callconv(.C) f32;
-
-pub extern "CoreGraphics" fn ContextDrawImage(c: ContextRef, rect: core_foundation.CGRect, image: ImageRef) callconv(.C) void;
-
-pub extern "CoreGraphics" fn ContextDrawTiledImage(c: ContextRef, rect: core_foundation.CGRect, image: ImageRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawTiledImage(c: ContextRef, rect: core_foundation.CGRect, image: ImageRef) callconv(.C) void;
+pub const contextDrawTiledImage = CGContextDrawTiledImage;
 
 pub const ToneMapping = enum(objc.uint32_t) {
     kCGToneMappingDefault = 0,
@@ -1160,137 +1872,274 @@ pub const ToneMapping = enum(objc.uint32_t) {
     kCGToneMappingNone = 5,
 };
 
-pub extern "CoreGraphics" fn ContextDrawImageApplyingToneMapping() callconv(.C) i32;
+extern "CoreGraphics" fn CGContextDrawImageApplyingToneMapping() callconv(.C) i32;
+pub const contextDrawImageApplyingToneMapping = CGContextDrawImageApplyingToneMapping;
 
-pub extern "CoreGraphics" fn ContextGetInterpolationQuality(c: ContextRef) callconv(.C) InterpolationQuality;
+extern "CoreGraphics" fn CGContextGetInterpolationQuality(c: ContextRef) callconv(.C) InterpolationQuality;
+pub const contextGetInterpolationQuality = CGContextGetInterpolationQuality;
 
-pub extern "CoreGraphics" fn ContextSetInterpolationQuality(c: ContextRef, quality: InterpolationQuality) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetInterpolationQuality(c: ContextRef, quality: InterpolationQuality) callconv(.C) void;
+pub const contextSetInterpolationQuality = CGContextSetInterpolationQuality;
 
-pub extern "CoreGraphics" fn ContextSetShadowWithColor(c: ContextRef, offset: core_foundation.CGSize, blur: core_foundation.CGFloat, color: ColorRef, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShadowWithColor(
+    c: ContextRef,
+    offset: core_foundation.CGSize,
+    blur: core_foundation.CGFloat,
+    color: ColorRef,
+) callconv(.C) void;
+pub const contextSetShadowWithColor = CGContextSetShadowWithColor;
 
-pub extern "CoreGraphics" fn ContextSetShadow(c: ContextRef, offset: core_foundation.CGSize, blur: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShadow(c: ContextRef, offset: core_foundation.CGSize, blur: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetShadow = CGContextSetShadow;
 
-pub extern "CoreGraphics" fn ContextDrawLinearGradient(c: ContextRef, gradient: GradientRef, startPoint: core_foundation.CGPoint, endPoint: core_foundation.CGPoint, options: GradientDrawingOptions, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawLinearGradient(
+    c: ContextRef,
+    gradient: GradientRef,
+    startPoint: core_foundation.CGPoint,
+    endPoint: core_foundation.CGPoint,
+    options: GradientDrawingOptions,
+) callconv(.C) void;
+pub const contextDrawLinearGradient = CGContextDrawLinearGradient;
 
-pub extern "CoreGraphics" fn ContextDrawRadialGradient(c: ContextRef, gradient: GradientRef, startCenter: core_foundation.CGPoint, startRadius: core_foundation.CGFloat, endCenter: core_foundation.CGPoint, endRadius: core_foundation.CGFloat, options: GradientDrawingOptions, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawRadialGradient(
+    c: ContextRef,
+    gradient: GradientRef,
+    startCenter: core_foundation.CGPoint,
+    startRadius: core_foundation.CGFloat,
+    endCenter: core_foundation.CGPoint,
+    endRadius: core_foundation.CGFloat,
+    options: GradientDrawingOptions,
+) callconv(.C) void;
+pub const contextDrawRadialGradient = CGContextDrawRadialGradient;
 
-pub extern "CoreGraphics" fn ContextDrawConicGradient(c: ContextRef, gradient: GradientRef, center: core_foundation.CGPoint, angle: core_foundation.CGFloat, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawConicGradient(
+    c: ContextRef,
+    gradient: GradientRef,
+    center: core_foundation.CGPoint,
+    angle: core_foundation.CGFloat,
+) callconv(.C) void;
+pub const contextDrawConicGradient = CGContextDrawConicGradient;
 
-pub extern "CoreGraphics" fn ContextDrawShading(c: ContextRef, shading: ShadingRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawShading(c: ContextRef, shading: ShadingRef) callconv(.C) void;
+pub const contextDrawShading = CGContextDrawShading;
 
-pub extern "CoreGraphics" fn ContextSetCharacterSpacing(c: ContextRef, spacing: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetCharacterSpacing(c: ContextRef, spacing: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetCharacterSpacing = CGContextSetCharacterSpacing;
 
-pub extern "CoreGraphics" fn ContextSetTextPosition(c: ContextRef, x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetTextPosition(c: ContextRef, x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetTextPosition = CGContextSetTextPosition;
 
-pub extern "CoreGraphics" fn ContextGetTextPosition(c: ContextRef) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn CGContextGetTextPosition(c: ContextRef) callconv(.C) core_foundation.CGPoint;
+pub const contextGetTextPosition = CGContextGetTextPosition;
 
-pub extern "CoreGraphics" fn ContextSetTextMatrix(c: ContextRef, t: core_foundation.CGAffineTransform) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetTextMatrix(c: ContextRef, t: core_foundation.CGAffineTransform) callconv(.C) void;
+pub const contextSetTextMatrix = CGContextSetTextMatrix;
 
-pub extern "CoreGraphics" fn ContextGetTextMatrix(c: ContextRef) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGContextGetTextMatrix(c: ContextRef) callconv(.C) core_foundation.CGAffineTransform;
+pub const contextGetTextMatrix = CGContextGetTextMatrix;
 
-pub extern "CoreGraphics" fn ContextSetTextDrawingMode(c: ContextRef, mode: TextDrawingMode) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetTextDrawingMode(c: ContextRef, mode: TextDrawingMode) callconv(.C) void;
+pub const contextSetTextDrawingMode = CGContextSetTextDrawingMode;
 
-pub extern "CoreGraphics" fn ContextSetFont(c: ContextRef, font: FontRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetFont(c: ContextRef, font: FontRef) callconv(.C) void;
+pub const contextSetFont = CGContextSetFont;
 
-pub extern "CoreGraphics" fn ContextSetFontSize(c: ContextRef, size: core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetFontSize(c: ContextRef, size: core_foundation.CGFloat) callconv(.C) void;
+pub const contextSetFontSize = CGContextSetFontSize;
 
-pub extern "CoreGraphics" fn ContextShowGlyphsAtPositions(c: ContextRef, glyphs: ?*Glyph, Lpositions: ?*core_foundation.CGPoint, count: objc.size_t, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextShowGlyphsAtPositions(
+    c: ContextRef,
+    glyphs: ?*Glyph,
+    Lpositions: ?*core_foundation.CGPoint,
+    count: objc.size_t,
+) callconv(.C) void;
+pub const contextShowGlyphsAtPositions = CGContextShowGlyphsAtPositions;
 
-pub extern "CoreGraphics" fn ContextDrawPDFPage(c: ContextRef, page: PDFPageRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawPDFPage(c: ContextRef, page: PDFPageRef) callconv(.C) void;
+pub const contextDrawPDFPage = CGContextDrawPDFPage;
 
-pub extern "CoreGraphics" fn ContextBeginPage(c: ContextRef, mediaBox: ?*core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGContextBeginPage(c: ContextRef, mediaBox: ?*core_foundation.CGRect) callconv(.C) void;
+pub const contextBeginPage = CGContextBeginPage;
 
-pub extern "CoreGraphics" fn ContextEndPage(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextEndPage(c: ContextRef) callconv(.C) void;
+pub const contextEndPage = CGContextEndPage;
 
-pub extern "CoreGraphics" fn ContextRetain(c: ContextRef) callconv(.C) ContextRef;
+extern "CoreGraphics" fn CGContextRetain(c: ContextRef) callconv(.C) ContextRef;
+pub const contextRetain = CGContextRetain;
 
-pub extern "CoreGraphics" fn ContextRelease(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextRelease(c: ContextRef) callconv(.C) void;
+pub const contextRelease = CGContextRelease;
 
-pub extern "CoreGraphics" fn ContextFlush(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextFlush(c: ContextRef) callconv(.C) void;
+pub const contextFlush = CGContextFlush;
 
-pub extern "CoreGraphics" fn ContextSynchronize(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSynchronize(c: ContextRef) callconv(.C) void;
+pub const contextSynchronize = CGContextSynchronize;
 
-pub extern "CoreGraphics" fn ContextSetShouldAntialias(c: ContextRef, shouldAntialias: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShouldAntialias(c: ContextRef, shouldAntialias: bool) callconv(.C) void;
+pub const contextSetShouldAntialias = CGContextSetShouldAntialias;
 
-pub extern "CoreGraphics" fn ContextSetAllowsAntialiasing(c: ContextRef, allowsAntialiasing: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetAllowsAntialiasing(c: ContextRef, allowsAntialiasing: bool) callconv(.C) void;
+pub const contextSetAllowsAntialiasing = CGContextSetAllowsAntialiasing;
 
-pub extern "CoreGraphics" fn ContextSetShouldSmoothFonts(c: ContextRef, shouldSmoothFonts: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShouldSmoothFonts(c: ContextRef, shouldSmoothFonts: bool) callconv(.C) void;
+pub const contextSetShouldSmoothFonts = CGContextSetShouldSmoothFonts;
 
-pub extern "CoreGraphics" fn ContextSetAllowsFontSmoothing(c: ContextRef, allowsFontSmoothing: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetAllowsFontSmoothing(c: ContextRef, allowsFontSmoothing: bool) callconv(.C) void;
+pub const contextSetAllowsFontSmoothing = CGContextSetAllowsFontSmoothing;
 
-pub extern "CoreGraphics" fn ContextSetShouldSubpixelPositionFonts(c: ContextRef, shouldSubpixelPositionFonts: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShouldSubpixelPositionFonts(c: ContextRef, shouldSubpixelPositionFonts: bool) callconv(.C) void;
+pub const contextSetShouldSubpixelPositionFonts = CGContextSetShouldSubpixelPositionFonts;
 
-pub extern "CoreGraphics" fn ContextSetAllowsFontSubpixelPositioning(c: ContextRef, allowsFontSubpixelPositioning: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetAllowsFontSubpixelPositioning(c: ContextRef, allowsFontSubpixelPositioning: bool) callconv(.C) void;
+pub const contextSetAllowsFontSubpixelPositioning = CGContextSetAllowsFontSubpixelPositioning;
 
-pub extern "CoreGraphics" fn ContextSetShouldSubpixelQuantizeFonts(c: ContextRef, shouldSubpixelQuantizeFonts: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShouldSubpixelQuantizeFonts(c: ContextRef, shouldSubpixelQuantizeFonts: bool) callconv(.C) void;
+pub const contextSetShouldSubpixelQuantizeFonts = CGContextSetShouldSubpixelQuantizeFonts;
 
-pub extern "CoreGraphics" fn ContextSetAllowsFontSubpixelQuantization(c: ContextRef, allowsFontSubpixelQuantization: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetAllowsFontSubpixelQuantization(c: ContextRef, allowsFontSubpixelQuantization: bool) callconv(.C) void;
+pub const contextSetAllowsFontSubpixelQuantization = CGContextSetAllowsFontSubpixelQuantization;
 
-pub extern "CoreGraphics" fn ContextBeginTransparencyLayer(c: ContextRef, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextBeginTransparencyLayer(c: ContextRef, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) void;
+pub const contextBeginTransparencyLayer = CGContextBeginTransparencyLayer;
 
-pub extern "CoreGraphics" fn ContextBeginTransparencyLayerWithRect(c: ContextRef, rect: core_foundation.CGRect, auxInfo: core_foundation.DictionaryRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextBeginTransparencyLayerWithRect(c: ContextRef, rect: core_foundation.CGRect, auxInfo: core_foundation.DictionaryRef) callconv(.C) void;
+pub const contextBeginTransparencyLayerWithRect = CGContextBeginTransparencyLayerWithRect;
 
-pub extern "CoreGraphics" fn ContextEndTransparencyLayer(c: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextEndTransparencyLayer(c: ContextRef) callconv(.C) void;
+pub const contextEndTransparencyLayer = CGContextEndTransparencyLayer;
 
-pub extern "CoreGraphics" fn ContextGetUserSpaceToDeviceSpaceTransform(c: ContextRef) callconv(.C) core_foundation.CGAffineTransform;
+extern "CoreGraphics" fn CGContextGetUserSpaceToDeviceSpaceTransform(c: ContextRef) callconv(.C) core_foundation.CGAffineTransform;
+pub const contextGetUserSpaceToDeviceSpaceTransform = CGContextGetUserSpaceToDeviceSpaceTransform;
 
-pub extern "CoreGraphics" fn ContextConvertPointToDeviceSpace(c: ContextRef, point: core_foundation.CGPoint) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn CGContextConvertPointToDeviceSpace(c: ContextRef, point: core_foundation.CGPoint) callconv(.C) core_foundation.CGPoint;
+pub const contextConvertPointToDeviceSpace = CGContextConvertPointToDeviceSpace;
 
-pub extern "CoreGraphics" fn ContextConvertPointToUserSpace(c: ContextRef, point: core_foundation.CGPoint) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn CGContextConvertPointToUserSpace(c: ContextRef, point: core_foundation.CGPoint) callconv(.C) core_foundation.CGPoint;
+pub const contextConvertPointToUserSpace = CGContextConvertPointToUserSpace;
 
-pub extern "CoreGraphics" fn ContextConvertSizeToDeviceSpace(c: ContextRef, size: core_foundation.CGSize) callconv(.C) core_foundation.CGSize;
+extern "CoreGraphics" fn CGContextConvertSizeToDeviceSpace(c: ContextRef, size: core_foundation.CGSize) callconv(.C) core_foundation.CGSize;
+pub const contextConvertSizeToDeviceSpace = CGContextConvertSizeToDeviceSpace;
 
-pub extern "CoreGraphics" fn ContextConvertSizeToUserSpace(c: ContextRef, size: core_foundation.CGSize) callconv(.C) core_foundation.CGSize;
+extern "CoreGraphics" fn CGContextConvertSizeToUserSpace(c: ContextRef, size: core_foundation.CGSize) callconv(.C) core_foundation.CGSize;
+pub const contextConvertSizeToUserSpace = CGContextConvertSizeToUserSpace;
 
-pub extern "CoreGraphics" fn ContextConvertRectToDeviceSpace(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGContextConvertRectToDeviceSpace(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+pub const contextConvertRectToDeviceSpace = CGContextConvertRectToDeviceSpace;
 
-pub extern "CoreGraphics" fn ContextConvertRectToUserSpace(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGContextConvertRectToUserSpace(c: ContextRef, rect: core_foundation.CGRect) callconv(.C) core_foundation.CGRect;
+pub const contextConvertRectToUserSpace = CGContextConvertRectToUserSpace;
 
-pub extern "CoreGraphics" fn ContextSelectFont(c: ContextRef, name: ?*i8, size: core_foundation.CGFloat, textEncoding: TextEncoding, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSelectFont(
+    c: ContextRef,
+    name: ?*i8,
+    size: core_foundation.CGFloat,
+    textEncoding: TextEncoding,
+) callconv(.C) void;
+pub const contextSelectFont = CGContextSelectFont;
 
-pub extern "CoreGraphics" fn ContextShowText(c: ContextRef, string: ?*i8, length: objc.size_t) callconv(.C) void;
+extern "CoreGraphics" fn CGContextShowText(c: ContextRef, string: ?*i8, length: objc.size_t) callconv(.C) void;
+pub const contextShowText = CGContextShowText;
 
-pub extern "CoreGraphics" fn ContextShowTextAtPoint(c: ContextRef, x: core_foundation.CGFloat, y: core_foundation.CGFloat, string: ?*i8, length: objc.size_t, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextShowTextAtPoint(
+    c: ContextRef,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+    string: ?*i8,
+    length: objc.size_t,
+) callconv(.C) void;
+pub const contextShowTextAtPoint = CGContextShowTextAtPoint;
 
-pub extern "CoreGraphics" fn ContextShowGlyphs(c: ContextRef, g: ?*Glyph, count: objc.size_t) callconv(.C) void;
+extern "CoreGraphics" fn CGContextShowGlyphs(c: ContextRef, g: ?*Glyph, count: objc.size_t) callconv(.C) void;
+pub const contextShowGlyphs = CGContextShowGlyphs;
 
-pub extern "CoreGraphics" fn ContextShowGlyphsAtPoint(c: ContextRef, x: core_foundation.CGFloat, y: core_foundation.CGFloat, glyphs: ?*Glyph, count: objc.size_t, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextShowGlyphsAtPoint(
+    c: ContextRef,
+    x: core_foundation.CGFloat,
+    y: core_foundation.CGFloat,
+    glyphs: ?*Glyph,
+    count: objc.size_t,
+) callconv(.C) void;
+pub const contextShowGlyphsAtPoint = CGContextShowGlyphsAtPoint;
 
-pub extern "CoreGraphics" fn ContextShowGlyphsWithAdvances(c: ContextRef, glyphs: ?*Glyph, advances: ?*core_foundation.CGSize, count: objc.size_t, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextShowGlyphsWithAdvances(
+    c: ContextRef,
+    glyphs: ?*Glyph,
+    advances: ?*core_foundation.CGSize,
+    count: objc.size_t,
+) callconv(.C) void;
+pub const contextShowGlyphsWithAdvances = CGContextShowGlyphsWithAdvances;
 
-pub extern "CoreGraphics" fn ContextDrawPDFDocument(c: ContextRef, rect: core_foundation.CGRect, document: PDFDocumentRef, page: i32, ) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawPDFDocument(
+    c: ContextRef,
+    rect: core_foundation.CGRect,
+    document: PDFDocumentRef,
+    page: i32,
+) callconv(.C) void;
+pub const contextDrawPDFDocument = CGContextDrawPDFDocument;
 
-pub const BitmapContextReleaseDataCallback = ?*const fn(?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const BitmapContextReleaseDataCallback = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
 
-pub extern "CoreGraphics" fn BitmapContextCreateWithData(data: ?*anyopaque, width: objc.size_t, height: objc.size_t, bitsPerComponent: objc.size_t, bytesPerRow: objc.size_t, space: ColorSpaceRef, bitmapInfo: objc.uint32_t, releaseCallback: BitmapContextReleaseDataCallback, releaseInfo: ?*anyopaque, ) callconv(.C) ContextRef;
+extern "CoreGraphics" fn CGBitmapContextCreateWithData(
+    data: ?*anyopaque,
+    width: objc.size_t,
+    height: objc.size_t,
+    bitsPerComponent: objc.size_t,
+    bytesPerRow: objc.size_t,
+    space: ColorSpaceRef,
+    bitmapInfo: objc.uint32_t,
+    releaseCallback: BitmapContextReleaseDataCallback,
+    releaseInfo: ?*anyopaque,
+) callconv(.C) ContextRef;
+pub const bitmapContextCreateWithData = CGBitmapContextCreateWithData;
 
-pub extern "CoreGraphics" fn BitmapContextCreate(data: ?*anyopaque, width: objc.size_t, height: objc.size_t, bitsPerComponent: objc.size_t, bytesPerRow: objc.size_t, space: ColorSpaceRef, bitmapInfo: objc.uint32_t, ) callconv(.C) ContextRef;
+extern "CoreGraphics" fn CGBitmapContextCreate(
+    data: ?*anyopaque,
+    width: objc.size_t,
+    height: objc.size_t,
+    bitsPerComponent: objc.size_t,
+    bytesPerRow: objc.size_t,
+    space: ColorSpaceRef,
+    bitmapInfo: objc.uint32_t,
+) callconv(.C) ContextRef;
+pub const bitmapContextCreate = CGBitmapContextCreate;
 
-pub extern "CoreGraphics" fn BitmapContextGetData(context: ContextRef) callconv(.C) ?*anyopaque;
+extern "CoreGraphics" fn CGBitmapContextGetData(context: ContextRef) callconv(.C) ?*anyopaque;
+pub const bitmapContextGetData = CGBitmapContextGetData;
 
-pub extern "CoreGraphics" fn BitmapContextGetWidth(context: ContextRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGBitmapContextGetWidth(context: ContextRef) callconv(.C) objc.size_t;
+pub const bitmapContextGetWidth = CGBitmapContextGetWidth;
 
-pub extern "CoreGraphics" fn BitmapContextGetHeight(context: ContextRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGBitmapContextGetHeight(context: ContextRef) callconv(.C) objc.size_t;
+pub const bitmapContextGetHeight = CGBitmapContextGetHeight;
 
-pub extern "CoreGraphics" fn BitmapContextGetBitsPerComponent(context: ContextRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGBitmapContextGetBitsPerComponent(context: ContextRef) callconv(.C) objc.size_t;
+pub const bitmapContextGetBitsPerComponent = CGBitmapContextGetBitsPerComponent;
 
-pub extern "CoreGraphics" fn BitmapContextGetBitsPerPixel(context: ContextRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGBitmapContextGetBitsPerPixel(context: ContextRef) callconv(.C) objc.size_t;
+pub const bitmapContextGetBitsPerPixel = CGBitmapContextGetBitsPerPixel;
 
-pub extern "CoreGraphics" fn BitmapContextGetBytesPerRow(context: ContextRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGBitmapContextGetBytesPerRow(context: ContextRef) callconv(.C) objc.size_t;
+pub const bitmapContextGetBytesPerRow = CGBitmapContextGetBytesPerRow;
 
-pub extern "CoreGraphics" fn BitmapContextGetColorSpace(context: ContextRef) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGBitmapContextGetColorSpace(context: ContextRef) callconv(.C) ColorSpaceRef;
+pub const bitmapContextGetColorSpace = CGBitmapContextGetColorSpace;
 
-pub extern "CoreGraphics" fn BitmapContextGetAlphaInfo(context: ContextRef) callconv(.C) ImageAlphaInfo;
+extern "CoreGraphics" fn CGBitmapContextGetAlphaInfo(context: ContextRef) callconv(.C) ImageAlphaInfo;
+pub const bitmapContextGetAlphaInfo = CGBitmapContextGetAlphaInfo;
 
-pub extern "CoreGraphics" fn BitmapContextGetBitmapInfo(context: ContextRef) callconv(.C) BitmapInfo;
+extern "CoreGraphics" fn CGBitmapContextGetBitmapInfo(context: ContextRef) callconv(.C) BitmapInfo;
+pub const bitmapContextGetBitmapInfo = CGBitmapContextGetBitmapInfo;
 
-pub extern "CoreGraphics" fn BitmapContextCreateImage(context: ContextRef) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGBitmapContextCreateImage(context: ContextRef) callconv(.C) ImageRef;
+pub const bitmapContextCreateImage = CGBitmapContextCreateImage;
 
 pub const ColorConversionInfo = extern struct {};
 
 pub const ColorConversionInfoRef = ?*ColorConversionInfo;
 
-pub extern "CoreGraphics" fn ColorConversionInfoGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGColorConversionInfoGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const colorConversionInfoGetTypeID = CGColorConversionInfoGetTypeID;
 
 pub const ColorConversionInfoTransformType = enum(objc.uint32_t) {
     kCGColorConversionTransformFromSpace = 0,
@@ -1298,13 +2147,28 @@ pub const ColorConversionInfoTransformType = enum(objc.uint32_t) {
     kCGColorConversionTransformApplySpace = 2,
 };
 
-pub extern "CoreGraphics" fn ColorConversionInfoCreate(src: ColorSpaceRef, dst: ColorSpaceRef) callconv(.C) ColorConversionInfoRef;
+extern "CoreGraphics" fn CGColorConversionInfoCreate(src: ColorSpaceRef, dst: ColorSpaceRef) callconv(.C) ColorConversionInfoRef;
+pub const colorConversionInfoCreate = CGColorConversionInfoCreate;
 
-pub extern "CoreGraphics" fn ColorConversionInfoCreateWithOptions(src: ColorSpaceRef, dst: ColorSpaceRef, options: core_foundation.DictionaryRef) callconv(.C) ColorConversionInfoRef;
+extern "CoreGraphics" fn CGColorConversionInfoCreateWithOptions(src: ColorSpaceRef, dst: ColorSpaceRef, options: core_foundation.DictionaryRef) callconv(.C) ColorConversionInfoRef;
+pub const colorConversionInfoCreateWithOptions = CGColorConversionInfoCreateWithOptions;
 
-pub extern "CoreGraphics" fn ColorConversionInfoCreateFromList(options: core_foundation.DictionaryRef, ColorSpaceRef, ColorConversionInfoTransformType, ColorRenderingIntent, ) callconv(.C) ColorConversionInfoRef;
+extern "CoreGraphics" fn CGColorConversionInfoCreateFromList(
+    options: core_foundation.DictionaryRef,
+    ColorSpaceRef,
+    ColorConversionInfoTransformType,
+    ColorRenderingIntent,
+) callconv(.C) ColorConversionInfoRef;
+pub const colorConversionInfoCreateFromList = CGColorConversionInfoCreateFromList;
 
-pub extern "CoreGraphics" fn ColorConversionInfoCreateFromListWithArguments(options: core_foundation.DictionaryRef, ColorSpaceRef, ColorConversionInfoTransformType, ColorRenderingIntent, va_list: i32, ) callconv(.C) ColorConversionInfoRef;
+extern "CoreGraphics" fn CGColorConversionInfoCreateFromListWithArguments(
+    options: core_foundation.DictionaryRef,
+    ColorSpaceRef,
+    ColorConversionInfoTransformType,
+    ColorRenderingIntent,
+    va_list: i32,
+) callconv(.C) ColorConversionInfoRef;
+pub const colorConversionInfoCreateFromListWithArguments = CGColorConversionInfoCreateFromListWithArguments;
 
 pub const ColorDataFormat = extern struct {
     version: objc.uint32_t,
@@ -1316,32 +2180,39 @@ pub const ColorDataFormat = extern struct {
     decode: ?*core_foundation.CGFloat,
 };
 
-pub extern "CoreGraphics" fn ConvertColorDataWithFormat() callconv(.C) i32;
+extern "CoreGraphics" fn CGConvertColorDataWithFormat() callconv(.C) i32;
+pub const convertColorDataWithFormat = CGConvertColorDataWithFormat;
 
 pub const DataConsumer = extern struct {};
 
 pub const DataConsumerRef = ?*DataConsumer;
 
-pub const DataConsumerPutBytesCallback = ?*const fn(?*anyopaque, ?*anyopaque, objc.size_t) callconv(.C) objc.size_t;
+pub const DataConsumerPutBytesCallback = ?*const fn (?*anyopaque, ?*anyopaque, objc.size_t) callconv(.C) objc.size_t;
 
-pub const DataConsumerReleaseInfoCallback = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const DataConsumerReleaseInfoCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
 pub const DataConsumerCallbacks = extern struct {
     putBytes: DataConsumerPutBytesCallback,
     releaseConsumer: DataConsumerReleaseInfoCallback,
 };
 
-pub extern "CoreGraphics" fn DataConsumerGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGDataConsumerGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const dataConsumerGetTypeID = CGDataConsumerGetTypeID;
 
-pub extern "CoreGraphics" fn DataConsumerCreate(info: ?*anyopaque, cbks: ?*DataConsumerCallbacks) callconv(.C) DataConsumerRef;
+extern "CoreGraphics" fn CGDataConsumerCreate(info: ?*anyopaque, cbks: ?*DataConsumerCallbacks) callconv(.C) DataConsumerRef;
+pub const dataConsumerCreate = CGDataConsumerCreate;
 
-pub extern "CoreGraphics" fn DataConsumerCreateWithURL(url: core_foundation.URLRef) callconv(.C) DataConsumerRef;
+extern "CoreGraphics" fn CGDataConsumerCreateWithURL(url: core_foundation.URLRef) callconv(.C) DataConsumerRef;
+pub const dataConsumerCreateWithURL = CGDataConsumerCreateWithURL;
 
-pub extern "CoreGraphics" fn DataConsumerCreateWithCFData(data: core_foundation.MutableDataRef) callconv(.C) DataConsumerRef;
+extern "CoreGraphics" fn CGDataConsumerCreateWithCFData(data: core_foundation.MutableDataRef) callconv(.C) DataConsumerRef;
+pub const dataConsumerCreateWithCFData = CGDataConsumerCreateWithCFData;
 
-pub extern "CoreGraphics" fn DataConsumerRetain(consumer: DataConsumerRef) callconv(.C) DataConsumerRef;
+extern "CoreGraphics" fn CGDataConsumerRetain(consumer: DataConsumerRef) callconv(.C) DataConsumerRef;
+pub const dataConsumerRetain = CGDataConsumerRetain;
 
-pub extern "CoreGraphics" fn DataConsumerRelease(consumer: DataConsumerRef) callconv(.C) void;
+extern "CoreGraphics" fn CGDataConsumerRelease(consumer: DataConsumerRef) callconv(.C) void;
+pub const dataConsumerRelease = CGDataConsumerRelease;
 
 pub const Error = enum(objc.int32_t) {
     kCGErrorSuccess = 0,
@@ -1357,71 +2228,99 @@ pub const Error = enum(objc.int32_t) {
     kCGErrorNoneAvailable = 1011,
 };
 
-pub const ErrorCallback = ?*const fn() callconv(.C) void;
+pub const ErrorCallback = ?*const fn () callconv(.C) void;
 
-pub extern "CoreGraphics" fn ErrorSetCallback(callback: ErrorCallback) callconv(.C) void;
+extern "CoreGraphics" fn CGErrorSetCallback(callback: ErrorCallback) callconv(.C) void;
+pub const errorSetCallback = CGErrorSetCallback;
 
 pub const Layer = extern struct {};
 
 pub const LayerRef = ?*Layer;
 
-pub extern "CoreGraphics" fn LayerCreateWithContext(context: ContextRef, size: core_foundation.CGSize, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) LayerRef;
+extern "CoreGraphics" fn CGLayerCreateWithContext(context: ContextRef, size: core_foundation.CGSize, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) LayerRef;
+pub const layerCreateWithContext = CGLayerCreateWithContext;
 
-pub extern "CoreGraphics" fn LayerRetain(layer: LayerRef) callconv(.C) LayerRef;
+extern "CoreGraphics" fn CGLayerRetain(layer: LayerRef) callconv(.C) LayerRef;
+pub const layerRetain = CGLayerRetain;
 
-pub extern "CoreGraphics" fn LayerRelease(layer: LayerRef) callconv(.C) void;
+extern "CoreGraphics" fn CGLayerRelease(layer: LayerRef) callconv(.C) void;
+pub const layerRelease = CGLayerRelease;
 
-pub extern "CoreGraphics" fn LayerGetSize(layer: LayerRef) callconv(.C) core_foundation.CGSize;
+extern "CoreGraphics" fn CGLayerGetSize(layer: LayerRef) callconv(.C) core_foundation.CGSize;
+pub const layerGetSize = CGLayerGetSize;
 
-pub extern "CoreGraphics" fn LayerGetContext(layer: LayerRef) callconv(.C) ContextRef;
+extern "CoreGraphics" fn CGLayerGetContext(layer: LayerRef) callconv(.C) ContextRef;
+pub const layerGetContext = CGLayerGetContext;
 
-pub extern "CoreGraphics" fn ContextDrawLayerInRect(context: ContextRef, rect: core_foundation.CGRect, layer: LayerRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawLayerInRect(context: ContextRef, rect: core_foundation.CGRect, layer: LayerRef) callconv(.C) void;
+pub const contextDrawLayerInRect = CGContextDrawLayerInRect;
 
-pub extern "CoreGraphics" fn ContextDrawLayerAtPoint(context: ContextRef, point: core_foundation.CGPoint, layer: LayerRef) callconv(.C) void;
+extern "CoreGraphics" fn CGContextDrawLayerAtPoint(context: ContextRef, point: core_foundation.CGPoint, layer: LayerRef) callconv(.C) void;
+pub const contextDrawLayerAtPoint = CGContextDrawLayerAtPoint;
 
-pub extern "CoreGraphics" fn LayerGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGLayerGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const layerGetTypeID = CGLayerGetTypeID;
 
 pub const PDFContentStream = extern struct {};
 
 pub const PDFContentStreamRef = ?*PDFContentStream;
 
-pub extern "CoreGraphics" fn PDFContentStreamCreateWithPage(page: PDFPageRef) callconv(.C) PDFContentStreamRef;
+extern "CoreGraphics" fn CGPDFContentStreamCreateWithPage(page: PDFPageRef) callconv(.C) PDFContentStreamRef;
+pub const pdfContentStreamCreateWithPage = CGPDFContentStreamCreateWithPage;
 
-pub extern "CoreGraphics" fn PDFContentStreamCreateWithStream(stream: PDFStreamRef, streamResources: PDFDictionaryRef, parent: PDFContentStreamRef) callconv(.C) PDFContentStreamRef;
+extern "CoreGraphics" fn CGPDFContentStreamCreateWithStream(stream: PDFStreamRef, streamResources: PDFDictionaryRef, parent: PDFContentStreamRef) callconv(.C) PDFContentStreamRef;
+pub const pdfContentStreamCreateWithStream = CGPDFContentStreamCreateWithStream;
 
-pub extern "CoreGraphics" fn PDFContentStreamRetain(cs: PDFContentStreamRef) callconv(.C) PDFContentStreamRef;
+extern "CoreGraphics" fn CGPDFContentStreamRetain(cs: PDFContentStreamRef) callconv(.C) PDFContentStreamRef;
+pub const pdfContentStreamRetain = CGPDFContentStreamRetain;
 
-pub extern "CoreGraphics" fn PDFContentStreamRelease(cs: PDFContentStreamRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContentStreamRelease(cs: PDFContentStreamRef) callconv(.C) void;
+pub const pdfContentStreamRelease = CGPDFContentStreamRelease;
 
-pub extern "CoreGraphics" fn PDFContentStreamGetStreams(cs: PDFContentStreamRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreGraphics" fn CGPDFContentStreamGetStreams(cs: PDFContentStreamRef) callconv(.C) core_foundation.ArrayRef;
+pub const pdfContentStreamGetStreams = CGPDFContentStreamGetStreams;
 
-pub extern "CoreGraphics" fn PDFContentStreamGetResource(cs: PDFContentStreamRef, category: ?*i8, name: ?*i8) callconv(.C) PDFObjectRef;
+extern "CoreGraphics" fn CGPDFContentStreamGetResource(cs: PDFContentStreamRef, category: ?*i8, name: ?*i8) callconv(.C) PDFObjectRef;
+pub const pdfContentStreamGetResource = CGPDFContentStreamGetResource;
 
-pub extern "CoreGraphics" fn PDFContextCreate(consumer: DataConsumerRef, mediaBox: ?*core_foundation.CGRect, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) ContextRef;
+extern "CoreGraphics" fn CGPDFContextCreate(consumer: DataConsumerRef, mediaBox: ?*core_foundation.CGRect, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) ContextRef;
+pub const pdfContextCreate = CGPDFContextCreate;
 
-pub extern "CoreGraphics" fn PDFContextCreateWithURL(url: core_foundation.URLRef, mediaBox: ?*core_foundation.CGRect, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) ContextRef;
+extern "CoreGraphics" fn CGPDFContextCreateWithURL(url: core_foundation.URLRef, mediaBox: ?*core_foundation.CGRect, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) ContextRef;
+pub const pdfContextCreateWithURL = CGPDFContextCreateWithURL;
 
-pub extern "CoreGraphics" fn PDFContextClose(context: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextClose(context: ContextRef) callconv(.C) void;
+pub const pdfContextClose = CGPDFContextClose;
 
-pub extern "CoreGraphics" fn PDFContextBeginPage(context: ContextRef, pageInfo: core_foundation.DictionaryRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextBeginPage(context: ContextRef, pageInfo: core_foundation.DictionaryRef) callconv(.C) void;
+pub const pdfContextBeginPage = CGPDFContextBeginPage;
 
-pub extern "CoreGraphics" fn PDFContextEndPage(context: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextEndPage(context: ContextRef) callconv(.C) void;
+pub const pdfContextEndPage = CGPDFContextEndPage;
 
-pub extern "CoreGraphics" fn PDFContextAddDocumentMetadata(context: ContextRef, metadata: core_foundation.DataRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextAddDocumentMetadata(context: ContextRef, metadata: core_foundation.DataRef) callconv(.C) void;
+pub const pdfContextAddDocumentMetadata = CGPDFContextAddDocumentMetadata;
 
-pub extern "CoreGraphics" fn PDFContextSetParentTree(context: ContextRef, parentTreeDictionary: PDFDictionaryRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextSetParentTree(context: ContextRef, parentTreeDictionary: PDFDictionaryRef) callconv(.C) void;
+pub const pdfContextSetParentTree = CGPDFContextSetParentTree;
 
-pub extern "CoreGraphics" fn PDFContextSetIDTree(context: ContextRef, IDTreeDictionary: PDFDictionaryRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextSetIDTree(context: ContextRef, IDTreeDictionary: PDFDictionaryRef) callconv(.C) void;
+pub const pdfContextSetIDTree = CGPDFContextSetIDTree;
 
-pub extern "CoreGraphics" fn PDFContextSetPageTagStructureTree(context: ContextRef, pageTagStructureTreeDictionary: core_foundation.DictionaryRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextSetPageTagStructureTree(context: ContextRef, pageTagStructureTreeDictionary: core_foundation.DictionaryRef) callconv(.C) void;
+pub const pdfContextSetPageTagStructureTree = CGPDFContextSetPageTagStructureTree;
 
-pub extern "CoreGraphics" fn PDFContextSetURLForRect(context: ContextRef, url: core_foundation.URLRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextSetURLForRect(context: ContextRef, url: core_foundation.URLRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const pdfContextSetURLForRect = CGPDFContextSetURLForRect;
 
-pub extern "CoreGraphics" fn PDFContextAddDestinationAtPoint(context: ContextRef, name: core_foundation.StringRef, point: core_foundation.CGPoint) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextAddDestinationAtPoint(context: ContextRef, name: core_foundation.StringRef, point: core_foundation.CGPoint) callconv(.C) void;
+pub const pdfContextAddDestinationAtPoint = CGPDFContextAddDestinationAtPoint;
 
-pub extern "CoreGraphics" fn PDFContextSetDestinationForRect(context: ContextRef, name: core_foundation.StringRef, rect: core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextSetDestinationForRect(context: ContextRef, name: core_foundation.StringRef, rect: core_foundation.CGRect) callconv(.C) void;
+pub const pdfContextSetDestinationForRect = CGPDFContextSetDestinationForRect;
 
-pub extern "CoreGraphics" fn PDFContextSetOutline(context: ContextRef, outline: core_foundation.DictionaryRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextSetOutline(context: ContextRef, outline: core_foundation.DictionaryRef) callconv(.C) void;
+pub const pdfContextSetOutline = CGPDFContextSetOutline;
 
 pub const PDFTagType = enum(objc.int32_t) {
     Document = 100,
@@ -1476,13 +2375,16 @@ pub const PDFTagType = enum(objc.int32_t) {
     Object = 800,
 };
 
-pub extern "CoreGraphics" fn PDFTagTypeGetName(tagType: PDFTagType) callconv(.C) ?*i8;
+extern "CoreGraphics" fn CGPDFTagTypeGetName(tagType: PDFTagType) callconv(.C) ?*i8;
+pub const pdfTagTypeGetName = CGPDFTagTypeGetName;
 
 pub const PDFTagProperty = core_foundation.StringRef;
 
-pub extern "CoreGraphics" fn PDFContextBeginTag(context: ContextRef, tagType: PDFTagType, tagProperties: core_foundation.DictionaryRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextBeginTag(context: ContextRef, tagType: PDFTagType, tagProperties: core_foundation.DictionaryRef) callconv(.C) void;
+pub const pdfContextBeginTag = CGPDFContextBeginTag;
 
-pub extern "CoreGraphics" fn PDFContextEndTag(context: ContextRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFContextEndTag(context: ContextRef) callconv(.C) void;
+pub const pdfContextEndTag = CGPDFContextEndTag;
 
 pub const PDFOperatorTable = extern struct {};
 
@@ -1492,45 +2394,64 @@ pub const PDFScanner = extern struct {};
 
 pub const PDFScannerRef = ?*PDFScanner;
 
-pub extern "CoreGraphics" fn PDFScannerCreate(cs: PDFContentStreamRef, table: PDFOperatorTableRef, info: ?*anyopaque) callconv(.C) PDFScannerRef;
+extern "CoreGraphics" fn CGPDFScannerCreate(cs: PDFContentStreamRef, table: PDFOperatorTableRef, info: ?*anyopaque) callconv(.C) PDFScannerRef;
+pub const pdfScannerCreate = CGPDFScannerCreate;
 
-pub extern "CoreGraphics" fn PDFScannerRetain(scanner: PDFScannerRef) callconv(.C) PDFScannerRef;
+extern "CoreGraphics" fn CGPDFScannerRetain(scanner: PDFScannerRef) callconv(.C) PDFScannerRef;
+pub const pdfScannerRetain = CGPDFScannerRetain;
 
-pub extern "CoreGraphics" fn PDFScannerRelease(scanner: PDFScannerRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFScannerRelease(scanner: PDFScannerRef) callconv(.C) void;
+pub const pdfScannerRelease = CGPDFScannerRelease;
 
-pub extern "CoreGraphics" fn PDFScannerScan() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerScan() callconv(.C) i32;
+pub const pdfScannerScan = CGPDFScannerScan;
 
-pub extern "CoreGraphics" fn PDFScannerGetContentStream(scanner: PDFScannerRef) callconv(.C) PDFContentStreamRef;
+extern "CoreGraphics" fn CGPDFScannerGetContentStream(scanner: PDFScannerRef) callconv(.C) PDFContentStreamRef;
+pub const pdfScannerGetContentStream = CGPDFScannerGetContentStream;
 
-pub extern "CoreGraphics" fn PDFScannerPopObject() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerPopObject() callconv(.C) i32;
+pub const pdfScannerPopObject = CGPDFScannerPopObject;
 
-pub extern "CoreGraphics" fn PDFScannerPopBoolean() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerPopBoolean() callconv(.C) i32;
+pub const pdfScannerPopBoolean = CGPDFScannerPopBoolean;
 
-pub extern "CoreGraphics" fn PDFScannerPopInteger() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerPopInteger() callconv(.C) i32;
+pub const pdfScannerPopInteger = CGPDFScannerPopInteger;
 
-pub extern "CoreGraphics" fn PDFScannerPopNumber() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerPopNumber() callconv(.C) i32;
+pub const pdfScannerPopNumber = CGPDFScannerPopNumber;
 
-pub extern "CoreGraphics" fn PDFScannerPopName() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerPopName() callconv(.C) i32;
+pub const pdfScannerPopName = CGPDFScannerPopName;
 
-pub extern "CoreGraphics" fn PDFScannerPopString() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerPopString() callconv(.C) i32;
+pub const pdfScannerPopString = CGPDFScannerPopString;
 
-pub extern "CoreGraphics" fn PDFScannerPopArray() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerPopArray() callconv(.C) i32;
+pub const pdfScannerPopArray = CGPDFScannerPopArray;
 
-pub extern "CoreGraphics" fn PDFScannerPopDictionary() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerPopDictionary() callconv(.C) i32;
+pub const pdfScannerPopDictionary = CGPDFScannerPopDictionary;
 
-pub extern "CoreGraphics" fn PDFScannerPopStream() callconv(.C) i32;
+extern "CoreGraphics" fn CGPDFScannerPopStream() callconv(.C) i32;
+pub const pdfScannerPopStream = CGPDFScannerPopStream;
 
-pub extern "CoreGraphics" fn PDFScannerStop(s: PDFScannerRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFScannerStop(s: PDFScannerRef) callconv(.C) void;
+pub const pdfScannerStop = CGPDFScannerStop;
 
-pub const PDFOperatorCallback = ?*const fn(PDFScannerRef, ?*anyopaque) callconv(.C) void;
+pub const PDFOperatorCallback = ?*const fn (PDFScannerRef, ?*anyopaque) callconv(.C) void;
 
-pub extern "CoreGraphics" fn PDFOperatorTableCreate() callconv(.C) PDFOperatorTableRef;
+extern "CoreGraphics" fn CGPDFOperatorTableCreate() callconv(.C) PDFOperatorTableRef;
+pub const pdfOperatorTableCreate = CGPDFOperatorTableCreate;
 
-pub extern "CoreGraphics" fn PDFOperatorTableRetain(table: PDFOperatorTableRef) callconv(.C) PDFOperatorTableRef;
+extern "CoreGraphics" fn CGPDFOperatorTableRetain(table: PDFOperatorTableRef) callconv(.C) PDFOperatorTableRef;
+pub const pdfOperatorTableRetain = CGPDFOperatorTableRetain;
 
-pub extern "CoreGraphics" fn PDFOperatorTableRelease(table: PDFOperatorTableRef) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFOperatorTableRelease(table: PDFOperatorTableRef) callconv(.C) void;
+pub const pdfOperatorTableRelease = CGPDFOperatorTableRelease;
 
-pub extern "CoreGraphics" fn PDFOperatorTableSetCallback(table: PDFOperatorTableRef, name: ?*i8, callback: PDFOperatorCallback) callconv(.C) void;
+extern "CoreGraphics" fn CGPDFOperatorTableSetCallback(table: PDFOperatorTableRef, name: ?*i8, callback: PDFOperatorCallback) callconv(.C) void;
+pub const pdfOperatorTableSetCallback = CGPDFOperatorTableSetCallback;
 
 pub const WindowID = objc.uint32_t;
 
@@ -1555,11 +2476,14 @@ pub const WindowListOption = enum(objc.uint32_t) {
     kCGWindowListExcludeDesktopElements = 16,
 };
 
-pub extern "CoreGraphics" fn WindowListCopyWindowInfo(option: WindowListOption, relativeToWindow: WindowID) callconv(.C) core_foundation.ArrayRef;
+extern "CoreGraphics" fn CGWindowListCopyWindowInfo(option: WindowListOption, relativeToWindow: WindowID) callconv(.C) core_foundation.ArrayRef;
+pub const windowListCopyWindowInfo = CGWindowListCopyWindowInfo;
 
-pub extern "CoreGraphics" fn WindowListCreate(option: WindowListOption, relativeToWindow: WindowID) callconv(.C) core_foundation.ArrayRef;
+extern "CoreGraphics" fn CGWindowListCreate(option: WindowListOption, relativeToWindow: WindowID) callconv(.C) core_foundation.ArrayRef;
+pub const windowListCreate = CGWindowListCreate;
 
-pub extern "CoreGraphics" fn WindowListCreateDescriptionFromArray(windowArray: core_foundation.ArrayRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreGraphics" fn CGWindowListCreateDescriptionFromArray(windowArray: core_foundation.ArrayRef) callconv(.C) core_foundation.ArrayRef;
+pub const windowListCreateDescriptionFromArray = CGWindowListCreateDescriptionFromArray;
 
 pub const WindowImageOption = enum(objc.uint32_t) {
     kCGWindowImageDefault = 0,
@@ -1570,13 +2494,22 @@ pub const WindowImageOption = enum(objc.uint32_t) {
     kCGWindowImageNominalResolution = 16,
 };
 
-pub extern "CoreGraphics" fn WindowListCreateImage(screenBounds: core_foundation.CGRect, listOption: WindowListOption, windowID: WindowID, imageOption: WindowImageOption, ) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGWindowListCreateImage(
+    screenBounds: core_foundation.CGRect,
+    listOption: WindowListOption,
+    windowID: WindowID,
+    imageOption: WindowImageOption,
+) callconv(.C) ImageRef;
+pub const windowListCreateImage = CGWindowListCreateImage;
 
-pub extern "CoreGraphics" fn WindowListCreateImageFromArray(screenBounds: core_foundation.CGRect, windowArray: core_foundation.ArrayRef, imageOption: WindowImageOption) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGWindowListCreateImageFromArray(screenBounds: core_foundation.CGRect, windowArray: core_foundation.ArrayRef, imageOption: WindowImageOption) callconv(.C) ImageRef;
+pub const windowListCreateImageFromArray = CGWindowListCreateImageFromArray;
 
-pub extern "CoreGraphics" fn PreflightScreenCaptureAccess() callconv(.C) i32;
+extern "CoreGraphics" fn CGPreflightScreenCaptureAccess() callconv(.C) i32;
+pub const preflightScreenCaptureAccess = CGPreflightScreenCaptureAccess;
 
-pub extern "CoreGraphics" fn RequestScreenCaptureAccess() callconv(.C) i32;
+extern "CoreGraphics" fn CGRequestScreenCaptureAccess() callconv(.C) i32;
+pub const requestScreenCaptureAccess = CGRequestScreenCaptureAccess;
 
 pub const WindowLevelKey = enum(objc.int32_t) {
     kCGBaseWindowLevelKey = 0,
@@ -1605,7 +2538,8 @@ pub const WindowLevelKey = enum(objc.int32_t) {
 
 pub const WindowLevel = objc.int32_t;
 
-pub extern "CoreGraphics" fn WindowLevelForKey(key: WindowLevelKey) callconv(.C) WindowLevel;
+extern "CoreGraphics" fn CGWindowLevelForKey(key: WindowLevelKey) callconv(.C) WindowLevel;
+pub const windowLevelForKey = CGWindowLevelForKey;
 
 pub const DirectDisplayID = objc.uint32_t;
 
@@ -1617,124 +2551,247 @@ pub const DisplayMode = extern struct {};
 
 pub const DisplayModeRef = ?*DisplayMode;
 
-pub extern "CoreGraphics" fn MainDisplayID() callconv(.C) DirectDisplayID;
+extern "CoreGraphics" fn CGMainDisplayID() callconv(.C) DirectDisplayID;
+pub const mainDisplayID = CGMainDisplayID;
 
-pub extern "CoreGraphics" fn GetDisplaysWithPoint(point: core_foundation.CGPoint, maxDisplays: objc.uint32_t, displays: ?*DirectDisplayID, matchingDisplayCount: ?*objc.uint32_t, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGGetDisplaysWithPoint(
+    point: core_foundation.CGPoint,
+    maxDisplays: objc.uint32_t,
+    displays: ?*DirectDisplayID,
+    matchingDisplayCount: ?*objc.uint32_t,
+) callconv(.C) Error;
+pub const getDisplaysWithPoint = CGGetDisplaysWithPoint;
 
-pub extern "CoreGraphics" fn GetDisplaysWithRect(rect: core_foundation.CGRect, maxDisplays: objc.uint32_t, displays: ?*DirectDisplayID, matchingDisplayCount: ?*objc.uint32_t, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGGetDisplaysWithRect(
+    rect: core_foundation.CGRect,
+    maxDisplays: objc.uint32_t,
+    displays: ?*DirectDisplayID,
+    matchingDisplayCount: ?*objc.uint32_t,
+) callconv(.C) Error;
+pub const getDisplaysWithRect = CGGetDisplaysWithRect;
 
-pub extern "CoreGraphics" fn GetDisplaysWithOpenGLDisplayMask(mask: OpenGLDisplayMask, maxDisplays: objc.uint32_t, displays: ?*DirectDisplayID, matchingDisplayCount: ?*objc.uint32_t, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGGetDisplaysWithOpenGLDisplayMask(
+    mask: OpenGLDisplayMask,
+    maxDisplays: objc.uint32_t,
+    displays: ?*DirectDisplayID,
+    matchingDisplayCount: ?*objc.uint32_t,
+) callconv(.C) Error;
+pub const getDisplaysWithOpenGLDisplayMask = CGGetDisplaysWithOpenGLDisplayMask;
 
-pub extern "CoreGraphics" fn GetActiveDisplayList(maxDisplays: objc.uint32_t, activeDisplays: ?*DirectDisplayID, displayCount: ?*objc.uint32_t) callconv(.C) Error;
+extern "CoreGraphics" fn CGGetActiveDisplayList(maxDisplays: objc.uint32_t, activeDisplays: ?*DirectDisplayID, displayCount: ?*objc.uint32_t) callconv(.C) Error;
+pub const getActiveDisplayList = CGGetActiveDisplayList;
 
-pub extern "CoreGraphics" fn GetOnlineDisplayList(maxDisplays: objc.uint32_t, onlineDisplays: ?*DirectDisplayID, displayCount: ?*objc.uint32_t) callconv(.C) Error;
+extern "CoreGraphics" fn CGGetOnlineDisplayList(maxDisplays: objc.uint32_t, onlineDisplays: ?*DirectDisplayID, displayCount: ?*objc.uint32_t) callconv(.C) Error;
+pub const getOnlineDisplayList = CGGetOnlineDisplayList;
 
-pub extern "CoreGraphics" fn DisplayIDToOpenGLDisplayMask(display: DirectDisplayID) callconv(.C) OpenGLDisplayMask;
+extern "CoreGraphics" fn CGDisplayIDToOpenGLDisplayMask(display: DirectDisplayID) callconv(.C) OpenGLDisplayMask;
+pub const displayIDToOpenGLDisplayMask = CGDisplayIDToOpenGLDisplayMask;
 
-pub extern "CoreGraphics" fn OpenGLDisplayMaskToDisplayID(mask: OpenGLDisplayMask) callconv(.C) DirectDisplayID;
+extern "CoreGraphics" fn CGOpenGLDisplayMaskToDisplayID(mask: OpenGLDisplayMask) callconv(.C) DirectDisplayID;
+pub const openGLDisplayMaskToDisplayID = CGOpenGLDisplayMaskToDisplayID;
 
-pub extern "CoreGraphics" fn DisplayBounds(display: DirectDisplayID) callconv(.C) core_foundation.CGRect;
+extern "CoreGraphics" fn CGDisplayBounds(display: DirectDisplayID) callconv(.C) core_foundation.CGRect;
+pub const displayBounds = CGDisplayBounds;
 
-pub extern "CoreGraphics" fn DisplayPixelsWide(display: DirectDisplayID) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGDisplayPixelsWide(display: DirectDisplayID) callconv(.C) objc.size_t;
+pub const displayPixelsWide = CGDisplayPixelsWide;
 
-pub extern "CoreGraphics" fn DisplayPixelsHigh(display: DirectDisplayID) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGDisplayPixelsHigh(display: DirectDisplayID) callconv(.C) objc.size_t;
+pub const displayPixelsHigh = CGDisplayPixelsHigh;
 
-pub extern "CoreGraphics" fn DisplayCopyAllDisplayModes(display: DirectDisplayID, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreGraphics" fn CGDisplayCopyAllDisplayModes(display: DirectDisplayID, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.ArrayRef;
+pub const displayCopyAllDisplayModes = CGDisplayCopyAllDisplayModes;
 
-pub extern "CoreGraphics" fn DisplayCopyDisplayMode(display: DirectDisplayID) callconv(.C) DisplayModeRef;
+extern "CoreGraphics" fn CGDisplayCopyDisplayMode(display: DirectDisplayID) callconv(.C) DisplayModeRef;
+pub const displayCopyDisplayMode = CGDisplayCopyDisplayMode;
 
-pub extern "CoreGraphics" fn DisplaySetDisplayMode(display: DirectDisplayID, mode: DisplayModeRef, options: core_foundation.DictionaryRef) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplaySetDisplayMode(display: DirectDisplayID, mode: DisplayModeRef, options: core_foundation.DictionaryRef) callconv(.C) Error;
+pub const displaySetDisplayMode = CGDisplaySetDisplayMode;
 
-pub extern "CoreGraphics" fn DisplayModeGetWidth(mode: DisplayModeRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGDisplayModeGetWidth(mode: DisplayModeRef) callconv(.C) objc.size_t;
+pub const displayModeGetWidth = CGDisplayModeGetWidth;
 
-pub extern "CoreGraphics" fn DisplayModeGetHeight(mode: DisplayModeRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGDisplayModeGetHeight(mode: DisplayModeRef) callconv(.C) objc.size_t;
+pub const displayModeGetHeight = CGDisplayModeGetHeight;
 
-pub extern "CoreGraphics" fn DisplayModeCopyPixelEncoding(mode: DisplayModeRef) callconv(.C) core_foundation.StringRef;
+extern "CoreGraphics" fn CGDisplayModeCopyPixelEncoding(mode: DisplayModeRef) callconv(.C) core_foundation.StringRef;
+pub const displayModeCopyPixelEncoding = CGDisplayModeCopyPixelEncoding;
 
-pub extern "CoreGraphics" fn DisplayModeGetRefreshRate(mode: DisplayModeRef) callconv(.C) f64;
+extern "CoreGraphics" fn CGDisplayModeGetRefreshRate(mode: DisplayModeRef) callconv(.C) f64;
+pub const displayModeGetRefreshRate = CGDisplayModeGetRefreshRate;
 
-pub extern "CoreGraphics" fn DisplayModeGetIOFlags(mode: DisplayModeRef) callconv(.C) objc.uint32_t;
+extern "CoreGraphics" fn CGDisplayModeGetIOFlags(mode: DisplayModeRef) callconv(.C) objc.uint32_t;
+pub const displayModeGetIOFlags = CGDisplayModeGetIOFlags;
 
-pub extern "CoreGraphics" fn DisplayModeGetIODisplayModeID(mode: DisplayModeRef) callconv(.C) objc.int32_t;
+extern "CoreGraphics" fn CGDisplayModeGetIODisplayModeID(mode: DisplayModeRef) callconv(.C) objc.int32_t;
+pub const displayModeGetIODisplayModeID = CGDisplayModeGetIODisplayModeID;
 
-pub extern "CoreGraphics" fn DisplayModeIsUsableForDesktopGUI() callconv(.C) i32;
+extern "CoreGraphics" fn CGDisplayModeIsUsableForDesktopGUI() callconv(.C) i32;
+pub const displayModeIsUsableForDesktopGUI = CGDisplayModeIsUsableForDesktopGUI;
 
-pub extern "CoreGraphics" fn DisplayModeGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGDisplayModeGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const displayModeGetTypeID = CGDisplayModeGetTypeID;
 
-pub extern "CoreGraphics" fn DisplayModeRetain(mode: DisplayModeRef) callconv(.C) DisplayModeRef;
+extern "CoreGraphics" fn CGDisplayModeRetain(mode: DisplayModeRef) callconv(.C) DisplayModeRef;
+pub const displayModeRetain = CGDisplayModeRetain;
 
-pub extern "CoreGraphics" fn DisplayModeRelease(mode: DisplayModeRef) callconv(.C) void;
+extern "CoreGraphics" fn CGDisplayModeRelease(mode: DisplayModeRef) callconv(.C) void;
+pub const displayModeRelease = CGDisplayModeRelease;
 
-pub extern "CoreGraphics" fn DisplayModeGetPixelWidth(mode: DisplayModeRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGDisplayModeGetPixelWidth(mode: DisplayModeRef) callconv(.C) objc.size_t;
+pub const displayModeGetPixelWidth = CGDisplayModeGetPixelWidth;
 
-pub extern "CoreGraphics" fn DisplayModeGetPixelHeight(mode: DisplayModeRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGDisplayModeGetPixelHeight(mode: DisplayModeRef) callconv(.C) objc.size_t;
+pub const displayModeGetPixelHeight = CGDisplayModeGetPixelHeight;
 
 pub const GammaValue = f32;
 
-pub extern "CoreGraphics" fn SetDisplayTransferByFormula(display: DirectDisplayID, redMin: GammaValue, redMax: GammaValue, redGamma: GammaValue, greenMin: GammaValue, greenMax: GammaValue, greenGamma: GammaValue, blueMin: GammaValue, blueMax: GammaValue, blueGamma: GammaValue, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGSetDisplayTransferByFormula(
+    display: DirectDisplayID,
+    redMin: GammaValue,
+    redMax: GammaValue,
+    redGamma: GammaValue,
+    greenMin: GammaValue,
+    greenMax: GammaValue,
+    greenGamma: GammaValue,
+    blueMin: GammaValue,
+    blueMax: GammaValue,
+    blueGamma: GammaValue,
+) callconv(.C) Error;
+pub const setDisplayTransferByFormula = CGSetDisplayTransferByFormula;
 
-pub extern "CoreGraphics" fn GetDisplayTransferByFormula(display: DirectDisplayID, redMin: ?*GammaValue, redMax: ?*GammaValue, redGamma: ?*GammaValue, greenMin: ?*GammaValue, greenMax: ?*GammaValue, greenGamma: ?*GammaValue, blueMin: ?*GammaValue, blueMax: ?*GammaValue, blueGamma: ?*GammaValue, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGGetDisplayTransferByFormula(
+    display: DirectDisplayID,
+    redMin: ?*GammaValue,
+    redMax: ?*GammaValue,
+    redGamma: ?*GammaValue,
+    greenMin: ?*GammaValue,
+    greenMax: ?*GammaValue,
+    greenGamma: ?*GammaValue,
+    blueMin: ?*GammaValue,
+    blueMax: ?*GammaValue,
+    blueGamma: ?*GammaValue,
+) callconv(.C) Error;
+pub const getDisplayTransferByFormula = CGGetDisplayTransferByFormula;
 
-pub extern "CoreGraphics" fn DisplayGammaTableCapacity(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+extern "CoreGraphics" fn CGDisplayGammaTableCapacity(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+pub const displayGammaTableCapacity = CGDisplayGammaTableCapacity;
 
-pub extern "CoreGraphics" fn SetDisplayTransferByTable(display: DirectDisplayID, tableSize: objc.uint32_t, redTable: ?*GammaValue, greenTable: ?*GammaValue, blueTable: ?*GammaValue, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGSetDisplayTransferByTable(
+    display: DirectDisplayID,
+    tableSize: objc.uint32_t,
+    redTable: ?*GammaValue,
+    greenTable: ?*GammaValue,
+    blueTable: ?*GammaValue,
+) callconv(.C) Error;
+pub const setDisplayTransferByTable = CGSetDisplayTransferByTable;
 
-pub extern "CoreGraphics" fn GetDisplayTransferByTable(display: DirectDisplayID, capacity: objc.uint32_t, redTable: ?*GammaValue, greenTable: ?*GammaValue, blueTable: ?*GammaValue, sampleCount: ?*objc.uint32_t, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGGetDisplayTransferByTable(
+    display: DirectDisplayID,
+    capacity: objc.uint32_t,
+    redTable: ?*GammaValue,
+    greenTable: ?*GammaValue,
+    blueTable: ?*GammaValue,
+    sampleCount: ?*objc.uint32_t,
+) callconv(.C) Error;
+pub const getDisplayTransferByTable = CGGetDisplayTransferByTable;
 
-pub extern "CoreGraphics" fn SetDisplayTransferByByteTable(display: DirectDisplayID, tableSize: objc.uint32_t, redTable: ?*objc.uint8_t, greenTable: ?*objc.uint8_t, blueTable: ?*objc.uint8_t, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGSetDisplayTransferByByteTable(
+    display: DirectDisplayID,
+    tableSize: objc.uint32_t,
+    redTable: ?*objc.uint8_t,
+    greenTable: ?*objc.uint8_t,
+    blueTable: ?*objc.uint8_t,
+) callconv(.C) Error;
+pub const setDisplayTransferByByteTable = CGSetDisplayTransferByByteTable;
 
-pub extern "CoreGraphics" fn DisplayRestoreColorSyncSettings() callconv(.C) void;
+extern "CoreGraphics" fn CGDisplayRestoreColorSyncSettings() callconv(.C) void;
+pub const displayRestoreColorSyncSettings = CGDisplayRestoreColorSyncSettings;
 
 pub const CaptureOptions = enum(objc.uint32_t) {
     kCGCaptureNoOptions = 0,
     kCGCaptureNoFill = 1,
 };
 
-pub extern "CoreGraphics" fn DisplayIsCaptured(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsCaptured(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsCaptured = CGDisplayIsCaptured;
 
-pub extern "CoreGraphics" fn DisplayCapture(display: DirectDisplayID) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayCapture(display: DirectDisplayID) callconv(.C) Error;
+pub const displayCapture = CGDisplayCapture;
 
-pub extern "CoreGraphics" fn DisplayCaptureWithOptions(display: DirectDisplayID, options: CaptureOptions) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayCaptureWithOptions(display: DirectDisplayID, options: CaptureOptions) callconv(.C) Error;
+pub const displayCaptureWithOptions = CGDisplayCaptureWithOptions;
 
-pub extern "CoreGraphics" fn DisplayRelease(display: DirectDisplayID) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayRelease(display: DirectDisplayID) callconv(.C) Error;
+pub const displayRelease = CGDisplayRelease;
 
-pub extern "CoreGraphics" fn CaptureAllDisplays() callconv(.C) Error;
+extern "CoreGraphics" fn CGCaptureAllDisplays() callconv(.C) Error;
+pub const captureAllDisplays = CGCaptureAllDisplays;
 
-pub extern "CoreGraphics" fn CaptureAllDisplaysWithOptions(options: CaptureOptions) callconv(.C) Error;
+extern "CoreGraphics" fn CGCaptureAllDisplaysWithOptions(options: CaptureOptions) callconv(.C) Error;
+pub const captureAllDisplaysWithOptions = CGCaptureAllDisplaysWithOptions;
 
-pub extern "CoreGraphics" fn ReleaseAllDisplays() callconv(.C) Error;
+extern "CoreGraphics" fn CGReleaseAllDisplays() callconv(.C) Error;
+pub const releaseAllDisplays = CGReleaseAllDisplays;
 
-pub extern "CoreGraphics" fn ShieldingWindowID(display: DirectDisplayID) callconv(.C) WindowID;
+extern "CoreGraphics" fn CGShieldingWindowID(display: DirectDisplayID) callconv(.C) WindowID;
+pub const shieldingWindowID = CGShieldingWindowID;
 
-pub extern "CoreGraphics" fn ShieldingWindowLevel() callconv(.C) WindowLevel;
+extern "CoreGraphics" fn CGShieldingWindowLevel() callconv(.C) WindowLevel;
+pub const shieldingWindowLevel = CGShieldingWindowLevel;
 
-pub extern "CoreGraphics" fn DisplayCreateImage(displayID: DirectDisplayID) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGDisplayCreateImage(displayID: DirectDisplayID) callconv(.C) ImageRef;
+pub const displayCreateImage = CGDisplayCreateImage;
 
-pub extern "CoreGraphics" fn DisplayCreateImageForRect(display: DirectDisplayID, rect: core_foundation.CGRect) callconv(.C) ImageRef;
+extern "CoreGraphics" fn CGDisplayCreateImageForRect(display: DirectDisplayID, rect: core_foundation.CGRect) callconv(.C) ImageRef;
+pub const displayCreateImageForRect = CGDisplayCreateImageForRect;
 
-pub extern "CoreGraphics" fn DisplayHideCursor(display: DirectDisplayID) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayHideCursor(display: DirectDisplayID) callconv(.C) Error;
+pub const displayHideCursor = CGDisplayHideCursor;
 
-pub extern "CoreGraphics" fn DisplayShowCursor(display: DirectDisplayID) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayShowCursor(display: DirectDisplayID) callconv(.C) Error;
+pub const displayShowCursor = CGDisplayShowCursor;
 
-pub extern "CoreGraphics" fn DisplayMoveCursorToPoint(display: DirectDisplayID, point: core_foundation.CGPoint) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayMoveCursorToPoint(display: DirectDisplayID, point: core_foundation.CGPoint) callconv(.C) Error;
+pub const displayMoveCursorToPoint = CGDisplayMoveCursorToPoint;
 
-pub extern "CoreGraphics" fn GetLastMouseDelta(deltaX: ?*objc.int32_t, deltaY: ?*objc.int32_t) callconv(.C) void;
+extern "CoreGraphics" fn CGGetLastMouseDelta(deltaX: ?*objc.int32_t, deltaY: ?*objc.int32_t) callconv(.C) void;
+pub const getLastMouseDelta = CGGetLastMouseDelta;
 
-pub extern "CoreGraphics" fn DisplayGetDrawingContext(display: DirectDisplayID) callconv(.C) ContextRef;
+extern "CoreGraphics" fn CGDisplayGetDrawingContext(display: DirectDisplayID) callconv(.C) ContextRef;
+pub const displayGetDrawingContext = CGDisplayGetDrawingContext;
 
 pub const DisplayCount = objc.uint32_t;
 
 pub const DisplayErr = Error;
 
-pub extern "CoreGraphics" fn DisplayAvailableModes(dsp: DirectDisplayID) callconv(.C) core_foundation.ArrayRef;
+extern "CoreGraphics" fn CGDisplayAvailableModes(dsp: DirectDisplayID) callconv(.C) core_foundation.ArrayRef;
+pub const displayAvailableModes = CGDisplayAvailableModes;
 
-pub extern "CoreGraphics" fn DisplayBestModeForParameters(display: DirectDisplayID, bitsPerPixel: objc.size_t, width: objc.size_t, height: objc.size_t, exactMatch: ?*objc.boolean_t, ) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreGraphics" fn CGDisplayBestModeForParameters(
+    display: DirectDisplayID,
+    bitsPerPixel: objc.size_t,
+    width: objc.size_t,
+    height: objc.size_t,
+    exactMatch: ?*objc.boolean_t,
+) callconv(.C) core_foundation.DictionaryRef;
+pub const displayBestModeForParameters = CGDisplayBestModeForParameters;
 
-pub extern "CoreGraphics" fn DisplayBestModeForParametersAndRefreshRate(display: DirectDisplayID, bitsPerPixel: objc.size_t, width: objc.size_t, height: objc.size_t, refreshRate: RefreshRate, exactMatch: ?*objc.boolean_t, ) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreGraphics" fn CGDisplayBestModeForParametersAndRefreshRate(
+    display: DirectDisplayID,
+    bitsPerPixel: objc.size_t,
+    width: objc.size_t,
+    height: objc.size_t,
+    refreshRate: RefreshRate,
+    exactMatch: ?*objc.boolean_t,
+) callconv(.C) core_foundation.DictionaryRef;
+pub const displayBestModeForParametersAndRefreshRate = CGDisplayBestModeForParametersAndRefreshRate;
 
-pub extern "CoreGraphics" fn DisplayCurrentMode(display: DirectDisplayID) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreGraphics" fn CGDisplayCurrentMode(display: DirectDisplayID) callconv(.C) core_foundation.DictionaryRef;
+pub const displayCurrentMode = CGDisplayCurrentMode;
 
-pub extern "CoreGraphics" fn DisplaySwitchToMode(display: DirectDisplayID, mode: core_foundation.DictionaryRef) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplaySwitchToMode(display: DirectDisplayID, mode: core_foundation.DictionaryRef) callconv(.C) Error;
+pub const displaySwitchToMode = CGDisplaySwitchToMode;
 
 pub const DeviceColor = extern struct {
     red: f32,
@@ -1746,17 +2803,38 @@ pub const _CGDisplayConfigRef = extern struct {};
 
 pub const DisplayConfigRef = ?*_CGDisplayConfigRef;
 
-pub extern "CoreGraphics" fn BeginDisplayConfiguration(config: ?*DisplayConfigRef) callconv(.C) Error;
+extern "CoreGraphics" fn CGBeginDisplayConfiguration(config: ?*DisplayConfigRef) callconv(.C) Error;
+pub const beginDisplayConfiguration = CGBeginDisplayConfiguration;
 
-pub extern "CoreGraphics" fn ConfigureDisplayOrigin(config: DisplayConfigRef, display: DirectDisplayID, x: objc.int32_t, y: objc.int32_t, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGConfigureDisplayOrigin(
+    config: DisplayConfigRef,
+    display: DirectDisplayID,
+    x: objc.int32_t,
+    y: objc.int32_t,
+) callconv(.C) Error;
+pub const configureDisplayOrigin = CGConfigureDisplayOrigin;
 
-pub extern "CoreGraphics" fn ConfigureDisplayWithDisplayMode(config: DisplayConfigRef, display: DirectDisplayID, mode: DisplayModeRef, options: core_foundation.DictionaryRef, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGConfigureDisplayWithDisplayMode(
+    config: DisplayConfigRef,
+    display: DirectDisplayID,
+    mode: DisplayModeRef,
+    options: core_foundation.DictionaryRef,
+) callconv(.C) Error;
+pub const configureDisplayWithDisplayMode = CGConfigureDisplayWithDisplayMode;
 
-pub extern "CoreGraphics" fn ConfigureDisplayStereoOperation(config: DisplayConfigRef, display: DirectDisplayID, stereo: objc.boolean_t, forceBlueLine: objc.boolean_t, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGConfigureDisplayStereoOperation(
+    config: DisplayConfigRef,
+    display: DirectDisplayID,
+    stereo: objc.boolean_t,
+    forceBlueLine: objc.boolean_t,
+) callconv(.C) Error;
+pub const configureDisplayStereoOperation = CGConfigureDisplayStereoOperation;
 
-pub extern "CoreGraphics" fn ConfigureDisplayMirrorOfDisplay(config: DisplayConfigRef, display: DirectDisplayID, master: DirectDisplayID) callconv(.C) Error;
+extern "CoreGraphics" fn CGConfigureDisplayMirrorOfDisplay(config: DisplayConfigRef, display: DirectDisplayID, master: DirectDisplayID) callconv(.C) Error;
+pub const configureDisplayMirrorOfDisplay = CGConfigureDisplayMirrorOfDisplay;
 
-pub extern "CoreGraphics" fn CancelDisplayConfiguration(config: DisplayConfigRef) callconv(.C) Error;
+extern "CoreGraphics" fn CGCancelDisplayConfiguration(config: DisplayConfigRef) callconv(.C) Error;
+pub const cancelDisplayConfiguration = CGCancelDisplayConfiguration;
 
 pub const ConfigureOption = enum(objc.uint32_t) {
     kCGConfigureForAppOnly = 0,
@@ -1764,9 +2842,11 @@ pub const ConfigureOption = enum(objc.uint32_t) {
     kCGConfigurePermanently = 2,
 };
 
-pub extern "CoreGraphics" fn CompleteDisplayConfiguration(config: DisplayConfigRef, option: ConfigureOption) callconv(.C) Error;
+extern "CoreGraphics" fn CGCompleteDisplayConfiguration(config: DisplayConfigRef, option: ConfigureOption) callconv(.C) Error;
+pub const completeDisplayConfiguration = CGCompleteDisplayConfiguration;
 
-pub extern "CoreGraphics" fn RestorePermanentDisplayConfiguration() callconv(.C) void;
+extern "CoreGraphics" fn CGRestorePermanentDisplayConfiguration() callconv(.C) void;
+pub const restorePermanentDisplayConfiguration = CGRestorePermanentDisplayConfiguration;
 
 pub const DisplayChangeSummaryFlags = enum(objc.uint32_t) {
     kCGDisplayBeginConfigurationFlag = 1,
@@ -1782,55 +2862,84 @@ pub const DisplayChangeSummaryFlags = enum(objc.uint32_t) {
     kCGDisplayDesktopShapeChangedFlag = 4096,
 };
 
-pub const DisplayReconfigurationCallBack = ?*const fn(DirectDisplayID, DisplayChangeSummaryFlags, ?*anyopaque) callconv(.C) void;
+pub const DisplayReconfigurationCallBack = ?*const fn (DirectDisplayID, DisplayChangeSummaryFlags, ?*anyopaque) callconv(.C) void;
 
-pub extern "CoreGraphics" fn DisplayRegisterReconfigurationCallback(callback: DisplayReconfigurationCallBack, userInfo: ?*anyopaque) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayRegisterReconfigurationCallback(callback: DisplayReconfigurationCallBack, userInfo: ?*anyopaque) callconv(.C) Error;
+pub const displayRegisterReconfigurationCallback = CGDisplayRegisterReconfigurationCallback;
 
-pub extern "CoreGraphics" fn DisplayRemoveReconfigurationCallback(callback: DisplayReconfigurationCallBack, userInfo: ?*anyopaque) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayRemoveReconfigurationCallback(callback: DisplayReconfigurationCallBack, userInfo: ?*anyopaque) callconv(.C) Error;
+pub const displayRemoveReconfigurationCallback = CGDisplayRemoveReconfigurationCallback;
 
-pub extern "CoreGraphics" fn DisplaySetStereoOperation(display: DirectDisplayID, stereo: objc.boolean_t, forceBlueLine: objc.boolean_t, option: ConfigureOption, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplaySetStereoOperation(
+    display: DirectDisplayID,
+    stereo: objc.boolean_t,
+    forceBlueLine: objc.boolean_t,
+    option: ConfigureOption,
+) callconv(.C) Error;
+pub const displaySetStereoOperation = CGDisplaySetStereoOperation;
 
-pub extern "CoreGraphics" fn DisplayIsActive(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsActive(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsActive = CGDisplayIsActive;
 
-pub extern "CoreGraphics" fn DisplayIsAsleep(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsAsleep(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsAsleep = CGDisplayIsAsleep;
 
-pub extern "CoreGraphics" fn DisplayIsOnline(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsOnline(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsOnline = CGDisplayIsOnline;
 
-pub extern "CoreGraphics" fn DisplayIsMain(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsMain(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsMain = CGDisplayIsMain;
 
-pub extern "CoreGraphics" fn DisplayIsBuiltin(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsBuiltin(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsBuiltin = CGDisplayIsBuiltin;
 
-pub extern "CoreGraphics" fn DisplayIsInMirrorSet(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsInMirrorSet(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsInMirrorSet = CGDisplayIsInMirrorSet;
 
-pub extern "CoreGraphics" fn DisplayIsAlwaysInMirrorSet(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsAlwaysInMirrorSet(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsAlwaysInMirrorSet = CGDisplayIsAlwaysInMirrorSet;
 
-pub extern "CoreGraphics" fn DisplayIsInHWMirrorSet(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsInHWMirrorSet(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsInHWMirrorSet = CGDisplayIsInHWMirrorSet;
 
-pub extern "CoreGraphics" fn DisplayMirrorsDisplay(display: DirectDisplayID) callconv(.C) DirectDisplayID;
+extern "CoreGraphics" fn CGDisplayMirrorsDisplay(display: DirectDisplayID) callconv(.C) DirectDisplayID;
+pub const displayMirrorsDisplay = CGDisplayMirrorsDisplay;
 
-pub extern "CoreGraphics" fn DisplayUsesOpenGLAcceleration(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayUsesOpenGLAcceleration(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayUsesOpenGLAcceleration = CGDisplayUsesOpenGLAcceleration;
 
-pub extern "CoreGraphics" fn DisplayIsStereo(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayIsStereo(display: DirectDisplayID) callconv(.C) objc.boolean_t;
+pub const displayIsStereo = CGDisplayIsStereo;
 
-pub extern "CoreGraphics" fn DisplayPrimaryDisplay(display: DirectDisplayID) callconv(.C) DirectDisplayID;
+extern "CoreGraphics" fn CGDisplayPrimaryDisplay(display: DirectDisplayID) callconv(.C) DirectDisplayID;
+pub const displayPrimaryDisplay = CGDisplayPrimaryDisplay;
 
-pub extern "CoreGraphics" fn DisplayUnitNumber(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+extern "CoreGraphics" fn CGDisplayUnitNumber(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+pub const displayUnitNumber = CGDisplayUnitNumber;
 
-pub extern "CoreGraphics" fn DisplayVendorNumber(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+extern "CoreGraphics" fn CGDisplayVendorNumber(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+pub const displayVendorNumber = CGDisplayVendorNumber;
 
-pub extern "CoreGraphics" fn DisplayModelNumber(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+extern "CoreGraphics" fn CGDisplayModelNumber(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+pub const displayModelNumber = CGDisplayModelNumber;
 
-pub extern "CoreGraphics" fn DisplaySerialNumber(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+extern "CoreGraphics" fn CGDisplaySerialNumber(display: DirectDisplayID) callconv(.C) objc.uint32_t;
+pub const displaySerialNumber = CGDisplaySerialNumber;
 
-pub extern "CoreGraphics" fn DisplayIOServicePort(display: DirectDisplayID) callconv(.C) io_kit.io_service_t;
+extern "CoreGraphics" fn CGDisplayIOServicePort(display: DirectDisplayID) callconv(.C) io_kit.io_service_t;
+pub const displayIOServicePort = CGDisplayIOServicePort;
 
-pub extern "CoreGraphics" fn DisplayScreenSize(display: DirectDisplayID) callconv(.C) core_foundation.CGSize;
+extern "CoreGraphics" fn CGDisplayScreenSize(display: DirectDisplayID) callconv(.C) core_foundation.CGSize;
+pub const displayScreenSize = CGDisplayScreenSize;
 
-pub extern "CoreGraphics" fn DisplayRotation(display: DirectDisplayID) callconv(.C) f64;
+extern "CoreGraphics" fn CGDisplayRotation(display: DirectDisplayID) callconv(.C) f64;
+pub const displayRotation = CGDisplayRotation;
 
-pub extern "CoreGraphics" fn DisplayCopyColorSpace(display: DirectDisplayID) callconv(.C) ColorSpaceRef;
+extern "CoreGraphics" fn CGDisplayCopyColorSpace(display: DirectDisplayID) callconv(.C) ColorSpaceRef;
+pub const displayCopyColorSpace = CGDisplayCopyColorSpace;
 
-pub extern "CoreGraphics" fn ConfigureDisplayMode(config: DisplayConfigRef, display: DirectDisplayID, mode: core_foundation.DictionaryRef) callconv(.C) Error;
+extern "CoreGraphics" fn CGConfigureDisplayMode(config: DisplayConfigRef, display: DirectDisplayID, mode: core_foundation.DictionaryRef) callconv(.C) Error;
+pub const configureDisplayMode = CGConfigureDisplayMode;
 
 pub const DisplayFadeReservationToken = objc.uint32_t;
 
@@ -1838,17 +2947,38 @@ pub const DisplayBlendFraction = f32;
 
 pub const DisplayFadeInterval = f32;
 
-pub extern "CoreGraphics" fn ConfigureDisplayFadeEffect(config: DisplayConfigRef, fadeOutSeconds: DisplayFadeInterval, fadeInSeconds: DisplayFadeInterval, fadeRed: f32, fadeGreen: f32, fadeBlue: f32, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGConfigureDisplayFadeEffect(
+    config: DisplayConfigRef,
+    fadeOutSeconds: DisplayFadeInterval,
+    fadeInSeconds: DisplayFadeInterval,
+    fadeRed: f32,
+    fadeGreen: f32,
+    fadeBlue: f32,
+) callconv(.C) Error;
+pub const configureDisplayFadeEffect = CGConfigureDisplayFadeEffect;
 
 pub const DisplayReservationInterval = f32;
 
-pub extern "CoreGraphics" fn AcquireDisplayFadeReservation(seconds: DisplayReservationInterval, token: ?*DisplayFadeReservationToken) callconv(.C) Error;
+extern "CoreGraphics" fn CGAcquireDisplayFadeReservation(seconds: DisplayReservationInterval, token: ?*DisplayFadeReservationToken) callconv(.C) Error;
+pub const acquireDisplayFadeReservation = CGAcquireDisplayFadeReservation;
 
-pub extern "CoreGraphics" fn ReleaseDisplayFadeReservation(token: DisplayFadeReservationToken) callconv(.C) Error;
+extern "CoreGraphics" fn CGReleaseDisplayFadeReservation(token: DisplayFadeReservationToken) callconv(.C) Error;
+pub const releaseDisplayFadeReservation = CGReleaseDisplayFadeReservation;
 
-pub extern "CoreGraphics" fn DisplayFade(token: DisplayFadeReservationToken, duration: DisplayFadeInterval, startBlend: DisplayBlendFraction, endBlend: DisplayBlendFraction, redBlend: f32, greenBlend: f32, blueBlend: f32, synchronous: objc.boolean_t, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayFade(
+    token: DisplayFadeReservationToken,
+    duration: DisplayFadeInterval,
+    startBlend: DisplayBlendFraction,
+    endBlend: DisplayBlendFraction,
+    redBlend: f32,
+    greenBlend: f32,
+    blueBlend: f32,
+    synchronous: objc.boolean_t,
+) callconv(.C) Error;
+pub const displayFade = CGDisplayFade;
 
-pub extern "CoreGraphics" fn DisplayFadeOperationInProgress() callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGDisplayFadeOperationInProgress() callconv(.C) objc.boolean_t;
+pub const displayFadeOperationInProgress = CGDisplayFadeOperationInProgress;
 
 pub const DisplayStream = extern struct {};
 
@@ -1872,29 +3002,60 @@ pub const DisplayStreamFrameStatus = enum(objc.int32_t) {
     kCGDisplayStreamFrameStatusStopped = 3,
 };
 
-pub const DisplayStreamFrameAvailableHandler = *const fn(DisplayStreamFrameStatus, objc.uint64_t, IOSurfaceRef, DisplayStreamUpdateRef, ) callconv(.C) void;
+pub const DisplayStreamFrameAvailableHandler = *const fn (
+    DisplayStreamFrameStatus,
+    objc.uint64_t,
+    IOSurfaceRef,
+    DisplayStreamUpdateRef,
+) callconv(.C) void;
 
-pub extern "CoreGraphics" fn DisplayStreamUpdateGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGDisplayStreamUpdateGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const displayStreamUpdateGetTypeID = CGDisplayStreamUpdateGetTypeID;
 
-pub extern "CoreGraphics" fn DisplayStreamUpdateGetRects(updateRef: DisplayStreamUpdateRef, rectType: DisplayStreamUpdateRectType, rectCount: ?*objc.size_t) callconv(.C) ?*core_foundation.CGRect;
+extern "CoreGraphics" fn CGDisplayStreamUpdateGetRects(updateRef: DisplayStreamUpdateRef, rectType: DisplayStreamUpdateRectType, rectCount: ?*objc.size_t) callconv(.C) ?*core_foundation.CGRect;
+pub const displayStreamUpdateGetRects = CGDisplayStreamUpdateGetRects;
 
-pub extern "CoreGraphics" fn DisplayStreamUpdateCreateMergedUpdate(firstUpdate: DisplayStreamUpdateRef, secondUpdate: DisplayStreamUpdateRef) callconv(.C) DisplayStreamUpdateRef;
+extern "CoreGraphics" fn CGDisplayStreamUpdateCreateMergedUpdate(firstUpdate: DisplayStreamUpdateRef, secondUpdate: DisplayStreamUpdateRef) callconv(.C) DisplayStreamUpdateRef;
+pub const displayStreamUpdateCreateMergedUpdate = CGDisplayStreamUpdateCreateMergedUpdate;
 
-pub extern "CoreGraphics" fn DisplayStreamUpdateGetMovedRectsDelta(updateRef: DisplayStreamUpdateRef, dx: ?*core_foundation.CGFloat, dy: ?*core_foundation.CGFloat) callconv(.C) void;
+extern "CoreGraphics" fn CGDisplayStreamUpdateGetMovedRectsDelta(updateRef: DisplayStreamUpdateRef, dx: ?*core_foundation.CGFloat, dy: ?*core_foundation.CGFloat) callconv(.C) void;
+pub const displayStreamUpdateGetMovedRectsDelta = CGDisplayStreamUpdateGetMovedRectsDelta;
 
-pub extern "CoreGraphics" fn DisplayStreamUpdateGetDropCount(updateRef: DisplayStreamUpdateRef) callconv(.C) objc.size_t;
+extern "CoreGraphics" fn CGDisplayStreamUpdateGetDropCount(updateRef: DisplayStreamUpdateRef) callconv(.C) objc.size_t;
+pub const displayStreamUpdateGetDropCount = CGDisplayStreamUpdateGetDropCount;
 
-pub extern "CoreGraphics" fn DisplayStreamGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGDisplayStreamGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const displayStreamGetTypeID = CGDisplayStreamGetTypeID;
 
-pub extern "CoreGraphics" fn DisplayStreamCreate(display: DirectDisplayID, outputWidth: objc.size_t, outputHeight: objc.size_t, pixelFormat: objc.int32_t, properties: core_foundation.DictionaryRef, handler: DisplayStreamFrameAvailableHandler, ) callconv(.C) DisplayStreamRef;
+extern "CoreGraphics" fn CGDisplayStreamCreate(
+    display: DirectDisplayID,
+    outputWidth: objc.size_t,
+    outputHeight: objc.size_t,
+    pixelFormat: objc.int32_t,
+    properties: core_foundation.DictionaryRef,
+    handler: DisplayStreamFrameAvailableHandler,
+) callconv(.C) DisplayStreamRef;
+pub const displayStreamCreate = CGDisplayStreamCreate;
 
-pub extern "CoreGraphics" fn DisplayStreamCreateWithDispatchQueue(display: DirectDisplayID, outputWidth: objc.size_t, outputHeight: objc.size_t, pixelFormat: objc.int32_t, properties: core_foundation.DictionaryRef, queue: objc.dispatch_queue_t, handler: DisplayStreamFrameAvailableHandler, ) callconv(.C) DisplayStreamRef;
+extern "CoreGraphics" fn CGDisplayStreamCreateWithDispatchQueue(
+    display: DirectDisplayID,
+    outputWidth: objc.size_t,
+    outputHeight: objc.size_t,
+    pixelFormat: objc.int32_t,
+    properties: core_foundation.DictionaryRef,
+    queue: objc.dispatch_queue_t,
+    handler: DisplayStreamFrameAvailableHandler,
+) callconv(.C) DisplayStreamRef;
+pub const displayStreamCreateWithDispatchQueue = CGDisplayStreamCreateWithDispatchQueue;
 
-pub extern "CoreGraphics" fn DisplayStreamStart(displayStream: DisplayStreamRef) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayStreamStart(displayStream: DisplayStreamRef) callconv(.C) Error;
+pub const displayStreamStart = CGDisplayStreamStart;
 
-pub extern "CoreGraphics" fn DisplayStreamStop(displayStream: DisplayStreamRef) callconv(.C) Error;
+extern "CoreGraphics" fn CGDisplayStreamStop(displayStream: DisplayStreamRef) callconv(.C) Error;
+pub const displayStreamStop = CGDisplayStreamStop;
 
-pub extern "CoreGraphics" fn DisplayStreamGetRunLoopSource(displayStream: DisplayStreamRef) callconv(.C) core_foundation.RunLoopSourceRef;
+extern "CoreGraphics" fn CGDisplayStreamGetRunLoopSource(displayStream: DisplayStreamRef) callconv(.C) core_foundation.RunLoopSourceRef;
+pub const displayStreamGetRunLoopSource = CGDisplayStreamGetRunLoopSource;
 
 pub const EventErr = Error;
 
@@ -1906,13 +3067,16 @@ pub const CharCode = objc.uint16_t;
 
 pub const KeyCode = objc.uint16_t;
 
-pub const ScreenRefreshCallback = ?*const fn(objc.uint32_t, ?*core_foundation.CGRect, ?*anyopaque) callconv(.C) void;
+pub const ScreenRefreshCallback = ?*const fn (objc.uint32_t, ?*core_foundation.CGRect, ?*anyopaque) callconv(.C) void;
 
-pub extern "CoreGraphics" fn RegisterScreenRefreshCallback(callback: ScreenRefreshCallback, userInfo: ?*anyopaque) callconv(.C) Error;
+extern "CoreGraphics" fn CGRegisterScreenRefreshCallback(callback: ScreenRefreshCallback, userInfo: ?*anyopaque) callconv(.C) Error;
+pub const registerScreenRefreshCallback = CGRegisterScreenRefreshCallback;
 
-pub extern "CoreGraphics" fn UnregisterScreenRefreshCallback(callback: ScreenRefreshCallback, userInfo: ?*anyopaque) callconv(.C) void;
+extern "CoreGraphics" fn CGUnregisterScreenRefreshCallback(callback: ScreenRefreshCallback, userInfo: ?*anyopaque) callconv(.C) void;
+pub const unregisterScreenRefreshCallback = CGUnregisterScreenRefreshCallback;
 
-pub extern "CoreGraphics" fn WaitForScreenRefreshRects(rects: ?*?*core_foundation.CGRect, count: ?*objc.uint32_t) callconv(.C) Error;
+extern "CoreGraphics" fn CGWaitForScreenRefreshRects(rects: ?*?*core_foundation.CGRect, count: ?*objc.uint32_t) callconv(.C) Error;
+pub const waitForScreenRefreshRects = CGWaitForScreenRefreshRects;
 
 pub const ScreenUpdateOperation = enum(objc.uint32_t) {
     kCGScreenUpdateOperationRefresh = 0,
@@ -1925,35 +3089,65 @@ pub const ScreenUpdateMoveDelta = extern struct {
     dY: objc.int32_t,
 };
 
-pub const ScreenUpdateMoveCallback = ?*const fn(ScreenUpdateMoveDelta, objc.size_t, ?*core_foundation.CGRect, ?*anyopaque, ) callconv(.C) void;
+pub const ScreenUpdateMoveCallback = ?*const fn (
+    ScreenUpdateMoveDelta,
+    objc.size_t,
+    ?*core_foundation.CGRect,
+    ?*anyopaque,
+) callconv(.C) void;
 
-pub extern "CoreGraphics" fn ScreenRegisterMoveCallback(callback: ScreenUpdateMoveCallback, userInfo: ?*anyopaque) callconv(.C) Error;
+extern "CoreGraphics" fn CGScreenRegisterMoveCallback(callback: ScreenUpdateMoveCallback, userInfo: ?*anyopaque) callconv(.C) Error;
+pub const screenRegisterMoveCallback = CGScreenRegisterMoveCallback;
 
-pub extern "CoreGraphics" fn ScreenUnregisterMoveCallback(callback: ScreenUpdateMoveCallback, userInfo: ?*anyopaque) callconv(.C) void;
+extern "CoreGraphics" fn CGScreenUnregisterMoveCallback(callback: ScreenUpdateMoveCallback, userInfo: ?*anyopaque) callconv(.C) void;
+pub const screenUnregisterMoveCallback = CGScreenUnregisterMoveCallback;
 
-pub extern "CoreGraphics" fn WaitForScreenUpdateRects(requestedOperations: ScreenUpdateOperation, currentOperation: ?*ScreenUpdateOperation, rects: ?*?*core_foundation.CGRect, rectCount: ?*objc.size_t, delta: ?*ScreenUpdateMoveDelta, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGWaitForScreenUpdateRects(
+    requestedOperations: ScreenUpdateOperation,
+    currentOperation: ?*ScreenUpdateOperation,
+    rects: ?*?*core_foundation.CGRect,
+    rectCount: ?*objc.size_t,
+    delta: ?*ScreenUpdateMoveDelta,
+) callconv(.C) Error;
+pub const waitForScreenUpdateRects = CGWaitForScreenUpdateRects;
 
-pub extern "CoreGraphics" fn ReleaseScreenRefreshRects(rects: ?*core_foundation.CGRect) callconv(.C) void;
+extern "CoreGraphics" fn CGReleaseScreenRefreshRects(rects: ?*core_foundation.CGRect) callconv(.C) void;
+pub const releaseScreenRefreshRects = CGReleaseScreenRefreshRects;
 
-pub extern "CoreGraphics" fn CursorIsVisible() callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGCursorIsVisible() callconv(.C) objc.boolean_t;
+pub const cursorIsVisible = CGCursorIsVisible;
 
-pub extern "CoreGraphics" fn CursorIsDrawnInFramebuffer() callconv(.C) objc.boolean_t;
+extern "CoreGraphics" fn CGCursorIsDrawnInFramebuffer() callconv(.C) objc.boolean_t;
+pub const cursorIsDrawnInFramebuffer = CGCursorIsDrawnInFramebuffer;
 
-pub extern "CoreGraphics" fn WarpMouseCursorPosition(newCursorPosition: core_foundation.CGPoint) callconv(.C) Error;
+extern "CoreGraphics" fn CGWarpMouseCursorPosition(newCursorPosition: core_foundation.CGPoint) callconv(.C) Error;
+pub const warpMouseCursorPosition = CGWarpMouseCursorPosition;
 
-pub extern "CoreGraphics" fn AssociateMouseAndMouseCursorPosition(connected: objc.boolean_t) callconv(.C) Error;
+extern "CoreGraphics" fn CGAssociateMouseAndMouseCursorPosition(connected: objc.boolean_t) callconv(.C) Error;
+pub const associateMouseAndMouseCursorPosition = CGAssociateMouseAndMouseCursorPosition;
 
-pub extern "CoreGraphics" fn WindowServerCreateServerPort() callconv(.C) core_foundation.MachPortRef;
+extern "CoreGraphics" fn CGWindowServerCreateServerPort() callconv(.C) core_foundation.MachPortRef;
+pub const windowServerCreateServerPort = CGWindowServerCreateServerPort;
 
-pub extern "CoreGraphics" fn EnableEventStateCombining(combineState: objc.boolean_t) callconv(.C) Error;
+extern "CoreGraphics" fn CGEnableEventStateCombining(combineState: objc.boolean_t) callconv(.C) Error;
+pub const enableEventStateCombining = CGEnableEventStateCombining;
 
-pub extern "CoreGraphics" fn InhibitLocalEvents(inhibit: objc.boolean_t) callconv(.C) Error;
+extern "CoreGraphics" fn CGInhibitLocalEvents(inhibit: objc.boolean_t) callconv(.C) Error;
+pub const inhibitLocalEvents = CGInhibitLocalEvents;
 
-pub extern "CoreGraphics" fn PostMouseEvent(mouseCursorPosition: core_foundation.CGPoint, updateMouseCursorPosition: objc.boolean_t, buttonCount: ButtonCount, mouseButtonDown: objc.boolean_t, ) callconv(.C) Error;
+extern "CoreGraphics" fn CGPostMouseEvent(
+    mouseCursorPosition: core_foundation.CGPoint,
+    updateMouseCursorPosition: objc.boolean_t,
+    buttonCount: ButtonCount,
+    mouseButtonDown: objc.boolean_t,
+) callconv(.C) Error;
+pub const postMouseEvent = CGPostMouseEvent;
 
-pub extern "CoreGraphics" fn PostScrollWheelEvent(wheelCount: WheelCount, wheel1: objc.int32_t) callconv(.C) Error;
+extern "CoreGraphics" fn CGPostScrollWheelEvent(wheelCount: WheelCount, wheel1: objc.int32_t) callconv(.C) Error;
+pub const postScrollWheelEvent = CGPostScrollWheelEvent;
 
-pub extern "CoreGraphics" fn PostKeyboardEvent(keyChar: CharCode, virtualKey: KeyCode, keyDown: objc.boolean_t) callconv(.C) Error;
+extern "CoreGraphics" fn CGPostKeyboardEvent(keyChar: CharCode, virtualKey: KeyCode, keyDown: objc.boolean_t) callconv(.C) Error;
+pub const postKeyboardEvent = CGPostKeyboardEvent;
 
 pub const EventFilterMask = enum(objc.uint32_t) {
     kCGEventFilterMaskPermitLocalMouseEvents = 1,
@@ -1967,11 +3161,14 @@ pub const EventSuppressionState = enum(objc.uint32_t) {
     kCGNumberOfEventSuppressionStates = 2,
 };
 
-pub extern "CoreGraphics" fn SetLocalEventsFilterDuringSuppressionState(filter: EventFilterMask, state: EventSuppressionState) callconv(.C) Error;
+extern "CoreGraphics" fn CGSetLocalEventsFilterDuringSuppressionState(filter: EventFilterMask, state: EventSuppressionState) callconv(.C) Error;
+pub const setLocalEventsFilterDuringSuppressionState = CGSetLocalEventsFilterDuringSuppressionState;
 
-pub extern "CoreGraphics" fn SetLocalEventsSuppressionInterval(seconds: core_foundation.TimeInterval) callconv(.C) Error;
+extern "CoreGraphics" fn CGSetLocalEventsSuppressionInterval(seconds: core_foundation.TimeInterval) callconv(.C) Error;
+pub const setLocalEventsSuppressionInterval = CGSetLocalEventsSuppressionInterval;
 
-pub extern "CoreGraphics" fn WindowServerCFMachPort() callconv(.C) core_foundation.MachPortRef;
+extern "CoreGraphics" fn CGWindowServerCFMachPort() callconv(.C) core_foundation.MachPortRef;
+pub const windowServerCFMachPort = CGWindowServerCFMachPort;
 
 pub const RectCount = objc.uint32_t;
 
@@ -2146,7 +3343,12 @@ pub const __CGEventTapProxy = extern struct {};
 
 pub const EventTapProxy = ?*__CGEventTapProxy;
 
-pub const EventTapCallBack = ?*const fn(EventTapProxy, EventType, EventRef, ?*anyopaque, ) callconv(.C) EventRef;
+pub const EventTapCallBack = ?*const fn (
+    EventTapProxy,
+    EventType,
+    EventRef,
+    ?*anyopaque,
+) callconv(.C) EventRef;
 
 pub const __CGEventTapInformation = extern struct {
     eventTapID: objc.uint32_t,
@@ -2161,6 +3363,8 @@ pub const __CGEventTapInformation = extern struct {
     maxUsecLatency: f32,
 };
 
+pub const EventTapInformation = __CGEventTapInformation;
+
 pub const __CGEventSource = extern struct {};
 
 pub const EventSourceRef = ?*__CGEventSource;
@@ -2173,139 +3377,240 @@ pub const EventSourceStateID = enum(objc.int32_t) {
 
 pub const EventSourceKeyboardType = objc.uint32_t;
 
-pub extern "CoreGraphics" fn EventGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGEventGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const eventGetTypeID = CGEventGetTypeID;
 
-pub extern "CoreGraphics" fn EventCreate(source: EventSourceRef) callconv(.C) EventRef;
+extern "CoreGraphics" fn CGEventCreate(source: EventSourceRef) callconv(.C) EventRef;
+pub const eventCreate = CGEventCreate;
 
-pub extern "CoreGraphics" fn EventCreateData(allocator: core_foundation.AllocatorRef, event: EventRef) callconv(.C) core_foundation.DataRef;
+extern "CoreGraphics" fn CGEventCreateData(allocator: core_foundation.AllocatorRef, event: EventRef) callconv(.C) core_foundation.DataRef;
+pub const eventCreateData = CGEventCreateData;
 
-pub extern "CoreGraphics" fn EventCreateFromData(allocator: core_foundation.AllocatorRef, data: core_foundation.DataRef) callconv(.C) EventRef;
+extern "CoreGraphics" fn CGEventCreateFromData(allocator: core_foundation.AllocatorRef, data: core_foundation.DataRef) callconv(.C) EventRef;
+pub const eventCreateFromData = CGEventCreateFromData;
 
-pub extern "CoreGraphics" fn EventCreateMouseEvent(source: EventSourceRef, mouseType: EventType, mouseCursorPosition: core_foundation.CGPoint, mouseButton: MouseButton, ) callconv(.C) EventRef;
+extern "CoreGraphics" fn CGEventCreateMouseEvent(
+    source: EventSourceRef,
+    mouseType: EventType,
+    mouseCursorPosition: core_foundation.CGPoint,
+    mouseButton: MouseButton,
+) callconv(.C) EventRef;
+pub const eventCreateMouseEvent = CGEventCreateMouseEvent;
 
-pub extern "CoreGraphics" fn EventCreateKeyboardEvent(source: EventSourceRef, virtualKey: KeyCode, keyDown: bool) callconv(.C) EventRef;
+extern "CoreGraphics" fn CGEventCreateKeyboardEvent(source: EventSourceRef, virtualKey: KeyCode, keyDown: bool) callconv(.C) EventRef;
+pub const eventCreateKeyboardEvent = CGEventCreateKeyboardEvent;
 
-pub extern "CoreGraphics" fn EventCreateScrollWheelEvent(source: EventSourceRef, units: ScrollEventUnit, wheelCount: objc.uint32_t, wheel1: objc.int32_t, ) callconv(.C) EventRef;
+extern "CoreGraphics" fn CGEventCreateScrollWheelEvent(
+    source: EventSourceRef,
+    units: ScrollEventUnit,
+    wheelCount: objc.uint32_t,
+    wheel1: objc.int32_t,
+) callconv(.C) EventRef;
+pub const eventCreateScrollWheelEvent = CGEventCreateScrollWheelEvent;
 
-pub extern "CoreGraphics" fn EventCreateScrollWheelEvent2(source: EventSourceRef, units: ScrollEventUnit, wheelCount: objc.uint32_t, wheel1: objc.int32_t, wheel2: objc.int32_t, wheel3: objc.int32_t, ) callconv(.C) EventRef;
+extern "CoreGraphics" fn CGEventCreateScrollWheelEvent2(
+    source: EventSourceRef,
+    units: ScrollEventUnit,
+    wheelCount: objc.uint32_t,
+    wheel1: objc.int32_t,
+    wheel2: objc.int32_t,
+    wheel3: objc.int32_t,
+) callconv(.C) EventRef;
+pub const eventCreateScrollWheelEvent2 = CGEventCreateScrollWheelEvent2;
 
-pub extern "CoreGraphics" fn EventCreateCopy(event: EventRef) callconv(.C) EventRef;
+extern "CoreGraphics" fn CGEventCreateCopy(event: EventRef) callconv(.C) EventRef;
+pub const eventCreateCopy = CGEventCreateCopy;
 
-pub extern "CoreGraphics" fn EventCreateSourceFromEvent(event: EventRef) callconv(.C) EventSourceRef;
+extern "CoreGraphics" fn CGEventCreateSourceFromEvent(event: EventRef) callconv(.C) EventSourceRef;
+pub const eventCreateSourceFromEvent = CGEventCreateSourceFromEvent;
 
-pub extern "CoreGraphics" fn EventSetSource(event: EventRef, source: EventSourceRef) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSetSource(event: EventRef, source: EventSourceRef) callconv(.C) void;
+pub const eventSetSource = CGEventSetSource;
 
-pub extern "CoreGraphics" fn EventGetType(event: EventRef) callconv(.C) EventType;
+extern "CoreGraphics" fn CGEventGetType(event: EventRef) callconv(.C) EventType;
+pub const eventGetType = CGEventGetType;
 
-pub extern "CoreGraphics" fn EventSetType(event: EventRef, @"type": EventType) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSetType(event: EventRef, @"type": EventType) callconv(.C) void;
+pub const eventSetType = CGEventSetType;
 
-pub extern "CoreGraphics" fn EventGetTimestamp(event: EventRef) callconv(.C) EventTimestamp;
+extern "CoreGraphics" fn CGEventGetTimestamp(event: EventRef) callconv(.C) EventTimestamp;
+pub const eventGetTimestamp = CGEventGetTimestamp;
 
-pub extern "CoreGraphics" fn EventSetTimestamp(event: EventRef, timestamp: EventTimestamp) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSetTimestamp(event: EventRef, timestamp: EventTimestamp) callconv(.C) void;
+pub const eventSetTimestamp = CGEventSetTimestamp;
 
-pub extern "CoreGraphics" fn EventGetLocation(event: EventRef) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn CGEventGetLocation(event: EventRef) callconv(.C) core_foundation.CGPoint;
+pub const eventGetLocation = CGEventGetLocation;
 
-pub extern "CoreGraphics" fn EventGetUnflippedLocation(event: EventRef) callconv(.C) core_foundation.CGPoint;
+extern "CoreGraphics" fn CGEventGetUnflippedLocation(event: EventRef) callconv(.C) core_foundation.CGPoint;
+pub const eventGetUnflippedLocation = CGEventGetUnflippedLocation;
 
-pub extern "CoreGraphics" fn EventSetLocation(event: EventRef, location: core_foundation.CGPoint) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSetLocation(event: EventRef, location: core_foundation.CGPoint) callconv(.C) void;
+pub const eventSetLocation = CGEventSetLocation;
 
-pub extern "CoreGraphics" fn EventGetFlags(event: EventRef) callconv(.C) EventFlags;
+extern "CoreGraphics" fn CGEventGetFlags(event: EventRef) callconv(.C) EventFlags;
+pub const eventGetFlags = CGEventGetFlags;
 
-pub extern "CoreGraphics" fn EventSetFlags(event: EventRef, flags: EventFlags) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSetFlags(event: EventRef, flags: EventFlags) callconv(.C) void;
+pub const eventSetFlags = CGEventSetFlags;
 
-pub extern "CoreGraphics" fn EventKeyboardGetUnicodeString(event: EventRef, maxStringLength: objc.UniCharCount, actualStringLength: ?*objc.UniCharCount, unicodeString: ?*objc.UniChar, ) callconv(.C) void;
+extern "CoreGraphics" fn CGEventKeyboardGetUnicodeString(
+    event: EventRef,
+    maxStringLength: objc.UniCharCount,
+    actualStringLength: ?*objc.UniCharCount,
+    unicodeString: ?*objc.UniChar,
+) callconv(.C) void;
+pub const eventKeyboardGetUnicodeString = CGEventKeyboardGetUnicodeString;
 
-pub extern "CoreGraphics" fn EventKeyboardSetUnicodeString(event: EventRef, stringLength: objc.UniCharCount, unicodeString: ?*objc.UniChar) callconv(.C) void;
+extern "CoreGraphics" fn CGEventKeyboardSetUnicodeString(event: EventRef, stringLength: objc.UniCharCount, unicodeString: ?*objc.UniChar) callconv(.C) void;
+pub const eventKeyboardSetUnicodeString = CGEventKeyboardSetUnicodeString;
 
-pub extern "CoreGraphics" fn EventGetIntegerValueField(event: EventRef, field: EventField) callconv(.C) objc.int64_t;
+extern "CoreGraphics" fn CGEventGetIntegerValueField(event: EventRef, field: EventField) callconv(.C) objc.int64_t;
+pub const eventGetIntegerValueField = CGEventGetIntegerValueField;
 
-pub extern "CoreGraphics" fn EventSetIntegerValueField(event: EventRef, field: EventField, value: objc.int64_t) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSetIntegerValueField(event: EventRef, field: EventField, value: objc.int64_t) callconv(.C) void;
+pub const eventSetIntegerValueField = CGEventSetIntegerValueField;
 
-pub extern "CoreGraphics" fn EventGetDoubleValueField(event: EventRef, field: EventField) callconv(.C) f64;
+extern "CoreGraphics" fn CGEventGetDoubleValueField(event: EventRef, field: EventField) callconv(.C) f64;
+pub const eventGetDoubleValueField = CGEventGetDoubleValueField;
 
-pub extern "CoreGraphics" fn EventSetDoubleValueField(event: EventRef, field: EventField, value: f64) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSetDoubleValueField(event: EventRef, field: EventField, value: f64) callconv(.C) void;
+pub const eventSetDoubleValueField = CGEventSetDoubleValueField;
 
-pub extern "CoreGraphics" fn EventTapCreate(tap: EventTapLocation, place: EventTapPlacement, options: EventTapOptions, eventsOfInterest: EventMask, callback: EventTapCallBack, userInfo: ?*anyopaque, ) callconv(.C) core_foundation.MachPortRef;
+extern "CoreGraphics" fn CGEventTapCreate(
+    tap: EventTapLocation,
+    place: EventTapPlacement,
+    options: EventTapOptions,
+    eventsOfInterest: EventMask,
+    callback: EventTapCallBack,
+    userInfo: ?*anyopaque,
+) callconv(.C) core_foundation.MachPortRef;
+pub const eventTapCreate = CGEventTapCreate;
 
-pub extern "CoreGraphics" fn EventTapCreateForPSN(processSerialNumber: ?*anyopaque, place: EventTapPlacement, options: EventTapOptions, eventsOfInterest: EventMask, callback: EventTapCallBack, userInfo: ?*anyopaque, ) callconv(.C) core_foundation.MachPortRef;
+extern "CoreGraphics" fn CGEventTapCreateForPSN(
+    processSerialNumber: ?*anyopaque,
+    place: EventTapPlacement,
+    options: EventTapOptions,
+    eventsOfInterest: EventMask,
+    callback: EventTapCallBack,
+    userInfo: ?*anyopaque,
+) callconv(.C) core_foundation.MachPortRef;
+pub const eventTapCreateForPSN = CGEventTapCreateForPSN;
 
-pub extern "CoreGraphics" fn EventTapCreateForPid(pid: objc.pid_t, place: EventTapPlacement, options: EventTapOptions, eventsOfInterest: EventMask, callback: EventTapCallBack, userInfo: ?*anyopaque, ) callconv(.C) core_foundation.MachPortRef;
+extern "CoreGraphics" fn CGEventTapCreateForPid(
+    pid: objc.pid_t,
+    place: EventTapPlacement,
+    options: EventTapOptions,
+    eventsOfInterest: EventMask,
+    callback: EventTapCallBack,
+    userInfo: ?*anyopaque,
+) callconv(.C) core_foundation.MachPortRef;
+pub const eventTapCreateForPid = CGEventTapCreateForPid;
 
-pub extern "CoreGraphics" fn EventTapEnable(tap: core_foundation.MachPortRef, enable: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGEventTapEnable(tap: core_foundation.MachPortRef, enable: bool) callconv(.C) void;
+pub const eventTapEnable = CGEventTapEnable;
 
-pub extern "CoreGraphics" fn EventTapIsEnabled() callconv(.C) i32;
+extern "CoreGraphics" fn CGEventTapIsEnabled() callconv(.C) i32;
+pub const eventTapIsEnabled = CGEventTapIsEnabled;
 
-pub extern "CoreGraphics" fn EventTapPostEvent(proxy: EventTapProxy, event: EventRef) callconv(.C) void;
+extern "CoreGraphics" fn CGEventTapPostEvent(proxy: EventTapProxy, event: EventRef) callconv(.C) void;
+pub const eventTapPostEvent = CGEventTapPostEvent;
 
-pub extern "CoreGraphics" fn EventPost(tap: EventTapLocation, event: EventRef) callconv(.C) void;
+extern "CoreGraphics" fn CGEventPost(tap: EventTapLocation, event: EventRef) callconv(.C) void;
+pub const eventPost = CGEventPost;
 
-pub extern "CoreGraphics" fn EventPostToPSN(processSerialNumber: ?*anyopaque, event: EventRef) callconv(.C) void;
+extern "CoreGraphics" fn CGEventPostToPSN(processSerialNumber: ?*anyopaque, event: EventRef) callconv(.C) void;
+pub const eventPostToPSN = CGEventPostToPSN;
 
-pub extern "CoreGraphics" fn EventPostToPid(pid: objc.pid_t, event: EventRef) callconv(.C) void;
+extern "CoreGraphics" fn CGEventPostToPid(pid: objc.pid_t, event: EventRef) callconv(.C) void;
+pub const eventPostToPid = CGEventPostToPid;
 
-pub extern "CoreGraphics" fn GetEventTapList(maxNumberOfTaps: objc.uint32_t, tapList: ?*EventTapInformation, eventTapCount: ?*objc.uint32_t) callconv(.C) Error;
+extern "CoreGraphics" fn CGGetEventTapList(maxNumberOfTaps: objc.uint32_t, tapList: ?*EventTapInformation, eventTapCount: ?*objc.uint32_t) callconv(.C) Error;
+pub const getEventTapList = CGGetEventTapList;
 
-pub extern "CoreGraphics" fn PreflightListenEventAccess() callconv(.C) i32;
+extern "CoreGraphics" fn CGPreflightListenEventAccess() callconv(.C) i32;
+pub const preflightListenEventAccess = CGPreflightListenEventAccess;
 
-pub extern "CoreGraphics" fn RequestListenEventAccess() callconv(.C) i32;
+extern "CoreGraphics" fn CGRequestListenEventAccess() callconv(.C) i32;
+pub const requestListenEventAccess = CGRequestListenEventAccess;
 
-pub extern "CoreGraphics" fn PreflightPostEventAccess() callconv(.C) i32;
+extern "CoreGraphics" fn CGPreflightPostEventAccess() callconv(.C) i32;
+pub const preflightPostEventAccess = CGPreflightPostEventAccess;
 
-pub extern "CoreGraphics" fn RequestPostEventAccess() callconv(.C) i32;
+extern "CoreGraphics" fn CGRequestPostEventAccess() callconv(.C) i32;
+pub const requestPostEventAccess = CGRequestPostEventAccess;
 
-pub extern "CoreGraphics" fn EventSourceGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGEventSourceGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const eventSourceGetTypeID = CGEventSourceGetTypeID;
 
-pub extern "CoreGraphics" fn EventSourceCreate(stateID: EventSourceStateID) callconv(.C) EventSourceRef;
+extern "CoreGraphics" fn CGEventSourceCreate(stateID: EventSourceStateID) callconv(.C) EventSourceRef;
+pub const eventSourceCreate = CGEventSourceCreate;
 
-pub extern "CoreGraphics" fn EventSourceGetKeyboardType(source: EventSourceRef) callconv(.C) EventSourceKeyboardType;
+extern "CoreGraphics" fn CGEventSourceGetKeyboardType(source: EventSourceRef) callconv(.C) EventSourceKeyboardType;
+pub const eventSourceGetKeyboardType = CGEventSourceGetKeyboardType;
 
-pub extern "CoreGraphics" fn EventSourceSetKeyboardType(source: EventSourceRef, keyboardType: EventSourceKeyboardType) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSourceSetKeyboardType(source: EventSourceRef, keyboardType: EventSourceKeyboardType) callconv(.C) void;
+pub const eventSourceSetKeyboardType = CGEventSourceSetKeyboardType;
 
-pub extern "CoreGraphics" fn EventSourceGetPixelsPerLine(source: EventSourceRef) callconv(.C) f64;
+extern "CoreGraphics" fn CGEventSourceGetPixelsPerLine(source: EventSourceRef) callconv(.C) f64;
+pub const eventSourceGetPixelsPerLine = CGEventSourceGetPixelsPerLine;
 
-pub extern "CoreGraphics" fn EventSourceSetPixelsPerLine(source: EventSourceRef, pixelsPerLine: f64) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSourceSetPixelsPerLine(source: EventSourceRef, pixelsPerLine: f64) callconv(.C) void;
+pub const eventSourceSetPixelsPerLine = CGEventSourceSetPixelsPerLine;
 
-pub extern "CoreGraphics" fn EventSourceGetSourceStateID(source: EventSourceRef) callconv(.C) EventSourceStateID;
+extern "CoreGraphics" fn CGEventSourceGetSourceStateID(source: EventSourceRef) callconv(.C) EventSourceStateID;
+pub const eventSourceGetSourceStateID = CGEventSourceGetSourceStateID;
 
-pub extern "CoreGraphics" fn EventSourceButtonState() callconv(.C) i32;
+extern "CoreGraphics" fn CGEventSourceButtonState() callconv(.C) i32;
+pub const eventSourceButtonState = CGEventSourceButtonState;
 
-pub extern "CoreGraphics" fn EventSourceKeyState() callconv(.C) i32;
+extern "CoreGraphics" fn CGEventSourceKeyState() callconv(.C) i32;
+pub const eventSourceKeyState = CGEventSourceKeyState;
 
-pub extern "CoreGraphics" fn EventSourceFlagsState(stateID: EventSourceStateID) callconv(.C) EventFlags;
+extern "CoreGraphics" fn CGEventSourceFlagsState(stateID: EventSourceStateID) callconv(.C) EventFlags;
+pub const eventSourceFlagsState = CGEventSourceFlagsState;
 
-pub extern "CoreGraphics" fn EventSourceSecondsSinceLastEventType(stateID: EventSourceStateID, eventType: EventType) callconv(.C) core_foundation.TimeInterval;
+extern "CoreGraphics" fn CGEventSourceSecondsSinceLastEventType(stateID: EventSourceStateID, eventType: EventType) callconv(.C) core_foundation.TimeInterval;
+pub const eventSourceSecondsSinceLastEventType = CGEventSourceSecondsSinceLastEventType;
 
-pub extern "CoreGraphics" fn EventSourceCounterForEventType(stateID: EventSourceStateID, eventType: EventType) callconv(.C) objc.uint32_t;
+extern "CoreGraphics" fn CGEventSourceCounterForEventType(stateID: EventSourceStateID, eventType: EventType) callconv(.C) objc.uint32_t;
+pub const eventSourceCounterForEventType = CGEventSourceCounterForEventType;
 
-pub extern "CoreGraphics" fn EventSourceSetUserData(source: EventSourceRef, userData: objc.int64_t) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSourceSetUserData(source: EventSourceRef, userData: objc.int64_t) callconv(.C) void;
+pub const eventSourceSetUserData = CGEventSourceSetUserData;
 
-pub extern "CoreGraphics" fn EventSourceGetUserData(source: EventSourceRef) callconv(.C) objc.int64_t;
+extern "CoreGraphics" fn CGEventSourceGetUserData(source: EventSourceRef) callconv(.C) objc.int64_t;
+pub const eventSourceGetUserData = CGEventSourceGetUserData;
 
-pub extern "CoreGraphics" fn EventSourceSetLocalEventsFilterDuringSuppressionState(source: EventSourceRef, filter: EventFilterMask, state: EventSuppressionState) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSourceSetLocalEventsFilterDuringSuppressionState(source: EventSourceRef, filter: EventFilterMask, state: EventSuppressionState) callconv(.C) void;
+pub const eventSourceSetLocalEventsFilterDuringSuppressionState = CGEventSourceSetLocalEventsFilterDuringSuppressionState;
 
-pub extern "CoreGraphics" fn EventSourceGetLocalEventsFilterDuringSuppressionState(source: EventSourceRef, state: EventSuppressionState) callconv(.C) EventFilterMask;
+extern "CoreGraphics" fn CGEventSourceGetLocalEventsFilterDuringSuppressionState(source: EventSourceRef, state: EventSuppressionState) callconv(.C) EventFilterMask;
+pub const eventSourceGetLocalEventsFilterDuringSuppressionState = CGEventSourceGetLocalEventsFilterDuringSuppressionState;
 
-pub extern "CoreGraphics" fn EventSourceSetLocalEventsSuppressionInterval(source: EventSourceRef, seconds: core_foundation.TimeInterval) callconv(.C) void;
+extern "CoreGraphics" fn CGEventSourceSetLocalEventsSuppressionInterval(source: EventSourceRef, seconds: core_foundation.TimeInterval) callconv(.C) void;
+pub const eventSourceSetLocalEventsSuppressionInterval = CGEventSourceSetLocalEventsSuppressionInterval;
 
-pub extern "CoreGraphics" fn EventSourceGetLocalEventsSuppressionInterval(source: EventSourceRef) callconv(.C) core_foundation.TimeInterval;
+extern "CoreGraphics" fn CGEventSourceGetLocalEventsSuppressionInterval(source: EventSourceRef) callconv(.C) core_foundation.TimeInterval;
+pub const eventSourceGetLocalEventsSuppressionInterval = CGEventSourceGetLocalEventsSuppressionInterval;
 
 pub const PSConverter = extern struct {};
 
 pub const PSConverterRef = ?*PSConverter;
 
-pub const PSConverterBeginDocumentCallback = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const PSConverterBeginDocumentCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const PSConverterEndDocumentCallback = ?*const fn(?*anyopaque, bool) callconv(.C) void;
+pub const PSConverterEndDocumentCallback = ?*const fn (?*anyopaque, bool) callconv(.C) void;
 
-pub const PSConverterBeginPageCallback = ?*const fn(?*anyopaque, objc.size_t, core_foundation.DictionaryRef) callconv(.C) void;
+pub const PSConverterBeginPageCallback = ?*const fn (?*anyopaque, objc.size_t, core_foundation.DictionaryRef) callconv(.C) void;
 
-pub const PSConverterEndPageCallback = ?*const fn(?*anyopaque, objc.size_t, core_foundation.DictionaryRef) callconv(.C) void;
+pub const PSConverterEndPageCallback = ?*const fn (?*anyopaque, objc.size_t, core_foundation.DictionaryRef) callconv(.C) void;
 
-pub const PSConverterProgressCallback = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const PSConverterProgressCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const PSConverterMessageCallback = ?*const fn(?*anyopaque, core_foundation.StringRef) callconv(.C) void;
+pub const PSConverterMessageCallback = ?*const fn (?*anyopaque, core_foundation.StringRef) callconv(.C) void;
 
-pub const PSConverterReleaseInfoCallback = ?*const fn(?*anyopaque) callconv(.C) void;
+pub const PSConverterReleaseInfoCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
 pub const PSConverterCallbacks = extern struct {
     version: u32,
@@ -2318,17 +3623,23 @@ pub const PSConverterCallbacks = extern struct {
     releaseInfo: PSConverterReleaseInfoCallback,
 };
 
-pub extern "CoreGraphics" fn PSConverterCreate(info: ?*anyopaque, callbacks: ?*PSConverterCallbacks, options: core_foundation.DictionaryRef) callconv(.C) PSConverterRef;
+extern "CoreGraphics" fn CGPSConverterCreate(info: ?*anyopaque, callbacks: ?*PSConverterCallbacks, options: core_foundation.DictionaryRef) callconv(.C) PSConverterRef;
+pub const psConverterCreate = CGPSConverterCreate;
 
-pub extern "CoreGraphics" fn PSConverterConvert() callconv(.C) i32;
+extern "CoreGraphics" fn CGPSConverterConvert() callconv(.C) i32;
+pub const psConverterConvert = CGPSConverterConvert;
 
-pub extern "CoreGraphics" fn PSConverterAbort() callconv(.C) i32;
+extern "CoreGraphics" fn CGPSConverterAbort() callconv(.C) i32;
+pub const psConverterAbort = CGPSConverterAbort;
 
-pub extern "CoreGraphics" fn PSConverterIsConverting() callconv(.C) i32;
+extern "CoreGraphics" fn CGPSConverterIsConverting() callconv(.C) i32;
+pub const psConverterIsConverting = CGPSConverterIsConverting;
 
-pub extern "CoreGraphics" fn PSConverterGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreGraphics" fn CGPSConverterGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const psConverterGetTypeID = CGPSConverterGetTypeID;
 
-pub extern "CoreGraphics" fn SessionCopyCurrentDictionary() callconv(.C) core_foundation.DictionaryRef;
+extern "CoreGraphics" fn CGSessionCopyCurrentDictionary() callconv(.C) core_foundation.DictionaryRef;
+pub const sessionCopyCurrentDictionary = CGSessionCopyCurrentDictionary;
 
-pub extern "CoreGraphics" fn DirectDisplayCopyCurrentMetalDevice(display: DirectDisplayID) callconv(.C) ?*anyopaque;
-
+extern "CoreGraphics" fn CGDirectDisplayCopyCurrentMetalDevice(display: DirectDisplayID) callconv(.C) ?*anyopaque;
+pub const directDisplayCopyCurrentMetalDevice = CGDirectDisplayCopyCurrentMetalDevice;

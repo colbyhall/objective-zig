@@ -14,7 +14,7 @@ pub const SMPTETime = extern struct {
     subframes: objc.SInt16,
     subframeDivisor: objc.SInt16,
     counter: objc.UInt32,
-    @"type": objc.UInt32,
+    type: objc.UInt32,
     flags: objc.UInt32,
     hours: objc.SInt16,
     minutes: objc.SInt16,
@@ -97,59 +97,95 @@ pub const anon561 = enum(Return) {
     kCVReturnLast = -6699,
 };
 
-pub extern "CoreVideo" fn GetCurrentHostTime() callconv(.C) objc.uint64_t;
+extern "CoreVideo" fn CVGetCurrentHostTime() callconv(.C) objc.uint64_t;
+pub const getCurrentHostTime = CVGetCurrentHostTime;
 
-pub extern "CoreVideo" fn GetHostClockFrequency() callconv(.C) f64;
+extern "CoreVideo" fn CVGetHostClockFrequency() callconv(.C) f64;
+pub const getHostClockFrequency = CVGetHostClockFrequency;
 
-pub extern "CoreVideo" fn GetHostClockMinimumTimeDelta() callconv(.C) objc.uint32_t;
+extern "CoreVideo" fn CVGetHostClockMinimumTimeDelta() callconv(.C) objc.uint32_t;
+pub const getHostClockMinimumTimeDelta = CVGetHostClockMinimumTimeDelta;
 
 pub const __CVDisplayLink = extern struct {};
 
 pub const DisplayLinkRef = ?*__CVDisplayLink;
 
-pub const DisplayLinkOutputCallback = ?*const fn(DisplayLinkRef, ?*TimeStamp, ?*TimeStamp, OptionFlags, ?*OptionFlags, ?*anyopaque, ) callconv(.C) Return;
+pub const DisplayLinkOutputCallback = ?*const fn (
+    DisplayLinkRef,
+    ?*TimeStamp,
+    ?*TimeStamp,
+    OptionFlags,
+    ?*OptionFlags,
+    ?*anyopaque,
+) callconv(.C) Return;
 
-pub const DisplayLinkOutputHandler = *const fn(DisplayLinkRef, ?*TimeStamp, ?*TimeStamp, OptionFlags, ?*OptionFlags, ) callconv(.C) Return;
+pub const DisplayLinkOutputHandler = *const fn (
+    DisplayLinkRef,
+    ?*TimeStamp,
+    ?*TimeStamp,
+    OptionFlags,
+    ?*OptionFlags,
+) callconv(.C) Return;
 
-pub extern "CoreVideo" fn DisplayLinkGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVDisplayLinkGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const displayLinkGetTypeID = CVDisplayLinkGetTypeID;
 
-pub extern "CoreVideo" fn DisplayLinkCreateWithCGDisplays(displayArray: ?*core_graphics.DirectDisplayID, count: core_foundation.Index, displayLinkOut: ?*DisplayLinkRef) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkCreateWithCGDisplays(displayArray: ?*core_graphics.DirectDisplayID, count: core_foundation.Index, displayLinkOut: ?*DisplayLinkRef) callconv(.C) Return;
+pub const displayLinkCreateWithCGDisplays = CVDisplayLinkCreateWithCGDisplays;
 
-pub extern "CoreVideo" fn DisplayLinkCreateWithOpenGLDisplayMask(mask: core_graphics.OpenGLDisplayMask, displayLinkOut: ?*DisplayLinkRef) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkCreateWithOpenGLDisplayMask(mask: core_graphics.OpenGLDisplayMask, displayLinkOut: ?*DisplayLinkRef) callconv(.C) Return;
+pub const displayLinkCreateWithOpenGLDisplayMask = CVDisplayLinkCreateWithOpenGLDisplayMask;
 
-pub extern "CoreVideo" fn DisplayLinkCreateWithCGDisplay(displayID: core_graphics.DirectDisplayID, displayLinkOut: ?*DisplayLinkRef) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkCreateWithCGDisplay(displayID: core_graphics.DirectDisplayID, displayLinkOut: ?*DisplayLinkRef) callconv(.C) Return;
+pub const displayLinkCreateWithCGDisplay = CVDisplayLinkCreateWithCGDisplay;
 
-pub extern "CoreVideo" fn DisplayLinkCreateWithActiveCGDisplays(displayLinkOut: ?*DisplayLinkRef) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkCreateWithActiveCGDisplays(displayLinkOut: ?*DisplayLinkRef) callconv(.C) Return;
+pub const displayLinkCreateWithActiveCGDisplays = CVDisplayLinkCreateWithActiveCGDisplays;
 
-pub extern "CoreVideo" fn DisplayLinkSetCurrentCGDisplay(displayLink: DisplayLinkRef, displayID: core_graphics.DirectDisplayID) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkSetCurrentCGDisplay(displayLink: DisplayLinkRef, displayID: core_graphics.DirectDisplayID) callconv(.C) Return;
+pub const displayLinkSetCurrentCGDisplay = CVDisplayLinkSetCurrentCGDisplay;
 
-pub extern "CoreVideo" fn DisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink: DisplayLinkRef, cglContext: opengl.ContextObj, cglPixelFormat: opengl.PixelFormatObj) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink: DisplayLinkRef, cglContext: opengl.ContextObj, cglPixelFormat: opengl.PixelFormatObj) callconv(.C) Return;
+pub const displayLinkSetCurrentCGDisplayFromOpenGLContext = CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext;
 
-pub extern "CoreVideo" fn DisplayLinkGetCurrentCGDisplay(displayLink: DisplayLinkRef) callconv(.C) core_graphics.DirectDisplayID;
+extern "CoreVideo" fn CVDisplayLinkGetCurrentCGDisplay(displayLink: DisplayLinkRef) callconv(.C) core_graphics.DirectDisplayID;
+pub const displayLinkGetCurrentCGDisplay = CVDisplayLinkGetCurrentCGDisplay;
 
-pub extern "CoreVideo" fn DisplayLinkSetOutputCallback(displayLink: DisplayLinkRef, callback: DisplayLinkOutputCallback, userInfo: ?*anyopaque) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkSetOutputCallback(displayLink: DisplayLinkRef, callback: DisplayLinkOutputCallback, userInfo: ?*anyopaque) callconv(.C) Return;
+pub const displayLinkSetOutputCallback = CVDisplayLinkSetOutputCallback;
 
-pub extern "CoreVideo" fn DisplayLinkSetOutputHandler(displayLink: DisplayLinkRef, handler: DisplayLinkOutputHandler) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkSetOutputHandler(displayLink: DisplayLinkRef, handler: DisplayLinkOutputHandler) callconv(.C) Return;
+pub const displayLinkSetOutputHandler = CVDisplayLinkSetOutputHandler;
 
-pub extern "CoreVideo" fn DisplayLinkStart(displayLink: DisplayLinkRef) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkStart(displayLink: DisplayLinkRef) callconv(.C) Return;
+pub const displayLinkStart = CVDisplayLinkStart;
 
-pub extern "CoreVideo" fn DisplayLinkStop(displayLink: DisplayLinkRef) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkStop(displayLink: DisplayLinkRef) callconv(.C) Return;
+pub const displayLinkStop = CVDisplayLinkStop;
 
-pub extern "CoreVideo" fn DisplayLinkGetNominalOutputVideoRefreshPeriod(displayLink: DisplayLinkRef) callconv(.C) Time;
+extern "CoreVideo" fn CVDisplayLinkGetNominalOutputVideoRefreshPeriod(displayLink: DisplayLinkRef) callconv(.C) Time;
+pub const displayLinkGetNominalOutputVideoRefreshPeriod = CVDisplayLinkGetNominalOutputVideoRefreshPeriod;
 
-pub extern "CoreVideo" fn DisplayLinkGetOutputVideoLatency(displayLink: DisplayLinkRef) callconv(.C) Time;
+extern "CoreVideo" fn CVDisplayLinkGetOutputVideoLatency(displayLink: DisplayLinkRef) callconv(.C) Time;
+pub const displayLinkGetOutputVideoLatency = CVDisplayLinkGetOutputVideoLatency;
 
-pub extern "CoreVideo" fn DisplayLinkGetActualOutputVideoRefreshPeriod(displayLink: DisplayLinkRef) callconv(.C) f64;
+extern "CoreVideo" fn CVDisplayLinkGetActualOutputVideoRefreshPeriod(displayLink: DisplayLinkRef) callconv(.C) f64;
+pub const displayLinkGetActualOutputVideoRefreshPeriod = CVDisplayLinkGetActualOutputVideoRefreshPeriod;
 
-pub extern "CoreVideo" fn DisplayLinkIsRunning(displayLink: DisplayLinkRef) callconv(.C) objc.Boolean;
+extern "CoreVideo" fn CVDisplayLinkIsRunning(displayLink: DisplayLinkRef) callconv(.C) objc.Boolean;
+pub const displayLinkIsRunning = CVDisplayLinkIsRunning;
 
-pub extern "CoreVideo" fn DisplayLinkGetCurrentTime(displayLink: DisplayLinkRef, outTime: ?*TimeStamp) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkGetCurrentTime(displayLink: DisplayLinkRef, outTime: ?*TimeStamp) callconv(.C) Return;
+pub const displayLinkGetCurrentTime = CVDisplayLinkGetCurrentTime;
 
-pub extern "CoreVideo" fn DisplayLinkTranslateTime(displayLink: DisplayLinkRef, inTime: ?*TimeStamp, outTime: ?*TimeStamp) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkTranslateTime(displayLink: DisplayLinkRef, inTime: ?*TimeStamp, outTime: ?*TimeStamp) callconv(.C) Return;
+pub const displayLinkTranslateTime = CVDisplayLinkTranslateTime;
 
-pub extern "CoreVideo" fn DisplayLinkRetain(displayLink: DisplayLinkRef) callconv(.C) DisplayLinkRef;
+extern "CoreVideo" fn CVDisplayLinkRetain(displayLink: DisplayLinkRef) callconv(.C) DisplayLinkRef;
+pub const displayLinkRetain = CVDisplayLinkRetain;
 
-pub extern "CoreVideo" fn DisplayLinkRelease(displayLink: DisplayLinkRef) callconv(.C) void;
+extern "CoreVideo" fn CVDisplayLinkRelease(displayLink: DisplayLinkRef) callconv(.C) void;
+pub const displayLinkRelease = CVDisplayLinkRelease;
 
 pub const AttachmentMode = enum(objc.uint32_t) {
     kCVAttachmentMode_ShouldNotPropagate = 0,
@@ -160,29 +196,46 @@ pub const __CVBuffer = extern struct {};
 
 pub const BufferRef = ?*__CVBuffer;
 
-pub extern "CoreVideo" fn BufferRetain(buffer: BufferRef) callconv(.C) BufferRef;
+extern "CoreVideo" fn CVBufferRetain(buffer: BufferRef) callconv(.C) BufferRef;
+pub const bufferRetain = CVBufferRetain;
 
-pub extern "CoreVideo" fn BufferRelease(buffer: BufferRef) callconv(.C) void;
+extern "CoreVideo" fn CVBufferRelease(buffer: BufferRef) callconv(.C) void;
+pub const bufferRelease = CVBufferRelease;
 
-pub extern "CoreVideo" fn BufferSetAttachment(buffer: BufferRef, key: core_foundation.StringRef, value: core_foundation.TypeRef, attachmentMode: AttachmentMode, ) callconv(.C) void;
+extern "CoreVideo" fn CVBufferSetAttachment(
+    buffer: BufferRef,
+    key: core_foundation.StringRef,
+    value: core_foundation.TypeRef,
+    attachmentMode: AttachmentMode,
+) callconv(.C) void;
+pub const bufferSetAttachment = CVBufferSetAttachment;
 
-pub extern "CoreVideo" fn BufferGetAttachment(buffer: BufferRef, key: core_foundation.StringRef, attachmentMode: ?*AttachmentMode) callconv(.C) core_foundation.TypeRef;
+extern "CoreVideo" fn CVBufferGetAttachment(buffer: BufferRef, key: core_foundation.StringRef, attachmentMode: ?*AttachmentMode) callconv(.C) core_foundation.TypeRef;
+pub const bufferGetAttachment = CVBufferGetAttachment;
 
-pub extern "CoreVideo" fn BufferRemoveAttachment(buffer: BufferRef, key: core_foundation.StringRef) callconv(.C) void;
+extern "CoreVideo" fn CVBufferRemoveAttachment(buffer: BufferRef, key: core_foundation.StringRef) callconv(.C) void;
+pub const bufferRemoveAttachment = CVBufferRemoveAttachment;
 
-pub extern "CoreVideo" fn BufferRemoveAllAttachments(buffer: BufferRef) callconv(.C) void;
+extern "CoreVideo" fn CVBufferRemoveAllAttachments(buffer: BufferRef) callconv(.C) void;
+pub const bufferRemoveAllAttachments = CVBufferRemoveAllAttachments;
 
-pub extern "CoreVideo" fn BufferGetAttachments(buffer: BufferRef, attachmentMode: AttachmentMode) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreVideo" fn CVBufferGetAttachments(buffer: BufferRef, attachmentMode: AttachmentMode) callconv(.C) core_foundation.DictionaryRef;
+pub const bufferGetAttachments = CVBufferGetAttachments;
 
-pub extern "CoreVideo" fn BufferSetAttachments(buffer: BufferRef, theAttachments: core_foundation.DictionaryRef, attachmentMode: AttachmentMode) callconv(.C) void;
+extern "CoreVideo" fn CVBufferSetAttachments(buffer: BufferRef, theAttachments: core_foundation.DictionaryRef, attachmentMode: AttachmentMode) callconv(.C) void;
+pub const bufferSetAttachments = CVBufferSetAttachments;
 
-pub extern "CoreVideo" fn BufferPropagateAttachments(sourceBuffer: BufferRef, destinationBuffer: BufferRef) callconv(.C) void;
+extern "CoreVideo" fn CVBufferPropagateAttachments(sourceBuffer: BufferRef, destinationBuffer: BufferRef) callconv(.C) void;
+pub const bufferPropagateAttachments = CVBufferPropagateAttachments;
 
-pub extern "CoreVideo" fn BufferCopyAttachments(buffer: BufferRef, attachmentMode: AttachmentMode) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreVideo" fn CVBufferCopyAttachments(buffer: BufferRef, attachmentMode: AttachmentMode) callconv(.C) core_foundation.DictionaryRef;
+pub const bufferCopyAttachments = CVBufferCopyAttachments;
 
-pub extern "CoreVideo" fn BufferCopyAttachment(buffer: BufferRef, key: core_foundation.StringRef, attachmentMode: ?*AttachmentMode) callconv(.C) core_foundation.TypeRef;
+extern "CoreVideo" fn CVBufferCopyAttachment(buffer: BufferRef, key: core_foundation.StringRef, attachmentMode: ?*AttachmentMode) callconv(.C) core_foundation.TypeRef;
+pub const bufferCopyAttachment = CVBufferCopyAttachment;
 
-pub extern "CoreVideo" fn BufferHasAttachment(buffer: BufferRef, key: core_foundation.StringRef) callconv(.C) objc.Boolean;
+extern "CoreVideo" fn CVBufferHasAttachment(buffer: BufferRef, key: core_foundation.StringRef) callconv(.C) objc.Boolean;
+pub const bufferHasAttachment = CVBufferHasAttachment;
 
 pub const anon2531 = enum(u32) {
     kCVVersatileBayer_BayerPattern_RGGB = 0,
@@ -295,31 +348,43 @@ pub const anon351 = enum(objc.OSType) {
     kCVPixelFormatType_444YpCbCr16VideoRange_16A_TriPlanar = 1932812659,
 };
 
-pub extern "CoreVideo" fn YCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString: core_foundation.StringRef) callconv(.C) i32;
+extern "CoreVideo" fn CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString: core_foundation.StringRef) callconv(.C) i32;
+pub const yCbCrMatrixGetIntegerCodePointForString = CVYCbCrMatrixGetIntegerCodePointForString;
 
-pub extern "CoreVideo" fn ColorPrimariesGetIntegerCodePointForString(colorPrimariesString: core_foundation.StringRef) callconv(.C) i32;
+extern "CoreVideo" fn CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString: core_foundation.StringRef) callconv(.C) i32;
+pub const colorPrimariesGetIntegerCodePointForString = CVColorPrimariesGetIntegerCodePointForString;
 
-pub extern "CoreVideo" fn TransferFunctionGetIntegerCodePointForString(transferFunctionString: core_foundation.StringRef) callconv(.C) i32;
+extern "CoreVideo" fn CVTransferFunctionGetIntegerCodePointForString(transferFunctionString: core_foundation.StringRef) callconv(.C) i32;
+pub const transferFunctionGetIntegerCodePointForString = CVTransferFunctionGetIntegerCodePointForString;
 
-pub extern "CoreVideo" fn YCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint: i32) callconv(.C) core_foundation.StringRef;
+extern "CoreVideo" fn CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint: i32) callconv(.C) core_foundation.StringRef;
+pub const yCbCrMatrixGetStringForIntegerCodePoint = CVYCbCrMatrixGetStringForIntegerCodePoint;
 
-pub extern "CoreVideo" fn ColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint: i32) callconv(.C) core_foundation.StringRef;
+extern "CoreVideo" fn CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint: i32) callconv(.C) core_foundation.StringRef;
+pub const colorPrimariesGetStringForIntegerCodePoint = CVColorPrimariesGetStringForIntegerCodePoint;
 
-pub extern "CoreVideo" fn TransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint: i32) callconv(.C) core_foundation.StringRef;
+extern "CoreVideo" fn CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint: i32) callconv(.C) core_foundation.StringRef;
+pub const transferFunctionGetStringForIntegerCodePoint = CVTransferFunctionGetStringForIntegerCodePoint;
 
 pub const ImageBufferRef = BufferRef;
 
-pub extern "CoreVideo" fn ImageBufferGetEncodedSize(imageBuffer: ImageBufferRef) callconv(.C) core_foundation.CGSize;
+extern "CoreVideo" fn CVImageBufferGetEncodedSize(imageBuffer: ImageBufferRef) callconv(.C) core_foundation.CGSize;
+pub const imageBufferGetEncodedSize = CVImageBufferGetEncodedSize;
 
-pub extern "CoreVideo" fn ImageBufferGetDisplaySize(imageBuffer: ImageBufferRef) callconv(.C) core_foundation.CGSize;
+extern "CoreVideo" fn CVImageBufferGetDisplaySize(imageBuffer: ImageBufferRef) callconv(.C) core_foundation.CGSize;
+pub const imageBufferGetDisplaySize = CVImageBufferGetDisplaySize;
 
-pub extern "CoreVideo" fn ImageBufferGetCleanRect(imageBuffer: ImageBufferRef) callconv(.C) core_foundation.CGRect;
+extern "CoreVideo" fn CVImageBufferGetCleanRect(imageBuffer: ImageBufferRef) callconv(.C) core_foundation.CGRect;
+pub const imageBufferGetCleanRect = CVImageBufferGetCleanRect;
 
-pub extern "CoreVideo" fn ImageBufferIsFlipped(imageBuffer: ImageBufferRef) callconv(.C) objc.Boolean;
+extern "CoreVideo" fn CVImageBufferIsFlipped(imageBuffer: ImageBufferRef) callconv(.C) objc.Boolean;
+pub const imageBufferIsFlipped = CVImageBufferIsFlipped;
 
-pub extern "CoreVideo" fn ImageBufferGetColorSpace(imageBuffer: ImageBufferRef) callconv(.C) core_graphics.ColorSpaceRef;
+extern "CoreVideo" fn CVImageBufferGetColorSpace(imageBuffer: ImageBufferRef) callconv(.C) core_graphics.ColorSpaceRef;
+pub const imageBufferGetColorSpace = CVImageBufferGetColorSpace;
 
-pub extern "CoreVideo" fn ImageBufferCreateColorSpaceFromAttachments(attachments: core_foundation.DictionaryRef) callconv(.C) core_graphics.ColorSpaceRef;
+extern "CoreVideo" fn CVImageBufferCreateColorSpaceFromAttachments(attachments: core_foundation.DictionaryRef) callconv(.C) core_graphics.ColorSpaceRef;
+pub const imageBufferCreateColorSpaceFromAttachments = CVImageBufferCreateColorSpaceFromAttachments;
 
 pub const PixelBufferLockFlags = enum(OptionFlags) {
     kCVPixelBufferLock_ReadOnly = 1,
@@ -331,7 +396,7 @@ pub const PlanarComponentInfo = extern struct {
 };
 
 pub const PlanarPixelBufferInfo = extern struct {
-    componentInfo: [1] PlanarComponentInfo,
+    componentInfo: [1]PlanarComponentInfo,
 };
 
 pub const PlanarPixelBufferInfo_YCbCrPlanar = extern struct {
@@ -347,193 +412,397 @@ pub const PlanarPixelBufferInfo_YCbCrBiPlanar = extern struct {
 
 pub const PixelBufferRef = ImageBufferRef;
 
-pub extern "CoreVideo" fn PixelBufferGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVPixelBufferGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const pixelBufferGetTypeID = CVPixelBufferGetTypeID;
 
-pub extern "CoreVideo" fn PixelBufferRetain(texture: PixelBufferRef) callconv(.C) PixelBufferRef;
+extern "CoreVideo" fn CVPixelBufferRetain(texture: PixelBufferRef) callconv(.C) PixelBufferRef;
+pub const pixelBufferRetain = CVPixelBufferRetain;
 
-pub extern "CoreVideo" fn PixelBufferRelease(texture: PixelBufferRef) callconv(.C) void;
+extern "CoreVideo" fn CVPixelBufferRelease(texture: PixelBufferRef) callconv(.C) void;
+pub const pixelBufferRelease = CVPixelBufferRelease;
 
-pub extern "CoreVideo" fn PixelBufferCreateResolvedAttributesDictionary(allocator: core_foundation.AllocatorRef, attributes: core_foundation.ArrayRef, resolvedDictionaryOut: ?*core_foundation.DictionaryRef) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferCreateResolvedAttributesDictionary(allocator: core_foundation.AllocatorRef, attributes: core_foundation.ArrayRef, resolvedDictionaryOut: ?*core_foundation.DictionaryRef) callconv(.C) Return;
+pub const pixelBufferCreateResolvedAttributesDictionary = CVPixelBufferCreateResolvedAttributesDictionary;
 
-pub extern "CoreVideo" fn PixelBufferCreate(allocator: core_foundation.AllocatorRef, width: objc.size_t, height: objc.size_t, pixelFormatType: objc.OSType, pixelBufferAttributes: core_foundation.DictionaryRef, pixelBufferOut: ?*PixelBufferRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferCreate(
+    allocator: core_foundation.AllocatorRef,
+    width: objc.size_t,
+    height: objc.size_t,
+    pixelFormatType: objc.OSType,
+    pixelBufferAttributes: core_foundation.DictionaryRef,
+    pixelBufferOut: ?*PixelBufferRef,
+) callconv(.C) Return;
+pub const pixelBufferCreate = CVPixelBufferCreate;
 
-pub const PixelBufferReleaseBytesCallback = ?*const fn(?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const PixelBufferReleaseBytesCallback = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
 
-pub extern "CoreVideo" fn PixelBufferCreateWithBytes(allocator: core_foundation.AllocatorRef, width: objc.size_t, height: objc.size_t, pixelFormatType: objc.OSType, baseAddress: ?*anyopaque, bytesPerRow: objc.size_t, releaseCallback: PixelBufferReleaseBytesCallback, releaseRefCon: ?*anyopaque, pixelBufferAttributes: core_foundation.DictionaryRef, pixelBufferOut: ?*PixelBufferRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferCreateWithBytes(
+    allocator: core_foundation.AllocatorRef,
+    width: objc.size_t,
+    height: objc.size_t,
+    pixelFormatType: objc.OSType,
+    baseAddress: ?*anyopaque,
+    bytesPerRow: objc.size_t,
+    releaseCallback: PixelBufferReleaseBytesCallback,
+    releaseRefCon: ?*anyopaque,
+    pixelBufferAttributes: core_foundation.DictionaryRef,
+    pixelBufferOut: ?*PixelBufferRef,
+) callconv(.C) Return;
+pub const pixelBufferCreateWithBytes = CVPixelBufferCreateWithBytes;
 
-pub const PixelBufferReleasePlanarBytesCallback = ?*const fn(?*anyopaque, ?*anyopaque, objc.size_t, objc.size_t, ?*?*anyopaque, ) callconv(.C) void;
+pub const PixelBufferReleasePlanarBytesCallback = ?*const fn (
+    ?*anyopaque,
+    ?*anyopaque,
+    objc.size_t,
+    objc.size_t,
+    ?*?*anyopaque,
+) callconv(.C) void;
 
-pub extern "CoreVideo" fn PixelBufferCreateWithPlanarBytes(allocator: core_foundation.AllocatorRef, width: objc.size_t, height: objc.size_t, pixelFormatType: objc.OSType, dataPtr: ?*anyopaque, dataSize: objc.size_t, numberOfPlanes: objc.size_t, planeBaseAddress: ?*?*anyopaque, planeWidth: ?*objc.size_t, planeHeight: ?*objc.size_t, planeBytesPerRow: ?*objc.size_t, releaseCallback: PixelBufferReleasePlanarBytesCallback, releaseRefCon: ?*anyopaque, pixelBufferAttributes: core_foundation.DictionaryRef, pixelBufferOut: ?*PixelBufferRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferCreateWithPlanarBytes(
+    allocator: core_foundation.AllocatorRef,
+    width: objc.size_t,
+    height: objc.size_t,
+    pixelFormatType: objc.OSType,
+    dataPtr: ?*anyopaque,
+    dataSize: objc.size_t,
+    numberOfPlanes: objc.size_t,
+    planeBaseAddress: ?*?*anyopaque,
+    planeWidth: ?*objc.size_t,
+    planeHeight: ?*objc.size_t,
+    planeBytesPerRow: ?*objc.size_t,
+    releaseCallback: PixelBufferReleasePlanarBytesCallback,
+    releaseRefCon: ?*anyopaque,
+    pixelBufferAttributes: core_foundation.DictionaryRef,
+    pixelBufferOut: ?*PixelBufferRef,
+) callconv(.C) Return;
+pub const pixelBufferCreateWithPlanarBytes = CVPixelBufferCreateWithPlanarBytes;
 
-pub extern "CoreVideo" fn PixelBufferLockBaseAddress(pixelBuffer: PixelBufferRef, lockFlags: PixelBufferLockFlags) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferLockBaseAddress(pixelBuffer: PixelBufferRef, lockFlags: PixelBufferLockFlags) callconv(.C) Return;
+pub const pixelBufferLockBaseAddress = CVPixelBufferLockBaseAddress;
 
-pub extern "CoreVideo" fn PixelBufferUnlockBaseAddress(pixelBuffer: PixelBufferRef, unlockFlags: PixelBufferLockFlags) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferUnlockBaseAddress(pixelBuffer: PixelBufferRef, unlockFlags: PixelBufferLockFlags) callconv(.C) Return;
+pub const pixelBufferUnlockBaseAddress = CVPixelBufferUnlockBaseAddress;
 
-pub extern "CoreVideo" fn PixelBufferGetWidth(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+extern "CoreVideo" fn CVPixelBufferGetWidth(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+pub const pixelBufferGetWidth = CVPixelBufferGetWidth;
 
-pub extern "CoreVideo" fn PixelBufferGetHeight(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+extern "CoreVideo" fn CVPixelBufferGetHeight(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+pub const pixelBufferGetHeight = CVPixelBufferGetHeight;
 
-pub extern "CoreVideo" fn PixelBufferGetPixelFormatType(pixelBuffer: PixelBufferRef) callconv(.C) objc.OSType;
+extern "CoreVideo" fn CVPixelBufferGetPixelFormatType(pixelBuffer: PixelBufferRef) callconv(.C) objc.OSType;
+pub const pixelBufferGetPixelFormatType = CVPixelBufferGetPixelFormatType;
 
-pub extern "CoreVideo" fn PixelBufferGetBaseAddress(pixelBuffer: PixelBufferRef) callconv(.C) ?*anyopaque;
+extern "CoreVideo" fn CVPixelBufferGetBaseAddress(pixelBuffer: PixelBufferRef) callconv(.C) ?*anyopaque;
+pub const pixelBufferGetBaseAddress = CVPixelBufferGetBaseAddress;
 
-pub extern "CoreVideo" fn PixelBufferGetBytesPerRow(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+extern "CoreVideo" fn CVPixelBufferGetBytesPerRow(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+pub const pixelBufferGetBytesPerRow = CVPixelBufferGetBytesPerRow;
 
-pub extern "CoreVideo" fn PixelBufferGetDataSize(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+extern "CoreVideo" fn CVPixelBufferGetDataSize(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+pub const pixelBufferGetDataSize = CVPixelBufferGetDataSize;
 
-pub extern "CoreVideo" fn PixelBufferIsPlanar(pixelBuffer: PixelBufferRef) callconv(.C) objc.Boolean;
+extern "CoreVideo" fn CVPixelBufferIsPlanar(pixelBuffer: PixelBufferRef) callconv(.C) objc.Boolean;
+pub const pixelBufferIsPlanar = CVPixelBufferIsPlanar;
 
-pub extern "CoreVideo" fn PixelBufferGetPlaneCount(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+extern "CoreVideo" fn CVPixelBufferGetPlaneCount(pixelBuffer: PixelBufferRef) callconv(.C) objc.size_t;
+pub const pixelBufferGetPlaneCount = CVPixelBufferGetPlaneCount;
 
-pub extern "CoreVideo" fn PixelBufferGetWidthOfPlane(pixelBuffer: PixelBufferRef, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "CoreVideo" fn CVPixelBufferGetWidthOfPlane(pixelBuffer: PixelBufferRef, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const pixelBufferGetWidthOfPlane = CVPixelBufferGetWidthOfPlane;
 
-pub extern "CoreVideo" fn PixelBufferGetHeightOfPlane(pixelBuffer: PixelBufferRef, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "CoreVideo" fn CVPixelBufferGetHeightOfPlane(pixelBuffer: PixelBufferRef, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const pixelBufferGetHeightOfPlane = CVPixelBufferGetHeightOfPlane;
 
-pub extern "CoreVideo" fn PixelBufferGetBaseAddressOfPlane(pixelBuffer: PixelBufferRef, planeIndex: objc.size_t) callconv(.C) ?*anyopaque;
+extern "CoreVideo" fn CVPixelBufferGetBaseAddressOfPlane(pixelBuffer: PixelBufferRef, planeIndex: objc.size_t) callconv(.C) ?*anyopaque;
+pub const pixelBufferGetBaseAddressOfPlane = CVPixelBufferGetBaseAddressOfPlane;
 
-pub extern "CoreVideo" fn PixelBufferGetBytesPerRowOfPlane(pixelBuffer: PixelBufferRef, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+extern "CoreVideo" fn CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer: PixelBufferRef, planeIndex: objc.size_t) callconv(.C) objc.size_t;
+pub const pixelBufferGetBytesPerRowOfPlane = CVPixelBufferGetBytesPerRowOfPlane;
 
-pub extern "CoreVideo" fn PixelBufferGetExtendedPixels(pixelBuffer: PixelBufferRef, extraColumnsOnLeft: ?*objc.size_t, extraColumnsOnRight: ?*objc.size_t, extraRowsOnTop: ?*objc.size_t, extraRowsOnBottom: ?*objc.size_t, ) callconv(.C) void;
+extern "CoreVideo" fn CVPixelBufferGetExtendedPixels(
+    pixelBuffer: PixelBufferRef,
+    extraColumnsOnLeft: ?*objc.size_t,
+    extraColumnsOnRight: ?*objc.size_t,
+    extraRowsOnTop: ?*objc.size_t,
+    extraRowsOnBottom: ?*objc.size_t,
+) callconv(.C) void;
+pub const pixelBufferGetExtendedPixels = CVPixelBufferGetExtendedPixels;
 
-pub extern "CoreVideo" fn PixelBufferFillExtendedPixels(pixelBuffer: PixelBufferRef) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferFillExtendedPixels(pixelBuffer: PixelBufferRef) callconv(.C) Return;
+pub const pixelBufferFillExtendedPixels = CVPixelBufferFillExtendedPixels;
 
-pub extern "CoreVideo" fn PixelBufferCopyCreationAttributes(pixelBuffer: PixelBufferRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreVideo" fn CVPixelBufferCopyCreationAttributes(pixelBuffer: PixelBufferRef) callconv(.C) core_foundation.DictionaryRef;
+pub const pixelBufferCopyCreationAttributes = CVPixelBufferCopyCreationAttributes;
 
-pub extern "CoreVideo" fn PixelBufferGetIOSurface(pixelBuffer: PixelBufferRef) callconv(.C) io_surface.Ref;
+extern "CoreVideo" fn CVPixelBufferGetIOSurface(pixelBuffer: PixelBufferRef) callconv(.C) io_surface.Ref;
+pub const pixelBufferGetIOSurface = CVPixelBufferGetIOSurface;
 
-pub extern "CoreVideo" fn PixelBufferCreateWithIOSurface(allocator: core_foundation.AllocatorRef, surface: io_surface.Ref, pixelBufferAttributes: core_foundation.DictionaryRef, pixelBufferOut: ?*PixelBufferRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferCreateWithIOSurface(
+    allocator: core_foundation.AllocatorRef,
+    surface: io_surface.Ref,
+    pixelBufferAttributes: core_foundation.DictionaryRef,
+    pixelBufferOut: ?*PixelBufferRef,
+) callconv(.C) Return;
+pub const pixelBufferCreateWithIOSurface = CVPixelBufferCreateWithIOSurface;
 
 pub const __CVPixelBufferPool = extern struct {};
 
 pub const PixelBufferPoolRef = ?*__CVPixelBufferPool;
 
-pub extern "CoreVideo" fn PixelBufferPoolGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVPixelBufferPoolGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const pixelBufferPoolGetTypeID = CVPixelBufferPoolGetTypeID;
 
-pub extern "CoreVideo" fn PixelBufferPoolRetain(pixelBufferPool: PixelBufferPoolRef) callconv(.C) PixelBufferPoolRef;
+extern "CoreVideo" fn CVPixelBufferPoolRetain(pixelBufferPool: PixelBufferPoolRef) callconv(.C) PixelBufferPoolRef;
+pub const pixelBufferPoolRetain = CVPixelBufferPoolRetain;
 
-pub extern "CoreVideo" fn PixelBufferPoolRelease(pixelBufferPool: PixelBufferPoolRef) callconv(.C) void;
+extern "CoreVideo" fn CVPixelBufferPoolRelease(pixelBufferPool: PixelBufferPoolRef) callconv(.C) void;
+pub const pixelBufferPoolRelease = CVPixelBufferPoolRelease;
 
-pub extern "CoreVideo" fn PixelBufferPoolCreate(allocator: core_foundation.AllocatorRef, poolAttributes: core_foundation.DictionaryRef, pixelBufferAttributes: core_foundation.DictionaryRef, poolOut: ?*PixelBufferPoolRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferPoolCreate(
+    allocator: core_foundation.AllocatorRef,
+    poolAttributes: core_foundation.DictionaryRef,
+    pixelBufferAttributes: core_foundation.DictionaryRef,
+    poolOut: ?*PixelBufferPoolRef,
+) callconv(.C) Return;
+pub const pixelBufferPoolCreate = CVPixelBufferPoolCreate;
 
-pub extern "CoreVideo" fn PixelBufferPoolGetAttributes(pool: PixelBufferPoolRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreVideo" fn CVPixelBufferPoolGetAttributes(pool: PixelBufferPoolRef) callconv(.C) core_foundation.DictionaryRef;
+pub const pixelBufferPoolGetAttributes = CVPixelBufferPoolGetAttributes;
 
-pub extern "CoreVideo" fn PixelBufferPoolGetPixelBufferAttributes(pool: PixelBufferPoolRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreVideo" fn CVPixelBufferPoolGetPixelBufferAttributes(pool: PixelBufferPoolRef) callconv(.C) core_foundation.DictionaryRef;
+pub const pixelBufferPoolGetPixelBufferAttributes = CVPixelBufferPoolGetPixelBufferAttributes;
 
-pub extern "CoreVideo" fn PixelBufferPoolCreatePixelBuffer(allocator: core_foundation.AllocatorRef, pixelBufferPool: PixelBufferPoolRef, pixelBufferOut: ?*PixelBufferRef) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferPoolCreatePixelBuffer(allocator: core_foundation.AllocatorRef, pixelBufferPool: PixelBufferPoolRef, pixelBufferOut: ?*PixelBufferRef) callconv(.C) Return;
+pub const pixelBufferPoolCreatePixelBuffer = CVPixelBufferPoolCreatePixelBuffer;
 
-pub extern "CoreVideo" fn PixelBufferPoolCreatePixelBufferWithAuxAttributes(allocator: core_foundation.AllocatorRef, pixelBufferPool: PixelBufferPoolRef, auxAttributes: core_foundation.DictionaryRef, pixelBufferOut: ?*PixelBufferRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
+    allocator: core_foundation.AllocatorRef,
+    pixelBufferPool: PixelBufferPoolRef,
+    auxAttributes: core_foundation.DictionaryRef,
+    pixelBufferOut: ?*PixelBufferRef,
+) callconv(.C) Return;
+pub const pixelBufferPoolCreatePixelBufferWithAuxAttributes = CVPixelBufferPoolCreatePixelBufferWithAuxAttributes;
 
 pub const PixelBufferPoolFlushFlags = enum(OptionFlags) {
     kCVPixelBufferPoolFlushExcessBuffers = 1,
 };
 
-pub extern "CoreVideo" fn PixelBufferPoolFlush(pool: PixelBufferPoolRef, options: PixelBufferPoolFlushFlags) callconv(.C) void;
+extern "CoreVideo" fn CVPixelBufferPoolFlush(pool: PixelBufferPoolRef, options: PixelBufferPoolFlushFlags) callconv(.C) void;
+pub const pixelBufferPoolFlush = CVPixelBufferPoolFlush;
 
 pub const OpenGLBufferRef = ImageBufferRef;
 
-pub extern "CoreVideo" fn OpenGLBufferGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVOpenGLBufferGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const openGLBufferGetTypeID = CVOpenGLBufferGetTypeID;
 
-pub extern "CoreVideo" fn OpenGLBufferRetain(buffer: OpenGLBufferRef) callconv(.C) OpenGLBufferRef;
+extern "CoreVideo" fn CVOpenGLBufferRetain(buffer: OpenGLBufferRef) callconv(.C) OpenGLBufferRef;
+pub const openGLBufferRetain = CVOpenGLBufferRetain;
 
-pub extern "CoreVideo" fn OpenGLBufferRelease(buffer: OpenGLBufferRef) callconv(.C) void;
+extern "CoreVideo" fn CVOpenGLBufferRelease(buffer: OpenGLBufferRef) callconv(.C) void;
+pub const openGLBufferRelease = CVOpenGLBufferRelease;
 
-pub extern "CoreVideo" fn OpenGLBufferCreate(allocator: core_foundation.AllocatorRef, width: objc.size_t, height: objc.size_t, attributes: core_foundation.DictionaryRef, bufferOut: ?*OpenGLBufferRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVOpenGLBufferCreate(
+    allocator: core_foundation.AllocatorRef,
+    width: objc.size_t,
+    height: objc.size_t,
+    attributes: core_foundation.DictionaryRef,
+    bufferOut: ?*OpenGLBufferRef,
+) callconv(.C) Return;
+pub const openGLBufferCreate = CVOpenGLBufferCreate;
 
-pub extern "CoreVideo" fn OpenGLBufferGetAttributes(openGLBuffer: OpenGLBufferRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreVideo" fn CVOpenGLBufferGetAttributes(openGLBuffer: OpenGLBufferRef) callconv(.C) core_foundation.DictionaryRef;
+pub const openGLBufferGetAttributes = CVOpenGLBufferGetAttributes;
 
-pub extern "CoreVideo" fn OpenGLBufferAttach(openGLBuffer: OpenGLBufferRef, cglContext: opengl.ContextObj, face: opengl.GLenum, level: opengl.GLint, screen: opengl.GLint, ) callconv(.C) Return;
+extern "CoreVideo" fn CVOpenGLBufferAttach(
+    openGLBuffer: OpenGLBufferRef,
+    cglContext: opengl.ContextObj,
+    face: opengl.GLenum,
+    level: opengl.GLint,
+    screen: opengl.GLint,
+) callconv(.C) Return;
+pub const openGLBufferAttach = CVOpenGLBufferAttach;
 
 pub const __CVOpenGLBufferPool = extern struct {};
 
 pub const OpenGLBufferPoolRef = ?*__CVOpenGLBufferPool;
 
-pub extern "CoreVideo" fn OpenGLBufferPoolGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVOpenGLBufferPoolGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const openGLBufferPoolGetTypeID = CVOpenGLBufferPoolGetTypeID;
 
-pub extern "CoreVideo" fn OpenGLBufferPoolRetain(openGLBufferPool: OpenGLBufferPoolRef) callconv(.C) OpenGLBufferPoolRef;
+extern "CoreVideo" fn CVOpenGLBufferPoolRetain(openGLBufferPool: OpenGLBufferPoolRef) callconv(.C) OpenGLBufferPoolRef;
+pub const openGLBufferPoolRetain = CVOpenGLBufferPoolRetain;
 
-pub extern "CoreVideo" fn OpenGLBufferPoolRelease(openGLBufferPool: OpenGLBufferPoolRef) callconv(.C) void;
+extern "CoreVideo" fn CVOpenGLBufferPoolRelease(openGLBufferPool: OpenGLBufferPoolRef) callconv(.C) void;
+pub const openGLBufferPoolRelease = CVOpenGLBufferPoolRelease;
 
-pub extern "CoreVideo" fn OpenGLBufferPoolCreate(allocator: core_foundation.AllocatorRef, poolAttributes: core_foundation.DictionaryRef, openGLBufferAttributes: core_foundation.DictionaryRef, poolOut: ?*OpenGLBufferPoolRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVOpenGLBufferPoolCreate(
+    allocator: core_foundation.AllocatorRef,
+    poolAttributes: core_foundation.DictionaryRef,
+    openGLBufferAttributes: core_foundation.DictionaryRef,
+    poolOut: ?*OpenGLBufferPoolRef,
+) callconv(.C) Return;
+pub const openGLBufferPoolCreate = CVOpenGLBufferPoolCreate;
 
-pub extern "CoreVideo" fn OpenGLBufferPoolGetAttributes(pool: OpenGLBufferPoolRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreVideo" fn CVOpenGLBufferPoolGetAttributes(pool: OpenGLBufferPoolRef) callconv(.C) core_foundation.DictionaryRef;
+pub const openGLBufferPoolGetAttributes = CVOpenGLBufferPoolGetAttributes;
 
-pub extern "CoreVideo" fn OpenGLBufferPoolGetOpenGLBufferAttributes(pool: OpenGLBufferPoolRef) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreVideo" fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(pool: OpenGLBufferPoolRef) callconv(.C) core_foundation.DictionaryRef;
+pub const openGLBufferPoolGetOpenGLBufferAttributes = CVOpenGLBufferPoolGetOpenGLBufferAttributes;
 
-pub extern "CoreVideo" fn OpenGLBufferPoolCreateOpenGLBuffer(allocator: core_foundation.AllocatorRef, openGLBufferPool: OpenGLBufferPoolRef, openGLBufferOut: ?*OpenGLBufferRef) callconv(.C) Return;
+extern "CoreVideo" fn CVOpenGLBufferPoolCreateOpenGLBuffer(allocator: core_foundation.AllocatorRef, openGLBufferPool: OpenGLBufferPoolRef, openGLBufferOut: ?*OpenGLBufferRef) callconv(.C) Return;
+pub const openGLBufferPoolCreateOpenGLBuffer = CVOpenGLBufferPoolCreateOpenGLBuffer;
 
 pub const OpenGLTextureRef = ImageBufferRef;
 
-pub extern "CoreVideo" fn OpenGLTextureGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVOpenGLTextureGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const openGLTextureGetTypeID = CVOpenGLTextureGetTypeID;
 
-pub extern "CoreVideo" fn OpenGLTextureRetain(texture: OpenGLTextureRef) callconv(.C) OpenGLTextureRef;
+extern "CoreVideo" fn CVOpenGLTextureRetain(texture: OpenGLTextureRef) callconv(.C) OpenGLTextureRef;
+pub const openGLTextureRetain = CVOpenGLTextureRetain;
 
-pub extern "CoreVideo" fn OpenGLTextureRelease(texture: OpenGLTextureRef) callconv(.C) void;
+extern "CoreVideo" fn CVOpenGLTextureRelease(texture: OpenGLTextureRef) callconv(.C) void;
+pub const openGLTextureRelease = CVOpenGLTextureRelease;
 
-pub extern "CoreVideo" fn OpenGLTextureGetTarget(image: OpenGLTextureRef) callconv(.C) opengl.GLenum;
+extern "CoreVideo" fn CVOpenGLTextureGetTarget(image: OpenGLTextureRef) callconv(.C) opengl.GLenum;
+pub const openGLTextureGetTarget = CVOpenGLTextureGetTarget;
 
-pub extern "CoreVideo" fn OpenGLTextureGetName(image: OpenGLTextureRef) callconv(.C) opengl.GLuint;
+extern "CoreVideo" fn CVOpenGLTextureGetName(image: OpenGLTextureRef) callconv(.C) opengl.GLuint;
+pub const openGLTextureGetName = CVOpenGLTextureGetName;
 
-pub extern "CoreVideo" fn OpenGLTextureIsFlipped(image: OpenGLTextureRef) callconv(.C) objc.Boolean;
+extern "CoreVideo" fn CVOpenGLTextureIsFlipped(image: OpenGLTextureRef) callconv(.C) objc.Boolean;
+pub const openGLTextureIsFlipped = CVOpenGLTextureIsFlipped;
 
-pub extern "CoreVideo" fn OpenGLTextureGetCleanTexCoords(image: OpenGLTextureRef, lowerLeft: ?*opengl.GLfloat, lowerRight: ?*opengl.GLfloat, upperRight: ?*opengl.GLfloat, upperLeft: ?*opengl.GLfloat, ) callconv(.C) void;
+extern "CoreVideo" fn CVOpenGLTextureGetCleanTexCoords(
+    image: OpenGLTextureRef,
+    lowerLeft: ?*opengl.GLfloat,
+    lowerRight: ?*opengl.GLfloat,
+    upperRight: ?*opengl.GLfloat,
+    upperLeft: ?*opengl.GLfloat,
+) callconv(.C) void;
+pub const openGLTextureGetCleanTexCoords = CVOpenGLTextureGetCleanTexCoords;
 
 pub const __CVOpenGLTextureCache = extern struct {};
 
 pub const OpenGLTextureCacheRef = ?*__CVOpenGLTextureCache;
 
-pub extern "CoreVideo" fn OpenGLTextureCacheGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVOpenGLTextureCacheGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const openGLTextureCacheGetTypeID = CVOpenGLTextureCacheGetTypeID;
 
-pub extern "CoreVideo" fn OpenGLTextureCacheRetain(textureCache: OpenGLTextureCacheRef) callconv(.C) OpenGLTextureCacheRef;
+extern "CoreVideo" fn CVOpenGLTextureCacheRetain(textureCache: OpenGLTextureCacheRef) callconv(.C) OpenGLTextureCacheRef;
+pub const openGLTextureCacheRetain = CVOpenGLTextureCacheRetain;
 
-pub extern "CoreVideo" fn OpenGLTextureCacheRelease(textureCache: OpenGLTextureCacheRef) callconv(.C) void;
+extern "CoreVideo" fn CVOpenGLTextureCacheRelease(textureCache: OpenGLTextureCacheRef) callconv(.C) void;
+pub const openGLTextureCacheRelease = CVOpenGLTextureCacheRelease;
 
-pub extern "CoreVideo" fn OpenGLTextureCacheCreate(allocator: core_foundation.AllocatorRef, cacheAttributes: core_foundation.DictionaryRef, cglContext: opengl.ContextObj, cglPixelFormat: opengl.PixelFormatObj, textureAttributes: core_foundation.DictionaryRef, cacheOut: ?*OpenGLTextureCacheRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVOpenGLTextureCacheCreate(
+    allocator: core_foundation.AllocatorRef,
+    cacheAttributes: core_foundation.DictionaryRef,
+    cglContext: opengl.ContextObj,
+    cglPixelFormat: opengl.PixelFormatObj,
+    textureAttributes: core_foundation.DictionaryRef,
+    cacheOut: ?*OpenGLTextureCacheRef,
+) callconv(.C) Return;
+pub const openGLTextureCacheCreate = CVOpenGLTextureCacheCreate;
 
-pub extern "CoreVideo" fn OpenGLTextureCacheCreateTextureFromImage(allocator: core_foundation.AllocatorRef, textureCache: OpenGLTextureCacheRef, sourceImage: ImageBufferRef, attributes: core_foundation.DictionaryRef, textureOut: ?*OpenGLTextureRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVOpenGLTextureCacheCreateTextureFromImage(
+    allocator: core_foundation.AllocatorRef,
+    textureCache: OpenGLTextureCacheRef,
+    sourceImage: ImageBufferRef,
+    attributes: core_foundation.DictionaryRef,
+    textureOut: ?*OpenGLTextureRef,
+) callconv(.C) Return;
+pub const openGLTextureCacheCreateTextureFromImage = CVOpenGLTextureCacheCreateTextureFromImage;
 
-pub extern "CoreVideo" fn OpenGLTextureCacheFlush(textureCache: OpenGLTextureCacheRef, options: OptionFlags) callconv(.C) void;
+extern "CoreVideo" fn CVOpenGLTextureCacheFlush(textureCache: OpenGLTextureCacheRef, options: OptionFlags) callconv(.C) void;
+pub const openGLTextureCacheFlush = CVOpenGLTextureCacheFlush;
 
 pub const MetalTextureRef = ImageBufferRef;
 
-pub extern "CoreVideo" fn MetalTextureGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVMetalTextureGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const metalTextureGetTypeID = CVMetalTextureGetTypeID;
 
-pub extern "CoreVideo" fn MetalTextureGetTexture(image: MetalTextureRef) callconv(.C) ?*anyopaque;
+extern "CoreVideo" fn CVMetalTextureGetTexture(image: MetalTextureRef) callconv(.C) ?*anyopaque;
+pub const metalTextureGetTexture = CVMetalTextureGetTexture;
 
-pub extern "CoreVideo" fn MetalTextureIsFlipped(image: MetalTextureRef) callconv(.C) objc.Boolean;
+extern "CoreVideo" fn CVMetalTextureIsFlipped(image: MetalTextureRef) callconv(.C) objc.Boolean;
+pub const metalTextureIsFlipped = CVMetalTextureIsFlipped;
 
-pub extern "CoreVideo" fn MetalTextureGetCleanTexCoords(image: MetalTextureRef, lowerLeft: ?*f32, lowerRight: ?*f32, upperRight: ?*f32, upperLeft: ?*f32, ) callconv(.C) void;
+extern "CoreVideo" fn CVMetalTextureGetCleanTexCoords(
+    image: MetalTextureRef,
+    lowerLeft: ?*f32,
+    lowerRight: ?*f32,
+    upperRight: ?*f32,
+    upperLeft: ?*f32,
+) callconv(.C) void;
+pub const metalTextureGetCleanTexCoords = CVMetalTextureGetCleanTexCoords;
 
 pub const __CVMetalTextureCache = extern struct {};
 
 pub const MetalTextureCacheRef = ?*__CVMetalTextureCache;
 
-pub extern "CoreVideo" fn MetalTextureCacheGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVMetalTextureCacheGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const metalTextureCacheGetTypeID = CVMetalTextureCacheGetTypeID;
 
-pub extern "CoreVideo" fn MetalTextureCacheCreate(allocator: core_foundation.AllocatorRef, cacheAttributes: core_foundation.DictionaryRef, metalDevice: ?*anyopaque, textureAttributes: core_foundation.DictionaryRef, cacheOut: ?*MetalTextureCacheRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVMetalTextureCacheCreate(
+    allocator: core_foundation.AllocatorRef,
+    cacheAttributes: core_foundation.DictionaryRef,
+    metalDevice: ?*anyopaque,
+    textureAttributes: core_foundation.DictionaryRef,
+    cacheOut: ?*MetalTextureCacheRef,
+) callconv(.C) Return;
+pub const metalTextureCacheCreate = CVMetalTextureCacheCreate;
 
-pub extern "CoreVideo" fn MetalTextureCacheCreateTextureFromImage(allocator: core_foundation.AllocatorRef, textureCache: MetalTextureCacheRef, sourceImage: ImageBufferRef, textureAttributes: core_foundation.DictionaryRef, pixelFormat: metal.PixelFormat, width: objc.size_t, height: objc.size_t, planeIndex: objc.size_t, textureOut: ?*MetalTextureRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVMetalTextureCacheCreateTextureFromImage(
+    allocator: core_foundation.AllocatorRef,
+    textureCache: MetalTextureCacheRef,
+    sourceImage: ImageBufferRef,
+    textureAttributes: core_foundation.DictionaryRef,
+    pixelFormat: metal.PixelFormat,
+    width: objc.size_t,
+    height: objc.size_t,
+    planeIndex: objc.size_t,
+    textureOut: ?*MetalTextureRef,
+) callconv(.C) Return;
+pub const metalTextureCacheCreateTextureFromImage = CVMetalTextureCacheCreateTextureFromImage;
 
-pub extern "CoreVideo" fn MetalTextureCacheFlush(textureCache: MetalTextureCacheRef, options: OptionFlags) callconv(.C) void;
+extern "CoreVideo" fn CVMetalTextureCacheFlush(textureCache: MetalTextureCacheRef, options: OptionFlags) callconv(.C) void;
+pub const metalTextureCacheFlush = CVMetalTextureCacheFlush;
 
 pub const MetalBufferRef = BufferRef;
 
-pub extern "CoreVideo" fn MetalBufferGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVMetalBufferGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const metalBufferGetTypeID = CVMetalBufferGetTypeID;
 
-pub extern "CoreVideo" fn MetalBufferGetBuffer(buffer: MetalBufferRef) callconv(.C) ?*anyopaque;
+extern "CoreVideo" fn CVMetalBufferGetBuffer(buffer: MetalBufferRef) callconv(.C) ?*anyopaque;
+pub const metalBufferGetBuffer = CVMetalBufferGetBuffer;
 
 pub const __CVMetalBufferCache = extern struct {};
 
 pub const MetalBufferCacheRef = ?*__CVMetalBufferCache;
 
-pub extern "CoreVideo" fn MetalBufferCacheGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "CoreVideo" fn CVMetalBufferCacheGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const metalBufferCacheGetTypeID = CVMetalBufferCacheGetTypeID;
 
-pub extern "CoreVideo" fn MetalBufferCacheCreate(allocator: core_foundation.AllocatorRef, cacheAttributes: core_foundation.DictionaryRef, metalDevice: ?*anyopaque, cacheOut: ?*MetalBufferCacheRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVMetalBufferCacheCreate(
+    allocator: core_foundation.AllocatorRef,
+    cacheAttributes: core_foundation.DictionaryRef,
+    metalDevice: ?*anyopaque,
+    cacheOut: ?*MetalBufferCacheRef,
+) callconv(.C) Return;
+pub const metalBufferCacheCreate = CVMetalBufferCacheCreate;
 
-pub extern "CoreVideo" fn MetalBufferCacheCreateBufferFromImage(allocator: core_foundation.AllocatorRef, bufferCache: MetalBufferCacheRef, imageBuffer: ImageBufferRef, bufferOut: ?*MetalBufferRef, ) callconv(.C) Return;
+extern "CoreVideo" fn CVMetalBufferCacheCreateBufferFromImage(
+    allocator: core_foundation.AllocatorRef,
+    bufferCache: MetalBufferCacheRef,
+    imageBuffer: ImageBufferRef,
+    bufferOut: ?*MetalBufferRef,
+) callconv(.C) Return;
+pub const metalBufferCacheCreateBufferFromImage = CVMetalBufferCacheCreateBufferFromImage;
 
-pub extern "CoreVideo" fn MetalBufferCacheFlush(bufferCache: MetalBufferCacheRef, options: OptionFlags) callconv(.C) void;
+extern "CoreVideo" fn CVMetalBufferCacheFlush(bufferCache: MetalBufferCacheRef, options: OptionFlags) callconv(.C) void;
+pub const metalBufferCacheFlush = CVMetalBufferCacheFlush;
 
-pub const FillExtendedPixelsCallBack = ?*const fn(PixelBufferRef, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const FillExtendedPixelsCallBack = ?*const fn (PixelBufferRef, ?*anyopaque) callconv(.C) objc.Boolean;
 
 pub const FillExtendedPixelsCallBackData = extern struct {
     version: core_foundation.Index,
@@ -541,11 +810,14 @@ pub const FillExtendedPixelsCallBackData = extern struct {
     refCon: ?*anyopaque,
 };
 
-pub extern "CoreVideo" fn PixelFormatDescriptionCreateWithPixelFormatType(allocator: core_foundation.AllocatorRef, pixelFormat: objc.OSType) callconv(.C) core_foundation.DictionaryRef;
+extern "CoreVideo" fn CVPixelFormatDescriptionCreateWithPixelFormatType(allocator: core_foundation.AllocatorRef, pixelFormat: objc.OSType) callconv(.C) core_foundation.DictionaryRef;
+pub const pixelFormatDescriptionCreateWithPixelFormatType = CVPixelFormatDescriptionCreateWithPixelFormatType;
 
-pub extern "CoreVideo" fn PixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(allocator: core_foundation.AllocatorRef) callconv(.C) core_foundation.ArrayRef;
+extern "CoreVideo" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(allocator: core_foundation.AllocatorRef) callconv(.C) core_foundation.ArrayRef;
+pub const pixelFormatDescriptionArrayCreateWithAllPixelFormatTypes = CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes;
 
-pub extern "CoreVideo" fn PixelFormatDescriptionRegisterDescriptionWithPixelFormatType(description: core_foundation.DictionaryRef, pixelFormat: objc.OSType) callconv(.C) void;
+extern "CoreVideo" fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(description: core_foundation.DictionaryRef, pixelFormat: objc.OSType) callconv(.C) void;
+pub const pixelFormatDescriptionRegisterDescriptionWithPixelFormatType = CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType;
 
-pub extern "CoreVideo" fn IsCompressedPixelFormatAvailable(pixelFormatType: objc.OSType) callconv(.C) objc.Boolean;
-
+extern "CoreVideo" fn CVIsCompressedPixelFormatAvailable(pixelFormatType: objc.OSType) callconv(.C) objc.Boolean;
+pub const isCompressedPixelFormatAvailable = CVIsCompressedPixelFormatAvailable;

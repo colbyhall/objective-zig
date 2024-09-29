@@ -185,18 +185,18 @@ pub const anon881 = enum(u32) {
     kOSAsyncRef64Size = 64,
 };
 
-pub const OSAsyncReference64 = [8] objc.io_user_reference_t;
+pub const OSAsyncReference64 = [8]objc.io_user_reference_t;
 
 pub const OSNotificationHeader64 = extern struct {
     size: objc.mach_msg_size_t,
-    @"type": objc.natural_t,
+    type: objc.natural_t,
     reference: OSAsyncReference64,
     content: *u8,
 };
 
 pub const ServiceInterestContent64 = extern struct {
     messageType: objc.natural_t,
-    messageArgument: [1] objc.io_user_reference_t,
+    messageArgument: [1]objc.io_user_reference_t,
 };
 
 pub const anon1161 = enum(u32) {
@@ -204,18 +204,18 @@ pub const anon1161 = enum(u32) {
     kOSAsyncRefSize = 32,
 };
 
-pub const OSAsyncReference = [8] objc.natural_t;
+pub const OSAsyncReference = [8]objc.natural_t;
 
 pub const OSNotificationHeader = extern struct {
     size: objc.mach_msg_size_t,
-    @"type": objc.natural_t,
+    type: objc.natural_t,
     reference: OSAsyncReference,
     content: *u8,
 };
 
 pub const ServiceInterestContent = extern struct {
     messageType: objc.natural_t,
-    messageArgument: [1] ?*anyopaque,
+    messageArgument: [1]?*anyopaque,
 };
 
 pub const AsyncCompletionContent = extern struct {
@@ -227,224 +227,535 @@ pub const NotificationPort = extern struct {};
 
 pub const NotificationPortRef = ?*NotificationPort;
 
-pub const ServiceMatchingCallback = ?*const fn(?*anyopaque, io_iterator_t) callconv(.C) void;
+pub const ServiceMatchingCallback = ?*const fn (?*anyopaque, io_iterator_t) callconv(.C) void;
 
-pub const ServiceInterestCallback = ?*const fn(?*anyopaque, io_service_t, objc.uint32_t, ?*anyopaque, ) callconv(.C) void;
+pub const ServiceInterestCallback = ?*const fn (
+    ?*anyopaque,
+    io_service_t,
+    objc.uint32_t,
+    ?*anyopaque,
+) callconv(.C) void;
 
-pub extern "IOKit" fn MainPort(bootstrapPort: objc.mach_port_t, mainPort: ?*objc.mach_port_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOMainPort(bootstrapPort: objc.mach_port_t, mainPort: ?*objc.mach_port_t) callconv(.C) objc.kern_return_t;
+pub const mainPort = IOMainPort;
 
-pub extern "IOKit" fn MasterPort(bootstrapPort: objc.mach_port_t, mainPort: ?*objc.mach_port_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOMasterPort(bootstrapPort: objc.mach_port_t, mainPort: ?*objc.mach_port_t) callconv(.C) objc.kern_return_t;
+pub const masterPort = IOMasterPort;
 
-pub extern "IOKit" fn NotificationPortCreate(mainPort: objc.mach_port_t) callconv(.C) NotificationPortRef;
+extern "IOKit" fn IONotificationPortCreate(mainPort: objc.mach_port_t) callconv(.C) NotificationPortRef;
+pub const notificationPortCreate = IONotificationPortCreate;
 
-pub extern "IOKit" fn NotificationPortDestroy(notify: NotificationPortRef) callconv(.C) void;
+extern "IOKit" fn IONotificationPortDestroy(notify: NotificationPortRef) callconv(.C) void;
+pub const notificationPortDestroy = IONotificationPortDestroy;
 
-pub extern "IOKit" fn NotificationPortGetRunLoopSource(notify: NotificationPortRef) callconv(.C) core_foundation.RunLoopSourceRef;
+extern "IOKit" fn IONotificationPortGetRunLoopSource(notify: NotificationPortRef) callconv(.C) core_foundation.RunLoopSourceRef;
+pub const notificationPortGetRunLoopSource = IONotificationPortGetRunLoopSource;
 
-pub extern "IOKit" fn NotificationPortGetMachPort(notify: NotificationPortRef) callconv(.C) objc.mach_port_t;
+extern "IOKit" fn IONotificationPortGetMachPort(notify: NotificationPortRef) callconv(.C) objc.mach_port_t;
+pub const notificationPortGetMachPort = IONotificationPortGetMachPort;
 
-pub extern "IOKit" fn NotificationPortSetImportanceReceiver(notify: NotificationPortRef) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IONotificationPortSetImportanceReceiver(notify: NotificationPortRef) callconv(.C) objc.kern_return_t;
+pub const notificationPortSetImportanceReceiver = IONotificationPortSetImportanceReceiver;
 
-pub extern "IOKit" fn NotificationPortSetDispatchQueue(notify: NotificationPortRef, queue: objc.dispatch_queue_t) callconv(.C) void;
+extern "IOKit" fn IONotificationPortSetDispatchQueue(notify: NotificationPortRef, queue: objc.dispatch_queue_t) callconv(.C) void;
+pub const notificationPortSetDispatchQueue = IONotificationPortSetDispatchQueue;
 
-pub extern "IOKit" fn DispatchCalloutFromMessage(unused: ?*anyopaque, msg: ?*objc.mach_msg_header_t, reference: ?*anyopaque) callconv(.C) void;
+extern "IOKit" fn IODispatchCalloutFromMessage(unused: ?*anyopaque, msg: ?*objc.mach_msg_header_t, reference: ?*anyopaque) callconv(.C) void;
+pub const dispatchCalloutFromMessage = IODispatchCalloutFromMessage;
 
-pub extern "IOKit" fn CreateReceivePort(msgType: objc.uint32_t, recvPort: ?*objc.mach_port_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOCreateReceivePort(msgType: objc.uint32_t, recvPort: ?*objc.mach_port_t) callconv(.C) objc.kern_return_t;
+pub const createReceivePort = IOCreateReceivePort;
 
-pub extern "IOKit" fn ObjectRelease(object: io_object_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOObjectRelease(object: io_object_t) callconv(.C) objc.kern_return_t;
+pub const objectRelease = IOObjectRelease;
 
-pub extern "IOKit" fn ObjectRetain(object: io_object_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOObjectRetain(object: io_object_t) callconv(.C) objc.kern_return_t;
+pub const objectRetain = IOObjectRetain;
 
-pub extern "IOKit" fn ObjectGetClass(object: io_object_t, className: objc.io_name_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOObjectGetClass(object: io_object_t, className: objc.io_name_t) callconv(.C) objc.kern_return_t;
+pub const objectGetClass = IOObjectGetClass;
 
-pub extern "IOKit" fn ObjectCopyClass(object: io_object_t) callconv(.C) core_foundation.StringRef;
+extern "IOKit" fn IOObjectCopyClass(object: io_object_t) callconv(.C) core_foundation.StringRef;
+pub const objectCopyClass = IOObjectCopyClass;
 
-pub extern "IOKit" fn ObjectCopySuperclassForClass(classname: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "IOKit" fn IOObjectCopySuperclassForClass(classname: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const objectCopySuperclassForClass = IOObjectCopySuperclassForClass;
 
-pub extern "IOKit" fn ObjectCopyBundleIdentifierForClass(classname: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "IOKit" fn IOObjectCopyBundleIdentifierForClass(classname: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const objectCopyBundleIdentifierForClass = IOObjectCopyBundleIdentifierForClass;
 
-pub extern "IOKit" fn ObjectConformsTo(object: io_object_t, className: objc.io_name_t) callconv(.C) objc.boolean_t;
+extern "IOKit" fn IOObjectConformsTo(object: io_object_t, className: objc.io_name_t) callconv(.C) objc.boolean_t;
+pub const objectConformsTo = IOObjectConformsTo;
 
-pub extern "IOKit" fn ObjectIsEqualTo(object: io_object_t, anObject: io_object_t) callconv(.C) objc.boolean_t;
+extern "IOKit" fn IOObjectIsEqualTo(object: io_object_t, anObject: io_object_t) callconv(.C) objc.boolean_t;
+pub const objectIsEqualTo = IOObjectIsEqualTo;
 
-pub extern "IOKit" fn ObjectGetKernelRetainCount(object: io_object_t) callconv(.C) objc.uint32_t;
+extern "IOKit" fn IOObjectGetKernelRetainCount(object: io_object_t) callconv(.C) objc.uint32_t;
+pub const objectGetKernelRetainCount = IOObjectGetKernelRetainCount;
 
-pub extern "IOKit" fn ObjectGetUserRetainCount(object: io_object_t) callconv(.C) objc.uint32_t;
+extern "IOKit" fn IOObjectGetUserRetainCount(object: io_object_t) callconv(.C) objc.uint32_t;
+pub const objectGetUserRetainCount = IOObjectGetUserRetainCount;
 
-pub extern "IOKit" fn ObjectGetRetainCount(object: io_object_t) callconv(.C) objc.uint32_t;
+extern "IOKit" fn IOObjectGetRetainCount(object: io_object_t) callconv(.C) objc.uint32_t;
+pub const objectGetRetainCount = IOObjectGetRetainCount;
 
-pub extern "IOKit" fn IteratorNext(iterator: io_iterator_t) callconv(.C) io_object_t;
+extern "IOKit" fn IOIteratorNext(iterator: io_iterator_t) callconv(.C) io_object_t;
+pub const iteratorNext = IOIteratorNext;
 
-pub extern "IOKit" fn IteratorReset(iterator: io_iterator_t) callconv(.C) void;
+extern "IOKit" fn IOIteratorReset(iterator: io_iterator_t) callconv(.C) void;
+pub const iteratorReset = IOIteratorReset;
 
-pub extern "IOKit" fn IteratorIsValid(iterator: io_iterator_t) callconv(.C) objc.boolean_t;
+extern "IOKit" fn IOIteratorIsValid(iterator: io_iterator_t) callconv(.C) objc.boolean_t;
+pub const iteratorIsValid = IOIteratorIsValid;
 
-pub extern "IOKit" fn ServiceGetMatchingService(mainPort: objc.mach_port_t, matching: core_foundation.DictionaryRef) callconv(.C) io_service_t;
+extern "IOKit" fn IOServiceGetMatchingService(mainPort: objc.mach_port_t, matching: core_foundation.DictionaryRef) callconv(.C) io_service_t;
+pub const serviceGetMatchingService = IOServiceGetMatchingService;
 
-pub extern "IOKit" fn ServiceGetMatchingServices(mainPort: objc.mach_port_t, matching: core_foundation.DictionaryRef, existing: ?*io_iterator_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceGetMatchingServices(mainPort: objc.mach_port_t, matching: core_foundation.DictionaryRef, existing: ?*io_iterator_t) callconv(.C) objc.kern_return_t;
+pub const serviceGetMatchingServices = IOServiceGetMatchingServices;
 
-pub extern "IOKit" fn ServiceAddNotification(mainPort: objc.mach_port_t, notificationType: objc.io_name_t, matching: core_foundation.DictionaryRef, wakePort: objc.mach_port_t, reference: objc.uintptr_t, notification: ?*io_iterator_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceAddNotification(
+    mainPort: objc.mach_port_t,
+    notificationType: objc.io_name_t,
+    matching: core_foundation.DictionaryRef,
+    wakePort: objc.mach_port_t,
+    reference: objc.uintptr_t,
+    notification: ?*io_iterator_t,
+) callconv(.C) objc.kern_return_t;
+pub const serviceAddNotification = IOServiceAddNotification;
 
-pub extern "IOKit" fn ServiceAddMatchingNotification(notifyPort: NotificationPortRef, notificationType: objc.io_name_t, matching: core_foundation.DictionaryRef, callback: ServiceMatchingCallback, refCon: ?*anyopaque, notification: ?*io_iterator_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceAddMatchingNotification(
+    notifyPort: NotificationPortRef,
+    notificationType: objc.io_name_t,
+    matching: core_foundation.DictionaryRef,
+    callback: ServiceMatchingCallback,
+    refCon: ?*anyopaque,
+    notification: ?*io_iterator_t,
+) callconv(.C) objc.kern_return_t;
+pub const serviceAddMatchingNotification = IOServiceAddMatchingNotification;
 
-pub extern "IOKit" fn ServiceAddInterestNotification(notifyPort: NotificationPortRef, service: io_service_t, interestType: objc.io_name_t, callback: ServiceInterestCallback, refCon: ?*anyopaque, notification: ?*io_object_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceAddInterestNotification(
+    notifyPort: NotificationPortRef,
+    service: io_service_t,
+    interestType: objc.io_name_t,
+    callback: ServiceInterestCallback,
+    refCon: ?*anyopaque,
+    notification: ?*io_object_t,
+) callconv(.C) objc.kern_return_t;
+pub const serviceAddInterestNotification = IOServiceAddInterestNotification;
 
-pub extern "IOKit" fn ServiceMatchPropertyTable(service: io_service_t, matching: core_foundation.DictionaryRef, matches: ?*objc.boolean_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceMatchPropertyTable(service: io_service_t, matching: core_foundation.DictionaryRef, matches: ?*objc.boolean_t) callconv(.C) objc.kern_return_t;
+pub const serviceMatchPropertyTable = IOServiceMatchPropertyTable;
 
-pub extern "IOKit" fn ServiceGetBusyState(service: io_service_t, busyState: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceGetBusyState(service: io_service_t, busyState: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+pub const serviceGetBusyState = IOServiceGetBusyState;
 
-pub extern "IOKit" fn ServiceWaitQuiet(service: io_service_t, waitTime: ?*objc.mach_timespec_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceWaitQuiet(service: io_service_t, waitTime: ?*objc.mach_timespec_t) callconv(.C) objc.kern_return_t;
+pub const serviceWaitQuiet = IOServiceWaitQuiet;
 
-pub extern "IOKit" fn KitGetBusyState(mainPort: objc.mach_port_t, busyState: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOKitGetBusyState(mainPort: objc.mach_port_t, busyState: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
+pub const kitGetBusyState = IOKitGetBusyState;
 
-pub extern "IOKit" fn KitWaitQuietWithOptions(mainPort: objc.mach_port_t, waitTime: ?*objc.mach_timespec_t, options: OptionBits) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOKitWaitQuietWithOptions(mainPort: objc.mach_port_t, waitTime: ?*objc.mach_timespec_t, options: OptionBits) callconv(.C) objc.kern_return_t;
+pub const kitWaitQuietWithOptions = IOKitWaitQuietWithOptions;
 
-pub extern "IOKit" fn KitWaitQuiet(mainPort: objc.mach_port_t, waitTime: ?*objc.mach_timespec_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOKitWaitQuiet(mainPort: objc.mach_port_t, waitTime: ?*objc.mach_timespec_t) callconv(.C) objc.kern_return_t;
+pub const kitWaitQuiet = IOKitWaitQuiet;
 
-pub extern "IOKit" fn ServiceOpen(service: io_service_t, owningTask: objc.task_port_t, @"type": objc.uint32_t, connect: ?*io_connect_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceOpen(
+    service: io_service_t,
+    owningTask: objc.task_port_t,
+    @"type": objc.uint32_t,
+    connect: ?*io_connect_t,
+) callconv(.C) objc.kern_return_t;
+pub const serviceOpen = IOServiceOpen;
 
-pub extern "IOKit" fn ServiceRequestProbe(service: io_service_t, options: objc.uint32_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceRequestProbe(service: io_service_t, options: objc.uint32_t) callconv(.C) objc.kern_return_t;
+pub const serviceRequestProbe = IOServiceRequestProbe;
 
 pub const anon6101 = enum(u32) {
     kIOServiceInteractionAllowed = 1,
 };
 
-pub extern "IOKit" fn ServiceAuthorize(service: io_service_t, options: objc.uint32_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceAuthorize(service: io_service_t, options: objc.uint32_t) callconv(.C) objc.kern_return_t;
+pub const serviceAuthorize = IOServiceAuthorize;
 
-pub extern "IOKit" fn ServiceOpenAsFileDescriptor(service: io_service_t, oflag: i32) callconv(.C) i32;
+extern "IOKit" fn IOServiceOpenAsFileDescriptor(service: io_service_t, oflag: i32) callconv(.C) i32;
+pub const serviceOpenAsFileDescriptor = IOServiceOpenAsFileDescriptor;
 
-pub extern "IOKit" fn ServiceClose(connect: io_connect_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceClose(connect: io_connect_t) callconv(.C) objc.kern_return_t;
+pub const serviceClose = IOServiceClose;
 
-pub extern "IOKit" fn ConnectAddRef(connect: io_connect_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectAddRef(connect: io_connect_t) callconv(.C) objc.kern_return_t;
+pub const connectAddRef = IOConnectAddRef;
 
-pub extern "IOKit" fn ConnectRelease(connect: io_connect_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectRelease(connect: io_connect_t) callconv(.C) objc.kern_return_t;
+pub const connectRelease = IOConnectRelease;
 
-pub extern "IOKit" fn ConnectGetService(connect: io_connect_t, service: ?*io_service_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectGetService(connect: io_connect_t, service: ?*io_service_t) callconv(.C) objc.kern_return_t;
+pub const connectGetService = IOConnectGetService;
 
-pub extern "IOKit" fn ConnectSetNotificationPort(connect: io_connect_t, @"type": objc.uint32_t, port: objc.mach_port_t, reference: objc.uintptr_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectSetNotificationPort(
+    connect: io_connect_t,
+    @"type": objc.uint32_t,
+    port: objc.mach_port_t,
+    reference: objc.uintptr_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectSetNotificationPort = IOConnectSetNotificationPort;
 
-pub extern "IOKit" fn ConnectMapMemory(connect: io_connect_t, memoryType: objc.uint32_t, intoTask: objc.task_port_t, atAddress: ?*objc.mach_vm_address_t, ofSize: ?*objc.mach_vm_size_t, options: OptionBits, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectMapMemory(
+    connect: io_connect_t,
+    memoryType: objc.uint32_t,
+    intoTask: objc.task_port_t,
+    atAddress: ?*objc.mach_vm_address_t,
+    ofSize: ?*objc.mach_vm_size_t,
+    options: OptionBits,
+) callconv(.C) objc.kern_return_t;
+pub const connectMapMemory = IOConnectMapMemory;
 
-pub extern "IOKit" fn ConnectMapMemory64(connect: io_connect_t, memoryType: objc.uint32_t, intoTask: objc.task_port_t, atAddress: ?*objc.mach_vm_address_t, ofSize: ?*objc.mach_vm_size_t, options: OptionBits, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectMapMemory64(
+    connect: io_connect_t,
+    memoryType: objc.uint32_t,
+    intoTask: objc.task_port_t,
+    atAddress: ?*objc.mach_vm_address_t,
+    ofSize: ?*objc.mach_vm_size_t,
+    options: OptionBits,
+) callconv(.C) objc.kern_return_t;
+pub const connectMapMemory64 = IOConnectMapMemory64;
 
-pub extern "IOKit" fn ConnectUnmapMemory(connect: io_connect_t, memoryType: objc.uint32_t, fromTask: objc.task_port_t, atAddress: objc.mach_vm_address_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectUnmapMemory(
+    connect: io_connect_t,
+    memoryType: objc.uint32_t,
+    fromTask: objc.task_port_t,
+    atAddress: objc.mach_vm_address_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectUnmapMemory = IOConnectUnmapMemory;
 
-pub extern "IOKit" fn ConnectUnmapMemory64(connect: io_connect_t, memoryType: objc.uint32_t, fromTask: objc.task_port_t, atAddress: objc.mach_vm_address_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectUnmapMemory64(
+    connect: io_connect_t,
+    memoryType: objc.uint32_t,
+    fromTask: objc.task_port_t,
+    atAddress: objc.mach_vm_address_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectUnmapMemory64 = IOConnectUnmapMemory64;
 
-pub extern "IOKit" fn ConnectSetCFProperties(connect: io_connect_t, properties: core_foundation.TypeRef) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectSetCFProperties(connect: io_connect_t, properties: core_foundation.TypeRef) callconv(.C) objc.kern_return_t;
+pub const connectSetCFProperties = IOConnectSetCFProperties;
 
-pub extern "IOKit" fn ConnectSetCFProperty(connect: io_connect_t, propertyName: core_foundation.StringRef, property: core_foundation.TypeRef) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectSetCFProperty(connect: io_connect_t, propertyName: core_foundation.StringRef, property: core_foundation.TypeRef) callconv(.C) objc.kern_return_t;
+pub const connectSetCFProperty = IOConnectSetCFProperty;
 
-pub extern "IOKit" fn ConnectCallMethod(connection: objc.mach_port_t, selector: objc.uint32_t, input: ?*objc.uint64_t, inputCnt: objc.uint32_t, inputStruct: ?*anyopaque, inputStructCnt: objc.size_t, output: ?*objc.uint64_t, outputCnt: ?*objc.uint32_t, outputStruct: ?*anyopaque, outputStructCnt: ?*objc.size_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectCallMethod(
+    connection: objc.mach_port_t,
+    selector: objc.uint32_t,
+    input: ?*objc.uint64_t,
+    inputCnt: objc.uint32_t,
+    inputStruct: ?*anyopaque,
+    inputStructCnt: objc.size_t,
+    output: ?*objc.uint64_t,
+    outputCnt: ?*objc.uint32_t,
+    outputStruct: ?*anyopaque,
+    outputStructCnt: ?*objc.size_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectCallMethod = IOConnectCallMethod;
 
-pub extern "IOKit" fn ConnectCallAsyncMethod(connection: objc.mach_port_t, selector: objc.uint32_t, wake_port: objc.mach_port_t, reference: ?*objc.uint64_t, referenceCnt: objc.uint32_t, input: ?*objc.uint64_t, inputCnt: objc.uint32_t, inputStruct: ?*anyopaque, inputStructCnt: objc.size_t, output: ?*objc.uint64_t, outputCnt: ?*objc.uint32_t, outputStruct: ?*anyopaque, outputStructCnt: ?*objc.size_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectCallAsyncMethod(
+    connection: objc.mach_port_t,
+    selector: objc.uint32_t,
+    wake_port: objc.mach_port_t,
+    reference: ?*objc.uint64_t,
+    referenceCnt: objc.uint32_t,
+    input: ?*objc.uint64_t,
+    inputCnt: objc.uint32_t,
+    inputStruct: ?*anyopaque,
+    inputStructCnt: objc.size_t,
+    output: ?*objc.uint64_t,
+    outputCnt: ?*objc.uint32_t,
+    outputStruct: ?*anyopaque,
+    outputStructCnt: ?*objc.size_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectCallAsyncMethod = IOConnectCallAsyncMethod;
 
-pub extern "IOKit" fn ConnectCallStructMethod(connection: objc.mach_port_t, selector: objc.uint32_t, inputStruct: ?*anyopaque, inputStructCnt: objc.size_t, outputStruct: ?*anyopaque, outputStructCnt: ?*objc.size_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectCallStructMethod(
+    connection: objc.mach_port_t,
+    selector: objc.uint32_t,
+    inputStruct: ?*anyopaque,
+    inputStructCnt: objc.size_t,
+    outputStruct: ?*anyopaque,
+    outputStructCnt: ?*objc.size_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectCallStructMethod = IOConnectCallStructMethod;
 
-pub extern "IOKit" fn ConnectCallAsyncStructMethod(connection: objc.mach_port_t, selector: objc.uint32_t, wake_port: objc.mach_port_t, reference: ?*objc.uint64_t, referenceCnt: objc.uint32_t, inputStruct: ?*anyopaque, inputStructCnt: objc.size_t, outputStruct: ?*anyopaque, outputStructCnt: ?*objc.size_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectCallAsyncStructMethod(
+    connection: objc.mach_port_t,
+    selector: objc.uint32_t,
+    wake_port: objc.mach_port_t,
+    reference: ?*objc.uint64_t,
+    referenceCnt: objc.uint32_t,
+    inputStruct: ?*anyopaque,
+    inputStructCnt: objc.size_t,
+    outputStruct: ?*anyopaque,
+    outputStructCnt: ?*objc.size_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectCallAsyncStructMethod = IOConnectCallAsyncStructMethod;
 
-pub extern "IOKit" fn ConnectCallScalarMethod(connection: objc.mach_port_t, selector: objc.uint32_t, input: ?*objc.uint64_t, inputCnt: objc.uint32_t, output: ?*objc.uint64_t, outputCnt: ?*objc.uint32_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectCallScalarMethod(
+    connection: objc.mach_port_t,
+    selector: objc.uint32_t,
+    input: ?*objc.uint64_t,
+    inputCnt: objc.uint32_t,
+    output: ?*objc.uint64_t,
+    outputCnt: ?*objc.uint32_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectCallScalarMethod = IOConnectCallScalarMethod;
 
-pub extern "IOKit" fn ConnectCallAsyncScalarMethod(connection: objc.mach_port_t, selector: objc.uint32_t, wake_port: objc.mach_port_t, reference: ?*objc.uint64_t, referenceCnt: objc.uint32_t, input: ?*objc.uint64_t, inputCnt: objc.uint32_t, output: ?*objc.uint64_t, outputCnt: ?*objc.uint32_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectCallAsyncScalarMethod(
+    connection: objc.mach_port_t,
+    selector: objc.uint32_t,
+    wake_port: objc.mach_port_t,
+    reference: ?*objc.uint64_t,
+    referenceCnt: objc.uint32_t,
+    input: ?*objc.uint64_t,
+    inputCnt: objc.uint32_t,
+    output: ?*objc.uint64_t,
+    outputCnt: ?*objc.uint32_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectCallAsyncScalarMethod = IOConnectCallAsyncScalarMethod;
 
-pub extern "IOKit" fn ConnectTrap0(connect: io_connect_t, index: objc.uint32_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectTrap0(connect: io_connect_t, index: objc.uint32_t) callconv(.C) objc.kern_return_t;
+pub const connectTrap0 = IOConnectTrap0;
 
-pub extern "IOKit" fn ConnectTrap1(connect: io_connect_t, index: objc.uint32_t, p1: objc.uintptr_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectTrap1(connect: io_connect_t, index: objc.uint32_t, p1: objc.uintptr_t) callconv(.C) objc.kern_return_t;
+pub const connectTrap1 = IOConnectTrap1;
 
-pub extern "IOKit" fn ConnectTrap2(connect: io_connect_t, index: objc.uint32_t, p1: objc.uintptr_t, p2: objc.uintptr_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectTrap2(
+    connect: io_connect_t,
+    index: objc.uint32_t,
+    p1: objc.uintptr_t,
+    p2: objc.uintptr_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectTrap2 = IOConnectTrap2;
 
-pub extern "IOKit" fn ConnectTrap3(connect: io_connect_t, index: objc.uint32_t, p1: objc.uintptr_t, p2: objc.uintptr_t, p3: objc.uintptr_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectTrap3(
+    connect: io_connect_t,
+    index: objc.uint32_t,
+    p1: objc.uintptr_t,
+    p2: objc.uintptr_t,
+    p3: objc.uintptr_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectTrap3 = IOConnectTrap3;
 
-pub extern "IOKit" fn ConnectTrap4(connect: io_connect_t, index: objc.uint32_t, p1: objc.uintptr_t, p2: objc.uintptr_t, p3: objc.uintptr_t, p4: objc.uintptr_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectTrap4(
+    connect: io_connect_t,
+    index: objc.uint32_t,
+    p1: objc.uintptr_t,
+    p2: objc.uintptr_t,
+    p3: objc.uintptr_t,
+    p4: objc.uintptr_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectTrap4 = IOConnectTrap4;
 
-pub extern "IOKit" fn ConnectTrap5(connect: io_connect_t, index: objc.uint32_t, p1: objc.uintptr_t, p2: objc.uintptr_t, p3: objc.uintptr_t, p4: objc.uintptr_t, p5: objc.uintptr_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectTrap5(
+    connect: io_connect_t,
+    index: objc.uint32_t,
+    p1: objc.uintptr_t,
+    p2: objc.uintptr_t,
+    p3: objc.uintptr_t,
+    p4: objc.uintptr_t,
+    p5: objc.uintptr_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectTrap5 = IOConnectTrap5;
 
-pub extern "IOKit" fn ConnectTrap6(connect: io_connect_t, index: objc.uint32_t, p1: objc.uintptr_t, p2: objc.uintptr_t, p3: objc.uintptr_t, p4: objc.uintptr_t, p5: objc.uintptr_t, p6: objc.uintptr_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectTrap6(
+    connect: io_connect_t,
+    index: objc.uint32_t,
+    p1: objc.uintptr_t,
+    p2: objc.uintptr_t,
+    p3: objc.uintptr_t,
+    p4: objc.uintptr_t,
+    p5: objc.uintptr_t,
+    p6: objc.uintptr_t,
+) callconv(.C) objc.kern_return_t;
+pub const connectTrap6 = IOConnectTrap6;
 
-pub extern "IOKit" fn ConnectAddClient(connect: io_connect_t, client: io_connect_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOConnectAddClient(connect: io_connect_t, client: io_connect_t) callconv(.C) objc.kern_return_t;
+pub const connectAddClient = IOConnectAddClient;
 
-pub extern "IOKit" fn RegistryGetRootEntry(mainPort: objc.mach_port_t) callconv(.C) io_registry_entry_t;
+extern "IOKit" fn IORegistryGetRootEntry(mainPort: objc.mach_port_t) callconv(.C) io_registry_entry_t;
+pub const registryGetRootEntry = IORegistryGetRootEntry;
 
-pub extern "IOKit" fn RegistryEntryFromPath(mainPort: objc.mach_port_t, path: objc.io_string_t) callconv(.C) io_registry_entry_t;
+extern "IOKit" fn IORegistryEntryFromPath(mainPort: objc.mach_port_t, path: objc.io_string_t) callconv(.C) io_registry_entry_t;
+pub const registryEntryFromPath = IORegistryEntryFromPath;
 
-pub extern "IOKit" fn RegistryEntryCopyFromPath(mainPort: objc.mach_port_t, path: core_foundation.StringRef) callconv(.C) io_registry_entry_t;
+extern "IOKit" fn IORegistryEntryCopyFromPath(mainPort: objc.mach_port_t, path: core_foundation.StringRef) callconv(.C) io_registry_entry_t;
+pub const registryEntryCopyFromPath = IORegistryEntryCopyFromPath;
 
 pub const anon10121 = enum(u32) {
     kIORegistryIterateRecursively = 1,
     kIORegistryIterateParents = 2,
 };
 
-pub extern "IOKit" fn RegistryCreateIterator(mainPort: objc.mach_port_t, plane: objc.io_name_t, options: OptionBits, iterator: ?*io_iterator_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryCreateIterator(
+    mainPort: objc.mach_port_t,
+    plane: objc.io_name_t,
+    options: OptionBits,
+    iterator: ?*io_iterator_t,
+) callconv(.C) objc.kern_return_t;
+pub const registryCreateIterator = IORegistryCreateIterator;
 
-pub extern "IOKit" fn RegistryEntryCreateIterator(entry: io_registry_entry_t, plane: objc.io_name_t, options: OptionBits, iterator: ?*io_iterator_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryCreateIterator(
+    entry: io_registry_entry_t,
+    plane: objc.io_name_t,
+    options: OptionBits,
+    iterator: ?*io_iterator_t,
+) callconv(.C) objc.kern_return_t;
+pub const registryEntryCreateIterator = IORegistryEntryCreateIterator;
 
-pub extern "IOKit" fn RegistryIteratorEnterEntry(iterator: io_iterator_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryIteratorEnterEntry(iterator: io_iterator_t) callconv(.C) objc.kern_return_t;
+pub const registryIteratorEnterEntry = IORegistryIteratorEnterEntry;
 
-pub extern "IOKit" fn RegistryIteratorExitEntry(iterator: io_iterator_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryIteratorExitEntry(iterator: io_iterator_t) callconv(.C) objc.kern_return_t;
+pub const registryIteratorExitEntry = IORegistryIteratorExitEntry;
 
-pub extern "IOKit" fn RegistryEntryGetName(entry: io_registry_entry_t, name: objc.io_name_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetName(entry: io_registry_entry_t, name: objc.io_name_t) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetName = IORegistryEntryGetName;
 
-pub extern "IOKit" fn RegistryEntryGetNameInPlane(entry: io_registry_entry_t, plane: objc.io_name_t, name: objc.io_name_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetNameInPlane(entry: io_registry_entry_t, plane: objc.io_name_t, name: objc.io_name_t) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetNameInPlane = IORegistryEntryGetNameInPlane;
 
-pub extern "IOKit" fn RegistryEntryGetLocationInPlane(entry: io_registry_entry_t, plane: objc.io_name_t, location: objc.io_name_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetLocationInPlane(entry: io_registry_entry_t, plane: objc.io_name_t, location: objc.io_name_t) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetLocationInPlane = IORegistryEntryGetLocationInPlane;
 
-pub extern "IOKit" fn RegistryEntryGetPath(entry: io_registry_entry_t, plane: objc.io_name_t, path: objc.io_string_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetPath(entry: io_registry_entry_t, plane: objc.io_name_t, path: objc.io_string_t) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetPath = IORegistryEntryGetPath;
 
-pub extern "IOKit" fn RegistryEntryCopyPath(entry: io_registry_entry_t, plane: objc.io_name_t) callconv(.C) core_foundation.StringRef;
+extern "IOKit" fn IORegistryEntryCopyPath(entry: io_registry_entry_t, plane: objc.io_name_t) callconv(.C) core_foundation.StringRef;
+pub const registryEntryCopyPath = IORegistryEntryCopyPath;
 
-pub extern "IOKit" fn RegistryEntryGetRegistryEntryID(entry: io_registry_entry_t, entryID: ?*objc.uint64_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetRegistryEntryID(entry: io_registry_entry_t, entryID: ?*objc.uint64_t) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetRegistryEntryID = IORegistryEntryGetRegistryEntryID;
 
-pub extern "IOKit" fn RegistryEntryCreateCFProperties(entry: io_registry_entry_t, properties: ?*core_foundation.MutableDictionaryRef, allocator: core_foundation.AllocatorRef, options: OptionBits, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryCreateCFProperties(
+    entry: io_registry_entry_t,
+    properties: ?*core_foundation.MutableDictionaryRef,
+    allocator: core_foundation.AllocatorRef,
+    options: OptionBits,
+) callconv(.C) objc.kern_return_t;
+pub const registryEntryCreateCFProperties = IORegistryEntryCreateCFProperties;
 
-pub extern "IOKit" fn RegistryEntryCreateCFProperty(entry: io_registry_entry_t, key: core_foundation.StringRef, allocator: core_foundation.AllocatorRef, options: OptionBits, ) callconv(.C) core_foundation.TypeRef;
+extern "IOKit" fn IORegistryEntryCreateCFProperty(
+    entry: io_registry_entry_t,
+    key: core_foundation.StringRef,
+    allocator: core_foundation.AllocatorRef,
+    options: OptionBits,
+) callconv(.C) core_foundation.TypeRef;
+pub const registryEntryCreateCFProperty = IORegistryEntryCreateCFProperty;
 
-pub extern "IOKit" fn RegistryEntrySearchCFProperty(entry: io_registry_entry_t, plane: objc.io_name_t, key: core_foundation.StringRef, allocator: core_foundation.AllocatorRef, options: OptionBits, ) callconv(.C) core_foundation.TypeRef;
+extern "IOKit" fn IORegistryEntrySearchCFProperty(
+    entry: io_registry_entry_t,
+    plane: objc.io_name_t,
+    key: core_foundation.StringRef,
+    allocator: core_foundation.AllocatorRef,
+    options: OptionBits,
+) callconv(.C) core_foundation.TypeRef;
+pub const registryEntrySearchCFProperty = IORegistryEntrySearchCFProperty;
 
-pub extern "IOKit" fn RegistryEntryGetProperty(entry: io_registry_entry_t, propertyName: objc.io_name_t, buffer: objc.io_struct_inband_t, size: ?*objc.uint32_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetProperty(
+    entry: io_registry_entry_t,
+    propertyName: objc.io_name_t,
+    buffer: objc.io_struct_inband_t,
+    size: ?*objc.uint32_t,
+) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetProperty = IORegistryEntryGetProperty;
 
-pub extern "IOKit" fn RegistryEntrySetCFProperties(entry: io_registry_entry_t, properties: core_foundation.TypeRef) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntrySetCFProperties(entry: io_registry_entry_t, properties: core_foundation.TypeRef) callconv(.C) objc.kern_return_t;
+pub const registryEntrySetCFProperties = IORegistryEntrySetCFProperties;
 
-pub extern "IOKit" fn RegistryEntrySetCFProperty(entry: io_registry_entry_t, propertyName: core_foundation.StringRef, property: core_foundation.TypeRef) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntrySetCFProperty(entry: io_registry_entry_t, propertyName: core_foundation.StringRef, property: core_foundation.TypeRef) callconv(.C) objc.kern_return_t;
+pub const registryEntrySetCFProperty = IORegistryEntrySetCFProperty;
 
-pub extern "IOKit" fn RegistryEntryGetChildIterator(entry: io_registry_entry_t, plane: objc.io_name_t, iterator: ?*io_iterator_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetChildIterator(entry: io_registry_entry_t, plane: objc.io_name_t, iterator: ?*io_iterator_t) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetChildIterator = IORegistryEntryGetChildIterator;
 
-pub extern "IOKit" fn RegistryEntryGetChildEntry(entry: io_registry_entry_t, plane: objc.io_name_t, child: ?*io_registry_entry_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetChildEntry(entry: io_registry_entry_t, plane: objc.io_name_t, child: ?*io_registry_entry_t) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetChildEntry = IORegistryEntryGetChildEntry;
 
-pub extern "IOKit" fn RegistryEntryGetParentIterator(entry: io_registry_entry_t, plane: objc.io_name_t, iterator: ?*io_iterator_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetParentIterator(entry: io_registry_entry_t, plane: objc.io_name_t, iterator: ?*io_iterator_t) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetParentIterator = IORegistryEntryGetParentIterator;
 
-pub extern "IOKit" fn RegistryEntryGetParentEntry(entry: io_registry_entry_t, plane: objc.io_name_t, parent: ?*io_registry_entry_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IORegistryEntryGetParentEntry(entry: io_registry_entry_t, plane: objc.io_name_t, parent: ?*io_registry_entry_t) callconv(.C) objc.kern_return_t;
+pub const registryEntryGetParentEntry = IORegistryEntryGetParentEntry;
 
-pub extern "IOKit" fn RegistryEntryInPlane(entry: io_registry_entry_t, plane: objc.io_name_t) callconv(.C) objc.boolean_t;
+extern "IOKit" fn IORegistryEntryInPlane(entry: io_registry_entry_t, plane: objc.io_name_t) callconv(.C) objc.boolean_t;
+pub const registryEntryInPlane = IORegistryEntryInPlane;
 
-pub extern "IOKit" fn ServiceMatching(name: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+extern "IOKit" fn IOServiceMatching(name: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+pub const serviceMatching = IOServiceMatching;
 
-pub extern "IOKit" fn ServiceNameMatching(name: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+extern "IOKit" fn IOServiceNameMatching(name: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+pub const serviceNameMatching = IOServiceNameMatching;
 
-pub extern "IOKit" fn BSDNameMatching(mainPort: objc.mach_port_t, options: objc.uint32_t, bsdName: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+extern "IOKit" fn IOBSDNameMatching(mainPort: objc.mach_port_t, options: objc.uint32_t, bsdName: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+pub const bsdNameMatching = IOBSDNameMatching;
 
-pub extern "IOKit" fn OpenFirmwarePathMatching(mainPort: objc.mach_port_t, options: objc.uint32_t, path: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+extern "IOKit" fn IOOpenFirmwarePathMatching(mainPort: objc.mach_port_t, options: objc.uint32_t, path: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+pub const openFirmwarePathMatching = IOOpenFirmwarePathMatching;
 
-pub extern "IOKit" fn RegistryEntryIDMatching(entryID: objc.uint64_t) callconv(.C) core_foundation.MutableDictionaryRef;
+extern "IOKit" fn IORegistryEntryIDMatching(entryID: objc.uint64_t) callconv(.C) core_foundation.MutableDictionaryRef;
+pub const registryEntryIDMatching = IORegistryEntryIDMatching;
 
-pub extern "IOKit" fn ServiceOFPathToBSDName(mainPort: objc.mach_port_t, openFirmwarePath: objc.io_name_t, bsdName: objc.io_name_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOServiceOFPathToBSDName(mainPort: objc.mach_port_t, openFirmwarePath: objc.io_name_t, bsdName: objc.io_name_t) callconv(.C) objc.kern_return_t;
+pub const serviceOFPathToBSDName = IOServiceOFPathToBSDName;
 
-pub const AsyncCallback0 = ?*const fn(?*anyopaque, Return) callconv(.C) void;
+pub const AsyncCallback0 = ?*const fn (?*anyopaque, Return) callconv(.C) void;
 
-pub const AsyncCallback1 = ?*const fn(?*anyopaque, Return, ?*anyopaque) callconv(.C) void;
+pub const AsyncCallback1 = ?*const fn (?*anyopaque, Return, ?*anyopaque) callconv(.C) void;
 
-pub const AsyncCallback2 = ?*const fn(?*anyopaque, Return, ?*anyopaque, ?*anyopaque, ) callconv(.C) void;
+pub const AsyncCallback2 = ?*const fn (
+    ?*anyopaque,
+    Return,
+    ?*anyopaque,
+    ?*anyopaque,
+) callconv(.C) void;
 
-pub const AsyncCallback = ?*const fn(?*anyopaque, Return, ?*?*anyopaque, objc.uint32_t, ) callconv(.C) void;
+pub const AsyncCallback = ?*const fn (
+    ?*anyopaque,
+    Return,
+    ?*?*anyopaque,
+    objc.uint32_t,
+) callconv(.C) void;
 
-pub extern "IOKit" fn OSGetNotificationFromMessage(msg: ?*objc.mach_msg_header_t, index: objc.uint32_t, @"type": ?*objc.uint32_t, reference: ?*objc.uintptr_t, content: ?*?*anyopaque, size: ?*objc.vm_size_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn OSGetNotificationFromMessage(
+    msg: ?*objc.mach_msg_header_t,
+    index: objc.uint32_t,
+    @"type": ?*objc.uint32_t,
+    reference: ?*objc.uintptr_t,
+    content: ?*?*anyopaque,
+    size: ?*objc.vm_size_t,
+) callconv(.C) objc.kern_return_t;
+pub const getNotificationFromMessage = OSGetNotificationFromMessage;
 
-pub extern "IOKit" fn CatalogueSendData(mainPort: objc.mach_port_t, flag: objc.uint32_t, buffer: ?*i8, size: objc.uint32_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOCatalogueSendData(
+    mainPort: objc.mach_port_t,
+    flag: objc.uint32_t,
+    buffer: ?*i8,
+    size: objc.uint32_t,
+) callconv(.C) objc.kern_return_t;
+pub const catalogueSendData = IOCatalogueSendData;
 
-pub extern "IOKit" fn CatalogueTerminate(mainPort: objc.mach_port_t, flag: objc.uint32_t, description: objc.io_name_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOCatalogueTerminate(mainPort: objc.mach_port_t, flag: objc.uint32_t, description: objc.io_name_t) callconv(.C) objc.kern_return_t;
+pub const catalogueTerminate = IOCatalogueTerminate;
 
-pub extern "IOKit" fn CatalogueGetData(mainPort: objc.mach_port_t, flag: objc.uint32_t, buffer: ?*?*i8, size: ?*objc.uint32_t, ) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOCatalogueGetData(
+    mainPort: objc.mach_port_t,
+    flag: objc.uint32_t,
+    buffer: ?*?*i8,
+    size: ?*objc.uint32_t,
+) callconv(.C) objc.kern_return_t;
+pub const catalogueGetData = IOCatalogueGetData;
 
-pub extern "IOKit" fn CatalogueModuleLoaded(mainPort: objc.mach_port_t, name: objc.io_name_t) callconv(.C) objc.kern_return_t;
+extern "IOKit" fn IOCatalogueModuleLoaded(mainPort: objc.mach_port_t, name: objc.io_name_t) callconv(.C) objc.kern_return_t;
+pub const catalogueModuleLoaded = IOCatalogueModuleLoaded;
 
-pub extern "IOKit" fn CatalogueReset(mainPort: objc.mach_port_t, flag: objc.uint32_t) callconv(.C) objc.kern_return_t;
-
+extern "IOKit" fn IOCatalogueReset(mainPort: objc.mach_port_t, flag: objc.uint32_t) callconv(.C) objc.kern_return_t;
+pub const catalogueReset = IOCatalogueReset;

@@ -13,19 +13,23 @@ pub const Metadata = extern struct {};
 
 pub const MetadataRef = ?*Metadata;
 
-pub extern "ImageIO" fn MetadataGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "ImageIO" fn CGImageMetadataGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const metadataGetTypeID = CGImageMetadataGetTypeID;
 
 pub const CGMutableImageMetadataRef = ?*Metadata;
 
-pub extern "ImageIO" fn MetadataCreateMutable() callconv(.C) CGMutableImageMetadataRef;
+extern "ImageIO" fn CGImageMetadataCreateMutable() callconv(.C) CGMutableImageMetadataRef;
+pub const metadataCreateMutable = CGImageMetadataCreateMutable;
 
-pub extern "ImageIO" fn MetadataCreateMutableCopy(metadata: MetadataRef) callconv(.C) CGMutableImageMetadataRef;
+extern "ImageIO" fn CGImageMetadataCreateMutableCopy(metadata: MetadataRef) callconv(.C) CGMutableImageMetadataRef;
+pub const metadataCreateMutableCopy = CGImageMetadataCreateMutableCopy;
 
 pub const MetadataTag = extern struct {};
 
 pub const MetadataTagRef = ?*MetadataTag;
 
-pub extern "ImageIO" fn MetadataTagGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "ImageIO" fn CGImageMetadataTagGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const metadataTagGetTypeID = CGImageMetadataTagGetTypeID;
 
 pub const MetadataType = enum(objc.int32_t) {
     kCGImageMetadataTypeInvalid = -1,
@@ -38,45 +42,75 @@ pub const MetadataType = enum(objc.int32_t) {
     kCGImageMetadataTypeStructure = 6,
 };
 
-pub extern "ImageIO" fn MetadataTagCreate(xmlns: core_foundation.StringRef, prefix: core_foundation.StringRef, name: core_foundation.StringRef, @"type": MetadataType, value: core_foundation.TypeRef, ) callconv(.C) MetadataTagRef;
+extern "ImageIO" fn CGImageMetadataTagCreate(
+    xmlns: core_foundation.StringRef,
+    prefix: core_foundation.StringRef,
+    name: core_foundation.StringRef,
+    @"type": MetadataType,
+    value: core_foundation.TypeRef,
+) callconv(.C) MetadataTagRef;
+pub const metadataTagCreate = CGImageMetadataTagCreate;
 
-pub extern "ImageIO" fn MetadataTagCopyNamespace(tag: MetadataTagRef) callconv(.C) core_foundation.StringRef;
+extern "ImageIO" fn CGImageMetadataTagCopyNamespace(tag: MetadataTagRef) callconv(.C) core_foundation.StringRef;
+pub const metadataTagCopyNamespace = CGImageMetadataTagCopyNamespace;
 
-pub extern "ImageIO" fn MetadataTagCopyPrefix(tag: MetadataTagRef) callconv(.C) core_foundation.StringRef;
+extern "ImageIO" fn CGImageMetadataTagCopyPrefix(tag: MetadataTagRef) callconv(.C) core_foundation.StringRef;
+pub const metadataTagCopyPrefix = CGImageMetadataTagCopyPrefix;
 
-pub extern "ImageIO" fn MetadataTagCopyName(tag: MetadataTagRef) callconv(.C) core_foundation.StringRef;
+extern "ImageIO" fn CGImageMetadataTagCopyName(tag: MetadataTagRef) callconv(.C) core_foundation.StringRef;
+pub const metadataTagCopyName = CGImageMetadataTagCopyName;
 
-pub extern "ImageIO" fn MetadataTagCopyValue(tag: MetadataTagRef) callconv(.C) core_foundation.TypeRef;
+extern "ImageIO" fn CGImageMetadataTagCopyValue(tag: MetadataTagRef) callconv(.C) core_foundation.TypeRef;
+pub const metadataTagCopyValue = CGImageMetadataTagCopyValue;
 
-pub extern "ImageIO" fn MetadataTagGetType(tag: MetadataTagRef) callconv(.C) MetadataType;
+extern "ImageIO" fn CGImageMetadataTagGetType(tag: MetadataTagRef) callconv(.C) MetadataType;
+pub const metadataTagGetType = CGImageMetadataTagGetType;
 
-pub extern "ImageIO" fn MetadataTagCopyQualifiers(tag: MetadataTagRef) callconv(.C) core_foundation.ArrayRef;
+extern "ImageIO" fn CGImageMetadataTagCopyQualifiers(tag: MetadataTagRef) callconv(.C) core_foundation.ArrayRef;
+pub const metadataTagCopyQualifiers = CGImageMetadataTagCopyQualifiers;
 
-pub extern "ImageIO" fn MetadataCopyTags(metadata: MetadataRef) callconv(.C) core_foundation.ArrayRef;
+extern "ImageIO" fn CGImageMetadataCopyTags(metadata: MetadataRef) callconv(.C) core_foundation.ArrayRef;
+pub const metadataCopyTags = CGImageMetadataCopyTags;
 
-pub extern "ImageIO" fn MetadataCopyTagWithPath(metadata: MetadataRef, parent: MetadataTagRef, path: core_foundation.StringRef) callconv(.C) MetadataTagRef;
+extern "ImageIO" fn CGImageMetadataCopyTagWithPath(metadata: MetadataRef, parent: MetadataTagRef, path: core_foundation.StringRef) callconv(.C) MetadataTagRef;
+pub const metadataCopyTagWithPath = CGImageMetadataCopyTagWithPath;
 
-pub extern "ImageIO" fn MetadataCopyStringValueWithPath(metadata: MetadataRef, parent: MetadataTagRef, path: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+extern "ImageIO" fn CGImageMetadataCopyStringValueWithPath(metadata: MetadataRef, parent: MetadataTagRef, path: core_foundation.StringRef) callconv(.C) core_foundation.StringRef;
+pub const metadataCopyStringValueWithPath = CGImageMetadataCopyStringValueWithPath;
 
-pub extern "ImageIO" fn MetadataRegisterNamespaceForPrefix() callconv(.C) i32;
+extern "ImageIO" fn CGImageMetadataRegisterNamespaceForPrefix() callconv(.C) i32;
+pub const metadataRegisterNamespaceForPrefix = CGImageMetadataRegisterNamespaceForPrefix;
 
-pub extern "ImageIO" fn MetadataSetTagWithPath() callconv(.C) i32;
+extern "ImageIO" fn CGImageMetadataSetTagWithPath() callconv(.C) i32;
+pub const metadataSetTagWithPath = CGImageMetadataSetTagWithPath;
 
-pub extern "ImageIO" fn MetadataSetValueWithPath() callconv(.C) i32;
+extern "ImageIO" fn CGImageMetadataSetValueWithPath() callconv(.C) i32;
+pub const metadataSetValueWithPath = CGImageMetadataSetValueWithPath;
 
-pub extern "ImageIO" fn MetadataRemoveTagWithPath() callconv(.C) i32;
+extern "ImageIO" fn CGImageMetadataRemoveTagWithPath() callconv(.C) i32;
+pub const metadataRemoveTagWithPath = CGImageMetadataRemoveTagWithPath;
 
-pub const MetadataTagBlock = *const fn(core_foundation.StringRef, MetadataTagRef) callconv(.C) i32;
+pub const MetadataTagBlock = *const fn (core_foundation.StringRef, MetadataTagRef) callconv(.C) i32;
 
-pub extern "ImageIO" fn MetadataEnumerateTagsUsingBlock(metadata: MetadataRef, rootPath: core_foundation.StringRef, options: core_foundation.DictionaryRef, block: MetadataTagBlock, ) callconv(.C) void;
+extern "ImageIO" fn CGImageMetadataEnumerateTagsUsingBlock(
+    metadata: MetadataRef,
+    rootPath: core_foundation.StringRef,
+    options: core_foundation.DictionaryRef,
+    block: MetadataTagBlock,
+) callconv(.C) void;
+pub const metadataEnumerateTagsUsingBlock = CGImageMetadataEnumerateTagsUsingBlock;
 
-pub extern "ImageIO" fn MetadataCopyTagMatchingImageProperty(metadata: MetadataRef, dictionaryName: core_foundation.StringRef, propertyName: core_foundation.StringRef) callconv(.C) MetadataTagRef;
+extern "ImageIO" fn CGImageMetadataCopyTagMatchingImageProperty(metadata: MetadataRef, dictionaryName: core_foundation.StringRef, propertyName: core_foundation.StringRef) callconv(.C) MetadataTagRef;
+pub const metadataCopyTagMatchingImageProperty = CGImageMetadataCopyTagMatchingImageProperty;
 
-pub extern "ImageIO" fn MetadataSetValueMatchingImageProperty() callconv(.C) i32;
+extern "ImageIO" fn CGImageMetadataSetValueMatchingImageProperty() callconv(.C) i32;
+pub const metadataSetValueMatchingImageProperty = CGImageMetadataSetValueMatchingImageProperty;
 
-pub extern "ImageIO" fn MetadataCreateXMPData(metadata: MetadataRef, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.DataRef;
+extern "ImageIO" fn CGImageMetadataCreateXMPData(metadata: MetadataRef, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.DataRef;
+pub const metadataCreateXMPData = CGImageMetadataCreateXMPData;
 
-pub extern "ImageIO" fn MetadataCreateFromXMPData(data: core_foundation.DataRef) callconv(.C) MetadataRef;
+extern "ImageIO" fn CGImageMetadataCreateFromXMPData(data: core_foundation.DataRef) callconv(.C) MetadataRef;
+pub const metadataCreateFromXMPData = CGImageMetadataCreateFromXMPData;
 
 pub const MetadataErrors = enum(objc.int32_t) {
     kCGImageMetadataErrorUnknown = 0,
@@ -95,75 +129,133 @@ pub const SourceStatus = enum(objc.int32_t) {
     kCGImageStatusComplete = 0,
 };
 
-pub extern "ImageIO" fn SourceGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "ImageIO" fn CGImageSourceGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const sourceGetTypeID = CGImageSourceGetTypeID;
 
-pub extern "ImageIO" fn SourceCopyTypeIdentifiers() callconv(.C) core_foundation.ArrayRef;
+extern "ImageIO" fn CGImageSourceCopyTypeIdentifiers() callconv(.C) core_foundation.ArrayRef;
+pub const sourceCopyTypeIdentifiers = CGImageSourceCopyTypeIdentifiers;
 
-pub extern "ImageIO" fn SourceCreateWithDataProvider(provider: core_graphics.DataProviderRef, options: core_foundation.DictionaryRef) callconv(.C) SourceRef;
+extern "ImageIO" fn CGImageSourceCreateWithDataProvider(provider: core_graphics.DataProviderRef, options: core_foundation.DictionaryRef) callconv(.C) SourceRef;
+pub const sourceCreateWithDataProvider = CGImageSourceCreateWithDataProvider;
 
-pub extern "ImageIO" fn SourceCreateWithData(data: core_foundation.DataRef, options: core_foundation.DictionaryRef) callconv(.C) SourceRef;
+extern "ImageIO" fn CGImageSourceCreateWithData(data: core_foundation.DataRef, options: core_foundation.DictionaryRef) callconv(.C) SourceRef;
+pub const sourceCreateWithData = CGImageSourceCreateWithData;
 
-pub extern "ImageIO" fn SourceCreateWithURL(url: core_foundation.URLRef, options: core_foundation.DictionaryRef) callconv(.C) SourceRef;
+extern "ImageIO" fn CGImageSourceCreateWithURL(url: core_foundation.URLRef, options: core_foundation.DictionaryRef) callconv(.C) SourceRef;
+pub const sourceCreateWithURL = CGImageSourceCreateWithURL;
 
-pub extern "ImageIO" fn SourceGetType(isrc: SourceRef) callconv(.C) core_foundation.StringRef;
+extern "ImageIO" fn CGImageSourceGetType(isrc: SourceRef) callconv(.C) core_foundation.StringRef;
+pub const sourceGetType = CGImageSourceGetType;
 
-pub extern "ImageIO" fn SourceGetCount(isrc: SourceRef) callconv(.C) objc.size_t;
+extern "ImageIO" fn CGImageSourceGetCount(isrc: SourceRef) callconv(.C) objc.size_t;
+pub const sourceGetCount = CGImageSourceGetCount;
 
-pub extern "ImageIO" fn SourceCopyProperties(isrc: SourceRef, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.DictionaryRef;
+extern "ImageIO" fn CGImageSourceCopyProperties(isrc: SourceRef, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.DictionaryRef;
+pub const sourceCopyProperties = CGImageSourceCopyProperties;
 
-pub extern "ImageIO" fn SourceCopyPropertiesAtIndex(isrc: SourceRef, index: objc.size_t, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.DictionaryRef;
+extern "ImageIO" fn CGImageSourceCopyPropertiesAtIndex(isrc: SourceRef, index: objc.size_t, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.DictionaryRef;
+pub const sourceCopyPropertiesAtIndex = CGImageSourceCopyPropertiesAtIndex;
 
-pub extern "ImageIO" fn SourceCopyMetadataAtIndex(isrc: SourceRef, index: objc.size_t, options: core_foundation.DictionaryRef) callconv(.C) MetadataRef;
+extern "ImageIO" fn CGImageSourceCopyMetadataAtIndex(isrc: SourceRef, index: objc.size_t, options: core_foundation.DictionaryRef) callconv(.C) MetadataRef;
+pub const sourceCopyMetadataAtIndex = CGImageSourceCopyMetadataAtIndex;
 
-pub extern "ImageIO" fn SourceCreateImageAtIndex(isrc: SourceRef, index: objc.size_t, options: core_foundation.DictionaryRef) callconv(.C) core_graphics.ImageRef;
+extern "ImageIO" fn CGImageSourceCreateImageAtIndex(isrc: SourceRef, index: objc.size_t, options: core_foundation.DictionaryRef) callconv(.C) core_graphics.ImageRef;
+pub const sourceCreateImageAtIndex = CGImageSourceCreateImageAtIndex;
 
-pub extern "ImageIO" fn SourceRemoveCacheAtIndex(isrc: SourceRef, index: objc.size_t) callconv(.C) void;
+extern "ImageIO" fn CGImageSourceRemoveCacheAtIndex(isrc: SourceRef, index: objc.size_t) callconv(.C) void;
+pub const sourceRemoveCacheAtIndex = CGImageSourceRemoveCacheAtIndex;
 
-pub extern "ImageIO" fn SourceCreateThumbnailAtIndex(isrc: SourceRef, index: objc.size_t, options: core_foundation.DictionaryRef) callconv(.C) core_graphics.ImageRef;
+extern "ImageIO" fn CGImageSourceCreateThumbnailAtIndex(isrc: SourceRef, index: objc.size_t, options: core_foundation.DictionaryRef) callconv(.C) core_graphics.ImageRef;
+pub const sourceCreateThumbnailAtIndex = CGImageSourceCreateThumbnailAtIndex;
 
-pub extern "ImageIO" fn SourceCreateIncremental(options: core_foundation.DictionaryRef) callconv(.C) SourceRef;
+extern "ImageIO" fn CGImageSourceCreateIncremental(options: core_foundation.DictionaryRef) callconv(.C) SourceRef;
+pub const sourceCreateIncremental = CGImageSourceCreateIncremental;
 
-pub extern "ImageIO" fn SourceUpdateData(isrc: SourceRef, data: core_foundation.DataRef, final: objc.bool) callconv(.C) void;
+extern "ImageIO" fn CGImageSourceUpdateData(isrc: SourceRef, data: core_foundation.DataRef, final: objc.bool) callconv(.C) void;
+pub const sourceUpdateData = CGImageSourceUpdateData;
 
-pub extern "ImageIO" fn SourceUpdateDataProvider(isrc: SourceRef, provider: core_graphics.DataProviderRef, final: objc.bool) callconv(.C) void;
+extern "ImageIO" fn CGImageSourceUpdateDataProvider(isrc: SourceRef, provider: core_graphics.DataProviderRef, final: objc.bool) callconv(.C) void;
+pub const sourceUpdateDataProvider = CGImageSourceUpdateDataProvider;
 
-pub extern "ImageIO" fn SourceGetStatus(isrc: SourceRef) callconv(.C) SourceStatus;
+extern "ImageIO" fn CGImageSourceGetStatus(isrc: SourceRef) callconv(.C) SourceStatus;
+pub const sourceGetStatus = CGImageSourceGetStatus;
 
-pub extern "ImageIO" fn SourceGetStatusAtIndex(isrc: SourceRef, index: objc.size_t) callconv(.C) SourceStatus;
+extern "ImageIO" fn CGImageSourceGetStatusAtIndex(isrc: SourceRef, index: objc.size_t) callconv(.C) SourceStatus;
+pub const sourceGetStatusAtIndex = CGImageSourceGetStatusAtIndex;
 
-pub extern "ImageIO" fn SourceGetPrimaryImageIndex(isrc: SourceRef) callconv(.C) objc.size_t;
+extern "ImageIO" fn CGImageSourceGetPrimaryImageIndex(isrc: SourceRef) callconv(.C) objc.size_t;
+pub const sourceGetPrimaryImageIndex = CGImageSourceGetPrimaryImageIndex;
 
-pub extern "ImageIO" fn SourceCopyAuxiliaryDataInfoAtIndex(isrc: SourceRef, index: objc.size_t, auxiliaryImageDataType: core_foundation.StringRef) callconv(.C) core_foundation.DictionaryRef;
+extern "ImageIO" fn CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc: SourceRef, index: objc.size_t, auxiliaryImageDataType: core_foundation.StringRef) callconv(.C) core_foundation.DictionaryRef;
+pub const sourceCopyAuxiliaryDataInfoAtIndex = CGImageSourceCopyAuxiliaryDataInfoAtIndex;
 
-pub extern "ImageIO" fn SourceSetAllowableTypes(allowableTypes: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+extern "ImageIO" fn CGImageSourceSetAllowableTypes(allowableTypes: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
+pub const sourceSetAllowableTypes = CGImageSourceSetAllowableTypes;
 
 pub const Destination = extern struct {};
 
 pub const DestinationRef = ?*Destination;
 
-pub extern "ImageIO" fn DestinationGetTypeID() callconv(.C) core_foundation.TypeID;
+extern "ImageIO" fn CGImageDestinationGetTypeID() callconv(.C) core_foundation.TypeID;
+pub const destinationGetTypeID = CGImageDestinationGetTypeID;
 
-pub extern "ImageIO" fn DestinationCopyTypeIdentifiers() callconv(.C) core_foundation.ArrayRef;
+extern "ImageIO" fn CGImageDestinationCopyTypeIdentifiers() callconv(.C) core_foundation.ArrayRef;
+pub const destinationCopyTypeIdentifiers = CGImageDestinationCopyTypeIdentifiers;
 
-pub extern "ImageIO" fn DestinationCreateWithDataConsumer(consumer: core_graphics.DataConsumerRef, @"type": core_foundation.StringRef, count: objc.size_t, options: core_foundation.DictionaryRef, ) callconv(.C) DestinationRef;
+extern "ImageIO" fn CGImageDestinationCreateWithDataConsumer(
+    consumer: core_graphics.DataConsumerRef,
+    @"type": core_foundation.StringRef,
+    count: objc.size_t,
+    options: core_foundation.DictionaryRef,
+) callconv(.C) DestinationRef;
+pub const destinationCreateWithDataConsumer = CGImageDestinationCreateWithDataConsumer;
 
-pub extern "ImageIO" fn DestinationCreateWithData(data: core_foundation.MutableDataRef, @"type": core_foundation.StringRef, count: objc.size_t, options: core_foundation.DictionaryRef, ) callconv(.C) DestinationRef;
+extern "ImageIO" fn CGImageDestinationCreateWithData(
+    data: core_foundation.MutableDataRef,
+    @"type": core_foundation.StringRef,
+    count: objc.size_t,
+    options: core_foundation.DictionaryRef,
+) callconv(.C) DestinationRef;
+pub const destinationCreateWithData = CGImageDestinationCreateWithData;
 
-pub extern "ImageIO" fn DestinationCreateWithURL(url: core_foundation.URLRef, @"type": core_foundation.StringRef, count: objc.size_t, options: core_foundation.DictionaryRef, ) callconv(.C) DestinationRef;
+extern "ImageIO" fn CGImageDestinationCreateWithURL(
+    url: core_foundation.URLRef,
+    @"type": core_foundation.StringRef,
+    count: objc.size_t,
+    options: core_foundation.DictionaryRef,
+) callconv(.C) DestinationRef;
+pub const destinationCreateWithURL = CGImageDestinationCreateWithURL;
 
-pub extern "ImageIO" fn DestinationSetProperties(idst: DestinationRef, properties: core_foundation.DictionaryRef) callconv(.C) void;
+extern "ImageIO" fn CGImageDestinationSetProperties(idst: DestinationRef, properties: core_foundation.DictionaryRef) callconv(.C) void;
+pub const destinationSetProperties = CGImageDestinationSetProperties;
 
-pub extern "ImageIO" fn DestinationAddImage(idst: DestinationRef, image: core_graphics.ImageRef, properties: core_foundation.DictionaryRef) callconv(.C) void;
+extern "ImageIO" fn CGImageDestinationAddImage(idst: DestinationRef, image: core_graphics.ImageRef, properties: core_foundation.DictionaryRef) callconv(.C) void;
+pub const destinationAddImage = CGImageDestinationAddImage;
 
-pub extern "ImageIO" fn DestinationAddImageFromSource(idst: DestinationRef, isrc: SourceRef, index: objc.size_t, properties: core_foundation.DictionaryRef, ) callconv(.C) void;
+extern "ImageIO" fn CGImageDestinationAddImageFromSource(
+    idst: DestinationRef,
+    isrc: SourceRef,
+    index: objc.size_t,
+    properties: core_foundation.DictionaryRef,
+) callconv(.C) void;
+pub const destinationAddImageFromSource = CGImageDestinationAddImageFromSource;
 
-pub extern "ImageIO" fn DestinationFinalize() callconv(.C) i32;
+extern "ImageIO" fn CGImageDestinationFinalize() callconv(.C) i32;
+pub const destinationFinalize = CGImageDestinationFinalize;
 
-pub extern "ImageIO" fn DestinationAddImageAndMetadata(idst: DestinationRef, image: core_graphics.ImageRef, metadata: MetadataRef, options: core_foundation.DictionaryRef, ) callconv(.C) void;
+extern "ImageIO" fn CGImageDestinationAddImageAndMetadata(
+    idst: DestinationRef,
+    image: core_graphics.ImageRef,
+    metadata: MetadataRef,
+    options: core_foundation.DictionaryRef,
+) callconv(.C) void;
+pub const destinationAddImageAndMetadata = CGImageDestinationAddImageAndMetadata;
 
-pub extern "ImageIO" fn DestinationCopyImageSource() callconv(.C) i32;
+extern "ImageIO" fn CGImageDestinationCopyImageSource() callconv(.C) i32;
+pub const destinationCopyImageSource = CGImageDestinationCopyImageSource;
 
-pub extern "ImageIO" fn DestinationAddAuxiliaryDataInfo(idst: DestinationRef, auxiliaryImageDataType: core_foundation.StringRef, auxiliaryDataInfoDictionary: core_foundation.DictionaryRef) callconv(.C) void;
+extern "ImageIO" fn CGImageDestinationAddAuxiliaryDataInfo(idst: DestinationRef, auxiliaryImageDataType: core_foundation.StringRef, auxiliaryDataInfoDictionary: core_foundation.DictionaryRef) callconv(.C) void;
+pub const destinationAddAuxiliaryDataInfo = CGImageDestinationAddAuxiliaryDataInfo;
 
 pub const PropertyOrientation = enum(objc.uint32_t) {
     kCGImagePropertyOrientationUp = 1,
@@ -189,9 +281,10 @@ pub const AnimationStatus = enum(objc.OSStatus) {
     kCGImageAnimationStatus_AllocationFailure = -22144,
 };
 
-pub const SourceAnimationBlock = *const fn(objc.size_t, core_graphics.ImageRef, ?*objc.bool) callconv(.C) void;
+pub const SourceAnimationBlock = *const fn (objc.size_t, core_graphics.ImageRef, ?*objc.bool) callconv(.C) void;
 
-pub extern "ImageIO" fn CGAnimateImageAtURLWithBlock(url: core_foundation.URLRef, options: core_foundation.DictionaryRef, block: SourceAnimationBlock) callconv(.C) objc.OSStatus;
+extern "ImageIO" fn CGAnimateImageAtURLWithBlock(url: core_foundation.URLRef, options: core_foundation.DictionaryRef, block: SourceAnimationBlock) callconv(.C) objc.OSStatus;
+pub const teImageAtURLWithBlock = CGAnimateImageAtURLWithBlock;
 
-pub extern "ImageIO" fn CGAnimateImageDataWithBlock(data: core_foundation.DataRef, options: core_foundation.DictionaryRef, block: SourceAnimationBlock) callconv(.C) objc.OSStatus;
-
+extern "ImageIO" fn CGAnimateImageDataWithBlock(data: core_foundation.DataRef, options: core_foundation.DictionaryRef, block: SourceAnimationBlock) callconv(.C) objc.OSStatus;
+pub const teImageDataWithBlock = CGAnimateImageDataWithBlock;
