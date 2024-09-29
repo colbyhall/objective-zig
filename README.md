@@ -26,6 +26,7 @@
 - [OpenGL](src/opengl.zig)
 - [QuartzCore](src/quartz_core.zig)
 - [Security](src/security.zig)
+- [CoreLocation](src/core_location.zig)
 
 ## Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests if you want to help improve the project.
