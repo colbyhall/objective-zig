@@ -4,7 +4,8 @@
 
 `objective-zig` is a work-in-progress Objective-C runtime and auto generated collection of Objective-C frameworks in zig. You can find the bindings generator at [objective-zig-gen](https://github.com/colbyhall/objective-zig-gen/tree/main). These bindings are not ready. See the notice at the bottom of the README.
 
-**Please read before continuing.** These bindings are work in progress. They may not compile to Zig and they may not function correctly. They have not been tested yet. Expect major changes to the runtime and how that impacts the frameworks.
+## Please Read 
+These bindings are work in progress. They may not compile to Zig and they may not function correctly. They have not been tested yet. Expect major changes to the runtime and how that impacts the frameworks.
 
 The [runtime](src/objc.zig) is based off of other Zig Objective-C runtimes ([objz](https://github.com/robbielyman/objz), [zig-objc](https://github.com/mitchellh/zig-objc), and [mach_objc](https://github.com/hexops/mach-objc)).
 
