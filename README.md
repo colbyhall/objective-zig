@@ -7,8 +7,8 @@
 
 ## Frameworks
 - [Runtime](src/objc.zig)
-- [CoreFoundation](src/cf.zig)
-- [Foundation](src/ns.zig)
+- [CoreFoundation](src/core_foundation.zig)
+- [Foundation](src/foundation.zig)
 - [AppKit](src/app_kit.zig)
 - [Metal](src/metal.zig)
 - [ApplicationServices](src/application_services.zig)
