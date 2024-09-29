@@ -75,7 +75,7 @@ pub const transform3DIsAffine = CATransform3DIsAffine;
 extern "QuartzCore" fn CATransform3DGetAffineTransform(t: Transform3D) callconv(.C) core_foundation.CGAffineTransform;
 pub const transform3DGetAffineTransform = CATransform3DGetAffineTransform;
 
-pub const MediaTimingFillMode = ?*NSString;
+pub const MediaTimingFillMode = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAMediaTiming?language=objc
 pub const MediaTiming = opaque {
@@ -150,13 +150,13 @@ pub const MediaTiming = opaque {
     }
 };
 
-pub const LayerContentsGravity = ?*NSString;
+pub const LayerContentsGravity = ?*foundation.String;
 
-pub const LayerContentsFormat = ?*NSString;
+pub const LayerContentsFormat = ?*foundation.String;
 
-pub const LayerContentsFilter = ?*NSString;
+pub const LayerContentsFilter = ?*foundation.String;
 
-pub const LayerCornerCurve = ?*NSString;
+pub const LayerCornerCurve = ?*foundation.String;
 
 pub const AutoresizingMask = enum(u32) {
     kCALayerNotSizable = 0,
@@ -168,7 +168,7 @@ pub const AutoresizingMask = enum(u32) {
     kCALayerMaxYMargin = 32,
 };
 
-pub const ToneMapMode = ?*NSString;
+pub const ToneMapMode = ?*foundation.String;
 
 pub const EdgeAntialiasingMask = enum(u32) {
     kCALayerLeftEdge = 1,
@@ -186,10 +186,7 @@ pub const CornerMask = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/QuartzCore/CALayer?language=objc
 pub const Layer = opaque {
-    pub const InternalInfo = objc.ExternClass("CALayer", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        MediaTiming,
-    });
+    pub const InternalInfo = objc.ExternClass("CALayer", @This(), objc.NSObject, &.{ foundation.SecureCoding, MediaTiming });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -234,12 +231,12 @@ pub const Layer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -298,16 +295,16 @@ pub const Layer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -402,7 +399,7 @@ pub const Layer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -518,15 +515,15 @@ pub const Layer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -534,7 +531,7 @@ pub const Layer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -542,7 +539,7 @@ pub const Layer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -870,19 +867,19 @@ pub const Layer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -966,11 +963,11 @@ pub const Layer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -982,20 +979,18 @@ pub const Layer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CALayoutManager?language=objc
 pub const LayoutManager = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
-        objc.NSObject,
-    });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1037,12 +1032,12 @@ pub const LayoutManager = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn preferredSizeOfLayer(_self: *@This(), _layer: ?*Layer) core_foundation.CGSize {
@@ -1066,16 +1061,14 @@ pub const Action = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*foundation.String, _anObject: *objc.Id, _dict: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
     }
 };
 
 /// https://developer.apple.com/documentation/QuartzCore/CALayerDelegate?language=objc
 pub const LayerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
-        objc.NSObject,
-    });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1117,12 +1110,12 @@ pub const LayerDelegate = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn displayLayer(_self: *@This(), _layer: ?*Layer) void {
@@ -1141,7 +1134,7 @@ pub const LayerDelegate = opaque {
         return objc.msgSend(_self, "layoutSublayersOfLayer:", void, .{_layer});
     }
 
-    pub fn actionForLayerForKey(_self: *@This(), _layer: ?*Layer, _event: ?*NSString) ?*anyopaque {
+    pub fn actionForLayerForKey(_self: *@This(), _layer: ?*Layer, _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForLayer:forKey:", ?*anyopaque, .{ _layer, _event });
     }
 };
@@ -1158,22 +1151,17 @@ pub const frameRateRangeMake = CAFrameRateRangeMake;
 extern "QuartzCore" fn CAFrameRateRangeIsEqualToRange() callconv(.C) i32;
 pub const frameRateRangeIsEqualToRange = CAFrameRateRangeIsEqualToRange;
 
-pub const AnimationCalculationMode = ?*NSString;
+pub const AnimationCalculationMode = ?*foundation.String;
 
-pub const AnimationRotationMode = ?*NSString;
+pub const AnimationRotationMode = ?*foundation.String;
 
-pub const TransitionType = ?*NSString;
+pub const TransitionType = ?*foundation.String;
 
-pub const TransitionSubtype = ?*NSString;
+pub const TransitionSubtype = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAAnimation?language=objc
 pub const Animation = opaque {
-    pub const InternalInfo = objc.ExternClass("CAAnimation", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-        MediaTiming,
-        Action,
-    });
+    pub const InternalInfo = objc.ExternClass("CAAnimation", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying, MediaTiming, Action });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1218,12 +1206,12 @@ pub const Animation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1282,16 +1270,16 @@ pub const Animation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -1370,7 +1358,7 @@ pub const Animation = opaque {
         return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
 
-    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*foundation.String, _anObject: *objc.Id, _dict: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
     }
 
@@ -1378,7 +1366,7 @@ pub const Animation = opaque {
         return objc.msgSend(_self, "animation", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -1417,9 +1405,7 @@ pub const Animation = opaque {
 
 /// https://developer.apple.com/documentation/QuartzCore/CAAnimationDelegate?language=objc
 pub const AnimationDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
-        objc.NSObject,
-    });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1461,12 +1447,12 @@ pub const AnimationDelegate = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn animationDidStart(_self: *@This(), _anim: ?*Animation) void {
@@ -1525,12 +1511,12 @@ pub const PropertyAnimation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1589,16 +1575,16 @@ pub const PropertyAnimation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -1677,7 +1663,7 @@ pub const PropertyAnimation = opaque {
         return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
 
-    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*foundation.String, _anObject: *objc.Id, _dict: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
     }
 
@@ -1685,7 +1671,7 @@ pub const PropertyAnimation = opaque {
         return objc.msgSend(_self, "animation", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -1721,15 +1707,15 @@ pub const PropertyAnimation = opaque {
         return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
     }
 
-    pub fn animationWithKeyPath(_self: *@This(), _path: ?*NSString) *@This() {
+    pub fn animationWithKeyPath(_self: *@This(), _path: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "animationWithKeyPath:", *@This(), .{_path});
     }
 
-    pub fn keyPath(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "keyPath", ?*NSString, .{});
+    pub fn keyPath(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "keyPath", ?*foundation.String, .{});
     }
 
-    pub fn setKeyPath(_self: *@This(), _keyPath: ?*NSString) void {
+    pub fn setKeyPath(_self: *@This(), _keyPath: ?*foundation.String) void {
         return objc.msgSend(_self, "setKeyPath:", void, .{_keyPath});
     }
 
@@ -1805,12 +1791,12 @@ pub const BasicAnimation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1869,16 +1855,16 @@ pub const BasicAnimation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -1957,7 +1943,7 @@ pub const BasicAnimation = opaque {
         return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
 
-    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*foundation.String, _anObject: *objc.Id, _dict: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
     }
 
@@ -1965,7 +1951,7 @@ pub const BasicAnimation = opaque {
         return objc.msgSend(_self, "animation", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -2001,15 +1987,15 @@ pub const BasicAnimation = opaque {
         return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
     }
 
-    pub fn animationWithKeyPath(_self: *@This(), _path: ?*NSString) *@This() {
+    pub fn animationWithKeyPath(_self: *@This(), _path: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "animationWithKeyPath:", *@This(), .{_path});
     }
 
-    pub fn keyPath(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "keyPath", ?*NSString, .{});
+    pub fn keyPath(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "keyPath", ?*foundation.String, .{});
     }
 
-    pub fn setKeyPath(_self: *@This(), _keyPath: ?*NSString) void {
+    pub fn setKeyPath(_self: *@This(), _keyPath: ?*foundation.String) void {
         return objc.msgSend(_self, "setKeyPath:", void, .{_keyPath});
     }
 
@@ -2109,12 +2095,12 @@ pub const KeyframeAnimation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2173,16 +2159,16 @@ pub const KeyframeAnimation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -2261,7 +2247,7 @@ pub const KeyframeAnimation = opaque {
         return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
 
-    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*foundation.String, _anObject: *objc.Id, _dict: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
     }
 
@@ -2269,7 +2255,7 @@ pub const KeyframeAnimation = opaque {
         return objc.msgSend(_self, "animation", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -2305,15 +2291,15 @@ pub const KeyframeAnimation = opaque {
         return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
     }
 
-    pub fn animationWithKeyPath(_self: *@This(), _path: ?*NSString) *@This() {
+    pub fn animationWithKeyPath(_self: *@This(), _path: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "animationWithKeyPath:", *@This(), .{_path});
     }
 
-    pub fn keyPath(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "keyPath", ?*NSString, .{});
+    pub fn keyPath(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "keyPath", ?*foundation.String, .{});
     }
 
-    pub fn setKeyPath(_self: *@This(), _keyPath: ?*NSString) void {
+    pub fn setKeyPath(_self: *@This(), _keyPath: ?*foundation.String) void {
         return objc.msgSend(_self, "setKeyPath:", void, .{_keyPath});
     }
 
@@ -2341,11 +2327,11 @@ pub const KeyframeAnimation = opaque {
         return objc.msgSend(_self, "setValueFunction:", void, .{_valueFunction});
     }
 
-    pub fn values(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "values", ?*NSArray, .{});
+    pub fn values(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "values", ?*foundation.Array, .{});
     }
 
-    pub fn setValues(_self: *@This(), _values: ?*NSArray) void {
+    pub fn setValues(_self: *@This(), _values: ?*foundation.Array) void {
         return objc.msgSend(_self, "setValues:", void, .{_values});
     }
 
@@ -2461,12 +2447,12 @@ pub const SpringAnimation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2525,16 +2511,16 @@ pub const SpringAnimation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -2613,7 +2599,7 @@ pub const SpringAnimation = opaque {
         return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
 
-    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*foundation.String, _anObject: *objc.Id, _dict: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
     }
 
@@ -2621,7 +2607,7 @@ pub const SpringAnimation = opaque {
         return objc.msgSend(_self, "animation", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -2657,15 +2643,15 @@ pub const SpringAnimation = opaque {
         return objc.msgSend(_self, "setPreferredFrameRateRange:", void, .{_preferredFrameRateRange});
     }
 
-    pub fn animationWithKeyPath(_self: *@This(), _path: ?*NSString) *@This() {
+    pub fn animationWithKeyPath(_self: *@This(), _path: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "animationWithKeyPath:", *@This(), .{_path});
     }
 
-    pub fn keyPath(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "keyPath", ?*NSString, .{});
+    pub fn keyPath(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "keyPath", ?*foundation.String, .{});
     }
 
-    pub fn setKeyPath(_self: *@This(), _keyPath: ?*NSString) void {
+    pub fn setKeyPath(_self: *@This(), _keyPath: ?*foundation.String) void {
         return objc.msgSend(_self, "setKeyPath:", void, .{_keyPath});
     }
 
@@ -2821,12 +2807,12 @@ pub const Transition = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2885,16 +2871,16 @@ pub const Transition = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -2973,7 +2959,7 @@ pub const Transition = opaque {
         return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
 
-    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*foundation.String, _anObject: *objc.Id, _dict: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
     }
 
@@ -2981,7 +2967,7 @@ pub const Transition = opaque {
         return objc.msgSend(_self, "animation", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -3105,12 +3091,12 @@ pub const AnimationGroup = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3169,16 +3155,16 @@ pub const AnimationGroup = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -3257,7 +3243,7 @@ pub const AnimationGroup = opaque {
         return objc.msgSend(_self, "setFillMode:", void, .{_fillMode});
     }
 
-    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*NSString, _anObject: *objc.Id, _dict: ?*core_image.NSDictionary) void {
+    pub fn runActionForKeyObjectArguments(_self: *@This(), _event: ?*foundation.String, _anObject: *objc.Id, _dict: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "runActionForKey:object:arguments:", void, .{ _event, _anObject, _dict });
     }
 
@@ -3265,7 +3251,7 @@ pub const AnimationGroup = opaque {
         return objc.msgSend(_self, "animation", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -3323,9 +3309,7 @@ pub const ConstraintAttribute = enum(i32) {
 
 /// https://developer.apple.com/documentation/QuartzCore/CAConstraintLayoutManager?language=objc
 pub const ConstraintLayoutManager = opaque {
-    pub const InternalInfo = objc.ExternClass("CAConstraintLayoutManager", @This(), objc.NSObject, &.{
-        LayoutManager,
-    });
+    pub const InternalInfo = objc.ExternClass("CAConstraintLayoutManager", @This(), objc.NSObject, &.{LayoutManager});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3370,12 +3354,12 @@ pub const ConstraintLayoutManager = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3434,16 +3418,16 @@ pub const ConstraintLayoutManager = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn preferredSizeOfLayer(_self: *@This(), _layer: ?*Layer) core_foundation.CGSize {
@@ -3465,9 +3449,7 @@ pub const ConstraintLayoutManager = opaque {
 
 /// https://developer.apple.com/documentation/QuartzCore/CAConstraint?language=objc
 pub const Constraint = opaque {
-    pub const InternalInfo = objc.ExternClass("CAConstraint", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CAConstraint", @This(), objc.NSObject, &.{foundation.SecureCoding});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3512,12 +3494,12 @@ pub const Constraint = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3576,16 +3558,16 @@ pub const Constraint = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -3603,7 +3585,7 @@ pub const Constraint = opaque {
     pub fn constraintWithAttributeRelativeToAttributeScaleOffset(
         _self: *@This(),
         _attr: ConstraintAttribute,
-        _srcId: ?*NSString,
+        _srcId: ?*foundation.String,
         _srcAttr: ConstraintAttribute,
         _m: core_foundation.CGFloat,
         _c: core_foundation.CGFloat,
@@ -3620,7 +3602,7 @@ pub const Constraint = opaque {
     pub fn constraintWithAttributeRelativeToAttributeOffset(
         _self: *@This(),
         _attr: ConstraintAttribute,
-        _srcId: ?*NSString,
+        _srcId: ?*foundation.String,
         _srcAttr: ConstraintAttribute,
         _c: core_foundation.CGFloat,
     ) *@This() {
@@ -3632,14 +3614,14 @@ pub const Constraint = opaque {
         });
     }
 
-    pub fn constraintWithAttributeRelativeToAttribute(_self: *@This(), _attr: ConstraintAttribute, _srcId: ?*NSString, _srcAttr: ConstraintAttribute) *@This() {
+    pub fn constraintWithAttributeRelativeToAttribute(_self: *@This(), _attr: ConstraintAttribute, _srcId: ?*foundation.String, _srcAttr: ConstraintAttribute) *@This() {
         return objc.msgSend(_self, "constraintWithAttribute:relativeTo:attribute:", *@This(), .{ _attr, _srcId, _srcAttr });
     }
 
     pub fn initWithAttributeRelativeToAttributeScaleOffset(
         _self: *@This(),
         _attr: ConstraintAttribute,
-        _srcId: ?*NSString,
+        _srcId: ?*foundation.String,
         _srcAttr: ConstraintAttribute,
         _m: core_foundation.CGFloat,
         _c: core_foundation.CGFloat,
@@ -3657,8 +3639,8 @@ pub const Constraint = opaque {
         return objc.msgSend(_self, "attribute", ConstraintAttribute, .{});
     }
 
-    pub fn sourceName(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "sourceName", ?*NSString, .{});
+    pub fn sourceName(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "sourceName", ?*foundation.String, .{});
     }
 
     pub fn sourceAttribute(_self: *@This()) ConstraintAttribute {
@@ -3721,12 +3703,12 @@ pub const DisplayLink = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3785,27 +3767,27 @@ pub const DisplayLink = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn displayLinkWithTargetSelector(_self: *@This(), _target: *objc.Id, _sel: *objc.SEL) ?*DisplayLink {
         return objc.msgSend(_self, "displayLinkWithTarget:selector:", ?*DisplayLink, .{ _target, _sel });
     }
 
-    pub fn addToRunLoopForMode(_self: *@This(), _runloop: ?*NSRunLoop, _mode: foundation.RunLoopMode) void {
+    pub fn addToRunLoopForMode(_self: *@This(), _runloop: ?*foundation.RunLoop, _mode: foundation.RunLoopMode) void {
         return objc.msgSend(_self, "addToRunLoop:forMode:", void, .{ _runloop, _mode });
     }
 
-    pub fn removeFromRunLoopForMode(_self: *@This(), _runloop: ?*NSRunLoop, _mode: foundation.RunLoopMode) void {
+    pub fn removeFromRunLoopForMode(_self: *@This(), _runloop: ?*foundation.RunLoop, _mode: foundation.RunLoopMode) void {
         return objc.msgSend(_self, "removeFromRunLoop:forMode:", void, .{ _runloop, _mode });
     }
 
@@ -3860,10 +3842,7 @@ pub const DisplayLink = opaque {
 
 /// https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata?language=objc
 pub const EDRMetadata = opaque {
-    pub const InternalInfo = objc.ExternClass("CAEDRMetadata", @This(), objc.NSObject, &.{
-        foundation.Copying,
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CAEDRMetadata", @This(), objc.NSObject, &.{ foundation.Copying, foundation.SecureCoding });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3908,12 +3887,12 @@ pub const EDRMetadata = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3972,16 +3951,16 @@ pub const EDRMetadata = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -3996,7 +3975,7 @@ pub const EDRMetadata = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn hdr10MetadataWithDisplayInfoContentInfoOpticalOutputScale(_self: *@This(), _displayData: ?*core_image.NSData, _contentData: ?*core_image.NSData, _scale: f32) ?*EDRMetadata {
+    pub fn hdr10MetadataWithDisplayInfoContentInfoOpticalOutputScale(_self: *@This(), _displayData: ?*foundation.Data, _contentData: ?*foundation.Data, _scale: f32) ?*EDRMetadata {
         return objc.msgSend(_self, "HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:", ?*EDRMetadata, .{ _displayData, _contentData, _scale });
     }
 
@@ -4004,7 +3983,7 @@ pub const EDRMetadata = opaque {
         return objc.msgSend(_self, "HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:", ?*EDRMetadata, .{ _minNits, _maxNits, _scale });
     }
 
-    pub fn hlgMetadataWithAmbientViewingEnvironment(_self: *@This(), _data: ?*core_image.NSData) ?*EDRMetadata {
+    pub fn hlgMetadataWithAmbientViewingEnvironment(_self: *@This(), _data: ?*foundation.Data) ?*EDRMetadata {
         return objc.msgSend(_self, "HLGMetadataWithAmbientViewingEnvironment:", ?*EDRMetadata, .{_data});
     }
 
@@ -4021,9 +4000,7 @@ pub const _CAEDRMetadataPrivate = extern struct {};
 
 /// https://developer.apple.com/documentation/QuartzCore/CAMetalDrawable?language=objc
 pub const MetalDrawable = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
-        metal.Drawable,
-    });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{metal.Drawable});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -4065,12 +4042,12 @@ pub const MetalDrawable = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn present(_self: *@This()) void {
@@ -4153,12 +4130,12 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4217,16 +4194,16 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -4321,7 +4298,7 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -4437,15 +4414,15 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -4453,7 +4430,7 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -4461,7 +4438,7 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -4789,19 +4766,19 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -4885,11 +4862,11 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -4901,11 +4878,11 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 
@@ -4997,11 +4974,11 @@ pub const MetalLayer = opaque {
         return objc.msgSend(_self, "setAllowsNextDrawableTimeout:", void, .{_allowsNextDrawableTimeout});
     }
 
-    pub fn developerHUDProperties(_self: *@This()) ?*NSDictionary {
-        return objc.msgSend(_self, "developerHUDProperties", ?*NSDictionary, .{});
+    pub fn developerHUDProperties(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "developerHUDProperties", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setDeveloperHUDProperties(_self: *@This(), _developerHUDProperties: ?*NSDictionary) void {
+    pub fn setDeveloperHUDProperties(_self: *@This(), _developerHUDProperties: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setDeveloperHUDProperties:", void, .{_developerHUDProperties});
     }
 };
@@ -5055,12 +5032,12 @@ pub const MetalDisplayLinkUpdate = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5119,16 +5096,16 @@ pub const MetalDisplayLinkUpdate = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn drawable(_self: *@This()) ?*anyopaque {
@@ -5204,12 +5181,12 @@ pub const MetalDisplayLink = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5268,27 +5245,27 @@ pub const MetalDisplayLink = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn initWithMetalLayer(_self: *@This(), _layer: ?*MetalLayer) *@This() {
         return objc.msgSend(_self, "initWithMetalLayer:", *@This(), .{_layer});
     }
 
-    pub fn addToRunLoopForMode(_self: *@This(), _runloop: ?*NSRunLoop, _mode: foundation.RunLoopMode) void {
+    pub fn addToRunLoopForMode(_self: *@This(), _runloop: ?*foundation.RunLoop, _mode: foundation.RunLoopMode) void {
         return objc.msgSend(_self, "addToRunLoop:forMode:", void, .{ _runloop, _mode });
     }
 
-    pub fn removeFromRunLoopForMode(_self: *@This(), _runloop: ?*NSRunLoop, _mode: foundation.RunLoopMode) void {
+    pub fn removeFromRunLoopForMode(_self: *@This(), _runloop: ?*foundation.RunLoop, _mode: foundation.RunLoopMode) void {
         return objc.msgSend(_self, "removeFromRunLoop:forMode:", void, .{ _runloop, _mode });
     }
 
@@ -5331,10 +5308,7 @@ pub const MetalDisplayLink = opaque {
 
 /// https://developer.apple.com/documentation/QuartzCore/CAEmitterCell?language=objc
 pub const EmitterCell = opaque {
-    pub const InternalInfo = objc.ExternClass("CAEmitterCell", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        MediaTiming,
-    });
+    pub const InternalInfo = objc.ExternClass("CAEmitterCell", @This(), objc.NSObject, &.{ foundation.SecureCoding, MediaTiming });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -5379,12 +5353,12 @@ pub const EmitterCell = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5443,16 +5417,16 @@ pub const EmitterCell = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -5535,15 +5509,15 @@ pub const EmitterCell = opaque {
         return objc.msgSend(_self, "emitterCell", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -5779,19 +5753,19 @@ pub const EmitterCell = opaque {
         return objc.msgSend(_self, "setContentsScale:", void, .{_contentsScale});
     }
 
-    pub fn minificationFilter(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "minificationFilter", ?*NSString, .{});
+    pub fn minificationFilter(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "minificationFilter", ?*foundation.String, .{});
     }
 
-    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: ?*NSString) void {
+    pub fn setMinificationFilter(_self: *@This(), _minificationFilter: ?*foundation.String) void {
         return objc.msgSend(_self, "setMinificationFilter:", void, .{_minificationFilter});
     }
 
-    pub fn magnificationFilter(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "magnificationFilter", ?*NSString, .{});
+    pub fn magnificationFilter(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "magnificationFilter", ?*foundation.String, .{});
     }
 
-    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: ?*NSString) void {
+    pub fn setMagnificationFilter(_self: *@This(), _magnificationFilter: ?*foundation.String) void {
         return objc.msgSend(_self, "setMagnificationFilter:", void, .{_magnificationFilter});
     }
 
@@ -5811,20 +5785,20 @@ pub const EmitterCell = opaque {
         return objc.msgSend(_self, "setEmitterCells:", void, .{_emitterCells});
     }
 
-    pub fn style(_self: *@This()) ?*NSDictionary {
-        return objc.msgSend(_self, "style", ?*NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 };
 
-pub const EmitterLayerEmitterShape = ?*NSString;
+pub const EmitterLayerEmitterShape = ?*foundation.String;
 
-pub const EmitterLayerEmitterMode = ?*NSString;
+pub const EmitterLayerEmitterMode = ?*foundation.String;
 
-pub const EmitterLayerRenderMode = ?*NSString;
+pub const EmitterLayerRenderMode = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer?language=objc
 pub const EmitterLayer = opaque {
@@ -5873,12 +5847,12 @@ pub const EmitterLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5937,16 +5911,16 @@ pub const EmitterLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -6041,7 +6015,7 @@ pub const EmitterLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -6157,15 +6131,15 @@ pub const EmitterLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -6173,7 +6147,7 @@ pub const EmitterLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -6181,7 +6155,7 @@ pub const EmitterLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -6509,19 +6483,19 @@ pub const EmitterLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -6605,11 +6579,11 @@ pub const EmitterLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -6621,11 +6595,11 @@ pub const EmitterLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 
@@ -6750,13 +6724,11 @@ pub const EmitterLayer = opaque {
     }
 };
 
-pub const MediaTimingFunctionName = ?*NSString;
+pub const MediaTimingFunctionName = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction?language=objc
 pub const MediaTimingFunction = opaque {
-    pub const InternalInfo = objc.ExternClass("CAMediaTimingFunction", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CAMediaTimingFunction", @This(), objc.NSObject, &.{foundation.SecureCoding});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -6801,12 +6773,12 @@ pub const MediaTimingFunction = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -6865,16 +6837,16 @@ pub const MediaTimingFunction = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -6930,7 +6902,7 @@ pub const MediaTimingFunction = opaque {
 
 pub const MediaTimingFunctionPrivate = extern struct {};
 
-pub const GradientLayerType = ?*NSString;
+pub const GradientLayerType = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAGradientLayer?language=objc
 pub const GradientLayer = opaque {
@@ -6979,12 +6951,12 @@ pub const GradientLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -7043,16 +7015,16 @@ pub const GradientLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -7147,7 +7119,7 @@ pub const GradientLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -7263,15 +7235,15 @@ pub const GradientLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -7279,7 +7251,7 @@ pub const GradientLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -7287,7 +7259,7 @@ pub const GradientLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -7615,19 +7587,19 @@ pub const GradientLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -7711,11 +7683,11 @@ pub const GradientLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -7727,19 +7699,19 @@ pub const GradientLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 
-    pub fn colors(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "colors", ?*NSArray, .{});
+    pub fn colors(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "colors", ?*foundation.Array, .{});
     }
 
-    pub fn setColors(_self: *@This(), _colors: ?*NSArray) void {
+    pub fn setColors(_self: *@This(), _colors: ?*foundation.Array) void {
         return objc.msgSend(_self, "setColors:", void, .{_colors});
     }
 
@@ -7823,12 +7795,12 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -7887,16 +7859,16 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -7991,7 +7963,7 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -8107,15 +8079,15 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -8123,7 +8095,7 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -8131,7 +8103,7 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -8459,19 +8431,19 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -8555,11 +8527,11 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -8571,11 +8543,11 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 
@@ -8676,12 +8648,12 @@ pub const RemoteLayerClient = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -8740,16 +8712,16 @@ pub const RemoteLayerClient = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn initWithServerPort(_self: *@This(), _port: objc.mach_port_t) *@This() {
@@ -8820,12 +8792,12 @@ pub const RemoteLayerServer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -8884,16 +8856,16 @@ pub const RemoteLayerServer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn sharedServer(_self: *@This()) ?*RemoteLayerServer {
@@ -8952,12 +8924,12 @@ pub const Renderer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -9016,23 +8988,23 @@ pub const Renderer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn rendererWithCGLContextOptions(_self: *@This(), _ctx: ?*anyopaque, _dict: ?*NSDictionary) ?*Renderer {
+    pub fn rendererWithCGLContextOptions(_self: *@This(), _ctx: ?*anyopaque, _dict: ?*foundation.Dictionary) ?*Renderer {
         return objc.msgSend(_self, "rendererWithCGLContext:options:", ?*Renderer, .{ _ctx, _dict });
     }
 
-    pub fn rendererWithMTLTextureOptions(_self: *@This(), _tex: ?*anyopaque, _dict: ?*NSDictionary) ?*Renderer {
+    pub fn rendererWithMTLTextureOptions(_self: *@This(), _tex: ?*anyopaque, _dict: ?*foundation.Dictionary) ?*Renderer {
         return objc.msgSend(_self, "rendererWithMTLTexture:options:", ?*Renderer, .{ _tex, _dict });
     }
 
@@ -9130,12 +9102,12 @@ pub const ReplicatorLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -9194,16 +9166,16 @@ pub const ReplicatorLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -9298,7 +9270,7 @@ pub const ReplicatorLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -9414,15 +9386,15 @@ pub const ReplicatorLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -9430,7 +9402,7 @@ pub const ReplicatorLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -9438,7 +9410,7 @@ pub const ReplicatorLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -9766,19 +9738,19 @@ pub const ReplicatorLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -9862,11 +9834,11 @@ pub const ReplicatorLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -9878,11 +9850,11 @@ pub const ReplicatorLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 
@@ -9959,7 +9931,7 @@ pub const ReplicatorLayer = opaque {
     }
 };
 
-pub const ScrollLayerScrollMode = ?*NSString;
+pub const ScrollLayerScrollMode = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAScrollLayer?language=objc
 pub const ScrollLayer = opaque {
@@ -10008,12 +9980,12 @@ pub const ScrollLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -10072,16 +10044,16 @@ pub const ScrollLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -10176,7 +10148,7 @@ pub const ScrollLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -10292,15 +10264,15 @@ pub const ScrollLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -10308,7 +10280,7 @@ pub const ScrollLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -10316,7 +10288,7 @@ pub const ScrollLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -10644,19 +10616,19 @@ pub const ScrollLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -10740,11 +10712,11 @@ pub const ScrollLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -10756,11 +10728,11 @@ pub const ScrollLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 
@@ -10781,11 +10753,11 @@ pub const ScrollLayer = opaque {
     }
 };
 
-pub const ShapeLayerFillRule = ?*NSString;
+pub const ShapeLayerFillRule = ?*foundation.String;
 
-pub const ShapeLayerLineJoin = ?*NSString;
+pub const ShapeLayerLineJoin = ?*foundation.String;
 
-pub const ShapeLayerLineCap = ?*NSString;
+pub const ShapeLayerLineCap = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAShapeLayer?language=objc
 pub const ShapeLayer = opaque {
@@ -10834,12 +10806,12 @@ pub const ShapeLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -10898,16 +10870,16 @@ pub const ShapeLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -11002,7 +10974,7 @@ pub const ShapeLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -11118,15 +11090,15 @@ pub const ShapeLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -11134,7 +11106,7 @@ pub const ShapeLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -11142,7 +11114,7 @@ pub const ShapeLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -11470,19 +11442,19 @@ pub const ShapeLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -11566,11 +11538,11 @@ pub const ShapeLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -11582,11 +11554,11 @@ pub const ShapeLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 
@@ -11687,9 +11659,9 @@ pub const ShapeLayer = opaque {
     }
 };
 
-pub const TextLayerTruncationMode = ?*NSString;
+pub const TextLayerTruncationMode = ?*foundation.String;
 
-pub const TextLayerAlignmentMode = ?*NSString;
+pub const TextLayerAlignmentMode = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/QuartzCore/CATextLayer?language=objc
 pub const TextLayer = opaque {
@@ -11738,12 +11710,12 @@ pub const TextLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -11802,16 +11774,16 @@ pub const TextLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -11906,7 +11878,7 @@ pub const TextLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -12022,15 +11994,15 @@ pub const TextLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -12038,7 +12010,7 @@ pub const TextLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -12046,7 +12018,7 @@ pub const TextLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -12374,19 +12346,19 @@ pub const TextLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -12470,11 +12442,11 @@ pub const TextLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -12486,11 +12458,11 @@ pub const TextLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 
@@ -12608,12 +12580,12 @@ pub const TiledLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -12672,16 +12644,16 @@ pub const TiledLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -12776,7 +12748,7 @@ pub const TiledLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -12892,15 +12864,15 @@ pub const TiledLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -12908,7 +12880,7 @@ pub const TiledLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -12916,7 +12888,7 @@ pub const TiledLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -13244,19 +13216,19 @@ pub const TiledLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -13340,11 +13312,11 @@ pub const TiledLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -13356,11 +13328,11 @@ pub const TiledLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 
@@ -13440,12 +13412,12 @@ pub const Transaction = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -13504,16 +13476,16 @@ pub const Transaction = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn begin(_self: *@This()) void {
@@ -13564,11 +13536,11 @@ pub const Transaction = opaque {
         return objc.msgSend(_self, "setCompletionBlock:", void, .{_block});
     }
 
-    pub fn valueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn valueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "valueForKey:", *objc.Id, .{_key});
     }
 
-    pub fn setValueForKey(_self: *@This(), _anObject: *objc.Id, _key: ?*NSString) void {
+    pub fn setValueForKey(_self: *@This(), _anObject: *objc.Id, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "setValue:forKey:", void, .{ _anObject, _key });
     }
 };
@@ -13620,12 +13592,12 @@ pub const TransformLayer = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -13684,16 +13656,16 @@ pub const TransformLayer = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -13788,7 +13760,7 @@ pub const TransformLayer = opaque {
         return objc.msgSend(_self, "modelLayer", *@This(), .{});
     }
 
-    pub fn defaultValueForKey(_self: *@This(), _key: ?*NSString) *objc.Id {
+    pub fn defaultValueForKey(_self: *@This(), _key: ?*foundation.String) *objc.Id {
         return objc.msgSend(_self, "defaultValueForKey:", *objc.Id, .{_key});
     }
 
@@ -13904,15 +13876,15 @@ pub const TransformLayer = opaque {
         return objc.msgSend(_self, "resizeWithOldSuperlayerSize:", void, .{_size});
     }
 
-    pub fn defaultActionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn defaultActionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "defaultActionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn actionForKey(_self: *@This(), _event: ?*NSString) ?*anyopaque {
+    pub fn actionForKey(_self: *@This(), _event: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "actionForKey:", ?*anyopaque, .{_event});
     }
 
-    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*NSString) void {
+    pub fn addAnimationForKey(_self: *@This(), _anim: ?*Animation, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "addAnimation:forKey:", void, .{ _anim, _key });
     }
 
@@ -13920,7 +13892,7 @@ pub const TransformLayer = opaque {
         return objc.msgSend(_self, "removeAllAnimations", void, .{});
     }
 
-    pub fn removeAnimationForKey(_self: *@This(), _key: ?*NSString) void {
+    pub fn removeAnimationForKey(_self: *@This(), _key: ?*foundation.String) void {
         return objc.msgSend(_self, "removeAnimationForKey:", void, .{_key});
     }
 
@@ -13928,7 +13900,7 @@ pub const TransformLayer = opaque {
         return objc.msgSend(_self, "animationKeys", ?*anyopaque, .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: ?*NSString) ?*anyopaque {
+    pub fn animationForKey(_self: *@This(), _key: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "animationForKey:", ?*anyopaque, .{_key});
     }
 
@@ -14256,19 +14228,19 @@ pub const TransformLayer = opaque {
         return objc.msgSend(_self, "setCompositingFilter:", void, .{_compositingFilter});
     }
 
-    pub fn filters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "filters", ?*NSArray, .{});
+    pub fn filters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "filters", ?*foundation.Array, .{});
     }
 
-    pub fn setFilters(_self: *@This(), _filters: ?*NSArray) void {
+    pub fn setFilters(_self: *@This(), _filters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setFilters:", void, .{_filters});
     }
 
-    pub fn backgroundFilters(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "backgroundFilters", ?*NSArray, .{});
+    pub fn backgroundFilters(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "backgroundFilters", ?*foundation.Array, .{});
     }
 
-    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*NSArray) void {
+    pub fn setBackgroundFilters(_self: *@This(), _backgroundFilters: ?*foundation.Array) void {
         return objc.msgSend(_self, "setBackgroundFilters:", void, .{_backgroundFilters});
     }
 
@@ -14352,11 +14324,11 @@ pub const TransformLayer = opaque {
         return objc.msgSend(_self, "setActions:", void, .{_actions});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -14368,22 +14340,20 @@ pub const TransformLayer = opaque {
         return objc.msgSend(_self, "setDelegate:", void, .{_delegate});
     }
 
-    pub fn style(_self: *@This()) ?*core_image.NSDictionary {
-        return objc.msgSend(_self, "style", ?*core_image.NSDictionary, .{});
+    pub fn style(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "style", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setStyle(_self: *@This(), _style: ?*core_image.NSDictionary) void {
+    pub fn setStyle(_self: *@This(), _style: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setStyle:", void, .{_style});
     }
 };
 
-pub const ValueFunctionName = ?*NSString;
+pub const ValueFunctionName = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/QuartzCore/CAValueFunction?language=objc
 pub const ValueFunction = opaque {
-    pub const InternalInfo = objc.ExternClass("CAValueFunction", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CAValueFunction", @This(), objc.NSObject, &.{foundation.SecureCoding});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -14428,12 +14398,12 @@ pub const ValueFunction = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -14492,16 +14462,16 @@ pub const ValueFunction = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {

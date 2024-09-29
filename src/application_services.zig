@@ -3962,9 +3962,7 @@ pub const PMDataFormat = enum(u32) {
 
 /// https://developer.apple.com/documentation/ApplicationServices/PDEPlugIn?language=objc
 pub const PDEPlugIn = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
-        objc.NSObject,
-    });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -4014,7 +4012,7 @@ pub const PDEPlugIn = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -4030,12 +4028,12 @@ pub const PDEPlugIn = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn initWithBundle(_self: *@This(), _theBundle: ?*foundation.Bundle) *@This() {
@@ -4049,9 +4047,7 @@ pub const PDEPlugIn = opaque {
 
 /// https://developer.apple.com/documentation/ApplicationServices/PDEPanel?language=objc
 pub const PDEPanel = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
-        objc.NSObject,
-    });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -4101,7 +4097,7 @@ pub const PDEPanel = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -4117,12 +4113,12 @@ pub const PDEPanel = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn willShow(_self: *@This()) void {
@@ -4145,20 +4141,20 @@ pub const PDEPanel = opaque {
         return objc.msgSend(_self, "supportedPPDOptionKeys", ?*anyopaque, .{});
     }
 
-    pub fn ppdOptionKeyValueDidChangePpdChoice(_self: *@This(), _option: ?*NSString, _choice: ?*NSString) void {
+    pub fn ppdOptionKeyValueDidChangePpdChoice(_self: *@This(), _option: ?*foundation.String, _choice: ?*foundation.String) void {
         return objc.msgSend(_self, "PPDOptionKeyValueDidChange:ppdChoice:", void, .{ _option, _choice });
     }
 
-    pub fn panelView(_self: *@This()) ?*NSView {
-        return objc.msgSend(_self, "panelView", ?*NSView, .{});
+    pub fn panelView(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "panelView", ?*anyopaque, .{});
     }
 
-    pub fn panelName(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "panelName", ?*NSString, .{});
+    pub fn panelName(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "panelName", ?*foundation.String, .{});
     }
 
-    pub fn panelKind(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "panelKind", ?*NSString, .{});
+    pub fn panelKind(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "panelKind", ?*foundation.String, .{});
     }
 
     pub fn summaryInfo(_self: *@This()) ?*anyopaque {
@@ -4206,7 +4202,7 @@ pub const PDEPlugInCallbackProtocol = opaque {
         return objc.msgSend(_self, "ppdFile", ?*objc.ppd_file_s, .{});
     }
 
-    pub fn willChangePPDOptionKeyValuePpdChoice(_self: *@This(), _option: ?*NSString, _choice: ?*NSString) objc.BOOL {
+    pub fn willChangePPDOptionKeyValuePpdChoice(_self: *@This(), _option: ?*foundation.String, _choice: ?*foundation.String) objc.BOOL {
         return objc.msgSend(_self, "willChangePPDOptionKeyValue:ppdChoice:", objc.BOOL, .{ _option, _choice });
     }
 };

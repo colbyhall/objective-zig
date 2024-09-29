@@ -14,7 +14,7 @@ const metal = @import("metal.zig"); // Framework dependency Metal.
 
 /// https://developer.apple.com/documentation/CoreImage/CIVector?language=objc
 pub const Vector = opaque {
-    pub const InternalInfo = objc.ExternClass("CIVector", @This(), objc.NSObject, &.{foundation.Copying, foundation.SecureCoding, });
+    pub const InternalInfo = objc.ExternClass("CIVector", @This(), objc.NSObject, &.{foundation.Copying, foundation.SecureCoding});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -59,12 +59,12 @@ pub const Vector = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -123,16 +123,16 @@ pub const Vector = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -268,7 +268,7 @@ pub const anon235 = extern union {
 
 /// https://developer.apple.com/documentation/CoreImage/CIColor?language=objc
 pub const Color = opaque {
-    pub const InternalInfo = objc.ExternClass("CIColor", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, });
+    pub const InternalInfo = objc.ExternClass("CIColor", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -313,12 +313,12 @@ pub const Color = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -377,16 +377,16 @@ pub const Color = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -521,7 +521,7 @@ pub const Color = opaque {
 
 /// https://developer.apple.com/documentation/CoreImage/CIImage?language=objc
 pub const Image = opaque {
-    pub const InternalInfo = objc.ExternClass("CIImage", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, });
+    pub const InternalInfo = objc.ExternClass("CIImage", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -566,12 +566,12 @@ pub const Image = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -630,16 +630,16 @@ pub const Image = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -902,11 +902,11 @@ pub const Image = opaque {
         return objc.msgSend(_self, "imageByClampingToRect:", ?*Image, .{_rect});
     }
 
-    pub fn imageByApplyingFilterWithInputParameters(_self: *@This(), _filterName: ?*application_services.NSString, _params: ?*anyopaque) ?*Image {
+    pub fn imageByApplyingFilterWithInputParameters(_self: *@This(), _filterName: ?*foundation.String, _params: ?*anyopaque) ?*Image {
         return objc.msgSend(_self, "imageByApplyingFilter:withInputParameters:", ?*Image, .{_filterName, _params});
     }
 
-    pub fn imageByApplyingFilter(_self: *@This(), _filterName: ?*application_services.NSString) ?*Image {
+    pub fn imageByApplyingFilter(_self: *@This(), _filterName: ?*foundation.String) ?*Image {
         return objc.msgSend(_self, "imageByApplyingFilter:", ?*Image, .{_filterName});
     }
 
@@ -934,7 +934,7 @@ pub const Image = opaque {
         return objc.msgSend(_self, "imageByApplyingGaussianBlurWithSigma:", ?*Image, .{_sigma});
     }
 
-    pub fn imageBySettingProperties(_self: *@This(), _properties: ?*application_services.NSDictionary) ?*Image {
+    pub fn imageBySettingProperties(_self: *@This(), _properties: ?*foundation.Dictionary) ?*Image {
         return objc.msgSend(_self, "imageBySettingProperties:", ?*Image, .{_properties});
     }
 
@@ -1010,9 +1010,9 @@ pub const Image = opaque {
 
 pub const Format = i32;
 
-pub const ImageOption = ?*application_services.NSString;
+pub const ImageOption = ?*foundation.String;
 
-pub const ImageAutoAdjustmentOption = ?*application_services.NSString;
+pub const ImageAutoAdjustmentOption = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/CoreImage/CIContext?language=objc
 pub const Context = opaque {
@@ -1061,12 +1061,12 @@ pub const Context = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1125,16 +1125,16 @@ pub const Context = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn contextWithCGLContextPixelFormatColorSpaceOptions(_self: *@This(), _cglctx: opengl.ContextObj, _pixelFormat: opengl.PixelFormatObj, _colorSpace: core_graphics.ColorSpaceRef, _options: ?*anyopaque, ) ?*Context {
@@ -1235,9 +1235,9 @@ pub const Context = opaque {
 
 };
 
-pub const ContextOption = ?*application_services.NSString;
+pub const ContextOption = ?*foundation.String;
 
-pub const ImageRepresentationOption = ?*application_services.NSString;
+pub const ImageRepresentationOption = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilterConstructor?language=objc
 pub const FilterConstructor = opaque {
@@ -1247,7 +1247,7 @@ pub const FilterConstructor = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn filterWithName(_self: *@This(), _name: ?*application_services.NSString) ?*Filter {
+    pub fn filterWithName(_self: *@This(), _name: ?*foundation.String) ?*Filter {
         return objc.msgSend(_self, "filterWithName:", ?*Filter, .{_name});
     }
 
@@ -1255,7 +1255,7 @@ pub const FilterConstructor = opaque {
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilter?language=objc
 pub const Filter = opaque {
-    pub const InternalInfo = objc.ExternClass("CIFilter", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, });
+    pub const InternalInfo = objc.ExternClass("CIFilter", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1300,12 +1300,12 @@ pub const Filter = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1364,16 +1364,16 @@ pub const Filter = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -1388,11 +1388,11 @@ pub const Filter = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn name(_self: *@This()) ?*application_services.NSString {
-        return objc.msgSend(_self, "name", ?*application_services.NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _aString: ?*NSString) void {
+    pub fn setName(_self: *@This(), _aString: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_aString});
     }
 
@@ -1400,7 +1400,7 @@ pub const Filter = opaque {
         return objc.msgSend(_self, "setDefaults", void, .{});
     }
 
-    pub fn applyArgumentsOptions(_self: *@This(), _k: ?*Kernel, _args: ?*application_services.NSArray, _dict: ?*anyopaque) ?*Image {
+    pub fn applyArgumentsOptions(_self: *@This(), _k: ?*Kernel, _args: ?*foundation.Array, _dict: ?*anyopaque) ?*Image {
         return objc.msgSend(_self, "apply:arguments:options:", ?*Image, .{_k, _args, _dict});
     }
 
@@ -1501,12 +1501,12 @@ pub const Kernel = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1565,35 +1565,35 @@ pub const Kernel = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn kernelsWithString(_self: *@This(), _string: ?*NSString) ?*anyopaque {
+    pub fn kernelsWithString(_self: *@This(), _string: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "kernelsWithString:", ?*anyopaque, .{_string});
     }
 
-    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*NSString, _error: ?*?*foundation.Error) ?*anyopaque {
+    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*foundation.String, _error: ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
     }
 
-    pub fn kernelWithString(_self: *@This(), _string: ?*NSString) *@This() {
+    pub fn kernelWithString(_self: *@This(), _string: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "kernelWithString:", *@This(), .{_string});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
+    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
         return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
         return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
     }
 
@@ -1609,8 +1609,8 @@ pub const Kernel = opaque {
         return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
 };
@@ -1662,12 +1662,12 @@ pub const ColorKernel = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1726,35 +1726,35 @@ pub const ColorKernel = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn kernelsWithString(_self: *@This(), _string: ?*NSString) ?*anyopaque {
+    pub fn kernelsWithString(_self: *@This(), _string: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "kernelsWithString:", ?*anyopaque, .{_string});
     }
 
-    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*NSString, _error: ?*?*foundation.Error) ?*anyopaque {
+    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*foundation.String, _error: ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
     }
 
-    pub fn kernelWithString(_self: *@This(), _string: ?*NSString) *@This() {
+    pub fn kernelWithString(_self: *@This(), _string: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "kernelWithString:", *@This(), .{_string});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
+    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
         return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
         return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
     }
 
@@ -1770,8 +1770,8 @@ pub const ColorKernel = opaque {
         return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
     pub fn applyWithExtentArguments(_self: *@This(), _extent: core_foundation.CGRect, _args: ?*anyopaque) ?*Image {
@@ -1827,12 +1827,12 @@ pub const WarpKernel = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1891,35 +1891,35 @@ pub const WarpKernel = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn kernelsWithString(_self: *@This(), _string: ?*NSString) ?*anyopaque {
+    pub fn kernelsWithString(_self: *@This(), _string: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "kernelsWithString:", ?*anyopaque, .{_string});
     }
 
-    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*NSString, _error: ?*?*foundation.Error) ?*anyopaque {
+    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*foundation.String, _error: ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
     }
 
-    pub fn kernelWithString(_self: *@This(), _string: ?*NSString) *@This() {
+    pub fn kernelWithString(_self: *@This(), _string: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "kernelWithString:", *@This(), .{_string});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
+    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
         return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
         return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
     }
 
@@ -1935,8 +1935,8 @@ pub const WarpKernel = opaque {
         return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
     pub fn applyWithExtentRoiCallbackInputImageArguments(_self: *@This(), _extent: core_foundation.CGRect, _callback: KernelROICallback, _image: ?*Image, _args: ?*anyopaque, ) ?*Image {
@@ -1992,12 +1992,12 @@ pub const BlendKernel = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2056,35 +2056,35 @@ pub const BlendKernel = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn kernelsWithString(_self: *@This(), _string: ?*NSString) ?*anyopaque {
+    pub fn kernelsWithString(_self: *@This(), _string: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(_self, "kernelsWithString:", ?*anyopaque, .{_string});
     }
 
-    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*NSString, _error: ?*?*foundation.Error) ?*anyopaque {
+    pub fn kernelsWithMetalStringError(_self: *@This(), _source: ?*foundation.String, _error: ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(_self, "kernelsWithMetalString:error:", ?*anyopaque, .{_source, _error});
     }
 
-    pub fn kernelWithString(_self: *@This(), _string: ?*NSString) *@This() {
+    pub fn kernelWithString(_self: *@This(), _string: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "kernelWithString:", *@This(), .{_string});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
+    pub fn kernelWithFunctionNameFromMetalLibraryDataError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _error: ?*?*foundation.Error) *@This() {
         return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:error:", *@This(), .{_name, _data, _error});
     }
 
-    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*NSString, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
+    pub fn kernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(_self: *@This(), _name: ?*foundation.String, _data: ?*foundation.Data, _format: Format, _error: ?*?*foundation.Error, ) *@This() {
         return objc.msgSend(_self, "kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:", *@This(), .{_name, _data, _format, _error, });
     }
 
@@ -2100,8 +2100,8 @@ pub const BlendKernel = opaque {
         return objc.msgSend(_self, "applyWithExtent:roiCallback:arguments:", ?*Image, .{_extent, _callback, _args});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
     pub fn applyWithExtentArguments(_self: *@This(), _extent: core_foundation.CGRect, _args: ?*anyopaque) ?*Image {
@@ -2165,12 +2165,12 @@ pub const Detector = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2229,19 +2229,19 @@ pub const Detector = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn detectorOfTypeContextOptions(_self: *@This(), _type: ?*NSString, _context: ?*Context, _options: ?*anyopaque) ?*Detector {
+    pub fn detectorOfTypeContextOptions(_self: *@This(), _type: ?*foundation.String, _context: ?*Context, _options: ?*anyopaque) ?*Detector {
         return objc.msgSend(_self, "detectorOfType:context:options:", ?*Detector, .{_type, _context, _options});
     }
 
@@ -2302,12 +2302,12 @@ pub const Feature = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2366,20 +2366,20 @@ pub const Feature = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn @"type"(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "type", ?*NSString, .{});
+    pub fn @"type"(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "type", ?*foundation.String, .{});
     }
 
     pub fn bounds(_self: *@This()) core_foundation.CGRect {
@@ -2435,12 +2435,12 @@ pub const FaceFeature = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2499,20 +2499,20 @@ pub const FaceFeature = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn @"type"(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "type", ?*NSString, .{});
+    pub fn @"type"(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "type", ?*foundation.String, .{});
     }
 
     pub fn bounds(_self: *@This()) core_foundation.CGRect {
@@ -2568,12 +2568,12 @@ pub const RectangleFeature = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2632,20 +2632,20 @@ pub const RectangleFeature = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn @"type"(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "type", ?*NSString, .{});
+    pub fn @"type"(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "type", ?*foundation.String, .{});
     }
 
     pub fn bounds(_self: *@This()) core_foundation.CGRect {
@@ -2672,7 +2672,7 @@ pub const RectangleFeature = opaque {
 
 /// https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature?language=objc
 pub const QRCodeFeature = opaque {
-    pub const InternalInfo = objc.ExternClass("CIQRCodeFeature", @This(), Feature, &.{foundation.SecureCoding, foundation.Copying, });
+    pub const InternalInfo = objc.ExternClass("CIQRCodeFeature", @This(), Feature, &.{foundation.SecureCoding, foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2717,12 +2717,12 @@ pub const QRCodeFeature = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2781,20 +2781,20 @@ pub const QRCodeFeature = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn @"type"(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "type", ?*NSString, .{});
+    pub fn @"type"(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "type", ?*foundation.String, .{});
     }
 
     pub fn bounds(_self: *@This()) core_foundation.CGRect {
@@ -2829,8 +2829,8 @@ pub const QRCodeFeature = opaque {
         return objc.msgSend(_self, "bottomRight", core_foundation.CGPoint, .{});
     }
 
-    pub fn messageString(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "messageString", ?*NSString, .{});
+    pub fn messageString(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "messageString", ?*foundation.String, .{});
     }
 
     pub fn symbolDescriptor(_self: *@This()) ?*QRCodeDescriptor {
@@ -2886,12 +2886,12 @@ pub const TextFeature = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2950,20 +2950,20 @@ pub const TextFeature = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn @"type"(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "type", ?*NSString, .{});
+    pub fn @"type"(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "type", ?*foundation.String, .{});
     }
 
     pub fn bounds(_self: *@This()) core_foundation.CGRect {
@@ -2986,8 +2986,8 @@ pub const TextFeature = opaque {
         return objc.msgSend(_self, "bottomRight", core_foundation.CGPoint, .{});
     }
 
-    pub fn subFeatures(_self: *@This()) ?*NSArray {
-        return objc.msgSend(_self, "subFeatures", ?*NSArray, .{});
+    pub fn subFeatures(_self: *@This()) ?*foundation.Array {
+        return objc.msgSend(_self, "subFeatures", ?*foundation.Array, .{});
     }
 
 };
@@ -3039,12 +3039,12 @@ pub const ImageProcessorKernel = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3103,16 +3103,16 @@ pub const ImageProcessorKernel = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn roiForInputArgumentsOutputRect(_self: *@This(), _input: i32, _arguments: ?*anyopaque, _outputRect: core_foundation.CGRect) core_foundation.CGRect {
@@ -3288,12 +3288,12 @@ pub const ImageAccumulator = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3352,16 +3352,16 @@ pub const ImageAccumulator = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn imageAccumulatorWithExtentFormat(_self: *@This(), _extent: core_foundation.CGRect, _format: Format) *@This() {
@@ -3408,7 +3408,7 @@ pub const ImageAccumulator = opaque {
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilterShape?language=objc
 pub const FilterShape = opaque {
-    pub const InternalInfo = objc.ExternClass("CIFilterShape", @This(), objc.NSObject, &.{foundation.Copying, });
+    pub const InternalInfo = objc.ExternClass("CIFilterShape", @This(), objc.NSObject, &.{foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3453,12 +3453,12 @@ pub const FilterShape = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3517,16 +3517,16 @@ pub const FilterShape = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn shapeWithRect(_self: *@This(), _r: core_foundation.CGRect) *@This() {
@@ -3569,7 +3569,7 @@ pub const FilterShape = opaque {
 
 /// https://developer.apple.com/documentation/CoreImage/CISampler?language=objc
 pub const Sampler = opaque {
-    pub const InternalInfo = objc.ExternClass("CISampler", @This(), objc.NSObject, &.{foundation.Copying, });
+    pub const InternalInfo = objc.ExternClass("CISampler", @This(), objc.NSObject, &.{foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3614,12 +3614,12 @@ pub const Sampler = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3678,16 +3678,16 @@ pub const Sampler = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn samplerWithImage(_self: *@This(), _im: ?*Image) *@This() {
@@ -3698,7 +3698,7 @@ pub const Sampler = opaque {
         return objc.msgSend(_self, "samplerWithImage:keysAndValues:", *@This(), .{_im, _key0});
     }
 
-    pub fn samplerWithImageOptions(_self: *@This(), _im: ?*Image, _dict: ?*NSDictionary) *@This() {
+    pub fn samplerWithImageOptions(_self: *@This(), _im: ?*Image, _dict: ?*foundation.Dictionary) *@This() {
         return objc.msgSend(_self, "samplerWithImage:options:", *@This(), .{_im, _dict});
     }
 
@@ -3710,7 +3710,7 @@ pub const Sampler = opaque {
         return objc.msgSend(_self, "initWithImage:keysAndValues:", *@This(), .{_im, _key0});
     }
 
-    pub fn initWithImageOptions(_self: *@This(), _im: ?*Image, _dict: ?*NSDictionary) *@This() {
+    pub fn initWithImageOptions(_self: *@This(), _im: ?*Image, _dict: ?*foundation.Dictionary) *@This() {
         return objc.msgSend(_self, "initWithImage:options:", *@This(), .{_im, _dict});
     }
 
@@ -3724,7 +3724,7 @@ pub const Sampler = opaque {
 
 };
 
-pub const RAWFilterOption = ?*NSString;
+pub const RAWFilterOption = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/CoreImage/CIRAWFilter?language=objc
 pub const RAWFilter = opaque {
@@ -3773,12 +3773,12 @@ pub const RAWFilter = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3837,16 +3837,16 @@ pub const RAWFilter = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -3861,11 +3861,11 @@ pub const RAWFilter = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn name(_self: *@This()) ?*application_services.NSString {
-        return objc.msgSend(_self, "name", ?*application_services.NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _aString: ?*NSString) void {
+    pub fn setName(_self: *@This(), _aString: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_aString});
     }
 
@@ -3873,7 +3873,7 @@ pub const RAWFilter = opaque {
         return objc.msgSend(_self, "setDefaults", void, .{});
     }
 
-    pub fn applyArgumentsOptions(_self: *@This(), _k: ?*Kernel, _args: ?*application_services.NSArray, _dict: ?*anyopaque) ?*Image {
+    pub fn applyArgumentsOptions(_self: *@This(), _k: ?*Kernel, _args: ?*foundation.Array, _dict: ?*anyopaque) ?*Image {
         return objc.msgSend(_self, "apply:arguments:options:", ?*Image, .{_k, _args, _dict});
     }
 
@@ -3917,8 +3917,8 @@ pub const RAWFilter = opaque {
         return objc.msgSend(_self, "nativeSize", core_foundation.CGSize, .{});
     }
 
-    pub fn properties(_self: *@This()) ?*NSDictionary {
-        return objc.msgSend(_self, "properties", ?*NSDictionary, .{});
+    pub fn properties(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "properties", ?*foundation.Dictionary, .{});
     }
 
     pub fn setOrientation(_self: *@This(), _orientation: image_io.PropertyOrientation) void {
@@ -4173,21 +4173,21 @@ pub const RAWFilter = opaque {
         return objc.msgSend(_self, "semanticSegmentationTeethMatte", ?*Image, .{});
     }
 
-    pub fn filterWithImageURL(_self: *@This(), _url: ?*NSURL) *@This() {
+    pub fn filterWithImageURL(_self: *@This(), _url: ?*foundation.URL) *@This() {
         return objc.msgSend(_self, "filterWithImageURL:", *@This(), .{_url});
     }
 
-    pub fn filterWithImageDataIdentifierHint(_self: *@This(), _data: ?*NSData, _identifierHint: ?*NSString) *@This() {
+    pub fn filterWithImageDataIdentifierHint(_self: *@This(), _data: ?*foundation.Data, _identifierHint: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "filterWithImageData:identifierHint:", *@This(), .{_data, _identifierHint});
     }
 
-    pub fn filterWithCVPixelBufferProperties(_self: *@This(), _buffer: core_video.PixelBufferRef, _properties: ?*NSDictionary) *@This() {
+    pub fn filterWithCVPixelBufferProperties(_self: *@This(), _buffer: core_video.PixelBufferRef, _properties: ?*foundation.Dictionary) *@This() {
         return objc.msgSend(_self, "filterWithCVPixelBuffer:properties:", *@This(), .{_buffer, _properties});
     }
 
 };
 
-pub const RAWDecoderVersion = ?*NSString;
+pub const RAWDecoderVersion = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/CoreImage/CIRenderDestination?language=objc
 pub const RenderDestination = opaque {
@@ -4236,12 +4236,12 @@ pub const RenderDestination = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4300,16 +4300,16 @@ pub const RenderDestination = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn initWithPixelBuffer(_self: *@This(), _pixelBuffer: core_video.PixelBufferRef) *@This() {
@@ -4403,9 +4403,9 @@ pub const RenderDestination = opaque {
 };
 
 pub const RenderDestinationAlphaMode = enum(objc.NSUInteger) {
-    None = 0,
-    Premultiplied = 1,
-    Unpremultiplied = 2,
+None = 0,
+Premultiplied = 1,
+Unpremultiplied = 2,
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIRenderInfo?language=objc
@@ -4455,12 +4455,12 @@ pub const RenderInfo = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4519,16 +4519,16 @@ pub const RenderInfo = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn kernelExecutionTime(_self: *@This()) foundation.TimeInterval {
@@ -4596,12 +4596,12 @@ pub const RenderTask = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4660,16 +4660,16 @@ pub const RenderTask = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn waitUntilCompletedAndReturnError(_self: *@This(), _error: ?*?*foundation.Error) ?*RenderInfo {
@@ -4680,7 +4680,7 @@ pub const RenderTask = opaque {
 
 /// https://developer.apple.com/documentation/CoreImage/CIBarcodeDescriptor?language=objc
 pub const BarcodeDescriptor = opaque {
-    pub const InternalInfo = objc.ExternClass("CIBarcodeDescriptor", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, });
+    pub const InternalInfo = objc.ExternClass("CIBarcodeDescriptor", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -4725,12 +4725,12 @@ pub const BarcodeDescriptor = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4789,16 +4789,16 @@ pub const BarcodeDescriptor = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -4816,10 +4816,10 @@ pub const BarcodeDescriptor = opaque {
 };
 
 pub const QRCodeErrorCorrectionLevel = enum(objc.NSInteger) {
-    L = 76,
-    M = 77,
-    Q = 81,
-    H = 72,
+L = 76,
+M = 77,
+Q = 81,
+H = 72,
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor?language=objc
@@ -4869,12 +4869,12 @@ pub const QRCodeDescriptor = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4933,16 +4933,16 @@ pub const QRCodeDescriptor = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -4957,16 +4957,16 @@ pub const QRCodeDescriptor = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(_self: *@This(), _errorCorrectedPayload: ?*NSData, _symbolVersion: objc.NSInteger, _maskPattern: objc.uint8_t, _errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
+    pub fn initWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _symbolVersion: objc.NSInteger, _maskPattern: objc.uint8_t, _errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
         return objc.msgSend(_self, "initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{_errorCorrectedPayload, _symbolVersion, _maskPattern, _errorCorrectionLevel, });
     }
 
-    pub fn descriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(_self: *@This(), _errorCorrectedPayload: ?*NSData, _symbolVersion: objc.NSInteger, _maskPattern: objc.uint8_t, _errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
+    pub fn descriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _symbolVersion: objc.NSInteger, _maskPattern: objc.uint8_t, _errorCorrectionLevel: QRCodeErrorCorrectionLevel, ) *@This() {
         return objc.msgSend(_self, "descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:", *@This(), .{_errorCorrectedPayload, _symbolVersion, _maskPattern, _errorCorrectionLevel, });
     }
 
-    pub fn errorCorrectedPayload(_self: *@This()) ?*NSData {
-        return objc.msgSend(_self, "errorCorrectedPayload", ?*NSData, .{});
+    pub fn errorCorrectedPayload(_self: *@This()) ?*foundation.Data {
+        return objc.msgSend(_self, "errorCorrectedPayload", ?*foundation.Data, .{});
     }
 
     pub fn symbolVersion(_self: *@This()) objc.NSInteger {
@@ -5030,12 +5030,12 @@ pub const AztecCodeDescriptor = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5094,16 +5094,16 @@ pub const AztecCodeDescriptor = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -5118,11 +5118,11 @@ pub const AztecCodeDescriptor = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithPayloadIsCompactLayerCountDataCodewordCount(_self: *@This(), _errorCorrectedPayload: ?*NSData, _isCompact: objc.BOOL, _layerCount: objc.NSInteger, _dataCodewordCount: objc.NSInteger, ) *@This() {
+    pub fn initWithPayloadIsCompactLayerCountDataCodewordCount(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _isCompact: objc.BOOL, _layerCount: objc.NSInteger, _dataCodewordCount: objc.NSInteger, ) *@This() {
         return objc.msgSend(_self, "initWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _layerCount, _dataCodewordCount, });
     }
 
-    pub fn descriptorWithPayloadIsCompactLayerCountDataCodewordCount(_self: *@This(), _errorCorrectedPayload: ?*NSData, _isCompact: objc.BOOL, _layerCount: objc.NSInteger, _dataCodewordCount: objc.NSInteger, ) *@This() {
+    pub fn descriptorWithPayloadIsCompactLayerCountDataCodewordCount(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _isCompact: objc.BOOL, _layerCount: objc.NSInteger, _dataCodewordCount: objc.NSInteger, ) *@This() {
         return objc.msgSend(_self, "descriptorWithPayload:isCompact:layerCount:dataCodewordCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _layerCount, _dataCodewordCount, });
     }
 
@@ -5175,12 +5175,12 @@ pub const PDF417CodeDescriptor = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5239,16 +5239,16 @@ pub const PDF417CodeDescriptor = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -5263,23 +5263,23 @@ pub const PDF417CodeDescriptor = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithPayloadIsCompactRowCountColumnCount(_self: *@This(), _errorCorrectedPayload: ?*NSData, _isCompact: objc.BOOL, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, ) *@This() {
+    pub fn initWithPayloadIsCompactRowCountColumnCount(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _isCompact: objc.BOOL, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, ) *@This() {
         return objc.msgSend(_self, "initWithPayload:isCompact:rowCount:columnCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _rowCount, _columnCount, });
     }
 
-    pub fn descriptorWithPayloadIsCompactRowCountColumnCount(_self: *@This(), _errorCorrectedPayload: ?*NSData, _isCompact: objc.BOOL, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, ) *@This() {
+    pub fn descriptorWithPayloadIsCompactRowCountColumnCount(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _isCompact: objc.BOOL, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, ) *@This() {
         return objc.msgSend(_self, "descriptorWithPayload:isCompact:rowCount:columnCount:", *@This(), .{_errorCorrectedPayload, _isCompact, _rowCount, _columnCount, });
     }
 
 };
 
 pub const DataMatrixCodeECCVersion = enum(objc.NSInteger) {
-    000 = 0,
-    050 = 50,
-    080 = 80,
-    100 = 100,
-    140 = 140,
-    200 = 200,
+_000 = 0,
+_050 = 50,
+_080 = 80,
+_100 = 100,
+_140 = 140,
+_200 = 200,
 };
 
 /// https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor?language=objc
@@ -5329,12 +5329,12 @@ pub const DataMatrixCodeDescriptor = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5393,16 +5393,16 @@ pub const DataMatrixCodeDescriptor = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -5417,16 +5417,16 @@ pub const DataMatrixCodeDescriptor = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithPayloadRowCountColumnCountEccVersion(_self: *@This(), _errorCorrectedPayload: ?*NSData, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, _eccVersion: DataMatrixCodeECCVersion, ) *@This() {
+    pub fn initWithPayloadRowCountColumnCountEccVersion(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, _eccVersion: DataMatrixCodeECCVersion, ) *@This() {
         return objc.msgSend(_self, "initWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{_errorCorrectedPayload, _rowCount, _columnCount, _eccVersion, });
     }
 
-    pub fn descriptorWithPayloadRowCountColumnCountEccVersion(_self: *@This(), _errorCorrectedPayload: ?*NSData, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, _eccVersion: DataMatrixCodeECCVersion, ) *@This() {
+    pub fn descriptorWithPayloadRowCountColumnCountEccVersion(_self: *@This(), _errorCorrectedPayload: ?*foundation.Data, _rowCount: objc.NSInteger, _columnCount: objc.NSInteger, _eccVersion: DataMatrixCodeECCVersion, ) *@This() {
         return objc.msgSend(_self, "descriptorWithPayload:rowCount:columnCount:eccVersion:", *@This(), .{_errorCorrectedPayload, _rowCount, _columnCount, _eccVersion, });
     }
 
-    pub fn errorCorrectedPayload(_self: *@This()) ?*NSData {
-        return objc.msgSend(_self, "errorCorrectedPayload", ?*NSData, .{});
+    pub fn errorCorrectedPayload(_self: *@This()) ?*foundation.Data {
+        return objc.msgSend(_self, "errorCorrectedPayload", ?*foundation.Data, .{});
     }
 
     pub fn rowCount(_self: *@This()) objc.NSInteger {
@@ -5445,7 +5445,7 @@ pub const DataMatrixCodeDescriptor = opaque {
 
 /// https://developer.apple.com/documentation/CoreImage/CIFilterGenerator?language=objc
 pub const FilterGenerator = opaque {
-    pub const InternalInfo = objc.ExternClass("CIFilterGenerator", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, FilterConstructor, });
+    pub const InternalInfo = objc.ExternClass("CIFilterGenerator", @This(), objc.NSObject, &.{foundation.SecureCoding, foundation.Copying, FilterConstructor});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -5490,12 +5490,12 @@ pub const FilterGenerator = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5554,16 +5554,16 @@ pub const FilterGenerator = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -5578,7 +5578,7 @@ pub const FilterGenerator = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn filterWithName(_self: *@This(), _name: ?*application_services.NSString) ?*Filter {
+    pub fn filterWithName(_self: *@This(), _name: ?*foundation.String) ?*Filter {
         return objc.msgSend(_self, "filterWithName:", ?*Filter, .{_name});
     }
 
@@ -5586,31 +5586,31 @@ pub const FilterGenerator = opaque {
         return objc.msgSend(_self, "filterGenerator", ?*FilterGenerator, .{});
     }
 
-    pub fn filterGeneratorWithContentsOfURL(_self: *@This(), _aURL: ?*NSURL) ?*FilterGenerator {
+    pub fn filterGeneratorWithContentsOfURL(_self: *@This(), _aURL: ?*foundation.URL) ?*FilterGenerator {
         return objc.msgSend(_self, "filterGeneratorWithContentsOfURL:", ?*FilterGenerator, .{_aURL});
     }
 
-    pub fn initWithContentsOfURL(_self: *@This(), _aURL: ?*NSURL) *objc.Id {
+    pub fn initWithContentsOfURL(_self: *@This(), _aURL: ?*foundation.URL) *objc.Id {
         return objc.msgSend(_self, "initWithContentsOfURL:", *objc.Id, .{_aURL});
     }
 
-    pub fn connectObjectWithKeyToObjectWithKey(_self: *@This(), _sourceObject: *objc.Id, _sourceKey: ?*io_surface.NSString, _targetObject: *objc.Id, _targetKey: ?*io_surface.NSString, ) void {
+    pub fn connectObjectWithKeyToObjectWithKey(_self: *@This(), _sourceObject: *objc.Id, _sourceKey: ?*foundation.String, _targetObject: *objc.Id, _targetKey: ?*foundation.String, ) void {
         return objc.msgSend(_self, "connectObject:withKey:toObject:withKey:", void, .{_sourceObject, _sourceKey, _targetObject, _targetKey, });
     }
 
-    pub fn disconnectObjectWithKeyToObjectWithKey(_self: *@This(), _sourceObject: *objc.Id, _sourceKey: ?*io_surface.NSString, _targetObject: *objc.Id, _targetKey: ?*io_surface.NSString, ) void {
+    pub fn disconnectObjectWithKeyToObjectWithKey(_self: *@This(), _sourceObject: *objc.Id, _sourceKey: ?*foundation.String, _targetObject: *objc.Id, _targetKey: ?*foundation.String, ) void {
         return objc.msgSend(_self, "disconnectObject:withKey:toObject:withKey:", void, .{_sourceObject, _sourceKey, _targetObject, _targetKey, });
     }
 
-    pub fn exportKeyFromObjectWithName(_self: *@This(), _key: ?*io_surface.NSString, _targetObject: *objc.Id, _exportedKeyName: ?*io_surface.NSString) void {
+    pub fn exportKeyFromObjectWithName(_self: *@This(), _key: ?*foundation.String, _targetObject: *objc.Id, _exportedKeyName: ?*foundation.String) void {
         return objc.msgSend(_self, "exportKey:fromObject:withName:", void, .{_key, _targetObject, _exportedKeyName});
     }
 
-    pub fn removeExportedKey(_self: *@This(), _exportedKeyName: ?*io_surface.NSString) void {
+    pub fn removeExportedKey(_self: *@This(), _exportedKeyName: ?*foundation.String) void {
         return objc.msgSend(_self, "removeExportedKey:", void, .{_exportedKeyName});
     }
 
-    pub fn setAttributesForExportedKey(_self: *@This(), _attributes: ?*NSDictionary, _key: ?*io_surface.NSString) void {
+    pub fn setAttributesForExportedKey(_self: *@This(), _attributes: ?*foundation.Dictionary, _key: ?*foundation.String) void {
         return objc.msgSend(_self, "setAttributes:forExportedKey:", void, .{_attributes, _key});
     }
 
@@ -5618,19 +5618,19 @@ pub const FilterGenerator = opaque {
         return objc.msgSend(_self, "filter", ?*Filter, .{});
     }
 
-    pub fn registerFilterName(_self: *@This(), _name: ?*io_surface.NSString) void {
+    pub fn registerFilterName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "registerFilterName:", void, .{_name});
     }
 
-    pub fn exportedKeys(_self: *@This()) ?*NSDictionary {
-        return objc.msgSend(_self, "exportedKeys", ?*NSDictionary, .{});
+    pub fn exportedKeys(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "exportedKeys", ?*foundation.Dictionary, .{});
     }
 
-    pub fn classAttributes(_self: *@This()) ?*NSDictionary {
-        return objc.msgSend(_self, "classAttributes", ?*NSDictionary, .{});
+    pub fn classAttributes(_self: *@This()) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "classAttributes", ?*foundation.Dictionary, .{});
     }
 
-    pub fn setClassAttributes(_self: *@This(), _classAttributes: ?*NSDictionary) void {
+    pub fn setClassAttributes(_self: *@This(), _classAttributes: ?*foundation.Dictionary) void {
         return objc.msgSend(_self, "setClassAttributes:", void, .{_classAttributes});
     }
 
@@ -5695,12 +5695,12 @@ pub const PlugIn = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5759,16 +5759,16 @@ pub const PlugIn = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn loadAllPlugIns(_self: *@This()) void {
@@ -5779,15 +5779,15 @@ pub const PlugIn = opaque {
         return objc.msgSend(_self, "loadNonExecutablePlugIns", void, .{});
     }
 
-    pub fn loadPlugInAllowNonExecutable(_self: *@This(), _url: ?*NSURL, _allowNonExecutable: objc.BOOL) void {
+    pub fn loadPlugInAllowNonExecutable(_self: *@This(), _url: ?*foundation.URL, _allowNonExecutable: objc.BOOL) void {
         return objc.msgSend(_self, "loadPlugIn:allowNonExecutable:", void, .{_url, _allowNonExecutable});
     }
 
-    pub fn loadPlugInAllowExecutableCode(_self: *@This(), _url: ?*NSURL, _allowExecutableCode: objc.BOOL) void {
+    pub fn loadPlugInAllowExecutableCode(_self: *@This(), _url: ?*foundation.URL, _allowExecutableCode: objc.BOOL) void {
         return objc.msgSend(_self, "loadPlugIn:allowExecutableCode:", void, .{_url, _allowExecutableCode});
     }
 
-    pub fn loadNonExecutablePlugIn(_self: *@This(), _url: ?*NSURL) void {
+    pub fn loadNonExecutablePlugIn(_self: *@This(), _url: ?*foundation.URL) void {
         return objc.msgSend(_self, "loadNonExecutablePlugIn:", void, .{_url});
     }
 

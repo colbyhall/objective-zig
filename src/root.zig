@@ -20,3 +20,4 @@ pub const image_io = @import("image_io.zig");
 pub const core_image = @import("core_image.zig");
 pub const core_video = @import("core_video.zig");
 pub const core_data = @import("core_data.zig");
+pub const core_location = @import("core_location.zig");

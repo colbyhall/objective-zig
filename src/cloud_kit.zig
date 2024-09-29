@@ -3,6 +3,7 @@
 const std = @import("std");
 const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 const foundation = @import("foundation.zig"); // Framework dependency Foundation.
+const core_location = @import("core_location.zig"); // Framework dependency CoreLocation.
 
 /// https://developer.apple.com/documentation/CloudKit/CKAsset?language=objc
 pub const Asset = opaque {
@@ -59,7 +60,7 @@ pub const Asset = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -75,12 +76,12 @@ pub const Asset = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -143,16 +144,16 @@ pub const Asset = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -191,10 +192,7 @@ pub const ReferenceAction = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKReference?language=objc
 pub const Reference = opaque {
-    pub const InternalInfo = objc.ExternClass("CKReference", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKReference", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -247,7 +245,7 @@ pub const Reference = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -263,12 +261,12 @@ pub const Reference = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -331,16 +329,16 @@ pub const Reference = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -398,9 +396,7 @@ pub const RecordFieldKey = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordValue?language=objc
 pub const RecordValue = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
-        objc.NSObject,
-    });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -450,7 +446,7 @@ pub const RecordValue = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -466,21 +462,18 @@ pub const RecordValue = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecord?language=objc
 pub const Record = opaque {
-    pub const InternalInfo = objc.ExternClass("CKRecord", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKRecord", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -533,7 +526,7 @@ pub const Record = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -549,12 +542,12 @@ pub const Record = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -617,16 +610,16 @@ pub const Record = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -721,8 +714,8 @@ pub const Record = opaque {
         return objc.msgSend(_self, "recordID", ?*RecordID, .{});
     }
 
-    pub fn recordChangeTag(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "recordChangeTag", ?*NSString, .{});
+    pub fn recordChangeTag(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "recordChangeTag", ?*foundation.String, .{});
     }
 
     pub fn creatorUserRecordID(_self: *@This()) ?*RecordID {
@@ -756,9 +749,7 @@ pub const Record = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordKeyValueSetting?language=objc
 pub const RecordKeyValueSetting = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
-        objc.NSObject,
-    });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -808,7 +799,7 @@ pub const RecordKeyValueSetting = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -824,12 +815,12 @@ pub const RecordKeyValueSetting = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn objectForKey(_self: *@This(), _key: RecordFieldKey) ?*anyopaque {
@@ -863,14 +854,11 @@ pub const SubscriptionType = enum(objc.NSInteger) {
     Database = 3,
 };
 
-pub const SubscriptionID = ?*NSString;
+pub const SubscriptionID = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/CloudKit/CKSubscription?language=objc
 pub const Subscription = opaque {
-    pub const InternalInfo = objc.ExternClass("CKSubscription", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKSubscription", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -923,7 +911,7 @@ pub const Subscription = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -939,12 +927,12 @@ pub const Subscription = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1007,16 +995,16 @@ pub const Subscription = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -1077,10 +1065,7 @@ pub const QuerySubscriptionOptions = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKQuerySubscription?language=objc
 pub const QuerySubscription = opaque {
-    pub const InternalInfo = objc.ExternClass("CKQuerySubscription", @This(), Subscription, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKQuerySubscription", @This(), Subscription, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1133,7 +1118,7 @@ pub const QuerySubscription = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -1149,12 +1134,12 @@ pub const QuerySubscription = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1217,16 +1202,16 @@ pub const QuerySubscription = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -1319,10 +1304,7 @@ pub const QuerySubscription = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordZoneSubscription?language=objc
 pub const RecordZoneSubscription = opaque {
-    pub const InternalInfo = objc.ExternClass("CKRecordZoneSubscription", @This(), Subscription, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKRecordZoneSubscription", @This(), Subscription, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1375,7 +1357,7 @@ pub const RecordZoneSubscription = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -1391,12 +1373,12 @@ pub const RecordZoneSubscription = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1459,16 +1441,16 @@ pub const RecordZoneSubscription = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -1542,10 +1524,7 @@ pub const RecordZoneSubscription = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription?language=objc
 pub const DatabaseSubscription = opaque {
-    pub const InternalInfo = objc.ExternClass("CKDatabaseSubscription", @This(), Subscription, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKDatabaseSubscription", @This(), Subscription, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1598,7 +1577,7 @@ pub const DatabaseSubscription = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -1614,12 +1593,12 @@ pub const DatabaseSubscription = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1682,16 +1661,16 @@ pub const DatabaseSubscription = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -1757,10 +1736,7 @@ pub const DatabaseSubscription = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKNotificationInfo?language=objc
 pub const NotificationInfo = opaque {
-    pub const InternalInfo = objc.ExternClass("CKNotificationInfo", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKNotificationInfo", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -1813,7 +1789,7 @@ pub const NotificationInfo = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -1829,12 +1805,12 @@ pub const NotificationInfo = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -1897,16 +1873,16 @@ pub const NotificationInfo = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -1941,19 +1917,19 @@ pub const NotificationInfo = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn alertBody(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "alertBody", ?*NSString, .{});
+    pub fn alertBody(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "alertBody", ?*foundation.String, .{});
     }
 
-    pub fn setAlertBody(_self: *@This(), _alertBody: ?*NSString) void {
+    pub fn setAlertBody(_self: *@This(), _alertBody: ?*foundation.String) void {
         return objc.msgSend(_self, "setAlertBody:", void, .{_alertBody});
     }
 
-    pub fn alertLocalizationKey(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "alertLocalizationKey", ?*NSString, .{});
+    pub fn alertLocalizationKey(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "alertLocalizationKey", ?*foundation.String, .{});
     }
 
-    pub fn setAlertLocalizationKey(_self: *@This(), _alertLocalizationKey: ?*NSString) void {
+    pub fn setAlertLocalizationKey(_self: *@This(), _alertLocalizationKey: ?*foundation.String) void {
         return objc.msgSend(_self, "setAlertLocalizationKey:", void, .{_alertLocalizationKey});
     }
 
@@ -1965,19 +1941,19 @@ pub const NotificationInfo = opaque {
         return objc.msgSend(_self, "setAlertLocalizationArgs:", void, .{_alertLocalizationArgs});
     }
 
-    pub fn title(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "title", ?*NSString, .{});
+    pub fn title(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "title", ?*foundation.String, .{});
     }
 
-    pub fn setTitle(_self: *@This(), _title: ?*NSString) void {
+    pub fn setTitle(_self: *@This(), _title: ?*foundation.String) void {
         return objc.msgSend(_self, "setTitle:", void, .{_title});
     }
 
-    pub fn titleLocalizationKey(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "titleLocalizationKey", ?*NSString, .{});
+    pub fn titleLocalizationKey(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "titleLocalizationKey", ?*foundation.String, .{});
     }
 
-    pub fn setTitleLocalizationKey(_self: *@This(), _titleLocalizationKey: ?*NSString) void {
+    pub fn setTitleLocalizationKey(_self: *@This(), _titleLocalizationKey: ?*foundation.String) void {
         return objc.msgSend(_self, "setTitleLocalizationKey:", void, .{_titleLocalizationKey});
     }
 
@@ -1989,19 +1965,19 @@ pub const NotificationInfo = opaque {
         return objc.msgSend(_self, "setTitleLocalizationArgs:", void, .{_titleLocalizationArgs});
     }
 
-    pub fn subtitle(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "subtitle", ?*NSString, .{});
+    pub fn subtitle(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "subtitle", ?*foundation.String, .{});
     }
 
-    pub fn setSubtitle(_self: *@This(), _subtitle: ?*NSString) void {
+    pub fn setSubtitle(_self: *@This(), _subtitle: ?*foundation.String) void {
         return objc.msgSend(_self, "setSubtitle:", void, .{_subtitle});
     }
 
-    pub fn subtitleLocalizationKey(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "subtitleLocalizationKey", ?*NSString, .{});
+    pub fn subtitleLocalizationKey(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "subtitleLocalizationKey", ?*foundation.String, .{});
     }
 
-    pub fn setSubtitleLocalizationKey(_self: *@This(), _subtitleLocalizationKey: ?*NSString) void {
+    pub fn setSubtitleLocalizationKey(_self: *@This(), _subtitleLocalizationKey: ?*foundation.String) void {
         return objc.msgSend(_self, "setSubtitleLocalizationKey:", void, .{_subtitleLocalizationKey});
     }
 
@@ -2013,27 +1989,27 @@ pub const NotificationInfo = opaque {
         return objc.msgSend(_self, "setSubtitleLocalizationArgs:", void, .{_subtitleLocalizationArgs});
     }
 
-    pub fn alertActionLocalizationKey(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "alertActionLocalizationKey", ?*NSString, .{});
+    pub fn alertActionLocalizationKey(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "alertActionLocalizationKey", ?*foundation.String, .{});
     }
 
-    pub fn setAlertActionLocalizationKey(_self: *@This(), _alertActionLocalizationKey: ?*NSString) void {
+    pub fn setAlertActionLocalizationKey(_self: *@This(), _alertActionLocalizationKey: ?*foundation.String) void {
         return objc.msgSend(_self, "setAlertActionLocalizationKey:", void, .{_alertActionLocalizationKey});
     }
 
-    pub fn alertLaunchImage(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "alertLaunchImage", ?*NSString, .{});
+    pub fn alertLaunchImage(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "alertLaunchImage", ?*foundation.String, .{});
     }
 
-    pub fn setAlertLaunchImage(_self: *@This(), _alertLaunchImage: ?*NSString) void {
+    pub fn setAlertLaunchImage(_self: *@This(), _alertLaunchImage: ?*foundation.String) void {
         return objc.msgSend(_self, "setAlertLaunchImage:", void, .{_alertLaunchImage});
     }
 
-    pub fn soundName(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "soundName", ?*NSString, .{});
+    pub fn soundName(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "soundName", ?*foundation.String, .{});
     }
 
-    pub fn setSoundName(_self: *@This(), _soundName: ?*NSString) void {
+    pub fn setSoundName(_self: *@This(), _soundName: ?*foundation.String) void {
         return objc.msgSend(_self, "setSoundName:", void, .{_soundName});
     }
 
@@ -2069,19 +2045,19 @@ pub const NotificationInfo = opaque {
         return objc.msgSend(_self, "setShouldSendMutableContent:", void, .{_shouldSendMutableContent});
     }
 
-    pub fn category(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "category", ?*NSString, .{});
+    pub fn category(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "category", ?*foundation.String, .{});
     }
 
-    pub fn setCategory(_self: *@This(), _category: ?*NSString) void {
+    pub fn setCategory(_self: *@This(), _category: ?*foundation.String) void {
         return objc.msgSend(_self, "setCategory:", void, .{_category});
     }
 
-    pub fn collapseIDKey(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "collapseIDKey", ?*NSString, .{});
+    pub fn collapseIDKey(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "collapseIDKey", ?*foundation.String, .{});
     }
 
-    pub fn setCollapseIDKey(_self: *@This(), _collapseIDKey: ?*NSString) void {
+    pub fn setCollapseIDKey(_self: *@This(), _collapseIDKey: ?*foundation.String) void {
         return objc.msgSend(_self, "setCollapseIDKey:", void, .{_collapseIDKey});
     }
 };
@@ -2147,7 +2123,7 @@ pub const Database = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -2163,12 +2139,12 @@ pub const Database = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2231,16 +2207,16 @@ pub const Database = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -2272,11 +2248,11 @@ pub const Database = opaque {
     }
 };
 
-pub const OperationID = ?*NSString;
+pub const OperationID = ?*foundation.String;
 
 /// https://developer.apple.com/documentation/CloudKit/CKOperation?language=objc
 pub const Operation = opaque {
-    pub const InternalInfo = objc.ExternClass("CKOperation", @This(), NSOperation, &.{});
+    pub const InternalInfo = objc.ExternClass("CKOperation", @This(), foundation.Operation, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -2329,7 +2305,7 @@ pub const Operation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -2345,12 +2321,12 @@ pub const Operation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2413,16 +2389,16 @@ pub const Operation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -2621,7 +2597,7 @@ pub const OperationConfiguration = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -2637,12 +2613,12 @@ pub const OperationConfiguration = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2705,16 +2681,16 @@ pub const OperationConfiguration = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -2841,7 +2817,7 @@ pub const Container = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -2857,12 +2833,12 @@ pub const Container = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -2925,16 +2901,16 @@ pub const Container = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -2961,7 +2937,7 @@ pub const Container = opaque {
         return objc.msgSend(_self, "defaultContainer", ?*Container, .{});
     }
 
-    pub fn containerWithIdentifier(_self: *@This(), _containerIdentifier: ?*NSString) ?*Container {
+    pub fn containerWithIdentifier(_self: *@This(), _containerIdentifier: ?*foundation.String) ?*Container {
         return objc.msgSend(_self, "containerWithIdentifier:", ?*Container, .{_containerIdentifier});
     }
 
@@ -2969,8 +2945,8 @@ pub const Container = opaque {
         return objc.msgSend(_self, "addOperation:", void, .{_operation});
     }
 
-    pub fn containerIdentifier(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    pub fn containerIdentifier(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "containerIdentifier", ?*foundation.String, .{});
     }
 };
 
@@ -3036,9 +3012,7 @@ pub const ErrorCode = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor?language=objc
 pub const LocationSortDescriptor = opaque {
-    pub const InternalInfo = objc.ExternClass("CKLocationSortDescriptor", @This(), NSSortDescriptor, &.{
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CKLocationSortDescriptor", @This(), foundation.SortDescriptor, &.{foundation.SecureCoding});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3091,7 +3065,7 @@ pub const LocationSortDescriptor = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -3107,12 +3081,12 @@ pub const LocationSortDescriptor = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3175,16 +3149,16 @@ pub const LocationSortDescriptor = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -3271,21 +3245,18 @@ pub const LocationSortDescriptor = opaque {
         return objc.msgSend(_self, "reversedSortDescriptor", *objc.Id, .{});
     }
 
-    pub fn initWithKeyRelativeLocation(_self: *@This(), _key: ?*NSString, _relativeLocation: ?*CLLocation) *@This() {
+    pub fn initWithKeyRelativeLocation(_self: *@This(), _key: ?*foundation.String, _relativeLocation: ?*core_location.Location) *@This() {
         return objc.msgSend(_self, "initWithKey:relativeLocation:", *@This(), .{ _key, _relativeLocation });
     }
 
-    pub fn relativeLocation(_self: *@This()) ?*CLLocation {
-        return objc.msgSend(_self, "relativeLocation", ?*CLLocation, .{});
+    pub fn relativeLocation(_self: *@This()) ?*core_location.Location {
+        return objc.msgSend(_self, "relativeLocation", ?*core_location.Location, .{});
     }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKNotificationID?language=objc
 pub const NotificationID = opaque {
-    pub const InternalInfo = objc.ExternClass("CKNotificationID", @This(), objc.NSObject, &.{
-        foundation.Copying,
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CKNotificationID", @This(), objc.NSObject, &.{ foundation.Copying, foundation.SecureCoding });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -3338,7 +3309,7 @@ pub const NotificationID = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -3354,12 +3325,12 @@ pub const NotificationID = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3422,16 +3393,16 @@ pub const NotificationID = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -3529,7 +3500,7 @@ pub const Notification = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -3545,12 +3516,12 @@ pub const Notification = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3613,16 +3584,16 @@ pub const Notification = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -3657,8 +3628,8 @@ pub const Notification = opaque {
         return objc.msgSend(_self, "notificationID", ?*NotificationID, .{});
     }
 
-    pub fn containerIdentifier(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    pub fn containerIdentifier(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "containerIdentifier", ?*foundation.String, .{});
     }
 
     pub fn subscriptionOwnerUserRecordID(_self: *@This()) ?*RecordID {
@@ -3735,7 +3706,7 @@ pub const QueryNotification = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -3751,12 +3722,12 @@ pub const QueryNotification = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -3819,16 +3790,16 @@ pub const QueryNotification = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -3863,8 +3834,8 @@ pub const QueryNotification = opaque {
         return objc.msgSend(_self, "notificationID", ?*NotificationID, .{});
     }
 
-    pub fn containerIdentifier(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    pub fn containerIdentifier(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "containerIdentifier", ?*foundation.String, .{});
     }
 
     pub fn subscriptionOwnerUserRecordID(_self: *@This()) ?*RecordID {
@@ -3951,7 +3922,7 @@ pub const RecordZoneNotification = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -3967,12 +3938,12 @@ pub const RecordZoneNotification = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4035,16 +4006,16 @@ pub const RecordZoneNotification = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -4079,8 +4050,8 @@ pub const RecordZoneNotification = opaque {
         return objc.msgSend(_self, "notificationID", ?*NotificationID, .{});
     }
 
-    pub fn containerIdentifier(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    pub fn containerIdentifier(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "containerIdentifier", ?*foundation.String, .{});
     }
 
     pub fn subscriptionOwnerUserRecordID(_self: *@This()) ?*RecordID {
@@ -4159,7 +4130,7 @@ pub const DatabaseNotification = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -4175,12 +4146,12 @@ pub const DatabaseNotification = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4243,16 +4214,16 @@ pub const DatabaseNotification = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -4287,8 +4258,8 @@ pub const DatabaseNotification = opaque {
         return objc.msgSend(_self, "notificationID", ?*NotificationID, .{});
     }
 
-    pub fn containerIdentifier(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    pub fn containerIdentifier(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "containerIdentifier", ?*foundation.String, .{});
     }
 
     pub fn subscriptionOwnerUserRecordID(_self: *@This()) ?*RecordID {
@@ -4310,10 +4281,7 @@ pub const DatabaseNotification = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKQuery?language=objc
 pub const Query = opaque {
-    pub const InternalInfo = objc.ExternClass("CKQuery", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKQuery", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -4366,7 +4334,7 @@ pub const Query = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -4382,12 +4350,12 @@ pub const Query = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4450,16 +4418,16 @@ pub const Query = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -4524,10 +4492,7 @@ pub const RecordZoneCapabilities = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordZone?language=objc
 pub const RecordZone = opaque {
-    pub const InternalInfo = objc.ExternClass("CKRecordZone", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKRecordZone", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -4580,7 +4545,7 @@ pub const RecordZone = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -4596,12 +4561,12 @@ pub const RecordZone = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4664,16 +4629,16 @@ pub const RecordZone = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -4712,7 +4677,7 @@ pub const RecordZone = opaque {
         return objc.msgSend(_self, "defaultRecordZone", ?*RecordZone, .{});
     }
 
-    pub fn initWithZoneName(_self: *@This(), _zoneName: ?*NSString) *@This() {
+    pub fn initWithZoneName(_self: *@This(), _zoneName: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "initWithZoneName:", *@This(), .{_zoneName});
     }
 
@@ -4735,10 +4700,7 @@ pub const RecordZone = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordID?language=objc
 pub const RecordID = opaque {
-    pub const InternalInfo = objc.ExternClass("CKRecordID", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKRecordID", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -4791,7 +4753,7 @@ pub const RecordID = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -4807,12 +4769,12 @@ pub const RecordID = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -4875,16 +4837,16 @@ pub const RecordID = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -4919,16 +4881,16 @@ pub const RecordID = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithRecordName(_self: *@This(), _recordName: ?*NSString) *@This() {
+    pub fn initWithRecordName(_self: *@This(), _recordName: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "initWithRecordName:", *@This(), .{_recordName});
     }
 
-    pub fn initWithRecordNameZoneID(_self: *@This(), _recordName: ?*NSString, _zoneID: ?*RecordZoneID) *@This() {
+    pub fn initWithRecordNameZoneID(_self: *@This(), _recordName: ?*foundation.String, _zoneID: ?*RecordZoneID) *@This() {
         return objc.msgSend(_self, "initWithRecordName:zoneID:", *@This(), .{ _recordName, _zoneID });
     }
 
-    pub fn recordName(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "recordName", ?*NSString, .{});
+    pub fn recordName(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "recordName", ?*foundation.String, .{});
     }
 
     pub fn zoneID(_self: *@This()) ?*RecordZoneID {
@@ -4938,10 +4900,7 @@ pub const RecordID = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKRecordZoneID?language=objc
 pub const RecordZoneID = opaque {
-    pub const InternalInfo = objc.ExternClass("CKRecordZoneID", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKRecordZoneID", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -4994,7 +4953,7 @@ pub const RecordZoneID = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -5010,12 +4969,12 @@ pub const RecordZoneID = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5078,16 +5037,16 @@ pub const RecordZoneID = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -5122,16 +5081,16 @@ pub const RecordZoneID = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithZoneNameOwnerName(_self: *@This(), _zoneName: ?*NSString, _ownerName: ?*NSString) *@This() {
+    pub fn initWithZoneNameOwnerName(_self: *@This(), _zoneName: ?*foundation.String, _ownerName: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "initWithZoneName:ownerName:", *@This(), .{ _zoneName, _ownerName });
     }
 
-    pub fn zoneName(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "zoneName", ?*NSString, .{});
+    pub fn zoneName(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "zoneName", ?*foundation.String, .{});
     }
 
-    pub fn ownerName(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "ownerName", ?*NSString, .{});
+    pub fn ownerName(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "ownerName", ?*foundation.String, .{});
     }
 };
 
@@ -5190,7 +5149,7 @@ pub const DatabaseOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -5206,12 +5165,12 @@ pub const DatabaseOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5274,16 +5233,16 @@ pub const DatabaseOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -5437,10 +5396,7 @@ pub const DatabaseOperation = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKServerChangeToken?language=objc
 pub const ServerChangeToken = opaque {
-    pub const InternalInfo = objc.ExternClass("CKServerChangeToken", @This(), objc.NSObject, &.{
-        foundation.Copying,
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CKServerChangeToken", @This(), objc.NSObject, &.{ foundation.Copying, foundation.SecureCoding });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -5493,7 +5449,7 @@ pub const ServerChangeToken = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -5509,12 +5465,12 @@ pub const ServerChangeToken = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5577,16 +5533,16 @@ pub const ServerChangeToken = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -5652,10 +5608,7 @@ pub const ShareParticipantType = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKShareParticipant?language=objc
 pub const ShareParticipant = opaque {
-    pub const InternalInfo = objc.ExternClass("CKShareParticipant", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKShareParticipant", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -5708,7 +5661,7 @@ pub const ShareParticipant = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -5724,12 +5677,12 @@ pub const ShareParticipant = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -5792,16 +5745,16 @@ pub const ShareParticipant = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -5868,17 +5821,14 @@ pub const ShareParticipant = opaque {
         return objc.msgSend(_self, "setPermission:", void, .{_permission});
     }
 
-    pub fn participantID(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "participantID", ?*NSString, .{});
+    pub fn participantID(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "participantID", ?*foundation.String, .{});
     }
 };
 
 /// https://developer.apple.com/documentation/CloudKit/CKShare?language=objc
 pub const Share = opaque {
-    pub const InternalInfo = objc.ExternClass("CKShare", @This(), Record, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKShare", @This(), Record, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -5931,7 +5881,7 @@ pub const Share = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -5947,12 +5897,12 @@ pub const Share = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -6015,16 +5965,16 @@ pub const Share = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -6119,8 +6069,8 @@ pub const Share = opaque {
         return objc.msgSend(_self, "recordID", ?*RecordID, .{});
     }
 
-    pub fn recordChangeTag(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "recordChangeTag", ?*NSString, .{});
+    pub fn recordChangeTag(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "recordChangeTag", ?*foundation.String, .{});
     }
 
     pub fn creatorUserRecordID(_self: *@This()) ?*RecordID {
@@ -6198,10 +6148,7 @@ pub const Share = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKShareMetadata?language=objc
 pub const ShareMetadata = opaque {
-    pub const InternalInfo = objc.ExternClass("CKShareMetadata", @This(), objc.NSObject, &.{
-        foundation.Copying,
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CKShareMetadata", @This(), objc.NSObject, &.{ foundation.Copying, foundation.SecureCoding });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -6254,7 +6201,7 @@ pub const ShareMetadata = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -6270,12 +6217,12 @@ pub const ShareMetadata = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -6338,16 +6285,16 @@ pub const ShareMetadata = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -6382,8 +6329,8 @@ pub const ShareMetadata = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn containerIdentifier(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "containerIdentifier", ?*NSString, .{});
+    pub fn containerIdentifier(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "containerIdentifier", ?*foundation.String, .{});
     }
 
     pub fn share(_self: *@This()) ?*Share {
@@ -6425,10 +6372,7 @@ pub const ShareMetadata = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKUserIdentity?language=objc
 pub const UserIdentity = opaque {
-    pub const InternalInfo = objc.ExternClass("CKUserIdentity", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKUserIdentity", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -6481,7 +6425,7 @@ pub const UserIdentity = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -6497,12 +6441,12 @@ pub const UserIdentity = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -6565,16 +6509,16 @@ pub const UserIdentity = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -6632,10 +6576,7 @@ pub const UserIdentity = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKUserIdentityLookupInfo?language=objc
 pub const UserIdentityLookupInfo = opaque {
-    pub const InternalInfo = objc.ExternClass("CKUserIdentityLookupInfo", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKUserIdentityLookupInfo", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -6688,7 +6629,7 @@ pub const UserIdentityLookupInfo = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -6704,12 +6645,12 @@ pub const UserIdentityLookupInfo = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -6772,16 +6713,16 @@ pub const UserIdentityLookupInfo = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -6816,11 +6757,11 @@ pub const UserIdentityLookupInfo = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn initWithEmailAddress(_self: *@This(), _emailAddress: ?*NSString) *@This() {
+    pub fn initWithEmailAddress(_self: *@This(), _emailAddress: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "initWithEmailAddress:", *@This(), .{_emailAddress});
     }
 
-    pub fn initWithPhoneNumber(_self: *@This(), _phoneNumber: ?*NSString) *@This() {
+    pub fn initWithPhoneNumber(_self: *@This(), _phoneNumber: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "initWithPhoneNumber:", *@This(), .{_phoneNumber});
     }
 
@@ -6840,12 +6781,12 @@ pub const UserIdentityLookupInfo = opaque {
         return objc.msgSend(_self, "lookupInfosWithRecordIDs:", ?*anyopaque, .{_recordIDs});
     }
 
-    pub fn emailAddress(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "emailAddress", ?*NSString, .{});
+    pub fn emailAddress(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "emailAddress", ?*foundation.String, .{});
     }
 
-    pub fn phoneNumber(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "phoneNumber", ?*NSString, .{});
+    pub fn phoneNumber(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "phoneNumber", ?*foundation.String, .{});
     }
 
     pub fn userRecordID(_self: *@This()) ?*RecordID {
@@ -6908,7 +6849,7 @@ pub const AcceptSharesOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -6924,12 +6865,12 @@ pub const AcceptSharesOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -6992,16 +6933,16 @@ pub const AcceptSharesOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -7228,7 +7169,7 @@ pub const DiscoverAllUserIdentitiesOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -7244,12 +7185,12 @@ pub const DiscoverAllUserIdentitiesOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -7312,16 +7253,16 @@ pub const DiscoverAllUserIdentitiesOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -7536,7 +7477,7 @@ pub const DiscoverUserIdentitiesOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -7552,12 +7493,12 @@ pub const DiscoverUserIdentitiesOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -7620,16 +7561,16 @@ pub const DiscoverUserIdentitiesOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -7856,7 +7797,7 @@ pub const FetchDatabaseChangesOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -7872,12 +7813,12 @@ pub const FetchDatabaseChangesOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -7940,16 +7881,16 @@ pub const FetchDatabaseChangesOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -8232,7 +8173,7 @@ pub const FetchNotificationChangesOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -8248,12 +8189,12 @@ pub const FetchNotificationChangesOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -8316,16 +8257,16 @@ pub const FetchNotificationChangesOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -8524,7 +8465,7 @@ pub const FetchRecordChangesOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -8540,12 +8481,12 @@ pub const FetchRecordChangesOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -8608,16 +8549,16 @@ pub const FetchRecordChangesOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -8888,7 +8829,7 @@ pub const FetchRecordsOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -8904,12 +8845,12 @@ pub const FetchRecordsOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -8972,16 +8913,16 @@ pub const FetchRecordsOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -9236,7 +9177,7 @@ pub const FetchRecordZoneChangesOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -9252,12 +9193,12 @@ pub const FetchRecordZoneChangesOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -9320,16 +9261,16 @@ pub const FetchRecordZoneChangesOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -9577,10 +9518,7 @@ pub const FetchRecordZoneChangesOperation = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesConfiguration?language=objc
 pub const FetchRecordZoneChangesConfiguration = opaque {
-    pub const InternalInfo = objc.ExternClass("CKFetchRecordZoneChangesConfiguration", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKFetchRecordZoneChangesConfiguration", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -9633,7 +9571,7 @@ pub const FetchRecordZoneChangesConfiguration = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -9649,12 +9587,12 @@ pub const FetchRecordZoneChangesConfiguration = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -9717,16 +9655,16 @@ pub const FetchRecordZoneChangesConfiguration = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -9788,10 +9726,7 @@ pub const FetchRecordZoneChangesConfiguration = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKFetchRecordZoneChangesOptions?language=objc
 pub const FetchRecordZoneChangesOptions = opaque {
-    pub const InternalInfo = objc.ExternClass("CKFetchRecordZoneChangesOptions", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKFetchRecordZoneChangesOptions", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -9844,7 +9779,7 @@ pub const FetchRecordZoneChangesOptions = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -9860,12 +9795,12 @@ pub const FetchRecordZoneChangesOptions = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -9928,16 +9863,16 @@ pub const FetchRecordZoneChangesOptions = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -10052,7 +9987,7 @@ pub const FetchRecordZonesOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -10068,12 +10003,12 @@ pub const FetchRecordZonesOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -10136,16 +10071,16 @@ pub const FetchRecordZonesOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -10384,7 +10319,7 @@ pub const FetchShareMetadataOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -10400,12 +10335,12 @@ pub const FetchShareMetadataOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -10468,16 +10403,16 @@ pub const FetchShareMetadataOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -10720,7 +10655,7 @@ pub const FetchShareParticipantsOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -10736,12 +10671,12 @@ pub const FetchShareParticipantsOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -10804,16 +10739,16 @@ pub const FetchShareParticipantsOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -11048,7 +10983,7 @@ pub const FetchSubscriptionsOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -11064,12 +10999,12 @@ pub const FetchSubscriptionsOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -11132,16 +11067,16 @@ pub const FetchSubscriptionsOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -11380,7 +11315,7 @@ pub const FetchWebAuthTokenOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -11396,12 +11331,12 @@ pub const FetchWebAuthTokenOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -11464,16 +11399,16 @@ pub const FetchWebAuthTokenOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -11624,23 +11559,23 @@ pub const FetchWebAuthTokenOperation = opaque {
         return objc.msgSend(_self, "setDatabase:", void, .{_database});
     }
 
-    pub fn initWithAPIToken(_self: *@This(), _APIToken: ?*NSString) *@This() {
+    pub fn initWithAPIToken(_self: *@This(), _APIToken: ?*foundation.String) *@This() {
         return objc.msgSend(_self, "initWithAPIToken:", *@This(), .{_APIToken});
     }
 
-    pub fn apiToken(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "APIToken", ?*NSString, .{});
+    pub fn apiToken(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "APIToken", ?*foundation.String, .{});
     }
 
-    pub fn setAPIToken(_self: *@This(), _APIToken: ?*NSString) void {
+    pub fn setAPIToken(_self: *@This(), _APIToken: ?*foundation.String) void {
         return objc.msgSend(_self, "setAPIToken:", void, .{_APIToken});
     }
 
-    pub fn fetchWebAuthTokenCompletionBlock(_self: *@This()) *const fn (?*NSString, ?*foundation.Error) callconv(.C) void {
-        return objc.msgSend(_self, "fetchWebAuthTokenCompletionBlock", *const fn (?*NSString, ?*foundation.Error) callconv(.C) void, .{});
+    pub fn fetchWebAuthTokenCompletionBlock(_self: *@This()) *const fn (?*foundation.String, ?*foundation.Error) callconv(.C) void {
+        return objc.msgSend(_self, "fetchWebAuthTokenCompletionBlock", *const fn (?*foundation.String, ?*foundation.Error) callconv(.C) void, .{});
     }
 
-    pub fn setFetchWebAuthTokenCompletionBlock(_self: *@This(), _fetchWebAuthTokenCompletionBlock: *const fn (?*NSString, ?*foundation.Error) callconv(.C) void) void {
+    pub fn setFetchWebAuthTokenCompletionBlock(_self: *@This(), _fetchWebAuthTokenCompletionBlock: *const fn (?*foundation.String, ?*foundation.Error) callconv(.C) void) void {
         return objc.msgSend(_self, "setFetchWebAuthTokenCompletionBlock:", void, .{_fetchWebAuthTokenCompletionBlock});
     }
 };
@@ -11700,7 +11635,7 @@ pub const MarkNotificationsReadOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -11716,12 +11651,12 @@ pub const MarkNotificationsReadOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -11784,16 +11719,16 @@ pub const MarkNotificationsReadOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -11992,7 +11927,7 @@ pub const ModifyBadgeOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -12008,12 +11943,12 @@ pub const ModifyBadgeOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -12076,16 +12011,16 @@ pub const ModifyBadgeOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -12290,7 +12225,7 @@ pub const ModifyRecordsOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -12306,12 +12241,12 @@ pub const ModifyRecordsOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -12374,16 +12309,16 @@ pub const ModifyRecordsOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -12674,7 +12609,7 @@ pub const ModifyRecordZonesOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -12690,12 +12625,12 @@ pub const ModifyRecordZonesOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -12758,16 +12693,16 @@ pub const ModifyRecordZonesOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -13018,7 +12953,7 @@ pub const ModifySubscriptionsOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -13034,12 +12969,12 @@ pub const ModifySubscriptionsOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -13102,16 +13037,16 @@ pub const ModifySubscriptionsOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -13320,9 +13255,7 @@ pub const OperationGroupTransferSize = enum(objc.NSInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKOperationGroup?language=objc
 pub const OperationGroup = opaque {
-    pub const InternalInfo = objc.ExternClass("CKOperationGroup", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CKOperationGroup", @This(), objc.NSObject, &.{foundation.SecureCoding});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -13375,7 +13308,7 @@ pub const OperationGroup = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -13391,12 +13324,12 @@ pub const OperationGroup = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -13459,16 +13392,16 @@ pub const OperationGroup = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -13503,8 +13436,8 @@ pub const OperationGroup = opaque {
         return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn operationGroupID(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "operationGroupID", ?*NSString, .{});
+    pub fn operationGroupID(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "operationGroupID", ?*foundation.String, .{});
     }
 
     pub fn defaultConfiguration(_self: *@This()) ?*OperationConfiguration {
@@ -13515,11 +13448,11 @@ pub const OperationGroup = opaque {
         return objc.msgSend(_self, "setDefaultConfiguration:", void, .{_defaultConfiguration});
     }
 
-    pub fn name(_self: *@This()) ?*NSString {
-        return objc.msgSend(_self, "name", ?*NSString, .{});
+    pub fn name(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(_self: *@This(), _name: ?*NSString) void {
+    pub fn setName(_self: *@This(), _name: ?*foundation.String) void {
         return objc.msgSend(_self, "setName:", void, .{_name});
     }
 
@@ -13550,10 +13483,7 @@ pub const OperationGroup = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKQueryCursor?language=objc
 pub const QueryCursor = opaque {
-    pub const InternalInfo = objc.ExternClass("CKQueryCursor", @This(), objc.NSObject, &.{
-        foundation.Copying,
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CKQueryCursor", @This(), objc.NSObject, &.{ foundation.Copying, foundation.SecureCoding });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -13606,7 +13536,7 @@ pub const QueryCursor = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -13622,12 +13552,12 @@ pub const QueryCursor = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -13690,16 +13620,16 @@ pub const QueryCursor = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -13790,7 +13720,7 @@ pub const QueryOperation = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -13806,12 +13736,12 @@ pub const QueryOperation = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -13874,16 +13804,16 @@ pub const QueryOperation = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -14125,10 +14055,7 @@ pub const SharingParticipantPermissionOption = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/CloudKit/CKAllowedSharingOptions?language=objc
 pub const AllowedSharingOptions = opaque {
-    pub const InternalInfo = objc.ExternClass("CKAllowedSharingOptions", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKAllowedSharingOptions", @This(), objc.NSObject, &.{ foundation.SecureCoding, foundation.Copying });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -14181,7 +14108,7 @@ pub const AllowedSharingOptions = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -14197,12 +14124,12 @@ pub const AllowedSharingOptions = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -14265,16 +14192,16 @@ pub const AllowedSharingOptions = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -14389,7 +14316,7 @@ pub const SystemSharingUIObserver = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -14405,12 +14332,12 @@ pub const SystemSharingUIObserver = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -14473,16 +14400,16 @@ pub const SystemSharingUIObserver = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -14581,7 +14508,7 @@ pub const SyncEngineState = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -14597,12 +14524,12 @@ pub const SyncEngineState = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -14665,16 +14592,16 @@ pub const SyncEngineState = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -14736,9 +14663,7 @@ pub const SyncEngineState = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineStateSerialization?language=objc
 pub const SyncEngineStateSerialization = opaque {
-    pub const InternalInfo = objc.ExternClass("CKSyncEngineStateSerialization", @This(), objc.NSObject, &.{
-        foundation.SecureCoding,
-    });
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineStateSerialization", @This(), objc.NSObject, &.{foundation.SecureCoding});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -14791,7 +14716,7 @@ pub const SyncEngineStateSerialization = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -14807,12 +14732,12 @@ pub const SyncEngineStateSerialization = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -14875,16 +14800,16 @@ pub const SyncEngineStateSerialization = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -14980,7 +14905,7 @@ pub const SyncEnginePendingRecordZoneChange = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -14996,12 +14921,12 @@ pub const SyncEnginePendingRecordZoneChange = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -15064,16 +14989,16 @@ pub const SyncEnginePendingRecordZoneChange = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -15169,7 +15094,7 @@ pub const SyncEnginePendingDatabaseChange = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -15185,12 +15110,12 @@ pub const SyncEnginePendingDatabaseChange = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -15253,16 +15178,16 @@ pub const SyncEnginePendingDatabaseChange = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -15349,7 +15274,7 @@ pub const SyncEnginePendingZoneSave = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -15365,12 +15290,12 @@ pub const SyncEnginePendingZoneSave = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -15433,16 +15358,16 @@ pub const SyncEnginePendingZoneSave = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -15533,7 +15458,7 @@ pub const SyncEnginePendingZoneDelete = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -15549,12 +15474,12 @@ pub const SyncEnginePendingZoneDelete = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -15617,16 +15542,16 @@ pub const SyncEnginePendingZoneDelete = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -15717,7 +15642,7 @@ pub const SyncEngineRecordZoneChangeBatch = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -15733,12 +15658,12 @@ pub const SyncEngineRecordZoneChangeBatch = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -15801,16 +15726,16 @@ pub const SyncEngineRecordZoneChangeBatch = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -15913,7 +15838,7 @@ pub const SyncEngine = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -15929,12 +15854,12 @@ pub const SyncEngine = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -15997,16 +15922,16 @@ pub const SyncEngine = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -16064,9 +15989,7 @@ pub const SyncEngine = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineDelegate?language=objc
 pub const SyncEngineDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{
-        objc.NSObject,
-    });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -16116,7 +16039,7 @@ pub const SyncEngineDelegate = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -16132,12 +16055,12 @@ pub const SyncEngineDelegate = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn syncEngineHandleEvent(_self: *@This(), _syncEngine: ?*SyncEngine, _event: ?*SyncEngineEvent) void {
@@ -16155,9 +16078,7 @@ pub const SyncEngineDelegate = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesOptions?language=objc
 pub const SyncEngineFetchChangesOptions = opaque {
-    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchChangesOptions", @This(), objc.NSObject, &.{
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchChangesOptions", @This(), objc.NSObject, &.{foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -16210,7 +16131,7 @@ pub const SyncEngineFetchChangesOptions = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -16226,12 +16147,12 @@ pub const SyncEngineFetchChangesOptions = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -16294,16 +16215,16 @@ pub const SyncEngineFetchChangesOptions = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -16357,9 +16278,7 @@ pub const SyncEngineFetchChangesOptions = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesScope?language=objc
 pub const SyncEngineFetchChangesScope = opaque {
-    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchChangesScope", @This(), objc.NSObject, &.{
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineFetchChangesScope", @This(), objc.NSObject, &.{foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -16412,7 +16331,7 @@ pub const SyncEngineFetchChangesScope = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -16428,12 +16347,12 @@ pub const SyncEngineFetchChangesScope = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -16496,16 +16415,16 @@ pub const SyncEngineFetchChangesScope = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -16551,9 +16470,7 @@ pub const SyncEngineFetchChangesScope = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesOptions?language=objc
 pub const SyncEngineSendChangesOptions = opaque {
-    pub const InternalInfo = objc.ExternClass("CKSyncEngineSendChangesOptions", @This(), objc.NSObject, &.{
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineSendChangesOptions", @This(), objc.NSObject, &.{foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -16606,7 +16523,7 @@ pub const SyncEngineSendChangesOptions = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -16622,12 +16539,12 @@ pub const SyncEngineSendChangesOptions = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -16690,16 +16607,16 @@ pub const SyncEngineSendChangesOptions = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -16745,9 +16662,7 @@ pub const SyncEngineSendChangesOptions = opaque {
 
 /// https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope?language=objc
 pub const SyncEngineSendChangesScope = opaque {
-    pub const InternalInfo = objc.ExternClass("CKSyncEngineSendChangesScope", @This(), objc.NSObject, &.{
-        foundation.Copying,
-    });
+    pub const InternalInfo = objc.ExternClass("CKSyncEngineSendChangesScope", @This(), objc.NSObject, &.{foundation.Copying});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -16800,7 +16715,7 @@ pub const SyncEngineSendChangesScope = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -16816,12 +16731,12 @@ pub const SyncEngineSendChangesScope = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -16884,16 +16799,16 @@ pub const SyncEngineSendChangesScope = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -17009,7 +16924,7 @@ pub const SyncEngineFetchChangesContext = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -17025,12 +16940,12 @@ pub const SyncEngineFetchChangesContext = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -17093,16 +17008,16 @@ pub const SyncEngineFetchChangesContext = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -17189,7 +17104,7 @@ pub const SyncEngineSendChangesContext = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -17205,12 +17120,12 @@ pub const SyncEngineSendChangesContext = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -17273,16 +17188,16 @@ pub const SyncEngineSendChangesContext = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -17369,7 +17284,7 @@ pub const SyncEngineConfiguration = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -17385,12 +17300,12 @@ pub const SyncEngineConfiguration = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -17453,16 +17368,16 @@ pub const SyncEngineConfiguration = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -17600,7 +17515,7 @@ pub const SyncEngineEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -17616,12 +17531,12 @@ pub const SyncEngineEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -17684,16 +17599,16 @@ pub const SyncEngineEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -17824,7 +17739,7 @@ pub const SyncEngineStateUpdateEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -17840,12 +17755,12 @@ pub const SyncEngineStateUpdateEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -17908,16 +17823,16 @@ pub const SyncEngineStateUpdateEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -18058,7 +17973,7 @@ pub const SyncEngineAccountChangeEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -18074,12 +17989,12 @@ pub const SyncEngineAccountChangeEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -18142,16 +18057,16 @@ pub const SyncEngineAccountChangeEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -18294,7 +18209,7 @@ pub const SyncEngineFetchedDatabaseChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -18310,12 +18225,12 @@ pub const SyncEngineFetchedDatabaseChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -18378,16 +18293,16 @@ pub const SyncEngineFetchedDatabaseChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -18526,7 +18441,7 @@ pub const SyncEngineFetchedRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -18542,12 +18457,12 @@ pub const SyncEngineFetchedRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -18610,16 +18525,16 @@ pub const SyncEngineFetchedRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -18758,7 +18673,7 @@ pub const SyncEngineSentDatabaseChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -18774,12 +18689,12 @@ pub const SyncEngineSentDatabaseChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -18842,16 +18757,16 @@ pub const SyncEngineSentDatabaseChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -18998,7 +18913,7 @@ pub const SyncEngineSentRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -19014,12 +18929,12 @@ pub const SyncEngineSentRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -19082,16 +18997,16 @@ pub const SyncEngineSentRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -19238,7 +19153,7 @@ pub const SyncEngineWillFetchChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -19254,12 +19169,12 @@ pub const SyncEngineWillFetchChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -19322,16 +19237,16 @@ pub const SyncEngineWillFetchChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -19466,7 +19381,7 @@ pub const SyncEngineWillFetchRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -19482,12 +19397,12 @@ pub const SyncEngineWillFetchRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -19550,16 +19465,16 @@ pub const SyncEngineWillFetchRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -19694,7 +19609,7 @@ pub const SyncEngineDidFetchRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -19710,12 +19625,12 @@ pub const SyncEngineDidFetchRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -19778,16 +19693,16 @@ pub const SyncEngineDidFetchRecordZoneChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -19926,7 +19841,7 @@ pub const SyncEngineDidFetchChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -19942,12 +19857,12 @@ pub const SyncEngineDidFetchChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -20010,16 +19925,16 @@ pub const SyncEngineDidFetchChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -20154,7 +20069,7 @@ pub const SyncEngineWillSendChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -20170,12 +20085,12 @@ pub const SyncEngineWillSendChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -20238,16 +20153,16 @@ pub const SyncEngineWillSendChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -20382,7 +20297,7 @@ pub const SyncEngineDidSendChangesEvent = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -20398,12 +20313,12 @@ pub const SyncEngineDidSendChangesEvent = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -20466,16 +20381,16 @@ pub const SyncEngineDidSendChangesEvent = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -20610,7 +20525,7 @@ pub const SyncEngineFetchedRecordDeletion = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -20626,12 +20541,12 @@ pub const SyncEngineFetchedRecordDeletion = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -20694,16 +20609,16 @@ pub const SyncEngineFetchedRecordDeletion = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -20796,7 +20711,7 @@ pub const SyncEngineFetchedZoneDeletion = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -20812,12 +20727,12 @@ pub const SyncEngineFetchedZoneDeletion = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -20880,16 +20795,16 @@ pub const SyncEngineFetchedZoneDeletion = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -20976,7 +20891,7 @@ pub const SyncEngineFailedRecordSave = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -20992,12 +20907,12 @@ pub const SyncEngineFailedRecordSave = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -21060,16 +20975,16 @@ pub const SyncEngineFailedRecordSave = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -21156,7 +21071,7 @@ pub const SyncEngineFailedZoneSave = opaque {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?*objc.Protocol) objc.BOOL {
+    pub fn conformsToProtocol(_self: *@This(), _aProtocol: ?**objc.Protocol) objc.BOOL {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
@@ -21172,12 +21087,12 @@ pub const SyncEngineFailedZoneSave = opaque {
         return objc.msgSend(_self, "zone", ?*objc._NSZone, .{});
     }
 
-    pub fn description(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "description", ?*objc.NSString, .{});
+    pub fn description(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "description", ?*foundation.String, .{});
     }
 
-    pub fn debugDescription(_self: *@This()) ?*objc.NSString {
-        return objc.msgSend(_self, "debugDescription", ?*objc.NSString, .{});
+    pub fn debugDescription(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
     pub fn load(_self: *@This()) void {
@@ -21240,16 +21155,16 @@ pub const SyncEngineFailedZoneSave = opaque {
         return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
     }
 
-    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*objc.NSInvocation) void {
+    pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "methodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*objc.NSMethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*objc.NSMethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
