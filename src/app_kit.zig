@@ -2,8 +2,16 @@
 
 const std = @import("std");
 const objc = @import("objc.zig"); // Objective-C Runtime in zig.
-const cf = @import("cf.zig"); // Framework dependency CoreFoundation.
-const ns = @import("ns.zig"); // Framework dependency Foundation.
+const core_foundation = @import("core_foundation.zig"); // Framework dependency CoreFoundation.
+const foundation = @import("foundation.zig"); // Framework dependency Foundation.
+const core_graphics = @import("core_graphics.zig"); // Framework dependency CoreGraphics.
+const application_services = @import("application_services.zig"); // Framework dependency ApplicationServices.
+const core_text = @import("core_text.zig"); // Framework dependency CoreText.
+const core_image = @import("core_image.zig"); // Framework dependency CoreImage.
+const opengl = @import("opengl.zig"); // Framework dependency OpenGL.
+const core_video = @import("core_video.zig"); // Framework dependency CoreVideo.
+const quartz_core = @import("quartz_core.zig"); // Framework dependency QuartzCore.
+const core_data = @import("core_data.zig"); // Framework dependency CoreData.
 
 pub const anon651 = enum(u32) {
     NSFontPanelFaceModeMask = 1,
@@ -367,7 +375,7 @@ pub const ColorRenderingIntent = enum(objc.NSInteger) {
     Saturation = 4,
 };
 
-pub const ColorSpaceName = ?*ns.String;
+pub const ColorSpaceName = ?*foundation.String;
 
 pub const WindowDepth = enum(objc.int32_t) {
     TwentyfourBitRGB = 520,
@@ -394,63 +402,63 @@ pub const DisplayGamut = enum(objc.NSInteger) {
     P3 = 2,
 };
 
-pub const DeviceDescriptionKey = ?*ns.String;
+pub const DeviceDescriptionKey = ?*foundation.String;
 
-pub extern "AppKit" fn RectFill(rect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn RectFill(rect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn RectFillList(rects: ?*ns.Rect, count: objc.NSInteger) callconv(.C) void;
+pub extern "AppKit" fn RectFillList(rects: ?*foundation.Rect, count: objc.NSInteger) callconv(.C) void;
 
-pub extern "AppKit" fn RectFillListWithGrays(rects: ?*ns.Rect, grays: ?*cf.CGFloat, num: objc.NSInteger) callconv(.C) void;
+pub extern "AppKit" fn RectFillListWithGrays(rects: ?*foundation.Rect, grays: ?*core_foundation.CGFloat, num: objc.NSInteger) callconv(.C) void;
 
-pub extern "AppKit" fn RectFillListWithColors(rects: ?*ns.Rect, colors: ?*?*const Color, num: objc.NSInteger) callconv(.C) void;
+pub extern "AppKit" fn RectFillListWithColors(rects: ?*foundation.Rect, colors: ?*?*const Color, num: objc.NSInteger) callconv(.C) void;
 
-pub extern "AppKit" fn RectFillUsingOperation(rect: ns.Rect, op: CompositingOperation) callconv(.C) void;
+pub extern "AppKit" fn RectFillUsingOperation(rect: foundation.Rect, op: CompositingOperation) callconv(.C) void;
 
-pub extern "AppKit" fn RectFillListUsingOperation(rects: ?*ns.Rect, count: objc.NSInteger, op: CompositingOperation) callconv(.C) void;
+pub extern "AppKit" fn RectFillListUsingOperation(rects: ?*foundation.Rect, count: objc.NSInteger, op: CompositingOperation) callconv(.C) void;
 
-pub extern "AppKit" fn RectFillListWithColorsUsingOperation(rects: ?*ns.Rect, colors: ?*?*const Color, num: objc.NSInteger, op: CompositingOperation, ) callconv(.C) void;
+pub extern "AppKit" fn RectFillListWithColorsUsingOperation(rects: ?*foundation.Rect, colors: ?*?*const Color, num: objc.NSInteger, op: CompositingOperation, ) callconv(.C) void;
 
-pub extern "AppKit" fn FrameRect(rect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn FrameRect(rect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn FrameRectWithWidth(rect: ns.Rect, frameWidth: cf.CGFloat) callconv(.C) void;
+pub extern "AppKit" fn FrameRectWithWidth(rect: foundation.Rect, frameWidth: core_foundation.CGFloat) callconv(.C) void;
 
-pub extern "AppKit" fn FrameRectWithWidthUsingOperation(rect: ns.Rect, frameWidth: cf.CGFloat, op: CompositingOperation) callconv(.C) void;
+pub extern "AppKit" fn FrameRectWithWidthUsingOperation(rect: foundation.Rect, frameWidth: core_foundation.CGFloat, op: CompositingOperation) callconv(.C) void;
 
-pub extern "AppKit" fn RectClip(rect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn RectClip(rect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn RectClipList(rects: ?*ns.Rect, count: objc.NSInteger) callconv(.C) void;
+pub extern "AppKit" fn RectClipList(rects: ?*foundation.Rect, count: objc.NSInteger) callconv(.C) void;
 
-pub extern "AppKit" fn DrawTiledRects(boundsRect: ns.Rect, clipRect: ns.Rect, sides: ?*ns.RectEdge, grays: ?*cf.CGFloat, count: objc.NSInteger, ) callconv(.C) ns.Rect;
+pub extern "AppKit" fn DrawTiledRects(boundsRect: foundation.Rect, clipRect: foundation.Rect, sides: ?*foundation.RectEdge, grays: ?*core_foundation.CGFloat, count: objc.NSInteger, ) callconv(.C) foundation.Rect;
 
-pub extern "AppKit" fn DrawGrayBezel(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn DrawGrayBezel(rect: foundation.Rect, clipRect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn DrawGroove(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn DrawGroove(rect: foundation.Rect, clipRect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn DrawWhiteBezel(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn DrawWhiteBezel(rect: foundation.Rect, clipRect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn DrawButton(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn DrawButton(rect: foundation.Rect, clipRect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn EraseRect(rect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn EraseRect(rect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn ReadPixel(passedPoint: ns.Point) callconv(.C) ?*Color;
+pub extern "AppKit" fn ReadPixel(passedPoint: foundation.Point) callconv(.C) ?*Color;
 
-pub extern "AppKit" fn DrawBitmap(rect: ns.Rect, width: objc.NSInteger, height: objc.NSInteger, bps: objc.NSInteger, spp: objc.NSInteger, bpp: objc.NSInteger, bpr: objc.NSInteger, isPlanar: objc.BOOL, hasAlpha: objc.BOOL, colorSpaceName: ColorSpaceName, data: ?*?*const u8, ) callconv(.C) void;
+pub extern "AppKit" fn DrawBitmap(rect: foundation.Rect, width: objc.NSInteger, height: objc.NSInteger, bps: objc.NSInteger, spp: objc.NSInteger, bpp: objc.NSInteger, bpr: objc.NSInteger, isPlanar: objc.BOOL, hasAlpha: objc.BOOL, colorSpaceName: ColorSpaceName, data: ?*?*const u8, ) callconv(.C) void;
 
-pub extern "AppKit" fn HighlightRect(rect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn HighlightRect(rect: foundation.Rect) callconv(.C) void;
 
 pub extern "AppKit" fn Beep() callconv(.C) void;
 
-pub extern "AppKit" fn GetWindowServerMemory(context: objc.NSInteger, virtualMemory: ?*objc.NSInteger, windowBackingMemory: ?*objc.NSInteger, windowDumpString: ?*?*ns.String, ) callconv(.C) objc.NSInteger;
+pub extern "AppKit" fn GetWindowServerMemory(context: objc.NSInteger, virtualMemory: ?*objc.NSInteger, windowBackingMemory: ?*objc.NSInteger, windowDumpString: ?*?*foundation.String, ) callconv(.C) objc.NSInteger;
 
-pub extern "AppKit" fn DrawColorTiledRects(boundsRect: ns.Rect, clipRect: ns.Rect, sides: ?*ns.RectEdge, colors: ?*?*Color, count: objc.NSInteger, ) callconv(.C) ns.Rect;
+pub extern "AppKit" fn DrawColorTiledRects(boundsRect: foundation.Rect, clipRect: foundation.Rect, sides: ?*foundation.RectEdge, colors: ?*?*Color, count: objc.NSInteger, ) callconv(.C) foundation.Rect;
 
-pub extern "AppKit" fn DrawDarkBezel(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn DrawDarkBezel(rect: foundation.Rect, clipRect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn DrawLightBezel(rect: ns.Rect, clipRect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn DrawLightBezel(rect: foundation.Rect, clipRect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn DottedFrameRect(rect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn DottedFrameRect(rect: foundation.Rect) callconv(.C) void;
 
-pub extern "AppKit" fn DrawWindowBackground(rect: ns.Rect) callconv(.C) void;
+pub extern "AppKit" fn DrawWindowBackground(rect: foundation.Rect) callconv(.C) void;
 
 pub extern "AppKit" fn SetFocusRingStyle(placement: FocusRingPlacement) callconv(.C) void;
 
@@ -463,7 +471,7 @@ pub const AnimationEffect = enum(objc.NSUInteger) {
     Poof = 10,
 };
 
-pub extern "AppKit" fn ShowAnimationEffect(animationEffect: AnimationEffect, centerLocation: ns.Point, size: ns.Size, animationDelegate: *objc.Id, didEndSelector: *objc.SEL, contextInfo: ?*anyopaque, ) callconv(.C) void;
+pub extern "AppKit" fn ShowAnimationEffect(animationEffect: AnimationEffect, centerLocation: foundation.Point, size: foundation.Size, animationDelegate: *objc.Id, didEndSelector: *objc.SEL, contextInfo: ?*anyopaque, ) callconv(.C) void;
 
 pub extern "AppKit" fn CountWindows(count: ?*objc.NSInteger) callconv(.C) void;
 
@@ -473,7 +481,7 @@ pub extern "AppKit" fn CountWindowsForContext(context: objc.NSInteger, count: ?*
 
 pub extern "AppKit" fn WindowListForContext(context: objc.NSInteger, size: objc.NSInteger, list: ?*objc.NSInteger) callconv(.C) void;
 
-pub extern "AppKit" fn CopyBits(srcGState: objc.NSInteger, srcRect: ns.Rect, destPoint: ns.Point) callconv(.C) void;
+pub extern "AppKit" fn CopyBits(srcGState: objc.NSInteger, srcRect: foundation.Rect, destPoint: foundation.Point) callconv(.C) void;
 
 pub const GraphicsContextAttributeKey = ?*String;
 
@@ -506,7 +514,7 @@ pub const GraphicsContext = opaque {
         return objc.msgSend(self, "graphicsContextWithBitmapImageRep:", ?*GraphicsContext, .{bitmapRep});
     }
 
-    pub fn graphicsContextWithCGContextFlipped(self: *@This(), graphicsPort: , initialFlippedState: objc.BOOL) ?*GraphicsContext {
+    pub fn graphicsContextWithCGContextFlipped(self: *@This(), graphicsPort: core_graphics.ContextRef, initialFlippedState: objc.BOOL) ?*GraphicsContext {
         return objc.msgSend(self, "graphicsContextWithCGContext:flipped:", ?*GraphicsContext, .{graphicsPort, initialFlippedState});
     }
 
@@ -550,8 +558,8 @@ pub const GraphicsContext = opaque {
         return objc.msgSend(self, "isDrawingToScreen", objc.BOOL, .{});
     }
 
-    pub fn CGContext(self: *@This())  {
-        return objc.msgSend(self, "CGContext", , .{});
+    pub fn CGContext(self: *@This()) core_graphics.ContextRef {
+        return objc.msgSend(self, "CGContext", core_graphics.ContextRef, .{});
     }
 
     pub fn isFlipped(self: *@This()) objc.BOOL {
@@ -694,8 +702,8 @@ pub const AccessibilityElement = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn accessibilityFrame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "accessibilityFrame", ns.Rect, .{});
+    pub fn accessibilityFrame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "accessibilityFrame", foundation.Rect, .{});
     }
 
     pub fn accessibilityParent(self: *@This()) *objc.Id {
@@ -769,8 +777,8 @@ pub const AccessibilityRadioButton = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn accessibilityValue(self: *@This()) ?*ns.Number {
-        return objc.msgSend(self, "accessibilityValue", ?*ns.Number, .{});
+    pub fn accessibilityValue(self: *@This()) ?*foundation.Number {
+        return objc.msgSend(self, "accessibilityValue", ?*foundation.Number, .{});
     }
 
 };
@@ -801,12 +809,12 @@ pub const AccessibilityStaticText = opaque {
         return objc.msgSend(self, "accessibilityValue", ?*String, .{});
     }
 
-    pub fn accessibilityAttributedStringForRange(self: *@This(), range: ns.Range) ?*ns.AttributedString {
-        return objc.msgSend(self, "accessibilityAttributedStringForRange:", ?*ns.AttributedString, .{range});
+    pub fn accessibilityAttributedStringForRange(self: *@This(), range: foundation.Range) ?*foundation.AttributedString {
+        return objc.msgSend(self, "accessibilityAttributedStringForRange:", ?*foundation.AttributedString, .{range});
     }
 
-    pub fn accessibilityVisibleCharacterRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "accessibilityVisibleCharacterRange", ns.Range, .{});
+    pub fn accessibilityVisibleCharacterRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "accessibilityVisibleCharacterRange", foundation.Range, .{});
     }
 
 };
@@ -819,7 +827,7 @@ pub const AccessibilityNavigableStaticText = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn accessibilityStringForRange(self: *@This(), range: ns.Range) ?*String {
+    pub fn accessibilityStringForRange(self: *@This(), range: foundation.Range) ?*String {
         return objc.msgSend(self, "accessibilityStringForRange:", ?*String, .{range});
     }
 
@@ -827,12 +835,12 @@ pub const AccessibilityNavigableStaticText = opaque {
         return objc.msgSend(self, "accessibilityLineForIndex:", objc.NSInteger, .{index});
     }
 
-    pub fn accessibilityRangeForLine(self: *@This(), lineNumber: objc.NSInteger) ns.Range {
-        return objc.msgSend(self, "accessibilityRangeForLine:", ns.Range, .{lineNumber});
+    pub fn accessibilityRangeForLine(self: *@This(), lineNumber: objc.NSInteger) foundation.Range {
+        return objc.msgSend(self, "accessibilityRangeForLine:", foundation.Range, .{lineNumber});
     }
 
-    pub fn accessibilityFrameForRange(self: *@This(), range: ns.Range) ns.Rect {
-        return objc.msgSend(self, "accessibilityFrameForRange:", ns.Rect, .{range});
+    pub fn accessibilityFrameForRange(self: *@This(), range: foundation.Range) foundation.Rect {
+        return objc.msgSend(self, "accessibilityFrameForRange:", foundation.Rect, .{range});
     }
 
 };
@@ -1071,7 +1079,7 @@ pub const AccessibilityLayoutItem = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn setAccessibilityFrame(self: *@This(), frame: ns.Rect) void {
+    pub fn setAccessibilityFrame(self: *@This(), frame: foundation.Rect) void {
         return objc.msgSend(self, "setAccessibilityFrame:", void, .{frame});
     }
 
@@ -1089,8 +1097,8 @@ pub const AccessibilityElementLoading = opaque {
         return objc.msgSend(self, "accessibilityElementWithToken:", ?*anyopaque, .{token});
     }
 
-    pub fn accessibilityRangeInTargetElementWithToken(self: *@This(), token: AccessibilityLoadingToken) ns.Range {
-        return objc.msgSend(self, "accessibilityRangeInTargetElementWithToken:", ns.Range, .{token});
+    pub fn accessibilityRangeInTargetElementWithToken(self: *@This(), token: AccessibilityLoadingToken) foundation.Range {
+        return objc.msgSend(self, "accessibilityRangeInTargetElementWithToken:", foundation.Range, .{token});
     }
 
 };
@@ -1103,56 +1111,56 @@ pub const Accessibility = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn accessibilityLayoutPointForScreenPoint(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "accessibilityLayoutPointForScreenPoint:", ns.Point, .{point});
+    pub fn accessibilityLayoutPointForScreenPoint(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "accessibilityLayoutPointForScreenPoint:", foundation.Point, .{point});
     }
 
-    pub fn accessibilityLayoutSizeForScreenSize(self: *@This(), size: ns.Size) ns.Size {
-        return objc.msgSend(self, "accessibilityLayoutSizeForScreenSize:", ns.Size, .{size});
+    pub fn accessibilityLayoutSizeForScreenSize(self: *@This(), size: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "accessibilityLayoutSizeForScreenSize:", foundation.Size, .{size});
     }
 
-    pub fn accessibilityScreenPointForLayoutPoint(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "accessibilityScreenPointForLayoutPoint:", ns.Point, .{point});
+    pub fn accessibilityScreenPointForLayoutPoint(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "accessibilityScreenPointForLayoutPoint:", foundation.Point, .{point});
     }
 
-    pub fn accessibilityScreenSizeForLayoutSize(self: *@This(), size: ns.Size) ns.Size {
-        return objc.msgSend(self, "accessibilityScreenSizeForLayoutSize:", ns.Size, .{size});
+    pub fn accessibilityScreenSizeForLayoutSize(self: *@This(), size: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "accessibilityScreenSizeForLayoutSize:", foundation.Size, .{size});
     }
 
     pub fn accessibilityCellForColumnRow(self: *@This(), column: objc.NSInteger, row: objc.NSInteger) *objc.Id {
         return objc.msgSend(self, "accessibilityCellForColumn:row:", *objc.Id, .{column, row});
     }
 
-    pub fn accessibilityAttributedStringForRange(self: *@This(), range: ns.Range) ?*AttributedString {
+    pub fn accessibilityAttributedStringForRange(self: *@This(), range: foundation.Range) ?*AttributedString {
         return objc.msgSend(self, "accessibilityAttributedStringForRange:", ?*AttributedString, .{range});
     }
 
-    pub fn accessibilityRangeForLine(self: *@This(), line: objc.NSInteger) ns.Range {
-        return objc.msgSend(self, "accessibilityRangeForLine:", ns.Range, .{line});
+    pub fn accessibilityRangeForLine(self: *@This(), line: objc.NSInteger) foundation.Range {
+        return objc.msgSend(self, "accessibilityRangeForLine:", foundation.Range, .{line});
     }
 
-    pub fn accessibilityStringForRange(self: *@This(), range: ns.Range) ?*String {
+    pub fn accessibilityStringForRange(self: *@This(), range: foundation.Range) ?*String {
         return objc.msgSend(self, "accessibilityStringForRange:", ?*String, .{range});
     }
 
-    pub fn accessibilityRangeForPosition(self: *@This(), point: ns.Point) ns.Range {
-        return objc.msgSend(self, "accessibilityRangeForPosition:", ns.Range, .{point});
+    pub fn accessibilityRangeForPosition(self: *@This(), point: foundation.Point) foundation.Range {
+        return objc.msgSend(self, "accessibilityRangeForPosition:", foundation.Range, .{point});
     }
 
-    pub fn accessibilityRangeForIndex(self: *@This(), index: objc.NSInteger) ns.Range {
-        return objc.msgSend(self, "accessibilityRangeForIndex:", ns.Range, .{index});
+    pub fn accessibilityRangeForIndex(self: *@This(), index: objc.NSInteger) foundation.Range {
+        return objc.msgSend(self, "accessibilityRangeForIndex:", foundation.Range, .{index});
     }
 
-    pub fn accessibilityFrameForRange(self: *@This(), range: ns.Range) ns.Rect {
-        return objc.msgSend(self, "accessibilityFrameForRange:", ns.Rect, .{range});
+    pub fn accessibilityFrameForRange(self: *@This(), range: foundation.Range) foundation.Rect {
+        return objc.msgSend(self, "accessibilityFrameForRange:", foundation.Rect, .{range});
     }
 
-    pub fn accessibilityRTFForRange(self: *@This(), range: ns.Range) ?*ns.Data {
-        return objc.msgSend(self, "accessibilityRTFForRange:", ?*ns.Data, .{range});
+    pub fn accessibilityRTFForRange(self: *@This(), range: foundation.Range) ?*foundation.Data {
+        return objc.msgSend(self, "accessibilityRTFForRange:", ?*foundation.Data, .{range});
     }
 
-    pub fn accessibilityStyleRangeForIndex(self: *@This(), index: objc.NSInteger) ns.Range {
-        return objc.msgSend(self, "accessibilityStyleRangeForIndex:", ns.Range, .{index});
+    pub fn accessibilityStyleRangeForIndex(self: *@This(), index: objc.NSInteger) foundation.Range {
+        return objc.msgSend(self, "accessibilityStyleRangeForIndex:", foundation.Range, .{index});
     }
 
     pub fn accessibilityLineForIndex(self: *@This(), index: objc.NSInteger) objc.NSInteger {
@@ -1215,11 +1223,11 @@ pub const Accessibility = opaque {
         return objc.msgSend(self, "setAccessibilityElement:", void, .{accessibilityElement});
     }
 
-    pub fn accessibilityFrame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "accessibilityFrame", ns.Rect, .{});
+    pub fn accessibilityFrame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "accessibilityFrame", foundation.Rect, .{});
     }
 
-    pub fn setAccessibilityFrame(self: *@This(), accessibilityFrame: ns.Rect) void {
+    pub fn setAccessibilityFrame(self: *@This(), accessibilityFrame: foundation.Rect) void {
         return objc.msgSend(self, "setAccessibilityFrame:", void, .{accessibilityFrame});
     }
 
@@ -1231,11 +1239,11 @@ pub const Accessibility = opaque {
         return objc.msgSend(self, "setAccessibilityFocused:", void, .{accessibilityFocused});
     }
 
-    pub fn accessibilityActivationPoint(self: *@This()) ns.Point {
-        return objc.msgSend(self, "accessibilityActivationPoint", ns.Point, .{});
+    pub fn accessibilityActivationPoint(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "accessibilityActivationPoint", foundation.Point, .{});
     }
 
-    pub fn setAccessibilityActivationPoint(self: *@This(), accessibilityActivationPoint: ns.Point) void {
+    pub fn setAccessibilityActivationPoint(self: *@This(), accessibilityActivationPoint: foundation.Point) void {
         return objc.msgSend(self, "setAccessibilityActivationPoint:", void, .{accessibilityActivationPoint});
     }
 
@@ -1247,11 +1255,11 @@ pub const Accessibility = opaque {
         return objc.msgSend(self, "setAccessibilityTopLevelUIElement:", void, .{accessibilityTopLevelUIElement});
     }
 
-    pub fn accessibilityURL(self: *@This()) ?*ns.URL {
-        return objc.msgSend(self, "accessibilityURL", ?*ns.URL, .{});
+    pub fn accessibilityURL(self: *@This()) ?*foundation.URL {
+        return objc.msgSend(self, "accessibilityURL", ?*foundation.URL, .{});
     }
 
-    pub fn setAccessibilityURL(self: *@This(), accessibilityURL: ?*ns.URL) void {
+    pub fn setAccessibilityURL(self: *@This(), accessibilityURL: ?*foundation.URL) void {
         return objc.msgSend(self, "setAccessibilityURL:", void, .{accessibilityURL});
     }
 
@@ -2015,19 +2023,19 @@ pub const Accessibility = opaque {
         return objc.msgSend(self, "setAccessibilityColumnHeaderUIElements:", void, .{accessibilityColumnHeaderUIElements});
     }
 
-    pub fn accessibilityRowIndexRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "accessibilityRowIndexRange", ns.Range, .{});
+    pub fn accessibilityRowIndexRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "accessibilityRowIndexRange", foundation.Range, .{});
     }
 
-    pub fn setAccessibilityRowIndexRange(self: *@This(), accessibilityRowIndexRange: ns.Range) void {
+    pub fn setAccessibilityRowIndexRange(self: *@This(), accessibilityRowIndexRange: foundation.Range) void {
         return objc.msgSend(self, "setAccessibilityRowIndexRange:", void, .{accessibilityRowIndexRange});
     }
 
-    pub fn accessibilityColumnIndexRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "accessibilityColumnIndexRange", ns.Range, .{});
+    pub fn accessibilityColumnIndexRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "accessibilityColumnIndexRange", foundation.Range, .{});
     }
 
-    pub fn setAccessibilityColumnIndexRange(self: *@This(), accessibilityColumnIndexRange: ns.Range) void {
+    pub fn setAccessibilityColumnIndexRange(self: *@This(), accessibilityColumnIndexRange: foundation.Range) void {
         return objc.msgSend(self, "setAccessibilityColumnIndexRange:", void, .{accessibilityColumnIndexRange});
     }
 
@@ -2039,11 +2047,11 @@ pub const Accessibility = opaque {
         return objc.msgSend(self, "setAccessibilityInsertionPointLineNumber:", void, .{accessibilityInsertionPointLineNumber});
     }
 
-    pub fn accessibilitySharedCharacterRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "accessibilitySharedCharacterRange", ns.Range, .{});
+    pub fn accessibilitySharedCharacterRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "accessibilitySharedCharacterRange", foundation.Range, .{});
     }
 
-    pub fn setAccessibilitySharedCharacterRange(self: *@This(), accessibilitySharedCharacterRange: ns.Range) void {
+    pub fn setAccessibilitySharedCharacterRange(self: *@This(), accessibilitySharedCharacterRange: foundation.Range) void {
         return objc.msgSend(self, "setAccessibilitySharedCharacterRange:", void, .{accessibilitySharedCharacterRange});
     }
 
@@ -2055,11 +2063,11 @@ pub const Accessibility = opaque {
         return objc.msgSend(self, "setAccessibilitySharedTextUIElements:", void, .{accessibilitySharedTextUIElements});
     }
 
-    pub fn accessibilityVisibleCharacterRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "accessibilityVisibleCharacterRange", ns.Range, .{});
+    pub fn accessibilityVisibleCharacterRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "accessibilityVisibleCharacterRange", foundation.Range, .{});
     }
 
-    pub fn setAccessibilityVisibleCharacterRange(self: *@This(), accessibilityVisibleCharacterRange: ns.Range) void {
+    pub fn setAccessibilityVisibleCharacterRange(self: *@This(), accessibilityVisibleCharacterRange: foundation.Range) void {
         return objc.msgSend(self, "setAccessibilityVisibleCharacterRange:", void, .{accessibilityVisibleCharacterRange});
     }
 
@@ -2079,11 +2087,11 @@ pub const Accessibility = opaque {
         return objc.msgSend(self, "setAccessibilitySelectedText:", void, .{accessibilitySelectedText});
     }
 
-    pub fn accessibilitySelectedTextRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "accessibilitySelectedTextRange", ns.Range, .{});
+    pub fn accessibilitySelectedTextRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "accessibilitySelectedTextRange", foundation.Range, .{});
     }
 
-    pub fn setAccessibilitySelectedTextRange(self: *@This(), accessibilitySelectedTextRange: ns.Range) void {
+    pub fn setAccessibilitySelectedTextRange(self: *@This(), accessibilitySelectedTextRange: foundation.Range) void {
         return objc.msgSend(self, "setAccessibilitySelectedTextRange:", void, .{accessibilitySelectedTextRange});
     }
 
@@ -2212,7 +2220,7 @@ pub const AccessibilityElement = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn accessibilityElementWithRoleFrameLabelParent(self: *@This(), role: AccessibilityRole, frame: ns.Rect, label: ?*String, parent: *objc.Id, ) *objc.Id {
+    pub fn accessibilityElementWithRoleFrameLabelParent(self: *@This(), role: AccessibilityRole, frame: foundation.Rect, label: ?*String, parent: *objc.Id, ) *objc.Id {
         return objc.msgSend(self, "accessibilityElementWithRole:frame:label:parent:", *objc.Id, .{role, frame, label, parent, });
     }
 
@@ -2220,11 +2228,11 @@ pub const AccessibilityElement = opaque {
         return objc.msgSend(self, "accessibilityAddChildElement:", void, .{childElement});
     }
 
-    pub fn accessibilityFrameInParentSpace(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "accessibilityFrameInParentSpace", ns.Rect, .{});
+    pub fn accessibilityFrameInParentSpace(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "accessibilityFrameInParentSpace", foundation.Rect, .{});
     }
 
-    pub fn setAccessibilityFrameInParentSpace(self: *@This(), accessibilityFrameInParentSpace: ns.Rect) void {
+    pub fn setAccessibilityFrameInParentSpace(self: *@This(), accessibilityFrameInParentSpace: foundation.Rect) void {
         return objc.msgSend(self, "setAccessibilityFrameInParentSpace:", void, .{accessibilityFrameInParentSpace});
     }
 
@@ -2385,11 +2393,11 @@ pub const AccessibilityCustomRotorItemResult = opaque {
         return objc.msgSend(self, "itemLoadingToken", AccessibilityLoadingToken, .{});
     }
 
-    pub fn targetRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "targetRange", ns.Range, .{});
+    pub fn targetRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "targetRange", foundation.Range, .{});
     }
 
-    pub fn setTargetRange(self: *@This(), targetRange: ns.Range) void {
+    pub fn setTargetRange(self: *@This(), targetRange: foundation.Range) void {
         return objc.msgSend(self, "setTargetRange:", void, .{targetRange});
     }
 
@@ -2739,9 +2747,9 @@ pub const WorkspaceLaunchOptions = enum(objc.NSUInteger) {
 
 pub const WorkspaceLaunchConfigurationKey = ?*String;
 
-pub extern "AppKit" fn AccessibilityFrameInView(parentView: ?*View, frame: ns.Rect) callconv(.C) ns.Rect;
+pub extern "AppKit" fn AccessibilityFrameInView(parentView: ?*View, frame: foundation.Rect) callconv(.C) foundation.Rect;
 
-pub extern "AppKit" fn AccessibilityPointInView(parentView: ?*View, point: ns.Point) callconv(.C) ns.Point;
+pub extern "AppKit" fn AccessibilityPointInView(parentView: ?*View, point: foundation.Point) callconv(.C) foundation.Point;
 
 pub extern "AppKit" fn AccessibilitySetMayContainProtectedContent(flag: objc.BOOL) callconv(.C) objc.BOOL;
 
@@ -2804,8 +2812,8 @@ pub const Touch = opaque {
         return objc.msgSend(self, "phase", TouchPhase, .{});
     }
 
-    pub fn normalizedPosition(self: *@This()) ns.Point {
-        return objc.msgSend(self, "normalizedPosition", ns.Point, .{});
+    pub fn normalizedPosition(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "normalizedPosition", foundation.Point, .{});
     }
 
     pub fn isResting(self: *@This()) objc.BOOL {
@@ -2816,8 +2824,8 @@ pub const Touch = opaque {
         return objc.msgSend(self, "device", *objc.Id, .{});
     }
 
-    pub fn deviceSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "deviceSize", ns.Size, .{});
+    pub fn deviceSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "deviceSize", foundation.Size, .{});
     }
 
 };
@@ -2983,19 +2991,19 @@ pub const Event = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn charactersByApplyingModifiers(self: *@This(), modifiers: EventModifierFlags) ?* {
-        return objc.msgSend(self, "charactersByApplyingModifiers:", ?*, .{modifiers});
+    pub fn charactersByApplyingModifiers(self: *@This(), modifiers: EventModifierFlags) ?*application_services.NSString {
+        return objc.msgSend(self, "charactersByApplyingModifiers:", ?*application_services.NSString, .{modifiers});
     }
 
     pub fn eventWithEventRef(self: *@This(), eventRef: ?*anyopaque) ?*Event {
         return objc.msgSend(self, "eventWithEventRef:", ?*Event, .{eventRef});
     }
 
-    pub fn eventWithCGEvent(self: *@This(), cgEvent: ) ?*Event {
+    pub fn eventWithCGEvent(self: *@This(), cgEvent: core_graphics.EventRef) ?*Event {
         return objc.msgSend(self, "eventWithCGEvent:", ?*Event, .{cgEvent});
     }
 
-    pub fn touchesMatchingPhaseInView(self: *@This(), phase: TouchPhase, view: ?*) ?*anyopaque {
+    pub fn touchesMatchingPhaseInView(self: *@This(), phase: TouchPhase, view: ?*application_services.NSView) ?*anyopaque {
         return objc.msgSend(self, "touchesMatchingPhase:inView:", ?*anyopaque, .{phase, view});
     }
 
@@ -3003,7 +3011,7 @@ pub const Event = opaque {
         return objc.msgSend(self, "allTouches", ?*anyopaque, .{});
     }
 
-    pub fn touchesForView(self: *@This(), view: ?*) ?*anyopaque {
+    pub fn touchesForView(self: *@This(), view: ?*application_services.NSView) ?*anyopaque {
         return objc.msgSend(self, "touchesForView:", ?*anyopaque, .{view});
     }
 
@@ -3011,11 +3019,11 @@ pub const Event = opaque {
         return objc.msgSend(self, "coalescedTouchesForTouch:", ?*anyopaque, .{touch});
     }
 
-    pub fn trackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(self: *@This(), options: EventSwipeTrackingOptions, minDampenThreshold: cf.CGFloat, maxDampenThreshold: cf.CGFloat, trackingHandler: *const fn(cf.CGFloat, EventPhase, objc.BOOL, ?*objc.BOOL, ) callconv(.C) void, ) void {
+    pub fn trackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(self: *@This(), options: EventSwipeTrackingOptions, minDampenThreshold: core_foundation.CGFloat, maxDampenThreshold: core_foundation.CGFloat, trackingHandler: *const fn(core_foundation.CGFloat, EventPhase, objc.BOOL, ?*objc.BOOL, ) callconv(.C) void, ) void {
         return objc.msgSend(self, "trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:", void, .{options, minDampenThreshold, maxDampenThreshold, trackingHandler, });
     }
 
-    pub fn startPeriodicEventsAfterDelayWithPeriod(self: *@This(), delay: ns.TimeInterval, period: ns.TimeInterval) void {
+    pub fn startPeriodicEventsAfterDelayWithPeriod(self: *@This(), delay: foundation.TimeInterval, period: foundation.TimeInterval) void {
         return objc.msgSend(self, "startPeriodicEventsAfterDelay:withPeriod:", void, .{delay, period});
     }
 
@@ -3023,19 +3031,19 @@ pub const Event = opaque {
         return objc.msgSend(self, "stopPeriodicEvents", void, .{});
     }
 
-    pub fn mouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, eNum: objc.NSInteger, cNum: objc.NSInteger, pressure: f32, ) ?*Event {
+    pub fn mouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure(self: *@This(), @"type": EventType, location: foundation.Point, flags: EventModifierFlags, time: foundation.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, eNum: objc.NSInteger, cNum: objc.NSInteger, pressure: f32, ) ?*Event {
         return objc.msgSend(self, "mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, eNum, cNum, pressure, });
     }
 
-    pub fn keyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, keys: ?*String, ukeys: ?*String, flag: objc.BOOL, code: u16, ) ?*Event {
+    pub fn keyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode(self: *@This(), @"type": EventType, location: foundation.Point, flags: EventModifierFlags, time: foundation.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, keys: ?*String, ukeys: ?*String, flag: objc.BOOL, code: u16, ) ?*Event {
         return objc.msgSend(self, "keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, keys, ukeys, flag, code, });
     }
 
-    pub fn enterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, eNum: objc.NSInteger, tNum: objc.NSInteger, data: ?*anyopaque, ) ?*Event {
+    pub fn enterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData(self: *@This(), @"type": EventType, location: foundation.Point, flags: EventModifierFlags, time: foundation.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, eNum: objc.NSInteger, tNum: objc.NSInteger, data: ?*anyopaque, ) ?*Event {
         return objc.msgSend(self, "enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, eNum, tNum, data, });
     }
 
-    pub fn otherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2(self: *@This(), @"type": EventType, location: ns.Point, flags: EventModifierFlags, time: ns.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, subtype: i16, d1: objc.NSInteger, d2: objc.NSInteger, ) ?*Event {
+    pub fn otherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2(self: *@This(), @"type": EventType, location: foundation.Point, flags: EventModifierFlags, time: foundation.TimeInterval, wNum: objc.NSInteger, unusedPassNil: ?*GraphicsContext, subtype: i16, d1: objc.NSInteger, d2: objc.NSInteger, ) ?*Event {
         return objc.msgSend(self, "otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:", ?*Event, .{@"type", location, flags, time, wNum, unusedPassNil, subtype, d1, d2, });
     }
 
@@ -3059,8 +3067,8 @@ pub const Event = opaque {
         return objc.msgSend(self, "modifierFlags", EventModifierFlags, .{});
     }
 
-    pub fn timestamp(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "timestamp", ns.TimeInterval, .{});
+    pub fn timestamp(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "timestamp", foundation.TimeInterval, .{});
     }
 
     pub fn window(self: *@This()) ?*Window {
@@ -3091,32 +3099,32 @@ pub const Event = opaque {
         return objc.msgSend(self, "pressure", f32, .{});
     }
 
-    pub fn locationInWindow(self: *@This()) ns.Point {
-        return objc.msgSend(self, "locationInWindow", ns.Point, .{});
+    pub fn locationInWindow(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "locationInWindow", foundation.Point, .{});
     }
 
-    pub fn deltaX(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "deltaX", cf.CGFloat, .{});
+    pub fn deltaX(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "deltaX", core_foundation.CGFloat, .{});
     }
 
-    pub fn deltaY(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "deltaY", cf.CGFloat, .{});
+    pub fn deltaY(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "deltaY", core_foundation.CGFloat, .{});
     }
 
-    pub fn deltaZ(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "deltaZ", cf.CGFloat, .{});
+    pub fn deltaZ(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "deltaZ", core_foundation.CGFloat, .{});
     }
 
     pub fn hasPreciseScrollingDeltas(self: *@This()) objc.BOOL {
         return objc.msgSend(self, "hasPreciseScrollingDeltas", objc.BOOL, .{});
     }
 
-    pub fn scrollingDeltaX(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "scrollingDeltaX", cf.CGFloat, .{});
+    pub fn scrollingDeltaX(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "scrollingDeltaX", core_foundation.CGFloat, .{});
     }
 
-    pub fn scrollingDeltaY(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "scrollingDeltaY", cf.CGFloat, .{});
+    pub fn scrollingDeltaY(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "scrollingDeltaY", core_foundation.CGFloat, .{});
     }
 
     pub fn momentumPhase(self: *@This()) EventPhase {
@@ -3171,8 +3179,8 @@ pub const Event = opaque {
         return objc.msgSend(self, "eventRef", ?*anyopaque, .{});
     }
 
-    pub fn CGEvent(self: *@This())  {
-        return objc.msgSend(self, "CGEvent", , .{});
+    pub fn CGEvent(self: *@This()) core_graphics.EventRef {
+        return objc.msgSend(self, "CGEvent", core_graphics.EventRef, .{});
     }
 
     pub fn isMouseCoalescingEnabled(self: *@This()) objc.BOOL {
@@ -3183,8 +3191,8 @@ pub const Event = opaque {
         return objc.msgSend(self, "setMouseCoalescingEnabled:", void, .{mouseCoalescingEnabled});
     }
 
-    pub fn magnification(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "magnification", cf.CGFloat, .{});
+    pub fn magnification(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "magnification", core_foundation.CGFloat, .{});
     }
 
     pub fn deviceID(self: *@This()) objc.NSUInteger {
@@ -3211,8 +3219,8 @@ pub const Event = opaque {
         return objc.msgSend(self, "buttonMask", EventButtonMask, .{});
     }
 
-    pub fn tilt(self: *@This()) ns.Point {
-        return objc.msgSend(self, "tilt", ns.Point, .{});
+    pub fn tilt(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "tilt", foundation.Point, .{});
     }
 
     pub fn tangentialPressure(self: *@This()) f32 {
@@ -3271,8 +3279,8 @@ pub const Event = opaque {
         return objc.msgSend(self, "stage", objc.NSInteger, .{});
     }
 
-    pub fn stageTransition(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "stageTransition", cf.CGFloat, .{});
+    pub fn stageTransition(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "stageTransition", core_foundation.CGFloat, .{});
     }
 
     pub fn associatedEventsMask(self: *@This()) EventMask {
@@ -3287,8 +3295,8 @@ pub const Event = opaque {
         return objc.msgSend(self, "isSwipeTrackingFromScrollEventsEnabled", objc.BOOL, .{});
     }
 
-    pub fn mouseLocation(self: *@This()) ns.Point {
-        return objc.msgSend(self, "mouseLocation", ns.Point, .{});
+    pub fn mouseLocation(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "mouseLocation", foundation.Point, .{});
     }
 
     pub fn modifierFlags(self: *@This()) EventModifierFlags {
@@ -3299,16 +3307,16 @@ pub const Event = opaque {
         return objc.msgSend(self, "pressedMouseButtons", objc.NSUInteger, .{});
     }
 
-    pub fn doubleClickInterval(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "doubleClickInterval", ns.TimeInterval, .{});
+    pub fn doubleClickInterval(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "doubleClickInterval", foundation.TimeInterval, .{});
     }
 
-    pub fn keyRepeatDelay(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "keyRepeatDelay", ns.TimeInterval, .{});
+    pub fn keyRepeatDelay(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "keyRepeatDelay", foundation.TimeInterval, .{});
     }
 
-    pub fn keyRepeatInterval(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "keyRepeatInterval", ns.TimeInterval, .{});
+    pub fn keyRepeatInterval(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "keyRepeatInterval", foundation.TimeInterval, .{});
     }
 
 };
@@ -3528,7 +3536,7 @@ pub const Responder = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -4301,11 +4309,11 @@ pub const Nib = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithNibNamedBundle(self: *@This(), nibName: NibName, bundle: ?*ns.Bundle) *@This() {
+    pub fn initWithNibNamedBundle(self: *@This(), nibName: NibName, bundle: ?*foundation.Bundle) *@This() {
         return objc.msgSend(self, "initWithNibNamed:bundle:", *@This(), .{nibName, bundle});
     }
 
-    pub fn initWithNibDataBundle(self: *@This(), nibData: ?*Data, bundle: ?*ns.Bundle) *@This() {
+    pub fn initWithNibDataBundle(self: *@This(), nibData: ?*Data, bundle: ?*foundation.Bundle) *@This() {
         return objc.msgSend(self, "initWithNibData:bundle:", *@This(), .{nibData, bundle});
     }
 
@@ -4361,11 +4369,11 @@ pub const Animation = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithDurationAnimationCurve(self: *@This(), duration: ns.TimeInterval, animationCurve: AnimationCurve) *@This() {
+    pub fn initWithDurationAnimationCurve(self: *@This(), duration: foundation.TimeInterval, animationCurve: AnimationCurve) *@This() {
         return objc.msgSend(self, "initWithDuration:animationCurve:", *@This(), .{duration, animationCurve});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -4413,11 +4421,11 @@ pub const Animation = opaque {
         return objc.msgSend(self, "setCurrentProgress:", void, .{currentProgress});
     }
 
-    pub fn duration(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "duration", ns.TimeInterval, .{});
+    pub fn duration(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "duration", foundation.TimeInterval, .{});
     }
 
-    pub fn setDuration(self: *@This(), duration: ns.TimeInterval) void {
+    pub fn setDuration(self: *@This(), duration: foundation.TimeInterval) void {
         return objc.msgSend(self, "setDuration:", void, .{duration});
     }
 
@@ -4587,7 +4595,7 @@ pub const Appearance = opaque {
         return objc.msgSend(self, "initWithAppearanceNamed:bundle:", *@This(), .{name, bundle});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -4684,7 +4692,7 @@ pub const DraggingInfo = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn slideDraggedImageTo(self: *@This(), screenPoint: ns.Point) void {
+    pub fn slideDraggedImageTo(self: *@This(), screenPoint: foundation.Point) void {
         return objc.msgSend(self, "slideDraggedImageTo:", void, .{screenPoint});
     }
 
@@ -4708,12 +4716,12 @@ pub const DraggingInfo = opaque {
         return objc.msgSend(self, "draggingSourceOperationMask", DragOperation, .{});
     }
 
-    pub fn draggingLocation(self: *@This()) ns.Point {
-        return objc.msgSend(self, "draggingLocation", ns.Point, .{});
+    pub fn draggingLocation(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "draggingLocation", foundation.Point, .{});
     }
 
-    pub fn draggedImageLocation(self: *@This()) ns.Point {
-        return objc.msgSend(self, "draggedImageLocation", ns.Point, .{});
+    pub fn draggedImageLocation(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "draggedImageLocation", foundation.Point, .{});
     }
 
     pub fn draggedImage(self: *@This()) ?*Image {
@@ -4820,15 +4828,15 @@ pub const DraggingSource = opaque {
         return objc.msgSend(self, "draggingSession:sourceOperationMaskForDraggingContext:", DragOperation, .{session, context});
     }
 
-    pub fn draggingSessionWillBeginAtPoint(self: *@This(), session: ?*DraggingSession, screenPoint: ns.Point) void {
+    pub fn draggingSessionWillBeginAtPoint(self: *@This(), session: ?*DraggingSession, screenPoint: foundation.Point) void {
         return objc.msgSend(self, "draggingSession:willBeginAtPoint:", void, .{session, screenPoint});
     }
 
-    pub fn draggingSessionMovedToPoint(self: *@This(), session: ?*DraggingSession, screenPoint: ns.Point) void {
+    pub fn draggingSessionMovedToPoint(self: *@This(), session: ?*DraggingSession, screenPoint: foundation.Point) void {
         return objc.msgSend(self, "draggingSession:movedToPoint:", void, .{session, screenPoint});
     }
 
-    pub fn draggingSessionEndedAtPointOperation(self: *@This(), session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation) void {
+    pub fn draggingSessionEndedAtPointOperation(self: *@This(), session: ?*DraggingSession, screenPoint: foundation.Point, operation: DragOperation) void {
         return objc.msgSend(self, "draggingSession:endedAtPoint:operation:", void, .{session, screenPoint, operation});
     }
 
@@ -4944,11 +4952,11 @@ pub const View = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFrame(self: *@This(), frameRect: ns.Rect) *@This() {
+    pub fn initWithFrame(self: *@This(), frameRect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFrame:", *@This(), .{frameRect});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -4960,11 +4968,11 @@ pub const View = opaque {
         return objc.msgSend(self, "ancestorSharedWithView:", ?*View, .{view});
     }
 
-    pub fn getRectsBeingDrawnCount(self: *@This(), rects: ?*?*ns.Rect, count: ?*objc.NSInteger) void {
+    pub fn getRectsBeingDrawnCount(self: *@This(), rects: ?*?*foundation.Rect, count: ?*objc.NSInteger) void {
         return objc.msgSend(self, "getRectsBeingDrawn:count:", void, .{rects, count});
     }
 
-    pub fn needsToDrawRect(self: *@This(), rect: ns.Rect) objc.BOOL {
+    pub fn needsToDrawRect(self: *@This(), rect: foundation.Rect) objc.BOOL {
         return objc.msgSend(self, "needsToDrawRect:", objc.BOOL, .{rect});
     }
 
@@ -4984,7 +4992,7 @@ pub const View = opaque {
         return objc.msgSend(self, "addSubview:positioned:relativeTo:", void, .{view, place, otherView});
     }
 
-    pub fn sortSubviewsUsingFunctionContext(self: *@This(), compare: ?*const fn(?*anyopaque, ?*anyopaque, ?*anyopaque) callconv(.C) ns.ComparisonResult, context: ?*anyopaque) void {
+    pub fn sortSubviewsUsingFunctionContext(self: *@This(), compare: ?*const fn(?*anyopaque, ?*anyopaque, ?*anyopaque) callconv(.C) foundation.ComparisonResult, context: ?*anyopaque) void {
         return objc.msgSend(self, "sortSubviewsUsingFunction:context:", void, .{compare, context});
     }
 
@@ -5028,123 +5036,123 @@ pub const View = opaque {
         return objc.msgSend(self, "viewDidChangeBackingProperties", void, .{});
     }
 
-    pub fn resizeSubviewsWithOldSize(self: *@This(), oldSize: ns.Size) void {
+    pub fn resizeSubviewsWithOldSize(self: *@This(), oldSize: foundation.Size) void {
         return objc.msgSend(self, "resizeSubviewsWithOldSize:", void, .{oldSize});
     }
 
-    pub fn resizeWithOldSuperviewSize(self: *@This(), oldSize: ns.Size) void {
+    pub fn resizeWithOldSuperviewSize(self: *@This(), oldSize: foundation.Size) void {
         return objc.msgSend(self, "resizeWithOldSuperviewSize:", void, .{oldSize});
     }
 
-    pub fn setFrameOrigin(self: *@This(), newOrigin: ns.Point) void {
+    pub fn setFrameOrigin(self: *@This(), newOrigin: foundation.Point) void {
         return objc.msgSend(self, "setFrameOrigin:", void, .{newOrigin});
     }
 
-    pub fn setFrameSize(self: *@This(), newSize: ns.Size) void {
+    pub fn setFrameSize(self: *@This(), newSize: foundation.Size) void {
         return objc.msgSend(self, "setFrameSize:", void, .{newSize});
     }
 
-    pub fn setBoundsOrigin(self: *@This(), newOrigin: ns.Point) void {
+    pub fn setBoundsOrigin(self: *@This(), newOrigin: foundation.Point) void {
         return objc.msgSend(self, "setBoundsOrigin:", void, .{newOrigin});
     }
 
-    pub fn setBoundsSize(self: *@This(), newSize: ns.Size) void {
+    pub fn setBoundsSize(self: *@This(), newSize: foundation.Size) void {
         return objc.msgSend(self, "setBoundsSize:", void, .{newSize});
     }
 
-    pub fn translateOriginToPoint(self: *@This(), translation: ns.Point) void {
+    pub fn translateOriginToPoint(self: *@This(), translation: foundation.Point) void {
         return objc.msgSend(self, "translateOriginToPoint:", void, .{translation});
     }
 
-    pub fn scaleUnitSquareToSize(self: *@This(), newUnitSize: ns.Size) void {
+    pub fn scaleUnitSquareToSize(self: *@This(), newUnitSize: foundation.Size) void {
         return objc.msgSend(self, "scaleUnitSquareToSize:", void, .{newUnitSize});
     }
 
-    pub fn rotateByAngle(self: *@This(), angle: cf.CGFloat) void {
+    pub fn rotateByAngle(self: *@This(), angle: core_foundation.CGFloat) void {
         return objc.msgSend(self, "rotateByAngle:", void, .{angle});
     }
 
-    pub fn convertPointFromView(self: *@This(), point: ns.Point, view: ?*View) ns.Point {
-        return objc.msgSend(self, "convertPoint:fromView:", ns.Point, .{point, view});
+    pub fn convertPointFromView(self: *@This(), point: foundation.Point, view: ?*View) foundation.Point {
+        return objc.msgSend(self, "convertPoint:fromView:", foundation.Point, .{point, view});
     }
 
-    pub fn convertPointToView(self: *@This(), point: ns.Point, view: ?*View) ns.Point {
-        return objc.msgSend(self, "convertPoint:toView:", ns.Point, .{point, view});
+    pub fn convertPointToView(self: *@This(), point: foundation.Point, view: ?*View) foundation.Point {
+        return objc.msgSend(self, "convertPoint:toView:", foundation.Point, .{point, view});
     }
 
-    pub fn convertSizeFromView(self: *@This(), size: ns.Size, view: ?*View) ns.Size {
-        return objc.msgSend(self, "convertSize:fromView:", ns.Size, .{size, view});
+    pub fn convertSizeFromView(self: *@This(), size: foundation.Size, view: ?*View) foundation.Size {
+        return objc.msgSend(self, "convertSize:fromView:", foundation.Size, .{size, view});
     }
 
-    pub fn convertSizeToView(self: *@This(), size: ns.Size, view: ?*View) ns.Size {
-        return objc.msgSend(self, "convertSize:toView:", ns.Size, .{size, view});
+    pub fn convertSizeToView(self: *@This(), size: foundation.Size, view: ?*View) foundation.Size {
+        return objc.msgSend(self, "convertSize:toView:", foundation.Size, .{size, view});
     }
 
-    pub fn convertRectFromView(self: *@This(), rect: ns.Rect, view: ?*View) ns.Rect {
-        return objc.msgSend(self, "convertRect:fromView:", ns.Rect, .{rect, view});
+    pub fn convertRectFromView(self: *@This(), rect: foundation.Rect, view: ?*View) foundation.Rect {
+        return objc.msgSend(self, "convertRect:fromView:", foundation.Rect, .{rect, view});
     }
 
-    pub fn convertRectToView(self: *@This(), rect: ns.Rect, view: ?*View) ns.Rect {
-        return objc.msgSend(self, "convertRect:toView:", ns.Rect, .{rect, view});
+    pub fn convertRectToView(self: *@This(), rect: foundation.Rect, view: ?*View) foundation.Rect {
+        return objc.msgSend(self, "convertRect:toView:", foundation.Rect, .{rect, view});
     }
 
-    pub fn backingAlignedRectOptions(self: *@This(), rect: ns.Rect, options: ns.AlignmentOptions) ns.Rect {
-        return objc.msgSend(self, "backingAlignedRect:options:", ns.Rect, .{rect, options});
+    pub fn backingAlignedRectOptions(self: *@This(), rect: foundation.Rect, options: foundation.AlignmentOptions) foundation.Rect {
+        return objc.msgSend(self, "backingAlignedRect:options:", foundation.Rect, .{rect, options});
     }
 
-    pub fn centerScanRect(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "centerScanRect:", ns.Rect, .{rect});
+    pub fn centerScanRect(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "centerScanRect:", foundation.Rect, .{rect});
     }
 
-    pub fn convertPointToBacking(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "convertPointToBacking:", ns.Point, .{point});
+    pub fn convertPointToBacking(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "convertPointToBacking:", foundation.Point, .{point});
     }
 
-    pub fn convertPointFromBacking(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "convertPointFromBacking:", ns.Point, .{point});
+    pub fn convertPointFromBacking(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "convertPointFromBacking:", foundation.Point, .{point});
     }
 
-    pub fn convertSizeToBacking(self: *@This(), size: ns.Size) ns.Size {
-        return objc.msgSend(self, "convertSizeToBacking:", ns.Size, .{size});
+    pub fn convertSizeToBacking(self: *@This(), size: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "convertSizeToBacking:", foundation.Size, .{size});
     }
 
-    pub fn convertSizeFromBacking(self: *@This(), size: ns.Size) ns.Size {
-        return objc.msgSend(self, "convertSizeFromBacking:", ns.Size, .{size});
+    pub fn convertSizeFromBacking(self: *@This(), size: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "convertSizeFromBacking:", foundation.Size, .{size});
     }
 
-    pub fn convertRectToBacking(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectToBacking:", ns.Rect, .{rect});
+    pub fn convertRectToBacking(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectToBacking:", foundation.Rect, .{rect});
     }
 
-    pub fn convertRectFromBacking(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectFromBacking:", ns.Rect, .{rect});
+    pub fn convertRectFromBacking(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectFromBacking:", foundation.Rect, .{rect});
     }
 
-    pub fn convertPointToLayer(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "convertPointToLayer:", ns.Point, .{point});
+    pub fn convertPointToLayer(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "convertPointToLayer:", foundation.Point, .{point});
     }
 
-    pub fn convertPointFromLayer(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "convertPointFromLayer:", ns.Point, .{point});
+    pub fn convertPointFromLayer(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "convertPointFromLayer:", foundation.Point, .{point});
     }
 
-    pub fn convertSizeToLayer(self: *@This(), size: ns.Size) ns.Size {
-        return objc.msgSend(self, "convertSizeToLayer:", ns.Size, .{size});
+    pub fn convertSizeToLayer(self: *@This(), size: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "convertSizeToLayer:", foundation.Size, .{size});
     }
 
-    pub fn convertSizeFromLayer(self: *@This(), size: ns.Size) ns.Size {
-        return objc.msgSend(self, "convertSizeFromLayer:", ns.Size, .{size});
+    pub fn convertSizeFromLayer(self: *@This(), size: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "convertSizeFromLayer:", foundation.Size, .{size});
     }
 
-    pub fn convertRectToLayer(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectToLayer:", ns.Rect, .{rect});
+    pub fn convertRectToLayer(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectToLayer:", foundation.Rect, .{rect});
     }
 
-    pub fn convertRectFromLayer(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectFromLayer:", ns.Rect, .{rect});
+    pub fn convertRectFromLayer(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectFromLayer:", foundation.Rect, .{rect});
     }
 
-    pub fn setNeedsDisplayInRect(self: *@This(), invalidRect: ns.Rect) void {
+    pub fn setNeedsDisplayInRect(self: *@This(), invalidRect: foundation.Rect) void {
         return objc.msgSend(self, "setNeedsDisplayInRect:", void, .{invalidRect});
     }
 
@@ -5176,35 +5184,35 @@ pub const View = opaque {
         return objc.msgSend(self, "displayIfNeededIgnoringOpacity", void, .{});
     }
 
-    pub fn displayRect(self: *@This(), rect: ns.Rect) void {
+    pub fn displayRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "displayRect:", void, .{rect});
     }
 
-    pub fn displayIfNeededInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn displayIfNeededInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "displayIfNeededInRect:", void, .{rect});
     }
 
-    pub fn displayRectIgnoringOpacity(self: *@This(), rect: ns.Rect) void {
+    pub fn displayRectIgnoringOpacity(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "displayRectIgnoringOpacity:", void, .{rect});
     }
 
-    pub fn displayIfNeededInRectIgnoringOpacity(self: *@This(), rect: ns.Rect) void {
+    pub fn displayIfNeededInRectIgnoringOpacity(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "displayIfNeededInRectIgnoringOpacity:", void, .{rect});
     }
 
-    pub fn drawRect(self: *@This(), dirtyRect: ns.Rect) void {
+    pub fn drawRect(self: *@This(), dirtyRect: foundation.Rect) void {
         return objc.msgSend(self, "drawRect:", void, .{dirtyRect});
     }
 
-    pub fn displayRectIgnoringOpacityInContext(self: *@This(), rect: ns.Rect, context: ?*GraphicsContext) void {
+    pub fn displayRectIgnoringOpacityInContext(self: *@This(), rect: foundation.Rect, context: ?*GraphicsContext) void {
         return objc.msgSend(self, "displayRectIgnoringOpacity:inContext:", void, .{rect, context});
     }
 
-    pub fn bitmapImageRepForCachingDisplayInRect(self: *@This(), rect: ns.Rect) ?*BitmapImageRep {
+    pub fn bitmapImageRepForCachingDisplayInRect(self: *@This(), rect: foundation.Rect) ?*BitmapImageRep {
         return objc.msgSend(self, "bitmapImageRepForCachingDisplayInRect:", ?*BitmapImageRep, .{rect});
     }
 
-    pub fn cacheDisplayInRectToBitmapImageRep(self: *@This(), rect: ns.Rect, bitmapImageRep: ?*BitmapImageRep) void {
+    pub fn cacheDisplayInRectToBitmapImageRep(self: *@This(), rect: foundation.Rect, bitmapImageRep: ?*BitmapImageRep) void {
         return objc.msgSend(self, "cacheDisplayInRect:toBitmapImageRep:", void, .{rect, bitmapImageRep});
     }
 
@@ -5212,11 +5220,11 @@ pub const View = opaque {
         return objc.msgSend(self, "viewWillDraw", void, .{});
     }
 
-    pub fn scrollPoint(self: *@This(), point: ns.Point) void {
+    pub fn scrollPoint(self: *@This(), point: foundation.Point) void {
         return objc.msgSend(self, "scrollPoint:", void, .{point});
     }
 
-    pub fn scrollRectToVisible(self: *@This(), rect: ns.Rect) objc.BOOL {
+    pub fn scrollRectToVisible(self: *@This(), rect: foundation.Rect) objc.BOOL {
         return objc.msgSend(self, "scrollRectToVisible:", objc.BOOL, .{rect});
     }
 
@@ -5224,23 +5232,23 @@ pub const View = opaque {
         return objc.msgSend(self, "autoscroll:", objc.BOOL, .{event});
     }
 
-    pub fn adjustScroll(self: *@This(), newVisible: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "adjustScroll:", ns.Rect, .{newVisible});
+    pub fn adjustScroll(self: *@This(), newVisible: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "adjustScroll:", foundation.Rect, .{newVisible});
     }
 
-    pub fn scrollRectBy(self: *@This(), rect: ns.Rect, delta: ns.Size) void {
+    pub fn scrollRectBy(self: *@This(), rect: foundation.Rect, delta: foundation.Size) void {
         return objc.msgSend(self, "scrollRect:by:", void, .{rect, delta});
     }
 
-    pub fn translateRectsNeedingDisplayInRectBy(self: *@This(), clipRect: ns.Rect, delta: ns.Size) void {
+    pub fn translateRectsNeedingDisplayInRectBy(self: *@This(), clipRect: foundation.Rect, delta: foundation.Size) void {
         return objc.msgSend(self, "translateRectsNeedingDisplayInRect:by:", void, .{clipRect, delta});
     }
 
-    pub fn hitTest(self: *@This(), point: ns.Point) ?*View {
+    pub fn hitTest(self: *@This(), point: foundation.Point) ?*View {
         return objc.msgSend(self, "hitTest:", ?*View, .{point});
     }
 
-    pub fn mouseInRect(self: *@This(), point: ns.Point, rect: ns.Rect) objc.BOOL {
+    pub fn mouseInRect(self: *@This(), point: foundation.Point, rect: foundation.Rect) objc.BOOL {
         return objc.msgSend(self, "mouse:inRect:", objc.BOOL, .{point, rect});
     }
 
@@ -5288,7 +5296,7 @@ pub const View = opaque {
         return objc.msgSend(self, "didCloseMenu:withEvent:", void, .{menu, event});
     }
 
-    pub fn addToolTipRectOwnerUserData(self: *@This(), rect: ns.Rect, owner: *objc.Id, data: ?*anyopaque) ToolTipTag {
+    pub fn addToolTipRectOwnerUserData(self: *@This(), rect: foundation.Rect, owner: *objc.Id, data: ?*anyopaque) ToolTipTag {
         return objc.msgSend(self, "addToolTipRect:owner:userData:", ToolTipTag, .{rect, owner, data});
     }
 
@@ -5308,19 +5316,19 @@ pub const View = opaque {
         return objc.msgSend(self, "viewDidEndLiveResize", void, .{});
     }
 
-    pub fn getRectsExposedDuringLiveResizeCount(self: *@This(), exposedRects: ?*ns.Rect, count: ?*objc.NSInteger) void {
+    pub fn getRectsExposedDuringLiveResizeCount(self: *@This(), exposedRects: ?*foundation.Rect, count: ?*objc.NSInteger) void {
         return objc.msgSend(self, "getRectsExposedDuringLiveResize:count:", void, .{exposedRects, count});
     }
 
-    pub fn rectForSmartMagnificationAtPointInRect(self: *@This(), location: ns.Point, visibleRect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "rectForSmartMagnificationAtPoint:inRect:", ns.Rect, .{location, visibleRect});
+    pub fn rectForSmartMagnificationAtPointInRect(self: *@This(), location: foundation.Point, visibleRect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "rectForSmartMagnificationAtPoint:inRect:", foundation.Rect, .{location, visibleRect});
     }
 
     pub fn prepareForReuse(self: *@This()) void {
         return objc.msgSend(self, "prepareForReuse", void, .{});
     }
 
-    pub fn prepareContentInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn prepareContentInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "prepareContentInRect:", void, .{rect});
     }
 
@@ -5388,43 +5396,43 @@ pub const View = opaque {
         return objc.msgSend(self, "setAutoresizingMask:", void, .{autoresizingMask});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
-    pub fn setFrame(self: *@This(), frame: ns.Rect) void {
+    pub fn setFrame(self: *@This(), frame: foundation.Rect) void {
         return objc.msgSend(self, "setFrame:", void, .{frame});
     }
 
-    pub fn frameRotation(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "frameRotation", cf.CGFloat, .{});
+    pub fn frameRotation(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "frameRotation", core_foundation.CGFloat, .{});
     }
 
-    pub fn setFrameRotation(self: *@This(), frameRotation: cf.CGFloat) void {
+    pub fn setFrameRotation(self: *@This(), frameRotation: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setFrameRotation:", void, .{frameRotation});
     }
 
-    pub fn frameCenterRotation(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "frameCenterRotation", cf.CGFloat, .{});
+    pub fn frameCenterRotation(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "frameCenterRotation", core_foundation.CGFloat, .{});
     }
 
-    pub fn setFrameCenterRotation(self: *@This(), frameCenterRotation: cf.CGFloat) void {
+    pub fn setFrameCenterRotation(self: *@This(), frameCenterRotation: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setFrameCenterRotation:", void, .{frameCenterRotation});
     }
 
-    pub fn boundsRotation(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "boundsRotation", cf.CGFloat, .{});
+    pub fn boundsRotation(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "boundsRotation", core_foundation.CGFloat, .{});
     }
 
-    pub fn setBoundsRotation(self: *@This(), boundsRotation: cf.CGFloat) void {
+    pub fn setBoundsRotation(self: *@This(), boundsRotation: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setBoundsRotation:", void, .{boundsRotation});
     }
 
-    pub fn bounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "bounds", ns.Rect, .{});
+    pub fn bounds(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "bounds", foundation.Rect, .{});
     }
 
-    pub fn setBounds(self: *@This(), bounds: ns.Rect) void {
+    pub fn setBounds(self: *@This(), bounds: foundation.Rect) void {
         return objc.msgSend(self, "setBounds:", void, .{bounds});
     }
 
@@ -5468,8 +5476,8 @@ pub const View = opaque {
         return objc.msgSend(self, "focusView", ?*View, .{});
     }
 
-    pub fn visibleRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "visibleRect", ns.Rect, .{});
+    pub fn visibleRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "visibleRect", foundation.Rect, .{});
     }
 
     pub fn tag(self: *@This()) objc.NSInteger {
@@ -5552,11 +5560,11 @@ pub const View = opaque {
         return objc.msgSend(self, "setNeedsLayout:", void, .{needsLayout});
     }
 
-    pub fn alphaValue(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "alphaValue", cf.CGFloat, .{});
+    pub fn alphaValue(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "alphaValue", core_foundation.CGFloat, .{});
     }
 
-    pub fn setAlphaValue(self: *@This(), alphaValue: cf.CGFloat) void {
+    pub fn setAlphaValue(self: *@This(), alphaValue: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setAlphaValue:", void, .{alphaValue});
     }
 
@@ -5640,8 +5648,8 @@ pub const View = opaque {
         return objc.msgSend(self, "preservesContentDuringLiveResize", objc.BOOL, .{});
     }
 
-    pub fn rectPreservedDuringLiveResize(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "rectPreservedDuringLiveResize", ns.Rect, .{});
+    pub fn rectPreservedDuringLiveResize(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "rectPreservedDuringLiveResize", foundation.Rect, .{});
     }
 
     pub fn inputContext(self: *@This()) ?*TextInputContext {
@@ -5660,11 +5668,11 @@ pub const View = opaque {
         return objc.msgSend(self, "isCompatibleWithResponsiveScrolling", objc.BOOL, .{});
     }
 
-    pub fn preparedContentRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "preparedContentRect", ns.Rect, .{});
+    pub fn preparedContentRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "preparedContentRect", foundation.Rect, .{});
     }
 
-    pub fn setPreparedContentRect(self: *@This(), preparedContentRect: ns.Rect) void {
+    pub fn setPreparedContentRect(self: *@This(), preparedContentRect: foundation.Rect) void {
         return objc.msgSend(self, "setPreparedContentRect:", void, .{preparedContentRect});
     }
 
@@ -5682,7 +5690,7 @@ pub const ViewLayerContentScaleDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn layerShouldInheritContentsScaleFromWindow(self: *@This(), layer: ?*CALayer, newScale: cf.CGFloat, window: ?*Window) objc.BOOL {
+    pub fn layerShouldInheritContentsScaleFromWindow(self: *@This(), layer: ?*CALayer, newScale: core_foundation.CGFloat, window: ?*Window) objc.BOOL {
         return objc.msgSend(self, "layer:shouldInheritContentsScale:fromWindow:", objc.BOOL, .{layer, newScale, window});
     }
 
@@ -5696,7 +5704,7 @@ pub const ViewToolTipOwner = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn viewStringForToolTipPointUserData(self: *@This(), view: ?*View, tag: ToolTipTag, point: ns.Point, data: ?*anyopaque, ) ?*String {
+    pub fn viewStringForToolTipPointUserData(self: *@This(), view: ?*View, tag: ToolTipTag, point: foundation.Point, data: ?*anyopaque, ) ?*String {
         return objc.msgSend(self, "view:stringForToolTip:point:userData:", ?*String, .{view, tag, point, data, });
     }
 
@@ -5710,8 +5718,8 @@ pub const ViewContentSelectionInfo = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn selectionAnchorRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "selectionAnchorRect", ns.Rect, .{});
+    pub fn selectionAnchorRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "selectionAnchorRect", foundation.Rect, .{});
     }
 
 };
@@ -5775,31 +5783,31 @@ pub const Text = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFrame(self: *@This(), frameRect: ns.Rect) *@This() {
+    pub fn initWithFrame(self: *@This(), frameRect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFrame:", *@This(), .{frameRect});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn replaceCharactersInRangeWithString(self: *@This(), range: ns.Range, string: ?*String) void {
+    pub fn replaceCharactersInRangeWithString(self: *@This(), range: foundation.Range, string: ?*String) void {
         return objc.msgSend(self, "replaceCharactersInRange:withString:", void, .{range, string});
     }
 
-    pub fn replaceCharactersInRangeWithRTF(self: *@This(), range: ns.Range, rtfData: ?*Data) void {
+    pub fn replaceCharactersInRangeWithRTF(self: *@This(), range: foundation.Range, rtfData: ?*Data) void {
         return objc.msgSend(self, "replaceCharactersInRange:withRTF:", void, .{range, rtfData});
     }
 
-    pub fn replaceCharactersInRangeWithRTFD(self: *@This(), range: ns.Range, rtfdData: ?*Data) void {
+    pub fn replaceCharactersInRangeWithRTFD(self: *@This(), range: foundation.Range, rtfdData: ?*Data) void {
         return objc.msgSend(self, "replaceCharactersInRange:withRTFD:", void, .{range, rtfdData});
     }
 
-    pub fn RTFFromRange(self: *@This(), range: ns.Range) ?*Data {
+    pub fn RTFFromRange(self: *@This(), range: foundation.Range) ?*Data {
         return objc.msgSend(self, "RTFFromRange:", ?*Data, .{range});
     }
 
-    pub fn RTFDFromRange(self: *@This(), range: ns.Range) ?*Data {
+    pub fn RTFDFromRange(self: *@This(), range: foundation.Range) ?*Data {
         return objc.msgSend(self, "RTFDFromRange:", ?*Data, .{range});
     }
 
@@ -5811,15 +5819,15 @@ pub const Text = opaque {
         return objc.msgSend(self, "readRTFDFromFile:", objc.BOOL, .{path});
     }
 
-    pub fn scrollRangeToVisible(self: *@This(), range: ns.Range) void {
+    pub fn scrollRangeToVisible(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "scrollRangeToVisible:", void, .{range});
     }
 
-    pub fn setTextColorRange(self: *@This(), color: ?*Color, range: ns.Range) void {
+    pub fn setTextColorRange(self: *@This(), color: ?*Color, range: foundation.Range) void {
         return objc.msgSend(self, "setTextColor:range:", void, .{color, range});
     }
 
-    pub fn setFontRange(self: *@This(), font: ?*Font, range: ns.Range) void {
+    pub fn setFontRange(self: *@This(), font: ?*Font, range: foundation.Range) void {
         return objc.msgSend(self, "setFont:range:", void, .{font, range});
     }
 
@@ -5991,11 +5999,11 @@ pub const Text = opaque {
         return objc.msgSend(self, "isRulerVisible", objc.BOOL, .{});
     }
 
-    pub fn selectedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "selectedRange", ns.Range, .{});
+    pub fn selectedRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "selectedRange", foundation.Range, .{});
     }
 
-    pub fn setSelectedRange(self: *@This(), selectedRange: ns.Range) void {
+    pub fn setSelectedRange(self: *@This(), selectedRange: foundation.Range) void {
         return objc.msgSend(self, "setSelectedRange:", void, .{selectedRange});
     }
 
@@ -6031,19 +6039,19 @@ pub const Text = opaque {
         return objc.msgSend(self, "setBaseWritingDirection:", void, .{baseWritingDirection});
     }
 
-    pub fn maxSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "maxSize", ns.Size, .{});
+    pub fn maxSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "maxSize", foundation.Size, .{});
     }
 
-    pub fn setMaxSize(self: *@This(), maxSize: ns.Size) void {
+    pub fn setMaxSize(self: *@This(), maxSize: foundation.Size) void {
         return objc.msgSend(self, "setMaxSize:", void, .{maxSize});
     }
 
-    pub fn minSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minSize", ns.Size, .{});
+    pub fn minSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "minSize", foundation.Size, .{});
     }
 
-    pub fn setMinSize(self: *@This(), minSize: ns.Size) void {
+    pub fn setMinSize(self: *@This(), minSize: foundation.Size) void {
         return objc.msgSend(self, "setMinSize:", void, .{minSize});
     }
 
@@ -6136,12 +6144,12 @@ pub const TextTab = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn columnTerminatorsForLocale(self: *@This(), aLocale: ?*ns.Locale) ?*ns.CharacterSet {
-        return objc.msgSend(self, "columnTerminatorsForLocale:", ?*ns.CharacterSet, .{aLocale});
+    pub fn columnTerminatorsForLocale(self: *@This(), aLocale: ?*foundation.Locale) ?*foundation.CharacterSet {
+        return objc.msgSend(self, "columnTerminatorsForLocale:", ?*foundation.CharacterSet, .{aLocale});
     }
 
-    pub fn location(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "location", cf.CGFloat, .{});
+    pub fn location(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "location", core_foundation.CGFloat, .{});
     }
 
     pub fn options(self: *@This()) ?*anyopaque {
@@ -6165,36 +6173,36 @@ pub const ParagraphStyle = opaque {
         return objc.msgSend(self, "defaultWritingDirectionForLanguage:", WritingDirection, .{languageName});
     }
 
-    pub fn defaultParagraphStyle(self: *@This()) ?* {
-        return objc.msgSend(self, "defaultParagraphStyle", ?*, .{});
+    pub fn defaultParagraphStyle(self: *@This()) ?*core_text.NSParagraphStyle {
+        return objc.msgSend(self, "defaultParagraphStyle", ?*core_text.NSParagraphStyle, .{});
     }
 
-    pub fn lineSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "lineSpacing", cf.CGFloat, .{});
+    pub fn lineSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn paragraphSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "paragraphSpacing", cf.CGFloat, .{});
+    pub fn paragraphSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "paragraphSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn headIndent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "headIndent", cf.CGFloat, .{});
+    pub fn headIndent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "headIndent", core_foundation.CGFloat, .{});
     }
 
-    pub fn tailIndent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "tailIndent", cf.CGFloat, .{});
+    pub fn tailIndent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "tailIndent", core_foundation.CGFloat, .{});
     }
 
-    pub fn firstLineHeadIndent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "firstLineHeadIndent", cf.CGFloat, .{});
+    pub fn firstLineHeadIndent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "firstLineHeadIndent", core_foundation.CGFloat, .{});
     }
 
-    pub fn minimumLineHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumLineHeight", cf.CGFloat, .{});
+    pub fn minimumLineHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumLineHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn maximumLineHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "maximumLineHeight", cf.CGFloat, .{});
+    pub fn maximumLineHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "maximumLineHeight", core_foundation.CGFloat, .{});
     }
 
     pub fn lineBreakMode(self: *@This()) LineBreakMode {
@@ -6205,12 +6213,12 @@ pub const ParagraphStyle = opaque {
         return objc.msgSend(self, "baseWritingDirection", WritingDirection, .{});
     }
 
-    pub fn lineHeightMultiple(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "lineHeightMultiple", cf.CGFloat, .{});
+    pub fn lineHeightMultiple(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineHeightMultiple", core_foundation.CGFloat, .{});
     }
 
-    pub fn paragraphSpacingBefore(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "paragraphSpacingBefore", cf.CGFloat, .{});
+    pub fn paragraphSpacingBefore(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "paragraphSpacingBefore", core_foundation.CGFloat, .{});
     }
 
     pub fn hyphenationFactor(self: *@This()) f32 {
@@ -6225,8 +6233,8 @@ pub const ParagraphStyle = opaque {
         return objc.msgSend(self, "tabStops", ?*anyopaque, .{});
     }
 
-    pub fn defaultTabInterval(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "defaultTabInterval", cf.CGFloat, .{});
+    pub fn defaultTabInterval(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "defaultTabInterval", core_foundation.CGFloat, .{});
     }
 
     pub fn textLists(self: *@This()) ?*anyopaque {
@@ -6254,11 +6262,11 @@ pub const MutableParagraphStyle = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn addTabStop(self: *@This(), anObject: ?*) void {
+    pub fn addTabStop(self: *@This(), anObject: ?*core_text.NSTextTab) void {
         return objc.msgSend(self, "addTabStop:", void, .{anObject});
     }
 
-    pub fn removeTabStop(self: *@This(), anObject: ?*) void {
+    pub fn removeTabStop(self: *@This(), anObject: ?*core_text.NSTextTab) void {
         return objc.msgSend(self, "removeTabStop:", void, .{anObject});
     }
 
@@ -6266,43 +6274,43 @@ pub const MutableParagraphStyle = opaque {
         return objc.msgSend(self, "setParagraphStyle:", void, .{obj});
     }
 
-    pub fn lineSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "lineSpacing", cf.CGFloat, .{});
+    pub fn lineSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLineSpacing(self: *@This(), lineSpacing: cf.CGFloat) void {
+    pub fn setLineSpacing(self: *@This(), lineSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLineSpacing:", void, .{lineSpacing});
     }
 
-    pub fn paragraphSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "paragraphSpacing", cf.CGFloat, .{});
+    pub fn paragraphSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "paragraphSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setParagraphSpacing(self: *@This(), paragraphSpacing: cf.CGFloat) void {
+    pub fn setParagraphSpacing(self: *@This(), paragraphSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setParagraphSpacing:", void, .{paragraphSpacing});
     }
 
-    pub fn firstLineHeadIndent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "firstLineHeadIndent", cf.CGFloat, .{});
+    pub fn firstLineHeadIndent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "firstLineHeadIndent", core_foundation.CGFloat, .{});
     }
 
-    pub fn setFirstLineHeadIndent(self: *@This(), firstLineHeadIndent: cf.CGFloat) void {
+    pub fn setFirstLineHeadIndent(self: *@This(), firstLineHeadIndent: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setFirstLineHeadIndent:", void, .{firstLineHeadIndent});
     }
 
-    pub fn headIndent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "headIndent", cf.CGFloat, .{});
+    pub fn headIndent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "headIndent", core_foundation.CGFloat, .{});
     }
 
-    pub fn setHeadIndent(self: *@This(), headIndent: cf.CGFloat) void {
+    pub fn setHeadIndent(self: *@This(), headIndent: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setHeadIndent:", void, .{headIndent});
     }
 
-    pub fn tailIndent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "tailIndent", cf.CGFloat, .{});
+    pub fn tailIndent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "tailIndent", core_foundation.CGFloat, .{});
     }
 
-    pub fn setTailIndent(self: *@This(), tailIndent: cf.CGFloat) void {
+    pub fn setTailIndent(self: *@This(), tailIndent: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setTailIndent:", void, .{tailIndent});
     }
 
@@ -6314,19 +6322,19 @@ pub const MutableParagraphStyle = opaque {
         return objc.msgSend(self, "setLineBreakMode:", void, .{lineBreakMode});
     }
 
-    pub fn minimumLineHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumLineHeight", cf.CGFloat, .{});
+    pub fn minimumLineHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumLineHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumLineHeight(self: *@This(), minimumLineHeight: cf.CGFloat) void {
+    pub fn setMinimumLineHeight(self: *@This(), minimumLineHeight: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumLineHeight:", void, .{minimumLineHeight});
     }
 
-    pub fn maximumLineHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "maximumLineHeight", cf.CGFloat, .{});
+    pub fn maximumLineHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "maximumLineHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMaximumLineHeight(self: *@This(), maximumLineHeight: cf.CGFloat) void {
+    pub fn setMaximumLineHeight(self: *@This(), maximumLineHeight: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMaximumLineHeight:", void, .{maximumLineHeight});
     }
 
@@ -6338,19 +6346,19 @@ pub const MutableParagraphStyle = opaque {
         return objc.msgSend(self, "setBaseWritingDirection:", void, .{baseWritingDirection});
     }
 
-    pub fn lineHeightMultiple(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "lineHeightMultiple", cf.CGFloat, .{});
+    pub fn lineHeightMultiple(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineHeightMultiple", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLineHeightMultiple(self: *@This(), lineHeightMultiple: cf.CGFloat) void {
+    pub fn setLineHeightMultiple(self: *@This(), lineHeightMultiple: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLineHeightMultiple:", void, .{lineHeightMultiple});
     }
 
-    pub fn paragraphSpacingBefore(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "paragraphSpacingBefore", cf.CGFloat, .{});
+    pub fn paragraphSpacingBefore(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "paragraphSpacingBefore", core_foundation.CGFloat, .{});
     }
 
-    pub fn setParagraphSpacingBefore(self: *@This(), paragraphSpacingBefore: cf.CGFloat) void {
+    pub fn setParagraphSpacingBefore(self: *@This(), paragraphSpacingBefore: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setParagraphSpacingBefore:", void, .{paragraphSpacingBefore});
     }
 
@@ -6378,11 +6386,11 @@ pub const MutableParagraphStyle = opaque {
         return objc.msgSend(self, "setTabStops:", void, .{tabStops});
     }
 
-    pub fn defaultTabInterval(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "defaultTabInterval", cf.CGFloat, .{});
+    pub fn defaultTabInterval(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "defaultTabInterval", core_foundation.CGFloat, .{});
     }
 
-    pub fn setDefaultTabInterval(self: *@This(), defaultTabInterval: cf.CGFloat) void {
+    pub fn setDefaultTabInterval(self: *@This(), defaultTabInterval: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setDefaultTabInterval:", void, .{defaultTabInterval});
     }
 
@@ -6514,7 +6522,7 @@ pub const Cell = opaque {
         return objc.msgSend(self, "initImageCell:", *@This(), .{image});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -6522,8 +6530,8 @@ pub const Cell = opaque {
         return objc.msgSend(self, "sendActionOn:", objc.NSInteger, .{mask});
     }
 
-    pub fn compare(self: *@This(), otherCell: *objc.Id) ns.ComparisonResult {
-        return objc.msgSend(self, "compare:", ns.ComparisonResult, .{otherCell});
+    pub fn compare(self: *@This(), otherCell: *objc.Id) foundation.ComparisonResult {
+        return objc.msgSend(self, "compare:", foundation.ComparisonResult, .{otherCell});
     }
 
     pub fn takeIntValueFrom(self: *@This(), sender: *objc.Id) void {
@@ -6558,27 +6566,27 @@ pub const Cell = opaque {
         return objc.msgSend(self, "setCellAttribute:to:", void, .{parameter, value});
     }
 
-    pub fn imageRectForBounds(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "imageRectForBounds:", ns.Rect, .{rect});
+    pub fn imageRectForBounds(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "imageRectForBounds:", foundation.Rect, .{rect});
     }
 
-    pub fn titleRectForBounds(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "titleRectForBounds:", ns.Rect, .{rect});
+    pub fn titleRectForBounds(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "titleRectForBounds:", foundation.Rect, .{rect});
     }
 
-    pub fn drawingRectForBounds(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "drawingRectForBounds:", ns.Rect, .{rect});
+    pub fn drawingRectForBounds(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "drawingRectForBounds:", foundation.Rect, .{rect});
     }
 
-    pub fn cellSizeForBounds(self: *@This(), rect: ns.Rect) ns.Size {
-        return objc.msgSend(self, "cellSizeForBounds:", ns.Size, .{rect});
+    pub fn cellSizeForBounds(self: *@This(), rect: foundation.Rect) foundation.Size {
+        return objc.msgSend(self, "cellSizeForBounds:", foundation.Size, .{rect});
     }
 
-    pub fn highlightColorWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) ?*Color {
+    pub fn highlightColorWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) ?*Color {
         return objc.msgSend(self, "highlightColorWithFrame:inView:", ?*Color, .{cellFrame, controlView});
     }
 
-    pub fn calcDrawInfo(self: *@This(), rect: ns.Rect) void {
+    pub fn calcDrawInfo(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "calcDrawInfo:", void, .{rect});
     }
 
@@ -6586,15 +6594,15 @@ pub const Cell = opaque {
         return objc.msgSend(self, "setUpFieldEditorAttributes:", ?*Text, .{textObj});
     }
 
-    pub fn drawInteriorWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn drawInteriorWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawInteriorWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
-    pub fn drawWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn drawWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
-    pub fn highlightWithFrameInView(self: *@This(), flag: objc.BOOL, cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn highlightWithFrameInView(self: *@This(), flag: objc.BOOL, cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "highlight:withFrame:inView:", void, .{flag, cellFrame, controlView});
     }
 
@@ -6602,27 +6610,27 @@ pub const Cell = opaque {
         return objc.msgSend(self, "getPeriodicDelay:interval:", void, .{delay, interval});
     }
 
-    pub fn startTrackingAtInView(self: *@This(), startPoint: ns.Point, controlView: ?*View) objc.BOOL {
+    pub fn startTrackingAtInView(self: *@This(), startPoint: foundation.Point, controlView: ?*View) objc.BOOL {
         return objc.msgSend(self, "startTrackingAt:inView:", objc.BOOL, .{startPoint, controlView});
     }
 
-    pub fn continueTrackingAtInView(self: *@This(), lastPoint: ns.Point, currentPoint: ns.Point, controlView: ?*View) objc.BOOL {
+    pub fn continueTrackingAtInView(self: *@This(), lastPoint: foundation.Point, currentPoint: foundation.Point, controlView: ?*View) objc.BOOL {
         return objc.msgSend(self, "continueTracking:at:inView:", objc.BOOL, .{lastPoint, currentPoint, controlView});
     }
 
-    pub fn stopTrackingAtInViewMouseIsUp(self: *@This(), lastPoint: ns.Point, stopPoint: ns.Point, controlView: ?*View, flag: objc.BOOL, ) void {
+    pub fn stopTrackingAtInViewMouseIsUp(self: *@This(), lastPoint: foundation.Point, stopPoint: foundation.Point, controlView: ?*View, flag: objc.BOOL, ) void {
         return objc.msgSend(self, "stopTracking:at:inView:mouseIsUp:", void, .{lastPoint, stopPoint, controlView, flag, });
     }
 
-    pub fn trackMouseInRectOfViewUntilMouseUp(self: *@This(), event: ?*Event, cellFrame: ns.Rect, controlView: ?*View, flag: objc.BOOL, ) objc.BOOL {
+    pub fn trackMouseInRectOfViewUntilMouseUp(self: *@This(), event: ?*Event, cellFrame: foundation.Rect, controlView: ?*View, flag: objc.BOOL, ) objc.BOOL {
         return objc.msgSend(self, "trackMouse:inRect:ofView:untilMouseUp:", objc.BOOL, .{event, cellFrame, controlView, flag, });
     }
 
-    pub fn editWithFrameInViewEditorDelegateEvent(self: *@This(), rect: ns.Rect, controlView: ?*View, textObj: ?*Text, delegate: *objc.Id, event: ?*Event, ) void {
+    pub fn editWithFrameInViewEditorDelegateEvent(self: *@This(), rect: foundation.Rect, controlView: ?*View, textObj: ?*Text, delegate: *objc.Id, event: ?*Event, ) void {
         return objc.msgSend(self, "editWithFrame:inView:editor:delegate:event:", void, .{rect, controlView, textObj, delegate, event, });
     }
 
-    pub fn selectWithFrameInViewEditorDelegateStartLength(self: *@This(), rect: ns.Rect, controlView: ?*View, textObj: ?*Text, delegate: *objc.Id, selStart: objc.NSInteger, selLength: objc.NSInteger, ) void {
+    pub fn selectWithFrameInViewEditorDelegateStartLength(self: *@This(), rect: foundation.Rect, controlView: ?*View, textObj: ?*Text, delegate: *objc.Id, selStart: objc.NSInteger, selLength: objc.NSInteger, ) void {
         return objc.msgSend(self, "selectWithFrame:inView:editor:delegate:start:length:", void, .{rect, controlView, textObj, delegate, selStart, selLength, });
     }
 
@@ -6630,11 +6638,11 @@ pub const Cell = opaque {
         return objc.msgSend(self, "endEditing:", void, .{textObj});
     }
 
-    pub fn resetCursorRectInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn resetCursorRectInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "resetCursorRect:inView:", void, .{cellFrame, controlView});
     }
 
-    pub fn menuForEventInRectOfView(self: *@This(), event: ?*Event, cellFrame: ns.Rect, view: ?*View) ?*Menu {
+    pub fn menuForEventInRectOfView(self: *@This(), event: ?*Event, cellFrame: foundation.Rect, view: ?*View) ?*Menu {
         return objc.msgSend(self, "menuForEvent:inRect:ofView:", ?*Menu, .{event, cellFrame, view});
     }
 
@@ -6642,7 +6650,7 @@ pub const Cell = opaque {
         return objc.msgSend(self, "fieldEditorForView:", ?*TextView, .{controlView});
     }
 
-    pub fn draggingImageComponentsWithFrameInView(self: *@This(), frame: ns.Rect, view: ?*View) ?*anyopaque {
+    pub fn draggingImageComponentsWithFrameInView(self: *@This(), frame: foundation.Rect, view: ?*View) ?*anyopaque {
         return objc.msgSend(self, "draggingImageComponentsWithFrame:inView:", ?*anyopaque, .{frame, view});
     }
 
@@ -6886,8 +6894,8 @@ pub const Cell = opaque {
         return objc.msgSend(self, "setRepresentedObject:", void, .{representedObject});
     }
 
-    pub fn cellSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "cellSize", ns.Size, .{});
+    pub fn cellSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "cellSize", foundation.Size, .{});
     }
 
     pub fn mouseDownFlags(self: *@This()) objc.NSInteger {
@@ -6978,9 +6986,9 @@ pub const BackgroundStyle = enum(objc.NSInteger) {
     Lowered = 3,
 };
 
-pub extern "AppKit" fn DrawThreePartImage(frame: ns.Rect, startCap: ?*Image, centerFill: ?*Image, endCap: ?*Image, vertical: objc.BOOL, op: CompositingOperation, alphaFraction: cf.CGFloat, flipped: objc.BOOL, ) callconv(.C) void;
+pub extern "AppKit" fn DrawThreePartImage(frame: foundation.Rect, startCap: ?*Image, centerFill: ?*Image, endCap: ?*Image, vertical: objc.BOOL, op: CompositingOperation, alphaFraction: core_foundation.CGFloat, flipped: objc.BOOL, ) callconv(.C) void;
 
-pub extern "AppKit" fn DrawNinePartImage(frame: ns.Rect, topLeftCorner: ?*Image, topEdgeFill: ?*Image, topRightCorner: ?*Image, leftEdgeFill: ?*Image, centerFill: ?*Image, rightEdgeFill: ?*Image, bottomLeftCorner: ?*Image, bottomEdgeFill: ?*Image, bottomRightCorner: ?*Image, op: CompositingOperation, alphaFraction: cf.CGFloat, flipped: objc.BOOL, ) callconv(.C) void;
+pub extern "AppKit" fn DrawNinePartImage(frame: foundation.Rect, topLeftCorner: ?*Image, topEdgeFill: ?*Image, topRightCorner: ?*Image, leftEdgeFill: ?*Image, centerFill: ?*Image, rightEdgeFill: ?*Image, bottomLeftCorner: ?*Image, bottomEdgeFill: ?*Image, bottomRightCorner: ?*Image, op: CompositingOperation, alphaFraction: core_foundation.CGFloat, flipped: objc.BOOL, ) callconv(.C) void;
 
 pub const CellStateValue = ControlStateValue;
 
@@ -7007,7 +7015,7 @@ pub const MenuItem = opaque {
         return objc.msgSend(self, "initWithTitle:action:keyEquivalent:", *@This(), .{string, selector, charCode});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -7283,7 +7291,7 @@ pub const Menu = opaque {
         return objc.msgSend(self, "initWithTitle:", *@This(), .{title});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -7295,7 +7303,7 @@ pub const Menu = opaque {
         return objc.msgSend(self, "popUpContextMenu:withEvent:forView:withFont:", void, .{menu, event, view, font, });
     }
 
-    pub fn popUpMenuPositioningItemAtLocationInView(self: *@This(), item: ?*MenuItem, location: ns.Point, view: ?*View) objc.BOOL {
+    pub fn popUpMenuPositioningItemAtLocationInView(self: *@This(), item: ?*MenuItem, location: foundation.Point, view: ?*View) objc.BOOL {
         return objc.msgSend(self, "popUpMenuPositioningItem:atLocation:inView:", objc.BOOL, .{item, location, view});
     }
 
@@ -7443,24 +7451,24 @@ pub const Menu = opaque {
         return objc.msgSend(self, "setDelegate:", void, .{delegate});
     }
 
-    pub fn menuBarHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "menuBarHeight", cf.CGFloat, .{});
+    pub fn menuBarHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "menuBarHeight", core_foundation.CGFloat, .{});
     }
 
     pub fn highlightedItem(self: *@This()) ?*MenuItem {
         return objc.msgSend(self, "highlightedItem", ?*MenuItem, .{});
     }
 
-    pub fn minimumWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumWidth", cf.CGFloat, .{});
+    pub fn minimumWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumWidth(self: *@This(), minimumWidth: cf.CGFloat) void {
+    pub fn setMinimumWidth(self: *@This(), minimumWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumWidth:", void, .{minimumWidth});
     }
 
-    pub fn size(self: *@This()) ns.Size {
-        return objc.msgSend(self, "size", ns.Size, .{});
+    pub fn size(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "size", foundation.Size, .{});
     }
 
     pub fn font(self: *@This()) ?*Font {
@@ -7547,8 +7555,8 @@ pub const MenuDelegate = opaque {
         return objc.msgSend(self, "menu:willHighlightItem:", void, .{menu, item});
     }
 
-    pub fn confinementRectForMenuOnScreen(self: *@This(), menu: ?*Menu, screen: ?*Screen) ns.Rect {
-        return objc.msgSend(self, "confinementRectForMenu:onScreen:", ns.Rect, .{menu, screen});
+    pub fn confinementRectForMenuOnScreen(self: *@This(), menu: ?*Menu, screen: ?*Screen) foundation.Rect {
+        return objc.msgSend(self, "confinementRectForMenu:onScreen:", foundation.Rect, .{menu, screen});
     }
 
 };
@@ -7591,8 +7599,8 @@ pub const Printer = opaque {
         return objc.msgSend(self, "printerWithType:", ?*Printer, .{@"type"});
     }
 
-    pub fn pageSizeForPaper(self: *@This(), paperName: PrinterPaperName) ns.Size {
-        return objc.msgSend(self, "pageSizeForPaper:", ns.Size, .{paperName});
+    pub fn pageSizeForPaper(self: *@This(), paperName: PrinterPaperName) foundation.Size {
+        return objc.msgSend(self, "pageSizeForPaper:", foundation.Size, .{paperName});
     }
 
     pub fn printerNames(self: *@This()) ?*anyopaque {
@@ -7653,7 +7661,7 @@ pub const PrintInfo = opaque {
         return objc.msgSend(self, "initWithDictionary:", *@This(), .{attributes});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -7709,11 +7717,11 @@ pub const PrintInfo = opaque {
         return objc.msgSend(self, "setPaperName:", void, .{paperName});
     }
 
-    pub fn paperSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "paperSize", ns.Size, .{});
+    pub fn paperSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "paperSize", foundation.Size, .{});
     }
 
-    pub fn setPaperSize(self: *@This(), paperSize: ns.Size) void {
+    pub fn setPaperSize(self: *@This(), paperSize: foundation.Size) void {
         return objc.msgSend(self, "setPaperSize:", void, .{paperSize});
     }
 
@@ -7725,43 +7733,43 @@ pub const PrintInfo = opaque {
         return objc.msgSend(self, "setOrientation:", void, .{orientation});
     }
 
-    pub fn scalingFactor(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "scalingFactor", cf.CGFloat, .{});
+    pub fn scalingFactor(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "scalingFactor", core_foundation.CGFloat, .{});
     }
 
-    pub fn setScalingFactor(self: *@This(), scalingFactor: cf.CGFloat) void {
+    pub fn setScalingFactor(self: *@This(), scalingFactor: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setScalingFactor:", void, .{scalingFactor});
     }
 
-    pub fn leftMargin(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "leftMargin", cf.CGFloat, .{});
+    pub fn leftMargin(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "leftMargin", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLeftMargin(self: *@This(), leftMargin: cf.CGFloat) void {
+    pub fn setLeftMargin(self: *@This(), leftMargin: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLeftMargin:", void, .{leftMargin});
     }
 
-    pub fn rightMargin(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "rightMargin", cf.CGFloat, .{});
+    pub fn rightMargin(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "rightMargin", core_foundation.CGFloat, .{});
     }
 
-    pub fn setRightMargin(self: *@This(), rightMargin: cf.CGFloat) void {
+    pub fn setRightMargin(self: *@This(), rightMargin: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setRightMargin:", void, .{rightMargin});
     }
 
-    pub fn topMargin(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "topMargin", cf.CGFloat, .{});
+    pub fn topMargin(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "topMargin", core_foundation.CGFloat, .{});
     }
 
-    pub fn setTopMargin(self: *@This(), topMargin: cf.CGFloat) void {
+    pub fn setTopMargin(self: *@This(), topMargin: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setTopMargin:", void, .{topMargin});
     }
 
-    pub fn bottomMargin(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "bottomMargin", cf.CGFloat, .{});
+    pub fn bottomMargin(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "bottomMargin", core_foundation.CGFloat, .{});
     }
 
-    pub fn setBottomMargin(self: *@This(), bottomMargin: cf.CGFloat) void {
+    pub fn setBottomMargin(self: *@This(), bottomMargin: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setBottomMargin:", void, .{bottomMargin});
     }
 
@@ -7813,8 +7821,8 @@ pub const PrintInfo = opaque {
         return objc.msgSend(self, "setPrinter:", void, .{printer});
     }
 
-    pub fn imageablePageBounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "imageablePageBounds", ns.Rect, .{});
+    pub fn imageablePageBounds(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "imageablePageBounds", foundation.Rect, .{});
     }
 
     pub fn localizedPaperName(self: *@This()) ?*String {
@@ -8387,15 +8395,15 @@ pub const Document = opaque {
         return objc.msgSend(self, "presentedItemDidChangeUbiquityAttributes:", void, .{attributes});
     }
 
-    pub fn presentedItemDidGainVersion(self: *@This(), version: ?*ns.FileVersion) void {
+    pub fn presentedItemDidGainVersion(self: *@This(), version: ?*foundation.FileVersion) void {
         return objc.msgSend(self, "presentedItemDidGainVersion:", void, .{version});
     }
 
-    pub fn presentedItemDidLoseVersion(self: *@This(), version: ?*ns.FileVersion) void {
+    pub fn presentedItemDidLoseVersion(self: *@This(), version: ?*foundation.FileVersion) void {
         return objc.msgSend(self, "presentedItemDidLoseVersion:", void, .{version});
     }
 
-    pub fn presentedItemDidResolveConflictVersion(self: *@This(), version: ?*ns.FileVersion) void {
+    pub fn presentedItemDidResolveConflictVersion(self: *@This(), version: ?*foundation.FileVersion) void {
         return objc.msgSend(self, "presentedItemDidResolveConflictVersion:", void, .{version});
     }
 
@@ -8589,7 +8597,7 @@ pub const UserActivityRestoring = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn restoreUserActivityState(self: *@This(), userActivity: ?*ns.UserActivity) void {
+    pub fn restoreUserActivityState(self: *@This(), userActivity: ?*foundation.UserActivity) void {
         return objc.msgSend(self, "restoreUserActivityState:", void, .{userActivity});
     }
 
@@ -8869,14 +8877,14 @@ pub const Application = opaque {
 
 };
 
-pub const RequestUserAttentionType = enum NSRequestUserAttentionType;
+pub const RequestUserAttentionType = RequestUserAttentionType;
 
 pub const RequestUserAttentionType = enum(objc.NSUInteger) {
     CriticalRequest = 0,
     InformationalRequest = 10,
 };
 
-pub const ApplicationDelegateReply = enum NSApplicationDelegateReply;
+pub const ApplicationDelegateReply = ApplicationDelegateReply;
 
 pub const ApplicationDelegateReply = enum(objc.NSUInteger) {
     Success = 0,
@@ -8981,11 +8989,11 @@ pub const ApplicationDelegate = opaque {
         return objc.msgSend(self, "application:handlerForIntent:", *objc.Id, .{application, intent});
     }
 
-    pub fn applicationWillEncodeRestorableState(self: *@This(), app: ?*Application, coder: ?*ns.Coder) void {
+    pub fn applicationWillEncodeRestorableState(self: *@This(), app: ?*Application, coder: ?*foundation.Coder) void {
         return objc.msgSend(self, "application:willEncodeRestorableState:", void, .{app, coder});
     }
 
-    pub fn applicationDidDecodeRestorableState(self: *@This(), app: ?*Application, coder: ?*ns.Coder) void {
+    pub fn applicationDidDecodeRestorableState(self: *@This(), app: ?*Application, coder: ?*foundation.Coder) void {
         return objc.msgSend(self, "application:didDecodeRestorableState:", void, .{app, coder});
     }
 
@@ -9240,39 +9248,39 @@ pub const Color = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn colorWithColorSpaceComponentsCount(self: *@This(), space: ?*ColorSpace, components: ?*cf.CGFloat, numberOfComponents: objc.NSInteger) ?*Color {
+    pub fn colorWithColorSpaceComponentsCount(self: *@This(), space: ?*ColorSpace, components: ?*core_foundation.CGFloat, numberOfComponents: objc.NSInteger) ?*Color {
         return objc.msgSend(self, "colorWithColorSpace:components:count:", ?*Color, .{space, components, numberOfComponents});
     }
 
-    pub fn colorWithSRGBRedGreenBlueAlpha(self: *@This(), red: cf.CGFloat, green: cf.CGFloat, blue: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithSRGBRedGreenBlueAlpha(self: *@This(), red: core_foundation.CGFloat, green: core_foundation.CGFloat, blue: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithSRGBRed:green:blue:alpha:", ?*Color, .{red, green, blue, alpha, });
     }
 
-    pub fn colorWithGenericGamma22WhiteAlpha(self: *@This(), white: cf.CGFloat, alpha: cf.CGFloat) ?*Color {
+    pub fn colorWithGenericGamma22WhiteAlpha(self: *@This(), white: core_foundation.CGFloat, alpha: core_foundation.CGFloat) ?*Color {
         return objc.msgSend(self, "colorWithGenericGamma22White:alpha:", ?*Color, .{white, alpha});
     }
 
-    pub fn colorWithDisplayP3RedGreenBlueAlpha(self: *@This(), red: cf.CGFloat, green: cf.CGFloat, blue: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithDisplayP3RedGreenBlueAlpha(self: *@This(), red: core_foundation.CGFloat, green: core_foundation.CGFloat, blue: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithDisplayP3Red:green:blue:alpha:", ?*Color, .{red, green, blue, alpha, });
     }
 
-    pub fn colorWithWhiteAlpha(self: *@This(), white: cf.CGFloat, alpha: cf.CGFloat) ?*Color {
+    pub fn colorWithWhiteAlpha(self: *@This(), white: core_foundation.CGFloat, alpha: core_foundation.CGFloat) ?*Color {
         return objc.msgSend(self, "colorWithWhite:alpha:", ?*Color, .{white, alpha});
     }
 
-    pub fn colorWithRedGreenBlueAlpha(self: *@This(), red: cf.CGFloat, green: cf.CGFloat, blue: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithRedGreenBlueAlpha(self: *@This(), red: core_foundation.CGFloat, green: core_foundation.CGFloat, blue: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithRed:green:blue:alpha:", ?*Color, .{red, green, blue, alpha, });
     }
 
-    pub fn colorWithHueSaturationBrightnessAlpha(self: *@This(), hue: cf.CGFloat, saturation: cf.CGFloat, brightness: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithHueSaturationBrightnessAlpha(self: *@This(), hue: core_foundation.CGFloat, saturation: core_foundation.CGFloat, brightness: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithHue:saturation:brightness:alpha:", ?*Color, .{hue, saturation, brightness, alpha, });
     }
 
-    pub fn colorWithColorSpaceHueSaturationBrightnessAlpha(self: *@This(), space: ?*ColorSpace, hue: cf.CGFloat, saturation: cf.CGFloat, brightness: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithColorSpaceHueSaturationBrightnessAlpha(self: *@This(), space: ?*ColorSpace, hue: core_foundation.CGFloat, saturation: core_foundation.CGFloat, brightness: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithColorSpace:hue:saturation:brightness:alpha:", ?*Color, .{space, hue, saturation, brightness, alpha, });
     }
 
@@ -9292,31 +9300,31 @@ pub const Color = opaque {
         return objc.msgSend(self, "colorWithName:dynamicProvider:", ?*Color, .{colorName, dynamicProvider});
     }
 
-    pub fn colorWithDeviceWhiteAlpha(self: *@This(), white: cf.CGFloat, alpha: cf.CGFloat) ?*Color {
+    pub fn colorWithDeviceWhiteAlpha(self: *@This(), white: core_foundation.CGFloat, alpha: core_foundation.CGFloat) ?*Color {
         return objc.msgSend(self, "colorWithDeviceWhite:alpha:", ?*Color, .{white, alpha});
     }
 
-    pub fn colorWithDeviceRedGreenBlueAlpha(self: *@This(), red: cf.CGFloat, green: cf.CGFloat, blue: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithDeviceRedGreenBlueAlpha(self: *@This(), red: core_foundation.CGFloat, green: core_foundation.CGFloat, blue: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithDeviceRed:green:blue:alpha:", ?*Color, .{red, green, blue, alpha, });
     }
 
-    pub fn colorWithDeviceHueSaturationBrightnessAlpha(self: *@This(), hue: cf.CGFloat, saturation: cf.CGFloat, brightness: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithDeviceHueSaturationBrightnessAlpha(self: *@This(), hue: core_foundation.CGFloat, saturation: core_foundation.CGFloat, brightness: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithDeviceHue:saturation:brightness:alpha:", ?*Color, .{hue, saturation, brightness, alpha, });
     }
 
-    pub fn colorWithDeviceCyanMagentaYellowBlackAlpha(self: *@This(), cyan: cf.CGFloat, magenta: cf.CGFloat, yellow: cf.CGFloat, black: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithDeviceCyanMagentaYellowBlackAlpha(self: *@This(), cyan: core_foundation.CGFloat, magenta: core_foundation.CGFloat, yellow: core_foundation.CGFloat, black: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithDeviceCyan:magenta:yellow:black:alpha:", ?*Color, .{cyan, magenta, yellow, black, alpha, });
     }
 
-    pub fn colorWithCalibratedWhiteAlpha(self: *@This(), white: cf.CGFloat, alpha: cf.CGFloat) ?*Color {
+    pub fn colorWithCalibratedWhiteAlpha(self: *@This(), white: core_foundation.CGFloat, alpha: core_foundation.CGFloat) ?*Color {
         return objc.msgSend(self, "colorWithCalibratedWhite:alpha:", ?*Color, .{white, alpha});
     }
 
-    pub fn colorWithCalibratedRedGreenBlueAlpha(self: *@This(), red: cf.CGFloat, green: cf.CGFloat, blue: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithCalibratedRedGreenBlueAlpha(self: *@This(), red: core_foundation.CGFloat, green: core_foundation.CGFloat, blue: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithCalibratedRed:green:blue:alpha:", ?*Color, .{red, green, blue, alpha, });
     }
 
-    pub fn colorWithCalibratedHueSaturationBrightnessAlpha(self: *@This(), hue: cf.CGFloat, saturation: cf.CGFloat, brightness: cf.CGFloat, alpha: cf.CGFloat, ) ?*Color {
+    pub fn colorWithCalibratedHueSaturationBrightnessAlpha(self: *@This(), hue: core_foundation.CGFloat, saturation: core_foundation.CGFloat, brightness: core_foundation.CGFloat, alpha: core_foundation.CGFloat, ) ?*Color {
         return objc.msgSend(self, "colorWithCalibratedHue:saturation:brightness:alpha:", ?*Color, .{hue, saturation, brightness, alpha, });
     }
 
@@ -9336,11 +9344,11 @@ pub const Color = opaque {
         return objc.msgSend(self, "colorForControlTint:", ?*Color, .{controlTint});
     }
 
-    pub fn highlightWithLevel(self: *@This(), val: cf.CGFloat) ?*Color {
+    pub fn highlightWithLevel(self: *@This(), val: core_foundation.CGFloat) ?*Color {
         return objc.msgSend(self, "highlightWithLevel:", ?*Color, .{val});
     }
 
-    pub fn shadowWithLevel(self: *@This(), val: cf.CGFloat) ?*Color {
+    pub fn shadowWithLevel(self: *@This(), val: core_foundation.CGFloat) ?*Color {
         return objc.msgSend(self, "shadowWithLevel:", ?*Color, .{val});
     }
 
@@ -9360,31 +9368,31 @@ pub const Color = opaque {
         return objc.msgSend(self, "setStroke", void, .{});
     }
 
-    pub fn blendedColorWithFractionOfColor(self: *@This(), fraction: cf.CGFloat, color: ?*Color) ?*Color {
+    pub fn blendedColorWithFractionOfColor(self: *@This(), fraction: core_foundation.CGFloat, color: ?*Color) ?*Color {
         return objc.msgSend(self, "blendedColorWithFraction:ofColor:", ?*Color, .{fraction, color});
     }
 
-    pub fn colorWithAlphaComponent(self: *@This(), alpha: cf.CGFloat) ?*Color {
+    pub fn colorWithAlphaComponent(self: *@This(), alpha: core_foundation.CGFloat) ?*Color {
         return objc.msgSend(self, "colorWithAlphaComponent:", ?*Color, .{alpha});
     }
 
-    pub fn getRedGreenBlueAlpha(self: *@This(), red: ?*cf.CGFloat, green: ?*cf.CGFloat, blue: ?*cf.CGFloat, alpha: ?*cf.CGFloat, ) void {
+    pub fn getRedGreenBlueAlpha(self: *@This(), red: ?*core_foundation.CGFloat, green: ?*core_foundation.CGFloat, blue: ?*core_foundation.CGFloat, alpha: ?*core_foundation.CGFloat, ) void {
         return objc.msgSend(self, "getRed:green:blue:alpha:", void, .{red, green, blue, alpha, });
     }
 
-    pub fn getHueSaturationBrightnessAlpha(self: *@This(), hue: ?*cf.CGFloat, saturation: ?*cf.CGFloat, brightness: ?*cf.CGFloat, alpha: ?*cf.CGFloat, ) void {
+    pub fn getHueSaturationBrightnessAlpha(self: *@This(), hue: ?*core_foundation.CGFloat, saturation: ?*core_foundation.CGFloat, brightness: ?*core_foundation.CGFloat, alpha: ?*core_foundation.CGFloat, ) void {
         return objc.msgSend(self, "getHue:saturation:brightness:alpha:", void, .{hue, saturation, brightness, alpha, });
     }
 
-    pub fn getWhiteAlpha(self: *@This(), white: ?*cf.CGFloat, alpha: ?*cf.CGFloat) void {
+    pub fn getWhiteAlpha(self: *@This(), white: ?*core_foundation.CGFloat, alpha: ?*core_foundation.CGFloat) void {
         return objc.msgSend(self, "getWhite:alpha:", void, .{white, alpha});
     }
 
-    pub fn getCyanMagentaYellowBlackAlpha(self: *@This(), cyan: ?*cf.CGFloat, magenta: ?*cf.CGFloat, yellow: ?*cf.CGFloat, black: ?*cf.CGFloat, alpha: ?*cf.CGFloat, ) void {
+    pub fn getCyanMagentaYellowBlackAlpha(self: *@This(), cyan: ?*core_foundation.CGFloat, magenta: ?*core_foundation.CGFloat, yellow: ?*core_foundation.CGFloat, black: ?*core_foundation.CGFloat, alpha: ?*core_foundation.CGFloat, ) void {
         return objc.msgSend(self, "getCyan:magenta:yellow:black:alpha:", void, .{cyan, magenta, yellow, black, alpha, });
     }
 
-    pub fn getComponents(self: *@This(), components: ?*cf.CGFloat) void {
+    pub fn getComponents(self: *@This(), components: ?*core_foundation.CGFloat) void {
         return objc.msgSend(self, "getComponents:", void, .{components});
     }
 
@@ -9396,11 +9404,11 @@ pub const Color = opaque {
         return objc.msgSend(self, "writeToPasteboard:", void, .{pasteBoard});
     }
 
-    pub fn drawSwatchInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn drawSwatchInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "drawSwatchInRect:", void, .{rect});
     }
 
-    pub fn colorWithCGColor(self: *@This(), cgColor: ) ?*Color {
+    pub fn colorWithCGColor(self: *@This(), cgColor: core_graphics.ColorRef) ?*Color {
         return objc.msgSend(self, "colorWithCGColor:", ?*Color, .{cgColor});
     }
 
@@ -9708,48 +9716,48 @@ pub const Color = opaque {
         return objc.msgSend(self, "localizedColorNameComponent", ?*String, .{});
     }
 
-    pub fn redComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "redComponent", cf.CGFloat, .{});
+    pub fn redComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "redComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn greenComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "greenComponent", cf.CGFloat, .{});
+    pub fn greenComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "greenComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn blueComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "blueComponent", cf.CGFloat, .{});
+    pub fn blueComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "blueComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn hueComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "hueComponent", cf.CGFloat, .{});
+    pub fn hueComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "hueComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn saturationComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "saturationComponent", cf.CGFloat, .{});
+    pub fn saturationComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "saturationComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn brightnessComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "brightnessComponent", cf.CGFloat, .{});
+    pub fn brightnessComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "brightnessComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn whiteComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "whiteComponent", cf.CGFloat, .{});
+    pub fn whiteComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "whiteComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn cyanComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "cyanComponent", cf.CGFloat, .{});
+    pub fn cyanComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "cyanComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn magentaComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "magentaComponent", cf.CGFloat, .{});
+    pub fn magentaComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "magentaComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn yellowComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "yellowComponent", cf.CGFloat, .{});
+    pub fn yellowComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "yellowComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn blackComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "blackComponent", cf.CGFloat, .{});
+    pub fn blackComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "blackComponent", core_foundation.CGFloat, .{});
     }
 
     pub fn colorSpace(self: *@This()) ?*ColorSpace {
@@ -9764,12 +9772,12 @@ pub const Color = opaque {
         return objc.msgSend(self, "patternImage", ?*Image, .{});
     }
 
-    pub fn alphaComponent(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "alphaComponent", cf.CGFloat, .{});
+    pub fn alphaComponent(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "alphaComponent", core_foundation.CGFloat, .{});
     }
 
-    pub fn CGColor(self: *@This())  {
-        return objc.msgSend(self, "CGColor", , .{});
+    pub fn CGColor(self: *@This()) core_graphics.ColorRef {
+        return objc.msgSend(self, "CGColor", core_graphics.ColorRef, .{});
     }
 
     pub fn ignoresAlpha(self: *@This()) objc.BOOL {
@@ -9862,7 +9870,7 @@ pub const HelpManager = opaque {
         return objc.msgSend(self, "contextHelpForObject:", ?*AttributedString, .{object});
     }
 
-    pub fn showContextHelpForObjectLocationHint(self: *@This(), object: *objc.Id, pt: ns.Point) objc.BOOL {
+    pub fn showContextHelpForObjectLocationHint(self: *@This(), object: *objc.Id, pt: foundation.Point) objc.BOOL {
         return objc.msgSend(self, "showContextHelpForObject:locationHint:", objc.BOOL, .{object, pt});
     }
 
@@ -10060,11 +10068,11 @@ pub const AnimationContext = opaque {
         return objc.msgSend(self, "currentContext", ?*AnimationContext, .{});
     }
 
-    pub fn duration(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "duration", ns.TimeInterval, .{});
+    pub fn duration(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "duration", foundation.TimeInterval, .{});
     }
 
-    pub fn setDuration(self: *@This(), duration: ns.TimeInterval) void {
+    pub fn setDuration(self: *@This(), duration: foundation.TimeInterval) void {
         return objc.msgSend(self, "setDuration:", void, .{duration});
     }
 
@@ -10125,7 +10133,7 @@ pub const Box = opaque {
         return objc.msgSend(self, "sizeToFit", void, .{});
     }
 
-    pub fn setFrameFromContentFrame(self: *@This(), contentFrame: ns.Rect) void {
+    pub fn setFrameFromContentFrame(self: *@This(), contentFrame: foundation.Rect) void {
         return objc.msgSend(self, "setFrameFromContentFrame:", void, .{contentFrame});
     }
 
@@ -10161,23 +10169,23 @@ pub const Box = opaque {
         return objc.msgSend(self, "setTitleFont:", void, .{titleFont});
     }
 
-    pub fn borderRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "borderRect", ns.Rect, .{});
+    pub fn borderRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "borderRect", foundation.Rect, .{});
     }
 
-    pub fn titleRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "titleRect", ns.Rect, .{});
+    pub fn titleRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "titleRect", foundation.Rect, .{});
     }
 
     pub fn titleCell(self: *@This()) *objc.Id {
         return objc.msgSend(self, "titleCell", *objc.Id, .{});
     }
 
-    pub fn contentViewMargins(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentViewMargins", ns.Size, .{});
+    pub fn contentViewMargins(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentViewMargins", foundation.Size, .{});
     }
 
-    pub fn setContentViewMargins(self: *@This(), contentViewMargins: ns.Size) void {
+    pub fn setContentViewMargins(self: *@This(), contentViewMargins: foundation.Size) void {
         return objc.msgSend(self, "setContentViewMargins:", void, .{contentViewMargins});
     }
 
@@ -10197,19 +10205,19 @@ pub const Box = opaque {
         return objc.msgSend(self, "setTransparent:", void, .{transparent});
     }
 
-    pub fn borderWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "borderWidth", cf.CGFloat, .{});
+    pub fn borderWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "borderWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setBorderWidth(self: *@This(), borderWidth: cf.CGFloat) void {
+    pub fn setBorderWidth(self: *@This(), borderWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setBorderWidth:", void, .{borderWidth});
     }
 
-    pub fn cornerRadius(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "cornerRadius", cf.CGFloat, .{});
+    pub fn cornerRadius(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "cornerRadius", core_foundation.CGFloat, .{});
     }
 
-    pub fn setCornerRadius(self: *@This(), cornerRadius: cf.CGFloat) void {
+    pub fn setCornerRadius(self: *@This(), cornerRadius: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setCornerRadius:", void, .{cornerRadius});
     }
 
@@ -10242,16 +10250,16 @@ pub const Control = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFrame(self: *@This(), frameRect: ns.Rect) *@This() {
+    pub fn initWithFrame(self: *@This(), frameRect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFrame:", *@This(), .{frameRect});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn sizeThatFits(self: *@This(), size: ns.Size) ns.Size {
-        return objc.msgSend(self, "sizeThatFits:", ns.Size, .{size});
+    pub fn sizeThatFits(self: *@This(), size: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "sizeThatFits:", foundation.Size, .{size});
     }
 
     pub fn sizeToFit(self: *@This()) void {
@@ -10298,11 +10306,11 @@ pub const Control = opaque {
         return objc.msgSend(self, "performClick:", void, .{sender});
     }
 
-    pub fn expansionFrameWithFrame(self: *@This(), contentFrame: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "expansionFrameWithFrame:", ns.Rect, .{contentFrame});
+    pub fn expansionFrameWithFrame(self: *@This(), contentFrame: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "expansionFrameWithFrame:", foundation.Rect, .{contentFrame});
     }
 
-    pub fn drawWithExpansionFrameInView(self: *@This(), contentFrame: ns.Rect, view: ?*View) void {
+    pub fn drawWithExpansionFrameInView(self: *@This(), contentFrame: foundation.Rect, view: ?*View) void {
         return objc.msgSend(self, "drawWithExpansionFrame:inView:", void, .{contentFrame, view});
     }
 
@@ -10536,7 +10544,7 @@ pub const ControlTextEditingDelegate = opaque {
         return objc.msgSend(self, "control:textView:doCommandBySelector:", objc.BOOL, .{control, textView, commandSelector});
     }
 
-    pub fn controlTextViewCompletionsForPartialWordRangeIndexOfSelectedItem(self: *@This(), control: ?*Control, textView: ?*TextView, words: ?*anyopaque, charRange: ns.Range, index: ?*objc.NSInteger, ) ?*anyopaque {
+    pub fn controlTextViewCompletionsForPartialWordRangeIndexOfSelectedItem(self: *@This(), control: ?*Control, textView: ?*TextView, words: ?*anyopaque, charRange: foundation.Range, index: ?*objc.NSInteger, ) ?*anyopaque {
         return objc.msgSend(self, "control:textView:completions:forPartialWordRange:indexOfSelectedItem:", ?*anyopaque, .{control, textView, words, charRange, index, });
     }
 
@@ -10598,7 +10606,7 @@ pub const ButtonCell = opaque {
         return objc.msgSend(self, "initImageCell:", *@This(), .{image});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -10626,16 +10634,16 @@ pub const ButtonCell = opaque {
         return objc.msgSend(self, "mouseExited:", void, .{event});
     }
 
-    pub fn drawBezelWithFrameInView(self: *@This(), frame: ns.Rect, controlView: ?*View) void {
+    pub fn drawBezelWithFrameInView(self: *@This(), frame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawBezelWithFrame:inView:", void, .{frame, controlView});
     }
 
-    pub fn drawImageWithFrameInView(self: *@This(), image: ?*Image, frame: ns.Rect, controlView: ?*View) void {
+    pub fn drawImageWithFrameInView(self: *@This(), image: ?*Image, frame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawImage:withFrame:inView:", void, .{image, frame, controlView});
     }
 
-    pub fn drawTitleWithFrameInView(self: *@This(), title: ?*AttributedString, frame: ns.Rect, controlView: ?*View) ns.Rect {
-        return objc.msgSend(self, "drawTitle:withFrame:inView:", ns.Rect, .{title, frame, controlView});
+    pub fn drawTitleWithFrameInView(self: *@This(), title: ?*AttributedString, frame: foundation.Rect, controlView: ?*View) foundation.Rect {
+        return objc.msgSend(self, "drawTitle:withFrame:inView:", foundation.Rect, .{title, frame, controlView});
     }
 
     pub fn bezelStyle(self: *@This()) BezelStyle {
@@ -10803,7 +10811,7 @@ pub const UserInterfaceCompressionOptions = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -10869,8 +10877,8 @@ pub const UserInterfaceCompression = opaque {
         return objc.msgSend(self, "compressWithPrioritizedCompressionOptions:", void, .{prioritizedOptions});
     }
 
-    pub fn minimumSizeWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) ns.Size {
-        return objc.msgSend(self, "minimumSizeWithPrioritizedCompressionOptions:", ns.Size, .{prioritizedOptions});
+    pub fn minimumSizeWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) foundation.Size {
+        return objc.msgSend(self, "minimumSizeWithPrioritizedCompressionOptions:", foundation.Size, .{prioritizedOptions});
     }
 
     pub fn activeCompressionOptions(self: *@This()) ?*UserInterfaceCompressionOptions {
@@ -10938,8 +10946,8 @@ pub const Button = opaque {
         return objc.msgSend(self, "compressWithPrioritizedCompressionOptions:", void, .{prioritizedOptions});
     }
 
-    pub fn minimumSizeWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) ns.Size {
-        return objc.msgSend(self, "minimumSizeWithPrioritizedCompressionOptions:", ns.Size, .{prioritizedOptions});
+    pub fn minimumSizeWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) foundation.Size {
+        return objc.msgSend(self, "minimumSizeWithPrioritizedCompressionOptions:", foundation.Size, .{prioritizedOptions});
     }
 
     pub fn title(self: *@This()) ?*String {
@@ -11159,7 +11167,7 @@ pub const TouchBarItem = opaque {
         return objc.msgSend(self, "initWithIdentifier:", *@This(), .{identifier});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -11214,7 +11222,7 @@ pub const TouchBar = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -11347,7 +11355,7 @@ pub const CandidateListTouchBarItem = opaque {
         return objc.msgSend(self, "updateWithInsertionPointVisibility:", void, .{isVisible});
     }
 
-    pub fn setCandidatesForSelectedRangeInString(self: *@This(), candidates: ?*anyopaque, selectedRange: ns.Range, originalString: ?*String) void {
+    pub fn setCandidatesForSelectedRangeInString(self: *@This(), candidates: ?*anyopaque, selectedRange: foundation.Range, originalString: ?*String) void {
         return objc.msgSend(self, "setCandidates:forSelectedRange:inString:", void, .{candidates, selectedRange, originalString});
     }
 
@@ -11466,12 +11474,12 @@ pub const ClipView = opaque {
         return objc.msgSend(self, "autoscroll:", objc.BOOL, .{event});
     }
 
-    pub fn scrollToPoint(self: *@This(), newOrigin: ns.Point) void {
+    pub fn scrollToPoint(self: *@This(), newOrigin: foundation.Point) void {
         return objc.msgSend(self, "scrollToPoint:", void, .{newOrigin});
     }
 
-    pub fn constrainBoundsRect(self: *@This(), proposedBounds: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "constrainBoundsRect:", ns.Rect, .{proposedBounds});
+    pub fn constrainBoundsRect(self: *@This(), proposedBounds: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "constrainBoundsRect:", foundation.Rect, .{proposedBounds});
     }
 
     pub fn backgroundColor(self: *@This()) ?*Color {
@@ -11498,8 +11506,8 @@ pub const ClipView = opaque {
         return objc.msgSend(self, "setDocumentView:", void, .{documentView});
     }
 
-    pub fn documentRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "documentRect", ns.Rect, .{});
+    pub fn documentRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "documentRect", foundation.Rect, .{});
     }
 
     pub fn documentCursor(self: *@This()) ?*Cursor {
@@ -11510,15 +11518,15 @@ pub const ClipView = opaque {
         return objc.msgSend(self, "setDocumentCursor:", void, .{documentCursor});
     }
 
-    pub fn documentVisibleRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "documentVisibleRect", ns.Rect, .{});
+    pub fn documentVisibleRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "documentVisibleRect", foundation.Rect, .{});
     }
 
-    pub fn contentInsets(self: *@This()) ns.EdgeInsets {
-        return objc.msgSend(self, "contentInsets", ns.EdgeInsets, .{});
+    pub fn contentInsets(self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(self, "contentInsets", foundation.EdgeInsets, .{});
     }
 
-    pub fn setContentInsets(self: *@This(), contentInsets: ns.EdgeInsets) void {
+    pub fn setContentInsets(self: *@This(), contentInsets: foundation.EdgeInsets) void {
         return objc.msgSend(self, "setContentInsets:", void, .{contentInsets});
     }
 
@@ -11558,11 +11566,11 @@ pub const Popover = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn showRelativeToRectOfViewPreferredEdge(self: *@This(), positioningRect: ns.Rect, positioningView: ?*View, preferredEdge: ns.RectEdge) void {
+    pub fn showRelativeToRectOfViewPreferredEdge(self: *@This(), positioningRect: foundation.Rect, positioningView: ?*View, preferredEdge: foundation.RectEdge) void {
         return objc.msgSend(self, "showRelativeToRect:ofView:preferredEdge:", void, .{positioningRect, positioningView, preferredEdge});
     }
 
@@ -11622,11 +11630,11 @@ pub const Popover = opaque {
         return objc.msgSend(self, "setContentViewController:", void, .{contentViewController});
     }
 
-    pub fn contentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentSize", ns.Size, .{});
+    pub fn contentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentSize", foundation.Size, .{});
     }
 
-    pub fn setContentSize(self: *@This(), contentSize: ns.Size) void {
+    pub fn setContentSize(self: *@This(), contentSize: foundation.Size) void {
         return objc.msgSend(self, "setContentSize:", void, .{contentSize});
     }
 
@@ -11638,11 +11646,11 @@ pub const Popover = opaque {
         return objc.msgSend(self, "isDetached", objc.BOOL, .{});
     }
 
-    pub fn positioningRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "positioningRect", ns.Rect, .{});
+    pub fn positioningRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "positioningRect", foundation.Rect, .{});
     }
 
-    pub fn setPositioningRect(self: *@This(), positioningRect: ns.Rect) void {
+    pub fn setPositioningRect(self: *@This(), positioningRect: foundation.Rect) void {
         return objc.msgSend(self, "setPositioningRect:", void, .{positioningRect});
     }
 
@@ -11704,7 +11712,7 @@ pub const StoryboardName = ?*String;
 
 pub const StoryboardSceneIdentifier = ?*String;
 
-pub const StoryboardControllerCreator = *const fn(?*ns.Coder) callconv(.C) *objc.Id;
+pub const StoryboardControllerCreator = *const fn(?*foundation.Coder) callconv(.C) *objc.Id;
 
 /// https://developer.apple.com/documentation/AppKit/NSStoryboard?language=objc
 pub const Storyboard = opaque {
@@ -11831,7 +11839,7 @@ pub const ViewController = opaque {
         return objc.msgSend(self, "initWithNibName:bundle:", *@This(), .{nibNameOrNil, nibBundleOrNil});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -11927,11 +11935,11 @@ pub const ViewController = opaque {
         return objc.msgSend(self, "isViewLoaded", objc.BOOL, .{});
     }
 
-    pub fn preferredContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "preferredContentSize", ns.Size, .{});
+    pub fn preferredContentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "preferredContentSize", foundation.Size, .{});
     }
 
-    pub fn setPreferredContentSize(self: *@This(), preferredContentSize: ns.Size) void {
+    pub fn setPreferredContentSize(self: *@This(), preferredContentSize: foundation.Size) void {
         return objc.msgSend(self, "setPreferredContentSize:", void, .{preferredContentSize});
     }
 
@@ -12099,20 +12107,20 @@ pub const CollectionView = opaque {
         return objc.msgSend(self, "reloadData", void, .{});
     }
 
-    pub fn layoutAttributesForItemAtIndexPath(self: *@This(), indexPath: ?*ns.IndexPath) ?*CollectionViewLayoutAttributes {
+    pub fn layoutAttributesForItemAtIndexPath(self: *@This(), indexPath: ?*foundation.IndexPath) ?*CollectionViewLayoutAttributes {
         return objc.msgSend(self, "layoutAttributesForItemAtIndexPath:", ?*CollectionViewLayoutAttributes, .{indexPath});
     }
 
-    pub fn layoutAttributesForSupplementaryElementOfKindAtIndexPath(self: *@This(), kind: CollectionViewSupplementaryElementKind, indexPath: ?*ns.IndexPath) ?*CollectionViewLayoutAttributes {
+    pub fn layoutAttributesForSupplementaryElementOfKindAtIndexPath(self: *@This(), kind: CollectionViewSupplementaryElementKind, indexPath: ?*foundation.IndexPath) ?*CollectionViewLayoutAttributes {
         return objc.msgSend(self, "layoutAttributesForSupplementaryElementOfKind:atIndexPath:", ?*CollectionViewLayoutAttributes, .{kind, indexPath});
     }
 
-    pub fn frameForItemAtIndex(self: *@This(), index: objc.NSUInteger) ns.Rect {
-        return objc.msgSend(self, "frameForItemAtIndex:", ns.Rect, .{index});
+    pub fn frameForItemAtIndex(self: *@This(), index: objc.NSUInteger) foundation.Rect {
+        return objc.msgSend(self, "frameForItemAtIndex:", foundation.Rect, .{index});
     }
 
-    pub fn frameForItemAtIndexWithNumberOfItems(self: *@This(), index: objc.NSUInteger, numberOfItems: objc.NSUInteger) ns.Rect {
-        return objc.msgSend(self, "frameForItemAtIndex:withNumberOfItems:", ns.Rect, .{index, numberOfItems});
+    pub fn frameForItemAtIndexWithNumberOfItems(self: *@This(), index: objc.NSUInteger, numberOfItems: objc.NSUInteger) foundation.Rect {
+        return objc.msgSend(self, "frameForItemAtIndex:withNumberOfItems:", foundation.Rect, .{index, numberOfItems});
     }
 
     pub fn numberOfItemsInSection(self: *@This(), section: objc.NSInteger) objc.NSInteger {
@@ -12151,11 +12159,11 @@ pub const CollectionView = opaque {
         return objc.msgSend(self, "registerNib:forSupplementaryViewOfKind:withIdentifier:", void, .{nib, kind, identifier});
     }
 
-    pub fn makeItemWithIdentifierForIndexPath(self: *@This(), identifier: UserInterfaceItemIdentifier, indexPath: ?*ns.IndexPath) ?*anyopaque {
+    pub fn makeItemWithIdentifierForIndexPath(self: *@This(), identifier: UserInterfaceItemIdentifier, indexPath: ?*foundation.IndexPath) ?*anyopaque {
         return objc.msgSend(self, "makeItemWithIdentifier:forIndexPath:", ?*anyopaque, .{identifier, indexPath});
     }
 
-    pub fn makeSupplementaryViewOfKindWithIdentifierForIndexPath(self: *@This(), elementKind: CollectionViewSupplementaryElementKind, identifier: UserInterfaceItemIdentifier, indexPath: ?*ns.IndexPath) ?*anyopaque {
+    pub fn makeSupplementaryViewOfKindWithIdentifierForIndexPath(self: *@This(), elementKind: CollectionViewSupplementaryElementKind, identifier: UserInterfaceItemIdentifier, indexPath: ?*foundation.IndexPath) ?*anyopaque {
         return objc.msgSend(self, "makeSupplementaryViewOfKind:withIdentifier:forIndexPath:", ?*anyopaque, .{elementKind, identifier, indexPath});
     }
 
@@ -12163,7 +12171,7 @@ pub const CollectionView = opaque {
         return objc.msgSend(self, "itemAtIndex:", ?*CollectionViewItem, .{index});
     }
 
-    pub fn itemAtIndexPath(self: *@This(), indexPath: ?*ns.IndexPath) ?*CollectionViewItem {
+    pub fn itemAtIndexPath(self: *@This(), indexPath: ?*foundation.IndexPath) ?*CollectionViewItem {
         return objc.msgSend(self, "itemAtIndexPath:", ?*CollectionViewItem, .{indexPath});
     }
 
@@ -12179,7 +12187,7 @@ pub const CollectionView = opaque {
         return objc.msgSend(self, "indexPathForItem:", ?*IndexPath, .{item});
     }
 
-    pub fn indexPathForItemAtPoint(self: *@This(), point: ns.Point) ?*IndexPath {
+    pub fn indexPathForItemAtPoint(self: *@This(), point: foundation.Point) ?*IndexPath {
         return objc.msgSend(self, "indexPathForItemAtPoint:", ?*IndexPath, .{point});
     }
 
@@ -12243,11 +12251,11 @@ pub const CollectionView = opaque {
         return objc.msgSend(self, "setDraggingSourceOperationMask:forLocal:", void, .{dragOperationMask, localDestination});
     }
 
-    pub fn draggingImageForItemsAtIndexPathsWithEventOffset(self: *@This(), indexPaths: ?*anyopaque, event: ?*Event, dragImageOffset: ns.PointPointer) ?*Image {
+    pub fn draggingImageForItemsAtIndexPathsWithEventOffset(self: *@This(), indexPaths: ?*anyopaque, event: ?*Event, dragImageOffset: foundation.PointPointer) ?*Image {
         return objc.msgSend(self, "draggingImageForItemsAtIndexPaths:withEvent:offset:", ?*Image, .{indexPaths, event, dragImageOffset});
     }
 
-    pub fn draggingImageForItemsAtIndexesWithEventOffset(self: *@This(), indexes: ?*IndexSet, event: ?*Event, dragImageOffset: ns.PointPointer) ?*Image {
+    pub fn draggingImageForItemsAtIndexesWithEventOffset(self: *@This(), indexes: ?*IndexSet, event: ?*Event, dragImageOffset: foundation.PointPointer) ?*Image {
         return objc.msgSend(self, "draggingImageForItemsAtIndexes:withEvent:offset:", ?*Image, .{indexes, event, dragImageOffset});
     }
 
@@ -12441,11 +12449,11 @@ pub const CollectionViewDelegate = opaque {
         return objc.msgSend(self, "collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexes:", ?*anyopaque, .{collectionView, dropURL, indexes});
     }
 
-    pub fn collectionViewDraggingImageForItemsAtIndexPathsWithEventOffset(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
+    pub fn collectionViewDraggingImageForItemsAtIndexPathsWithEventOffset(self: *@This(), collectionView: ?*CollectionView, indexPaths: ?*anyopaque, event: ?*Event, dragImageOffset: foundation.PointPointer, ) ?*Image {
         return objc.msgSend(self, "collectionView:draggingImageForItemsAtIndexPaths:withEvent:offset:", ?*Image, .{collectionView, indexPaths, event, dragImageOffset, });
     }
 
-    pub fn collectionViewDraggingImageForItemsAtIndexesWithEventOffset(self: *@This(), collectionView: ?*CollectionView, indexes: ?*IndexSet, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
+    pub fn collectionViewDraggingImageForItemsAtIndexesWithEventOffset(self: *@This(), collectionView: ?*CollectionView, indexes: ?*IndexSet, event: ?*Event, dragImageOffset: foundation.PointPointer, ) ?*Image {
         return objc.msgSend(self, "collectionView:draggingImageForItemsAtIndexes:withEvent:offset:", ?*Image, .{collectionView, indexes, event, dragImageOffset, });
     }
 
@@ -12473,15 +12481,15 @@ pub const CollectionViewDelegate = opaque {
         return objc.msgSend(self, "collectionView:pasteboardWriterForItemAtIndex:", ?*anyopaque, .{collectionView, index});
     }
 
-    pub fn collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: ns.Point, indexPaths: ?*anyopaque, ) void {
+    pub fn collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: foundation.Point, indexPaths: ?*anyopaque, ) void {
         return objc.msgSend(self, "collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexPaths:", void, .{collectionView, session, screenPoint, indexPaths, });
     }
 
-    pub fn collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: ns.Point, indexes: ?*IndexSet, ) void {
+    pub fn collectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: foundation.Point, indexes: ?*IndexSet, ) void {
         return objc.msgSend(self, "collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexes:", void, .{collectionView, session, screenPoint, indexes, });
     }
 
-    pub fn collectionViewDraggingSessionEndedAtPointDragOperation(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation, ) void {
+    pub fn collectionViewDraggingSessionEndedAtPointDragOperation(self: *@This(), collectionView: ?*CollectionView, session: ?*DraggingSession, screenPoint: foundation.Point, operation: DragOperation, ) void {
         return objc.msgSend(self, "collectionView:draggingSession:endedAtPoint:dragOperation:", void, .{collectionView, session, screenPoint, operation, });
     }
 
@@ -12571,27 +12579,27 @@ pub const CollectionViewLayoutAttributes = opaque {
         return objc.msgSend(self, "layoutAttributesForDecorationViewOfKind:withIndexPath:", *@This(), .{decorationViewKind, indexPath});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
-    pub fn setFrame(self: *@This(), frame: ns.Rect) void {
+    pub fn setFrame(self: *@This(), frame: foundation.Rect) void {
         return objc.msgSend(self, "setFrame:", void, .{frame});
     }
 
-    pub fn size(self: *@This()) ns.Size {
-        return objc.msgSend(self, "size", ns.Size, .{});
+    pub fn size(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "size", foundation.Size, .{});
     }
 
-    pub fn setSize(self: *@This(), size: ns.Size) void {
+    pub fn setSize(self: *@This(), size: foundation.Size) void {
         return objc.msgSend(self, "setSize:", void, .{size});
     }
 
-    pub fn alpha(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "alpha", cf.CGFloat, .{});
+    pub fn alpha(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "alpha", core_foundation.CGFloat, .{});
     }
 
-    pub fn setAlpha(self: *@This(), alpha: cf.CGFloat) void {
+    pub fn setAlpha(self: *@This(), alpha: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setAlpha:", void, .{alpha});
     }
 
@@ -12705,19 +12713,19 @@ pub const CollectionViewLayoutInvalidationContext = opaque {
         return objc.msgSend(self, "invalidatedDecorationIndexPaths", ?*anyopaque, .{});
     }
 
-    pub fn contentOffsetAdjustment(self: *@This()) ns.Point {
-        return objc.msgSend(self, "contentOffsetAdjustment", ns.Point, .{});
+    pub fn contentOffsetAdjustment(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "contentOffsetAdjustment", foundation.Point, .{});
     }
 
-    pub fn setContentOffsetAdjustment(self: *@This(), contentOffsetAdjustment: ns.Point) void {
+    pub fn setContentOffsetAdjustment(self: *@This(), contentOffsetAdjustment: foundation.Point) void {
         return objc.msgSend(self, "setContentOffsetAdjustment:", void, .{contentOffsetAdjustment});
     }
 
-    pub fn contentSizeAdjustment(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentSizeAdjustment", ns.Size, .{});
+    pub fn contentSizeAdjustment(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentSizeAdjustment", foundation.Size, .{});
     }
 
-    pub fn setContentSizeAdjustment(self: *@This(), contentSizeAdjustment: ns.Size) void {
+    pub fn setContentSizeAdjustment(self: *@This(), contentSizeAdjustment: foundation.Size) void {
         return objc.msgSend(self, "setContentSizeAdjustment:", void, .{contentSizeAdjustment});
     }
 
@@ -12798,28 +12806,28 @@ pub const CollectionViewDelegateFlowLayout = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn collectionViewLayoutSizeForItemAtIndexPath(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, indexPath: ?*IndexPath) ns.Size {
-        return objc.msgSend(self, "collectionView:layout:sizeForItemAtIndexPath:", ns.Size, .{collectionView, collectionViewLayout, indexPath});
+    pub fn collectionViewLayoutSizeForItemAtIndexPath(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, indexPath: ?*IndexPath) foundation.Size {
+        return objc.msgSend(self, "collectionView:layout:sizeForItemAtIndexPath:", foundation.Size, .{collectionView, collectionViewLayout, indexPath});
     }
 
-    pub fn collectionViewLayoutInsetForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) ns.EdgeInsets {
-        return objc.msgSend(self, "collectionView:layout:insetForSectionAtIndex:", ns.EdgeInsets, .{collectionView, collectionViewLayout, section});
+    pub fn collectionViewLayoutInsetForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) foundation.EdgeInsets {
+        return objc.msgSend(self, "collectionView:layout:insetForSectionAtIndex:", foundation.EdgeInsets, .{collectionView, collectionViewLayout, section});
     }
 
-    pub fn collectionViewLayoutMinimumLineSpacingForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "collectionView:layout:minimumLineSpacingForSectionAtIndex:", cf.CGFloat, .{collectionView, collectionViewLayout, section});
+    pub fn collectionViewLayoutMinimumLineSpacingForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "collectionView:layout:minimumLineSpacingForSectionAtIndex:", core_foundation.CGFloat, .{collectionView, collectionViewLayout, section});
     }
 
-    pub fn collectionViewLayoutMinimumInteritemSpacingForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "collectionView:layout:minimumInteritemSpacingForSectionAtIndex:", cf.CGFloat, .{collectionView, collectionViewLayout, section});
+    pub fn collectionViewLayoutMinimumInteritemSpacingForSectionAtIndex(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "collectionView:layout:minimumInteritemSpacingForSectionAtIndex:", core_foundation.CGFloat, .{collectionView, collectionViewLayout, section});
     }
 
-    pub fn collectionViewLayoutReferenceSizeForHeaderInSection(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) ns.Size {
-        return objc.msgSend(self, "collectionView:layout:referenceSizeForHeaderInSection:", ns.Size, .{collectionView, collectionViewLayout, section});
+    pub fn collectionViewLayoutReferenceSizeForHeaderInSection(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) foundation.Size {
+        return objc.msgSend(self, "collectionView:layout:referenceSizeForHeaderInSection:", foundation.Size, .{collectionView, collectionViewLayout, section});
     }
 
-    pub fn collectionViewLayoutReferenceSizeForFooterInSection(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) ns.Size {
-        return objc.msgSend(self, "collectionView:layout:referenceSizeForFooterInSection:", ns.Size, .{collectionView, collectionViewLayout, section});
+    pub fn collectionViewLayoutReferenceSizeForFooterInSection(self: *@This(), collectionView: ?*CollectionView, collectionViewLayout: ?*CollectionViewLayout, section: objc.NSInteger) foundation.Size {
+        return objc.msgSend(self, "collectionView:layout:referenceSizeForFooterInSection:", foundation.Size, .{collectionView, collectionViewLayout, section});
     }
 
 };
@@ -12847,35 +12855,35 @@ pub const CollectionViewFlowLayout = opaque {
         return objc.msgSend(self, "expandSectionAtIndex:", void, .{sectionIndex});
     }
 
-    pub fn minimumLineSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumLineSpacing", cf.CGFloat, .{});
+    pub fn minimumLineSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumLineSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumLineSpacing(self: *@This(), minimumLineSpacing: cf.CGFloat) void {
+    pub fn setMinimumLineSpacing(self: *@This(), minimumLineSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumLineSpacing:", void, .{minimumLineSpacing});
     }
 
-    pub fn minimumInteritemSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumInteritemSpacing", cf.CGFloat, .{});
+    pub fn minimumInteritemSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumInteritemSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumInteritemSpacing(self: *@This(), minimumInteritemSpacing: cf.CGFloat) void {
+    pub fn setMinimumInteritemSpacing(self: *@This(), minimumInteritemSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumInteritemSpacing:", void, .{minimumInteritemSpacing});
     }
 
-    pub fn itemSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "itemSize", ns.Size, .{});
+    pub fn itemSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "itemSize", foundation.Size, .{});
     }
 
-    pub fn setItemSize(self: *@This(), itemSize: ns.Size) void {
+    pub fn setItemSize(self: *@This(), itemSize: foundation.Size) void {
         return objc.msgSend(self, "setItemSize:", void, .{itemSize});
     }
 
-    pub fn estimatedItemSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "estimatedItemSize", ns.Size, .{});
+    pub fn estimatedItemSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "estimatedItemSize", foundation.Size, .{});
     }
 
-    pub fn setEstimatedItemSize(self: *@This(), estimatedItemSize: ns.Size) void {
+    pub fn setEstimatedItemSize(self: *@This(), estimatedItemSize: foundation.Size) void {
         return objc.msgSend(self, "setEstimatedItemSize:", void, .{estimatedItemSize});
     }
 
@@ -12887,27 +12895,27 @@ pub const CollectionViewFlowLayout = opaque {
         return objc.msgSend(self, "setScrollDirection:", void, .{scrollDirection});
     }
 
-    pub fn headerReferenceSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "headerReferenceSize", ns.Size, .{});
+    pub fn headerReferenceSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "headerReferenceSize", foundation.Size, .{});
     }
 
-    pub fn setHeaderReferenceSize(self: *@This(), headerReferenceSize: ns.Size) void {
+    pub fn setHeaderReferenceSize(self: *@This(), headerReferenceSize: foundation.Size) void {
         return objc.msgSend(self, "setHeaderReferenceSize:", void, .{headerReferenceSize});
     }
 
-    pub fn footerReferenceSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "footerReferenceSize", ns.Size, .{});
+    pub fn footerReferenceSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "footerReferenceSize", foundation.Size, .{});
     }
 
-    pub fn setFooterReferenceSize(self: *@This(), footerReferenceSize: ns.Size) void {
+    pub fn setFooterReferenceSize(self: *@This(), footerReferenceSize: foundation.Size) void {
         return objc.msgSend(self, "setFooterReferenceSize:", void, .{footerReferenceSize});
     }
 
-    pub fn sectionInset(self: *@This()) ns.EdgeInsets {
-        return objc.msgSend(self, "sectionInset", ns.EdgeInsets, .{});
+    pub fn sectionInset(self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(self, "sectionInset", foundation.EdgeInsets, .{});
     }
 
-    pub fn setSectionInset(self: *@This(), sectionInset: ns.EdgeInsets) void {
+    pub fn setSectionInset(self: *@This(), sectionInset: foundation.EdgeInsets) void {
         return objc.msgSend(self, "setSectionInset:", void, .{sectionInset});
     }
 
@@ -12939,10 +12947,10 @@ pub const DirectionalRectEdge = enum(objc.NSUInteger) {
 };
 
 pub const DirectionalEdgeInsets = extern struct {
-    top: cf.CGFloat,
-    leading: cf.CGFloat,
-    bottom: cf.CGFloat,
-    trailing: cf.CGFloat,
+    top: core_foundation.CGFloat,
+    leading: core_foundation.CGFloat,
+    bottom: core_foundation.CGFloat,
+    trailing: core_foundation.CGFloat,
 };
 
 pub const RectAlignment = enum(objc.NSInteger) {
@@ -12957,7 +12965,7 @@ pub const RectAlignment = enum(objc.NSInteger) {
     TopTrailing = 8,
 };
 
-pub extern "AppKit" fn DirectionalEdgeInsetsMake(top: cf.CGFloat, leading: cf.CGFloat, bottom: cf.CGFloat, trailing: cf.CGFloat, ) callconv(.C) DirectionalEdgeInsets;
+pub extern "AppKit" fn DirectionalEdgeInsetsMake(top: core_foundation.CGFloat, leading: core_foundation.CGFloat, bottom: core_foundation.CGFloat, trailing: core_foundation.CGFloat, ) callconv(.C) DirectionalEdgeInsets;
 
 /// https://developer.apple.com/documentation/AppKit/NSCollectionViewCompositionalLayoutConfiguration?language=objc
 pub const CollectionViewCompositionalLayoutConfiguration = opaque {
@@ -12978,11 +12986,11 @@ pub const CollectionViewCompositionalLayoutConfiguration = opaque {
         return objc.msgSend(self, "setScrollDirection:", void, .{scrollDirection});
     }
 
-    pub fn interSectionSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "interSectionSpacing", cf.CGFloat, .{});
+    pub fn interSectionSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "interSectionSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setInterSectionSpacing(self: *@This(), interSectionSpacing: cf.CGFloat) void {
+    pub fn setInterSectionSpacing(self: *@This(), interSectionSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setInterSectionSpacing:", void, .{interSectionSpacing});
     }
 
@@ -13052,7 +13060,7 @@ pub const CollectionLayoutSectionOrthogonalScrollingBehavior = enum(objc.NSInteg
     GroupPagingCentered = 5,
 };
 
-pub const CollectionLayoutSectionVisibleItemsInvalidationHandler = *const fn(?*anyopaque, ns.Point, ?*anyopaque) callconv(.C) void;
+pub const CollectionLayoutSectionVisibleItemsInvalidationHandler = *const fn(?*anyopaque, foundation.Point, ?*anyopaque) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/AppKit/NSCollectionLayoutSection?language=objc
 pub const CollectionLayoutSection = opaque {
@@ -13085,11 +13093,11 @@ pub const CollectionLayoutSection = opaque {
         return objc.msgSend(self, "setContentInsets:", void, .{contentInsets});
     }
 
-    pub fn interGroupSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "interGroupSpacing", cf.CGFloat, .{});
+    pub fn interGroupSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "interGroupSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setInterGroupSpacing(self: *@This(), interGroupSpacing: cf.CGFloat) void {
+    pub fn setInterGroupSpacing(self: *@This(), interGroupSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setInterGroupSpacing:", void, .{interGroupSpacing});
     }
 
@@ -13199,11 +13207,11 @@ pub const CollectionLayoutGroupCustomItem = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn customItemWithFrame(self: *@This(), frame: ns.Rect) *@This() {
+    pub fn customItemWithFrame(self: *@This(), frame: foundation.Rect) *@This() {
         return objc.msgSend(self, "customItemWithFrame:", *@This(), .{frame});
     }
 
-    pub fn customItemWithFrameZIndex(self: *@This(), frame: ns.Rect, zIndex: objc.NSInteger) *@This() {
+    pub fn customItemWithFrameZIndex(self: *@This(), frame: foundation.Rect, zIndex: objc.NSInteger) *@This() {
         return objc.msgSend(self, "customItemWithFrame:zIndex:", *@This(), .{frame, zIndex});
     }
 
@@ -13215,8 +13223,8 @@ pub const CollectionLayoutGroupCustomItem = opaque {
         return objc.msgSend(self, "new", *@This(), .{});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
     pub fn zIndex(self: *@This()) objc.NSInteger {
@@ -13303,19 +13311,19 @@ pub const CollectionLayoutDimension = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn fractionalWidthDimension(self: *@This(), fractionalWidth: cf.CGFloat) *@This() {
+    pub fn fractionalWidthDimension(self: *@This(), fractionalWidth: core_foundation.CGFloat) *@This() {
         return objc.msgSend(self, "fractionalWidthDimension:", *@This(), .{fractionalWidth});
     }
 
-    pub fn fractionalHeightDimension(self: *@This(), fractionalHeight: cf.CGFloat) *@This() {
+    pub fn fractionalHeightDimension(self: *@This(), fractionalHeight: core_foundation.CGFloat) *@This() {
         return objc.msgSend(self, "fractionalHeightDimension:", *@This(), .{fractionalHeight});
     }
 
-    pub fn absoluteDimension(self: *@This(), absoluteDimension: cf.CGFloat) *@This() {
+    pub fn absoluteDimension(self: *@This(), absoluteDimension: core_foundation.CGFloat) *@This() {
         return objc.msgSend(self, "absoluteDimension:", *@This(), .{absoluteDimension});
     }
 
-    pub fn estimatedDimension(self: *@This(), estimatedDimension: cf.CGFloat) *@This() {
+    pub fn estimatedDimension(self: *@This(), estimatedDimension: core_foundation.CGFloat) *@This() {
         return objc.msgSend(self, "estimatedDimension:", *@This(), .{estimatedDimension});
     }
 
@@ -13343,8 +13351,8 @@ pub const CollectionLayoutDimension = opaque {
         return objc.msgSend(self, "isEstimated", objc.BOOL, .{});
     }
 
-    pub fn dimension(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "dimension", cf.CGFloat, .{});
+    pub fn dimension(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "dimension", core_foundation.CGFloat, .{});
     }
 
 };
@@ -13393,11 +13401,11 @@ pub const CollectionLayoutSpacing = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn flexibleSpacing(self: *@This(), flexibleSpacing: cf.CGFloat) *@This() {
+    pub fn flexibleSpacing(self: *@This(), flexibleSpacing: core_foundation.CGFloat) *@This() {
         return objc.msgSend(self, "flexibleSpacing:", *@This(), .{flexibleSpacing});
     }
 
-    pub fn fixedSpacing(self: *@This(), fixedSpacing: cf.CGFloat) *@This() {
+    pub fn fixedSpacing(self: *@This(), fixedSpacing: core_foundation.CGFloat) *@This() {
         return objc.msgSend(self, "fixedSpacing:", *@This(), .{fixedSpacing});
     }
 
@@ -13409,8 +13417,8 @@ pub const CollectionLayoutSpacing = opaque {
         return objc.msgSend(self, "new", *@This(), .{});
     }
 
-    pub fn spacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "spacing", cf.CGFloat, .{});
+    pub fn spacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "spacing", core_foundation.CGFloat, .{});
     }
 
     pub fn isFlexibleSpacing(self: *@This()) objc.BOOL {
@@ -13528,7 +13536,7 @@ pub const CollectionLayoutBoundarySupplementaryItem = opaque {
         return objc.msgSend(self, "boundarySupplementaryItemWithLayoutSize:elementKind:alignment:", *@This(), .{layoutSize, elementKind, alignment});
     }
 
-    pub fn boundarySupplementaryItemWithLayoutSizeElementKindAlignmentAbsoluteOffset(self: *@This(), layoutSize: ?*CollectionLayoutSize, elementKind: ?*String, alignment: RectAlignment, absoluteOffset: ns.Point, ) *@This() {
+    pub fn boundarySupplementaryItemWithLayoutSizeElementKindAlignmentAbsoluteOffset(self: *@This(), layoutSize: ?*CollectionLayoutSize, elementKind: ?*String, alignment: RectAlignment, absoluteOffset: foundation.Point, ) *@This() {
         return objc.msgSend(self, "boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:", *@This(), .{layoutSize, elementKind, alignment, absoluteOffset, });
     }
 
@@ -13560,8 +13568,8 @@ pub const CollectionLayoutBoundarySupplementaryItem = opaque {
         return objc.msgSend(self, "alignment", RectAlignment, .{});
     }
 
-    pub fn offset(self: *@This()) ns.Point {
-        return objc.msgSend(self, "offset", ns.Point, .{});
+    pub fn offset(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "offset", foundation.Point, .{});
     }
 
 };
@@ -13618,11 +13626,11 @@ pub const CollectionLayoutAnchor = opaque {
         return objc.msgSend(self, "layoutAnchorWithEdges:", *@This(), .{edges});
     }
 
-    pub fn layoutAnchorWithEdgesAbsoluteOffset(self: *@This(), edges: DirectionalRectEdge, absoluteOffset: ns.Point) *@This() {
+    pub fn layoutAnchorWithEdgesAbsoluteOffset(self: *@This(), edges: DirectionalRectEdge, absoluteOffset: foundation.Point) *@This() {
         return objc.msgSend(self, "layoutAnchorWithEdges:absoluteOffset:", *@This(), .{edges, absoluteOffset});
     }
 
-    pub fn layoutAnchorWithEdgesFractionalOffset(self: *@This(), edges: DirectionalRectEdge, fractionalOffset: ns.Point) *@This() {
+    pub fn layoutAnchorWithEdgesFractionalOffset(self: *@This(), edges: DirectionalRectEdge, fractionalOffset: foundation.Point) *@This() {
         return objc.msgSend(self, "layoutAnchorWithEdges:fractionalOffset:", *@This(), .{edges, fractionalOffset});
     }
 
@@ -13638,8 +13646,8 @@ pub const CollectionLayoutAnchor = opaque {
         return objc.msgSend(self, "edges", DirectionalRectEdge, .{});
     }
 
-    pub fn offset(self: *@This()) ns.Point {
-        return objc.msgSend(self, "offset", ns.Point, .{});
+    pub fn offset(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "offset", foundation.Point, .{});
     }
 
     pub fn isAbsoluteOffset(self: *@This()) objc.BOOL {
@@ -13660,12 +13668,12 @@ pub const CollectionLayoutContainer = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn contentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentSize", ns.Size, .{});
+    pub fn contentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentSize", foundation.Size, .{});
     }
 
-    pub fn effectiveContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "effectiveContentSize", ns.Size, .{});
+    pub fn effectiveContentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "effectiveContentSize", foundation.Size, .{});
     }
 
     pub fn contentInsets(self: *@This()) DirectionalEdgeInsets {
@@ -13700,11 +13708,11 @@ pub const CollectionLayoutVisibleItem = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn alpha(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "alpha", cf.CGFloat, .{});
+    pub fn alpha(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "alpha", core_foundation.CGFloat, .{});
     }
 
-    pub fn setAlpha(self: *@This(), alpha: cf.CGFloat) void {
+    pub fn setAlpha(self: *@This(), alpha: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setAlpha:", void, .{alpha});
     }
 
@@ -13724,11 +13732,11 @@ pub const CollectionLayoutVisibleItem = opaque {
         return objc.msgSend(self, "setHidden:", void, .{hidden});
     }
 
-    pub fn center(self: *@This()) ns.Point {
-        return objc.msgSend(self, "center", ns.Point, .{});
+    pub fn center(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "center", foundation.Point, .{});
     }
 
-    pub fn setCenter(self: *@This(), center: ns.Point) void {
+    pub fn setCenter(self: *@This(), center: foundation.Point) void {
         return objc.msgSend(self, "setCenter:", void, .{center});
     }
 
@@ -13740,12 +13748,12 @@ pub const CollectionLayoutVisibleItem = opaque {
         return objc.msgSend(self, "indexPath", ?*IndexPath, .{});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
-    pub fn bounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "bounds", ns.Rect, .{});
+    pub fn bounds(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "bounds", foundation.Rect, .{});
     }
 
     pub fn representedElementCategory(self: *@This()) CollectionElementCategory {
@@ -13769,27 +13777,27 @@ pub const CollectionViewGridLayout = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn margins(self: *@This()) ns.EdgeInsets {
-        return objc.msgSend(self, "margins", ns.EdgeInsets, .{});
+    pub fn margins(self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(self, "margins", foundation.EdgeInsets, .{});
     }
 
-    pub fn setMargins(self: *@This(), margins: ns.EdgeInsets) void {
+    pub fn setMargins(self: *@This(), margins: foundation.EdgeInsets) void {
         return objc.msgSend(self, "setMargins:", void, .{margins});
     }
 
-    pub fn minimumInteritemSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumInteritemSpacing", cf.CGFloat, .{});
+    pub fn minimumInteritemSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumInteritemSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumInteritemSpacing(self: *@This(), minimumInteritemSpacing: cf.CGFloat) void {
+    pub fn setMinimumInteritemSpacing(self: *@This(), minimumInteritemSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumInteritemSpacing:", void, .{minimumInteritemSpacing});
     }
 
-    pub fn minimumLineSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumLineSpacing", cf.CGFloat, .{});
+    pub fn minimumLineSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumLineSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumLineSpacing(self: *@This(), minimumLineSpacing: cf.CGFloat) void {
+    pub fn setMinimumLineSpacing(self: *@This(), minimumLineSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumLineSpacing:", void, .{minimumLineSpacing});
     }
 
@@ -13809,19 +13817,19 @@ pub const CollectionViewGridLayout = opaque {
         return objc.msgSend(self, "setMaximumNumberOfColumns:", void, .{maximumNumberOfColumns});
     }
 
-    pub fn minimumItemSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minimumItemSize", ns.Size, .{});
+    pub fn minimumItemSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "minimumItemSize", foundation.Size, .{});
     }
 
-    pub fn setMinimumItemSize(self: *@This(), minimumItemSize: ns.Size) void {
+    pub fn setMinimumItemSize(self: *@This(), minimumItemSize: foundation.Size) void {
         return objc.msgSend(self, "setMinimumItemSize:", void, .{minimumItemSize});
     }
 
-    pub fn maximumItemSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "maximumItemSize", ns.Size, .{});
+    pub fn maximumItemSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "maximumItemSize", foundation.Size, .{});
     }
 
-    pub fn setMaximumItemSize(self: *@This(), maximumItemSize: ns.Size) void {
+    pub fn setMaximumItemSize(self: *@This(), maximumItemSize: foundation.Size) void {
         return objc.msgSend(self, "setMaximumItemSize:", void, .{maximumItemSize});
     }
 
@@ -13852,19 +13860,19 @@ pub const CollectionViewTransitionLayout = opaque {
         return objc.msgSend(self, "initWithCurrentLayout:nextLayout:", *@This(), .{currentLayout, newLayout});
     }
 
-    pub fn updateValueForAnimatedKey(self: *@This(), value: cf.CGFloat, key: CollectionViewTransitionLayoutAnimatedKey) void {
+    pub fn updateValueForAnimatedKey(self: *@This(), value: core_foundation.CGFloat, key: CollectionViewTransitionLayoutAnimatedKey) void {
         return objc.msgSend(self, "updateValue:forAnimatedKey:", void, .{value, key});
     }
 
-    pub fn valueForAnimatedKey(self: *@This(), key: CollectionViewTransitionLayoutAnimatedKey) cf.CGFloat {
-        return objc.msgSend(self, "valueForAnimatedKey:", cf.CGFloat, .{key});
+    pub fn valueForAnimatedKey(self: *@This(), key: CollectionViewTransitionLayoutAnimatedKey) core_foundation.CGFloat {
+        return objc.msgSend(self, "valueForAnimatedKey:", core_foundation.CGFloat, .{key});
     }
 
-    pub fn transitionProgress(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "transitionProgress", cf.CGFloat, .{});
+    pub fn transitionProgress(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "transitionProgress", core_foundation.CGFloat, .{});
     }
 
-    pub fn setTransitionProgress(self: *@This(), transitionProgress: cf.CGFloat) void {
+    pub fn setTransitionProgress(self: *@This(), transitionProgress: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setTransitionProgress:", void, .{transitionProgress});
     }
 
@@ -14088,8 +14096,8 @@ pub const DockTile = opaque {
         return objc.msgSend(self, "display", void, .{});
     }
 
-    pub fn size(self: *@This()) ns.Size {
-        return objc.msgSend(self, "size", ns.Size, .{});
+    pub fn size(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "size", foundation.Size, .{});
     }
 
     pub fn contentView(self: *@This()) ?*View {
@@ -14175,9 +14183,9 @@ pub const FontDescriptorVariationKey = ?*String;
 
 pub const FontDescriptorFeatureKey = ?*String;
 
-pub const FontWeight = cf.CGFloat;
+pub const FontWeight = core_foundation.CGFloat;
 
-pub const FontWidth = cf.CGFloat;
+pub const FontWidth = core_foundation.CGFloat;
 
 pub const FontDescriptorSystemDesign = ?*String;
 
@@ -14200,11 +14208,11 @@ pub const FontDescriptor = opaque {
         return objc.msgSend(self, "objectForKey:", *objc.Id, .{attribute});
     }
 
-    pub fn fontDescriptorWithFontAttributes(self: *@This(), attributes: ?*anyopaque) ?* {
-        return objc.msgSend(self, "fontDescriptorWithFontAttributes:", ?*, .{attributes});
+    pub fn fontDescriptorWithFontAttributes(self: *@This(), attributes: ?*anyopaque) ?*core_text.NSFontDescriptor {
+        return objc.msgSend(self, "fontDescriptorWithFontAttributes:", ?*core_text.NSFontDescriptor, .{attributes});
     }
 
-    pub fn fontDescriptorWithNameSize(self: *@This(), fontName: ?*String, size: cf.CGFloat) ?*FontDescriptor {
+    pub fn fontDescriptorWithNameSize(self: *@This(), fontName: ?*String, size: core_foundation.CGFloat) ?*FontDescriptor {
         return objc.msgSend(self, "fontDescriptorWithName:size:", ?*FontDescriptor, .{fontName, size});
     }
 
@@ -14232,7 +14240,7 @@ pub const FontDescriptor = opaque {
         return objc.msgSend(self, "fontDescriptorWithSymbolicTraits:", ?*FontDescriptor, .{symbolicTraits});
     }
 
-    pub fn fontDescriptorWithSize(self: *@This(), newPointSize: cf.CGFloat) ?*FontDescriptor {
+    pub fn fontDescriptorWithSize(self: *@This(), newPointSize: core_foundation.CGFloat) ?*FontDescriptor {
         return objc.msgSend(self, "fontDescriptorWithSize:", ?*FontDescriptor, .{newPointSize});
     }
 
@@ -14256,8 +14264,8 @@ pub const FontDescriptor = opaque {
         return objc.msgSend(self, "postscriptName", ?*String, .{});
     }
 
-    pub fn pointSize(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "pointSize", cf.CGFloat, .{});
+    pub fn pointSize(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "pointSize", core_foundation.CGFloat, .{});
     }
 
     pub fn matrix(self: *@This()) ?*AffineTransform {
@@ -14291,15 +14299,15 @@ pub const Font = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn fontWithNameSize(self: *@This(), fontName: ?*String, fontSize: cf.CGFloat) ?*Font {
+    pub fn fontWithNameSize(self: *@This(), fontName: ?*String, fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "fontWithName:size:", ?*Font, .{fontName, fontSize});
     }
 
-    pub fn fontWithNameMatrix(self: *@This(), fontName: ?*String, fontMatrix: ?*cf.CGFloat) ?*Font {
+    pub fn fontWithNameMatrix(self: *@This(), fontName: ?*String, fontMatrix: ?*core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "fontWithName:matrix:", ?*Font, .{fontName, fontMatrix});
     }
 
-    pub fn fontWithDescriptorSize(self: *@This(), fontDescriptor: ?*FontDescriptor, fontSize: cf.CGFloat) ?*Font {
+    pub fn fontWithDescriptorSize(self: *@This(), fontDescriptor: ?*FontDescriptor, fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "fontWithDescriptor:size:", ?*Font, .{fontDescriptor, fontSize});
     }
 
@@ -14307,11 +14315,11 @@ pub const Font = opaque {
         return objc.msgSend(self, "fontWithDescriptor:textTransform:", ?*Font, .{fontDescriptor, textTransform});
     }
 
-    pub fn userFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn userFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "userFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn userFixedPitchFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn userFixedPitchFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "userFixedPitchFontOfSize:", ?*Font, .{fontSize});
     }
 
@@ -14323,83 +14331,83 @@ pub const Font = opaque {
         return objc.msgSend(self, "setUserFixedPitchFont:", void, .{font});
     }
 
-    pub fn systemFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn systemFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "systemFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn boldSystemFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn boldSystemFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "boldSystemFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn labelFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn labelFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "labelFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn titleBarFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn titleBarFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "titleBarFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn menuFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn menuFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "menuFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn menuBarFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn menuBarFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "menuBarFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn messageFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn messageFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "messageFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn paletteFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn paletteFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "paletteFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn toolTipsFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn toolTipsFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "toolTipsFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn controlContentFontOfSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn controlContentFontOfSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "controlContentFontOfSize:", ?*Font, .{fontSize});
     }
 
-    pub fn systemFontOfSizeWeight(self: *@This(), fontSize: cf.CGFloat, weight: FontWeight) ?*Font {
+    pub fn systemFontOfSizeWeight(self: *@This(), fontSize: core_foundation.CGFloat, weight: FontWeight) ?*Font {
         return objc.msgSend(self, "systemFontOfSize:weight:", ?*Font, .{fontSize, weight});
     }
 
-    pub fn monospacedDigitSystemFontOfSizeWeight(self: *@This(), fontSize: cf.CGFloat, weight: FontWeight) ?*Font {
+    pub fn monospacedDigitSystemFontOfSizeWeight(self: *@This(), fontSize: core_foundation.CGFloat, weight: FontWeight) ?*Font {
         return objc.msgSend(self, "monospacedDigitSystemFontOfSize:weight:", ?*Font, .{fontSize, weight});
     }
 
-    pub fn systemFontOfSizeWeightWidth(self: *@This(), fontSize: cf.CGFloat, weight: FontWeight, width: FontWidth) ?*Font {
+    pub fn systemFontOfSizeWeightWidth(self: *@This(), fontSize: core_foundation.CGFloat, weight: FontWeight, width: FontWidth) ?*Font {
         return objc.msgSend(self, "systemFontOfSize:weight:width:", ?*Font, .{fontSize, weight, width});
     }
 
-    pub fn monospacedSystemFontOfSizeWeight(self: *@This(), fontSize: cf.CGFloat, weight: FontWeight) ?*Font {
+    pub fn monospacedSystemFontOfSizeWeight(self: *@This(), fontSize: core_foundation.CGFloat, weight: FontWeight) ?*Font {
         return objc.msgSend(self, "monospacedSystemFontOfSize:weight:", ?*Font, .{fontSize, weight});
     }
 
-    pub fn fontWithSize(self: *@This(), fontSize: cf.CGFloat) ?*Font {
+    pub fn fontWithSize(self: *@This(), fontSize: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "fontWithSize:", ?*Font, .{fontSize});
     }
 
-    pub fn systemFontSizeForControlSize(self: *@This(), controlSize: ControlSize) cf.CGFloat {
-        return objc.msgSend(self, "systemFontSizeForControlSize:", cf.CGFloat, .{controlSize});
+    pub fn systemFontSizeForControlSize(self: *@This(), controlSize: ControlSize) core_foundation.CGFloat {
+        return objc.msgSend(self, "systemFontSizeForControlSize:", core_foundation.CGFloat, .{controlSize});
     }
 
-    pub fn boundingRectForCGGlyph(self: *@This(), glyph: ) ns.Rect {
-        return objc.msgSend(self, "boundingRectForCGGlyph:", ns.Rect, .{glyph});
+    pub fn boundingRectForCGGlyph(self: *@This(), glyph: core_graphics.Glyph) foundation.Rect {
+        return objc.msgSend(self, "boundingRectForCGGlyph:", foundation.Rect, .{glyph});
     }
 
-    pub fn advancementForCGGlyph(self: *@This(), glyph: ) ns.Size {
-        return objc.msgSend(self, "advancementForCGGlyph:", ns.Size, .{glyph});
+    pub fn advancementForCGGlyph(self: *@This(), glyph: core_graphics.Glyph) foundation.Size {
+        return objc.msgSend(self, "advancementForCGGlyph:", foundation.Size, .{glyph});
     }
 
-    pub fn getBoundingRectsForCGGlyphsCount(self: *@This(), bounds: ns.RectArray, glyphs: ?*, glyphCount: objc.NSUInteger) void {
+    pub fn getBoundingRectsForCGGlyphsCount(self: *@This(), bounds: foundation.RectArray, glyphs: ?*core_graphics.Glyph, glyphCount: objc.NSUInteger) void {
         return objc.msgSend(self, "getBoundingRects:forCGGlyphs:count:", void, .{bounds, glyphs, glyphCount});
     }
 
-    pub fn getAdvancementsForCGGlyphsCount(self: *@This(), advancements: ns.SizeArray, glyphs: ?*, glyphCount: objc.NSUInteger) void {
+    pub fn getAdvancementsForCGGlyphsCount(self: *@This(), advancements: foundation.SizeArray, glyphs: ?*core_graphics.Glyph, glyphCount: objc.NSUInteger) void {
         return objc.msgSend(self, "getAdvancements:forCGGlyphs:count:", void, .{advancements, glyphs, glyphCount});
     }
 
@@ -14411,28 +14419,28 @@ pub const Font = opaque {
         return objc.msgSend(self, "setInContext:", void, .{graphicsContext});
     }
 
-    pub fn systemFontSize(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "systemFontSize", cf.CGFloat, .{});
+    pub fn systemFontSize(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "systemFontSize", core_foundation.CGFloat, .{});
     }
 
-    pub fn smallSystemFontSize(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "smallSystemFontSize", cf.CGFloat, .{});
+    pub fn smallSystemFontSize(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "smallSystemFontSize", core_foundation.CGFloat, .{});
     }
 
-    pub fn labelFontSize(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "labelFontSize", cf.CGFloat, .{});
+    pub fn labelFontSize(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "labelFontSize", core_foundation.CGFloat, .{});
     }
 
     pub fn fontName(self: *@This()) ?*String {
         return objc.msgSend(self, "fontName", ?*String, .{});
     }
 
-    pub fn pointSize(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "pointSize", cf.CGFloat, .{});
+    pub fn pointSize(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "pointSize", core_foundation.CGFloat, .{});
     }
 
-    pub fn matrix(self: *@This()) ?*cf.CGFloat {
-        return objc.msgSend(self, "matrix", ?*cf.CGFloat, .{});
+    pub fn matrix(self: *@This()) ?*core_foundation.CGFloat {
+        return objc.msgSend(self, "matrix", ?*core_foundation.CGFloat, .{});
     }
 
     pub fn familyName(self: *@This()) ?*String {
@@ -14455,52 +14463,52 @@ pub const Font = opaque {
         return objc.msgSend(self, "numberOfGlyphs", objc.NSUInteger, .{});
     }
 
-    pub fn mostCompatibleStringEncoding(self: *@This()) ns.StringEncoding {
-        return objc.msgSend(self, "mostCompatibleStringEncoding", ns.StringEncoding, .{});
+    pub fn mostCompatibleStringEncoding(self: *@This()) foundation.StringEncoding {
+        return objc.msgSend(self, "mostCompatibleStringEncoding", foundation.StringEncoding, .{});
     }
 
     pub fn coveredCharacterSet(self: *@This()) ?*CharacterSet {
         return objc.msgSend(self, "coveredCharacterSet", ?*CharacterSet, .{});
     }
 
-    pub fn boundingRectForFont(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "boundingRectForFont", ns.Rect, .{});
+    pub fn boundingRectForFont(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "boundingRectForFont", foundation.Rect, .{});
     }
 
-    pub fn maximumAdvancement(self: *@This()) ns.Size {
-        return objc.msgSend(self, "maximumAdvancement", ns.Size, .{});
+    pub fn maximumAdvancement(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "maximumAdvancement", foundation.Size, .{});
     }
 
-    pub fn ascender(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "ascender", cf.CGFloat, .{});
+    pub fn ascender(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "ascender", core_foundation.CGFloat, .{});
     }
 
-    pub fn descender(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "descender", cf.CGFloat, .{});
+    pub fn descender(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "descender", core_foundation.CGFloat, .{});
     }
 
-    pub fn leading(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "leading", cf.CGFloat, .{});
+    pub fn leading(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "leading", core_foundation.CGFloat, .{});
     }
 
-    pub fn underlinePosition(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "underlinePosition", cf.CGFloat, .{});
+    pub fn underlinePosition(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "underlinePosition", core_foundation.CGFloat, .{});
     }
 
-    pub fn underlineThickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "underlineThickness", cf.CGFloat, .{});
+    pub fn underlineThickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "underlineThickness", core_foundation.CGFloat, .{});
     }
 
-    pub fn italicAngle(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "italicAngle", cf.CGFloat, .{});
+    pub fn italicAngle(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "italicAngle", core_foundation.CGFloat, .{});
     }
 
-    pub fn capHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "capHeight", cf.CGFloat, .{});
+    pub fn capHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "capHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn xHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "xHeight", cf.CGFloat, .{});
+    pub fn xHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "xHeight", core_foundation.CGFloat, .{});
     }
 
     pub fn isFixedPitch(self: *@This()) objc.BOOL {
@@ -14563,8 +14571,8 @@ pub const FontAssetRequest = opaque {
         return objc.msgSend(self, "downloadedFontDescriptors", ?*anyopaque, .{});
     }
 
-    pub fn progress(self: *@This()) ?*ns.Progress {
-        return objc.msgSend(self, "progress", ?*ns.Progress, .{});
+    pub fn progress(self: *@This()) ?*foundation.Progress {
+        return objc.msgSend(self, "progress", ?*foundation.Progress, .{});
     }
 
 };
@@ -14590,11 +14598,11 @@ pub const FontCollection = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn fontCollectionWithDescriptors(self: *@This(), queryDescriptors: ?*anyopaque) ?* {
-        return objc.msgSend(self, "fontCollectionWithDescriptors:", ?*, .{queryDescriptors});
+    pub fn fontCollectionWithDescriptors(self: *@This(), queryDescriptors: ?*anyopaque) ?*core_text.NSFontCollection {
+        return objc.msgSend(self, "fontCollectionWithDescriptors:", ?*core_text.NSFontCollection, .{queryDescriptors});
     }
 
-    pub fn fontCollectionWithLocale(self: *@This(), locale: ?*ns.Locale) ?*FontCollection {
+    pub fn fontCollectionWithLocale(self: *@This(), locale: ?*foundation.Locale) ?*FontCollection {
         return objc.msgSend(self, "fontCollectionWithLocale:", ?*FontCollection, .{locale});
     }
 
@@ -14663,11 +14671,11 @@ pub const MutableFontCollection = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn fontCollectionWithDescriptors(self: *@This(), queryDescriptors: ?*anyopaque) ?* {
-        return objc.msgSend(self, "fontCollectionWithDescriptors:", ?*, .{queryDescriptors});
+    pub fn fontCollectionWithDescriptors(self: *@This(), queryDescriptors: ?*anyopaque) ?*core_text.NSMutableFontCollection {
+        return objc.msgSend(self, "fontCollectionWithDescriptors:", ?*core_text.NSMutableFontCollection, .{queryDescriptors});
     }
 
-    pub fn fontCollectionWithLocale(self: *@This(), locale: ?*ns.Locale) ?*MutableFontCollection {
+    pub fn fontCollectionWithLocale(self: *@This(), locale: ?*foundation.Locale) ?*MutableFontCollection {
         return objc.msgSend(self, "fontCollectionWithLocale:", ?*MutableFontCollection, .{locale});
     }
 
@@ -14778,7 +14786,7 @@ pub const FontManager = opaque {
         return objc.msgSend(self, "fontPanel:", ?*FontPanel, .{create});
     }
 
-    pub fn fontWithFamilyTraitsWeightSize(self: *@This(), family: ?*String, traits: FontTraitMask, weight: objc.NSInteger, size: cf.CGFloat, ) ?*Font {
+    pub fn fontWithFamilyTraitsWeightSize(self: *@This(), family: ?*String, traits: FontTraitMask, weight: objc.NSInteger, size: core_foundation.CGFloat, ) ?*Font {
         return objc.msgSend(self, "fontWithFamily:traits:weight:size:", ?*Font, .{family, traits, weight, size, });
     }
 
@@ -14798,7 +14806,7 @@ pub const FontManager = opaque {
         return objc.msgSend(self, "convertFont:", ?*Font, .{fontObj});
     }
 
-    pub fn convertFontToSize(self: *@This(), fontObj: ?*Font, size: cf.CGFloat) ?*Font {
+    pub fn convertFontToSize(self: *@This(), fontObj: ?*Font, size: core_foundation.CGFloat) ?*Font {
         return objc.msgSend(self, "convertFont:toSize:", ?*Font, .{fontObj, size});
     }
 
@@ -15051,35 +15059,35 @@ pub const Window = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn frameRectForContentRectStyleMask(self: *@This(), cRect: ns.Rect, style: WindowStyleMask) ns.Rect {
-        return objc.msgSend(self, "frameRectForContentRect:styleMask:", ns.Rect, .{cRect, style});
+    pub fn frameRectForContentRectStyleMask(self: *@This(), cRect: foundation.Rect, style: WindowStyleMask) foundation.Rect {
+        return objc.msgSend(self, "frameRectForContentRect:styleMask:", foundation.Rect, .{cRect, style});
     }
 
-    pub fn contentRectForFrameRectStyleMask(self: *@This(), fRect: ns.Rect, style: WindowStyleMask) ns.Rect {
-        return objc.msgSend(self, "contentRectForFrameRect:styleMask:", ns.Rect, .{fRect, style});
+    pub fn contentRectForFrameRectStyleMask(self: *@This(), fRect: foundation.Rect, style: WindowStyleMask) foundation.Rect {
+        return objc.msgSend(self, "contentRectForFrameRect:styleMask:", foundation.Rect, .{fRect, style});
     }
 
-    pub fn minFrameWidthWithTitleStyleMask(self: *@This(), title: ?*String, style: WindowStyleMask) cf.CGFloat {
-        return objc.msgSend(self, "minFrameWidthWithTitle:styleMask:", cf.CGFloat, .{title, style});
+    pub fn minFrameWidthWithTitleStyleMask(self: *@This(), title: ?*String, style: WindowStyleMask) core_foundation.CGFloat {
+        return objc.msgSend(self, "minFrameWidthWithTitle:styleMask:", core_foundation.CGFloat, .{title, style});
     }
 
-    pub fn frameRectForContentRect(self: *@This(), contentRect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "frameRectForContentRect:", ns.Rect, .{contentRect});
+    pub fn frameRectForContentRect(self: *@This(), contentRect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "frameRectForContentRect:", foundation.Rect, .{contentRect});
     }
 
-    pub fn contentRectForFrameRect(self: *@This(), frameRect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "contentRectForFrameRect:", ns.Rect, .{frameRect});
+    pub fn contentRectForFrameRect(self: *@This(), frameRect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "contentRectForFrameRect:", foundation.Rect, .{frameRect});
     }
 
-    pub fn initWithContentRectStyleMaskBackingDefer(self: *@This(), contentRect: ns.Rect, style: WindowStyleMask, backingStoreType: BackingStoreType, flag: objc.BOOL, ) *@This() {
+    pub fn initWithContentRectStyleMaskBackingDefer(self: *@This(), contentRect: foundation.Rect, style: WindowStyleMask, backingStoreType: BackingStoreType, flag: objc.BOOL, ) *@This() {
         return objc.msgSend(self, "initWithContentRect:styleMask:backing:defer:", *@This(), .{contentRect, style, backingStoreType, flag, });
     }
 
-    pub fn initWithContentRectStyleMaskBackingDeferScreen(self: *@This(), contentRect: ns.Rect, style: WindowStyleMask, backingStoreType: BackingStoreType, flag: objc.BOOL, screen: ?*Screen, ) *@This() {
+    pub fn initWithContentRectStyleMaskBackingDeferScreen(self: *@This(), contentRect: foundation.Rect, style: WindowStyleMask, backingStoreType: BackingStoreType, flag: objc.BOOL, screen: ?*Screen, ) *@This() {
         return objc.msgSend(self, "initWithContentRect:styleMask:backing:defer:screen:", *@This(), .{contentRect, style, backingStoreType, flag, screen, });
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -15107,35 +15115,35 @@ pub const Window = opaque {
         return objc.msgSend(self, "endEditingFor:", void, .{object});
     }
 
-    pub fn constrainFrameRectToScreen(self: *@This(), frameRect: ns.Rect, screen: ?*Screen) ns.Rect {
-        return objc.msgSend(self, "constrainFrameRect:toScreen:", ns.Rect, .{frameRect, screen});
+    pub fn constrainFrameRectToScreen(self: *@This(), frameRect: foundation.Rect, screen: ?*Screen) foundation.Rect {
+        return objc.msgSend(self, "constrainFrameRect:toScreen:", foundation.Rect, .{frameRect, screen});
     }
 
-    pub fn setFrameDisplay(self: *@This(), frameRect: ns.Rect, flag: objc.BOOL) void {
+    pub fn setFrameDisplay(self: *@This(), frameRect: foundation.Rect, flag: objc.BOOL) void {
         return objc.msgSend(self, "setFrame:display:", void, .{frameRect, flag});
     }
 
-    pub fn setContentSize(self: *@This(), size: ns.Size) void {
+    pub fn setContentSize(self: *@This(), size: foundation.Size) void {
         return objc.msgSend(self, "setContentSize:", void, .{size});
     }
 
-    pub fn setFrameOrigin(self: *@This(), point: ns.Point) void {
+    pub fn setFrameOrigin(self: *@This(), point: foundation.Point) void {
         return objc.msgSend(self, "setFrameOrigin:", void, .{point});
     }
 
-    pub fn setFrameTopLeftPoint(self: *@This(), point: ns.Point) void {
+    pub fn setFrameTopLeftPoint(self: *@This(), point: foundation.Point) void {
         return objc.msgSend(self, "setFrameTopLeftPoint:", void, .{point});
     }
 
-    pub fn cascadeTopLeftFromPoint(self: *@This(), topLeftPoint: ns.Point) ns.Point {
-        return objc.msgSend(self, "cascadeTopLeftFromPoint:", ns.Point, .{topLeftPoint});
+    pub fn cascadeTopLeftFromPoint(self: *@This(), topLeftPoint: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "cascadeTopLeftFromPoint:", foundation.Point, .{topLeftPoint});
     }
 
-    pub fn animationResizeTime(self: *@This(), newFrame: ns.Rect) ns.TimeInterval {
-        return objc.msgSend(self, "animationResizeTime:", ns.TimeInterval, .{newFrame});
+    pub fn animationResizeTime(self: *@This(), newFrame: foundation.Rect) foundation.TimeInterval {
+        return objc.msgSend(self, "animationResizeTime:", foundation.TimeInterval, .{newFrame});
     }
 
-    pub fn setFrameDisplayAnimate(self: *@This(), frameRect: ns.Rect, displayFlag: objc.BOOL, animateFlag: objc.BOOL) void {
+    pub fn setFrameDisplayAnimate(self: *@This(), frameRect: foundation.Rect, displayFlag: objc.BOOL, animateFlag: objc.BOOL) void {
         return objc.msgSend(self, "setFrame:display:animate:", void, .{frameRect, displayFlag, animateFlag});
     }
 
@@ -15179,19 +15187,19 @@ pub const Window = opaque {
         return objc.msgSend(self, "validRequestorForSendType:returnType:", *objc.Id, .{sendType, returnType});
     }
 
-    pub fn setContentBorderThicknessForEdge(self: *@This(), thickness: cf.CGFloat, edge: ns.RectEdge) void {
+    pub fn setContentBorderThicknessForEdge(self: *@This(), thickness: core_foundation.CGFloat, edge: foundation.RectEdge) void {
         return objc.msgSend(self, "setContentBorderThickness:forEdge:", void, .{thickness, edge});
     }
 
-    pub fn contentBorderThicknessForEdge(self: *@This(), edge: ns.RectEdge) cf.CGFloat {
-        return objc.msgSend(self, "contentBorderThicknessForEdge:", cf.CGFloat, .{edge});
+    pub fn contentBorderThicknessForEdge(self: *@This(), edge: foundation.RectEdge) core_foundation.CGFloat {
+        return objc.msgSend(self, "contentBorderThicknessForEdge:", core_foundation.CGFloat, .{edge});
     }
 
-    pub fn setAutorecalculatesContentBorderThicknessForEdge(self: *@This(), flag: objc.BOOL, edge: ns.RectEdge) void {
+    pub fn setAutorecalculatesContentBorderThicknessForEdge(self: *@This(), flag: objc.BOOL, edge: foundation.RectEdge) void {
         return objc.msgSend(self, "setAutorecalculatesContentBorderThickness:forEdge:", void, .{flag, edge});
     }
 
-    pub fn autorecalculatesContentBorderThicknessForEdge(self: *@This(), edge: ns.RectEdge) objc.BOOL {
+    pub fn autorecalculatesContentBorderThicknessForEdge(self: *@This(), edge: foundation.RectEdge) objc.BOOL {
         return objc.msgSend(self, "autorecalculatesContentBorderThicknessForEdge:", objc.BOOL, .{edge});
     }
 
@@ -15247,40 +15255,40 @@ pub const Window = opaque {
         return objc.msgSend(self, "resignMainWindow", void, .{});
     }
 
-    pub fn convertRectToScreen(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectToScreen:", ns.Rect, .{rect});
+    pub fn convertRectToScreen(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectToScreen:", foundation.Rect, .{rect});
     }
 
-    pub fn convertRectFromScreen(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectFromScreen:", ns.Rect, .{rect});
+    pub fn convertRectFromScreen(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectFromScreen:", foundation.Rect, .{rect});
     }
 
-    pub fn convertPointToScreen(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "convertPointToScreen:", ns.Point, .{point});
+    pub fn convertPointToScreen(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "convertPointToScreen:", foundation.Point, .{point});
     }
 
-    pub fn convertPointFromScreen(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "convertPointFromScreen:", ns.Point, .{point});
+    pub fn convertPointFromScreen(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "convertPointFromScreen:", foundation.Point, .{point});
     }
 
-    pub fn convertRectToBacking(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectToBacking:", ns.Rect, .{rect});
+    pub fn convertRectToBacking(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectToBacking:", foundation.Rect, .{rect});
     }
 
-    pub fn convertRectFromBacking(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectFromBacking:", ns.Rect, .{rect});
+    pub fn convertRectFromBacking(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectFromBacking:", foundation.Rect, .{rect});
     }
 
-    pub fn convertPointToBacking(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "convertPointToBacking:", ns.Point, .{point});
+    pub fn convertPointToBacking(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "convertPointToBacking:", foundation.Point, .{point});
     }
 
-    pub fn convertPointFromBacking(self: *@This(), point: ns.Point) ns.Point {
-        return objc.msgSend(self, "convertPointFromBacking:", ns.Point, .{point});
+    pub fn convertPointFromBacking(self: *@This(), point: foundation.Point) foundation.Point {
+        return objc.msgSend(self, "convertPointFromBacking:", foundation.Point, .{point});
     }
 
-    pub fn backingAlignedRectOptions(self: *@This(), rect: ns.Rect, options: ns.AlignmentOptions) ns.Rect {
-        return objc.msgSend(self, "backingAlignedRect:options:", ns.Rect, .{rect, options});
+    pub fn backingAlignedRectOptions(self: *@This(), rect: foundation.Rect, options: foundation.AlignmentOptions) foundation.Rect {
+        return objc.msgSend(self, "backingAlignedRect:options:", foundation.Rect, .{rect, options});
     }
 
     pub fn performClose(self: *@This(), sender: *objc.Id) void {
@@ -15295,11 +15303,11 @@ pub const Window = opaque {
         return objc.msgSend(self, "performZoom:", void, .{sender});
     }
 
-    pub fn dataWithEPSInsideRect(self: *@This(), rect: ns.Rect) ?*Data {
+    pub fn dataWithEPSInsideRect(self: *@This(), rect: foundation.Rect) ?*Data {
         return objc.msgSend(self, "dataWithEPSInsideRect:", ?*Data, .{rect});
     }
 
-    pub fn dataWithPDFInsideRect(self: *@This(), rect: ns.Rect) ?*Data {
+    pub fn dataWithPDFInsideRect(self: *@This(), rect: foundation.Rect) ?*Data {
         return objc.msgSend(self, "dataWithPDFInsideRect:", ?*Data, .{rect});
     }
 
@@ -15383,7 +15391,7 @@ pub const Window = opaque {
         return objc.msgSend(self, "windowNumbersWithOptions:", ?*anyopaque, .{options});
     }
 
-    pub fn windowNumberAtPointBelowWindowWithWindowNumber(self: *@This(), point: ns.Point, windowNumber: objc.NSInteger) objc.NSInteger {
+    pub fn windowNumberAtPointBelowWindowWithWindowNumber(self: *@This(), point: foundation.Point, windowNumber: objc.NSInteger) objc.NSInteger {
         return objc.msgSend(self, "windowNumberAtPoint:belowWindowWithWindowNumber:", objc.NSInteger, .{point, windowNumber});
     }
 
@@ -15515,8 +15523,8 @@ pub const Window = opaque {
         return objc.msgSend(self, "setToolbarStyle:", void, .{toolbarStyle});
     }
 
-    pub fn contentLayoutRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "contentLayoutRect", ns.Rect, .{});
+    pub fn contentLayoutRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "contentLayoutRect", foundation.Rect, .{});
     }
 
     pub fn contentLayoutGuide(self: *@This()) *objc.Id {
@@ -15583,47 +15591,47 @@ pub const Window = opaque {
         return objc.msgSend(self, "setStyleMask:", void, .{styleMask});
     }
 
-    pub fn cascadingReferenceFrame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "cascadingReferenceFrame", ns.Rect, .{});
+    pub fn cascadingReferenceFrame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "cascadingReferenceFrame", foundation.Rect, .{});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
     pub fn inLiveResize(self: *@This()) objc.BOOL {
         return objc.msgSend(self, "inLiveResize", objc.BOOL, .{});
     }
 
-    pub fn resizeIncrements(self: *@This()) ns.Size {
-        return objc.msgSend(self, "resizeIncrements", ns.Size, .{});
+    pub fn resizeIncrements(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "resizeIncrements", foundation.Size, .{});
     }
 
-    pub fn setResizeIncrements(self: *@This(), resizeIncrements: ns.Size) void {
+    pub fn setResizeIncrements(self: *@This(), resizeIncrements: foundation.Size) void {
         return objc.msgSend(self, "setResizeIncrements:", void, .{resizeIncrements});
     }
 
-    pub fn aspectRatio(self: *@This()) ns.Size {
-        return objc.msgSend(self, "aspectRatio", ns.Size, .{});
+    pub fn aspectRatio(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "aspectRatio", foundation.Size, .{});
     }
 
-    pub fn setAspectRatio(self: *@This(), aspectRatio: ns.Size) void {
+    pub fn setAspectRatio(self: *@This(), aspectRatio: foundation.Size) void {
         return objc.msgSend(self, "setAspectRatio:", void, .{aspectRatio});
     }
 
-    pub fn contentResizeIncrements(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentResizeIncrements", ns.Size, .{});
+    pub fn contentResizeIncrements(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentResizeIncrements", foundation.Size, .{});
     }
 
-    pub fn setContentResizeIncrements(self: *@This(), contentResizeIncrements: ns.Size) void {
+    pub fn setContentResizeIncrements(self: *@This(), contentResizeIncrements: foundation.Size) void {
         return objc.msgSend(self, "setContentResizeIncrements:", void, .{contentResizeIncrements});
     }
 
-    pub fn contentAspectRatio(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentAspectRatio", ns.Size, .{});
+    pub fn contentAspectRatio(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentAspectRatio", foundation.Size, .{});
     }
 
-    pub fn setContentAspectRatio(self: *@This(), contentAspectRatio: ns.Size) void {
+    pub fn setContentAspectRatio(self: *@This(), contentAspectRatio: foundation.Size) void {
         return objc.msgSend(self, "setContentAspectRatio:", void, .{contentAspectRatio});
     }
 
@@ -15767,8 +15775,8 @@ pub const Window = opaque {
         return objc.msgSend(self, "setPreventsApplicationTerminationWhenModal:", void, .{preventsApplicationTerminationWhenModal});
     }
 
-    pub fn backingScaleFactor(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "backingScaleFactor", cf.CGFloat, .{});
+    pub fn backingScaleFactor(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "backingScaleFactor", core_foundation.CGFloat, .{});
     }
 
     pub fn allowsToolTipsWhenApplicationIsInactive(self: *@This()) objc.BOOL {
@@ -15823,11 +15831,11 @@ pub const Window = opaque {
         return objc.msgSend(self, "setHasShadow:", void, .{hasShadow});
     }
 
-    pub fn alphaValue(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "alphaValue", cf.CGFloat, .{});
+    pub fn alphaValue(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "alphaValue", core_foundation.CGFloat, .{});
     }
 
-    pub fn setAlphaValue(self: *@This(), alphaValue: cf.CGFloat) void {
+    pub fn setAlphaValue(self: *@This(), alphaValue: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setAlphaValue:", void, .{alphaValue});
     }
 
@@ -15899,51 +15907,51 @@ pub const Window = opaque {
         return objc.msgSend(self, "frameAutosaveName", WindowFrameAutosaveName, .{});
     }
 
-    pub fn minSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minSize", ns.Size, .{});
+    pub fn minSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "minSize", foundation.Size, .{});
     }
 
-    pub fn setMinSize(self: *@This(), minSize: ns.Size) void {
+    pub fn setMinSize(self: *@This(), minSize: foundation.Size) void {
         return objc.msgSend(self, "setMinSize:", void, .{minSize});
     }
 
-    pub fn maxSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "maxSize", ns.Size, .{});
+    pub fn maxSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "maxSize", foundation.Size, .{});
     }
 
-    pub fn setMaxSize(self: *@This(), maxSize: ns.Size) void {
+    pub fn setMaxSize(self: *@This(), maxSize: foundation.Size) void {
         return objc.msgSend(self, "setMaxSize:", void, .{maxSize});
     }
 
-    pub fn contentMinSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentMinSize", ns.Size, .{});
+    pub fn contentMinSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentMinSize", foundation.Size, .{});
     }
 
-    pub fn setContentMinSize(self: *@This(), contentMinSize: ns.Size) void {
+    pub fn setContentMinSize(self: *@This(), contentMinSize: foundation.Size) void {
         return objc.msgSend(self, "setContentMinSize:", void, .{contentMinSize});
     }
 
-    pub fn contentMaxSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentMaxSize", ns.Size, .{});
+    pub fn contentMaxSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentMaxSize", foundation.Size, .{});
     }
 
-    pub fn setContentMaxSize(self: *@This(), contentMaxSize: ns.Size) void {
+    pub fn setContentMaxSize(self: *@This(), contentMaxSize: foundation.Size) void {
         return objc.msgSend(self, "setContentMaxSize:", void, .{contentMaxSize});
     }
 
-    pub fn minFullScreenContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minFullScreenContentSize", ns.Size, .{});
+    pub fn minFullScreenContentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "minFullScreenContentSize", foundation.Size, .{});
     }
 
-    pub fn setMinFullScreenContentSize(self: *@This(), minFullScreenContentSize: ns.Size) void {
+    pub fn setMinFullScreenContentSize(self: *@This(), minFullScreenContentSize: foundation.Size) void {
         return objc.msgSend(self, "setMinFullScreenContentSize:", void, .{minFullScreenContentSize});
     }
 
-    pub fn maxFullScreenContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "maxFullScreenContentSize", ns.Size, .{});
+    pub fn maxFullScreenContentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "maxFullScreenContentSize", foundation.Size, .{});
     }
 
-    pub fn setMaxFullScreenContentSize(self: *@This(), maxFullScreenContentSize: ns.Size) void {
+    pub fn setMaxFullScreenContentSize(self: *@This(), maxFullScreenContentSize: foundation.Size) void {
         return objc.msgSend(self, "setMaxFullScreenContentSize:", void, .{maxFullScreenContentSize});
     }
 
@@ -16133,15 +16141,15 @@ pub const WindowDelegate = opaque {
         return objc.msgSend(self, "windowWillReturnFieldEditor:toObject:", *objc.Id, .{sender, client});
     }
 
-    pub fn windowWillResizeToSize(self: *@This(), sender: ?*Window, frameSize: ns.Size) ns.Size {
-        return objc.msgSend(self, "windowWillResize:toSize:", ns.Size, .{sender, frameSize});
+    pub fn windowWillResizeToSize(self: *@This(), sender: ?*Window, frameSize: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "windowWillResize:toSize:", foundation.Size, .{sender, frameSize});
     }
 
-    pub fn windowWillUseStandardFrameDefaultFrame(self: *@This(), window: ?*Window, newFrame: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "windowWillUseStandardFrame:defaultFrame:", ns.Rect, .{window, newFrame});
+    pub fn windowWillUseStandardFrameDefaultFrame(self: *@This(), window: ?*Window, newFrame: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "windowWillUseStandardFrame:defaultFrame:", foundation.Rect, .{window, newFrame});
     }
 
-    pub fn windowShouldZoomToFrame(self: *@This(), window: ?*Window, newFrame: ns.Rect) objc.BOOL {
+    pub fn windowShouldZoomToFrame(self: *@This(), window: ?*Window, newFrame: foundation.Rect) objc.BOOL {
         return objc.msgSend(self, "windowShouldZoom:toFrame:", objc.BOOL, .{window, newFrame});
     }
 
@@ -16149,20 +16157,20 @@ pub const WindowDelegate = opaque {
         return objc.msgSend(self, "windowWillReturnUndoManager:", ?*UndoManager, .{window});
     }
 
-    pub fn windowWillPositionSheetUsingRect(self: *@This(), window: ?*Window, sheet: ?*Window, rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "window:willPositionSheet:usingRect:", ns.Rect, .{window, sheet, rect});
+    pub fn windowWillPositionSheetUsingRect(self: *@This(), window: ?*Window, sheet: ?*Window, rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "window:willPositionSheet:usingRect:", foundation.Rect, .{window, sheet, rect});
     }
 
     pub fn windowShouldPopUpDocumentPathMenu(self: *@This(), window: ?*Window, menu: ?*Menu) objc.BOOL {
         return objc.msgSend(self, "window:shouldPopUpDocumentPathMenu:", objc.BOOL, .{window, menu});
     }
 
-    pub fn windowShouldDragDocumentWithEventFromWithPasteboard(self: *@This(), window: ?*Window, event: ?*Event, dragImageLocation: ns.Point, pasteboard: ?*Pasteboard, ) objc.BOOL {
+    pub fn windowShouldDragDocumentWithEventFromWithPasteboard(self: *@This(), window: ?*Window, event: ?*Event, dragImageLocation: foundation.Point, pasteboard: ?*Pasteboard, ) objc.BOOL {
         return objc.msgSend(self, "window:shouldDragDocumentWithEvent:from:withPasteboard:", objc.BOOL, .{window, event, dragImageLocation, pasteboard, });
     }
 
-    pub fn windowWillUseFullScreenContentSize(self: *@This(), window: ?*Window, proposedSize: ns.Size) ns.Size {
-        return objc.msgSend(self, "window:willUseFullScreenContentSize:", ns.Size, .{window, proposedSize});
+    pub fn windowWillUseFullScreenContentSize(self: *@This(), window: ?*Window, proposedSize: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "window:willUseFullScreenContentSize:", foundation.Size, .{window, proposedSize});
     }
 
     pub fn windowWillUseFullScreenPresentationOptions(self: *@This(), window: ?*Window, proposedOptions: ApplicationPresentationOptions) ApplicationPresentationOptions {
@@ -16173,7 +16181,7 @@ pub const WindowDelegate = opaque {
         return objc.msgSend(self, "customWindowsToEnterFullScreenForWindow:", ?*anyopaque, .{window});
     }
 
-    pub fn windowStartCustomAnimationToEnterFullScreenWithDuration(self: *@This(), window: ?*Window, duration: ns.TimeInterval) void {
+    pub fn windowStartCustomAnimationToEnterFullScreenWithDuration(self: *@This(), window: ?*Window, duration: foundation.TimeInterval) void {
         return objc.msgSend(self, "window:startCustomAnimationToEnterFullScreenWithDuration:", void, .{window, duration});
     }
 
@@ -16185,7 +16193,7 @@ pub const WindowDelegate = opaque {
         return objc.msgSend(self, "customWindowsToExitFullScreenForWindow:", ?*anyopaque, .{window});
     }
 
-    pub fn windowStartCustomAnimationToExitFullScreenWithDuration(self: *@This(), window: ?*Window, duration: ns.TimeInterval) void {
+    pub fn windowStartCustomAnimationToExitFullScreenWithDuration(self: *@This(), window: ?*Window, duration: foundation.TimeInterval) void {
         return objc.msgSend(self, "window:startCustomAnimationToExitFullScreenWithDuration:", void, .{window, duration});
     }
 
@@ -16193,7 +16201,7 @@ pub const WindowDelegate = opaque {
         return objc.msgSend(self, "customWindowsToEnterFullScreenForWindow:onScreen:", ?*anyopaque, .{window, screen});
     }
 
-    pub fn windowStartCustomAnimationToEnterFullScreenOnScreenWithDuration(self: *@This(), window: ?*Window, screen: ?*Screen, duration: ns.TimeInterval) void {
+    pub fn windowStartCustomAnimationToEnterFullScreenOnScreenWithDuration(self: *@This(), window: ?*Window, screen: ?*Screen, duration: foundation.TimeInterval) void {
         return objc.msgSend(self, "window:startCustomAnimationToEnterFullScreenOnScreen:withDuration:", void, .{window, screen, duration});
     }
 
@@ -16201,15 +16209,15 @@ pub const WindowDelegate = opaque {
         return objc.msgSend(self, "windowDidFailToExitFullScreen:", void, .{window});
     }
 
-    pub fn windowWillResizeForVersionBrowserWithMaxPreferredSizeMaxAllowedSize(self: *@This(), window: ?*Window, maxPreferredFrameSize: ns.Size, maxAllowedFrameSize: ns.Size) ns.Size {
-        return objc.msgSend(self, "window:willResizeForVersionBrowserWithMaxPreferredSize:maxAllowedSize:", ns.Size, .{window, maxPreferredFrameSize, maxAllowedFrameSize});
+    pub fn windowWillResizeForVersionBrowserWithMaxPreferredSizeMaxAllowedSize(self: *@This(), window: ?*Window, maxPreferredFrameSize: foundation.Size, maxAllowedFrameSize: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "window:willResizeForVersionBrowserWithMaxPreferredSize:maxAllowedSize:", foundation.Size, .{window, maxPreferredFrameSize, maxAllowedFrameSize});
     }
 
-    pub fn windowWillEncodeRestorableState(self: *@This(), window: ?*Window, state: ?*ns.Coder) void {
+    pub fn windowWillEncodeRestorableState(self: *@This(), window: ?*Window, state: ?*foundation.Coder) void {
         return objc.msgSend(self, "window:willEncodeRestorableState:", void, .{window, state});
     }
 
-    pub fn windowDidDecodeRestorableState(self: *@This(), window: ?*Window, state: ?*ns.Coder) void {
+    pub fn windowDidDecodeRestorableState(self: *@This(), window: ?*Window, state: ?*foundation.Coder) void {
         return objc.msgSend(self, "window:didDecodeRestorableState:", void, .{window, state});
     }
 
@@ -16515,15 +16523,15 @@ pub const Matrix = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFrame(self: *@This(), frameRect: ns.Rect) *@This() {
+    pub fn initWithFrame(self: *@This(), frameRect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFrame:", *@This(), .{frameRect});
     }
 
-    pub fn initWithFrameModePrototypeNumberOfRowsNumberOfColumns(self: *@This(), frameRect: ns.Rect, mode: MatrixMode, cell: ?*Cell, rowsHigh: objc.NSInteger, colsWide: objc.NSInteger, ) *@This() {
+    pub fn initWithFrameModePrototypeNumberOfRowsNumberOfColumns(self: *@This(), frameRect: foundation.Rect, mode: MatrixMode, cell: ?*Cell, rowsHigh: objc.NSInteger, colsWide: objc.NSInteger, ) *@This() {
         return objc.msgSend(self, "initWithFrame:mode:prototype:numberOfRows:numberOfColumns:", *@This(), .{frameRect, mode, cell, rowsHigh, colsWide, });
     }
 
-    pub fn initWithFrameModeCellClassNumberOfRowsNumberOfColumns(self: *@This(), frameRect: ns.Rect, mode: MatrixMode, factoryId: *objc.Class, rowsHigh: objc.NSInteger, colsWide: objc.NSInteger, ) *@This() {
+    pub fn initWithFrameModeCellClassNumberOfRowsNumberOfColumns(self: *@This(), frameRect: foundation.Rect, mode: MatrixMode, factoryId: *objc.Class, rowsHigh: objc.NSInteger, colsWide: objc.NSInteger, ) *@This() {
         return objc.msgSend(self, "initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:", *@This(), .{frameRect, mode, factoryId, rowsHigh, colsWide, });
     }
 
@@ -16583,15 +16591,15 @@ pub const Matrix = opaque {
         return objc.msgSend(self, "cellAtRow:column:", ?*anyopaque, .{row, col});
     }
 
-    pub fn cellFrameAtRowColumn(self: *@This(), row: objc.NSInteger, col: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "cellFrameAtRow:column:", ns.Rect, .{row, col});
+    pub fn cellFrameAtRowColumn(self: *@This(), row: objc.NSInteger, col: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "cellFrameAtRow:column:", foundation.Rect, .{row, col});
     }
 
     pub fn getRowColumnOfCell(self: *@This(), row: ?*objc.NSInteger, col: ?*objc.NSInteger, cell: ?*Cell) objc.BOOL {
         return objc.msgSend(self, "getRow:column:ofCell:", objc.BOOL, .{row, col, cell});
     }
 
-    pub fn getRowColumnForPoint(self: *@This(), row: ?*objc.NSInteger, col: ?*objc.NSInteger, point: ns.Point) objc.BOOL {
+    pub fn getRowColumnForPoint(self: *@This(), row: ?*objc.NSInteger, col: ?*objc.NSInteger, point: foundation.Point) objc.BOOL {
         return objc.msgSend(self, "getRow:column:forPoint:", objc.BOOL, .{row, col, point});
     }
 
@@ -16787,19 +16795,19 @@ pub const Matrix = opaque {
         return objc.msgSend(self, "setSelectionByRect:", void, .{selectionByRect});
     }
 
-    pub fn cellSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "cellSize", ns.Size, .{});
+    pub fn cellSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "cellSize", foundation.Size, .{});
     }
 
-    pub fn setCellSize(self: *@This(), cellSize: ns.Size) void {
+    pub fn setCellSize(self: *@This(), cellSize: foundation.Size) void {
         return objc.msgSend(self, "setCellSize:", void, .{cellSize});
     }
 
-    pub fn intercellSpacing(self: *@This()) ns.Size {
-        return objc.msgSend(self, "intercellSpacing", ns.Size, .{});
+    pub fn intercellSpacing(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "intercellSpacing", foundation.Size, .{});
     }
 
-    pub fn setIntercellSpacing(self: *@This(), intercellSpacing: ns.Size) void {
+    pub fn setIntercellSpacing(self: *@This(), intercellSpacing: foundation.Size) void {
         return objc.msgSend(self, "setIntercellSpacing:", void, .{intercellSpacing});
     }
 
@@ -16913,11 +16921,11 @@ pub const Form = opaque {
         return objc.msgSend(self, "indexOfSelectedItem", objc.NSInteger, .{});
     }
 
-    pub fn setEntryWidth(self: *@This(), width: cf.CGFloat) void {
+    pub fn setEntryWidth(self: *@This(), width: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setEntryWidth:", void, .{width});
     }
 
-    pub fn setInterlineSpacing(self: *@This(), spacing: cf.CGFloat) void {
+    pub fn setInterlineSpacing(self: *@This(), spacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setInterlineSpacing:", void, .{spacing});
     }
 
@@ -16973,7 +16981,7 @@ pub const Form = opaque {
         return objc.msgSend(self, "selectTextAtIndex:", void, .{index});
     }
 
-    pub fn setFrameSize(self: *@This(), newSize: ns.Size) void {
+    pub fn setFrameSize(self: *@This(), newSize: foundation.Size) void {
         return objc.msgSend(self, "setFrameSize:", void, .{newSize});
     }
 
@@ -16985,12 +16993,12 @@ pub const Form = opaque {
         return objc.msgSend(self, "setTextBaseWritingDirection:", void, .{writingDirection});
     }
 
-    pub fn setPreferredTextFieldWidth(self: *@This(), preferredWidth: cf.CGFloat) void {
+    pub fn setPreferredTextFieldWidth(self: *@This(), preferredWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setPreferredTextFieldWidth:", void, .{preferredWidth});
     }
 
-    pub fn preferredTextFieldWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "preferredTextFieldWidth", cf.CGFloat, .{});
+    pub fn preferredTextFieldWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "preferredTextFieldWidth", core_foundation.CGFloat, .{});
     }
 
 };
@@ -17010,7 +17018,7 @@ pub const FormCell = opaque {
         return objc.msgSend(self, "initTextCell:", *@This(), .{string});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -17018,15 +17026,15 @@ pub const FormCell = opaque {
         return objc.msgSend(self, "initImageCell:", *@This(), .{image});
     }
 
-    pub fn titleWidth(self: *@This(), size: ns.Size) cf.CGFloat {
-        return objc.msgSend(self, "titleWidth:", cf.CGFloat, .{size});
+    pub fn titleWidth(self: *@This(), size: foundation.Size) core_foundation.CGFloat {
+        return objc.msgSend(self, "titleWidth:", core_foundation.CGFloat, .{size});
     }
 
-    pub fn titleWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "titleWidth", cf.CGFloat, .{});
+    pub fn titleWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "titleWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setTitleWidth(self: *@This(), titleWidth: cf.CGFloat) void {
+    pub fn setTitleWidth(self: *@This(), titleWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setTitleWidth:", void, .{titleWidth});
     }
 
@@ -17082,11 +17090,11 @@ pub const FormCell = opaque {
         return objc.msgSend(self, "setTitleBaseWritingDirection:", void, .{titleBaseWritingDirection});
     }
 
-    pub fn preferredTextFieldWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "preferredTextFieldWidth", cf.CGFloat, .{});
+    pub fn preferredTextFieldWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "preferredTextFieldWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setPreferredTextFieldWidth(self: *@This(), preferredTextFieldWidth: cf.CGFloat) void {
+    pub fn setPreferredTextFieldWidth(self: *@This(), preferredTextFieldWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setPreferredTextFieldWidth:", void, .{preferredTextFieldWidth});
     }
 
@@ -17182,7 +17190,7 @@ pub const ColorSpace = opaque {
         return objc.msgSend(self, "initWithColorSyncProfile:", *@This(), .{prof});
     }
 
-    pub fn initWithCGColorSpace(self: *@This(), cgColorSpace: ) *@This() {
+    pub fn initWithCGColorSpace(self: *@This(), cgColorSpace: core_graphics.ColorSpaceRef) *@This() {
         return objc.msgSend(self, "initWithCGColorSpace:", *@This(), .{cgColorSpace});
     }
 
@@ -17198,8 +17206,8 @@ pub const ColorSpace = opaque {
         return objc.msgSend(self, "colorSyncProfile", ?*anyopaque, .{});
     }
 
-    pub fn CGColorSpace(self: *@This())  {
-        return objc.msgSend(self, "CGColorSpace", , .{});
+    pub fn CGColorSpace(self: *@This()) core_graphics.ColorSpaceRef {
+        return objc.msgSend(self, "CGColorSpace", core_graphics.ColorSpaceRef, .{});
     }
 
     pub fn numberOfColorComponents(self: *@This()) objc.NSInteger {
@@ -17291,7 +17299,7 @@ pub const ImageRep = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -17299,15 +17307,15 @@ pub const ImageRep = opaque {
         return objc.msgSend(self, "draw", objc.BOOL, .{});
     }
 
-    pub fn drawAtPoint(self: *@This(), point: ns.Point) objc.BOOL {
+    pub fn drawAtPoint(self: *@This(), point: foundation.Point) objc.BOOL {
         return objc.msgSend(self, "drawAtPoint:", objc.BOOL, .{point});
     }
 
-    pub fn drawInRect(self: *@This(), rect: ns.Rect) objc.BOOL {
+    pub fn drawInRect(self: *@This(), rect: foundation.Rect) objc.BOOL {
         return objc.msgSend(self, "drawInRect:", objc.BOOL, .{rect});
     }
 
-    pub fn drawInRectFromRectOperationFractionRespectFlippedHints(self: *@This(), dstSpacePortionRect: ns.Rect, srcSpacePortionRect: ns.Rect, op: CompositingOperation, requestedAlpha: cf.CGFloat, respectContextIsFlipped: objc.BOOL, hints: ?*anyopaque, ) objc.BOOL {
+    pub fn drawInRectFromRectOperationFractionRespectFlippedHints(self: *@This(), dstSpacePortionRect: foundation.Rect, srcSpacePortionRect: foundation.Rect, op: CompositingOperation, requestedAlpha: core_foundation.CGFloat, respectContextIsFlipped: objc.BOOL, hints: ?*anyopaque, ) objc.BOOL {
         return objc.msgSend(self, "drawInRect:fromRect:operation:fraction:respectFlipped:hints:", objc.BOOL, .{dstSpacePortionRect, srcSpacePortionRect, op, requestedAlpha, respectContextIsFlipped, hints, });
     }
 
@@ -17383,15 +17391,15 @@ pub const ImageRep = opaque {
         return objc.msgSend(self, "imageRepWithPasteboard:", ?*ImageRep, .{pasteboard});
     }
 
-    pub fn CGImageForProposedRectContextHints(self: *@This(), proposedDestRect: ?*ns.Rect, context: ?*GraphicsContext, hints: ?*anyopaque)  {
-        return objc.msgSend(self, "CGImageForProposedRect:context:hints:", , .{proposedDestRect, context, hints});
+    pub fn CGImageForProposedRectContextHints(self: *@This(), proposedDestRect: ?*foundation.Rect, context: ?*GraphicsContext, hints: ?*anyopaque) core_graphics.ImageRef {
+        return objc.msgSend(self, "CGImageForProposedRect:context:hints:", core_graphics.ImageRef, .{proposedDestRect, context, hints});
     }
 
-    pub fn size(self: *@This()) ns.Size {
-        return objc.msgSend(self, "size", ns.Size, .{});
+    pub fn size(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "size", foundation.Size, .{});
     }
 
-    pub fn setSize(self: *@This(), size: ns.Size) void {
+    pub fn setSize(self: *@This(), size: foundation.Size) void {
         return objc.msgSend(self, "setSize:", void, .{size});
     }
 
@@ -17517,7 +17525,7 @@ pub const BitmapImageRep = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFocusedViewRect(self: *@This(), rect: ns.Rect) *@This() {
+    pub fn initWithFocusedViewRect(self: *@This(), rect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFocusedViewRect:", *@This(), .{rect});
     }
 
@@ -17529,7 +17537,7 @@ pub const BitmapImageRep = opaque {
         return objc.msgSend(self, "initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:", *@This(), .{planes, width, height, bps, spp, alpha, isPlanar, colorSpaceName, bitmapFormat, rBytes, pBits, });
     }
 
-    pub fn initWithCGImage(self: *@This(), cgImage: ) *@This() {
+    pub fn initWithCGImage(self: *@This(), cgImage: core_graphics.ImageRef) *@This() {
         return objc.msgSend(self, "initWithCGImage:", *@This(), .{cgImage});
     }
 
@@ -17585,7 +17593,7 @@ pub const BitmapImageRep = opaque {
         return objc.msgSend(self, "canBeCompressedUsing:", objc.BOOL, .{compression});
     }
 
-    pub fn colorizeByMappingGrayToColorBlackMappingWhiteMapping(self: *@This(), midPoint: cf.CGFloat, midPointColor: ?*Color, shadowColor: ?*Color, lightColor: ?*Color, ) void {
+    pub fn colorizeByMappingGrayToColorBlackMappingWhiteMapping(self: *@This(), midPoint: core_foundation.CGFloat, midPointColor: ?*Color, shadowColor: ?*Color, lightColor: ?*Color, ) void {
         return objc.msgSend(self, "colorizeByMappingGray:toColor:blackMapping:whiteMapping:", void, .{midPoint, midPointColor, shadowColor, lightColor, });
     }
 
@@ -17657,8 +17665,8 @@ pub const BitmapImageRep = opaque {
         return objc.msgSend(self, "TIFFRepresentation", ?*Data, .{});
     }
 
-    pub fn CGImage(self: *@This())  {
-        return objc.msgSend(self, "CGImage", , .{});
+    pub fn CGImage(self: *@This()) core_graphics.ImageRef {
+        return objc.msgSend(self, "CGImage", core_graphics.ImageRef, .{});
     }
 
     pub fn colorSpace(self: *@This()) ?*ColorSpace {
@@ -17815,56 +17823,56 @@ pub const Browser = opaque {
         return objc.msgSend(self, "sendAction", objc.BOOL, .{});
     }
 
-    pub fn titleFrameOfColumn(self: *@This(), column: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "titleFrameOfColumn:", ns.Rect, .{column});
+    pub fn titleFrameOfColumn(self: *@This(), column: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "titleFrameOfColumn:", foundation.Rect, .{column});
     }
 
-    pub fn drawTitleOfColumnInRect(self: *@This(), column: objc.NSInteger, rect: ns.Rect) void {
+    pub fn drawTitleOfColumnInRect(self: *@This(), column: objc.NSInteger, rect: foundation.Rect) void {
         return objc.msgSend(self, "drawTitleOfColumn:inRect:", void, .{column, rect});
     }
 
-    pub fn frameOfColumn(self: *@This(), column: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "frameOfColumn:", ns.Rect, .{column});
+    pub fn frameOfColumn(self: *@This(), column: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "frameOfColumn:", foundation.Rect, .{column});
     }
 
-    pub fn frameOfInsideOfColumn(self: *@This(), column: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "frameOfInsideOfColumn:", ns.Rect, .{column});
+    pub fn frameOfInsideOfColumn(self: *@This(), column: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "frameOfInsideOfColumn:", foundation.Rect, .{column});
     }
 
-    pub fn frameOfRowInColumn(self: *@This(), row: objc.NSInteger, column: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "frameOfRow:inColumn:", ns.Rect, .{row, column});
+    pub fn frameOfRowInColumn(self: *@This(), row: objc.NSInteger, column: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "frameOfRow:inColumn:", foundation.Rect, .{row, column});
     }
 
-    pub fn getRowColumnForPoint(self: *@This(), row: ?*objc.NSInteger, column: ?*objc.NSInteger, point: ns.Point) objc.BOOL {
+    pub fn getRowColumnForPoint(self: *@This(), row: ?*objc.NSInteger, column: ?*objc.NSInteger, point: foundation.Point) objc.BOOL {
         return objc.msgSend(self, "getRow:column:forPoint:", objc.BOOL, .{row, column, point});
     }
 
-    pub fn columnWidthForColumnContentWidth(self: *@This(), columnContentWidth: cf.CGFloat) cf.CGFloat {
-        return objc.msgSend(self, "columnWidthForColumnContentWidth:", cf.CGFloat, .{columnContentWidth});
+    pub fn columnWidthForColumnContentWidth(self: *@This(), columnContentWidth: core_foundation.CGFloat) core_foundation.CGFloat {
+        return objc.msgSend(self, "columnWidthForColumnContentWidth:", core_foundation.CGFloat, .{columnContentWidth});
     }
 
-    pub fn columnContentWidthForColumnWidth(self: *@This(), columnWidth: cf.CGFloat) cf.CGFloat {
-        return objc.msgSend(self, "columnContentWidthForColumnWidth:", cf.CGFloat, .{columnWidth});
+    pub fn columnContentWidthForColumnWidth(self: *@This(), columnWidth: core_foundation.CGFloat) core_foundation.CGFloat {
+        return objc.msgSend(self, "columnContentWidthForColumnWidth:", core_foundation.CGFloat, .{columnWidth});
     }
 
-    pub fn setWidthOfColumn(self: *@This(), columnWidth: cf.CGFloat, columnIndex: objc.NSInteger) void {
+    pub fn setWidthOfColumn(self: *@This(), columnWidth: core_foundation.CGFloat, columnIndex: objc.NSInteger) void {
         return objc.msgSend(self, "setWidth:ofColumn:", void, .{columnWidth, columnIndex});
     }
 
-    pub fn widthOfColumn(self: *@This(), column: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "widthOfColumn:", cf.CGFloat, .{column});
+    pub fn widthOfColumn(self: *@This(), column: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "widthOfColumn:", core_foundation.CGFloat, .{column});
     }
 
     pub fn noteHeightOfRowsWithIndexesChangedInColumn(self: *@This(), indexSet: ?*IndexSet, columnIndex: objc.NSInteger) void {
         return objc.msgSend(self, "noteHeightOfRowsWithIndexesChanged:inColumn:", void, .{indexSet, columnIndex});
     }
 
-    pub fn setDefaultColumnWidth(self: *@This(), columnWidth: cf.CGFloat) void {
+    pub fn setDefaultColumnWidth(self: *@This(), columnWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setDefaultColumnWidth:", void, .{columnWidth});
     }
 
-    pub fn defaultColumnWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "defaultColumnWidth", cf.CGFloat, .{});
+    pub fn defaultColumnWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "defaultColumnWidth", core_foundation.CGFloat, .{});
     }
 
     pub fn removeSavedColumnsWithAutosaveName(self: *@This(), name: BrowserColumnsAutosaveName) void {
@@ -17875,7 +17883,7 @@ pub const Browser = opaque {
         return objc.msgSend(self, "canDragRowsWithIndexes:inColumn:withEvent:", objc.BOOL, .{rowIndexes, column, event});
     }
 
-    pub fn draggingImageForRowsWithIndexesInColumnWithEventOffset(self: *@This(), rowIndexes: ?*IndexSet, column: objc.NSInteger, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
+    pub fn draggingImageForRowsWithIndexesInColumnWithEventOffset(self: *@This(), rowIndexes: ?*IndexSet, column: objc.NSInteger, event: ?*Event, dragImageOffset: foundation.PointPointer, ) ?*Image {
         return objc.msgSend(self, "draggingImageForRowsWithIndexes:inColumn:withEvent:offset:", ?*Image, .{rowIndexes, column, event, dragImageOffset, });
     }
 
@@ -17959,11 +17967,11 @@ pub const Browser = opaque {
         return objc.msgSend(self, "setTitled:", void, .{titled});
     }
 
-    pub fn minColumnWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minColumnWidth", cf.CGFloat, .{});
+    pub fn minColumnWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minColumnWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinColumnWidth(self: *@This(), minColumnWidth: cf.CGFloat) void {
+    pub fn setMinColumnWidth(self: *@This(), minColumnWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinColumnWidth:", void, .{minColumnWidth});
     }
 
@@ -18079,8 +18087,8 @@ pub const Browser = opaque {
         return objc.msgSend(self, "lastVisibleColumn", objc.NSInteger, .{});
     }
 
-    pub fn titleHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "titleHeight", cf.CGFloat, .{});
+    pub fn titleHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "titleHeight", core_foundation.CGFloat, .{});
     }
 
     pub fn columnResizingType(self: *@This()) BrowserColumnResizingType {
@@ -18099,11 +18107,11 @@ pub const Browser = opaque {
         return objc.msgSend(self, "setPrefersAllColumnUserResizing:", void, .{prefersAllColumnUserResizing});
     }
 
-    pub fn rowHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "rowHeight", cf.CGFloat, .{});
+    pub fn rowHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "rowHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn setRowHeight(self: *@This(), rowHeight: cf.CGFloat) void {
+    pub fn setRowHeight(self: *@This(), rowHeight: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setRowHeight:", void, .{rowHeight});
     }
 
@@ -18165,8 +18173,8 @@ pub const BrowserDelegate = opaque {
         return objc.msgSend(self, "browser:objectValueForItem:", *objc.Id, .{browser, item});
     }
 
-    pub fn browserHeightOfRowInColumn(self: *@This(), browser: ?*Browser, row: objc.NSInteger, columnIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "browser:heightOfRow:inColumn:", cf.CGFloat, .{browser, row, columnIndex});
+    pub fn browserHeightOfRowInColumn(self: *@This(), browser: ?*Browser, row: objc.NSInteger, columnIndex: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "browser:heightOfRow:inColumn:", core_foundation.CGFloat, .{browser, row, columnIndex});
     }
 
     pub fn rootItemForBrowser(self: *@This(), browser: ?*Browser) *objc.Id {
@@ -18209,12 +18217,12 @@ pub const BrowserDelegate = opaque {
         return objc.msgSend(self, "browserDidScroll:", void, .{sender});
     }
 
-    pub fn browserShouldSizeColumnForUserResizeToWidth(self: *@This(), browser: ?*Browser, columnIndex: objc.NSInteger, forUserResize: objc.BOOL, suggestedWidth: cf.CGFloat, ) cf.CGFloat {
-        return objc.msgSend(self, "browser:shouldSizeColumn:forUserResize:toWidth:", cf.CGFloat, .{browser, columnIndex, forUserResize, suggestedWidth, });
+    pub fn browserShouldSizeColumnForUserResizeToWidth(self: *@This(), browser: ?*Browser, columnIndex: objc.NSInteger, forUserResize: objc.BOOL, suggestedWidth: core_foundation.CGFloat, ) core_foundation.CGFloat {
+        return objc.msgSend(self, "browser:shouldSizeColumn:forUserResize:toWidth:", core_foundation.CGFloat, .{browser, columnIndex, forUserResize, suggestedWidth, });
     }
 
-    pub fn browserSizeToFitWidthOfColumn(self: *@This(), browser: ?*Browser, columnIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "browser:sizeToFitWidthOfColumn:", cf.CGFloat, .{browser, columnIndex});
+    pub fn browserSizeToFitWidthOfColumn(self: *@This(), browser: ?*Browser, columnIndex: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "browser:sizeToFitWidthOfColumn:", core_foundation.CGFloat, .{browser, columnIndex});
     }
 
     pub fn browserColumnConfigurationDidChange(self: *@This(), notification: ?*Notification) void {
@@ -18237,7 +18245,7 @@ pub const BrowserDelegate = opaque {
         return objc.msgSend(self, "browser:canDragRowsWithIndexes:inColumn:withEvent:", objc.BOOL, .{browser, rowIndexes, column, event, });
     }
 
-    pub fn browserDraggingImageForRowsWithIndexesInColumnWithEventOffset(self: *@This(), browser: ?*Browser, rowIndexes: ?*IndexSet, column: objc.NSInteger, event: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
+    pub fn browserDraggingImageForRowsWithIndexesInColumnWithEventOffset(self: *@This(), browser: ?*Browser, rowIndexes: ?*IndexSet, column: objc.NSInteger, event: ?*Event, dragImageOffset: foundation.PointPointer, ) ?*Image {
         return objc.msgSend(self, "browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:", ?*Image, .{browser, rowIndexes, column, event, dragImageOffset, });
     }
 
@@ -18298,7 +18306,7 @@ pub const BrowserCell = opaque {
         return objc.msgSend(self, "initImageCell:", *@This(), .{image});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -18367,11 +18375,11 @@ pub const CachedImageRep = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithWindowRect(self: *@This(), win: ?*Window, rect: ns.Rect) *objc.Id {
+    pub fn initWithWindowRect(self: *@This(), win: ?*Window, rect: foundation.Rect) *objc.Id {
         return objc.msgSend(self, "initWithWindow:rect:", *objc.Id, .{win, rect});
     }
 
-    pub fn initWithSizeDepthSeparateAlpha(self: *@This(), size: ns.Size, depth: WindowDepth, flag: objc.BOOL, alpha: objc.BOOL, ) *objc.Id {
+    pub fn initWithSizeDepthSeparateAlpha(self: *@This(), size: foundation.Size, depth: WindowDepth, flag: objc.BOOL, alpha: objc.BOOL, ) *objc.Id {
         return objc.msgSend(self, "initWithSize:depth:separate:alpha:", *objc.Id, .{size, depth, flag, alpha, });
     }
 
@@ -18379,8 +18387,8 @@ pub const CachedImageRep = opaque {
         return objc.msgSend(self, "window", ?*Window, .{});
     }
 
-    pub fn rect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "rect", ns.Rect, .{});
+    pub fn rect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "rect", foundation.Rect, .{});
     }
 
 };
@@ -18396,16 +18404,16 @@ pub const CIImageRep = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn imageRepWithCIImage(self: *@This(), image: ?*) *@This() {
+    pub fn imageRepWithCIImage(self: *@This(), image: ?*core_image.Image) *@This() {
         return objc.msgSend(self, "imageRepWithCIImage:", *@This(), .{image});
     }
 
-    pub fn initWithCIImage(self: *@This(), image: ?*) *@This() {
+    pub fn initWithCIImage(self: *@This(), image: ?*core_image.Image) *@This() {
         return objc.msgSend(self, "initWithCIImage:", *@This(), .{image});
     }
 
-    pub fn CIImage(self: *@This()) ?* {
-        return objc.msgSend(self, "CIImage", ?*, .{});
+    pub fn CIImage(self: *@This()) ?*core_image.Image {
+        return objc.msgSend(self, "CIImage", ?*core_image.Image, .{});
     }
 
 };
@@ -18521,8 +18529,8 @@ pub const ColorPanel = opaque {
         return objc.msgSend(self, "setColor:", void, .{color});
     }
 
-    pub fn alpha(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "alpha", cf.CGFloat, .{});
+    pub fn alpha(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "alpha", core_foundation.CGFloat, .{});
     }
 
 };
@@ -18585,8 +18593,8 @@ pub const ColorPickingDefault = opaque {
         return objc.msgSend(self, "buttonToolTip", ?*String, .{});
     }
 
-    pub fn minContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minContentSize", ns.Size, .{});
+    pub fn minContentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "minContentSize", foundation.Size, .{});
     }
 
 };
@@ -18664,8 +18672,8 @@ pub const ColorPicker = opaque {
         return objc.msgSend(self, "buttonToolTip", ?*String, .{});
     }
 
-    pub fn minContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minContentSize", ns.Size, .{});
+    pub fn minContentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "minContentSize", foundation.Size, .{});
     }
 
 };
@@ -18792,7 +18800,7 @@ pub const ColorWell = opaque {
         return objc.msgSend(self, "activate:", void, .{exclusive});
     }
 
-    pub fn drawWellInside(self: *@This(), insideRect: ns.Rect) void {
+    pub fn drawWellInside(self: *@This(), insideRect: foundation.Rect) void {
         return objc.msgSend(self, "drawWellInside:", void, .{insideRect});
     }
 
@@ -18873,11 +18881,11 @@ pub const Cursor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithImageHotSpot(self: *@This(), newImage: ?*Image, point: ns.Point) *@This() {
+    pub fn initWithImageHotSpot(self: *@This(), newImage: ?*Image, point: foundation.Point) *@This() {
         return objc.msgSend(self, "initWithImage:hotSpot:", *@This(), .{newImage, point});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -18885,8 +18893,8 @@ pub const Cursor = opaque {
         return objc.msgSend(self, "image", ?*Image, .{});
     }
 
-    pub fn hotSpot(self: *@This()) ns.Point {
-        return objc.msgSend(self, "hotSpot", ns.Point, .{});
+    pub fn hotSpot(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "hotSpot", foundation.Point, .{});
     }
 
     pub fn hide(self: *@This()) void {
@@ -18999,7 +19007,7 @@ pub const Cursor = opaque {
 
 };
 
-pub const CursorFrameResizePosition = enum NSCursorFrameResizePosition;
+pub const CursorFrameResizePosition = CursorFrameResizePosition;
 
 pub const CursorFrameResizePosition = enum(objc.NSUInteger) {
     Top = 1,
@@ -19012,7 +19020,7 @@ pub const CursorFrameResizePosition = enum(objc.NSUInteger) {
     BottomRight = 12,
 };
 
-pub const CursorFrameResizeDirections = enum NSCursorFrameResizeDirections;
+pub const CursorFrameResizeDirections = CursorFrameResizeDirections;
 
 pub const CursorFrameResizeDirections = enum(objc.NSUInteger) {
     Inward = 1,
@@ -19031,7 +19039,7 @@ pub const CustomImageRep = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithSizeFlippedDrawingHandler(self: *@This(), size: ns.Size, drawingHandlerShouldBeCalledWithFlippedContext: objc.BOOL, drawingHandler: *const fn(ns.Rect) callconv(.C) objc.BOOL) *@This() {
+    pub fn initWithSizeFlippedDrawingHandler(self: *@This(), size: foundation.Size, drawingHandlerShouldBeCalledWithFlippedContext: objc.BOOL, drawingHandler: *const fn(foundation.Rect) callconv(.C) objc.BOOL) *@This() {
         return objc.msgSend(self, "initWithSize:flipped:drawingHandler:", *@This(), .{size, drawingHandlerShouldBeCalledWithFlippedContext, drawingHandler});
     }
 
@@ -19039,8 +19047,8 @@ pub const CustomImageRep = opaque {
         return objc.msgSend(self, "initWithDrawSelector:delegate:", *@This(), .{selector, delegate});
     }
 
-    pub fn drawingHandler(self: *@This()) *const fn(ns.Rect) callconv(.C) objc.BOOL {
-        return objc.msgSend(self, "drawingHandler", *const fn(ns.Rect) callconv(.C) objc.BOOL, .{});
+    pub fn drawingHandler(self: *@This()) *const fn(foundation.Rect) callconv(.C) objc.BOOL {
+        return objc.msgSend(self, "drawingHandler", *const fn(foundation.Rect) callconv(.C) objc.BOOL, .{});
     }
 
     pub fn drawSelector(self: *@This()) *objc.SEL {
@@ -19105,7 +19113,7 @@ pub const DocumentController = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -19249,11 +19257,11 @@ pub const DocumentController = opaque {
         return objc.msgSend(self, "currentDirectory", ?*String, .{});
     }
 
-    pub fn autosavingDelay(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "autosavingDelay", ns.TimeInterval, .{});
+    pub fn autosavingDelay(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "autosavingDelay", foundation.TimeInterval, .{});
     }
 
-    pub fn setAutosavingDelay(self: *@This(), autosavingDelay: ns.TimeInterval) void {
+    pub fn setAutosavingDelay(self: *@This(), autosavingDelay: foundation.TimeInterval) void {
         return objc.msgSend(self, "setAutosavingDelay:", void, .{autosavingDelay});
     }
 
@@ -19324,11 +19332,11 @@ pub const DraggingImageComponent = opaque {
         return objc.msgSend(self, "setContents:", void, .{contents});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
-    pub fn setFrame(self: *@This(), frame: ns.Rect) void {
+    pub fn setFrame(self: *@This(), frame: foundation.Rect) void {
         return objc.msgSend(self, "setFrame:", void, .{frame});
     }
 
@@ -19353,7 +19361,7 @@ pub const DraggingItem = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn setDraggingFrameContents(self: *@This(), frame: ns.Rect, contents: *objc.Id) void {
+    pub fn setDraggingFrameContents(self: *@This(), frame: foundation.Rect, contents: *objc.Id) void {
         return objc.msgSend(self, "setDraggingFrame:contents:", void, .{frame, contents});
     }
 
@@ -19361,11 +19369,11 @@ pub const DraggingItem = opaque {
         return objc.msgSend(self, "item", *objc.Id, .{});
     }
 
-    pub fn draggingFrame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "draggingFrame", ns.Rect, .{});
+    pub fn draggingFrame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "draggingFrame", foundation.Rect, .{});
     }
 
-    pub fn setDraggingFrame(self: *@This(), draggingFrame: ns.Rect) void {
+    pub fn setDraggingFrame(self: *@This(), draggingFrame: foundation.Rect) void {
         return objc.msgSend(self, "setDraggingFrame:", void, .{draggingFrame});
     }
 
@@ -19430,8 +19438,8 @@ pub const DraggingSession = opaque {
         return objc.msgSend(self, "draggingSequenceNumber", objc.NSInteger, .{});
     }
 
-    pub fn draggingLocation(self: *@This()) ns.Point {
-        return objc.msgSend(self, "draggingLocation", ns.Point, .{});
+    pub fn draggingLocation(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "draggingLocation", foundation.Point, .{});
     }
 
 };
@@ -19555,8 +19563,8 @@ pub const EPSImageRep = opaque {
         return objc.msgSend(self, "prepareGState", void, .{});
     }
 
-    pub fn boundingBox(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "boundingBox", ns.Rect, .{});
+    pub fn boundingBox(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "boundingBox", foundation.Rect, .{});
     }
 
     pub fn EPSRepresentation(self: *@This()) ?*Data {
@@ -19593,43 +19601,43 @@ pub const Gradient = opaque {
         return objc.msgSend(self, "initWithColorsAndLocations:", *@This(), .{firstColor});
     }
 
-    pub fn initWithColorsAtLocationsColorSpace(self: *@This(), colorArray: ?*anyopaque, locations: ?*cf.CGFloat, colorSpace: ?*ColorSpace) *@This() {
+    pub fn initWithColorsAtLocationsColorSpace(self: *@This(), colorArray: ?*anyopaque, locations: ?*core_foundation.CGFloat, colorSpace: ?*ColorSpace) *@This() {
         return objc.msgSend(self, "initWithColors:atLocations:colorSpace:", *@This(), .{colorArray, locations, colorSpace});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn drawFromPointToPointOptions(self: *@This(), startingPoint: ns.Point, endingPoint: ns.Point, options: GradientDrawingOptions) void {
+    pub fn drawFromPointToPointOptions(self: *@This(), startingPoint: foundation.Point, endingPoint: foundation.Point, options: GradientDrawingOptions) void {
         return objc.msgSend(self, "drawFromPoint:toPoint:options:", void, .{startingPoint, endingPoint, options});
     }
 
-    pub fn drawInRectAngle(self: *@This(), rect: ns.Rect, angle: cf.CGFloat) void {
+    pub fn drawInRectAngle(self: *@This(), rect: foundation.Rect, angle: core_foundation.CGFloat) void {
         return objc.msgSend(self, "drawInRect:angle:", void, .{rect, angle});
     }
 
-    pub fn drawInBezierPathAngle(self: *@This(), path: ?*BezierPath, angle: cf.CGFloat) void {
+    pub fn drawInBezierPathAngle(self: *@This(), path: ?*BezierPath, angle: core_foundation.CGFloat) void {
         return objc.msgSend(self, "drawInBezierPath:angle:", void, .{path, angle});
     }
 
-    pub fn drawFromCenterRadiusToCenterRadiusOptions(self: *@This(), startCenter: ns.Point, startRadius: cf.CGFloat, endCenter: ns.Point, endRadius: cf.CGFloat, options: GradientDrawingOptions, ) void {
+    pub fn drawFromCenterRadiusToCenterRadiusOptions(self: *@This(), startCenter: foundation.Point, startRadius: core_foundation.CGFloat, endCenter: foundation.Point, endRadius: core_foundation.CGFloat, options: GradientDrawingOptions, ) void {
         return objc.msgSend(self, "drawFromCenter:radius:toCenter:radius:options:", void, .{startCenter, startRadius, endCenter, endRadius, options, });
     }
 
-    pub fn drawInRectRelativeCenterPosition(self: *@This(), rect: ns.Rect, relativeCenterPosition: ns.Point) void {
+    pub fn drawInRectRelativeCenterPosition(self: *@This(), rect: foundation.Rect, relativeCenterPosition: foundation.Point) void {
         return objc.msgSend(self, "drawInRect:relativeCenterPosition:", void, .{rect, relativeCenterPosition});
     }
 
-    pub fn drawInBezierPathRelativeCenterPosition(self: *@This(), path: ?*BezierPath, relativeCenterPosition: ns.Point) void {
+    pub fn drawInBezierPathRelativeCenterPosition(self: *@This(), path: ?*BezierPath, relativeCenterPosition: foundation.Point) void {
         return objc.msgSend(self, "drawInBezierPath:relativeCenterPosition:", void, .{path, relativeCenterPosition});
     }
 
-    pub fn getColorLocationAtIndex(self: *@This(), color: ?*?*Color, location: ?*cf.CGFloat, index: objc.NSInteger) void {
+    pub fn getColorLocationAtIndex(self: *@This(), color: ?*?*Color, location: ?*core_foundation.CGFloat, index: objc.NSInteger) void {
         return objc.msgSend(self, "getColor:location:atIndex:", void, .{color, location, index});
     }
 
-    pub fn interpolatedColorAtLocation(self: *@This(), location: cf.CGFloat) ?*Color {
+    pub fn interpolatedColorAtLocation(self: *@This(), location: core_foundation.CGFloat) ?*Color {
         return objc.msgSend(self, "interpolatedColorAtLocation:", ?*Color, .{location});
     }
 
@@ -19698,11 +19706,11 @@ pub const GroupTouchBarItem = opaque {
         return objc.msgSend(self, "setPrefersEqualWidths:", void, .{prefersEqualWidths});
     }
 
-    pub fn preferredItemWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "preferredItemWidth", cf.CGFloat, .{});
+    pub fn preferredItemWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "preferredItemWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setPreferredItemWidth(self: *@This(), preferredItemWidth: cf.CGFloat) void {
+    pub fn setPreferredItemWidth(self: *@This(), preferredItemWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setPreferredItemWidth:", void, .{preferredItemWidth});
     }
 
@@ -19745,12 +19753,12 @@ pub const GestureRecognizer = opaque {
         return objc.msgSend(self, "initWithTarget:action:", *@This(), .{target, action});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn locationInView(self: *@This(), view: ?*View) ns.Point {
-        return objc.msgSend(self, "locationInView:", ns.Point, .{view});
+    pub fn locationInView(self: *@This(), view: ?*View) foundation.Point {
+        return objc.msgSend(self, "locationInView:", foundation.Point, .{view});
     }
 
     pub fn target(self: *@This()) *objc.Id {
@@ -19933,16 +19941,16 @@ pub const PanGestureRecognizer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn translationInView(self: *@This(), view: ?*View) ns.Point {
-        return objc.msgSend(self, "translationInView:", ns.Point, .{view});
+    pub fn translationInView(self: *@This(), view: ?*View) foundation.Point {
+        return objc.msgSend(self, "translationInView:", foundation.Point, .{view});
     }
 
-    pub fn setTranslationInView(self: *@This(), translation: ns.Point, view: ?*View) void {
+    pub fn setTranslationInView(self: *@This(), translation: foundation.Point, view: ?*View) void {
         return objc.msgSend(self, "setTranslation:inView:", void, .{translation, view});
     }
 
-    pub fn velocityInView(self: *@This(), view: ?*View) ns.Point {
-        return objc.msgSend(self, "velocityInView:", ns.Point, .{view});
+    pub fn velocityInView(self: *@This(), view: ?*View) foundation.Point {
+        return objc.msgSend(self, "velocityInView:", foundation.Point, .{view});
     }
 
     pub fn buttonMask(self: *@This()) objc.NSUInteger {
@@ -19982,19 +19990,19 @@ pub const PressGestureRecognizer = opaque {
         return objc.msgSend(self, "setButtonMask:", void, .{buttonMask});
     }
 
-    pub fn minimumPressDuration(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "minimumPressDuration", ns.TimeInterval, .{});
+    pub fn minimumPressDuration(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "minimumPressDuration", foundation.TimeInterval, .{});
     }
 
-    pub fn setMinimumPressDuration(self: *@This(), minimumPressDuration: ns.TimeInterval) void {
+    pub fn setMinimumPressDuration(self: *@This(), minimumPressDuration: foundation.TimeInterval) void {
         return objc.msgSend(self, "setMinimumPressDuration:", void, .{minimumPressDuration});
     }
 
-    pub fn allowableMovement(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "allowableMovement", cf.CGFloat, .{});
+    pub fn allowableMovement(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "allowableMovement", core_foundation.CGFloat, .{});
     }
 
-    pub fn setAllowableMovement(self: *@This(), allowableMovement: cf.CGFloat) void {
+    pub fn setAllowableMovement(self: *@This(), allowableMovement: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setAllowableMovement:", void, .{allowableMovement});
     }
 
@@ -20019,11 +20027,11 @@ pub const MagnificationGestureRecognizer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn magnification(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "magnification", cf.CGFloat, .{});
+    pub fn magnification(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "magnification", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMagnification(self: *@This(), magnification: cf.CGFloat) void {
+    pub fn setMagnification(self: *@This(), magnification: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMagnification:", void, .{magnification});
     }
 
@@ -20040,19 +20048,19 @@ pub const RotationGestureRecognizer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn rotation(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "rotation", cf.CGFloat, .{});
+    pub fn rotation(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "rotation", core_foundation.CGFloat, .{});
     }
 
-    pub fn setRotation(self: *@This(), rotation: cf.CGFloat) void {
+    pub fn setRotation(self: *@This(), rotation: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setRotation:", void, .{rotation});
     }
 
-    pub fn rotationInDegrees(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "rotationInDegrees", cf.CGFloat, .{});
+    pub fn rotationInDegrees(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "rotationInDegrees", core_foundation.CGFloat, .{});
     }
 
-    pub fn setRotationInDegrees(self: *@This(), rotationInDegrees: cf.CGFloat) void {
+    pub fn setRotationInDegrees(self: *@This(), rotationInDegrees: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setRotationInDegrees:", void, .{rotationInDegrees});
     }
 
@@ -20081,15 +20089,15 @@ pub const LayoutAnchor = opaque {
         return objc.msgSend(self, "constraintLessThanOrEqualToAnchor:", ?*LayoutConstraint, .{anchor});
     }
 
-    pub fn constraintEqualToAnchorConstant(self: *@This(), anchor: ?*anyopaque, c: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintEqualToAnchorConstant(self: *@This(), anchor: ?*anyopaque, c: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintEqualToAnchor:constant:", ?*LayoutConstraint, .{anchor, c});
     }
 
-    pub fn constraintGreaterThanOrEqualToAnchorConstant(self: *@This(), anchor: ?*anyopaque, c: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintGreaterThanOrEqualToAnchorConstant(self: *@This(), anchor: ?*anyopaque, c: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintGreaterThanOrEqualToAnchor:constant:", ?*LayoutConstraint, .{anchor, c});
     }
 
-    pub fn constraintLessThanOrEqualToAnchorConstant(self: *@This(), anchor: ?*anyopaque, c: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintLessThanOrEqualToAnchorConstant(self: *@This(), anchor: ?*anyopaque, c: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintLessThanOrEqualToAnchor:constant:", ?*LayoutConstraint, .{anchor, c});
     }
 
@@ -20126,15 +20134,15 @@ pub const LayoutXAxisAnchor = opaque {
         return objc.msgSend(self, "anchorWithOffsetToAnchor:", ?*LayoutDimension, .{otherAnchor});
     }
 
-    pub fn constraintEqualToSystemSpacingAfterAnchorMultiplier(self: *@This(), anchor: ?*LayoutXAxisAnchor, multiplier: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintEqualToSystemSpacingAfterAnchorMultiplier(self: *@This(), anchor: ?*LayoutXAxisAnchor, multiplier: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintEqualToSystemSpacingAfterAnchor:multiplier:", ?*LayoutConstraint, .{anchor, multiplier});
     }
 
-    pub fn constraintGreaterThanOrEqualToSystemSpacingAfterAnchorMultiplier(self: *@This(), anchor: ?*LayoutXAxisAnchor, multiplier: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintGreaterThanOrEqualToSystemSpacingAfterAnchorMultiplier(self: *@This(), anchor: ?*LayoutXAxisAnchor, multiplier: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:", ?*LayoutConstraint, .{anchor, multiplier});
     }
 
-    pub fn constraintLessThanOrEqualToSystemSpacingAfterAnchorMultiplier(self: *@This(), anchor: ?*LayoutXAxisAnchor, multiplier: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintLessThanOrEqualToSystemSpacingAfterAnchorMultiplier(self: *@This(), anchor: ?*LayoutXAxisAnchor, multiplier: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:", ?*LayoutConstraint, .{anchor, multiplier});
     }
 
@@ -20155,15 +20163,15 @@ pub const LayoutYAxisAnchor = opaque {
         return objc.msgSend(self, "anchorWithOffsetToAnchor:", ?*LayoutDimension, .{otherAnchor});
     }
 
-    pub fn constraintEqualToSystemSpacingBelowAnchorMultiplier(self: *@This(), anchor: ?*LayoutYAxisAnchor, multiplier: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintEqualToSystemSpacingBelowAnchorMultiplier(self: *@This(), anchor: ?*LayoutYAxisAnchor, multiplier: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintEqualToSystemSpacingBelowAnchor:multiplier:", ?*LayoutConstraint, .{anchor, multiplier});
     }
 
-    pub fn constraintGreaterThanOrEqualToSystemSpacingBelowAnchorMultiplier(self: *@This(), anchor: ?*LayoutYAxisAnchor, multiplier: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintGreaterThanOrEqualToSystemSpacingBelowAnchorMultiplier(self: *@This(), anchor: ?*LayoutYAxisAnchor, multiplier: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:", ?*LayoutConstraint, .{anchor, multiplier});
     }
 
-    pub fn constraintLessThanOrEqualToSystemSpacingBelowAnchorMultiplier(self: *@This(), anchor: ?*LayoutYAxisAnchor, multiplier: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintLessThanOrEqualToSystemSpacingBelowAnchorMultiplier(self: *@This(), anchor: ?*LayoutYAxisAnchor, multiplier: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:", ?*LayoutConstraint, .{anchor, multiplier});
     }
 
@@ -20180,39 +20188,39 @@ pub const LayoutDimension = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn constraintEqualToConstant(self: *@This(), c: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintEqualToConstant(self: *@This(), c: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintEqualToConstant:", ?*LayoutConstraint, .{c});
     }
 
-    pub fn constraintGreaterThanOrEqualToConstant(self: *@This(), c: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintGreaterThanOrEqualToConstant(self: *@This(), c: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintGreaterThanOrEqualToConstant:", ?*LayoutConstraint, .{c});
     }
 
-    pub fn constraintLessThanOrEqualToConstant(self: *@This(), c: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintLessThanOrEqualToConstant(self: *@This(), c: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintLessThanOrEqualToConstant:", ?*LayoutConstraint, .{c});
     }
 
-    pub fn constraintEqualToAnchorMultiplier(self: *@This(), anchor: ?*LayoutDimension, m: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintEqualToAnchorMultiplier(self: *@This(), anchor: ?*LayoutDimension, m: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintEqualToAnchor:multiplier:", ?*LayoutConstraint, .{anchor, m});
     }
 
-    pub fn constraintGreaterThanOrEqualToAnchorMultiplier(self: *@This(), anchor: ?*LayoutDimension, m: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintGreaterThanOrEqualToAnchorMultiplier(self: *@This(), anchor: ?*LayoutDimension, m: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintGreaterThanOrEqualToAnchor:multiplier:", ?*LayoutConstraint, .{anchor, m});
     }
 
-    pub fn constraintLessThanOrEqualToAnchorMultiplier(self: *@This(), anchor: ?*LayoutDimension, m: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintLessThanOrEqualToAnchorMultiplier(self: *@This(), anchor: ?*LayoutDimension, m: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintLessThanOrEqualToAnchor:multiplier:", ?*LayoutConstraint, .{anchor, m});
     }
 
-    pub fn constraintEqualToAnchorMultiplierConstant(self: *@This(), anchor: ?*LayoutDimension, m: cf.CGFloat, c: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintEqualToAnchorMultiplierConstant(self: *@This(), anchor: ?*LayoutDimension, m: core_foundation.CGFloat, c: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintEqualToAnchor:multiplier:constant:", ?*LayoutConstraint, .{anchor, m, c});
     }
 
-    pub fn constraintGreaterThanOrEqualToAnchorMultiplierConstant(self: *@This(), anchor: ?*LayoutDimension, m: cf.CGFloat, c: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintGreaterThanOrEqualToAnchorMultiplierConstant(self: *@This(), anchor: ?*LayoutDimension, m: core_foundation.CGFloat, c: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintGreaterThanOrEqualToAnchor:multiplier:constant:", ?*LayoutConstraint, .{anchor, m, c});
     }
 
-    pub fn constraintLessThanOrEqualToAnchorMultiplierConstant(self: *@This(), anchor: ?*LayoutDimension, m: cf.CGFloat, c: cf.CGFloat) ?*LayoutConstraint {
+    pub fn constraintLessThanOrEqualToAnchorMultiplierConstant(self: *@This(), anchor: ?*LayoutDimension, m: core_foundation.CGFloat, c: core_foundation.CGFloat) ?*LayoutConstraint {
         return objc.msgSend(self, "constraintLessThanOrEqualToAnchor:multiplier:constant:", ?*LayoutConstraint, .{anchor, m, c});
     }
 
@@ -20282,7 +20290,7 @@ pub const LayoutConstraint = opaque {
         return objc.msgSend(self, "constraintsWithVisualFormat:options:metrics:views:", ?*anyopaque, .{format, opts, metrics, views, });
     }
 
-    pub fn constraintWithItemAttributeRelatedByToItemAttributeMultiplierConstant(self: *@This(), view1: *objc.Id, attr1: LayoutAttribute, relation: LayoutRelation, view2: *objc.Id, attr2: LayoutAttribute, multiplier: cf.CGFloat, c: cf.CGFloat, ) *@This() {
+    pub fn constraintWithItemAttributeRelatedByToItemAttributeMultiplierConstant(self: *@This(), view1: *objc.Id, attr1: LayoutAttribute, relation: LayoutRelation, view2: *objc.Id, attr2: LayoutAttribute, multiplier: core_foundation.CGFloat, c: core_foundation.CGFloat, ) *@This() {
         return objc.msgSend(self, "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:", *@This(), .{view1, attr1, relation, view2, attr2, multiplier, c, });
     }
 
@@ -20330,15 +20338,15 @@ pub const LayoutConstraint = opaque {
         return objc.msgSend(self, "relation", LayoutRelation, .{});
     }
 
-    pub fn multiplier(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "multiplier", cf.CGFloat, .{});
+    pub fn multiplier(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "multiplier", core_foundation.CGFloat, .{});
     }
 
-    pub fn constant(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "constant", cf.CGFloat, .{});
+    pub fn constant(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "constant", core_foundation.CGFloat, .{});
     }
 
-    pub fn setConstant(self: *@This(), constant: cf.CGFloat) void {
+    pub fn setConstant(self: *@This(), constant: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setConstant:", void, .{constant});
     }
 
@@ -20377,8 +20385,8 @@ pub const LayoutGuide = opaque {
         return objc.msgSend(self, "constraintsAffectingLayoutForOrientation:", ?*anyopaque, .{orientation});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
     pub fn owningView(self: *@This()) ?*View {
@@ -20496,11 +20504,11 @@ pub const Image = opaque {
         return objc.msgSend(self, "imageWithSymbolName:bundle:variableValue:", *@This(), .{name, bundle, value});
     }
 
-    pub fn initWithSize(self: *@This(), size: ns.Size) *@This() {
+    pub fn initWithSize(self: *@This(), size: foundation.Size) *@This() {
         return objc.msgSend(self, "initWithSize:", *@This(), .{size});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -20532,7 +20540,7 @@ pub const Image = opaque {
         return objc.msgSend(self, "initWithDataIgnoringOrientation:", *@This(), .{data});
     }
 
-    pub fn imageWithSizeFlippedDrawingHandler(self: *@This(), size: ns.Size, drawingHandlerShouldBeCalledWithFlippedContext: objc.BOOL, drawingHandler: *const fn(ns.Rect) callconv(.C) objc.BOOL) *@This() {
+    pub fn imageWithSizeFlippedDrawingHandler(self: *@This(), size: foundation.Size, drawingHandlerShouldBeCalledWithFlippedContext: objc.BOOL, drawingHandler: *const fn(foundation.Rect) callconv(.C) objc.BOOL) *@This() {
         return objc.msgSend(self, "imageWithSize:flipped:drawingHandler:", *@This(), .{size, drawingHandlerShouldBeCalledWithFlippedContext, drawingHandler});
     }
 
@@ -20544,23 +20552,23 @@ pub const Image = opaque {
         return objc.msgSend(self, "name", ImageName, .{});
     }
 
-    pub fn drawAtPointFromRectOperationFraction(self: *@This(), point: ns.Point, fromRect: ns.Rect, op: CompositingOperation, delta: cf.CGFloat, ) void {
+    pub fn drawAtPointFromRectOperationFraction(self: *@This(), point: foundation.Point, fromRect: foundation.Rect, op: CompositingOperation, delta: core_foundation.CGFloat, ) void {
         return objc.msgSend(self, "drawAtPoint:fromRect:operation:fraction:", void, .{point, fromRect, op, delta, });
     }
 
-    pub fn drawInRectFromRectOperationFraction(self: *@This(), rect: ns.Rect, fromRect: ns.Rect, op: CompositingOperation, delta: cf.CGFloat, ) void {
+    pub fn drawInRectFromRectOperationFraction(self: *@This(), rect: foundation.Rect, fromRect: foundation.Rect, op: CompositingOperation, delta: core_foundation.CGFloat, ) void {
         return objc.msgSend(self, "drawInRect:fromRect:operation:fraction:", void, .{rect, fromRect, op, delta, });
     }
 
-    pub fn drawInRectFromRectOperationFractionRespectFlippedHints(self: *@This(), dstSpacePortionRect: ns.Rect, srcSpacePortionRect: ns.Rect, op: CompositingOperation, requestedAlpha: cf.CGFloat, respectContextIsFlipped: objc.BOOL, hints: ?*anyopaque, ) void {
+    pub fn drawInRectFromRectOperationFractionRespectFlippedHints(self: *@This(), dstSpacePortionRect: foundation.Rect, srcSpacePortionRect: foundation.Rect, op: CompositingOperation, requestedAlpha: core_foundation.CGFloat, respectContextIsFlipped: objc.BOOL, hints: ?*anyopaque, ) void {
         return objc.msgSend(self, "drawInRect:fromRect:operation:fraction:respectFlipped:hints:", void, .{dstSpacePortionRect, srcSpacePortionRect, op, requestedAlpha, respectContextIsFlipped, hints, });
     }
 
-    pub fn drawRepresentationInRect(self: *@This(), imageRep: ?*ImageRep, rect: ns.Rect) objc.BOOL {
+    pub fn drawRepresentationInRect(self: *@This(), imageRep: ?*ImageRep, rect: foundation.Rect) objc.BOOL {
         return objc.msgSend(self, "drawRepresentation:inRect:", objc.BOOL, .{imageRep, rect});
     }
 
-    pub fn drawInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn drawInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "drawInRect:", void, .{rect});
     }
 
@@ -20588,27 +20596,27 @@ pub const Image = opaque {
         return objc.msgSend(self, "canInitWithPasteboard:", objc.BOOL, .{pasteboard});
     }
 
-    pub fn initWithCGImageSize(self: *@This(), cgImage: , size: ns.Size) *@This() {
+    pub fn initWithCGImageSize(self: *@This(), cgImage: core_graphics.ImageRef, size: foundation.Size) *@This() {
         return objc.msgSend(self, "initWithCGImage:size:", *@This(), .{cgImage, size});
     }
 
-    pub fn CGImageForProposedRectContextHints(self: *@This(), proposedDestRect: ?*ns.Rect, referenceContext: ?*GraphicsContext, hints: ?*anyopaque)  {
-        return objc.msgSend(self, "CGImageForProposedRect:context:hints:", , .{proposedDestRect, referenceContext, hints});
+    pub fn CGImageForProposedRectContextHints(self: *@This(), proposedDestRect: ?*foundation.Rect, referenceContext: ?*GraphicsContext, hints: ?*anyopaque) core_graphics.ImageRef {
+        return objc.msgSend(self, "CGImageForProposedRect:context:hints:", core_graphics.ImageRef, .{proposedDestRect, referenceContext, hints});
     }
 
-    pub fn bestRepresentationForRectContextHints(self: *@This(), rect: ns.Rect, referenceContext: ?*GraphicsContext, hints: ?*anyopaque) ?*ImageRep {
+    pub fn bestRepresentationForRectContextHints(self: *@This(), rect: foundation.Rect, referenceContext: ?*GraphicsContext, hints: ?*anyopaque) ?*ImageRep {
         return objc.msgSend(self, "bestRepresentationForRect:context:hints:", ?*ImageRep, .{rect, referenceContext, hints});
     }
 
-    pub fn hitTestRectWithImageDestinationRectContextHintsFlipped(self: *@This(), testRectDestSpace: ns.Rect, imageRectDestSpace: ns.Rect, context: ?*GraphicsContext, hints: ?*anyopaque, flipped: objc.BOOL, ) objc.BOOL {
+    pub fn hitTestRectWithImageDestinationRectContextHintsFlipped(self: *@This(), testRectDestSpace: foundation.Rect, imageRectDestSpace: foundation.Rect, context: ?*GraphicsContext, hints: ?*anyopaque, flipped: objc.BOOL, ) objc.BOOL {
         return objc.msgSend(self, "hitTestRect:withImageDestinationRect:context:hints:flipped:", objc.BOOL, .{testRectDestSpace, imageRectDestSpace, context, hints, flipped, });
     }
 
-    pub fn recommendedLayerContentsScale(self: *@This(), preferredContentsScale: cf.CGFloat) cf.CGFloat {
-        return objc.msgSend(self, "recommendedLayerContentsScale:", cf.CGFloat, .{preferredContentsScale});
+    pub fn recommendedLayerContentsScale(self: *@This(), preferredContentsScale: core_foundation.CGFloat) core_foundation.CGFloat {
+        return objc.msgSend(self, "recommendedLayerContentsScale:", core_foundation.CGFloat, .{preferredContentsScale});
     }
 
-    pub fn layerContentsForContentsScale(self: *@This(), layerContentsScale: cf.CGFloat) *objc.Id {
+    pub fn layerContentsForContentsScale(self: *@This(), layerContentsScale: core_foundation.CGFloat) *objc.Id {
         return objc.msgSend(self, "layerContentsForContentsScale:", *objc.Id, .{layerContentsScale});
     }
 
@@ -20616,15 +20624,15 @@ pub const Image = opaque {
         return objc.msgSend(self, "imageWithSymbolConfiguration:", ?*Image, .{configuration});
     }
 
-    pub fn imageWithLocale(self: *@This(), locale: ?*ns.Locale) ?*Image {
+    pub fn imageWithLocale(self: *@This(), locale: ?*foundation.Locale) ?*Image {
         return objc.msgSend(self, "imageWithLocale:", ?*Image, .{locale});
     }
 
-    pub fn size(self: *@This()) ns.Size {
-        return objc.msgSend(self, "size", ns.Size, .{});
+    pub fn size(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "size", foundation.Size, .{});
     }
 
-    pub fn setSize(self: *@This(), size: ns.Size) void {
+    pub fn setSize(self: *@This(), size: foundation.Size) void {
         return objc.msgSend(self, "setSize:", void, .{size});
     }
 
@@ -20704,11 +20712,11 @@ pub const Image = opaque {
         return objc.msgSend(self, "setCacheMode:", void, .{cacheMode});
     }
 
-    pub fn alignmentRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "alignmentRect", ns.Rect, .{});
+    pub fn alignmentRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "alignmentRect", foundation.Rect, .{});
     }
 
-    pub fn setAlignmentRect(self: *@This(), alignmentRect: ns.Rect) void {
+    pub fn setAlignmentRect(self: *@This(), alignmentRect: foundation.Rect) void {
         return objc.msgSend(self, "setAlignmentRect:", void, .{alignmentRect});
     }
 
@@ -20728,11 +20736,11 @@ pub const Image = opaque {
         return objc.msgSend(self, "setAccessibilityDescription:", void, .{accessibilityDescription});
     }
 
-    pub fn capInsets(self: *@This()) ns.EdgeInsets {
-        return objc.msgSend(self, "capInsets", ns.EdgeInsets, .{});
+    pub fn capInsets(self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(self, "capInsets", foundation.EdgeInsets, .{});
     }
 
-    pub fn setCapInsets(self: *@This(), capInsets: ns.EdgeInsets) void {
+    pub fn setCapInsets(self: *@This(), capInsets: foundation.EdgeInsets) void {
         return objc.msgSend(self, "setCapInsets:", void, .{capInsets});
     }
 
@@ -20748,8 +20756,8 @@ pub const Image = opaque {
         return objc.msgSend(self, "symbolConfiguration", ?*ImageSymbolConfiguration, .{});
     }
 
-    pub fn locale(self: *@This()) ?*ns.Locale {
-        return objc.msgSend(self, "locale", ?*ns.Locale, .{});
+    pub fn locale(self: *@This()) ?*foundation.Locale {
+        return objc.msgSend(self, "locale", ?*foundation.Locale, .{});
     }
 
 };
@@ -20762,7 +20770,7 @@ pub const ImageDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn imageDidNotDrawInRect(self: *@This(), sender: ?*Image, rect: ns.Rect) ?*Image {
+    pub fn imageDidNotDrawInRect(self: *@This(), sender: ?*Image, rect: foundation.Rect) ?*Image {
         return objc.msgSend(self, "imageDidNotDraw:inRect:", ?*Image, .{sender, rect});
     }
 
@@ -20801,11 +20809,11 @@ pub const ImageSymbolConfiguration = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn configurationWithPointSizeWeightScale(self: *@This(), pointSize: cf.CGFloat, weight: FontWeight, scale: ImageSymbolScale) *@This() {
+    pub fn configurationWithPointSizeWeightScale(self: *@This(), pointSize: core_foundation.CGFloat, weight: FontWeight, scale: ImageSymbolScale) *@This() {
         return objc.msgSend(self, "configurationWithPointSize:weight:scale:", *@This(), .{pointSize, weight, scale});
     }
 
-    pub fn configurationWithPointSizeWeight(self: *@This(), pointSize: cf.CGFloat, weight: FontWeight) *@This() {
+    pub fn configurationWithPointSizeWeight(self: *@This(), pointSize: core_foundation.CGFloat, weight: FontWeight) *@This() {
         return objc.msgSend(self, "configurationWithPointSize:weight:", *@This(), .{pointSize, weight});
     }
 
@@ -21054,7 +21062,7 @@ pub const ScrubberDelegate = opaque {
         return objc.msgSend(self, "scrubber:didHighlightItemAtIndex:", void, .{scrubber, highlightedIndex});
     }
 
-    pub fn scrubberDidChangeVisibleRange(self: *@This(), scrubber: ?*Scrubber, visibleRange: ns.Range) void {
+    pub fn scrubberDidChangeVisibleRange(self: *@This(), scrubber: ?*Scrubber, visibleRange: foundation.Range) void {
         return objc.msgSend(self, "scrubber:didChangeVisibleRange:", void, .{scrubber, visibleRange});
     }
 
@@ -21099,7 +21107,7 @@ pub const ScrubberSelectionStyle = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -21128,11 +21136,11 @@ pub const Scrubber = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFrame(self: *@This(), frameRect: ns.Rect) *@This() {
+    pub fn initWithFrame(self: *@This(), frameRect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFrame:", *@This(), .{frameRect});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -21440,19 +21448,19 @@ pub const ScrubberLayoutAttributes = opaque {
         return objc.msgSend(self, "setItemIndex:", void, .{itemIndex});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
-    pub fn setFrame(self: *@This(), frame: ns.Rect) void {
+    pub fn setFrame(self: *@This(), frame: foundation.Rect) void {
         return objc.msgSend(self, "setFrame:", void, .{frame});
     }
 
-    pub fn alpha(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "alpha", cf.CGFloat, .{});
+    pub fn alpha(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "alpha", core_foundation.CGFloat, .{});
     }
 
-    pub fn setAlpha(self: *@This(), alpha: cf.CGFloat) void {
+    pub fn setAlpha(self: *@This(), alpha: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setAlpha:", void, .{alpha});
     }
 
@@ -21473,7 +21481,7 @@ pub const ScrubberLayout = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -21489,11 +21497,11 @@ pub const ScrubberLayout = opaque {
         return objc.msgSend(self, "layoutAttributesForItemAtIndex:", ?*anyopaque, .{index});
     }
 
-    pub fn layoutAttributesForItemsInRect(self: *@This(), rect: ns.Rect) ?*anyopaque {
+    pub fn layoutAttributesForItemsInRect(self: *@This(), rect: foundation.Rect) ?*anyopaque {
         return objc.msgSend(self, "layoutAttributesForItemsInRect:", ?*anyopaque, .{rect});
     }
 
-    pub fn shouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(self: *@This(), fromVisibleRect: ns.Rect, toVisibleRect: ns.Rect) objc.BOOL {
+    pub fn shouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(self: *@This(), fromVisibleRect: foundation.Rect, toVisibleRect: foundation.Rect) objc.BOOL {
         return objc.msgSend(self, "shouldInvalidateLayoutForChangeFromVisibleRect:toVisibleRect:", objc.BOOL, .{fromVisibleRect, toVisibleRect});
     }
 
@@ -21505,12 +21513,12 @@ pub const ScrubberLayout = opaque {
         return objc.msgSend(self, "scrubber", ?*Scrubber, .{});
     }
 
-    pub fn visibleRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "visibleRect", ns.Rect, .{});
+    pub fn visibleRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "visibleRect", foundation.Rect, .{});
     }
 
-    pub fn scrubberContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "scrubberContentSize", ns.Size, .{});
+    pub fn scrubberContentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "scrubberContentSize", foundation.Size, .{});
     }
 
     pub fn shouldInvalidateLayoutForSelectionChange(self: *@This()) objc.BOOL {
@@ -21535,8 +21543,8 @@ pub const ScrubberFlowLayoutDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn scrubberLayoutSizeForItemAtIndex(self: *@This(), scrubber: ?*Scrubber, layout: ?*ScrubberFlowLayout, itemIndex: objc.NSInteger) ns.Size {
-        return objc.msgSend(self, "scrubber:layout:sizeForItemAtIndex:", ns.Size, .{scrubber, layout, itemIndex});
+    pub fn scrubberLayoutSizeForItemAtIndex(self: *@This(), scrubber: ?*Scrubber, layout: ?*ScrubberFlowLayout, itemIndex: objc.NSInteger) foundation.Size {
+        return objc.msgSend(self, "scrubber:layout:sizeForItemAtIndex:", foundation.Size, .{scrubber, layout, itemIndex});
     }
 
 };
@@ -21556,19 +21564,19 @@ pub const ScrubberFlowLayout = opaque {
         return objc.msgSend(self, "invalidateLayoutForItemsAtIndexes:", void, .{invalidItemIndexes});
     }
 
-    pub fn itemSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "itemSpacing", cf.CGFloat, .{});
+    pub fn itemSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "itemSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setItemSpacing(self: *@This(), itemSpacing: cf.CGFloat) void {
+    pub fn setItemSpacing(self: *@This(), itemSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setItemSpacing:", void, .{itemSpacing});
     }
 
-    pub fn itemSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "itemSize", ns.Size, .{});
+    pub fn itemSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "itemSize", foundation.Size, .{});
     }
 
-    pub fn setItemSize(self: *@This(), itemSize: ns.Size) void {
+    pub fn setItemSize(self: *@This(), itemSize: foundation.Size) void {
         return objc.msgSend(self, "setItemSize:", void, .{itemSize});
     }
 
@@ -21589,7 +21597,7 @@ pub const ScrubberProportionalLayout = opaque {
         return objc.msgSend(self, "initWithNumberOfVisibleItems:", *@This(), .{numberOfVisibleItems});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -21728,11 +21736,11 @@ pub const SharingServiceDelegate = opaque {
         return objc.msgSend(self, "sharingService:didShareItems:", void, .{sharingService, items});
     }
 
-    pub fn sharingServiceSourceFrameOnScreenForShareItem(self: *@This(), sharingService: ?*SharingService, item: *objc.Id) ns.Rect {
-        return objc.msgSend(self, "sharingService:sourceFrameOnScreenForShareItem:", ns.Rect, .{sharingService, item});
+    pub fn sharingServiceSourceFrameOnScreenForShareItem(self: *@This(), sharingService: ?*SharingService, item: *objc.Id) foundation.Rect {
+        return objc.msgSend(self, "sharingService:sourceFrameOnScreenForShareItem:", foundation.Rect, .{sharingService, item});
     }
 
-    pub fn sharingServiceTransitionImageForShareItemContentRect(self: *@This(), sharingService: ?*SharingService, item: *objc.Id, contentRect: ?*ns.Rect) ?*Image {
+    pub fn sharingServiceTransitionImageForShareItemContentRect(self: *@This(), sharingService: ?*SharingService, item: *objc.Id, contentRect: ?*foundation.Rect) ?*Image {
         return objc.msgSend(self, "sharingService:transitionImageForShareItem:contentRect:", ?*Image, .{sharingService, item, contentRect});
     }
 
@@ -21740,7 +21748,7 @@ pub const SharingServiceDelegate = opaque {
         return objc.msgSend(self, "sharingService:sourceWindowForShareItems:sharingContentScope:", ?*Window, .{sharingService, items, sharingContentScope});
     }
 
-    pub fn anchoringViewForSharingServiceShowRelativeToRectPreferredEdge(self: *@This(), sharingService: ?*SharingService, positioningRect: ?*ns.Rect, preferredEdge: ?*ns.RectEdge) ?*View {
+    pub fn anchoringViewForSharingServiceShowRelativeToRectPreferredEdge(self: *@This(), sharingService: ?*SharingService, positioningRect: ?*foundation.Rect, preferredEdge: ?*foundation.RectEdge) ?*View {
         return objc.msgSend(self, "anchoringViewForSharingService:showRelativeToRect:preferredEdge:", ?*View, .{sharingService, positioningRect, preferredEdge});
     }
 
@@ -21799,7 +21807,7 @@ pub const SharingServicePicker = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn showRelativeToRectOfViewPreferredEdge(self: *@This(), rect: ns.Rect, view: ?*View, preferredEdge: ns.RectEdge) void {
+    pub fn showRelativeToRectOfViewPreferredEdge(self: *@This(), rect: foundation.Rect, view: ?*View, preferredEdge: foundation.RectEdge) void {
         return objc.msgSend(self, "showRelativeToRect:ofView:preferredEdge:", void, .{rect, view, preferredEdge});
     }
 
@@ -21976,7 +21984,7 @@ pub const SliderAccessoryBehavior = opaque {
 
 };
 
-pub const SliderAccessoryWidth = cf.CGFloat;
+pub const SliderAccessoryWidth = core_foundation.CGFloat;
 
 /// https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem?language=objc
 pub const SliderTouchBarItem = opaque {
@@ -22009,19 +22017,19 @@ pub const SliderTouchBarItem = opaque {
         return objc.msgSend(self, "setDoubleValue:", void, .{doubleValue});
     }
 
-    pub fn minimumSliderWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumSliderWidth", cf.CGFloat, .{});
+    pub fn minimumSliderWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumSliderWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumSliderWidth(self: *@This(), minimumSliderWidth: cf.CGFloat) void {
+    pub fn setMinimumSliderWidth(self: *@This(), minimumSliderWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumSliderWidth:", void, .{minimumSliderWidth});
     }
 
-    pub fn maximumSliderWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "maximumSliderWidth", cf.CGFloat, .{});
+    pub fn maximumSliderWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "maximumSliderWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMaximumSliderWidth(self: *@This(), maximumSliderWidth: cf.CGFloat) void {
+    pub fn setMaximumSliderWidth(self: *@This(), maximumSliderWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMaximumSliderWidth:", void, .{maximumSliderWidth});
     }
 
@@ -22307,7 +22315,7 @@ pub const SpeechSynthesizerDelegate = opaque {
         return objc.msgSend(self, "speechSynthesizer:didFinishSpeaking:", void, .{sender, finishedSpeaking});
     }
 
-    pub fn speechSynthesizerWillSpeakWordOfString(self: *@This(), sender: ?*SpeechSynthesizer, characterRange: ns.Range, string: ?*String) void {
+    pub fn speechSynthesizerWillSpeakWordOfString(self: *@This(), sender: ?*SpeechSynthesizer, characterRange: foundation.Range, string: ?*String) void {
         return objc.msgSend(self, "speechSynthesizer:willSpeakWord:ofString:", void, .{sender, characterRange, string});
     }
 
@@ -22362,35 +22370,35 @@ pub const SpellChecker = opaque {
         return objc.msgSend(self, "uniqueSpellDocumentTag", objc.NSInteger, .{});
     }
 
-    pub fn checkSpellingOfStringStartingAtLanguageWrapInSpellDocumentWithTagWordCount(self: *@This(), stringToCheck: ?*String, startingOffset: objc.NSInteger, language: ?*String, wrapFlag: objc.BOOL, tag: objc.NSInteger, wordCount: ?*objc.NSInteger, ) ns.Range {
-        return objc.msgSend(self, "checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:", ns.Range, .{stringToCheck, startingOffset, language, wrapFlag, tag, wordCount, });
+    pub fn checkSpellingOfStringStartingAtLanguageWrapInSpellDocumentWithTagWordCount(self: *@This(), stringToCheck: ?*String, startingOffset: objc.NSInteger, language: ?*String, wrapFlag: objc.BOOL, tag: objc.NSInteger, wordCount: ?*objc.NSInteger, ) foundation.Range {
+        return objc.msgSend(self, "checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:", foundation.Range, .{stringToCheck, startingOffset, language, wrapFlag, tag, wordCount, });
     }
 
-    pub fn checkSpellingOfStringStartingAt(self: *@This(), stringToCheck: ?*String, startingOffset: objc.NSInteger) ns.Range {
-        return objc.msgSend(self, "checkSpellingOfString:startingAt:", ns.Range, .{stringToCheck, startingOffset});
+    pub fn checkSpellingOfStringStartingAt(self: *@This(), stringToCheck: ?*String, startingOffset: objc.NSInteger) foundation.Range {
+        return objc.msgSend(self, "checkSpellingOfString:startingAt:", foundation.Range, .{stringToCheck, startingOffset});
     }
 
     pub fn countWordsInStringLanguage(self: *@This(), stringToCount: ?*String, language: ?*String) objc.NSInteger {
         return objc.msgSend(self, "countWordsInString:language:", objc.NSInteger, .{stringToCount, language});
     }
 
-    pub fn checkGrammarOfStringStartingAtLanguageWrapInSpellDocumentWithTagDetails(self: *@This(), stringToCheck: ?*String, startingOffset: objc.NSInteger, language: ?*String, wrapFlag: objc.BOOL, tag: objc.NSInteger, details: ?*?*anyopaque, ) ns.Range {
-        return objc.msgSend(self, "checkGrammarOfString:startingAt:language:wrap:inSpellDocumentWithTag:details:", ns.Range, .{stringToCheck, startingOffset, language, wrapFlag, tag, details, });
+    pub fn checkGrammarOfStringStartingAtLanguageWrapInSpellDocumentWithTagDetails(self: *@This(), stringToCheck: ?*String, startingOffset: objc.NSInteger, language: ?*String, wrapFlag: objc.BOOL, tag: objc.NSInteger, details: ?*?*anyopaque, ) foundation.Range {
+        return objc.msgSend(self, "checkGrammarOfString:startingAt:language:wrap:inSpellDocumentWithTag:details:", foundation.Range, .{stringToCheck, startingOffset, language, wrapFlag, tag, details, });
     }
 
-    pub fn checkStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(self: *@This(), stringToCheck: ?*String, range: ns.Range, checkingTypes: ns.TextCheckingTypes, options: ?*anyopaque, tag: objc.NSInteger, orthography: ?*?*Orthography, wordCount: ?*objc.NSInteger, ) ?*anyopaque {
+    pub fn checkStringRangeTypesOptionsInSpellDocumentWithTagOrthographyWordCount(self: *@This(), stringToCheck: ?*String, range: foundation.Range, checkingTypes: foundation.TextCheckingTypes, options: ?*anyopaque, tag: objc.NSInteger, orthography: ?*?*Orthography, wordCount: ?*objc.NSInteger, ) ?*anyopaque {
         return objc.msgSend(self, "checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:", ?*anyopaque, .{stringToCheck, range, checkingTypes, options, tag, orthography, wordCount, });
     }
 
-    pub fn requestCheckingOfStringRangeTypesOptionsInSpellDocumentWithTagCompletionHandler(self: *@This(), stringToCheck: ?*String, range: ns.Range, checkingTypes: ns.TextCheckingTypes, options: ?*anyopaque, tag: objc.NSInteger, completionHandler: *const fn(objc.NSInteger, ?*anyopaque, ?*Orthography, objc.NSInteger, ) callconv(.C) void, ) objc.NSInteger {
+    pub fn requestCheckingOfStringRangeTypesOptionsInSpellDocumentWithTagCompletionHandler(self: *@This(), stringToCheck: ?*String, range: foundation.Range, checkingTypes: foundation.TextCheckingTypes, options: ?*anyopaque, tag: objc.NSInteger, completionHandler: *const fn(objc.NSInteger, ?*anyopaque, ?*Orthography, objc.NSInteger, ) callconv(.C) void, ) objc.NSInteger {
         return objc.msgSend(self, "requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:", objc.NSInteger, .{stringToCheck, range, checkingTypes, options, tag, completionHandler, });
     }
 
-    pub fn requestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(self: *@This(), selectedRange: ns.Range, stringToCheck: ?*String, checkingTypes: ns.TextCheckingTypes, options: ?*anyopaque, tag: objc.NSInteger, completionHandler: *const fn(objc.NSInteger, ?*anyopaque) callconv(.C) void, ) objc.NSInteger {
+    pub fn requestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(self: *@This(), selectedRange: foundation.Range, stringToCheck: ?*String, checkingTypes: foundation.TextCheckingTypes, options: ?*anyopaque, tag: objc.NSInteger, completionHandler: *const fn(objc.NSInteger, ?*anyopaque) callconv(.C) void, ) objc.NSInteger {
         return objc.msgSend(self, "requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:", objc.NSInteger, .{selectedRange, stringToCheck, checkingTypes, options, tag, completionHandler, });
     }
 
-    pub fn menuForResultStringOptionsAtLocationInView(self: *@This(), result: ?*TextCheckingResult, checkedString: ?*String, options: ?*anyopaque, location: ns.Point, view: ?*View, ) ?*Menu {
+    pub fn menuForResultStringOptionsAtLocationInView(self: *@This(), result: ?*TextCheckingResult, checkedString: ?*String, options: ?*anyopaque, location: foundation.Point, view: ?*View, ) ?*Menu {
         return objc.msgSend(self, "menuForResult:string:options:atLocation:inView:", ?*Menu, .{result, checkedString, options, location, view, });
     }
 
@@ -22450,19 +22458,19 @@ pub const SpellChecker = opaque {
         return objc.msgSend(self, "setIgnoredWords:inSpellDocumentWithTag:", void, .{words, tag});
     }
 
-    pub fn guessesForWordRangeInStringLanguageInSpellDocumentWithTag(self: *@This(), range: ns.Range, string: ?*String, language: ?*String, tag: objc.NSInteger, ) ?*anyopaque {
+    pub fn guessesForWordRangeInStringLanguageInSpellDocumentWithTag(self: *@This(), range: foundation.Range, string: ?*String, language: ?*String, tag: objc.NSInteger, ) ?*anyopaque {
         return objc.msgSend(self, "guessesForWordRange:inString:language:inSpellDocumentWithTag:", ?*anyopaque, .{range, string, language, tag, });
     }
 
-    pub fn correctionForWordRangeInStringLanguageInSpellDocumentWithTag(self: *@This(), range: ns.Range, string: ?*String, language: ?*String, tag: objc.NSInteger, ) ?*String {
+    pub fn correctionForWordRangeInStringLanguageInSpellDocumentWithTag(self: *@This(), range: foundation.Range, string: ?*String, language: ?*String, tag: objc.NSInteger, ) ?*String {
         return objc.msgSend(self, "correctionForWordRange:inString:language:inSpellDocumentWithTag:", ?*String, .{range, string, language, tag, });
     }
 
-    pub fn completionsForPartialWordRangeInStringLanguageInSpellDocumentWithTag(self: *@This(), range: ns.Range, string: ?*String, language: ?*String, tag: objc.NSInteger, ) ?*anyopaque {
+    pub fn completionsForPartialWordRangeInStringLanguageInSpellDocumentWithTag(self: *@This(), range: foundation.Range, string: ?*String, language: ?*String, tag: objc.NSInteger, ) ?*anyopaque {
         return objc.msgSend(self, "completionsForPartialWordRange:inString:language:inSpellDocumentWithTag:", ?*anyopaque, .{range, string, language, tag, });
     }
 
-    pub fn languageForWordRangeInStringOrthography(self: *@This(), range: ns.Range, string: ?*String, orthography: ?*Orthography) ?*String {
+    pub fn languageForWordRangeInStringOrthography(self: *@This(), range: foundation.Range, string: ?*String, orthography: ?*Orthography) ?*String {
         return objc.msgSend(self, "languageForWordRange:inString:orthography:", ?*String, .{range, string, orthography});
     }
 
@@ -22474,7 +22482,7 @@ pub const SpellChecker = opaque {
         return objc.msgSend(self, "recordResponse:toCorrection:forWord:language:inSpellDocumentWithTag:", void, .{response, correction, word, language, tag, });
     }
 
-    pub fn showCorrectionIndicatorOfTypePrimaryStringAlternativeStringsForStringInRectViewCompletionHandler(self: *@This(), @"type": CorrectionIndicatorType, primaryString: ?*String, alternativeStrings: ?*anyopaque, rectOfTypedString: ns.Rect, view: ?*View, completionBlock: *const fn(?*String) callconv(.C) void, ) void {
+    pub fn showCorrectionIndicatorOfTypePrimaryStringAlternativeStringsForStringInRectViewCompletionHandler(self: *@This(), @"type": CorrectionIndicatorType, primaryString: ?*String, alternativeStrings: ?*anyopaque, rectOfTypedString: foundation.Rect, view: ?*View, completionBlock: *const fn(?*String) callconv(.C) void, ) void {
         return objc.msgSend(self, "showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:", void, .{@"type", primaryString, alternativeStrings, rectOfTypedString, view, completionBlock, });
     }
 
@@ -22568,7 +22576,7 @@ pub const SpellChecker = opaque {
 
 };
 
-pub const CorrectionResponse = enum NSCorrectionResponse;
+pub const CorrectionResponse = CorrectionResponse;
 
 pub const CorrectionResponse = enum(objc.NSInteger) {
     None = 0,
@@ -22579,7 +22587,7 @@ pub const CorrectionResponse = enum(objc.NSInteger) {
     Reverted = 5,
 };
 
-pub const CorrectionIndicatorType = enum NSCorrectionIndicatorType;
+pub const CorrectionIndicatorType = CorrectionIndicatorType;
 
 pub const CorrectionIndicatorType = enum(objc.NSInteger) {
     Default = 0,
@@ -22606,7 +22614,7 @@ pub const SplitView = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn drawDividerInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn drawDividerInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "drawDividerInRect:", void, .{rect});
     }
 
@@ -22618,15 +22626,15 @@ pub const SplitView = opaque {
         return objc.msgSend(self, "isSubviewCollapsed:", objc.BOOL, .{subview});
     }
 
-    pub fn minPossiblePositionOfDividerAtIndex(self: *@This(), dividerIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "minPossiblePositionOfDividerAtIndex:", cf.CGFloat, .{dividerIndex});
+    pub fn minPossiblePositionOfDividerAtIndex(self: *@This(), dividerIndex: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "minPossiblePositionOfDividerAtIndex:", core_foundation.CGFloat, .{dividerIndex});
     }
 
-    pub fn maxPossiblePositionOfDividerAtIndex(self: *@This(), dividerIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "maxPossiblePositionOfDividerAtIndex:", cf.CGFloat, .{dividerIndex});
+    pub fn maxPossiblePositionOfDividerAtIndex(self: *@This(), dividerIndex: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "maxPossiblePositionOfDividerAtIndex:", core_foundation.CGFloat, .{dividerIndex});
     }
 
-    pub fn setPositionOfDividerAtIndex(self: *@This(), position: cf.CGFloat, dividerIndex: objc.NSInteger) void {
+    pub fn setPositionOfDividerAtIndex(self: *@This(), position: core_foundation.CGFloat, dividerIndex: objc.NSInteger) void {
         return objc.msgSend(self, "setPosition:ofDividerAtIndex:", void, .{position, dividerIndex});
     }
 
@@ -22674,8 +22682,8 @@ pub const SplitView = opaque {
         return objc.msgSend(self, "dividerColor", ?*Color, .{});
     }
 
-    pub fn dividerThickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "dividerThickness", cf.CGFloat, .{});
+    pub fn dividerThickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "dividerThickness", core_foundation.CGFloat, .{});
     }
 
 };
@@ -22696,19 +22704,19 @@ pub const SplitViewDelegate = opaque {
         return objc.msgSend(self, "splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:", objc.BOOL, .{splitView, subview, dividerIndex});
     }
 
-    pub fn splitViewConstrainMinCoordinateOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedMinimumPosition: cf.CGFloat, dividerIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "splitView:constrainMinCoordinate:ofSubviewAt:", cf.CGFloat, .{splitView, proposedMinimumPosition, dividerIndex});
+    pub fn splitViewConstrainMinCoordinateOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedMinimumPosition: core_foundation.CGFloat, dividerIndex: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "splitView:constrainMinCoordinate:ofSubviewAt:", core_foundation.CGFloat, .{splitView, proposedMinimumPosition, dividerIndex});
     }
 
-    pub fn splitViewConstrainMaxCoordinateOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedMaximumPosition: cf.CGFloat, dividerIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "splitView:constrainMaxCoordinate:ofSubviewAt:", cf.CGFloat, .{splitView, proposedMaximumPosition, dividerIndex});
+    pub fn splitViewConstrainMaxCoordinateOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedMaximumPosition: core_foundation.CGFloat, dividerIndex: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "splitView:constrainMaxCoordinate:ofSubviewAt:", core_foundation.CGFloat, .{splitView, proposedMaximumPosition, dividerIndex});
     }
 
-    pub fn splitViewConstrainSplitPositionOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedPosition: cf.CGFloat, dividerIndex: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "splitView:constrainSplitPosition:ofSubviewAt:", cf.CGFloat, .{splitView, proposedPosition, dividerIndex});
+    pub fn splitViewConstrainSplitPositionOfSubviewAt(self: *@This(), splitView: ?*SplitView, proposedPosition: core_foundation.CGFloat, dividerIndex: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "splitView:constrainSplitPosition:ofSubviewAt:", core_foundation.CGFloat, .{splitView, proposedPosition, dividerIndex});
     }
 
-    pub fn splitViewResizeSubviewsWithOldSize(self: *@This(), splitView: ?*SplitView, oldSize: ns.Size) void {
+    pub fn splitViewResizeSubviewsWithOldSize(self: *@This(), splitView: ?*SplitView, oldSize: foundation.Size) void {
         return objc.msgSend(self, "splitView:resizeSubviewsWithOldSize:", void, .{splitView, oldSize});
     }
 
@@ -22720,12 +22728,12 @@ pub const SplitViewDelegate = opaque {
         return objc.msgSend(self, "splitView:shouldHideDividerAtIndex:", objc.BOOL, .{splitView, dividerIndex});
     }
 
-    pub fn splitViewEffectiveRectForDrawnRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, proposedEffectiveRect: ns.Rect, drawnRect: ns.Rect, dividerIndex: objc.NSInteger, ) ns.Rect {
-        return objc.msgSend(self, "splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:", ns.Rect, .{splitView, proposedEffectiveRect, drawnRect, dividerIndex, });
+    pub fn splitViewEffectiveRectForDrawnRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, proposedEffectiveRect: foundation.Rect, drawnRect: foundation.Rect, dividerIndex: objc.NSInteger, ) foundation.Rect {
+        return objc.msgSend(self, "splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:", foundation.Rect, .{splitView, proposedEffectiveRect, drawnRect, dividerIndex, });
     }
 
-    pub fn splitViewAdditionalEffectiveRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, dividerIndex: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "splitView:additionalEffectiveRectOfDividerAtIndex:", ns.Rect, .{splitView, dividerIndex});
+    pub fn splitViewAdditionalEffectiveRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, dividerIndex: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "splitView:additionalEffectiveRectOfDividerAtIndex:", foundation.Rect, .{splitView, dividerIndex});
     }
 
     pub fn splitViewWillResizeSubviews(self: *@This(), notification: ?*Notification) void {
@@ -22815,27 +22823,27 @@ pub const SplitViewItem = opaque {
         return objc.msgSend(self, "setCollapseBehavior:", void, .{collapseBehavior});
     }
 
-    pub fn minimumThickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumThickness", cf.CGFloat, .{});
+    pub fn minimumThickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumThickness", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumThickness(self: *@This(), minimumThickness: cf.CGFloat) void {
+    pub fn setMinimumThickness(self: *@This(), minimumThickness: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumThickness:", void, .{minimumThickness});
     }
 
-    pub fn maximumThickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "maximumThickness", cf.CGFloat, .{});
+    pub fn maximumThickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "maximumThickness", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMaximumThickness(self: *@This(), maximumThickness: cf.CGFloat) void {
+    pub fn setMaximumThickness(self: *@This(), maximumThickness: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMaximumThickness:", void, .{maximumThickness});
     }
 
-    pub fn preferredThicknessFraction(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "preferredThicknessFraction", cf.CGFloat, .{});
+    pub fn preferredThicknessFraction(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "preferredThicknessFraction", core_foundation.CGFloat, .{});
     }
 
-    pub fn setPreferredThicknessFraction(self: *@This(), preferredThicknessFraction: cf.CGFloat) void {
+    pub fn setPreferredThicknessFraction(self: *@This(), preferredThicknessFraction: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setPreferredThicknessFraction:", void, .{preferredThicknessFraction});
     }
 
@@ -22847,11 +22855,11 @@ pub const SplitViewItem = opaque {
         return objc.msgSend(self, "setHoldingPriority:", void, .{holdingPriority});
     }
 
-    pub fn automaticMaximumThickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "automaticMaximumThickness", cf.CGFloat, .{});
+    pub fn automaticMaximumThickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "automaticMaximumThickness", core_foundation.CGFloat, .{});
     }
 
-    pub fn setAutomaticMaximumThickness(self: *@This(), automaticMaximumThickness: cf.CGFloat) void {
+    pub fn setAutomaticMaximumThickness(self: *@This(), automaticMaximumThickness: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setAutomaticMaximumThickness:", void, .{automaticMaximumThickness});
     }
 
@@ -22936,12 +22944,12 @@ pub const SplitViewController = opaque {
         return objc.msgSend(self, "splitView:shouldHideDividerAtIndex:", objc.BOOL, .{splitView, dividerIndex});
     }
 
-    pub fn splitViewEffectiveRectForDrawnRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, proposedEffectiveRect: ns.Rect, drawnRect: ns.Rect, dividerIndex: objc.NSInteger, ) ns.Rect {
-        return objc.msgSend(self, "splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:", ns.Rect, .{splitView, proposedEffectiveRect, drawnRect, dividerIndex, });
+    pub fn splitViewEffectiveRectForDrawnRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, proposedEffectiveRect: foundation.Rect, drawnRect: foundation.Rect, dividerIndex: objc.NSInteger, ) foundation.Rect {
+        return objc.msgSend(self, "splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:", foundation.Rect, .{splitView, proposedEffectiveRect, drawnRect, dividerIndex, });
     }
 
-    pub fn splitViewAdditionalEffectiveRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, dividerIndex: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "splitView:additionalEffectiveRectOfDividerAtIndex:", ns.Rect, .{splitView, dividerIndex});
+    pub fn splitViewAdditionalEffectiveRectOfDividerAtIndex(self: *@This(), splitView: ?*SplitView, dividerIndex: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "splitView:additionalEffectiveRectOfDividerAtIndex:", foundation.Rect, .{splitView, dividerIndex});
     }
 
     pub fn splitView(self: *@This()) ?*SplitView {
@@ -22960,11 +22968,11 @@ pub const SplitViewController = opaque {
         return objc.msgSend(self, "setSplitViewItems:", void, .{splitViewItems});
     }
 
-    pub fn minimumThicknessForInlineSidebars(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumThicknessForInlineSidebars", cf.CGFloat, .{});
+    pub fn minimumThicknessForInlineSidebars(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumThicknessForInlineSidebars", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumThicknessForInlineSidebars(self: *@This(), minimumThicknessForInlineSidebars: cf.CGFloat) void {
+    pub fn setMinimumThicknessForInlineSidebars(self: *@This(), minimumThicknessForInlineSidebars: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumThicknessForInlineSidebars:", void, .{minimumThicknessForInlineSidebars});
     }
 
@@ -23515,7 +23523,7 @@ pub const MenuItemCell = opaque {
         return objc.msgSend(self, "initTextCell:", *@This(), .{string});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -23523,39 +23531,39 @@ pub const MenuItemCell = opaque {
         return objc.msgSend(self, "calcSize", void, .{});
     }
 
-    pub fn stateImageRectForBounds(self: *@This(), cellFrame: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "stateImageRectForBounds:", ns.Rect, .{cellFrame});
+    pub fn stateImageRectForBounds(self: *@This(), cellFrame: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "stateImageRectForBounds:", foundation.Rect, .{cellFrame});
     }
 
-    pub fn titleRectForBounds(self: *@This(), cellFrame: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "titleRectForBounds:", ns.Rect, .{cellFrame});
+    pub fn titleRectForBounds(self: *@This(), cellFrame: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "titleRectForBounds:", foundation.Rect, .{cellFrame});
     }
 
-    pub fn keyEquivalentRectForBounds(self: *@This(), cellFrame: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "keyEquivalentRectForBounds:", ns.Rect, .{cellFrame});
+    pub fn keyEquivalentRectForBounds(self: *@This(), cellFrame: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "keyEquivalentRectForBounds:", foundation.Rect, .{cellFrame});
     }
 
-    pub fn drawSeparatorItemWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn drawSeparatorItemWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawSeparatorItemWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
-    pub fn drawStateImageWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn drawStateImageWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawStateImageWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
-    pub fn drawImageWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn drawImageWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawImageWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
-    pub fn drawTitleWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn drawTitleWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawTitleWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
-    pub fn drawKeyEquivalentWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn drawKeyEquivalentWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawKeyEquivalentWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
-    pub fn drawBorderAndBackgroundWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn drawBorderAndBackgroundWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawBorderAndBackgroundWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
@@ -23583,20 +23591,20 @@ pub const MenuItemCell = opaque {
         return objc.msgSend(self, "setNeedsDisplay:", void, .{needsDisplay});
     }
 
-    pub fn stateImageWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "stateImageWidth", cf.CGFloat, .{});
+    pub fn stateImageWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "stateImageWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn imageWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "imageWidth", cf.CGFloat, .{});
+    pub fn imageWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "imageWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn titleWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "titleWidth", cf.CGFloat, .{});
+    pub fn titleWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "titleWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn keyEquivalentWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "keyEquivalentWidth", cf.CGFloat, .{});
+    pub fn keyEquivalentWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "keyEquivalentWidth", core_foundation.CGFloat, .{});
     }
 
     pub fn tag(self: *@This()) objc.NSInteger {
@@ -23630,7 +23638,7 @@ pub const PopUpButtonCell = opaque {
         return objc.msgSend(self, "initTextCell:pullsDown:", *@This(), .{stringValue, pullDown});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -23714,7 +23722,7 @@ pub const PopUpButtonCell = opaque {
         return objc.msgSend(self, "itemTitleAtIndex:", ?*String, .{index});
     }
 
-    pub fn attachPopUpWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn attachPopUpWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "attachPopUpWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
@@ -23722,7 +23730,7 @@ pub const PopUpButtonCell = opaque {
         return objc.msgSend(self, "dismissPopUp", void, .{});
     }
 
-    pub fn performClickWithFrameInView(self: *@This(), frame: ns.Rect, controlView: ?*View) void {
+    pub fn performClickWithFrameInView(self: *@This(), frame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "performClickWithFrame:inView:", void, .{frame, controlView});
     }
 
@@ -23750,11 +23758,11 @@ pub const PopUpButtonCell = opaque {
         return objc.msgSend(self, "setAutoenablesItems:", void, .{autoenablesItems});
     }
 
-    pub fn preferredEdge(self: *@This()) ns.RectEdge {
-        return objc.msgSend(self, "preferredEdge", ns.RectEdge, .{});
+    pub fn preferredEdge(self: *@This()) foundation.RectEdge {
+        return objc.msgSend(self, "preferredEdge", foundation.RectEdge, .{});
     }
 
-    pub fn setPreferredEdge(self: *@This(), preferredEdge: ns.RectEdge) void {
+    pub fn setPreferredEdge(self: *@This(), preferredEdge: foundation.RectEdge) void {
         return objc.msgSend(self, "setPreferredEdge:", void, .{preferredEdge});
     }
 
@@ -23839,7 +23847,7 @@ pub const PopUpButton = opaque {
         return objc.msgSend(self, "pullDownButtonWithTitle:image:menu:", *@This(), .{title, image, menu});
     }
 
-    pub fn initWithFramePullsDown(self: *@This(), buttonFrame: ns.Rect, flag: objc.BOOL) *@This() {
+    pub fn initWithFramePullsDown(self: *@This(), buttonFrame: foundation.Rect, flag: objc.BOOL) *@This() {
         return objc.msgSend(self, "initWithFrame:pullsDown:", *@This(), .{buttonFrame, flag});
     }
 
@@ -23947,11 +23955,11 @@ pub const PopUpButton = opaque {
         return objc.msgSend(self, "setAutoenablesItems:", void, .{autoenablesItems});
     }
 
-    pub fn preferredEdge(self: *@This()) ns.RectEdge {
-        return objc.msgSend(self, "preferredEdge", ns.RectEdge, .{});
+    pub fn preferredEdge(self: *@This()) foundation.RectEdge {
+        return objc.msgSend(self, "preferredEdge", foundation.RectEdge, .{});
     }
 
-    pub fn setPreferredEdge(self: *@This(), preferredEdge: ns.RectEdge) void {
+    pub fn setPreferredEdge(self: *@This(), preferredEdge: foundation.RectEdge) void {
         return objc.msgSend(self, "setPreferredEdge:", void, .{preferredEdge});
     }
 
@@ -24032,19 +24040,19 @@ pub const PrintOperation = opaque {
         return objc.msgSend(self, "printOperationWithView:printInfo:", ?*PrintOperation, .{view, printInfo});
     }
 
-    pub fn PDFOperationWithViewInsideRectToDataPrintInfo(self: *@This(), view: ?*View, rect: ns.Rect, data: ?*MutableData, printInfo: ?*PrintInfo, ) ?*PrintOperation {
+    pub fn PDFOperationWithViewInsideRectToDataPrintInfo(self: *@This(), view: ?*View, rect: foundation.Rect, data: ?*MutableData, printInfo: ?*PrintInfo, ) ?*PrintOperation {
         return objc.msgSend(self, "PDFOperationWithView:insideRect:toData:printInfo:", ?*PrintOperation, .{view, rect, data, printInfo, });
     }
 
-    pub fn PDFOperationWithViewInsideRectToPathPrintInfo(self: *@This(), view: ?*View, rect: ns.Rect, path: ?*String, printInfo: ?*PrintInfo, ) ?*PrintOperation {
+    pub fn PDFOperationWithViewInsideRectToPathPrintInfo(self: *@This(), view: ?*View, rect: foundation.Rect, path: ?*String, printInfo: ?*PrintInfo, ) ?*PrintOperation {
         return objc.msgSend(self, "PDFOperationWithView:insideRect:toPath:printInfo:", ?*PrintOperation, .{view, rect, path, printInfo, });
     }
 
-    pub fn EPSOperationWithViewInsideRectToDataPrintInfo(self: *@This(), view: ?*View, rect: ns.Rect, data: ?*MutableData, printInfo: ?*PrintInfo, ) ?*PrintOperation {
+    pub fn EPSOperationWithViewInsideRectToDataPrintInfo(self: *@This(), view: ?*View, rect: foundation.Rect, data: ?*MutableData, printInfo: ?*PrintInfo, ) ?*PrintOperation {
         return objc.msgSend(self, "EPSOperationWithView:insideRect:toData:printInfo:", ?*PrintOperation, .{view, rect, data, printInfo, });
     }
 
-    pub fn EPSOperationWithViewInsideRectToPathPrintInfo(self: *@This(), view: ?*View, rect: ns.Rect, path: ?*String, printInfo: ?*PrintInfo, ) ?*PrintOperation {
+    pub fn EPSOperationWithViewInsideRectToPathPrintInfo(self: *@This(), view: ?*View, rect: foundation.Rect, path: ?*String, printInfo: ?*PrintInfo, ) ?*PrintOperation {
         return objc.msgSend(self, "EPSOperationWithView:insideRect:toPath:printInfo:", ?*PrintOperation, .{view, rect, path, printInfo, });
     }
 
@@ -24052,11 +24060,11 @@ pub const PrintOperation = opaque {
         return objc.msgSend(self, "printOperationWithView:", ?*PrintOperation, .{view});
     }
 
-    pub fn PDFOperationWithViewInsideRectToData(self: *@This(), view: ?*View, rect: ns.Rect, data: ?*MutableData) ?*PrintOperation {
+    pub fn PDFOperationWithViewInsideRectToData(self: *@This(), view: ?*View, rect: foundation.Rect, data: ?*MutableData) ?*PrintOperation {
         return objc.msgSend(self, "PDFOperationWithView:insideRect:toData:", ?*PrintOperation, .{view, rect, data});
     }
 
-    pub fn EPSOperationWithViewInsideRectToData(self: *@This(), view: ?*View, rect: ns.Rect, data: ?*MutableData) ?*PrintOperation {
+    pub fn EPSOperationWithViewInsideRectToData(self: *@This(), view: ?*View, rect: foundation.Rect, data: ?*MutableData) ?*PrintOperation {
         return objc.msgSend(self, "EPSOperationWithView:insideRect:toData:", ?*PrintOperation, .{view, rect, data});
     }
 
@@ -24172,8 +24180,8 @@ pub const PrintOperation = opaque {
         return objc.msgSend(self, "context", ?*GraphicsContext, .{});
     }
 
-    pub fn pageRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "pageRange", ns.Range, .{});
+    pub fn pageRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "pageRange", foundation.Range, .{});
     }
 
     pub fn currentPage(self: *@This()) objc.NSInteger {
@@ -24344,11 +24352,11 @@ pub const PDFInfo = opaque {
         return objc.msgSend(self, "setOrientation:", void, .{orientation});
     }
 
-    pub fn paperSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "paperSize", ns.Size, .{});
+    pub fn paperSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "paperSize", foundation.Size, .{});
     }
 
-    pub fn setPaperSize(self: *@This(), paperSize: ns.Size) void {
+    pub fn setPaperSize(self: *@This(), paperSize: foundation.Size) void {
         return objc.msgSend(self, "setPaperSize:", void, .{paperSize});
     }
 
@@ -24442,11 +24450,11 @@ pub const MediaLibraryBrowserController = opaque {
         return objc.msgSend(self, "setVisible:", void, .{visible});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
-    pub fn setFrame(self: *@This(), frame: ns.Rect) void {
+    pub fn setFrame(self: *@This(), frame: foundation.Rect) void {
         return objc.msgSend(self, "setFrame:", void, .{frame});
     }
 
@@ -24475,16 +24483,16 @@ pub const Screen = opaque {
         return objc.msgSend(self, "canRepresentDisplayGamut:", objc.BOOL, .{displayGamut});
     }
 
-    pub fn convertRectToBacking(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectToBacking:", ns.Rect, .{rect});
+    pub fn convertRectToBacking(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectToBacking:", foundation.Rect, .{rect});
     }
 
-    pub fn convertRectFromBacking(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "convertRectFromBacking:", ns.Rect, .{rect});
+    pub fn convertRectFromBacking(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "convertRectFromBacking:", foundation.Rect, .{rect});
     }
 
-    pub fn backingAlignedRectOptions(self: *@This(), rect: ns.Rect, options: ns.AlignmentOptions) ns.Rect {
-        return objc.msgSend(self, "backingAlignedRect:options:", ns.Rect, .{rect, options});
+    pub fn backingAlignedRectOptions(self: *@This(), rect: foundation.Rect, options: foundation.AlignmentOptions) foundation.Rect {
+        return objc.msgSend(self, "backingAlignedRect:options:", foundation.Rect, .{rect, options});
     }
 
     pub fn screens(self: *@This()) ?*anyopaque {
@@ -24507,12 +24515,12 @@ pub const Screen = opaque {
         return objc.msgSend(self, "depth", WindowDepth, .{});
     }
 
-    pub fn frame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "frame", ns.Rect, .{});
+    pub fn frame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "frame", foundation.Rect, .{});
     }
 
-    pub fn visibleFrame(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "visibleFrame", ns.Rect, .{});
+    pub fn visibleFrame(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "visibleFrame", foundation.Rect, .{});
     }
 
     pub fn deviceDescription(self: *@This()) ?*anyopaque {
@@ -24527,24 +24535,24 @@ pub const Screen = opaque {
         return objc.msgSend(self, "supportedWindowDepths", ?*WindowDepth, .{});
     }
 
-    pub fn backingScaleFactor(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "backingScaleFactor", cf.CGFloat, .{});
+    pub fn backingScaleFactor(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "backingScaleFactor", core_foundation.CGFloat, .{});
     }
 
     pub fn localizedName(self: *@This()) ?*String {
         return objc.msgSend(self, "localizedName", ?*String, .{});
     }
 
-    pub fn safeAreaInsets(self: *@This()) ns.EdgeInsets {
-        return objc.msgSend(self, "safeAreaInsets", ns.EdgeInsets, .{});
+    pub fn safeAreaInsets(self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(self, "safeAreaInsets", foundation.EdgeInsets, .{});
     }
 
-    pub fn auxiliaryTopLeftArea(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "auxiliaryTopLeftArea", ns.Rect, .{});
+    pub fn auxiliaryTopLeftArea(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "auxiliaryTopLeftArea", foundation.Rect, .{});
     }
 
-    pub fn auxiliaryTopRightArea(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "auxiliaryTopRightArea", ns.Rect, .{});
+    pub fn auxiliaryTopRightArea(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "auxiliaryTopRightArea", foundation.Rect, .{});
     }
 
 };
@@ -24587,12 +24595,12 @@ pub const Scroller = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn scrollerWidthForControlSizeScrollerStyle(self: *@This(), controlSize: ControlSize, scrollerStyle: ScrollerStyle) cf.CGFloat {
-        return objc.msgSend(self, "scrollerWidthForControlSize:scrollerStyle:", cf.CGFloat, .{controlSize, scrollerStyle});
+    pub fn scrollerWidthForControlSizeScrollerStyle(self: *@This(), controlSize: ControlSize, scrollerStyle: ScrollerStyle) core_foundation.CGFloat {
+        return objc.msgSend(self, "scrollerWidthForControlSize:scrollerStyle:", core_foundation.CGFloat, .{controlSize, scrollerStyle});
     }
 
-    pub fn rectForPart(self: *@This(), partCode: ScrollerPart) ns.Rect {
-        return objc.msgSend(self, "rectForPart:", ns.Rect, .{partCode});
+    pub fn rectForPart(self: *@This(), partCode: ScrollerPart) foundation.Rect {
+        return objc.msgSend(self, "rectForPart:", foundation.Rect, .{partCode});
     }
 
     pub fn checkSpaceForParts(self: *@This()) void {
@@ -24603,11 +24611,11 @@ pub const Scroller = opaque {
         return objc.msgSend(self, "drawKnob", void, .{});
     }
 
-    pub fn drawKnobSlotInRectHighlight(self: *@This(), slotRect: ns.Rect, flag: objc.BOOL) void {
+    pub fn drawKnobSlotInRectHighlight(self: *@This(), slotRect: foundation.Rect, flag: objc.BOOL) void {
         return objc.msgSend(self, "drawKnobSlotInRect:highlight:", void, .{slotRect, flag});
     }
 
-    pub fn testPart(self: *@This(), point: ns.Point) ScrollerPart {
+    pub fn testPart(self: *@This(), point: foundation.Point) ScrollerPart {
         return objc.msgSend(self, "testPart:", ScrollerPart, .{point});
     }
 
@@ -24615,7 +24623,7 @@ pub const Scroller = opaque {
         return objc.msgSend(self, "trackKnob:", void, .{event});
     }
 
-    pub fn setKnobProportion(self: *@This(), proportion: cf.CGFloat) void {
+    pub fn setKnobProportion(self: *@This(), proportion: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setKnobProportion:", void, .{proportion});
     }
 
@@ -24659,8 +24667,8 @@ pub const Scroller = opaque {
         return objc.msgSend(self, "hitPart", ScrollerPart, .{});
     }
 
-    pub fn knobProportion(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "knobProportion", cf.CGFloat, .{});
+    pub fn knobProportion(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "knobProportion", core_foundation.CGFloat, .{});
     }
 
 };
@@ -24717,7 +24725,7 @@ pub const TextFinder = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -24733,7 +24741,7 @@ pub const TextFinder = opaque {
         return objc.msgSend(self, "cancelFindIndicator", void, .{});
     }
 
-    pub fn drawIncrementalMatchHighlightInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn drawIncrementalMatchHighlightInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "drawIncrementalMatchHighlightInRect:", void, .{rect});
     }
 
@@ -24795,7 +24803,7 @@ pub const TextFinderClient = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn stringAtIndexEffectiveRangeEndsWithSearchBoundary(self: *@This(), characterIndex: objc.NSUInteger, outRange: ns.RangePointer, outFlag: ?*objc.BOOL) ?*String {
+    pub fn stringAtIndexEffectiveRangeEndsWithSearchBoundary(self: *@This(), characterIndex: objc.NSUInteger, outRange: foundation.RangePointer, outFlag: ?*objc.BOOL) ?*String {
         return objc.msgSend(self, "stringAtIndex:effectiveRange:endsWithSearchBoundary:", ?*String, .{characterIndex, outRange, outFlag});
     }
 
@@ -24803,7 +24811,7 @@ pub const TextFinderClient = opaque {
         return objc.msgSend(self, "stringLength", objc.NSUInteger, .{});
     }
 
-    pub fn scrollRangeToVisible(self: *@This(), range: ns.Range) void {
+    pub fn scrollRangeToVisible(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "scrollRangeToVisible:", void, .{range});
     }
 
@@ -24811,7 +24819,7 @@ pub const TextFinderClient = opaque {
         return objc.msgSend(self, "shouldReplaceCharactersInRanges:withStrings:", objc.BOOL, .{ranges, strings});
     }
 
-    pub fn replaceCharactersInRangeWithString(self: *@This(), range: ns.Range, string: ?*String) void {
+    pub fn replaceCharactersInRangeWithString(self: *@This(), range: foundation.Range, string: ?*String) void {
         return objc.msgSend(self, "replaceCharactersInRange:withString:", void, .{range, string});
     }
 
@@ -24819,15 +24827,15 @@ pub const TextFinderClient = opaque {
         return objc.msgSend(self, "didReplaceCharacters", void, .{});
     }
 
-    pub fn contentViewAtIndexEffectiveCharacterRange(self: *@This(), index: objc.NSUInteger, outRange: ns.RangePointer) ?*View {
+    pub fn contentViewAtIndexEffectiveCharacterRange(self: *@This(), index: objc.NSUInteger, outRange: foundation.RangePointer) ?*View {
         return objc.msgSend(self, "contentViewAtIndex:effectiveCharacterRange:", ?*View, .{index, outRange});
     }
 
-    pub fn rectsForCharacterRange(self: *@This(), range: ns.Range) ?*anyopaque {
+    pub fn rectsForCharacterRange(self: *@This(), range: foundation.Range) ?*anyopaque {
         return objc.msgSend(self, "rectsForCharacterRange:", ?*anyopaque, .{range});
     }
 
-    pub fn drawCharactersInRangeForContentView(self: *@This(), range: ns.Range, view: ?*View) void {
+    pub fn drawCharactersInRangeForContentView(self: *@This(), range: foundation.Range, view: ?*View) void {
         return objc.msgSend(self, "drawCharactersInRange:forContentView:", void, .{range, view});
     }
 
@@ -24847,8 +24855,8 @@ pub const TextFinderClient = opaque {
         return objc.msgSend(self, "string", ?*String, .{});
     }
 
-    pub fn firstSelectedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "firstSelectedRange", ns.Range, .{});
+    pub fn firstSelectedRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "firstSelectedRange", foundation.Range, .{});
     }
 
     pub fn selectedRanges(self: *@This()) ?*anyopaque {
@@ -24916,28 +24924,28 @@ pub const ScrollView = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFrame(self: *@This(), frameRect: ns.Rect) *@This() {
+    pub fn initWithFrame(self: *@This(), frameRect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFrame:", *@This(), .{frameRect});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn frameSizeForContentSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(self: *@This(), cSize: ns.Size, horizontalScrollerClass: *objc.Class, verticalScrollerClass: *objc.Class, @"type": BorderType, controlSize: ControlSize, scrollerStyle: ScrollerStyle, ) ns.Size {
-        return objc.msgSend(self, "frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:", ns.Size, .{cSize, horizontalScrollerClass, verticalScrollerClass, @"type", controlSize, scrollerStyle, });
+    pub fn frameSizeForContentSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(self: *@This(), cSize: foundation.Size, horizontalScrollerClass: *objc.Class, verticalScrollerClass: *objc.Class, @"type": BorderType, controlSize: ControlSize, scrollerStyle: ScrollerStyle, ) foundation.Size {
+        return objc.msgSend(self, "frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:", foundation.Size, .{cSize, horizontalScrollerClass, verticalScrollerClass, @"type", controlSize, scrollerStyle, });
     }
 
-    pub fn contentSizeForFrameSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(self: *@This(), fSize: ns.Size, horizontalScrollerClass: *objc.Class, verticalScrollerClass: *objc.Class, @"type": BorderType, controlSize: ControlSize, scrollerStyle: ScrollerStyle, ) ns.Size {
-        return objc.msgSend(self, "contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:", ns.Size, .{fSize, horizontalScrollerClass, verticalScrollerClass, @"type", controlSize, scrollerStyle, });
+    pub fn contentSizeForFrameSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(self: *@This(), fSize: foundation.Size, horizontalScrollerClass: *objc.Class, verticalScrollerClass: *objc.Class, @"type": BorderType, controlSize: ControlSize, scrollerStyle: ScrollerStyle, ) foundation.Size {
+        return objc.msgSend(self, "contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:", foundation.Size, .{fSize, horizontalScrollerClass, verticalScrollerClass, @"type", controlSize, scrollerStyle, });
     }
 
-    pub fn frameSizeForContentSizeHasHorizontalScrollerHasVerticalScrollerBorderType(self: *@This(), cSize: ns.Size, hFlag: objc.BOOL, vFlag: objc.BOOL, @"type": BorderType, ) ns.Size {
-        return objc.msgSend(self, "frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:", ns.Size, .{cSize, hFlag, vFlag, @"type", });
+    pub fn frameSizeForContentSizeHasHorizontalScrollerHasVerticalScrollerBorderType(self: *@This(), cSize: foundation.Size, hFlag: objc.BOOL, vFlag: objc.BOOL, @"type": BorderType, ) foundation.Size {
+        return objc.msgSend(self, "frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:", foundation.Size, .{cSize, hFlag, vFlag, @"type", });
     }
 
-    pub fn contentSizeForFrameSizeHasHorizontalScrollerHasVerticalScrollerBorderType(self: *@This(), fSize: ns.Size, hFlag: objc.BOOL, vFlag: objc.BOOL, @"type": BorderType, ) ns.Size {
-        return objc.msgSend(self, "contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:", ns.Size, .{fSize, hFlag, vFlag, @"type", });
+    pub fn contentSizeForFrameSizeHasHorizontalScrollerHasVerticalScrollerBorderType(self: *@This(), fSize: foundation.Size, hFlag: objc.BOOL, vFlag: objc.BOOL, @"type": BorderType, ) foundation.Size {
+        return objc.msgSend(self, "contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:", foundation.Size, .{fSize, hFlag, vFlag, @"type", });
     }
 
     pub fn tile(self: *@This()) void {
@@ -24956,11 +24964,11 @@ pub const ScrollView = opaque {
         return objc.msgSend(self, "flashScrollers", void, .{});
     }
 
-    pub fn magnifyToFitRect(self: *@This(), rect: ns.Rect) void {
+    pub fn magnifyToFitRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "magnifyToFitRect:", void, .{rect});
     }
 
-    pub fn setMagnificationCenteredAtPoint(self: *@This(), magnification: cf.CGFloat, point: ns.Point) void {
+    pub fn setMagnificationCenteredAtPoint(self: *@This(), magnification: core_foundation.CGFloat, point: foundation.Point) void {
         return objc.msgSend(self, "setMagnification:centeredAtPoint:", void, .{magnification, point});
     }
 
@@ -24968,12 +24976,12 @@ pub const ScrollView = opaque {
         return objc.msgSend(self, "addFloatingSubview:forAxis:", void, .{view, axis});
     }
 
-    pub fn documentVisibleRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "documentVisibleRect", ns.Rect, .{});
+    pub fn documentVisibleRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "documentVisibleRect", foundation.Rect, .{});
     }
 
-    pub fn contentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentSize", ns.Size, .{});
+    pub fn contentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentSize", foundation.Size, .{});
     }
 
     pub fn documentView(self: *@This()) ?*anyopaque {
@@ -25064,51 +25072,51 @@ pub const ScrollView = opaque {
         return objc.msgSend(self, "setAutohidesScrollers:", void, .{autohidesScrollers});
     }
 
-    pub fn horizontalLineScroll(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "horizontalLineScroll", cf.CGFloat, .{});
+    pub fn horizontalLineScroll(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "horizontalLineScroll", core_foundation.CGFloat, .{});
     }
 
-    pub fn setHorizontalLineScroll(self: *@This(), horizontalLineScroll: cf.CGFloat) void {
+    pub fn setHorizontalLineScroll(self: *@This(), horizontalLineScroll: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setHorizontalLineScroll:", void, .{horizontalLineScroll});
     }
 
-    pub fn verticalLineScroll(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "verticalLineScroll", cf.CGFloat, .{});
+    pub fn verticalLineScroll(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "verticalLineScroll", core_foundation.CGFloat, .{});
     }
 
-    pub fn setVerticalLineScroll(self: *@This(), verticalLineScroll: cf.CGFloat) void {
+    pub fn setVerticalLineScroll(self: *@This(), verticalLineScroll: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setVerticalLineScroll:", void, .{verticalLineScroll});
     }
 
-    pub fn lineScroll(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "lineScroll", cf.CGFloat, .{});
+    pub fn lineScroll(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineScroll", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLineScroll(self: *@This(), lineScroll: cf.CGFloat) void {
+    pub fn setLineScroll(self: *@This(), lineScroll: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLineScroll:", void, .{lineScroll});
     }
 
-    pub fn horizontalPageScroll(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "horizontalPageScroll", cf.CGFloat, .{});
+    pub fn horizontalPageScroll(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "horizontalPageScroll", core_foundation.CGFloat, .{});
     }
 
-    pub fn setHorizontalPageScroll(self: *@This(), horizontalPageScroll: cf.CGFloat) void {
+    pub fn setHorizontalPageScroll(self: *@This(), horizontalPageScroll: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setHorizontalPageScroll:", void, .{horizontalPageScroll});
     }
 
-    pub fn verticalPageScroll(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "verticalPageScroll", cf.CGFloat, .{});
+    pub fn verticalPageScroll(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "verticalPageScroll", core_foundation.CGFloat, .{});
     }
 
-    pub fn setVerticalPageScroll(self: *@This(), verticalPageScroll: cf.CGFloat) void {
+    pub fn setVerticalPageScroll(self: *@This(), verticalPageScroll: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setVerticalPageScroll:", void, .{verticalPageScroll});
     }
 
-    pub fn pageScroll(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "pageScroll", cf.CGFloat, .{});
+    pub fn pageScroll(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "pageScroll", core_foundation.CGFloat, .{});
     }
 
-    pub fn setPageScroll(self: *@This(), pageScroll: cf.CGFloat) void {
+    pub fn setPageScroll(self: *@This(), pageScroll: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setPageScroll:", void, .{pageScroll});
     }
 
@@ -25168,27 +25176,27 @@ pub const ScrollView = opaque {
         return objc.msgSend(self, "setAllowsMagnification:", void, .{allowsMagnification});
     }
 
-    pub fn magnification(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "magnification", cf.CGFloat, .{});
+    pub fn magnification(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "magnification", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMagnification(self: *@This(), magnification: cf.CGFloat) void {
+    pub fn setMagnification(self: *@This(), magnification: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMagnification:", void, .{magnification});
     }
 
-    pub fn maxMagnification(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "maxMagnification", cf.CGFloat, .{});
+    pub fn maxMagnification(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "maxMagnification", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMaxMagnification(self: *@This(), maxMagnification: cf.CGFloat) void {
+    pub fn setMaxMagnification(self: *@This(), maxMagnification: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMaxMagnification:", void, .{maxMagnification});
     }
 
-    pub fn minMagnification(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minMagnification", cf.CGFloat, .{});
+    pub fn minMagnification(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minMagnification", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinMagnification(self: *@This(), minMagnification: cf.CGFloat) void {
+    pub fn setMinMagnification(self: *@This(), minMagnification: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinMagnification:", void, .{minMagnification});
     }
 
@@ -25200,19 +25208,19 @@ pub const ScrollView = opaque {
         return objc.msgSend(self, "setAutomaticallyAdjustsContentInsets:", void, .{automaticallyAdjustsContentInsets});
     }
 
-    pub fn contentInsets(self: *@This()) ns.EdgeInsets {
-        return objc.msgSend(self, "contentInsets", ns.EdgeInsets, .{});
+    pub fn contentInsets(self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(self, "contentInsets", foundation.EdgeInsets, .{});
     }
 
-    pub fn setContentInsets(self: *@This(), contentInsets: ns.EdgeInsets) void {
+    pub fn setContentInsets(self: *@This(), contentInsets: foundation.EdgeInsets) void {
         return objc.msgSend(self, "setContentInsets:", void, .{contentInsets});
     }
 
-    pub fn scrollerInsets(self: *@This()) ns.EdgeInsets {
-        return objc.msgSend(self, "scrollerInsets", ns.EdgeInsets, .{});
+    pub fn scrollerInsets(self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(self, "scrollerInsets", foundation.EdgeInsets, .{});
     }
 
-    pub fn setScrollerInsets(self: *@This(), scrollerInsets: ns.EdgeInsets) void {
+    pub fn setScrollerInsets(self: *@This(), scrollerInsets: foundation.EdgeInsets) void {
         return objc.msgSend(self, "setScrollerInsets:", void, .{scrollerInsets});
     }
 
@@ -25264,12 +25272,12 @@ pub const SegmentedControl = opaque {
         return objc.msgSend(self, "selectSegmentWithTag:", objc.BOOL, .{tag});
     }
 
-    pub fn setWidthForSegment(self: *@This(), width: cf.CGFloat, segment: objc.NSInteger) void {
+    pub fn setWidthForSegment(self: *@This(), width: core_foundation.CGFloat, segment: objc.NSInteger) void {
         return objc.msgSend(self, "setWidth:forSegment:", void, .{width, segment});
     }
 
-    pub fn widthForSegment(self: *@This(), segment: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "widthForSegment:", cf.CGFloat, .{segment});
+    pub fn widthForSegment(self: *@This(), segment: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "widthForSegment:", core_foundation.CGFloat, .{segment});
     }
 
     pub fn setImageForSegment(self: *@This(), image: ?*Image, segment: objc.NSInteger) void {
@@ -25356,8 +25364,8 @@ pub const SegmentedControl = opaque {
         return objc.msgSend(self, "compressWithPrioritizedCompressionOptions:", void, .{prioritizedOptions});
     }
 
-    pub fn minimumSizeWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) ns.Size {
-        return objc.msgSend(self, "minimumSizeWithPrioritizedCompressionOptions:", ns.Size, .{prioritizedOptions});
+    pub fn minimumSizeWithPrioritizedCompressionOptions(self: *@This(), prioritizedOptions: ?*anyopaque) foundation.Size {
+        return objc.msgSend(self, "minimumSizeWithPrioritizedCompressionOptions:", foundation.Size, .{prioritizedOptions});
     }
 
     pub fn segmentCount(self: *@This()) objc.NSInteger {
@@ -25453,12 +25461,12 @@ pub const SegmentedCell = opaque {
         return objc.msgSend(self, "makePreviousSegmentKey", void, .{});
     }
 
-    pub fn setWidthForSegment(self: *@This(), width: cf.CGFloat, segment: objc.NSInteger) void {
+    pub fn setWidthForSegment(self: *@This(), width: core_foundation.CGFloat, segment: objc.NSInteger) void {
         return objc.msgSend(self, "setWidth:forSegment:", void, .{width, segment});
     }
 
-    pub fn widthForSegment(self: *@This(), segment: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "widthForSegment:", cf.CGFloat, .{segment});
+    pub fn widthForSegment(self: *@This(), segment: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "widthForSegment:", core_foundation.CGFloat, .{segment});
     }
 
     pub fn setImageForSegment(self: *@This(), image: ?*Image, segment: objc.NSInteger) void {
@@ -25525,7 +25533,7 @@ pub const SegmentedCell = opaque {
         return objc.msgSend(self, "tagForSegment:", objc.NSInteger, .{segment});
     }
 
-    pub fn drawSegmentInFrameWithView(self: *@This(), segment: objc.NSInteger, frame: ns.Rect, controlView: ?*View) void {
+    pub fn drawSegmentInFrameWithView(self: *@This(), segment: objc.NSInteger, frame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawSegment:inFrame:withView:", void, .{segment, frame, controlView});
     }
 
@@ -25652,15 +25660,15 @@ pub const SliderCell = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn knobRectFlipped(self: *@This(), flipped: objc.BOOL) ns.Rect {
-        return objc.msgSend(self, "knobRectFlipped:", ns.Rect, .{flipped});
+    pub fn knobRectFlipped(self: *@This(), flipped: objc.BOOL) foundation.Rect {
+        return objc.msgSend(self, "knobRectFlipped:", foundation.Rect, .{flipped});
     }
 
-    pub fn barRectFlipped(self: *@This(), flipped: objc.BOOL) ns.Rect {
-        return objc.msgSend(self, "barRectFlipped:", ns.Rect, .{flipped});
+    pub fn barRectFlipped(self: *@This(), flipped: objc.BOOL) foundation.Rect {
+        return objc.msgSend(self, "barRectFlipped:", foundation.Rect, .{flipped});
     }
 
-    pub fn drawKnob(self: *@This(), knobRect: ns.Rect) void {
+    pub fn drawKnob(self: *@This(), knobRect: foundation.Rect) void {
         return objc.msgSend(self, "drawKnob:", void, .{knobRect});
     }
 
@@ -25668,7 +25676,7 @@ pub const SliderCell = opaque {
         return objc.msgSend(self, "drawKnob", void, .{});
     }
 
-    pub fn drawBarInsideFlipped(self: *@This(), rect: ns.Rect, flipped: objc.BOOL) void {
+    pub fn drawBarInsideFlipped(self: *@This(), rect: foundation.Rect, flipped: objc.BOOL) void {
         return objc.msgSend(self, "drawBarInside:flipped:", void, .{rect, flipped});
     }
 
@@ -25716,12 +25724,12 @@ pub const SliderCell = opaque {
         return objc.msgSend(self, "setVertical:", void, .{vertical});
     }
 
-    pub fn trackRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "trackRect", ns.Rect, .{});
+    pub fn trackRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "trackRect", foundation.Rect, .{});
     }
 
-    pub fn knobThickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "knobThickness", cf.CGFloat, .{});
+    pub fn knobThickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "knobThickness", core_foundation.CGFloat, .{});
     }
 
 };
@@ -25773,8 +25781,8 @@ pub const Slider = opaque {
         return objc.msgSend(self, "setAltIncrementValue:", void, .{altIncrementValue});
     }
 
-    pub fn knobThickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "knobThickness", cf.CGFloat, .{});
+    pub fn knobThickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "knobThickness", core_foundation.CGFloat, .{});
     }
 
     pub fn isVertical(self: *@This()) objc.BOOL {
@@ -25829,12 +25837,12 @@ pub const StackView = opaque {
         return objc.msgSend(self, "stackViewWithViews:", *@This(), .{views});
     }
 
-    pub fn setCustomSpacingAfterView(self: *@This(), spacing: cf.CGFloat, view: ?*View) void {
+    pub fn setCustomSpacingAfterView(self: *@This(), spacing: core_foundation.CGFloat, view: ?*View) void {
         return objc.msgSend(self, "setCustomSpacing:afterView:", void, .{spacing, view});
     }
 
-    pub fn customSpacingAfterView(self: *@This(), view: ?*View) cf.CGFloat {
-        return objc.msgSend(self, "customSpacingAfterView:", cf.CGFloat, .{view});
+    pub fn customSpacingAfterView(self: *@This(), view: ?*View) core_foundation.CGFloat {
+        return objc.msgSend(self, "customSpacingAfterView:", core_foundation.CGFloat, .{view});
     }
 
     pub fn addArrangedSubview(self: *@This(), view: ?*View) void {
@@ -25897,11 +25905,11 @@ pub const StackView = opaque {
         return objc.msgSend(self, "setAlignment:", void, .{alignment});
     }
 
-    pub fn edgeInsets(self: *@This()) ns.EdgeInsets {
-        return objc.msgSend(self, "edgeInsets", ns.EdgeInsets, .{});
+    pub fn edgeInsets(self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(self, "edgeInsets", foundation.EdgeInsets, .{});
     }
 
-    pub fn setEdgeInsets(self: *@This(), edgeInsets: ns.EdgeInsets) void {
+    pub fn setEdgeInsets(self: *@This(), edgeInsets: foundation.EdgeInsets) void {
         return objc.msgSend(self, "setEdgeInsets:", void, .{edgeInsets});
     }
 
@@ -25913,11 +25921,11 @@ pub const StackView = opaque {
         return objc.msgSend(self, "setDistribution:", void, .{distribution});
     }
 
-    pub fn spacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "spacing", cf.CGFloat, .{});
+    pub fn spacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "spacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setSpacing(self: *@This(), spacing: cf.CGFloat) void {
+    pub fn setSpacing(self: *@This(), spacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setSpacing:", void, .{spacing});
     }
 
@@ -26007,11 +26015,11 @@ pub const GridView = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFrame(self: *@This(), frameRect: ns.Rect) *@This() {
+    pub fn initWithFrame(self: *@This(), frameRect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFrame:", *@This(), .{frameRect});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -26079,7 +26087,7 @@ pub const GridView = opaque {
         return objc.msgSend(self, "removeColumnAtIndex:", void, .{index});
     }
 
-    pub fn mergeCellsInHorizontalRangeVerticalRange(self: *@This(), hRange: ns.Range, vRange: ns.Range) void {
+    pub fn mergeCellsInHorizontalRangeVerticalRange(self: *@This(), hRange: foundation.Range, vRange: foundation.Range) void {
         return objc.msgSend(self, "mergeCellsInHorizontalRange:verticalRange:", void, .{hRange, vRange});
     }
 
@@ -26115,19 +26123,19 @@ pub const GridView = opaque {
         return objc.msgSend(self, "setRowAlignment:", void, .{rowAlignment});
     }
 
-    pub fn rowSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "rowSpacing", cf.CGFloat, .{});
+    pub fn rowSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "rowSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setRowSpacing(self: *@This(), rowSpacing: cf.CGFloat) void {
+    pub fn setRowSpacing(self: *@This(), rowSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setRowSpacing:", void, .{rowSpacing});
     }
 
-    pub fn columnSpacing(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "columnSpacing", cf.CGFloat, .{});
+    pub fn columnSpacing(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "columnSpacing", core_foundation.CGFloat, .{});
     }
 
-    pub fn setColumnSpacing(self: *@This(), columnSpacing: cf.CGFloat) void {
+    pub fn setColumnSpacing(self: *@This(), columnSpacing: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setColumnSpacing:", void, .{columnSpacing});
     }
 
@@ -26148,7 +26156,7 @@ pub const GridRow = opaque {
         return objc.msgSend(self, "cellAtIndex:", ?*GridCell, .{index});
     }
 
-    pub fn mergeCellsInRange(self: *@This(), range: ns.Range) void {
+    pub fn mergeCellsInRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "mergeCellsInRange:", void, .{range});
     }
 
@@ -26176,27 +26184,27 @@ pub const GridRow = opaque {
         return objc.msgSend(self, "setRowAlignment:", void, .{rowAlignment});
     }
 
-    pub fn height(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "height", cf.CGFloat, .{});
+    pub fn height(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "height", core_foundation.CGFloat, .{});
     }
 
-    pub fn setHeight(self: *@This(), height: cf.CGFloat) void {
+    pub fn setHeight(self: *@This(), height: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setHeight:", void, .{height});
     }
 
-    pub fn topPadding(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "topPadding", cf.CGFloat, .{});
+    pub fn topPadding(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "topPadding", core_foundation.CGFloat, .{});
     }
 
-    pub fn setTopPadding(self: *@This(), topPadding: cf.CGFloat) void {
+    pub fn setTopPadding(self: *@This(), topPadding: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setTopPadding:", void, .{topPadding});
     }
 
-    pub fn bottomPadding(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "bottomPadding", cf.CGFloat, .{});
+    pub fn bottomPadding(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "bottomPadding", core_foundation.CGFloat, .{});
     }
 
-    pub fn setBottomPadding(self: *@This(), bottomPadding: cf.CGFloat) void {
+    pub fn setBottomPadding(self: *@This(), bottomPadding: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setBottomPadding:", void, .{bottomPadding});
     }
 
@@ -26225,7 +26233,7 @@ pub const GridColumn = opaque {
         return objc.msgSend(self, "cellAtIndex:", ?*GridCell, .{index});
     }
 
-    pub fn mergeCellsInRange(self: *@This(), range: ns.Range) void {
+    pub fn mergeCellsInRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "mergeCellsInRange:", void, .{range});
     }
 
@@ -26245,27 +26253,27 @@ pub const GridColumn = opaque {
         return objc.msgSend(self, "setXPlacement:", void, .{xPlacement});
     }
 
-    pub fn width(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "width", cf.CGFloat, .{});
+    pub fn width(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "width", core_foundation.CGFloat, .{});
     }
 
-    pub fn setWidth(self: *@This(), width: cf.CGFloat) void {
+    pub fn setWidth(self: *@This(), width: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setWidth:", void, .{width});
     }
 
-    pub fn leadingPadding(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "leadingPadding", cf.CGFloat, .{});
+    pub fn leadingPadding(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "leadingPadding", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLeadingPadding(self: *@This(), leadingPadding: cf.CGFloat) void {
+    pub fn setLeadingPadding(self: *@This(), leadingPadding: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLeadingPadding:", void, .{leadingPadding});
     }
 
-    pub fn trailingPadding(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "trailingPadding", cf.CGFloat, .{});
+    pub fn trailingPadding(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "trailingPadding", core_foundation.CGFloat, .{});
     }
 
-    pub fn setTrailingPadding(self: *@This(), trailingPadding: cf.CGFloat) void {
+    pub fn setTrailingPadding(self: *@This(), trailingPadding: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setTrailingPadding:", void, .{trailingPadding});
     }
 
@@ -26364,7 +26372,7 @@ pub const TextInputClient = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn insertTextReplacementRange(self: *@This(), string: *objc.Id, replacementRange: ns.Range) void {
+    pub fn insertTextReplacementRange(self: *@This(), string: *objc.Id, replacementRange: foundation.Range) void {
         return objc.msgSend(self, "insertText:replacementRange:", void, .{string, replacementRange});
     }
 
@@ -26372,7 +26380,7 @@ pub const TextInputClient = opaque {
         return objc.msgSend(self, "doCommandBySelector:", void, .{selector});
     }
 
-    pub fn setMarkedTextSelectedRangeReplacementRange(self: *@This(), string: *objc.Id, selectedRange: ns.Range, replacementRange: ns.Range) void {
+    pub fn setMarkedTextSelectedRangeReplacementRange(self: *@This(), string: *objc.Id, selectedRange: foundation.Range, replacementRange: foundation.Range) void {
         return objc.msgSend(self, "setMarkedText:selectedRange:replacementRange:", void, .{string, selectedRange, replacementRange});
     }
 
@@ -26380,19 +26388,19 @@ pub const TextInputClient = opaque {
         return objc.msgSend(self, "unmarkText", void, .{});
     }
 
-    pub fn selectedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "selectedRange", ns.Range, .{});
+    pub fn selectedRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "selectedRange", foundation.Range, .{});
     }
 
-    pub fn markedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "markedRange", ns.Range, .{});
+    pub fn markedRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "markedRange", foundation.Range, .{});
     }
 
     pub fn hasMarkedText(self: *@This()) objc.BOOL {
         return objc.msgSend(self, "hasMarkedText", objc.BOOL, .{});
     }
 
-    pub fn attributedSubstringForProposedRangeActualRange(self: *@This(), range: ns.Range, actualRange: ns.RangePointer) ?*AttributedString {
+    pub fn attributedSubstringForProposedRangeActualRange(self: *@This(), range: foundation.Range, actualRange: foundation.RangePointer) ?*AttributedString {
         return objc.msgSend(self, "attributedSubstringForProposedRange:actualRange:", ?*AttributedString, .{range, actualRange});
     }
 
@@ -26400,11 +26408,11 @@ pub const TextInputClient = opaque {
         return objc.msgSend(self, "validAttributesForMarkedText", ?*anyopaque, .{});
     }
 
-    pub fn firstRectForCharacterRangeActualRange(self: *@This(), range: ns.Range, actualRange: ns.RangePointer) ns.Rect {
-        return objc.msgSend(self, "firstRectForCharacterRange:actualRange:", ns.Rect, .{range, actualRange});
+    pub fn firstRectForCharacterRangeActualRange(self: *@This(), range: foundation.Range, actualRange: foundation.RangePointer) foundation.Rect {
+        return objc.msgSend(self, "firstRectForCharacterRange:actualRange:", foundation.Rect, .{range, actualRange});
     }
 
-    pub fn characterIndexForPoint(self: *@This(), point: ns.Point) objc.NSUInteger {
+    pub fn characterIndexForPoint(self: *@This(), point: foundation.Point) objc.NSUInteger {
         return objc.msgSend(self, "characterIndexForPoint:", objc.NSUInteger, .{point});
     }
 
@@ -26412,12 +26420,12 @@ pub const TextInputClient = opaque {
         return objc.msgSend(self, "attributedString", ?*AttributedString, .{});
     }
 
-    pub fn fractionOfDistanceThroughGlyphForPoint(self: *@This(), point: ns.Point) cf.CGFloat {
-        return objc.msgSend(self, "fractionOfDistanceThroughGlyphForPoint:", cf.CGFloat, .{point});
+    pub fn fractionOfDistanceThroughGlyphForPoint(self: *@This(), point: foundation.Point) core_foundation.CGFloat {
+        return objc.msgSend(self, "fractionOfDistanceThroughGlyphForPoint:", core_foundation.CGFloat, .{point});
     }
 
-    pub fn baselineDeltaForCharacterAtIndex(self: *@This(), anIndex: objc.NSUInteger) cf.CGFloat {
-        return objc.msgSend(self, "baselineDeltaForCharacterAtIndex:", cf.CGFloat, .{anIndex});
+    pub fn baselineDeltaForCharacterAtIndex(self: *@This(), anIndex: objc.NSUInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "baselineDeltaForCharacterAtIndex:", core_foundation.CGFloat, .{anIndex});
     }
 
     pub fn windowLevel(self: *@This()) objc.NSInteger {
@@ -26432,16 +26440,16 @@ pub const TextInputClient = opaque {
         return objc.msgSend(self, "preferredTextAccessoryPlacement", TextCursorAccessoryPlacement, .{});
     }
 
-    pub fn insertAdaptiveImageGlyphReplacementRange(self: *@This(), adaptiveImageGlyph: ?*AdaptiveImageGlyph, replacementRange: ns.Range) void {
+    pub fn insertAdaptiveImageGlyphReplacementRange(self: *@This(), adaptiveImageGlyph: ?*AdaptiveImageGlyph, replacementRange: foundation.Range) void {
         return objc.msgSend(self, "insertAdaptiveImageGlyph:replacementRange:", void, .{adaptiveImageGlyph, replacementRange});
     }
 
-    pub fn unionRectInVisibleSelectedRange(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "unionRectInVisibleSelectedRange", ns.Rect, .{});
+    pub fn unionRectInVisibleSelectedRange(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "unionRectInVisibleSelectedRange", foundation.Rect, .{});
     }
 
-    pub fn documentVisibleRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "documentVisibleRect", ns.Rect, .{});
+    pub fn documentVisibleRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "documentVisibleRect", foundation.Rect, .{});
     }
 
     pub fn supportsAdaptiveImageGlyph(self: *@This()) objc.BOOL {
@@ -26617,31 +26625,31 @@ pub const TextCheckingClient = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn annotatedSubstringForProposedRangeActualRange(self: *@This(), range: ns.Range, actualRange: ns.RangePointer) ?*AttributedString {
+    pub fn annotatedSubstringForProposedRangeActualRange(self: *@This(), range: foundation.Range, actualRange: foundation.RangePointer) ?*AttributedString {
         return objc.msgSend(self, "annotatedSubstringForProposedRange:actualRange:", ?*AttributedString, .{range, actualRange});
     }
 
-    pub fn setAnnotationsRange(self: *@This(), annotations: ?*anyopaque, range: ns.Range) void {
+    pub fn setAnnotationsRange(self: *@This(), annotations: ?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setAnnotations:range:", void, .{annotations, range});
     }
 
-    pub fn addAnnotationsRange(self: *@This(), annotations: ?*anyopaque, range: ns.Range) void {
+    pub fn addAnnotationsRange(self: *@This(), annotations: ?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "addAnnotations:range:", void, .{annotations, range});
     }
 
-    pub fn removeAnnotationRange(self: *@This(), annotationName: ns.AttributedStringKey, range: ns.Range) void {
+    pub fn removeAnnotationRange(self: *@This(), annotationName: foundation.AttributedStringKey, range: foundation.Range) void {
         return objc.msgSend(self, "removeAnnotation:range:", void, .{annotationName, range});
     }
 
-    pub fn replaceCharactersInRangeWithAnnotatedString(self: *@This(), range: ns.Range, annotatedString: ?*AttributedString) void {
+    pub fn replaceCharactersInRangeWithAnnotatedString(self: *@This(), range: foundation.Range, annotatedString: ?*AttributedString) void {
         return objc.msgSend(self, "replaceCharactersInRange:withAnnotatedString:", void, .{range, annotatedString});
     }
 
-    pub fn selectAndShowRange(self: *@This(), range: ns.Range) void {
+    pub fn selectAndShowRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "selectAndShowRange:", void, .{range});
     }
 
-    pub fn viewForRangeFirstRectActualRange(self: *@This(), range: ns.Range, firstRect: ns.RectPointer, actualRange: ns.RangePointer) ?*View {
+    pub fn viewForRangeFirstRectActualRange(self: *@This(), range: foundation.Range, firstRect: foundation.RectPointer, actualRange: foundation.RangePointer) ?*View {
         return objc.msgSend(self, "viewForRange:firstRect:actualRange:", ?*View, .{range, firstRect, actualRange});
     }
 
@@ -26674,11 +26682,11 @@ pub const TextCheckingController = opaque {
         return objc.msgSend(self, "invalidate", void, .{});
     }
 
-    pub fn didChangeTextInRange(self: *@This(), range: ns.Range) void {
+    pub fn didChangeTextInRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "didChangeTextInRange:", void, .{range});
     }
 
-    pub fn insertedTextInRange(self: *@This(), range: ns.Range) void {
+    pub fn insertedTextInRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "insertedTextInRange:", void, .{range});
     }
 
@@ -26686,11 +26694,11 @@ pub const TextCheckingController = opaque {
         return objc.msgSend(self, "didChangeSelectedRange", void, .{});
     }
 
-    pub fn considerTextCheckingForRange(self: *@This(), range: ns.Range) void {
+    pub fn considerTextCheckingForRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "considerTextCheckingForRange:", void, .{range});
     }
 
-    pub fn checkTextInRangeTypesOptions(self: *@This(), range: ns.Range, checkingTypes: ns.TextCheckingTypes, options: ?*anyopaque) void {
+    pub fn checkTextInRangeTypesOptions(self: *@This(), range: foundation.Range, checkingTypes: foundation.TextCheckingTypes, options: ?*anyopaque) void {
         return objc.msgSend(self, "checkTextInRange:types:options:", void, .{range, checkingTypes, options});
     }
 
@@ -26730,7 +26738,7 @@ pub const TextCheckingController = opaque {
         return objc.msgSend(self, "validAnnotations", ?*anyopaque, .{});
     }
 
-    pub fn menuAtIndexClickedOnSelectionEffectiveRange(self: *@This(), location: objc.NSUInteger, clickedOnSelection: objc.BOOL, effectiveRange: ns.RangePointer) ?*Menu {
+    pub fn menuAtIndexClickedOnSelectionEffectiveRange(self: *@This(), location: objc.NSUInteger, clickedOnSelection: objc.BOOL, effectiveRange: foundation.RangePointer) ?*Menu {
         return objc.msgSend(self, "menuAtIndex:clickedOnSelection:effectiveRange:", ?*Menu, .{location, clickedOnSelection, effectiveRange});
     }
 
@@ -26768,7 +26776,7 @@ pub const TextFieldCell = opaque {
         return objc.msgSend(self, "initTextCell:", *@This(), .{string});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -26989,11 +26997,11 @@ pub const TextField = opaque {
         return objc.msgSend(self, "setBezelStyle:", void, .{bezelStyle});
     }
 
-    pub fn preferredMaxLayoutWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "preferredMaxLayoutWidth", cf.CGFloat, .{});
+    pub fn preferredMaxLayoutWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "preferredMaxLayoutWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setPreferredMaxLayoutWidth(self: *@This(), preferredMaxLayoutWidth: cf.CGFloat) void {
+    pub fn setPreferredMaxLayoutWidth(self: *@This(), preferredMaxLayoutWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setPreferredMaxLayoutWidth:", void, .{preferredMaxLayoutWidth});
     }
 
@@ -27031,11 +27039,11 @@ pub const TextFieldDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn textFieldTextViewCandidatesForSelectedRange(self: *@This(), textField: ?*TextField, textView: ?*TextView, selectedRange: ns.Range) ?*Array {
+    pub fn textFieldTextViewCandidatesForSelectedRange(self: *@This(), textField: ?*TextField, textView: ?*TextView, selectedRange: foundation.Range) ?*Array {
         return objc.msgSend(self, "textField:textView:candidatesForSelectedRange:", ?*Array, .{textField, textView, selectedRange});
     }
 
-    pub fn textFieldTextViewCandidatesForSelectedRange(self: *@This(), textField: ?*TextField, textView: ?*TextView, candidates: ?*anyopaque, selectedRange: ns.Range, ) ?*anyopaque {
+    pub fn textFieldTextViewCandidatesForSelectedRange(self: *@This(), textField: ?*TextField, textView: ?*TextView, candidates: ?*anyopaque, selectedRange: foundation.Range, ) ?*anyopaque {
         return objc.msgSend(self, "textField:textView:candidates:forSelectedRange:", ?*anyopaque, .{textField, textView, candidates, selectedRange, });
     }
 
@@ -27112,27 +27120,27 @@ pub const TextContainer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithSize(self: *@This(), size: cf.CGSize) *@This() {
+    pub fn initWithSize(self: *@This(), size: core_foundation.CGSize) *@This() {
         return objc.msgSend(self, "initWithSize:", *@This(), .{size});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn lineFragmentRectForProposedRectAtIndexWritingDirectionRemainingRect(self: *@This(), proposedRect: cf.CGRect, characterIndex: objc.NSUInteger, baseWritingDirection: WritingDirection, remainingRect: ?*cf.CGRect, ) cf.CGRect {
-        return objc.msgSend(self, "lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:", cf.CGRect, .{proposedRect, characterIndex, baseWritingDirection, remainingRect, });
+    pub fn lineFragmentRectForProposedRectAtIndexWritingDirectionRemainingRect(self: *@This(), proposedRect: core_foundation.CGRect, characterIndex: objc.NSUInteger, baseWritingDirection: WritingDirection, remainingRect: ?*core_foundation.CGRect, ) core_foundation.CGRect {
+        return objc.msgSend(self, "lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:", core_foundation.CGRect, .{proposedRect, characterIndex, baseWritingDirection, remainingRect, });
     }
 
     pub fn textLayoutManager(self: *@This()) ?*TextLayoutManager {
         return objc.msgSend(self, "textLayoutManager", ?*TextLayoutManager, .{});
     }
 
-    pub fn size(self: *@This()) cf.CGSize {
-        return objc.msgSend(self, "size", cf.CGSize, .{});
+    pub fn size(self: *@This()) core_foundation.CGSize {
+        return objc.msgSend(self, "size", core_foundation.CGSize, .{});
     }
 
-    pub fn setSize(self: *@This(), size: cf.CGSize) void {
+    pub fn setSize(self: *@This(), size: core_foundation.CGSize) void {
         return objc.msgSend(self, "setSize:", void, .{size});
     }
 
@@ -27144,11 +27152,11 @@ pub const TextContainer = opaque {
         return objc.msgSend(self, "setLineBreakMode:", void, .{lineBreakMode});
     }
 
-    pub fn lineFragmentPadding(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "lineFragmentPadding", cf.CGFloat, .{});
+    pub fn lineFragmentPadding(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineFragmentPadding", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLineFragmentPadding(self: *@This(), lineFragmentPadding: cf.CGFloat) void {
+    pub fn setLineFragmentPadding(self: *@This(), lineFragmentPadding: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLineFragmentPadding:", void, .{lineFragmentPadding});
     }
 
@@ -27248,7 +27256,7 @@ pub const TextStorage = opaque {
         return objc.msgSend(self, "removeLayoutManager:", void, .{aLayoutManager});
     }
 
-    pub fn editedRangeChangeInLength(self: *@This(), editedMask: TextStorageEditActions, editedRange: ns.Range, delta: objc.NSInteger) void {
+    pub fn editedRangeChangeInLength(self: *@This(), editedMask: TextStorageEditActions, editedRange: foundation.Range, delta: objc.NSInteger) void {
         return objc.msgSend(self, "edited:range:changeInLength:", void, .{editedMask, editedRange, delta});
     }
 
@@ -27256,11 +27264,11 @@ pub const TextStorage = opaque {
         return objc.msgSend(self, "processEditing", void, .{});
     }
 
-    pub fn invalidateAttributesInRange(self: *@This(), range: ns.Range) void {
+    pub fn invalidateAttributesInRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "invalidateAttributesInRange:", void, .{range});
     }
 
-    pub fn ensureAttributesAreFixedInRange(self: *@This(), range: ns.Range) void {
+    pub fn ensureAttributesAreFixedInRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "ensureAttributesAreFixedInRange:", void, .{range});
     }
 
@@ -27272,8 +27280,8 @@ pub const TextStorage = opaque {
         return objc.msgSend(self, "editedMask", TextStorageEditActions, .{});
     }
 
-    pub fn editedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "editedRange", ns.Range, .{});
+    pub fn editedRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "editedRange", foundation.Range, .{});
     }
 
     pub fn changeInLength(self: *@This()) objc.NSInteger {
@@ -27310,11 +27318,11 @@ pub const TextStorageDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn textStorageWillProcessEditingRangeChangeInLength(self: *@This(), textStorage: ?*TextStorage, editedMask: TextStorageEditActions, editedRange: ns.Range, delta: objc.NSInteger, ) void {
+    pub fn textStorageWillProcessEditingRangeChangeInLength(self: *@This(), textStorage: ?*TextStorage, editedMask: TextStorageEditActions, editedRange: foundation.Range, delta: objc.NSInteger, ) void {
         return objc.msgSend(self, "textStorage:willProcessEditing:range:changeInLength:", void, .{textStorage, editedMask, editedRange, delta, });
     }
 
-    pub fn textStorageDidProcessEditingRangeChangeInLength(self: *@This(), textStorage: ?*TextStorage, editedMask: TextStorageEditActions, editedRange: ns.Range, delta: objc.NSInteger, ) void {
+    pub fn textStorageDidProcessEditingRangeChangeInLength(self: *@This(), textStorage: ?*TextStorage, editedMask: TextStorageEditActions, editedRange: foundation.Range, delta: objc.NSInteger, ) void {
         return objc.msgSend(self, "textStorage:didProcessEditing:range:changeInLength:", void, .{textStorage, editedMask, editedRange, delta, });
     }
 
@@ -27328,7 +27336,7 @@ pub const TextStorageObserving = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn processEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange(self: *@This(), textStorage: ?*TextStorage, editMask: TextStorageEditActions, newCharRange: ns.Range, delta: objc.NSInteger, invalidatedCharRange: ns.Range, ) void {
+    pub fn processEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange(self: *@This(), textStorage: ?*TextStorage, editMask: TextStorageEditActions, newCharRange: foundation.Range, delta: objc.NSInteger, invalidatedCharRange: foundation.Range, ) void {
         return objc.msgSend(self, "processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:", void, .{textStorage, editMask, newCharRange, delta, invalidatedCharRange, });
     }
 
@@ -27454,7 +27462,7 @@ pub const LayoutManager = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -27482,39 +27490,39 @@ pub const LayoutManager = opaque {
         return objc.msgSend(self, "textContainerChangedTextView:", void, .{container});
     }
 
-    pub fn invalidateGlyphsForCharacterRangeChangeInLengthActualCharacterRange(self: *@This(), charRange: ns.Range, delta: objc.NSInteger, actualCharRange: ns.RangePointer) void {
+    pub fn invalidateGlyphsForCharacterRangeChangeInLengthActualCharacterRange(self: *@This(), charRange: foundation.Range, delta: objc.NSInteger, actualCharRange: foundation.RangePointer) void {
         return objc.msgSend(self, "invalidateGlyphsForCharacterRange:changeInLength:actualCharacterRange:", void, .{charRange, delta, actualCharRange});
     }
 
-    pub fn invalidateLayoutForCharacterRangeActualCharacterRange(self: *@This(), charRange: ns.Range, actualCharRange: ns.RangePointer) void {
+    pub fn invalidateLayoutForCharacterRangeActualCharacterRange(self: *@This(), charRange: foundation.Range, actualCharRange: foundation.RangePointer) void {
         return objc.msgSend(self, "invalidateLayoutForCharacterRange:actualCharacterRange:", void, .{charRange, actualCharRange});
     }
 
-    pub fn invalidateDisplayForCharacterRange(self: *@This(), charRange: ns.Range) void {
+    pub fn invalidateDisplayForCharacterRange(self: *@This(), charRange: foundation.Range) void {
         return objc.msgSend(self, "invalidateDisplayForCharacterRange:", void, .{charRange});
     }
 
-    pub fn invalidateDisplayForGlyphRange(self: *@This(), glyphRange: ns.Range) void {
+    pub fn invalidateDisplayForGlyphRange(self: *@This(), glyphRange: foundation.Range) void {
         return objc.msgSend(self, "invalidateDisplayForGlyphRange:", void, .{glyphRange});
     }
 
-    pub fn processEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange(self: *@This(), textStorage: ?*TextStorage, editMask: TextStorageEditActions, newCharRange: ns.Range, delta: objc.NSInteger, invalidatedCharRange: ns.Range, ) void {
+    pub fn processEditingForTextStorageEditedRangeChangeInLengthInvalidatedRange(self: *@This(), textStorage: ?*TextStorage, editMask: TextStorageEditActions, newCharRange: foundation.Range, delta: objc.NSInteger, invalidatedCharRange: foundation.Range, ) void {
         return objc.msgSend(self, "processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:", void, .{textStorage, editMask, newCharRange, delta, invalidatedCharRange, });
     }
 
-    pub fn ensureGlyphsForCharacterRange(self: *@This(), charRange: ns.Range) void {
+    pub fn ensureGlyphsForCharacterRange(self: *@This(), charRange: foundation.Range) void {
         return objc.msgSend(self, "ensureGlyphsForCharacterRange:", void, .{charRange});
     }
 
-    pub fn ensureGlyphsForGlyphRange(self: *@This(), glyphRange: ns.Range) void {
+    pub fn ensureGlyphsForGlyphRange(self: *@This(), glyphRange: foundation.Range) void {
         return objc.msgSend(self, "ensureGlyphsForGlyphRange:", void, .{glyphRange});
     }
 
-    pub fn ensureLayoutForCharacterRange(self: *@This(), charRange: ns.Range) void {
+    pub fn ensureLayoutForCharacterRange(self: *@This(), charRange: foundation.Range) void {
         return objc.msgSend(self, "ensureLayoutForCharacterRange:", void, .{charRange});
     }
 
-    pub fn ensureLayoutForGlyphRange(self: *@This(), glyphRange: ns.Range) void {
+    pub fn ensureLayoutForGlyphRange(self: *@This(), glyphRange: foundation.Range) void {
         return objc.msgSend(self, "ensureLayoutForGlyphRange:", void, .{glyphRange});
     }
 
@@ -27522,20 +27530,20 @@ pub const LayoutManager = opaque {
         return objc.msgSend(self, "ensureLayoutForTextContainer:", void, .{container});
     }
 
-    pub fn ensureLayoutForBoundingRectInTextContainer(self: *@This(), bounds: ns.Rect, container: ?*TextContainer) void {
+    pub fn ensureLayoutForBoundingRectInTextContainer(self: *@This(), bounds: foundation.Rect, container: ?*TextContainer) void {
         return objc.msgSend(self, "ensureLayoutForBoundingRect:inTextContainer:", void, .{bounds, container});
     }
 
-    pub fn setGlyphsPropertiesCharacterIndexesFontForGlyphRange(self: *@This(), glyphs: ?*, props: ?*GlyphProperty, charIndexes: ?*objc.NSUInteger, aFont: ?*Font, glyphRange: ns.Range, ) void {
+    pub fn setGlyphsPropertiesCharacterIndexesFontForGlyphRange(self: *@This(), glyphs: ?*core_graphics.Glyph, props: ?*GlyphProperty, charIndexes: ?*objc.NSUInteger, aFont: ?*Font, glyphRange: foundation.Range, ) void {
         return objc.msgSend(self, "setGlyphs:properties:characterIndexes:font:forGlyphRange:", void, .{glyphs, props, charIndexes, aFont, glyphRange, });
     }
 
-    pub fn CGGlyphAtIndexIsValidIndex(self: *@This(), glyphIndex: objc.NSUInteger, isValidIndex: ?*objc.BOOL)  {
-        return objc.msgSend(self, "CGGlyphAtIndex:isValidIndex:", , .{glyphIndex, isValidIndex});
+    pub fn CGGlyphAtIndexIsValidIndex(self: *@This(), glyphIndex: objc.NSUInteger, isValidIndex: ?*objc.BOOL) core_graphics.Glyph {
+        return objc.msgSend(self, "CGGlyphAtIndex:isValidIndex:", core_graphics.Glyph, .{glyphIndex, isValidIndex});
     }
 
-    pub fn CGGlyphAtIndex(self: *@This(), glyphIndex: objc.NSUInteger)  {
-        return objc.msgSend(self, "CGGlyphAtIndex:", , .{glyphIndex});
+    pub fn CGGlyphAtIndex(self: *@This(), glyphIndex: objc.NSUInteger) core_graphics.Glyph {
+        return objc.msgSend(self, "CGGlyphAtIndex:", core_graphics.Glyph, .{glyphIndex});
     }
 
     pub fn isValidGlyphIndex(self: *@This(), glyphIndex: objc.NSUInteger) objc.BOOL {
@@ -27554,23 +27562,23 @@ pub const LayoutManager = opaque {
         return objc.msgSend(self, "glyphIndexForCharacterAtIndex:", objc.NSUInteger, .{charIndex});
     }
 
-    pub fn getGlyphsInRangeGlyphsPropertiesCharacterIndexesBidiLevels(self: *@This(), glyphRange: ns.Range, glyphBuffer: ?*, props: ?*GlyphProperty, charIndexBuffer: ?*objc.NSUInteger, bidiLevelBuffer: ?*u8, ) objc.NSUInteger {
+    pub fn getGlyphsInRangeGlyphsPropertiesCharacterIndexesBidiLevels(self: *@This(), glyphRange: foundation.Range, glyphBuffer: ?*core_graphics.Glyph, props: ?*GlyphProperty, charIndexBuffer: ?*objc.NSUInteger, bidiLevelBuffer: ?*u8, ) objc.NSUInteger {
         return objc.msgSend(self, "getGlyphsInRange:glyphs:properties:characterIndexes:bidiLevels:", objc.NSUInteger, .{glyphRange, glyphBuffer, props, charIndexBuffer, bidiLevelBuffer, });
     }
 
-    pub fn setTextContainerForGlyphRange(self: *@This(), container: ?*TextContainer, glyphRange: ns.Range) void {
+    pub fn setTextContainerForGlyphRange(self: *@This(), container: ?*TextContainer, glyphRange: foundation.Range) void {
         return objc.msgSend(self, "setTextContainer:forGlyphRange:", void, .{container, glyphRange});
     }
 
-    pub fn setLineFragmentRectForGlyphRangeUsedRect(self: *@This(), fragmentRect: ns.Rect, glyphRange: ns.Range, usedRect: ns.Rect) void {
+    pub fn setLineFragmentRectForGlyphRangeUsedRect(self: *@This(), fragmentRect: foundation.Rect, glyphRange: foundation.Range, usedRect: foundation.Rect) void {
         return objc.msgSend(self, "setLineFragmentRect:forGlyphRange:usedRect:", void, .{fragmentRect, glyphRange, usedRect});
     }
 
-    pub fn setExtraLineFragmentRectUsedRectTextContainer(self: *@This(), fragmentRect: ns.Rect, usedRect: ns.Rect, container: ?*TextContainer) void {
+    pub fn setExtraLineFragmentRectUsedRectTextContainer(self: *@This(), fragmentRect: foundation.Rect, usedRect: foundation.Rect, container: ?*TextContainer) void {
         return objc.msgSend(self, "setExtraLineFragmentRect:usedRect:textContainer:", void, .{fragmentRect, usedRect, container});
     }
 
-    pub fn setLocationForStartOfGlyphRange(self: *@This(), location: ns.Point, glyphRange: ns.Range) void {
+    pub fn setLocationForStartOfGlyphRange(self: *@This(), location: foundation.Point, glyphRange: foundation.Range) void {
         return objc.msgSend(self, "setLocation:forStartOfGlyphRange:", void, .{location, glyphRange});
     }
 
@@ -27582,7 +27590,7 @@ pub const LayoutManager = opaque {
         return objc.msgSend(self, "setDrawsOutsideLineFragment:forGlyphAtIndex:", void, .{flag, glyphIndex});
     }
 
-    pub fn setAttachmentSizeForGlyphRange(self: *@This(), attachmentSize: ns.Size, glyphRange: ns.Range) void {
+    pub fn setAttachmentSizeForGlyphRange(self: *@This(), attachmentSize: foundation.Size, glyphRange: foundation.Range) void {
         return objc.msgSend(self, "setAttachmentSize:forGlyphRange:", void, .{attachmentSize, glyphRange});
     }
 
@@ -27598,36 +27606,36 @@ pub const LayoutManager = opaque {
         return objc.msgSend(self, "firstUnlaidGlyphIndex", objc.NSUInteger, .{});
     }
 
-    pub fn textContainerForGlyphAtIndexEffectiveRange(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: ns.RangePointer) ?*TextContainer {
+    pub fn textContainerForGlyphAtIndexEffectiveRange(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: foundation.RangePointer) ?*TextContainer {
         return objc.msgSend(self, "textContainerForGlyphAtIndex:effectiveRange:", ?*TextContainer, .{glyphIndex, effectiveGlyphRange});
     }
 
-    pub fn textContainerForGlyphAtIndexEffectiveRangeWithoutAdditionalLayout(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: ns.RangePointer, flag: objc.BOOL) ?*TextContainer {
+    pub fn textContainerForGlyphAtIndexEffectiveRangeWithoutAdditionalLayout(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: foundation.RangePointer, flag: objc.BOOL) ?*TextContainer {
         return objc.msgSend(self, "textContainerForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:", ?*TextContainer, .{glyphIndex, effectiveGlyphRange, flag});
     }
 
-    pub fn usedRectForTextContainer(self: *@This(), container: ?*TextContainer) ns.Rect {
-        return objc.msgSend(self, "usedRectForTextContainer:", ns.Rect, .{container});
+    pub fn usedRectForTextContainer(self: *@This(), container: ?*TextContainer) foundation.Rect {
+        return objc.msgSend(self, "usedRectForTextContainer:", foundation.Rect, .{container});
     }
 
-    pub fn lineFragmentRectForGlyphAtIndexEffectiveRange(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: ns.RangePointer) ns.Rect {
-        return objc.msgSend(self, "lineFragmentRectForGlyphAtIndex:effectiveRange:", ns.Rect, .{glyphIndex, effectiveGlyphRange});
+    pub fn lineFragmentRectForGlyphAtIndexEffectiveRange(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: foundation.RangePointer) foundation.Rect {
+        return objc.msgSend(self, "lineFragmentRectForGlyphAtIndex:effectiveRange:", foundation.Rect, .{glyphIndex, effectiveGlyphRange});
     }
 
-    pub fn lineFragmentRectForGlyphAtIndexEffectiveRangeWithoutAdditionalLayout(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: ns.RangePointer, flag: objc.BOOL) ns.Rect {
-        return objc.msgSend(self, "lineFragmentRectForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:", ns.Rect, .{glyphIndex, effectiveGlyphRange, flag});
+    pub fn lineFragmentRectForGlyphAtIndexEffectiveRangeWithoutAdditionalLayout(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: foundation.RangePointer, flag: objc.BOOL) foundation.Rect {
+        return objc.msgSend(self, "lineFragmentRectForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:", foundation.Rect, .{glyphIndex, effectiveGlyphRange, flag});
     }
 
-    pub fn lineFragmentUsedRectForGlyphAtIndexEffectiveRange(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: ns.RangePointer) ns.Rect {
-        return objc.msgSend(self, "lineFragmentUsedRectForGlyphAtIndex:effectiveRange:", ns.Rect, .{glyphIndex, effectiveGlyphRange});
+    pub fn lineFragmentUsedRectForGlyphAtIndexEffectiveRange(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: foundation.RangePointer) foundation.Rect {
+        return objc.msgSend(self, "lineFragmentUsedRectForGlyphAtIndex:effectiveRange:", foundation.Rect, .{glyphIndex, effectiveGlyphRange});
     }
 
-    pub fn lineFragmentUsedRectForGlyphAtIndexEffectiveRangeWithoutAdditionalLayout(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: ns.RangePointer, flag: objc.BOOL) ns.Rect {
-        return objc.msgSend(self, "lineFragmentUsedRectForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:", ns.Rect, .{glyphIndex, effectiveGlyphRange, flag});
+    pub fn lineFragmentUsedRectForGlyphAtIndexEffectiveRangeWithoutAdditionalLayout(self: *@This(), glyphIndex: objc.NSUInteger, effectiveGlyphRange: foundation.RangePointer, flag: objc.BOOL) foundation.Rect {
+        return objc.msgSend(self, "lineFragmentUsedRectForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:", foundation.Rect, .{glyphIndex, effectiveGlyphRange, flag});
     }
 
-    pub fn locationForGlyphAtIndex(self: *@This(), glyphIndex: objc.NSUInteger) ns.Point {
-        return objc.msgSend(self, "locationForGlyphAtIndex:", ns.Point, .{glyphIndex});
+    pub fn locationForGlyphAtIndex(self: *@This(), glyphIndex: objc.NSUInteger) foundation.Point {
+        return objc.msgSend(self, "locationForGlyphAtIndex:", foundation.Point, .{glyphIndex});
     }
 
     pub fn notShownAttributeForGlyphAtIndex(self: *@This(), glyphIndex: objc.NSUInteger) objc.BOOL {
@@ -27638,168 +27646,168 @@ pub const LayoutManager = opaque {
         return objc.msgSend(self, "drawsOutsideLineFragmentForGlyphAtIndex:", objc.BOOL, .{glyphIndex});
     }
 
-    pub fn attachmentSizeForGlyphAtIndex(self: *@This(), glyphIndex: objc.NSUInteger) ns.Size {
-        return objc.msgSend(self, "attachmentSizeForGlyphAtIndex:", ns.Size, .{glyphIndex});
+    pub fn attachmentSizeForGlyphAtIndex(self: *@This(), glyphIndex: objc.NSUInteger) foundation.Size {
+        return objc.msgSend(self, "attachmentSizeForGlyphAtIndex:", foundation.Size, .{glyphIndex});
     }
 
-    pub fn truncatedGlyphRangeInLineFragmentForGlyphAtIndex(self: *@This(), glyphIndex: objc.NSUInteger) ns.Range {
-        return objc.msgSend(self, "truncatedGlyphRangeInLineFragmentForGlyphAtIndex:", ns.Range, .{glyphIndex});
+    pub fn truncatedGlyphRangeInLineFragmentForGlyphAtIndex(self: *@This(), glyphIndex: objc.NSUInteger) foundation.Range {
+        return objc.msgSend(self, "truncatedGlyphRangeInLineFragmentForGlyphAtIndex:", foundation.Range, .{glyphIndex});
     }
 
-    pub fn glyphRangeForCharacterRangeActualCharacterRange(self: *@This(), charRange: ns.Range, actualCharRange: ns.RangePointer) ns.Range {
-        return objc.msgSend(self, "glyphRangeForCharacterRange:actualCharacterRange:", ns.Range, .{charRange, actualCharRange});
+    pub fn glyphRangeForCharacterRangeActualCharacterRange(self: *@This(), charRange: foundation.Range, actualCharRange: foundation.RangePointer) foundation.Range {
+        return objc.msgSend(self, "glyphRangeForCharacterRange:actualCharacterRange:", foundation.Range, .{charRange, actualCharRange});
     }
 
-    pub fn characterRangeForGlyphRangeActualGlyphRange(self: *@This(), glyphRange: ns.Range, actualGlyphRange: ns.RangePointer) ns.Range {
-        return objc.msgSend(self, "characterRangeForGlyphRange:actualGlyphRange:", ns.Range, .{glyphRange, actualGlyphRange});
+    pub fn characterRangeForGlyphRangeActualGlyphRange(self: *@This(), glyphRange: foundation.Range, actualGlyphRange: foundation.RangePointer) foundation.Range {
+        return objc.msgSend(self, "characterRangeForGlyphRange:actualGlyphRange:", foundation.Range, .{glyphRange, actualGlyphRange});
     }
 
-    pub fn glyphRangeForTextContainer(self: *@This(), container: ?*TextContainer) ns.Range {
-        return objc.msgSend(self, "glyphRangeForTextContainer:", ns.Range, .{container});
+    pub fn glyphRangeForTextContainer(self: *@This(), container: ?*TextContainer) foundation.Range {
+        return objc.msgSend(self, "glyphRangeForTextContainer:", foundation.Range, .{container});
     }
 
-    pub fn rangeOfNominallySpacedGlyphsContainingIndex(self: *@This(), glyphIndex: objc.NSUInteger) ns.Range {
-        return objc.msgSend(self, "rangeOfNominallySpacedGlyphsContainingIndex:", ns.Range, .{glyphIndex});
+    pub fn rangeOfNominallySpacedGlyphsContainingIndex(self: *@This(), glyphIndex: objc.NSUInteger) foundation.Range {
+        return objc.msgSend(self, "rangeOfNominallySpacedGlyphsContainingIndex:", foundation.Range, .{glyphIndex});
     }
 
-    pub fn boundingRectForGlyphRangeInTextContainer(self: *@This(), glyphRange: ns.Range, container: ?*TextContainer) ns.Rect {
-        return objc.msgSend(self, "boundingRectForGlyphRange:inTextContainer:", ns.Rect, .{glyphRange, container});
+    pub fn boundingRectForGlyphRangeInTextContainer(self: *@This(), glyphRange: foundation.Range, container: ?*TextContainer) foundation.Rect {
+        return objc.msgSend(self, "boundingRectForGlyphRange:inTextContainer:", foundation.Rect, .{glyphRange, container});
     }
 
-    pub fn glyphRangeForBoundingRectInTextContainer(self: *@This(), bounds: ns.Rect, container: ?*TextContainer) ns.Range {
-        return objc.msgSend(self, "glyphRangeForBoundingRect:inTextContainer:", ns.Range, .{bounds, container});
+    pub fn glyphRangeForBoundingRectInTextContainer(self: *@This(), bounds: foundation.Rect, container: ?*TextContainer) foundation.Range {
+        return objc.msgSend(self, "glyphRangeForBoundingRect:inTextContainer:", foundation.Range, .{bounds, container});
     }
 
-    pub fn glyphRangeForBoundingRectWithoutAdditionalLayoutInTextContainer(self: *@This(), bounds: ns.Rect, container: ?*TextContainer) ns.Range {
-        return objc.msgSend(self, "glyphRangeForBoundingRectWithoutAdditionalLayout:inTextContainer:", ns.Range, .{bounds, container});
+    pub fn glyphRangeForBoundingRectWithoutAdditionalLayoutInTextContainer(self: *@This(), bounds: foundation.Rect, container: ?*TextContainer) foundation.Range {
+        return objc.msgSend(self, "glyphRangeForBoundingRectWithoutAdditionalLayout:inTextContainer:", foundation.Range, .{bounds, container});
     }
 
-    pub fn glyphIndexForPointInTextContainerFractionOfDistanceThroughGlyph(self: *@This(), point: ns.Point, container: ?*TextContainer, partialFraction: ?*cf.CGFloat) objc.NSUInteger {
+    pub fn glyphIndexForPointInTextContainerFractionOfDistanceThroughGlyph(self: *@This(), point: foundation.Point, container: ?*TextContainer, partialFraction: ?*core_foundation.CGFloat) objc.NSUInteger {
         return objc.msgSend(self, "glyphIndexForPoint:inTextContainer:fractionOfDistanceThroughGlyph:", objc.NSUInteger, .{point, container, partialFraction});
     }
 
-    pub fn glyphIndexForPointInTextContainer(self: *@This(), point: ns.Point, container: ?*TextContainer) objc.NSUInteger {
+    pub fn glyphIndexForPointInTextContainer(self: *@This(), point: foundation.Point, container: ?*TextContainer) objc.NSUInteger {
         return objc.msgSend(self, "glyphIndexForPoint:inTextContainer:", objc.NSUInteger, .{point, container});
     }
 
-    pub fn fractionOfDistanceThroughGlyphForPointInTextContainer(self: *@This(), point: ns.Point, container: ?*TextContainer) cf.CGFloat {
-        return objc.msgSend(self, "fractionOfDistanceThroughGlyphForPoint:inTextContainer:", cf.CGFloat, .{point, container});
+    pub fn fractionOfDistanceThroughGlyphForPointInTextContainer(self: *@This(), point: foundation.Point, container: ?*TextContainer) core_foundation.CGFloat {
+        return objc.msgSend(self, "fractionOfDistanceThroughGlyphForPoint:inTextContainer:", core_foundation.CGFloat, .{point, container});
     }
 
-    pub fn characterIndexForPointInTextContainerFractionOfDistanceBetweenInsertionPoints(self: *@This(), point: ns.Point, container: ?*TextContainer, partialFraction: ?*cf.CGFloat) objc.NSUInteger {
+    pub fn characterIndexForPointInTextContainerFractionOfDistanceBetweenInsertionPoints(self: *@This(), point: foundation.Point, container: ?*TextContainer, partialFraction: ?*core_foundation.CGFloat) objc.NSUInteger {
         return objc.msgSend(self, "characterIndexForPoint:inTextContainer:fractionOfDistanceBetweenInsertionPoints:", objc.NSUInteger, .{point, container, partialFraction});
     }
 
-    pub fn getLineFragmentInsertionPointsForCharacterAtIndexAlternatePositionsInDisplayOrderPositionsCharacterIndexes(self: *@This(), charIndex: objc.NSUInteger, aFlag: objc.BOOL, dFlag: objc.BOOL, positions: ?*cf.CGFloat, charIndexes: ?*objc.NSUInteger, ) objc.NSUInteger {
+    pub fn getLineFragmentInsertionPointsForCharacterAtIndexAlternatePositionsInDisplayOrderPositionsCharacterIndexes(self: *@This(), charIndex: objc.NSUInteger, aFlag: objc.BOOL, dFlag: objc.BOOL, positions: ?*core_foundation.CGFloat, charIndexes: ?*objc.NSUInteger, ) objc.NSUInteger {
         return objc.msgSend(self, "getLineFragmentInsertionPointsForCharacterAtIndex:alternatePositions:inDisplayOrder:positions:characterIndexes:", objc.NSUInteger, .{charIndex, aFlag, dFlag, positions, charIndexes, });
     }
 
-    pub fn enumerateLineFragmentsForGlyphRangeUsingBlock(self: *@This(), glyphRange: ns.Range, block: *const fn(ns.Rect, ns.Rect, ?*TextContainer, ns.Range, ?*objc.BOOL, ) callconv(.C) void) void {
+    pub fn enumerateLineFragmentsForGlyphRangeUsingBlock(self: *@This(), glyphRange: foundation.Range, block: *const fn(foundation.Rect, foundation.Rect, ?*TextContainer, foundation.Range, ?*objc.BOOL, ) callconv(.C) void) void {
         return objc.msgSend(self, "enumerateLineFragmentsForGlyphRange:usingBlock:", void, .{glyphRange, block});
     }
 
-    pub fn enumerateEnclosingRectsForGlyphRangeWithinSelectedGlyphRangeInTextContainerUsingBlock(self: *@This(), glyphRange: ns.Range, selectedRange: ns.Range, textContainer: ?*TextContainer, block: *const fn(ns.Rect, ?*objc.BOOL) callconv(.C) void, ) void {
+    pub fn enumerateEnclosingRectsForGlyphRangeWithinSelectedGlyphRangeInTextContainerUsingBlock(self: *@This(), glyphRange: foundation.Range, selectedRange: foundation.Range, textContainer: ?*TextContainer, block: *const fn(foundation.Rect, ?*objc.BOOL) callconv(.C) void, ) void {
         return objc.msgSend(self, "enumerateEnclosingRectsForGlyphRange:withinSelectedGlyphRange:inTextContainer:usingBlock:", void, .{glyphRange, selectedRange, textContainer, block, });
     }
 
-    pub fn drawBackgroundForGlyphRangeAtPoint(self: *@This(), glyphsToShow: ns.Range, origin: ns.Point) void {
+    pub fn drawBackgroundForGlyphRangeAtPoint(self: *@This(), glyphsToShow: foundation.Range, origin: foundation.Point) void {
         return objc.msgSend(self, "drawBackgroundForGlyphRange:atPoint:", void, .{glyphsToShow, origin});
     }
 
-    pub fn drawGlyphsForGlyphRangeAtPoint(self: *@This(), glyphsToShow: ns.Range, origin: ns.Point) void {
+    pub fn drawGlyphsForGlyphRangeAtPoint(self: *@This(), glyphsToShow: foundation.Range, origin: foundation.Point) void {
         return objc.msgSend(self, "drawGlyphsForGlyphRange:atPoint:", void, .{glyphsToShow, origin});
     }
 
-    pub fn showCGGlyphsPositionsCountFontTextMatrixAttributesInContext(self: *@This(), glyphs: ?*, positions: ?*cf.CGPoint, glyphCount: objc.NSInteger, font: ?*Font, textMatrix: cf.CGAffineTransform, attributes: ?*anyopaque, CGContext: , ) void {
+    pub fn showCGGlyphsPositionsCountFontTextMatrixAttributesInContext(self: *@This(), glyphs: ?*core_graphics.Glyph, positions: ?*core_foundation.CGPoint, glyphCount: objc.NSInteger, font: ?*Font, textMatrix: core_foundation.CGAffineTransform, attributes: ?*anyopaque, CGContext: core_graphics.ContextRef, ) void {
         return objc.msgSend(self, "showCGGlyphs:positions:count:font:textMatrix:attributes:inContext:", void, .{glyphs, positions, glyphCount, font, textMatrix, attributes, CGContext, });
     }
 
-    pub fn fillBackgroundRectArrayCountForCharacterRangeColor(self: *@This(), rectArray: ?*ns.Rect, rectCount: objc.NSUInteger, charRange: ns.Range, color: ?*Color, ) void {
+    pub fn fillBackgroundRectArrayCountForCharacterRangeColor(self: *@This(), rectArray: ?*foundation.Rect, rectCount: objc.NSUInteger, charRange: foundation.Range, color: ?*Color, ) void {
         return objc.msgSend(self, "fillBackgroundRectArray:count:forCharacterRange:color:", void, .{rectArray, rectCount, charRange, color, });
     }
 
-    pub fn drawUnderlineForGlyphRangeUnderlineTypeBaselineOffsetLineFragmentRectLineFragmentGlyphRangeContainerOrigin(self: *@This(), glyphRange: ns.Range, underlineVal: UnderlineStyle, baselineOffset: cf.CGFloat, lineRect: ns.Rect, lineGlyphRange: ns.Range, containerOrigin: ns.Point, ) void {
+    pub fn drawUnderlineForGlyphRangeUnderlineTypeBaselineOffsetLineFragmentRectLineFragmentGlyphRangeContainerOrigin(self: *@This(), glyphRange: foundation.Range, underlineVal: UnderlineStyle, baselineOffset: core_foundation.CGFloat, lineRect: foundation.Rect, lineGlyphRange: foundation.Range, containerOrigin: foundation.Point, ) void {
         return objc.msgSend(self, "drawUnderlineForGlyphRange:underlineType:baselineOffset:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:", void, .{glyphRange, underlineVal, baselineOffset, lineRect, lineGlyphRange, containerOrigin, });
     }
 
-    pub fn underlineGlyphRangeUnderlineTypeLineFragmentRectLineFragmentGlyphRangeContainerOrigin(self: *@This(), glyphRange: ns.Range, underlineVal: UnderlineStyle, lineRect: ns.Rect, lineGlyphRange: ns.Range, containerOrigin: ns.Point, ) void {
+    pub fn underlineGlyphRangeUnderlineTypeLineFragmentRectLineFragmentGlyphRangeContainerOrigin(self: *@This(), glyphRange: foundation.Range, underlineVal: UnderlineStyle, lineRect: foundation.Rect, lineGlyphRange: foundation.Range, containerOrigin: foundation.Point, ) void {
         return objc.msgSend(self, "underlineGlyphRange:underlineType:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:", void, .{glyphRange, underlineVal, lineRect, lineGlyphRange, containerOrigin, });
     }
 
-    pub fn drawStrikethroughForGlyphRangeStrikethroughTypeBaselineOffsetLineFragmentRectLineFragmentGlyphRangeContainerOrigin(self: *@This(), glyphRange: ns.Range, strikethroughVal: UnderlineStyle, baselineOffset: cf.CGFloat, lineRect: ns.Rect, lineGlyphRange: ns.Range, containerOrigin: ns.Point, ) void {
+    pub fn drawStrikethroughForGlyphRangeStrikethroughTypeBaselineOffsetLineFragmentRectLineFragmentGlyphRangeContainerOrigin(self: *@This(), glyphRange: foundation.Range, strikethroughVal: UnderlineStyle, baselineOffset: core_foundation.CGFloat, lineRect: foundation.Rect, lineGlyphRange: foundation.Range, containerOrigin: foundation.Point, ) void {
         return objc.msgSend(self, "drawStrikethroughForGlyphRange:strikethroughType:baselineOffset:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:", void, .{glyphRange, strikethroughVal, baselineOffset, lineRect, lineGlyphRange, containerOrigin, });
     }
 
-    pub fn strikethroughGlyphRangeStrikethroughTypeLineFragmentRectLineFragmentGlyphRangeContainerOrigin(self: *@This(), glyphRange: ns.Range, strikethroughVal: UnderlineStyle, lineRect: ns.Rect, lineGlyphRange: ns.Range, containerOrigin: ns.Point, ) void {
+    pub fn strikethroughGlyphRangeStrikethroughTypeLineFragmentRectLineFragmentGlyphRangeContainerOrigin(self: *@This(), glyphRange: foundation.Range, strikethroughVal: UnderlineStyle, lineRect: foundation.Rect, lineGlyphRange: foundation.Range, containerOrigin: foundation.Point, ) void {
         return objc.msgSend(self, "strikethroughGlyphRange:strikethroughType:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:", void, .{glyphRange, strikethroughVal, lineRect, lineGlyphRange, containerOrigin, });
     }
 
-    pub fn showAttachmentCellInRectCharacterIndex(self: *@This(), cell: ?*Cell, rect: ns.Rect, attachmentIndex: objc.NSUInteger) void {
+    pub fn showAttachmentCellInRectCharacterIndex(self: *@This(), cell: ?*Cell, rect: foundation.Rect, attachmentIndex: objc.NSUInteger) void {
         return objc.msgSend(self, "showAttachmentCell:inRect:characterIndex:", void, .{cell, rect, attachmentIndex});
     }
 
-    pub fn setLayoutRectForTextBlockGlyphRange(self: *@This(), rect: ns.Rect, block: ?*TextBlock, glyphRange: ns.Range) void {
+    pub fn setLayoutRectForTextBlockGlyphRange(self: *@This(), rect: foundation.Rect, block: ?*TextBlock, glyphRange: foundation.Range) void {
         return objc.msgSend(self, "setLayoutRect:forTextBlock:glyphRange:", void, .{rect, block, glyphRange});
     }
 
-    pub fn setBoundsRectForTextBlockGlyphRange(self: *@This(), rect: ns.Rect, block: ?*TextBlock, glyphRange: ns.Range) void {
+    pub fn setBoundsRectForTextBlockGlyphRange(self: *@This(), rect: foundation.Rect, block: ?*TextBlock, glyphRange: foundation.Range) void {
         return objc.msgSend(self, "setBoundsRect:forTextBlock:glyphRange:", void, .{rect, block, glyphRange});
     }
 
-    pub fn layoutRectForTextBlockGlyphRange(self: *@This(), block: ?*TextBlock, glyphRange: ns.Range) ns.Rect {
-        return objc.msgSend(self, "layoutRectForTextBlock:glyphRange:", ns.Rect, .{block, glyphRange});
+    pub fn layoutRectForTextBlockGlyphRange(self: *@This(), block: ?*TextBlock, glyphRange: foundation.Range) foundation.Rect {
+        return objc.msgSend(self, "layoutRectForTextBlock:glyphRange:", foundation.Rect, .{block, glyphRange});
     }
 
-    pub fn boundsRectForTextBlockGlyphRange(self: *@This(), block: ?*TextBlock, glyphRange: ns.Range) ns.Rect {
-        return objc.msgSend(self, "boundsRectForTextBlock:glyphRange:", ns.Rect, .{block, glyphRange});
+    pub fn boundsRectForTextBlockGlyphRange(self: *@This(), block: ?*TextBlock, glyphRange: foundation.Range) foundation.Rect {
+        return objc.msgSend(self, "boundsRectForTextBlock:glyphRange:", foundation.Rect, .{block, glyphRange});
     }
 
-    pub fn layoutRectForTextBlockAtIndexEffectiveRange(self: *@This(), block: ?*TextBlock, glyphIndex: objc.NSUInteger, effectiveGlyphRange: ns.RangePointer) ns.Rect {
-        return objc.msgSend(self, "layoutRectForTextBlock:atIndex:effectiveRange:", ns.Rect, .{block, glyphIndex, effectiveGlyphRange});
+    pub fn layoutRectForTextBlockAtIndexEffectiveRange(self: *@This(), block: ?*TextBlock, glyphIndex: objc.NSUInteger, effectiveGlyphRange: foundation.RangePointer) foundation.Rect {
+        return objc.msgSend(self, "layoutRectForTextBlock:atIndex:effectiveRange:", foundation.Rect, .{block, glyphIndex, effectiveGlyphRange});
     }
 
-    pub fn boundsRectForTextBlockAtIndexEffectiveRange(self: *@This(), block: ?*TextBlock, glyphIndex: objc.NSUInteger, effectiveGlyphRange: ns.RangePointer) ns.Rect {
-        return objc.msgSend(self, "boundsRectForTextBlock:atIndex:effectiveRange:", ns.Rect, .{block, glyphIndex, effectiveGlyphRange});
+    pub fn boundsRectForTextBlockAtIndexEffectiveRange(self: *@This(), block: ?*TextBlock, glyphIndex: objc.NSUInteger, effectiveGlyphRange: foundation.RangePointer) foundation.Rect {
+        return objc.msgSend(self, "boundsRectForTextBlock:atIndex:effectiveRange:", foundation.Rect, .{block, glyphIndex, effectiveGlyphRange});
     }
 
-    pub fn temporaryAttributesAtCharacterIndexEffectiveRange(self: *@This(), charIndex: objc.NSUInteger, effectiveCharRange: ns.RangePointer) ?*anyopaque {
+    pub fn temporaryAttributesAtCharacterIndexEffectiveRange(self: *@This(), charIndex: objc.NSUInteger, effectiveCharRange: foundation.RangePointer) ?*anyopaque {
         return objc.msgSend(self, "temporaryAttributesAtCharacterIndex:effectiveRange:", ?*anyopaque, .{charIndex, effectiveCharRange});
     }
 
-    pub fn setTemporaryAttributesForCharacterRange(self: *@This(), attrs: ?*anyopaque, charRange: ns.Range) void {
+    pub fn setTemporaryAttributesForCharacterRange(self: *@This(), attrs: ?*anyopaque, charRange: foundation.Range) void {
         return objc.msgSend(self, "setTemporaryAttributes:forCharacterRange:", void, .{attrs, charRange});
     }
 
-    pub fn addTemporaryAttributesForCharacterRange(self: *@This(), attrs: ?*anyopaque, charRange: ns.Range) void {
+    pub fn addTemporaryAttributesForCharacterRange(self: *@This(), attrs: ?*anyopaque, charRange: foundation.Range) void {
         return objc.msgSend(self, "addTemporaryAttributes:forCharacterRange:", void, .{attrs, charRange});
     }
 
-    pub fn removeTemporaryAttributeForCharacterRange(self: *@This(), attrName: ns.AttributedStringKey, charRange: ns.Range) void {
+    pub fn removeTemporaryAttributeForCharacterRange(self: *@This(), attrName: foundation.AttributedStringKey, charRange: foundation.Range) void {
         return objc.msgSend(self, "removeTemporaryAttribute:forCharacterRange:", void, .{attrName, charRange});
     }
 
-    pub fn temporaryAttributeAtCharacterIndexEffectiveRange(self: *@This(), attrName: ns.AttributedStringKey, location: objc.NSUInteger, range: ns.RangePointer) *objc.Id {
+    pub fn temporaryAttributeAtCharacterIndexEffectiveRange(self: *@This(), attrName: foundation.AttributedStringKey, location: objc.NSUInteger, range: foundation.RangePointer) *objc.Id {
         return objc.msgSend(self, "temporaryAttribute:atCharacterIndex:effectiveRange:", *objc.Id, .{attrName, location, range});
     }
 
-    pub fn temporaryAttributeAtCharacterIndexLongestEffectiveRangeInRange(self: *@This(), attrName: ns.AttributedStringKey, location: objc.NSUInteger, range: ns.RangePointer, rangeLimit: ns.Range, ) *objc.Id {
+    pub fn temporaryAttributeAtCharacterIndexLongestEffectiveRangeInRange(self: *@This(), attrName: foundation.AttributedStringKey, location: objc.NSUInteger, range: foundation.RangePointer, rangeLimit: foundation.Range, ) *objc.Id {
         return objc.msgSend(self, "temporaryAttribute:atCharacterIndex:longestEffectiveRange:inRange:", *objc.Id, .{attrName, location, range, rangeLimit, });
     }
 
-    pub fn temporaryAttributesAtCharacterIndexLongestEffectiveRangeInRange(self: *@This(), location: objc.NSUInteger, range: ns.RangePointer, rangeLimit: ns.Range) ?*anyopaque {
+    pub fn temporaryAttributesAtCharacterIndexLongestEffectiveRangeInRange(self: *@This(), location: objc.NSUInteger, range: foundation.RangePointer, rangeLimit: foundation.Range) ?*anyopaque {
         return objc.msgSend(self, "temporaryAttributesAtCharacterIndex:longestEffectiveRange:inRange:", ?*anyopaque, .{location, range, rangeLimit});
     }
 
-    pub fn addTemporaryAttributeValueForCharacterRange(self: *@This(), attrName: ns.AttributedStringKey, value: *objc.Id, charRange: ns.Range) void {
+    pub fn addTemporaryAttributeValueForCharacterRange(self: *@This(), attrName: foundation.AttributedStringKey, value: *objc.Id, charRange: foundation.Range) void {
         return objc.msgSend(self, "addTemporaryAttribute:value:forCharacterRange:", void, .{attrName, value, charRange});
     }
 
-    pub fn defaultLineHeightForFont(self: *@This(), theFont: ?*Font) cf.CGFloat {
-        return objc.msgSend(self, "defaultLineHeightForFont:", cf.CGFloat, .{theFont});
+    pub fn defaultLineHeightForFont(self: *@This(), theFont: ?*Font) core_foundation.CGFloat {
+        return objc.msgSend(self, "defaultLineHeightForFont:", core_foundation.CGFloat, .{theFont});
     }
 
-    pub fn defaultBaselineOffsetForFont(self: *@This(), theFont: ?*Font) cf.CGFloat {
-        return objc.msgSend(self, "defaultBaselineOffsetForFont:", cf.CGFloat, .{theFont});
+    pub fn defaultBaselineOffsetForFont(self: *@This(), theFont: ?*Font) core_foundation.CGFloat {
+        return objc.msgSend(self, "defaultBaselineOffsetForFont:", core_foundation.CGFloat, .{theFont});
     }
 
     pub fn textStorage(self: *@This()) ?*TextStorage {
@@ -27910,12 +27918,12 @@ pub const LayoutManager = opaque {
         return objc.msgSend(self, "numberOfGlyphs", objc.NSUInteger, .{});
     }
 
-    pub fn extraLineFragmentRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "extraLineFragmentRect", ns.Rect, .{});
+    pub fn extraLineFragmentRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "extraLineFragmentRect", foundation.Rect, .{});
     }
 
-    pub fn extraLineFragmentUsedRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "extraLineFragmentUsedRect", ns.Rect, .{});
+    pub fn extraLineFragmentUsedRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "extraLineFragmentUsedRect", foundation.Rect, .{});
     }
 
     pub fn extraLineFragmentTextContainer(self: *@This()) ?*TextContainer {
@@ -27932,20 +27940,20 @@ pub const LayoutManagerDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn layoutManagerShouldGenerateGlyphsPropertiesCharacterIndexesFontForGlyphRange(self: *@This(), layoutManager: ?*LayoutManager, glyphs: ?*, props: ?*GlyphProperty, charIndexes: ?*objc.NSUInteger, aFont: ?*Font, glyphRange: ns.Range, ) objc.NSUInteger {
+    pub fn layoutManagerShouldGenerateGlyphsPropertiesCharacterIndexesFontForGlyphRange(self: *@This(), layoutManager: ?*LayoutManager, glyphs: ?*core_graphics.Glyph, props: ?*GlyphProperty, charIndexes: ?*objc.NSUInteger, aFont: ?*Font, glyphRange: foundation.Range, ) objc.NSUInteger {
         return objc.msgSend(self, "layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:", objc.NSUInteger, .{layoutManager, glyphs, props, charIndexes, aFont, glyphRange, });
     }
 
-    pub fn layoutManagerLineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
-        return objc.msgSend(self, "layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{layoutManager, glyphIndex, rect});
+    pub fn layoutManagerLineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: foundation.Rect) core_foundation.CGFloat {
+        return objc.msgSend(self, "layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", core_foundation.CGFloat, .{layoutManager, glyphIndex, rect});
     }
 
-    pub fn layoutManagerParagraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
-        return objc.msgSend(self, "layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{layoutManager, glyphIndex, rect});
+    pub fn layoutManagerParagraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: foundation.Rect) core_foundation.CGFloat {
+        return objc.msgSend(self, "layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:", core_foundation.CGFloat, .{layoutManager, glyphIndex, rect});
     }
 
-    pub fn layoutManagerParagraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
-        return objc.msgSend(self, "layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{layoutManager, glyphIndex, rect});
+    pub fn layoutManagerParagraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, rect: foundation.Rect) core_foundation.CGFloat {
+        return objc.msgSend(self, "layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", core_foundation.CGFloat, .{layoutManager, glyphIndex, rect});
     }
 
     pub fn layoutManagerShouldUseActionForControlCharacterAtIndex(self: *@This(), layoutManager: ?*LayoutManager, action: ControlCharacterAction, charIndex: objc.NSUInteger) ControlCharacterAction {
@@ -27960,11 +27968,11 @@ pub const LayoutManagerDelegate = opaque {
         return objc.msgSend(self, "layoutManager:shouldBreakLineByHyphenatingBeforeCharacterAtIndex:", objc.BOOL, .{layoutManager, charIndex});
     }
 
-    pub fn layoutManagerBoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, textContainer: ?*TextContainer, proposedRect: ns.Rect, glyphPosition: ns.Point, charIndex: objc.NSUInteger, ) ns.Rect {
-        return objc.msgSend(self, "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:", ns.Rect, .{layoutManager, glyphIndex, textContainer, proposedRect, glyphPosition, charIndex, });
+    pub fn layoutManagerBoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), layoutManager: ?*LayoutManager, glyphIndex: objc.NSUInteger, textContainer: ?*TextContainer, proposedRect: foundation.Rect, glyphPosition: foundation.Point, charIndex: objc.NSUInteger, ) foundation.Rect {
+        return objc.msgSend(self, "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:", foundation.Rect, .{layoutManager, glyphIndex, textContainer, proposedRect, glyphPosition, charIndex, });
     }
 
-    pub fn layoutManagerShouldSetLineFragmentRectLineFragmentUsedRectBaselineOffsetInTextContainerForGlyphRange(self: *@This(), layoutManager: ?*LayoutManager, lineFragmentRect: ?*ns.Rect, lineFragmentUsedRect: ?*ns.Rect, baselineOffset: ?*cf.CGFloat, textContainer: ?*TextContainer, glyphRange: ns.Range, ) objc.BOOL {
+    pub fn layoutManagerShouldSetLineFragmentRectLineFragmentUsedRectBaselineOffsetInTextContainerForGlyphRange(self: *@This(), layoutManager: ?*LayoutManager, lineFragmentRect: ?*foundation.Rect, lineFragmentUsedRect: ?*foundation.Rect, baselineOffset: ?*core_foundation.CGFloat, textContainer: ?*TextContainer, glyphRange: foundation.Range, ) objc.BOOL {
         return objc.msgSend(self, "layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:", objc.BOOL, .{layoutManager, lineFragmentRect, lineFragmentUsedRect, baselineOffset, textContainer, glyphRange, });
     }
 
@@ -27976,11 +27984,11 @@ pub const LayoutManagerDelegate = opaque {
         return objc.msgSend(self, "layoutManager:didCompleteLayoutForTextContainer:atEnd:", void, .{layoutManager, textContainer, layoutFinishedFlag});
     }
 
-    pub fn layoutManagerTextContainerDidChangeGeometryFromSize(self: *@This(), layoutManager: ?*LayoutManager, textContainer: ?*TextContainer, oldSize: ns.Size) void {
+    pub fn layoutManagerTextContainerDidChangeGeometryFromSize(self: *@This(), layoutManager: ?*LayoutManager, textContainer: ?*TextContainer, oldSize: foundation.Size) void {
         return objc.msgSend(self, "layoutManager:textContainer:didChangeGeometryFromSize:", void, .{layoutManager, textContainer, oldSize});
     }
 
-    pub fn layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange(self: *@This(), layoutManager: ?*LayoutManager, attrs: ?*anyopaque, toScreen: objc.BOOL, charIndex: objc.NSUInteger, effectiveCharRange: ns.RangePointer, ) ?*anyopaque {
+    pub fn layoutManagerShouldUseTemporaryAttributesForDrawingToScreenAtCharacterIndexEffectiveRange(self: *@This(), layoutManager: ?*LayoutManager, attrs: ?*anyopaque, toScreen: objc.BOOL, charIndex: objc.NSUInteger, effectiveCharRange: foundation.RangePointer, ) ?*anyopaque {
         return objc.msgSend(self, "layoutManager:shouldUseTemporaryAttributes:forDrawingToScreen:atCharacterIndex:effectiveRange:", ?*anyopaque, .{layoutManager, attrs, toScreen, charIndex, effectiveCharRange, });
     }
 
@@ -28036,16 +28044,16 @@ pub const TokenFieldCell = opaque {
         return objc.msgSend(self, "setTokenStyle:", void, .{tokenStyle});
     }
 
-    pub fn completionDelay(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "completionDelay", ns.TimeInterval, .{});
+    pub fn completionDelay(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "completionDelay", foundation.TimeInterval, .{});
     }
 
-    pub fn setCompletionDelay(self: *@This(), completionDelay: ns.TimeInterval) void {
+    pub fn setCompletionDelay(self: *@This(), completionDelay: foundation.TimeInterval) void {
         return objc.msgSend(self, "setCompletionDelay:", void, .{completionDelay});
     }
 
-    pub fn defaultCompletionDelay(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "defaultCompletionDelay", ns.TimeInterval, .{});
+    pub fn defaultCompletionDelay(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "defaultCompletionDelay", foundation.TimeInterval, .{});
     }
 
     pub fn tokenizingCharacterSet(self: *@This()) ?*CharacterSet {
@@ -28197,16 +28205,16 @@ pub const TokenField = opaque {
         return objc.msgSend(self, "setTokenStyle:", void, .{tokenStyle});
     }
 
-    pub fn completionDelay(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "completionDelay", ns.TimeInterval, .{});
+    pub fn completionDelay(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "completionDelay", foundation.TimeInterval, .{});
     }
 
-    pub fn setCompletionDelay(self: *@This(), completionDelay: ns.TimeInterval) void {
+    pub fn setCompletionDelay(self: *@This(), completionDelay: foundation.TimeInterval) void {
         return objc.msgSend(self, "setCompletionDelay:", void, .{completionDelay});
     }
 
-    pub fn defaultCompletionDelay(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "defaultCompletionDelay", ns.TimeInterval, .{});
+    pub fn defaultCompletionDelay(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "defaultCompletionDelay", foundation.TimeInterval, .{});
     }
 
     pub fn tokenizingCharacterSet(self: *@This()) ?*CharacterSet {
@@ -28247,12 +28255,12 @@ pub const TrackingArea = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithRectOptionsOwnerUserInfo(self: *@This(), rect: ns.Rect, options: TrackingAreaOptions, owner: *objc.Id, userInfo: ?*anyopaque, ) *@This() {
+    pub fn initWithRectOptionsOwnerUserInfo(self: *@This(), rect: foundation.Rect, options: TrackingAreaOptions, owner: *objc.Id, userInfo: ?*anyopaque, ) *@This() {
         return objc.msgSend(self, "initWithRect:options:owner:userInfo:", *@This(), .{rect, options, owner, userInfo, });
     }
 
-    pub fn rect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "rect", ns.Rect, .{});
+    pub fn rect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "rect", foundation.Rect, .{});
     }
 
     pub fn options(self: *@This()) TrackingAreaOptions {
@@ -28620,19 +28628,19 @@ pub const ToolbarItem = opaque {
         return objc.msgSend(self, "setHidden:", void, .{hidden});
     }
 
-    pub fn minSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minSize", ns.Size, .{});
+    pub fn minSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "minSize", foundation.Size, .{});
     }
 
-    pub fn setMinSize(self: *@This(), minSize: ns.Size) void {
+    pub fn setMinSize(self: *@This(), minSize: foundation.Size) void {
         return objc.msgSend(self, "setMinSize:", void, .{minSize});
     }
 
-    pub fn maxSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "maxSize", ns.Size, .{});
+    pub fn maxSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "maxSize", foundation.Size, .{});
     }
 
-    pub fn setMaxSize(self: *@This(), maxSize: ns.Size) void {
+    pub fn setMaxSize(self: *@This(), maxSize: foundation.Size) void {
         return objc.msgSend(self, "setMaxSize:", void, .{maxSize});
     }
 
@@ -28832,7 +28840,7 @@ pub const WindowController = opaque {
         return objc.msgSend(self, "initWithWindow:", *@This(), .{window});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -29085,19 +29093,19 @@ pub const ComboBox = opaque {
         return objc.msgSend(self, "setHasVerticalScroller:", void, .{hasVerticalScroller});
     }
 
-    pub fn intercellSpacing(self: *@This()) ns.Size {
-        return objc.msgSend(self, "intercellSpacing", ns.Size, .{});
+    pub fn intercellSpacing(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "intercellSpacing", foundation.Size, .{});
     }
 
-    pub fn setIntercellSpacing(self: *@This(), intercellSpacing: ns.Size) void {
+    pub fn setIntercellSpacing(self: *@This(), intercellSpacing: foundation.Size) void {
         return objc.msgSend(self, "setIntercellSpacing:", void, .{intercellSpacing});
     }
 
-    pub fn itemHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "itemHeight", cf.CGFloat, .{});
+    pub fn itemHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "itemHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn setItemHeight(self: *@This(), itemHeight: cf.CGFloat) void {
+    pub fn setItemHeight(self: *@This(), itemHeight: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setItemHeight:", void, .{itemHeight});
     }
 
@@ -29250,19 +29258,19 @@ pub const ComboBoxCell = opaque {
         return objc.msgSend(self, "setHasVerticalScroller:", void, .{hasVerticalScroller});
     }
 
-    pub fn intercellSpacing(self: *@This()) ns.Size {
-        return objc.msgSend(self, "intercellSpacing", ns.Size, .{});
+    pub fn intercellSpacing(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "intercellSpacing", foundation.Size, .{});
     }
 
-    pub fn setIntercellSpacing(self: *@This(), intercellSpacing: ns.Size) void {
+    pub fn setIntercellSpacing(self: *@This(), intercellSpacing: foundation.Size) void {
         return objc.msgSend(self, "setIntercellSpacing:", void, .{intercellSpacing});
     }
 
-    pub fn itemHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "itemHeight", cf.CGFloat, .{});
+    pub fn itemHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "itemHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn setItemHeight(self: *@This(), itemHeight: cf.CGFloat) void {
+    pub fn setItemHeight(self: *@This(), itemHeight: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setItemHeight:", void, .{itemHeight});
     }
 
@@ -29436,7 +29444,7 @@ pub const TextInput = opaque {
         return objc.msgSend(self, "doCommandBySelector:", void, .{selector});
     }
 
-    pub fn setMarkedTextSelectedRange(self: *@This(), string: *objc.Id, selRange: ns.Range) void {
+    pub fn setMarkedTextSelectedRange(self: *@This(), string: *objc.Id, selRange: foundation.Range) void {
         return objc.msgSend(self, "setMarkedText:selectedRange:", void, .{string, selRange});
     }
 
@@ -29452,23 +29460,23 @@ pub const TextInput = opaque {
         return objc.msgSend(self, "conversationIdentifier", objc.NSInteger, .{});
     }
 
-    pub fn attributedSubstringFromRange(self: *@This(), range: ns.Range) ?*AttributedString {
+    pub fn attributedSubstringFromRange(self: *@This(), range: foundation.Range) ?*AttributedString {
         return objc.msgSend(self, "attributedSubstringFromRange:", ?*AttributedString, .{range});
     }
 
-    pub fn markedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "markedRange", ns.Range, .{});
+    pub fn markedRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "markedRange", foundation.Range, .{});
     }
 
-    pub fn selectedRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "selectedRange", ns.Range, .{});
+    pub fn selectedRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "selectedRange", foundation.Range, .{});
     }
 
-    pub fn firstRectForCharacterRange(self: *@This(), range: ns.Range) ns.Rect {
-        return objc.msgSend(self, "firstRectForCharacterRange:", ns.Rect, .{range});
+    pub fn firstRectForCharacterRange(self: *@This(), range: foundation.Range) foundation.Rect {
+        return objc.msgSend(self, "firstRectForCharacterRange:", foundation.Rect, .{range});
     }
 
-    pub fn characterIndexForPoint(self: *@This(), point: ns.Point) objc.NSUInteger {
+    pub fn characterIndexForPoint(self: *@This(), point: foundation.Point) objc.NSUInteger {
         return objc.msgSend(self, "characterIndexForPoint:", objc.NSUInteger, .{point});
     }
 
@@ -29513,7 +29521,7 @@ pub const InputManager = opaque {
         return objc.msgSend(self, "markedTextAbandoned:", void, .{cli});
     }
 
-    pub fn markedTextSelectionChangedClient(self: *@This(), newSel: ns.Range, cli: *objc.Id) void {
+    pub fn markedTextSelectionChangedClient(self: *@This(), newSel: foundation.Range, cli: *objc.Id) void {
         return objc.msgSend(self, "markedTextSelectionChanged:client:", void, .{newSel, cli});
     }
 
@@ -29555,12 +29563,12 @@ pub const TextAttachmentLayout = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn imageForBoundsAttributesLocationTextContainer(self: *@This(), bounds: cf.CGRect, attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, ) ?*Image {
+    pub fn imageForBoundsAttributesLocationTextContainer(self: *@This(), bounds: core_foundation.CGRect, attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, ) ?*Image {
         return objc.msgSend(self, "imageForBounds:attributes:location:textContainer:", ?*Image, .{bounds, attributes, location, textContainer, });
     }
 
-    pub fn attachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(self: *@This(), attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, proposedLineFragment: cf.CGRect, position: cf.CGPoint, ) cf.CGRect {
-        return objc.msgSend(self, "attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:", cf.CGRect, .{attributes, location, textContainer, proposedLineFragment, position, });
+    pub fn attachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(self: *@This(), attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, proposedLineFragment: core_foundation.CGRect, position: core_foundation.CGPoint, ) core_foundation.CGRect {
+        return objc.msgSend(self, "attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:", core_foundation.CGRect, .{attributes, location, textContainer, proposedLineFragment, position, });
     }
 
     pub fn viewProviderForParentViewLocationTextContainer(self: *@This(), parentView: ?*View, location: ?*anyopaque, textContainer: ?*TextContainer) ?*TextAttachmentViewProvider {
@@ -29620,11 +29628,11 @@ pub const TextAttachment = opaque {
         return objc.msgSend(self, "setImage:", void, .{image});
     }
 
-    pub fn bounds(self: *@This()) cf.CGRect {
-        return objc.msgSend(self, "bounds", cf.CGRect, .{});
+    pub fn bounds(self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(self, "bounds", core_foundation.CGRect, .{});
     }
 
-    pub fn setBounds(self: *@This(), bounds: cf.CGRect) void {
+    pub fn setBounds(self: *@This(), bounds: core_foundation.CGRect) void {
         return objc.msgSend(self, "setBounds:", void, .{bounds});
     }
 
@@ -29644,11 +29652,11 @@ pub const TextAttachment = opaque {
         return objc.msgSend(self, "setAttachmentCell:", void, .{attachmentCell});
     }
 
-    pub fn lineLayoutPadding(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "lineLayoutPadding", cf.CGFloat, .{});
+    pub fn lineLayoutPadding(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineLayoutPadding", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLineLayoutPadding(self: *@This(), lineLayoutPadding: cf.CGFloat) void {
+    pub fn setLineLayoutPadding(self: *@This(), lineLayoutPadding: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLineLayoutPadding:", void, .{lineLayoutPadding});
     }
 
@@ -29693,8 +29701,8 @@ pub const TextAttachmentViewProvider = opaque {
         return objc.msgSend(self, "loadView", void, .{});
     }
 
-    pub fn attachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(self: *@This(), attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, proposedLineFragment: cf.CGRect, position: cf.CGPoint, ) cf.CGRect {
-        return objc.msgSend(self, "attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:", cf.CGRect, .{attributes, location, textContainer, proposedLineFragment, position, });
+    pub fn attachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(self: *@This(), attributes: ?*anyopaque, location: ?*anyopaque, textContainer: ?*TextContainer, proposedLineFragment: core_foundation.CGRect, position: core_foundation.CGPoint, ) core_foundation.CGRect {
+        return objc.msgSend(self, "attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:", core_foundation.CGRect, .{attributes, location, textContainer, proposedLineFragment, position, });
     }
 
     pub fn textAttachment(self: *@This()) ?*TextAttachment {
@@ -29735,12 +29743,12 @@ pub const TextAttachmentContainer = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn imageForBoundsTextContainerCharacterIndex(self: *@This(), imageBounds: cf.CGRect, textContainer: ?*TextContainer, charIndex: objc.NSUInteger) ?*Image {
+    pub fn imageForBoundsTextContainerCharacterIndex(self: *@This(), imageBounds: core_foundation.CGRect, textContainer: ?*TextContainer, charIndex: objc.NSUInteger) ?*Image {
         return objc.msgSend(self, "imageForBounds:textContainer:characterIndex:", ?*Image, .{imageBounds, textContainer, charIndex});
     }
 
-    pub fn attachmentBoundsForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), textContainer: ?*TextContainer, lineFrag: cf.CGRect, position: cf.CGPoint, charIndex: objc.NSUInteger, ) cf.CGRect {
-        return objc.msgSend(self, "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:", cf.CGRect, .{textContainer, lineFrag, position, charIndex, });
+    pub fn attachmentBoundsForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), textContainer: ?*TextContainer, lineFrag: core_foundation.CGRect, position: core_foundation.CGPoint, charIndex: objc.NSUInteger, ) core_foundation.CGRect {
+        return objc.msgSend(self, "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:", core_foundation.CGRect, .{textContainer, lineFrag, position, charIndex, });
     }
 
 };
@@ -29753,7 +29761,7 @@ pub const TextAttachmentCell = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn drawWithFrameInView(self: *@This(), cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn drawWithFrameInView(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "drawWithFrame:inView:", void, .{cellFrame, controlView});
     }
 
@@ -29761,40 +29769,40 @@ pub const TextAttachmentCell = opaque {
         return objc.msgSend(self, "wantsToTrackMouse", objc.BOOL, .{});
     }
 
-    pub fn highlightWithFrameInView(self: *@This(), flag: objc.BOOL, cellFrame: ns.Rect, controlView: ?*View) void {
+    pub fn highlightWithFrameInView(self: *@This(), flag: objc.BOOL, cellFrame: foundation.Rect, controlView: ?*View) void {
         return objc.msgSend(self, "highlight:withFrame:inView:", void, .{flag, cellFrame, controlView});
     }
 
-    pub fn trackMouseInRectOfViewUntilMouseUp(self: *@This(), theEvent: ?*Event, cellFrame: ns.Rect, controlView: ?*View, flag: objc.BOOL, ) objc.BOOL {
+    pub fn trackMouseInRectOfViewUntilMouseUp(self: *@This(), theEvent: ?*Event, cellFrame: foundation.Rect, controlView: ?*View, flag: objc.BOOL, ) objc.BOOL {
         return objc.msgSend(self, "trackMouse:inRect:ofView:untilMouseUp:", objc.BOOL, .{theEvent, cellFrame, controlView, flag, });
     }
 
-    pub fn cellSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "cellSize", ns.Size, .{});
+    pub fn cellSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "cellSize", foundation.Size, .{});
     }
 
-    pub fn cellBaselineOffset(self: *@This()) ns.Point {
-        return objc.msgSend(self, "cellBaselineOffset", ns.Point, .{});
+    pub fn cellBaselineOffset(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "cellBaselineOffset", foundation.Point, .{});
     }
 
-    pub fn drawWithFrameInViewCharacterIndex(self: *@This(), cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger) void {
+    pub fn drawWithFrameInViewCharacterIndex(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View, charIndex: objc.NSUInteger) void {
         return objc.msgSend(self, "drawWithFrame:inView:characterIndex:", void, .{cellFrame, controlView, charIndex});
     }
 
-    pub fn drawWithFrameInViewCharacterIndexLayoutManager(self: *@This(), cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger, layoutManager: ?*LayoutManager, ) void {
+    pub fn drawWithFrameInViewCharacterIndexLayoutManager(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View, charIndex: objc.NSUInteger, layoutManager: ?*LayoutManager, ) void {
         return objc.msgSend(self, "drawWithFrame:inView:characterIndex:layoutManager:", void, .{cellFrame, controlView, charIndex, layoutManager, });
     }
 
-    pub fn wantsToTrackMouseForEventInRectOfViewAtCharacterIndex(self: *@This(), theEvent: ?*Event, cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger, ) objc.BOOL {
+    pub fn wantsToTrackMouseForEventInRectOfViewAtCharacterIndex(self: *@This(), theEvent: ?*Event, cellFrame: foundation.Rect, controlView: ?*View, charIndex: objc.NSUInteger, ) objc.BOOL {
         return objc.msgSend(self, "wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:", objc.BOOL, .{theEvent, cellFrame, controlView, charIndex, });
     }
 
-    pub fn trackMouseInRectOfViewAtCharacterIndexUntilMouseUp(self: *@This(), theEvent: ?*Event, cellFrame: ns.Rect, controlView: ?*View, charIndex: objc.NSUInteger, flag: objc.BOOL, ) objc.BOOL {
+    pub fn trackMouseInRectOfViewAtCharacterIndexUntilMouseUp(self: *@This(), theEvent: ?*Event, cellFrame: foundation.Rect, controlView: ?*View, charIndex: objc.NSUInteger, flag: objc.BOOL, ) objc.BOOL {
         return objc.msgSend(self, "trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:", objc.BOOL, .{theEvent, cellFrame, controlView, charIndex, flag, });
     }
 
-    pub fn cellFrameForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), textContainer: ?*TextContainer, lineFrag: ns.Rect, position: ns.Point, charIndex: objc.NSUInteger, ) ns.Rect {
-        return objc.msgSend(self, "cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:", ns.Rect, .{textContainer, lineFrag, position, charIndex, });
+    pub fn cellFrameForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(self: *@This(), textContainer: ?*TextContainer, lineFrag: foundation.Rect, position: foundation.Point, charIndex: objc.NSUInteger, ) foundation.Rect {
+        return objc.msgSend(self, "cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:", foundation.Rect, .{textContainer, lineFrag, position, charIndex, });
     }
 
     pub fn attachment(self: *@This()) ?*TextAttachment {
@@ -29841,15 +29849,15 @@ pub const TextView = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFrameTextContainer(self: *@This(), frameRect: ns.Rect, container: ?*TextContainer) *@This() {
+    pub fn initWithFrameTextContainer(self: *@This(), frameRect: foundation.Rect, container: ?*TextContainer) *@This() {
         return objc.msgSend(self, "initWithFrame:textContainer:", *@This(), .{frameRect, container});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn initWithFrame(self: *@This(), frameRect: ns.Rect) *@This() {
+    pub fn initWithFrame(self: *@This(), frameRect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFrame:", *@This(), .{frameRect});
     }
 
@@ -29873,15 +29881,15 @@ pub const TextView = opaque {
         return objc.msgSend(self, "insertText:", void, .{insertString});
     }
 
-    pub fn setConstrainedFrameSize(self: *@This(), desiredSize: ns.Size) void {
+    pub fn setConstrainedFrameSize(self: *@This(), desiredSize: foundation.Size) void {
         return objc.msgSend(self, "setConstrainedFrameSize:", void, .{desiredSize});
     }
 
-    pub fn setAlignmentRange(self: *@This(), alignment: TextAlignment, range: ns.Range) void {
+    pub fn setAlignmentRange(self: *@This(), alignment: TextAlignment, range: foundation.Range) void {
         return objc.msgSend(self, "setAlignment:range:", void, .{alignment, range});
     }
 
-    pub fn setBaseWritingDirectionRange(self: *@This(), writingDirection: WritingDirection, range: ns.Range) void {
+    pub fn setBaseWritingDirectionRange(self: *@This(), writingDirection: WritingDirection, range: foundation.Range) void {
         return objc.msgSend(self, "setBaseWritingDirection:range:", void, .{writingDirection, range});
     }
 
@@ -29985,31 +29993,31 @@ pub const TextView = opaque {
         return objc.msgSend(self, "rulerView:shouldAddMarker:", objc.BOOL, .{ruler, marker});
     }
 
-    pub fn rulerViewWillMoveMarkerToLocation(self: *@This(), ruler: ?*RulerView, marker: ?*RulerMarker, location: cf.CGFloat) cf.CGFloat {
-        return objc.msgSend(self, "rulerView:willMoveMarker:toLocation:", cf.CGFloat, .{ruler, marker, location});
+    pub fn rulerViewWillMoveMarkerToLocation(self: *@This(), ruler: ?*RulerView, marker: ?*RulerMarker, location: core_foundation.CGFloat) core_foundation.CGFloat {
+        return objc.msgSend(self, "rulerView:willMoveMarker:toLocation:", core_foundation.CGFloat, .{ruler, marker, location});
     }
 
     pub fn rulerViewShouldRemoveMarker(self: *@This(), ruler: ?*RulerView, marker: ?*RulerMarker) objc.BOOL {
         return objc.msgSend(self, "rulerView:shouldRemoveMarker:", objc.BOOL, .{ruler, marker});
     }
 
-    pub fn rulerViewWillAddMarkerAtLocation(self: *@This(), ruler: ?*RulerView, marker: ?*RulerMarker, location: cf.CGFloat) cf.CGFloat {
-        return objc.msgSend(self, "rulerView:willAddMarker:atLocation:", cf.CGFloat, .{ruler, marker, location});
+    pub fn rulerViewWillAddMarkerAtLocation(self: *@This(), ruler: ?*RulerView, marker: ?*RulerMarker, location: core_foundation.CGFloat) core_foundation.CGFloat {
+        return objc.msgSend(self, "rulerView:willAddMarker:atLocation:", core_foundation.CGFloat, .{ruler, marker, location});
     }
 
     pub fn rulerViewHandleMouseDown(self: *@This(), ruler: ?*RulerView, event: ?*Event) void {
         return objc.msgSend(self, "rulerView:handleMouseDown:", void, .{ruler, event});
     }
 
-    pub fn setNeedsDisplayInRectAvoidAdditionalLayout(self: *@This(), rect: ns.Rect, flag: objc.BOOL) void {
+    pub fn setNeedsDisplayInRectAvoidAdditionalLayout(self: *@This(), rect: foundation.Rect, flag: objc.BOOL) void {
         return objc.msgSend(self, "setNeedsDisplayInRect:avoidAdditionalLayout:", void, .{rect, flag});
     }
 
-    pub fn drawInsertionPointInRectColorTurnedOn(self: *@This(), rect: ns.Rect, color: ?*Color, flag: objc.BOOL) void {
+    pub fn drawInsertionPointInRectColorTurnedOn(self: *@This(), rect: foundation.Rect, color: ?*Color, flag: objc.BOOL) void {
         return objc.msgSend(self, "drawInsertionPointInRect:color:turnedOn:", void, .{rect, color, flag});
     }
 
-    pub fn drawViewBackgroundInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn drawViewBackgroundInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "drawViewBackgroundInRect:", void, .{rect});
     }
 
@@ -30025,8 +30033,8 @@ pub const TextView = opaque {
         return objc.msgSend(self, "updateDragTypeRegistration", void, .{});
     }
 
-    pub fn selectionRangeForProposedRangeGranularity(self: *@This(), proposedCharRange: ns.Range, granularity: SelectionGranularity) ns.Range {
-        return objc.msgSend(self, "selectionRangeForProposedRange:granularity:", ns.Range, .{proposedCharRange, granularity});
+    pub fn selectionRangeForProposedRangeGranularity(self: *@This(), proposedCharRange: foundation.Range, granularity: SelectionGranularity) foundation.Range {
+        return objc.msgSend(self, "selectionRangeForProposedRange:granularity:", foundation.Range, .{proposedCharRange, granularity});
     }
 
     pub fn clickedOnLinkAtIndex(self: *@This(), link: *objc.Id, charIndex: objc.NSUInteger) void {
@@ -30049,11 +30057,11 @@ pub const TextView = opaque {
         return objc.msgSend(self, "changeLayoutOrientation:", void, .{sender});
     }
 
-    pub fn characterIndexForInsertionAtPoint(self: *@This(), point: ns.Point) objc.NSUInteger {
+    pub fn characterIndexForInsertionAtPoint(self: *@This(), point: foundation.Point) objc.NSUInteger {
         return objc.msgSend(self, "characterIndexForInsertionAtPoint:", objc.NSUInteger, .{point});
     }
 
-    pub fn performValidatedReplacementInRangeWithAttributedString(self: *@This(), range: ns.Range, attributedString: ?*AttributedString) objc.BOOL {
+    pub fn performValidatedReplacementInRangeWithAttributedString(self: *@This(), range: foundation.Range, attributedString: ?*AttributedString) objc.BOOL {
         return objc.msgSend(self, "performValidatedReplacementInRange:withAttributedString:", objc.BOOL, .{range, attributedString});
     }
 
@@ -30065,16 +30073,16 @@ pub const TextView = opaque {
         return objc.msgSend(self, "setTextContainer:", void, .{textContainer});
     }
 
-    pub fn textContainerInset(self: *@This()) ns.Size {
-        return objc.msgSend(self, "textContainerInset", ns.Size, .{});
+    pub fn textContainerInset(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "textContainerInset", foundation.Size, .{});
     }
 
-    pub fn setTextContainerInset(self: *@This(), textContainerInset: ns.Size) void {
+    pub fn setTextContainerInset(self: *@This(), textContainerInset: foundation.Size) void {
         return objc.msgSend(self, "setTextContainerInset:", void, .{textContainerInset});
     }
 
-    pub fn textContainerOrigin(self: *@This()) ns.Point {
-        return objc.msgSend(self, "textContainerOrigin", ns.Point, .{});
+    pub fn textContainerOrigin(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "textContainerOrigin", foundation.Point, .{});
     }
 
     pub fn layoutManager(self: *@This()) ?*LayoutManager {
@@ -30123,15 +30131,15 @@ pub const TextViewDelegate = opaque {
         return objc.msgSend(self, "textView:clickedOnLink:atIndex:", objc.BOOL, .{textView, link, charIndex});
     }
 
-    pub fn textViewClickedOnCellInRectAtIndex(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect, charIndex: objc.NSUInteger, ) void {
+    pub fn textViewClickedOnCellInRectAtIndex(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: foundation.Rect, charIndex: objc.NSUInteger, ) void {
         return objc.msgSend(self, "textView:clickedOnCell:inRect:atIndex:", void, .{textView, cell, cellFrame, charIndex, });
     }
 
-    pub fn textViewDoubleClickedOnCellInRectAtIndex(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect, charIndex: objc.NSUInteger, ) void {
+    pub fn textViewDoubleClickedOnCellInRectAtIndex(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: foundation.Rect, charIndex: objc.NSUInteger, ) void {
         return objc.msgSend(self, "textView:doubleClickedOnCell:inRect:atIndex:", void, .{textView, cell, cellFrame, charIndex, });
     }
 
-    pub fn textViewDraggedCellInRectEventAtIndex(self: *@This(), view: ?*TextView, cell: ?*anyopaque, rect: ns.Rect, event: ?*Event, charIndex: objc.NSUInteger, ) void {
+    pub fn textViewDraggedCellInRectEventAtIndex(self: *@This(), view: ?*TextView, cell: ?*anyopaque, rect: foundation.Rect, event: ?*Event, charIndex: objc.NSUInteger, ) void {
         return objc.msgSend(self, "textView:draggedCell:inRect:event:atIndex:", void, .{view, cell, rect, event, charIndex, });
     }
 
@@ -30143,8 +30151,8 @@ pub const TextViewDelegate = opaque {
         return objc.msgSend(self, "textView:writeCell:atIndex:toPasteboard:type:", objc.BOOL, .{view, cell, charIndex, pboard, @"type", });
     }
 
-    pub fn textViewWillChangeSelectionFromCharacterRangeToCharacterRange(self: *@This(), textView: ?*TextView, oldSelectedCharRange: ns.Range, newSelectedCharRange: ns.Range) ns.Range {
-        return objc.msgSend(self, "textView:willChangeSelectionFromCharacterRange:toCharacterRange:", ns.Range, .{textView, oldSelectedCharRange, newSelectedCharRange});
+    pub fn textViewWillChangeSelectionFromCharacterRangeToCharacterRange(self: *@This(), textView: ?*TextView, oldSelectedCharRange: foundation.Range, newSelectedCharRange: foundation.Range) foundation.Range {
+        return objc.msgSend(self, "textView:willChangeSelectionFromCharacterRange:toCharacterRange:", foundation.Range, .{textView, oldSelectedCharRange, newSelectedCharRange});
     }
 
     pub fn textViewWillChangeSelectionFromCharacterRangesToCharacterRanges(self: *@This(), textView: ?*TextView, oldSelectedCharRanges: ?*anyopaque, newSelectedCharRanges: ?*anyopaque) ?*anyopaque {
@@ -30171,11 +30179,11 @@ pub const TextViewDelegate = opaque {
         return objc.msgSend(self, "textView:willDisplayToolTip:forCharacterAtIndex:", ?*String, .{textView, tooltip, characterIndex});
     }
 
-    pub fn textViewCompletionsForPartialWordRangeIndexOfSelectedItem(self: *@This(), textView: ?*TextView, words: ?*anyopaque, charRange: ns.Range, index: ?*objc.NSInteger, ) ?*anyopaque {
+    pub fn textViewCompletionsForPartialWordRangeIndexOfSelectedItem(self: *@This(), textView: ?*TextView, words: ?*anyopaque, charRange: foundation.Range, index: ?*objc.NSInteger, ) ?*anyopaque {
         return objc.msgSend(self, "textView:completions:forPartialWordRange:indexOfSelectedItem:", ?*anyopaque, .{textView, words, charRange, index, });
     }
 
-    pub fn textViewShouldChangeTextInRangeReplacementString(self: *@This(), textView: ?*TextView, affectedCharRange: ns.Range, replacementString: ?*String) objc.BOOL {
+    pub fn textViewShouldChangeTextInRangeReplacementString(self: *@This(), textView: ?*TextView, affectedCharRange: foundation.Range, replacementString: ?*String) objc.BOOL {
         return objc.msgSend(self, "textView:shouldChangeTextInRange:replacementString:", objc.BOOL, .{textView, affectedCharRange, replacementString});
     }
 
@@ -30183,7 +30191,7 @@ pub const TextViewDelegate = opaque {
         return objc.msgSend(self, "textView:doCommandBySelector:", objc.BOOL, .{textView, commandSelector});
     }
 
-    pub fn textViewShouldSetSpellingStateRange(self: *@This(), textView: ?*TextView, value: objc.NSInteger, affectedCharRange: ns.Range) objc.NSInteger {
+    pub fn textViewShouldSetSpellingStateRange(self: *@This(), textView: ?*TextView, value: objc.NSInteger, affectedCharRange: foundation.Range) objc.NSInteger {
         return objc.msgSend(self, "textView:shouldSetSpellingState:range:", objc.NSInteger, .{textView, value, affectedCharRange});
     }
 
@@ -30191,11 +30199,11 @@ pub const TextViewDelegate = opaque {
         return objc.msgSend(self, "textView:menu:forEvent:atIndex:", ?*Menu, .{view, menu, event, charIndex, });
     }
 
-    pub fn textViewWillCheckTextInRangeOptionsTypes(self: *@This(), view: ?*TextView, range: ns.Range, options: ?*anyopaque, checkingTypes: ?*ns.TextCheckingTypes, ) ?*anyopaque {
+    pub fn textViewWillCheckTextInRangeOptionsTypes(self: *@This(), view: ?*TextView, range: foundation.Range, options: ?*anyopaque, checkingTypes: ?*foundation.TextCheckingTypes, ) ?*anyopaque {
         return objc.msgSend(self, "textView:willCheckTextInRange:options:types:", ?*anyopaque, .{view, range, options, checkingTypes, });
     }
 
-    pub fn textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount(self: *@This(), view: ?*TextView, range: ns.Range, checkingTypes: ns.TextCheckingTypes, options: ?*anyopaque, results: ?*anyopaque, orthography: ?*Orthography, wordCount: objc.NSInteger, ) ?*anyopaque {
+    pub fn textViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount(self: *@This(), view: ?*TextView, range: foundation.Range, checkingTypes: foundation.TextCheckingTypes, options: ?*anyopaque, results: ?*anyopaque, orthography: ?*Orthography, wordCount: objc.NSInteger, ) ?*anyopaque {
         return objc.msgSend(self, "textView:didCheckTextInRange:types:options:results:orthography:wordCount:", ?*anyopaque, .{view, range, checkingTypes, options, results, orthography, wordCount, });
     }
 
@@ -30215,11 +30223,11 @@ pub const TextViewDelegate = opaque {
         return objc.msgSend(self, "textView:shouldUpdateTouchBarItemIdentifiers:", ?*anyopaque, .{textView, identifiers});
     }
 
-    pub fn textViewCandidatesForSelectedRange(self: *@This(), textView: ?*TextView, selectedRange: ns.Range) ?*Array {
+    pub fn textViewCandidatesForSelectedRange(self: *@This(), textView: ?*TextView, selectedRange: foundation.Range) ?*Array {
         return objc.msgSend(self, "textView:candidatesForSelectedRange:", ?*Array, .{textView, selectedRange});
     }
 
-    pub fn textViewCandidatesForSelectedRange(self: *@This(), textView: ?*TextView, candidates: ?*anyopaque, selectedRange: ns.Range) ?*anyopaque {
+    pub fn textViewCandidatesForSelectedRange(self: *@This(), textView: ?*TextView, candidates: ?*anyopaque, selectedRange: foundation.Range) ?*anyopaque {
         return objc.msgSend(self, "textView:candidates:forSelectedRange:", ?*anyopaque, .{textView, candidates, selectedRange});
     }
 
@@ -30235,7 +30243,7 @@ pub const TextViewDelegate = opaque {
         return objc.msgSend(self, "textViewWritingToolsDidEnd:", void, .{textView});
     }
 
-    pub fn textViewWritingToolsIgnoredRangesInEnclosingRange(self: *@This(), textView: ?*TextView, enclosingRange: ns.Range) ?*anyopaque {
+    pub fn textViewWritingToolsIgnoredRangesInEnclosingRange(self: *@This(), textView: ?*TextView, enclosingRange: foundation.Range) ?*anyopaque {
         return objc.msgSend(self, "textView:writingToolsIgnoredRangesInEnclosingRange:", ?*anyopaque, .{textView, enclosingRange});
     }
 
@@ -30243,15 +30251,15 @@ pub const TextViewDelegate = opaque {
         return objc.msgSend(self, "textView:clickedOnLink:", objc.BOOL, .{textView, link});
     }
 
-    pub fn textViewClickedOnCellInRect(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect) void {
+    pub fn textViewClickedOnCellInRect(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: foundation.Rect) void {
         return objc.msgSend(self, "textView:clickedOnCell:inRect:", void, .{textView, cell, cellFrame});
     }
 
-    pub fn textViewDoubleClickedOnCellInRect(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: ns.Rect) void {
+    pub fn textViewDoubleClickedOnCellInRect(self: *@This(), textView: ?*TextView, cell: ?*anyopaque, cellFrame: foundation.Rect) void {
         return objc.msgSend(self, "textView:doubleClickedOnCell:inRect:", void, .{textView, cell, cellFrame});
     }
 
-    pub fn textViewDraggedCellInRectEvent(self: *@This(), view: ?*TextView, cell: ?*anyopaque, rect: ns.Rect, event: ?*Event, ) void {
+    pub fn textViewDraggedCellInRectEvent(self: *@This(), view: ?*TextView, cell: ?*anyopaque, rect: foundation.Rect, event: ?*Event, ) void {
         return objc.msgSend(self, "textView:draggedCell:inRect:event:", void, .{view, cell, rect, event, });
     }
 
@@ -30347,11 +30355,11 @@ pub const TableView = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFrame(self: *@This(), frameRect: ns.Rect) *@This() {
+    pub fn initWithFrame(self: *@This(), frameRect: foundation.Rect) *@This() {
         return objc.msgSend(self, "initWithFrame:", *@This(), .{frameRect});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -30419,12 +30427,12 @@ pub const TableView = opaque {
         return objc.msgSend(self, "setGridStyleMask:", void, .{gridStyleMask});
     }
 
-    pub fn setIntercellSpacing(self: *@This(), intercellSpacing: ns.Size) void {
+    pub fn setIntercellSpacing(self: *@This(), intercellSpacing: foundation.Size) void {
         return objc.msgSend(self, "setIntercellSpacing:", void, .{intercellSpacing});
     }
 
-    pub fn intercellSpacing(self: *@This()) ns.Size {
-        return objc.msgSend(self, "intercellSpacing", ns.Size, .{});
+    pub fn intercellSpacing(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "intercellSpacing", foundation.Size, .{});
     }
 
     pub fn usesAlternatingRowBackgroundColors(self: *@This()) objc.BOOL {
@@ -30463,11 +30471,11 @@ pub const TableView = opaque {
         return objc.msgSend(self, "effectiveRowSizeStyle", TableViewRowSizeStyle, .{});
     }
 
-    pub fn rowHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "rowHeight", cf.CGFloat, .{});
+    pub fn rowHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "rowHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn setRowHeight(self: *@This(), rowHeight: cf.CGFloat) void {
+    pub fn setRowHeight(self: *@This(), rowHeight: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setRowHeight:", void, .{rowHeight});
     }
 
@@ -30595,11 +30603,11 @@ pub const TableView = opaque {
         return objc.msgSend(self, "verticalMotionCanBeginDrag", objc.BOOL, .{});
     }
 
-    pub fn canDragRowsWithIndexesAtPoint(self: *@This(), rowIndexes: ?*IndexSet, mouseDownPoint: ns.Point) objc.BOOL {
+    pub fn canDragRowsWithIndexesAtPoint(self: *@This(), rowIndexes: ?*IndexSet, mouseDownPoint: foundation.Point) objc.BOOL {
         return objc.msgSend(self, "canDragRowsWithIndexes:atPoint:", objc.BOOL, .{rowIndexes, mouseDownPoint});
     }
 
-    pub fn dragImageForRowsWithIndexesTableColumnsEventOffset(self: *@This(), dragRows: ?*IndexSet, tableColumns: ?*anyopaque, dragEvent: ?*Event, dragImageOffset: ns.PointPointer, ) ?*Image {
+    pub fn dragImageForRowsWithIndexesTableColumnsEventOffset(self: *@This(), dragRows: ?*IndexSet, tableColumns: ?*anyopaque, dragEvent: ?*Event, dragImageOffset: foundation.PointPointer, ) ?*Image {
         return objc.msgSend(self, "dragImageForRowsWithIndexes:tableColumns:event:offset:", ?*Image, .{dragRows, tableColumns, dragEvent, dragImageOffset, });
     }
 
@@ -30727,32 +30735,32 @@ pub const TableView = opaque {
         return objc.msgSend(self, "setDraggingDestinationFeedbackStyle:", void, .{draggingDestinationFeedbackStyle});
     }
 
-    pub fn rectOfColumn(self: *@This(), column: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "rectOfColumn:", ns.Rect, .{column});
+    pub fn rectOfColumn(self: *@This(), column: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "rectOfColumn:", foundation.Rect, .{column});
     }
 
-    pub fn rectOfRow(self: *@This(), row: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "rectOfRow:", ns.Rect, .{row});
+    pub fn rectOfRow(self: *@This(), row: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "rectOfRow:", foundation.Rect, .{row});
     }
 
-    pub fn columnIndexesInRect(self: *@This(), rect: ns.Rect) ?*IndexSet {
+    pub fn columnIndexesInRect(self: *@This(), rect: foundation.Rect) ?*IndexSet {
         return objc.msgSend(self, "columnIndexesInRect:", ?*IndexSet, .{rect});
     }
 
-    pub fn rowsInRect(self: *@This(), rect: ns.Rect) ns.Range {
-        return objc.msgSend(self, "rowsInRect:", ns.Range, .{rect});
+    pub fn rowsInRect(self: *@This(), rect: foundation.Rect) foundation.Range {
+        return objc.msgSend(self, "rowsInRect:", foundation.Range, .{rect});
     }
 
-    pub fn columnAtPoint(self: *@This(), point: ns.Point) objc.NSInteger {
+    pub fn columnAtPoint(self: *@This(), point: foundation.Point) objc.NSInteger {
         return objc.msgSend(self, "columnAtPoint:", objc.NSInteger, .{point});
     }
 
-    pub fn rowAtPoint(self: *@This(), point: ns.Point) objc.NSInteger {
+    pub fn rowAtPoint(self: *@This(), point: foundation.Point) objc.NSInteger {
         return objc.msgSend(self, "rowAtPoint:", objc.NSInteger, .{point});
     }
 
-    pub fn frameOfCellAtColumnRow(self: *@This(), column: objc.NSInteger, row: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "frameOfCellAtColumn:row:", ns.Rect, .{column, row});
+    pub fn frameOfCellAtColumnRow(self: *@This(), column: objc.NSInteger, row: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "frameOfCellAtColumn:row:", foundation.Rect, .{column, row});
     }
 
     pub fn setAutosaveName(self: *@This(), autosaveName: TableViewAutosaveName) void {
@@ -30775,19 +30783,19 @@ pub const TableView = opaque {
         return objc.msgSend(self, "editColumn:row:withEvent:select:", void, .{column, row, event, select, });
     }
 
-    pub fn drawRowClipRect(self: *@This(), row: objc.NSInteger, clipRect: ns.Rect) void {
+    pub fn drawRowClipRect(self: *@This(), row: objc.NSInteger, clipRect: foundation.Rect) void {
         return objc.msgSend(self, "drawRow:clipRect:", void, .{row, clipRect});
     }
 
-    pub fn highlightSelectionInClipRect(self: *@This(), clipRect: ns.Rect) void {
+    pub fn highlightSelectionInClipRect(self: *@This(), clipRect: foundation.Rect) void {
         return objc.msgSend(self, "highlightSelectionInClipRect:", void, .{clipRect});
     }
 
-    pub fn drawGridInClipRect(self: *@This(), clipRect: ns.Rect) void {
+    pub fn drawGridInClipRect(self: *@This(), clipRect: foundation.Rect) void {
         return objc.msgSend(self, "drawGridInClipRect:", void, .{clipRect});
     }
 
-    pub fn drawBackgroundInClipRect(self: *@This(), clipRect: ns.Rect) void {
+    pub fn drawBackgroundInClipRect(self: *@This(), clipRect: foundation.Rect) void {
         return objc.msgSend(self, "drawBackgroundInClipRect:", void, .{clipRect});
     }
 
@@ -30905,7 +30913,7 @@ pub const TableView = opaque {
 
 };
 
-pub const TableViewAnimationOptions = enum NSTableViewAnimationOptions;
+pub const TableViewAnimationOptions = TableViewAnimationOptions;
 
 pub const TableViewAnimationOptions = enum(objc.NSUInteger) {
     EffectNone = 0,
@@ -30949,7 +30957,7 @@ pub const TableViewDelegate = opaque {
         return objc.msgSend(self, "tableView:shouldEditTableColumn:row:", objc.BOOL, .{tableView, tableColumn, row});
     }
 
-    pub fn tableViewToolTipForCellRectTableColumnRowMouseLocation(self: *@This(), tableView: ?*TableView, cell: ?*Cell, rect: ns.RectPointer, tableColumn: ?*TableColumn, row: objc.NSInteger, mouseLocation: ns.Point, ) ?*String {
+    pub fn tableViewToolTipForCellRectTableColumnRowMouseLocation(self: *@This(), tableView: ?*TableView, cell: ?*Cell, rect: foundation.RectPointer, tableColumn: ?*TableColumn, row: objc.NSInteger, mouseLocation: foundation.Point, ) ?*String {
         return objc.msgSend(self, "tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:", ?*String, .{tableView, cell, rect, tableColumn, row, mouseLocation, });
     }
 
@@ -30993,8 +31001,8 @@ pub const TableViewDelegate = opaque {
         return objc.msgSend(self, "tableView:didDragTableColumn:", void, .{tableView, tableColumn});
     }
 
-    pub fn tableViewHeightOfRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "tableView:heightOfRow:", cf.CGFloat, .{tableView, row});
+    pub fn tableViewHeightOfRow(self: *@This(), tableView: ?*TableView, row: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "tableView:heightOfRow:", core_foundation.CGFloat, .{tableView, row});
     }
 
     pub fn tableViewTypeSelectStringForTableColumnRow(self: *@This(), tableView: ?*TableView, tableColumn: ?*TableColumn, row: objc.NSInteger) ?*String {
@@ -31013,8 +31021,8 @@ pub const TableViewDelegate = opaque {
         return objc.msgSend(self, "tableView:isGroupRow:", objc.BOOL, .{tableView, row});
     }
 
-    pub fn tableViewSizeToFitWidthOfColumn(self: *@This(), tableView: ?*TableView, column: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "tableView:sizeToFitWidthOfColumn:", cf.CGFloat, .{tableView, column});
+    pub fn tableViewSizeToFitWidthOfColumn(self: *@This(), tableView: ?*TableView, column: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "tableView:sizeToFitWidthOfColumn:", core_foundation.CGFloat, .{tableView, column});
     }
 
     pub fn tableViewShouldReorderColumnToColumn(self: *@This(), tableView: ?*TableView, columnIndex: objc.NSInteger, newColumnIndex: objc.NSInteger) objc.BOOL {
@@ -31079,11 +31087,11 @@ pub const TableViewDataSource = opaque {
         return objc.msgSend(self, "tableView:pasteboardWriterForRow:", ?*anyopaque, .{tableView, row});
     }
 
-    pub fn tableViewDraggingSessionWillBeginAtPointForRowIndexes(self: *@This(), tableView: ?*TableView, session: ?*DraggingSession, screenPoint: ns.Point, rowIndexes: ?*IndexSet, ) void {
+    pub fn tableViewDraggingSessionWillBeginAtPointForRowIndexes(self: *@This(), tableView: ?*TableView, session: ?*DraggingSession, screenPoint: foundation.Point, rowIndexes: ?*IndexSet, ) void {
         return objc.msgSend(self, "tableView:draggingSession:willBeginAtPoint:forRowIndexes:", void, .{tableView, session, screenPoint, rowIndexes, });
     }
 
-    pub fn tableViewDraggingSessionEndedAtPointOperation(self: *@This(), tableView: ?*TableView, session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation, ) void {
+    pub fn tableViewDraggingSessionEndedAtPointOperation(self: *@This(), tableView: ?*TableView, session: ?*DraggingSession, screenPoint: foundation.Point, operation: DragOperation, ) void {
         return objc.msgSend(self, "tableView:draggingSession:endedAtPoint:operation:", void, .{tableView, session, screenPoint, operation, });
     }
 
@@ -31187,7 +31195,7 @@ pub const TableColumn = opaque {
         return objc.msgSend(self, "initWithIdentifier:", *@This(), .{identifier});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -31211,27 +31219,27 @@ pub const TableColumn = opaque {
         return objc.msgSend(self, "setTableView:", void, .{tableView});
     }
 
-    pub fn width(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "width", cf.CGFloat, .{});
+    pub fn width(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "width", core_foundation.CGFloat, .{});
     }
 
-    pub fn setWidth(self: *@This(), width: cf.CGFloat) void {
+    pub fn setWidth(self: *@This(), width: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setWidth:", void, .{width});
     }
 
-    pub fn minWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minWidth", cf.CGFloat, .{});
+    pub fn minWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinWidth(self: *@This(), minWidth: cf.CGFloat) void {
+    pub fn setMinWidth(self: *@This(), minWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinWidth:", void, .{minWidth});
     }
 
-    pub fn maxWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "maxWidth", cf.CGFloat, .{});
+    pub fn maxWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "maxWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMaxWidth(self: *@This(), maxWidth: cf.CGFloat) void {
+    pub fn setMaxWidth(self: *@This(), maxWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMaxWidth:", void, .{maxWidth});
     }
 
@@ -31304,12 +31312,12 @@ pub const TableHeaderCell = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn drawSortIndicatorWithFrameInViewAscendingPriority(self: *@This(), cellFrame: ns.Rect, controlView: ?*View, ascending: objc.BOOL, priority: objc.NSInteger, ) void {
+    pub fn drawSortIndicatorWithFrameInViewAscendingPriority(self: *@This(), cellFrame: foundation.Rect, controlView: ?*View, ascending: objc.BOOL, priority: objc.NSInteger, ) void {
         return objc.msgSend(self, "drawSortIndicatorWithFrame:inView:ascending:priority:", void, .{cellFrame, controlView, ascending, priority, });
     }
 
-    pub fn sortIndicatorRectForBounds(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "sortIndicatorRectForBounds:", ns.Rect, .{rect});
+    pub fn sortIndicatorRectForBounds(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "sortIndicatorRectForBounds:", foundation.Rect, .{rect});
     }
 
 };
@@ -31325,11 +31333,11 @@ pub const TableHeaderView = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn headerRectOfColumn(self: *@This(), column: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "headerRectOfColumn:", ns.Rect, .{column});
+    pub fn headerRectOfColumn(self: *@This(), column: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "headerRectOfColumn:", foundation.Rect, .{column});
     }
 
-    pub fn columnAtPoint(self: *@This(), point: ns.Point) objc.NSInteger {
+    pub fn columnAtPoint(self: *@This(), point: foundation.Point) objc.NSInteger {
         return objc.msgSend(self, "columnAtPoint:", objc.NSInteger, .{point});
     }
 
@@ -31345,8 +31353,8 @@ pub const TableHeaderView = opaque {
         return objc.msgSend(self, "draggedColumn", objc.NSInteger, .{});
     }
 
-    pub fn draggedDistance(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "draggedDistance", cf.CGFloat, .{});
+    pub fn draggedDistance(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "draggedDistance", core_foundation.CGFloat, .{});
     }
 
     pub fn resizedColumn(self: *@This()) objc.NSInteger {
@@ -31366,19 +31374,19 @@ pub const TableRowView = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn drawBackgroundInRect(self: *@This(), dirtyRect: ns.Rect) void {
+    pub fn drawBackgroundInRect(self: *@This(), dirtyRect: foundation.Rect) void {
         return objc.msgSend(self, "drawBackgroundInRect:", void, .{dirtyRect});
     }
 
-    pub fn drawSelectionInRect(self: *@This(), dirtyRect: ns.Rect) void {
+    pub fn drawSelectionInRect(self: *@This(), dirtyRect: foundation.Rect) void {
         return objc.msgSend(self, "drawSelectionInRect:", void, .{dirtyRect});
     }
 
-    pub fn drawSeparatorInRect(self: *@This(), dirtyRect: ns.Rect) void {
+    pub fn drawSeparatorInRect(self: *@This(), dirtyRect: foundation.Rect) void {
         return objc.msgSend(self, "drawSeparatorInRect:", void, .{dirtyRect});
     }
 
-    pub fn drawDraggingDestinationFeedbackInRect(self: *@This(), dirtyRect: ns.Rect) void {
+    pub fn drawDraggingDestinationFeedbackInRect(self: *@This(), dirtyRect: foundation.Rect) void {
         return objc.msgSend(self, "drawDraggingDestinationFeedbackInRect:", void, .{dirtyRect});
     }
 
@@ -31458,11 +31466,11 @@ pub const TableRowView = opaque {
         return objc.msgSend(self, "setDraggingDestinationFeedbackStyle:", void, .{draggingDestinationFeedbackStyle});
     }
 
-    pub fn indentationForDropOperation(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "indentationForDropOperation", cf.CGFloat, .{});
+    pub fn indentationForDropOperation(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "indentationForDropOperation", core_foundation.CGFloat, .{});
     }
 
-    pub fn setIndentationForDropOperation(self: *@This(), indentationForDropOperation: cf.CGFloat) void {
+    pub fn setIndentationForDropOperation(self: *@This(), indentationForDropOperation: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setIndentationForDropOperation:", void, .{indentationForDropOperation});
     }
 
@@ -31692,8 +31700,8 @@ pub const OutlineView = opaque {
         return objc.msgSend(self, "isItemExpanded:", objc.BOOL, .{item});
     }
 
-    pub fn frameOfOutlineCellAtRow(self: *@This(), row: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "frameOfOutlineCellAtRow:", ns.Rect, .{row});
+    pub fn frameOfOutlineCellAtRow(self: *@This(), row: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "frameOfOutlineCellAtRow:", foundation.Rect, .{row});
     }
 
     pub fn setDropItemDropChildIndex(self: *@This(), item: *objc.Id, index: objc.NSInteger) void {
@@ -31752,11 +31760,11 @@ pub const OutlineView = opaque {
         return objc.msgSend(self, "setOutlineTableColumn:", void, .{outlineTableColumn});
     }
 
-    pub fn indentationPerLevel(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "indentationPerLevel", cf.CGFloat, .{});
+    pub fn indentationPerLevel(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "indentationPerLevel", core_foundation.CGFloat, .{});
     }
 
-    pub fn setIndentationPerLevel(self: *@This(), indentationPerLevel: cf.CGFloat) void {
+    pub fn setIndentationPerLevel(self: *@This(), indentationPerLevel: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setIndentationPerLevel:", void, .{indentationPerLevel});
     }
 
@@ -31846,11 +31854,11 @@ pub const OutlineViewDataSource = opaque {
         return objc.msgSend(self, "outlineView:pasteboardWriterForItem:", ?*anyopaque, .{outlineView, item});
     }
 
-    pub fn outlineViewDraggingSessionWillBeginAtPointForItems(self: *@This(), outlineView: ?*OutlineView, session: ?*DraggingSession, screenPoint: ns.Point, draggedItems: ?*Array, ) void {
+    pub fn outlineViewDraggingSessionWillBeginAtPointForItems(self: *@This(), outlineView: ?*OutlineView, session: ?*DraggingSession, screenPoint: foundation.Point, draggedItems: ?*Array, ) void {
         return objc.msgSend(self, "outlineView:draggingSession:willBeginAtPoint:forItems:", void, .{outlineView, session, screenPoint, draggedItems, });
     }
 
-    pub fn outlineViewDraggingSessionEndedAtPointOperation(self: *@This(), outlineView: ?*OutlineView, session: ?*DraggingSession, screenPoint: ns.Point, operation: DragOperation, ) void {
+    pub fn outlineViewDraggingSessionEndedAtPointOperation(self: *@This(), outlineView: ?*OutlineView, session: ?*DraggingSession, screenPoint: foundation.Point, operation: DragOperation, ) void {
         return objc.msgSend(self, "outlineView:draggingSession:endedAtPoint:operation:", void, .{outlineView, session, screenPoint, operation, });
     }
 
@@ -31936,12 +31944,12 @@ pub const OutlineViewDelegate = opaque {
         return objc.msgSend(self, "outlineView:didDragTableColumn:", void, .{outlineView, tableColumn});
     }
 
-    pub fn outlineViewToolTipForCellRectTableColumnItemMouseLocation(self: *@This(), outlineView: ?*OutlineView, cell: ?*Cell, rect: ns.RectPointer, tableColumn: ?*TableColumn, item: *objc.Id, mouseLocation: ns.Point, ) ?*String {
+    pub fn outlineViewToolTipForCellRectTableColumnItemMouseLocation(self: *@This(), outlineView: ?*OutlineView, cell: ?*Cell, rect: foundation.RectPointer, tableColumn: ?*TableColumn, item: *objc.Id, mouseLocation: foundation.Point, ) ?*String {
         return objc.msgSend(self, "outlineView:toolTipForCell:rect:tableColumn:item:mouseLocation:", ?*String, .{outlineView, cell, rect, tableColumn, item, mouseLocation, });
     }
 
-    pub fn outlineViewHeightOfRowByItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) cf.CGFloat {
-        return objc.msgSend(self, "outlineView:heightOfRowByItem:", cf.CGFloat, .{outlineView, item});
+    pub fn outlineViewHeightOfRowByItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) core_foundation.CGFloat {
+        return objc.msgSend(self, "outlineView:heightOfRowByItem:", core_foundation.CGFloat, .{outlineView, item});
     }
 
     pub fn outlineViewTintConfigurationForItem(self: *@This(), outlineView: ?*OutlineView, item: *objc.Id) ?*TintConfiguration {
@@ -31988,8 +31996,8 @@ pub const OutlineViewDelegate = opaque {
         return objc.msgSend(self, "outlineView:willDisplayOutlineCell:forTableColumn:item:", void, .{outlineView, cell, tableColumn, item, });
     }
 
-    pub fn outlineViewSizeToFitWidthOfColumn(self: *@This(), outlineView: ?*OutlineView, column: objc.NSInteger) cf.CGFloat {
-        return objc.msgSend(self, "outlineView:sizeToFitWidthOfColumn:", cf.CGFloat, .{outlineView, column});
+    pub fn outlineViewSizeToFitWidthOfColumn(self: *@This(), outlineView: ?*OutlineView, column: objc.NSInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "outlineView:sizeToFitWidthOfColumn:", core_foundation.CGFloat, .{outlineView, column});
     }
 
     pub fn outlineViewShouldReorderColumnToColumn(self: *@This(), outlineView: ?*OutlineView, columnIndex: objc.NSInteger, newColumnIndex: objc.NSInteger) objc.BOOL {
@@ -32062,7 +32070,7 @@ pub const InputServiceProvider = opaque {
         return objc.msgSend(self, "markedTextAbandoned:", void, .{sender});
     }
 
-    pub fn markedTextSelectionChangedClient(self: *@This(), newSel: ns.Range, sender: *objc.Id) void {
+    pub fn markedTextSelectionChangedClient(self: *@This(), newSel: foundation.Range, sender: *objc.Id) void {
         return objc.msgSend(self, "markedTextSelectionChanged:client:", void, .{newSel, sender});
     }
 
@@ -32120,15 +32128,15 @@ pub const InputServerMouseTracker = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn mouseDownOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: ns.Point, flags: objc.NSUInteger, sender: *objc.Id, ) objc.BOOL {
+    pub fn mouseDownOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: foundation.Point, flags: objc.NSUInteger, sender: *objc.Id, ) objc.BOOL {
         return objc.msgSend(self, "mouseDownOnCharacterIndex:atCoordinate:withModifier:client:", objc.BOOL, .{index, point, flags, sender, });
     }
 
-    pub fn mouseDraggedOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: ns.Point, flags: objc.NSUInteger, sender: *objc.Id, ) objc.BOOL {
+    pub fn mouseDraggedOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: foundation.Point, flags: objc.NSUInteger, sender: *objc.Id, ) objc.BOOL {
         return objc.msgSend(self, "mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:", objc.BOOL, .{index, point, flags, sender, });
     }
 
-    pub fn mouseUpOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: ns.Point, flags: objc.NSUInteger, sender: *objc.Id, ) void {
+    pub fn mouseUpOnCharacterIndexAtCoordinateWithModifierClient(self: *@This(), index: objc.NSUInteger, point: foundation.Point, flags: objc.NSUInteger, sender: *objc.Id, ) void {
         return objc.msgSend(self, "mouseUpOnCharacterIndex:atCoordinate:withModifier:client:", void, .{index, point, flags, sender, });
     }
 
@@ -32162,20 +32170,20 @@ pub const StringDrawingContext = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn minimumScaleFactor(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "minimumScaleFactor", cf.CGFloat, .{});
+    pub fn minimumScaleFactor(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "minimumScaleFactor", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMinimumScaleFactor(self: *@This(), minimumScaleFactor: cf.CGFloat) void {
+    pub fn setMinimumScaleFactor(self: *@This(), minimumScaleFactor: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMinimumScaleFactor:", void, .{minimumScaleFactor});
     }
 
-    pub fn actualScaleFactor(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "actualScaleFactor", cf.CGFloat, .{});
+    pub fn actualScaleFactor(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "actualScaleFactor", core_foundation.CGFloat, .{});
     }
 
-    pub fn totalBounds(self: *@This()) cf.CGRect {
-        return objc.msgSend(self, "totalBounds", cf.CGRect, .{});
+    pub fn totalBounds(self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(self, "totalBounds", core_foundation.CGRect, .{});
     }
 
 };
@@ -32200,11 +32208,11 @@ pub const RulerMarker = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithRulerViewMarkerLocationImageImageOrigin(self: *@This(), ruler: ?*RulerView, location: cf.CGFloat, image: ?*Image, imageOrigin: ns.Point, ) *@This() {
+    pub fn initWithRulerViewMarkerLocationImageImageOrigin(self: *@This(), ruler: ?*RulerView, location: core_foundation.CGFloat, image: ?*Image, imageOrigin: foundation.Point, ) *@This() {
         return objc.msgSend(self, "initWithRulerView:markerLocation:image:imageOrigin:", *@This(), .{ruler, location, image, imageOrigin, });
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -32212,7 +32220,7 @@ pub const RulerMarker = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn drawRect(self: *@This(), rect: ns.Rect) void {
+    pub fn drawRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "drawRect:", void, .{rect});
     }
 
@@ -32224,11 +32232,11 @@ pub const RulerMarker = opaque {
         return objc.msgSend(self, "ruler", ?*RulerView, .{});
     }
 
-    pub fn markerLocation(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "markerLocation", cf.CGFloat, .{});
+    pub fn markerLocation(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "markerLocation", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMarkerLocation(self: *@This(), markerLocation: cf.CGFloat) void {
+    pub fn setMarkerLocation(self: *@This(), markerLocation: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMarkerLocation:", void, .{markerLocation});
     }
 
@@ -32240,11 +32248,11 @@ pub const RulerMarker = opaque {
         return objc.msgSend(self, "setImage:", void, .{image});
     }
 
-    pub fn imageOrigin(self: *@This()) ns.Point {
-        return objc.msgSend(self, "imageOrigin", ns.Point, .{});
+    pub fn imageOrigin(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "imageOrigin", foundation.Point, .{});
     }
 
-    pub fn setImageOrigin(self: *@This(), imageOrigin: ns.Point) void {
+    pub fn setImageOrigin(self: *@This(), imageOrigin: foundation.Point) void {
         return objc.msgSend(self, "setImageOrigin:", void, .{imageOrigin});
     }
 
@@ -32276,12 +32284,12 @@ pub const RulerMarker = opaque {
         return objc.msgSend(self, "setRepresentedObject:", void, .{representedObject});
     }
 
-    pub fn imageRectInRuler(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "imageRectInRuler", ns.Rect, .{});
+    pub fn imageRectInRuler(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "imageRectInRuler", foundation.Rect, .{});
     }
 
-    pub fn thicknessRequiredInRuler(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "thicknessRequiredInRuler", cf.CGFloat, .{});
+    pub fn thicknessRequiredInRuler(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "thicknessRequiredInRuler", core_foundation.CGFloat, .{});
     }
 
 };
@@ -32304,11 +32312,11 @@ pub const RulerView = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn registerUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(self: *@This(), unitName: RulerViewUnitName, abbreviation: ?*String, conversionFactor: cf.CGFloat, stepUpCycle: ?*anyopaque, stepDownCycle: ?*anyopaque, ) void {
+    pub fn registerUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(self: *@This(), unitName: RulerViewUnitName, abbreviation: ?*String, conversionFactor: core_foundation.CGFloat, stepUpCycle: ?*anyopaque, stepDownCycle: ?*anyopaque, ) void {
         return objc.msgSend(self, "registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:", void, .{unitName, abbreviation, conversionFactor, stepUpCycle, stepDownCycle, });
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -32328,7 +32336,7 @@ pub const RulerView = opaque {
         return objc.msgSend(self, "trackMarker:withMouseEvent:", objc.BOOL, .{marker, event});
     }
 
-    pub fn moveRulerlineFromLocationToLocation(self: *@This(), oldLocation: cf.CGFloat, newLocation: cf.CGFloat) void {
+    pub fn moveRulerlineFromLocationToLocation(self: *@This(), oldLocation: core_foundation.CGFloat, newLocation: core_foundation.CGFloat) void {
         return objc.msgSend(self, "moveRulerlineFromLocation:toLocation:", void, .{oldLocation, newLocation});
     }
 
@@ -32336,11 +32344,11 @@ pub const RulerView = opaque {
         return objc.msgSend(self, "invalidateHashMarks", void, .{});
     }
 
-    pub fn drawHashMarksAndLabelsInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn drawHashMarksAndLabelsInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "drawHashMarksAndLabelsInRect:", void, .{rect});
     }
 
-    pub fn drawMarkersInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn drawMarkersInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "drawMarkersInRect:", void, .{rect});
     }
 
@@ -32360,35 +32368,35 @@ pub const RulerView = opaque {
         return objc.msgSend(self, "setOrientation:", void, .{orientation});
     }
 
-    pub fn baselineLocation(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "baselineLocation", cf.CGFloat, .{});
+    pub fn baselineLocation(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "baselineLocation", core_foundation.CGFloat, .{});
     }
 
-    pub fn requiredThickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "requiredThickness", cf.CGFloat, .{});
+    pub fn requiredThickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "requiredThickness", core_foundation.CGFloat, .{});
     }
 
-    pub fn ruleThickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "ruleThickness", cf.CGFloat, .{});
+    pub fn ruleThickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "ruleThickness", core_foundation.CGFloat, .{});
     }
 
-    pub fn setRuleThickness(self: *@This(), ruleThickness: cf.CGFloat) void {
+    pub fn setRuleThickness(self: *@This(), ruleThickness: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setRuleThickness:", void, .{ruleThickness});
     }
 
-    pub fn reservedThicknessForMarkers(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "reservedThicknessForMarkers", cf.CGFloat, .{});
+    pub fn reservedThicknessForMarkers(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "reservedThicknessForMarkers", core_foundation.CGFloat, .{});
     }
 
-    pub fn setReservedThicknessForMarkers(self: *@This(), reservedThicknessForMarkers: cf.CGFloat) void {
+    pub fn setReservedThicknessForMarkers(self: *@This(), reservedThicknessForMarkers: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setReservedThicknessForMarkers:", void, .{reservedThicknessForMarkers});
     }
 
-    pub fn reservedThicknessForAccessoryView(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "reservedThicknessForAccessoryView", cf.CGFloat, .{});
+    pub fn reservedThicknessForAccessoryView(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "reservedThicknessForAccessoryView", core_foundation.CGFloat, .{});
     }
 
-    pub fn setReservedThicknessForAccessoryView(self: *@This(), reservedThicknessForAccessoryView: cf.CGFloat) void {
+    pub fn setReservedThicknessForAccessoryView(self: *@This(), reservedThicknessForAccessoryView: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setReservedThicknessForAccessoryView:", void, .{reservedThicknessForAccessoryView});
     }
 
@@ -32400,11 +32408,11 @@ pub const RulerView = opaque {
         return objc.msgSend(self, "setMeasurementUnits:", void, .{measurementUnits});
     }
 
-    pub fn originOffset(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "originOffset", cf.CGFloat, .{});
+    pub fn originOffset(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "originOffset", core_foundation.CGFloat, .{});
     }
 
-    pub fn setOriginOffset(self: *@This(), originOffset: cf.CGFloat) void {
+    pub fn setOriginOffset(self: *@This(), originOffset: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setOriginOffset:", void, .{originOffset});
     }
 
@@ -32547,11 +32555,11 @@ pub const ProgressIndicator = opaque {
         return objc.msgSend(self, "setMaxValue:", void, .{maxValue});
     }
 
-    pub fn observedProgress(self: *@This()) ?*ns.Progress {
-        return objc.msgSend(self, "observedProgress", ?*ns.Progress, .{});
+    pub fn observedProgress(self: *@This()) ?*foundation.Progress {
+        return objc.msgSend(self, "observedProgress", ?*foundation.Progress, .{});
     }
 
-    pub fn setObservedProgress(self: *@This(), observedProgress: ?*ns.Progress) void {
+    pub fn setObservedProgress(self: *@This(), observedProgress: ?*foundation.Progress) void {
         return objc.msgSend(self, "setObservedProgress:", void, .{observedProgress});
     }
 
@@ -32667,7 +32675,7 @@ pub const TabView = opaque {
         return objc.msgSend(self, "removeTabViewItem:", void, .{tabViewItem});
     }
 
-    pub fn tabViewItemAtPoint(self: *@This(), point: ns.Point) ?*TabViewItem {
+    pub fn tabViewItemAtPoint(self: *@This(), point: foundation.Point) ?*TabViewItem {
         return objc.msgSend(self, "tabViewItemAtPoint:", ?*TabViewItem, .{point});
     }
 
@@ -32735,8 +32743,8 @@ pub const TabView = opaque {
         return objc.msgSend(self, "setAllowsTruncatedLabels:", void, .{allowsTruncatedLabels});
     }
 
-    pub fn minimumSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minimumSize", ns.Size, .{});
+    pub fn minimumSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "minimumSize", foundation.Size, .{});
     }
 
     pub fn drawsBackground(self: *@This()) objc.BOOL {
@@ -32763,8 +32771,8 @@ pub const TabView = opaque {
         return objc.msgSend(self, "setDelegate:", void, .{delegate});
     }
 
-    pub fn contentRect(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "contentRect", ns.Rect, .{});
+    pub fn contentRect(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "contentRect", foundation.Rect, .{});
     }
 
     pub fn numberOfTabViewItems(self: *@This()) objc.NSInteger {
@@ -32948,12 +32956,12 @@ pub const TabViewItem = opaque {
         return objc.msgSend(self, "initWithIdentifier:", *@This(), .{identifier});
     }
 
-    pub fn drawLabelInRect(self: *@This(), shouldTruncateLabel: objc.BOOL, labelRect: ns.Rect) void {
+    pub fn drawLabelInRect(self: *@This(), shouldTruncateLabel: objc.BOOL, labelRect: foundation.Rect) void {
         return objc.msgSend(self, "drawLabel:inRect:", void, .{shouldTruncateLabel, labelRect});
     }
 
-    pub fn sizeOfLabel(self: *@This(), computeMin: objc.BOOL) ns.Size {
-        return objc.msgSend(self, "sizeOfLabel:", ns.Size, .{computeMin});
+    pub fn sizeOfLabel(self: *@This(), computeMin: objc.BOOL) foundation.Size {
+        return objc.msgSend(self, "sizeOfLabel:", foundation.Size, .{computeMin});
     }
 
     pub fn identifier(self: *@This()) *objc.Id {
@@ -33071,55 +33079,55 @@ pub const BezierPath = opaque {
         return objc.msgSend(self, "bezierPath", ?*BezierPath, .{});
     }
 
-    pub fn bezierPathWithRect(self: *@This(), rect: ns.Rect) ?*BezierPath {
+    pub fn bezierPathWithRect(self: *@This(), rect: foundation.Rect) ?*BezierPath {
         return objc.msgSend(self, "bezierPathWithRect:", ?*BezierPath, .{rect});
     }
 
-    pub fn bezierPathWithOvalInRect(self: *@This(), rect: ns.Rect) ?*BezierPath {
+    pub fn bezierPathWithOvalInRect(self: *@This(), rect: foundation.Rect) ?*BezierPath {
         return objc.msgSend(self, "bezierPathWithOvalInRect:", ?*BezierPath, .{rect});
     }
 
-    pub fn bezierPathWithRoundedRectXRadiusYRadius(self: *@This(), rect: ns.Rect, xRadius: cf.CGFloat, yRadius: cf.CGFloat) ?*BezierPath {
+    pub fn bezierPathWithRoundedRectXRadiusYRadius(self: *@This(), rect: foundation.Rect, xRadius: core_foundation.CGFloat, yRadius: core_foundation.CGFloat) ?*BezierPath {
         return objc.msgSend(self, "bezierPathWithRoundedRect:xRadius:yRadius:", ?*BezierPath, .{rect, xRadius, yRadius});
     }
 
-    pub fn bezierPathWithCGPath(self: *@This(), cgPath: ) ?*BezierPath {
+    pub fn bezierPathWithCGPath(self: *@This(), cgPath: core_graphics.PathRef) ?*BezierPath {
         return objc.msgSend(self, "bezierPathWithCGPath:", ?*BezierPath, .{cgPath});
     }
 
-    pub fn fillRect(self: *@This(), rect: ns.Rect) void {
+    pub fn fillRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "fillRect:", void, .{rect});
     }
 
-    pub fn strokeRect(self: *@This(), rect: ns.Rect) void {
+    pub fn strokeRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "strokeRect:", void, .{rect});
     }
 
-    pub fn clipRect(self: *@This(), rect: ns.Rect) void {
+    pub fn clipRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "clipRect:", void, .{rect});
     }
 
-    pub fn strokeLineFromPointToPoint(self: *@This(), point1: ns.Point, point2: ns.Point) void {
+    pub fn strokeLineFromPointToPoint(self: *@This(), point1: foundation.Point, point2: foundation.Point) void {
         return objc.msgSend(self, "strokeLineFromPoint:toPoint:", void, .{point1, point2});
     }
 
-    pub fn drawPackedGlyphsAtPoint(self: *@This(), packedGlyphs: ?*i8, point: ns.Point) void {
+    pub fn drawPackedGlyphsAtPoint(self: *@This(), packedGlyphs: ?*i8, point: foundation.Point) void {
         return objc.msgSend(self, "drawPackedGlyphs:atPoint:", void, .{packedGlyphs, point});
     }
 
-    pub fn moveToPoint(self: *@This(), point: ns.Point) void {
+    pub fn moveToPoint(self: *@This(), point: foundation.Point) void {
         return objc.msgSend(self, "moveToPoint:", void, .{point});
     }
 
-    pub fn lineToPoint(self: *@This(), point: ns.Point) void {
+    pub fn lineToPoint(self: *@This(), point: foundation.Point) void {
         return objc.msgSend(self, "lineToPoint:", void, .{point});
     }
 
-    pub fn curveToPointControlPoint1ControlPoint2(self: *@This(), endPoint: ns.Point, controlPoint1: ns.Point, controlPoint2: ns.Point) void {
+    pub fn curveToPointControlPoint1ControlPoint2(self: *@This(), endPoint: foundation.Point, controlPoint1: foundation.Point, controlPoint2: foundation.Point) void {
         return objc.msgSend(self, "curveToPoint:controlPoint1:controlPoint2:", void, .{endPoint, controlPoint1, controlPoint2});
     }
 
-    pub fn curveToPointControlPoint(self: *@This(), endPoint: ns.Point, controlPoint: ns.Point) void {
+    pub fn curveToPointControlPoint(self: *@This(), endPoint: foundation.Point, controlPoint: foundation.Point) void {
         return objc.msgSend(self, "curveToPoint:controlPoint:", void, .{endPoint, controlPoint});
     }
 
@@ -33131,27 +33139,27 @@ pub const BezierPath = opaque {
         return objc.msgSend(self, "removeAllPoints", void, .{});
     }
 
-    pub fn relativeMoveToPoint(self: *@This(), point: ns.Point) void {
+    pub fn relativeMoveToPoint(self: *@This(), point: foundation.Point) void {
         return objc.msgSend(self, "relativeMoveToPoint:", void, .{point});
     }
 
-    pub fn relativeLineToPoint(self: *@This(), point: ns.Point) void {
+    pub fn relativeLineToPoint(self: *@This(), point: foundation.Point) void {
         return objc.msgSend(self, "relativeLineToPoint:", void, .{point});
     }
 
-    pub fn relativeCurveToPointControlPoint1ControlPoint2(self: *@This(), endPoint: ns.Point, controlPoint1: ns.Point, controlPoint2: ns.Point) void {
+    pub fn relativeCurveToPointControlPoint1ControlPoint2(self: *@This(), endPoint: foundation.Point, controlPoint1: foundation.Point, controlPoint2: foundation.Point) void {
         return objc.msgSend(self, "relativeCurveToPoint:controlPoint1:controlPoint2:", void, .{endPoint, controlPoint1, controlPoint2});
     }
 
-    pub fn relativeCurveToPointControlPoint(self: *@This(), endPoint: ns.Point, controlPoint: ns.Point) void {
+    pub fn relativeCurveToPointControlPoint(self: *@This(), endPoint: foundation.Point, controlPoint: foundation.Point) void {
         return objc.msgSend(self, "relativeCurveToPoint:controlPoint:", void, .{endPoint, controlPoint});
     }
 
-    pub fn getLineDashCountPhase(self: *@This(), pattern: ?*cf.CGFloat, count: ?*objc.NSInteger, phase: ?*cf.CGFloat) void {
+    pub fn getLineDashCountPhase(self: *@This(), pattern: ?*core_foundation.CGFloat, count: ?*objc.NSInteger, phase: ?*core_foundation.CGFloat) void {
         return objc.msgSend(self, "getLineDash:count:phase:", void, .{pattern, count, phase});
     }
 
-    pub fn setLineDashCountPhase(self: *@This(), pattern: ?*cf.CGFloat, count: objc.NSInteger, phase: cf.CGFloat) void {
+    pub fn setLineDashCountPhase(self: *@This(), pattern: ?*core_foundation.CGFloat, count: objc.NSInteger, phase: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLineDash:count:phase:", void, .{pattern, count, phase});
     }
 
@@ -33175,7 +33183,7 @@ pub const BezierPath = opaque {
         return objc.msgSend(self, "transformUsingAffineTransform:", void, .{transform});
     }
 
-    pub fn elementAtIndexAssociatedPoints(self: *@This(), index: objc.NSInteger, points: ns.PointArray) BezierPathElement {
+    pub fn elementAtIndexAssociatedPoints(self: *@This(), index: objc.NSInteger, points: foundation.PointArray) BezierPathElement {
         return objc.msgSend(self, "elementAtIndex:associatedPoints:", BezierPathElement, .{index, points});
     }
 
@@ -33183,7 +33191,7 @@ pub const BezierPath = opaque {
         return objc.msgSend(self, "elementAtIndex:", BezierPathElement, .{index});
     }
 
-    pub fn setAssociatedPointsAtIndex(self: *@This(), points: ns.PointArray, index: objc.NSInteger) void {
+    pub fn setAssociatedPointsAtIndex(self: *@This(), points: foundation.PointArray, index: objc.NSInteger) void {
         return objc.msgSend(self, "setAssociatedPoints:atIndex:", void, .{points, index});
     }
 
@@ -33191,67 +33199,67 @@ pub const BezierPath = opaque {
         return objc.msgSend(self, "appendBezierPath:", void, .{path});
     }
 
-    pub fn appendBezierPathWithRect(self: *@This(), rect: ns.Rect) void {
+    pub fn appendBezierPathWithRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "appendBezierPathWithRect:", void, .{rect});
     }
 
-    pub fn appendBezierPathWithPointsCount(self: *@This(), points: ns.PointArray, count: objc.NSInteger) void {
+    pub fn appendBezierPathWithPointsCount(self: *@This(), points: foundation.PointArray, count: objc.NSInteger) void {
         return objc.msgSend(self, "appendBezierPathWithPoints:count:", void, .{points, count});
     }
 
-    pub fn appendBezierPathWithOvalInRect(self: *@This(), rect: ns.Rect) void {
+    pub fn appendBezierPathWithOvalInRect(self: *@This(), rect: foundation.Rect) void {
         return objc.msgSend(self, "appendBezierPathWithOvalInRect:", void, .{rect});
     }
 
-    pub fn appendBezierPathWithArcWithCenterRadiusStartAngleEndAngleClockwise(self: *@This(), center: ns.Point, radius: cf.CGFloat, startAngle: cf.CGFloat, endAngle: cf.CGFloat, clockwise: objc.BOOL, ) void {
+    pub fn appendBezierPathWithArcWithCenterRadiusStartAngleEndAngleClockwise(self: *@This(), center: foundation.Point, radius: core_foundation.CGFloat, startAngle: core_foundation.CGFloat, endAngle: core_foundation.CGFloat, clockwise: objc.BOOL, ) void {
         return objc.msgSend(self, "appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:clockwise:", void, .{center, radius, startAngle, endAngle, clockwise, });
     }
 
-    pub fn appendBezierPathWithArcWithCenterRadiusStartAngleEndAngle(self: *@This(), center: ns.Point, radius: cf.CGFloat, startAngle: cf.CGFloat, endAngle: cf.CGFloat, ) void {
+    pub fn appendBezierPathWithArcWithCenterRadiusStartAngleEndAngle(self: *@This(), center: foundation.Point, radius: core_foundation.CGFloat, startAngle: core_foundation.CGFloat, endAngle: core_foundation.CGFloat, ) void {
         return objc.msgSend(self, "appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:", void, .{center, radius, startAngle, endAngle, });
     }
 
-    pub fn appendBezierPathWithArcFromPointToPointRadius(self: *@This(), point1: ns.Point, point2: ns.Point, radius: cf.CGFloat) void {
+    pub fn appendBezierPathWithArcFromPointToPointRadius(self: *@This(), point1: foundation.Point, point2: foundation.Point, radius: core_foundation.CGFloat) void {
         return objc.msgSend(self, "appendBezierPathWithArcFromPoint:toPoint:radius:", void, .{point1, point2, radius});
     }
 
-    pub fn appendBezierPathWithCGGlyphInFont(self: *@This(), glyph: , font: ?*Font) void {
+    pub fn appendBezierPathWithCGGlyphInFont(self: *@This(), glyph: core_graphics.Glyph, font: ?*Font) void {
         return objc.msgSend(self, "appendBezierPathWithCGGlyph:inFont:", void, .{glyph, font});
     }
 
-    pub fn appendBezierPathWithCGGlyphsCountInFont(self: *@This(), glyphs: ?*, count: objc.NSInteger, font: ?*Font) void {
+    pub fn appendBezierPathWithCGGlyphsCountInFont(self: *@This(), glyphs: ?*core_graphics.Glyph, count: objc.NSInteger, font: ?*Font) void {
         return objc.msgSend(self, "appendBezierPathWithCGGlyphs:count:inFont:", void, .{glyphs, count, font});
     }
 
-    pub fn appendBezierPathWithRoundedRectXRadiusYRadius(self: *@This(), rect: ns.Rect, xRadius: cf.CGFloat, yRadius: cf.CGFloat) void {
+    pub fn appendBezierPathWithRoundedRectXRadiusYRadius(self: *@This(), rect: foundation.Rect, xRadius: core_foundation.CGFloat, yRadius: core_foundation.CGFloat) void {
         return objc.msgSend(self, "appendBezierPathWithRoundedRect:xRadius:yRadius:", void, .{rect, xRadius, yRadius});
     }
 
-    pub fn containsPoint(self: *@This(), point: ns.Point) objc.BOOL {
+    pub fn containsPoint(self: *@This(), point: foundation.Point) objc.BOOL {
         return objc.msgSend(self, "containsPoint:", objc.BOOL, .{point});
     }
 
-    pub fn CGPath(self: *@This())  {
-        return objc.msgSend(self, "CGPath", , .{});
+    pub fn CGPath(self: *@This()) core_graphics.PathRef {
+        return objc.msgSend(self, "CGPath", core_graphics.PathRef, .{});
     }
 
-    pub fn setCGPath(self: *@This(), CGPath: ) void {
+    pub fn setCGPath(self: *@This(), CGPath: core_graphics.PathRef) void {
         return objc.msgSend(self, "setCGPath:", void, .{CGPath});
     }
 
-    pub fn defaultMiterLimit(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "defaultMiterLimit", cf.CGFloat, .{});
+    pub fn defaultMiterLimit(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "defaultMiterLimit", core_foundation.CGFloat, .{});
     }
 
-    pub fn setDefaultMiterLimit(self: *@This(), defaultMiterLimit: cf.CGFloat) void {
+    pub fn setDefaultMiterLimit(self: *@This(), defaultMiterLimit: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setDefaultMiterLimit:", void, .{defaultMiterLimit});
     }
 
-    pub fn defaultFlatness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "defaultFlatness", cf.CGFloat, .{});
+    pub fn defaultFlatness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "defaultFlatness", core_foundation.CGFloat, .{});
     }
 
-    pub fn setDefaultFlatness(self: *@This(), defaultFlatness: cf.CGFloat) void {
+    pub fn setDefaultFlatness(self: *@This(), defaultFlatness: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setDefaultFlatness:", void, .{defaultFlatness});
     }
 
@@ -33279,19 +33287,19 @@ pub const BezierPath = opaque {
         return objc.msgSend(self, "setDefaultLineJoinStyle:", void, .{defaultLineJoinStyle});
     }
 
-    pub fn defaultLineWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "defaultLineWidth", cf.CGFloat, .{});
+    pub fn defaultLineWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "defaultLineWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setDefaultLineWidth(self: *@This(), defaultLineWidth: cf.CGFloat) void {
+    pub fn setDefaultLineWidth(self: *@This(), defaultLineWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setDefaultLineWidth:", void, .{defaultLineWidth});
     }
 
-    pub fn lineWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "lineWidth", cf.CGFloat, .{});
+    pub fn lineWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineWidth", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLineWidth(self: *@This(), lineWidth: cf.CGFloat) void {
+    pub fn setLineWidth(self: *@This(), lineWidth: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLineWidth:", void, .{lineWidth});
     }
 
@@ -33319,19 +33327,19 @@ pub const BezierPath = opaque {
         return objc.msgSend(self, "setWindingRule:", void, .{windingRule});
     }
 
-    pub fn miterLimit(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "miterLimit", cf.CGFloat, .{});
+    pub fn miterLimit(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "miterLimit", core_foundation.CGFloat, .{});
     }
 
-    pub fn setMiterLimit(self: *@This(), miterLimit: cf.CGFloat) void {
+    pub fn setMiterLimit(self: *@This(), miterLimit: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setMiterLimit:", void, .{miterLimit});
     }
 
-    pub fn flatness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "flatness", cf.CGFloat, .{});
+    pub fn flatness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "flatness", core_foundation.CGFloat, .{});
     }
 
-    pub fn setFlatness(self: *@This(), flatness: cf.CGFloat) void {
+    pub fn setFlatness(self: *@This(), flatness: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setFlatness:", void, .{flatness});
     }
 
@@ -33347,16 +33355,16 @@ pub const BezierPath = opaque {
         return objc.msgSend(self, "isEmpty", objc.BOOL, .{});
     }
 
-    pub fn currentPoint(self: *@This()) ns.Point {
-        return objc.msgSend(self, "currentPoint", ns.Point, .{});
+    pub fn currentPoint(self: *@This()) foundation.Point {
+        return objc.msgSend(self, "currentPoint", foundation.Point, .{});
     }
 
-    pub fn controlPointBounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "controlPointBounds", ns.Rect, .{});
+    pub fn controlPointBounds(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "controlPointBounds", foundation.Rect, .{});
     }
 
-    pub fn bounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "bounds", ns.Rect, .{});
+    pub fn bounds(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "bounds", foundation.Rect, .{});
     }
 
     pub fn elementCount(self: *@This()) objc.NSInteger {
@@ -33388,8 +33396,8 @@ pub const PICTImageRep = opaque {
         return objc.msgSend(self, "PICTRepresentation", ?*Data, .{});
     }
 
-    pub fn boundingBox(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "boundingBox", ns.Rect, .{});
+    pub fn boundingBox(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "boundingBox", foundation.Rect, .{});
     }
 
 };
@@ -33405,7 +33413,7 @@ pub const StatusBar = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn statusItemWithLength(self: *@This(), length: cf.CGFloat) ?*StatusItem {
+    pub fn statusItemWithLength(self: *@This(), length: core_foundation.CGFloat) ?*StatusItem {
         return objc.msgSend(self, "statusItemWithLength:", ?*StatusItem, .{length});
     }
 
@@ -33421,8 +33429,8 @@ pub const StatusBar = opaque {
         return objc.msgSend(self, "isVertical", objc.BOOL, .{});
     }
 
-    pub fn thickness(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "thickness", cf.CGFloat, .{});
+    pub fn thickness(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "thickness", core_foundation.CGFloat, .{});
     }
 
 };
@@ -33470,11 +33478,11 @@ pub const StatusItem = opaque {
         return objc.msgSend(self, "statusBar", ?*StatusBar, .{});
     }
 
-    pub fn length(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "length", cf.CGFloat, .{});
+    pub fn length(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "length", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLength(self: *@This(), length: cf.CGFloat) void {
+    pub fn setLength(self: *@This(), length: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLength:", void, .{length});
     }
 
@@ -33571,7 +33579,7 @@ pub const Sound = opaque {
         return objc.msgSend(self, "pause", objc.BOOL, .{});
     }
 
-    pub fn resume(self: *@This()) objc.BOOL {
+    pub fn @"resume"(self: *@This()) objc.BOOL {
         return objc.msgSend(self, "resume", objc.BOOL, .{});
     }
 
@@ -33607,8 +33615,8 @@ pub const Sound = opaque {
         return objc.msgSend(self, "setDelegate:", void, .{delegate});
     }
 
-    pub fn duration(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "duration", ns.TimeInterval, .{});
+    pub fn duration(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "duration", foundation.TimeInterval, .{});
     }
 
     pub fn volume(self: *@This()) f32 {
@@ -33619,11 +33627,11 @@ pub const Sound = opaque {
         return objc.msgSend(self, "setVolume:", void, .{volume});
     }
 
-    pub fn currentTime(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "currentTime", ns.TimeInterval, .{});
+    pub fn currentTime(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "currentTime", foundation.TimeInterval, .{});
     }
 
-    pub fn setCurrentTime(self: *@This(), currentTime: ns.TimeInterval) void {
+    pub fn setCurrentTime(self: *@This(), currentTime: foundation.TimeInterval) void {
         return objc.msgSend(self, "setCurrentTime:", void, .{currentTime});
     }
 
@@ -33670,7 +33678,7 @@ pub const Movie = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -33711,8 +33719,8 @@ pub const PDFImageRep = opaque {
         return objc.msgSend(self, "PDFRepresentation", ?*Data, .{});
     }
 
-    pub fn bounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "bounds", ns.Rect, .{});
+    pub fn bounds(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "bounds", foundation.Rect, .{});
     }
 
     pub fn currentPage(self: *@This()) objc.NSInteger {
@@ -33747,7 +33755,7 @@ pub const Drawer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithContentSizePreferredEdge(self: *@This(), contentSize: ns.Size, edge: ns.RectEdge) *@This() {
+    pub fn initWithContentSizePreferredEdge(self: *@This(), contentSize: foundation.Size, edge: foundation.RectEdge) *@This() {
         return objc.msgSend(self, "initWithContentSize:preferredEdge:", *@This(), .{contentSize, edge});
     }
 
@@ -33755,7 +33763,7 @@ pub const Drawer = opaque {
         return objc.msgSend(self, "open", void, .{});
     }
 
-    pub fn openOnEdge(self: *@This(), edge: ns.RectEdge) void {
+    pub fn openOnEdge(self: *@This(), edge: foundation.RectEdge) void {
         return objc.msgSend(self, "openOnEdge:", void, .{edge});
     }
 
@@ -33791,11 +33799,11 @@ pub const Drawer = opaque {
         return objc.msgSend(self, "setContentView:", void, .{contentView});
     }
 
-    pub fn preferredEdge(self: *@This()) ns.RectEdge {
-        return objc.msgSend(self, "preferredEdge", ns.RectEdge, .{});
+    pub fn preferredEdge(self: *@This()) foundation.RectEdge {
+        return objc.msgSend(self, "preferredEdge", foundation.RectEdge, .{});
     }
 
-    pub fn setPreferredEdge(self: *@This(), preferredEdge: ns.RectEdge) void {
+    pub fn setPreferredEdge(self: *@This(), preferredEdge: foundation.RectEdge) void {
         return objc.msgSend(self, "setPreferredEdge:", void, .{preferredEdge});
     }
 
@@ -33811,47 +33819,47 @@ pub const Drawer = opaque {
         return objc.msgSend(self, "state", objc.NSInteger, .{});
     }
 
-    pub fn edge(self: *@This()) ns.RectEdge {
-        return objc.msgSend(self, "edge", ns.RectEdge, .{});
+    pub fn edge(self: *@This()) foundation.RectEdge {
+        return objc.msgSend(self, "edge", foundation.RectEdge, .{});
     }
 
-    pub fn contentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "contentSize", ns.Size, .{});
+    pub fn contentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "contentSize", foundation.Size, .{});
     }
 
-    pub fn setContentSize(self: *@This(), contentSize: ns.Size) void {
+    pub fn setContentSize(self: *@This(), contentSize: foundation.Size) void {
         return objc.msgSend(self, "setContentSize:", void, .{contentSize});
     }
 
-    pub fn minContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "minContentSize", ns.Size, .{});
+    pub fn minContentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "minContentSize", foundation.Size, .{});
     }
 
-    pub fn setMinContentSize(self: *@This(), minContentSize: ns.Size) void {
+    pub fn setMinContentSize(self: *@This(), minContentSize: foundation.Size) void {
         return objc.msgSend(self, "setMinContentSize:", void, .{minContentSize});
     }
 
-    pub fn maxContentSize(self: *@This()) ns.Size {
-        return objc.msgSend(self, "maxContentSize", ns.Size, .{});
+    pub fn maxContentSize(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "maxContentSize", foundation.Size, .{});
     }
 
-    pub fn setMaxContentSize(self: *@This(), maxContentSize: ns.Size) void {
+    pub fn setMaxContentSize(self: *@This(), maxContentSize: foundation.Size) void {
         return objc.msgSend(self, "setMaxContentSize:", void, .{maxContentSize});
     }
 
-    pub fn leadingOffset(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "leadingOffset", cf.CGFloat, .{});
+    pub fn leadingOffset(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "leadingOffset", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLeadingOffset(self: *@This(), leadingOffset: cf.CGFloat) void {
+    pub fn setLeadingOffset(self: *@This(), leadingOffset: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLeadingOffset:", void, .{leadingOffset});
     }
 
-    pub fn trailingOffset(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "trailingOffset", cf.CGFloat, .{});
+    pub fn trailingOffset(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "trailingOffset", core_foundation.CGFloat, .{});
     }
 
-    pub fn setTrailingOffset(self: *@This(), trailingOffset: cf.CGFloat) void {
+    pub fn setTrailingOffset(self: *@This(), trailingOffset: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setTrailingOffset:", void, .{trailingOffset});
     }
 
@@ -33873,8 +33881,8 @@ pub const DrawerDelegate = opaque {
         return objc.msgSend(self, "drawerShouldClose:", objc.BOOL, .{sender});
     }
 
-    pub fn drawerWillResizeContentsToSize(self: *@This(), sender: ?*Drawer, contentSize: ns.Size) ns.Size {
-        return objc.msgSend(self, "drawerWillResizeContents:toSize:", ns.Size, .{sender, contentSize});
+    pub fn drawerWillResizeContentsToSize(self: *@This(), sender: ?*Drawer, contentSize: foundation.Size) foundation.Size {
+        return objc.msgSend(self, "drawerWillResizeContents:toSize:", foundation.Size, .{sender, contentSize});
     }
 
     pub fn drawerWillOpen(self: *@This(), notification: ?*Notification) void {
@@ -33903,11 +33911,11 @@ pub const OpenGLGlobalOption = enum(objc.uint32_t) {
     OResetLibrary = 504,
 };
 
-pub extern "AppKit" fn OpenGLSetOption(pname: OpenGLGlobalOption, param: ) callconv(.C) void;
+pub extern "AppKit" fn OpenGLSetOption(pname: OpenGLGlobalOption, param: opengl.GLint) callconv(.C) void;
 
-pub extern "AppKit" fn OpenGLGetOption(pname: OpenGLGlobalOption, param: ?*) callconv(.C) void;
+pub extern "AppKit" fn OpenGLGetOption(pname: OpenGLGlobalOption, param: ?*opengl.GLint) callconv(.C) void;
 
-pub extern "AppKit" fn OpenGLGetVersion(major: ?*, minor: ?*) callconv(.C) void;
+pub extern "AppKit" fn OpenGLGetVersion(major: ?*opengl.GLint, minor: ?*opengl.GLint) callconv(.C) void;
 
 pub const OpenGLPixelFormatAttribute = objc.uint32_t;
 
@@ -33922,7 +33930,7 @@ pub const OpenGLPixelFormat = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithCGLPixelFormatObj(self: *@This(), format: ) ?*OpenGLPixelFormat {
+    pub fn initWithCGLPixelFormatObj(self: *@This(), format: opengl.PixelFormatObj) ?*OpenGLPixelFormat {
         return objc.msgSend(self, "initWithCGLPixelFormatObj:", ?*OpenGLPixelFormat, .{format});
     }
 
@@ -33942,16 +33950,16 @@ pub const OpenGLPixelFormat = opaque {
         return objc.msgSend(self, "setAttributes:", void, .{attribs});
     }
 
-    pub fn getValuesForAttributeForVirtualScreen(self: *@This(), vals: ?*, attrib: OpenGLPixelFormatAttribute, screen: ) void {
+    pub fn getValuesForAttributeForVirtualScreen(self: *@This(), vals: ?*opengl.GLint, attrib: OpenGLPixelFormatAttribute, screen: opengl.GLint) void {
         return objc.msgSend(self, "getValues:forAttribute:forVirtualScreen:", void, .{vals, attrib, screen});
     }
 
-    pub fn numberOfVirtualScreens(self: *@This())  {
-        return objc.msgSend(self, "numberOfVirtualScreens", , .{});
+    pub fn numberOfVirtualScreens(self: *@This()) opengl.GLint {
+        return objc.msgSend(self, "numberOfVirtualScreens", opengl.GLint, .{});
     }
 
-    pub fn CGLPixelFormatObj(self: *@This())  {
-        return objc.msgSend(self, "CGLPixelFormatObj", , .{});
+    pub fn CGLPixelFormatObj(self: *@This()) opengl.PixelFormatObj {
+        return objc.msgSend(self, "CGLPixelFormatObj", opengl.PixelFormatObj, .{});
     }
 
 };
@@ -33967,36 +33975,36 @@ pub const OpenGLPixelBuffer = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithTextureTargetTextureInternalFormatTextureMaxMipMapLevelPixelsWidePixelsHigh(self: *@This(), target: , format: , maxLevel: , pixelsWide: , pixelsHigh: , ) *@This() {
+    pub fn initWithTextureTargetTextureInternalFormatTextureMaxMipMapLevelPixelsWidePixelsHigh(self: *@This(), target: opengl.GLenum, format: opengl.GLenum, maxLevel: opengl.GLint, pixelsWide: opengl.GLsizei, pixelsHigh: opengl.GLsizei, ) *@This() {
         return objc.msgSend(self, "initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:", *@This(), .{target, format, maxLevel, pixelsWide, pixelsHigh, });
     }
 
-    pub fn initWithCGLPBufferObj(self: *@This(), pbuffer: ) ?*OpenGLPixelBuffer {
+    pub fn initWithCGLPBufferObj(self: *@This(), pbuffer: opengl.PBufferObj) ?*OpenGLPixelBuffer {
         return objc.msgSend(self, "initWithCGLPBufferObj:", ?*OpenGLPixelBuffer, .{pbuffer});
     }
 
-    pub fn CGLPBufferObj(self: *@This())  {
-        return objc.msgSend(self, "CGLPBufferObj", , .{});
+    pub fn CGLPBufferObj(self: *@This()) opengl.PBufferObj {
+        return objc.msgSend(self, "CGLPBufferObj", opengl.PBufferObj, .{});
     }
 
-    pub fn pixelsWide(self: *@This())  {
-        return objc.msgSend(self, "pixelsWide", , .{});
+    pub fn pixelsWide(self: *@This()) opengl.GLsizei {
+        return objc.msgSend(self, "pixelsWide", opengl.GLsizei, .{});
     }
 
-    pub fn pixelsHigh(self: *@This())  {
-        return objc.msgSend(self, "pixelsHigh", , .{});
+    pub fn pixelsHigh(self: *@This()) opengl.GLsizei {
+        return objc.msgSend(self, "pixelsHigh", opengl.GLsizei, .{});
     }
 
-    pub fn textureTarget(self: *@This())  {
-        return objc.msgSend(self, "textureTarget", , .{});
+    pub fn textureTarget(self: *@This()) opengl.GLenum {
+        return objc.msgSend(self, "textureTarget", opengl.GLenum, .{});
     }
 
-    pub fn textureInternalFormat(self: *@This())  {
-        return objc.msgSend(self, "textureInternalFormat", , .{});
+    pub fn textureInternalFormat(self: *@This()) opengl.GLenum {
+        return objc.msgSend(self, "textureInternalFormat", opengl.GLenum, .{});
     }
 
-    pub fn textureMaxMipMapLevel(self: *@This())  {
-        return objc.msgSend(self, "textureMaxMipMapLevel", , .{});
+    pub fn textureMaxMipMapLevel(self: *@This()) opengl.GLint {
+        return objc.msgSend(self, "textureMaxMipMapLevel", opengl.GLint, .{});
     }
 
 };
@@ -34034,7 +34042,7 @@ pub const OpenGLContext = opaque {
         return objc.msgSend(self, "initWithFormat:shareContext:", *@This(), .{format, share});
     }
 
-    pub fn initWithCGLContextObj(self: *@This(), context: ) ?*OpenGLContext {
+    pub fn initWithCGLContextObj(self: *@This(), context: opengl.ContextObj) ?*OpenGLContext {
         return objc.msgSend(self, "initWithCGLContextObj:", ?*OpenGLContext, .{context});
     }
 
@@ -34046,7 +34054,7 @@ pub const OpenGLContext = opaque {
         return objc.msgSend(self, "setFullScreen", void, .{});
     }
 
-    pub fn setOffScreenWidthHeightRowbytes(self: *@This(), baseaddr: ?*anyopaque, width: , height: , rowbytes: , ) void {
+    pub fn setOffScreenWidthHeightRowbytes(self: *@This(), baseaddr: ?*anyopaque, width: opengl.GLsizei, height: opengl.GLsizei, rowbytes: opengl.GLint, ) void {
         return objc.msgSend(self, "setOffScreen:width:height:rowbytes:", void, .{baseaddr, width, height, rowbytes, });
     }
 
@@ -34070,19 +34078,19 @@ pub const OpenGLContext = opaque {
         return objc.msgSend(self, "clearCurrentContext", void, .{});
     }
 
-    pub fn copyAttributesFromContextWithMask(self: *@This(), context: ?*OpenGLContext, mask: ) void {
+    pub fn copyAttributesFromContextWithMask(self: *@This(), context: ?*OpenGLContext, mask: opengl.GLbitfield) void {
         return objc.msgSend(self, "copyAttributesFromContext:withMask:", void, .{context, mask});
     }
 
-    pub fn setValuesForParameter(self: *@This(), vals: ?*, param: OpenGLContextParameter) void {
+    pub fn setValuesForParameter(self: *@This(), vals: ?*opengl.GLint, param: OpenGLContextParameter) void {
         return objc.msgSend(self, "setValues:forParameter:", void, .{vals, param});
     }
 
-    pub fn getValuesForParameter(self: *@This(), vals: ?*, param: OpenGLContextParameter) void {
+    pub fn getValuesForParameter(self: *@This(), vals: ?*opengl.GLint, param: OpenGLContextParameter) void {
         return objc.msgSend(self, "getValues:forParameter:", void, .{vals, param});
     }
 
-    pub fn createTextureFromViewInternalFormat(self: *@This(), target: , view: ?*View, format: ) void {
+    pub fn createTextureFromViewInternalFormat(self: *@This(), target: opengl.GLenum, view: ?*View, format: opengl.GLenum) void {
         return objc.msgSend(self, "createTexture:fromView:internalFormat:", void, .{target, view, format});
     }
 
@@ -34098,16 +34106,16 @@ pub const OpenGLContext = opaque {
         return objc.msgSend(self, "currentContext", ?*OpenGLContext, .{});
     }
 
-    pub fn currentVirtualScreen(self: *@This())  {
-        return objc.msgSend(self, "currentVirtualScreen", , .{});
+    pub fn currentVirtualScreen(self: *@This()) opengl.GLint {
+        return objc.msgSend(self, "currentVirtualScreen", opengl.GLint, .{});
     }
 
-    pub fn setCurrentVirtualScreen(self: *@This(), currentVirtualScreen: ) void {
+    pub fn setCurrentVirtualScreen(self: *@This(), currentVirtualScreen: opengl.GLint) void {
         return objc.msgSend(self, "setCurrentVirtualScreen:", void, .{currentVirtualScreen});
     }
 
-    pub fn CGLContextObj(self: *@This())  {
-        return objc.msgSend(self, "CGLContextObj", , .{});
+    pub fn CGLContextObj(self: *@This()) opengl.ContextObj {
+        return objc.msgSend(self, "CGLContextObj", opengl.ContextObj, .{});
     }
 
 };
@@ -34131,11 +34139,11 @@ pub const OpenGLLayer = opaque {
         return objc.msgSend(self, "openGLContextForPixelFormat:", ?*OpenGLContext, .{pixelFormat});
     }
 
-    pub fn canDrawInOpenGLContextPixelFormatForLayerTimeDisplayTime(self: *@This(), context: ?*OpenGLContext, pixelFormat: ?*OpenGLPixelFormat, t: cf.TimeInterval, ts: ?*, ) objc.BOOL {
+    pub fn canDrawInOpenGLContextPixelFormatForLayerTimeDisplayTime(self: *@This(), context: ?*OpenGLContext, pixelFormat: ?*OpenGLPixelFormat, t: core_foundation.TimeInterval, ts: ?*core_video.TimeStamp, ) objc.BOOL {
         return objc.msgSend(self, "canDrawInOpenGLContext:pixelFormat:forLayerTime:displayTime:", objc.BOOL, .{context, pixelFormat, t, ts, });
     }
 
-    pub fn drawInOpenGLContextPixelFormatForLayerTimeDisplayTime(self: *@This(), context: ?*OpenGLContext, pixelFormat: ?*OpenGLPixelFormat, t: cf.TimeInterval, ts: ?*, ) void {
+    pub fn drawInOpenGLContextPixelFormatForLayerTimeDisplayTime(self: *@This(), context: ?*OpenGLContext, pixelFormat: ?*OpenGLPixelFormat, t: core_foundation.TimeInterval, ts: ?*core_video.TimeStamp, ) void {
         return objc.msgSend(self, "drawInOpenGLContext:pixelFormat:forLayerTime:displayTime:", void, .{context, pixelFormat, t, ts, });
     }
 
@@ -34180,7 +34188,7 @@ pub const OpenGLView = opaque {
         return objc.msgSend(self, "defaultPixelFormat", ?*OpenGLPixelFormat, .{});
     }
 
-    pub fn initWithFramePixelFormat(self: *@This(), frameRect: ns.Rect, format: ?*OpenGLPixelFormat) *@This() {
+    pub fn initWithFramePixelFormat(self: *@This(), frameRect: foundation.Rect, format: ?*OpenGLPixelFormat) *@This() {
         return objc.msgSend(self, "initWithFrame:pixelFormat:", *@This(), .{frameRect, format});
     }
 
@@ -34365,8 +34373,8 @@ pub const SharingServicePickerToolbarItemDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn itemsForSharingServicePickerToolbarItem(self: *@This(), pickerToolbarItem: ?*SharingServicePickerToolbarItem) ?* {
-        return objc.msgSend(self, "itemsForSharingServicePickerToolbarItem:", ?*, .{pickerToolbarItem});
+    pub fn itemsForSharingServicePickerToolbarItem(self: *@This(), pickerToolbarItem: ?*SharingServicePickerToolbarItem) ?*quartz_core.NSArray {
+        return objc.msgSend(self, "itemsForSharingServicePickerToolbarItem:", ?*quartz_core.NSArray, .{pickerToolbarItem});
     }
 
 };
@@ -34488,12 +34496,12 @@ pub const GlyphInfo = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn glyphInfoWithCGGlyphForFontBaseString(self: *@This(), glyph: , font: ?*Font, string: ?*String) ?* {
-        return objc.msgSend(self, "glyphInfoWithCGGlyph:forFont:baseString:", ?*, .{glyph, font, string});
+    pub fn glyphInfoWithCGGlyphForFontBaseString(self: *@This(), glyph: core_graphics.Glyph, font: ?*Font, string: ?*String) ?*core_text.NSGlyphInfo {
+        return objc.msgSend(self, "glyphInfoWithCGGlyph:forFont:baseString:", ?*core_text.NSGlyphInfo, .{glyph, font, string});
     }
 
-    pub fn glyphID(self: *@This())  {
-        return objc.msgSend(self, "glyphID", , .{});
+    pub fn glyphID(self: *@This()) core_graphics.Glyph {
+        return objc.msgSend(self, "glyphID", core_graphics.Glyph, .{});
     }
 
     pub fn baseString(self: *@This()) ?*String {
@@ -34530,19 +34538,19 @@ pub const Shadow = opaque {
         return objc.msgSend(self, "set", void, .{});
     }
 
-    pub fn shadowOffset(self: *@This()) ns.Size {
-        return objc.msgSend(self, "shadowOffset", ns.Size, .{});
+    pub fn shadowOffset(self: *@This()) foundation.Size {
+        return objc.msgSend(self, "shadowOffset", foundation.Size, .{});
     }
 
-    pub fn setShadowOffset(self: *@This(), shadowOffset: ns.Size) void {
+    pub fn setShadowOffset(self: *@This(), shadowOffset: foundation.Size) void {
         return objc.msgSend(self, "setShadowOffset:", void, .{shadowOffset});
     }
 
-    pub fn shadowBlurRadius(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "shadowBlurRadius", cf.CGFloat, .{});
+    pub fn shadowBlurRadius(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "shadowBlurRadius", core_foundation.CGFloat, .{});
     }
 
-    pub fn setShadowBlurRadius(self: *@This(), shadowBlurRadius: cf.CGFloat) void {
+    pub fn setShadowBlurRadius(self: *@This(), shadowBlurRadius: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setShadowBlurRadius:", void, .{shadowBlurRadius});
     }
 
@@ -34571,15 +34579,15 @@ pub const Typesetter = opaque {
         return objc.msgSend(self, "substituteFontForFont:", ?*Font, .{originalFont});
     }
 
-    pub fn textTabForGlyphLocationWritingDirectionMaxLocation(self: *@This(), glyphLocation: cf.CGFloat, direction: WritingDirection, maxLocation: cf.CGFloat) ?* {
-        return objc.msgSend(self, "textTabForGlyphLocation:writingDirection:maxLocation:", ?*, .{glyphLocation, direction, maxLocation});
+    pub fn textTabForGlyphLocationWritingDirectionMaxLocation(self: *@This(), glyphLocation: core_foundation.CGFloat, direction: WritingDirection, maxLocation: core_foundation.CGFloat) ?*core_text.NSTextTab {
+        return objc.msgSend(self, "textTabForGlyphLocation:writingDirection:maxLocation:", ?*core_text.NSTextTab, .{glyphLocation, direction, maxLocation});
     }
 
-    pub fn setParagraphGlyphRangeSeparatorGlyphRange(self: *@This(), paragraphRange: ns.Range, paragraphSeparatorRange: ns.Range) void {
+    pub fn setParagraphGlyphRangeSeparatorGlyphRange(self: *@This(), paragraphRange: foundation.Range, paragraphSeparatorRange: foundation.Range) void {
         return objc.msgSend(self, "setParagraphGlyphRange:separatorGlyphRange:", void, .{paragraphRange, paragraphSeparatorRange});
     }
 
-    pub fn layoutParagraphAtPoint(self: *@This(), lineFragmentOrigin: ns.PointPointer) objc.NSUInteger {
+    pub fn layoutParagraphAtPoint(self: *@This(), lineFragmentOrigin: foundation.PointPointer) objc.NSUInteger {
         return objc.msgSend(self, "layoutParagraphAtPoint:", objc.NSUInteger, .{lineFragmentOrigin});
     }
 
@@ -34595,27 +34603,27 @@ pub const Typesetter = opaque {
         return objc.msgSend(self, "beginLineWithGlyphAtIndex:", void, .{glyphIndex});
     }
 
-    pub fn endLineWithGlyphRange(self: *@This(), lineGlyphRange: ns.Range) void {
+    pub fn endLineWithGlyphRange(self: *@This(), lineGlyphRange: foundation.Range) void {
         return objc.msgSend(self, "endLineWithGlyphRange:", void, .{lineGlyphRange});
     }
 
-    pub fn lineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
-        return objc.msgSend(self, "lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{glyphIndex, rect});
+    pub fn lineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), glyphIndex: objc.NSUInteger, rect: foundation.Rect) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", core_foundation.CGFloat, .{glyphIndex, rect});
     }
 
-    pub fn paragraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
-        return objc.msgSend(self, "paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{glyphIndex, rect});
+    pub fn paragraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), glyphIndex: objc.NSUInteger, rect: foundation.Rect) core_foundation.CGFloat {
+        return objc.msgSend(self, "paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:", core_foundation.CGFloat, .{glyphIndex, rect});
     }
 
-    pub fn paragraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), glyphIndex: objc.NSUInteger, rect: ns.Rect) cf.CGFloat {
-        return objc.msgSend(self, "paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", cf.CGFloat, .{glyphIndex, rect});
+    pub fn paragraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(self: *@This(), glyphIndex: objc.NSUInteger, rect: foundation.Rect) core_foundation.CGFloat {
+        return objc.msgSend(self, "paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", core_foundation.CGFloat, .{glyphIndex, rect});
     }
 
-    pub fn getLineFragmentRectUsedRectForParagraphSeparatorGlyphRangeAtProposedOrigin(self: *@This(), lineFragmentRect: ns.RectPointer, lineFragmentUsedRect: ns.RectPointer, paragraphSeparatorGlyphRange: ns.Range, lineOrigin: ns.Point, ) void {
+    pub fn getLineFragmentRectUsedRectForParagraphSeparatorGlyphRangeAtProposedOrigin(self: *@This(), lineFragmentRect: foundation.RectPointer, lineFragmentUsedRect: foundation.RectPointer, paragraphSeparatorGlyphRange: foundation.Range, lineOrigin: foundation.Point, ) void {
         return objc.msgSend(self, "getLineFragmentRect:usedRect:forParagraphSeparatorGlyphRange:atProposedOrigin:", void, .{lineFragmentRect, lineFragmentUsedRect, paragraphSeparatorGlyphRange, lineOrigin, });
     }
 
-    pub fn setHardInvalidationForGlyphRange(self: *@This(), flag: objc.BOOL, glyphRange: ns.Range) void {
+    pub fn setHardInvalidationForGlyphRange(self: *@This(), flag: objc.BOOL, glyphRange: foundation.Range) void {
         return objc.msgSend(self, "setHardInvalidation:forGlyphRange:", void, .{flag, glyphRange});
     }
 
@@ -34623,16 +34631,16 @@ pub const Typesetter = opaque {
         return objc.msgSend(self, "layoutGlyphsInLayoutManager:startingAtGlyphIndex:maxNumberOfLineFragments:nextGlyphIndex:", void, .{layoutManager, startGlyphIndex, maxNumLines, nextGlyph, });
     }
 
-    pub fn layoutCharactersInRangeForLayoutManagerMaximumNumberOfLineFragments(self: *@This(), characterRange: ns.Range, layoutManager: ?*LayoutManager, maxNumLines: objc.NSUInteger) ns.Range {
-        return objc.msgSend(self, "layoutCharactersInRange:forLayoutManager:maximumNumberOfLineFragments:", ns.Range, .{characterRange, layoutManager, maxNumLines});
+    pub fn layoutCharactersInRangeForLayoutManagerMaximumNumberOfLineFragments(self: *@This(), characterRange: foundation.Range, layoutManager: ?*LayoutManager, maxNumLines: objc.NSUInteger) foundation.Range {
+        return objc.msgSend(self, "layoutCharactersInRange:forLayoutManager:maximumNumberOfLineFragments:", foundation.Range, .{characterRange, layoutManager, maxNumLines});
     }
 
-    pub fn printingAdjustmentInLayoutManagerForNominallySpacedGlyphRangePackedGlyphsCount(self: *@This(), layoutMgr: ?*LayoutManager, nominallySpacedGlyphsRange: ns.Range, packedGlyphs: ?*u8, packedGlyphsCount: objc.NSUInteger, ) ns.Size {
-        return objc.msgSend(self, "printingAdjustmentInLayoutManager:forNominallySpacedGlyphRange:packedGlyphs:count:", ns.Size, .{layoutMgr, nominallySpacedGlyphsRange, packedGlyphs, packedGlyphsCount, });
+    pub fn printingAdjustmentInLayoutManagerForNominallySpacedGlyphRangePackedGlyphsCount(self: *@This(), layoutMgr: ?*LayoutManager, nominallySpacedGlyphsRange: foundation.Range, packedGlyphs: ?*u8, packedGlyphsCount: objc.NSUInteger, ) foundation.Size {
+        return objc.msgSend(self, "printingAdjustmentInLayoutManager:forNominallySpacedGlyphRange:packedGlyphs:count:", foundation.Size, .{layoutMgr, nominallySpacedGlyphsRange, packedGlyphs, packedGlyphsCount, });
     }
 
-    pub fn baselineOffsetInLayoutManagerGlyphIndex(self: *@This(), layoutMgr: ?*LayoutManager, glyphIndex: objc.NSUInteger) cf.CGFloat {
-        return objc.msgSend(self, "baselineOffsetInLayoutManager:glyphIndex:", cf.CGFloat, .{layoutMgr, glyphIndex});
+    pub fn baselineOffsetInLayoutManagerGlyphIndex(self: *@This(), layoutMgr: ?*LayoutManager, glyphIndex: objc.NSUInteger) core_foundation.CGFloat {
+        return objc.msgSend(self, "baselineOffsetInLayoutManager:glyphIndex:", core_foundation.CGFloat, .{layoutMgr, glyphIndex});
     }
 
     pub fn sharedSystemTypesetterForBehavior(self: *@This(), behavior: TypesetterBehavior) *objc.Id {
@@ -34663,11 +34671,11 @@ pub const Typesetter = opaque {
         return objc.msgSend(self, "setHyphenationFactor:", void, .{hyphenationFactor});
     }
 
-    pub fn lineFragmentPadding(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "lineFragmentPadding", cf.CGFloat, .{});
+    pub fn lineFragmentPadding(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "lineFragmentPadding", core_foundation.CGFloat, .{});
     }
 
-    pub fn setLineFragmentPadding(self: *@This(), lineFragmentPadding: cf.CGFloat) void {
+    pub fn setLineFragmentPadding(self: *@This(), lineFragmentPadding: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setLineFragmentPadding:", void, .{lineFragmentPadding});
     }
 
@@ -34687,20 +34695,20 @@ pub const Typesetter = opaque {
         return objc.msgSend(self, "setAttributedString:", void, .{attributedString});
     }
 
-    pub fn paragraphGlyphRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "paragraphGlyphRange", ns.Range, .{});
+    pub fn paragraphGlyphRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "paragraphGlyphRange", foundation.Range, .{});
     }
 
-    pub fn paragraphSeparatorGlyphRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "paragraphSeparatorGlyphRange", ns.Range, .{});
+    pub fn paragraphSeparatorGlyphRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "paragraphSeparatorGlyphRange", foundation.Range, .{});
     }
 
-    pub fn paragraphCharacterRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "paragraphCharacterRange", ns.Range, .{});
+    pub fn paragraphCharacterRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "paragraphCharacterRange", foundation.Range, .{});
     }
 
-    pub fn paragraphSeparatorCharacterRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "paragraphSeparatorCharacterRange", ns.Range, .{});
+    pub fn paragraphSeparatorCharacterRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "paragraphSeparatorCharacterRange", foundation.Range, .{});
     }
 
     pub fn attributesForExtraLineFragment(self: *@This()) ?*anyopaque {
@@ -34790,16 +34798,16 @@ pub const SearchField = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn searchTextBounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "searchTextBounds", ns.Rect, .{});
+    pub fn searchTextBounds(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "searchTextBounds", foundation.Rect, .{});
     }
 
-    pub fn searchButtonBounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "searchButtonBounds", ns.Rect, .{});
+    pub fn searchButtonBounds(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "searchButtonBounds", foundation.Rect, .{});
     }
 
-    pub fn cancelButtonBounds(self: *@This()) ns.Rect {
-        return objc.msgSend(self, "cancelButtonBounds", ns.Rect, .{});
+    pub fn cancelButtonBounds(self: *@This()) foundation.Rect {
+        return objc.msgSend(self, "cancelButtonBounds", foundation.Rect, .{});
     }
 
     pub fn recentSearches(self: *@This()) ?*anyopaque {
@@ -34875,7 +34883,7 @@ pub const SearchFieldCell = opaque {
         return objc.msgSend(self, "initTextCell:", *@This(), .{string});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -34891,16 +34899,16 @@ pub const SearchFieldCell = opaque {
         return objc.msgSend(self, "resetCancelButtonCell", void, .{});
     }
 
-    pub fn searchTextRectForBounds(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "searchTextRectForBounds:", ns.Rect, .{rect});
+    pub fn searchTextRectForBounds(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "searchTextRectForBounds:", foundation.Rect, .{rect});
     }
 
-    pub fn searchButtonRectForBounds(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "searchButtonRectForBounds:", ns.Rect, .{rect});
+    pub fn searchButtonRectForBounds(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "searchButtonRectForBounds:", foundation.Rect, .{rect});
     }
 
-    pub fn cancelButtonRectForBounds(self: *@This(), rect: ns.Rect) ns.Rect {
-        return objc.msgSend(self, "cancelButtonRectForBounds:", ns.Rect, .{rect});
+    pub fn cancelButtonRectForBounds(self: *@This(), rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(self, "cancelButtonRectForBounds:", foundation.Rect, .{rect});
     }
 
     pub fn searchButtonCell(self: *@This()) ?*ButtonCell {
@@ -34984,7 +34992,7 @@ pub const Controller = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -35029,7 +35037,7 @@ pub const ObjectController = opaque {
         return objc.msgSend(self, "initWithContent:", *@This(), .{content});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -35683,7 +35691,7 @@ pub const UserDefaultsController = opaque {
         return objc.msgSend(self, "initWithDefaults:initialValues:", *@This(), .{defaults, initialValues});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -35758,7 +35766,7 @@ pub const TextList = opaque {
         return objc.msgSend(self, "initWithMarkerFormat:options:", *@This(), .{markerFormat, options});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -35835,39 +35843,39 @@ pub const TextBlock = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn setValueTypeForDimension(self: *@This(), val: cf.CGFloat, @"type": TextBlockValueType, dimension: TextBlockDimension) void {
+    pub fn setValueTypeForDimension(self: *@This(), val: core_foundation.CGFloat, @"type": TextBlockValueType, dimension: TextBlockDimension) void {
         return objc.msgSend(self, "setValue:type:forDimension:", void, .{val, @"type", dimension});
     }
 
-    pub fn valueForDimension(self: *@This(), dimension: TextBlockDimension) cf.CGFloat {
-        return objc.msgSend(self, "valueForDimension:", cf.CGFloat, .{dimension});
+    pub fn valueForDimension(self: *@This(), dimension: TextBlockDimension) core_foundation.CGFloat {
+        return objc.msgSend(self, "valueForDimension:", core_foundation.CGFloat, .{dimension});
     }
 
     pub fn valueTypeForDimension(self: *@This(), dimension: TextBlockDimension) TextBlockValueType {
         return objc.msgSend(self, "valueTypeForDimension:", TextBlockValueType, .{dimension});
     }
 
-    pub fn setContentWidthType(self: *@This(), val: cf.CGFloat, @"type": TextBlockValueType) void {
+    pub fn setContentWidthType(self: *@This(), val: core_foundation.CGFloat, @"type": TextBlockValueType) void {
         return objc.msgSend(self, "setContentWidth:type:", void, .{val, @"type"});
     }
 
-    pub fn setWidthTypeForLayerEdge(self: *@This(), val: cf.CGFloat, @"type": TextBlockValueType, layer: TextBlockLayer, edge: ns.RectEdge, ) void {
+    pub fn setWidthTypeForLayerEdge(self: *@This(), val: core_foundation.CGFloat, @"type": TextBlockValueType, layer: TextBlockLayer, edge: foundation.RectEdge, ) void {
         return objc.msgSend(self, "setWidth:type:forLayer:edge:", void, .{val, @"type", layer, edge, });
     }
 
-    pub fn setWidthTypeForLayer(self: *@This(), val: cf.CGFloat, @"type": TextBlockValueType, layer: TextBlockLayer) void {
+    pub fn setWidthTypeForLayer(self: *@This(), val: core_foundation.CGFloat, @"type": TextBlockValueType, layer: TextBlockLayer) void {
         return objc.msgSend(self, "setWidth:type:forLayer:", void, .{val, @"type", layer});
     }
 
-    pub fn widthForLayerEdge(self: *@This(), layer: TextBlockLayer, edge: ns.RectEdge) cf.CGFloat {
-        return objc.msgSend(self, "widthForLayer:edge:", cf.CGFloat, .{layer, edge});
+    pub fn widthForLayerEdge(self: *@This(), layer: TextBlockLayer, edge: foundation.RectEdge) core_foundation.CGFloat {
+        return objc.msgSend(self, "widthForLayer:edge:", core_foundation.CGFloat, .{layer, edge});
     }
 
-    pub fn widthValueTypeForLayerEdge(self: *@This(), layer: TextBlockLayer, edge: ns.RectEdge) TextBlockValueType {
+    pub fn widthValueTypeForLayerEdge(self: *@This(), layer: TextBlockLayer, edge: foundation.RectEdge) TextBlockValueType {
         return objc.msgSend(self, "widthValueTypeForLayer:edge:", TextBlockValueType, .{layer, edge});
     }
 
-    pub fn setBorderColorForEdge(self: *@This(), color: ?*Color, edge: ns.RectEdge) void {
+    pub fn setBorderColorForEdge(self: *@This(), color: ?*Color, edge: foundation.RectEdge) void {
         return objc.msgSend(self, "setBorderColor:forEdge:", void, .{color, edge});
     }
 
@@ -35875,24 +35883,24 @@ pub const TextBlock = opaque {
         return objc.msgSend(self, "setBorderColor:", void, .{color});
     }
 
-    pub fn borderColorForEdge(self: *@This(), edge: ns.RectEdge) ?*Color {
+    pub fn borderColorForEdge(self: *@This(), edge: foundation.RectEdge) ?*Color {
         return objc.msgSend(self, "borderColorForEdge:", ?*Color, .{edge});
     }
 
-    pub fn rectForLayoutAtPointInRectTextContainerCharacterRange(self: *@This(), startingPoint: ns.Point, rect: ns.Rect, textContainer: ?*TextContainer, charRange: ns.Range, ) ns.Rect {
-        return objc.msgSend(self, "rectForLayoutAtPoint:inRect:textContainer:characterRange:", ns.Rect, .{startingPoint, rect, textContainer, charRange, });
+    pub fn rectForLayoutAtPointInRectTextContainerCharacterRange(self: *@This(), startingPoint: foundation.Point, rect: foundation.Rect, textContainer: ?*TextContainer, charRange: foundation.Range, ) foundation.Rect {
+        return objc.msgSend(self, "rectForLayoutAtPoint:inRect:textContainer:characterRange:", foundation.Rect, .{startingPoint, rect, textContainer, charRange, });
     }
 
-    pub fn boundsRectForContentRectInRectTextContainerCharacterRange(self: *@This(), contentRect: ns.Rect, rect: ns.Rect, textContainer: ?*TextContainer, charRange: ns.Range, ) ns.Rect {
-        return objc.msgSend(self, "boundsRectForContentRect:inRect:textContainer:characterRange:", ns.Rect, .{contentRect, rect, textContainer, charRange, });
+    pub fn boundsRectForContentRectInRectTextContainerCharacterRange(self: *@This(), contentRect: foundation.Rect, rect: foundation.Rect, textContainer: ?*TextContainer, charRange: foundation.Range, ) foundation.Rect {
+        return objc.msgSend(self, "boundsRectForContentRect:inRect:textContainer:characterRange:", foundation.Rect, .{contentRect, rect, textContainer, charRange, });
     }
 
-    pub fn drawBackgroundWithFrameInViewCharacterRangeLayoutManager(self: *@This(), frameRect: ns.Rect, controlView: ?*View, charRange: ns.Range, layoutManager: ?*LayoutManager, ) void {
+    pub fn drawBackgroundWithFrameInViewCharacterRangeLayoutManager(self: *@This(), frameRect: foundation.Rect, controlView: ?*View, charRange: foundation.Range, layoutManager: ?*LayoutManager, ) void {
         return objc.msgSend(self, "drawBackgroundWithFrame:inView:characterRange:layoutManager:", void, .{frameRect, controlView, charRange, layoutManager, });
     }
 
-    pub fn contentWidth(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "contentWidth", cf.CGFloat, .{});
+    pub fn contentWidth(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "contentWidth", core_foundation.CGFloat, .{});
     }
 
     pub fn contentWidthValueType(self: *@This()) TextBlockValueType {
@@ -35965,15 +35973,15 @@ pub const TextTable = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn rectForBlockLayoutAtPointInRectTextContainerCharacterRange(self: *@This(), block: ?*TextTableBlock, startingPoint: ns.Point, rect: ns.Rect, textContainer: ?*TextContainer, charRange: ns.Range, ) ns.Rect {
-        return objc.msgSend(self, "rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:", ns.Rect, .{block, startingPoint, rect, textContainer, charRange, });
+    pub fn rectForBlockLayoutAtPointInRectTextContainerCharacterRange(self: *@This(), block: ?*TextTableBlock, startingPoint: foundation.Point, rect: foundation.Rect, textContainer: ?*TextContainer, charRange: foundation.Range, ) foundation.Rect {
+        return objc.msgSend(self, "rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:", foundation.Rect, .{block, startingPoint, rect, textContainer, charRange, });
     }
 
-    pub fn boundsRectForBlockContentRectInRectTextContainerCharacterRange(self: *@This(), block: ?*TextTableBlock, contentRect: ns.Rect, rect: ns.Rect, textContainer: ?*TextContainer, charRange: ns.Range, ) ns.Rect {
-        return objc.msgSend(self, "boundsRectForBlock:contentRect:inRect:textContainer:characterRange:", ns.Rect, .{block, contentRect, rect, textContainer, charRange, });
+    pub fn boundsRectForBlockContentRectInRectTextContainerCharacterRange(self: *@This(), block: ?*TextTableBlock, contentRect: foundation.Rect, rect: foundation.Rect, textContainer: ?*TextContainer, charRange: foundation.Range, ) foundation.Rect {
+        return objc.msgSend(self, "boundsRectForBlock:contentRect:inRect:textContainer:characterRange:", foundation.Rect, .{block, contentRect, rect, textContainer, charRange, });
     }
 
-    pub fn drawBackgroundForBlockWithFrameInViewCharacterRangeLayoutManager(self: *@This(), block: ?*TextTableBlock, frameRect: ns.Rect, controlView: ?*View, charRange: ns.Range, layoutManager: ?*LayoutManager, ) void {
+    pub fn drawBackgroundForBlockWithFrameInViewCharacterRangeLayoutManager(self: *@This(), block: ?*TextTableBlock, frameRect: foundation.Rect, controlView: ?*View, charRange: foundation.Range, layoutManager: ?*LayoutManager, ) void {
         return objc.msgSend(self, "drawBackgroundForBlock:withFrame:inView:characterRange:layoutManager:", void, .{block, frameRect, controlView, charRange, layoutManager, });
     }
 
@@ -36046,7 +36054,7 @@ pub const DatePickerCell = opaque {
         return objc.msgSend(self, "initTextCell:", *@This(), .{string});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -36134,11 +36142,11 @@ pub const DatePickerCell = opaque {
         return objc.msgSend(self, "setDateValue:", void, .{dateValue});
     }
 
-    pub fn timeInterval(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "timeInterval", ns.TimeInterval, .{});
+    pub fn timeInterval(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "timeInterval", foundation.TimeInterval, .{});
     }
 
-    pub fn setTimeInterval(self: *@This(), timeInterval: ns.TimeInterval) void {
+    pub fn setTimeInterval(self: *@This(), timeInterval: foundation.TimeInterval) void {
         return objc.msgSend(self, "setTimeInterval:", void, .{timeInterval});
     }
 
@@ -36176,7 +36184,7 @@ pub const DatePickerCellDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn datePickerCellValidateProposedDateValueTimeInterval(self: *@This(), datePickerCell: ?*DatePickerCell, proposedDateValue: ?*?*Date, proposedTimeInterval: ?*ns.TimeInterval) void {
+    pub fn datePickerCellValidateProposedDateValueTimeInterval(self: *@This(), datePickerCell: ?*DatePickerCell, proposedDateValue: ?*?*Date, proposedTimeInterval: ?*foundation.TimeInterval) void {
         return objc.msgSend(self, "datePickerCell:validateProposedDateValue:timeInterval:", void, .{datePickerCell, proposedDateValue, proposedTimeInterval});
     }
 
@@ -36289,11 +36297,11 @@ pub const DatePicker = opaque {
         return objc.msgSend(self, "setDateValue:", void, .{dateValue});
     }
 
-    pub fn timeInterval(self: *@This()) ns.TimeInterval {
-        return objc.msgSend(self, "timeInterval", ns.TimeInterval, .{});
+    pub fn timeInterval(self: *@This()) foundation.TimeInterval {
+        return objc.msgSend(self, "timeInterval", foundation.TimeInterval, .{});
     }
 
-    pub fn setTimeInterval(self: *@This(), timeInterval: ns.TimeInterval) void {
+    pub fn setTimeInterval(self: *@This(), timeInterval: foundation.TimeInterval) void {
         return objc.msgSend(self, "setTimeInterval:", void, .{timeInterval});
     }
 
@@ -36353,8 +36361,8 @@ pub const LevelIndicatorCell = opaque {
         return objc.msgSend(self, "initWithLevelIndicatorStyle:", *@This(), .{levelIndicatorStyle});
     }
 
-    pub fn rectOfTickMarkAtIndex(self: *@This(), index: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "rectOfTickMarkAtIndex:", ns.Rect, .{index});
+    pub fn rectOfTickMarkAtIndex(self: *@This(), index: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "rectOfTickMarkAtIndex:", foundation.Rect, .{index});
     }
 
     pub fn tickMarkValueAtIndex(self: *@This(), index: objc.NSInteger) f64 {
@@ -36448,8 +36456,8 @@ pub const LevelIndicator = opaque {
         return objc.msgSend(self, "tickMarkValueAtIndex:", f64, .{index});
     }
 
-    pub fn rectOfTickMarkAtIndex(self: *@This(), index: objc.NSInteger) ns.Rect {
-        return objc.msgSend(self, "rectOfTickMarkAtIndex:", ns.Rect, .{index});
+    pub fn rectOfTickMarkAtIndex(self: *@This(), index: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(self, "rectOfTickMarkAtIndex:", foundation.Rect, .{index});
     }
 
     pub fn levelIndicatorStyle(self: *@This()) LevelIndicatorStyle {
@@ -36744,11 +36752,11 @@ pub const RuleEditor = opaque {
         return objc.msgSend(self, "setNestingMode:", void, .{nestingMode});
     }
 
-    pub fn rowHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "rowHeight", cf.CGFloat, .{});
+    pub fn rowHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "rowHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn setRowHeight(self: *@This(), rowHeight: cf.CGFloat) void {
+    pub fn setRowHeight(self: *@This(), rowHeight: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setRowHeight:", void, .{rowHeight});
     }
 
@@ -36900,11 +36908,11 @@ pub const PredicateEditorRowTemplate = opaque {
         return objc.msgSend(self, "displayableSubpredicatesOfPredicate:", ?*anyopaque, .{predicate});
     }
 
-    pub fn initWithLeftExpressionsRightExpressionsModifierOperatorsOptions(self: *@This(), leftExpressions: ?*anyopaque, rightExpressions: ?*anyopaque, modifier: ns.ComparisonPredicateModifier, operators: ?*anyopaque, options: objc.NSUInteger, ) *@This() {
+    pub fn initWithLeftExpressionsRightExpressionsModifierOperatorsOptions(self: *@This(), leftExpressions: ?*anyopaque, rightExpressions: ?*anyopaque, modifier: foundation.ComparisonPredicateModifier, operators: ?*anyopaque, options: objc.NSUInteger, ) *@This() {
         return objc.msgSend(self, "initWithLeftExpressions:rightExpressions:modifier:operators:options:", *@This(), .{leftExpressions, rightExpressions, modifier, operators, options, });
     }
 
-    pub fn initWithLeftExpressionsRightExpressionAttributeTypeModifierOperatorsOptions(self: *@This(), leftExpressions: ?*anyopaque, attributeType: , modifier: ns.ComparisonPredicateModifier, operators: ?*anyopaque, options: objc.NSUInteger, ) *@This() {
+    pub fn initWithLeftExpressionsRightExpressionAttributeTypeModifierOperatorsOptions(self: *@This(), leftExpressions: ?*anyopaque, attributeType: core_data.AttributeType, modifier: foundation.ComparisonPredicateModifier, operators: ?*anyopaque, options: objc.NSUInteger, ) *@This() {
         return objc.msgSend(self, "initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:", *@This(), .{leftExpressions, attributeType, modifier, operators, options, });
     }
 
@@ -36928,12 +36936,12 @@ pub const PredicateEditorRowTemplate = opaque {
         return objc.msgSend(self, "rightExpressions", ?*anyopaque, .{});
     }
 
-    pub fn rightExpressionAttributeType(self: *@This())  {
-        return objc.msgSend(self, "rightExpressionAttributeType", , .{});
+    pub fn rightExpressionAttributeType(self: *@This()) core_data.AttributeType {
+        return objc.msgSend(self, "rightExpressionAttributeType", core_data.AttributeType, .{});
     }
 
-    pub fn modifier(self: *@This()) ns.ComparisonPredicateModifier {
-        return objc.msgSend(self, "modifier", ns.ComparisonPredicateModifier, .{});
+    pub fn modifier(self: *@This()) foundation.ComparisonPredicateModifier {
+        return objc.msgSend(self, "modifier", foundation.ComparisonPredicateModifier, .{});
     }
 
     pub fn operators(self: *@This()) ?*anyopaque {
@@ -36971,19 +36979,19 @@ pub const PathCell = opaque {
         return objc.msgSend(self, "setObjectValue:", void, .{obj});
     }
 
-    pub fn rectOfPathComponentCellWithFrameInView(self: *@This(), cell: ?*PathComponentCell, frame: ns.Rect, view: ?*View) ns.Rect {
-        return objc.msgSend(self, "rectOfPathComponentCell:withFrame:inView:", ns.Rect, .{cell, frame, view});
+    pub fn rectOfPathComponentCellWithFrameInView(self: *@This(), cell: ?*PathComponentCell, frame: foundation.Rect, view: ?*View) foundation.Rect {
+        return objc.msgSend(self, "rectOfPathComponentCell:withFrame:inView:", foundation.Rect, .{cell, frame, view});
     }
 
-    pub fn pathComponentCellAtPointWithFrameInView(self: *@This(), point: ns.Point, frame: ns.Rect, view: ?*View) ?*PathComponentCell {
+    pub fn pathComponentCellAtPointWithFrameInView(self: *@This(), point: foundation.Point, frame: foundation.Rect, view: ?*View) ?*PathComponentCell {
         return objc.msgSend(self, "pathComponentCellAtPoint:withFrame:inView:", ?*PathComponentCell, .{point, frame, view});
     }
 
-    pub fn mouseEnteredWithFrameInView(self: *@This(), event: ?*Event, frame: ns.Rect, view: ?*View) void {
+    pub fn mouseEnteredWithFrameInView(self: *@This(), event: ?*Event, frame: foundation.Rect, view: ?*View) void {
         return objc.msgSend(self, "mouseEntered:withFrame:inView:", void, .{event, frame, view});
     }
 
-    pub fn mouseExitedWithFrameInView(self: *@This(), event: ?*Event, frame: ns.Rect, view: ?*View) void {
+    pub fn mouseExitedWithFrameInView(self: *@This(), event: ?*Event, frame: foundation.Rect, view: ?*View) void {
         return objc.msgSend(self, "mouseExited:withFrame:inView:", void, .{event, frame, view});
     }
 
@@ -37393,8 +37401,8 @@ pub const PageControllerDelegate = opaque {
         return objc.msgSend(self, "pageController:viewControllerForIdentifier:", ?*ViewController, .{pageController, identifier});
     }
 
-    pub fn pageControllerFrameForObject(self: *@This(), pageController: ?*PageController, object: *objc.Id) ns.Rect {
-        return objc.msgSend(self, "pageController:frameForObject:", ns.Rect, .{pageController, object});
+    pub fn pageControllerFrameForObject(self: *@This(), pageController: ?*PageController, object: *objc.Id) foundation.Rect {
+        return objc.msgSend(self, "pageController:frameForObject:", foundation.Rect, .{pageController, object});
     }
 
     pub fn pageControllerPrepareViewControllerWithObject(self: *@This(), pageController: ?*PageController, viewController: ?*ViewController, object: *objc.Id) void {
@@ -37540,7 +37548,7 @@ pub const WindowRestoration = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn restoreWindowWithIdentifierStateCompletionHandler(self: *@This(), identifier: UserInterfaceItemIdentifier, state: ?*ns.Coder, completionHandler: *const fn(?*Window, ?*Error) callconv(.C) void) void {
+    pub fn restoreWindowWithIdentifierStateCompletionHandler(self: *@This(), identifier: UserInterfaceItemIdentifier, state: ?*foundation.Coder, completionHandler: *const fn(?*Window, ?*Error) callconv(.C) void) void {
         return objc.msgSend(self, "restoreWindowWithIdentifier:state:completionHandler:", void, .{identifier, state, completionHandler});
     }
 
@@ -37704,11 +37712,11 @@ pub const TitlebarAccessoryViewController = opaque {
         return objc.msgSend(self, "setLayoutAttribute:", void, .{layoutAttribute});
     }
 
-    pub fn fullScreenMinHeight(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "fullScreenMinHeight", cf.CGFloat, .{});
+    pub fn fullScreenMinHeight(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "fullScreenMinHeight", core_foundation.CGFloat, .{});
     }
 
-    pub fn setFullScreenMinHeight(self: *@This(), fullScreenMinHeight: cf.CGFloat) void {
+    pub fn setFullScreenMinHeight(self: *@This(), fullScreenMinHeight: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setFullScreenMinHeight:", void, .{fullScreenMinHeight});
     }
 
@@ -37759,8 +37767,8 @@ pub const DataAsset = opaque {
         return objc.msgSend(self, "name", DataAssetName, .{});
     }
 
-    pub fn data(self: *@This()) ?* {
-        return objc.msgSend(self, "data", ?*, .{});
+    pub fn data(self: *@This()) ?*core_data.Data {
+        return objc.msgSend(self, "data", ?*core_data.Data, .{});
     }
 
     pub fn typeIdentifier(self: *@This()) ?*String {
@@ -37840,15 +37848,15 @@ pub const AlignmentFeedbackFilter = opaque {
         return objc.msgSend(self, "updateWithPanRecognizer:", void, .{panRecognizer});
     }
 
-    pub fn alignmentFeedbackTokenForMovementInViewPreviousPointAlignedPointDefaultPoint(self: *@This(), view: ?*View, previousPoint: ns.Point, alignedPoint: ns.Point, defaultPoint: ns.Point, ) ?*anyopaque {
+    pub fn alignmentFeedbackTokenForMovementInViewPreviousPointAlignedPointDefaultPoint(self: *@This(), view: ?*View, previousPoint: foundation.Point, alignedPoint: foundation.Point, defaultPoint: foundation.Point, ) ?*anyopaque {
         return objc.msgSend(self, "alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:", ?*anyopaque, .{view, previousPoint, alignedPoint, defaultPoint, });
     }
 
-    pub fn alignmentFeedbackTokenForHorizontalMovementInViewPreviousXAlignedXDefaultX(self: *@This(), view: ?*View, previousX: cf.CGFloat, alignedX: cf.CGFloat, defaultX: cf.CGFloat, ) ?*anyopaque {
+    pub fn alignmentFeedbackTokenForHorizontalMovementInViewPreviousXAlignedXDefaultX(self: *@This(), view: ?*View, previousX: core_foundation.CGFloat, alignedX: core_foundation.CGFloat, defaultX: core_foundation.CGFloat, ) ?*anyopaque {
         return objc.msgSend(self, "alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:", ?*anyopaque, .{view, previousX, alignedX, defaultX, });
     }
 
-    pub fn alignmentFeedbackTokenForVerticalMovementInViewPreviousYAlignedYDefaultY(self: *@This(), view: ?*View, previousY: cf.CGFloat, alignedY: cf.CGFloat, defaultY: cf.CGFloat, ) ?*anyopaque {
+    pub fn alignmentFeedbackTokenForVerticalMovementInViewPreviousYAlignedYDefaultY(self: *@This(), view: ?*View, previousY: core_foundation.CGFloat, alignedY: core_foundation.CGFloat, defaultY: core_foundation.CGFloat, ) ?*anyopaque {
         return objc.msgSend(self, "alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:", ?*anyopaque, .{view, previousY, alignedY, defaultY, });
     }
 
@@ -38128,7 +38136,7 @@ pub const StepperTouchBarItem = opaque {
         return objc.msgSend(self, "stepperTouchBarItemWithIdentifier:formatter:", *@This(), .{identifier, formatter});
     }
 
-    pub fn stepperTouchBarItemWithIdentifierDrawingHandler(self: *@This(), identifier: TouchBarItemIdentifier, drawingHandler: *const fn(ns.Rect, f64) callconv(.C) void) *@This() {
+    pub fn stepperTouchBarItemWithIdentifierDrawingHandler(self: *@This(), identifier: TouchBarItemIdentifier, drawingHandler: *const fn(foundation.Rect, f64) callconv(.C) void) *@This() {
         return objc.msgSend(self, "stepperTouchBarItemWithIdentifier:drawingHandler:", *@This(), .{identifier, drawingHandler});
     }
 
@@ -38274,11 +38282,11 @@ pub const SearchToolbarItem = opaque {
         return objc.msgSend(self, "setResignsFirstResponderWithCancel:", void, .{resignsFirstResponderWithCancel});
     }
 
-    pub fn preferredWidthForSearchField(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "preferredWidthForSearchField", cf.CGFloat, .{});
+    pub fn preferredWidthForSearchField(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "preferredWidthForSearchField", core_foundation.CGFloat, .{});
     }
 
-    pub fn setPreferredWidthForSearchField(self: *@This(), preferredWidthForSearchField: cf.CGFloat) void {
+    pub fn setPreferredWidthForSearchField(self: *@This(), preferredWidthForSearchField: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setPreferredWidthForSearchField:", void, .{preferredWidthForSearchField});
     }
 
@@ -38292,8 +38300,8 @@ pub const TextLocation = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn compare(self: *@This(), location: ?*anyopaque) ns.ComparisonResult {
-        return objc.msgSend(self, "compare:", ns.ComparisonResult, .{location});
+    pub fn compare(self: *@This(), location: ?*anyopaque) foundation.ComparisonResult {
+        return objc.msgSend(self, "compare:", foundation.ComparisonResult, .{location});
     }
 
 };
@@ -38391,7 +38399,7 @@ pub const TextSelection = opaque {
         return objc.msgSend(self, "initWithRanges:affinity:granularity:", *@This(), .{textRanges, affinity, granularity});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -38427,11 +38435,11 @@ pub const TextSelection = opaque {
         return objc.msgSend(self, "isTransient", objc.BOOL, .{});
     }
 
-    pub fn anchorPositionOffset(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "anchorPositionOffset", cf.CGFloat, .{});
+    pub fn anchorPositionOffset(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "anchorPositionOffset", core_foundation.CGFloat, .{});
     }
 
-    pub fn setAnchorPositionOffset(self: *@This(), anchorPositionOffset: cf.CGFloat) void {
+    pub fn setAnchorPositionOffset(self: *@This(), anchorPositionOffset: core_foundation.CGFloat) void {
         return objc.msgSend(self, "setAnchorPositionOffset:", void, .{anchorPositionOffset});
     }
 
@@ -38527,7 +38535,7 @@ pub const TextSelectionNavigation = opaque {
         return objc.msgSend(self, "destinationSelectionForTextSelection:direction:destination:extending:confined:", ?*TextSelection, .{textSelection, direction, destination, extending, confined, });
     }
 
-    pub fn textSelectionsInteractingAtPointInContainerAtLocationAnchorsModifiersSelectingBounds(self: *@This(), point: cf.CGPoint, containerLocation: ?*anyopaque, anchors: ?*anyopaque, modifiers: TextSelectionNavigationModifier, selecting: objc.BOOL, bounds: cf.CGRect, ) ?*anyopaque {
+    pub fn textSelectionsInteractingAtPointInContainerAtLocationAnchorsModifiersSelectingBounds(self: *@This(), point: core_foundation.CGPoint, containerLocation: ?*anyopaque, anchors: ?*anyopaque, modifiers: TextSelectionNavigationModifier, selecting: objc.BOOL, bounds: core_foundation.CGRect, ) ?*anyopaque {
         return objc.msgSend(self, "textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:", ?*anyopaque, .{point, containerLocation, anchors, modifiers, selecting, bounds, });
     }
 
@@ -38535,7 +38543,7 @@ pub const TextSelectionNavigation = opaque {
         return objc.msgSend(self, "textSelectionForSelectionGranularity:enclosingTextSelection:", ?*TextSelection, .{selectionGranularity, textSelection});
     }
 
-    pub fn textSelectionForSelectionGranularityEnclosingPointInContainerAtLocation(self: *@This(), selectionGranularity: TextSelectionGranularity, point: cf.CGPoint, location: ?*anyopaque) ?*TextSelection {
+    pub fn textSelectionForSelectionGranularityEnclosingPointInContainerAtLocation(self: *@This(), selectionGranularity: TextSelectionGranularity, point: core_foundation.CGPoint, location: ?*anyopaque) ?*TextSelection {
         return objc.msgSend(self, "textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:", ?*TextSelection, .{selectionGranularity, point, location});
     }
 
@@ -38577,7 +38585,7 @@ pub const TextSelectionDataSource = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn enumerateSubstringsFromLocationOptionsUsingBlock(self: *@This(), location: ?*anyopaque, options: ns.StringEnumerationOptions, block: *const fn(?*String, ?*TextRange, ?*TextRange, ?*objc.BOOL, ) callconv(.C) void) void {
+    pub fn enumerateSubstringsFromLocationOptionsUsingBlock(self: *@This(), location: ?*anyopaque, options: foundation.StringEnumerationOptions, block: *const fn(?*String, ?*TextRange, ?*TextRange, ?*objc.BOOL, ) callconv(.C) void) void {
         return objc.msgSend(self, "enumerateSubstringsFromLocation:options:usingBlock:", void, .{location, options, block});
     }
 
@@ -38597,11 +38605,11 @@ pub const TextSelectionDataSource = opaque {
         return objc.msgSend(self, "baseWritingDirectionAtLocation:", TextSelectionNavigationWritingDirection, .{location});
     }
 
-    pub fn enumerateCaretOffsetsInLineFragmentAtLocationUsingBlock(self: *@This(), location: ?*anyopaque, block: *const fn(cf.CGFloat, ?*anyopaque, objc.BOOL, ?*objc.BOOL, ) callconv(.C) void) void {
+    pub fn enumerateCaretOffsetsInLineFragmentAtLocationUsingBlock(self: *@This(), location: ?*anyopaque, block: *const fn(core_foundation.CGFloat, ?*anyopaque, objc.BOOL, ?*objc.BOOL, ) callconv(.C) void) void {
         return objc.msgSend(self, "enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:", void, .{location, block});
     }
 
-    pub fn lineFragmentRangeForPointInContainerAtLocation(self: *@This(), point: cf.CGPoint, location: ?*anyopaque) ?*TextRange {
+    pub fn lineFragmentRangeForPointInContainerAtLocation(self: *@This(), point: core_foundation.CGPoint, location: ?*anyopaque) ?*TextRange {
         return objc.msgSend(self, "lineFragmentRangeForPoint:inContainerAtLocation:", ?*TextRange, .{point, location});
     }
 
@@ -38677,7 +38685,7 @@ pub const TextContentManager = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -38773,7 +38781,7 @@ pub const TextContentStorageDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn textContentStorageTextParagraphWithRange(self: *@This(), textContentStorage: ?*TextContentStorage, range: ns.Range) ?*TextParagraph {
+    pub fn textContentStorageTextParagraphWithRange(self: *@This(), textContentStorage: ?*TextContentStorage, range: foundation.Range) ?*TextParagraph {
         return objc.msgSend(self, "textContentStorage:textParagraphWithRange:", ?*TextParagraph, .{textContentStorage, range});
     }
 
@@ -38985,7 +38993,7 @@ pub const TextLayoutFragment = opaque {
         return objc.msgSend(self, "initWithTextElement:range:", *@This(), .{textElement, rangeInElement});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -38993,7 +39001,7 @@ pub const TextLayoutFragment = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn textLineFragmentForVerticalOffsetRequiresExactMatch(self: *@This(), verticalOffset: cf.CGFloat, requiresExactMatch: objc.BOOL) ?*TextLineFragment {
+    pub fn textLineFragmentForVerticalOffsetRequiresExactMatch(self: *@This(), verticalOffset: core_foundation.CGFloat, requiresExactMatch: objc.BOOL) ?*TextLineFragment {
         return objc.msgSend(self, "textLineFragmentForVerticalOffset:requiresExactMatch:", ?*TextLineFragment, .{verticalOffset, requiresExactMatch});
     }
 
@@ -39005,12 +39013,12 @@ pub const TextLayoutFragment = opaque {
         return objc.msgSend(self, "invalidateLayout", void, .{});
     }
 
-    pub fn drawAtPointInContext(self: *@This(), point: cf.CGPoint, context: ) void {
+    pub fn drawAtPointInContext(self: *@This(), point: core_foundation.CGPoint, context: core_graphics.ContextRef) void {
         return objc.msgSend(self, "drawAtPoint:inContext:", void, .{point, context});
     }
 
-    pub fn frameForTextAttachmentAtLocation(self: *@This(), location: ?*anyopaque) cf.CGRect {
-        return objc.msgSend(self, "frameForTextAttachmentAtLocation:", cf.CGRect, .{location});
+    pub fn frameForTextAttachmentAtLocation(self: *@This(), location: ?*anyopaque) core_foundation.CGRect {
+        return objc.msgSend(self, "frameForTextAttachmentAtLocation:", core_foundation.CGRect, .{location});
     }
 
     pub fn textLayoutManager(self: *@This()) ?*TextLayoutManager {
@@ -39041,28 +39049,28 @@ pub const TextLayoutFragment = opaque {
         return objc.msgSend(self, "state", TextLayoutFragmentState, .{});
     }
 
-    pub fn layoutFragmentFrame(self: *@This()) cf.CGRect {
-        return objc.msgSend(self, "layoutFragmentFrame", cf.CGRect, .{});
+    pub fn layoutFragmentFrame(self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(self, "layoutFragmentFrame", core_foundation.CGRect, .{});
     }
 
-    pub fn renderingSurfaceBounds(self: *@This()) cf.CGRect {
-        return objc.msgSend(self, "renderingSurfaceBounds", cf.CGRect, .{});
+    pub fn renderingSurfaceBounds(self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(self, "renderingSurfaceBounds", core_foundation.CGRect, .{});
     }
 
-    pub fn leadingPadding(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "leadingPadding", cf.CGFloat, .{});
+    pub fn leadingPadding(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "leadingPadding", core_foundation.CGFloat, .{});
     }
 
-    pub fn trailingPadding(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "trailingPadding", cf.CGFloat, .{});
+    pub fn trailingPadding(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "trailingPadding", core_foundation.CGFloat, .{});
     }
 
-    pub fn topMargin(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "topMargin", cf.CGFloat, .{});
+    pub fn topMargin(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "topMargin", core_foundation.CGFloat, .{});
     }
 
-    pub fn bottomMargin(self: *@This()) cf.CGFloat {
-        return objc.msgSend(self, "bottomMargin", cf.CGFloat, .{});
+    pub fn bottomMargin(self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(self, "bottomMargin", core_foundation.CGFloat, .{});
     }
 
     pub fn textAttachmentViewProviders(self: *@This()) ?*anyopaque {
@@ -39101,7 +39109,7 @@ pub const TextLayoutManager = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -39113,7 +39121,7 @@ pub const TextLayoutManager = opaque {
         return objc.msgSend(self, "ensureLayoutForRange:", void, .{range});
     }
 
-    pub fn ensureLayoutForBounds(self: *@This(), bounds: cf.CGRect) void {
+    pub fn ensureLayoutForBounds(self: *@This(), bounds: core_foundation.CGRect) void {
         return objc.msgSend(self, "ensureLayoutForBounds:", void, .{bounds});
     }
 
@@ -39121,7 +39129,7 @@ pub const TextLayoutManager = opaque {
         return objc.msgSend(self, "invalidateLayoutForRange:", void, .{range});
     }
 
-    pub fn textLayoutFragmentForPosition(self: *@This(), position: cf.CGPoint) ?*TextLayoutFragment {
+    pub fn textLayoutFragmentForPosition(self: *@This(), position: core_foundation.CGPoint) ?*TextLayoutFragment {
         return objc.msgSend(self, "textLayoutFragmentForPosition:", ?*TextLayoutFragment, .{position});
     }
 
@@ -39141,11 +39149,11 @@ pub const TextLayoutManager = opaque {
         return objc.msgSend(self, "setRenderingAttributes:forTextRange:", void, .{renderingAttributes, textRange});
     }
 
-    pub fn addRenderingAttributeValueForTextRange(self: *@This(), renderingAttribute: ns.AttributedStringKey, value: *objc.Id, textRange: ?*TextRange) void {
+    pub fn addRenderingAttributeValueForTextRange(self: *@This(), renderingAttribute: foundation.AttributedStringKey, value: *objc.Id, textRange: ?*TextRange) void {
         return objc.msgSend(self, "addRenderingAttribute:value:forTextRange:", void, .{renderingAttribute, value, textRange});
     }
 
-    pub fn removeRenderingAttributeForTextRange(self: *@This(), renderingAttribute: ns.AttributedStringKey, textRange: ?*TextRange) void {
+    pub fn removeRenderingAttributeForTextRange(self: *@This(), renderingAttribute: foundation.AttributedStringKey, textRange: ?*TextRange) void {
         return objc.msgSend(self, "removeRenderingAttribute:forTextRange:", void, .{renderingAttribute, textRange});
     }
 
@@ -39157,7 +39165,7 @@ pub const TextLayoutManager = opaque {
         return objc.msgSend(self, "renderingAttributesForLink:atLocation:", ?*anyopaque, .{link, location});
     }
 
-    pub fn enumerateTextSegmentsInRangeTypeOptionsUsingBlock(self: *@This(), textRange: ?*TextRange, @"type": TextLayoutManagerSegmentType, options: TextLayoutManagerSegmentOptions, block: *const fn(?*TextRange, cf.CGRect, cf.CGFloat, ?*TextContainer, ) callconv(.C) objc.BOOL, ) void {
+    pub fn enumerateTextSegmentsInRangeTypeOptionsUsingBlock(self: *@This(), textRange: ?*TextRange, @"type": TextLayoutManagerSegmentType, options: TextLayoutManagerSegmentOptions, block: *const fn(?*TextRange, core_foundation.CGRect, core_foundation.CGFloat, ?*TextContainer, ) callconv(.C) objc.BOOL, ) void {
         return objc.msgSend(self, "enumerateTextSegmentsInRange:type:options:usingBlock:", void, .{textRange, @"type", options, block, });
     }
 
@@ -39213,8 +39221,8 @@ pub const TextLayoutManager = opaque {
         return objc.msgSend(self, "setTextContainer:", void, .{textContainer});
     }
 
-    pub fn usageBoundsForTextContainer(self: *@This()) cf.CGRect {
-        return objc.msgSend(self, "usageBoundsForTextContainer", cf.CGRect, .{});
+    pub fn usageBoundsForTextContainer(self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(self, "usageBoundsForTextContainer", core_foundation.CGRect, .{});
     }
 
     pub fn textViewportLayoutController(self: *@This()) ?*TextViewportLayoutController {
@@ -39292,15 +39300,15 @@ pub const TextLineFragment = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithAttributedStringRange(self: *@This(), attributedString: ?*AttributedString, range: ns.Range) *@This() {
+    pub fn initWithAttributedStringRange(self: *@This(), attributedString: ?*AttributedString, range: foundation.Range) *@This() {
         return objc.msgSend(self, "initWithAttributedString:range:", *@This(), .{attributedString, range});
     }
 
-    pub fn initWithCoder(self: *@This(), aDecoder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), aDecoder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{aDecoder});
     }
 
-    pub fn initWithStringAttributesRange(self: *@This(), string: ?*String, attributes: ?*anyopaque, range: ns.Range) *@This() {
+    pub fn initWithStringAttributesRange(self: *@This(), string: ?*String, attributes: ?*anyopaque, range: foundation.Range) *@This() {
         return objc.msgSend(self, "initWithString:attributes:range:", *@This(), .{string, attributes, range});
     }
 
@@ -39308,36 +39316,36 @@ pub const TextLineFragment = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn drawAtPointInContext(self: *@This(), point: cf.CGPoint, context: ) void {
+    pub fn drawAtPointInContext(self: *@This(), point: core_foundation.CGPoint, context: core_graphics.ContextRef) void {
         return objc.msgSend(self, "drawAtPoint:inContext:", void, .{point, context});
     }
 
-    pub fn locationForCharacterAtIndex(self: *@This(), index: objc.NSInteger) cf.CGPoint {
-        return objc.msgSend(self, "locationForCharacterAtIndex:", cf.CGPoint, .{index});
+    pub fn locationForCharacterAtIndex(self: *@This(), index: objc.NSInteger) core_foundation.CGPoint {
+        return objc.msgSend(self, "locationForCharacterAtIndex:", core_foundation.CGPoint, .{index});
     }
 
-    pub fn characterIndexForPoint(self: *@This(), point: cf.CGPoint) objc.NSInteger {
+    pub fn characterIndexForPoint(self: *@This(), point: core_foundation.CGPoint) objc.NSInteger {
         return objc.msgSend(self, "characterIndexForPoint:", objc.NSInteger, .{point});
     }
 
-    pub fn fractionOfDistanceThroughGlyphForPoint(self: *@This(), point: cf.CGPoint) cf.CGFloat {
-        return objc.msgSend(self, "fractionOfDistanceThroughGlyphForPoint:", cf.CGFloat, .{point});
+    pub fn fractionOfDistanceThroughGlyphForPoint(self: *@This(), point: core_foundation.CGPoint) core_foundation.CGFloat {
+        return objc.msgSend(self, "fractionOfDistanceThroughGlyphForPoint:", core_foundation.CGFloat, .{point});
     }
 
     pub fn attributedString(self: *@This()) ?*AttributedString {
         return objc.msgSend(self, "attributedString", ?*AttributedString, .{});
     }
 
-    pub fn characterRange(self: *@This()) ns.Range {
-        return objc.msgSend(self, "characterRange", ns.Range, .{});
+    pub fn characterRange(self: *@This()) foundation.Range {
+        return objc.msgSend(self, "characterRange", foundation.Range, .{});
     }
 
-    pub fn typographicBounds(self: *@This()) cf.CGRect {
-        return objc.msgSend(self, "typographicBounds", cf.CGRect, .{});
+    pub fn typographicBounds(self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(self, "typographicBounds", core_foundation.CGRect, .{});
     }
 
-    pub fn glyphOrigin(self: *@This()) cf.CGPoint {
-        return objc.msgSend(self, "glyphOrigin", cf.CGPoint, .{});
+    pub fn glyphOrigin(self: *@This()) core_foundation.CGPoint {
+        return objc.msgSend(self, "glyphOrigin", core_foundation.CGPoint, .{});
     }
 
 };
@@ -39350,8 +39358,8 @@ pub const TextViewportLayoutControllerDelegate = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn viewportBoundsForTextViewportLayoutController(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController) cf.CGRect {
-        return objc.msgSend(self, "viewportBoundsForTextViewportLayoutController:", cf.CGRect, .{textViewportLayoutController});
+    pub fn viewportBoundsForTextViewportLayoutController(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController) core_foundation.CGRect {
+        return objc.msgSend(self, "viewportBoundsForTextViewportLayoutController:", core_foundation.CGRect, .{textViewportLayoutController});
     }
 
     pub fn textViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(self: *@This(), textViewportLayoutController: ?*TextViewportLayoutController, textLayoutFragment: ?*TextLayoutFragment) void {
@@ -39395,11 +39403,11 @@ pub const TextViewportLayoutController = opaque {
         return objc.msgSend(self, "layoutViewport", void, .{});
     }
 
-    pub fn relocateViewportToTextLocation(self: *@This(), textLocation: ?*anyopaque) cf.CGFloat {
-        return objc.msgSend(self, "relocateViewportToTextLocation:", cf.CGFloat, .{textLocation});
+    pub fn relocateViewportToTextLocation(self: *@This(), textLocation: ?*anyopaque) core_foundation.CGFloat {
+        return objc.msgSend(self, "relocateViewportToTextLocation:", core_foundation.CGFloat, .{textLocation});
     }
 
-    pub fn adjustViewportByVerticalOffset(self: *@This(), verticalOffset: cf.CGFloat) void {
+    pub fn adjustViewportByVerticalOffset(self: *@This(), verticalOffset: core_foundation.CGFloat) void {
         return objc.msgSend(self, "adjustViewportByVerticalOffset:", void, .{verticalOffset});
     }
 
@@ -39415,8 +39423,8 @@ pub const TextViewportLayoutController = opaque {
         return objc.msgSend(self, "textLayoutManager", ?*TextLayoutManager, .{});
     }
 
-    pub fn viewportBounds(self: *@This()) cf.CGRect {
-        return objc.msgSend(self, "viewportBounds", cf.CGRect, .{});
+    pub fn viewportBounds(self: *@This()) core_foundation.CGRect {
+        return objc.msgSend(self, "viewportBounds", core_foundation.CGRect, .{});
     }
 
     pub fn viewportRange(self: *@This()) ?*TextRange {
@@ -39436,11 +39444,11 @@ pub const AdaptiveImageGlyph = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithImageContent(self: *@This(), imageContent: ?*) *@This() {
+    pub fn initWithImageContent(self: *@This(), imageContent: ?*core_data.Data) *@This() {
         return objc.msgSend(self, "initWithImageContent:", *@This(), .{imageContent});
     }
 
-    pub fn initWithCoder(self: *@This(), coder: ?*ns.Coder) *@This() {
+    pub fn initWithCoder(self: *@This(), coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
@@ -39448,8 +39456,8 @@ pub const AdaptiveImageGlyph = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn imageContent(self: *@This()) ?* {
-        return objc.msgSend(self, "imageContent", ?*, .{});
+    pub fn imageContent(self: *@This()) ?*core_data.Data {
+        return objc.msgSend(self, "imageContent", ?*core_data.Data, .{});
     }
 
     pub fn contentIdentifier(self: *@This()) ?*String {

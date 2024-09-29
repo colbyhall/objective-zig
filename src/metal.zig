@@ -2,8 +2,9 @@
 
 const std = @import("std");
 const objc = @import("objc.zig"); // Objective-C Runtime in zig.
-const cf = @import("cf.zig"); // Framework dependency CoreFoundation.
-const ns = @import("ns.zig"); // Framework dependency Foundation.
+const core_foundation = @import("core_foundation.zig"); // Framework dependency CoreFoundation.
+const foundation = @import("foundation.zig"); // Framework dependency Foundation.
+const io_surface = @import("io_surface.zig"); // Framework dependency IOSurface.
 
 pub const Origin = extern struct {
     x: objc.NSUInteger,
@@ -71,11 +72,11 @@ pub const CommandEncoder = opaque {
         return objc.msgSend(self, "endEncoding", void, .{});
     }
 
-    pub fn insertDebugSignpost(self: *@This(), string: ?*ns.String) void {
+    pub fn insertDebugSignpost(self: *@This(), string: ?*foundation.String) void {
         return objc.msgSend(self, "insertDebugSignpost:", void, .{string});
     }
 
-    pub fn pushDebugGroup(self: *@This(), string: ?*ns.String) void {
+    pub fn pushDebugGroup(self: *@This(), string: ?*foundation.String) void {
         return objc.msgSend(self, "pushDebugGroup:", void, .{string});
     }
 
@@ -87,11 +88,11 @@ pub const CommandEncoder = opaque {
         return objc.msgSend(self, "device", ?*anyopaque, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -174,11 +175,11 @@ pub const Resource = opaque {
         return objc.msgSend(self, "setOwnerWithIdentity:", objc.kern_return_t, .{task_id_token});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -370,7 +371,7 @@ pub const Buffer = opaque {
         return objc.msgSend(self, "contents", ?*anyopaque, .{});
     }
 
-    pub fn didModifyRange(self: *@This(), range: ns.Range) void {
+    pub fn didModifyRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "didModifyRange:", void, .{range});
     }
 
@@ -378,7 +379,7 @@ pub const Buffer = opaque {
         return objc.msgSend(self, "newTextureWithDescriptor:offset:bytesPerRow:", ?*anyopaque, .{descriptor, offset, bytesPerRow});
     }
 
-    pub fn addDebugMarkerRange(self: *@This(), marker: ?*ns.String, range: ns.Range) void {
+    pub fn addDebugMarkerRange(self: *@This(), marker: ?*foundation.String, range: foundation.Range) void {
         return objc.msgSend(self, "addDebugMarker:range:", void, .{marker, range});
     }
 
@@ -450,8 +451,8 @@ pub const SharedTextureHandle = opaque {
         return objc.msgSend(self, "device", ?*anyopaque, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
 };
@@ -653,7 +654,7 @@ pub const Texture = opaque {
         return objc.msgSend(self, "newTextureViewWithPixelFormat:", ?*anyopaque, .{pixelFormat});
     }
 
-    pub fn newTextureViewWithPixelFormatTextureTypeLevelsSlices(self: *@This(), pixelFormat: PixelFormat, textureType: TextureType, levelRange: ns.Range, sliceRange: ns.Range, ) ?*anyopaque {
+    pub fn newTextureViewWithPixelFormatTextureTypeLevelsSlices(self: *@This(), pixelFormat: PixelFormat, textureType: TextureType, levelRange: foundation.Range, sliceRange: foundation.Range, ) ?*anyopaque {
         return objc.msgSend(self, "newTextureViewWithPixelFormat:textureType:levels:slices:", ?*anyopaque, .{pixelFormat, textureType, levelRange, sliceRange, });
     }
 
@@ -665,7 +666,7 @@ pub const Texture = opaque {
         return objc.msgSend(self, "newRemoteTextureViewForDevice:", ?*anyopaque, .{device});
     }
 
-    pub fn newTextureViewWithPixelFormatTextureTypeLevelsSlicesSwizzle(self: *@This(), pixelFormat: PixelFormat, textureType: TextureType, levelRange: ns.Range, sliceRange: ns.Range, swizzle: TextureSwizzleChannels, ) ?*anyopaque {
+    pub fn newTextureViewWithPixelFormatTextureTypeLevelsSlicesSwizzle(self: *@This(), pixelFormat: PixelFormat, textureType: TextureType, levelRange: foundation.Range, sliceRange: foundation.Range, swizzle: TextureSwizzleChannels, ) ?*anyopaque {
         return objc.msgSend(self, "newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:", ?*anyopaque, .{pixelFormat, textureType, levelRange, sliceRange, swizzle, });
     }
 
@@ -697,8 +698,8 @@ pub const Texture = opaque {
         return objc.msgSend(self, "bufferBytesPerRow", objc.NSUInteger, .{});
     }
 
-    pub fn iosurface(self: *@This())  {
-        return objc.msgSend(self, "iosurface", , .{});
+    pub fn iosurface(self: *@This()) io_surface.Ref {
+        return objc.msgSend(self, "iosurface", io_surface.Ref, .{});
     }
 
     pub fn iosurfacePlane(self: *@This()) objc.NSUInteger {
@@ -963,8 +964,8 @@ pub const StructMember = opaque {
         return objc.msgSend(self, "pointerType", ?*PointerType, .{});
     }
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn offset(self: *@This()) objc.NSUInteger {
@@ -992,7 +993,7 @@ pub const StructType = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn memberByName(self: *@This(), name: ?*ns.String) ?*StructMember {
+    pub fn memberByName(self: *@This(), name: ?*foundation.String) ?*StructMember {
         return objc.msgSend(self, "memberByName:", ?*StructMember, .{name});
     }
 
@@ -1128,8 +1129,8 @@ pub const Argument = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn @"type"(self: *@This()) ArgumentType {
@@ -1202,8 +1203,8 @@ pub const Binding = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn @"type"(self: *@This()) BindingType {
@@ -1335,11 +1336,11 @@ pub const FunctionConstantValues = opaque {
         return objc.msgSend(self, "setConstantValue:type:atIndex:", void, .{value, @"type", index});
     }
 
-    pub fn setConstantValuesTypeWithRange(self: *@This(), values: ?*anyopaque, @"type": DataType, range: ns.Range) void {
+    pub fn setConstantValuesTypeWithRange(self: *@This(), values: ?*anyopaque, @"type": DataType, range: foundation.Range) void {
         return objc.msgSend(self, "setConstantValues:type:withRange:", void, .{values, @"type", range});
     }
 
-    pub fn setConstantValueTypeWithName(self: *@This(), value: ?*anyopaque, @"type": DataType, name: ?*ns.String) void {
+    pub fn setConstantValueTypeWithName(self: *@This(), value: ?*anyopaque, @"type": DataType, name: ?*foundation.String) void {
         return objc.msgSend(self, "setConstantValue:type:withName:", void, .{value, @"type", name});
     }
 
@@ -1372,19 +1373,19 @@ pub const FunctionDescriptor = opaque {
         return objc.msgSend(self, "functionDescriptor", ?*FunctionDescriptor, .{});
     }
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(self: *@This(), name: ?*ns.String) void {
+    pub fn setName(self: *@This(), name: ?*foundation.String) void {
         return objc.msgSend(self, "setName:", void, .{name});
     }
 
-    pub fn specializedName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "specializedName", ?*ns.String, .{});
+    pub fn specializedName(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "specializedName", ?*foundation.String, .{});
     }
 
-    pub fn setSpecializedName(self: *@This(), specializedName: ?*ns.String) void {
+    pub fn setSpecializedName(self: *@This(), specializedName: ?*foundation.String) void {
         return objc.msgSend(self, "setSpecializedName:", void, .{specializedName});
     }
 
@@ -1445,8 +1446,8 @@ pub const VertexAttribute = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn attributeIndex(self: *@This()) objc.NSUInteger {
@@ -1482,8 +1483,8 @@ pub const Attribute = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn attributeIndex(self: *@This()) objc.NSUInteger {
@@ -1529,8 +1530,8 @@ pub const FunctionConstant = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn @"type"(self: *@This()) DataType {
@@ -1563,11 +1564,11 @@ pub const Function = opaque {
         return objc.msgSend(self, "newArgumentEncoderWithBufferIndex:reflection:", ?*anyopaque, .{bufferIndex, reflection});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -1595,8 +1596,8 @@ pub const Function = opaque {
         return objc.msgSend(self, "stageInputAttributes", ?*anyopaque, .{});
     }
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn functionConstantsDictionary(self: *@This()) ?*anyopaque {
@@ -1708,11 +1709,11 @@ pub const CompileOptions = opaque {
         return objc.msgSend(self, "setLibraryType:", void, .{libraryType});
     }
 
-    pub fn installName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "installName", ?*ns.String, .{});
+    pub fn installName(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "installName", ?*foundation.String, .{});
     }
 
-    pub fn setInstallName(self: *@This(), installName: ?*ns.String) void {
+    pub fn setInstallName(self: *@This(), installName: ?*foundation.String) void {
         return objc.msgSend(self, "setInstallName:", void, .{installName});
     }
 
@@ -1791,39 +1792,39 @@ pub const Library = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn newFunctionWithName(self: *@This(), functionName: ?*ns.String) ?*anyopaque {
+    pub fn newFunctionWithName(self: *@This(), functionName: ?*foundation.String) ?*anyopaque {
         return objc.msgSend(self, "newFunctionWithName:", ?*anyopaque, .{functionName});
     }
 
-    pub fn newFunctionWithNameConstantValuesError(self: *@This(), name: ?*ns.String, constantValues: ?*FunctionConstantValues, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newFunctionWithNameConstantValuesError(self: *@This(), name: ?*foundation.String, constantValues: ?*FunctionConstantValues, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newFunctionWithName:constantValues:error:", ?*anyopaque, .{name, constantValues, @"error"});
     }
 
-    pub fn newFunctionWithNameConstantValuesCompletionHandler(self: *@This(), name: ?*ns.String, constantValues: ?*FunctionConstantValues, completionHandler: *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void) void {
+    pub fn newFunctionWithNameConstantValuesCompletionHandler(self: *@This(), name: ?*foundation.String, constantValues: ?*FunctionConstantValues, completionHandler: *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
         return objc.msgSend(self, "newFunctionWithName:constantValues:completionHandler:", void, .{name, constantValues, completionHandler});
     }
 
-    pub fn newFunctionWithDescriptorCompletionHandler(self: *@This(), descriptor: ?*FunctionDescriptor, completionHandler: *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void) void {
+    pub fn newFunctionWithDescriptorCompletionHandler(self: *@This(), descriptor: ?*FunctionDescriptor, completionHandler: *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
         return objc.msgSend(self, "newFunctionWithDescriptor:completionHandler:", void, .{descriptor, completionHandler});
     }
 
-    pub fn newFunctionWithDescriptorError(self: *@This(), descriptor: ?*FunctionDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newFunctionWithDescriptorError(self: *@This(), descriptor: ?*FunctionDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newFunctionWithDescriptor:error:", ?*anyopaque, .{descriptor, @"error"});
     }
 
-    pub fn newIntersectionFunctionWithDescriptorCompletionHandler(self: *@This(), descriptor: ?*IntersectionFunctionDescriptor, completionHandler: *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void) void {
+    pub fn newIntersectionFunctionWithDescriptorCompletionHandler(self: *@This(), descriptor: ?*IntersectionFunctionDescriptor, completionHandler: *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void) void {
         return objc.msgSend(self, "newIntersectionFunctionWithDescriptor:completionHandler:", void, .{descriptor, completionHandler});
     }
 
-    pub fn newIntersectionFunctionWithDescriptorError(self: *@This(), descriptor: ?*IntersectionFunctionDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newIntersectionFunctionWithDescriptorError(self: *@This(), descriptor: ?*IntersectionFunctionDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newIntersectionFunctionWithDescriptor:error:", ?*anyopaque, .{descriptor, @"error"});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -1839,15 +1840,15 @@ pub const Library = opaque {
         return objc.msgSend(self, "type", LibraryType, .{});
     }
 
-    pub fn installName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "installName", ?*ns.String, .{});
+    pub fn installName(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "installName", ?*foundation.String, .{});
     }
 
 };
 
-pub const CommonCounter = ?*const ns.String;
+pub const CommonCounter = ?*const foundation.String;
 
-pub const CommonCounterSet = ?*const ns.String;
+pub const CommonCounterSet = ?*const foundation.String;
 
 pub const CounterResultTimestamp = extern struct {
     timestamp: objc.uint64_t,
@@ -1881,8 +1882,8 @@ pub const Counter = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
 };
@@ -1895,8 +1896,8 @@ pub const CounterSet = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn counters(self: *@This()) ?*anyopaque {
@@ -1924,11 +1925,11 @@ pub const CounterSampleBufferDescriptor = opaque {
         return objc.msgSend(self, "setCounterSet:", void, .{counterSet});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -1958,16 +1959,16 @@ pub const CounterSampleBuffer = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn resolveCounterRange(self: *@This(), range: ns.Range) ?*ns.Data {
-        return objc.msgSend(self, "resolveCounterRange:", ?*ns.Data, .{range});
+    pub fn resolveCounterRange(self: *@This(), range: foundation.Range) ?*foundation.Data {
+        return objc.msgSend(self, "resolveCounterRange:", ?*foundation.Data, .{range});
     }
 
     pub fn device(self: *@This()) ?*anyopaque {
         return objc.msgSend(self, "device", ?*anyopaque, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
     pub fn sampleCount(self: *@This()) objc.NSUInteger {
@@ -1994,7 +1995,7 @@ pub extern "Metal" fn CreateSystemDefaultDevice() callconv(.C) ?*anyopaque;
 
 pub extern "Metal" fn CopyAllDevices() callconv(.C) ?*anyopaque;
 
-pub const DeviceNotificationName = ?*ns.String;
+pub const DeviceNotificationName = ?*foundation.String;
 
 pub const DeviceNotificationHandler = *const fn(?*anyopaque, DeviceNotificationName) callconv(.C) void;
 
@@ -2118,15 +2119,15 @@ pub const AutoreleasedRenderPipelineReflection = ?*RenderPipelineReflection;
 
 pub const AutoreleasedComputePipelineReflection = ?*ComputePipelineReflection;
 
-pub const NewLibraryCompletionHandler = *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void;
+pub const NewLibraryCompletionHandler = *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void;
 
-pub const NewRenderPipelineStateCompletionHandler = *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void;
+pub const NewRenderPipelineStateCompletionHandler = *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void;
 
-pub const NewRenderPipelineStateWithReflectionCompletionHandler = *const fn(?*anyopaque, ?*RenderPipelineReflection, ?*ns.Error) callconv(.C) void;
+pub const NewRenderPipelineStateWithReflectionCompletionHandler = *const fn(?*anyopaque, ?*RenderPipelineReflection, ?*foundation.Error) callconv(.C) void;
 
-pub const NewComputePipelineStateCompletionHandler = *const fn(?*anyopaque, ?*ns.Error) callconv(.C) void;
+pub const NewComputePipelineStateCompletionHandler = *const fn(?*anyopaque, ?*foundation.Error) callconv(.C) void;
 
-pub const NewComputePipelineStateWithReflectionCompletionHandler = *const fn(?*anyopaque, ?*ComputePipelineReflection, ?*ns.Error) callconv(.C) void;
+pub const NewComputePipelineStateWithReflectionCompletionHandler = *const fn(?*anyopaque, ?*ComputePipelineReflection, ?*foundation.Error) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/Metal/MTLArgumentDescriptor?language=objc
 pub const ArgumentDescriptor = opaque {
@@ -2204,8 +2205,8 @@ pub const Architecture = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
 };
@@ -2218,8 +2219,8 @@ pub const Device = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn registryID(self: *@This()) objc.uint64_t {
@@ -2314,7 +2315,7 @@ pub const Device = opaque {
         return objc.msgSend(self, "currentAllocatedSize", objc.NSUInteger, .{});
     }
 
-    pub fn newLogStateWithDescriptorError(self: *@This(), descriptor: ?*LogStateDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newLogStateWithDescriptorError(self: *@This(), descriptor: ?*LogStateDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newLogStateWithDescriptor:error:", ?*anyopaque, .{descriptor, @"error"});
     }
 
@@ -2362,7 +2363,7 @@ pub const Device = opaque {
         return objc.msgSend(self, "newTextureWithDescriptor:", ?*anyopaque, .{descriptor});
     }
 
-    pub fn newTextureWithDescriptorIosurfacePlane(self: *@This(), descriptor: ?*TextureDescriptor, iosurface: , plane: objc.NSUInteger) ?*anyopaque {
+    pub fn newTextureWithDescriptorIosurfacePlane(self: *@This(), descriptor: ?*TextureDescriptor, iosurface: io_surface.Ref, plane: objc.NSUInteger) ?*anyopaque {
         return objc.msgSend(self, "newTextureWithDescriptor:iosurface:plane:", ?*anyopaque, .{descriptor, iosurface, plane});
     }
 
@@ -2382,31 +2383,31 @@ pub const Device = opaque {
         return objc.msgSend(self, "newDefaultLibrary", ?*anyopaque, .{});
     }
 
-    pub fn newDefaultLibraryWithBundleError(self: *@This(), bundle: ?*ns.Bundle, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newDefaultLibraryWithBundleError(self: *@This(), bundle: ?*foundation.Bundle, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newDefaultLibraryWithBundle:error:", ?*anyopaque, .{bundle, @"error"});
     }
 
-    pub fn newLibraryWithFileError(self: *@This(), filepath: ?*ns.String, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newLibraryWithFileError(self: *@This(), filepath: ?*foundation.String, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newLibraryWithFile:error:", ?*anyopaque, .{filepath, @"error"});
     }
 
-    pub fn newLibraryWithURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newLibraryWithURLError(self: *@This(), url: ?*foundation.URL, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newLibraryWithURL:error:", ?*anyopaque, .{url, @"error"});
     }
 
-    pub fn newLibraryWithDataError(self: *@This(), data: objc.dispatch_data_t, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newLibraryWithDataError(self: *@This(), data: objc.dispatch_data_t, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newLibraryWithData:error:", ?*anyopaque, .{data, @"error"});
     }
 
-    pub fn newLibraryWithSourceOptionsError(self: *@This(), source: ?*ns.String, options: ?*CompileOptions, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newLibraryWithSourceOptionsError(self: *@This(), source: ?*foundation.String, options: ?*CompileOptions, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newLibraryWithSource:options:error:", ?*anyopaque, .{source, options, @"error"});
     }
 
-    pub fn newLibraryWithSourceOptionsCompletionHandler(self: *@This(), source: ?*ns.String, options: ?*CompileOptions, completionHandler: NewLibraryCompletionHandler) void {
+    pub fn newLibraryWithSourceOptionsCompletionHandler(self: *@This(), source: ?*foundation.String, options: ?*CompileOptions, completionHandler: NewLibraryCompletionHandler) void {
         return objc.msgSend(self, "newLibraryWithSource:options:completionHandler:", void, .{source, options, completionHandler});
     }
 
-    pub fn newLibraryWithStitchedDescriptorError(self: *@This(), descriptor: ?*StitchedLibraryDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newLibraryWithStitchedDescriptorError(self: *@This(), descriptor: ?*StitchedLibraryDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newLibraryWithStitchedDescriptor:error:", ?*anyopaque, .{descriptor, @"error"});
     }
 
@@ -2414,11 +2415,11 @@ pub const Device = opaque {
         return objc.msgSend(self, "newLibraryWithStitchedDescriptor:completionHandler:", void, .{descriptor, completionHandler});
     }
 
-    pub fn newRenderPipelineStateWithDescriptorError(self: *@This(), descriptor: ?*RenderPipelineDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newRenderPipelineStateWithDescriptorError(self: *@This(), descriptor: ?*RenderPipelineDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newRenderPipelineStateWithDescriptor:error:", ?*anyopaque, .{descriptor, @"error"});
     }
 
-    pub fn newRenderPipelineStateWithDescriptorOptionsReflectionError(self: *@This(), descriptor: ?*RenderPipelineDescriptor, options: PipelineOption, reflection: ?*?*RenderPipelineReflection, @"error": ?*?*ns.Error, ) ?*anyopaque {
+    pub fn newRenderPipelineStateWithDescriptorOptionsReflectionError(self: *@This(), descriptor: ?*RenderPipelineDescriptor, options: PipelineOption, reflection: ?*?*RenderPipelineReflection, @"error": ?*?*foundation.Error, ) ?*anyopaque {
         return objc.msgSend(self, "newRenderPipelineStateWithDescriptor:options:reflection:error:", ?*anyopaque, .{descriptor, options, reflection, @"error", });
     }
 
@@ -2430,11 +2431,11 @@ pub const Device = opaque {
         return objc.msgSend(self, "newRenderPipelineStateWithDescriptor:options:completionHandler:", void, .{descriptor, options, completionHandler});
     }
 
-    pub fn newComputePipelineStateWithFunctionError(self: *@This(), computeFunction: ?*anyopaque, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newComputePipelineStateWithFunctionError(self: *@This(), computeFunction: ?*anyopaque, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newComputePipelineStateWithFunction:error:", ?*anyopaque, .{computeFunction, @"error"});
     }
 
-    pub fn newComputePipelineStateWithFunctionOptionsReflectionError(self: *@This(), computeFunction: ?*anyopaque, options: PipelineOption, reflection: ?*?*ComputePipelineReflection, @"error": ?*?*ns.Error, ) ?*anyopaque {
+    pub fn newComputePipelineStateWithFunctionOptionsReflectionError(self: *@This(), computeFunction: ?*anyopaque, options: PipelineOption, reflection: ?*?*ComputePipelineReflection, @"error": ?*?*foundation.Error, ) ?*anyopaque {
         return objc.msgSend(self, "newComputePipelineStateWithFunction:options:reflection:error:", ?*anyopaque, .{computeFunction, options, reflection, @"error", });
     }
 
@@ -2446,7 +2447,7 @@ pub const Device = opaque {
         return objc.msgSend(self, "newComputePipelineStateWithFunction:options:completionHandler:", void, .{computeFunction, options, completionHandler});
     }
 
-    pub fn newComputePipelineStateWithDescriptorOptionsReflectionError(self: *@This(), descriptor: ?*ComputePipelineDescriptor, options: PipelineOption, reflection: ?*?*ComputePipelineReflection, @"error": ?*?*ns.Error, ) ?*anyopaque {
+    pub fn newComputePipelineStateWithDescriptorOptionsReflectionError(self: *@This(), descriptor: ?*ComputePipelineDescriptor, options: PipelineOption, reflection: ?*?*ComputePipelineReflection, @"error": ?*?*foundation.Error, ) ?*anyopaque {
         return objc.msgSend(self, "newComputePipelineStateWithDescriptor:options:reflection:error:", ?*anyopaque, .{descriptor, options, reflection, @"error", });
     }
 
@@ -2478,7 +2479,7 @@ pub const Device = opaque {
         return objc.msgSend(self, "minimumTextureBufferAlignmentForPixelFormat:", objc.NSUInteger, .{format});
     }
 
-    pub fn newRenderPipelineStateWithTileDescriptorOptionsReflectionError(self: *@This(), descriptor: ?*TileRenderPipelineDescriptor, options: PipelineOption, reflection: ?*?*RenderPipelineReflection, @"error": ?*?*ns.Error, ) ?*anyopaque {
+    pub fn newRenderPipelineStateWithTileDescriptorOptionsReflectionError(self: *@This(), descriptor: ?*TileRenderPipelineDescriptor, options: PipelineOption, reflection: ?*?*RenderPipelineReflection, @"error": ?*?*foundation.Error, ) ?*anyopaque {
         return objc.msgSend(self, "newRenderPipelineStateWithTileDescriptor:options:reflection:error:", ?*anyopaque, .{descriptor, options, reflection, @"error", });
     }
 
@@ -2486,7 +2487,7 @@ pub const Device = opaque {
         return objc.msgSend(self, "newRenderPipelineStateWithTileDescriptor:options:completionHandler:", void, .{descriptor, options, completionHandler});
     }
 
-    pub fn newRenderPipelineStateWithMeshDescriptorOptionsReflectionError(self: *@This(), descriptor: ?*MeshRenderPipelineDescriptor, options: PipelineOption, reflection: ?*?*RenderPipelineReflection, @"error": ?*?*ns.Error, ) ?*anyopaque {
+    pub fn newRenderPipelineStateWithMeshDescriptorOptionsReflectionError(self: *@This(), descriptor: ?*MeshRenderPipelineDescriptor, options: PipelineOption, reflection: ?*?*RenderPipelineReflection, @"error": ?*?*foundation.Error, ) ?*anyopaque {
         return objc.msgSend(self, "newRenderPipelineStateWithMeshDescriptor:options:reflection:error:", ?*anyopaque, .{descriptor, options, reflection, @"error", });
     }
 
@@ -2550,23 +2551,23 @@ pub const Device = opaque {
         return objc.msgSend(self, "peerCount", objc.uint32_t, .{});
     }
 
-    pub fn newIOHandleWithURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newIOHandleWithURLError(self: *@This(), url: ?*foundation.URL, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newIOHandleWithURL:error:", ?*anyopaque, .{url, @"error"});
     }
 
-    pub fn newIOCommandQueueWithDescriptorError(self: *@This(), descriptor: ?*IOCommandQueueDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newIOCommandQueueWithDescriptorError(self: *@This(), descriptor: ?*IOCommandQueueDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newIOCommandQueueWithDescriptor:error:", ?*anyopaque, .{descriptor, @"error"});
     }
 
-    pub fn newIOHandleWithURLCompressionMethodError(self: *@This(), url: ?*ns.URL, compressionMethod: IOCompressionMethod, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newIOHandleWithURLCompressionMethodError(self: *@This(), url: ?*foundation.URL, compressionMethod: IOCompressionMethod, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newIOHandleWithURL:compressionMethod:error:", ?*anyopaque, .{url, compressionMethod, @"error"});
     }
 
-    pub fn newIOFileHandleWithURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newIOFileHandleWithURLError(self: *@This(), url: ?*foundation.URL, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newIOFileHandleWithURL:error:", ?*anyopaque, .{url, @"error"});
     }
 
-    pub fn newIOFileHandleWithURLCompressionMethodError(self: *@This(), url: ?*ns.URL, compressionMethod: IOCompressionMethod, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newIOFileHandleWithURLCompressionMethodError(self: *@This(), url: ?*foundation.URL, compressionMethod: IOCompressionMethod, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newIOFileHandleWithURL:compressionMethod:error:", ?*anyopaque, .{url, compressionMethod, @"error"});
     }
 
@@ -2602,7 +2603,7 @@ pub const Device = opaque {
         return objc.msgSend(self, "counterSets", ?*anyopaque, .{});
     }
 
-    pub fn newCounterSampleBufferWithDescriptorError(self: *@This(), descriptor: ?*CounterSampleBufferDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newCounterSampleBufferWithDescriptorError(self: *@This(), descriptor: ?*CounterSampleBufferDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newCounterSampleBufferWithDescriptor:error:", ?*anyopaque, .{descriptor, @"error"});
     }
 
@@ -2630,15 +2631,15 @@ pub const Device = opaque {
         return objc.msgSend(self, "supportsRenderDynamicLibraries", objc.BOOL, .{});
     }
 
-    pub fn newDynamicLibraryError(self: *@This(), library: ?*anyopaque, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newDynamicLibraryError(self: *@This(), library: ?*anyopaque, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newDynamicLibrary:error:", ?*anyopaque, .{library, @"error"});
     }
 
-    pub fn newDynamicLibraryWithURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newDynamicLibraryWithURLError(self: *@This(), url: ?*foundation.URL, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newDynamicLibraryWithURL:error:", ?*anyopaque, .{url, @"error"});
     }
 
-    pub fn newBinaryArchiveWithDescriptorError(self: *@This(), descriptor: ?*BinaryArchiveDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newBinaryArchiveWithDescriptorError(self: *@This(), descriptor: ?*BinaryArchiveDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newBinaryArchiveWithDescriptor:error:", ?*anyopaque, .{descriptor, @"error"});
     }
 
@@ -2694,7 +2695,7 @@ pub const Device = opaque {
         return objc.msgSend(self, "maximumConcurrentCompilationTaskCount", objc.NSUInteger, .{});
     }
 
-    pub fn newResidencySetWithDescriptorError(self: *@This(), desc: ?*ResidencySetDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newResidencySetWithDescriptorError(self: *@This(), desc: ?*ResidencySetDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newResidencySetWithDescriptor:error:", ?*anyopaque, .{desc, @"error"});
     }
 
@@ -2714,11 +2715,11 @@ pub const Fence = opaque {
         return objc.msgSend(self, "device", ?*anyopaque, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -3423,7 +3424,7 @@ pub const BlitCommandEncoder = opaque {
         return objc.msgSend(self, "generateMipmapsForTexture:", void, .{texture});
     }
 
-    pub fn fillBufferRangeValue(self: *@This(), buffer: ?*anyopaque, range: ns.Range, value: objc.uint8_t) void {
+    pub fn fillBufferRangeValue(self: *@This(), buffer: ?*anyopaque, range: foundation.Range, value: objc.uint8_t) void {
         return objc.msgSend(self, "fillBuffer:range:value:", void, .{buffer, range, value});
     }
 
@@ -3471,15 +3472,15 @@ pub const BlitCommandEncoder = opaque {
         return objc.msgSend(self, "optimizeContentsForCPUAccess:slice:level:", void, .{texture, slice, level});
     }
 
-    pub fn resetCommandsInBufferWithRange(self: *@This(), buffer: ?*anyopaque, range: ns.Range) void {
+    pub fn resetCommandsInBufferWithRange(self: *@This(), buffer: ?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "resetCommandsInBuffer:withRange:", void, .{buffer, range});
     }
 
-    pub fn copyIndirectCommandBufferSourceRangeDestinationDestinationIndex(self: *@This(), source: ?*anyopaque, sourceRange: ns.Range, destination: ?*anyopaque, destinationIndex: objc.NSUInteger, ) void {
+    pub fn copyIndirectCommandBufferSourceRangeDestinationDestinationIndex(self: *@This(), source: ?*anyopaque, sourceRange: foundation.Range, destination: ?*anyopaque, destinationIndex: objc.NSUInteger, ) void {
         return objc.msgSend(self, "copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:", void, .{source, sourceRange, destination, destinationIndex, });
     }
 
-    pub fn optimizeIndirectCommandBufferWithRange(self: *@This(), indirectCommandBuffer: ?*anyopaque, range: ns.Range) void {
+    pub fn optimizeIndirectCommandBufferWithRange(self: *@This(), indirectCommandBuffer: ?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "optimizeIndirectCommandBuffer:withRange:", void, .{indirectCommandBuffer, range});
     }
 
@@ -3487,7 +3488,7 @@ pub const BlitCommandEncoder = opaque {
         return objc.msgSend(self, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{sampleBuffer, sampleIndex, barrier});
     }
 
-    pub fn resolveCountersInRangeDestinationBufferDestinationOffset(self: *@This(), sampleBuffer: ?*anyopaque, range: ns.Range, destinationBuffer: ?*anyopaque, destinationOffset: objc.NSUInteger, ) void {
+    pub fn resolveCountersInRangeDestinationBufferDestinationOffset(self: *@This(), sampleBuffer: ?*anyopaque, range: foundation.Range, destinationBuffer: ?*anyopaque, destinationOffset: objc.NSUInteger, ) void {
         return objc.msgSend(self, "resolveCounters:inRange:destinationBuffer:destinationOffset:", void, .{sampleBuffer, range, destinationBuffer, destinationOffset, });
     }
 
@@ -3575,8 +3576,8 @@ pub const CommandBufferEncoderInfo = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
     pub fn debugSignposts(self: *@This()) ?*anyopaque {
@@ -3620,11 +3621,11 @@ pub const CommandBuffer = opaque {
         return objc.msgSend(self, "presentDrawable:", void, .{drawable});
     }
 
-    pub fn presentDrawableAtTime(self: *@This(), drawable: ?*anyopaque, presentationTime: cf.TimeInterval) void {
+    pub fn presentDrawableAtTime(self: *@This(), drawable: ?*anyopaque, presentationTime: core_foundation.TimeInterval) void {
         return objc.msgSend(self, "presentDrawable:atTime:", void, .{drawable, presentationTime});
     }
 
-    pub fn presentDrawableAfterMinimumDuration(self: *@This(), drawable: ?*anyopaque, duration: cf.TimeInterval) void {
+    pub fn presentDrawableAfterMinimumDuration(self: *@This(), drawable: ?*anyopaque, duration: core_foundation.TimeInterval) void {
         return objc.msgSend(self, "presentDrawable:afterMinimumDuration:", void, .{drawable, duration});
     }
 
@@ -3692,7 +3693,7 @@ pub const CommandBuffer = opaque {
         return objc.msgSend(self, "accelerationStructureCommandEncoderWithDescriptor:", ?*anyopaque, .{descriptor});
     }
 
-    pub fn pushDebugGroup(self: *@This(), string: ?*ns.String) void {
+    pub fn pushDebugGroup(self: *@This(), string: ?*foundation.String) void {
         return objc.msgSend(self, "pushDebugGroup:", void, .{string});
     }
 
@@ -3724,40 +3725,40 @@ pub const CommandBuffer = opaque {
         return objc.msgSend(self, "errorOptions", CommandBufferErrorOption, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
-    pub fn kernelStartTime(self: *@This()) cf.TimeInterval {
-        return objc.msgSend(self, "kernelStartTime", cf.TimeInterval, .{});
+    pub fn kernelStartTime(self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(self, "kernelStartTime", core_foundation.TimeInterval, .{});
     }
 
-    pub fn kernelEndTime(self: *@This()) cf.TimeInterval {
-        return objc.msgSend(self, "kernelEndTime", cf.TimeInterval, .{});
+    pub fn kernelEndTime(self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(self, "kernelEndTime", core_foundation.TimeInterval, .{});
     }
 
     pub fn logs(self: *@This()) ?*anyopaque {
         return objc.msgSend(self, "logs", ?*anyopaque, .{});
     }
 
-    pub fn GPUStartTime(self: *@This()) cf.TimeInterval {
-        return objc.msgSend(self, "GPUStartTime", cf.TimeInterval, .{});
+    pub fn GPUStartTime(self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(self, "GPUStartTime", core_foundation.TimeInterval, .{});
     }
 
-    pub fn GPUEndTime(self: *@This()) cf.TimeInterval {
-        return objc.msgSend(self, "GPUEndTime", cf.TimeInterval, .{});
+    pub fn GPUEndTime(self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(self, "GPUEndTime", core_foundation.TimeInterval, .{});
     }
 
     pub fn status(self: *@This()) CommandBufferStatus {
         return objc.msgSend(self, "status", CommandBufferStatus, .{});
     }
 
-    pub fn @"error"(self: *@This()) ?*ns.Error {
-        return objc.msgSend(self, "error", ?*ns.Error, .{});
+    pub fn @"error"(self: *@This()) ?*foundation.Error {
+        return objc.msgSend(self, "error", ?*foundation.Error, .{});
     }
 
 };
@@ -3882,7 +3883,7 @@ pub const ComputeCommandEncoder = opaque {
         return objc.msgSend(self, "setBufferOffset:atIndex:", void, .{offset, index});
     }
 
-    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: foundation.Range) void {
         return objc.msgSend(self, "setBuffers:offsets:withRange:", void, .{buffers, offsets, range});
     }
 
@@ -3890,7 +3891,7 @@ pub const ComputeCommandEncoder = opaque {
         return objc.msgSend(self, "setBuffer:offset:attributeStride:atIndex:", void, .{buffer, offset, stride, index, });
     }
 
-    pub fn setBuffersOffsetsAttributeStridesWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, strides: ?*objc.NSUInteger, range: ns.Range, ) void {
+    pub fn setBuffersOffsetsAttributeStridesWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, strides: ?*objc.NSUInteger, range: foundation.Range, ) void {
         return objc.msgSend(self, "setBuffers:offsets:attributeStrides:withRange:", void, .{buffers, offsets, strides, range, });
     }
 
@@ -3906,7 +3907,7 @@ pub const ComputeCommandEncoder = opaque {
         return objc.msgSend(self, "setVisibleFunctionTable:atBufferIndex:", void, .{visibleFunctionTable, bufferIndex});
     }
 
-    pub fn setVisibleFunctionTablesWithBufferRange(self: *@This(), visibleFunctionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setVisibleFunctionTablesWithBufferRange(self: *@This(), visibleFunctionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setVisibleFunctionTables:withBufferRange:", void, .{visibleFunctionTables, range});
     }
 
@@ -3914,7 +3915,7 @@ pub const ComputeCommandEncoder = opaque {
         return objc.msgSend(self, "setIntersectionFunctionTable:atBufferIndex:", void, .{intersectionFunctionTable, bufferIndex});
     }
 
-    pub fn setIntersectionFunctionTablesWithBufferRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setIntersectionFunctionTablesWithBufferRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setIntersectionFunctionTables:withBufferRange:", void, .{intersectionFunctionTables, range});
     }
 
@@ -3926,7 +3927,7 @@ pub const ComputeCommandEncoder = opaque {
         return objc.msgSend(self, "setTexture:atIndex:", void, .{texture, index});
     }
 
-    pub fn setTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setTextures:withRange:", void, .{textures, range});
     }
 
@@ -3934,7 +3935,7 @@ pub const ComputeCommandEncoder = opaque {
         return objc.msgSend(self, "setSamplerState:atIndex:", void, .{sampler, index});
     }
 
-    pub fn setSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setSamplerStates:withRange:", void, .{samplers, range});
     }
 
@@ -3942,7 +3943,7 @@ pub const ComputeCommandEncoder = opaque {
         return objc.msgSend(self, "setSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{sampler, lodMinClamp, lodMaxClamp, index, });
     }
 
-    pub fn setSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: ns.Range, ) void {
+    pub fn setSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: foundation.Range, ) void {
         return objc.msgSend(self, "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{samplers, lodMinClamps, lodMaxClamps, range, });
     }
 
@@ -3998,7 +3999,7 @@ pub const ComputeCommandEncoder = opaque {
         return objc.msgSend(self, "useHeaps:count:", void, .{heaps, count});
     }
 
-    pub fn executeCommandsInBufferWithRange(self: *@This(), indirectCommandBuffer: ?*anyopaque, executionRange: ns.Range) void {
+    pub fn executeCommandsInBufferWithRange(self: *@This(), indirectCommandBuffer: ?*anyopaque, executionRange: foundation.Range) void {
         return objc.msgSend(self, "executeCommandsInBuffer:withRange:", void, .{indirectCommandBuffer, executionRange});
     }
 
@@ -4064,11 +4065,11 @@ pub const CommandQueue = opaque {
         return objc.msgSend(self, "removeResidencySets:count:", void, .{residencySets, count});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -4237,11 +4238,11 @@ pub const DepthStencilDescriptor = opaque {
         return objc.msgSend(self, "setBackFaceStencil:", void, .{backFaceStencil});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -4255,8 +4256,8 @@ pub const DepthStencilState = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
     pub fn device(self: *@This()) ?*anyopaque {
@@ -4279,11 +4280,11 @@ pub const Drawable = opaque {
         return objc.msgSend(self, "present", void, .{});
     }
 
-    pub fn presentAtTime(self: *@This(), presentationTime: cf.TimeInterval) void {
+    pub fn presentAtTime(self: *@This(), presentationTime: core_foundation.TimeInterval) void {
         return objc.msgSend(self, "presentAtTime:", void, .{presentationTime});
     }
 
-    pub fn presentAfterMinimumDuration(self: *@This(), duration: cf.TimeInterval) void {
+    pub fn presentAfterMinimumDuration(self: *@This(), duration: core_foundation.TimeInterval) void {
         return objc.msgSend(self, "presentAfterMinimumDuration:", void, .{duration});
     }
 
@@ -4291,8 +4292,8 @@ pub const Drawable = opaque {
         return objc.msgSend(self, "addPresentedHandler:", void, .{block});
     }
 
-    pub fn presentedTime(self: *@This()) cf.TimeInterval {
-        return objc.msgSend(self, "presentedTime", cf.TimeInterval, .{});
+    pub fn presentedTime(self: *@This()) core_foundation.TimeInterval {
+        return objc.msgSend(self, "presentedTime", core_foundation.TimeInterval, .{});
     }
 
     pub fn drawableID(self: *@This()) objc.NSUInteger {
@@ -4885,11 +4886,11 @@ pub const ComputePipelineDescriptor = opaque {
         return objc.msgSend(self, "reset", void, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -5011,7 +5012,7 @@ pub const ComputePipelineState = opaque {
         return objc.msgSend(self, "functionHandleWithFunction:", ?*anyopaque, .{function});
     }
 
-    pub fn newComputePipelineStateWithAdditionalBinaryFunctionsError(self: *@This(), functions: ?*anyopaque, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newComputePipelineStateWithAdditionalBinaryFunctionsError(self: *@This(), functions: ?*anyopaque, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newComputePipelineStateWithAdditionalBinaryFunctions:error:", ?*anyopaque, .{functions, @"error"});
     }
 
@@ -5023,8 +5024,8 @@ pub const ComputePipelineState = opaque {
         return objc.msgSend(self, "newIntersectionFunctionTableWithDescriptor:", ?*anyopaque, .{descriptor});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
     pub fn device(self: *@This()) ?*anyopaque {
@@ -5177,7 +5178,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setVertexBufferOffset:atIndex:", void, .{offset, index});
     }
 
-    pub fn setVertexBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+    pub fn setVertexBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: foundation.Range) void {
         return objc.msgSend(self, "setVertexBuffers:offsets:withRange:", void, .{buffers, offsets, range});
     }
 
@@ -5185,7 +5186,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setVertexBuffer:offset:attributeStride:atIndex:", void, .{buffer, offset, stride, index, });
     }
 
-    pub fn setVertexBuffersOffsetsAttributeStridesWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, strides: ?*objc.NSUInteger, range: ns.Range, ) void {
+    pub fn setVertexBuffersOffsetsAttributeStridesWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, strides: ?*objc.NSUInteger, range: foundation.Range, ) void {
         return objc.msgSend(self, "setVertexBuffers:offsets:attributeStrides:withRange:", void, .{buffers, offsets, strides, range, });
     }
 
@@ -5201,7 +5202,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setVertexTexture:atIndex:", void, .{texture, index});
     }
 
-    pub fn setVertexTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setVertexTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setVertexTextures:withRange:", void, .{textures, range});
     }
 
@@ -5209,7 +5210,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setVertexSamplerState:atIndex:", void, .{sampler, index});
     }
 
-    pub fn setVertexSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setVertexSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setVertexSamplerStates:withRange:", void, .{samplers, range});
     }
 
@@ -5217,7 +5218,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{sampler, lodMinClamp, lodMaxClamp, index, });
     }
 
-    pub fn setVertexSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: ns.Range, ) void {
+    pub fn setVertexSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: foundation.Range, ) void {
         return objc.msgSend(self, "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{samplers, lodMinClamps, lodMaxClamps, range, });
     }
 
@@ -5225,7 +5226,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setVertexVisibleFunctionTable:atBufferIndex:", void, .{functionTable, bufferIndex});
     }
 
-    pub fn setVertexVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setVertexVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setVertexVisibleFunctionTables:withBufferRange:", void, .{functionTables, range});
     }
 
@@ -5233,7 +5234,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setVertexIntersectionFunctionTable:atBufferIndex:", void, .{intersectionFunctionTable, bufferIndex});
     }
 
-    pub fn setVertexIntersectionFunctionTablesWithBufferRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setVertexIntersectionFunctionTablesWithBufferRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setVertexIntersectionFunctionTables:withBufferRange:", void, .{intersectionFunctionTables, range});
     }
 
@@ -5293,7 +5294,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setFragmentBufferOffset:atIndex:", void, .{offset, index});
     }
 
-    pub fn setFragmentBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+    pub fn setFragmentBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: foundation.Range) void {
         return objc.msgSend(self, "setFragmentBuffers:offsets:withRange:", void, .{buffers, offsets, range});
     }
 
@@ -5301,7 +5302,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setFragmentTexture:atIndex:", void, .{texture, index});
     }
 
-    pub fn setFragmentTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setFragmentTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setFragmentTextures:withRange:", void, .{textures, range});
     }
 
@@ -5309,7 +5310,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setFragmentSamplerState:atIndex:", void, .{sampler, index});
     }
 
-    pub fn setFragmentSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setFragmentSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setFragmentSamplerStates:withRange:", void, .{samplers, range});
     }
 
@@ -5317,7 +5318,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{sampler, lodMinClamp, lodMaxClamp, index, });
     }
 
-    pub fn setFragmentSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: ns.Range, ) void {
+    pub fn setFragmentSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: foundation.Range, ) void {
         return objc.msgSend(self, "setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{samplers, lodMinClamps, lodMaxClamps, range, });
     }
 
@@ -5325,7 +5326,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setFragmentVisibleFunctionTable:atBufferIndex:", void, .{functionTable, bufferIndex});
     }
 
-    pub fn setFragmentVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setFragmentVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setFragmentVisibleFunctionTables:withBufferRange:", void, .{functionTables, range});
     }
 
@@ -5333,7 +5334,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setFragmentIntersectionFunctionTable:atBufferIndex:", void, .{intersectionFunctionTable, bufferIndex});
     }
 
-    pub fn setFragmentIntersectionFunctionTablesWithBufferRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setFragmentIntersectionFunctionTablesWithBufferRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setFragmentIntersectionFunctionTables:withBufferRange:", void, .{intersectionFunctionTables, range});
     }
 
@@ -5397,7 +5398,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setObjectBufferOffset:atIndex:", void, .{offset, index});
     }
 
-    pub fn setObjectBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+    pub fn setObjectBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: foundation.Range) void {
         return objc.msgSend(self, "setObjectBuffers:offsets:withRange:", void, .{buffers, offsets, range});
     }
 
@@ -5405,7 +5406,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setObjectTexture:atIndex:", void, .{texture, index});
     }
 
-    pub fn setObjectTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setObjectTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setObjectTextures:withRange:", void, .{textures, range});
     }
 
@@ -5413,7 +5414,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setObjectSamplerState:atIndex:", void, .{sampler, index});
     }
 
-    pub fn setObjectSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setObjectSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setObjectSamplerStates:withRange:", void, .{samplers, range});
     }
 
@@ -5421,7 +5422,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{sampler, lodMinClamp, lodMaxClamp, index, });
     }
 
-    pub fn setObjectSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: ns.Range, ) void {
+    pub fn setObjectSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: foundation.Range, ) void {
         return objc.msgSend(self, "setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{samplers, lodMinClamps, lodMaxClamps, range, });
     }
 
@@ -5441,7 +5442,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setMeshBufferOffset:atIndex:", void, .{offset, index});
     }
 
-    pub fn setMeshBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+    pub fn setMeshBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: foundation.Range) void {
         return objc.msgSend(self, "setMeshBuffers:offsets:withRange:", void, .{buffers, offsets, range});
     }
 
@@ -5449,7 +5450,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setMeshTexture:atIndex:", void, .{texture, index});
     }
 
-    pub fn setMeshTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setMeshTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setMeshTextures:withRange:", void, .{textures, range});
     }
 
@@ -5457,7 +5458,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setMeshSamplerState:atIndex:", void, .{sampler, index});
     }
 
-    pub fn setMeshSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setMeshSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setMeshSamplerStates:withRange:", void, .{samplers, range});
     }
 
@@ -5465,7 +5466,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{sampler, lodMinClamp, lodMaxClamp, index, });
     }
 
-    pub fn setMeshSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: ns.Range, ) void {
+    pub fn setMeshSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: foundation.Range, ) void {
         return objc.msgSend(self, "setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{samplers, lodMinClamps, lodMaxClamps, range, });
     }
 
@@ -5561,7 +5562,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setTileBufferOffset:atIndex:", void, .{offset, index});
     }
 
-    pub fn setTileBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+    pub fn setTileBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: foundation.Range) void {
         return objc.msgSend(self, "setTileBuffers:offsets:withRange:", void, .{buffers, offsets, range});
     }
 
@@ -5569,7 +5570,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setTileTexture:atIndex:", void, .{texture, index});
     }
 
-    pub fn setTileTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setTileTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setTileTextures:withRange:", void, .{textures, range});
     }
 
@@ -5577,7 +5578,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setTileSamplerState:atIndex:", void, .{sampler, index});
     }
 
-    pub fn setTileSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setTileSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setTileSamplerStates:withRange:", void, .{samplers, range});
     }
 
@@ -5585,7 +5586,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{sampler, lodMinClamp, lodMaxClamp, index, });
     }
 
-    pub fn setTileSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: ns.Range, ) void {
+    pub fn setTileSamplerStatesLodMinClampsLodMaxClampsWithRange(self: *@This(), samplers: ?*?*anyopaque, lodMinClamps: ?*f32, lodMaxClamps: ?*f32, range: foundation.Range, ) void {
         return objc.msgSend(self, "setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{samplers, lodMinClamps, lodMaxClamps, range, });
     }
 
@@ -5593,7 +5594,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setTileVisibleFunctionTable:atBufferIndex:", void, .{functionTable, bufferIndex});
     }
 
-    pub fn setTileVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setTileVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setTileVisibleFunctionTables:withBufferRange:", void, .{functionTables, range});
     }
 
@@ -5601,7 +5602,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "setTileIntersectionFunctionTable:atBufferIndex:", void, .{intersectionFunctionTable, bufferIndex});
     }
 
-    pub fn setTileIntersectionFunctionTablesWithBufferRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setTileIntersectionFunctionTablesWithBufferRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setTileIntersectionFunctionTables:withBufferRange:", void, .{intersectionFunctionTables, range});
     }
 
@@ -5649,7 +5650,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(self, "useHeaps:count:stages:", void, .{heaps, count, stages});
     }
 
-    pub fn executeCommandsInBufferWithRange(self: *@This(), indirectCommandBuffer: ?*anyopaque, executionRange: ns.Range) void {
+    pub fn executeCommandsInBufferWithRange(self: *@This(), indirectCommandBuffer: ?*anyopaque, executionRange: foundation.Range) void {
         return objc.msgSend(self, "executeCommandsInBuffer:withRange:", void, .{indirectCommandBuffer, executionRange});
     }
 
@@ -5691,8 +5692,8 @@ pub const FunctionHandle = opaque {
         return objc.msgSend(self, "functionType", FunctionType, .{});
     }
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
     pub fn device(self: *@This()) ?*anyopaque {
@@ -5738,7 +5739,7 @@ pub const VisibleFunctionTable = opaque {
         return objc.msgSend(self, "setFunction:atIndex:", void, .{function, index});
     }
 
-    pub fn setFunctionsWithRange(self: *@This(), functions: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setFunctionsWithRange(self: *@This(), functions: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setFunctions:withRange:", void, .{functions, range});
     }
 
@@ -5963,11 +5964,11 @@ pub const RenderPipelineDescriptor = opaque {
         return objc.msgSend(self, "reset", void, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -6286,12 +6287,12 @@ pub const RenderPipelineState = opaque {
         return objc.msgSend(self, "newIntersectionFunctionTableWithDescriptor:stage:", ?*anyopaque, .{descriptor, stage});
     }
 
-    pub fn newRenderPipelineStateWithAdditionalBinaryFunctionsError(self: *@This(), additionalBinaryFunctions: ?*RenderPipelineFunctionsDescriptor, @"error": ?*?*ns.Error) ?*anyopaque {
+    pub fn newRenderPipelineStateWithAdditionalBinaryFunctionsError(self: *@This(), additionalBinaryFunctions: ?*RenderPipelineFunctionsDescriptor, @"error": ?*?*foundation.Error) ?*anyopaque {
         return objc.msgSend(self, "newRenderPipelineStateWithAdditionalBinaryFunctions:error:", ?*anyopaque, .{additionalBinaryFunctions, @"error"});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
     pub fn device(self: *@This()) ?*anyopaque {
@@ -6422,11 +6423,11 @@ pub const TileRenderPipelineDescriptor = opaque {
         return objc.msgSend(self, "reset", void, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -6535,11 +6536,11 @@ pub const MeshRenderPipelineDescriptor = opaque {
         return objc.msgSend(self, "reset", void, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -6924,11 +6925,11 @@ pub const SamplerDescriptor = opaque {
         return objc.msgSend(self, "setSupportArgumentBuffers:", void, .{supportArgumentBuffers});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -6942,8 +6943,8 @@ pub const SamplerState = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
     pub fn device(self: *@This()) ?*anyopaque {
@@ -7072,11 +7073,11 @@ pub const AccelerationStructureGeometryDescriptor = opaque {
         return objc.msgSend(self, "setAllowDuplicateIntersectionFunctionInvocation:", void, .{allowDuplicateIntersectionFunctionInvocation});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -8275,11 +8276,11 @@ pub const Heap = opaque {
         return objc.msgSend(self, "newAccelerationStructureWithDescriptor:offset:", ?*anyopaque, .{descriptor, offset});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -8341,7 +8342,7 @@ pub const ArgumentEncoder = opaque {
         return objc.msgSend(self, "setBuffer:offset:atIndex:", void, .{buffer, offset, index});
     }
 
-    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: foundation.Range) void {
         return objc.msgSend(self, "setBuffers:offsets:withRange:", void, .{buffers, offsets, range});
     }
 
@@ -8349,7 +8350,7 @@ pub const ArgumentEncoder = opaque {
         return objc.msgSend(self, "setTexture:atIndex:", void, .{texture, index});
     }
 
-    pub fn setTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setTexturesWithRange(self: *@This(), textures: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setTextures:withRange:", void, .{textures, range});
     }
 
@@ -8357,7 +8358,7 @@ pub const ArgumentEncoder = opaque {
         return objc.msgSend(self, "setSamplerState:atIndex:", void, .{sampler, index});
     }
 
-    pub fn setSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setSamplerStatesWithRange(self: *@This(), samplers: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setSamplerStates:withRange:", void, .{samplers, range});
     }
 
@@ -8369,7 +8370,7 @@ pub const ArgumentEncoder = opaque {
         return objc.msgSend(self, "setRenderPipelineState:atIndex:", void, .{pipeline, index});
     }
 
-    pub fn setRenderPipelineStatesWithRange(self: *@This(), pipelines: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setRenderPipelineStatesWithRange(self: *@This(), pipelines: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setRenderPipelineStates:withRange:", void, .{pipelines, range});
     }
 
@@ -8377,7 +8378,7 @@ pub const ArgumentEncoder = opaque {
         return objc.msgSend(self, "setComputePipelineState:atIndex:", void, .{pipeline, index});
     }
 
-    pub fn setComputePipelineStatesWithRange(self: *@This(), pipelines: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setComputePipelineStatesWithRange(self: *@This(), pipelines: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setComputePipelineStates:withRange:", void, .{pipelines, range});
     }
 
@@ -8385,7 +8386,7 @@ pub const ArgumentEncoder = opaque {
         return objc.msgSend(self, "setIndirectCommandBuffer:atIndex:", void, .{indirectCommandBuffer, index});
     }
 
-    pub fn setIndirectCommandBuffersWithRange(self: *@This(), buffers: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setIndirectCommandBuffersWithRange(self: *@This(), buffers: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setIndirectCommandBuffers:withRange:", void, .{buffers, range});
     }
 
@@ -8401,7 +8402,7 @@ pub const ArgumentEncoder = opaque {
         return objc.msgSend(self, "setVisibleFunctionTable:atIndex:", void, .{visibleFunctionTable, index});
     }
 
-    pub fn setVisibleFunctionTablesWithRange(self: *@This(), visibleFunctionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setVisibleFunctionTablesWithRange(self: *@This(), visibleFunctionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setVisibleFunctionTables:withRange:", void, .{visibleFunctionTables, range});
     }
 
@@ -8409,7 +8410,7 @@ pub const ArgumentEncoder = opaque {
         return objc.msgSend(self, "setIntersectionFunctionTable:atIndex:", void, .{intersectionFunctionTable, index});
     }
 
-    pub fn setIntersectionFunctionTablesWithRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setIntersectionFunctionTablesWithRange(self: *@This(), intersectionFunctionTables: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setIntersectionFunctionTables:withRange:", void, .{intersectionFunctionTables, range});
     }
 
@@ -8417,11 +8418,11 @@ pub const ArgumentEncoder = opaque {
         return objc.msgSend(self, "device", ?*anyopaque, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -8473,11 +8474,11 @@ pub const CaptureDescriptor = opaque {
         return objc.msgSend(self, "setDestination:", void, .{destination});
     }
 
-    pub fn outputURL(self: *@This()) ?*ns.URL {
-        return objc.msgSend(self, "outputURL", ?*ns.URL, .{});
+    pub fn outputURL(self: *@This()) ?*foundation.URL {
+        return objc.msgSend(self, "outputURL", ?*foundation.URL, .{});
     }
 
-    pub fn setOutputURL(self: *@This(), outputURL: ?*ns.URL) void {
+    pub fn setOutputURL(self: *@This(), outputURL: ?*foundation.URL) void {
         return objc.msgSend(self, "setOutputURL:", void, .{outputURL});
     }
 
@@ -8514,7 +8515,7 @@ pub const CaptureManager = opaque {
         return objc.msgSend(self, "supportsDestination:", objc.BOOL, .{destination});
     }
 
-    pub fn startCaptureWithDescriptorError(self: *@This(), descriptor: ?*CaptureDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+    pub fn startCaptureWithDescriptorError(self: *@This(), descriptor: ?*CaptureDescriptor, @"error": ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(self, "startCaptureWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
     }
 
@@ -8564,11 +8565,11 @@ pub const CaptureScope = opaque {
         return objc.msgSend(self, "endScope", void, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -8845,7 +8846,7 @@ pub const IndirectCommandBuffer = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn resetWithRange(self: *@This(), range: ns.Range) void {
+    pub fn resetWithRange(self: *@This(), range: foundation.Range) void {
         return objc.msgSend(self, "resetWithRange:", void, .{range});
     }
 
@@ -8879,11 +8880,11 @@ pub const Event = opaque {
         return objc.msgSend(self, "device", ?*anyopaque, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -8957,8 +8958,8 @@ pub const SharedEventHandle = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
 };
@@ -8971,7 +8972,7 @@ pub const FunctionLogType = enum(objc.NSUInteger) {
 
 /// https://developer.apple.com/documentation/Metal/MTLLogContainer?language=objc
 pub const LogContainer = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, ns.FastEnumeration, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, foundation.FastEnumeration, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -8986,12 +8987,12 @@ pub const FunctionLogDebugLocation = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn functionName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "functionName", ?*ns.String, .{});
+    pub fn functionName(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "functionName", ?*foundation.String, .{});
     }
 
-    pub fn URL(self: *@This()) ?*ns.URL {
-        return objc.msgSend(self, "URL", ?*ns.URL, .{});
+    pub fn URL(self: *@This()) ?*foundation.URL {
+        return objc.msgSend(self, "URL", ?*foundation.URL, .{});
     }
 
     pub fn line(self: *@This()) objc.NSUInteger {
@@ -9016,8 +9017,8 @@ pub const FunctionLog = opaque {
         return objc.msgSend(self, "type", FunctionLogType, .{});
     }
 
-    pub fn encoderLabel(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "encoderLabel", ?*ns.String, .{});
+    pub fn encoderLabel(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "encoderLabel", ?*foundation.String, .{});
     }
 
     pub fn function(self: *@This()) ?*anyopaque {
@@ -9191,8 +9192,8 @@ pub const RasterizationRateSampleArray = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*ns.Number {
-        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*ns.Number, .{index});
+    pub fn objectAtIndexedSubscript(self: *@This(), index: objc.NSUInteger) ?*foundation.Number {
+        return objc.msgSend(self, "objectAtIndexedSubscript:", ?*foundation.Number, .{index});
     }
 
     pub fn setObjectAtIndexedSubscript(self: *@This(), value: ?*NSNumber, index: objc.NSUInteger) void {
@@ -9314,11 +9315,11 @@ pub const RasterizationRateMapDescriptor = opaque {
         return objc.msgSend(self, "setScreenSize:", void, .{screenSize});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -9356,8 +9357,8 @@ pub const RasterizationRateMap = opaque {
         return objc.msgSend(self, "device", ?*anyopaque, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
     pub fn screenSize(self: *@This()) Size {
@@ -9395,15 +9396,15 @@ pub const DynamicLibrary = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn serializeToURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) objc.BOOL {
+    pub fn serializeToURLError(self: *@This(), url: ?*foundation.URL, @"error": ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(self, "serializeToURL:error:", objc.BOOL, .{url, @"error"});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -9411,8 +9412,8 @@ pub const DynamicLibrary = opaque {
         return objc.msgSend(self, "device", ?*anyopaque, .{});
     }
 
-    pub fn installName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "installName", ?*ns.String, .{});
+    pub fn installName(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "installName", ?*foundation.String, .{});
     }
 
 };
@@ -9434,7 +9435,7 @@ pub const LogState = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn addLogHandler(self: *@This(), block: *const fn(?*ns.String, ?*ns.String, LogLevel, ?*ns.String, ) callconv(.C) void) void {
+    pub fn addLogHandler(self: *@This(), block: *const fn(?*foundation.String, ?*foundation.String, LogLevel, ?*foundation.String, ) callconv(.C) void) void {
         return objc.msgSend(self, "addLogHandler:", void, .{block});
     }
 
@@ -9493,11 +9494,11 @@ pub const BinaryArchiveDescriptor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn url(self: *@This()) ?*ns.URL {
-        return objc.msgSend(self, "url", ?*ns.URL, .{});
+    pub fn url(self: *@This()) ?*foundation.URL {
+        return objc.msgSend(self, "url", ?*foundation.URL, .{});
     }
 
-    pub fn setUrl(self: *@This(), url: ?*ns.URL) void {
+    pub fn setUrl(self: *@This(), url: ?*foundation.URL) void {
         return objc.msgSend(self, "setUrl:", void, .{url});
     }
 
@@ -9511,39 +9512,39 @@ pub const BinaryArchive = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn addComputePipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*ComputePipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+    pub fn addComputePipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*ComputePipelineDescriptor, @"error": ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(self, "addComputePipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
     }
 
-    pub fn addRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*RenderPipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+    pub fn addRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*RenderPipelineDescriptor, @"error": ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(self, "addRenderPipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
     }
 
-    pub fn addTileRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*TileRenderPipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+    pub fn addTileRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*TileRenderPipelineDescriptor, @"error": ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(self, "addTileRenderPipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
     }
 
-    pub fn addMeshRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*MeshRenderPipelineDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+    pub fn addMeshRenderPipelineFunctionsWithDescriptorError(self: *@This(), descriptor: ?*MeshRenderPipelineDescriptor, @"error": ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(self, "addMeshRenderPipelineFunctionsWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
     }
 
-    pub fn addLibraryWithDescriptorError(self: *@This(), descriptor: ?*StitchedLibraryDescriptor, @"error": ?*?*ns.Error) objc.BOOL {
+    pub fn addLibraryWithDescriptorError(self: *@This(), descriptor: ?*StitchedLibraryDescriptor, @"error": ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(self, "addLibraryWithDescriptor:error:", objc.BOOL, .{descriptor, @"error"});
     }
 
-    pub fn serializeToURLError(self: *@This(), url: ?*ns.URL, @"error": ?*?*ns.Error) objc.BOOL {
+    pub fn serializeToURLError(self: *@This(), url: ?*foundation.URL, @"error": ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(self, "serializeToURL:error:", objc.BOOL, .{url, @"error"});
     }
 
-    pub fn addFunctionWithDescriptorLibraryError(self: *@This(), descriptor: ?*FunctionDescriptor, library: ?*anyopaque, @"error": ?*?*ns.Error) objc.BOOL {
+    pub fn addFunctionWithDescriptorLibraryError(self: *@This(), descriptor: ?*FunctionDescriptor, library: ?*anyopaque, @"error": ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(self, "addFunctionWithDescriptor:library:error:", objc.BOOL, .{descriptor, library, @"error"});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -9602,7 +9603,7 @@ pub const IntersectionFunctionTable = opaque {
         return objc.msgSend(self, "setBuffer:offset:atIndex:", void, .{buffer, offset, index});
     }
 
-    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: ns.Range) void {
+    pub fn setBuffersOffsetsWithRange(self: *@This(), buffers: ?*?*anyopaque, offsets: ?*objc.NSUInteger, range: foundation.Range) void {
         return objc.msgSend(self, "setBuffers:offsets:withRange:", void, .{buffers, offsets, range});
     }
 
@@ -9610,7 +9611,7 @@ pub const IntersectionFunctionTable = opaque {
         return objc.msgSend(self, "setFunction:atIndex:", void, .{function, index});
     }
 
-    pub fn setFunctionsWithRange(self: *@This(), functions: ?*?*anyopaque, range: ns.Range) void {
+    pub fn setFunctionsWithRange(self: *@This(), functions: ?*?*anyopaque, range: foundation.Range) void {
         return objc.msgSend(self, "setFunctions:withRange:", void, .{functions, range});
     }
 
@@ -9618,7 +9619,7 @@ pub const IntersectionFunctionTable = opaque {
         return objc.msgSend(self, "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:", void, .{signature, index});
     }
 
-    pub fn setOpaqueTriangleIntersectionFunctionWithSignatureWithRange(self: *@This(), signature: IntersectionFunctionSignature, range: ns.Range) void {
+    pub fn setOpaqueTriangleIntersectionFunctionWithSignatureWithRange(self: *@This(), signature: IntersectionFunctionSignature, range: foundation.Range) void {
         return objc.msgSend(self, "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:", void, .{signature, range});
     }
 
@@ -9626,7 +9627,7 @@ pub const IntersectionFunctionTable = opaque {
         return objc.msgSend(self, "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:", void, .{signature, index});
     }
 
-    pub fn setOpaqueCurveIntersectionFunctionWithSignatureWithRange(self: *@This(), signature: IntersectionFunctionSignature, range: ns.Range) void {
+    pub fn setOpaqueCurveIntersectionFunctionWithSignatureWithRange(self: *@This(), signature: IntersectionFunctionSignature, range: foundation.Range) void {
         return objc.msgSend(self, "setOpaqueCurveIntersectionFunctionWithSignature:withRange:", void, .{signature, range});
     }
 
@@ -9634,7 +9635,7 @@ pub const IntersectionFunctionTable = opaque {
         return objc.msgSend(self, "setVisibleFunctionTable:atBufferIndex:", void, .{functionTable, bufferIndex});
     }
 
-    pub fn setVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, bufferRange: ns.Range) void {
+    pub fn setVisibleFunctionTablesWithBufferRange(self: *@This(), functionTables: ?*?*anyopaque, bufferRange: foundation.Range) void {
         return objc.msgSend(self, "setVisibleFunctionTables:withBufferRange:", void, .{functionTables, bufferRange});
     }
 
@@ -9673,7 +9674,7 @@ pub const FunctionStitchingAttributeAlwaysInline = opaque {
 
 /// https://developer.apple.com/documentation/Metal/MTLFunctionStitchingNode?language=objc
 pub const FunctionStitchingNode = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, ns.Copying, });
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject, foundation.Copying, });
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
@@ -9716,15 +9717,15 @@ pub const FunctionStitchingFunctionNode = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithNameArgumentsControlDependencies(self: *@This(), name: ?*ns.String, arguments: ?*anyopaque, controlDependencies: ?*anyopaque) *@This() {
+    pub fn initWithNameArgumentsControlDependencies(self: *@This(), name: ?*foundation.String, arguments: ?*anyopaque, controlDependencies: ?*anyopaque) *@This() {
         return objc.msgSend(self, "initWithName:arguments:controlDependencies:", *@This(), .{name, arguments, controlDependencies});
     }
 
-    pub fn name(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "name", ?*ns.String, .{});
+    pub fn name(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "name", ?*foundation.String, .{});
     }
 
-    pub fn setName(self: *@This(), name: ?*ns.String) void {
+    pub fn setName(self: *@This(), name: ?*foundation.String) void {
         return objc.msgSend(self, "setName:", void, .{name});
     }
 
@@ -9757,15 +9758,15 @@ pub const FunctionStitchingGraph = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn initWithFunctionNameNodesOutputNodeAttributes(self: *@This(), functionName: ?*ns.String, nodes: ?*anyopaque, outputNode: ?*FunctionStitchingFunctionNode, attributes: ?*anyopaque, ) *@This() {
+    pub fn initWithFunctionNameNodesOutputNodeAttributes(self: *@This(), functionName: ?*foundation.String, nodes: ?*anyopaque, outputNode: ?*FunctionStitchingFunctionNode, attributes: ?*anyopaque, ) *@This() {
         return objc.msgSend(self, "initWithFunctionName:nodes:outputNode:attributes:", *@This(), .{functionName, nodes, outputNode, attributes, });
     }
 
-    pub fn functionName(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "functionName", ?*ns.String, .{});
+    pub fn functionName(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "functionName", ?*foundation.String, .{});
     }
 
-    pub fn setFunctionName(self: *@This(), functionName: ?*ns.String) void {
+    pub fn setFunctionName(self: *@This(), functionName: ?*foundation.String) void {
         return objc.msgSend(self, "setFunctionName:", void, .{functionName});
     }
 
@@ -9876,11 +9877,11 @@ pub const IOCommandQueue = opaque {
         return objc.msgSend(self, "commandBufferWithUnretainedReferences", ?*anyopaque, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -9975,11 +9976,11 @@ pub const IOFileHandle = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -10038,7 +10039,7 @@ pub const IOCommandBuffer = opaque {
         return objc.msgSend(self, "addBarrier", void, .{});
     }
 
-    pub fn pushDebugGroup(self: *@This(), string: ?*ns.String) void {
+    pub fn pushDebugGroup(self: *@This(), string: ?*foundation.String) void {
         return objc.msgSend(self, "pushDebugGroup:", void, .{string});
     }
 
@@ -10058,11 +10059,11 @@ pub const IOCommandBuffer = opaque {
         return objc.msgSend(self, "signalEvent:value:", void, .{event, value});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -10070,8 +10071,8 @@ pub const IOCommandBuffer = opaque {
         return objc.msgSend(self, "status", IOStatus, .{});
     }
 
-    pub fn @"error"(self: *@This()) ?*ns.Error {
-        return objc.msgSend(self, "error", ?*ns.Error, .{});
+    pub fn @"error"(self: *@This()) ?*foundation.Error {
+        return objc.msgSend(self, "error", ?*foundation.Error, .{});
     }
 
 };
@@ -10102,11 +10103,11 @@ pub const ResidencySetDescriptor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
-    pub fn setLabel(self: *@This(), label: ?*ns.String) void {
+    pub fn setLabel(self: *@This(), label: ?*foundation.String) void {
         return objc.msgSend(self, "setLabel:", void, .{label});
     }
 
@@ -10168,8 +10169,8 @@ pub const ResidencySet = opaque {
         return objc.msgSend(self, "device", ?*anyopaque, .{});
     }
 
-    pub fn label(self: *@This()) ?*ns.String {
-        return objc.msgSend(self, "label", ?*ns.String, .{});
+    pub fn label(self: *@This()) ?*foundation.String {
+        return objc.msgSend(self, "label", ?*foundation.String, .{});
     }
 
     pub fn allocatedSize(self: *@This()) objc.uint64_t {

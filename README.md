@@ -11,6 +11,21 @@
 - [Foundation](src/ns.zig)
 - [AppKit](src/app_kit.zig)
 - [Metal](src/metal.zig)
+- [ApplicationServices](src/application_services.zig)
+- [CloudKit](src/cloud_kit.zig)
+- [CoreData](src/core_data.zig)
+- [CoreGraphics](src/core_graphics.zig)
+- [CoreImage](src/core_image.zig)
+- [CoreServices](src/core_services.zig)
+- [CoreText](src/core_text.zig)
+- [CoreVideo](src/core_video.zig)
+- [DiskArbitration](src/disk_arbitration.zig)
+- [ImageIO](src/image_io.zig)
+- [IOKit](src/io_kit.zig)
+- [IOSurface](src/io_surface.zig)
+- [OpenGL](src/opengl.zig)
+- [QuartzCore](src/quartz_core.zig)
+- [Security](src/security.zig)
 
 ## Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests if you want to help improve the project.

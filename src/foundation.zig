@@ -2,7 +2,9 @@
 
 const std = @import("std");
 const objc = @import("objc.zig"); // Objective-C Runtime in zig.
-const cf = @import("cf.zig"); // Framework dependency CoreFoundation.
+const core_foundation = @import("core_foundation.zig"); // Framework dependency CoreFoundation.
+const security = @import("security.zig"); // Framework dependency Security.
+const core_services = @import("core_services.zig"); // Framework dependency CoreServices.
 
 pub const ExceptionName = ?*String;
 
@@ -76,7 +78,7 @@ pub extern "Foundation" fn AllocateCollectable(size: objc.NSUInteger, options: o
 
 pub extern "Foundation" fn ReallocateCollectable(ptr: ?*anyopaque, size: objc.NSUInteger, options: objc.NSUInteger) callconv(.C) ?*anyopaque;
 
-pub extern "Foundation" fn MakeCollectable(cf: cf.TypeRef) callconv(.C) *objc.Id;
+pub extern "Foundation" fn MakeCollectable(cf: core_foundation.TypeRef) callconv(.C) *objc.Id;
 
 pub extern "Foundation" fn PageSize() callconv(.C) objc.NSUInteger;
 
@@ -194,9 +196,9 @@ pub extern "Foundation" fn DecrementExtraRefCountWasZero(object: *objc.Id) callc
 
 pub extern "Foundation" fn ExtraRefCount(object: *objc.Id) callconv(.C) objc.NSUInteger;
 
-pub extern "Foundation" fn CFBridgingRetain(X: *objc.Id) callconv(.C) cf.TypeRef;
+pub extern "Foundation" fn CFBridgingRetain(X: *objc.Id) callconv(.C) core_foundation.TypeRef;
 
-pub extern "Foundation" fn CFBridgingRelease(X: cf.TypeRef) callconv(.C) *objc.Id;
+pub extern "Foundation" fn CFBridgingRelease(X: core_foundation.TypeRef) callconv(.C) *objc.Id;
 
 pub const FastEnumerationState = extern struct {
     state: u64,
@@ -280,8 +282,8 @@ pub const Number = opaque {
         return objc.msgSend(self, "initWithCoder:", *@This(), .{coder});
     }
 
-    pub fn initWithChar(self: *@This(), value: i8) ?*cf.NSNumber {
-        return objc.msgSend(self, "initWithChar:", ?*cf.NSNumber, .{value});
+    pub fn initWithChar(self: *@This(), value: i8) ?*core_foundation.NSNumber {
+        return objc.msgSend(self, "initWithChar:", ?*core_foundation.NSNumber, .{value});
     }
 
     pub fn initWithUnsignedChar(self: *@This(), value: u8) ?*Number {
@@ -895,7 +897,7 @@ pub const ItemProviderWriting = opaque {
         return objc.msgSend(self, "itemProviderVisibilityForRepresentationWithTypeIdentifier:", ItemProviderRepresentationVisibility, .{typeIdentifier});
     }
 
-    pub fn loadDataWithTypeIdentifierForItemProviderCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*Data, ?*cf.NSError) callconv(.C) void) ?*Progress {
+    pub fn loadDataWithTypeIdentifierForItemProviderCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*Data, ?*core_foundation.NSError) callconv(.C) void) ?*Progress {
         return objc.msgSend(self, "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:", ?*Progress, .{typeIdentifier, completionHandler});
     }
 
@@ -917,7 +919,7 @@ pub const ItemProviderReading = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
-    pub fn objectWithItemProviderDataTypeIdentifierError(self: *@This(), data: ?*Data, typeIdentifier: ?*String, outError: ?*?*cf.NSError) *@This() {
+    pub fn objectWithItemProviderDataTypeIdentifierError(self: *@This(), data: ?*Data, typeIdentifier: ?*String, outError: ?*?*core_foundation.NSError) *@This() {
         return objc.msgSend(self, "objectWithItemProviderData:typeIdentifier:error:", *@This(), .{data, typeIdentifier, outError});
     }
 
@@ -927,7 +929,7 @@ pub const ItemProviderReading = opaque {
 
 };
 
-pub const ItemProviderCompletionHandler = *const fn(?*anyopaque, ?*cf.NSError) callconv(.C) void;
+pub const ItemProviderCompletionHandler = *const fn(?*anyopaque, ?*core_foundation.NSError) callconv(.C) void;
 
 pub const ItemProviderLoadHandler = *const fn(ItemProviderCompletionHandler, *objc.Class, ?*Dictionary) callconv(.C) void;
 
@@ -946,11 +948,11 @@ pub const ItemProvider = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn registerDataRepresentationForTypeIdentifierVisibilityLoadHandler(self: *@This(), typeIdentifier: ?*String, visibility: ItemProviderRepresentationVisibility, loadHandler: *const fn(*const fn(?*Data, ?*cf.NSError) callconv(.C) void) callconv(.C) ?*Progress) void {
+    pub fn registerDataRepresentationForTypeIdentifierVisibilityLoadHandler(self: *@This(), typeIdentifier: ?*String, visibility: ItemProviderRepresentationVisibility, loadHandler: *const fn(*const fn(?*Data, ?*core_foundation.NSError) callconv(.C) void) callconv(.C) ?*Progress) void {
         return objc.msgSend(self, "registerDataRepresentationForTypeIdentifier:visibility:loadHandler:", void, .{typeIdentifier, visibility, loadHandler});
     }
 
-    pub fn registerFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(self: *@This(), typeIdentifier: ?*String, fileOptions: ItemProviderFileOptions, visibility: ItemProviderRepresentationVisibility, loadHandler: *const fn(*const fn(?*URL, objc.BOOL, ?*cf.NSError) callconv(.C) void) callconv(.C) ?*Progress, ) void {
+    pub fn registerFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(self: *@This(), typeIdentifier: ?*String, fileOptions: ItemProviderFileOptions, visibility: ItemProviderRepresentationVisibility, loadHandler: *const fn(*const fn(?*URL, objc.BOOL, ?*core_foundation.NSError) callconv(.C) void) callconv(.C) ?*Progress, ) void {
         return objc.msgSend(self, "registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:", void, .{typeIdentifier, fileOptions, visibility, loadHandler, });
     }
 
@@ -966,15 +968,15 @@ pub const ItemProvider = opaque {
         return objc.msgSend(self, "hasRepresentationConformingToTypeIdentifier:fileOptions:", objc.BOOL, .{typeIdentifier, fileOptions});
     }
 
-    pub fn loadDataRepresentationForTypeIdentifierCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*Data, ?*cf.NSError) callconv(.C) void) ?*Progress {
+    pub fn loadDataRepresentationForTypeIdentifierCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*Data, ?*core_foundation.NSError) callconv(.C) void) ?*Progress {
         return objc.msgSend(self, "loadDataRepresentationForTypeIdentifier:completionHandler:", ?*Progress, .{typeIdentifier, completionHandler});
     }
 
-    pub fn loadFileRepresentationForTypeIdentifierCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*URL, ?*cf.NSError) callconv(.C) void) ?*Progress {
+    pub fn loadFileRepresentationForTypeIdentifierCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*URL, ?*core_foundation.NSError) callconv(.C) void) ?*Progress {
         return objc.msgSend(self, "loadFileRepresentationForTypeIdentifier:completionHandler:", ?*Progress, .{typeIdentifier, completionHandler});
     }
 
-    pub fn loadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*URL, objc.BOOL, ?*cf.NSError) callconv(.C) void) ?*Progress {
+    pub fn loadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(self: *@This(), typeIdentifier: ?*String, completionHandler: *const fn(?*URL, objc.BOOL, ?*core_foundation.NSError) callconv(.C) void) ?*Progress {
         return objc.msgSend(self, "loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:", ?*Progress, .{typeIdentifier, completionHandler});
     }
 
@@ -986,7 +988,7 @@ pub const ItemProvider = opaque {
         return objc.msgSend(self, "registerObject:visibility:", void, .{object, visibility});
     }
 
-    pub fn registerObjectOfClassVisibilityLoadHandler(self: *@This(), aClass: ?*anyopaque, visibility: ItemProviderRepresentationVisibility, loadHandler: *const fn(*const fn(?*anyopaque, ?*cf.NSError) callconv(.C) void) callconv(.C) ?*Progress) void {
+    pub fn registerObjectOfClassVisibilityLoadHandler(self: *@This(), aClass: ?*anyopaque, visibility: ItemProviderRepresentationVisibility, loadHandler: *const fn(*const fn(?*anyopaque, ?*core_foundation.NSError) callconv(.C) void) callconv(.C) ?*Progress) void {
         return objc.msgSend(self, "registerObjectOfClass:visibility:loadHandler:", void, .{aClass, visibility, loadHandler});
     }
 
@@ -994,7 +996,7 @@ pub const ItemProvider = opaque {
         return objc.msgSend(self, "canLoadObjectOfClass:", objc.BOOL, .{aClass});
     }
 
-    pub fn loadObjectOfClassCompletionHandler(self: *@This(), aClass: ?*anyopaque, completionHandler: *const fn(?*anyopaque, ?*cf.NSError) callconv(.C) void) ?*Progress {
+    pub fn loadObjectOfClassCompletionHandler(self: *@This(), aClass: ?*anyopaque, completionHandler: *const fn(?*anyopaque, ?*core_foundation.NSError) callconv(.C) void) ?*Progress {
         return objc.msgSend(self, "loadObjectOfClass:completionHandler:", ?*Progress, .{aClass, completionHandler});
     }
 
@@ -1483,7 +1485,7 @@ pub const Progress = opaque {
         return objc.msgSend(self, "pause", void, .{});
     }
 
-    pub fn resume(self: *@This()) void {
+    pub fn @"resume"(self: *@This()) void {
         return objc.msgSend(self, "resume", void, .{});
     }
 
@@ -1862,8 +1864,8 @@ pub const Bundle = opaque {
         return objc.msgSend(self, "localizedStringForKey:value:table:", ?*String, .{key, value, tableName});
     }
 
-    pub fn localizedAttributedStringForKeyValueTable(self: *@This(), key: ?*String, value: ?*String, tableName: ?*String) ?*cf.NSAttributedString {
-        return objc.msgSend(self, "localizedAttributedStringForKey:value:table:", ?*cf.NSAttributedString, .{key, value, tableName});
+    pub fn localizedAttributedStringForKeyValueTable(self: *@This(), key: ?*String, value: ?*String, tableName: ?*String) ?*core_foundation.NSAttributedString {
+        return objc.msgSend(self, "localizedAttributedStringForKey:value:table:", ?*core_foundation.NSAttributedString, .{key, value, tableName});
     }
 
     pub fn bundleIdentifier(self: *@This()) ?*String {
@@ -2168,20 +2170,20 @@ pub const Calendar = opaque {
         return objc.msgSend(self, "maximumRangeOfUnit:", Range, .{unit});
     }
 
-    pub fn rangeOfUnitInUnitForDate(self: *@This(), smaller: CalendarUnit, larger: CalendarUnit, date: ?*cf.NSDate) Range {
+    pub fn rangeOfUnitInUnitForDate(self: *@This(), smaller: CalendarUnit, larger: CalendarUnit, date: ?*core_foundation.NSDate) Range {
         return objc.msgSend(self, "rangeOfUnit:inUnit:forDate:", Range, .{smaller, larger, date});
     }
 
-    pub fn ordinalityOfUnitInUnitForDate(self: *@This(), smaller: CalendarUnit, larger: CalendarUnit, date: ?*cf.NSDate) objc.NSUInteger {
+    pub fn ordinalityOfUnitInUnitForDate(self: *@This(), smaller: CalendarUnit, larger: CalendarUnit, date: ?*core_foundation.NSDate) objc.NSUInteger {
         return objc.msgSend(self, "ordinalityOfUnit:inUnit:forDate:", objc.NSUInteger, .{smaller, larger, date});
     }
 
-    pub fn rangeOfUnitStartDateIntervalForDate(self: *@This(), unit: CalendarUnit, datep: ?*?*cf.NSDate, tip: ?*TimeInterval, date: ?*cf.NSDate, ) objc.BOOL {
+    pub fn rangeOfUnitStartDateIntervalForDate(self: *@This(), unit: CalendarUnit, datep: ?*?*core_foundation.NSDate, tip: ?*TimeInterval, date: ?*core_foundation.NSDate, ) objc.BOOL {
         return objc.msgSend(self, "rangeOfUnit:startDate:interval:forDate:", objc.BOOL, .{unit, datep, tip, date, });
     }
 
-    pub fn dateFromComponents(self: *@This(), comps: ?*DateComponents) ?*cf.NSDate {
-        return objc.msgSend(self, "dateFromComponents:", ?*cf.NSDate, .{comps});
+    pub fn dateFromComponents(self: *@This(), comps: ?*DateComponents) ?*core_foundation.NSDate {
+        return objc.msgSend(self, "dateFromComponents:", ?*core_foundation.NSDate, .{comps});
     }
 
     pub fn componentsFromDate(self: *@This(), unitFlags: CalendarUnit, date: ?*Date) ?*DateComponents {
@@ -3732,7 +3734,7 @@ pub const DateFormatter = opaque {
 
 };
 
-pub const DateFormatterStyle = enum NSDateFormatterStyle;
+pub const DateFormatterStyle = DateFormatterStyle;
 
 pub const DateFormatterStyle = enum(objc.NSUInteger) {
     NoStyle = 0,
@@ -3742,7 +3744,7 @@ pub const DateFormatterStyle = enum(objc.NSUInteger) {
     FullStyle = 4,
 };
 
-pub const DateFormatterBehavior = enum NSDateFormatterBehavior;
+pub const DateFormatterBehavior = DateFormatterBehavior;
 
 pub const DateFormatterBehavior = enum(objc.NSUInteger) {
     Default = 0,
@@ -5844,7 +5846,7 @@ pub const NumberFormatter = opaque {
 
 };
 
-pub const NumberFormatterStyle = enum NSNumberFormatterStyle;
+pub const NumberFormatterStyle = NumberFormatterStyle;
 
 pub const NumberFormatterStyle = enum(objc.NSUInteger) {
     NoStyle = 0,
@@ -5859,7 +5861,7 @@ pub const NumberFormatterStyle = enum(objc.NSUInteger) {
     CurrencyAccountingStyle = 10,
 };
 
-pub const NumberFormatterPadPosition = enum NSNumberFormatterPadPosition;
+pub const NumberFormatterPadPosition = NumberFormatterPadPosition;
 
 pub const NumberFormatterPadPosition = enum(objc.NSUInteger) {
     BeforePrefix = 0,
@@ -5868,7 +5870,7 @@ pub const NumberFormatterPadPosition = enum(objc.NSUInteger) {
     AfterSuffix = 3,
 };
 
-pub const NumberFormatterRoundingMode = enum NSNumberFormatterRoundingMode;
+pub const NumberFormatterRoundingMode = NumberFormatterRoundingMode;
 
 pub const NumberFormatterRoundingMode = enum(objc.NSUInteger) {
     Ceiling = 0,
@@ -6390,7 +6392,7 @@ pub const UncaughtExceptionHandler = fn(?*Exception) callconv(.C) void;
 
 pub extern "Foundation" fn GetUncaughtExceptionHandler() callconv(.C) ?*UncaughtExceptionHandler;
 
-pub extern "Foundation" fn SetUncaughtExceptionHandler(: ?*UncaughtExceptionHandler) callconv(.C) void;
+pub extern "Foundation" fn SetUncaughtExceptionHandler(?*UncaughtExceptionHandler) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/Foundation/NSAssertionHandler?language=objc
 pub const AssertionHandler = opaque {
@@ -6693,8 +6695,8 @@ pub const RunLoop = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn getCFRunLoop(self: *@This()) cf.RunLoopRef {
-        return objc.msgSend(self, "getCFRunLoop", cf.RunLoopRef, .{});
+    pub fn getCFRunLoop(self: *@This()) core_foundation.RunLoopRef {
+        return objc.msgSend(self, "getCFRunLoop", core_foundation.RunLoopRef, .{});
     }
 
     pub fn addTimerForMode(self: *@This(), timer: ?*Timer, mode: RunLoopMode) void {
@@ -7286,7 +7288,7 @@ pub const URLUbiquitousSharedItemRole = ?*String;
 
 pub const URLUbiquitousSharedItemPermissions = ?*String;
 
-pub const URLBookmarkCreationOptions = enum NSURLBookmarkCreationOptions;
+pub const URLBookmarkCreationOptions = URLBookmarkCreationOptions;
 
 pub const URLBookmarkCreationOptions = enum(objc.NSUInteger) {
     PreferFileIDResolution = 256,
@@ -7297,7 +7299,7 @@ pub const URLBookmarkCreationOptions = enum(objc.NSUInteger) {
     WithoutImplicitSecurityScope = 536870912,
 };
 
-pub const URLBookmarkResolutionOptions = enum NSURLBookmarkResolutionOptions;
+pub const URLBookmarkResolutionOptions = URLBookmarkResolutionOptions;
 
 pub const URLBookmarkResolutionOptions = enum(objc.NSUInteger) {
     WithoutUI = 256,
@@ -8864,19 +8866,19 @@ pub const PropertyListSerialization = opaque {
 
 };
 
-pub const Point = cf.CGPoint;
+pub const Point = core_foundation.CGPoint;
 
 pub const PointPointer = ?*Point;
 
 pub const PointArray = ?*Point;
 
-pub const Size = cf.CGSize;
+pub const Size = core_foundation.CGSize;
 
 pub const SizePointer = ?*Size;
 
 pub const SizeArray = ?*Size;
 
-pub const Rect = cf.CGRect;
+pub const Rect = core_foundation.CGRect;
 
 pub const RectPointer = ?*Rect;
 
@@ -8894,10 +8896,10 @@ pub const RectEdge = enum(objc.NSUInteger) {
 };
 
 pub const EdgeInsets = extern struct {
-    top: cf.CGFloat,
-    left: cf.CGFloat,
-    bottom: cf.CGFloat,
-    right: cf.CGFloat,
+    top: core_foundation.CGFloat,
+    left: core_foundation.CGFloat,
+    bottom: core_foundation.CGFloat,
+    right: core_foundation.CGFloat,
 };
 
 pub const AlignmentOptions = enum(u64) {
@@ -8925,41 +8927,41 @@ pub const AlignmentOptions = enum(u64) {
     AllEdgesNearest = 983040,
 };
 
-pub extern "Foundation" fn MakePoint(x: cf.CGFloat, y: cf.CGFloat) callconv(.C) Point;
+pub extern "Foundation" fn MakePoint(x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) Point;
 
-pub extern "Foundation" fn MakeSize(w: cf.CGFloat, h: cf.CGFloat) callconv(.C) Size;
+pub extern "Foundation" fn MakeSize(w: core_foundation.CGFloat, h: core_foundation.CGFloat) callconv(.C) Size;
 
-pub extern "Foundation" fn MakeRect(x: cf.CGFloat, y: cf.CGFloat, w: cf.CGFloat, h: cf.CGFloat, ) callconv(.C) Rect;
+pub extern "Foundation" fn MakeRect(x: core_foundation.CGFloat, y: core_foundation.CGFloat, w: core_foundation.CGFloat, h: core_foundation.CGFloat, ) callconv(.C) Rect;
 
-pub extern "Foundation" fn MaxX(aRect: Rect) callconv(.C) cf.CGFloat;
+pub extern "Foundation" fn MaxX(aRect: Rect) callconv(.C) core_foundation.CGFloat;
 
-pub extern "Foundation" fn MaxY(aRect: Rect) callconv(.C) cf.CGFloat;
+pub extern "Foundation" fn MaxY(aRect: Rect) callconv(.C) core_foundation.CGFloat;
 
-pub extern "Foundation" fn MidX(aRect: Rect) callconv(.C) cf.CGFloat;
+pub extern "Foundation" fn MidX(aRect: Rect) callconv(.C) core_foundation.CGFloat;
 
-pub extern "Foundation" fn MidY(aRect: Rect) callconv(.C) cf.CGFloat;
+pub extern "Foundation" fn MidY(aRect: Rect) callconv(.C) core_foundation.CGFloat;
 
-pub extern "Foundation" fn MinX(aRect: Rect) callconv(.C) cf.CGFloat;
+pub extern "Foundation" fn MinX(aRect: Rect) callconv(.C) core_foundation.CGFloat;
 
-pub extern "Foundation" fn MinY(aRect: Rect) callconv(.C) cf.CGFloat;
+pub extern "Foundation" fn MinY(aRect: Rect) callconv(.C) core_foundation.CGFloat;
 
-pub extern "Foundation" fn Width(aRect: Rect) callconv(.C) cf.CGFloat;
+pub extern "Foundation" fn Width(aRect: Rect) callconv(.C) core_foundation.CGFloat;
 
-pub extern "Foundation" fn Height(aRect: Rect) callconv(.C) cf.CGFloat;
+pub extern "Foundation" fn Height(aRect: Rect) callconv(.C) core_foundation.CGFloat;
 
-pub extern "Foundation" fn RectFromCGRect(cgrect: cf.CGRect) callconv(.C) Rect;
+pub extern "Foundation" fn RectFromCGRect(cgrect: core_foundation.CGRect) callconv(.C) Rect;
 
-pub extern "Foundation" fn RectToCGRect(nsrect: Rect) callconv(.C) cf.CGRect;
+pub extern "Foundation" fn RectToCGRect(nsrect: Rect) callconv(.C) core_foundation.CGRect;
 
-pub extern "Foundation" fn PointFromCGPoint(cgpoint: cf.CGPoint) callconv(.C) Point;
+pub extern "Foundation" fn PointFromCGPoint(cgpoint: core_foundation.CGPoint) callconv(.C) Point;
 
-pub extern "Foundation" fn PointToCGPoint(nspoint: Point) callconv(.C) cf.CGPoint;
+pub extern "Foundation" fn PointToCGPoint(nspoint: Point) callconv(.C) core_foundation.CGPoint;
 
-pub extern "Foundation" fn SizeFromCGSize(cgsize: cf.CGSize) callconv(.C) Size;
+pub extern "Foundation" fn SizeFromCGSize(cgsize: core_foundation.CGSize) callconv(.C) Size;
 
-pub extern "Foundation" fn SizeToCGSize(nssize: Size) callconv(.C) cf.CGSize;
+pub extern "Foundation" fn SizeToCGSize(nssize: Size) callconv(.C) core_foundation.CGSize;
 
-pub extern "Foundation" fn EdgeInsetsMake(top: cf.CGFloat, left: cf.CGFloat, bottom: cf.CGFloat, right: cf.CGFloat, ) callconv(.C) EdgeInsets;
+pub extern "Foundation" fn EdgeInsetsMake(top: core_foundation.CGFloat, left: core_foundation.CGFloat, bottom: core_foundation.CGFloat, right: core_foundation.CGFloat, ) callconv(.C) EdgeInsets;
 
 pub extern "Foundation" fn EqualPoints(aPoint: Point, bPoint: Point) callconv(.C) objc.BOOL;
 
@@ -8971,7 +8973,7 @@ pub extern "Foundation" fn IsEmptyRect(aRect: Rect) callconv(.C) objc.BOOL;
 
 pub extern "Foundation" fn EdgeInsetsEqual(aInsets: EdgeInsets, bInsets: EdgeInsets) callconv(.C) objc.BOOL;
 
-pub extern "Foundation" fn InsetRect(aRect: Rect, dX: cf.CGFloat, dY: cf.CGFloat) callconv(.C) Rect;
+pub extern "Foundation" fn InsetRect(aRect: Rect, dX: core_foundation.CGFloat, dY: core_foundation.CGFloat) callconv(.C) Rect;
 
 pub extern "Foundation" fn IntegralRect(aRect: Rect) callconv(.C) Rect;
 
@@ -8981,9 +8983,9 @@ pub extern "Foundation" fn UnionRect(aRect: Rect, bRect: Rect) callconv(.C) Rect
 
 pub extern "Foundation" fn IntersectionRect(aRect: Rect, bRect: Rect) callconv(.C) Rect;
 
-pub extern "Foundation" fn OffsetRect(aRect: Rect, dX: cf.CGFloat, dY: cf.CGFloat) callconv(.C) Rect;
+pub extern "Foundation" fn OffsetRect(aRect: Rect, dX: core_foundation.CGFloat, dY: core_foundation.CGFloat) callconv(.C) Rect;
 
-pub extern "Foundation" fn DivideRect(inRect: Rect, slice: ?*Rect, rem: ?*Rect, amount: cf.CGFloat, edge: RectEdge, ) callconv(.C) void;
+pub extern "Foundation" fn DivideRect(inRect: Rect, slice: ?*Rect, rem: ?*Rect, amount: core_foundation.CGFloat, edge: RectEdge, ) callconv(.C) void;
 
 pub extern "Foundation" fn PointInRect(aPoint: Point, aRect: Rect) callconv(.C) objc.BOOL;
 
@@ -10051,8 +10053,8 @@ pub const Null = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn null(self: *@This()) ?*cf.NSNull {
-        return objc.msgSend(self, "null", ?*cf.NSNull, .{});
+    pub fn null(self: *@This()) ?*core_foundation.NSNull {
+        return objc.msgSend(self, "null", ?*core_foundation.NSNull, .{});
     }
 
 };
@@ -10187,7 +10189,7 @@ pub const Operation = opaque {
 
 };
 
-pub const OperationQueuePriority = enum NSOperationQueuePriority;
+pub const OperationQueuePriority = OperationQueuePriority;
 
 pub const OperationQueuePriority = enum(objc.NSInteger) {
     VeryLow = -8,
@@ -10560,7 +10562,7 @@ pub const MachPort = opaque {
 
 };
 
-pub const MachPortOptions = enum NSMachPortOptions;
+pub const MachPortOptions = MachPortOptions;
 
 pub const MachPortOptions = enum(objc.NSUInteger) {
     DeallocateNone = 0,
@@ -13057,11 +13059,11 @@ pub const XPCConnection = opaque {
         return objc.msgSend(self, "synchronousRemoteObjectProxyWithErrorHandler:", *objc.Id, .{handler});
     }
 
-    pub fn resume(self: *@This()) void {
+    pub fn @"resume"(self: *@This()) void {
         return objc.msgSend(self, "resume", void, .{});
     }
 
-    pub fn suspend(self: *@This()) void {
+    pub fn @"suspend"(self: *@This()) void {
         return objc.msgSend(self, "suspend", void, .{});
     }
 
@@ -13178,11 +13180,11 @@ pub const XPCListener = opaque {
         return objc.msgSend(self, "initWithMachServiceName:", *@This(), .{name});
     }
 
-    pub fn resume(self: *@This()) void {
+    pub fn @"resume"(self: *@This()) void {
         return objc.msgSend(self, "resume", void, .{});
     }
 
-    pub fn suspend(self: *@This()) void {
+    pub fn @"suspend"(self: *@This()) void {
         return objc.msgSend(self, "suspend", void, .{});
     }
 
@@ -15668,11 +15670,11 @@ pub const URLSessionTask = opaque {
         return objc.msgSend(self, "cancel", void, .{});
     }
 
-    pub fn suspend(self: *@This()) void {
+    pub fn @"suspend"(self: *@This()) void {
         return objc.msgSend(self, "suspend", void, .{});
     }
 
-    pub fn resume(self: *@This()) void {
+    pub fn @"resume"(self: *@This()) void {
         return objc.msgSend(self, "resume", void, .{});
     }
 
@@ -16167,35 +16169,35 @@ pub const URLSessionConfiguration = opaque {
         return objc.msgSend(self, "setConnectionProxyDictionary:", void, .{connectionProxyDictionary});
     }
 
-    pub fn TLSMinimumSupportedProtocol(self: *@This())  {
-        return objc.msgSend(self, "TLSMinimumSupportedProtocol", , .{});
+    pub fn TLSMinimumSupportedProtocol(self: *@This()) security.SSLProtocol {
+        return objc.msgSend(self, "TLSMinimumSupportedProtocol", security.SSLProtocol, .{});
     }
 
-    pub fn setTLSMinimumSupportedProtocol(self: *@This(), TLSMinimumSupportedProtocol: ) void {
+    pub fn setTLSMinimumSupportedProtocol(self: *@This(), TLSMinimumSupportedProtocol: security.SSLProtocol) void {
         return objc.msgSend(self, "setTLSMinimumSupportedProtocol:", void, .{TLSMinimumSupportedProtocol});
     }
 
-    pub fn TLSMaximumSupportedProtocol(self: *@This())  {
-        return objc.msgSend(self, "TLSMaximumSupportedProtocol", , .{});
+    pub fn TLSMaximumSupportedProtocol(self: *@This()) security.SSLProtocol {
+        return objc.msgSend(self, "TLSMaximumSupportedProtocol", security.SSLProtocol, .{});
     }
 
-    pub fn setTLSMaximumSupportedProtocol(self: *@This(), TLSMaximumSupportedProtocol: ) void {
+    pub fn setTLSMaximumSupportedProtocol(self: *@This(), TLSMaximumSupportedProtocol: security.SSLProtocol) void {
         return objc.msgSend(self, "setTLSMaximumSupportedProtocol:", void, .{TLSMaximumSupportedProtocol});
     }
 
-    pub fn TLSMinimumSupportedProtocolVersion(self: *@This())  {
-        return objc.msgSend(self, "TLSMinimumSupportedProtocolVersion", , .{});
+    pub fn TLSMinimumSupportedProtocolVersion(self: *@This()) security.tls_protocol_version_t {
+        return objc.msgSend(self, "TLSMinimumSupportedProtocolVersion", security.tls_protocol_version_t, .{});
     }
 
-    pub fn setTLSMinimumSupportedProtocolVersion(self: *@This(), TLSMinimumSupportedProtocolVersion: ) void {
+    pub fn setTLSMinimumSupportedProtocolVersion(self: *@This(), TLSMinimumSupportedProtocolVersion: security.tls_protocol_version_t) void {
         return objc.msgSend(self, "setTLSMinimumSupportedProtocolVersion:", void, .{TLSMinimumSupportedProtocolVersion});
     }
 
-    pub fn TLSMaximumSupportedProtocolVersion(self: *@This())  {
-        return objc.msgSend(self, "TLSMaximumSupportedProtocolVersion", , .{});
+    pub fn TLSMaximumSupportedProtocolVersion(self: *@This()) security.tls_protocol_version_t {
+        return objc.msgSend(self, "TLSMaximumSupportedProtocolVersion", security.tls_protocol_version_t, .{});
     }
 
-    pub fn setTLSMaximumSupportedProtocolVersion(self: *@This(), TLSMaximumSupportedProtocolVersion: ) void {
+    pub fn setTLSMaximumSupportedProtocolVersion(self: *@This(), TLSMaximumSupportedProtocolVersion: security.tls_protocol_version_t) void {
         return objc.msgSend(self, "setTLSMaximumSupportedProtocolVersion:", void, .{TLSMaximumSupportedProtocolVersion});
     }
 
@@ -16933,12 +16935,12 @@ pub const UUID = opaque {
 };
 
 pub const AffineTransformStruct = extern struct {
-    m11: cf.CGFloat,
-    m12: cf.CGFloat,
-    m21: cf.CGFloat,
-    m22: cf.CGFloat,
-    tX: cf.CGFloat,
-    tY: cf.CGFloat,
+    m11: core_foundation.CGFloat,
+    m12: core_foundation.CGFloat,
+    m21: core_foundation.CGFloat,
+    m22: core_foundation.CGFloat,
+    tX: core_foundation.CGFloat,
+    tY: core_foundation.CGFloat,
 };
 
 /// https://developer.apple.com/documentation/Foundation/NSAffineTransform?language=objc
@@ -16964,23 +16966,23 @@ pub const AffineTransform = opaque {
         return objc.msgSend(self, "init", *@This(), .{});
     }
 
-    pub fn translateXByYBy(self: *@This(), deltaX: cf.CGFloat, deltaY: cf.CGFloat) void {
+    pub fn translateXByYBy(self: *@This(), deltaX: core_foundation.CGFloat, deltaY: core_foundation.CGFloat) void {
         return objc.msgSend(self, "translateXBy:yBy:", void, .{deltaX, deltaY});
     }
 
-    pub fn rotateByDegrees(self: *@This(), angle: cf.CGFloat) void {
+    pub fn rotateByDegrees(self: *@This(), angle: core_foundation.CGFloat) void {
         return objc.msgSend(self, "rotateByDegrees:", void, .{angle});
     }
 
-    pub fn rotateByRadians(self: *@This(), angle: cf.CGFloat) void {
+    pub fn rotateByRadians(self: *@This(), angle: core_foundation.CGFloat) void {
         return objc.msgSend(self, "rotateByRadians:", void, .{angle});
     }
 
-    pub fn scaleBy(self: *@This(), scale: cf.CGFloat) void {
+    pub fn scaleBy(self: *@This(), scale: core_foundation.CGFloat) void {
         return objc.msgSend(self, "scaleBy:", void, .{scale});
     }
 
-    pub fn scaleXByYBy(self: *@This(), scaleX: cf.CGFloat, scaleY: cf.CGFloat) void {
+    pub fn scaleXByYBy(self: *@This(), scaleX: core_foundation.CGFloat, scaleY: core_foundation.CGFloat) void {
         return objc.msgSend(self, "scaleXBy:yBy:", void, .{scaleX, scaleY});
     }
 
@@ -17989,11 +17991,11 @@ pub const Task = opaque {
         return objc.msgSend(self, "terminate", void, .{});
     }
 
-    pub fn suspend(self: *@This()) objc.BOOL {
+    pub fn @"suspend"(self: *@This()) objc.BOOL {
         return objc.msgSend(self, "suspend", objc.BOOL, .{});
     }
 
-    pub fn resume(self: *@This()) objc.BOOL {
+    pub fn @"resume"(self: *@This()) objc.BOOL {
         return objc.msgSend(self, "resume", objc.BOOL, .{});
     }
 
@@ -18949,11 +18951,11 @@ pub const AppleEventDescriptor = opaque {
         return objc.msgSend(self, "nullDescriptor", ?*AppleEventDescriptor, .{});
     }
 
-    pub fn descriptorWithDescriptorTypeBytesLength(self: *@This(), descriptorType: , bytes: ?*anyopaque, byteCount: objc.NSUInteger) ?*AppleEventDescriptor {
+    pub fn descriptorWithDescriptorTypeBytesLength(self: *@This(), descriptorType: core_services.DescType, bytes: ?*anyopaque, byteCount: objc.NSUInteger) ?*AppleEventDescriptor {
         return objc.msgSend(self, "descriptorWithDescriptorType:bytes:length:", ?*AppleEventDescriptor, .{descriptorType, bytes, byteCount});
     }
 
-    pub fn descriptorWithDescriptorTypeData(self: *@This(), descriptorType: , data: ?*Data) ?*AppleEventDescriptor {
+    pub fn descriptorWithDescriptorTypeData(self: *@This(), descriptorType: core_services.DescType, data: ?*Data) ?*AppleEventDescriptor {
         return objc.msgSend(self, "descriptorWithDescriptorType:data:", ?*AppleEventDescriptor, .{descriptorType, data});
     }
 
@@ -18989,7 +18991,7 @@ pub const AppleEventDescriptor = opaque {
         return objc.msgSend(self, "descriptorWithFileURL:", ?*AppleEventDescriptor, .{fileURL});
     }
 
-    pub fn appleEventWithEventClassEventIDTargetDescriptorReturnIDTransactionID(self: *@This(), eventClass: , eventID: , targetDescriptor: ?*AppleEventDescriptor, returnID: , transactionID: , ) ?*AppleEventDescriptor {
+    pub fn appleEventWithEventClassEventIDTargetDescriptorReturnIDTransactionID(self: *@This(), eventClass: core_services.AEEventClass, eventID: core_services.AEEventID, targetDescriptor: ?*AppleEventDescriptor, returnID: core_services.AEReturnID, transactionID: core_services.AETransactionID, ) ?*AppleEventDescriptor {
         return objc.msgSend(self, "appleEventWithEventClass:eventID:targetDescriptor:returnID:transactionID:", ?*AppleEventDescriptor, .{eventClass, eventID, targetDescriptor, returnID, transactionID, });
     }
 
@@ -19017,19 +19019,19 @@ pub const AppleEventDescriptor = opaque {
         return objc.msgSend(self, "descriptorWithApplicationURL:", ?*AppleEventDescriptor, .{applicationURL});
     }
 
-    pub fn initWithAEDescNoCopy(self: *@This(), aeDesc: ?*) *@This() {
+    pub fn initWithAEDescNoCopy(self: *@This(), aeDesc: ?*core_services.AEDesc) *@This() {
         return objc.msgSend(self, "initWithAEDescNoCopy:", *@This(), .{aeDesc});
     }
 
-    pub fn initWithDescriptorTypeBytesLength(self: *@This(), descriptorType: , bytes: ?*anyopaque, byteCount: objc.NSUInteger) *@This() {
+    pub fn initWithDescriptorTypeBytesLength(self: *@This(), descriptorType: core_services.DescType, bytes: ?*anyopaque, byteCount: objc.NSUInteger) *@This() {
         return objc.msgSend(self, "initWithDescriptorType:bytes:length:", *@This(), .{descriptorType, bytes, byteCount});
     }
 
-    pub fn initWithDescriptorTypeData(self: *@This(), descriptorType: , data: ?*Data) *@This() {
+    pub fn initWithDescriptorTypeData(self: *@This(), descriptorType: core_services.DescType, data: ?*Data) *@This() {
         return objc.msgSend(self, "initWithDescriptorType:data:", *@This(), .{descriptorType, data});
     }
 
-    pub fn initWithEventClassEventIDTargetDescriptorReturnIDTransactionID(self: *@This(), eventClass: , eventID: , targetDescriptor: ?*AppleEventDescriptor, returnID: , transactionID: , ) *@This() {
+    pub fn initWithEventClassEventIDTargetDescriptorReturnIDTransactionID(self: *@This(), eventClass: core_services.AEEventClass, eventID: core_services.AEEventID, targetDescriptor: ?*AppleEventDescriptor, returnID: core_services.AEReturnID, transactionID: core_services.AETransactionID, ) *@This() {
         return objc.msgSend(self, "initWithEventClass:eventID:targetDescriptor:returnID:transactionID:", *@This(), .{eventClass, eventID, targetDescriptor, returnID, transactionID, });
     }
 
@@ -19041,23 +19043,23 @@ pub const AppleEventDescriptor = opaque {
         return objc.msgSend(self, "initRecordDescriptor", *@This(), .{});
     }
 
-    pub fn setParamDescriptorForKeyword(self: *@This(), descriptor: ?*AppleEventDescriptor, keyword: ) void {
+    pub fn setParamDescriptorForKeyword(self: *@This(), descriptor: ?*AppleEventDescriptor, keyword: core_services.AEKeyword) void {
         return objc.msgSend(self, "setParamDescriptor:forKeyword:", void, .{descriptor, keyword});
     }
 
-    pub fn paramDescriptorForKeyword(self: *@This(), keyword: ) ?*AppleEventDescriptor {
+    pub fn paramDescriptorForKeyword(self: *@This(), keyword: core_services.AEKeyword) ?*AppleEventDescriptor {
         return objc.msgSend(self, "paramDescriptorForKeyword:", ?*AppleEventDescriptor, .{keyword});
     }
 
-    pub fn removeParamDescriptorWithKeyword(self: *@This(), keyword: ) void {
+    pub fn removeParamDescriptorWithKeyword(self: *@This(), keyword: core_services.AEKeyword) void {
         return objc.msgSend(self, "removeParamDescriptorWithKeyword:", void, .{keyword});
     }
 
-    pub fn setAttributeDescriptorForKeyword(self: *@This(), descriptor: ?*AppleEventDescriptor, keyword: ) void {
+    pub fn setAttributeDescriptorForKeyword(self: *@This(), descriptor: ?*AppleEventDescriptor, keyword: core_services.AEKeyword) void {
         return objc.msgSend(self, "setAttributeDescriptor:forKeyword:", void, .{descriptor, keyword});
     }
 
-    pub fn attributeDescriptorForKeyword(self: *@This(), keyword: ) ?*AppleEventDescriptor {
+    pub fn attributeDescriptorForKeyword(self: *@This(), keyword: core_services.AEKeyword) ?*AppleEventDescriptor {
         return objc.msgSend(self, "attributeDescriptorForKeyword:", ?*AppleEventDescriptor, .{keyword});
     }
 
@@ -19077,32 +19079,32 @@ pub const AppleEventDescriptor = opaque {
         return objc.msgSend(self, "removeDescriptorAtIndex:", void, .{index});
     }
 
-    pub fn setDescriptorForKeyword(self: *@This(), descriptor: ?*AppleEventDescriptor, keyword: ) void {
+    pub fn setDescriptorForKeyword(self: *@This(), descriptor: ?*AppleEventDescriptor, keyword: core_services.AEKeyword) void {
         return objc.msgSend(self, "setDescriptor:forKeyword:", void, .{descriptor, keyword});
     }
 
-    pub fn descriptorForKeyword(self: *@This(), keyword: ) ?*AppleEventDescriptor {
+    pub fn descriptorForKeyword(self: *@This(), keyword: core_services.AEKeyword) ?*AppleEventDescriptor {
         return objc.msgSend(self, "descriptorForKeyword:", ?*AppleEventDescriptor, .{keyword});
     }
 
-    pub fn removeDescriptorWithKeyword(self: *@This(), keyword: ) void {
+    pub fn removeDescriptorWithKeyword(self: *@This(), keyword: core_services.AEKeyword) void {
         return objc.msgSend(self, "removeDescriptorWithKeyword:", void, .{keyword});
     }
 
-    pub fn keywordForDescriptorAtIndex(self: *@This(), index: objc.NSInteger)  {
-        return objc.msgSend(self, "keywordForDescriptorAtIndex:", , .{index});
+    pub fn keywordForDescriptorAtIndex(self: *@This(), index: objc.NSInteger) core_services.AEKeyword {
+        return objc.msgSend(self, "keywordForDescriptorAtIndex:", core_services.AEKeyword, .{index});
     }
 
-    pub fn coerceToDescriptorType(self: *@This(), descriptorType: ) ?*AppleEventDescriptor {
+    pub fn coerceToDescriptorType(self: *@This(), descriptorType: core_services.DescType) ?*AppleEventDescriptor {
         return objc.msgSend(self, "coerceToDescriptorType:", ?*AppleEventDescriptor, .{descriptorType});
     }
 
-    pub fn aeDesc(self: *@This()) ?* {
-        return objc.msgSend(self, "aeDesc", ?*, .{});
+    pub fn aeDesc(self: *@This()) ?*core_services.AEDesc {
+        return objc.msgSend(self, "aeDesc", ?*core_services.AEDesc, .{});
     }
 
-    pub fn descriptorType(self: *@This())  {
-        return objc.msgSend(self, "descriptorType", , .{});
+    pub fn descriptorType(self: *@This()) core_services.DescType {
+        return objc.msgSend(self, "descriptorType", core_services.DescType, .{});
     }
 
     pub fn data(self: *@This()) ?*Data {
@@ -19141,20 +19143,20 @@ pub const AppleEventDescriptor = opaque {
         return objc.msgSend(self, "fileURLValue", ?*URL, .{});
     }
 
-    pub fn eventClass(self: *@This())  {
-        return objc.msgSend(self, "eventClass", , .{});
+    pub fn eventClass(self: *@This()) core_services.AEEventClass {
+        return objc.msgSend(self, "eventClass", core_services.AEEventClass, .{});
     }
 
-    pub fn eventID(self: *@This())  {
-        return objc.msgSend(self, "eventID", , .{});
+    pub fn eventID(self: *@This()) core_services.AEEventID {
+        return objc.msgSend(self, "eventID", core_services.AEEventID, .{});
     }
 
-    pub fn returnID(self: *@This())  {
-        return objc.msgSend(self, "returnID", , .{});
+    pub fn returnID(self: *@This()) core_services.AEReturnID {
+        return objc.msgSend(self, "returnID", core_services.AEReturnID, .{});
     }
 
-    pub fn transactionID(self: *@This())  {
-        return objc.msgSend(self, "transactionID", , .{});
+    pub fn transactionID(self: *@This()) core_services.AETransactionID {
+        return objc.msgSend(self, "transactionID", core_services.AETransactionID, .{});
     }
 
     pub fn isRecordDescriptor(self: *@This()) objc.BOOL {
@@ -19186,15 +19188,15 @@ pub const AppleEventManager = opaque {
         return objc.msgSend(self, "sharedAppleEventManager", ?*AppleEventManager, .{});
     }
 
-    pub fn setEventHandlerAndSelectorForEventClassAndEventID(self: *@This(), handler: *objc.Id, handleEventSelector: *objc.SEL, eventClass: , eventID: , ) void {
+    pub fn setEventHandlerAndSelectorForEventClassAndEventID(self: *@This(), handler: *objc.Id, handleEventSelector: *objc.SEL, eventClass: core_services.AEEventClass, eventID: core_services.AEEventID, ) void {
         return objc.msgSend(self, "setEventHandler:andSelector:forEventClass:andEventID:", void, .{handler, handleEventSelector, eventClass, eventID, });
     }
 
-    pub fn removeEventHandlerForEventClassAndEventID(self: *@This(), eventClass: , eventID: ) void {
+    pub fn removeEventHandlerForEventClassAndEventID(self: *@This(), eventClass: core_services.AEEventClass, eventID: core_services.AEEventID) void {
         return objc.msgSend(self, "removeEventHandlerForEventClass:andEventID:", void, .{eventClass, eventID});
     }
 
-    pub fn dispatchRawAppleEventWithRawReplyHandlerRefCon(self: *@This(), theAppleEvent: ?*, theReply: ?*, handlerRefCon: objc.SRefCon) objc.OSErr {
+    pub fn dispatchRawAppleEventWithRawReplyHandlerRefCon(self: *@This(), theAppleEvent: ?*core_services.AppleEvent, theReply: ?*core_services.AppleEvent, handlerRefCon: objc.SRefCon) objc.OSErr {
         return objc.msgSend(self, "dispatchRawAppleEvent:withRawReply:handlerRefCon:", objc.OSErr, .{theAppleEvent, theReply, handlerRefCon});
     }
 
