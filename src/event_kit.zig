@@ -12,11 +12,9 @@ const map_kit = @import("map_kit.zig"); // Framework dependency MapKit.
 extern "EventKit" fn EK_LOSE_FRACTIONAL_SECONDS_DO_NOT_USE() callconv(.C) void;
 pub const _lose_fractional_seconds_do_not_use = EK_LOSE_FRACTIONAL_SECONDS_DO_NOT_USE;
 
-extern "EventKit" fn DATE_COMPONENTS_DO_NOT_USE() callconv(.C) void;
-pub const te_components_do_not_use = DATE_COMPONENTS_DO_NOT_USE;
+pub extern "EventKit" fn DATE_COMPONENTS_DO_NOT_USE() callconv(.C) void;
 
-extern "EventKit" fn DATETIME_COMPONENTS_DO_NOT_USE() callconv(.C) void;
-pub const tetime_components_do_not_use = DATETIME_COMPONENTS_DO_NOT_USE;
+pub extern "EventKit" fn DATETIME_COMPONENTS_DO_NOT_USE() callconv(.C) void;
 
 pub const AuthorizationStatus = enum(objc.NSInteger) {
     NotDetermined = 0,

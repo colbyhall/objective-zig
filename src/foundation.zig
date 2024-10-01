@@ -239,11 +239,9 @@ pub const decrementExtraRefCountWasZero = NSDecrementExtraRefCountWasZero;
 extern "Foundation" fn NSExtraRefCount(object: *objc.Id) callconv(.C) objc.NSUInteger;
 pub const extraRefCount = NSExtraRefCount;
 
-extern "Foundation" fn CFBridgingRetain(X: *objc.Id) callconv(.C) core_foundation.TypeRef;
-pub const bridgingRetain = CFBridgingRetain;
+pub extern "Foundation" fn CFBridgingRetain(X: *objc.Id) callconv(.C) core_foundation.TypeRef;
 
-extern "Foundation" fn CFBridgingRelease(X: core_foundation.TypeRef) callconv(.C) *objc.Id;
-pub const bridgingRelease = CFBridgingRelease;
+pub extern "Foundation" fn CFBridgingRelease(X: core_foundation.TypeRef) callconv(.C) *objc.Id;
 
 pub const FastEnumerationState = extern struct {
     state: u64,
@@ -8870,8 +8868,7 @@ pub const Coder = opaque {
     }
 };
 
-extern "Foundation" fn NXReadNSObjectFromCoder(decoder: ?*Coder) callconv(.C) ?*objc.NSObject;
-pub const readNSObjectFromCoder = NXReadNSObjectFromCoder;
+pub extern "Foundation" fn NXReadNSObjectFromCoder(decoder: ?*Coder) callconv(.C) ?*objc.NSObject;
 
 pub const DataReadingOptions = enum(objc.NSUInteger) {
     MappedIfSafe = 1,

@@ -1121,7 +1121,7 @@ pub const Image = opaque {
         return objc.msgSend(_self, "imageByInsertingIntermediate", ?*Image, .{});
     }
 
-    pub fn imageByInsertingIntermediate(_self: *@This(), _cache: objc.BOOL) ?*Image {
+    pub fn imageByInsertingIntermediate2(_self: *@This(), _cache: objc.BOOL) ?*Image {
         return objc.msgSend(_self, "imageByInsertingIntermediate:", ?*Image, .{_cache});
     }
 
@@ -1659,23 +1659,6 @@ pub const Filter = opaque {
 
     pub fn attributes(_self: *@This()) ?*anyopaque {
         return objc.msgSend(_self, "attributes", ?*anyopaque, .{});
-    }
-};
-
-/// https://developer.apple.com/documentation/CoreImage/CIFilter?language=objc
-pub const Filter = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-
-    pub fn customAttributes(_self: *@This()) ?*anyopaque {
-        return objc.msgSend(_self, "customAttributes", ?*anyopaque, .{});
-    }
-
-    pub fn outputImage(_self: *@This()) ?*Image {
-        return objc.msgSend(_self, "outputImage", ?*Image, .{});
     }
 };
 

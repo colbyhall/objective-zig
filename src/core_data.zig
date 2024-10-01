@@ -6576,7 +6576,7 @@ pub const AtomicStore = opaque {
         return objc.msgSend(_self, "coreSpotlightExporter", ?*CoreDataCoreSpotlightDelegate, .{});
     }
 
-    pub fn load(_self: *@This(), _error: ?*?*foundation.Error) objc.BOOL {
+    pub fn load2(_self: *@This(), _error: ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(_self, "load:", objc.BOOL, .{_error});
     }
 

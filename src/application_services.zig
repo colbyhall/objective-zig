@@ -2792,97 +2792,68 @@ pub const HIShapeEnumerateProcPtr = ?*const fn (
     ?*anyopaque,
 ) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeGetTypeID() callconv(.C) core_foundation.TypeID;
-pub const hapeGetTypeID = HIShapeGetTypeID;
+pub extern "ApplicationServices" fn HIShapeGetTypeID() callconv(.C) core_foundation.TypeID;
 
-extern "ApplicationServices" fn HIShapeCreateEmpty() callconv(.C) HIShapeRef;
-pub const hapeCreateEmpty = HIShapeCreateEmpty;
+pub extern "ApplicationServices" fn HIShapeCreateEmpty() callconv(.C) HIShapeRef;
 
-extern "ApplicationServices" fn HIShapeCreateWithQDRgn(inRgn: RgnHandle) callconv(.C) HIShapeRef;
-pub const hapeCreateWithQDRgn = HIShapeCreateWithQDRgn;
+pub extern "ApplicationServices" fn HIShapeCreateWithQDRgn(inRgn: RgnHandle) callconv(.C) HIShapeRef;
 
-extern "ApplicationServices" fn HIShapeCreateWithRect(inRect: ?*core_foundation.CGRect) callconv(.C) HIShapeRef;
-pub const hapeCreateWithRect = HIShapeCreateWithRect;
+pub extern "ApplicationServices" fn HIShapeCreateWithRect(inRect: ?*core_foundation.CGRect) callconv(.C) HIShapeRef;
 
-extern "ApplicationServices" fn HIShapeCreateCopy(inShape: HIShapeRef) callconv(.C) HIShapeRef;
-pub const hapeCreateCopy = HIShapeCreateCopy;
+pub extern "ApplicationServices" fn HIShapeCreateCopy(inShape: HIShapeRef) callconv(.C) HIShapeRef;
 
-extern "ApplicationServices" fn HIShapeCreateIntersection(inShape1: HIShapeRef, inShape2: HIShapeRef) callconv(.C) HIShapeRef;
-pub const hapeCreateIntersection = HIShapeCreateIntersection;
+pub extern "ApplicationServices" fn HIShapeCreateIntersection(inShape1: HIShapeRef, inShape2: HIShapeRef) callconv(.C) HIShapeRef;
 
-extern "ApplicationServices" fn HIShapeCreateDifference(inShape1: HIShapeRef, inShape2: HIShapeRef) callconv(.C) HIShapeRef;
-pub const hapeCreateDifference = HIShapeCreateDifference;
+pub extern "ApplicationServices" fn HIShapeCreateDifference(inShape1: HIShapeRef, inShape2: HIShapeRef) callconv(.C) HIShapeRef;
 
-extern "ApplicationServices" fn HIShapeCreateUnion(inShape1: HIShapeRef, inShape2: HIShapeRef) callconv(.C) HIShapeRef;
-pub const hapeCreateUnion = HIShapeCreateUnion;
+pub extern "ApplicationServices" fn HIShapeCreateUnion(inShape1: HIShapeRef, inShape2: HIShapeRef) callconv(.C) HIShapeRef;
 
-extern "ApplicationServices" fn HIShapeCreateXor(inShape1: HIShapeRef, inShape2: HIShapeRef) callconv(.C) HIShapeRef;
-pub const hapeCreateXor = HIShapeCreateXor;
+pub extern "ApplicationServices" fn HIShapeCreateXor(inShape1: HIShapeRef, inShape2: HIShapeRef) callconv(.C) HIShapeRef;
 
-extern "ApplicationServices" fn HIShapeIsEmpty(inShape: HIShapeRef) callconv(.C) objc.Boolean;
-pub const hapeIsEmpty = HIShapeIsEmpty;
+pub extern "ApplicationServices" fn HIShapeIsEmpty(inShape: HIShapeRef) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn HIShapeIsRectangular(inShape: HIShapeRef) callconv(.C) objc.Boolean;
-pub const hapeIsRectangular = HIShapeIsRectangular;
+pub extern "ApplicationServices" fn HIShapeIsRectangular(inShape: HIShapeRef) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn HIShapeContainsPoint(inShape: HIShapeRef, inPoint: ?*core_foundation.CGPoint) callconv(.C) objc.Boolean;
-pub const hapeContainsPoint = HIShapeContainsPoint;
+pub extern "ApplicationServices" fn HIShapeContainsPoint(inShape: HIShapeRef, inPoint: ?*core_foundation.CGPoint) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn HIShapeIntersectsRect(inShape: HIShapeRef, inRect: ?*core_foundation.CGRect) callconv(.C) objc.Boolean;
-pub const hapeIntersectsRect = HIShapeIntersectsRect;
+pub extern "ApplicationServices" fn HIShapeIntersectsRect(inShape: HIShapeRef, inRect: ?*core_foundation.CGRect) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn HIShapeGetBounds(inShape: HIShapeRef, outRect: ?*core_foundation.CGRect) callconv(.C) ?*core_foundation.CGRect;
-pub const hapeGetBounds = HIShapeGetBounds;
+pub extern "ApplicationServices" fn HIShapeGetBounds(inShape: HIShapeRef, outRect: ?*core_foundation.CGRect) callconv(.C) ?*core_foundation.CGRect;
 
-extern "ApplicationServices" fn HIShapeGetAsQDRgn(inShape: HIShapeRef, outRgn: RgnHandle) callconv(.C) objc.OSStatus;
-pub const hapeGetAsQDRgn = HIShapeGetAsQDRgn;
+pub extern "ApplicationServices" fn HIShapeGetAsQDRgn(inShape: HIShapeRef, outRgn: RgnHandle) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeReplacePathInCGContext(inShape: HIShapeRef, inContext: core_graphics.ContextRef) callconv(.C) objc.OSStatus;
-pub const hapeReplacePathInCGContext = HIShapeReplacePathInCGContext;
+pub extern "ApplicationServices" fn HIShapeReplacePathInCGContext(inShape: HIShapeRef, inContext: core_graphics.ContextRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeEnumerate(
+pub extern "ApplicationServices" fn HIShapeEnumerate(
     inShape: HIShapeRef,
     inOptions: objc.OptionBits,
     inProc: HIShapeEnumerateProcPtr,
     inRefcon: ?*anyopaque,
 ) callconv(.C) objc.OSStatus;
-pub const hapeEnumerate = HIShapeEnumerate;
 
-extern "ApplicationServices" fn HIShapeCreateMutable() callconv(.C) HIMutableShapeRef;
-pub const hapeCreateMutable = HIShapeCreateMutable;
+pub extern "ApplicationServices" fn HIShapeCreateMutable() callconv(.C) HIMutableShapeRef;
 
-extern "ApplicationServices" fn HIShapeCreateMutableCopy(inOrig: HIShapeRef) callconv(.C) HIMutableShapeRef;
-pub const hapeCreateMutableCopy = HIShapeCreateMutableCopy;
+pub extern "ApplicationServices" fn HIShapeCreateMutableCopy(inOrig: HIShapeRef) callconv(.C) HIMutableShapeRef;
 
-extern "ApplicationServices" fn HIShapeCreateMutableWithRect(inRect: ?*core_foundation.CGRect) callconv(.C) HIMutableShapeRef;
-pub const hapeCreateMutableWithRect = HIShapeCreateMutableWithRect;
+pub extern "ApplicationServices" fn HIShapeCreateMutableWithRect(inRect: ?*core_foundation.CGRect) callconv(.C) HIMutableShapeRef;
 
-extern "ApplicationServices" fn HIShapeSetEmpty(inShape: HIMutableShapeRef) callconv(.C) objc.OSStatus;
-pub const hapeSetEmpty = HIShapeSetEmpty;
+pub extern "ApplicationServices" fn HIShapeSetEmpty(inShape: HIMutableShapeRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeSetWithShape(inDestShape: HIMutableShapeRef, inSrcShape: HIShapeRef) callconv(.C) objc.OSStatus;
-pub const hapeSetWithShape = HIShapeSetWithShape;
+pub extern "ApplicationServices" fn HIShapeSetWithShape(inDestShape: HIMutableShapeRef, inSrcShape: HIShapeRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeIntersect(inShape1: HIShapeRef, inShape2: HIShapeRef, outResult: HIMutableShapeRef) callconv(.C) objc.OSStatus;
-pub const hapeIntersect = HIShapeIntersect;
+pub extern "ApplicationServices" fn HIShapeIntersect(inShape1: HIShapeRef, inShape2: HIShapeRef, outResult: HIMutableShapeRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeDifference(inShape1: HIShapeRef, inShape2: HIShapeRef, outResult: HIMutableShapeRef) callconv(.C) objc.OSStatus;
-pub const hapeDifference = HIShapeDifference;
+pub extern "ApplicationServices" fn HIShapeDifference(inShape1: HIShapeRef, inShape2: HIShapeRef, outResult: HIMutableShapeRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeUnion(inShape1: HIShapeRef, inShape2: HIShapeRef, outResult: HIMutableShapeRef) callconv(.C) objc.OSStatus;
-pub const hapeUnion = HIShapeUnion;
+pub extern "ApplicationServices" fn HIShapeUnion(inShape1: HIShapeRef, inShape2: HIShapeRef, outResult: HIMutableShapeRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeXor(inShape1: HIShapeRef, inShape2: HIShapeRef, outResult: HIMutableShapeRef) callconv(.C) objc.OSStatus;
-pub const hapeXor = HIShapeXor;
+pub extern "ApplicationServices" fn HIShapeXor(inShape1: HIShapeRef, inShape2: HIShapeRef, outResult: HIMutableShapeRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeOffset(inShape: HIMutableShapeRef, inDX: core_foundation.CGFloat, inDY: core_foundation.CGFloat) callconv(.C) objc.OSStatus;
-pub const hapeOffset = HIShapeOffset;
+pub extern "ApplicationServices" fn HIShapeOffset(inShape: HIMutableShapeRef, inDX: core_foundation.CGFloat, inDY: core_foundation.CGFloat) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeInset(inShape: HIMutableShapeRef, inDX: core_foundation.CGFloat, inDY: core_foundation.CGFloat) callconv(.C) objc.OSStatus;
-pub const hapeInset = HIShapeInset;
+pub extern "ApplicationServices" fn HIShapeInset(inShape: HIMutableShapeRef, inDX: core_foundation.CGFloat, inDY: core_foundation.CGFloat) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn HIShapeUnionWithRect(inShape: HIMutableShapeRef, inRect: ?*core_foundation.CGRect) callconv(.C) objc.OSStatus;
-pub const hapeUnionWithRect = HIShapeUnionWithRect;
+pub extern "ApplicationServices" fn HIShapeUnionWithRect(inShape: HIMutableShapeRef, inRect: ?*core_foundation.CGRect) callconv(.C) objc.OSStatus;
 
 pub const IconAlignmentType = objc.SInt16;
 
@@ -2898,41 +2869,32 @@ pub const IconActionUPP = IconActionProcPtr;
 
 pub const IconGetterUPP = IconGetterProcPtr;
 
-extern "ApplicationServices" fn NewIconActionUPP(userRoutine: IconActionProcPtr) callconv(.C) IconActionUPP;
-pub const iconActionUPP = NewIconActionUPP;
+pub extern "ApplicationServices" fn NewIconActionUPP(userRoutine: IconActionProcPtr) callconv(.C) IconActionUPP;
 
-extern "ApplicationServices" fn NewIconGetterUPP(userRoutine: IconGetterProcPtr) callconv(.C) IconGetterUPP;
-pub const iconGetterUPP = NewIconGetterUPP;
+pub extern "ApplicationServices" fn NewIconGetterUPP(userRoutine: IconGetterProcPtr) callconv(.C) IconGetterUPP;
 
-extern "ApplicationServices" fn DisposeIconActionUPP(userUPP: IconActionUPP) callconv(.C) void;
-pub const poseIconActionUPP = DisposeIconActionUPP;
+pub extern "ApplicationServices" fn DisposeIconActionUPP(userUPP: IconActionUPP) callconv(.C) void;
 
-extern "ApplicationServices" fn DisposeIconGetterUPP(userUPP: IconGetterUPP) callconv(.C) void;
-pub const poseIconGetterUPP = DisposeIconGetterUPP;
+pub extern "ApplicationServices" fn DisposeIconGetterUPP(userUPP: IconGetterUPP) callconv(.C) void;
 
-extern "ApplicationServices" fn InvokeIconActionUPP(
+pub extern "ApplicationServices" fn InvokeIconActionUPP(
     theType: objc.ResType,
     theIcon: ?*objc.Handle,
     yourDataPtr: ?*anyopaque,
     userUPP: IconActionUPP,
 ) callconv(.C) objc.OSErr;
-pub const okeIconActionUPP = InvokeIconActionUPP;
 
-extern "ApplicationServices" fn InvokeIconGetterUPP(theType: objc.ResType, yourDataPtr: ?*anyopaque, userUPP: IconGetterUPP) callconv(.C) objc.Handle;
-pub const okeIconGetterUPP = InvokeIconGetterUPP;
+pub extern "ApplicationServices" fn InvokeIconGetterUPP(theType: objc.ResType, yourDataPtr: ?*anyopaque, userUPP: IconGetterUPP) callconv(.C) objc.Handle;
 
 pub const PlotIconRefFlags = objc.UInt32;
 
-extern "ApplicationServices" fn IconRefToIconFamily(theIconRef: core_services.IconRef, whichIcons: IconSelectorValue, iconFamily: ?*core_services.IconFamilyHandle) callconv(.C) objc.OSErr;
-pub const nRefToIconFamily = IconRefToIconFamily;
+pub extern "ApplicationServices" fn IconRefToIconFamily(theIconRef: core_services.IconRef, whichIcons: IconSelectorValue, iconFamily: ?*core_services.IconFamilyHandle) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SetIconFamilyData(iconFamily: core_services.IconFamilyHandle, iconType: objc.OSType, h: objc.Handle) callconv(.C) objc.OSErr;
-pub const iconFamilyData = SetIconFamilyData;
+pub extern "ApplicationServices" fn SetIconFamilyData(iconFamily: core_services.IconFamilyHandle, iconType: objc.OSType, h: objc.Handle) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetIconFamilyData(iconFamily: core_services.IconFamilyHandle, iconType: objc.OSType, h: objc.Handle) callconv(.C) objc.OSErr;
-pub const iconFamilyData = GetIconFamilyData;
+pub extern "ApplicationServices" fn GetIconFamilyData(iconFamily: core_services.IconFamilyHandle, iconType: objc.OSType, h: objc.Handle) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn PlotIconRefInContext(
+pub extern "ApplicationServices" fn PlotIconRefInContext(
     inContext: core_graphics.ContextRef,
     inRect: ?*core_foundation.CGRect,
     inAlign: IconAlignmentType,
@@ -2941,39 +2903,33 @@ extern "ApplicationServices" fn PlotIconRefInContext(
     inFlags: PlotIconRefFlags,
     inIconRef: core_services.IconRef,
 ) callconv(.C) objc.OSStatus;
-pub const tIconRefInContext = PlotIconRefInContext;
 
-extern "ApplicationServices" fn IconRefContainsCGPoint(
+pub extern "ApplicationServices" fn IconRefContainsCGPoint(
     testPt: ?*core_foundation.CGPoint,
     iconRect: ?*core_foundation.CGRect,
     @"align": IconAlignmentType,
     iconServicesUsageFlags: core_services.IconServicesUsageFlags,
     theIconRef: core_services.IconRef,
 ) callconv(.C) objc.Boolean;
-pub const nRefContainsCGPoint = IconRefContainsCGPoint;
 
-extern "ApplicationServices" fn IconRefIntersectsCGRect(
+pub extern "ApplicationServices" fn IconRefIntersectsCGRect(
     testRect: ?*core_foundation.CGRect,
     iconRect: ?*core_foundation.CGRect,
     @"align": IconAlignmentType,
     iconServicesUsageFlags: core_services.IconServicesUsageFlags,
     theIconRef: core_services.IconRef,
 ) callconv(.C) objc.Boolean;
-pub const nRefIntersectsCGRect = IconRefIntersectsCGRect;
 
-extern "ApplicationServices" fn IconRefToHIShape(
+pub extern "ApplicationServices" fn IconRefToHIShape(
     iconRect: ?*core_foundation.CGRect,
     @"align": IconAlignmentType,
     iconServicesUsageFlags: core_services.IconServicesUsageFlags,
     theIconRef: core_services.IconRef,
 ) callconv(.C) HIShapeRef;
-pub const nRefToHIShape = IconRefToHIShape;
 
-extern "ApplicationServices" fn IsIconRefMaskEmpty(iconRef: core_services.IconRef) callconv(.C) objc.Boolean;
-pub const conRefMaskEmpty = IsIconRefMaskEmpty;
+pub extern "ApplicationServices" fn IsIconRefMaskEmpty(iconRef: core_services.IconRef) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn GetIconRefVariant(inIconRef: core_services.IconRef, inVariant: objc.OSType, outTransform: ?*IconTransformType) callconv(.C) core_services.IconRef;
-pub const iconRefVariant = GetIconRefVariant;
+pub extern "ApplicationServices" fn GetIconRefVariant(inIconRef: core_services.IconRef, inVariant: objc.OSType, outTransform: ?*IconTransformType) callconv(.C) core_services.IconRef;
 
 pub const anon921 = enum(u32) {
     ICComponentInterfaceVersion0 = 0,
@@ -3089,88 +3045,70 @@ pub const ICServicesPtr = ?*ICServices;
 
 pub const ICServicesHandle = ?*ICServicesPtr;
 
-extern "ApplicationServices" fn ICStart(inst: ?*ICInstance, signature: objc.OSType) callconv(.C) objc.OSStatus;
-pub const tart = ICStart;
+pub extern "ApplicationServices" fn ICStart(inst: ?*ICInstance, signature: objc.OSType) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICStop(inst: ICInstance) callconv(.C) objc.OSStatus;
-pub const top = ICStop;
+pub extern "ApplicationServices" fn ICStop(inst: ICInstance) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetVersion(inst: ICInstance, whichVersion: i64, version: ?*objc.UInt32) callconv(.C) objc.OSStatus;
-pub const etVersion = ICGetVersion;
+pub extern "ApplicationServices" fn ICGetVersion(inst: ICInstance, whichVersion: i64, version: ?*objc.UInt32) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetConfigName(inst: ICInstance, longname: objc.Boolean, name: objc.Str255) callconv(.C) objc.OSStatus;
-pub const etConfigName = ICGetConfigName;
+pub extern "ApplicationServices" fn ICGetConfigName(inst: ICInstance, longname: objc.Boolean, name: objc.Str255) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetSeed(inst: ICInstance, seed: ?*i64) callconv(.C) objc.OSStatus;
-pub const etSeed = ICGetSeed;
+pub extern "ApplicationServices" fn ICGetSeed(inst: ICInstance, seed: ?*i64) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetPerm(inst: ICInstance, perm: ?*ICPerm) callconv(.C) objc.OSStatus;
-pub const etPerm = ICGetPerm;
+pub extern "ApplicationServices" fn ICGetPerm(inst: ICInstance, perm: ?*ICPerm) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICBegin(inst: ICInstance, perm: ICPerm) callconv(.C) objc.OSStatus;
-pub const egin = ICBegin;
+pub extern "ApplicationServices" fn ICBegin(inst: ICInstance, perm: ICPerm) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetPref(
+pub extern "ApplicationServices" fn ICGetPref(
     inst: ICInstance,
     key: objc.ConstStr255Param,
     attr: ?*ICAttr,
     buf: ?*anyopaque,
     size: ?*i64,
 ) callconv(.C) objc.OSStatus;
-pub const etPref = ICGetPref;
 
-extern "ApplicationServices" fn ICSetPref(
+pub extern "ApplicationServices" fn ICSetPref(
     inst: ICInstance,
     key: objc.ConstStr255Param,
     attr: ICAttr,
     buf: ?*anyopaque,
     size: i64,
 ) callconv(.C) objc.OSStatus;
-pub const etPref = ICSetPref;
 
-extern "ApplicationServices" fn ICFindPrefHandle(
+pub extern "ApplicationServices" fn ICFindPrefHandle(
     inst: ICInstance,
     key: objc.ConstStr255Param,
     attr: ?*ICAttr,
     prefh: objc.Handle,
 ) callconv(.C) objc.OSStatus;
-pub const indPrefHandle = ICFindPrefHandle;
 
-extern "ApplicationServices" fn ICGetPrefHandle(
+pub extern "ApplicationServices" fn ICGetPrefHandle(
     inst: ICInstance,
     key: objc.ConstStr255Param,
     attr: ?*ICAttr,
     prefh: ?*objc.Handle,
 ) callconv(.C) objc.OSStatus;
-pub const etPrefHandle = ICGetPrefHandle;
 
-extern "ApplicationServices" fn ICSetPrefHandle(
+pub extern "ApplicationServices" fn ICSetPrefHandle(
     inst: ICInstance,
     key: objc.ConstStr255Param,
     attr: ICAttr,
     prefh: objc.Handle,
 ) callconv(.C) objc.OSStatus;
-pub const etPrefHandle = ICSetPrefHandle;
 
-extern "ApplicationServices" fn ICCountPref(inst: ICInstance, count: ?*i64) callconv(.C) objc.OSStatus;
-pub const ountPref = ICCountPref;
+pub extern "ApplicationServices" fn ICCountPref(inst: ICInstance, count: ?*i64) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetIndPref(inst: ICInstance, index: i64, key: objc.Str255) callconv(.C) objc.OSStatus;
-pub const etIndPref = ICGetIndPref;
+pub extern "ApplicationServices" fn ICGetIndPref(inst: ICInstance, index: i64, key: objc.Str255) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICDeletePref(inst: ICInstance, key: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
-pub const eletePref = ICDeletePref;
+pub extern "ApplicationServices" fn ICDeletePref(inst: ICInstance, key: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICEnd(inst: ICInstance) callconv(.C) objc.OSStatus;
-pub const nd = ICEnd;
+pub extern "ApplicationServices" fn ICEnd(inst: ICInstance) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetDefaultPref(inst: ICInstance, key: objc.ConstStr255Param, prefH: objc.Handle) callconv(.C) objc.OSStatus;
-pub const etDefaultPref = ICGetDefaultPref;
+pub extern "ApplicationServices" fn ICGetDefaultPref(inst: ICInstance, key: objc.ConstStr255Param, prefH: objc.Handle) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICEditPreferences(inst: ICInstance, key: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
-pub const ditPreferences = ICEditPreferences;
+pub extern "ApplicationServices" fn ICEditPreferences(inst: ICInstance, key: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICLaunchURL(
+pub extern "ApplicationServices" fn ICLaunchURL(
     inst: ICInstance,
     hint: objc.ConstStr255Param,
     data: ?*anyopaque,
@@ -3178,9 +3116,8 @@ extern "ApplicationServices" fn ICLaunchURL(
     selStart: ?*i64,
     selEnd: ?*i64,
 ) callconv(.C) objc.OSStatus;
-pub const aunchURL = ICLaunchURL;
 
-extern "ApplicationServices" fn ICParseURL(
+pub extern "ApplicationServices" fn ICParseURL(
     inst: ICInstance,
     hint: objc.ConstStr255Param,
     data: ?*anyopaque,
@@ -3189,40 +3126,34 @@ extern "ApplicationServices" fn ICParseURL(
     selEnd: ?*i64,
     url: objc.Handle,
 ) callconv(.C) objc.OSStatus;
-pub const arseURL = ICParseURL;
 
-extern "ApplicationServices" fn ICCreateGURLEvent(
+pub extern "ApplicationServices" fn ICCreateGURLEvent(
     inst: ICInstance,
     helperCreator: objc.OSType,
     urlH: objc.Handle,
     theEvent: ?*core_services.AppleEvent,
 ) callconv(.C) objc.OSStatus;
-pub const reateGURLEvent = ICCreateGURLEvent;
 
-extern "ApplicationServices" fn ICSendGURLEvent(inst: ICInstance, theEvent: ?*core_services.AppleEvent) callconv(.C) objc.OSStatus;
-pub const endGURLEvent = ICSendGURLEvent;
+pub extern "ApplicationServices" fn ICSendGURLEvent(inst: ICInstance, theEvent: ?*core_services.AppleEvent) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICMapFilename(inst: ICInstance, filename: objc.ConstStr255Param, entry: ?*ICMapEntry) callconv(.C) objc.OSStatus;
-pub const apFilename = ICMapFilename;
+pub extern "ApplicationServices" fn ICMapFilename(inst: ICInstance, filename: objc.ConstStr255Param, entry: ?*ICMapEntry) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICMapTypeCreator(
+pub extern "ApplicationServices" fn ICMapTypeCreator(
     inst: ICInstance,
     fType: objc.OSType,
     fCreator: objc.OSType,
     filename: objc.ConstStr255Param,
     entry: ?*ICMapEntry,
 ) callconv(.C) objc.OSStatus;
-pub const apTypeCreator = ICMapTypeCreator;
 
-extern "ApplicationServices" fn ICMapEntriesFilename(
+pub extern "ApplicationServices" fn ICMapEntriesFilename(
     inst: ICInstance,
     entries: objc.Handle,
     filename: objc.ConstStr255Param,
     entry: ?*ICMapEntry,
 ) callconv(.C) objc.OSStatus;
-pub const apEntriesFilename = ICMapEntriesFilename;
 
-extern "ApplicationServices" fn ICMapEntriesTypeCreator(
+pub extern "ApplicationServices" fn ICMapEntriesTypeCreator(
     inst: ICInstance,
     entries: objc.Handle,
     fType: objc.OSType,
@@ -3230,65 +3161,50 @@ extern "ApplicationServices" fn ICMapEntriesTypeCreator(
     filename: objc.ConstStr255Param,
     entry: ?*ICMapEntry,
 ) callconv(.C) objc.OSStatus;
-pub const apEntriesTypeCreator = ICMapEntriesTypeCreator;
 
-extern "ApplicationServices" fn ICCountMapEntries(inst: ICInstance, entries: objc.Handle, count: ?*i64) callconv(.C) objc.OSStatus;
-pub const ountMapEntries = ICCountMapEntries;
+pub extern "ApplicationServices" fn ICCountMapEntries(inst: ICInstance, entries: objc.Handle, count: ?*i64) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetIndMapEntry(
+pub extern "ApplicationServices" fn ICGetIndMapEntry(
     inst: ICInstance,
     entries: objc.Handle,
     index: i64,
     pos: ?*i64,
     entry: ?*ICMapEntry,
 ) callconv(.C) objc.OSStatus;
-pub const etIndMapEntry = ICGetIndMapEntry;
 
-extern "ApplicationServices" fn ICGetMapEntry(
+pub extern "ApplicationServices" fn ICGetMapEntry(
     inst: ICInstance,
     entries: objc.Handle,
     pos: i64,
     entry: ?*ICMapEntry,
 ) callconv(.C) objc.OSStatus;
-pub const etMapEntry = ICGetMapEntry;
 
-extern "ApplicationServices" fn ICSetMapEntry(
+pub extern "ApplicationServices" fn ICSetMapEntry(
     inst: ICInstance,
     entries: objc.Handle,
     pos: i64,
     entry: ?*ICMapEntry,
 ) callconv(.C) objc.OSStatus;
-pub const etMapEntry = ICSetMapEntry;
 
-extern "ApplicationServices" fn ICDeleteMapEntry(inst: ICInstance, entries: objc.Handle, pos: i64) callconv(.C) objc.OSStatus;
-pub const eleteMapEntry = ICDeleteMapEntry;
+pub extern "ApplicationServices" fn ICDeleteMapEntry(inst: ICInstance, entries: objc.Handle, pos: i64) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICAddMapEntry(inst: ICInstance, entries: objc.Handle, entry: ?*ICMapEntry) callconv(.C) objc.OSStatus;
-pub const ddMapEntry = ICAddMapEntry;
+pub extern "ApplicationServices" fn ICAddMapEntry(inst: ICInstance, entries: objc.Handle, entry: ?*ICMapEntry) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetCurrentProfile(inst: ICInstance, currentID: ?*ICProfileID) callconv(.C) objc.OSStatus;
-pub const etCurrentProfile = ICGetCurrentProfile;
+pub extern "ApplicationServices" fn ICGetCurrentProfile(inst: ICInstance, currentID: ?*ICProfileID) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICSetCurrentProfile(inst: ICInstance, newID: ICProfileID) callconv(.C) objc.OSStatus;
-pub const etCurrentProfile = ICSetCurrentProfile;
+pub extern "ApplicationServices" fn ICSetCurrentProfile(inst: ICInstance, newID: ICProfileID) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICCountProfiles(inst: ICInstance, count: ?*i64) callconv(.C) objc.OSStatus;
-pub const ountProfiles = ICCountProfiles;
+pub extern "ApplicationServices" fn ICCountProfiles(inst: ICInstance, count: ?*i64) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetIndProfile(inst: ICInstance, index: i64, thisID: ?*ICProfileID) callconv(.C) objc.OSStatus;
-pub const etIndProfile = ICGetIndProfile;
+pub extern "ApplicationServices" fn ICGetIndProfile(inst: ICInstance, index: i64, thisID: ?*ICProfileID) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICGetProfileName(inst: ICInstance, thisID: ICProfileID, name: objc.Str255) callconv(.C) objc.OSStatus;
-pub const etProfileName = ICGetProfileName;
+pub extern "ApplicationServices" fn ICGetProfileName(inst: ICInstance, thisID: ICProfileID, name: objc.Str255) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICSetProfileName(inst: ICInstance, thisID: ICProfileID, name: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
-pub const etProfileName = ICSetProfileName;
+pub extern "ApplicationServices" fn ICSetProfileName(inst: ICInstance, thisID: ICProfileID, name: objc.ConstStr255Param) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICAddProfile(inst: ICInstance, prototypeID: ICProfileID, newID: ?*ICProfileID) callconv(.C) objc.OSStatus;
-pub const ddProfile = ICAddProfile;
+pub extern "ApplicationServices" fn ICAddProfile(inst: ICInstance, prototypeID: ICProfileID, newID: ?*ICProfileID) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn ICDeleteProfile(inst: ICInstance, thisID: ICProfileID) callconv(.C) objc.OSStatus;
-pub const eleteProfile = ICDeleteProfile;
+pub extern "ApplicationServices" fn ICDeleteProfile(inst: ICInstance, thisID: ICProfileID) callconv(.C) objc.OSStatus;
 
 pub const LaunchFlags = objc.UInt16;
 
@@ -3375,62 +3291,43 @@ pub const SizeResourceRecPtr = ?*SizeResourceRec;
 
 pub const SizeResourceRecHandle = ?*SizeResourceRecPtr;
 
-extern "ApplicationServices" fn LaunchApplication(LaunchParams: LaunchPBPtr) callconv(.C) objc.OSErr;
-pub const nchApplication = LaunchApplication;
+pub extern "ApplicationServices" fn LaunchApplication(LaunchParams: LaunchPBPtr) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetCurrentProcess(pPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
-pub const currentProcess = GetCurrentProcess;
+pub extern "ApplicationServices" fn GetCurrentProcess(pPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetFrontProcess(pPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
-pub const frontProcess = GetFrontProcess;
+pub extern "ApplicationServices" fn GetFrontProcess(pPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetNextProcess(pPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
-pub const nextProcess = GetNextProcess;
+pub extern "ApplicationServices" fn GetNextProcess(pPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetProcessInformation(PSN: ?*objc.ProcessSerialNumber, info: ?*ProcessInfoRec) callconv(.C) objc.OSErr;
-pub const processInformation = GetProcessInformation;
+pub extern "ApplicationServices" fn GetProcessInformation(PSN: ?*objc.ProcessSerialNumber, info: ?*ProcessInfoRec) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn ProcessInformationCopyDictionary(PSN: ?*objc.ProcessSerialNumber, infoToReturn: objc.UInt32) callconv(.C) core_foundation.DictionaryRef;
-pub const cessInformationCopyDictionary = ProcessInformationCopyDictionary;
+pub extern "ApplicationServices" fn ProcessInformationCopyDictionary(PSN: ?*objc.ProcessSerialNumber, infoToReturn: objc.UInt32) callconv(.C) core_foundation.DictionaryRef;
 
-extern "ApplicationServices" fn SetFrontProcess(pPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
-pub const frontProcess = SetFrontProcess;
+pub extern "ApplicationServices" fn SetFrontProcess(pPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SetFrontProcessWithOptions(inProcess: ?*objc.ProcessSerialNumber, inOptions: objc.OptionBits) callconv(.C) objc.OSStatus;
-pub const frontProcessWithOptions = SetFrontProcessWithOptions;
+pub extern "ApplicationServices" fn SetFrontProcessWithOptions(inProcess: ?*objc.ProcessSerialNumber, inOptions: objc.OptionBits) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn WakeUpProcess(PSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
-pub const eUpProcess = WakeUpProcess;
+pub extern "ApplicationServices" fn WakeUpProcess(PSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SameProcess(PSN1: ?*objc.ProcessSerialNumber, PSN2: ?*objc.ProcessSerialNumber, result: ?*objc.Boolean) callconv(.C) objc.OSErr;
-pub const eProcess = SameProcess;
+pub extern "ApplicationServices" fn SameProcess(PSN1: ?*objc.ProcessSerialNumber, PSN2: ?*objc.ProcessSerialNumber, result: ?*objc.Boolean) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn ExitToShell() callconv(.C) void;
-pub const tToShell = ExitToShell;
+pub extern "ApplicationServices" fn ExitToShell() callconv(.C) void;
 
-extern "ApplicationServices" fn KillProcess(inProcess: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
-pub const lProcess = KillProcess;
+pub extern "ApplicationServices" fn KillProcess(inProcess: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetProcessBundleLocation(psn: ?*objc.ProcessSerialNumber, location: ?*core_services.FSRef) callconv(.C) objc.OSStatus;
-pub const processBundleLocation = GetProcessBundleLocation;
+pub extern "ApplicationServices" fn GetProcessBundleLocation(psn: ?*objc.ProcessSerialNumber, location: ?*core_services.FSRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn CopyProcessName(psn: ?*objc.ProcessSerialNumber, name: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const yProcessName = CopyProcessName;
+pub extern "ApplicationServices" fn CopyProcessName(psn: ?*objc.ProcessSerialNumber, name: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn GetProcessPID(psn: ?*objc.ProcessSerialNumber, pid: ?*objc.pid_t) callconv(.C) objc.OSStatus;
-pub const processPID = GetProcessPID;
+pub extern "ApplicationServices" fn GetProcessPID(psn: ?*objc.ProcessSerialNumber, pid: ?*objc.pid_t) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn GetProcessForPID(pid: objc.pid_t, psn: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSStatus;
-pub const processForPID = GetProcessForPID;
+pub extern "ApplicationServices" fn GetProcessForPID(pid: objc.pid_t, psn: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn IsProcessVisible(psn: ?*objc.ProcessSerialNumber) callconv(.C) objc.Boolean;
-pub const rocessVisible = IsProcessVisible;
+pub extern "ApplicationServices" fn IsProcessVisible(psn: ?*objc.ProcessSerialNumber) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn ShowHideProcess(psn: ?*objc.ProcessSerialNumber, visible: objc.Boolean) callconv(.C) objc.OSErr;
-pub const wHideProcess = ShowHideProcess;
+pub extern "ApplicationServices" fn ShowHideProcess(psn: ?*objc.ProcessSerialNumber, visible: objc.Boolean) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn TransformProcessType(psn: ?*objc.ProcessSerialNumber, transformState: ProcessApplicationTransformState) callconv(.C) objc.OSStatus;
-pub const nsformProcessType = TransformProcessType;
+pub extern "ApplicationServices" fn TransformProcessType(psn: ?*objc.ProcessSerialNumber, transformState: ProcessApplicationTransformState) callconv(.C) objc.OSStatus;
 
 pub const anon8941 = enum(i32) {
     cdevGenErr = -1,
@@ -3465,60 +3362,47 @@ pub const PasteboardStandardLocation = enum(objc.OSType) {
     Unknown = 1970170734,
 };
 
-extern "ApplicationServices" fn PasteboardGetTypeID() callconv(.C) core_foundation.TypeID;
-pub const teboardGetTypeID = PasteboardGetTypeID;
+pub extern "ApplicationServices" fn PasteboardGetTypeID() callconv(.C) core_foundation.TypeID;
 
-extern "ApplicationServices" fn PasteboardCreate(inName: core_foundation.StringRef, outPasteboard: ?*PasteboardRef) callconv(.C) objc.OSStatus;
-pub const teboardCreate = PasteboardCreate;
+pub extern "ApplicationServices" fn PasteboardCreate(inName: core_foundation.StringRef, outPasteboard: ?*PasteboardRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PasteboardSynchronize(inPasteboard: PasteboardRef) callconv(.C) PasteboardSyncFlags;
-pub const teboardSynchronize = PasteboardSynchronize;
+pub extern "ApplicationServices" fn PasteboardSynchronize(inPasteboard: PasteboardRef) callconv(.C) PasteboardSyncFlags;
 
-extern "ApplicationServices" fn PasteboardClear(inPasteboard: PasteboardRef) callconv(.C) objc.OSStatus;
-pub const teboardClear = PasteboardClear;
+pub extern "ApplicationServices" fn PasteboardClear(inPasteboard: PasteboardRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PasteboardCopyName(inPasteboard: PasteboardRef, outName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const teboardCopyName = PasteboardCopyName;
+pub extern "ApplicationServices" fn PasteboardCopyName(inPasteboard: PasteboardRef, outName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PasteboardGetItemCount(inPasteboard: PasteboardRef, outItemCount: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
-pub const teboardGetItemCount = PasteboardGetItemCount;
+pub extern "ApplicationServices" fn PasteboardGetItemCount(inPasteboard: PasteboardRef, outItemCount: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PasteboardGetItemIdentifier(inPasteboard: PasteboardRef, inIndex: core_foundation.Index, outItem: ?*PasteboardItemID) callconv(.C) objc.OSStatus;
-pub const teboardGetItemIdentifier = PasteboardGetItemIdentifier;
+pub extern "ApplicationServices" fn PasteboardGetItemIdentifier(inPasteboard: PasteboardRef, inIndex: core_foundation.Index, outItem: ?*PasteboardItemID) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PasteboardCopyItemFlavors(inPasteboard: PasteboardRef, inItem: PasteboardItemID, outFlavorTypes: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const teboardCopyItemFlavors = PasteboardCopyItemFlavors;
+pub extern "ApplicationServices" fn PasteboardCopyItemFlavors(inPasteboard: PasteboardRef, inItem: PasteboardItemID, outFlavorTypes: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PasteboardGetItemFlavorFlags(
+pub extern "ApplicationServices" fn PasteboardGetItemFlavorFlags(
     inPasteboard: PasteboardRef,
     inItem: PasteboardItemID,
     inFlavorType: core_foundation.StringRef,
     outFlags: ?*PasteboardFlavorFlags,
 ) callconv(.C) objc.OSStatus;
-pub const teboardGetItemFlavorFlags = PasteboardGetItemFlavorFlags;
 
-extern "ApplicationServices" fn PasteboardCopyItemFlavorData(
+pub extern "ApplicationServices" fn PasteboardCopyItemFlavorData(
     inPasteboard: PasteboardRef,
     inItem: PasteboardItemID,
     inFlavorType: core_foundation.StringRef,
     outData: ?*core_foundation.DataRef,
 ) callconv(.C) objc.OSStatus;
-pub const teboardCopyItemFlavorData = PasteboardCopyItemFlavorData;
 
-extern "ApplicationServices" fn PasteboardPutItemFlavor(
+pub extern "ApplicationServices" fn PasteboardPutItemFlavor(
     inPasteboard: PasteboardRef,
     inItem: PasteboardItemID,
     inFlavorType: core_foundation.StringRef,
     inData: core_foundation.DataRef,
     inFlags: PasteboardFlavorFlags,
 ) callconv(.C) objc.OSStatus;
-pub const teboardPutItemFlavor = PasteboardPutItemFlavor;
 
-extern "ApplicationServices" fn PasteboardCopyPasteLocation(inPasteboard: PasteboardRef, outPasteLocation: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
-pub const teboardCopyPasteLocation = PasteboardCopyPasteLocation;
+pub extern "ApplicationServices" fn PasteboardCopyPasteLocation(inPasteboard: PasteboardRef, outPasteLocation: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PasteboardSetPasteLocation(inPasteboard: PasteboardRef, inPasteLocation: core_foundation.URLRef) callconv(.C) objc.OSStatus;
-pub const teboardSetPasteLocation = PasteboardSetPasteLocation;
+pub extern "ApplicationServices" fn PasteboardSetPasteLocation(inPasteboard: PasteboardRef, inPasteLocation: core_foundation.URLRef) callconv(.C) objc.OSStatus;
 
 pub const PasteboardPromiseKeeperProcPtr = ?*const fn (
     PasteboardRef,
@@ -3527,11 +3411,9 @@ pub const PasteboardPromiseKeeperProcPtr = ?*const fn (
     ?*anyopaque,
 ) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PasteboardSetPromiseKeeper(inPasteboard: PasteboardRef, inPromiseKeeper: PasteboardPromiseKeeperProcPtr, inContext: ?*anyopaque) callconv(.C) objc.OSStatus;
-pub const teboardSetPromiseKeeper = PasteboardSetPromiseKeeper;
+pub extern "ApplicationServices" fn PasteboardSetPromiseKeeper(inPasteboard: PasteboardRef, inPromiseKeeper: PasteboardPromiseKeeperProcPtr, inContext: ?*anyopaque) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PasteboardResolvePromises(inPasteboard: PasteboardRef) callconv(.C) objc.OSStatus;
-pub const teboardResolvePromises = PasteboardResolvePromises;
+pub extern "ApplicationServices" fn PasteboardResolvePromises(inPasteboard: PasteboardRef) callconv(.C) objc.OSStatus;
 
 pub const OpaqueTranslationRef = extern struct {};
 
@@ -3544,53 +3426,44 @@ pub const anon1421 = enum(u32) {
     TranslationFileTranslation = 2,
 };
 
-extern "ApplicationServices" fn TranslationGetTypeID() callconv(.C) core_foundation.TypeID;
-pub const nslationGetTypeID = TranslationGetTypeID;
+pub extern "ApplicationServices" fn TranslationGetTypeID() callconv(.C) core_foundation.TypeID;
 
-extern "ApplicationServices" fn TranslationCreate(
+pub extern "ApplicationServices" fn TranslationCreate(
     inSourceType: core_foundation.StringRef,
     inDestinationType: core_foundation.StringRef,
     inTranslationFlags: TranslationFlags,
     outTranslation: ?*TranslationRef,
 ) callconv(.C) objc.OSStatus;
-pub const nslationCreate = TranslationCreate;
 
-extern "ApplicationServices" fn TranslationCreateWithSourceArray(
+pub extern "ApplicationServices" fn TranslationCreateWithSourceArray(
     inSourceTypes: core_foundation.ArrayRef,
     inTranslationFlags: TranslationFlags,
     outDestinationTypes: ?*core_foundation.ArrayRef,
     outTranslations: ?*core_foundation.DictionaryRef,
 ) callconv(.C) objc.OSStatus;
-pub const nslationCreateWithSourceArray = TranslationCreateWithSourceArray;
 
-extern "ApplicationServices" fn TranslationPerformForData(inTranslation: TranslationRef, inSourceData: core_foundation.DataRef, outDestinationData: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
-pub const nslationPerformForData = TranslationPerformForData;
+pub extern "ApplicationServices" fn TranslationPerformForData(inTranslation: TranslationRef, inSourceData: core_foundation.DataRef, outDestinationData: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn TranslationPerformForFile(
+pub extern "ApplicationServices" fn TranslationPerformForFile(
     inTranslation: TranslationRef,
     inSourceFile: ?*core_services.FSRef,
     inDestinationDirectory: ?*core_services.FSRef,
     inDestinationName: core_foundation.StringRef,
     outTranslatedFile: ?*core_services.FSRef,
 ) callconv(.C) objc.OSStatus;
-pub const nslationPerformForFile = TranslationPerformForFile;
 
-extern "ApplicationServices" fn TranslationPerformForURL(
+pub extern "ApplicationServices" fn TranslationPerformForURL(
     inTranslation: TranslationRef,
     inSourceURL: core_foundation.URLRef,
     inDestinationURL: core_foundation.URLRef,
     outTranslatedURL: ?*core_foundation.URLRef,
 ) callconv(.C) objc.OSStatus;
-pub const nslationPerformForURL = TranslationPerformForURL;
 
-extern "ApplicationServices" fn TranslationCopySourceType(inTranslation: TranslationRef, outSourceType: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const nslationCopySourceType = TranslationCopySourceType;
+pub extern "ApplicationServices" fn TranslationCopySourceType(inTranslation: TranslationRef, outSourceType: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn TranslationCopyDestinationType(inTranslation: TranslationRef, outDestinationType: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const nslationCopyDestinationType = TranslationCopyDestinationType;
+pub extern "ApplicationServices" fn TranslationCopyDestinationType(inTranslation: TranslationRef, outDestinationType: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn TranslationGetTranslationFlags(inTranslation: TranslationRef, outTranslationFlags: ?*TranslationFlags) callconv(.C) objc.OSStatus;
-pub const nslationGetTranslationFlags = TranslationGetTranslationFlags;
+pub extern "ApplicationServices" fn TranslationGetTranslationFlags(inTranslation: TranslationRef, outTranslationFlags: ?*TranslationFlags) callconv(.C) objc.OSStatus;
 
 pub const AXError = enum(objc.SInt32) {
     Success = 0,
@@ -3625,17 +3498,13 @@ pub const AXPriority = enum(core_foundation.Index) {
     High = 90,
 };
 
-extern "ApplicationServices" fn AXAPIEnabled() callconv(.C) objc.Boolean;
-pub const piEnabled = AXAPIEnabled;
+pub extern "ApplicationServices" fn AXAPIEnabled() callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn AXIsProcessTrustedWithOptions(options: core_foundation.DictionaryRef) callconv(.C) objc.Boolean;
-pub const sProcessTrustedWithOptions = AXIsProcessTrustedWithOptions;
+pub extern "ApplicationServices" fn AXIsProcessTrustedWithOptions(options: core_foundation.DictionaryRef) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn AXIsProcessTrusted() callconv(.C) objc.Boolean;
-pub const sProcessTrusted = AXIsProcessTrusted;
+pub extern "ApplicationServices" fn AXIsProcessTrusted() callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn AXMakeProcessTrusted(executablePath: core_foundation.StringRef) callconv(.C) AXError;
-pub const akeProcessTrusted = AXMakeProcessTrusted;
+pub extern "ApplicationServices" fn AXMakeProcessTrusted(executablePath: core_foundation.StringRef) callconv(.C) AXError;
 
 pub const __AXUIElement = extern struct {};
 
@@ -3645,129 +3514,101 @@ pub const AXCopyMultipleAttributeOptions = enum(objc.UInt32) {
     StopOnError = 1,
 };
 
-extern "ApplicationServices" fn AXUIElementGetTypeID() callconv(.C) core_foundation.TypeID;
-pub const iElementGetTypeID = AXUIElementGetTypeID;
+pub extern "ApplicationServices" fn AXUIElementGetTypeID() callconv(.C) core_foundation.TypeID;
 
-extern "ApplicationServices" fn AXUIElementCopyAttributeNames(element: AXUIElementRef, names: ?*core_foundation.ArrayRef) callconv(.C) AXError;
-pub const iElementCopyAttributeNames = AXUIElementCopyAttributeNames;
+pub extern "ApplicationServices" fn AXUIElementCopyAttributeNames(element: AXUIElementRef, names: ?*core_foundation.ArrayRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementCopyAttributeValue(element: AXUIElementRef, attribute: core_foundation.StringRef, value: ?*core_foundation.TypeRef) callconv(.C) AXError;
-pub const iElementCopyAttributeValue = AXUIElementCopyAttributeValue;
+pub extern "ApplicationServices" fn AXUIElementCopyAttributeValue(element: AXUIElementRef, attribute: core_foundation.StringRef, value: ?*core_foundation.TypeRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementGetAttributeValueCount(element: AXUIElementRef, attribute: core_foundation.StringRef, count: ?*core_foundation.Index) callconv(.C) AXError;
-pub const iElementGetAttributeValueCount = AXUIElementGetAttributeValueCount;
+pub extern "ApplicationServices" fn AXUIElementGetAttributeValueCount(element: AXUIElementRef, attribute: core_foundation.StringRef, count: ?*core_foundation.Index) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementCopyAttributeValues(
+pub extern "ApplicationServices" fn AXUIElementCopyAttributeValues(
     element: AXUIElementRef,
     attribute: core_foundation.StringRef,
     index: core_foundation.Index,
     maxValues: core_foundation.Index,
     values: ?*core_foundation.ArrayRef,
 ) callconv(.C) AXError;
-pub const iElementCopyAttributeValues = AXUIElementCopyAttributeValues;
 
-extern "ApplicationServices" fn AXUIElementIsAttributeSettable(element: AXUIElementRef, attribute: core_foundation.StringRef, settable: ?*objc.Boolean) callconv(.C) AXError;
-pub const iElementIsAttributeSettable = AXUIElementIsAttributeSettable;
+pub extern "ApplicationServices" fn AXUIElementIsAttributeSettable(element: AXUIElementRef, attribute: core_foundation.StringRef, settable: ?*objc.Boolean) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementSetAttributeValue(element: AXUIElementRef, attribute: core_foundation.StringRef, value: core_foundation.TypeRef) callconv(.C) AXError;
-pub const iElementSetAttributeValue = AXUIElementSetAttributeValue;
+pub extern "ApplicationServices" fn AXUIElementSetAttributeValue(element: AXUIElementRef, attribute: core_foundation.StringRef, value: core_foundation.TypeRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementCopyMultipleAttributeValues(
+pub extern "ApplicationServices" fn AXUIElementCopyMultipleAttributeValues(
     element: AXUIElementRef,
     attributes: core_foundation.ArrayRef,
     options: AXCopyMultipleAttributeOptions,
     values: ?*core_foundation.ArrayRef,
 ) callconv(.C) AXError;
-pub const iElementCopyMultipleAttributeValues = AXUIElementCopyMultipleAttributeValues;
 
-extern "ApplicationServices" fn AXUIElementCopyParameterizedAttributeNames(element: AXUIElementRef, names: ?*core_foundation.ArrayRef) callconv(.C) AXError;
-pub const iElementCopyParameterizedAttributeNames = AXUIElementCopyParameterizedAttributeNames;
+pub extern "ApplicationServices" fn AXUIElementCopyParameterizedAttributeNames(element: AXUIElementRef, names: ?*core_foundation.ArrayRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementCopyParameterizedAttributeValue(
+pub extern "ApplicationServices" fn AXUIElementCopyParameterizedAttributeValue(
     element: AXUIElementRef,
     parameterizedAttribute: core_foundation.StringRef,
     parameter: core_foundation.TypeRef,
     result: ?*core_foundation.TypeRef,
 ) callconv(.C) AXError;
-pub const iElementCopyParameterizedAttributeValue = AXUIElementCopyParameterizedAttributeValue;
 
-extern "ApplicationServices" fn AXUIElementCopyActionNames(element: AXUIElementRef, names: ?*core_foundation.ArrayRef) callconv(.C) AXError;
-pub const iElementCopyActionNames = AXUIElementCopyActionNames;
+pub extern "ApplicationServices" fn AXUIElementCopyActionNames(element: AXUIElementRef, names: ?*core_foundation.ArrayRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementCopyActionDescription(element: AXUIElementRef, action: core_foundation.StringRef, description: ?*core_foundation.StringRef) callconv(.C) AXError;
-pub const iElementCopyActionDescription = AXUIElementCopyActionDescription;
+pub extern "ApplicationServices" fn AXUIElementCopyActionDescription(element: AXUIElementRef, action: core_foundation.StringRef, description: ?*core_foundation.StringRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementPerformAction(element: AXUIElementRef, action: core_foundation.StringRef) callconv(.C) AXError;
-pub const iElementPerformAction = AXUIElementPerformAction;
+pub extern "ApplicationServices" fn AXUIElementPerformAction(element: AXUIElementRef, action: core_foundation.StringRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementCopyElementAtPosition(
+pub extern "ApplicationServices" fn AXUIElementCopyElementAtPosition(
     application: AXUIElementRef,
     x: f32,
     y: f32,
     element: ?*AXUIElementRef,
 ) callconv(.C) AXError;
-pub const iElementCopyElementAtPosition = AXUIElementCopyElementAtPosition;
 
-extern "ApplicationServices" fn AXUIElementCreateApplication(pid: objc.pid_t) callconv(.C) AXUIElementRef;
-pub const iElementCreateApplication = AXUIElementCreateApplication;
+pub extern "ApplicationServices" fn AXUIElementCreateApplication(pid: objc.pid_t) callconv(.C) AXUIElementRef;
 
-extern "ApplicationServices" fn AXUIElementCreateSystemWide() callconv(.C) AXUIElementRef;
-pub const iElementCreateSystemWide = AXUIElementCreateSystemWide;
+pub extern "ApplicationServices" fn AXUIElementCreateSystemWide() callconv(.C) AXUIElementRef;
 
-extern "ApplicationServices" fn AXUIElementGetPid(element: AXUIElementRef, pid: ?*objc.pid_t) callconv(.C) AXError;
-pub const iElementGetPid = AXUIElementGetPid;
+pub extern "ApplicationServices" fn AXUIElementGetPid(element: AXUIElementRef, pid: ?*objc.pid_t) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementSetMessagingTimeout(element: AXUIElementRef, timeoutInSeconds: f32) callconv(.C) AXError;
-pub const iElementSetMessagingTimeout = AXUIElementSetMessagingTimeout;
+pub extern "ApplicationServices" fn AXUIElementSetMessagingTimeout(element: AXUIElementRef, timeoutInSeconds: f32) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXUIElementPostKeyboardEvent(
+pub extern "ApplicationServices" fn AXUIElementPostKeyboardEvent(
     application: AXUIElementRef,
     keyChar: core_graphics.CharCode,
     virtualKey: core_graphics.KeyCode,
     keyDown: objc.Boolean,
 ) callconv(.C) AXError;
-pub const iElementPostKeyboardEvent = AXUIElementPostKeyboardEvent;
 
 pub const __AXTextMarker = extern struct {};
 
 pub const AXTextMarkerRef = ?*__AXTextMarker;
 
-extern "ApplicationServices" fn AXTextMarkerGetTypeID() callconv(.C) core_foundation.TypeID;
-pub const extMarkerGetTypeID = AXTextMarkerGetTypeID;
+pub extern "ApplicationServices" fn AXTextMarkerGetTypeID() callconv(.C) core_foundation.TypeID;
 
-extern "ApplicationServices" fn AXTextMarkerCreate(allocator: core_foundation.AllocatorRef, bytes: ?*objc.UInt8, length: core_foundation.Index) callconv(.C) AXTextMarkerRef;
-pub const extMarkerCreate = AXTextMarkerCreate;
+pub extern "ApplicationServices" fn AXTextMarkerCreate(allocator: core_foundation.AllocatorRef, bytes: ?*objc.UInt8, length: core_foundation.Index) callconv(.C) AXTextMarkerRef;
 
-extern "ApplicationServices" fn AXTextMarkerGetLength(marker: AXTextMarkerRef) callconv(.C) core_foundation.Index;
-pub const extMarkerGetLength = AXTextMarkerGetLength;
+pub extern "ApplicationServices" fn AXTextMarkerGetLength(marker: AXTextMarkerRef) callconv(.C) core_foundation.Index;
 
-extern "ApplicationServices" fn AXTextMarkerGetBytePtr(theTextMarker: AXTextMarkerRef) callconv(.C) ?*objc.UInt8;
-pub const extMarkerGetBytePtr = AXTextMarkerGetBytePtr;
+pub extern "ApplicationServices" fn AXTextMarkerGetBytePtr(theTextMarker: AXTextMarkerRef) callconv(.C) ?*objc.UInt8;
 
 pub const __AXTextMarkerRange = extern struct {};
 
 pub const AXTextMarkerRangeRef = ?*__AXTextMarkerRange;
 
-extern "ApplicationServices" fn AXTextMarkerRangeGetTypeID() callconv(.C) core_foundation.TypeID;
-pub const extMarkerRangeGetTypeID = AXTextMarkerRangeGetTypeID;
+pub extern "ApplicationServices" fn AXTextMarkerRangeGetTypeID() callconv(.C) core_foundation.TypeID;
 
-extern "ApplicationServices" fn AXTextMarkerRangeCreate(allocator: core_foundation.AllocatorRef, startMarker: AXTextMarkerRef, endMarker: AXTextMarkerRef) callconv(.C) AXTextMarkerRangeRef;
-pub const extMarkerRangeCreate = AXTextMarkerRangeCreate;
+pub extern "ApplicationServices" fn AXTextMarkerRangeCreate(allocator: core_foundation.AllocatorRef, startMarker: AXTextMarkerRef, endMarker: AXTextMarkerRef) callconv(.C) AXTextMarkerRangeRef;
 
-extern "ApplicationServices" fn AXTextMarkerRangeCreateWithBytes(
+pub extern "ApplicationServices" fn AXTextMarkerRangeCreateWithBytes(
     allocator: core_foundation.AllocatorRef,
     startMarkerBytes: ?*objc.UInt8,
     startMarkerLength: core_foundation.Index,
     endMarkerBytes: ?*objc.UInt8,
     endMarkerLength: core_foundation.Index,
 ) callconv(.C) AXTextMarkerRangeRef;
-pub const extMarkerRangeCreateWithBytes = AXTextMarkerRangeCreateWithBytes;
 
-extern "ApplicationServices" fn AXTextMarkerRangeCopyStartMarker(textMarkerRange: AXTextMarkerRangeRef) callconv(.C) AXTextMarkerRef;
-pub const extMarkerRangeCopyStartMarker = AXTextMarkerRangeCopyStartMarker;
+pub extern "ApplicationServices" fn AXTextMarkerRangeCopyStartMarker(textMarkerRange: AXTextMarkerRangeRef) callconv(.C) AXTextMarkerRef;
 
-extern "ApplicationServices" fn AXTextMarkerRangeCopyEndMarker(textMarkerRange: AXTextMarkerRangeRef) callconv(.C) AXTextMarkerRef;
-pub const extMarkerRangeCopyEndMarker = AXTextMarkerRangeCopyEndMarker;
+pub extern "ApplicationServices" fn AXTextMarkerRangeCopyEndMarker(textMarkerRange: AXTextMarkerRangeRef) callconv(.C) AXTextMarkerRef;
 
 pub const __AXObserver = extern struct {};
 
@@ -3788,28 +3629,22 @@ pub const AXObserverCallbackWithInfo = ?*const fn (
     ?*anyopaque,
 ) callconv(.C) void;
 
-extern "ApplicationServices" fn AXObserverGetTypeID() callconv(.C) core_foundation.TypeID;
-pub const bserverGetTypeID = AXObserverGetTypeID;
+pub extern "ApplicationServices" fn AXObserverGetTypeID() callconv(.C) core_foundation.TypeID;
 
-extern "ApplicationServices" fn AXObserverCreate(application: objc.pid_t, callback: AXObserverCallback, outObserver: ?*AXObserverRef) callconv(.C) AXError;
-pub const bserverCreate = AXObserverCreate;
+pub extern "ApplicationServices" fn AXObserverCreate(application: objc.pid_t, callback: AXObserverCallback, outObserver: ?*AXObserverRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXObserverCreateWithInfoCallback(application: objc.pid_t, callback: AXObserverCallbackWithInfo, outObserver: ?*AXObserverRef) callconv(.C) AXError;
-pub const bserverCreateWithInfoCallback = AXObserverCreateWithInfoCallback;
+pub extern "ApplicationServices" fn AXObserverCreateWithInfoCallback(application: objc.pid_t, callback: AXObserverCallbackWithInfo, outObserver: ?*AXObserverRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXObserverAddNotification(
+pub extern "ApplicationServices" fn AXObserverAddNotification(
     observer: AXObserverRef,
     element: AXUIElementRef,
     notification: core_foundation.StringRef,
     refcon: ?*anyopaque,
 ) callconv(.C) AXError;
-pub const bserverAddNotification = AXObserverAddNotification;
 
-extern "ApplicationServices" fn AXObserverRemoveNotification(observer: AXObserverRef, element: AXUIElementRef, notification: core_foundation.StringRef) callconv(.C) AXError;
-pub const bserverRemoveNotification = AXObserverRemoveNotification;
+pub extern "ApplicationServices" fn AXObserverRemoveNotification(observer: AXObserverRef, element: AXUIElementRef, notification: core_foundation.StringRef) callconv(.C) AXError;
 
-extern "ApplicationServices" fn AXObserverGetRunLoopSource(observer: AXObserverRef) callconv(.C) core_foundation.RunLoopSourceRef;
-pub const bserverGetRunLoopSource = AXObserverGetRunLoopSource;
+pub extern "ApplicationServices" fn AXObserverGetRunLoopSource(observer: AXObserverRef) callconv(.C) core_foundation.RunLoopSourceRef;
 
 pub const AXValueType = enum(objc.UInt32) {
     CGPoint = 1,
@@ -3824,17 +3659,13 @@ pub const __AXValue = extern struct {};
 
 pub const AXValueRef = ?*__AXValue;
 
-extern "ApplicationServices" fn AXValueGetTypeID() callconv(.C) core_foundation.TypeID;
-pub const alueGetTypeID = AXValueGetTypeID;
+pub extern "ApplicationServices" fn AXValueGetTypeID() callconv(.C) core_foundation.TypeID;
 
-extern "ApplicationServices" fn AXValueCreate(theType: AXValueType, valuePtr: ?*anyopaque) callconv(.C) AXValueRef;
-pub const alueCreate = AXValueCreate;
+pub extern "ApplicationServices" fn AXValueCreate(theType: AXValueType, valuePtr: ?*anyopaque) callconv(.C) AXValueRef;
 
-extern "ApplicationServices" fn AXValueGetType(value: AXValueRef) callconv(.C) AXValueType;
-pub const alueGetType = AXValueGetType;
+pub extern "ApplicationServices" fn AXValueGetType(value: AXValueRef) callconv(.C) AXValueType;
 
-extern "ApplicationServices" fn AXValueGetValue(value: AXValueRef, theType: AXValueType, valuePtr: ?*anyopaque) callconv(.C) objc.Boolean;
-pub const alueGetValue = AXValueGetValue;
+pub extern "ApplicationServices" fn AXValueGetValue(value: AXValueRef, theType: AXValueType, valuePtr: ?*anyopaque) callconv(.C) objc.Boolean;
 
 pub const AXUnderlineStyle = enum(objc.UInt32) {
     None = 0,
@@ -3845,11 +3676,9 @@ pub const AXUnderlineStyle = enum(objc.UInt32) {
 
 pub const UAZoomChangeFocusType = objc.UInt32;
 
-extern "ApplicationServices" fn UAZoomEnabled() callconv(.C) objc.Boolean;
-pub const oomEnabled = UAZoomEnabled;
+pub extern "ApplicationServices" fn UAZoomEnabled() callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn UAZoomChangeFocus(inRect: ?*core_foundation.CGRect, inHighlightRect: ?*core_foundation.CGRect, inType: UAZoomChangeFocusType) callconv(.C) objc.OSStatus;
-pub const oomChangeFocus = UAZoomChangeFocus;
+pub extern "ApplicationServices" fn UAZoomChangeFocus(inRect: ?*core_foundation.CGRect, inHighlightRect: ?*core_foundation.CGRect, inType: UAZoomChangeFocusType) callconv(.C) objc.OSStatus;
 
 pub const PMObject = ?*anyopaque;
 
@@ -4208,321 +4037,225 @@ pub const PDEPlugInCallbackProtocol = opaque {
     }
 };
 
-extern "ApplicationServices" fn PMRetain(object: PMObject) callconv(.C) objc.OSStatus;
-pub const etain = PMRetain;
+pub extern "ApplicationServices" fn PMRetain(object: PMObject) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMRelease(object: PMObject) callconv(.C) objc.OSStatus;
-pub const elease = PMRelease;
+pub extern "ApplicationServices" fn PMRelease(object: PMObject) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCreateSession(printSession: ?*PMPrintSession) callconv(.C) objc.OSStatus;
-pub const reateSession = PMCreateSession;
+pub extern "ApplicationServices" fn PMCreateSession(printSession: ?*PMPrintSession) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionError(printSession: PMPrintSession) callconv(.C) objc.OSStatus;
-pub const essionError = PMSessionError;
+pub extern "ApplicationServices" fn PMSessionError(printSession: PMPrintSession) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionSetError(printSession: PMPrintSession, printError: objc.OSStatus) callconv(.C) objc.OSStatus;
-pub const essionSetError = PMSessionSetError;
+pub extern "ApplicationServices" fn PMSessionSetError(printSession: PMPrintSession, printError: objc.OSStatus) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionBeginCGDocumentNoDialog(printSession: PMPrintSession, printSettings: PMPrintSettings, pageFormat: PMPageFormat) callconv(.C) objc.OSStatus;
-pub const essionBeginCGDocumentNoDialog = PMSessionBeginCGDocumentNoDialog;
+pub extern "ApplicationServices" fn PMSessionBeginCGDocumentNoDialog(printSession: PMPrintSession, printSettings: PMPrintSettings, pageFormat: PMPageFormat) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionEndDocumentNoDialog(printSession: PMPrintSession) callconv(.C) objc.OSStatus;
-pub const essionEndDocumentNoDialog = PMSessionEndDocumentNoDialog;
+pub extern "ApplicationServices" fn PMSessionEndDocumentNoDialog(printSession: PMPrintSession) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionBeginPageNoDialog(printSession: PMPrintSession, pageFormat: PMPageFormat, pageFrame: ?*PMRect) callconv(.C) objc.OSStatus;
-pub const essionBeginPageNoDialog = PMSessionBeginPageNoDialog;
+pub extern "ApplicationServices" fn PMSessionBeginPageNoDialog(printSession: PMPrintSession, pageFormat: PMPageFormat, pageFrame: ?*PMRect) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionEndPageNoDialog(printSession: PMPrintSession) callconv(.C) objc.OSStatus;
-pub const essionEndPageNoDialog = PMSessionEndPageNoDialog;
+pub extern "ApplicationServices" fn PMSessionEndPageNoDialog(printSession: PMPrintSession) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionGetCGGraphicsContext(printSession: PMPrintSession, context: ?*core_graphics.ContextRef) callconv(.C) objc.OSStatus;
-pub const essionGetCGGraphicsContext = PMSessionGetCGGraphicsContext;
+pub extern "ApplicationServices" fn PMSessionGetCGGraphicsContext(printSession: PMPrintSession, context: ?*core_graphics.ContextRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionGetDestinationType(printSession: PMPrintSession, printSettings: PMPrintSettings, destTypeP: ?*PMDestinationType) callconv(.C) objc.OSStatus;
-pub const essionGetDestinationType = PMSessionGetDestinationType;
+pub extern "ApplicationServices" fn PMSessionGetDestinationType(printSession: PMPrintSession, printSettings: PMPrintSettings, destTypeP: ?*PMDestinationType) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionCopyDestinationFormat(printSession: PMPrintSession, printSettings: PMPrintSettings, destFormatP: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const essionCopyDestinationFormat = PMSessionCopyDestinationFormat;
+pub extern "ApplicationServices" fn PMSessionCopyDestinationFormat(printSession: PMPrintSession, printSettings: PMPrintSettings, destFormatP: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionCopyDestinationLocation(printSession: PMPrintSession, printSettings: PMPrintSettings, destLocationP: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
-pub const essionCopyDestinationLocation = PMSessionCopyDestinationLocation;
+pub extern "ApplicationServices" fn PMSessionCopyDestinationLocation(printSession: PMPrintSession, printSettings: PMPrintSettings, destLocationP: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionSetDestination(
+pub extern "ApplicationServices" fn PMSessionSetDestination(
     printSession: PMPrintSession,
     printSettings: PMPrintSettings,
     destType: PMDestinationType,
     destFormat: core_foundation.StringRef,
     destLocation: core_foundation.URLRef,
 ) callconv(.C) objc.OSStatus;
-pub const essionSetDestination = PMSessionSetDestination;
 
-extern "ApplicationServices" fn PMSessionCopyOutputFormatList(printSession: PMPrintSession, destType: PMDestinationType, documentFormatP: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const essionCopyOutputFormatList = PMSessionCopyOutputFormatList;
+pub extern "ApplicationServices" fn PMSessionCopyOutputFormatList(printSession: PMPrintSession, destType: PMDestinationType, documentFormatP: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionCreatePageFormatList(printSession: PMPrintSession, printer: PMPrinter, pageFormatList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const essionCreatePageFormatList = PMSessionCreatePageFormatList;
+pub extern "ApplicationServices" fn PMSessionCreatePageFormatList(printSession: PMPrintSession, printer: PMPrinter, pageFormatList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionCreatePrinterList(
+pub extern "ApplicationServices" fn PMSessionCreatePrinterList(
     printSession: PMPrintSession,
     printerList: ?*core_foundation.ArrayRef,
     currentIndex: ?*core_foundation.Index,
     currentPrinter: ?*PMPrinter,
 ) callconv(.C) objc.OSStatus;
-pub const essionCreatePrinterList = PMSessionCreatePrinterList;
 
-extern "ApplicationServices" fn PMSessionGetCurrentPrinter(printSession: PMPrintSession, currentPrinter: ?*PMPrinter) callconv(.C) objc.OSStatus;
-pub const essionGetCurrentPrinter = PMSessionGetCurrentPrinter;
+pub extern "ApplicationServices" fn PMSessionGetCurrentPrinter(printSession: PMPrintSession, currentPrinter: ?*PMPrinter) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionSetCurrentPMPrinter(session: PMPrintSession, printer: PMPrinter) callconv(.C) objc.OSStatus;
-pub const essionSetCurrentPMPrinter = PMSessionSetCurrentPMPrinter;
+pub extern "ApplicationServices" fn PMSessionSetCurrentPMPrinter(session: PMPrintSession, printer: PMPrinter) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionGetDataFromSession(printSession: PMPrintSession, key: core_foundation.StringRef, data: ?*core_foundation.TypeRef) callconv(.C) objc.OSStatus;
-pub const essionGetDataFromSession = PMSessionGetDataFromSession;
+pub extern "ApplicationServices" fn PMSessionGetDataFromSession(printSession: PMPrintSession, key: core_foundation.StringRef, data: ?*core_foundation.TypeRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionSetDataInSession(printSession: PMPrintSession, key: core_foundation.StringRef, data: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
-pub const essionSetDataInSession = PMSessionSetDataInSession;
+pub extern "ApplicationServices" fn PMSessionSetDataInSession(printSession: PMPrintSession, key: core_foundation.StringRef, data: core_foundation.TypeRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCreatePageFormat(pageFormat: ?*PMPageFormat) callconv(.C) objc.OSStatus;
-pub const reatePageFormat = PMCreatePageFormat;
+pub extern "ApplicationServices" fn PMCreatePageFormat(pageFormat: ?*PMPageFormat) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionDefaultPageFormat(printSession: PMPrintSession, pageFormat: PMPageFormat) callconv(.C) objc.OSStatus;
-pub const essionDefaultPageFormat = PMSessionDefaultPageFormat;
+pub extern "ApplicationServices" fn PMSessionDefaultPageFormat(printSession: PMPrintSession, pageFormat: PMPageFormat) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionValidatePageFormat(printSession: PMPrintSession, pageFormat: PMPageFormat, changed: ?*objc.Boolean) callconv(.C) objc.OSStatus;
-pub const essionValidatePageFormat = PMSessionValidatePageFormat;
+pub extern "ApplicationServices" fn PMSessionValidatePageFormat(printSession: PMPrintSession, pageFormat: PMPageFormat, changed: ?*objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCopyPageFormat(formatSrc: PMPageFormat, formatDest: PMPageFormat) callconv(.C) objc.OSStatus;
-pub const opyPageFormat = PMCopyPageFormat;
+pub extern "ApplicationServices" fn PMCopyPageFormat(formatSrc: PMPageFormat, formatDest: PMPageFormat) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCreatePageFormatWithPMPaper(pageFormat: ?*PMPageFormat, paper: PMPaper) callconv(.C) objc.OSStatus;
-pub const reatePageFormatWithPMPaper = PMCreatePageFormatWithPMPaper;
+pub extern "ApplicationServices" fn PMCreatePageFormatWithPMPaper(pageFormat: ?*PMPageFormat, paper: PMPaper) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPageFormatCreateDataRepresentation(pageFormat: PMPageFormat, data: ?*core_foundation.DataRef, format: PMDataFormat) callconv(.C) objc.OSStatus;
-pub const ageFormatCreateDataRepresentation = PMPageFormatCreateDataRepresentation;
+pub extern "ApplicationServices" fn PMPageFormatCreateDataRepresentation(pageFormat: PMPageFormat, data: ?*core_foundation.DataRef, format: PMDataFormat) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPageFormatCreateWithDataRepresentation(data: core_foundation.DataRef, pageFormat: ?*PMPageFormat) callconv(.C) objc.OSStatus;
-pub const ageFormatCreateWithDataRepresentation = PMPageFormatCreateWithDataRepresentation;
+pub extern "ApplicationServices" fn PMPageFormatCreateWithDataRepresentation(data: core_foundation.DataRef, pageFormat: ?*PMPageFormat) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetAdjustedPageRect(pageFormat: PMPageFormat, pageRect: ?*PMRect) callconv(.C) objc.OSStatus;
-pub const etAdjustedPageRect = PMGetAdjustedPageRect;
+pub extern "ApplicationServices" fn PMGetAdjustedPageRect(pageFormat: PMPageFormat, pageRect: ?*PMRect) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetAdjustedPaperRect(pageFormat: PMPageFormat, paperRect: ?*PMRect) callconv(.C) objc.OSStatus;
-pub const etAdjustedPaperRect = PMGetAdjustedPaperRect;
+pub extern "ApplicationServices" fn PMGetAdjustedPaperRect(pageFormat: PMPageFormat, paperRect: ?*PMRect) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetOrientation(pageFormat: PMPageFormat, orientation: ?*PMOrientation) callconv(.C) objc.OSStatus;
-pub const etOrientation = PMGetOrientation;
+pub extern "ApplicationServices" fn PMGetOrientation(pageFormat: PMPageFormat, orientation: ?*PMOrientation) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetPageFormatExtendedData(
+pub extern "ApplicationServices" fn PMGetPageFormatExtendedData(
     pageFormat: PMPageFormat,
     dataID: objc.OSType,
     size: ?*objc.UInt32,
     extendedData: ?*anyopaque,
 ) callconv(.C) objc.OSStatus;
-pub const etPageFormatExtendedData = PMGetPageFormatExtendedData;
 
-extern "ApplicationServices" fn PMPageFormatGetPrinterID(pageFormat: PMPageFormat, printerID: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const ageFormatGetPrinterID = PMPageFormatGetPrinterID;
+pub extern "ApplicationServices" fn PMPageFormatGetPrinterID(pageFormat: PMPageFormat, printerID: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetScale(pageFormat: PMPageFormat, scale: ?*f64) callconv(.C) objc.OSStatus;
-pub const etScale = PMGetScale;
+pub extern "ApplicationServices" fn PMGetScale(pageFormat: PMPageFormat, scale: ?*f64) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetUnadjustedPageRect(pageFormat: PMPageFormat, pageRect: ?*PMRect) callconv(.C) objc.OSStatus;
-pub const etUnadjustedPageRect = PMGetUnadjustedPageRect;
+pub extern "ApplicationServices" fn PMGetUnadjustedPageRect(pageFormat: PMPageFormat, pageRect: ?*PMRect) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetUnadjustedPaperRect(pageFormat: PMPageFormat, paperRect: ?*PMRect) callconv(.C) objc.OSStatus;
-pub const etUnadjustedPaperRect = PMGetUnadjustedPaperRect;
+pub extern "ApplicationServices" fn PMGetUnadjustedPaperRect(pageFormat: PMPageFormat, paperRect: ?*PMRect) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSetOrientation(pageFormat: PMPageFormat, orientation: PMOrientation, lock: objc.Boolean) callconv(.C) objc.OSStatus;
-pub const etOrientation = PMSetOrientation;
+pub extern "ApplicationServices" fn PMSetOrientation(pageFormat: PMPageFormat, orientation: PMOrientation, lock: objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSetPageFormatExtendedData(
+pub extern "ApplicationServices" fn PMSetPageFormatExtendedData(
     pageFormat: PMPageFormat,
     dataID: objc.OSType,
     size: objc.UInt32,
     extendedData: ?*anyopaque,
 ) callconv(.C) objc.OSStatus;
-pub const etPageFormatExtendedData = PMSetPageFormatExtendedData;
 
-extern "ApplicationServices" fn PMSetScale(pageFormat: PMPageFormat, scale: f64) callconv(.C) objc.OSStatus;
-pub const etScale = PMSetScale;
+pub extern "ApplicationServices" fn PMSetScale(pageFormat: PMPageFormat, scale: f64) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCreatePrintSettings(printSettings: ?*PMPrintSettings) callconv(.C) objc.OSStatus;
-pub const reatePrintSettings = PMCreatePrintSettings;
+pub extern "ApplicationServices" fn PMCreatePrintSettings(printSettings: ?*PMPrintSettings) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionDefaultPrintSettings(printSession: PMPrintSession, printSettings: PMPrintSettings) callconv(.C) objc.OSStatus;
-pub const essionDefaultPrintSettings = PMSessionDefaultPrintSettings;
+pub extern "ApplicationServices" fn PMSessionDefaultPrintSettings(printSession: PMPrintSession, printSettings: PMPrintSettings) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSessionValidatePrintSettings(printSession: PMPrintSession, printSettings: PMPrintSettings, changed: ?*objc.Boolean) callconv(.C) objc.OSStatus;
-pub const essionValidatePrintSettings = PMSessionValidatePrintSettings;
+pub extern "ApplicationServices" fn PMSessionValidatePrintSettings(printSession: PMPrintSession, printSettings: PMPrintSettings, changed: ?*objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCopyPrintSettings(settingSrc: PMPrintSettings, settingDest: PMPrintSettings) callconv(.C) objc.OSStatus;
-pub const opyPrintSettings = PMCopyPrintSettings;
+pub extern "ApplicationServices" fn PMCopyPrintSettings(settingSrc: PMPrintSettings, settingDest: PMPrintSettings) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrintSettingsCreateDataRepresentation(printSettings: PMPrintSettings, data: ?*core_foundation.DataRef, format: PMDataFormat) callconv(.C) objc.OSStatus;
-pub const rintSettingsCreateDataRepresentation = PMPrintSettingsCreateDataRepresentation;
+pub extern "ApplicationServices" fn PMPrintSettingsCreateDataRepresentation(printSettings: PMPrintSettings, data: ?*core_foundation.DataRef, format: PMDataFormat) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrintSettingsCreateWithDataRepresentation(data: core_foundation.DataRef, printSettings: ?*PMPrintSettings) callconv(.C) objc.OSStatus;
-pub const rintSettingsCreateWithDataRepresentation = PMPrintSettingsCreateWithDataRepresentation;
+pub extern "ApplicationServices" fn PMPrintSettingsCreateWithDataRepresentation(data: core_foundation.DataRef, printSettings: ?*PMPrintSettings) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetCollate(printSettings: PMPrintSettings, collate: ?*objc.Boolean) callconv(.C) objc.OSStatus;
-pub const etCollate = PMGetCollate;
+pub extern "ApplicationServices" fn PMGetCollate(printSettings: PMPrintSettings, collate: ?*objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetCopies(printSettings: PMPrintSettings, copies: ?*objc.UInt32) callconv(.C) objc.OSStatus;
-pub const etCopies = PMGetCopies;
+pub extern "ApplicationServices" fn PMGetCopies(printSettings: PMPrintSettings, copies: ?*objc.UInt32) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetDuplex(printSettings: PMPrintSettings, duplexSetting: ?*PMDuplexMode) callconv(.C) objc.OSStatus;
-pub const etDuplex = PMGetDuplex;
+pub extern "ApplicationServices" fn PMGetDuplex(printSettings: PMPrintSettings, duplexSetting: ?*PMDuplexMode) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetFirstPage(printSettings: PMPrintSettings, first: ?*objc.UInt32) callconv(.C) objc.OSStatus;
-pub const etFirstPage = PMGetFirstPage;
+pub extern "ApplicationServices" fn PMGetFirstPage(printSettings: PMPrintSettings, first: ?*objc.UInt32) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetLastPage(printSettings: PMPrintSettings, last: ?*objc.UInt32) callconv(.C) objc.OSStatus;
-pub const etLastPage = PMGetLastPage;
+pub extern "ApplicationServices" fn PMGetLastPage(printSettings: PMPrintSettings, last: ?*objc.UInt32) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetPageRange(printSettings: PMPrintSettings, minPage: ?*objc.UInt32, maxPage: ?*objc.UInt32) callconv(.C) objc.OSStatus;
-pub const etPageRange = PMGetPageRange;
+pub extern "ApplicationServices" fn PMGetPageRange(printSettings: PMPrintSettings, minPage: ?*objc.UInt32, maxPage: ?*objc.UInt32) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrintSettingsGetJobName(printSettings: PMPrintSettings, name: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const rintSettingsGetJobName = PMPrintSettingsGetJobName;
+pub extern "ApplicationServices" fn PMPrintSettingsGetJobName(printSettings: PMPrintSettings, name: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrintSettingsGetValue(printSettings: PMPrintSettings, key: core_foundation.StringRef, value: ?*core_foundation.TypeRef) callconv(.C) objc.OSStatus;
-pub const rintSettingsGetValue = PMPrintSettingsGetValue;
+pub extern "ApplicationServices" fn PMPrintSettingsGetValue(printSettings: PMPrintSettings, key: core_foundation.StringRef, value: ?*core_foundation.TypeRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSetCollate(printSettings: PMPrintSettings, collate: objc.Boolean) callconv(.C) objc.OSStatus;
-pub const etCollate = PMSetCollate;
+pub extern "ApplicationServices" fn PMSetCollate(printSettings: PMPrintSettings, collate: objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSetCopies(printSettings: PMPrintSettings, copies: objc.UInt32, lock: objc.Boolean) callconv(.C) objc.OSStatus;
-pub const etCopies = PMSetCopies;
+pub extern "ApplicationServices" fn PMSetCopies(printSettings: PMPrintSettings, copies: objc.UInt32, lock: objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSetDuplex(printSettings: PMPrintSettings, duplexSetting: PMDuplexMode) callconv(.C) objc.OSStatus;
-pub const etDuplex = PMSetDuplex;
+pub extern "ApplicationServices" fn PMSetDuplex(printSettings: PMPrintSettings, duplexSetting: PMDuplexMode) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSetFirstPage(printSettings: PMPrintSettings, first: objc.UInt32, lock: objc.Boolean) callconv(.C) objc.OSStatus;
-pub const etFirstPage = PMSetFirstPage;
+pub extern "ApplicationServices" fn PMSetFirstPage(printSettings: PMPrintSettings, first: objc.UInt32, lock: objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSetLastPage(printSettings: PMPrintSettings, last: objc.UInt32, lock: objc.Boolean) callconv(.C) objc.OSStatus;
-pub const etLastPage = PMSetLastPage;
+pub extern "ApplicationServices" fn PMSetLastPage(printSettings: PMPrintSettings, last: objc.UInt32, lock: objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMSetPageRange(printSettings: PMPrintSettings, minPage: objc.UInt32, maxPage: objc.UInt32) callconv(.C) objc.OSStatus;
-pub const etPageRange = PMSetPageRange;
+pub extern "ApplicationServices" fn PMSetPageRange(printSettings: PMPrintSettings, minPage: objc.UInt32, maxPage: objc.UInt32) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrintSettingsSetJobName(printSettings: PMPrintSettings, name: core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const rintSettingsSetJobName = PMPrintSettingsSetJobName;
+pub extern "ApplicationServices" fn PMPrintSettingsSetJobName(printSettings: PMPrintSettings, name: core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrintSettingsSetValue(
+pub extern "ApplicationServices" fn PMPrintSettingsSetValue(
     printSettings: PMPrintSettings,
     key: core_foundation.StringRef,
     value: core_foundation.TypeRef,
     locked: objc.Boolean,
 ) callconv(.C) objc.OSStatus;
-pub const rintSettingsSetValue = PMPrintSettingsSetValue;
 
-extern "ApplicationServices" fn PMPrintSettingsCopyAsDictionary(printSettings: PMPrintSettings, settingsDictionary: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
-pub const rintSettingsCopyAsDictionary = PMPrintSettingsCopyAsDictionary;
+pub extern "ApplicationServices" fn PMPrintSettingsCopyAsDictionary(printSettings: PMPrintSettings, settingsDictionary: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrintSettingsCopyKeys(printSettings: PMPrintSettings, settingsKeys: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const rintSettingsCopyKeys = PMPrintSettingsCopyKeys;
+pub extern "ApplicationServices" fn PMPrintSettingsCopyKeys(printSettings: PMPrintSettings, settingsKeys: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCreateGenericPrinter(printer: ?*PMPrinter) callconv(.C) objc.OSStatus;
-pub const reateGenericPrinter = PMCreateGenericPrinter;
+pub extern "ApplicationServices" fn PMCreateGenericPrinter(printer: ?*PMPrinter) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMServerCreatePrinterList(server: PMServer, printerList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const erverCreatePrinterList = PMServerCreatePrinterList;
+pub extern "ApplicationServices" fn PMServerCreatePrinterList(server: PMServer, printerList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMServerLaunchPrinterBrowser(server: PMServer, options: core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
-pub const erverLaunchPrinterBrowser = PMServerLaunchPrinterBrowser;
+pub extern "ApplicationServices" fn PMServerLaunchPrinterBrowser(server: PMServer, options: core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterCreateFromPrinterID(printerID: core_foundation.StringRef) callconv(.C) PMPrinter;
-pub const rinterCreateFromPrinterID = PMPrinterCreateFromPrinterID;
+pub extern "ApplicationServices" fn PMPrinterCreateFromPrinterID(printerID: core_foundation.StringRef) callconv(.C) PMPrinter;
 
-extern "ApplicationServices" fn PMPrinterCopyDescriptionURL(printer: PMPrinter, descriptionType: core_foundation.StringRef, fileURL: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
-pub const rinterCopyDescriptionURL = PMPrinterCopyDescriptionURL;
+pub extern "ApplicationServices" fn PMPrinterCopyDescriptionURL(printer: PMPrinter, descriptionType: core_foundation.StringRef, fileURL: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterCopyDeviceURI(printer: PMPrinter, deviceURI: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
-pub const rinterCopyDeviceURI = PMPrinterCopyDeviceURI;
+pub extern "ApplicationServices" fn PMPrinterCopyDeviceURI(printer: PMPrinter, deviceURI: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterCopyHostName(printer: PMPrinter, hostNameP: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const rinterCopyHostName = PMPrinterCopyHostName;
+pub extern "ApplicationServices" fn PMPrinterCopyHostName(printer: PMPrinter, hostNameP: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterCopyPresets(printer: PMPrinter, presetList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const rinterCopyPresets = PMPrinterCopyPresets;
+pub extern "ApplicationServices" fn PMPrinterCopyPresets(printer: PMPrinter, presetList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetCommInfo(printer: PMPrinter, supportsControlCharRangeP: ?*objc.Boolean, supportsEightBitP: ?*objc.Boolean) callconv(.C) objc.OSStatus;
-pub const rinterGetCommInfo = PMPrinterGetCommInfo;
+pub extern "ApplicationServices" fn PMPrinterGetCommInfo(printer: PMPrinter, supportsControlCharRangeP: ?*objc.Boolean, supportsEightBitP: ?*objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetID(printer: PMPrinter) callconv(.C) core_foundation.StringRef;
-pub const rinterGetID = PMPrinterGetID;
+pub extern "ApplicationServices" fn PMPrinterGetID(printer: PMPrinter) callconv(.C) core_foundation.StringRef;
 
-extern "ApplicationServices" fn PMPrinterGetLocation(printer: PMPrinter) callconv(.C) core_foundation.StringRef;
-pub const rinterGetLocation = PMPrinterGetLocation;
+pub extern "ApplicationServices" fn PMPrinterGetLocation(printer: PMPrinter) callconv(.C) core_foundation.StringRef;
 
-extern "ApplicationServices" fn PMPrinterGetDriverCreator(printer: PMPrinter, creator: ?*objc.OSType) callconv(.C) objc.OSStatus;
-pub const rinterGetDriverCreator = PMPrinterGetDriverCreator;
+pub extern "ApplicationServices" fn PMPrinterGetDriverCreator(printer: PMPrinter, creator: ?*objc.OSType) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetDriverReleaseInfo(printer: PMPrinter, release: ?*objc.VersRec) callconv(.C) objc.OSStatus;
-pub const rinterGetDriverReleaseInfo = PMPrinterGetDriverReleaseInfo;
+pub extern "ApplicationServices" fn PMPrinterGetDriverReleaseInfo(printer: PMPrinter, release: ?*objc.VersRec) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetPrinterResolutionCount(printer: PMPrinter, countP: ?*objc.UInt32) callconv(.C) objc.OSStatus;
-pub const rinterGetPrinterResolutionCount = PMPrinterGetPrinterResolutionCount;
+pub extern "ApplicationServices" fn PMPrinterGetPrinterResolutionCount(printer: PMPrinter, countP: ?*objc.UInt32) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetIndexedPrinterResolution(printer: PMPrinter, index: objc.UInt32, resolutionP: ?*PMResolution) callconv(.C) objc.OSStatus;
-pub const rinterGetIndexedPrinterResolution = PMPrinterGetIndexedPrinterResolution;
+pub extern "ApplicationServices" fn PMPrinterGetIndexedPrinterResolution(printer: PMPrinter, index: objc.UInt32, resolutionP: ?*PMResolution) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetOutputResolution(printer: PMPrinter, printSettings: PMPrintSettings, resolutionP: ?*PMResolution) callconv(.C) objc.OSStatus;
-pub const rinterGetOutputResolution = PMPrinterGetOutputResolution;
+pub extern "ApplicationServices" fn PMPrinterGetOutputResolution(printer: PMPrinter, printSettings: PMPrintSettings, resolutionP: ?*PMResolution) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterSetOutputResolution(printer: PMPrinter, printSettings: PMPrintSettings, resolutionP: ?*PMResolution) callconv(.C) objc.OSStatus;
-pub const rinterSetOutputResolution = PMPrinterSetOutputResolution;
+pub extern "ApplicationServices" fn PMPrinterSetOutputResolution(printer: PMPrinter, printSettings: PMPrintSettings, resolutionP: ?*PMResolution) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetLanguageInfo(printer: PMPrinter, info: ?*PMLanguageInfo) callconv(.C) objc.OSStatus;
-pub const rinterGetLanguageInfo = PMPrinterGetLanguageInfo;
+pub extern "ApplicationServices" fn PMPrinterGetLanguageInfo(printer: PMPrinter, info: ?*PMLanguageInfo) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetMakeAndModelName(printer: PMPrinter, makeAndModel: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const rinterGetMakeAndModelName = PMPrinterGetMakeAndModelName;
+pub extern "ApplicationServices" fn PMPrinterGetMakeAndModelName(printer: PMPrinter, makeAndModel: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetMimeTypes(printer: PMPrinter, settings: PMPrintSettings, mimeTypes: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const rinterGetMimeTypes = PMPrinterGetMimeTypes;
+pub extern "ApplicationServices" fn PMPrinterGetMimeTypes(printer: PMPrinter, settings: PMPrintSettings, mimeTypes: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetName(printer: PMPrinter) callconv(.C) core_foundation.StringRef;
-pub const rinterGetName = PMPrinterGetName;
+pub extern "ApplicationServices" fn PMPrinterGetName(printer: PMPrinter) callconv(.C) core_foundation.StringRef;
 
-extern "ApplicationServices" fn PMPrinterGetPaperList(printer: PMPrinter, paperList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const rinterGetPaperList = PMPrinterGetPaperList;
+pub extern "ApplicationServices" fn PMPrinterGetPaperList(printer: PMPrinter, paperList: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterGetState(printer: PMPrinter, state: ?*PMPrinterState) callconv(.C) objc.OSStatus;
-pub const rinterGetState = PMPrinterGetState;
+pub extern "ApplicationServices" fn PMPrinterGetState(printer: PMPrinter, state: ?*PMPrinterState) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterIsDefault(printer: PMPrinter) callconv(.C) objc.Boolean;
-pub const rinterIsDefault = PMPrinterIsDefault;
+pub extern "ApplicationServices" fn PMPrinterIsDefault(printer: PMPrinter) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn PMPrinterIsFavorite(printer: PMPrinter) callconv(.C) objc.Boolean;
-pub const rinterIsFavorite = PMPrinterIsFavorite;
+pub extern "ApplicationServices" fn PMPrinterIsFavorite(printer: PMPrinter) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn PMPrinterIsPostScriptCapable(printer: PMPrinter) callconv(.C) objc.Boolean;
-pub const rinterIsPostScriptCapable = PMPrinterIsPostScriptCapable;
+pub extern "ApplicationServices" fn PMPrinterIsPostScriptCapable(printer: PMPrinter) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn PMPrinterIsPostScriptPrinter(printer: PMPrinter, isPSPrinter: ?*objc.Boolean) callconv(.C) objc.OSStatus;
-pub const rinterIsPostScriptPrinter = PMPrinterIsPostScriptPrinter;
+pub extern "ApplicationServices" fn PMPrinterIsPostScriptPrinter(printer: PMPrinter, isPSPrinter: ?*objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterIsRemote(printer: PMPrinter, isRemoteP: ?*objc.Boolean) callconv(.C) objc.OSStatus;
-pub const rinterIsRemote = PMPrinterIsRemote;
+pub extern "ApplicationServices" fn PMPrinterIsRemote(printer: PMPrinter, isRemoteP: ?*objc.Boolean) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterSetDefault(printer: PMPrinter) callconv(.C) objc.OSStatus;
-pub const rinterSetDefault = PMPrinterSetDefault;
+pub extern "ApplicationServices" fn PMPrinterSetDefault(printer: PMPrinter) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPresetCopyName(preset: PMPreset, name: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const resetCopyName = PMPresetCopyName;
+pub extern "ApplicationServices" fn PMPresetCopyName(preset: PMPreset, name: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPresetCreatePrintSettings(preset: PMPreset, session: PMPrintSession, printSettings: ?*PMPrintSettings) callconv(.C) objc.OSStatus;
-pub const resetCreatePrintSettings = PMPresetCreatePrintSettings;
+pub extern "ApplicationServices" fn PMPresetCreatePrintSettings(preset: PMPreset, session: PMPrintSession, printSettings: ?*PMPrintSettings) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPresetGetAttributes(preset: PMPreset, attributes: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
-pub const resetGetAttributes = PMPresetGetAttributes;
+pub extern "ApplicationServices" fn PMPresetGetAttributes(preset: PMPreset, attributes: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMGetPageFormatPaper(format: PMPageFormat, paper: ?*PMPaper) callconv(.C) objc.OSStatus;
-pub const etPageFormatPaper = PMGetPageFormatPaper;
+pub extern "ApplicationServices" fn PMGetPageFormatPaper(format: PMPageFormat, paper: ?*PMPaper) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPaperCreateCustom(
+pub extern "ApplicationServices" fn PMPaperCreateCustom(
     printer: PMPrinter,
     id: core_foundation.StringRef,
     name: core_foundation.StringRef,
@@ -4531,65 +4264,51 @@ extern "ApplicationServices" fn PMPaperCreateCustom(
     margins: ?*PMPaperMargins,
     paperP: ?*PMPaper,
 ) callconv(.C) objc.OSStatus;
-pub const aperCreateCustom = PMPaperCreateCustom;
 
-extern "ApplicationServices" fn PMPaperGetWidth(paper: PMPaper, paperWidth: ?*f64) callconv(.C) objc.OSStatus;
-pub const aperGetWidth = PMPaperGetWidth;
+pub extern "ApplicationServices" fn PMPaperGetWidth(paper: PMPaper, paperWidth: ?*f64) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPaperGetHeight(paper: PMPaper, paperHeight: ?*f64) callconv(.C) objc.OSStatus;
-pub const aperGetHeight = PMPaperGetHeight;
+pub extern "ApplicationServices" fn PMPaperGetHeight(paper: PMPaper, paperHeight: ?*f64) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPaperGetMargins(paper: PMPaper, paperMargins: ?*PMPaperMargins) callconv(.C) objc.OSStatus;
-pub const aperGetMargins = PMPaperGetMargins;
+pub extern "ApplicationServices" fn PMPaperGetMargins(paper: PMPaper, paperMargins: ?*PMPaperMargins) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPaperGetID(paper: PMPaper, paperID: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const aperGetID = PMPaperGetID;
+pub extern "ApplicationServices" fn PMPaperGetID(paper: PMPaper, paperID: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPaperGetPPDPaperName(paper: PMPaper, paperName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const aperGetPPDPaperName = PMPaperGetPPDPaperName;
+pub extern "ApplicationServices" fn PMPaperGetPPDPaperName(paper: PMPaper, paperName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPaperCreateLocalizedName(paper: PMPaper, printer: PMPrinter, paperName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const aperCreateLocalizedName = PMPaperCreateLocalizedName;
+pub extern "ApplicationServices" fn PMPaperCreateLocalizedName(paper: PMPaper, printer: PMPrinter, paperName: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPaperGetPrinterID(paper: PMPaper, printerID: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
-pub const aperGetPrinterID = PMPaperGetPrinterID;
+pub extern "ApplicationServices" fn PMPaperGetPrinterID(paper: PMPaper, printerID: ?*core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPaperIsCustom(paper: PMPaper) callconv(.C) objc.Boolean;
-pub const aperIsCustom = PMPaperIsCustom;
+pub extern "ApplicationServices" fn PMPaperIsCustom(paper: PMPaper) callconv(.C) objc.Boolean;
 
-extern "ApplicationServices" fn PMWorkflowCopyItems(workflowItems: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const orkflowCopyItems = PMWorkflowCopyItems;
+pub extern "ApplicationServices" fn PMWorkflowCopyItems(workflowItems: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMWorkflowSubmitPDFWithOptions(
+pub extern "ApplicationServices" fn PMWorkflowSubmitPDFWithOptions(
     workflowItem: core_foundation.URLRef,
     title: core_foundation.StringRef,
     options: ?*i8,
     pdfFile: core_foundation.URLRef,
 ) callconv(.C) objc.OSStatus;
-pub const orkflowSubmitPDFWithOptions = PMWorkflowSubmitPDFWithOptions;
 
-extern "ApplicationServices" fn PMWorkflowSubmitPDFWithSettings(workflowItem: core_foundation.URLRef, settings: PMPrintSettings, pdfFile: core_foundation.URLRef) callconv(.C) objc.OSStatus;
-pub const orkflowSubmitPDFWithSettings = PMWorkflowSubmitPDFWithSettings;
+pub extern "ApplicationServices" fn PMWorkflowSubmitPDFWithSettings(workflowItem: core_foundation.URLRef, settings: PMPrintSettings, pdfFile: core_foundation.URLRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrinterPrintWithProvider(
+pub extern "ApplicationServices" fn PMPrinterPrintWithProvider(
     printer: PMPrinter,
     settings: PMPrintSettings,
     format: PMPageFormat,
     mimeType: core_foundation.StringRef,
     provider: core_graphics.DataProviderRef,
 ) callconv(.C) objc.OSStatus;
-pub const rinterPrintWithProvider = PMPrinterPrintWithProvider;
 
-extern "ApplicationServices" fn PMPrinterPrintWithFile(
+pub extern "ApplicationServices" fn PMPrinterPrintWithFile(
     printer: PMPrinter,
     settings: PMPrintSettings,
     format: PMPageFormat,
     mimeType: core_foundation.StringRef,
     fileURL: core_foundation.URLRef,
 ) callconv(.C) objc.OSStatus;
-pub const rinterPrintWithFile = PMPrinterPrintWithFile;
 
-extern "ApplicationServices" fn PMPrinterWritePostScriptToURL(
+pub extern "ApplicationServices" fn PMPrinterWritePostScriptToURL(
     printer: PMPrinter,
     settings: PMPrintSettings,
     format: PMPageFormat,
@@ -4597,41 +4316,32 @@ extern "ApplicationServices" fn PMPrinterWritePostScriptToURL(
     sourceFileURL: core_foundation.URLRef,
     destinationFileURL: core_foundation.URLRef,
 ) callconv(.C) objc.OSStatus;
-pub const rinterWritePostScriptToURL = PMPrinterWritePostScriptToURL;
 
-extern "ApplicationServices" fn PMPrintSettingsToOptions(settings: PMPrintSettings, options: ?*?*i8) callconv(.C) objc.OSStatus;
-pub const rintSettingsToOptions = PMPrintSettingsToOptions;
+pub extern "ApplicationServices" fn PMPrintSettingsToOptions(settings: PMPrintSettings, options: ?*?*i8) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMPrintSettingsToOptionsWithPrinterAndPageFormat(
+pub extern "ApplicationServices" fn PMPrintSettingsToOptionsWithPrinterAndPageFormat(
     settings: PMPrintSettings,
     printer: PMPrinter,
     pageFormat: PMPageFormat,
     options: ?*?*i8,
 ) callconv(.C) objc.OSStatus;
-pub const rintSettingsToOptionsWithPrinterAndPageFormat = PMPrintSettingsToOptionsWithPrinterAndPageFormat;
 
-extern "ApplicationServices" fn PMPrinterSendCommand(
+pub extern "ApplicationServices" fn PMPrinterSendCommand(
     printer: PMPrinter,
     commandString: core_foundation.StringRef,
     jobTitle: core_foundation.StringRef,
     options: core_foundation.DictionaryRef,
 ) callconv(.C) objc.OSStatus;
-pub const rinterSendCommand = PMPrinterSendCommand;
 
-extern "ApplicationServices" fn PMPrinterCopyState(printer: PMPrinter, stateDict: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
-pub const rinterCopyState = PMPrinterCopyState;
+pub extern "ApplicationServices" fn PMPrinterCopyState(printer: PMPrinter, stateDict: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCopyAvailablePPDs(domain: PMPPDDomain, ppds: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
-pub const opyAvailablePPDs = PMCopyAvailablePPDs;
+pub extern "ApplicationServices" fn PMCopyAvailablePPDs(domain: PMPPDDomain, ppds: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCopyLocalizedPPD(ppd: core_foundation.URLRef, localizedPPD: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
-pub const opyLocalizedPPD = PMCopyLocalizedPPD;
+pub extern "ApplicationServices" fn PMCopyLocalizedPPD(ppd: core_foundation.URLRef, localizedPPD: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCopyPPDData(ppd: core_foundation.URLRef, data: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
-pub const opyPPDData = PMCopyPPDData;
+pub extern "ApplicationServices" fn PMCopyPPDData(ppd: core_foundation.URLRef, data: ?*core_foundation.DataRef) callconv(.C) objc.OSStatus;
 
-extern "ApplicationServices" fn PMCGImageCreateWithEPSDataProvider(epsDataProvider: core_graphics.DataProviderRef, epsPreview: core_graphics.ImageRef) callconv(.C) core_graphics.ImageRef;
-pub const gImageCreateWithEPSDataProvider = PMCGImageCreateWithEPSDataProvider;
+pub extern "ApplicationServices" fn PMCGImageCreateWithEPSDataProvider(epsDataProvider: core_graphics.DataProviderRef, epsPreview: core_graphics.ImageRef) callconv(.C) core_graphics.ImageRef;
 
 pub const PMPageToPaperMappingType = enum(u32) {
     None = 1,
@@ -5165,43 +4875,31 @@ pub const SpeechPhonemeUPP = SpeechPhonemeProcPtr;
 
 pub const SpeechWordUPP = SpeechWordProcPtr;
 
-extern "ApplicationServices" fn NewSpeechTextDoneUPP(userRoutine: SpeechTextDoneProcPtr) callconv(.C) SpeechTextDoneUPP;
-pub const speechTextDoneUPP = NewSpeechTextDoneUPP;
+pub extern "ApplicationServices" fn NewSpeechTextDoneUPP(userRoutine: SpeechTextDoneProcPtr) callconv(.C) SpeechTextDoneUPP;
 
-extern "ApplicationServices" fn NewSpeechDoneUPP(userRoutine: SpeechDoneProcPtr) callconv(.C) SpeechDoneUPP;
-pub const speechDoneUPP = NewSpeechDoneUPP;
+pub extern "ApplicationServices" fn NewSpeechDoneUPP(userRoutine: SpeechDoneProcPtr) callconv(.C) SpeechDoneUPP;
 
-extern "ApplicationServices" fn NewSpeechSyncUPP(userRoutine: SpeechSyncProcPtr) callconv(.C) SpeechSyncUPP;
-pub const speechSyncUPP = NewSpeechSyncUPP;
+pub extern "ApplicationServices" fn NewSpeechSyncUPP(userRoutine: SpeechSyncProcPtr) callconv(.C) SpeechSyncUPP;
 
-extern "ApplicationServices" fn NewSpeechErrorUPP(userRoutine: SpeechErrorProcPtr) callconv(.C) SpeechErrorUPP;
-pub const speechErrorUPP = NewSpeechErrorUPP;
+pub extern "ApplicationServices" fn NewSpeechErrorUPP(userRoutine: SpeechErrorProcPtr) callconv(.C) SpeechErrorUPP;
 
-extern "ApplicationServices" fn NewSpeechPhonemeUPP(userRoutine: SpeechPhonemeProcPtr) callconv(.C) SpeechPhonemeUPP;
-pub const speechPhonemeUPP = NewSpeechPhonemeUPP;
+pub extern "ApplicationServices" fn NewSpeechPhonemeUPP(userRoutine: SpeechPhonemeProcPtr) callconv(.C) SpeechPhonemeUPP;
 
-extern "ApplicationServices" fn NewSpeechWordUPP(userRoutine: SpeechWordProcPtr) callconv(.C) SpeechWordUPP;
-pub const speechWordUPP = NewSpeechWordUPP;
+pub extern "ApplicationServices" fn NewSpeechWordUPP(userRoutine: SpeechWordProcPtr) callconv(.C) SpeechWordUPP;
 
-extern "ApplicationServices" fn DisposeSpeechTextDoneUPP(userUPP: SpeechTextDoneUPP) callconv(.C) void;
-pub const poseSpeechTextDoneUPP = DisposeSpeechTextDoneUPP;
+pub extern "ApplicationServices" fn DisposeSpeechTextDoneUPP(userUPP: SpeechTextDoneUPP) callconv(.C) void;
 
-extern "ApplicationServices" fn DisposeSpeechDoneUPP(userUPP: SpeechDoneUPP) callconv(.C) void;
-pub const poseSpeechDoneUPP = DisposeSpeechDoneUPP;
+pub extern "ApplicationServices" fn DisposeSpeechDoneUPP(userUPP: SpeechDoneUPP) callconv(.C) void;
 
-extern "ApplicationServices" fn DisposeSpeechSyncUPP(userUPP: SpeechSyncUPP) callconv(.C) void;
-pub const poseSpeechSyncUPP = DisposeSpeechSyncUPP;
+pub extern "ApplicationServices" fn DisposeSpeechSyncUPP(userUPP: SpeechSyncUPP) callconv(.C) void;
 
-extern "ApplicationServices" fn DisposeSpeechErrorUPP(userUPP: SpeechErrorUPP) callconv(.C) void;
-pub const poseSpeechErrorUPP = DisposeSpeechErrorUPP;
+pub extern "ApplicationServices" fn DisposeSpeechErrorUPP(userUPP: SpeechErrorUPP) callconv(.C) void;
 
-extern "ApplicationServices" fn DisposeSpeechPhonemeUPP(userUPP: SpeechPhonemeUPP) callconv(.C) void;
-pub const poseSpeechPhonemeUPP = DisposeSpeechPhonemeUPP;
+pub extern "ApplicationServices" fn DisposeSpeechPhonemeUPP(userUPP: SpeechPhonemeUPP) callconv(.C) void;
 
-extern "ApplicationServices" fn DisposeSpeechWordUPP(userUPP: SpeechWordUPP) callconv(.C) void;
-pub const poseSpeechWordUPP = DisposeSpeechWordUPP;
+pub extern "ApplicationServices" fn DisposeSpeechWordUPP(userUPP: SpeechWordUPP) callconv(.C) void;
 
-extern "ApplicationServices" fn InvokeSpeechTextDoneUPP(
+pub extern "ApplicationServices" fn InvokeSpeechTextDoneUPP(
     chan: SpeechChannel,
     refCon: objc.SRefCon,
     nextBuf: ?*?*anyopaque,
@@ -5209,44 +4907,38 @@ extern "ApplicationServices" fn InvokeSpeechTextDoneUPP(
     controlFlags: ?*objc.SInt32,
     userUPP: SpeechTextDoneUPP,
 ) callconv(.C) void;
-pub const okeSpeechTextDoneUPP = InvokeSpeechTextDoneUPP;
 
-extern "ApplicationServices" fn InvokeSpeechDoneUPP(chan: SpeechChannel, refCon: objc.SRefCon, userUPP: SpeechDoneUPP) callconv(.C) void;
-pub const okeSpeechDoneUPP = InvokeSpeechDoneUPP;
+pub extern "ApplicationServices" fn InvokeSpeechDoneUPP(chan: SpeechChannel, refCon: objc.SRefCon, userUPP: SpeechDoneUPP) callconv(.C) void;
 
-extern "ApplicationServices" fn InvokeSpeechSyncUPP(
+pub extern "ApplicationServices" fn InvokeSpeechSyncUPP(
     chan: SpeechChannel,
     refCon: objc.SRefCon,
     syncMessage: objc.OSType,
     userUPP: SpeechSyncUPP,
 ) callconv(.C) void;
-pub const okeSpeechSyncUPP = InvokeSpeechSyncUPP;
 
-extern "ApplicationServices" fn InvokeSpeechErrorUPP(
+pub extern "ApplicationServices" fn InvokeSpeechErrorUPP(
     chan: SpeechChannel,
     refCon: objc.SRefCon,
     theError: objc.OSErr,
     bytePos: i64,
     userUPP: SpeechErrorUPP,
 ) callconv(.C) void;
-pub const okeSpeechErrorUPP = InvokeSpeechErrorUPP;
 
-extern "ApplicationServices" fn InvokeSpeechPhonemeUPP(
+pub extern "ApplicationServices" fn InvokeSpeechPhonemeUPP(
     chan: SpeechChannel,
     refCon: objc.SRefCon,
     phonemeOpcode: objc.SInt16,
     userUPP: SpeechPhonemeUPP,
 ) callconv(.C) void;
-pub const okeSpeechPhonemeUPP = InvokeSpeechPhonemeUPP;
 
-extern "ApplicationServices" fn InvokeSpeechWordUPP(
+pub extern "ApplicationServices" fn InvokeSpeechWordUPP(
     chan: SpeechChannel,
     refCon: objc.SRefCon,
     wordPos: u64,
     wordLen: objc.UInt16,
     userUPP: SpeechWordUPP,
 ) callconv(.C) void;
-pub const okeSpeechWordUPP = InvokeSpeechWordUPP;
 
 pub const SpeechErrorCFProcPtr = ?*const fn (SpeechChannel, objc.SRefCon, core_foundation.ErrorRef) callconv(.C) void;
 
@@ -5257,109 +4949,77 @@ pub const SpeechWordCFProcPtr = ?*const fn (
     core_foundation.Range,
 ) callconv(.C) void;
 
-extern "ApplicationServices" fn SpeechManagerVersion() callconv(.C) objc.NumVersion;
-pub const echManagerVersion = SpeechManagerVersion;
+pub extern "ApplicationServices" fn SpeechManagerVersion() callconv(.C) objc.NumVersion;
 
-extern "ApplicationServices" fn MakeVoiceSpec(creator: objc.OSType, id: objc.OSType, voice: ?*VoiceSpec) callconv(.C) objc.OSErr;
-pub const eVoiceSpec = MakeVoiceSpec;
+pub extern "ApplicationServices" fn MakeVoiceSpec(creator: objc.OSType, id: objc.OSType, voice: ?*VoiceSpec) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn CountVoices(numVoices: ?*objc.SInt16) callconv(.C) objc.OSErr;
-pub const ntVoices = CountVoices;
+pub extern "ApplicationServices" fn CountVoices(numVoices: ?*objc.SInt16) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetIndVoice(index: objc.SInt16, voice: ?*VoiceSpec) callconv(.C) objc.OSErr;
-pub const indVoice = GetIndVoice;
+pub extern "ApplicationServices" fn GetIndVoice(index: objc.SInt16, voice: ?*VoiceSpec) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetVoiceDescription(voice: ?*VoiceSpec, info: ?*VoiceDescription, infoLength: i64) callconv(.C) objc.OSErr;
-pub const voiceDescription = GetVoiceDescription;
+pub extern "ApplicationServices" fn GetVoiceDescription(voice: ?*VoiceSpec, info: ?*VoiceDescription, infoLength: i64) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetVoiceInfo(voice: ?*VoiceSpec, selector: objc.OSType, voiceInfo: ?*anyopaque) callconv(.C) objc.OSErr;
-pub const voiceInfo = GetVoiceInfo;
+pub extern "ApplicationServices" fn GetVoiceInfo(voice: ?*VoiceSpec, selector: objc.OSType, voiceInfo: ?*anyopaque) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn NewSpeechChannel(voice: ?*VoiceSpec, chan: ?*SpeechChannel) callconv(.C) objc.OSErr;
-pub const speechChannel = NewSpeechChannel;
+pub extern "ApplicationServices" fn NewSpeechChannel(voice: ?*VoiceSpec, chan: ?*SpeechChannel) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn DisposeSpeechChannel(chan: SpeechChannel) callconv(.C) objc.OSErr;
-pub const poseSpeechChannel = DisposeSpeechChannel;
+pub extern "ApplicationServices" fn DisposeSpeechChannel(chan: SpeechChannel) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SpeakString(textToBeSpoken: objc.ConstStr255Param) callconv(.C) objc.OSErr;
-pub const akString = SpeakString;
+pub extern "ApplicationServices" fn SpeakString(textToBeSpoken: objc.ConstStr255Param) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SpeakText(chan: SpeechChannel, textBuf: ?*anyopaque, textBytes: u64) callconv(.C) objc.OSErr;
-pub const akText = SpeakText;
+pub extern "ApplicationServices" fn SpeakText(chan: SpeechChannel, textBuf: ?*anyopaque, textBytes: u64) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SpeakBuffer(
+pub extern "ApplicationServices" fn SpeakBuffer(
     chan: SpeechChannel,
     textBuf: ?*anyopaque,
     textBytes: u64,
     controlFlags: objc.SInt32,
 ) callconv(.C) objc.OSErr;
-pub const akBuffer = SpeakBuffer;
 
-extern "ApplicationServices" fn StopSpeech(chan: SpeechChannel) callconv(.C) objc.OSErr;
-pub const pSpeech = StopSpeech;
+pub extern "ApplicationServices" fn StopSpeech(chan: SpeechChannel) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn StopSpeechAt(chan: SpeechChannel, whereToStop: objc.SInt32) callconv(.C) objc.OSErr;
-pub const pSpeechAt = StopSpeechAt;
+pub extern "ApplicationServices" fn StopSpeechAt(chan: SpeechChannel, whereToStop: objc.SInt32) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn PauseSpeechAt(chan: SpeechChannel, whereToPause: objc.SInt32) callconv(.C) objc.OSErr;
-pub const seSpeechAt = PauseSpeechAt;
+pub extern "ApplicationServices" fn PauseSpeechAt(chan: SpeechChannel, whereToPause: objc.SInt32) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn ContinueSpeech(chan: SpeechChannel) callconv(.C) objc.OSErr;
-pub const tinueSpeech = ContinueSpeech;
+pub extern "ApplicationServices" fn ContinueSpeech(chan: SpeechChannel) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SpeechBusy() callconv(.C) objc.SInt16;
-pub const echBusy = SpeechBusy;
+pub extern "ApplicationServices" fn SpeechBusy() callconv(.C) objc.SInt16;
 
-extern "ApplicationServices" fn SpeechBusySystemWide() callconv(.C) objc.SInt16;
-pub const echBusySystemWide = SpeechBusySystemWide;
+pub extern "ApplicationServices" fn SpeechBusySystemWide() callconv(.C) objc.SInt16;
 
-extern "ApplicationServices" fn SetSpeechRate(chan: SpeechChannel, rate: objc.Fixed) callconv(.C) objc.OSErr;
-pub const speechRate = SetSpeechRate;
+pub extern "ApplicationServices" fn SetSpeechRate(chan: SpeechChannel, rate: objc.Fixed) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetSpeechRate(chan: SpeechChannel, rate: ?*objc.Fixed) callconv(.C) objc.OSErr;
-pub const speechRate = GetSpeechRate;
+pub extern "ApplicationServices" fn GetSpeechRate(chan: SpeechChannel, rate: ?*objc.Fixed) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SetSpeechPitch(chan: SpeechChannel, pitch: objc.Fixed) callconv(.C) objc.OSErr;
-pub const speechPitch = SetSpeechPitch;
+pub extern "ApplicationServices" fn SetSpeechPitch(chan: SpeechChannel, pitch: objc.Fixed) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetSpeechPitch(chan: SpeechChannel, pitch: ?*objc.Fixed) callconv(.C) objc.OSErr;
-pub const speechPitch = GetSpeechPitch;
+pub extern "ApplicationServices" fn GetSpeechPitch(chan: SpeechChannel, pitch: ?*objc.Fixed) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SetSpeechInfo(chan: SpeechChannel, selector: objc.OSType, speechInfo: ?*anyopaque) callconv(.C) objc.OSErr;
-pub const speechInfo = SetSpeechInfo;
+pub extern "ApplicationServices" fn SetSpeechInfo(chan: SpeechChannel, selector: objc.OSType, speechInfo: ?*anyopaque) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn GetSpeechInfo(chan: SpeechChannel, selector: objc.OSType, speechInfo: ?*anyopaque) callconv(.C) objc.OSErr;
-pub const speechInfo = GetSpeechInfo;
+pub extern "ApplicationServices" fn GetSpeechInfo(chan: SpeechChannel, selector: objc.OSType, speechInfo: ?*anyopaque) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn TextToPhonemes(
+pub extern "ApplicationServices" fn TextToPhonemes(
     chan: SpeechChannel,
     textBuf: ?*anyopaque,
     textBytes: u64,
     phonemeBuf: objc.Handle,
     phonemeBytes: ?*i64,
 ) callconv(.C) objc.OSErr;
-pub const tToPhonemes = TextToPhonemes;
 
-extern "ApplicationServices" fn UseDictionary(chan: SpeechChannel, dictionary: objc.Handle) callconv(.C) objc.OSErr;
-pub const dictionary = UseDictionary;
+pub extern "ApplicationServices" fn UseDictionary(chan: SpeechChannel, dictionary: objc.Handle) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SpeakCFString(chan: SpeechChannel, aString: core_foundation.StringRef, options: core_foundation.DictionaryRef) callconv(.C) objc.OSErr;
-pub const akCFString = SpeakCFString;
+pub extern "ApplicationServices" fn SpeakCFString(chan: SpeechChannel, aString: core_foundation.StringRef, options: core_foundation.DictionaryRef) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn UseSpeechDictionary(chan: SpeechChannel, speechDictionary: core_foundation.DictionaryRef) callconv(.C) objc.OSErr;
-pub const speechDictionary = UseSpeechDictionary;
+pub extern "ApplicationServices" fn UseSpeechDictionary(chan: SpeechChannel, speechDictionary: core_foundation.DictionaryRef) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn CopyPhonemesFromText(chan: SpeechChannel, text: core_foundation.StringRef, phonemes: ?*core_foundation.StringRef) callconv(.C) objc.OSErr;
-pub const yPhonemesFromText = CopyPhonemesFromText;
+pub extern "ApplicationServices" fn CopyPhonemesFromText(chan: SpeechChannel, text: core_foundation.StringRef, phonemes: ?*core_foundation.StringRef) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn CopySpeechProperty(chan: SpeechChannel, property: core_foundation.StringRef, object: ?*core_foundation.TypeRef) callconv(.C) objc.OSErr;
-pub const ySpeechProperty = CopySpeechProperty;
+pub extern "ApplicationServices" fn CopySpeechProperty(chan: SpeechChannel, property: core_foundation.StringRef, object: ?*core_foundation.TypeRef) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SetSpeechProperty(chan: SpeechChannel, property: core_foundation.StringRef, object: core_foundation.TypeRef) callconv(.C) objc.OSErr;
-pub const speechProperty = SetSpeechProperty;
+pub extern "ApplicationServices" fn SetSpeechProperty(chan: SpeechChannel, property: core_foundation.StringRef, object: core_foundation.TypeRef) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SpeechSynthesisRegisterModuleURL(url: core_foundation.URLRef) callconv(.C) objc.OSErr;
-pub const echSynthesisRegisterModuleURL = SpeechSynthesisRegisterModuleURL;
+pub extern "ApplicationServices" fn SpeechSynthesisRegisterModuleURL(url: core_foundation.URLRef) callconv(.C) objc.OSErr;
 
-extern "ApplicationServices" fn SpeechSynthesisUnregisterModuleURL(url: core_foundation.URLRef) callconv(.C) objc.OSErr;
-pub const echSynthesisUnregisterModuleURL = SpeechSynthesisUnregisterModuleURL;
+pub extern "ApplicationServices" fn SpeechSynthesisUnregisterModuleURL(url: core_foundation.URLRef) callconv(.C) objc.OSErr;

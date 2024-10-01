@@ -725,7 +725,7 @@ pub const AsyncCallback = ?*const fn (
     objc.uint32_t,
 ) callconv(.C) void;
 
-extern "IOKit" fn OSGetNotificationFromMessage(
+pub extern "IOKit" fn OSGetNotificationFromMessage(
     msg: ?*objc.mach_msg_header_t,
     index: objc.uint32_t,
     @"type": ?*objc.uint32_t,
@@ -733,7 +733,6 @@ extern "IOKit" fn OSGetNotificationFromMessage(
     content: ?*?*anyopaque,
     size: ?*objc.vm_size_t,
 ) callconv(.C) objc.kern_return_t;
-pub const getNotificationFromMessage = OSGetNotificationFromMessage;
 
 extern "IOKit" fn IOCatalogueSendData(
     mainPort: objc.mach_port_t,

@@ -283,8 +283,6 @@ pub const AnimationStatus = enum(objc.OSStatus) {
 
 pub const SourceAnimationBlock = *const fn (objc.size_t, core_graphics.ImageRef, ?*objc.bool) callconv(.C) void;
 
-extern "ImageIO" fn CGAnimateImageAtURLWithBlock(url: core_foundation.URLRef, options: core_foundation.DictionaryRef, block: SourceAnimationBlock) callconv(.C) objc.OSStatus;
-pub const teImageAtURLWithBlock = CGAnimateImageAtURLWithBlock;
+pub extern "ImageIO" fn CGAnimateImageAtURLWithBlock(url: core_foundation.URLRef, options: core_foundation.DictionaryRef, block: SourceAnimationBlock) callconv(.C) objc.OSStatus;
 
-extern "ImageIO" fn CGAnimateImageDataWithBlock(data: core_foundation.DataRef, options: core_foundation.DictionaryRef, block: SourceAnimationBlock) callconv(.C) objc.OSStatus;
-pub const teImageDataWithBlock = CGAnimateImageDataWithBlock;
+pub extern "ImageIO" fn CGAnimateImageDataWithBlock(data: core_foundation.DataRef, options: core_foundation.DictionaryRef, block: SourceAnimationBlock) callconv(.C) objc.OSStatus;

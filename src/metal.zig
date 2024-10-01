@@ -12350,7 +12350,7 @@ pub const ComputeCommandEncoder = opaque {
         return objc.msgSend(_self, "setBuffer:offset:atIndex:", void, .{ _buffer, _offset, _index });
     }
 
-    pub fn setBufferOffsetAtIndex(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
+    pub fn setBufferOffsetAtIndex2(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
         return objc.msgSend(_self, "setBufferOffset:atIndex:", void, .{ _offset, _index });
     }
 
@@ -12388,7 +12388,7 @@ pub const ComputeCommandEncoder = opaque {
         });
     }
 
-    pub fn setBufferOffsetAttributeStrideAtIndex(_self: *@This(), _offset: objc.NSUInteger, _stride: objc.NSUInteger, _index: objc.NSUInteger) void {
+    pub fn setBufferOffsetAttributeStrideAtIndex2(_self: *@This(), _offset: objc.NSUInteger, _stride: objc.NSUInteger, _index: objc.NSUInteger) void {
         return objc.msgSend(_self, "setBufferOffset:attributeStride:atIndex:", void, .{ _offset, _stride, _index });
     }
 
@@ -16925,7 +16925,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(_self, "setVertexBuffer:offset:atIndex:", void, .{ _buffer, _offset, _index });
     }
 
-    pub fn setVertexBufferOffsetAtIndex(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
+    pub fn setVertexBufferOffsetAtIndex2(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
         return objc.msgSend(_self, "setVertexBufferOffset:atIndex:", void, .{ _offset, _index });
     }
 
@@ -16963,7 +16963,7 @@ pub const RenderCommandEncoder = opaque {
         });
     }
 
-    pub fn setVertexBufferOffsetAttributeStrideAtIndex(_self: *@This(), _offset: objc.NSUInteger, _stride: objc.NSUInteger, _index: objc.NSUInteger) void {
+    pub fn setVertexBufferOffsetAttributeStrideAtIndex2(_self: *@This(), _offset: objc.NSUInteger, _stride: objc.NSUInteger, _index: objc.NSUInteger) void {
         return objc.msgSend(_self, "setVertexBufferOffset:attributeStride:atIndex:", void, .{ _offset, _stride, _index });
     }
 
@@ -17096,7 +17096,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(_self, "setFragmentBuffer:offset:atIndex:", void, .{ _buffer, _offset, _index });
     }
 
-    pub fn setFragmentBufferOffsetAtIndex(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
+    pub fn setFragmentBufferOffsetAtIndex2(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
         return objc.msgSend(_self, "setFragmentBufferOffset:atIndex:", void, .{ _offset, _index });
     }
 
@@ -17233,7 +17233,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(_self, "setObjectBuffer:offset:atIndex:", void, .{ _buffer, _offset, _index });
     }
 
-    pub fn setObjectBufferOffsetAtIndex(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
+    pub fn setObjectBufferOffsetAtIndex2(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
         return objc.msgSend(_self, "setObjectBufferOffset:atIndex:", void, .{ _offset, _index });
     }
 
@@ -17299,7 +17299,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(_self, "setMeshBuffer:offset:atIndex:", void, .{ _buffer, _offset, _index });
     }
 
-    pub fn setMeshBufferOffsetAtIndex(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
+    pub fn setMeshBufferOffsetAtIndex2(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
         return objc.msgSend(_self, "setMeshBufferOffset:atIndex:", void, .{ _offset, _index });
     }
 
@@ -17606,7 +17606,7 @@ pub const RenderCommandEncoder = opaque {
         return objc.msgSend(_self, "setTileBuffer:offset:atIndex:", void, .{ _buffer, _offset, _index });
     }
 
-    pub fn setTileBufferOffsetAtIndex(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
+    pub fn setTileBufferOffsetAtIndex2(_self: *@This(), _offset: objc.NSUInteger, _index: objc.NSUInteger) void {
         return objc.msgSend(_self, "setTileBufferOffset:atIndex:", void, .{ _offset, _index });
     }
 

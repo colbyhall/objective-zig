@@ -122,11 +122,9 @@ pub const rectCreateDictionaryRepresentation = CGRectCreateDictionaryRepresentat
 extern "CoreGraphics" fn CGRectMakeWithDictionaryRepresentation(dict: core_foundation.DictionaryRef, rect: ?*core_foundation.CGRect) callconv(.C) i32;
 pub const rectMakeWithDictionaryRepresentation = CGRectMakeWithDictionaryRepresentation;
 
-extern "CoreGraphics" fn __CGPointEqualToPoint(point1: core_foundation.CGPoint, point2: core_foundation.CGPoint) callconv(.C) i32;
-pub const cgPointEqualToPoint = __CGPointEqualToPoint;
+pub extern "CoreGraphics" fn __CGPointEqualToPoint(point1: core_foundation.CGPoint, point2: core_foundation.CGPoint) callconv(.C) i32;
 
-extern "CoreGraphics" fn __CGSizeEqualToSize(size1: core_foundation.CGSize, size2: core_foundation.CGSize) callconv(.C) i32;
-pub const cgSizeEqualToSize = __CGSizeEqualToSize;
+pub extern "CoreGraphics" fn __CGSizeEqualToSize(size1: core_foundation.CGSize, size2: core_foundation.CGSize) callconv(.C) i32;
 
 extern "CoreGraphics" fn CGAffineTransformMake(
     a: core_foundation.CGFloat,
@@ -183,7 +181,7 @@ pub const affineTransformDecompose = CGAffineTransformDecompose;
 extern "CoreGraphics" fn CGAffineTransformMakeWithComponents(components: core_foundation.CGAffineTransformComponents) callconv(.C) core_foundation.CGAffineTransform;
 pub const affineTransformMakeWithComponents = CGAffineTransformMakeWithComponents;
 
-extern "CoreGraphics" fn __CGAffineTransformMake(
+pub extern "CoreGraphics" fn __CGAffineTransformMake(
     a: core_foundation.CGFloat,
     b: core_foundation.CGFloat,
     c: core_foundation.CGFloat,
@@ -191,13 +189,10 @@ extern "CoreGraphics" fn __CGAffineTransformMake(
     tx: core_foundation.CGFloat,
     ty: core_foundation.CGFloat,
 ) callconv(.C) core_foundation.CGAffineTransform;
-pub const cgAffineTransformMake = __CGAffineTransformMake;
 
-extern "CoreGraphics" fn __CGPointApplyAffineTransform(point: core_foundation.CGPoint, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGPoint;
-pub const cgPointApplyAffineTransform = __CGPointApplyAffineTransform;
+pub extern "CoreGraphics" fn __CGPointApplyAffineTransform(point: core_foundation.CGPoint, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGPoint;
 
-extern "CoreGraphics" fn __CGSizeApplyAffineTransform(size: core_foundation.CGSize, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGSize;
-pub const cgSizeApplyAffineTransform = __CGSizeApplyAffineTransform;
+pub extern "CoreGraphics" fn __CGSizeApplyAffineTransform(size: core_foundation.CGSize, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGSize;
 
 pub const Context = extern struct {};
 
@@ -1281,7 +1276,7 @@ pub const pdfArrayGetDictionary = CGPDFArrayGetDictionary;
 extern "CoreGraphics" fn CGPDFArrayGetStream(array: PDFArrayRef, index: objc.size_t, value: ?*PDFStreamRef) callconv(.C) i32;
 pub const pdfArrayGetStream = CGPDFArrayGetStream;
 
-pub const bool = fn (i32) callconv(.C) i32;
+pub const @"bool" = fn (i32) callconv(.C) i32;
 
 extern "CoreGraphics" fn CGPDFArrayApplyBlock(array: PDFArrayRef, block: i32, info: ?*anyopaque) callconv(.C) void;
 pub const pdfArrayApplyBlock = CGPDFArrayApplyBlock;
@@ -1357,7 +1352,7 @@ extern "CoreGraphics" fn CGPDFPageGetDrawingTransform(
     box: PDFBox,
     rect: core_foundation.CGRect,
     rotate: i32,
-    preserveAspectRatio: bool,
+    preserveAspectRatio: @"bool",
 ) callconv(.C) core_foundation.CGAffineTransform;
 pub const pdfPageGetDrawingTransform = CGPDFPageGetDrawingTransform;
 
@@ -1495,8 +1490,8 @@ extern "CoreGraphics" fn CGShadingCreateAxial(
     start: core_foundation.CGPoint,
     end: core_foundation.CGPoint,
     function: FunctionRef,
-    extendStart: bool,
-    extendEnd: bool,
+    extendStart: @"bool",
+    extendEnd: @"bool",
 ) callconv(.C) ShadingRef;
 pub const shadingCreateAxial = CGShadingCreateAxial;
 
@@ -1507,8 +1502,8 @@ extern "CoreGraphics" fn CGShadingCreateRadial(
     end: core_foundation.CGPoint,
     endRadius: core_foundation.CGFloat,
     function: FunctionRef,
-    extendStart: bool,
-    extendEnd: bool,
+    extendStart: @"bool",
+    extendEnd: @"bool",
 ) callconv(.C) ShadingRef;
 pub const shadingCreateRadial = CGShadingCreateRadial;
 
@@ -1976,28 +1971,28 @@ pub const contextFlush = CGContextFlush;
 extern "CoreGraphics" fn CGContextSynchronize(c: ContextRef) callconv(.C) void;
 pub const contextSynchronize = CGContextSynchronize;
 
-extern "CoreGraphics" fn CGContextSetShouldAntialias(c: ContextRef, shouldAntialias: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShouldAntialias(c: ContextRef, shouldAntialias: @"bool") callconv(.C) void;
 pub const contextSetShouldAntialias = CGContextSetShouldAntialias;
 
-extern "CoreGraphics" fn CGContextSetAllowsAntialiasing(c: ContextRef, allowsAntialiasing: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetAllowsAntialiasing(c: ContextRef, allowsAntialiasing: @"bool") callconv(.C) void;
 pub const contextSetAllowsAntialiasing = CGContextSetAllowsAntialiasing;
 
-extern "CoreGraphics" fn CGContextSetShouldSmoothFonts(c: ContextRef, shouldSmoothFonts: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShouldSmoothFonts(c: ContextRef, shouldSmoothFonts: @"bool") callconv(.C) void;
 pub const contextSetShouldSmoothFonts = CGContextSetShouldSmoothFonts;
 
-extern "CoreGraphics" fn CGContextSetAllowsFontSmoothing(c: ContextRef, allowsFontSmoothing: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetAllowsFontSmoothing(c: ContextRef, allowsFontSmoothing: @"bool") callconv(.C) void;
 pub const contextSetAllowsFontSmoothing = CGContextSetAllowsFontSmoothing;
 
-extern "CoreGraphics" fn CGContextSetShouldSubpixelPositionFonts(c: ContextRef, shouldSubpixelPositionFonts: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShouldSubpixelPositionFonts(c: ContextRef, shouldSubpixelPositionFonts: @"bool") callconv(.C) void;
 pub const contextSetShouldSubpixelPositionFonts = CGContextSetShouldSubpixelPositionFonts;
 
-extern "CoreGraphics" fn CGContextSetAllowsFontSubpixelPositioning(c: ContextRef, allowsFontSubpixelPositioning: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetAllowsFontSubpixelPositioning(c: ContextRef, allowsFontSubpixelPositioning: @"bool") callconv(.C) void;
 pub const contextSetAllowsFontSubpixelPositioning = CGContextSetAllowsFontSubpixelPositioning;
 
-extern "CoreGraphics" fn CGContextSetShouldSubpixelQuantizeFonts(c: ContextRef, shouldSubpixelQuantizeFonts: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetShouldSubpixelQuantizeFonts(c: ContextRef, shouldSubpixelQuantizeFonts: @"bool") callconv(.C) void;
 pub const contextSetShouldSubpixelQuantizeFonts = CGContextSetShouldSubpixelQuantizeFonts;
 
-extern "CoreGraphics" fn CGContextSetAllowsFontSubpixelQuantization(c: ContextRef, allowsFontSubpixelQuantization: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGContextSetAllowsFontSubpixelQuantization(c: ContextRef, allowsFontSubpixelQuantization: @"bool") callconv(.C) void;
 pub const contextSetAllowsFontSubpixelQuantization = CGContextSetAllowsFontSubpixelQuantization;
 
 extern "CoreGraphics" fn CGContextBeginTransparencyLayer(c: ContextRef, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) void;
@@ -3357,7 +3352,7 @@ pub const __CGEventTapInformation = extern struct {
     eventsOfInterest: EventMask,
     tappingProcess: objc.pid_t,
     processBeingTapped: objc.pid_t,
-    enabled: bool,
+    enabled: @"bool",
     minUsecLatency: f32,
     avgUsecLatency: f32,
     maxUsecLatency: f32,
@@ -3397,7 +3392,7 @@ extern "CoreGraphics" fn CGEventCreateMouseEvent(
 ) callconv(.C) EventRef;
 pub const eventCreateMouseEvent = CGEventCreateMouseEvent;
 
-extern "CoreGraphics" fn CGEventCreateKeyboardEvent(source: EventSourceRef, virtualKey: KeyCode, keyDown: bool) callconv(.C) EventRef;
+extern "CoreGraphics" fn CGEventCreateKeyboardEvent(source: EventSourceRef, virtualKey: KeyCode, keyDown: @"bool") callconv(.C) EventRef;
 pub const eventCreateKeyboardEvent = CGEventCreateKeyboardEvent;
 
 extern "CoreGraphics" fn CGEventCreateScrollWheelEvent(
@@ -3507,7 +3502,7 @@ extern "CoreGraphics" fn CGEventTapCreateForPid(
 ) callconv(.C) core_foundation.MachPortRef;
 pub const eventTapCreateForPid = CGEventTapCreateForPid;
 
-extern "CoreGraphics" fn CGEventTapEnable(tap: core_foundation.MachPortRef, enable: bool) callconv(.C) void;
+extern "CoreGraphics" fn CGEventTapEnable(tap: core_foundation.MachPortRef, enable: @"bool") callconv(.C) void;
 pub const eventTapEnable = CGEventTapEnable;
 
 extern "CoreGraphics" fn CGEventTapIsEnabled() callconv(.C) i32;
@@ -3600,7 +3595,7 @@ pub const PSConverterRef = ?*PSConverter;
 
 pub const PSConverterBeginDocumentCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const PSConverterEndDocumentCallback = ?*const fn (?*anyopaque, bool) callconv(.C) void;
+pub const PSConverterEndDocumentCallback = ?*const fn (?*anyopaque, @"bool") callconv(.C) void;
 
 pub const PSConverterBeginPageCallback = ?*const fn (?*anyopaque, objc.size_t, core_foundation.DictionaryRef) callconv(.C) void;
 
