@@ -9,1089 +9,6 @@ const core_services = @import("core_services.zig"); // Framework dependency Core
 const foundation = @import("foundation.zig"); // Framework dependency Foundation.
 const app_kit = @import("app_kit.zig"); // Framework dependency AppKit.
 
-pub const anon1231 = enum(u32) {
-    ICAttrLockedBit = 0,
-    ICAttrVolatileBit = 1,
-};
-
-pub const anon651 = enum(u32) {
-    ATSUUnFlattenOptionNoOptionsMask = 0,
-};
-
-pub const anon1071 = enum(objc.OSType) {
-    soVoiceDescription = 1768842863,
-    soVoiceFile = 1718773094,
-};
-
-pub const anon371 = enum(u32) {
-    PMCancel = 128,
-};
-
-pub const anon521 = enum(objc.SInt32) {
-    Immediate = 0,
-    EndOfWord = 1,
-    EndOfSentence = 2,
-};
-
-pub const anon1271 = enum(u32) {
-    SelectorLarge1Bit = 1,
-    SelectorLarge4Bit = 2,
-    SelectorLarge8Bit = 4,
-    SelectorLarge32Bit = 8,
-    SelectorLarge8BitMask = 16,
-    SelectorSmall1Bit = 256,
-    SelectorSmall4Bit = 512,
-    SelectorSmall8Bit = 1024,
-    SelectorSmall32Bit = 2048,
-    SelectorSmall8BitMask = 4096,
-    SelectorMini1Bit = 65536,
-    SelectorMini4Bit = 131072,
-    SelectorMini8Bit = 262144,
-    SelectorHuge1Bit = 16777216,
-    SelectorHuge4Bit = 33554432,
-    SelectorHuge8Bit = 67108864,
-    SelectorHuge32Bit = 134217728,
-    SelectorHuge8BitMask = 268435456,
-    SelectorAllLargeData = 255,
-    SelectorAllSmallData = 65280,
-    SelectorAllMiniData = 16711680,
-    SelectorAllHugeData = -16777216,
-    SelectorAll1BitData = 16843009,
-    SelectorAll4BitData = 33686018,
-    SelectorAll8BitData = 67372036,
-    SelectorAll32BitData = 134219784,
-    SelectorAllAvailableData = -1,
-};
-
-pub const anon1381 = enum(u32) {
-    icNoPerm = 0,
-    icReadOnlyPerm = 1,
-    icReadWritePerm = 2,
-};
-
-pub const anon391 = enum(objc.OSType) {
-    TextToSpeechSynthType = 1953788771,
-    TextToSpeechVoiceType = 1953789540,
-    TextToSpeechVoiceFileType = 1953789542,
-    TextToSpeechVoiceBundleType = 1953789538,
-};
-
-pub const anon441 = enum(u32) {
-    ATSUDataStreamUnicodeStyledText = 1970500716,
-};
-
-pub const anon711 = enum(u32) {
-    UAZoomFocusTypeOther = 0,
-    UAZoomFocusTypeInsertionPoint = 1,
-};
-
-pub const anon881 = enum(u32) {
-    TransformNone = 0,
-    TransformDisabled = 1,
-    TransformOffline = 2,
-    TransformOpen = 3,
-    TransformLabel1 = 256,
-    TransformLabel2 = 512,
-    TransformLabel3 = 768,
-    TransformLabel4 = 1024,
-    TransformLabel5 = 1280,
-    TransformLabel6 = 1536,
-    TransformLabel7 = 1792,
-    TransformSelected = 16384,
-    TransformSelectedDisabled = 16385,
-    TransformSelectedOffline = 16386,
-    TransformSelectedOpen = 16387,
-};
-
-pub const anon1121 = enum(u32) {
-    modeReserved = 16777216,
-    modeControlPanel = 524288,
-    modeLaunchDontSwitch = 262144,
-    modeDeskAccessory = 131072,
-    modeMultiLaunch = 65536,
-    modeNeedSuspendResume = 16384,
-    modeCanBackground = 4096,
-    modeDoesActivateOnFGSwitch = 2048,
-    modeOnlyBackground = 1024,
-    modeGetFrontClicks = 512,
-    modeGetAppDiedMsg = 256,
-    mode32BitCompatible = 128,
-    modeHighLevelEventAware = 64,
-    modeLocalAndRemoteHLEvents = 32,
-    modeStationeryAware = 16,
-    modeUseTextEditServices = 8,
-    modeDisplayManagerAware = 4,
-};
-
-pub const anon1391 = enum(u32) {
-    PMLayoutLeftRightTopBottom = 1,
-    PMLayoutLeftRightBottomTop = 2,
-    PMLayoutRightLeftTopBottom = 3,
-    PMLayoutRightLeftBottomTop = 4,
-    PMLayoutTopBottomLeftRight = 5,
-    PMLayoutTopBottomRightLeft = 6,
-    PMLayoutBottomTopLeftRight = 7,
-    PMLayoutBottomTopRightLeft = 8,
-};
-
-pub const anon4001 = enum(u32) {
-    ATSFlattenedFontSpecifierRawNameData = 1851878756,
-};
-
-pub const anon731 = enum(i32) {
-    icPrefNotFoundErr = -666,
-    icPermErr = -667,
-    icPrefDataErr = -668,
-    icInternalErr = -669,
-    icTruncatedErr = -670,
-    icNoMoreWritersErr = -671,
-    icNothingToOverrideErr = -672,
-    icNoURLErr = -673,
-    icConfigNotFoundErr = -674,
-    icConfigInappropriateErr = -675,
-    icProfileNotFoundErr = -676,
-    icTooManyProfilesErr = -677,
-};
-
-pub const anon1501 = enum(u32) {
-    ICNilProfileID = 0,
-};
-
-pub const anon2511 = enum(u32) {
-    ICFileSpecHeaderSize = 106,
-};
-
-pub const anon3451 = enum(u32) {
-    cmXYZData = 1482250784,
-    cmLabData = 1281450528,
-    cmLuvData = 1282766368,
-    cmYCbCrData = 1497588338,
-    cmYxyData = 1501067552,
-    cmRGBData = 1380401696,
-    cmSRGBData = 1934772034,
-    cmGrayData = 1196573017,
-    cmHSVData = 1213421088,
-    cmHLSData = 1212961568,
-    cmCMYKData = 1129142603,
-    cmCMYData = 1129142560,
-    cmMCH5Data = 1296255029,
-    cmMCH6Data = 1296255030,
-    cmMCH7Data = 1296255031,
-    cmMCH8Data = 1296255032,
-    cm3CLRData = 860048466,
-    cm4CLRData = 876825682,
-    cm5CLRData = 893602898,
-    cm6CLRData = 910380114,
-    cm7CLRData = 927157330,
-    cm8CLRData = 943934546,
-    cm9CLRData = 960711762,
-    cm10CLRData = 1094929490,
-    cm11CLRData = 1111706706,
-    cm12CLRData = 1128483922,
-    cm13CLRData = 1145261138,
-    cm14CLRData = 1162038354,
-    cm15CLRData = 1178815570,
-    cmNamedData = 1312902469,
-};
-
-pub const anon12291 = enum(u32) {
-    ATSUUseLineControlWidth = 2147483647,
-};
-
-pub const anon1191 = enum(u32) {
-    PMScalingPinTopLeft = 1,
-    PMScalingPinTopRight = 2,
-    PMScalingPinBottomLeft = 3,
-    PMScalingPinBottomRight = 4,
-    PMScalingCenterOnPaper = 5,
-    PMScalingCenterOnImgArea = 6,
-};
-
-pub const anon1541 = enum(u32) {
-    ATSULayoutOperationCallbackStatusHandled = 0,
-    ATSULayoutOperationCallbackStatusContinue = 1,
-};
-
-pub const anon1591 = enum(u32) {
-    svLarge1Bit = 1,
-    svLarge4Bit = 2,
-    svLarge8Bit = 4,
-    svSmall1Bit = 256,
-    svSmall4Bit = 512,
-    svSmall8Bit = 1024,
-    svMini1Bit = 65536,
-    svMini4Bit = 131072,
-    svMini8Bit = 262144,
-    svAllLargeData = 255,
-    svAllSmallData = 65280,
-    svAllMiniData = 16711680,
-    svAll1BitData = 16843009,
-    svAll4BitData = 33686018,
-    svAll8BitData = 67372036,
-    svAllAvailableData = -1,
-};
-
-pub const anon2821 = enum(u32) {
-    ICMapBinaryBit = 0,
-    ICMapResourceForkBit = 1,
-    ICMapDataForkBit = 2,
-    ICMapPostBit = 3,
-    ICMapNotIncomingBit = 4,
-    ICMapNotOutgoingBit = 5,
-};
-
-pub const anon3131 = enum(u32) {
-    ICServicesTCPBit = 0,
-    ICServicesUDPBit = 1,
-};
-
-pub const anon3331 = enum(u32) {
-    cmSpotFunctionUnknown = 0,
-    cmSpotFunctionDefault = 1,
-    cmSpotFunctionRound = 2,
-    cmSpotFunctionDiamond = 3,
-    cmSpotFunctionEllipse = 4,
-    cmSpotFunctionLine = 5,
-    cmSpotFunctionSquare = 6,
-    cmSpotFunctionCross = 7,
-};
-
-pub const anon3411 = enum(u32) {
-    ATSDeletedGlyphcode = 65535,
-};
-
-pub const anon3791 = enum(u32) {
-    cmInputClass = 1935896178,
-    cmDisplayClass = 1835955314,
-    cmOutputClass = 1886549106,
-    cmLinkClass = 1818848875,
-    cmAbstractClass = 1633842036,
-    cmColorSpaceClass = 1936744803,
-    cmNamedColorClass = 1852662636,
-};
-
-pub const anon3991 = enum(u32) {
-    cmParametricType0 = 0,
-    cmParametricType1 = 1,
-    cmParametricType2 = 2,
-    cmParametricType3 = 3,
-    cmParametricType4 = 4,
-};
-
-pub const anon461 = enum(objc.SInt32) {
-    NoEndingProsody = 1,
-    NoSpeechInterrupt = 2,
-    PreflightThenPause = 4,
-};
-
-pub const anon511 = enum(u32) {
-    srcCopy = 0,
-};
-
-pub const anon571 = enum(u32) {
-    ATSOptionFlagsDefault = 0,
-    ATSOptionFlagsComposeFontPostScriptName = 1,
-    ATSOptionFlagsUseDataForkAsResourceFork = 256,
-    ATSOptionFlagsUseResourceFork = 512,
-    ATSOptionFlagsUseDataFork = 768,
-};
-
-pub const anon751 = enum(u32) {
-    PMPrinterIdle = 3,
-    PMPrinterProcessing = 4,
-    PMPrinterStopped = 5,
-};
-
-pub const anon1691 = enum(u32) {
-    cmNumHeaderElements = 10,
-};
-
-pub const anon981 = enum(objc.OSType) {
-    modeText = 1413830740,
-    modePhonemes = 1346916174,
-    modeTune = 1414876741,
-    modeNormal = 1313821261,
-    modeLiteral = 1280594508,
-};
-
-pub const anon5121 = enum(u32) {
-    SetFrontProcessFrontWindowOnly = 1,
-    SetFrontProcessCausedByUser = 2,
-};
-
-pub const anon7791 = enum(u32) {
-    ATSUStronglyHorizontal = 0,
-    ATSUStronglyVertical = 1,
-};
-
-pub const anon9191 = enum(u32) {
-    GlyphCollectionGID = 0,
-    GlyphCollectionAdobeCNS1 = 1,
-    GlyphCollectionAdobeGB1 = 2,
-    GlyphCollectionAdobeJapan1 = 3,
-    GlyphCollectionAdobeJapan2 = 4,
-    GlyphCollectionAdobeKorea1 = 5,
-    GlyphCollectionUnspecified = 255,
-};
-
-pub const anon9321 = enum(u32) {
-    PlotIconRefNormalFlags = 0,
-    PlotIconRefNoImage = 2,
-    PlotIconRefNoMask = 4,
-};
-
-pub const anon14521 = enum(u32) {
-    cmGray8Space = 10250,
-    cmGray16Space = 10,
-    cmGray16LSpace = 16394,
-    cmGrayA16Space = 8330,
-    cmGrayA32Space = 138,
-    cmGrayA32LSpace = 16522,
-    cmGrayA16PmulSpace = 8394,
-    cmGrayA32PmulSpace = 202,
-    cmGrayA32LPmulSpace = 16586,
-    cmRGB16Space = 1281,
-    cmRGB16LSpace = 17665,
-    cmRGB565Space = 1537,
-    cmRGB565LSpace = 17921,
-    cmRGB24Space = 8449,
-    cmRGB32Space = 2049,
-    cmRGB48Space = 10497,
-    cmRGB48LSpace = 26881,
-    cmARGB32Space = 6273,
-    cmARGB64Space = 14977,
-    cmARGB64LSpace = 31361,
-    cmRGBA32Space = 2177,
-    cmRGBA64Space = 10881,
-    cmRGBA64LSpace = 27265,
-    cmARGB32PmulSpace = 6337,
-    cmARGB64PmulSpace = 15041,
-    cmARGB64LPmulSpace = 31425,
-    cmRGBA32PmulSpace = 2241,
-    cmRGBA64PmulSpace = 10945,
-    cmRGBA64LPmulSpace = 27329,
-    cmCMYK32Space = 2050,
-    cmCMYK64Space = 10754,
-    cmCMYK64LSpace = 27138,
-    cmHSV32Space = 2563,
-    cmHLS32Space = 2564,
-    cmYXY32Space = 2565,
-    cmXYZ24Space = 8454,
-    cmXYZ32Space = 2566,
-    cmXYZ48Space = 10502,
-    cmXYZ48LSpace = 26886,
-    cmLUV32Space = 2567,
-    cmLAB24Space = 8456,
-    cmLAB32Space = 2568,
-    cmLAB48Space = 10504,
-    cmLAB48LSpace = 26888,
-    cmGamutResult1Space = 2828,
-    cmNamedIndexed32Space = 10000,
-    cmNamedIndexed32LSpace = 26384,
-    cmMCFive8Space = 8721,
-    cmMCSix8Space = 8978,
-    cmMCSeven8Space = 9235,
-    cmMCEight8Space = 9492,
-};
-
-pub const anon18441 = enum(u32) {
-    cmDeviceInfoVersion1 = 65536,
-    cmDeviceProfileInfoVersion1 = 65536,
-    cmDeviceProfileInfoVersion2 = 131072,
-};
-
-pub const anon18681 = enum(i32) {
-    cmDeviceStateDefault = 0,
-    cmDeviceStateOffline = 1,
-    cmDeviceStateBusy = 2,
-    cmDeviceStateForceNotify = -2147483648,
-    cmDeviceStateDeviceRsvdBits = 16711680,
-    cmDeviceStateAppleRsvdBits = -16711681,
-};
-
-pub const anon821 = enum(u32) {
-    PMUnknownColorSpaceModel = 0,
-    PMGrayColorSpaceModel = 1,
-    PMRGBColorSpaceModel = 2,
-    PMCMYKColorSpaceModel = 3,
-    PMDevNColorSpaceModel = 4,
-};
-
-pub const anon451 = enum(u32) {
-    launchContinue = 16384,
-    launchNoFileFlags = 2048,
-    launchUseMinimum = 1024,
-    launchDontSwitch = 512,
-    launchAllow24Bit = 256,
-    launchInhibitDaemon = 128,
-};
-
-pub const anon1041 = enum(u32) {
-    ATSFlatDataUstlVersion0 = 0,
-    ATSFlatDataUstlVersion1 = 1,
-    ATSFlatDataUstlVersion2 = 2,
-    ATSFlatDataUstlCurrentVersion = 2,
-};
-
-pub const anon1201 = enum(i32) {
-    badTranslationRefErr = -3031,
-};
-
-pub const anon551 = enum(u32) {
-    ATSUFlattenOptionNoOptionsMask = 0,
-};
-
-pub const anon671 = enum(u32) {
-    atNone = 0,
-    atVerticalCenter = 1,
-    atTop = 2,
-    atBottom = 3,
-    atHorizontalCenter = 4,
-    atAbsoluteCenter = 5,
-    atCenterTop = 6,
-    atCenterBottom = 7,
-    atLeft = 8,
-    atCenterLeft = 9,
-    atTopLeft = 10,
-    atBottomLeft = 11,
-    atRight = 12,
-    atCenterRight = 13,
-    atTopRight = 14,
-    atBottomRight = 15,
-};
-
-pub const anon1161 = enum(i32) {
-    InvalidGeneration = 0,
-    InvalidFontFamily = -1,
-    InvalidFont = 0,
-};
-
-pub const anon1251 = enum(objc.UInt32) {
-    AudioUnitSubType_SpeechSynthesis = 1953788784,
-    AudioUnitProperty_Voice = 3330,
-    AudioUnitProperty_SpeechChannel = 3331,
-};
-
-pub const anon1301 = enum(u32) {
-    PMDuplexNone = 1,
-    PMDuplexNoTumble = 2,
-    PMDuplexTumble = 3,
-    PMSimplexTumble = 4,
-};
-
-pub const anon1371 = enum(u32) {
-    FMTrueTypeFontTechnology = 1953658213,
-    FMPostScriptFontTechnology = 1954115633,
-};
-
-pub const anon2211 = enum(u32) {
-    cmPS2CRDVMSizeTag = 1886615149,
-    cmVideoCardGammaTag = 1986226036,
-    cmMakeAndModelTag = 1835888484,
-    cmProfileDescriptionMLTag = 1685283693,
-    cmNativeDisplayInfoTag = 1852074350,
-};
-
-pub const anon2911 = enum(u32) {
-    ICMapBinaryMask = 1,
-    ICMapResourceForkMask = 2,
-    ICMapDataForkMask = 4,
-    ICMapPostMask = 8,
-    ICMapNotIncomingMask = 16,
-    ICMapNotOutgoingMask = 32,
-};
-
-pub const anon3181 = enum(u32) {
-    ICServicesTCPMask = 1,
-    ICServicesUDPMask = 2,
-};
-
-pub const anon3301 = enum(u32) {
-    ATSCubicCurveType = 1,
-    ATSQuadCurveType = 2,
-    ATSOtherCurveType = 3,
-};
-
-pub const anon8151 = enum(u32) {
-    ATSUDefaultFontFallbacks = 0,
-    ATSULastResortOnlyFallback = 1,
-    ATSUSequentialFallbacksPreferred = 2,
-    ATSUSequentialFallbacksExclusive = 3,
-};
-
-pub const anon661 = enum(u32) {
-    PMPortrait = 1,
-    PMLandscape = 2,
-    PMReversePortrait = 3,
-    PMReverseLandscape = 4,
-};
-
-pub const anon911 = enum(u32) {
-    cmMagicNumber = 1633907568,
-};
-
-pub const anon2301 = enum(u32) {
-    cmSigCrdInfoType = 1668441193,
-    cmSigCurveType = 1668641398,
-    cmSigDataType = 1684108385,
-    cmSigDateTimeType = 1685350765,
-    cmSigLut16Type = 1835430962,
-    cmSigLut8Type = 1835430961,
-    cmSigMeasurementType = 1835360627,
-    cmSigMultiFunctA2BType = 1832993312,
-    cmSigMultiFunctB2AType = 1833058592,
-    cmSigNamedColorType = 1852010348,
-    cmSigNamedColor2Type = 1852009522,
-    cmSigParametricCurveType = 1885434465,
-    cmSigProfileDescriptionType = 1684370275,
-    cmSigProfileSequenceDescType = 1886610801,
-    cmSigScreeningType = 1935897198,
-    cmSigS15Fixed16Type = 1936077618,
-    cmSigSignatureType = 1936287520,
-    cmSigTextType = 1952807028,
-    cmSigU16Fixed16Type = 1969632050,
-    cmSigU1Fixed15Type = 1969631542,
-    cmSigUInt8Type = 1969827896,
-    cmSigUInt16Type = 1969828150,
-    cmSigUInt32Type = 1969828658,
-    cmSigUInt64Type = 1969829428,
-    cmSigUcrBgType = 1650877472,
-    cmSigUnicodeTextType = 1970567284,
-    cmSigViewingConditionsType = 1986618743,
-    cmSigXYZType = 1482250784,
-};
-
-pub const anon2721 = enum(u32) {
-    cmTechnologyDigitalCamera = 1684234605,
-    cmTechnologyFilmScanner = 1718838126,
-    cmTechnologyReflectiveScanner = 1920164718,
-    cmTechnologyInkJetPrinter = 1768580468,
-    cmTechnologyThermalWaxPrinter = 1953980792,
-    cmTechnologyElectrophotographicPrinter = 1701865583,
-    cmTechnologyElectrostaticPrinter = 1702065249,
-    cmTechnologyDyeSublimationPrinter = 1685288290,
-    cmTechnologyPhotographicPaperPrinter = 1919969391,
-    cmTechnologyFilmWriter = 1718645358,
-    cmTechnologyVideoMonitor = 1986618477,
-    cmTechnologyVideoCamera = 1986618467,
-    cmTechnologyProjectionTelevision = 1886024822,
-    cmTechnologyCRTDisplay = 1129468960,
-    cmTechnologyPMDisplay = 1347240992,
-    cmTechnologyAMDisplay = 1095582752,
-    cmTechnologyPhotoCD = 1263551300,
-    cmTechnologyPhotoImageSetter = 1768777587,
-    cmTechnologyGravure = 1735549302,
-    cmTechnologyOffsetLithography = 1868981875,
-    cmTechnologySilkscreen = 1936288875,
-    cmTechnologyFlexography = 1718379896,
-};
-
-pub const anon2761 = enum(i32) {
-    ProcessDictionaryIncludeAllInformationMask = -1,
-};
-
-pub const anon2871 = enum(u32) {
-    ATSFontFormatUnspecified = 0,
-};
-
-pub const anon3221 = enum(u32) {
-    ATSItalicQDSkew = 16384,
-    ATSBoldQDStretch = 98304,
-    ATSRadiansFactor = 1144,
-};
-
-pub const anon1651 = enum(u32) {
-    PMHideInlineItems = 0,
-    PMShowDefaultInlineItems = 32768,
-    PMShowInlineCopies = 1,
-    PMShowInlinePageRange = 2,
-    PMShowInlinePageRangeWithSelection = 64,
-    PMShowInlinePaperSize = 4,
-    PMShowInlineOrientation = 8,
-    PMShowInlineScale = 128,
-    PMShowPageAttributesPDE = 256,
-};
-
-pub const anon1111 = enum(u32) {
-    _1MonochromePixelFormat = 1,
-    _2IndexedPixelFormat = 2,
-    _4IndexedPixelFormat = 4,
-    _8IndexedPixelFormat = 8,
-    _16BE555PixelFormat = 16,
-    _24RGBPixelFormat = 24,
-    _32ARGBPixelFormat = 32,
-    _1IndexedGrayPixelFormat = 33,
-    _2IndexedGrayPixelFormat = 34,
-    _4IndexedGrayPixelFormat = 36,
-    _8IndexedGrayPixelFormat = 40,
-    _16LE555PixelFormat = 1278555445,
-    _16LE5551PixelFormat = 892679473,
-    _16BE565PixelFormat = 1110783541,
-    _16LE565PixelFormat = 1278555701,
-    _24BGRPixelFormat = 842285639,
-    _32BGRAPixelFormat = 1111970369,
-    _32ABGRPixelFormat = 1094862674,
-    _32RGBAPixelFormat = 1380401729,
-    YUVSPixelFormat = 2037741171,
-    YUVUPixelFormat = 2037741173,
-    YVU9PixelFormat = 1498830137,
-    YUV411PixelFormat = 1496592689,
-    YVYU422PixelFormat = 1498831189,
-    UYVY422PixelFormat = 1431918169,
-    YUV211PixelFormat = 1496461617,
-    _2vuyPixelFormat = 846624121,
-};
-
-pub const anon1531 = enum(u32) {
-    PMBorderSingleHairline = 1,
-    PMBorderDoubleHairline = 2,
-    PMBorderSingleThickline = 3,
-    PMBorderDoubleThickline = 4,
-};
-
-pub const anon1631 = enum(u32) {
-    cmPrtrDefaultScreens = 0,
-    cmLinesPer = 1,
-};
-
-pub const anon1731 = enum(u32) {
-    InternetEventClass = 1196773964,
-    AEGetURL = 1196773964,
-    AEFetchURL = 1179996748,
-    eyAEAttaching = 1098146664,
-};
-
-pub const anon831 = enum(u32) {
-    ATSOptionFlagsActivateDisabled = 32,
-    ATSOptionFlagsProcessSubdirectories = 64,
-    ATSOptionFlagsDoNotNotify = 128,
-    ATSOptionFlagsRecordPersistently = 262144,
-};
-
-pub const anon1611 = enum(u32) {
-    ICNoUserInteractionMask = 1,
-};
-
-pub const anon621 = enum(objc.OSType) {
-    soStatus = 1937006964,
-    soErrors = 1701999215,
-    soInputMode = 1768845428,
-    soCharacterMode = 1667785074,
-    soNumberMode = 1852662386,
-    soRate = 1918989413,
-    soPitchBase = 1885495667,
-    soPitchMod = 1886220132,
-    soVolume = 1987013741,
-    soSynthType = 1986359923,
-    soRecentSync = 1937337955,
-    soPhonemeSymbols = 1885893497,
-    soCurrentVoice = 1668706168,
-    soCommandDelimiter = 1684826477,
-    soReset = 1920165236,
-    soCurrentA5 = 1836663093,
-    soRefCon = 1919247971,
-    soTextDoneCallBack = 1952736098,
-    soSpeechDoneCallBack = 1935958882,
-    soSyncCallBack = 1937335138,
-    soErrorCallBack = 1701995362,
-    soPhonemeCallBack = 1885889378,
-    soWordCallBack = 2003067746,
-    soSynthExtension = 2020896356,
-    soSoundOutput = 1936614511,
-    soOutputToFileWithCFURL = 1869635942,
-    soOutputToExtAudioFile = 1869635960,
-    soOutputToAudioDevice = 1869635940,
-    soPhonemeOptions = 1886351476,
-};
-
-pub const anon1221 = enum(u32) {
-    FMCurrentFilterFormat = 0,
-};
-
-pub const anon1811 = enum(u32) {
-    ICEditPreferenceEventClass = 1229144432,
-    ICEditPreferenceEvent = 1229144432,
-    eyICEditPreferenceDestination = 1684370292,
-};
-
-pub const anon3001 = enum(u32) {
-    cmFlare0 = 0,
-    cmFlare100 = 1,
-};
-
-pub const anon761 = enum(u32) {
-    cmICCProfileVersion4 = 67108864,
-    cmICCProfileVersion2 = 33554432,
-    cmICCProfileVersion21 = 34603008,
-    cmCS2ProfileVersion = 33554432,
-    cmCS1ProfileVersion = 256,
-};
-
-pub const anon941 = enum(u32) {
-    PMQualityLowest = 0,
-    PMQualityInkSaver = 1,
-    PMQualityDraft = 4,
-    PMQualityNormal = 8,
-    PMQualityPhoto = 11,
-    PMQualityBest = 13,
-    PMQualityHighest = 15,
-};
-
-pub const anon1281 = enum(u32) {
-    ICAttrNoChange = -1,
-    ICAttrLockedMask = 1,
-    ICAttrVolatileMask = 2,
-};
-
-pub const anon1741 = enum(u32) {
-    cmAToB0Tag = 1093812784,
-    cmAToB1Tag = 1093812785,
-    cmAToB2Tag = 1093812786,
-    cmBlueColorantTag = 1649957210,
-    cmBlueTRCTag = 1649693251,
-    cmBToA0Tag = 1110589744,
-    cmBToA1Tag = 1110589745,
-    cmBToA2Tag = 1110589746,
-    cmCalibrationDateTimeTag = 1667329140,
-    cmChromaticAdaptationTag = 1667785060,
-    cmCharTargetTag = 1952543335,
-    cmCopyrightTag = 1668313716,
-    cmDeviceMfgDescTag = 1684893284,
-    cmDeviceModelDescTag = 1684890724,
-    cmGamutTag = 1734438260,
-    cmGrayTRCTag = 1800688195,
-    cmGreenColorantTag = 1733843290,
-    cmGreenTRCTag = 1733579331,
-    cmLuminanceTag = 1819635049,
-    cmMeasurementTag = 1835360627,
-    cmMediaBlackPointTag = 1651208308,
-    cmMediaWhitePointTag = 2004119668,
-    cmNamedColorTag = 1852010348,
-    cmNamedColor2Tag = 1852009522,
-    cmPreview0Tag = 1886545200,
-    cmPreview1Tag = 1886545201,
-    cmPreview2Tag = 1886545202,
-    cmProfileDescriptionTag = 1684370275,
-    cmProfileSequenceDescTag = 1886610801,
-    cmPS2CRD0Tag = 1886610480,
-    cmPS2CRD1Tag = 1886610481,
-    cmPS2CRD2Tag = 1886610482,
-    cmPS2CRD3Tag = 1886610483,
-    cmPS2CSATag = 1886597747,
-    cmPS2RenderingIntentTag = 1886597737,
-    cmRedColorantTag = 1918392666,
-    cmRedTRCTag = 1918128707,
-    cmScreeningDescTag = 1935897188,
-    cmScreeningTag = 1935897198,
-    cmTechnologyTag = 1952801640,
-    cmUcrBgTag = 1650877472,
-    cmViewingConditionsDescTag = 1987405156,
-    cmViewingConditionsTag = 1986618743,
-};
-
-pub const anon2201 = enum(i32) {
-    PMInvalidPrintSession = -30879,
-    PMInvalidPrinter = -30880,
-    PMObjectInUse = -30881,
-    PMInvalidPreset = -30899,
-};
-
-pub const anon8331 = enum(u32) {
-    cmVideoCardGammaTableType = 0,
-    cmVideoCardGammaFormulaType = 1,
-};
-
-pub const anon8751 = enum(u32) {
-    initDev = 0,
-    hitDev = 1,
-    closeDev = 2,
-    nulDev = 3,
-    updateDev = 4,
-    activDev = 5,
-    deactivDev = 6,
-    eyEvtDev = 7,
-    macDev = 8,
-    undoDev = 9,
-    cutDev = 10,
-    copyDev = 11,
-    pasteDev = 12,
-    clearDev = 13,
-    cursorDev = 14,
-};
-
-pub const anon2781 = enum(u32) {
-    ICMapFixedLength = 22,
-};
-
-pub const anon2921 = enum(u32) {
-    QuitBeforeNormalTimeMask = 1,
-    QuitAtNormalTimeMask = 2,
-    QuitBeforeFBAsQuitMask = 4,
-    QuitBeforeShellQuitsMask = 8,
-    QuitBeforeTerminatorAppQuitsMask = 16,
-    QuitNeverMask = 32,
-    QuitOptionsMask = 127,
-    QuitNotQuitDuringInstallMask = 256,
-    QuitNotQuitDuringLogoutMask = 512,
-};
-
-pub const anon851 = enum(i32) {
-    cmProfileMajorVersionMask = -16777216,
-    cmCurrentProfileMajorVersion = 33554432,
-};
-
-pub const anon1901 = enum(u32) {
-    ICComponentVersion = 0,
-    ICNumVersion = 1,
-};
-
-pub const anon10431 = enum(u32) {
-    ATSUBackgroundColor = 0,
-    ATSUBackgroundCallback = 1,
-};
-
-pub const anon1021 = enum(i32) {
-    badPasteboardSyncErr = -25130,
-    badPasteboardIndexErr = -25131,
-    badPasteboardItemErr = -25132,
-    badPasteboardFlavorErr = -25133,
-    duplicatePasteboardFlavorErr = -25134,
-    notPasteboardOwnerErr = -25135,
-    noPasteboardPromiseKeeperErr = -25136,
-};
-
-pub const anon1151 = enum(objc.SInt32) {
-    SpeechGenerateTune = 1,
-    SpeechRelativePitch = 2,
-    SpeechRelativeDuration = 4,
-    SpeechShowSyllables = 8,
-};
-
-pub const anon1561 = enum(u32) {
-    PMCoverPageNone = 1,
-    PMCoverPageBefore = 2,
-    PMCoverPageAfter = 3,
-};
-
-pub const anon8681 = enum(u32) {
-    ATSULeftTab = 0,
-    ATSUCenterTab = 1,
-    ATSURightTab = 2,
-    ATSUDecimalTab = 3,
-    ATSUNumberTabTypes = 4,
-};
-
-pub const anon541 = enum(u32) {
-    PMDestinationInvalid = 0,
-    PMDestinationPrinter = 1,
-    PMDestinationFile = 2,
-    PMDestinationFax = 3,
-    PMDestinationPreview = 4,
-    PMDestinationProcessPDF = 5,
-};
-
-pub const anon351 = enum(i32) {
-    PMAllocationFailure = -108,
-    PMInternalError = -30870,
-    PMInvalidIndex = -30882,
-    PMStringConversionFailure = -30883,
-    PMXMLParseError = -30884,
-    PMInvalidJobTemplate = -30885,
-    PMInvalidPrinterInfo = -30886,
-    PMInvalidConnection = -30887,
-    PMInvalidKey = -30888,
-    PMInvalidValue = -30889,
-    PMInvalidAllocator = -30890,
-    PMInvalidTicket = -30891,
-    PMInvalidItem = -30892,
-    PMInvalidType = -30893,
-    PMInvalidReply = -30894,
-    PMInvalidFileType = -30895,
-    PMInvalidObject = -30896,
-    PMInvalidPaper = -30897,
-    PMInvalidCalibrationTarget = -30898,
-    PMNoDefaultItem = -9500,
-    PMNoDefaultSettings = -9501,
-    PMInvalidPDEContext = -9530,
-    PMDontSwitchPDEError = -9531,
-    PMUnableToFindProcess = -9532,
-    PMFeatureNotInstalled = -9533,
-    PMInvalidPBMRef = -9540,
-    PMNoSelectedPrinters = -9541,
-    PMInvalidLookupSpec = -9542,
-    PMSyncRequestFailed = -9543,
-    PMEditRequestFailed = -9544,
-    PMPrBrowserNoUI = -9545,
-    PMTicketTypeNotFound = -9580,
-    PMUpdateTicketFailed = -9581,
-    PMValidateTicketFailed = -9582,
-    PMSubTicketNotFound = -9583,
-    PMInvalidSubTicket = -9584,
-    PMDeleteSubTicketFailed = -9585,
-    PMItemIsLocked = -9586,
-    PMTicketIsLocked = -9587,
-    PMTemplateIsLocked = -9588,
-    PMKeyNotFound = -9589,
-    PMKeyNotUnique = -9590,
-    PMUnknownDataType = -9591,
-    PMCreateMessageFailed = -9620,
-    PMServerCommunicationFailed = -9621,
-    PMKeyOrValueNotFound = -9623,
-    PMMessagingError = -9624,
-    PMServerNotFound = -9630,
-    PMServerAlreadyRunning = -9631,
-    PMServerSuspended = -9632,
-    PMServerAttributeRestricted = -9633,
-    PMFileOrDirOperationFailed = -9634,
-    PMUserOrGroupNotFound = -9635,
-    PMPermissionError = -9636,
-    PMUnknownMessage = -9637,
-    PMQueueNotFound = -9638,
-    PMQueueAlreadyExists = -9639,
-    PMQueueJobFailed = -9640,
-    PMJobNotFound = -9641,
-    PMJobBusy = -9642,
-    PMJobCanceled = -9643,
-    PMDocumentNotFound = -9644,
-    PMPMSymbolNotFound = -9660,
-    PMIOMSymbolNotFound = -9661,
-    PMCVMSymbolNotFound = -9662,
-    PMInvalidPMContext = -9663,
-    PMInvalidIOMContext = -9664,
-    PMInvalidCVMContext = -9665,
-    PMInvalidJobID = -9666,
-    PMNoPrinterJobID = -9667,
-    PMJobStreamOpenFailed = -9668,
-    PMJobStreamReadFailed = -9669,
-    PMJobStreamEndError = -9670,
-    PMJobManagerAborted = -9671,
-    PMJobGetTicketBadFormatError = -9672,
-    PMJobGetTicketReadError = -9673,
-    PMPluginNotFound = -9701,
-    PMPluginRegisterationFailed = -9702,
-    PMFontNotFound = -9703,
-    PMFontNameTooLong = -9704,
-    PMGeneralCGError = -9705,
-    PMInvalidState = -9706,
-    PMUnexpectedImagingError = -9707,
-    PMInvalidPrinterAddress = -9780,
-    PMOpenFailed = -9781,
-    PMReadFailed = -9782,
-    PMWriteFailed = -9783,
-    PMStatusFailed = -9784,
-    PMCloseFailed = -9785,
-    PMUnsupportedConnection = -9786,
-    PMIOAttrNotAvailable = -9787,
-    PMReadGotZeroData = -9788,
-    PMLastErrorCodeToMakeMaintenanceOfThisListEasier = -9799,
-};
-
-pub const anon1801 = enum(u32) {
-    ATSULineWidthTag = 1,
-    ATSULineRotationTag = 2,
-    ATSULineDirectionTag = 3,
-    ATSULineJustificationFactorTag = 4,
-    ATSULineFlushFactorTag = 5,
-    ATSULineBaselineValuesTag = 6,
-    ATSULineLayoutOptionsTag = 7,
-    ATSULineAscentTag = 8,
-    ATSULineDescentTag = 9,
-    ATSULineLangRegionTag = 10,
-    ATSULineTextLocatorTag = 11,
-    ATSULineTruncationTag = 12,
-    ATSULineFontFallbacksTag = 13,
-    ATSULineDecimalTabCharacterTag = 14,
-    ATSULayoutOperationOverrideTag = 15,
-    ATSULineHighlightCGColorTag = 17,
-    ATSUMaxLineTag = 18,
-    ATSULineLanguageTag = 10,
-    ATSUCGContextTag = 32767,
-    ATSUQDBoldfaceTag = 256,
-    ATSUQDItalicTag = 257,
-    ATSUQDUnderlineTag = 258,
-    ATSUQDCondensedTag = 259,
-    ATSUQDExtendedTag = 260,
-    ATSUFontTag = 261,
-    ATSUSizeTag = 262,
-    ATSUColorTag = 263,
-    ATSULangRegionTag = 264,
-    ATSUVerticalCharacterTag = 265,
-    ATSUImposeWidthTag = 266,
-    ATSUBeforeWithStreamShiftTag = 267,
-    ATSUAfterWithStreamShiftTag = 268,
-    ATSUCrossStreamShiftTag = 269,
-    ATSUTrackingTag = 270,
-    ATSUHangingInhibitFactorTag = 271,
-    ATSUKerningInhibitFactorTag = 272,
-    ATSUDecompositionFactorTag = 273,
-    ATSUBaselineClassTag = 274,
-    ATSUPriorityJustOverrideTag = 275,
-    ATSUNoLigatureSplitTag = 276,
-    ATSUNoCaretAngleTag = 277,
-    ATSUSuppressCrossKerningTag = 278,
-    ATSUNoOpticalAlignmentTag = 279,
-    ATSUForceHangingTag = 280,
-    ATSUNoSpecialJustificationTag = 281,
-    ATSUStyleTextLocatorTag = 282,
-    ATSUStyleRenderingOptionsTag = 283,
-    ATSUAscentTag = 284,
-    ATSUDescentTag = 285,
-    ATSULeadingTag = 286,
-    ATSUGlyphSelectorTag = 287,
-    ATSURGBAlphaColorTag = 288,
-    ATSUFontMatrixTag = 289,
-    ATSUStyleUnderlineCountOptionTag = 290,
-    ATSUStyleUnderlineColorOptionTag = 291,
-    ATSUStyleStrikeThroughTag = 292,
-    ATSUStyleStrikeThroughCountOptionTag = 293,
-    ATSUStyleStrikeThroughColorOptionTag = 294,
-    ATSUStyleDropShadowTag = 295,
-    ATSUStyleDropShadowBlurOptionTag = 296,
-    ATSUStyleDropShadowOffsetOptionTag = 297,
-    ATSUStyleDropShadowColorOptionTag = 298,
-    ATSUMaxStyleTag = 299,
-    ATSULanguageTag = 264,
-    ATSUMaxATSUITagValue = 65535,
-};
-
-pub const anon2191 = enum(u32) {
-    NoConstraint = 0,
-    VerticalConstraint = 1,
-    HorizontalConstraint = 2,
-};
-
-pub const anon2621 = enum(u32) {
-    cmSigPS2CRDVMSizeType = 1886615149,
-    cmSigVideoCardGammaType = 1986226036,
-    cmSigMakeAndModelType = 1835888484,
-    cmSigNativeDisplayInfoType = 1852074350,
-    cmSigMultiLocalizedUniCodeType = 1835824483,
-};
-
-pub const anon771 = enum(u32) {
-    ATSFontContextUnspecified = 0,
-    ATSFontContextGlobal = 1,
-    ATSFontContextLocal = 2,
-};
-
-pub const anon12141 = enum(i32) {
-    NoTransform = 0,
-    UseAtoB = 1,
-    UseBtoA = 2,
-    UseBtoB = 3,
-    DeviceToPCS = 1,
-    PCSToDevice = 2,
-    PCSToPCS = 3,
-    UseProfileIntent = -1,
-};
-
-pub const anon14691 = enum(u32) {
-    ATSFontAutoActivationDefault = 0,
-    ATSFontAutoActivationDisabled = 1,
-    ATSFontAutoActivationEnabled = 2,
-    ATSFontAutoActivationAsk = 4,
-};
-
 pub const Point = core_foundation.CGPoint;
 
 pub const FMGeneration = objc.UInt32;
@@ -1189,22 +106,30 @@ pub const GlyphID = GlyphRef;
 
 pub const ULayoutOperationSelector = objc.UInt32;
 
-pub const anon1031 = enum(u32) {
-    ATSULayoutOperationNone = 0,
-    ATSULayoutOperationJustification = 1,
-    ATSULayoutOperationMorph = 2,
-    ATSULayoutOperationKerningAdjustment = 4,
-    ATSULayoutOperationBaselineAdjustment = 8,
-    ATSULayoutOperationTrackingAdjustment = 16,
-    ATSULayoutOperationPostLayoutAdjustment = 32,
-    ATSULayoutOperationAppleReserved = -64,
-};
+pub const anon1031 = u32;
+pub const anon1031_ATSULayoutOperationNone: u32 = 0;
+pub const anon1031_ATSULayoutOperationJustification: u32 = 1;
+pub const anon1031_ATSULayoutOperationMorph: u32 = 2;
+pub const anon1031_ATSULayoutOperationKerningAdjustment: u32 = 4;
+pub const anon1031_ATSULayoutOperationBaselineAdjustment: u32 = 8;
+pub const anon1031_ATSULayoutOperationTrackingAdjustment: u32 = 16;
+pub const anon1031_ATSULayoutOperationPostLayoutAdjustment: u32 = 32;
+pub const anon1031_ATSULayoutOperationAppleReserved: u32 = -64;
 
 pub const ULayoutOperationCallbackStatus = objc.UInt32;
 
 pub const LineLayoutOptions = objc.UInt32;
 
 pub const StyleRenderingOptions = objc.UInt32;
+
+pub const anon3441 = u32;
+pub const anon3441_ATSStyleNoOptions: u32 = 0;
+pub const anon3441_ATSStyleNoHinting: u32 = 1;
+pub const anon3441_ATSStyleApplyAntiAliasing: u32 = 2;
+pub const anon3441_ATSStyleNoAntiAliasing: u32 = 4;
+pub const anon3441_ATSStyleAppleReserved: u32 = -8;
+pub const anon3441_ATSStyleApplyHints: u32 = 0;
+pub const anon3441_sizeof_sfntNameHeader: u32 = 6;
 
 pub const GlyphInfoFlags = objc.UInt32;
 
@@ -1231,80 +156,64 @@ pub const JustWidthDeltaEntryOverride = extern struct {
     shrinkFlags: core_text.JustificationFlags,
 };
 
-pub const JustPriorityWidthDeltaOverrides = [4]JustWidthDeltaEntryOverride;
+pub const JustPriorityWidthDeltaOverrides = JustWidthDeltaEntryOverride;
 
-pub const anon3201 = enum(u32) {
-    cmIlluminantUnknown = 0,
-    cmIlluminantD50 = 1,
-    cmIlluminantD65 = 2,
-    cmIlluminantD93 = 3,
-    cmIlluminantF2 = 4,
-    cmIlluminantD55 = 5,
-    cmIlluminantA = 6,
-    cmIlluminantEquiPower = 7,
-    cmIlluminantF8 = 8,
-};
-
-pub const anon251 = enum(u32) {
-    FontNoPlatform = -1,
-    FontNoScript = -1,
-    FontNoLanguage = -1,
-    FontNoName = -1,
-};
+pub const anon251 = u32;
+pub const anon251_FontNoPlatform: u32 = -1;
+pub const anon251_FontNoScript: u32 = -1;
+pub const anon251_FontNoLanguage: u32 = -1;
+pub const anon251_FontNoName: u32 = -1;
 
 pub const FontContext = objc.UInt32;
 
-pub const FontFamilyApplierFunction = ?*const fn (FontFamilyRef, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const FontFamilyApplierFunction = objc.OSStatus;
 
-pub const FontApplierFunction = ?*const fn (FontRef, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const FontApplierFunction = objc.OSStatus;
 
 pub const FontFamilyIterator_ = extern struct {};
 
-pub const FontFamilyIterator = ?*FontFamilyIterator_;
+pub const FontFamilyIterator = FontFamilyIterator_;
 
 pub const FontIterator_ = extern struct {};
 
-pub const FontIterator = ?*FontIterator_;
+pub const FontIterator = FontIterator_;
 
-pub const FontFilterSelector = enum(u32) {
-    Unspecified = 0,
-    Generation = 3,
-    FontFamily = 7,
-    FontFamilyApplierFunction = 8,
-    FontApplierFunction = 9,
-    FileReferenceFilterSelector = 10,
-};
+pub const FontFilterSelector = u32;
+pub const FontFilterSelector_Unspecified: u32 = 0;
+pub const FontFilterSelector_Generation: u32 = 3;
+pub const FontFilterSelector_FontFamily: u32 = 7;
+pub const FontFilterSelector_FontFamilyApplierFunction: u32 = 8;
+pub const FontFilterSelector_FontApplierFunction: u32 = 9;
+pub const FontFilterSelector_FileReferenceFilterSelector: u32 = 10;
 
 pub const FontFilter = extern struct {
+    pub const anon1213 = extern union {
+        generationFilter: Generation,
+        fontFamilyFilter: FontFamilyRef,
+        fontFamilyApplierFunctionFilter: FontFamilyApplierFunction,
+        fontApplierFunctionFilter: FontApplierFunction,
+    };
+
     version: objc.UInt32,
     filterSelector: FontFilterSelector,
-    filter: anon1213,
-};
-
-pub const anon1213 = extern union {
-    generationFilter: Generation,
-    fontFamilyFilter: FontFamilyRef,
-    fontFamilyApplierFunctionFilter: FontFamilyApplierFunction,
-    fontApplierFunctionFilter: FontApplierFunction,
+    filter: FontFilter.anon1213,
 };
 
 pub const FontNotificationRef_ = extern struct {};
 
-pub const FontNotificationRef = ?*FontNotificationRef_;
+pub const FontNotificationRef = FontNotificationRef_;
 
 pub const FontNotificationInfoRef_ = extern struct {};
 
-pub const FontNotificationInfoRef = ?*FontNotificationInfoRef_;
+pub const FontNotificationInfoRef = FontNotificationInfoRef_;
 
-pub const FontNotifyOption = enum(u32) {
-    Default = 0,
-    ReceiveWhileSuspended = 1,
-};
+pub const FontNotifyOption = u32;
+pub const FontNotifyOption_Default: u32 = 0;
+pub const FontNotifyOption_ReceiveWhileSuspended: u32 = 1;
 
-pub const FontNotifyAction = enum(u32) {
-    FontsChanged = 1,
-    DirectoriesChanged = 2,
-};
+pub const FontNotifyAction = u32;
+pub const FontNotifyAction_FontsChanged: u32 = 1;
+pub const FontNotifyAction_DirectoriesChanged: u32 = 2;
 
 pub const NotificationCallback = ?*const fn (FontNotificationInfoRef, ?*anyopaque) callconv(.C) void;
 
@@ -1480,11 +389,10 @@ pub const FontQuerySourceContext = extern struct {
     release: core_foundation.AllocatorReleaseCallBack,
 };
 
-pub const FontQueryMessageID = enum(u32) {
-    QueryActivateFontMessage = 1635021665,
-};
+pub const FontQueryMessageID = u32;
+pub const FontQueryMessageID_QueryActivateFontMessage: u32 = 1635021665;
 
-pub const FontQueryCallback = ?*const fn (FontQueryMessageID, core_foundation.PropertyListRef, ?*anyopaque) callconv(.C) core_foundation.PropertyListRef;
+pub const FontQueryCallback = core_foundation.PropertyListRef;
 
 extern "ApplicationServices" fn ATSCreateFontQueryRunLoopSource(
     queryOrder: core_foundation.Index,
@@ -1508,48 +416,45 @@ pub const fontSetAutoActivationSettingForApplication = ATSFontSetAutoActivationS
 extern "ApplicationServices" fn ATSFontGetAutoActivationSettingForApplication(iApplicationFileURL: core_foundation.URLRef) callconv(.C) FontAutoActivationSetting;
 pub const fontGetAutoActivationSettingForApplication = ATSFontGetAutoActivationSettingForApplication;
 
-pub const anon1341 = enum(u32) {
-    ProcessTransformToForegroundApplication = 1,
-    ProcessTransformToBackgroundApplication = 2,
-    ProcessTransformToUIElementApplication = 4,
-};
+pub const anon1341 = u32;
+pub const anon1341_cmReflectiveTransparentMask: u32 = 1;
+pub const anon1341_cmGlossyMatteMask: u32 = 2;
+pub const anon1341_ProcessTransformToForegroundApplication: u32 = 1;
+pub const anon1341_ProcessTransformToBackgroundApplication: u32 = 2;
+pub const anon1341_ProcessTransformToUIElementApplication: u32 = 4;
 
-pub const anon1401 = enum(u32) {
-    cmReflective = 0,
-    cmGlossy = 1,
-};
+pub const anon1401 = u32;
+pub const anon1401_cmReflective: u32 = 0;
+pub const anon1401_cmGlossy: u32 = 1;
 
-pub const anon1471 = enum(u32) {
-    cmPerceptual = 0,
-    cmRelativeColorimetric = 1,
-    cmSaturation = 2,
-    cmAbsoluteColorimetric = 3,
-};
+pub const anon1471 = u32;
+pub const anon1471_cmPerceptual: u32 = 0;
+pub const anon1471_cmRelativeColorimetric: u32 = 1;
+pub const anon1471_cmSaturation: u32 = 2;
+pub const anon1471_cmAbsoluteColorimetric: u32 = 3;
 
-pub const anon1571 = enum(u32) {
-    ICNoUserInteractionBit = 0,
-};
+pub const anon1571 = u32;
+pub const anon1571_cmAsciiData: u32 = 0;
+pub const anon1571_cmBinaryData: u32 = 1;
+pub const anon1571_ICNoUserInteractionBit: u32 = 0;
 
-pub const anon3061 = enum(u32) {
-    cmGeometryUnknown = 0,
-    cmGeometry045or450 = 1,
-    cmGeometry0dord0 = 2,
-};
+pub const anon3061 = u32;
+pub const anon3061_cmGeometryUnknown: u32 = 0;
+pub const anon3061_cmGeometry045or450: u32 = 1;
+pub const anon3061_cmGeometry0dord0: u32 = 2;
 
-pub const anon3901 = enum(u32) {
-    cmMacintosh = 1095782476,
-    cmMicrosoft = 1297303124,
-    cmSolaris = 1398099543,
-    cmSiliconGraphics = 1397180704,
-    cmTaligent = 1413959252,
-};
+pub const anon3901 = u32;
+pub const anon3901_cmMacintosh: u32 = 1095782476;
+pub const anon3901_cmMicrosoft: u32 = 1297303124;
+pub const anon3901_cmSolaris: u32 = 1398099543;
+pub const anon3901_cmSiliconGraphics: u32 = 1397180704;
+pub const anon3901_cmTaligent: u32 = 1413959252;
 
-pub const anon4091 = enum(u32) {
-    cmCS1ChromTag = 1667789421,
-    cmCS1TRCTag = 1953653536,
-    cmCS1NameTag = 1851878757,
-    cmCS1CustTag = 1668641652,
-};
+pub const anon4091 = u32;
+pub const anon4091_cmCS1ChromTag: u32 = 1667789421;
+pub const anon4091_cmCS1TRCTag: u32 = 1953653536;
+pub const anon4091_cmCS1NameTag: u32 = 1851878757;
+pub const anon4091_cmCS1CustTag: u32 = 1668641652;
 
 pub const CMDateTime = extern struct {
     year: objc.UInt16,
@@ -1581,7 +486,7 @@ pub const CMXYZColor = extern struct {
 
 pub const CMProfileMD5 = [16]u8;
 
-pub const CMProfileMD5Ptr = ?*CMProfileMD5;
+pub const CMProfileMD5Ptr = CMProfileMD5;
 
 pub const CM2Header = extern struct {
     size: objc.UInt32,
@@ -1919,13 +824,13 @@ pub const CMVideoCardGammaFormula = extern struct {
 };
 
 pub const CMVideoCardGamma = extern struct {
-    tagType: objc.UInt32,
-    u: anon8593,
-};
+    pub const anon8593 = extern union {
+        table: CMVideoCardGammaTable,
+        formula: CMVideoCardGammaFormula,
+    };
 
-pub const anon8593 = extern union {
-    table: CMVideoCardGammaTable,
-    formula: CMVideoCardGammaFormula,
+    tagType: objc.UInt32,
+    u: CMVideoCardGamma.anon8593,
 };
 
 pub const CMVideoCardGammaType = extern struct {
@@ -1967,75 +872,64 @@ pub const CMMultiLocalizedUniCodeType = extern struct {
 
 pub const OpaqueCMProfileRef = extern struct {};
 
-pub const CMProfileRef = ?*OpaqueCMProfileRef;
+pub const CMProfileRef = OpaqueCMProfileRef;
 
 pub const OpaqueCMWorldRef = extern struct {};
 
-pub const CMWorldRef = ?*OpaqueCMWorldRef;
+pub const CMWorldRef = OpaqueCMWorldRef;
 
 pub const CMDisplayIDType = objc.UInt32;
 
 pub const CMChromaticAdaptation = objc.UInt32;
 
-pub const anon10181 = enum(u32) {
-    cmUseDefaultChromaticAdaptation = 0,
-    cmLinearChromaticAdaptation = 1,
-    cmVonKriesChromaticAdaptation = 2,
-    cmBradfordChromaticAdaptation = 3,
-};
+pub const anon10181 = u32;
+pub const anon10181_cmUseDefaultChromaticAdaptation: u32 = 0;
+pub const anon10181_cmLinearChromaticAdaptation: u32 = 1;
+pub const anon10181_cmVonKriesChromaticAdaptation: u32 = 2;
+pub const anon10181_cmBradfordChromaticAdaptation: u32 = 3;
 
-pub const CMFlattenProcPtr = ?*const fn (
-    objc.SInt32,
-    ?*i64,
-    ?*anyopaque,
-    ?*anyopaque,
-) callconv(.C) objc.OSErr;
+pub const CMFlattenProcPtr = objc.OSErr;
 
 pub const CMFlattenUPP = CMFlattenProcPtr;
 
-pub const CMBitmapCallBackProcPtr = ?*const fn (objc.SInt32, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const CMBitmapCallBackProcPtr = objc.Boolean;
 
 pub const CMBitmapCallBackUPP = CMBitmapCallBackProcPtr;
 
-pub const CMConcatCallBackProcPtr = ?*const fn (objc.SInt32, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const CMConcatCallBackProcPtr = objc.Boolean;
 
 pub const CMConcatCallBackUPP = CMConcatCallBackProcPtr;
 
-pub const anon10851 = enum(u32) {
-    DefaultCMMSignature = 1634758764,
-};
+pub const anon10851 = u32;
+pub const anon10851_DefaultCMMSignature: u32 = 1634758764;
 
-pub const anon11381 = enum(u32) {
-    cmPS7bit = 1,
-    cmPS8bit = 2,
-};
+pub const anon11381 = u32;
+pub const anon11381_cmPS7bit: u32 = 1;
+pub const anon11381_cmPS8bit: u32 = 2;
 
-pub const anon11521 = enum(u32) {
-    cmOpenReadSpool = 1,
-    cmOpenWriteSpool = 2,
-    cmReadSpool = 3,
-    cmWriteSpool = 4,
-    cmCloseSpool = 5,
-};
+pub const anon11521 = u32;
+pub const anon11521_cmOpenReadSpool: u32 = 1;
+pub const anon11521_cmOpenWriteSpool: u32 = 2;
+pub const anon11521_cmReadSpool: u32 = 3;
+pub const anon11521_cmWriteSpool: u32 = 4;
+pub const anon11521_cmCloseSpool: u32 = 5;
 
-pub const anon11611 = enum(u32) {
-    cmOpenReadAccess = 1,
-    cmOpenWriteAccess = 2,
-    cmReadAccess = 3,
-    cmWriteAccess = 4,
-    cmCloseAccess = 5,
-    cmCreateNewAccess = 6,
-    cmAbortWriteAccess = 7,
-    cmBeginAccess = 8,
-    cmEndAccess = 9,
-};
+pub const anon11611 = u32;
+pub const anon11611_cmOpenReadAccess: u32 = 1;
+pub const anon11611_cmOpenWriteAccess: u32 = 2;
+pub const anon11611_cmReadAccess: u32 = 3;
+pub const anon11611_cmWriteAccess: u32 = 4;
+pub const anon11611_cmCloseAccess: u32 = 5;
+pub const anon11611_cmCreateNewAccess: u32 = 6;
+pub const anon11611_cmAbortWriteAccess: u32 = 7;
+pub const anon11611_cmBeginAccess: u32 = 8;
+pub const anon11611_cmEndAccess: u32 = 9;
 
-pub const anon11741 = enum(u32) {
-    cmInputUse = 1768845428,
-    cmOutputUse = 1869968496,
-    cmDisplayUse = 1685089401,
-    cmProofUse = 1886549350,
-};
+pub const anon11741 = u32;
+pub const anon11741_cmInputUse: u32 = 1768845428;
+pub const anon11741_cmOutputUse: u32 = 1869968496;
+pub const anon11741_cmDisplayUse: u32 = 1685089401;
+pub const anon11741_cmProofUse: u32 = 1886549350;
 
 pub const CMAppleProfileHeader = extern union {
     cm2: CM2Header,
@@ -2166,71 +1060,67 @@ pub const CMMInfo = extern struct {
     UniCodeDesc: [256]objc.UniChar,
 };
 
-pub const anon13801 = enum(i32) {
-    cmColorSpaceSpaceMask = 63,
-    cmColorSpacePremulAlphaMask = 64,
-    cmColorSpaceAlphaMask = 128,
-    cmColorSpaceSpaceAndAlphaMask = 255,
-    cmColorSpacePackingMask = 65280,
-    cmColorSpaceEncodingMask = 983040,
-    cmColorSpaceReservedMask = -1048576,
-};
+pub const anon13801 = i32;
+pub const anon13801_cmColorSpaceSpaceMask: i32 = 63;
+pub const anon13801_cmColorSpacePremulAlphaMask: i32 = 64;
+pub const anon13801_cmColorSpaceAlphaMask: i32 = 128;
+pub const anon13801_cmColorSpaceSpaceAndAlphaMask: i32 = 255;
+pub const anon13801_cmColorSpacePackingMask: i32 = 65280;
+pub const anon13801_cmColorSpaceEncodingMask: i32 = 983040;
+pub const anon13801_cmColorSpaceReservedMask: i32 = -1048576;
 
-pub const anon13911 = enum(u32) {
-    cmNoColorPacking = 0,
-    cmWord5ColorPacking = 1280,
-    cmWord565ColorPacking = 1536,
-    cmLong8ColorPacking = 2048,
-    cmLong10ColorPacking = 2560,
-    cmAlphaFirstPacking = 4096,
-    cmOneBitDirectPacking = 2816,
-    cmAlphaLastPacking = 0,
-    cm8_8ColorPacking = 10240,
-    cm16_8ColorPacking = 8192,
-    cm24_8ColorPacking = 8448,
-    cm32_8ColorPacking = 2048,
-    cm40_8ColorPacking = 8704,
-    cm48_8ColorPacking = 8960,
-    cm56_8ColorPacking = 9216,
-    cm64_8ColorPacking = 9472,
-    cm32_16ColorPacking = 9728,
-    cm48_16ColorPacking = 10496,
-    cm64_16ColorPacking = 10752,
-    cm32_32ColorPacking = 9984,
-    cmLittleEndianPacking = 16384,
-    cmReverseChannelPacking = 32768,
-};
+pub const anon13911 = u32;
+pub const anon13911_cmNoColorPacking: u32 = 0;
+pub const anon13911_cmWord5ColorPacking: u32 = 1280;
+pub const anon13911_cmWord565ColorPacking: u32 = 1536;
+pub const anon13911_cmLong8ColorPacking: u32 = 2048;
+pub const anon13911_cmLong10ColorPacking: u32 = 2560;
+pub const anon13911_cmAlphaFirstPacking: u32 = 4096;
+pub const anon13911_cmOneBitDirectPacking: u32 = 2816;
+pub const anon13911_cmAlphaLastPacking: u32 = 0;
+pub const anon13911_cm8_8ColorPacking: u32 = 10240;
+pub const anon13911_cm16_8ColorPacking: u32 = 8192;
+pub const anon13911_cm24_8ColorPacking: u32 = 8448;
+pub const anon13911_cm32_8ColorPacking: u32 = 2048;
+pub const anon13911_cm40_8ColorPacking: u32 = 8704;
+pub const anon13911_cm48_8ColorPacking: u32 = 8960;
+pub const anon13911_cm56_8ColorPacking: u32 = 9216;
+pub const anon13911_cm64_8ColorPacking: u32 = 9472;
+pub const anon13911_cm32_16ColorPacking: u32 = 9728;
+pub const anon13911_cm48_16ColorPacking: u32 = 10496;
+pub const anon13911_cm64_16ColorPacking: u32 = 10752;
+pub const anon13911_cm32_32ColorPacking: u32 = 9984;
+pub const anon13911_cmLittleEndianPacking: u32 = 16384;
+pub const anon13911_cmReverseChannelPacking: u32 = 32768;
 
-pub const anon14171 = enum(u32) {
-    cmSRGB16ChannelEncoding = 65536,
-};
+pub const anon14171 = u32;
+pub const anon14171_cmSRGB16ChannelEncoding: u32 = 65536;
 
-pub const anon14221 = enum(u32) {
-    cmNoSpace = 0,
-    cmRGBSpace = 1,
-    cmCMYKSpace = 2,
-    cmHSVSpace = 3,
-    cmHLSSpace = 4,
-    cmYXYSpace = 5,
-    cmXYZSpace = 6,
-    cmLUVSpace = 7,
-    cmLABSpace = 8,
-    cmReservedSpace1 = 9,
-    cmGraySpace = 10,
-    cmReservedSpace2 = 11,
-    cmGamutResultSpace = 12,
-    cmNamedIndexedSpace = 16,
-    cmMCFiveSpace = 17,
-    cmMCSixSpace = 18,
-    cmMCSevenSpace = 19,
-    cmMCEightSpace = 20,
-    cmAlphaPmulSpace = 64,
-    cmAlphaSpace = 128,
-    cmRGBASpace = 129,
-    cmGrayASpace = 138,
-    cmRGBAPmulSpace = 193,
-    cmGrayAPmulSpace = 202,
-};
+pub const anon14221 = u32;
+pub const anon14221_cmNoSpace: u32 = 0;
+pub const anon14221_cmRGBSpace: u32 = 1;
+pub const anon14221_cmCMYKSpace: u32 = 2;
+pub const anon14221_cmHSVSpace: u32 = 3;
+pub const anon14221_cmHLSSpace: u32 = 4;
+pub const anon14221_cmYXYSpace: u32 = 5;
+pub const anon14221_cmXYZSpace: u32 = 6;
+pub const anon14221_cmLUVSpace: u32 = 7;
+pub const anon14221_cmLABSpace: u32 = 8;
+pub const anon14221_cmReservedSpace1: u32 = 9;
+pub const anon14221_cmGraySpace: u32 = 10;
+pub const anon14221_cmReservedSpace2: u32 = 11;
+pub const anon14221_cmGamutResultSpace: u32 = 12;
+pub const anon14221_cmNamedIndexedSpace: u32 = 16;
+pub const anon14221_cmMCFiveSpace: u32 = 17;
+pub const anon14221_cmMCSixSpace: u32 = 18;
+pub const anon14221_cmMCSevenSpace: u32 = 19;
+pub const anon14221_cmMCEightSpace: u32 = 20;
+pub const anon14221_cmAlphaPmulSpace: u32 = 64;
+pub const anon14221_cmAlphaSpace: u32 = 128;
+pub const anon14221_cmRGBASpace: u32 = 129;
+pub const anon14221_cmGrayASpace: u32 = 138;
+pub const anon14221_cmRGBAPmulSpace: u32 = 193;
+pub const anon14221_cmGrayAPmulSpace: u32 = 202;
 
 pub const CMBitmapColorSpace = objc.UInt32;
 
@@ -2245,15 +1135,13 @@ pub const CMBitmap = extern struct {
     user2: objc.UInt32,
 };
 
-pub const anon15231 = enum(u32) {
-    CS_MAX_PATH = 1024,
-};
+pub const anon15231 = u32;
+pub const anon15231_CS_MAX_PATH: u32 = 1024;
 
-pub const anon15351 = enum(u32) {
-    cmNoProfileBase = 0,
-    cmPathBasedProfile = 5,
-    cmBufferBasedProfile = 6,
-};
+pub const anon15351 = u32;
+pub const anon15351_cmNoProfileBase: u32 = 0;
+pub const anon15351_cmPathBasedProfile: u32 = 5;
+pub const anon15351_cmBufferBasedProfile: u32 = 6;
 
 pub const CMHandleLocation = extern struct {
     h: objc.Handle,
@@ -2279,17 +1167,15 @@ pub const CMProfileLocation = extern struct {
     u: CMProfLoc,
 };
 
-pub const anon16031 = enum(u32) {
-    cmOriginalProfileLocationSize = 72,
-    cmCurrentProfileLocationSize = 1032,
-};
+pub const anon16031 = u32;
+pub const anon16031_cmOriginalProfileLocationSize: u32 = 72;
+pub const anon16031_cmCurrentProfileLocationSize: u32 = 1032;
 
-pub const anon16111 = enum(u32) {
-    cmProfileIterateDataVersion1 = 65536,
-    cmProfileIterateDataVersion2 = 131072,
-    cmProfileIterateDataVersion3 = 196608,
-    cmProfileIterateDataVersion4 = 262144,
-};
+pub const anon16111 = u32;
+pub const anon16111_cmProfileIterateDataVersion1: u32 = 65536;
+pub const anon16111_cmProfileIterateDataVersion2: u32 = 131072;
+pub const anon16111_cmProfileIterateDataVersion3: u32 = 196608;
+pub const anon16111_cmProfileIterateDataVersion4: u32 = 262144;
 
 pub const CMProfileIterateData = extern struct {
     dataVersion: objc.UInt32,
@@ -2304,11 +1190,11 @@ pub const CMProfileIterateData = extern struct {
     digest: ?*CMProfileMD5,
 };
 
-pub const CMProfileIterateProcPtr = ?*const fn (?*CMProfileIterateData, ?*anyopaque) callconv(.C) objc.OSErr;
+pub const CMProfileIterateProcPtr = objc.OSErr;
 
 pub const CMProfileIterateUPP = CMProfileIterateProcPtr;
 
-pub const CMMIterateProcPtr = ?*const fn (?*CMMInfo, ?*anyopaque) callconv(.C) objc.OSErr;
+pub const CMMIterateProcPtr = objc.OSErr;
 
 pub const CMMIterateUPP = CMMIterateProcPtr;
 
@@ -2319,12 +1205,11 @@ pub const CMLabToLabProcPtr = ?*const fn (
     ?*anyopaque,
 ) callconv(.C) void;
 
-pub const CMFloatBitmapFlags = enum(u32) {
-    None = 0,
-    Alpha = 1,
-    AlphaPremul = 2,
-    RangeClipped = 4,
-};
+pub const CMFloatBitmapFlags = u32;
+pub const CMFloatBitmapFlags_None: u32 = 0;
+pub const CMFloatBitmapFlags_Alpha: u32 = 1;
+pub const CMFloatBitmapFlags_AlphaPremul: u32 = 2;
+pub const CMFloatBitmapFlags_RangeClipped: u32 = 4;
 
 pub const CMFloatBitmap = extern struct {
     version: u64,
@@ -2337,32 +1222,28 @@ pub const CMFloatBitmap = extern struct {
     flags: CMFloatBitmapFlags,
 };
 
-pub const anon18501 = enum(u32) {
-    cmCurrentDeviceInfoVersion = 65536,
-    cmCurrentProfileInfoVersion = 65536,
-};
+pub const anon18501 = u32;
+pub const anon18501_cmCurrentDeviceInfoVersion: u32 = 65536;
+pub const anon18501_cmCurrentProfileInfoVersion: u32 = 65536;
 
-pub const anon18591 = enum(u32) {
-    cmDefaultDeviceID = 0,
-    cmDefaultProfileID = 0,
-};
+pub const anon18591 = u32;
+pub const anon18591_cmDefaultDeviceID: u32 = 0;
+pub const anon18591_cmDefaultProfileID: u32 = 0;
 
-pub const anon19051 = enum(u32) {
-    cmIterateFactoryDeviceProfiles = 1,
-    cmIterateCustomDeviceProfiles = 2,
-    cmIterateCurrentDeviceProfiles = 3,
-    cmIterateAllDeviceProfiles = 4,
-    cmIterateDeviceProfilesMask = 15,
-};
+pub const anon19051 = u32;
+pub const anon19051_cmIterateFactoryDeviceProfiles: u32 = 1;
+pub const anon19051_cmIterateCustomDeviceProfiles: u32 = 2;
+pub const anon19051_cmIterateCurrentDeviceProfiles: u32 = 3;
+pub const anon19051_cmIterateAllDeviceProfiles: u32 = 4;
+pub const anon19051_cmIterateDeviceProfilesMask: u32 = 15;
 
-pub const anon19161 = enum(i32) {
-    cmDeviceDBNotFoundErr = -4227,
-    cmDeviceAlreadyRegistered = -4228,
-    cmDeviceNotRegistered = -4229,
-    cmDeviceProfilesNotFound = -4230,
-    cmInternalCFErr = -4231,
-    cmPrefsSynchError = -4232,
-};
+pub const anon19161 = i32;
+pub const anon19161_cmDeviceDBNotFoundErr: i32 = -4227;
+pub const anon19161_cmDeviceAlreadyRegistered: i32 = -4228;
+pub const anon19161_cmDeviceNotRegistered: i32 = -4229;
+pub const anon19161_cmDeviceProfilesNotFound: i32 = -4230;
+pub const anon19161_cmInternalCFErr: i32 = -4231;
+pub const anon19161_cmPrefsSynchError: i32 = -4232;
 
 pub const CMDeviceState = objc.UInt32;
 
@@ -2370,13 +1251,12 @@ pub const CMDeviceID = objc.UInt32;
 
 pub const CMDeviceProfileID = objc.UInt32;
 
-pub const anon19681 = enum(u32) {
-    cmScannerDeviceClass = 1935896178,
-    cmCameraDeviceClass = 1668117089,
-    cmDisplayDeviceClass = 1835955314,
-    cmPrinterDeviceClass = 1886549106,
-    cmProofDeviceClass = 1886549350,
-};
+pub const anon19681 = u32;
+pub const anon19681_cmScannerDeviceClass: u32 = 1935896178;
+pub const anon19681_cmCameraDeviceClass: u32 = 1668117089;
+pub const anon19681_cmDisplayDeviceClass: u32 = 1835955314;
+pub const anon19681_cmPrinterDeviceClass: u32 = 1886549106;
+pub const anon19681_cmProofDeviceClass: u32 = 1886549350;
 
 pub const CMDeviceClass = objc.OSType;
 
@@ -2425,13 +1305,13 @@ pub const CMDeviceProfileArray = extern struct {
 
 pub const CMDeviceProfileArrayPtr = ?*CMDeviceProfileArray;
 
-pub const CMIterateDeviceInfoProcPtr = ?*const fn (?*CMDeviceInfo, ?*anyopaque) callconv(.C) objc.OSErr;
+pub const CMIterateDeviceInfoProcPtr = objc.OSErr;
 
-pub const CMIterateDeviceProfileProcPtr = ?*const fn (?*CMDeviceInfo, ?*NCMDeviceProfileInfo, ?*anyopaque) callconv(.C) objc.OSErr;
+pub const CMIterateDeviceProfileProcPtr = objc.OSErr;
 
 pub const OpaqueGrafPtr = extern struct {};
 
-pub const GrafPtr = ?*OpaqueGrafPtr;
+pub const GrafPtr = OpaqueGrafPtr;
 
 pub const CGrafPtr = GrafPtr;
 
@@ -2447,9 +1327,9 @@ pub const BitMap = extern struct {
     bounds: objc.Rect,
 };
 
-pub const BitMapPtr = ?*BitMap;
+pub const BitMapPtr = BitMap;
 
-pub const BitMapHandle = ?*BitMapPtr;
+pub const BitMapHandle = BitMapPtr;
 
 pub const RGBColor = extern struct {
     red: u16,
@@ -2462,9 +1342,9 @@ pub const ColorSpec = extern struct {
     rgb: RGBColor,
 };
 
-pub const ColorSpecPtr = ?*ColorSpec;
+pub const ColorSpecPtr = ColorSpec;
 
-pub const CSpecArray = [1]ColorSpec;
+pub const CSpecArray = ColorSpec;
 
 pub const ColorTable = extern struct {
     ctSeed: objc.SInt32,
@@ -2473,9 +1353,9 @@ pub const ColorTable = extern struct {
     ctTable: CSpecArray,
 };
 
-pub const CTabPtr = ?*ColorTable;
+pub const CTabPtr = ColorTable;
 
-pub const CTabHandle = ?*CTabPtr;
+pub const CTabHandle = CTabPtr;
 
 pub const PixMap = extern struct {
     baseAddr: objc.Ptr,
@@ -2495,17 +1375,17 @@ pub const PixMap = extern struct {
     pmExt: ?*anyopaque,
 };
 
-pub const PixMapPtr = ?*PixMap;
+pub const PixMapPtr = PixMap;
 
-pub const PixMapHandle = ?*PixMapPtr;
+pub const PixMapHandle = PixMapPtr;
 
 pub const Pattern = extern struct {
     pat: [8]objc.UInt8,
 };
 
-pub const PatPtr = ?*Pattern;
+pub const PatPtr = Pattern;
 
-pub const PatHandle = ?*PatPtr;
+pub const PatHandle = PatPtr;
 
 pub const PixPat = extern struct {
     patType: i16,
@@ -2517,13 +1397,13 @@ pub const PixPat = extern struct {
     pat1Data: Pattern,
 };
 
-pub const PixPatPtr = ?*PixPat;
+pub const PixPatPtr = PixPat;
 
-pub const PixPatHandle = ?*PixPatPtr;
+pub const PixPatHandle = PixPatPtr;
 
 pub const OpaqueRgnHandle = extern struct {};
 
-pub const RgnHandle = ?*OpaqueRgnHandle;
+pub const RgnHandle = OpaqueRgnHandle;
 
 pub const GDevice = extern struct {
     gdRefNum: i16,
@@ -2546,18 +1426,18 @@ pub const GDevice = extern struct {
     gdExt: objc.Handle,
 };
 
-pub const GDPtr = ?*GDevice;
+pub const GDPtr = GDevice;
 
-pub const GDHandle = ?*GDPtr;
+pub const GDHandle = GDPtr;
 
 pub const Picture = extern struct {
     picSize: i16,
     picFrame: objc.Rect,
 };
 
-pub const PicPtr = ?*Picture;
+pub const PicPtr = Picture;
 
-pub const PicHandle = ?*PicPtr;
+pub const PicHandle = PicPtr;
 
 pub const OpenCPicParams = extern struct {
     srcRect: objc.Rect,
@@ -2577,12 +1457,7 @@ pub const FontInfo = extern struct {
 
 pub const QDRegionParseDirection = objc.SInt32;
 
-pub const RegionToRectsProcPtr = ?*const fn (
-    objc.UInt16,
-    RgnHandle,
-    ?*objc.Rect,
-    ?*anyopaque,
-) callconv(.C) objc.OSStatus;
+pub const RegionToRectsProcPtr = objc.OSStatus;
 
 pub const RegionToRectsUPP = RegionToRectsProcPtr;
 
@@ -2592,9 +1467,9 @@ pub const DragConstraint = objc.UInt16;
 
 pub const DragGrayRgnProcPtr = ?*const fn () callconv(.C) void;
 
-pub const ColorSearchProcPtr = ?*const fn (?*RGBColor, ?*i64) callconv(.C) objc.Boolean;
+pub const ColorSearchProcPtr = objc.Boolean;
 
-pub const ColorComplementProcPtr = ?*const fn (?*RGBColor) callconv(.C) objc.Boolean;
+pub const ColorComplementProcPtr = objc.Boolean;
 
 pub const DragGrayRgnUPP = DragGrayRgnProcPtr;
 
@@ -2604,11 +1479,11 @@ pub const ColorComplementUPP = ColorComplementProcPtr;
 
 pub const OpaqueWindowPtr = extern struct {};
 
-pub const WindowPtr = ?*OpaqueWindowPtr;
+pub const WindowPtr = OpaqueWindowPtr;
 
 pub const OpaqueDialogPtr = extern struct {};
 
-pub const DialogPtr = ?*OpaqueDialogPtr;
+pub const DialogPtr = OpaqueDialogPtr;
 
 pub const WindowRef = WindowPtr;
 
@@ -2616,7 +1491,7 @@ pub const VDGammaRecord = extern struct {
     csGTable: objc.Ptr,
 };
 
-pub const VDGamRecPtr = ?*VDGammaRecord;
+pub const VDGamRecPtr = VDGammaRecord;
 
 pub const MacPolygon = extern struct {
     polySize: i16,
@@ -2626,9 +1501,9 @@ pub const MacPolygon = extern struct {
 
 pub const Polygon = MacPolygon;
 
-pub const PolyPtr = ?*MacPolygon;
+pub const PolyPtr = MacPolygon;
 
-pub const PolyHandle = ?*PolyPtr;
+pub const PolyHandle = PolyPtr;
 
 pub const GrafVerb = objc.SInt8;
 
@@ -2694,7 +1569,7 @@ pub const QDOpcodeProcPtr = ?*const fn (
     objc.SInt16,
 ) callconv(.C) void;
 
-pub const QDStdGlyphsProcPtr = ?*const fn (?*anyopaque, objc.ByteCount) callconv(.C) objc.OSStatus;
+pub const QDStdGlyphsProcPtr = objc.OSStatus;
 
 pub const QDJShieldCursorProcPtr = ?*const fn (
     i16,
@@ -2703,7 +1578,7 @@ pub const QDJShieldCursorProcPtr = ?*const fn (
     i16,
 ) callconv(.C) void;
 
-pub const QDPrinterStatusProcPtr = ?*const fn (PrinterStatusOpcode, CGrafPtr, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const QDPrinterStatusProcPtr = objc.OSStatus;
 
 pub const QDTextUPP = QDTextProcPtr;
 
@@ -2762,7 +1637,7 @@ pub const CQDProcs = extern struct {
     newProc6: objc.UniversalProcPtr,
 };
 
-pub const CQDProcsPtr = ?*CQDProcs;
+pub const CQDProcsPtr = CQDProcs;
 
 pub const GrafPort = extern struct {
     whatever: [87]i16,
@@ -2772,25 +1647,19 @@ pub const CGrafPort = GrafPort;
 
 pub const __HIShape = extern struct {};
 
-pub const HIShapeRef = ?*__HIShape;
+pub const HIShapeRef = __HIShape;
 
-pub const HIMutableShapeRef = ?*__HIShape;
+pub const HIMutableShapeRef = __HIShape;
 
-pub const anon971 = enum(u32) {
-    HIShapeParseFromTop = 0,
-    HIShapeParseFromBottom = 1,
-    HIShapeParseFromLeft = 0,
-    HIShapeParseFromRight = 2,
-    HIShapeParseFromTopLeft = 0,
-    HIShapeParseFromBottomRight = 3,
-};
+pub const anon971 = u32;
+pub const anon971_HIShapeParseFromTop: u32 = 0;
+pub const anon971_HIShapeParseFromBottom: u32 = 1;
+pub const anon971_HIShapeParseFromLeft: u32 = 0;
+pub const anon971_HIShapeParseFromRight: u32 = 2;
+pub const anon971_HIShapeParseFromTopLeft: u32 = 0;
+pub const anon971_HIShapeParseFromBottomRight: u32 = 3;
 
-pub const HIShapeEnumerateProcPtr = ?*const fn (
-    i32,
-    HIShapeRef,
-    ?*core_foundation.CGRect,
-    ?*anyopaque,
-) callconv(.C) objc.OSStatus;
+pub const HIShapeEnumerateProcPtr = objc.OSStatus;
 
 pub extern "ApplicationServices" fn HIShapeGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -2861,9 +1730,9 @@ pub const IconTransformType = objc.SInt16;
 
 pub const IconSelectorValue = objc.UInt32;
 
-pub const IconActionProcPtr = ?*const fn (objc.ResType, ?*objc.Handle, ?*anyopaque) callconv(.C) objc.OSErr;
+pub const IconActionProcPtr = objc.OSErr;
 
-pub const IconGetterProcPtr = ?*const fn (objc.ResType, ?*anyopaque) callconv(.C) objc.Handle;
+pub const IconGetterProcPtr = objc.Handle;
 
 pub const IconActionUPP = IconActionProcPtr;
 
@@ -2931,18 +1800,17 @@ pub extern "ApplicationServices" fn IsIconRefMaskEmpty(iconRef: core_services.Ic
 
 pub extern "ApplicationServices" fn GetIconRefVariant(inIconRef: core_services.IconRef, inVariant: objc.OSType, outTransform: ?*IconTransformType) callconv(.C) core_services.IconRef;
 
-pub const anon921 = enum(u32) {
-    ICComponentInterfaceVersion0 = 0,
-    ICComponentInterfaceVersion1 = 65536,
-    ICComponentInterfaceVersion2 = 131072,
-    ICComponentInterfaceVersion3 = 196608,
-    ICComponentInterfaceVersion4 = 262144,
-    ICComponentInterfaceVersion = 262144,
-};
+pub const anon921 = u32;
+pub const anon921_ICComponentInterfaceVersion0: u32 = 0;
+pub const anon921_ICComponentInterfaceVersion1: u32 = 65536;
+pub const anon921_ICComponentInterfaceVersion2: u32 = 131072;
+pub const anon921_ICComponentInterfaceVersion3: u32 = 196608;
+pub const anon921_ICComponentInterfaceVersion4: u32 = 262144;
+pub const anon921_ICComponentInterfaceVersion: u32 = 262144;
 
 pub const OpaqueICInstance = extern struct {};
 
-pub const ICInstance = ?*OpaqueICInstance;
+pub const ICInstance = OpaqueICInstance;
 
 pub const ICAttr = objc.UInt32;
 
@@ -2950,7 +1818,7 @@ pub const ICPerm = objc.UInt8;
 
 pub const ICProfileID = objc.SInt32;
 
-pub const ICProfileIDPtr = ?*ICProfileID;
+pub const ICProfileIDPtr = ICProfileID;
 
 pub const ICFontRecord = extern struct {
     size: objc.SInt16,
@@ -2959,36 +1827,36 @@ pub const ICFontRecord = extern struct {
     font: objc.Str255,
 };
 
-pub const ICFontRecordPtr = ?*ICFontRecord;
+pub const ICFontRecordPtr = ICFontRecord;
 
-pub const ICFontRecordHandle = ?*ICFontRecordPtr;
+pub const ICFontRecordHandle = ICFontRecordPtr;
 
 pub const ICCharTable = extern struct {
     netToMac: [256]u8,
     macToNet: [256]u8,
 };
 
-pub const ICCharTablePtr = ?*ICCharTable;
+pub const ICCharTablePtr = ICCharTable;
 
-pub const ICCharTableHandle = ?*ICCharTablePtr;
+pub const ICCharTableHandle = ICCharTablePtr;
 
 pub const ICAppSpec = extern struct {
     fCreator: objc.OSType,
     name: objc.Str63,
 };
 
-pub const ICAppSpecPtr = ?*ICAppSpec;
+pub const ICAppSpecPtr = ICAppSpec;
 
-pub const ICAppSpecHandle = ?*ICAppSpecPtr;
+pub const ICAppSpecHandle = ICAppSpecPtr;
 
 pub const ICAppSpecList = extern struct {
     numberOfItems: objc.SInt16,
     appSpecs: [1]ICAppSpec,
 };
 
-pub const ICAppSpecListPtr = ?*ICAppSpecList;
+pub const ICAppSpecListPtr = ICAppSpecList;
 
-pub const ICAppSpecListHandle = ?*ICAppSpecListPtr;
+pub const ICAppSpecListHandle = ICAppSpecListPtr;
 
 pub const ICFileSpec = extern struct {
     volName: objc.Str31,
@@ -2997,9 +1865,9 @@ pub const ICFileSpec = extern struct {
     alias: core_services.AliasRecord,
 };
 
-pub const ICFileSpecPtr = ?*ICFileSpec;
+pub const ICFileSpecPtr = ICFileSpec;
 
-pub const ICFileSpecHandle = ?*ICFileSpecPtr;
+pub const ICFileSpecHandle = ICFileSpecPtr;
 
 pub const ICMapEntryFlags = objc.SInt32;
 
@@ -3020,9 +1888,9 @@ pub const ICMapEntry = extern struct {
     entryName: objc.Str255,
 };
 
-pub const ICMapEntryPtr = ?*ICMapEntry;
+pub const ICMapEntryPtr = ICMapEntry;
 
-pub const ICMapEntryHandle = ?*ICMapEntryPtr;
+pub const ICMapEntryHandle = ICMapEntryPtr;
 
 pub const ICServiceEntryFlags = objc.SInt16;
 
@@ -3032,18 +1900,18 @@ pub const ICServiceEntry = extern struct {
     flags: ICServiceEntryFlags,
 };
 
-pub const ICServiceEntryPtr = ?*ICServiceEntry;
+pub const ICServiceEntryPtr = ICServiceEntry;
 
-pub const ICServiceEntryHandle = ?*ICServiceEntryPtr;
+pub const ICServiceEntryHandle = ICServiceEntryPtr;
 
 pub const ICServices = extern struct {
     count: objc.SInt16,
     services: [1]ICServiceEntry,
 };
 
-pub const ICServicesPtr = ?*ICServices;
+pub const ICServicesPtr = ICServices;
 
-pub const ICServicesHandle = ?*ICServicesPtr;
+pub const ICServicesHandle = ICServicesPtr;
 
 pub extern "ApplicationServices" fn ICStart(inst: ?*ICInstance, signature: objc.OSType) callconv(.C) objc.OSStatus;
 
@@ -3209,20 +2077,20 @@ pub extern "ApplicationServices" fn ICDeleteProfile(inst: ICInstance, thisID: IC
 pub const LaunchFlags = objc.UInt16;
 
 pub const AppParameters = extern struct {
-    theMsgEvent: anon573,
+    pub const anon573 = extern struct {
+        what: objc.UInt16,
+        message: objc.UInt32,
+        when: objc.UInt32,
+        where: objc.Point,
+        modifiers: objc.UInt16,
+    };
+
+    theMsgEvent: AppParameters.anon573,
     eventRefCon: objc.UInt32,
     messageLength: objc.UInt32,
 };
 
-pub const anon573 = extern struct {
-    what: objc.UInt16,
-    message: objc.UInt32,
-    when: objc.UInt32,
-    where: objc.Point,
-    modifiers: objc.UInt16,
-};
-
-pub const AppParametersPtr = ?*AppParameters;
+pub const AppParametersPtr = AppParameters;
 
 pub const LaunchParamBlockRec = extern struct {
     reserved1: objc.UInt32,
@@ -3239,7 +2107,7 @@ pub const LaunchParamBlockRec = extern struct {
     launchAppParameters: AppParametersPtr,
 };
 
-pub const LaunchPBPtr = ?*LaunchParamBlockRec;
+pub const LaunchPBPtr = LaunchParamBlockRec;
 
 pub const ProcessApplicationTransformState = objc.UInt32;
 
@@ -3259,7 +2127,7 @@ pub const ProcessInfoRec = extern struct {
     processAppRef: core_services.FSRefPtr,
 };
 
-pub const ProcessInfoRecPtr = ?*ProcessInfoRec;
+pub const ProcessInfoRecPtr = ProcessInfoRec;
 
 pub const ProcessInfoExtendedRec = extern struct {
     processInfoLength: objc.UInt32,
@@ -3279,7 +2147,7 @@ pub const ProcessInfoExtendedRec = extern struct {
     processPurgeableTempMemTotal: objc.UInt32,
 };
 
-pub const ProcessInfoExtendedRecPtr = ?*ProcessInfoExtendedRec;
+pub const ProcessInfoExtendedRecPtr = ProcessInfoExtendedRec;
 
 pub const SizeResourceRec = extern struct {
     flags: objc.UInt16,
@@ -3287,9 +2155,9 @@ pub const SizeResourceRec = extern struct {
     minimumHeapSize: objc.UInt32,
 };
 
-pub const SizeResourceRecPtr = ?*SizeResourceRec;
+pub const SizeResourceRecPtr = SizeResourceRec;
 
-pub const SizeResourceRecHandle = ?*SizeResourceRecPtr;
+pub const SizeResourceRecHandle = SizeResourceRecPtr;
 
 pub extern "ApplicationServices" fn LaunchApplication(LaunchParams: LaunchPBPtr) callconv(.C) objc.OSErr;
 
@@ -3329,38 +2197,34 @@ pub extern "ApplicationServices" fn ShowHideProcess(psn: ?*objc.ProcessSerialNum
 
 pub extern "ApplicationServices" fn TransformProcessType(psn: ?*objc.ProcessSerialNumber, transformState: ProcessApplicationTransformState) callconv(.C) objc.OSStatus;
 
-pub const anon8941 = enum(i32) {
-    cdevGenErr = -1,
-    cdevMemErr = 0,
-    cdevResErr = 1,
-    cdevUnset = 3,
-};
+pub const anon8941 = i32;
+pub const anon8941_cdevGenErr: i32 = -1;
+pub const anon8941_cdevMemErr: i32 = 0;
+pub const anon8941_cdevResErr: i32 = 1;
+pub const anon8941_cdevUnset: i32 = 3;
 
 pub const OpaquePasteboardRef = extern struct {};
 
-pub const PasteboardRef = ?*OpaquePasteboardRef;
+pub const PasteboardRef = OpaquePasteboardRef;
 
 pub const PasteboardItemID = ?*anyopaque;
 
-pub const PasteboardSyncFlags = enum(objc.OptionBits) {
-    Modified = 1,
-    ClientIsOwner = 2,
-};
+pub const PasteboardSyncFlags = objc.OptionBits;
+pub const PasteboardSyncFlags_Modified: objc.OptionBits = 1;
+pub const PasteboardSyncFlags_ClientIsOwner: objc.OptionBits = 2;
 
-pub const PasteboardFlavorFlags = enum(objc.OptionBits) {
-    NoFlags = 0,
-    SenderOnly = 1,
-    SenderTranslated = 2,
-    NotSaved = 4,
-    RequestOnly = 8,
-    SystemTranslated = 256,
-    Promised = 512,
-};
+pub const PasteboardFlavorFlags = objc.OptionBits;
+pub const PasteboardFlavorFlags_NoFlags: objc.OptionBits = 0;
+pub const PasteboardFlavorFlags_SenderOnly: objc.OptionBits = 1;
+pub const PasteboardFlavorFlags_SenderTranslated: objc.OptionBits = 2;
+pub const PasteboardFlavorFlags_NotSaved: objc.OptionBits = 4;
+pub const PasteboardFlavorFlags_RequestOnly: objc.OptionBits = 8;
+pub const PasteboardFlavorFlags_SystemTranslated: objc.OptionBits = 256;
+pub const PasteboardFlavorFlags_Promised: objc.OptionBits = 512;
 
-pub const PasteboardStandardLocation = enum(objc.OSType) {
-    Trash = 1953657704,
-    Unknown = 1970170734,
-};
+pub const PasteboardStandardLocation = objc.OSType;
+pub const PasteboardStandardLocation_Trash: objc.OSType = 1953657704;
+pub const PasteboardStandardLocation_Unknown: objc.OSType = 1970170734;
 
 pub extern "ApplicationServices" fn PasteboardGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -3404,12 +2268,7 @@ pub extern "ApplicationServices" fn PasteboardCopyPasteLocation(inPasteboard: Pa
 
 pub extern "ApplicationServices" fn PasteboardSetPasteLocation(inPasteboard: PasteboardRef, inPasteLocation: core_foundation.URLRef) callconv(.C) objc.OSStatus;
 
-pub const PasteboardPromiseKeeperProcPtr = ?*const fn (
-    PasteboardRef,
-    PasteboardItemID,
-    core_foundation.StringRef,
-    ?*anyopaque,
-) callconv(.C) objc.OSStatus;
+pub const PasteboardPromiseKeeperProcPtr = objc.OSStatus;
 
 pub extern "ApplicationServices" fn PasteboardSetPromiseKeeper(inPasteboard: PasteboardRef, inPromiseKeeper: PasteboardPromiseKeeperProcPtr, inContext: ?*anyopaque) callconv(.C) objc.OSStatus;
 
@@ -3417,14 +2276,13 @@ pub extern "ApplicationServices" fn PasteboardResolvePromises(inPasteboard: Past
 
 pub const OpaqueTranslationRef = extern struct {};
 
-pub const TranslationRef = ?*OpaqueTranslationRef;
+pub const TranslationRef = OpaqueTranslationRef;
 
 pub const TranslationFlags = objc.OptionBits;
 
-pub const anon1421 = enum(u32) {
-    TranslationDataTranslation = 1,
-    TranslationFileTranslation = 2,
-};
+pub const anon1421 = u32;
+pub const anon1421_TranslationDataTranslation: u32 = 1;
+pub const anon1421_TranslationFileTranslation: u32 = 2;
 
 pub extern "ApplicationServices" fn TranslationGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -3465,38 +2323,35 @@ pub extern "ApplicationServices" fn TranslationCopyDestinationType(inTranslation
 
 pub extern "ApplicationServices" fn TranslationGetTranslationFlags(inTranslation: TranslationRef, outTranslationFlags: ?*TranslationFlags) callconv(.C) objc.OSStatus;
 
-pub const AXError = enum(objc.SInt32) {
-    Success = 0,
-    Failure = -25200,
-    IllegalArgument = -25201,
-    InvalidUIElement = -25202,
-    InvalidUIElementObserver = -25203,
-    CannotComplete = -25204,
-    AttributeUnsupported = -25205,
-    ActionUnsupported = -25206,
-    NotificationUnsupported = -25207,
-    NotImplemented = -25208,
-    NotificationAlreadyRegistered = -25209,
-    NotificationNotRegistered = -25210,
-    APIDisabled = -25211,
-    NoValue = -25212,
-    ParameterizedAttributeUnsupported = -25213,
-    NotEnoughPrecision = -25214,
-};
+pub const AXError = objc.SInt32;
+pub const AXError_Success: objc.SInt32 = 0;
+pub const AXError_Failure: objc.SInt32 = -25200;
+pub const AXError_IllegalArgument: objc.SInt32 = -25201;
+pub const AXError_InvalidUIElement: objc.SInt32 = -25202;
+pub const AXError_InvalidUIElementObserver: objc.SInt32 = -25203;
+pub const AXError_CannotComplete: objc.SInt32 = -25204;
+pub const AXError_AttributeUnsupported: objc.SInt32 = -25205;
+pub const AXError_ActionUnsupported: objc.SInt32 = -25206;
+pub const AXError_NotificationUnsupported: objc.SInt32 = -25207;
+pub const AXError_NotImplemented: objc.SInt32 = -25208;
+pub const AXError_NotificationAlreadyRegistered: objc.SInt32 = -25209;
+pub const AXError_NotificationNotRegistered: objc.SInt32 = -25210;
+pub const AXError_APIDisabled: objc.SInt32 = -25211;
+pub const AXError_NoValue: objc.SInt32 = -25212;
+pub const AXError_ParameterizedAttributeUnsupported: objc.SInt32 = -25213;
+pub const AXError_NotEnoughPrecision: objc.SInt32 = -25214;
 
-pub const AXMenuItemModifiers = enum(objc.UInt32) {
-    None = 0,
-    Shift = 1,
-    Option = 2,
-    Control = 4,
-    NoCommand = 8,
-};
+pub const AXMenuItemModifiers = objc.UInt32;
+pub const AXMenuItemModifiers_None: objc.UInt32 = 0;
+pub const AXMenuItemModifiers_Shift: objc.UInt32 = 1;
+pub const AXMenuItemModifiers_Option: objc.UInt32 = 2;
+pub const AXMenuItemModifiers_Control: objc.UInt32 = 4;
+pub const AXMenuItemModifiers_NoCommand: objc.UInt32 = 8;
 
-pub const AXPriority = enum(core_foundation.Index) {
-    Low = 10,
-    Medium = 50,
-    High = 90,
-};
+pub const AXPriority = core_foundation.Index;
+pub const AXPriority_Low: core_foundation.Index = 10;
+pub const AXPriority_Medium: core_foundation.Index = 50;
+pub const AXPriority_High: core_foundation.Index = 90;
 
 pub extern "ApplicationServices" fn AXAPIEnabled() callconv(.C) objc.Boolean;
 
@@ -3508,11 +2363,10 @@ pub extern "ApplicationServices" fn AXMakeProcessTrusted(executablePath: core_fo
 
 pub const __AXUIElement = extern struct {};
 
-pub const AXUIElementRef = ?*__AXUIElement;
+pub const AXUIElementRef = __AXUIElement;
 
-pub const AXCopyMultipleAttributeOptions = enum(objc.UInt32) {
-    StopOnError = 1,
-};
+pub const AXCopyMultipleAttributeOptions = objc.UInt32;
+pub const AXCopyMultipleAttributeOptions_StopOnError: objc.UInt32 = 1;
 
 pub extern "ApplicationServices" fn AXUIElementGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -3580,7 +2434,7 @@ pub extern "ApplicationServices" fn AXUIElementPostKeyboardEvent(
 
 pub const __AXTextMarker = extern struct {};
 
-pub const AXTextMarkerRef = ?*__AXTextMarker;
+pub const AXTextMarkerRef = __AXTextMarker;
 
 pub extern "ApplicationServices" fn AXTextMarkerGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -3592,7 +2446,7 @@ pub extern "ApplicationServices" fn AXTextMarkerGetBytePtr(theTextMarker: AXText
 
 pub const __AXTextMarkerRange = extern struct {};
 
-pub const AXTextMarkerRangeRef = ?*__AXTextMarkerRange;
+pub const AXTextMarkerRangeRef = __AXTextMarkerRange;
 
 pub extern "ApplicationServices" fn AXTextMarkerRangeGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -3612,7 +2466,7 @@ pub extern "ApplicationServices" fn AXTextMarkerRangeCopyEndMarker(textMarkerRan
 
 pub const __AXObserver = extern struct {};
 
-pub const AXObserverRef = ?*__AXObserver;
+pub const AXObserverRef = __AXObserver;
 
 pub const AXObserverCallback = ?*const fn (
     AXObserverRef,
@@ -3646,18 +2500,17 @@ pub extern "ApplicationServices" fn AXObserverRemoveNotification(observer: AXObs
 
 pub extern "ApplicationServices" fn AXObserverGetRunLoopSource(observer: AXObserverRef) callconv(.C) core_foundation.RunLoopSourceRef;
 
-pub const AXValueType = enum(objc.UInt32) {
-    CGPoint = 1,
-    CGSize = 2,
-    CGRect = 3,
-    CFRange = 4,
-    AXError = 5,
-    Illegal = 0,
-};
+pub const AXValueType = objc.UInt32;
+pub const AXValueType_CGPoint: objc.UInt32 = 1;
+pub const AXValueType_CGSize: objc.UInt32 = 2;
+pub const AXValueType_CGRect: objc.UInt32 = 3;
+pub const AXValueType_CFRange: objc.UInt32 = 4;
+pub const AXValueType_AXError: objc.UInt32 = 5;
+pub const AXValueType_Illegal: objc.UInt32 = 0;
 
 pub const __AXValue = extern struct {};
 
-pub const AXValueRef = ?*__AXValue;
+pub const AXValueRef = __AXValue;
 
 pub extern "ApplicationServices" fn AXValueGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -3667,12 +2520,11 @@ pub extern "ApplicationServices" fn AXValueGetType(value: AXValueRef) callconv(.
 
 pub extern "ApplicationServices" fn AXValueGetValue(value: AXValueRef, theType: AXValueType, valuePtr: ?*anyopaque) callconv(.C) objc.Boolean;
 
-pub const AXUnderlineStyle = enum(objc.UInt32) {
-    None = 0,
-    Single = 1,
-    Thick = 2,
-    Double = 9,
-};
+pub const AXUnderlineStyle = objc.UInt32;
+pub const AXUnderlineStyle_None: objc.UInt32 = 0;
+pub const AXUnderlineStyle_Single: objc.UInt32 = 1;
+pub const AXUnderlineStyle_Thick: objc.UInt32 = 2;
+pub const AXUnderlineStyle_Double: objc.UInt32 = 9;
 
 pub const UAZoomChangeFocusType = objc.UInt32;
 
@@ -3684,31 +2536,31 @@ pub const PMObject = ?*anyopaque;
 
 pub const OpaquePMPrintSettings = extern struct {};
 
-pub const PMPrintSettings = ?*OpaquePMPrintSettings;
+pub const PMPrintSettings = OpaquePMPrintSettings;
 
 pub const OpaquePMPageFormat = extern struct {};
 
-pub const PMPageFormat = ?*OpaquePMPageFormat;
+pub const PMPageFormat = OpaquePMPageFormat;
 
 pub const OpaquePMPrintSession = extern struct {};
 
-pub const PMPrintSession = ?*OpaquePMPrintSession;
+pub const PMPrintSession = OpaquePMPrintSession;
 
 pub const OpaquePMPrinter = extern struct {};
 
-pub const PMPrinter = ?*OpaquePMPrinter;
+pub const PMPrinter = OpaquePMPrinter;
 
 pub const OpaquePMServer = extern struct {};
 
-pub const PMServer = ?*OpaquePMServer;
+pub const PMServer = OpaquePMServer;
 
 pub const OpaquePMPreset = extern struct {};
 
-pub const PMPreset = ?*OpaquePMPreset;
+pub const PMPreset = OpaquePMPreset;
 
 pub const OpaquePMPaper = extern struct {};
 
-pub const PMPaper = ?*OpaquePMPaper;
+pub const PMPaper = OpaquePMPaper;
 
 pub const PMDestinationType = objc.UInt16;
 
@@ -3734,35 +2586,31 @@ pub const PMPrintDialogOptionFlags = objc.OptionBits;
 
 pub const PMPPDDomain = objc.UInt16;
 
-pub const anon1781 = enum(u32) {
-    AllPPDDomains = 1,
-    SystemPPDDomain = 2,
-    LocalPPDDomain = 3,
-    NetworkPPDDomain = 4,
-    UserPPDDomain = 5,
-    CUPSPPDDomain = 6,
-};
+pub const anon1781 = u32;
+pub const anon1781_AllPPDDomains: u32 = 1;
+pub const anon1781_SystemPPDDomain: u32 = 2;
+pub const anon1781_LocalPPDDomain: u32 = 3;
+pub const anon1781_NetworkPPDDomain: u32 = 4;
+pub const anon1781_UserPPDDomain: u32 = 5;
+pub const anon1781_CUPSPPDDomain: u32 = 6;
 
-pub const anon2071 = enum(i32) {
-    PMNoError = 0,
-    PMGeneralError = -30870,
-    PMOutOfScope = -30871,
-    PMInvalidParameter = -50,
-    PMNoDefaultPrinter = -30872,
-    PMNotImplemented = -30873,
-    PMNoSuchEntry = -30874,
-    PMInvalidPrintSettings = -30875,
-    PMInvalidPageFormat = -30876,
-    PMValueOutOfRange = -30877,
-};
+pub const anon2071 = i32;
+pub const anon2071_PMNoError: i32 = 0;
+pub const anon2071_PMGeneralError: i32 = -30870;
+pub const anon2071_PMOutOfScope: i32 = -30871;
+pub const anon2071_PMInvalidParameter: i32 = -50;
+pub const anon2071_PMNoDefaultPrinter: i32 = -30872;
+pub const anon2071_PMNotImplemented: i32 = -30873;
+pub const anon2071_PMNoSuchEntry: i32 = -30874;
+pub const anon2071_PMInvalidPrintSettings: i32 = -30875;
+pub const anon2071_PMInvalidPageFormat: i32 = -30876;
+pub const anon2071_PMValueOutOfRange: i32 = -30877;
 
-pub const anon2281 = enum(i32) {
-    PMPrintAllPages = -1,
-};
+pub const anon2281 = i32;
+pub const anon2281_PMPrintAllPages: i32 = -1;
 
-pub const anon2321 = enum(u32) {
-    PMUnlocked = 0,
-};
+pub const anon2321 = u32;
+pub const anon2321_PMUnlocked: u32 = 0;
 
 pub const PMRect = extern struct {
     top: f64,
@@ -3784,21 +2632,20 @@ pub const PMLanguageInfo = extern struct {
 
 pub const PMPaperMargins = PMRect;
 
-pub const PMDataFormat = enum(u32) {
-    XMLDefault = 0,
-    XMLMinimal = 1,
-    XMLCompressed = 2,
-};
+pub const PMDataFormat = u32;
+pub const PMDataFormat_XMLDefault: u32 = 0;
+pub const PMDataFormat_XMLMinimal: u32 = 1;
+pub const PMDataFormat_XMLCompressed: u32 = 2;
 
 /// https://developer.apple.com/documentation/ApplicationServices/PDEPlugIn?language=objc
 pub const PDEPlugIn = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -3806,39 +2653,39 @@ pub const PDEPlugIn = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -3846,7 +2693,7 @@ pub const PDEPlugIn = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -3877,13 +2724,13 @@ pub const PDEPlugIn = opaque {
 
 /// https://developer.apple.com/documentation/ApplicationServices/PDEPanel?language=objc
 pub const PDEPanel = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -3891,39 +2738,39 @@ pub const PDEPanel = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -3931,7 +2778,7 @@ pub const PDEPanel = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -4006,11 +2853,11 @@ pub const PDEPanel = opaque {
 
 /// https://developer.apple.com/documentation/ApplicationServices/PDEPlugInCallbackProtocol?language=objc
 pub const PDEPlugInCallbackProtocol = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
     pub fn printSession(_self: *@This()) PMPrintSession {
         return objc.msgSend(_self, "printSession", PMPrintSession, .{});
@@ -4343,10 +3190,9 @@ pub extern "ApplicationServices" fn PMCopyPPDData(ppd: core_foundation.URLRef, d
 
 pub extern "ApplicationServices" fn PMCGImageCreateWithEPSDataProvider(epsDataProvider: core_graphics.DataProviderRef, epsPreview: core_graphics.ImageRef) callconv(.C) core_graphics.ImageRef;
 
-pub const PMPageToPaperMappingType = enum(u32) {
-    None = 1,
-    ScaleToFit = 2,
-};
+pub const PMPageToPaperMappingType = u32;
+pub const PMPageToPaperMappingType_None: u32 = 1;
+pub const PMPageToPaperMappingType_ScaleToFit: u32 = 2;
 
 pub const FontRec = extern struct {
     fontType: objc.SInt16,
@@ -4364,9 +3210,9 @@ pub const FontRec = extern struct {
     rowWords: objc.SInt16,
 };
 
-pub const FontRecPtr = ?*FontRec;
+pub const FontRecPtr = FontRec;
 
-pub const FontRecHdl = ?*FontRecPtr;
+pub const FontRecHdl = FontRecPtr;
 
 pub const FMInput = extern struct {
     family: i16,
@@ -4434,15 +3280,15 @@ pub const KernTable = extern struct {
 
 pub const OpaqueATSUTextLayout = extern struct {};
 
-pub const UTextLayout = ?*OpaqueATSUTextLayout;
+pub const UTextLayout = OpaqueATSUTextLayout;
 
 pub const OpaqueATSUStyle = extern struct {};
 
-pub const UStyle = ?*OpaqueATSUStyle;
+pub const UStyle = OpaqueATSUStyle;
 
 pub const OpaqueATSUFontFallbacks = extern struct {};
 
-pub const UFontFallbacks = ?*OpaqueATSUFontFallbacks;
+pub const UFontFallbacks = OpaqueATSUFontFallbacks;
 
 pub const UTextMeasurement = objc.Fixed;
 
@@ -4476,42 +3322,38 @@ pub const UCaret = extern struct {
 
 pub const UCursorMovementType = objc.UInt16;
 
-pub const anon6931 = enum(u32) {
-    ATSUByCharacter = 0,
-    ATSUByTypographicCluster = 1,
-    ATSUByWord = 2,
-    ATSUByCharacterCluster = 3,
-    ATSUByCluster = 1,
-};
+pub const anon6931 = u32;
+pub const anon6931_ATSUByCharacter: u32 = 0;
+pub const anon6931_ATSUByTypographicCluster: u32 = 1;
+pub const anon6931_ATSUByWord: u32 = 2;
+pub const anon6931_ATSUByCharacterCluster: u32 = 3;
+pub const anon6931_ATSUByCluster: u32 = 1;
 
 pub const ULineTruncation = objc.UInt32;
 
-pub const anon7441 = enum(u32) {
-    ATSUTruncateNone = 0,
-    ATSUTruncateStart = 1,
-    ATSUTruncateEnd = 2,
-    ATSUTruncateMiddle = 3,
-    ATSUTruncateSpecificationMask = 7,
-    ATSUTruncFeatNoSquishing = 8,
-};
+pub const anon7441 = u32;
+pub const anon7441_ATSUTruncateNone: u32 = 0;
+pub const anon7441_ATSUTruncateStart: u32 = 1;
+pub const anon7441_ATSUTruncateEnd: u32 = 2;
+pub const anon7441_ATSUTruncateMiddle: u32 = 3;
+pub const anon7441_ATSUTruncateSpecificationMask: u32 = 7;
+pub const anon7441_ATSUTruncFeatNoSquishing: u32 = 8;
 
 pub const UStyleLineCountType = objc.UInt16;
 
-pub const anon7631 = enum(u32) {
-    ATSUStyleSingleLineCount = 1,
-    ATSUStyleDoubleLineCount = 2,
-};
+pub const anon7631 = u32;
+pub const anon7631_ATSUStyleSingleLineCount: u32 = 1;
+pub const anon7631_ATSUStyleDoubleLineCount: u32 = 2;
 
 pub const UVerticalCharacterType = objc.UInt16;
 
 pub const UStyleComparison = objc.UInt16;
 
-pub const anon7961 = enum(u32) {
-    ATSUStyleUnequal = 0,
-    ATSUStyleContains = 1,
-    ATSUStyleEquals = 2,
-    ATSUStyleContainedBy = 3,
-};
+pub const anon7961 = u32;
+pub const anon7961_ATSUStyleUnequal: u32 = 0;
+pub const anon7961_ATSUStyleContains: u32 = 1;
+pub const anon7961_ATSUStyleEquals: u32 = 2;
+pub const anon7961_ATSUStyleContainedBy: u32 = 3;
 
 pub const UFontFallbackMethod = objc.UInt16;
 
@@ -4556,22 +3398,15 @@ pub const UGlyphInfoArray = extern struct {
 
 pub const UHighlightMethod = objc.UInt32;
 
-pub const anon10261 = enum(u32) {
-    InvertHighlighting = 0,
-    RedrawHighlighting = 1,
-};
+pub const anon10261 = u32;
+pub const anon10261_InvertHighlighting: u32 = 0;
+pub const anon10261_RedrawHighlighting: u32 = 1;
 
 pub const UBackgroundDataType = objc.UInt32;
 
 pub const UBackgroundColor = URGBAlphaColor;
 
-pub const RedrawBackgroundProcPtr = ?*const fn (
-    UTextLayout,
-    core_services.UniCharArrayOffset,
-    objc.UniCharCount,
-    *Trapezoid,
-    objc.ItemCount,
-) callconv(.C) objc.Boolean;
+pub const RedrawBackgroundProcPtr = objc.Boolean;
 
 pub const RedrawBackgroundUPP = RedrawBackgroundProcPtr;
 
@@ -4585,70 +3420,55 @@ pub const UUnhighlightData = extern struct {
     unhighlightData: UBackgroundData,
 };
 
-pub const anon11921 = enum(u32) {
-    ATSULeftToRightBaseDirection = 0,
-    ATSURightToLeftBaseDirection = 1,
-};
+pub const anon11921 = u32;
+pub const anon11921_ATSULeftToRightBaseDirection: u32 = 0;
+pub const anon11921_ATSURightToLeftBaseDirection: u32 = 1;
 
-pub const anon12171 = enum(u32) {
-    ATSUInvalidFontID = 0,
-};
+pub const anon12171 = u32;
+pub const anon12171_ATSUInvalidFontID: u32 = 0;
 
-pub const anon12401 = enum(u32) {
-    ATSUNoSelector = 65535,
-};
+pub const anon12401 = u32;
+pub const anon12401_ATSUNoSelector: u32 = 65535;
 
-pub const anon12551 = enum(u32) {
-    ATSUFromTextBeginning = -1,
-    ATSUToTextEnd = -1,
-    ATSUFromPreviousLayout = -2,
-    ATSUFromFollowingLayout = -3,
-};
+pub const anon12551 = u32;
+pub const anon12551_ATSUFromTextBeginning: u32 = -1;
+pub const anon12551_ATSUToTextEnd: u32 = -1;
+pub const anon12551_ATSUFromPreviousLayout: u32 = -2;
+pub const anon12551_ATSUFromFollowingLayout: u32 = -3;
 
-pub const anon12831 = enum(u32) {
-    ATSUUseGrafPortPenLoc = -1,
-    ATSUClearAll = -1,
-};
+pub const anon12831 = u32;
+pub const anon12831_ATSUUseGrafPortPenLoc: u32 = -1;
+pub const anon12831_ATSUClearAll: u32 = -1;
 
-pub const QuadraticNewPathProcPtr = ?*const fn (?*anyopaque) callconv(.C) objc.OSStatus;
+pub const QuadraticNewPathProcPtr = objc.OSStatus;
 
 pub const QuadraticNewPathUPP = QuadraticNewPathProcPtr;
 
-pub const QuadraticLineProcPtr = ?*const fn (?*objc.Float32Point, ?*objc.Float32Point, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const QuadraticLineProcPtr = objc.OSStatus;
 
 pub const QuadraticLineUPP = QuadraticLineProcPtr;
 
-pub const QuadraticCurveProcPtr = ?*const fn (
-    ?*objc.Float32Point,
-    ?*objc.Float32Point,
-    ?*objc.Float32Point,
-    ?*anyopaque,
-) callconv(.C) objc.OSStatus;
+pub const QuadraticCurveProcPtr = objc.OSStatus;
 
 pub const QuadraticCurveUPP = QuadraticCurveProcPtr;
 
-pub const QuadraticClosePathProcPtr = ?*const fn (?*anyopaque) callconv(.C) objc.OSStatus;
+pub const QuadraticClosePathProcPtr = objc.OSStatus;
 
 pub const QuadraticClosePathUPP = QuadraticClosePathProcPtr;
 
-pub const CubicMoveToProcPtr = ?*const fn (?*objc.Float32Point, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const CubicMoveToProcPtr = objc.OSStatus;
 
 pub const CubicMoveToUPP = CubicMoveToProcPtr;
 
-pub const CubicLineToProcPtr = ?*const fn (?*objc.Float32Point, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const CubicLineToProcPtr = objc.OSStatus;
 
 pub const CubicLineToUPP = CubicLineToProcPtr;
 
-pub const CubicCurveToProcPtr = ?*const fn (
-    ?*objc.Float32Point,
-    ?*objc.Float32Point,
-    ?*objc.Float32Point,
-    ?*anyopaque,
-) callconv(.C) objc.OSStatus;
+pub const CubicCurveToProcPtr = objc.OSStatus;
 
 pub const CubicCurveToUPP = CubicCurveToProcPtr;
 
-pub const CubicClosePathProcPtr = ?*const fn (?*anyopaque) callconv(.C) objc.OSStatus;
+pub const CubicClosePathProcPtr = objc.OSStatus;
 
 pub const CubicClosePathUPP = CubicClosePathProcPtr;
 
@@ -4749,26 +3569,25 @@ pub const UDirectDataSelector = objc.UInt32;
 
 pub const LLCStyleInfo = extern struct {};
 
-pub const UStyleSettingRef = ?*LLCStyleInfo;
+pub const UStyleSettingRef = LLCStyleInfo;
 
 pub const SpeechChannelRecord = extern struct {
     data: [1]i64,
 };
 
-pub const SpeechChannel = ?*SpeechChannelRecord;
+pub const SpeechChannel = SpeechChannelRecord;
 
 pub const VoiceSpec = extern struct {
     creator: objc.OSType,
     id: objc.OSType,
 };
 
-pub const VoiceSpecPtr = ?*VoiceSpec;
+pub const VoiceSpecPtr = VoiceSpec;
 
-pub const anon1481 = enum(objc.SInt16) {
-    Neuter = 0,
-    Male = 1,
-    Female = 2,
-};
+pub const anon1481 = objc.SInt16;
+pub const anon1481_Neuter: objc.SInt16 = 0;
+pub const anon1481_Male: objc.SInt16 = 1;
+pub const anon1481_Female: objc.SInt16 = 2;
 
 pub const VoiceDescription = extern struct {
     length: objc.SInt32,

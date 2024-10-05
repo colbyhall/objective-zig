@@ -5,213 +5,86 @@ const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 const core_foundation = @import("core_foundation.zig"); // Framework dependency CoreFoundation.
 const core_graphics = @import("core_graphics.zig"); // Framework dependency CoreGraphics.
 
-pub const anon3921 = enum(u32) {
-    sizeof_sfntVariationHeader = 16,
-};
+pub const anon491 = u32;
+pub const anon491_CTFontClassMaskShift: u32 = 28;
 
-pub const anon3971 = enum(u32) {
-    descriptorFontTableTag = 1717859171,
-};
+pub const FontSymbolicTraits = objc.uint32_t;
+pub const FontSymbolicTraits_TraitItalic: objc.uint32_t = 1;
+pub const FontSymbolicTraits_TraitBold: objc.uint32_t = 2;
+pub const FontSymbolicTraits_TraitExpanded: objc.uint32_t = 32;
+pub const FontSymbolicTraits_TraitCondensed: objc.uint32_t = 64;
+pub const FontSymbolicTraits_TraitMonoSpace: objc.uint32_t = 1024;
+pub const FontSymbolicTraits_TraitVertical: objc.uint32_t = 2048;
+pub const FontSymbolicTraits_TraitUIOptimized: objc.uint32_t = 4096;
+pub const FontSymbolicTraits_TraitColorGlyphs: objc.uint32_t = 8192;
+pub const FontSymbolicTraits_TraitComposite: objc.uint32_t = 16384;
+pub const FontSymbolicTraits_TraitClassMask: objc.uint32_t = -268435456;
+pub const FontSymbolicTraits_ItalicTrait: objc.uint32_t = 1;
+pub const FontSymbolicTraits_BoldTrait: objc.uint32_t = 2;
+pub const FontSymbolicTraits_ExpandedTrait: objc.uint32_t = 32;
+pub const FontSymbolicTraits_CondensedTrait: objc.uint32_t = 64;
+pub const FontSymbolicTraits_MonoSpaceTrait: objc.uint32_t = 1024;
+pub const FontSymbolicTraits_VerticalTrait: objc.uint32_t = 2048;
+pub const FontSymbolicTraits_UIOptimizedTrait: objc.uint32_t = 4096;
+pub const FontSymbolicTraits_ColorGlyphsTrait: objc.uint32_t = 8192;
+pub const FontSymbolicTraits_CompositeTrait: objc.uint32_t = 16384;
+pub const FontSymbolicTraits_ClassMaskTrait: objc.uint32_t = -268435456;
 
-pub const anon4071 = enum(u32) {
-    NoAnnotationSelector = 0,
-    BoxAnnotationSelector = 1,
-    RoundedBoxAnnotationSelector = 2,
-    CircleAnnotationSelector = 3,
-    InvertedCircleAnnotationSelector = 4,
-    ParenthesisAnnotationSelector = 5,
-    PeriodAnnotationSelector = 6,
-    RomanNumeralAnnotationSelector = 7,
-    DiamondAnnotationSelector = 8,
-    InvertedBoxAnnotationSelector = 9,
-    InvertedRoundedBoxAnnotationSelector = 10,
-};
-
-pub const anon701 = enum(u32) {
-    FontRomanScript = 0,
-    FontJapaneseScript = 1,
-    FontTraditionalChineseScript = 2,
-    FontChineseScript = 2,
-    FontKoreanScript = 3,
-    FontArabicScript = 4,
-    FontHebrewScript = 5,
-    FontGreekScript = 6,
-    FontCyrillicScript = 7,
-    FontRussian = 7,
-    FontRSymbolScript = 8,
-    FontDevanagariScript = 9,
-    FontGurmukhiScript = 10,
-    FontGujaratiScript = 11,
-    FontOriyaScript = 12,
-    FontBengaliScript = 13,
-    FontTamilScript = 14,
-    FontTeluguScript = 15,
-    FontKannadaScript = 16,
-    FontMalayalamScript = 17,
-    FontSinhaleseScript = 18,
-    FontBurmeseScript = 19,
-    FontKhmerScript = 20,
-    FontThaiScript = 21,
-    FontLaotianScript = 22,
-    FontGeorgianScript = 23,
-    FontArmenianScript = 24,
-    FontSimpleChineseScript = 25,
-    FontTibetanScript = 26,
-    FontMongolianScript = 27,
-    FontGeezScript = 28,
-    FontEthiopicScript = 28,
-    FontAmharicScript = 28,
-    FontSlavicScript = 29,
-    FontEastEuropeanRomanScript = 29,
-    FontVietnameseScript = 30,
-    FontExtendedArabicScript = 31,
-    FontSindhiScript = 31,
-    FontUninterpretedScript = 32,
-};
-
-pub const anon491 = enum(u32) {
-    CTFontClassMaskShift = 28,
-};
-
-pub const FontSymbolicTraits = enum(objc.uint32_t) {
-    TraitItalic = 1,
-    TraitBold = 2,
-    TraitExpanded = 32,
-    TraitCondensed = 64,
-    TraitMonoSpace = 1024,
-    TraitVertical = 2048,
-    TraitUIOptimized = 4096,
-    TraitColorGlyphs = 8192,
-    TraitComposite = 16384,
-    TraitClassMask = -268435456,
-    ItalicTrait = 1,
-    BoldTrait = 2,
-    ExpandedTrait = 32,
-    CondensedTrait = 64,
-    MonoSpaceTrait = 1024,
-    VerticalTrait = 2048,
-    UIOptimizedTrait = 4096,
-    ColorGlyphsTrait = 8192,
-    CompositeTrait = 16384,
-    ClassMaskTrait = -268435456,
-};
-
-pub const FontStylisticClass = enum(objc.uint32_t) {
-    ClassUnknown = 0,
-    ClassOldStyleSerifs = 268435456,
-    ClassTransitionalSerifs = 536870912,
-    ClassModernSerifs = 805306368,
-    ClassClarendonSerifs = 1073741824,
-    ClassSlabSerifs = 1342177280,
-    ClassFreeformSerifs = 1879048192,
-    ClassSansSerif = -2147483648,
-    ClassOrnamentals = -1879048192,
-    ClassScripts = -1610612736,
-    ClassSymbolic = -1073741824,
-    UnknownClass = 0,
-    OldStyleSerifsClass = 268435456,
-    TransitionalSerifsClass = 536870912,
-    ModernSerifsClass = 805306368,
-    ClarendonSerifsClass = 1073741824,
-    SlabSerifsClass = 1342177280,
-    FreeformSerifsClass = 1879048192,
-    SansSerifClass = -2147483648,
-    OrnamentalsClass = -1879048192,
-    ScriptsClass = -1610612736,
-    SymbolicClass = -1073741824,
-};
-
-pub const anon6101 = enum(u32) {
-    DefaultLowerCaseSelector = 0,
-    LowerCaseSmallCapsSelector = 1,
-    LowerCasePetiteCapsSelector = 2,
-};
-
-pub const anon431 = enum(u32) {
-    sizeof_sfntDirectory = 12,
-};
-
-pub const anon3271 = enum(u32) {
-    NoStyleOptionsSelector = 0,
-    DisplayTextSelector = 1,
-    EngravedTextSelector = 2,
-    IlluminatedCapsSelector = 3,
-    TitlingCapsSelector = 4,
-    TallCapsSelector = 5,
-};
-
-pub const anon5471 = enum(u32) {
-    NoStylisticAlternatesSelector = 0,
-    StylisticAltOneOnSelector = 2,
-    StylisticAltOneOffSelector = 3,
-    StylisticAltTwoOnSelector = 4,
-    StylisticAltTwoOffSelector = 5,
-    StylisticAltThreeOnSelector = 6,
-    StylisticAltThreeOffSelector = 7,
-    StylisticAltFourOnSelector = 8,
-    StylisticAltFourOffSelector = 9,
-    StylisticAltFiveOnSelector = 10,
-    StylisticAltFiveOffSelector = 11,
-    StylisticAltSixOnSelector = 12,
-    StylisticAltSixOffSelector = 13,
-    StylisticAltSevenOnSelector = 14,
-    StylisticAltSevenOffSelector = 15,
-    StylisticAltEightOnSelector = 16,
-    StylisticAltEightOffSelector = 17,
-    StylisticAltNineOnSelector = 18,
-    StylisticAltNineOffSelector = 19,
-    StylisticAltTenOnSelector = 20,
-    StylisticAltTenOffSelector = 21,
-    StylisticAltElevenOnSelector = 22,
-    StylisticAltElevenOffSelector = 23,
-    StylisticAltTwelveOnSelector = 24,
-    StylisticAltTwelveOffSelector = 25,
-    StylisticAltThirteenOnSelector = 26,
-    StylisticAltThirteenOffSelector = 27,
-    StylisticAltFourteenOnSelector = 28,
-    StylisticAltFourteenOffSelector = 29,
-    StylisticAltFifteenOnSelector = 30,
-    StylisticAltFifteenOffSelector = 31,
-    StylisticAltSixteenOnSelector = 32,
-    StylisticAltSixteenOffSelector = 33,
-    StylisticAltSeventeenOnSelector = 34,
-    StylisticAltSeventeenOffSelector = 35,
-    StylisticAltEighteenOnSelector = 36,
-    StylisticAltEighteenOffSelector = 37,
-    StylisticAltNineteenOnSelector = 38,
-    StylisticAltNineteenOffSelector = 39,
-    StylisticAltTwentyOnSelector = 40,
-    StylisticAltTwentyOffSelector = 41,
-};
+pub const FontStylisticClass = objc.uint32_t;
+pub const FontStylisticClass_ClassUnknown: objc.uint32_t = 0;
+pub const FontStylisticClass_ClassOldStyleSerifs: objc.uint32_t = 268435456;
+pub const FontStylisticClass_ClassTransitionalSerifs: objc.uint32_t = 536870912;
+pub const FontStylisticClass_ClassModernSerifs: objc.uint32_t = 805306368;
+pub const FontStylisticClass_ClassClarendonSerifs: objc.uint32_t = 1073741824;
+pub const FontStylisticClass_ClassSlabSerifs: objc.uint32_t = 1342177280;
+pub const FontStylisticClass_ClassFreeformSerifs: objc.uint32_t = 1879048192;
+pub const FontStylisticClass_ClassSansSerif: objc.uint32_t = -2147483648;
+pub const FontStylisticClass_ClassOrnamentals: objc.uint32_t = -1879048192;
+pub const FontStylisticClass_ClassScripts: objc.uint32_t = -1610612736;
+pub const FontStylisticClass_ClassSymbolic: objc.uint32_t = -1073741824;
+pub const FontStylisticClass_UnknownClass: objc.uint32_t = 0;
+pub const FontStylisticClass_OldStyleSerifsClass: objc.uint32_t = 268435456;
+pub const FontStylisticClass_TransitionalSerifsClass: objc.uint32_t = 536870912;
+pub const FontStylisticClass_ModernSerifsClass: objc.uint32_t = 805306368;
+pub const FontStylisticClass_ClarendonSerifsClass: objc.uint32_t = 1073741824;
+pub const FontStylisticClass_SlabSerifsClass: objc.uint32_t = 1342177280;
+pub const FontStylisticClass_FreeformSerifsClass: objc.uint32_t = 1879048192;
+pub const FontStylisticClass_SansSerifClass: objc.uint32_t = -2147483648;
+pub const FontStylisticClass_OrnamentalsClass: objc.uint32_t = -1879048192;
+pub const FontStylisticClass_ScriptsClass: objc.uint32_t = -1610612736;
+pub const FontStylisticClass_SymbolicClass: objc.uint32_t = -1073741824;
 
 pub const __CTFontDescriptor = extern struct {};
 
-pub const FontDescriptorRef = ?*__CTFontDescriptor;
+pub const FontDescriptorRef = __CTFontDescriptor;
 
 extern "CoreText" fn CTFontDescriptorGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const fontDescriptorGetTypeID = CTFontDescriptorGetTypeID;
 
-pub const FontOrientation = enum(objc.uint32_t) {
-    Default = 0,
-    Horizontal = 1,
-    Vertical = 2,
-    DefaultOrientation = 0,
-    HorizontalOrientation = 1,
-    VerticalOrientation = 2,
-};
+pub const FontOrientation = objc.uint32_t;
+pub const FontOrientation_Default: objc.uint32_t = 0;
+pub const FontOrientation_Horizontal: objc.uint32_t = 1;
+pub const FontOrientation_Vertical: objc.uint32_t = 2;
+pub const FontOrientation_DefaultOrientation: objc.uint32_t = 0;
+pub const FontOrientation_HorizontalOrientation: objc.uint32_t = 1;
+pub const FontOrientation_VerticalOrientation: objc.uint32_t = 2;
 
-pub const FontFormat = enum(objc.uint32_t) {
-    Unrecognized = 0,
-    OpenTypePostScript = 1,
-    OpenTypeTrueType = 2,
-    TrueType = 3,
-    PostScript = 4,
-    Bitmap = 5,
-};
+pub const FontFormat = objc.uint32_t;
+pub const FontFormat_Unrecognized: objc.uint32_t = 0;
+pub const FontFormat_OpenTypePostScript: objc.uint32_t = 1;
+pub const FontFormat_OpenTypeTrueType: objc.uint32_t = 2;
+pub const FontFormat_TrueType: objc.uint32_t = 3;
+pub const FontFormat_PostScript: objc.uint32_t = 4;
+pub const FontFormat_Bitmap: objc.uint32_t = 5;
 
-pub const anon2541 = enum(u32) {
-    sizeof_sfntCMapSubHeader = 6,
-};
+pub const anon2541 = u32;
+pub const anon2541_CTFontPrioritySystem: u32 = 10000;
+pub const anon2541_CTFontPriorityNetwork: u32 = 20000;
+pub const anon2541_CTFontPriorityComputer: u32 = 30000;
+pub const anon2541_CTFontPriorityUser: u32 = 40000;
+pub const anon2541_CTFontPriorityDynamic: u32 = 50000;
+pub const anon2541_CTFontPriorityProcess: u32 = 60000;
+pub const anon2541_sizeof_sfntCMapSubHeader: u32 = 6;
 
 pub const FontPriority = objc.uint32_t;
 
@@ -242,17 +115,16 @@ pub const fontDescriptorCreateMatchingFontDescriptors = CTFontDescriptorCreateMa
 extern "CoreText" fn CTFontDescriptorCreateMatchingFontDescriptor(descriptor: FontDescriptorRef, mandatoryAttributes: core_foundation.SetRef) callconv(.C) FontDescriptorRef;
 pub const fontDescriptorCreateMatchingFontDescriptor = CTFontDescriptorCreateMatchingFontDescriptor;
 
-pub const FontDescriptorMatchingState = enum(objc.uint32_t) {
-    DidBegin = 0,
-    DidFinish = 1,
-    WillBeginQuerying = 2,
-    Stalled = 3,
-    WillBeginDownloading = 4,
-    Downloading = 5,
-    DidFinishDownloading = 6,
-    DidMatch = 7,
-    DidFailWithError = 8,
-};
+pub const FontDescriptorMatchingState = objc.uint32_t;
+pub const FontDescriptorMatchingState_DidBegin: objc.uint32_t = 0;
+pub const FontDescriptorMatchingState_DidFinish: objc.uint32_t = 1;
+pub const FontDescriptorMatchingState_WillBeginQuerying: objc.uint32_t = 2;
+pub const FontDescriptorMatchingState_Stalled: objc.uint32_t = 3;
+pub const FontDescriptorMatchingState_WillBeginDownloading: objc.uint32_t = 4;
+pub const FontDescriptorMatchingState_Downloading: objc.uint32_t = 5;
+pub const FontDescriptorMatchingState_DidFinishDownloading: objc.uint32_t = 6;
+pub const FontDescriptorMatchingState_DidMatch: objc.uint32_t = 7;
+pub const FontDescriptorMatchingState_DidFailWithError: objc.uint32_t = 8;
 
 pub const FontDescriptorProgressHandler = *const fn (FontDescriptorMatchingState, core_foundation.DictionaryRef) callconv(.C) i32;
 
@@ -270,7 +142,7 @@ pub const fontDescriptorCopyLocalizedAttribute = CTFontDescriptorCopyLocalizedAt
 
 pub const __CTFont = extern struct {};
 
-pub const FontRef = ?*__CTFont;
+pub const FontRef = __CTFont;
 
 extern "CoreText" fn CTFontGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const fontGetTypeID = CTFontGetTypeID;
@@ -281,12 +153,11 @@ pub const fontCreateWithName = CTFontCreateWithName;
 extern "CoreText" fn CTFontCreateWithFontDescriptor(descriptor: FontDescriptorRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) FontRef;
 pub const fontCreateWithFontDescriptor = CTFontCreateWithFontDescriptor;
 
-pub const FontOptions = enum(core_foundation.OptionFlags) {
-    Default = 0,
-    PreventAutoActivation = 1,
-    PreventAutoDownload = 2,
-    PreferSystemFont = 4,
-};
+pub const FontOptions = core_foundation.OptionFlags;
+pub const FontOptions_Default: core_foundation.OptionFlags = 0;
+pub const FontOptions_PreventAutoActivation: core_foundation.OptionFlags = 1;
+pub const FontOptions_PreventAutoDownload: core_foundation.OptionFlags = 2;
+pub const FontOptions_PreferSystemFont: core_foundation.OptionFlags = 4;
 
 extern "CoreText" fn CTFontCreateWithNameAndOptions(
     name: core_foundation.StringRef,
@@ -304,64 +175,63 @@ extern "CoreText" fn CTFontCreateWithFontDescriptorAndOptions(
 ) callconv(.C) FontRef;
 pub const fontCreateWithFontDescriptorAndOptions = CTFontCreateWithFontDescriptorAndOptions;
 
-pub const FontUIFontType = enum(objc.uint32_t) {
-    None = -1,
-    User = 0,
-    UserFixedPitch = 1,
-    System = 2,
-    EmphasizedSystem = 3,
-    SmallSystem = 4,
-    SmallEmphasizedSystem = 5,
-    MiniSystem = 6,
-    MiniEmphasizedSystem = 7,
-    Views = 8,
-    Application = 9,
-    Label = 10,
-    MenuTitle = 11,
-    MenuItem = 12,
-    MenuItemMark = 13,
-    MenuItemCmdKey = 14,
-    WindowTitle = 15,
-    PushButton = 16,
-    UtilityWindowTitle = 17,
-    AlertHeader = 18,
-    SystemDetail = 19,
-    EmphasizedSystemDetail = 20,
-    Toolbar = 21,
-    SmallToolbar = 22,
-    Message = 23,
-    Palette = 24,
-    ToolTip = 25,
-    ControlContent = 26,
-    NoFontType = -1,
-    UserFontType = 0,
-    UserFixedPitchFontType = 1,
-    SystemFontType = 2,
-    EmphasizedSystemFontType = 3,
-    SmallSystemFontType = 4,
-    SmallEmphasizedSystemFontType = 5,
-    MiniSystemFontType = 6,
-    MiniEmphasizedSystemFontType = 7,
-    ViewsFontType = 8,
-    ApplicationFontType = 9,
-    LabelFontType = 10,
-    MenuTitleFontType = 11,
-    MenuItemFontType = 12,
-    MenuItemMarkFontType = 13,
-    MenuItemCmdKeyFontType = 14,
-    WindowTitleFontType = 15,
-    PushButtonFontType = 16,
-    UtilityWindowTitleFontType = 17,
-    AlertHeaderFontType = 18,
-    SystemDetailFontType = 19,
-    EmphasizedSystemDetailFontType = 20,
-    ToolbarFontType = 21,
-    SmallToolbarFontType = 22,
-    MessageFontType = 23,
-    PaletteFontType = 24,
-    ToolTipFontType = 25,
-    ControlContentFontType = 26,
-};
+pub const FontUIFontType = objc.uint32_t;
+pub const FontUIFontType_None: objc.uint32_t = -1;
+pub const FontUIFontType_User: objc.uint32_t = 0;
+pub const FontUIFontType_UserFixedPitch: objc.uint32_t = 1;
+pub const FontUIFontType_System: objc.uint32_t = 2;
+pub const FontUIFontType_EmphasizedSystem: objc.uint32_t = 3;
+pub const FontUIFontType_SmallSystem: objc.uint32_t = 4;
+pub const FontUIFontType_SmallEmphasizedSystem: objc.uint32_t = 5;
+pub const FontUIFontType_MiniSystem: objc.uint32_t = 6;
+pub const FontUIFontType_MiniEmphasizedSystem: objc.uint32_t = 7;
+pub const FontUIFontType_Views: objc.uint32_t = 8;
+pub const FontUIFontType_Application: objc.uint32_t = 9;
+pub const FontUIFontType_Label: objc.uint32_t = 10;
+pub const FontUIFontType_MenuTitle: objc.uint32_t = 11;
+pub const FontUIFontType_MenuItem: objc.uint32_t = 12;
+pub const FontUIFontType_MenuItemMark: objc.uint32_t = 13;
+pub const FontUIFontType_MenuItemCmdKey: objc.uint32_t = 14;
+pub const FontUIFontType_WindowTitle: objc.uint32_t = 15;
+pub const FontUIFontType_PushButton: objc.uint32_t = 16;
+pub const FontUIFontType_UtilityWindowTitle: objc.uint32_t = 17;
+pub const FontUIFontType_AlertHeader: objc.uint32_t = 18;
+pub const FontUIFontType_SystemDetail: objc.uint32_t = 19;
+pub const FontUIFontType_EmphasizedSystemDetail: objc.uint32_t = 20;
+pub const FontUIFontType_Toolbar: objc.uint32_t = 21;
+pub const FontUIFontType_SmallToolbar: objc.uint32_t = 22;
+pub const FontUIFontType_Message: objc.uint32_t = 23;
+pub const FontUIFontType_Palette: objc.uint32_t = 24;
+pub const FontUIFontType_ToolTip: objc.uint32_t = 25;
+pub const FontUIFontType_ControlContent: objc.uint32_t = 26;
+pub const FontUIFontType_NoFontType: objc.uint32_t = -1;
+pub const FontUIFontType_UserFontType: objc.uint32_t = 0;
+pub const FontUIFontType_UserFixedPitchFontType: objc.uint32_t = 1;
+pub const FontUIFontType_SystemFontType: objc.uint32_t = 2;
+pub const FontUIFontType_EmphasizedSystemFontType: objc.uint32_t = 3;
+pub const FontUIFontType_SmallSystemFontType: objc.uint32_t = 4;
+pub const FontUIFontType_SmallEmphasizedSystemFontType: objc.uint32_t = 5;
+pub const FontUIFontType_MiniSystemFontType: objc.uint32_t = 6;
+pub const FontUIFontType_MiniEmphasizedSystemFontType: objc.uint32_t = 7;
+pub const FontUIFontType_ViewsFontType: objc.uint32_t = 8;
+pub const FontUIFontType_ApplicationFontType: objc.uint32_t = 9;
+pub const FontUIFontType_LabelFontType: objc.uint32_t = 10;
+pub const FontUIFontType_MenuTitleFontType: objc.uint32_t = 11;
+pub const FontUIFontType_MenuItemFontType: objc.uint32_t = 12;
+pub const FontUIFontType_MenuItemMarkFontType: objc.uint32_t = 13;
+pub const FontUIFontType_MenuItemCmdKeyFontType: objc.uint32_t = 14;
+pub const FontUIFontType_WindowTitleFontType: objc.uint32_t = 15;
+pub const FontUIFontType_PushButtonFontType: objc.uint32_t = 16;
+pub const FontUIFontType_UtilityWindowTitleFontType: objc.uint32_t = 17;
+pub const FontUIFontType_AlertHeaderFontType: objc.uint32_t = 18;
+pub const FontUIFontType_SystemDetailFontType: objc.uint32_t = 19;
+pub const FontUIFontType_EmphasizedSystemDetailFontType: objc.uint32_t = 20;
+pub const FontUIFontType_ToolbarFontType: objc.uint32_t = 21;
+pub const FontUIFontType_SmallToolbarFontType: objc.uint32_t = 22;
+pub const FontUIFontType_MessageFontType: objc.uint32_t = 23;
+pub const FontUIFontType_PaletteFontType: objc.uint32_t = 24;
+pub const FontUIFontType_ToolTipFontType: objc.uint32_t = 25;
+pub const FontUIFontType_ControlContentFontType: objc.uint32_t = 26;
 
 extern "CoreText" fn CTFontCreateUIFontForLanguage(uiType: FontUIFontType, size: core_foundation.CGFloat, language: core_foundation.StringRef) callconv(.C) FontRef;
 pub const fontCreateUIFontForLanguage = CTFontCreateUIFontForLanguage;
@@ -574,89 +444,87 @@ extern "CoreText" fn CTFontCreateWithQuickdrawInstance(
 ) callconv(.C) FontRef;
 pub const fontCreateWithQuickdrawInstance = CTFontCreateWithQuickdrawInstance;
 
-pub const anon14481 = enum(u32) {
-    CTFontTableBASE = 1111577413,
-    CTFontTableCBDT = 1128416340,
-    CTFontTableCBLC = 1128418371,
-    CTFontTableCFF = 1128678944,
-    CTFontTableCFF2 = 1128678962,
-    CTFontTableCOLR = 1129270354,
-    CTFontTableCPAL = 1129333068,
-    CTFontTableDSIG = 1146308935,
-    CTFontTableEBDT = 1161970772,
-    CTFontTableEBLC = 1161972803,
-    CTFontTableEBSC = 1161974595,
-    CTFontTableGDEF = 1195656518,
-    CTFontTableGPOS = 1196445523,
-    CTFontTableGSUB = 1196643650,
-    CTFontTableHVAR = 1213612370,
-    CTFontTableJSTF = 1246975046,
-    CTFontTableLTSH = 1280594760,
-    CTFontTableMATH = 1296127048,
-    CTFontTableMERG = 1296388679,
-    CTFontTableMVAR = 1297498450,
-    CTFontTableOS2 = 1330851634,
-    CTFontTablePCLT = 1346587732,
-    CTFontTableSTAT = 1398030676,
-    CTFontTableSVG = 1398163232,
-    CTFontTableVDMX = 1447316824,
-    CTFontTableVORG = 1448038983,
-    CTFontTableVVAR = 1448493394,
-    CTFontTableZapf = 1516335206,
-    CTFontTableAcnt = 1633906292,
-    CTFontTableAnkr = 1634626418,
-    CTFontTableAvar = 1635148146,
-    CTFontTableBdat = 1650745716,
-    CTFontTableBhed = 1651008868,
-    CTFontTableBloc = 1651273571,
-    CTFontTableBsln = 1651731566,
-    CTFontTableCidg = 1667851367,
-    CTFontTableCmap = 1668112752,
-    CTFontTableCvar = 1668702578,
-    CTFontTableCvt = 1668707360,
-    CTFontTableFdsc = 1717859171,
-    CTFontTableFeat = 1717920116,
-    CTFontTableFmtx = 1718449272,
-    CTFontTableFond = 1718578788,
-    CTFontTableFpgm = 1718642541,
-    CTFontTableFvar = 1719034226,
-    CTFontTableGasp = 1734439792,
-    CTFontTableGlyf = 1735162214,
-    CTFontTableGvar = 1735811442,
-    CTFontTableHdmx = 1751412088,
-    CTFontTableHead = 1751474532,
-    CTFontTableHhea = 1751672161,
-    CTFontTableHmtx = 1752003704,
-    CTFontTableHsty = 1752396921,
-    CTFontTableJust = 1786082164,
-    CTFontTableKern = 1801810542,
-    CTFontTableKerx = 1801810552,
-    CTFontTableLcar = 1818452338,
-    CTFontTableLoca = 1819239265,
-    CTFontTableLtag = 1819566439,
-    CTFontTableMaxp = 1835104368,
-    CTFontTableMeta = 1835365473,
-    CTFontTableMort = 1836020340,
-    CTFontTableMorx = 1836020344,
-    CTFontTableName = 1851878757,
-    CTFontTableOpbd = 1869636196,
-    CTFontTablePost = 1886352244,
-    CTFontTablePrep = 1886545264,
-    CTFontTableProp = 1886547824,
-    CTFontTableSbit = 1935829364,
-    CTFontTableSbix = 1935829368,
-    CTFontTableTrak = 1953653099,
-    CTFontTableVhea = 1986553185,
-    CTFontTableVmtx = 1986884728,
-    CTFontTableXref = 2020762982,
-};
+pub const anon14481 = u32;
+pub const anon14481_CTFontTableBASE: u32 = 1111577413;
+pub const anon14481_CTFontTableCBDT: u32 = 1128416340;
+pub const anon14481_CTFontTableCBLC: u32 = 1128418371;
+pub const anon14481_CTFontTableCFF: u32 = 1128678944;
+pub const anon14481_CTFontTableCFF2: u32 = 1128678962;
+pub const anon14481_CTFontTableCOLR: u32 = 1129270354;
+pub const anon14481_CTFontTableCPAL: u32 = 1129333068;
+pub const anon14481_CTFontTableDSIG: u32 = 1146308935;
+pub const anon14481_CTFontTableEBDT: u32 = 1161970772;
+pub const anon14481_CTFontTableEBLC: u32 = 1161972803;
+pub const anon14481_CTFontTableEBSC: u32 = 1161974595;
+pub const anon14481_CTFontTableGDEF: u32 = 1195656518;
+pub const anon14481_CTFontTableGPOS: u32 = 1196445523;
+pub const anon14481_CTFontTableGSUB: u32 = 1196643650;
+pub const anon14481_CTFontTableHVAR: u32 = 1213612370;
+pub const anon14481_CTFontTableJSTF: u32 = 1246975046;
+pub const anon14481_CTFontTableLTSH: u32 = 1280594760;
+pub const anon14481_CTFontTableMATH: u32 = 1296127048;
+pub const anon14481_CTFontTableMERG: u32 = 1296388679;
+pub const anon14481_CTFontTableMVAR: u32 = 1297498450;
+pub const anon14481_CTFontTableOS2: u32 = 1330851634;
+pub const anon14481_CTFontTablePCLT: u32 = 1346587732;
+pub const anon14481_CTFontTableSTAT: u32 = 1398030676;
+pub const anon14481_CTFontTableSVG: u32 = 1398163232;
+pub const anon14481_CTFontTableVDMX: u32 = 1447316824;
+pub const anon14481_CTFontTableVORG: u32 = 1448038983;
+pub const anon14481_CTFontTableVVAR: u32 = 1448493394;
+pub const anon14481_CTFontTableZapf: u32 = 1516335206;
+pub const anon14481_CTFontTableAcnt: u32 = 1633906292;
+pub const anon14481_CTFontTableAnkr: u32 = 1634626418;
+pub const anon14481_CTFontTableAvar: u32 = 1635148146;
+pub const anon14481_CTFontTableBdat: u32 = 1650745716;
+pub const anon14481_CTFontTableBhed: u32 = 1651008868;
+pub const anon14481_CTFontTableBloc: u32 = 1651273571;
+pub const anon14481_CTFontTableBsln: u32 = 1651731566;
+pub const anon14481_CTFontTableCidg: u32 = 1667851367;
+pub const anon14481_CTFontTableCmap: u32 = 1668112752;
+pub const anon14481_CTFontTableCvar: u32 = 1668702578;
+pub const anon14481_CTFontTableCvt: u32 = 1668707360;
+pub const anon14481_CTFontTableFdsc: u32 = 1717859171;
+pub const anon14481_CTFontTableFeat: u32 = 1717920116;
+pub const anon14481_CTFontTableFmtx: u32 = 1718449272;
+pub const anon14481_CTFontTableFond: u32 = 1718578788;
+pub const anon14481_CTFontTableFpgm: u32 = 1718642541;
+pub const anon14481_CTFontTableFvar: u32 = 1719034226;
+pub const anon14481_CTFontTableGasp: u32 = 1734439792;
+pub const anon14481_CTFontTableGlyf: u32 = 1735162214;
+pub const anon14481_CTFontTableGvar: u32 = 1735811442;
+pub const anon14481_CTFontTableHdmx: u32 = 1751412088;
+pub const anon14481_CTFontTableHead: u32 = 1751474532;
+pub const anon14481_CTFontTableHhea: u32 = 1751672161;
+pub const anon14481_CTFontTableHmtx: u32 = 1752003704;
+pub const anon14481_CTFontTableHsty: u32 = 1752396921;
+pub const anon14481_CTFontTableJust: u32 = 1786082164;
+pub const anon14481_CTFontTableKern: u32 = 1801810542;
+pub const anon14481_CTFontTableKerx: u32 = 1801810552;
+pub const anon14481_CTFontTableLcar: u32 = 1818452338;
+pub const anon14481_CTFontTableLoca: u32 = 1819239265;
+pub const anon14481_CTFontTableLtag: u32 = 1819566439;
+pub const anon14481_CTFontTableMaxp: u32 = 1835104368;
+pub const anon14481_CTFontTableMeta: u32 = 1835365473;
+pub const anon14481_CTFontTableMort: u32 = 1836020340;
+pub const anon14481_CTFontTableMorx: u32 = 1836020344;
+pub const anon14481_CTFontTableName: u32 = 1851878757;
+pub const anon14481_CTFontTableOpbd: u32 = 1869636196;
+pub const anon14481_CTFontTablePost: u32 = 1886352244;
+pub const anon14481_CTFontTablePrep: u32 = 1886545264;
+pub const anon14481_CTFontTableProp: u32 = 1886547824;
+pub const anon14481_CTFontTableSbit: u32 = 1935829364;
+pub const anon14481_CTFontTableSbix: u32 = 1935829368;
+pub const anon14481_CTFontTableTrak: u32 = 1953653099;
+pub const anon14481_CTFontTableVhea: u32 = 1986553185;
+pub const anon14481_CTFontTableVmtx: u32 = 1986884728;
+pub const anon14481_CTFontTableXref: u32 = 2020762982;
 
 pub const FontTableTag = objc.FourCharCode;
 
-pub const FontTableOptions = enum(objc.uint32_t) {
-    NoOptions = 0,
-    ExcludeSynthetic = 1,
-};
+pub const FontTableOptions = objc.uint32_t;
+pub const FontTableOptions_NoOptions: objc.uint32_t = 0;
+pub const FontTableOptions_ExcludeSynthetic: objc.uint32_t = 1;
 
 extern "CoreText" fn CTFontCopyAvailableTables(font: FontRef, options: FontTableOptions) callconv(.C) core_foundation.ArrayRef;
 pub const fontCopyAvailableTables = CTFontCopyAvailableTables;
@@ -697,14 +565,14 @@ pub const fontDrawImageFromAdaptiveImageProviderAtPoint = CTFontDrawImageFromAda
 
 pub const __CTFontCollection = extern struct {};
 
-pub const FontCollectionRef = ?*__CTFontCollection;
+pub const FontCollectionRef = __CTFontCollection;
 
-pub const MutableFontCollectionRef = ?*__CTFontCollection;
+pub const MutableFontCollectionRef = __CTFontCollection;
 
 extern "CoreText" fn CTFontCollectionGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const fontCollectionGetTypeID = CTFontCollectionGetTypeID;
 
-pub const FontCollectionSortDescriptorsCallback = ?*const fn (FontDescriptorRef, FontDescriptorRef, ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
+pub const FontCollectionSortDescriptorsCallback = core_foundation.ComparisonResult;
 
 extern "CoreText" fn CTFontCollectionCreateFromAvailableFonts(options: core_foundation.DictionaryRef) callconv(.C) FontCollectionRef;
 pub const fontCollectionCreateFromAvailableFonts = CTFontCollectionCreateFromAvailableFonts;
@@ -742,11 +610,10 @@ pub const fontCollectionCreateMatchingFontDescriptorsWithOptions = CTFontCollect
 extern "CoreText" fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection: FontCollectionRef, familyName: core_foundation.StringRef, options: core_foundation.DictionaryRef) callconv(.C) core_foundation.ArrayRef;
 pub const fontCollectionCreateMatchingFontDescriptorsForFamily = CTFontCollectionCreateMatchingFontDescriptorsForFamily;
 
-pub const FontCollectionCopyOptions = enum(objc.uint32_t) {
-    DefaultOptions = 0,
-    Unique = 1,
-    StandardSort = 2,
-};
+pub const FontCollectionCopyOptions = objc.uint32_t;
+pub const FontCollectionCopyOptions_DefaultOptions: objc.uint32_t = 0;
+pub const FontCollectionCopyOptions_Unique: objc.uint32_t = 1;
+pub const FontCollectionCopyOptions_StandardSort: objc.uint32_t = 2;
 
 extern "CoreText" fn CTFontCollectionCopyFontAttribute(collection: FontCollectionRef, attributeName: core_foundation.StringRef, options: FontCollectionCopyOptions) callconv(.C) core_foundation.ArrayRef;
 pub const fontCollectionCopyFontAttribute = CTFontCollectionCopyFontAttribute;
@@ -754,25 +621,24 @@ pub const fontCollectionCopyFontAttribute = CTFontCollectionCopyFontAttribute;
 extern "CoreText" fn CTFontCollectionCopyFontAttributes(collection: FontCollectionRef, attributeNames: core_foundation.SetRef, options: FontCollectionCopyOptions) callconv(.C) core_foundation.ArrayRef;
 pub const fontCollectionCopyFontAttributes = CTFontCollectionCopyFontAttributes;
 
-pub const FontManagerError = enum(core_foundation.Index) {
-    FileNotFound = 101,
-    InsufficientPermissions = 102,
-    UnrecognizedFormat = 103,
-    InvalidFontData = 104,
-    AlreadyRegistered = 105,
-    ExceededResourceLimit = 106,
-    AssetNotFound = 107,
-    NotRegistered = 201,
-    InUse = 202,
-    SystemRequired = 203,
-    RegistrationFailed = 301,
-    MissingEntitlement = 302,
-    InsufficientInfo = 303,
-    CancelledByUser = 304,
-    DuplicatedName = 305,
-    InvalidFilePath = 306,
-    UnsupportedScope = 307,
-};
+pub const FontManagerError = core_foundation.Index;
+pub const FontManagerError_FileNotFound: core_foundation.Index = 101;
+pub const FontManagerError_InsufficientPermissions: core_foundation.Index = 102;
+pub const FontManagerError_UnrecognizedFormat: core_foundation.Index = 103;
+pub const FontManagerError_InvalidFontData: core_foundation.Index = 104;
+pub const FontManagerError_AlreadyRegistered: core_foundation.Index = 105;
+pub const FontManagerError_ExceededResourceLimit: core_foundation.Index = 106;
+pub const FontManagerError_AssetNotFound: core_foundation.Index = 107;
+pub const FontManagerError_NotRegistered: core_foundation.Index = 201;
+pub const FontManagerError_InUse: core_foundation.Index = 202;
+pub const FontManagerError_SystemRequired: core_foundation.Index = 203;
+pub const FontManagerError_RegistrationFailed: core_foundation.Index = 301;
+pub const FontManagerError_MissingEntitlement: core_foundation.Index = 302;
+pub const FontManagerError_InsufficientInfo: core_foundation.Index = 303;
+pub const FontManagerError_CancelledByUser: core_foundation.Index = 304;
+pub const FontManagerError_DuplicatedName: core_foundation.Index = 305;
+pub const FontManagerError_InvalidFilePath: core_foundation.Index = 306;
+pub const FontManagerError_UnsupportedScope: core_foundation.Index = 307;
 
 extern "CoreText" fn CTFontManagerCopyAvailablePostScriptNames() callconv(.C) core_foundation.ArrayRef;
 pub const fontManagerCopyAvailablePostScriptNames = CTFontManagerCopyAvailablePostScriptNames;
@@ -795,13 +661,12 @@ pub const fontManagerCreateFontDescriptorFromData = CTFontManagerCreateFontDescr
 extern "CoreText" fn CTFontManagerCreateFontDescriptorsFromData(data: core_foundation.DataRef) callconv(.C) core_foundation.ArrayRef;
 pub const fontManagerCreateFontDescriptorsFromData = CTFontManagerCreateFontDescriptorsFromData;
 
-pub const FontManagerScope = enum(objc.uint32_t) {
-    None = 0,
-    Process = 1,
-    Persistent = 2,
-    Session = 3,
-    User = 2,
-};
+pub const FontManagerScope = objc.uint32_t;
+pub const FontManagerScope_None: objc.uint32_t = 0;
+pub const FontManagerScope_Process: objc.uint32_t = 1;
+pub const FontManagerScope_Persistent: objc.uint32_t = 2;
+pub const FontManagerScope_Session: objc.uint32_t = 3;
+pub const FontManagerScope_User: objc.uint32_t = 2;
 
 extern "CoreText" fn CTFontManagerRegisterFontsForURL() callconv(.C) i32;
 pub const fontManagerRegisterFontsForURL = CTFontManagerRegisterFontsForURL;
@@ -870,12 +735,11 @@ pub const fontManagerIsSupportedFont = CTFontManagerIsSupportedFont;
 extern "CoreText" fn CTFontManagerCreateFontRequestRunLoopSource(sourceOrder: core_foundation.Index, createMatchesCallback: *const fn (core_foundation.DictionaryRef, objc.pid_t) callconv(.C) core_foundation.ArrayRef) callconv(.C) core_foundation.RunLoopSourceRef;
 pub const fontManagerCreateFontRequestRunLoopSource = CTFontManagerCreateFontRequestRunLoopSource;
 
-pub const FontManagerAutoActivationSetting = enum(objc.uint32_t) {
-    Default = 0,
-    Disabled = 1,
-    Enabled = 2,
-    PromptUser = 3,
-};
+pub const FontManagerAutoActivationSetting = objc.uint32_t;
+pub const FontManagerAutoActivationSetting_Default: objc.uint32_t = 0;
+pub const FontManagerAutoActivationSetting_Disabled: objc.uint32_t = 1;
+pub const FontManagerAutoActivationSetting_Enabled: objc.uint32_t = 2;
+pub const FontManagerAutoActivationSetting_PromptUser: objc.uint32_t = 3;
 
 extern "CoreText" fn CTFontManagerSetAutoActivationSetting(bundleIdentifier: core_foundation.StringRef, setting: FontManagerAutoActivationSetting) callconv(.C) void;
 pub const fontManagerSetAutoActivationSetting = CTFontManagerSetAutoActivationSetting;
@@ -885,21 +749,19 @@ pub const fontManagerGetAutoActivationSetting = CTFontManagerGetAutoActivationSe
 
 pub const __CTFrame = extern struct {};
 
-pub const FrameRef = ?*__CTFrame;
+pub const FrameRef = __CTFrame;
 
 extern "CoreText" fn CTFrameGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const frameGetTypeID = CTFrameGetTypeID;
 
-pub const FrameProgression = enum(objc.uint32_t) {
-    TopToBottom = 0,
-    RightToLeft = 1,
-    LeftToRight = 2,
-};
+pub const FrameProgression = objc.uint32_t;
+pub const FrameProgression_TopToBottom: objc.uint32_t = 0;
+pub const FrameProgression_RightToLeft: objc.uint32_t = 1;
+pub const FrameProgression_LeftToRight: objc.uint32_t = 2;
 
-pub const FramePathFillRule = enum(objc.uint32_t) {
-    EvenOdd = 0,
-    WindingNumber = 1,
-};
+pub const FramePathFillRule = objc.uint32_t;
+pub const FramePathFillRule_EvenOdd: objc.uint32_t = 0;
+pub const FramePathFillRule_WindingNumber: objc.uint32_t = 1;
 
 extern "CoreText" fn CTFrameGetStringRange(frame: FrameRef) callconv(.C) core_foundation.Range;
 pub const frameGetStringRange = CTFrameGetStringRange;
@@ -924,22 +786,20 @@ pub const frameDraw = CTFrameDraw;
 
 pub const __CTLine = extern struct {};
 
-pub const LineRef = ?*__CTLine;
+pub const LineRef = __CTLine;
 
-pub const LineBoundsOptions = enum(core_foundation.OptionFlags) {
-    ExcludeTypographicLeading = 1,
-    ExcludeTypographicShifts = 2,
-    UseHangingPunctuation = 4,
-    UseGlyphPathBounds = 8,
-    UseOpticalBounds = 16,
-    IncludeLanguageExtents = 32,
-};
+pub const LineBoundsOptions = core_foundation.OptionFlags;
+pub const LineBoundsOptions_ExcludeTypographicLeading: core_foundation.OptionFlags = 1;
+pub const LineBoundsOptions_ExcludeTypographicShifts: core_foundation.OptionFlags = 2;
+pub const LineBoundsOptions_UseHangingPunctuation: core_foundation.OptionFlags = 4;
+pub const LineBoundsOptions_UseGlyphPathBounds: core_foundation.OptionFlags = 8;
+pub const LineBoundsOptions_UseOpticalBounds: core_foundation.OptionFlags = 16;
+pub const LineBoundsOptions_IncludeLanguageExtents: core_foundation.OptionFlags = 32;
 
-pub const LineTruncationType = enum(objc.uint32_t) {
-    Start = 0,
-    End = 1,
-    Middle = 2,
-};
+pub const LineTruncationType = objc.uint32_t;
+pub const LineTruncationType_Start: objc.uint32_t = 0;
+pub const LineTruncationType_End: objc.uint32_t = 1;
+pub const LineTruncationType_Middle: objc.uint32_t = 2;
 
 extern "CoreText" fn CTLineGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const lineGetTypeID = CTLineGetTypeID;
@@ -1006,7 +866,7 @@ pub const lineEnumerateCaretOffsets = CTLineEnumerateCaretOffsets;
 
 pub const __CTTypesetter = extern struct {};
 
-pub const TypesetterRef = ?*__CTTypesetter;
+pub const TypesetterRef = __CTTypesetter;
 
 extern "CoreText" fn CTTypesetterGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const typesetterGetTypeID = CTTypesetterGetTypeID;
@@ -1047,7 +907,7 @@ pub const typesetterSuggestClusterBreak = CTTypesetterSuggestClusterBreak;
 
 pub const __CTFramesetter = extern struct {};
 
-pub const FramesetterRef = ?*__CTFramesetter;
+pub const FramesetterRef = __CTFramesetter;
 
 extern "CoreText" fn CTFramesetterGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const framesetterGetTypeID = CTFramesetterGetTypeID;
@@ -1080,25 +940,24 @@ pub const framesetterSuggestFrameSizeWithConstraints = CTFramesetterSuggestFrame
 
 pub const __CTGlyphInfo = extern struct {};
 
-pub const GlyphInfoRef = ?*__CTGlyphInfo;
+pub const GlyphInfoRef = __CTGlyphInfo;
 
 extern "CoreText" fn CTGlyphInfoGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const glyphInfoGetTypeID = CTGlyphInfoGetTypeID;
 
-pub const CharacterCollection = enum(objc.uint16_t) {
-    IdentityMapping = 0,
-    AdobeCNS1 = 1,
-    AdobeGB1 = 2,
-    AdobeJapan1 = 3,
-    AdobeJapan2 = 4,
-    AdobeKorea1 = 5,
-    IdentityMappingCharacterCollection = 0,
-    AdobeCNS1CharacterCollection = 1,
-    AdobeGB1CharacterCollection = 2,
-    AdobeJapan1CharacterCollection = 3,
-    AdobeJapan2CharacterCollection = 4,
-    AdobeKorea1CharacterCollection = 5,
-};
+pub const CharacterCollection = objc.uint16_t;
+pub const CharacterCollection_IdentityMapping: objc.uint16_t = 0;
+pub const CharacterCollection_AdobeCNS1: objc.uint16_t = 1;
+pub const CharacterCollection_AdobeGB1: objc.uint16_t = 2;
+pub const CharacterCollection_AdobeJapan1: objc.uint16_t = 3;
+pub const CharacterCollection_AdobeJapan2: objc.uint16_t = 4;
+pub const CharacterCollection_AdobeKorea1: objc.uint16_t = 5;
+pub const CharacterCollection_IdentityMappingCharacterCollection: objc.uint16_t = 0;
+pub const CharacterCollection_AdobeCNS1CharacterCollection: objc.uint16_t = 1;
+pub const CharacterCollection_AdobeGB1CharacterCollection: objc.uint16_t = 2;
+pub const CharacterCollection_AdobeJapan1CharacterCollection: objc.uint16_t = 3;
+pub const CharacterCollection_AdobeJapan2CharacterCollection: objc.uint16_t = 4;
+pub const CharacterCollection_AdobeKorea1CharacterCollection: objc.uint16_t = 5;
 
 extern "CoreText" fn CTGlyphInfoCreateWithGlyphName(glyphName: core_foundation.StringRef, font: FontRef, baseString: core_foundation.StringRef) callconv(.C) GlyphInfoRef;
 pub const glyphInfoCreateWithGlyphName = CTGlyphInfoCreateWithGlyphName;
@@ -1123,60 +982,56 @@ pub const glyphInfoGetCharacterCollection = CTGlyphInfoGetCharacterCollection;
 
 pub const __CTParagraphStyle = extern struct {};
 
-pub const ParagraphStyleRef = ?*__CTParagraphStyle;
+pub const ParagraphStyleRef = __CTParagraphStyle;
 
 extern "CoreText" fn CTParagraphStyleGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const paragraphStyleGetTypeID = CTParagraphStyleGetTypeID;
 
-pub const TextAlignment = enum(objc.uint8_t) {
-    Left = 0,
-    Right = 1,
-    Center = 2,
-    Justified = 3,
-    Natural = 4,
-    LeftTextAlignment = 0,
-    RightTextAlignment = 1,
-    CenterTextAlignment = 2,
-    JustifiedTextAlignment = 3,
-    NaturalTextAlignment = 4,
-};
+pub const TextAlignment = objc.uint8_t;
+pub const TextAlignment_Left: objc.uint8_t = 0;
+pub const TextAlignment_Right: objc.uint8_t = 1;
+pub const TextAlignment_Center: objc.uint8_t = 2;
+pub const TextAlignment_Justified: objc.uint8_t = 3;
+pub const TextAlignment_Natural: objc.uint8_t = 4;
+pub const TextAlignment_LeftTextAlignment: objc.uint8_t = 0;
+pub const TextAlignment_RightTextAlignment: objc.uint8_t = 1;
+pub const TextAlignment_CenterTextAlignment: objc.uint8_t = 2;
+pub const TextAlignment_JustifiedTextAlignment: objc.uint8_t = 3;
+pub const TextAlignment_NaturalTextAlignment: objc.uint8_t = 4;
 
-pub const LineBreakMode = enum(objc.uint8_t) {
-    ByWordWrapping = 0,
-    ByCharWrapping = 1,
-    ByClipping = 2,
-    ByTruncatingHead = 3,
-    ByTruncatingTail = 4,
-    ByTruncatingMiddle = 5,
-};
+pub const LineBreakMode = objc.uint8_t;
+pub const LineBreakMode_ByWordWrapping: objc.uint8_t = 0;
+pub const LineBreakMode_ByCharWrapping: objc.uint8_t = 1;
+pub const LineBreakMode_ByClipping: objc.uint8_t = 2;
+pub const LineBreakMode_ByTruncatingHead: objc.uint8_t = 3;
+pub const LineBreakMode_ByTruncatingTail: objc.uint8_t = 4;
+pub const LineBreakMode_ByTruncatingMiddle: objc.uint8_t = 5;
 
-pub const WritingDirection = enum(objc.int8_t) {
-    Natural = -1,
-    LeftToRight = 0,
-    RightToLeft = 1,
-};
+pub const WritingDirection = objc.int8_t;
+pub const WritingDirection_Natural: objc.int8_t = -1;
+pub const WritingDirection_LeftToRight: objc.int8_t = 0;
+pub const WritingDirection_RightToLeft: objc.int8_t = 1;
 
-pub const ParagraphStyleSpecifier = enum(objc.uint32_t) {
-    Alignment = 0,
-    FirstLineHeadIndent = 1,
-    HeadIndent = 2,
-    TailIndent = 3,
-    TabStops = 4,
-    DefaultTabInterval = 5,
-    LineBreakMode = 6,
-    LineHeightMultiple = 7,
-    MaximumLineHeight = 8,
-    MinimumLineHeight = 9,
-    LineSpacing = 10,
-    ParagraphSpacing = 11,
-    ParagraphSpacingBefore = 12,
-    BaseWritingDirection = 13,
-    MaximumLineSpacing = 14,
-    MinimumLineSpacing = 15,
-    LineSpacingAdjustment = 16,
-    LineBoundsOptions = 17,
-    Count = 18,
-};
+pub const ParagraphStyleSpecifier = objc.uint32_t;
+pub const ParagraphStyleSpecifier_Alignment: objc.uint32_t = 0;
+pub const ParagraphStyleSpecifier_FirstLineHeadIndent: objc.uint32_t = 1;
+pub const ParagraphStyleSpecifier_HeadIndent: objc.uint32_t = 2;
+pub const ParagraphStyleSpecifier_TailIndent: objc.uint32_t = 3;
+pub const ParagraphStyleSpecifier_TabStops: objc.uint32_t = 4;
+pub const ParagraphStyleSpecifier_DefaultTabInterval: objc.uint32_t = 5;
+pub const ParagraphStyleSpecifier_LineBreakMode: objc.uint32_t = 6;
+pub const ParagraphStyleSpecifier_LineHeightMultiple: objc.uint32_t = 7;
+pub const ParagraphStyleSpecifier_MaximumLineHeight: objc.uint32_t = 8;
+pub const ParagraphStyleSpecifier_MinimumLineHeight: objc.uint32_t = 9;
+pub const ParagraphStyleSpecifier_LineSpacing: objc.uint32_t = 10;
+pub const ParagraphStyleSpecifier_ParagraphSpacing: objc.uint32_t = 11;
+pub const ParagraphStyleSpecifier_ParagraphSpacingBefore: objc.uint32_t = 12;
+pub const ParagraphStyleSpecifier_BaseWritingDirection: objc.uint32_t = 13;
+pub const ParagraphStyleSpecifier_MaximumLineSpacing: objc.uint32_t = 14;
+pub const ParagraphStyleSpecifier_MinimumLineSpacing: objc.uint32_t = 15;
+pub const ParagraphStyleSpecifier_LineSpacingAdjustment: objc.uint32_t = 16;
+pub const ParagraphStyleSpecifier_LineBoundsOptions: objc.uint32_t = 17;
+pub const ParagraphStyleSpecifier_Count: objc.uint32_t = 18;
 
 pub const ParagraphStyleSetting = extern struct {
     spec: ParagraphStyleSpecifier,
@@ -1195,37 +1050,34 @@ pub const paragraphStyleGetValueForSpecifier = CTParagraphStyleGetValueForSpecif
 
 pub const __CTRubyAnnotation = extern struct {};
 
-pub const RubyAnnotationRef = ?*__CTRubyAnnotation;
+pub const RubyAnnotationRef = __CTRubyAnnotation;
 
 extern "CoreText" fn CTRubyAnnotationGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const rubyAnnotationGetTypeID = CTRubyAnnotationGetTypeID;
 
-pub const RubyAlignment = enum(objc.uint8_t) {
-    Invalid = -1,
-    Auto = 0,
-    Start = 1,
-    Center = 2,
-    End = 3,
-    DistributeLetter = 4,
-    DistributeSpace = 5,
-    LineEdge = 6,
-};
+pub const RubyAlignment = objc.uint8_t;
+pub const RubyAlignment_Invalid: objc.uint8_t = -1;
+pub const RubyAlignment_Auto: objc.uint8_t = 0;
+pub const RubyAlignment_Start: objc.uint8_t = 1;
+pub const RubyAlignment_Center: objc.uint8_t = 2;
+pub const RubyAlignment_End: objc.uint8_t = 3;
+pub const RubyAlignment_DistributeLetter: objc.uint8_t = 4;
+pub const RubyAlignment_DistributeSpace: objc.uint8_t = 5;
+pub const RubyAlignment_LineEdge: objc.uint8_t = 6;
 
-pub const RubyOverhang = enum(objc.uint8_t) {
-    Invalid = -1,
-    Auto = 0,
-    Start = 1,
-    End = 2,
-    None = 3,
-};
+pub const RubyOverhang = objc.uint8_t;
+pub const RubyOverhang_Invalid: objc.uint8_t = -1;
+pub const RubyOverhang_Auto: objc.uint8_t = 0;
+pub const RubyOverhang_Start: objc.uint8_t = 1;
+pub const RubyOverhang_End: objc.uint8_t = 2;
+pub const RubyOverhang_None: objc.uint8_t = 3;
 
-pub const RubyPosition = enum(objc.uint8_t) {
-    Before = 0,
-    After = 1,
-    InterCharacter = 2,
-    Inline = 3,
-    Count = 4,
-};
+pub const RubyPosition = objc.uint8_t;
+pub const RubyPosition_Before: objc.uint8_t = 0;
+pub const RubyPosition_After: objc.uint8_t = 1;
+pub const RubyPosition_InterCharacter: objc.uint8_t = 2;
+pub const RubyPosition_Inline: objc.uint8_t = 3;
+pub const RubyPosition_Count: objc.uint8_t = 4;
 
 extern "CoreText" fn CTRubyAnnotationCreate(
     alignment: RubyAlignment,
@@ -1261,14 +1113,13 @@ pub const rubyAnnotationGetTextForPosition = CTRubyAnnotationGetTextForPosition;
 
 pub const __CTRun = extern struct {};
 
-pub const RunRef = ?*__CTRun;
+pub const RunRef = __CTRun;
 
-pub const RunStatus = enum(objc.uint32_t) {
-    NoStatus = 0,
-    RightToLeft = 1,
-    NonMonotonic = 2,
-    HasNonIdentityMatrix = 4,
-};
+pub const RunStatus = objc.uint32_t;
+pub const RunStatus_NoStatus: objc.uint32_t = 0;
+pub const RunStatus_RightToLeft: objc.uint32_t = 1;
+pub const RunStatus_NonMonotonic: objc.uint32_t = 2;
+pub const RunStatus_HasNonIdentityMatrix: objc.uint32_t = 4;
 
 extern "CoreText" fn CTRunGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const runGetTypeID = CTRunGetTypeID;
@@ -1337,18 +1188,18 @@ pub const runDraw = CTRunDraw;
 
 pub const __CTRunDelegate = extern struct {};
 
-pub const RunDelegateRef = ?*__CTRunDelegate;
+pub const RunDelegateRef = __CTRunDelegate;
 
 extern "CoreText" fn CTRunDelegateGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const runDelegateGetTypeID = CTRunDelegateGetTypeID;
 
 pub const RunDelegateDeallocateCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const RunDelegateGetAscentCallback = ?*const fn (?*anyopaque) callconv(.C) core_foundation.CGFloat;
+pub const RunDelegateGetAscentCallback = core_foundation.CGFloat;
 
-pub const RunDelegateGetDescentCallback = ?*const fn (?*anyopaque) callconv(.C) core_foundation.CGFloat;
+pub const RunDelegateGetDescentCallback = core_foundation.CGFloat;
 
-pub const RunDelegateGetWidthCallback = ?*const fn (?*anyopaque) callconv(.C) core_foundation.CGFloat;
+pub const RunDelegateGetWidthCallback = core_foundation.CGFloat;
 
 pub const RunDelegateCallbacks = extern struct {
     version: core_foundation.Index,
@@ -1358,10 +1209,9 @@ pub const RunDelegateCallbacks = extern struct {
     getWidth: RunDelegateGetWidthCallback,
 };
 
-pub const anon1441 = enum(u32) {
-    CTRunDelegateVersion1 = 1,
-    CTRunDelegateCurrentVersion = 1,
-};
+pub const anon1441 = u32;
+pub const anon1441_CTRunDelegateVersion1: u32 = 1;
+pub const anon1441_CTRunDelegateCurrentVersion: u32 = 1;
 
 extern "CoreText" fn CTRunDelegateCreate(callbacks: ?*RunDelegateCallbacks, refCon: ?*anyopaque) callconv(.C) RunDelegateRef;
 pub const runDelegateCreate = CTRunDelegateCreate;
@@ -1371,11 +1221,11 @@ pub const runDelegateGetRefCon = CTRunDelegateGetRefCon;
 
 /// https://developer.apple.com/documentation/CoreText/CTAdaptiveImageProviding?language=objc
 pub const AdaptiveImageProviding = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
     pub fn imageForProposedSizeScaleFactorImageOffsetImageSize(
         _self: *@This(),
@@ -1393,29 +1243,26 @@ pub const AdaptiveImageProviding = opaque {
     }
 };
 
-pub const UnderlineStyle = enum(objc.int32_t) {
-    None = 0,
-    Single = 1,
-    Thick = 2,
-    Double = 9,
-};
+pub const UnderlineStyle = objc.int32_t;
+pub const UnderlineStyle_None: objc.int32_t = 0;
+pub const UnderlineStyle_Single: objc.int32_t = 1;
+pub const UnderlineStyle_Thick: objc.int32_t = 2;
+pub const UnderlineStyle_Double: objc.int32_t = 9;
 
-pub const UnderlineStyleModifiers = enum(objc.int32_t) {
-    PatternSolid = 0,
-    PatternDot = 256,
-    PatternDash = 512,
-    PatternDashDot = 768,
-    PatternDashDotDot = 1024,
-};
+pub const UnderlineStyleModifiers = objc.int32_t;
+pub const UnderlineStyleModifiers_PatternSolid: objc.int32_t = 0;
+pub const UnderlineStyleModifiers_PatternDot: objc.int32_t = 256;
+pub const UnderlineStyleModifiers_PatternDash: objc.int32_t = 512;
+pub const UnderlineStyleModifiers_PatternDashDot: objc.int32_t = 768;
+pub const UnderlineStyleModifiers_PatternDashDotDot: objc.int32_t = 1024;
 
-pub const anon4651 = enum(u32) {
-    CTWritingDirectionEmbedding = 0,
-    CTWritingDirectionOverride = 2,
-};
+pub const anon4651 = u32;
+pub const anon4651_CTWritingDirectionEmbedding: u32 = 0;
+pub const anon4651_CTWritingDirectionOverride: u32 = 2;
 
 pub const __CTTextTab = extern struct {};
 
-pub const TextTabRef = ?*__CTTextTab;
+pub const TextTabRef = __CTTextTab;
 
 extern "CoreText" fn CTTextTabGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const textTabGetTypeID = CTTextTabGetTypeID;
@@ -1432,342 +1279,313 @@ pub const textTabGetLocation = CTTextTabGetLocation;
 extern "CoreText" fn CTTextTabGetOptions(tab: TextTabRef) callconv(.C) core_foundation.DictionaryRef;
 pub const textTabGetOptions = CTTextTabGetOptions;
 
-pub const anon411 = enum(i32) {
-    AllTypographicFeaturesType = 0,
-    LigaturesType = 1,
-    CursiveConnectionType = 2,
-    LetterCaseType = 3,
-    VerticalSubstitutionType = 4,
-    LinguisticRearrangementType = 5,
-    NumberSpacingType = 6,
-    SmartSwashType = 8,
-    DiacriticsType = 9,
-    VerticalPositionType = 10,
-    FractionsType = 11,
-    OverlappingCharactersType = 13,
-    TypographicExtrasType = 14,
-    MathematicalExtrasType = 15,
-    OrnamentSetsType = 16,
-    CharacterAlternativesType = 17,
-    DesignComplexityType = 18,
-    StyleOptionsType = 19,
-    CharacterShapeType = 20,
-    NumberCaseType = 21,
-    TextSpacingType = 22,
-    TransliterationType = 23,
-    AnnotationType = 24,
-    KanaSpacingType = 25,
-    IdeographicSpacingType = 26,
-    UnicodeDecompositionType = 27,
-    RubyKanaType = 28,
-    CJKSymbolAlternativesType = 29,
-    IdeographicAlternativesType = 30,
-    CJKVerticalRomanPlacementType = 31,
-    ItalicCJKRomanType = 32,
-    CaseSensitiveLayoutType = 33,
-    AlternateKanaType = 34,
-    StylisticAlternativesType = 35,
-    ContextualAlternatesType = 36,
-    LowerCaseType = 37,
-    UpperCaseType = 38,
-    LanguageTagType = 39,
-    CJKRomanSpacingType = 103,
-    LastFeatureType = -1,
-};
+pub const anon411 = i32;
+pub const anon411_AllTypographicFeaturesType: i32 = 0;
+pub const anon411_LigaturesType: i32 = 1;
+pub const anon411_CursiveConnectionType: i32 = 2;
+pub const anon411_LetterCaseType: i32 = 3;
+pub const anon411_VerticalSubstitutionType: i32 = 4;
+pub const anon411_LinguisticRearrangementType: i32 = 5;
+pub const anon411_NumberSpacingType: i32 = 6;
+pub const anon411_SmartSwashType: i32 = 8;
+pub const anon411_DiacriticsType: i32 = 9;
+pub const anon411_VerticalPositionType: i32 = 10;
+pub const anon411_FractionsType: i32 = 11;
+pub const anon411_OverlappingCharactersType: i32 = 13;
+pub const anon411_TypographicExtrasType: i32 = 14;
+pub const anon411_MathematicalExtrasType: i32 = 15;
+pub const anon411_OrnamentSetsType: i32 = 16;
+pub const anon411_CharacterAlternativesType: i32 = 17;
+pub const anon411_DesignComplexityType: i32 = 18;
+pub const anon411_StyleOptionsType: i32 = 19;
+pub const anon411_CharacterShapeType: i32 = 20;
+pub const anon411_NumberCaseType: i32 = 21;
+pub const anon411_TextSpacingType: i32 = 22;
+pub const anon411_TransliterationType: i32 = 23;
+pub const anon411_AnnotationType: i32 = 24;
+pub const anon411_KanaSpacingType: i32 = 25;
+pub const anon411_IdeographicSpacingType: i32 = 26;
+pub const anon411_UnicodeDecompositionType: i32 = 27;
+pub const anon411_RubyKanaType: i32 = 28;
+pub const anon411_CJKSymbolAlternativesType: i32 = 29;
+pub const anon411_IdeographicAlternativesType: i32 = 30;
+pub const anon411_CJKVerticalRomanPlacementType: i32 = 31;
+pub const anon411_ItalicCJKRomanType: i32 = 32;
+pub const anon411_CaseSensitiveLayoutType: i32 = 33;
+pub const anon411_AlternateKanaType: i32 = 34;
+pub const anon411_StylisticAlternativesType: i32 = 35;
+pub const anon411_ContextualAlternatesType: i32 = 36;
+pub const anon411_LowerCaseType: i32 = 37;
+pub const anon411_UpperCaseType: i32 = 38;
+pub const anon411_LanguageTagType: i32 = 39;
+pub const anon411_CJKRomanSpacingType: i32 = 103;
+pub const anon411_LastFeatureType: i32 = -1;
 
-pub const anon891 = enum(u32) {
-    AllTypeFeaturesOnSelector = 0,
-    AllTypeFeaturesOffSelector = 1,
-};
+pub const anon891 = u32;
+pub const anon891_AllTypeFeaturesOnSelector: u32 = 0;
+pub const anon891_AllTypeFeaturesOffSelector: u32 = 1;
 
-pub const anon1001 = enum(u32) {
-    RequiredLigaturesOnSelector = 0,
-    RequiredLigaturesOffSelector = 1,
-    CommonLigaturesOnSelector = 2,
-    CommonLigaturesOffSelector = 3,
-    RareLigaturesOnSelector = 4,
-    RareLigaturesOffSelector = 5,
-    LogosOnSelector = 6,
-    LogosOffSelector = 7,
-    RebusPicturesOnSelector = 8,
-    RebusPicturesOffSelector = 9,
-    DiphthongLigaturesOnSelector = 10,
-    DiphthongLigaturesOffSelector = 11,
-    SquaredLigaturesOnSelector = 12,
-    SquaredLigaturesOffSelector = 13,
-    AbbrevSquaredLigaturesOnSelector = 14,
-    AbbrevSquaredLigaturesOffSelector = 15,
-    SymbolLigaturesOnSelector = 16,
-    SymbolLigaturesOffSelector = 17,
-    ContextualLigaturesOnSelector = 18,
-    ContextualLigaturesOffSelector = 19,
-    HistoricalLigaturesOnSelector = 20,
-    HistoricalLigaturesOffSelector = 21,
-};
+pub const anon1001 = u32;
+pub const anon1001_RequiredLigaturesOnSelector: u32 = 0;
+pub const anon1001_RequiredLigaturesOffSelector: u32 = 1;
+pub const anon1001_CommonLigaturesOnSelector: u32 = 2;
+pub const anon1001_CommonLigaturesOffSelector: u32 = 3;
+pub const anon1001_RareLigaturesOnSelector: u32 = 4;
+pub const anon1001_RareLigaturesOffSelector: u32 = 5;
+pub const anon1001_LogosOnSelector: u32 = 6;
+pub const anon1001_LogosOffSelector: u32 = 7;
+pub const anon1001_RebusPicturesOnSelector: u32 = 8;
+pub const anon1001_RebusPicturesOffSelector: u32 = 9;
+pub const anon1001_DiphthongLigaturesOnSelector: u32 = 10;
+pub const anon1001_DiphthongLigaturesOffSelector: u32 = 11;
+pub const anon1001_SquaredLigaturesOnSelector: u32 = 12;
+pub const anon1001_SquaredLigaturesOffSelector: u32 = 13;
+pub const anon1001_AbbrevSquaredLigaturesOnSelector: u32 = 14;
+pub const anon1001_AbbrevSquaredLigaturesOffSelector: u32 = 15;
+pub const anon1001_SymbolLigaturesOnSelector: u32 = 16;
+pub const anon1001_SymbolLigaturesOffSelector: u32 = 17;
+pub const anon1001_ContextualLigaturesOnSelector: u32 = 18;
+pub const anon1001_ContextualLigaturesOffSelector: u32 = 19;
+pub const anon1001_HistoricalLigaturesOnSelector: u32 = 20;
+pub const anon1001_HistoricalLigaturesOffSelector: u32 = 21;
 
-pub const anon1301 = enum(u32) {
-    UnconnectedSelector = 0,
-    PartiallyConnectedSelector = 1,
-    CursiveSelector = 2,
-};
+pub const anon1301 = u32;
+pub const anon1301_UnconnectedSelector: u32 = 0;
+pub const anon1301_PartiallyConnectedSelector: u32 = 1;
+pub const anon1301_CursiveSelector: u32 = 2;
 
-pub const anon1411 = enum(u32) {
-    UpperAndLowerCaseSelector = 0,
-    AllCapsSelector = 1,
-    AllLowerCaseSelector = 2,
-    SmallCapsSelector = 3,
-    InitialCapsSelector = 4,
-    InitialCapsAndSmallCapsSelector = 5,
-};
+pub const anon1411 = u32;
+pub const anon1411_UpperAndLowerCaseSelector: u32 = 0;
+pub const anon1411_AllCapsSelector: u32 = 1;
+pub const anon1411_AllLowerCaseSelector: u32 = 2;
+pub const anon1411_SmallCapsSelector: u32 = 3;
+pub const anon1411_InitialCapsSelector: u32 = 4;
+pub const anon1411_InitialCapsAndSmallCapsSelector: u32 = 5;
 
-pub const anon1551 = enum(u32) {
-    SubstituteVerticalFormsOnSelector = 0,
-    SubstituteVerticalFormsOffSelector = 1,
-};
+pub const anon1551 = u32;
+pub const anon1551_SubstituteVerticalFormsOnSelector: u32 = 0;
+pub const anon1551_SubstituteVerticalFormsOffSelector: u32 = 1;
 
-pub const anon1651 = enum(u32) {
-    LinguisticRearrangementOnSelector = 0,
-    LinguisticRearrangementOffSelector = 1,
-};
+pub const anon1651 = u32;
+pub const anon1651_LinguisticRearrangementOnSelector: u32 = 0;
+pub const anon1651_LinguisticRearrangementOffSelector: u32 = 1;
 
-pub const anon1751 = enum(u32) {
-    MonospacedNumbersSelector = 0,
-    ProportionalNumbersSelector = 1,
-    ThirdWidthNumbersSelector = 2,
-    QuarterWidthNumbersSelector = 3,
-};
+pub const anon1751 = u32;
+pub const anon1751_MonospacedNumbersSelector: u32 = 0;
+pub const anon1751_ProportionalNumbersSelector: u32 = 1;
+pub const anon1751_ThirdWidthNumbersSelector: u32 = 2;
+pub const anon1751_QuarterWidthNumbersSelector: u32 = 3;
 
-pub const anon1871 = enum(u32) {
-    WordInitialSwashesOnSelector = 0,
-    WordInitialSwashesOffSelector = 1,
-    WordFinalSwashesOnSelector = 2,
-    WordFinalSwashesOffSelector = 3,
-    LineInitialSwashesOnSelector = 4,
-    LineInitialSwashesOffSelector = 5,
-    LineFinalSwashesOnSelector = 6,
-    LineFinalSwashesOffSelector = 7,
-    NonFinalSwashesOnSelector = 8,
-    NonFinalSwashesOffSelector = 9,
-};
+pub const anon1871 = u32;
+pub const anon1871_WordInitialSwashesOnSelector: u32 = 0;
+pub const anon1871_WordInitialSwashesOffSelector: u32 = 1;
+pub const anon1871_WordFinalSwashesOnSelector: u32 = 2;
+pub const anon1871_WordFinalSwashesOffSelector: u32 = 3;
+pub const anon1871_LineInitialSwashesOnSelector: u32 = 4;
+pub const anon1871_LineInitialSwashesOffSelector: u32 = 5;
+pub const anon1871_LineFinalSwashesOnSelector: u32 = 6;
+pub const anon1871_LineFinalSwashesOffSelector: u32 = 7;
+pub const anon1871_NonFinalSwashesOnSelector: u32 = 8;
+pub const anon1871_NonFinalSwashesOffSelector: u32 = 9;
 
-pub const anon2051 = enum(u32) {
-    ShowDiacriticsSelector = 0,
-    HideDiacriticsSelector = 1,
-    DecomposeDiacriticsSelector = 2,
-};
+pub const anon2051 = u32;
+pub const anon2051_ShowDiacriticsSelector: u32 = 0;
+pub const anon2051_HideDiacriticsSelector: u32 = 1;
+pub const anon2051_DecomposeDiacriticsSelector: u32 = 2;
 
-pub const anon2161 = enum(u32) {
-    NormalPositionSelector = 0,
-    SuperiorsSelector = 1,
-    InferiorsSelector = 2,
-    OrdinalsSelector = 3,
-    ScientificInferiorsSelector = 4,
-};
+pub const anon2161 = u32;
+pub const anon2161_NormalPositionSelector: u32 = 0;
+pub const anon2161_SuperiorsSelector: u32 = 1;
+pub const anon2161_InferiorsSelector: u32 = 2;
+pub const anon2161_OrdinalsSelector: u32 = 3;
+pub const anon2161_ScientificInferiorsSelector: u32 = 4;
 
-pub const anon2291 = enum(u32) {
-    NoFractionsSelector = 0,
-    VerticalFractionsSelector = 1,
-    DiagonalFractionsSelector = 2,
-};
+pub const anon2291 = u32;
+pub const anon2291_NoFractionsSelector: u32 = 0;
+pub const anon2291_VerticalFractionsSelector: u32 = 1;
+pub const anon2291_DiagonalFractionsSelector: u32 = 2;
 
-pub const anon2401 = enum(u32) {
-    PreventOverlapOnSelector = 0,
-    PreventOverlapOffSelector = 1,
-};
+pub const anon2401 = u32;
+pub const anon2401_PreventOverlapOnSelector: u32 = 0;
+pub const anon2401_PreventOverlapOffSelector: u32 = 1;
 
-pub const anon2501 = enum(u32) {
-    HyphensToEmDashOnSelector = 0,
-    HyphensToEmDashOffSelector = 1,
-    HyphenToEnDashOnSelector = 2,
-    HyphenToEnDashOffSelector = 3,
-    SlashedZeroOnSelector = 4,
-    SlashedZeroOffSelector = 5,
-    FormInterrobangOnSelector = 6,
-    FormInterrobangOffSelector = 7,
-    SmartQuotesOnSelector = 8,
-    SmartQuotesOffSelector = 9,
-    PeriodsToEllipsisOnSelector = 10,
-    PeriodsToEllipsisOffSelector = 11,
-};
+pub const anon2501 = u32;
+pub const anon2501_HyphensToEmDashOnSelector: u32 = 0;
+pub const anon2501_HyphensToEmDashOffSelector: u32 = 1;
+pub const anon2501_HyphenToEnDashOnSelector: u32 = 2;
+pub const anon2501_HyphenToEnDashOffSelector: u32 = 3;
+pub const anon2501_SlashedZeroOnSelector: u32 = 4;
+pub const anon2501_SlashedZeroOffSelector: u32 = 5;
+pub const anon2501_FormInterrobangOnSelector: u32 = 6;
+pub const anon2501_FormInterrobangOffSelector: u32 = 7;
+pub const anon2501_SmartQuotesOnSelector: u32 = 8;
+pub const anon2501_SmartQuotesOffSelector: u32 = 9;
+pub const anon2501_PeriodsToEllipsisOnSelector: u32 = 10;
+pub const anon2501_PeriodsToEllipsisOffSelector: u32 = 11;
 
-pub const anon2701 = enum(u32) {
-    HyphenToMinusOnSelector = 0,
-    HyphenToMinusOffSelector = 1,
-    AsteriskToMultiplyOnSelector = 2,
-    AsteriskToMultiplyOffSelector = 3,
-    SlashToDivideOnSelector = 4,
-    SlashToDivideOffSelector = 5,
-    InequalityLigaturesOnSelector = 6,
-    InequalityLigaturesOffSelector = 7,
-    ExponentsOnSelector = 8,
-    ExponentsOffSelector = 9,
-    MathematicalGreekOnSelector = 10,
-    MathematicalGreekOffSelector = 11,
-};
+pub const anon2701 = u32;
+pub const anon2701_HyphenToMinusOnSelector: u32 = 0;
+pub const anon2701_HyphenToMinusOffSelector: u32 = 1;
+pub const anon2701_AsteriskToMultiplyOnSelector: u32 = 2;
+pub const anon2701_AsteriskToMultiplyOffSelector: u32 = 3;
+pub const anon2701_SlashToDivideOnSelector: u32 = 4;
+pub const anon2701_SlashToDivideOffSelector: u32 = 5;
+pub const anon2701_InequalityLigaturesOnSelector: u32 = 6;
+pub const anon2701_InequalityLigaturesOffSelector: u32 = 7;
+pub const anon2701_ExponentsOnSelector: u32 = 8;
+pub const anon2701_ExponentsOffSelector: u32 = 9;
+pub const anon2701_MathematicalGreekOnSelector: u32 = 10;
+pub const anon2701_MathematicalGreekOffSelector: u32 = 11;
 
-pub const anon2901 = enum(u32) {
-    nameFontTableTag = 1851878757,
-};
+pub const anon2901 = u32;
+pub const anon2901_NoOrnamentsSelector: u32 = 0;
+pub const anon2901_DingbatsSelector: u32 = 1;
+pub const anon2901_PiCharactersSelector: u32 = 2;
+pub const anon2901_FleuronsSelector: u32 = 3;
+pub const anon2901_DecorativeBordersSelector: u32 = 4;
+pub const anon2901_InternationalSymbolsSelector: u32 = 5;
+pub const anon2901_MathSymbolsSelector: u32 = 6;
+pub const anon2901_nameFontTableTag: u32 = 1851878757;
 
-pub const anon3051 = enum(u32) {
-    NoAlternatesSelector = 0,
-};
+pub const anon3051 = u32;
+pub const anon3051_NoAlternatesSelector: u32 = 0;
 
-pub const anon3141 = enum(u32) {
-    DesignLevel1Selector = 0,
-    DesignLevel2Selector = 1,
-    DesignLevel3Selector = 2,
-    DesignLevel4Selector = 3,
-    DesignLevel5Selector = 4,
-};
+pub const anon3141 = u32;
+pub const anon3141_DesignLevel1Selector: u32 = 0;
+pub const anon3141_DesignLevel2Selector: u32 = 1;
+pub const anon3141_DesignLevel3Selector: u32 = 2;
+pub const anon3141_DesignLevel4Selector: u32 = 3;
+pub const anon3141_DesignLevel5Selector: u32 = 4;
 
-pub const anon3411 = enum(u32) {
-    TraditionalCharactersSelector = 0,
-    SimplifiedCharactersSelector = 1,
-    JIS1978CharactersSelector = 2,
-    JIS1983CharactersSelector = 3,
-    JIS1990CharactersSelector = 4,
-    TraditionalAltOneSelector = 5,
-    TraditionalAltTwoSelector = 6,
-    TraditionalAltThreeSelector = 7,
-    TraditionalAltFourSelector = 8,
-    TraditionalAltFiveSelector = 9,
-    ExpertCharactersSelector = 10,
-    JIS2004CharactersSelector = 11,
-    HojoCharactersSelector = 12,
-    NLCCharactersSelector = 13,
-    TraditionalNamesCharactersSelector = 14,
-};
+pub const anon3411 = u32;
+pub const anon3411_TraditionalCharactersSelector: u32 = 0;
+pub const anon3411_SimplifiedCharactersSelector: u32 = 1;
+pub const anon3411_JIS1978CharactersSelector: u32 = 2;
+pub const anon3411_JIS1983CharactersSelector: u32 = 3;
+pub const anon3411_JIS1990CharactersSelector: u32 = 4;
+pub const anon3411_TraditionalAltOneSelector: u32 = 5;
+pub const anon3411_TraditionalAltTwoSelector: u32 = 6;
+pub const anon3411_TraditionalAltThreeSelector: u32 = 7;
+pub const anon3411_TraditionalAltFourSelector: u32 = 8;
+pub const anon3411_TraditionalAltFiveSelector: u32 = 9;
+pub const anon3411_ExpertCharactersSelector: u32 = 10;
+pub const anon3411_JIS2004CharactersSelector: u32 = 11;
+pub const anon3411_HojoCharactersSelector: u32 = 12;
+pub const anon3411_NLCCharactersSelector: u32 = 13;
+pub const anon3411_TraditionalNamesCharactersSelector: u32 = 14;
 
-pub const anon3641 = enum(u32) {
-    LowerCaseNumbersSelector = 0,
-    UpperCaseNumbersSelector = 1,
-};
+pub const anon3641 = u32;
+pub const anon3641_LowerCaseNumbersSelector: u32 = 0;
+pub const anon3641_UpperCaseNumbersSelector: u32 = 1;
 
-pub const anon3741 = enum(u32) {
-    ProportionalTextSelector = 0,
-    MonospacedTextSelector = 1,
-    HalfWidthTextSelector = 2,
-    ThirdWidthTextSelector = 3,
-    QuarterWidthTextSelector = 4,
-    AltProportionalTextSelector = 5,
-    AltHalfWidthTextSelector = 6,
-};
+pub const anon3741 = u32;
+pub const anon3741_ProportionalTextSelector: u32 = 0;
+pub const anon3741_MonospacedTextSelector: u32 = 1;
+pub const anon3741_HalfWidthTextSelector: u32 = 2;
+pub const anon3741_ThirdWidthTextSelector: u32 = 3;
+pub const anon3741_QuarterWidthTextSelector: u32 = 4;
+pub const anon3741_AltProportionalTextSelector: u32 = 5;
+pub const anon3741_AltHalfWidthTextSelector: u32 = 6;
 
-pub const anon3891 = enum(u32) {
-    NoTransliterationSelector = 0,
-    HanjaToHangulSelector = 1,
-    HiraganaToKatakanaSelector = 2,
-    KatakanaToHiraganaSelector = 3,
-    KanaToRomanizationSelector = 4,
-    RomanizationToHiraganaSelector = 5,
-    RomanizationToKatakanaSelector = 6,
-    HanjaToHangulAltOneSelector = 7,
-    HanjaToHangulAltTwoSelector = 8,
-    HanjaToHangulAltThreeSelector = 9,
-};
+pub const anon3891 = u32;
+pub const anon3891_NoTransliterationSelector: u32 = 0;
+pub const anon3891_HanjaToHangulSelector: u32 = 1;
+pub const anon3891_HiraganaToKatakanaSelector: u32 = 2;
+pub const anon3891_KatakanaToHiraganaSelector: u32 = 3;
+pub const anon3891_KanaToRomanizationSelector: u32 = 4;
+pub const anon3891_RomanizationToHiraganaSelector: u32 = 5;
+pub const anon3891_RomanizationToKatakanaSelector: u32 = 6;
+pub const anon3891_HanjaToHangulAltOneSelector: u32 = 7;
+pub const anon3891_HanjaToHangulAltTwoSelector: u32 = 8;
+pub const anon3891_HanjaToHangulAltThreeSelector: u32 = 9;
 
-pub const anon4261 = enum(u32) {
-    FullWidthKanaSelector = 0,
-    ProportionalKanaSelector = 1,
-};
+pub const anon4261 = u32;
+pub const anon4261_FullWidthKanaSelector: u32 = 0;
+pub const anon4261_ProportionalKanaSelector: u32 = 1;
 
-pub const anon4361 = enum(u32) {
-    FullWidthIdeographsSelector = 0,
-    ProportionalIdeographsSelector = 1,
-    HalfWidthIdeographsSelector = 2,
-};
+pub const anon4361 = u32;
+pub const anon4361_FullWidthIdeographsSelector: u32 = 0;
+pub const anon4361_ProportionalIdeographsSelector: u32 = 1;
+pub const anon4361_HalfWidthIdeographsSelector: u32 = 2;
 
-pub const anon4471 = enum(u32) {
-    CanonicalCompositionOnSelector = 0,
-    CanonicalCompositionOffSelector = 1,
-    CompatibilityCompositionOnSelector = 2,
-    CompatibilityCompositionOffSelector = 3,
-    TranscodingCompositionOnSelector = 4,
-    TranscodingCompositionOffSelector = 5,
-};
+pub const anon4471 = u32;
+pub const anon4471_CanonicalCompositionOnSelector: u32 = 0;
+pub const anon4471_CanonicalCompositionOffSelector: u32 = 1;
+pub const anon4471_CompatibilityCompositionOnSelector: u32 = 2;
+pub const anon4471_CompatibilityCompositionOffSelector: u32 = 3;
+pub const anon4471_TranscodingCompositionOnSelector: u32 = 4;
+pub const anon4471_TranscodingCompositionOffSelector: u32 = 5;
 
-pub const anon4611 = enum(u32) {
-    NoRubyKanaSelector = 0,
-    RubyKanaSelector = 1,
-    RubyKanaOnSelector = 2,
-    RubyKanaOffSelector = 3,
-};
+pub const anon4611 = u32;
+pub const anon4611_NoRubyKanaSelector: u32 = 0;
+pub const anon4611_RubyKanaSelector: u32 = 1;
+pub const anon4611_RubyKanaOnSelector: u32 = 2;
+pub const anon4611_RubyKanaOffSelector: u32 = 3;
 
-pub const anon4731 = enum(u32) {
-    NoCJKSymbolAlternativesSelector = 0,
-    CJKSymbolAltOneSelector = 1,
-    CJKSymbolAltTwoSelector = 2,
-    CJKSymbolAltThreeSelector = 3,
-    CJKSymbolAltFourSelector = 4,
-    CJKSymbolAltFiveSelector = 5,
-};
+pub const anon4731 = u32;
+pub const anon4731_NoCJKSymbolAlternativesSelector: u32 = 0;
+pub const anon4731_CJKSymbolAltOneSelector: u32 = 1;
+pub const anon4731_CJKSymbolAltTwoSelector: u32 = 2;
+pub const anon4731_CJKSymbolAltThreeSelector: u32 = 3;
+pub const anon4731_CJKSymbolAltFourSelector: u32 = 4;
+pub const anon4731_CJKSymbolAltFiveSelector: u32 = 5;
 
-pub const anon4871 = enum(u32) {
-    NoIdeographicAlternativesSelector = 0,
-    IdeographicAltOneSelector = 1,
-    IdeographicAltTwoSelector = 2,
-    IdeographicAltThreeSelector = 3,
-    IdeographicAltFourSelector = 4,
-    IdeographicAltFiveSelector = 5,
-};
+pub const anon4871 = u32;
+pub const anon4871_NoIdeographicAlternativesSelector: u32 = 0;
+pub const anon4871_IdeographicAltOneSelector: u32 = 1;
+pub const anon4871_IdeographicAltTwoSelector: u32 = 2;
+pub const anon4871_IdeographicAltThreeSelector: u32 = 3;
+pub const anon4871_IdeographicAltFourSelector: u32 = 4;
+pub const anon4871_IdeographicAltFiveSelector: u32 = 5;
 
-pub const anon5011 = enum(u32) {
-    CJKVerticalRomanCenteredSelector = 0,
-    CJKVerticalRomanHBaselineSelector = 1,
-};
+pub const anon5011 = u32;
+pub const anon5011_CJKVerticalRomanCenteredSelector: u32 = 0;
+pub const anon5011_CJKVerticalRomanHBaselineSelector: u32 = 1;
 
-pub const anon5111 = enum(u32) {
-    NoCJKItalicRomanSelector = 0,
-    CJKItalicRomanSelector = 1,
-    CJKItalicRomanOnSelector = 2,
-    CJKItalicRomanOffSelector = 3,
-};
+pub const anon5111 = u32;
+pub const anon5111_NoCJKItalicRomanSelector: u32 = 0;
+pub const anon5111_CJKItalicRomanSelector: u32 = 1;
+pub const anon5111_CJKItalicRomanOnSelector: u32 = 2;
+pub const anon5111_CJKItalicRomanOffSelector: u32 = 3;
 
-pub const anon5231 = enum(u32) {
-    CaseSensitiveLayoutOnSelector = 0,
-    CaseSensitiveLayoutOffSelector = 1,
-    CaseSensitiveSpacingOnSelector = 2,
-    CaseSensitiveSpacingOffSelector = 3,
-};
+pub const anon5231 = u32;
+pub const anon5231_CaseSensitiveLayoutOnSelector: u32 = 0;
+pub const anon5231_CaseSensitiveLayoutOffSelector: u32 = 1;
+pub const anon5231_CaseSensitiveSpacingOnSelector: u32 = 2;
+pub const anon5231_CaseSensitiveSpacingOffSelector: u32 = 3;
 
-pub const anon5351 = enum(u32) {
-    AlternateHorizKanaOnSelector = 0,
-    AlternateHorizKanaOffSelector = 1,
-    AlternateVertKanaOnSelector = 2,
-    AlternateVertKanaOffSelector = 3,
-};
+pub const anon5351 = u32;
+pub const anon5351_AlternateHorizKanaOnSelector: u32 = 0;
+pub const anon5351_AlternateHorizKanaOffSelector: u32 = 1;
+pub const anon5351_AlternateVertKanaOnSelector: u32 = 2;
+pub const anon5351_AlternateVertKanaOffSelector: u32 = 3;
 
-pub const anon5961 = enum(u32) {
-    ContextualAlternatesOnSelector = 0,
-    ContextualAlternatesOffSelector = 1,
-    SwashAlternatesOnSelector = 2,
-    SwashAlternatesOffSelector = 3,
-    ContextualSwashAlternatesOnSelector = 4,
-    ContextualSwashAlternatesOffSelector = 5,
-};
+pub const anon5961 = u32;
+pub const anon5961_ContextualAlternatesOnSelector: u32 = 0;
+pub const anon5961_ContextualAlternatesOffSelector: u32 = 1;
+pub const anon5961_SwashAlternatesOnSelector: u32 = 2;
+pub const anon5961_SwashAlternatesOffSelector: u32 = 3;
+pub const anon5961_ContextualSwashAlternatesOnSelector: u32 = 4;
+pub const anon5961_ContextualSwashAlternatesOffSelector: u32 = 5;
 
-pub const anon6211 = enum(u32) {
-    DefaultUpperCaseSelector = 0,
-    UpperCaseSmallCapsSelector = 1,
-    UpperCasePetiteCapsSelector = 2,
-};
+pub const anon6211 = u32;
+pub const anon6211_DefaultUpperCaseSelector: u32 = 0;
+pub const anon6211_UpperCaseSmallCapsSelector: u32 = 1;
+pub const anon6211_UpperCasePetiteCapsSelector: u32 = 2;
 
-pub const anon6321 = enum(u32) {
-    HalfWidthCJKRomanSelector = 0,
-    ProportionalCJKRomanSelector = 1,
-    DefaultCJKRomanSelector = 2,
-    FullWidthCJKRomanSelector = 3,
-};
+pub const anon6321 = u32;
+pub const anon6321_HalfWidthCJKRomanSelector: u32 = 0;
+pub const anon6321_ProportionalCJKRomanSelector: u32 = 1;
+pub const anon6321_DefaultCJKRomanSelector: u32 = 2;
+pub const anon6321_FullWidthCJKRomanSelector: u32 = 3;
 
-pub const anon6431 = enum(u32) {
-    SFNTLookupSimpleArray = 0,
-    SFNTLookupSegmentSingle = 2,
-    SFNTLookupSegmentArray = 4,
-    SFNTLookupSingleTable = 6,
-    SFNTLookupTrimmedArray = 8,
-    SFNTLookupVector = 10,
-};
+pub const anon6431 = u32;
+pub const anon6431_SFNTLookupSimpleArray: u32 = 0;
+pub const anon6431_SFNTLookupSegmentSingle: u32 = 2;
+pub const anon6431_SFNTLookupSegmentArray: u32 = 4;
+pub const anon6431_SFNTLookupSingleTable: u32 = 6;
+pub const anon6431_SFNTLookupTrimmedArray: u32 = 8;
+pub const anon6431_SFNTLookupVector: u32 = 10;
 
 pub const SFNTLookupTableFormat = objc.UInt16;
 
@@ -1836,21 +1654,20 @@ pub const SFNTLookupTable = extern struct {
     fsHeader: SFNTLookupFormatSpecificHeader,
 };
 
-pub const SFNTLookupTablePtr = ?*SFNTLookupTable;
+pub const SFNTLookupTablePtr = SFNTLookupTable;
 
-pub const SFNTLookupTableHandle = ?*SFNTLookupTablePtr;
+pub const SFNTLookupTableHandle = SFNTLookupTablePtr;
 
-pub const anon7371 = enum(u32) {
-    STClassEndOfText = 0,
-    STClassOutOfBounds = 1,
-    STClassDeletedGlyph = 2,
-    STClassEndOfLine = 3,
-    STSetMark = 32768,
-    STNoAdvance = 16384,
-    STMarkEnd = 8192,
-    STLigActionMask = 16383,
-    STRearrVerbMask = 15,
-};
+pub const anon7371 = u32;
+pub const anon7371_STClassEndOfText: u32 = 0;
+pub const anon7371_STClassOutOfBounds: u32 = 1;
+pub const anon7371_STClassDeletedGlyph: u32 = 2;
+pub const anon7371_STClassEndOfLine: u32 = 3;
+pub const anon7371_STSetMark: u32 = 32768;
+pub const anon7371_STNoAdvance: u32 = 16384;
+pub const anon7371_STMarkEnd: u32 = 8192;
+pub const anon7371_STLigActionMask: u32 = 16383;
+pub const anon7371_STRearrVerbMask: u32 = 15;
 
 pub const STClass = objc.UInt8;
 
@@ -1888,9 +1705,8 @@ pub const STEntryTwo = extern struct {
     offset2: objc.UInt16,
 };
 
-pub const anon7851 = enum(u32) {
-    STXHasLigAction = 8192,
-};
+pub const anon7851 = u32;
+pub const anon7851_STXHasLigAction: u32 = 8192;
 
 pub const STXClass = objc.UInt16;
 
@@ -1925,16 +1741,14 @@ pub const STXEntryTwo = extern struct {
     index2: objc.UInt16,
 };
 
-pub const anon8221 = enum(u32) {
-    STKCrossStreamReset = 8192,
-};
+pub const anon8221 = u32;
+pub const anon8221_STKCrossStreamReset: u32 = 8192;
 
-pub const anon8281 = enum(u32) {
-    LCARTag = 1818452338,
-    LCARCurrentVersion = 65536,
-    LCARLinearFormat = 0,
-    LCARCtlPointFormat = 1,
-};
+pub const anon8281 = u32;
+pub const anon8281_LCARTag: u32 = 1818452338;
+pub const anon8281_LCARCurrentVersion: u32 = 65536;
+pub const anon8281_LCARLinearFormat: u32 = 0;
+pub const anon8281_LCARCtlPointFormat: u32 = 1;
 
 pub const LcarCaretClassEntry = extern struct {
     count: objc.UInt16,
@@ -1947,36 +1761,33 @@ pub const LcarCaretTable = extern struct {
     lookup: SFNTLookupTable,
 };
 
-pub const LcarCaretTablePtr = ?*LcarCaretTable;
+pub const LcarCaretTablePtr = LcarCaretTable;
 
-pub const anon8511 = enum(u32) {
-    JUSTTag = 1786082164,
-    JUSTCurrentVersion = 65536,
-    JUSTStandardFormat = 0,
-    JUSTnoGlyphcode = 65535,
-    JUSTpcDecompositionAction = 0,
-    JUSTpcUnconditionalAddAction = 1,
-    JUSTpcConditionalAddAction = 2,
-    JUSTpcGlyphStretchAction = 3,
-    JUSTpcDuctilityAction = 4,
-    JUSTpcGlyphRepeatAddAction = 5,
-};
+pub const anon8511 = u32;
+pub const anon8511_JUSTTag: u32 = 1786082164;
+pub const anon8511_JUSTCurrentVersion: u32 = 65536;
+pub const anon8511_JUSTStandardFormat: u32 = 0;
+pub const anon8511_JUSTnoGlyphcode: u32 = 65535;
+pub const anon8511_JUSTpcDecompositionAction: u32 = 0;
+pub const anon8511_JUSTpcUnconditionalAddAction: u32 = 1;
+pub const anon8511_JUSTpcConditionalAddAction: u32 = 2;
+pub const anon8511_JUSTpcGlyphStretchAction: u32 = 3;
+pub const anon8511_JUSTpcDuctilityAction: u32 = 4;
+pub const anon8511_JUSTpcGlyphRepeatAddAction: u32 = 5;
 
-pub const anon8651 = enum(u32) {
-    JUSTKashidaPriority = 0,
-    JUSTSpacePriority = 1,
-    JUSTLetterPriority = 2,
-    JUSTNullPriority = 3,
-    JUSTPriorityCount = 4,
-};
+pub const anon8651 = u32;
+pub const anon8651_JUSTKashidaPriority: u32 = 0;
+pub const anon8651_JUSTSpacePriority: u32 = 1;
+pub const anon8651_JUSTLetterPriority: u32 = 2;
+pub const anon8651_JUSTNullPriority: u32 = 3;
+pub const anon8651_JUSTPriorityCount: u32 = 4;
 
-pub const anon8741 = enum(u32) {
-    JUSTOverridePriority = 32768,
-    JUSTOverrideLimits = 16384,
-    JUSTOverrideUnlimited = 8192,
-    JUSTUnlimited = 4096,
-    JUSTPriorityMask = 3,
-};
+pub const anon8741 = u32;
+pub const anon8741_JUSTOverridePriority: u32 = 32768;
+pub const anon8741_JUSTOverrideLimits: u32 = 16384;
+pub const anon8741_JUSTOverrideUnlimited: u32 = 8192;
+pub const anon8741_JUSTUnlimited: u32 = 4096;
+pub const anon8741_JUSTPriorityMask: u32 = 3;
 
 pub const JustPCActionType = objc.UInt16;
 
@@ -2055,12 +1866,11 @@ pub const JustTable = extern struct {
     vertHeaderOffset: objc.UInt16,
 };
 
-pub const anon9821 = enum(u32) {
-    OPBDTag = 1869636196,
-    OPBDCurrentVersion = 65536,
-    OPBDDistanceFormat = 0,
-    OPBDControlPointFormat = 1,
-};
+pub const anon9821 = u32;
+pub const anon9821_OPBDTag: u32 = 1869636196;
+pub const anon9821_OPBDCurrentVersion: u32 = 65536;
+pub const anon9821_OPBDDistanceFormat: u32 = 0;
+pub const anon9821_OPBDControlPointFormat: u32 = 1;
 
 pub const OpbdTableFormat = objc.UInt16;
 
@@ -2077,54 +1887,53 @@ pub const OpbdTable = extern struct {
     lookupTable: SFNTLookupTable,
 };
 
-pub const anon10131 = enum(i32) {
-    MORTTag = 1836020340,
-    MORTCurrentVersion = 65536,
-    MORTCoverVertical = 32768,
-    MORTCoverDescending = 16384,
-    MORTCoverIgnoreVertical = 8192,
-    MORTCoverTypeMask = 15,
-    MORTRearrangementType = 0,
-    MORTContextualType = 1,
-    MORTLigatureType = 2,
-    MORTSwashType = 4,
-    MORTInsertionType = 5,
-    MORTLigLastAction = -2147483648,
-    MORTLigStoreLigature = 1073741824,
-    MORTLigFormOffsetMask = 1073741823,
-    MORTLigFormOffsetShift = 2,
-    MORTraNoAction = 0,
-    MORTraxA = 1,
-    MORTraDx = 2,
-    MORTraDxA = 3,
-    MORTraxAB = 4,
-    MORTraxBA = 5,
-    MORTraCDx = 6,
-    MORTraDCx = 7,
-    MORTraCDxA = 8,
-    MORTraDCxA = 9,
-    MORTraDxAB = 10,
-    MORTraDxBA = 11,
-    MORTraCDxAB = 12,
-    MORTraCDxBA = 13,
-    MORTraDCxAB = 14,
-    MORTraDCxBA = 15,
-    MORTDoInsertionsBefore = 128,
-    MORTIsSplitVowelPiece = 64,
-    MORTInsertionsCountMask = 63,
-    MORTCurrInsertKashidaLike = 8192,
-    MORTMarkInsertKashidaLike = 4096,
-    MORTCurrInsertBefore = 2048,
-    MORTMarkInsertBefore = 1024,
-    MORTMarkJustTableCountMask = 16256,
-    MORTMarkJustTableCountShift = 7,
-    MORTCurrJustTableCountMask = 127,
-    MORTCurrJustTableCountShift = 0,
-    MORTCurrInsertCountMask = 992,
-    MORTCurrInsertCountShift = 5,
-    MORTMarkInsertCountMask = 31,
-    MORTMarkInsertCountShift = 0,
-};
+pub const anon10131 = i32;
+pub const anon10131_MORTTag: i32 = 1836020340;
+pub const anon10131_MORTCurrentVersion: i32 = 65536;
+pub const anon10131_MORTCoverVertical: i32 = 32768;
+pub const anon10131_MORTCoverDescending: i32 = 16384;
+pub const anon10131_MORTCoverIgnoreVertical: i32 = 8192;
+pub const anon10131_MORTCoverTypeMask: i32 = 15;
+pub const anon10131_MORTRearrangementType: i32 = 0;
+pub const anon10131_MORTContextualType: i32 = 1;
+pub const anon10131_MORTLigatureType: i32 = 2;
+pub const anon10131_MORTSwashType: i32 = 4;
+pub const anon10131_MORTInsertionType: i32 = 5;
+pub const anon10131_MORTLigLastAction: i32 = -2147483648;
+pub const anon10131_MORTLigStoreLigature: i32 = 1073741824;
+pub const anon10131_MORTLigFormOffsetMask: i32 = 1073741823;
+pub const anon10131_MORTLigFormOffsetShift: i32 = 2;
+pub const anon10131_MORTraNoAction: i32 = 0;
+pub const anon10131_MORTraxA: i32 = 1;
+pub const anon10131_MORTraDx: i32 = 2;
+pub const anon10131_MORTraDxA: i32 = 3;
+pub const anon10131_MORTraxAB: i32 = 4;
+pub const anon10131_MORTraxBA: i32 = 5;
+pub const anon10131_MORTraCDx: i32 = 6;
+pub const anon10131_MORTraDCx: i32 = 7;
+pub const anon10131_MORTraCDxA: i32 = 8;
+pub const anon10131_MORTraDCxA: i32 = 9;
+pub const anon10131_MORTraDxAB: i32 = 10;
+pub const anon10131_MORTraDxBA: i32 = 11;
+pub const anon10131_MORTraCDxAB: i32 = 12;
+pub const anon10131_MORTraCDxBA: i32 = 13;
+pub const anon10131_MORTraDCxAB: i32 = 14;
+pub const anon10131_MORTraDCxBA: i32 = 15;
+pub const anon10131_MORTDoInsertionsBefore: i32 = 128;
+pub const anon10131_MORTIsSplitVowelPiece: i32 = 64;
+pub const anon10131_MORTInsertionsCountMask: i32 = 63;
+pub const anon10131_MORTCurrInsertKashidaLike: i32 = 8192;
+pub const anon10131_MORTMarkInsertKashidaLike: i32 = 4096;
+pub const anon10131_MORTCurrInsertBefore: i32 = 2048;
+pub const anon10131_MORTMarkInsertBefore: i32 = 1024;
+pub const anon10131_MORTMarkJustTableCountMask: i32 = 16256;
+pub const anon10131_MORTMarkJustTableCountShift: i32 = 7;
+pub const anon10131_MORTCurrJustTableCountMask: i32 = 127;
+pub const anon10131_MORTCurrJustTableCountShift: i32 = 0;
+pub const anon10131_MORTCurrInsertCountMask: i32 = 992;
+pub const anon10131_MORTCurrInsertCountShift: i32 = 5;
+pub const anon10131_MORTMarkInsertCountMask: i32 = 31;
+pub const anon10131_MORTMarkInsertCountShift: i32 = 0;
 
 pub const MortSubtableMaskFlags = objc.UInt32;
 
@@ -2190,15 +1999,14 @@ pub const MortTable = extern struct {
     chains: [1]MortChain,
 };
 
-pub const anon11321 = enum(i32) {
-    MORXTag = 1836020344,
-    MORXCurrentVersion = 131072,
-    MORXCoverVertical = -2147483648,
-    MORXCoverDescending = 1073741824,
-    MORXCoverIgnoreVertical = 536870912,
-    MORXCoverLogicalOrder = 268435456,
-    MORXCoverTypeMask = 255,
-};
+pub const anon11321 = i32;
+pub const anon11321_MORXTag: i32 = 1836020344;
+pub const anon11321_MORXCurrentVersion: i32 = 131072;
+pub const anon11321_MORXCoverVertical: i32 = -2147483648;
+pub const anon11321_MORXCoverDescending: i32 = 1073741824;
+pub const anon11321_MORXCoverIgnoreVertical: i32 = 536870912;
+pub const anon11321_MORXCoverLogicalOrder: i32 = 268435456;
+pub const anon11321_MORXCoverTypeMask: i32 = 255;
 
 pub const MorxRearrangementSubtable = extern struct {
     header: STXHeader,
@@ -2250,44 +2058,42 @@ pub const MorxTable = extern struct {
     chains: [1]MorxChain,
 };
 
-pub const anon11981 = enum(u32) {
-    PROPTag = 1886547824,
-    PROPCurrentVersion = 196608,
-    PROPPairOffsetShift = 8,
-    PROPPairOffsetSign = 7,
-    PROPIsFloaterMask = 32768,
-    PROPCanHangLTMask = 16384,
-    PROPCanHangRBMask = 8192,
-    PROPUseRLPairMask = 4096,
-    PROPPairOffsetMask = 3840,
-    PROPRightConnectMask = 128,
-    PROPZeroReserved = 96,
-    PROPDirectionMask = 31,
-};
+pub const anon11981 = u32;
+pub const anon11981_PROPTag: u32 = 1886547824;
+pub const anon11981_PROPCurrentVersion: u32 = 196608;
+pub const anon11981_PROPPairOffsetShift: u32 = 8;
+pub const anon11981_PROPPairOffsetSign: u32 = 7;
+pub const anon11981_PROPIsFloaterMask: u32 = 32768;
+pub const anon11981_PROPCanHangLTMask: u32 = 16384;
+pub const anon11981_PROPCanHangRBMask: u32 = 8192;
+pub const anon11981_PROPUseRLPairMask: u32 = 4096;
+pub const anon11981_PROPPairOffsetMask: u32 = 3840;
+pub const anon11981_PROPRightConnectMask: u32 = 128;
+pub const anon11981_PROPZeroReserved: u32 = 96;
+pub const anon11981_PROPDirectionMask: u32 = 31;
 
-pub const anon12141 = enum(u32) {
-    PROPLDirectionClass = 0,
-    PROPRDirectionClass = 1,
-    PROPALDirectionClass = 2,
-    PROPENDirectionClass = 3,
-    PROPESDirectionClass = 4,
-    PROPETDirectionClass = 5,
-    PROPANDirectionClass = 6,
-    PROPCSDirectionClass = 7,
-    PROPPSDirectionClass = 8,
-    PROPSDirectionClass = 9,
-    PROPWSDirectionClass = 10,
-    PROPONDirectionClass = 11,
-    PROPSENDirectionClass = 12,
-    PROPLREDirectionClass = 13,
-    PROPLRODirectionClass = 14,
-    PROPRLEDirectionClass = 15,
-    PROPRLODirectionClass = 16,
-    PROPPDFDirectionClass = 17,
-    PROPNSMDirectionClass = 18,
-    PROPBNDirectionClass = 19,
-    PROPNumDirectionClasses = 20,
-};
+pub const anon12141 = u32;
+pub const anon12141_PROPLDirectionClass: u32 = 0;
+pub const anon12141_PROPRDirectionClass: u32 = 1;
+pub const anon12141_PROPALDirectionClass: u32 = 2;
+pub const anon12141_PROPENDirectionClass: u32 = 3;
+pub const anon12141_PROPESDirectionClass: u32 = 4;
+pub const anon12141_PROPETDirectionClass: u32 = 5;
+pub const anon12141_PROPANDirectionClass: u32 = 6;
+pub const anon12141_PROPCSDirectionClass: u32 = 7;
+pub const anon12141_PROPPSDirectionClass: u32 = 8;
+pub const anon12141_PROPSDirectionClass: u32 = 9;
+pub const anon12141_PROPWSDirectionClass: u32 = 10;
+pub const anon12141_PROPONDirectionClass: u32 = 11;
+pub const anon12141_PROPSENDirectionClass: u32 = 12;
+pub const anon12141_PROPLREDirectionClass: u32 = 13;
+pub const anon12141_PROPLRODirectionClass: u32 = 14;
+pub const anon12141_PROPRLEDirectionClass: u32 = 15;
+pub const anon12141_PROPRLODirectionClass: u32 = 16;
+pub const anon12141_PROPPDFDirectionClass: u32 = 17;
+pub const anon12141_PROPNSMDirectionClass: u32 = 18;
+pub const anon12141_PROPBNDirectionClass: u32 = 19;
+pub const anon12141_PROPNumDirectionClasses: u32 = 20;
 
 pub const PropCharProperties = objc.UInt16;
 
@@ -2309,11 +2115,10 @@ pub const PropLookupSingle = extern struct {
     props: PropCharProperties,
 };
 
-pub const anon12621 = enum(u32) {
-    TRAKTag = 1953653099,
-    TRAKCurrentVersion = 65536,
-    TRAKUniformFormat = 0,
-};
+pub const anon12621 = u32;
+pub const anon12621_TRAKTag: u32 = 1953653099;
+pub const anon12621_TRAKCurrentVersion: u32 = 65536;
+pub const anon12621_TRAKUniformFormat: u32 = 0;
 
 pub const TrakValue = objc.SInt16;
 
@@ -2337,33 +2142,30 @@ pub const TrakTable = extern struct {
     vertOffset: objc.UInt16,
 };
 
-pub const anon12941 = enum(u32) {
-    KERNTag = 1801810542,
-    KERNCurrentVersion = 65536,
-    KERNVertical = 32768,
-    KERNResetCrossStream = 32768,
-    KERNCrossStream = 16384,
-    KERNVariation = 8192,
-    KERNUnusedBits = 7936,
-    KERNFormatMask = 255,
-};
+pub const anon12941 = u32;
+pub const anon12941_KERNTag: u32 = 1801810542;
+pub const anon12941_KERNCurrentVersion: u32 = 65536;
+pub const anon12941_KERNVertical: u32 = 32768;
+pub const anon12941_KERNResetCrossStream: u32 = 32768;
+pub const anon12941_KERNCrossStream: u32 = 16384;
+pub const anon12941_KERNVariation: u32 = 8192;
+pub const anon12941_KERNUnusedBits: u32 = 7936;
+pub const anon12941_KERNFormatMask: u32 = 255;
 
-pub const anon13051 = enum(u32) {
-    KERNOrderedList = 0,
-    KERNStateTable = 1,
-    KERNSimpleArray = 2,
-    KERNIndexArray = 3,
-};
+pub const anon13051 = u32;
+pub const anon13051_KERNOrderedList: u32 = 0;
+pub const anon13051_KERNStateTable: u32 = 1;
+pub const anon13051_KERNSimpleArray: u32 = 2;
+pub const anon13051_KERNIndexArray: u32 = 3;
 
-pub const anon13131 = enum(u32) {
-    KERNLineStart = 1,
-    KERNLineEndKerning = 2,
-    KERNNoCrossKerning = 4,
-    KERNNotesRequested = 8,
-    KERNNoStakeNote = 1,
-    KERNCrossStreamResetNote = 2,
-    KERNNotApplied = 1,
-};
+pub const anon13131 = u32;
+pub const anon13131_KERNLineStart: u32 = 1;
+pub const anon13131_KERNLineEndKerning: u32 = 2;
+pub const anon13131_KERNNoCrossKerning: u32 = 4;
+pub const anon13131_KERNNotesRequested: u32 = 8;
+pub const anon13131_KERNNoStakeNote: u32 = 1;
+pub const anon13131_KERNCrossStreamResetNote: u32 = 2;
+pub const anon13131_KERNNotApplied: u32 = 1;
 
 pub const KernTableFormat = objc.UInt8;
 
@@ -2385,9 +2187,9 @@ pub const KernTableHeader = extern struct {
     firstSubtable: [1]objc.UInt16,
 };
 
-pub const KernTableHeaderPtr = ?*KernTableHeader;
+pub const KernTableHeaderPtr = KernTableHeader;
 
-pub const KernTableHeaderHandle = ?*KernTableHeaderPtr;
+pub const KernTableHeaderHandle = KernTableHeaderPtr;
 
 pub const KernKerningPair = extern struct {
     left: objc.UInt16,
@@ -2399,7 +2201,7 @@ pub const KernOrderedListEntry = extern struct {
     value: KernKerningValue,
 };
 
-pub const KernOrderedListEntryPtr = ?*KernOrderedListEntry;
+pub const KernOrderedListEntryPtr = KernOrderedListEntry;
 
 pub const KernOrderedListHeader = extern struct {
     nPairs: objc.UInt16,
@@ -2426,7 +2228,7 @@ pub const KernOffsetTable = extern struct {
     offsetTable: [1]KernArrayOffset,
 };
 
-pub const KernOffsetTablePtr = ?*KernOffsetTable;
+pub const KernOffsetTablePtr = KernOffsetTable;
 
 pub const KernSimpleArrayHeader = extern struct {
     rowWidth: objc.UInt16,
@@ -2469,50 +2271,45 @@ pub const KernSubtableHeader = extern struct {
     fsHeader: KernFormatSpecificHeader,
 };
 
-pub const KernSubtableHeaderPtr = ?*KernSubtableHeader;
+pub const KernSubtableHeaderPtr = KernSubtableHeader;
 
-pub const anon14691 = enum(i32) {
-    KERXTag = 1801810552,
-    KERXCurrentVersion = 131072,
-    KERXVertical = -2147483648,
-    KERXResetCrossStream = 32768,
-    KERXCrossStream = 1073741824,
-    KERXVariation = 536870912,
-    KERXDescending = 268435456,
-    KERXUnusedBits = 268435200,
-    KERXFormatMask = 255,
-};
+pub const anon14691 = i32;
+pub const anon14691_KERXTag: i32 = 1801810552;
+pub const anon14691_KERXCurrentVersion: i32 = 131072;
+pub const anon14691_KERXVertical: i32 = -2147483648;
+pub const anon14691_KERXResetCrossStream: i32 = 32768;
+pub const anon14691_KERXCrossStream: i32 = 1073741824;
+pub const anon14691_KERXVariation: i32 = 536870912;
+pub const anon14691_KERXDescending: i32 = 268435456;
+pub const anon14691_KERXUnusedBits: i32 = 268435200;
+pub const anon14691_KERXFormatMask: i32 = 255;
 
-pub const anon14811 = enum(u32) {
-    KERXOrderedList = 0,
-    KERXStateTable = 1,
-    KERXSimpleArray = 2,
-    KERXControlPoint = 4,
-    KERXIndexArray = 6,
-};
+pub const anon14811 = u32;
+pub const anon14811_KERXOrderedList: u32 = 0;
+pub const anon14811_KERXStateTable: u32 = 1;
+pub const anon14811_KERXSimpleArray: u32 = 2;
+pub const anon14811_KERXControlPoint: u32 = 4;
+pub const anon14811_KERXIndexArray: u32 = 6;
 
-pub const anon14901 = enum(u32) {
-    KERXLineStart = 1,
-    KERXLineEndKerning = 2,
-    KERXNoCrossKerning = 4,
-    KERXNotesRequested = 8,
-    KERXNoStakeNote = 1,
-    KERXCrossStreamResetNote = 2,
-    KERXNotApplied = 1,
-};
+pub const anon14901 = u32;
+pub const anon14901_KERXLineStart: u32 = 1;
+pub const anon14901_KERXLineEndKerning: u32 = 2;
+pub const anon14901_KERXNoCrossKerning: u32 = 4;
+pub const anon14901_KERXNotesRequested: u32 = 8;
+pub const anon14901_KERXNoStakeNote: u32 = 1;
+pub const anon14901_KERXCrossStreamResetNote: u32 = 2;
+pub const anon14901_KERXNotApplied: u32 = 1;
 
-pub const anon15011 = enum(u32) {
-    KERXActionTypeMask = -1073741824,
-    KERXActionTypeControlPoints = 0,
-    KERXActionTypeAnchorPoints = 1073741824,
-    KERXActionTypeCoordinates = -2147483648,
-    KERXUnusedFlags = 1056964608,
-    KERXActionOffsetMask = 16777215,
-};
+pub const anon15011 = u32;
+pub const anon15011_KERXActionTypeMask: u32 = -1073741824;
+pub const anon15011_KERXActionTypeControlPoints: u32 = 0;
+pub const anon15011_KERXActionTypeAnchorPoints: u32 = 1073741824;
+pub const anon15011_KERXActionTypeCoordinates: u32 = -2147483648;
+pub const anon15011_KERXUnusedFlags: u32 = 1056964608;
+pub const anon15011_KERXActionOffsetMask: u32 = 16777215;
 
-pub const anon15111 = enum(u32) {
-    KERXValuesAreLong = 1,
-};
+pub const anon15111 = u32;
+pub const anon15111_KERXValuesAreLong: u32 = 1;
 
 pub const KerxSubtableCoverage = objc.UInt32;
 
@@ -2524,9 +2321,9 @@ pub const KerxTableHeader = extern struct {
     firstSubtable: [1]objc.UInt32,
 };
 
-pub const KerxTableHeaderPtr = ?*KerxTableHeader;
+pub const KerxTableHeaderPtr = KerxTableHeader;
 
-pub const KerxTableHeaderHandle = ?*KerxTableHeaderPtr;
+pub const KerxTableHeaderHandle = KerxTableHeaderPtr;
 
 pub const KerxKerningPair = extern struct {
     left: objc.UInt16,
@@ -2538,7 +2335,7 @@ pub const KerxOrderedListEntry = extern struct {
     value: KernKerningValue,
 };
 
-pub const KerxOrderedListEntryPtr = ?*KerxOrderedListEntry;
+pub const KerxOrderedListEntryPtr = KerxOrderedListEntry;
 
 pub const KerxOrderedListHeader = extern struct {
     nPairs: objc.UInt32,
@@ -2622,33 +2419,31 @@ pub const KerxSubtableHeader = extern struct {
     fsHeader: KerxFormatSpecificHeader,
 };
 
-pub const KerxSubtableHeaderPtr = ?*KerxSubtableHeader;
+pub const KerxSubtableHeaderPtr = KerxSubtableHeader;
 
-pub const anon16541 = enum(u32) {
-    BSLNTag = 1651731566,
-    BSLNCurrentVersion = 65536,
-    BSLNDistanceFormatNoMap = 0,
-    BSLNDistanceFormatWithMap = 1,
-    BSLNControlPointFormatNoMap = 2,
-    BSLNControlPointFormatWithMap = 3,
-};
+pub const anon16541 = u32;
+pub const anon16541_BSLNTag: u32 = 1651731566;
+pub const anon16541_BSLNCurrentVersion: u32 = 65536;
+pub const anon16541_BSLNDistanceFormatNoMap: u32 = 0;
+pub const anon16541_BSLNDistanceFormatWithMap: u32 = 1;
+pub const anon16541_BSLNControlPointFormatNoMap: u32 = 2;
+pub const anon16541_BSLNControlPointFormatWithMap: u32 = 3;
 
-pub const anon16641 = enum(u32) {
-    BSLNRomanBaseline = 0,
-    BSLNIdeographicCenterBaseline = 1,
-    BSLNIdeographicLowBaseline = 2,
-    BSLNHangingBaseline = 3,
-    BSLNMathBaseline = 4,
-    BSLNIdeographicHighBaseline = 5,
-    BSLNLastBaseline = 31,
-    BSLNNumBaselineClasses = 32,
-    BSLNNoBaseline = 255,
-    BSLNNoBaselineOverride = 255,
-};
+pub const anon16641 = u32;
+pub const anon16641_BSLNRomanBaseline: u32 = 0;
+pub const anon16641_BSLNIdeographicCenterBaseline: u32 = 1;
+pub const anon16641_BSLNIdeographicLowBaseline: u32 = 2;
+pub const anon16641_BSLNHangingBaseline: u32 = 3;
+pub const anon16641_BSLNMathBaseline: u32 = 4;
+pub const anon16641_BSLNIdeographicHighBaseline: u32 = 5;
+pub const anon16641_BSLNLastBaseline: u32 = 31;
+pub const anon16641_BSLNNumBaselineClasses: u32 = 32;
+pub const anon16641_BSLNNoBaseline: u32 = 255;
+pub const anon16641_BSLNNoBaselineOverride: u32 = 255;
 
 pub const BslnBaselineClass = objc.UInt32;
 
-pub const BslnBaselineRecord = [32]objc.Fixed;
+pub const BslnBaselineRecord = objc.Fixed;
 
 pub const BslnFormat0Part = extern struct {
     deltas: [32]objc.SInt16,
@@ -2686,7 +2481,7 @@ pub const BslnTable = extern struct {
     parts: BslnFormatUnion,
 };
 
-pub const BslnTablePtr = ?*BslnTable;
+pub const BslnTablePtr = BslnTable;
 
 pub const ALMXHeader = extern struct {
     Version: objc.Fixed,
@@ -2720,9 +2515,8 @@ pub const ROTAGlyphEntry = extern struct {
     VBaselineOffset: objc.SInt16,
 };
 
-pub const anon17801 = enum(u32) {
-    ANKRCurrentVersion = 0,
-};
+pub const anon17801 = u32;
+pub const anon17801_ANKRCurrentVersion: u32 = 0;
 
 pub const AnchorPoint = extern struct {
     x: objc.SInt16,
@@ -2741,9 +2535,8 @@ pub const AnkrTable = extern struct {
     anchorPointTableOffset: objc.UInt32,
 };
 
-pub const anon18071 = enum(u32) {
-    LTAGCurrentVersion = 1,
-};
+pub const anon18071 = u32;
+pub const anon18071_LTAGCurrentVersion: u32 = 1;
 
 pub const LtagStringRange = extern struct {
     offset: objc.UInt16,
@@ -2773,159 +2566,152 @@ pub const sfntDirectory = extern struct {
     table: [1]sfntDirectoryEntry,
 };
 
-pub const anon481 = enum(u32) {
-    cmapFontTableTag = 1668112752,
-};
+pub const anon481 = u32;
+pub const anon481_cmapFontTableTag: u32 = 1668112752;
 
-pub const anon521 = enum(u32) {
-    FontUnicodePlatform = 0,
-    FontMacintoshPlatform = 1,
-    FontReservedPlatform = 2,
-    FontMicrosoftPlatform = 3,
-    FontCustomPlatform = 4,
-};
+pub const anon521 = u32;
+pub const anon521_FontUnicodePlatform: u32 = 0;
+pub const anon521_FontMacintoshPlatform: u32 = 1;
+pub const anon521_FontReservedPlatform: u32 = 2;
+pub const anon521_FontMicrosoftPlatform: u32 = 3;
+pub const anon521_FontCustomPlatform: u32 = 4;
 
-pub const anon601 = enum(u32) {
-    FontUnicodeDefaultSemantics = 0,
-    FontUnicodeV1_1Semantics = 1,
-    FontISO10646_1993Semantics = 2,
-    FontUnicodeV2_0BMPOnlySemantics = 3,
-    FontUnicodeV2_0FullCoverageSemantics = 4,
-    FontUnicodeV4_0VariationSequenceSemantics = 5,
-    FontUnicode_FullRepertoire = 6,
-};
+pub const anon601 = u32;
+pub const anon601_FontUnicodeDefaultSemantics: u32 = 0;
+pub const anon601_FontUnicodeV1_1Semantics: u32 = 1;
+pub const anon601_FontISO10646_1993Semantics: u32 = 2;
+pub const anon601_FontUnicodeV2_0BMPOnlySemantics: u32 = 3;
+pub const anon601_FontUnicodeV2_0FullCoverageSemantics: u32 = 4;
+pub const anon601_FontUnicodeV4_0VariationSequenceSemantics: u32 = 5;
+pub const anon601_FontUnicode_FullRepertoire: u32 = 6;
 
-pub const anon1121 = enum(u32) {
-    FontMicrosoftSymbolScript = 0,
-    FontMicrosoftStandardScript = 1,
-    FontMicrosoftUCS4Script = 10,
-};
+pub const anon1121 = u32;
+pub const anon1121_FontMicrosoftSymbolScript: u32 = 0;
+pub const anon1121_FontMicrosoftStandardScript: u32 = 1;
+pub const anon1121_FontMicrosoftUCS4Script: u32 = 10;
 
-pub const anon1191 = enum(u32) {
-    FontCustom8BitScript = 0,
-    FontCustom816BitScript = 1,
-    FontCustom16BitScript = 2,
-};
+pub const anon1191 = u32;
+pub const anon1191_FontCustom8BitScript: u32 = 0;
+pub const anon1191_FontCustom816BitScript: u32 = 1;
+pub const anon1191_FontCustom16BitScript: u32 = 2;
 
-pub const anon1261 = enum(u32) {
-    FontEnglishLanguage = 0,
-    FontFrenchLanguage = 1,
-    FontGermanLanguage = 2,
-    FontItalianLanguage = 3,
-    FontDutchLanguage = 4,
-    FontSwedishLanguage = 5,
-    FontSpanishLanguage = 6,
-    FontDanishLanguage = 7,
-    FontPortugueseLanguage = 8,
-    FontNorwegianLanguage = 9,
-    FontHebrewLanguage = 10,
-    FontJapaneseLanguage = 11,
-    FontArabicLanguage = 12,
-    FontFinnishLanguage = 13,
-    FontGreekLanguage = 14,
-    FontIcelandicLanguage = 15,
-    FontMalteseLanguage = 16,
-    FontTurkishLanguage = 17,
-    FontCroatianLanguage = 18,
-    FontTradChineseLanguage = 19,
-    FontUrduLanguage = 20,
-    FontHindiLanguage = 21,
-    FontThaiLanguage = 22,
-    FontKoreanLanguage = 23,
-    FontLithuanianLanguage = 24,
-    FontPolishLanguage = 25,
-    FontHungarianLanguage = 26,
-    FontEstonianLanguage = 27,
-    FontLettishLanguage = 28,
-    FontLatvianLanguage = 28,
-    FontSaamiskLanguage = 29,
-    FontLappishLanguage = 29,
-    FontFaeroeseLanguage = 30,
-    FontFarsiLanguage = 31,
-    FontPersianLanguage = 31,
-    FontRussianLanguage = 32,
-    FontSimpChineseLanguage = 33,
-    FontFlemishLanguage = 34,
-    FontIrishLanguage = 35,
-    FontAlbanianLanguage = 36,
-    FontRomanianLanguage = 37,
-    FontCzechLanguage = 38,
-    FontSlovakLanguage = 39,
-    FontSlovenianLanguage = 40,
-    FontYiddishLanguage = 41,
-    FontSerbianLanguage = 42,
-    FontMacedonianLanguage = 43,
-    FontBulgarianLanguage = 44,
-    FontUkrainianLanguage = 45,
-    FontByelorussianLanguage = 46,
-    FontUzbekLanguage = 47,
-    FontKazakhLanguage = 48,
-    FontAzerbaijaniLanguage = 49,
-    FontAzerbaijanArLanguage = 50,
-    FontArmenianLanguage = 51,
-    FontGeorgianLanguage = 52,
-    FontMoldavianLanguage = 53,
-    FontKirghizLanguage = 54,
-    FontTajikiLanguage = 55,
-    FontTurkmenLanguage = 56,
-    FontMongolianLanguage = 57,
-    FontMongolianCyrLanguage = 58,
-    FontPashtoLanguage = 59,
-    FontKurdishLanguage = 60,
-    FontKashmiriLanguage = 61,
-    FontSindhiLanguage = 62,
-    FontTibetanLanguage = 63,
-    FontNepaliLanguage = 64,
-    FontSanskritLanguage = 65,
-    FontMarathiLanguage = 66,
-    FontBengaliLanguage = 67,
-    FontAssameseLanguage = 68,
-    FontGujaratiLanguage = 69,
-    FontPunjabiLanguage = 70,
-    FontOriyaLanguage = 71,
-    FontMalayalamLanguage = 72,
-    FontKannadaLanguage = 73,
-    FontTamilLanguage = 74,
-    FontTeluguLanguage = 75,
-    FontSinhaleseLanguage = 76,
-    FontBurmeseLanguage = 77,
-    FontKhmerLanguage = 78,
-    FontLaoLanguage = 79,
-    FontVietnameseLanguage = 80,
-    FontIndonesianLanguage = 81,
-    FontTagalogLanguage = 82,
-    FontMalayRomanLanguage = 83,
-    FontMalayArabicLanguage = 84,
-    FontAmharicLanguage = 85,
-    FontTigrinyaLanguage = 86,
-    FontGallaLanguage = 87,
-    FontOromoLanguage = 87,
-    FontSomaliLanguage = 88,
-    FontSwahiliLanguage = 89,
-    FontRuandaLanguage = 90,
-    FontRundiLanguage = 91,
-    FontChewaLanguage = 92,
-    FontMalagasyLanguage = 93,
-    FontEsperantoLanguage = 94,
-    FontWelshLanguage = 128,
-    FontBasqueLanguage = 129,
-    FontCatalanLanguage = 130,
-    FontLatinLanguage = 131,
-    FontQuechuaLanguage = 132,
-    FontGuaraniLanguage = 133,
-    FontAymaraLanguage = 134,
-    FontTatarLanguage = 135,
-    FontUighurLanguage = 136,
-    FontDzongkhaLanguage = 137,
-    FontJavaneseRomLanguage = 138,
-    FontSundaneseRomLanguage = 139,
-};
+pub const anon1261 = u32;
+pub const anon1261_FontEnglishLanguage: u32 = 0;
+pub const anon1261_FontFrenchLanguage: u32 = 1;
+pub const anon1261_FontGermanLanguage: u32 = 2;
+pub const anon1261_FontItalianLanguage: u32 = 3;
+pub const anon1261_FontDutchLanguage: u32 = 4;
+pub const anon1261_FontSwedishLanguage: u32 = 5;
+pub const anon1261_FontSpanishLanguage: u32 = 6;
+pub const anon1261_FontDanishLanguage: u32 = 7;
+pub const anon1261_FontPortugueseLanguage: u32 = 8;
+pub const anon1261_FontNorwegianLanguage: u32 = 9;
+pub const anon1261_FontHebrewLanguage: u32 = 10;
+pub const anon1261_FontJapaneseLanguage: u32 = 11;
+pub const anon1261_FontArabicLanguage: u32 = 12;
+pub const anon1261_FontFinnishLanguage: u32 = 13;
+pub const anon1261_FontGreekLanguage: u32 = 14;
+pub const anon1261_FontIcelandicLanguage: u32 = 15;
+pub const anon1261_FontMalteseLanguage: u32 = 16;
+pub const anon1261_FontTurkishLanguage: u32 = 17;
+pub const anon1261_FontCroatianLanguage: u32 = 18;
+pub const anon1261_FontTradChineseLanguage: u32 = 19;
+pub const anon1261_FontUrduLanguage: u32 = 20;
+pub const anon1261_FontHindiLanguage: u32 = 21;
+pub const anon1261_FontThaiLanguage: u32 = 22;
+pub const anon1261_FontKoreanLanguage: u32 = 23;
+pub const anon1261_FontLithuanianLanguage: u32 = 24;
+pub const anon1261_FontPolishLanguage: u32 = 25;
+pub const anon1261_FontHungarianLanguage: u32 = 26;
+pub const anon1261_FontEstonianLanguage: u32 = 27;
+pub const anon1261_FontLettishLanguage: u32 = 28;
+pub const anon1261_FontLatvianLanguage: u32 = 28;
+pub const anon1261_FontSaamiskLanguage: u32 = 29;
+pub const anon1261_FontLappishLanguage: u32 = 29;
+pub const anon1261_FontFaeroeseLanguage: u32 = 30;
+pub const anon1261_FontFarsiLanguage: u32 = 31;
+pub const anon1261_FontPersianLanguage: u32 = 31;
+pub const anon1261_FontRussianLanguage: u32 = 32;
+pub const anon1261_FontSimpChineseLanguage: u32 = 33;
+pub const anon1261_FontFlemishLanguage: u32 = 34;
+pub const anon1261_FontIrishLanguage: u32 = 35;
+pub const anon1261_FontAlbanianLanguage: u32 = 36;
+pub const anon1261_FontRomanianLanguage: u32 = 37;
+pub const anon1261_FontCzechLanguage: u32 = 38;
+pub const anon1261_FontSlovakLanguage: u32 = 39;
+pub const anon1261_FontSlovenianLanguage: u32 = 40;
+pub const anon1261_FontYiddishLanguage: u32 = 41;
+pub const anon1261_FontSerbianLanguage: u32 = 42;
+pub const anon1261_FontMacedonianLanguage: u32 = 43;
+pub const anon1261_FontBulgarianLanguage: u32 = 44;
+pub const anon1261_FontUkrainianLanguage: u32 = 45;
+pub const anon1261_FontByelorussianLanguage: u32 = 46;
+pub const anon1261_FontUzbekLanguage: u32 = 47;
+pub const anon1261_FontKazakhLanguage: u32 = 48;
+pub const anon1261_FontAzerbaijaniLanguage: u32 = 49;
+pub const anon1261_FontAzerbaijanArLanguage: u32 = 50;
+pub const anon1261_FontArmenianLanguage: u32 = 51;
+pub const anon1261_FontGeorgianLanguage: u32 = 52;
+pub const anon1261_FontMoldavianLanguage: u32 = 53;
+pub const anon1261_FontKirghizLanguage: u32 = 54;
+pub const anon1261_FontTajikiLanguage: u32 = 55;
+pub const anon1261_FontTurkmenLanguage: u32 = 56;
+pub const anon1261_FontMongolianLanguage: u32 = 57;
+pub const anon1261_FontMongolianCyrLanguage: u32 = 58;
+pub const anon1261_FontPashtoLanguage: u32 = 59;
+pub const anon1261_FontKurdishLanguage: u32 = 60;
+pub const anon1261_FontKashmiriLanguage: u32 = 61;
+pub const anon1261_FontSindhiLanguage: u32 = 62;
+pub const anon1261_FontTibetanLanguage: u32 = 63;
+pub const anon1261_FontNepaliLanguage: u32 = 64;
+pub const anon1261_FontSanskritLanguage: u32 = 65;
+pub const anon1261_FontMarathiLanguage: u32 = 66;
+pub const anon1261_FontBengaliLanguage: u32 = 67;
+pub const anon1261_FontAssameseLanguage: u32 = 68;
+pub const anon1261_FontGujaratiLanguage: u32 = 69;
+pub const anon1261_FontPunjabiLanguage: u32 = 70;
+pub const anon1261_FontOriyaLanguage: u32 = 71;
+pub const anon1261_FontMalayalamLanguage: u32 = 72;
+pub const anon1261_FontKannadaLanguage: u32 = 73;
+pub const anon1261_FontTamilLanguage: u32 = 74;
+pub const anon1261_FontTeluguLanguage: u32 = 75;
+pub const anon1261_FontSinhaleseLanguage: u32 = 76;
+pub const anon1261_FontBurmeseLanguage: u32 = 77;
+pub const anon1261_FontKhmerLanguage: u32 = 78;
+pub const anon1261_FontLaoLanguage: u32 = 79;
+pub const anon1261_FontVietnameseLanguage: u32 = 80;
+pub const anon1261_FontIndonesianLanguage: u32 = 81;
+pub const anon1261_FontTagalogLanguage: u32 = 82;
+pub const anon1261_FontMalayRomanLanguage: u32 = 83;
+pub const anon1261_FontMalayArabicLanguage: u32 = 84;
+pub const anon1261_FontAmharicLanguage: u32 = 85;
+pub const anon1261_FontTigrinyaLanguage: u32 = 86;
+pub const anon1261_FontGallaLanguage: u32 = 87;
+pub const anon1261_FontOromoLanguage: u32 = 87;
+pub const anon1261_FontSomaliLanguage: u32 = 88;
+pub const anon1261_FontSwahiliLanguage: u32 = 89;
+pub const anon1261_FontRuandaLanguage: u32 = 90;
+pub const anon1261_FontRundiLanguage: u32 = 91;
+pub const anon1261_FontChewaLanguage: u32 = 92;
+pub const anon1261_FontMalagasyLanguage: u32 = 93;
+pub const anon1261_FontEsperantoLanguage: u32 = 94;
+pub const anon1261_FontWelshLanguage: u32 = 128;
+pub const anon1261_FontBasqueLanguage: u32 = 129;
+pub const anon1261_FontCatalanLanguage: u32 = 130;
+pub const anon1261_FontLatinLanguage: u32 = 131;
+pub const anon1261_FontQuechuaLanguage: u32 = 132;
+pub const anon1261_FontGuaraniLanguage: u32 = 133;
+pub const anon1261_FontAymaraLanguage: u32 = 134;
+pub const anon1261_FontTatarLanguage: u32 = 135;
+pub const anon1261_FontUighurLanguage: u32 = 136;
+pub const anon1261_FontDzongkhaLanguage: u32 = 137;
+pub const anon1261_FontJavaneseRomLanguage: u32 = 138;
+pub const anon1261_FontSundaneseRomLanguage: u32 = 139;
 
-pub const anon2421 = enum(u32) {
-    FontNoPlatformCode = -1,
-    FontNoScriptCode = -1,
-    FontNoLanguageCode = -1,
-};
+pub const anon2421 = u32;
+pub const anon2421_FontNoPlatformCode: u32 = -1;
+pub const anon2421_FontNoScriptCode: u32 = -1;
+pub const anon2421_FontNoLanguageCode: u32 = -1;
 
 pub const sfntCMapSubHeader = extern struct {
     format: objc.UInt16,
@@ -2940,9 +2726,8 @@ pub const sfntCMapExtendedSubHeader = extern struct {
     language: objc.UInt32,
 };
 
-pub const anon2651 = enum(u32) {
-    sizeof_sfntCMapExtendedSubHeader = 12,
-};
+pub const anon2651 = u32;
+pub const anon2651_sizeof_sfntCMapExtendedSubHeader: u32 = 12;
 
 pub const sfntCMapEncoding = extern struct {
     platformID: objc.UInt16,
@@ -2950,9 +2735,8 @@ pub const sfntCMapEncoding = extern struct {
     offset: objc.UInt32,
 };
 
-pub const anon2751 = enum(u32) {
-    sizeof_sfntCMapEncoding = 8,
-};
+pub const anon2751 = u32;
+pub const anon2751_sizeof_sfntCMapEncoding: u32 = 8;
 
 pub const sfntCMapHeader = extern struct {
     version: objc.UInt16,
@@ -2960,37 +2744,34 @@ pub const sfntCMapHeader = extern struct {
     encoding: [1]sfntCMapEncoding,
 };
 
-pub const anon2851 = enum(u32) {
-    sizeof_sfntCMapHeader = 4,
-};
+pub const anon2851 = u32;
+pub const anon2851_sizeof_sfntCMapHeader: u32 = 4;
 
-pub const anon2941 = enum(u32) {
-    FontCopyrightName = 0,
-    FontFamilyName = 1,
-    FontStyleName = 2,
-    FontUniqueName = 3,
-    FontFullName = 4,
-    FontVersionName = 5,
-    FontPostscriptName = 6,
-    FontTrademarkName = 7,
-    FontManufacturerName = 8,
-    FontDesignerName = 9,
-    FontDescriptionName = 10,
-    FontVendorURLName = 11,
-    FontDesignerURLName = 12,
-    FontLicenseDescriptionName = 13,
-    FontLicenseInfoURLName = 14,
-    FontPreferredFamilyName = 16,
-    FontPreferredSubfamilyName = 17,
-    FontMacCompatibleFullName = 18,
-    FontSampleTextName = 19,
-    FontPostScriptCIDName = 20,
-    FontLastReservedName = 255,
-};
+pub const anon2941 = u32;
+pub const anon2941_FontCopyrightName: u32 = 0;
+pub const anon2941_FontFamilyName: u32 = 1;
+pub const anon2941_FontStyleName: u32 = 2;
+pub const anon2941_FontUniqueName: u32 = 3;
+pub const anon2941_FontFullName: u32 = 4;
+pub const anon2941_FontVersionName: u32 = 5;
+pub const anon2941_FontPostscriptName: u32 = 6;
+pub const anon2941_FontTrademarkName: u32 = 7;
+pub const anon2941_FontManufacturerName: u32 = 8;
+pub const anon2941_FontDesignerName: u32 = 9;
+pub const anon2941_FontDescriptionName: u32 = 10;
+pub const anon2941_FontVendorURLName: u32 = 11;
+pub const anon2941_FontDesignerURLName: u32 = 12;
+pub const anon2941_FontLicenseDescriptionName: u32 = 13;
+pub const anon2941_FontLicenseInfoURLName: u32 = 14;
+pub const anon2941_FontPreferredFamilyName: u32 = 16;
+pub const anon2941_FontPreferredSubfamilyName: u32 = 17;
+pub const anon2941_FontMacCompatibleFullName: u32 = 18;
+pub const anon2941_FontSampleTextName: u32 = 19;
+pub const anon2941_FontPostScriptCIDName: u32 = 20;
+pub const anon2941_FontLastReservedName: u32 = 255;
 
-pub const anon3201 = enum(u32) {
-    FontNoNameCode = -1,
-};
+pub const anon3201 = u32;
+pub const anon3201_FontNoNameCode: u32 = -1;
 
 pub const sfntNameRecord = extern struct {
     platformID: objc.UInt16,
@@ -3001,9 +2782,8 @@ pub const sfntNameRecord = extern struct {
     offset: objc.UInt16,
 };
 
-pub const anon3331 = enum(u32) {
-    sizeof_sfntNameRecord = 12,
-};
+pub const anon3331 = u32;
+pub const anon3331_sizeof_sfntNameRecord: u32 = 12;
 
 pub const sfntNameHeader = extern struct {
     format: objc.UInt16,
@@ -3012,13 +2792,11 @@ pub const sfntNameHeader = extern struct {
     rec: [1]sfntNameRecord,
 };
 
-pub const anon3441 = enum(u32) {
-    sizeof_sfntNameHeader = 6,
-};
+pub const anon3441 = u32;
+pub const anon3441_sizeof_sfntNameHeader: u32 = 6;
 
-pub const anon3491 = enum(u32) {
-    variationFontTableTag = 1719034226,
-};
+pub const anon3491 = u32;
+pub const anon3491_variationFontTableTag: u32 = 1719034226;
 
 pub const sfntVariationAxis = extern struct {
     axisTag: objc.FourCharCode,
@@ -3029,9 +2807,8 @@ pub const sfntVariationAxis = extern struct {
     nameID: objc.SInt16,
 };
 
-pub const anon3631 = enum(u32) {
-    sizeof_sfntVariationAxis = 20,
-};
+pub const anon3631 = u32;
+pub const anon3631_sizeof_sfntVariationAxis: u32 = 20;
 
 pub const sfntInstance = extern struct {
     nameID: objc.SInt16,
@@ -3039,9 +2816,8 @@ pub const sfntInstance = extern struct {
     coord: [1]objc.Fixed,
 };
 
-pub const anon3751 = enum(u32) {
-    sizeof_sfntInstance = 4,
-};
+pub const anon3751 = u32;
+pub const anon3751_sizeof_sfntInstance: u32 = 4;
 
 pub const sfntVariationHeader = extern struct {
     version: objc.Fixed,
@@ -3066,13 +2842,11 @@ pub const sfntDescriptorHeader = extern struct {
     descriptor: [1]sfntFontDescriptor,
 };
 
-pub const anon4121 = enum(u32) {
-    sizeof_sfntDescriptorHeader = 8,
-};
+pub const anon4121 = u32;
+pub const anon4121_sizeof_sfntDescriptorHeader: u32 = 8;
 
-pub const anon4171 = enum(u32) {
-    featureFontTableTag = 1717920116,
-};
+pub const anon4171 = u32;
+pub const anon4171_featureFontTableTag: u32 = 1717920116;
 
 pub const sfntFeatureName = extern struct {
     featureType: objc.UInt16,
@@ -3102,13 +2876,11 @@ pub const sfntFeatureHeader = extern struct {
     runs: [1]sfntFontRunFeature,
 };
 
-pub const anon4501 = enum(u32) {
-    os2FontTableTag = 1330851634,
-};
+pub const anon4501 = u32;
+pub const anon4501_os2FontTableTag: u32 = 1330851634;
 
-pub const anon4551 = enum(u32) {
-    nonGlyphID = 65535,
-};
+pub const anon4551 = u32;
+pub const anon4551_nonGlyphID: u32 = 65535;
 
 pub const FontNameCode = objc.UInt32;
 

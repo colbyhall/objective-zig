@@ -6,7 +6,11 @@ pub fn build(b: *std.Build) void {
 
     const objective_zig = b.addModule("objective-zig", .{
         .root_source_file = b.path("src/root.zig"),
+        .target = target,
+        .optimize = optimize,
     });
+    objective_zig.linkFramework("AppKit", .{});
+    objective_zig.linkSystemLibrary("objc", .{});
 
     const window = b.addExecutable(.{
         .name = "window",
@@ -15,9 +19,6 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     window.root_module.addImport("objective-zig", objective_zig);
-    window.linkFramework("Foundation");
-    window.linkFramework("AppKit");
-    window.linkSystemLibrary("objc");
 
     b.installArtifact(window);
 }

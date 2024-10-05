@@ -7,24 +7,7 @@ const io_kit = @import("io_kit.zig"); // Framework dependency IOKit.
 
 pub const __IOSurface = extern struct {};
 
-pub const IOSurfaceRef = ?*__IOSurface;
-
-extern "CoreGraphics" fn CGPointMake(x: core_foundation.CGFloat, y: core_foundation.CGFloat) callconv(.C) core_foundation.CGPoint;
-pub const pointMake = CGPointMake;
-
-extern "CoreGraphics" fn CGSizeMake(width: core_foundation.CGFloat, height: core_foundation.CGFloat) callconv(.C) core_foundation.CGSize;
-pub const sizeMake = CGSizeMake;
-
-extern "CoreGraphics" fn CGVectorMake(dx: core_foundation.CGFloat, dy: core_foundation.CGFloat) callconv(.C) core_foundation.CGVector;
-pub const vectorMake = CGVectorMake;
-
-extern "CoreGraphics" fn CGRectMake(
-    x: core_foundation.CGFloat,
-    y: core_foundation.CGFloat,
-    width: core_foundation.CGFloat,
-    height: core_foundation.CGFloat,
-) callconv(.C) core_foundation.CGRect;
-pub const rectMake = CGRectMake;
+pub const IOSurfaceRef = __IOSurface;
 
 extern "CoreGraphics" fn CGRectGetMinX(rect: core_foundation.CGRect) callconv(.C) core_foundation.CGFloat;
 pub const rectGetMinX = CGRectGetMinX;
@@ -122,10 +105,6 @@ pub const rectCreateDictionaryRepresentation = CGRectCreateDictionaryRepresentat
 extern "CoreGraphics" fn CGRectMakeWithDictionaryRepresentation(dict: core_foundation.DictionaryRef, rect: ?*core_foundation.CGRect) callconv(.C) i32;
 pub const rectMakeWithDictionaryRepresentation = CGRectMakeWithDictionaryRepresentation;
 
-pub extern "CoreGraphics" fn __CGPointEqualToPoint(point1: core_foundation.CGPoint, point2: core_foundation.CGPoint) callconv(.C) i32;
-
-pub extern "CoreGraphics" fn __CGSizeEqualToSize(size1: core_foundation.CGSize, size2: core_foundation.CGSize) callconv(.C) i32;
-
 extern "CoreGraphics" fn CGAffineTransformMake(
     a: core_foundation.CGFloat,
     b: core_foundation.CGFloat,
@@ -181,38 +160,25 @@ pub const affineTransformDecompose = CGAffineTransformDecompose;
 extern "CoreGraphics" fn CGAffineTransformMakeWithComponents(components: core_foundation.CGAffineTransformComponents) callconv(.C) core_foundation.CGAffineTransform;
 pub const affineTransformMakeWithComponents = CGAffineTransformMakeWithComponents;
 
-pub extern "CoreGraphics" fn __CGAffineTransformMake(
-    a: core_foundation.CGFloat,
-    b: core_foundation.CGFloat,
-    c: core_foundation.CGFloat,
-    d: core_foundation.CGFloat,
-    tx: core_foundation.CGFloat,
-    ty: core_foundation.CGFloat,
-) callconv(.C) core_foundation.CGAffineTransform;
-
-pub extern "CoreGraphics" fn __CGPointApplyAffineTransform(point: core_foundation.CGPoint, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGPoint;
-
-pub extern "CoreGraphics" fn __CGSizeApplyAffineTransform(size: core_foundation.CGSize, t: core_foundation.CGAffineTransform) callconv(.C) core_foundation.CGSize;
-
 pub const Context = extern struct {};
 
-pub const ContextRef = ?*Context;
+pub const ContextRef = Context;
 
 pub const Color = extern struct {};
 
-pub const ColorRef = ?*Color;
+pub const ColorRef = Color;
 
 pub const ColorSpace = extern struct {};
 
-pub const ColorSpaceRef = ?*ColorSpace;
+pub const ColorSpaceRef = ColorSpace;
 
 pub const DataProvider = extern struct {};
 
-pub const DataProviderRef = ?*DataProvider;
+pub const DataProviderRef = DataProvider;
 
-pub const DataProviderGetBytesCallback = ?*const fn (?*anyopaque, ?*anyopaque, objc.size_t) callconv(.C) objc.size_t;
+pub const DataProviderGetBytesCallback = objc.size_t;
 
-pub const DataProviderSkipForwardCallback = ?*const fn (?*anyopaque, objc.off_t) callconv(.C) objc.off_t;
+pub const DataProviderSkipForwardCallback = objc.off_t;
 
 pub const DataProviderRewindCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
@@ -230,12 +196,7 @@ pub const DataProviderGetBytePointerCallback = ?*const fn (?*anyopaque) callconv
 
 pub const DataProviderReleaseBytePointerCallback = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
 
-pub const DataProviderGetBytesAtPositionCallback = ?*const fn (
-    ?*anyopaque,
-    ?*anyopaque,
-    objc.off_t,
-    objc.size_t,
-) callconv(.C) objc.size_t;
+pub const DataProviderGetBytesAtPositionCallback = objc.size_t;
 
 pub const DataProviderDirectCallbacks = extern struct {
     version: u32,
@@ -285,25 +246,23 @@ pub const dataProviderCopyData = CGDataProviderCopyData;
 extern "CoreGraphics" fn CGDataProviderGetInfo(provider: DataProviderRef) callconv(.C) ?*anyopaque;
 pub const dataProviderGetInfo = CGDataProviderGetInfo;
 
-pub const ColorRenderingIntent = enum(objc.int32_t) {
-    RenderingIntentDefault = 0,
-    RenderingIntentAbsoluteColorimetric = 1,
-    RenderingIntentRelativeColorimetric = 2,
-    RenderingIntentPerceptual = 3,
-    RenderingIntentSaturation = 4,
-};
+pub const ColorRenderingIntent = objc.int32_t;
+pub const ColorRenderingIntent_RenderingIntentDefault: objc.int32_t = 0;
+pub const ColorRenderingIntent_RenderingIntentAbsoluteColorimetric: objc.int32_t = 1;
+pub const ColorRenderingIntent_RenderingIntentRelativeColorimetric: objc.int32_t = 2;
+pub const ColorRenderingIntent_RenderingIntentPerceptual: objc.int32_t = 3;
+pub const ColorRenderingIntent_RenderingIntentSaturation: objc.int32_t = 4;
 
-pub const ColorSpaceModel = enum(objc.int32_t) {
-    Unknown = -1,
-    Monochrome = 0,
-    RGB = 1,
-    CMYK = 2,
-    Lab = 3,
-    DeviceN = 4,
-    Indexed = 5,
-    Pattern = 6,
-    XYZ = 7,
-};
+pub const ColorSpaceModel = objc.int32_t;
+pub const ColorSpaceModel_Unknown: objc.int32_t = -1;
+pub const ColorSpaceModel_Monochrome: objc.int32_t = 0;
+pub const ColorSpaceModel_RGB: objc.int32_t = 1;
+pub const ColorSpaceModel_CMYK: objc.int32_t = 2;
+pub const ColorSpaceModel_Lab: objc.int32_t = 3;
+pub const ColorSpaceModel_DeviceN: objc.int32_t = 4;
+pub const ColorSpaceModel_Indexed: objc.int32_t = 5;
+pub const ColorSpaceModel_Pattern: objc.int32_t = 6;
+pub const ColorSpaceModel_XYZ: objc.int32_t = 7;
 
 extern "CoreGraphics" fn CGColorSpaceCreateDeviceGray() callconv(.C) ColorSpaceRef;
 pub const colorSpaceCreateDeviceGray = CGColorSpaceCreateDeviceGray;
@@ -347,7 +306,7 @@ pub const colorSpaceCreatePattern = CGColorSpaceCreatePattern;
 
 pub const ColorSyncProfile = extern struct {};
 
-pub const ColorSyncProfileRef = ?*ColorSyncProfile;
+pub const ColorSyncProfileRef = ColorSyncProfile;
 
 extern "CoreGraphics" fn CGColorSpaceCreateWithColorSyncProfile(ColorSyncProfileRef, options: core_foundation.DictionaryRef) callconv(.C) ColorSpaceRef;
 pub const colorSpaceCreateWithColorSyncProfile = CGColorSpaceCreateWithColorSyncProfile;
@@ -441,13 +400,12 @@ pub const colorSpaceCreateWithPlatformColorSpace = CGColorSpaceCreateWithPlatfor
 
 pub const Pattern = extern struct {};
 
-pub const PatternRef = ?*Pattern;
+pub const PatternRef = Pattern;
 
-pub const PatternTiling = enum(objc.int32_t) {
-    NoDistortion = 0,
-    ConstantSpacingMinimalDistortion = 1,
-    ConstantSpacing = 2,
-};
+pub const PatternTiling = objc.int32_t;
+pub const PatternTiling_NoDistortion: objc.int32_t = 0;
+pub const PatternTiling_ConstantSpacingMinimalDistortion: objc.int32_t = 1;
+pub const PatternTiling_ConstantSpacing: objc.int32_t = 2;
 
 pub const PatternDrawPatternCallback = ?*const fn (?*anyopaque, ContextRef) callconv(.C) void;
 
@@ -563,17 +521,16 @@ pub const colorGetTypeID = CGColorGetTypeID;
 
 pub const Font = extern struct {};
 
-pub const FontRef = ?*Font;
+pub const FontRef = Font;
 
 pub const FontIndex = u16;
 
 pub const Glyph = FontIndex;
 
-pub const FontPostScriptFormat = enum(objc.int32_t) {
-    Type1 = 1,
-    Type3 = 3,
-    Type42 = 42,
-};
+pub const FontPostScriptFormat = objc.int32_t;
+pub const FontPostScriptFormat_Type1: objc.int32_t = 1;
+pub const FontPostScriptFormat_Type3: objc.int32_t = 3;
+pub const FontPostScriptFormat_Type42: objc.int32_t = 42;
 
 extern "CoreGraphics" fn CGFontGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const fontGetTypeID = CGFontGetTypeID;
@@ -682,19 +639,17 @@ pub const fontCopyTableTags = CGFontCopyTableTags;
 extern "CoreGraphics" fn CGFontCopyTableForTag(font: FontRef, tag: objc.uint32_t) callconv(.C) core_foundation.DataRef;
 pub const fontCopyTableForTag = CGFontCopyTableForTag;
 
-pub const GlyphDeprecatedEnum = enum(objc.int32_t) {
-    Min = 0,
-    Max = 1,
-};
+pub const GlyphDeprecatedEnum = objc.int32_t;
+pub const GlyphDeprecatedEnum_Min: objc.int32_t = 0;
+pub const GlyphDeprecatedEnum_Max: objc.int32_t = 1;
 
 pub const Gradient = extern struct {};
 
-pub const GradientRef = ?*Gradient;
+pub const GradientRef = Gradient;
 
-pub const GradientDrawingOptions = enum(objc.uint32_t) {
-    DrawsBeforeStartLocation = 1,
-    DrawsAfterEndLocation = 2,
-};
+pub const GradientDrawingOptions = objc.uint32_t;
+pub const GradientDrawingOptions_DrawsBeforeStartLocation: objc.uint32_t = 1;
+pub const GradientDrawingOptions_DrawsAfterEndLocation: objc.uint32_t = 2;
 
 extern "CoreGraphics" fn CGGradientGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const gradientGetTypeID = CGGradientGetTypeID;
@@ -718,48 +673,44 @@ pub const gradientRelease = CGGradientRelease;
 
 pub const Image = extern struct {};
 
-pub const ImageRef = ?*Image;
+pub const ImageRef = Image;
 
-pub const ImageAlphaInfo = enum(objc.uint32_t) {
-    None = 0,
-    PremultipliedLast = 1,
-    PremultipliedFirst = 2,
-    Last = 3,
-    First = 4,
-    NoneSkipLast = 5,
-    NoneSkipFirst = 6,
-    Only = 7,
-};
+pub const ImageAlphaInfo = objc.uint32_t;
+pub const ImageAlphaInfo_None: objc.uint32_t = 0;
+pub const ImageAlphaInfo_PremultipliedLast: objc.uint32_t = 1;
+pub const ImageAlphaInfo_PremultipliedFirst: objc.uint32_t = 2;
+pub const ImageAlphaInfo_Last: objc.uint32_t = 3;
+pub const ImageAlphaInfo_First: objc.uint32_t = 4;
+pub const ImageAlphaInfo_NoneSkipLast: objc.uint32_t = 5;
+pub const ImageAlphaInfo_NoneSkipFirst: objc.uint32_t = 6;
+pub const ImageAlphaInfo_Only: objc.uint32_t = 7;
 
-pub const ImageByteOrderInfo = enum(objc.uint32_t) {
-    Mask = 28672,
-    Default = 0,
-    Order16Little = 4096,
-    Order32Little = 8192,
-    Order16Big = 12288,
-    Order32Big = 16384,
-};
+pub const ImageByteOrderInfo = objc.uint32_t;
+pub const ImageByteOrderInfo_Mask: objc.uint32_t = 28672;
+pub const ImageByteOrderInfo_Default: objc.uint32_t = 0;
+pub const ImageByteOrderInfo_Order16Little: objc.uint32_t = 4096;
+pub const ImageByteOrderInfo_Order32Little: objc.uint32_t = 8192;
+pub const ImageByteOrderInfo_Order16Big: objc.uint32_t = 12288;
+pub const ImageByteOrderInfo_Order32Big: objc.uint32_t = 16384;
 
-pub const ImagePixelFormatInfo = enum(objc.uint32_t) {
-    Mask = 983040,
-    Packed = 0,
-    RGB555 = 65536,
-    RGB565 = 131072,
-    RGB101010 = 196608,
-    RGBCIF10 = 262144,
-};
+pub const ImagePixelFormatInfo = objc.uint32_t;
+pub const ImagePixelFormatInfo_Mask: objc.uint32_t = 983040;
+pub const ImagePixelFormatInfo_Packed: objc.uint32_t = 0;
+pub const ImagePixelFormatInfo_RGB555: objc.uint32_t = 65536;
+pub const ImagePixelFormatInfo_RGB565: objc.uint32_t = 131072;
+pub const ImagePixelFormatInfo_RGB101010: objc.uint32_t = 196608;
+pub const ImagePixelFormatInfo_RGBCIF10: objc.uint32_t = 262144;
 
-pub const BitmapInfo = enum(objc.uint32_t) {
-    AlphaInfoMask = 31,
-    FloatInfoMask = 3840,
-    FloatComponents = 256,
-    ByteOrderMask = 28672,
-    ByteOrderDefault = 0,
-    ByteOrder16Little = 4096,
-    ByteOrder32Little = 8192,
-    ByteOrder16Big = 12288,
-    ByteOrder32Big = 16384,
-};
+pub const BitmapInfo = objc.uint32_t;
+pub const BitmapInfo_AlphaInfoMask: objc.uint32_t = 31;
+pub const BitmapInfo_FloatInfoMask: objc.uint32_t = 3840;
+pub const BitmapInfo_FloatComponents: objc.uint32_t = 256;
+pub const BitmapInfo_ByteOrderMask: objc.uint32_t = 28672;
+pub const BitmapInfo_ByteOrderDefault: objc.uint32_t = 0;
+pub const BitmapInfo_ByteOrder16Little: objc.uint32_t = 4096;
+pub const BitmapInfo_ByteOrder32Little: objc.uint32_t = 8192;
+pub const BitmapInfo_ByteOrder16Big: objc.uint32_t = 12288;
+pub const BitmapInfo_ByteOrder32Big: objc.uint32_t = 16384;
 
 extern "CoreGraphics" fn CGImageGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const imageGetTypeID = CGImageGetTypeID;
@@ -906,21 +857,19 @@ pub const imageGetUTType = CGImageGetUTType;
 
 pub const Path = extern struct {};
 
-pub const MutablePathRef = ?*Path;
+pub const MutablePathRef = Path;
 
-pub const PathRef = ?*Path;
+pub const PathRef = Path;
 
-pub const LineJoin = enum(objc.int32_t) {
-    Miter = 0,
-    Round = 1,
-    Bevel = 2,
-};
+pub const LineJoin = objc.int32_t;
+pub const LineJoin_Miter: objc.int32_t = 0;
+pub const LineJoin_Round: objc.int32_t = 1;
+pub const LineJoin_Bevel: objc.int32_t = 2;
 
-pub const LineCap = enum(objc.int32_t) {
-    Butt = 0,
-    Round = 1,
-    Square = 2,
-};
+pub const LineCap = objc.int32_t;
+pub const LineCap_Butt: objc.int32_t = 0;
+pub const LineCap_Round: objc.int32_t = 1;
+pub const LineCap_Square: objc.int32_t = 2;
 
 extern "CoreGraphics" fn CGPathGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const pathGetTypeID = CGPathGetTypeID;
@@ -1114,13 +1063,12 @@ extern "CoreGraphics" fn CGPathContainsPoint(
 ) callconv(.C) i32;
 pub const pathContainsPoint = CGPathContainsPoint;
 
-pub const PathElementType = enum(objc.int32_t) {
-    MoveToPoint = 0,
-    AddLineToPoint = 1,
-    AddQuadCurveToPoint = 2,
-    AddCurveToPoint = 3,
-    CloseSubpath = 4,
-};
+pub const PathElementType = objc.int32_t;
+pub const PathElementType_MoveToPoint: objc.int32_t = 0;
+pub const PathElementType_AddLineToPoint: objc.int32_t = 1;
+pub const PathElementType_AddQuadCurveToPoint: objc.int32_t = 2;
+pub const PathElementType_AddCurveToPoint: objc.int32_t = 3;
+pub const PathElementType_CloseSubpath: objc.int32_t = 4;
 
 pub const PathElement = extern struct {
     type: PathElementType,
@@ -1169,19 +1117,19 @@ pub const pathIntersectsPath = CGPathIntersectsPath;
 
 pub const PDFDocument = extern struct {};
 
-pub const PDFDocumentRef = ?*PDFDocument;
+pub const PDFDocumentRef = PDFDocument;
 
 pub const PDFPage = extern struct {};
 
-pub const PDFPageRef = ?*PDFPage;
+pub const PDFPageRef = PDFPage;
 
 pub const PDFDictionary = extern struct {};
 
-pub const PDFDictionaryRef = ?*PDFDictionary;
+pub const PDFDictionaryRef = PDFDictionary;
 
 pub const PDFArray = extern struct {};
 
-pub const PDFArrayRef = ?*PDFArray;
+pub const PDFArrayRef = PDFArray;
 
 pub const PDFBoolean = u8;
 
@@ -1191,19 +1139,18 @@ pub const PDFReal = core_foundation.CGFloat;
 
 pub const PDFObject = extern struct {};
 
-pub const PDFObjectRef = ?*PDFObject;
+pub const PDFObjectRef = PDFObject;
 
-pub const PDFObjectType = enum(objc.int32_t) {
-    Null = 1,
-    Boolean = 2,
-    Integer = 3,
-    Real = 4,
-    Name = 5,
-    String = 6,
-    Array = 7,
-    Dictionary = 8,
-    Stream = 9,
-};
+pub const PDFObjectType = objc.int32_t;
+pub const PDFObjectType_Null: objc.int32_t = 1;
+pub const PDFObjectType_Boolean: objc.int32_t = 2;
+pub const PDFObjectType_Integer: objc.int32_t = 3;
+pub const PDFObjectType_Real: objc.int32_t = 4;
+pub const PDFObjectType_Name: objc.int32_t = 5;
+pub const PDFObjectType_String: objc.int32_t = 6;
+pub const PDFObjectType_Array: objc.int32_t = 7;
+pub const PDFObjectType_Dictionary: objc.int32_t = 8;
+pub const PDFObjectType_Stream: objc.int32_t = 9;
 
 extern "CoreGraphics" fn CGPDFObjectGetType(object: PDFObjectRef) callconv(.C) PDFObjectType;
 pub const pdfObjectGetType = CGPDFObjectGetType;
@@ -1213,13 +1160,12 @@ pub const pdfObjectGetValue = CGPDFObjectGetValue;
 
 pub const PDFStream = extern struct {};
 
-pub const PDFStreamRef = ?*PDFStream;
+pub const PDFStreamRef = PDFStream;
 
-pub const PDFDataFormat = enum(objc.int32_t) {
-    Raw = 0,
-    JPEGEncoded = 1,
-    JPEG2000 = 2,
-};
+pub const PDFDataFormat = objc.int32_t;
+pub const PDFDataFormat_Raw: objc.int32_t = 0;
+pub const PDFDataFormat_JPEGEncoded: objc.int32_t = 1;
+pub const PDFDataFormat_JPEG2000: objc.int32_t = 2;
 
 extern "CoreGraphics" fn CGPDFStreamGetDictionary(stream: PDFStreamRef) callconv(.C) PDFDictionaryRef;
 pub const pdfStreamGetDictionary = CGPDFStreamGetDictionary;
@@ -1229,7 +1175,7 @@ pub const pdfStreamCopyData = CGPDFStreamCopyData;
 
 pub const PDFString = extern struct {};
 
-pub const PDFStringRef = ?*PDFString;
+pub const PDFStringRef = PDFString;
 
 extern "CoreGraphics" fn CGPDFStringGetLength(string: PDFStringRef) callconv(.C) objc.size_t;
 pub const pdfStringGetLength = CGPDFStringGetLength;
@@ -1321,13 +1267,12 @@ pub const PDFDictionaryApplierBlock = *const fn (?*i8, PDFObjectRef, ?*anyopaque
 extern "CoreGraphics" fn CGPDFDictionaryApplyBlock(dict: PDFDictionaryRef, block: PDFDictionaryApplierBlock, info: ?*anyopaque) callconv(.C) void;
 pub const pdfDictionaryApplyBlock = CGPDFDictionaryApplyBlock;
 
-pub const PDFBox = enum(objc.int32_t) {
-    MediaBox = 0,
-    CropBox = 1,
-    BleedBox = 2,
-    TrimBox = 3,
-    ArtBox = 4,
-};
+pub const PDFBox = objc.int32_t;
+pub const PDFBox_MediaBox: objc.int32_t = 0;
+pub const PDFBox_CropBox: objc.int32_t = 1;
+pub const PDFBox_BleedBox: objc.int32_t = 2;
+pub const PDFBox_TrimBox: objc.int32_t = 3;
+pub const PDFBox_ArtBox: objc.int32_t = 4;
 
 extern "CoreGraphics" fn CGPDFPageRetain(page: PDFPageRef) callconv(.C) PDFPageRef;
 pub const pdfPageRetain = CGPDFPageRetain;
@@ -1362,16 +1307,15 @@ pub const pdfPageGetDictionary = CGPDFPageGetDictionary;
 extern "CoreGraphics" fn CGPDFPageGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const pdfPageGetTypeID = CGPDFPageGetTypeID;
 
-pub const PDFAccessPermissions = enum(objc.uint32_t) {
-    AllowsLowQualityPrinting = 1,
-    AllowsHighQualityPrinting = 2,
-    AllowsDocumentChanges = 4,
-    AllowsDocumentAssembly = 8,
-    AllowsContentCopying = 16,
-    AllowsContentAccessibility = 32,
-    AllowsCommenting = 64,
-    AllowsFormFieldEntry = 128,
-};
+pub const PDFAccessPermissions = objc.uint32_t;
+pub const PDFAccessPermissions_AllowsLowQualityPrinting: objc.uint32_t = 1;
+pub const PDFAccessPermissions_AllowsHighQualityPrinting: objc.uint32_t = 2;
+pub const PDFAccessPermissions_AllowsDocumentChanges: objc.uint32_t = 4;
+pub const PDFAccessPermissions_AllowsDocumentAssembly: objc.uint32_t = 8;
+pub const PDFAccessPermissions_AllowsContentCopying: objc.uint32_t = 16;
+pub const PDFAccessPermissions_AllowsContentAccessibility: objc.uint32_t = 32;
+pub const PDFAccessPermissions_AllowsCommenting: objc.uint32_t = 64;
+pub const PDFAccessPermissions_AllowsFormFieldEntry: objc.uint32_t = 128;
 
 extern "CoreGraphics" fn CGPDFDocumentCreateWithProvider(provider: DataProviderRef) callconv(.C) PDFDocumentRef;
 pub const pdfDocumentCreateWithProvider = CGPDFDocumentCreateWithProvider;
@@ -1447,11 +1391,11 @@ pub const pdfDocumentGetRotationAngle = CGPDFDocumentGetRotationAngle;
 
 pub const Shading = extern struct {};
 
-pub const ShadingRef = ?*Shading;
+pub const ShadingRef = Shading;
 
 pub const Function = extern struct {};
 
-pub const FunctionRef = ?*Function;
+pub const FunctionRef = Function;
 
 pub const FunctionEvaluateCallback = ?*const fn (?*anyopaque, ?*core_foundation.CGFloat, ?*core_foundation.CGFloat) callconv(.C) void;
 
@@ -1513,68 +1457,63 @@ pub const shadingRetain = CGShadingRetain;
 extern "CoreGraphics" fn CGShadingRelease(shading: ShadingRef) callconv(.C) void;
 pub const shadingRelease = CGShadingRelease;
 
-pub const PathDrawingMode = enum(objc.int32_t) {
-    Fill = 0,
-    EOFill = 1,
-    Stroke = 2,
-    FillStroke = 3,
-    EOFillStroke = 4,
-};
+pub const PathDrawingMode = objc.int32_t;
+pub const PathDrawingMode_Fill: objc.int32_t = 0;
+pub const PathDrawingMode_EOFill: objc.int32_t = 1;
+pub const PathDrawingMode_Stroke: objc.int32_t = 2;
+pub const PathDrawingMode_FillStroke: objc.int32_t = 3;
+pub const PathDrawingMode_EOFillStroke: objc.int32_t = 4;
 
-pub const TextDrawingMode = enum(objc.int32_t) {
-    Fill = 0,
-    Stroke = 1,
-    FillStroke = 2,
-    Invisible = 3,
-    FillClip = 4,
-    StrokeClip = 5,
-    FillStrokeClip = 6,
-    Clip = 7,
-};
+pub const TextDrawingMode = objc.int32_t;
+pub const TextDrawingMode_Fill: objc.int32_t = 0;
+pub const TextDrawingMode_Stroke: objc.int32_t = 1;
+pub const TextDrawingMode_FillStroke: objc.int32_t = 2;
+pub const TextDrawingMode_Invisible: objc.int32_t = 3;
+pub const TextDrawingMode_FillClip: objc.int32_t = 4;
+pub const TextDrawingMode_StrokeClip: objc.int32_t = 5;
+pub const TextDrawingMode_FillStrokeClip: objc.int32_t = 6;
+pub const TextDrawingMode_Clip: objc.int32_t = 7;
 
-pub const TextEncoding = enum(objc.int32_t) {
-    EncodingFontSpecific = 0,
-    EncodingMacRoman = 1,
-};
+pub const TextEncoding = objc.int32_t;
+pub const TextEncoding_EncodingFontSpecific: objc.int32_t = 0;
+pub const TextEncoding_EncodingMacRoman: objc.int32_t = 1;
 
-pub const InterpolationQuality = enum(objc.int32_t) {
-    Default = 0,
-    None = 1,
-    Low = 2,
-    Medium = 4,
-    High = 3,
-};
+pub const InterpolationQuality = objc.int32_t;
+pub const InterpolationQuality_Default: objc.int32_t = 0;
+pub const InterpolationQuality_None: objc.int32_t = 1;
+pub const InterpolationQuality_Low: objc.int32_t = 2;
+pub const InterpolationQuality_Medium: objc.int32_t = 4;
+pub const InterpolationQuality_High: objc.int32_t = 3;
 
-pub const BlendMode = enum(objc.int32_t) {
-    Normal = 0,
-    Multiply = 1,
-    Screen = 2,
-    Overlay = 3,
-    Darken = 4,
-    Lighten = 5,
-    ColorDodge = 6,
-    ColorBurn = 7,
-    SoftLight = 8,
-    HardLight = 9,
-    Difference = 10,
-    Exclusion = 11,
-    Hue = 12,
-    Saturation = 13,
-    Color = 14,
-    Luminosity = 15,
-    Clear = 16,
-    Copy = 17,
-    SourceIn = 18,
-    SourceOut = 19,
-    SourceAtop = 20,
-    DestinationOver = 21,
-    DestinationIn = 22,
-    DestinationOut = 23,
-    DestinationAtop = 24,
-    XOR = 25,
-    PlusDarker = 26,
-    PlusLighter = 27,
-};
+pub const BlendMode = objc.int32_t;
+pub const BlendMode_Normal: objc.int32_t = 0;
+pub const BlendMode_Multiply: objc.int32_t = 1;
+pub const BlendMode_Screen: objc.int32_t = 2;
+pub const BlendMode_Overlay: objc.int32_t = 3;
+pub const BlendMode_Darken: objc.int32_t = 4;
+pub const BlendMode_Lighten: objc.int32_t = 5;
+pub const BlendMode_ColorDodge: objc.int32_t = 6;
+pub const BlendMode_ColorBurn: objc.int32_t = 7;
+pub const BlendMode_SoftLight: objc.int32_t = 8;
+pub const BlendMode_HardLight: objc.int32_t = 9;
+pub const BlendMode_Difference: objc.int32_t = 10;
+pub const BlendMode_Exclusion: objc.int32_t = 11;
+pub const BlendMode_Hue: objc.int32_t = 12;
+pub const BlendMode_Saturation: objc.int32_t = 13;
+pub const BlendMode_Color: objc.int32_t = 14;
+pub const BlendMode_Luminosity: objc.int32_t = 15;
+pub const BlendMode_Clear: objc.int32_t = 16;
+pub const BlendMode_Copy: objc.int32_t = 17;
+pub const BlendMode_SourceIn: objc.int32_t = 18;
+pub const BlendMode_SourceOut: objc.int32_t = 19;
+pub const BlendMode_SourceAtop: objc.int32_t = 20;
+pub const BlendMode_DestinationOver: objc.int32_t = 21;
+pub const BlendMode_DestinationIn: objc.int32_t = 22;
+pub const BlendMode_DestinationOut: objc.int32_t = 23;
+pub const BlendMode_DestinationAtop: objc.int32_t = 24;
+pub const BlendMode_XOR: objc.int32_t = 25;
+pub const BlendMode_PlusDarker: objc.int32_t = 26;
+pub const BlendMode_PlusLighter: objc.int32_t = 27;
 
 extern "CoreGraphics" fn CGContextGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const contextGetTypeID = CGContextGetTypeID;
@@ -1858,14 +1797,13 @@ pub const contextDrawImage = CGContextDrawImage;
 extern "CoreGraphics" fn CGContextDrawTiledImage(c: ContextRef, rect: core_foundation.CGRect, image: ImageRef) callconv(.C) void;
 pub const contextDrawTiledImage = CGContextDrawTiledImage;
 
-pub const ToneMapping = enum(objc.uint32_t) {
-    Default = 0,
-    ImageSpecificLumaScaling = 1,
-    ReferenceWhiteBased = 2,
-    ITURecommended = 3,
-    EXRGamma = 4,
-    None = 5,
-};
+pub const ToneMapping = objc.uint32_t;
+pub const ToneMapping_Default: objc.uint32_t = 0;
+pub const ToneMapping_ImageSpecificLumaScaling: objc.uint32_t = 1;
+pub const ToneMapping_ReferenceWhiteBased: objc.uint32_t = 2;
+pub const ToneMapping_ITURecommended: objc.uint32_t = 3;
+pub const ToneMapping_EXRGamma: objc.uint32_t = 4;
+pub const ToneMapping_None: objc.uint32_t = 5;
 
 extern "CoreGraphics" fn CGContextDrawImageApplyingToneMapping() callconv(.C) i32;
 pub const contextDrawImageApplyingToneMapping = CGContextDrawImageApplyingToneMapping;
@@ -2131,16 +2069,15 @@ pub const bitmapContextCreateImage = CGBitmapContextCreateImage;
 
 pub const ColorConversionInfo = extern struct {};
 
-pub const ColorConversionInfoRef = ?*ColorConversionInfo;
+pub const ColorConversionInfoRef = ColorConversionInfo;
 
 extern "CoreGraphics" fn CGColorConversionInfoGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const colorConversionInfoGetTypeID = CGColorConversionInfoGetTypeID;
 
-pub const ColorConversionInfoTransformType = enum(objc.uint32_t) {
-    TransformFromSpace = 0,
-    TransformToSpace = 1,
-    TransformApplySpace = 2,
-};
+pub const ColorConversionInfoTransformType = objc.uint32_t;
+pub const ColorConversionInfoTransformType_TransformFromSpace: objc.uint32_t = 0;
+pub const ColorConversionInfoTransformType_TransformToSpace: objc.uint32_t = 1;
+pub const ColorConversionInfoTransformType_TransformApplySpace: objc.uint32_t = 2;
 
 extern "CoreGraphics" fn CGColorConversionInfoCreate(src: ColorSpaceRef, dst: ColorSpaceRef) callconv(.C) ColorConversionInfoRef;
 pub const colorConversionInfoCreate = CGColorConversionInfoCreate;
@@ -2180,9 +2117,9 @@ pub const convertColorDataWithFormat = CGConvertColorDataWithFormat;
 
 pub const DataConsumer = extern struct {};
 
-pub const DataConsumerRef = ?*DataConsumer;
+pub const DataConsumerRef = DataConsumer;
 
-pub const DataConsumerPutBytesCallback = ?*const fn (?*anyopaque, ?*anyopaque, objc.size_t) callconv(.C) objc.size_t;
+pub const DataConsumerPutBytesCallback = objc.size_t;
 
 pub const DataConsumerReleaseInfoCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 
@@ -2209,19 +2146,18 @@ pub const dataConsumerRetain = CGDataConsumerRetain;
 extern "CoreGraphics" fn CGDataConsumerRelease(consumer: DataConsumerRef) callconv(.C) void;
 pub const dataConsumerRelease = CGDataConsumerRelease;
 
-pub const Error = enum(objc.int32_t) {
-    Success = 0,
-    Failure = 1000,
-    IllegalArgument = 1001,
-    InvalidConnection = 1002,
-    InvalidContext = 1003,
-    CannotComplete = 1004,
-    NotImplemented = 1006,
-    RangeCheck = 1007,
-    TypeCheck = 1008,
-    InvalidOperation = 1010,
-    NoneAvailable = 1011,
-};
+pub const Error = objc.int32_t;
+pub const Error_Success: objc.int32_t = 0;
+pub const Error_Failure: objc.int32_t = 1000;
+pub const Error_IllegalArgument: objc.int32_t = 1001;
+pub const Error_InvalidConnection: objc.int32_t = 1002;
+pub const Error_InvalidContext: objc.int32_t = 1003;
+pub const Error_CannotComplete: objc.int32_t = 1004;
+pub const Error_NotImplemented: objc.int32_t = 1006;
+pub const Error_RangeCheck: objc.int32_t = 1007;
+pub const Error_TypeCheck: objc.int32_t = 1008;
+pub const Error_InvalidOperation: objc.int32_t = 1010;
+pub const Error_NoneAvailable: objc.int32_t = 1011;
 
 pub const ErrorCallback = ?*const fn () callconv(.C) void;
 
@@ -2230,7 +2166,7 @@ pub const errorSetCallback = CGErrorSetCallback;
 
 pub const Layer = extern struct {};
 
-pub const LayerRef = ?*Layer;
+pub const LayerRef = Layer;
 
 extern "CoreGraphics" fn CGLayerCreateWithContext(context: ContextRef, size: core_foundation.CGSize, auxiliaryInfo: core_foundation.DictionaryRef) callconv(.C) LayerRef;
 pub const layerCreateWithContext = CGLayerCreateWithContext;
@@ -2258,7 +2194,7 @@ pub const layerGetTypeID = CGLayerGetTypeID;
 
 pub const PDFContentStream = extern struct {};
 
-pub const PDFContentStreamRef = ?*PDFContentStream;
+pub const PDFContentStreamRef = PDFContentStream;
 
 extern "CoreGraphics" fn CGPDFContentStreamCreateWithPage(page: PDFPageRef) callconv(.C) PDFContentStreamRef;
 pub const pdfContentStreamCreateWithPage = CGPDFContentStreamCreateWithPage;
@@ -2317,58 +2253,57 @@ pub const pdfContextSetDestinationForRect = CGPDFContextSetDestinationForRect;
 extern "CoreGraphics" fn CGPDFContextSetOutline(context: ContextRef, outline: core_foundation.DictionaryRef) callconv(.C) void;
 pub const pdfContextSetOutline = CGPDFContextSetOutline;
 
-pub const PDFTagType = enum(objc.int32_t) {
-    Document = 100,
-    Part = 101,
-    Art = 102,
-    Section = 103,
-    Div = 104,
-    BlockQuote = 105,
-    Caption = 106,
-    TOC = 107,
-    TOCI = 108,
-    Index = 109,
-    NonStructure = 110,
-    Private = 111,
-    Paragraph = 200,
-    Header = 201,
-    Header1 = 202,
-    Header2 = 203,
-    Header3 = 204,
-    Header4 = 205,
-    Header5 = 206,
-    Header6 = 207,
-    List = 300,
-    ListItem = 301,
-    Label = 302,
-    ListBody = 303,
-    Table = 400,
-    TableRow = 401,
-    TableHeaderCell = 402,
-    TableDataCell = 403,
-    TableHeader = 404,
-    TableBody = 405,
-    TableFooter = 406,
-    Span = 500,
-    Quote = 501,
-    Note = 502,
-    Reference = 503,
-    Bibliography = 504,
-    Code = 505,
-    Link = 506,
-    Annotation = 507,
-    Ruby = 600,
-    RubyBaseText = 601,
-    RubyAnnotationText = 602,
-    RubyPunctuation = 603,
-    Warichu = 604,
-    WarichuText = 605,
-    WarichuPunctiation = 606,
-    Figure = 700,
-    Formula = 701,
-    Form = 702,
-    Object = 800,
-};
+pub const PDFTagType = objc.int32_t;
+pub const PDFTagType_Document: objc.int32_t = 100;
+pub const PDFTagType_Part: objc.int32_t = 101;
+pub const PDFTagType_Art: objc.int32_t = 102;
+pub const PDFTagType_Section: objc.int32_t = 103;
+pub const PDFTagType_Div: objc.int32_t = 104;
+pub const PDFTagType_BlockQuote: objc.int32_t = 105;
+pub const PDFTagType_Caption: objc.int32_t = 106;
+pub const PDFTagType_TOC: objc.int32_t = 107;
+pub const PDFTagType_TOCI: objc.int32_t = 108;
+pub const PDFTagType_Index: objc.int32_t = 109;
+pub const PDFTagType_NonStructure: objc.int32_t = 110;
+pub const PDFTagType_Private: objc.int32_t = 111;
+pub const PDFTagType_Paragraph: objc.int32_t = 200;
+pub const PDFTagType_Header: objc.int32_t = 201;
+pub const PDFTagType_Header1: objc.int32_t = 202;
+pub const PDFTagType_Header2: objc.int32_t = 203;
+pub const PDFTagType_Header3: objc.int32_t = 204;
+pub const PDFTagType_Header4: objc.int32_t = 205;
+pub const PDFTagType_Header5: objc.int32_t = 206;
+pub const PDFTagType_Header6: objc.int32_t = 207;
+pub const PDFTagType_List: objc.int32_t = 300;
+pub const PDFTagType_ListItem: objc.int32_t = 301;
+pub const PDFTagType_Label: objc.int32_t = 302;
+pub const PDFTagType_ListBody: objc.int32_t = 303;
+pub const PDFTagType_Table: objc.int32_t = 400;
+pub const PDFTagType_TableRow: objc.int32_t = 401;
+pub const PDFTagType_TableHeaderCell: objc.int32_t = 402;
+pub const PDFTagType_TableDataCell: objc.int32_t = 403;
+pub const PDFTagType_TableHeader: objc.int32_t = 404;
+pub const PDFTagType_TableBody: objc.int32_t = 405;
+pub const PDFTagType_TableFooter: objc.int32_t = 406;
+pub const PDFTagType_Span: objc.int32_t = 500;
+pub const PDFTagType_Quote: objc.int32_t = 501;
+pub const PDFTagType_Note: objc.int32_t = 502;
+pub const PDFTagType_Reference: objc.int32_t = 503;
+pub const PDFTagType_Bibliography: objc.int32_t = 504;
+pub const PDFTagType_Code: objc.int32_t = 505;
+pub const PDFTagType_Link: objc.int32_t = 506;
+pub const PDFTagType_Annotation: objc.int32_t = 507;
+pub const PDFTagType_Ruby: objc.int32_t = 600;
+pub const PDFTagType_RubyBaseText: objc.int32_t = 601;
+pub const PDFTagType_RubyAnnotationText: objc.int32_t = 602;
+pub const PDFTagType_RubyPunctuation: objc.int32_t = 603;
+pub const PDFTagType_Warichu: objc.int32_t = 604;
+pub const PDFTagType_WarichuText: objc.int32_t = 605;
+pub const PDFTagType_WarichuPunctiation: objc.int32_t = 606;
+pub const PDFTagType_Figure: objc.int32_t = 700;
+pub const PDFTagType_Formula: objc.int32_t = 701;
+pub const PDFTagType_Form: objc.int32_t = 702;
+pub const PDFTagType_Object: objc.int32_t = 800;
 
 extern "CoreGraphics" fn CGPDFTagTypeGetName(tagType: PDFTagType) callconv(.C) ?*i8;
 pub const pdfTagTypeGetName = CGPDFTagTypeGetName;
@@ -2383,11 +2318,11 @@ pub const pdfContextEndTag = CGPDFContextEndTag;
 
 pub const PDFOperatorTable = extern struct {};
 
-pub const PDFOperatorTableRef = ?*PDFOperatorTable;
+pub const PDFOperatorTableRef = PDFOperatorTable;
 
 pub const PDFScanner = extern struct {};
 
-pub const PDFScannerRef = ?*PDFScanner;
+pub const PDFScannerRef = PDFScanner;
 
 extern "CoreGraphics" fn CGPDFScannerCreate(cs: PDFContentStreamRef, table: PDFOperatorTableRef, info: ?*anyopaque) callconv(.C) PDFScannerRef;
 pub const pdfScannerCreate = CGPDFScannerCreate;
@@ -2450,26 +2385,23 @@ pub const pdfOperatorTableSetCallback = CGPDFOperatorTableSetCallback;
 
 pub const WindowID = objc.uint32_t;
 
-pub const WindowSharingType = enum(objc.uint32_t) {
-    None = 0,
-    ReadOnly = 1,
-    ReadWrite = 2,
-};
+pub const WindowSharingType = objc.uint32_t;
+pub const WindowSharingType_None: objc.uint32_t = 0;
+pub const WindowSharingType_ReadOnly: objc.uint32_t = 1;
+pub const WindowSharingType_ReadWrite: objc.uint32_t = 2;
 
-pub const WindowBackingType = enum(objc.uint32_t) {
-    BackingStoreRetained = 0,
-    BackingStoreNonretained = 1,
-    BackingStoreBuffered = 2,
-};
+pub const WindowBackingType = objc.uint32_t;
+pub const WindowBackingType_BackingStoreRetained: objc.uint32_t = 0;
+pub const WindowBackingType_BackingStoreNonretained: objc.uint32_t = 1;
+pub const WindowBackingType_BackingStoreBuffered: objc.uint32_t = 2;
 
-pub const WindowListOption = enum(objc.uint32_t) {
-    All = 0,
-    OnScreenOnly = 1,
-    OnScreenAboveWindow = 2,
-    OnScreenBelowWindow = 4,
-    IncludingWindow = 8,
-    ExcludeDesktopElements = 16,
-};
+pub const WindowListOption = objc.uint32_t;
+pub const WindowListOption_All: objc.uint32_t = 0;
+pub const WindowListOption_OnScreenOnly: objc.uint32_t = 1;
+pub const WindowListOption_OnScreenAboveWindow: objc.uint32_t = 2;
+pub const WindowListOption_OnScreenBelowWindow: objc.uint32_t = 4;
+pub const WindowListOption_IncludingWindow: objc.uint32_t = 8;
+pub const WindowListOption_ExcludeDesktopElements: objc.uint32_t = 16;
 
 extern "CoreGraphics" fn CGWindowListCopyWindowInfo(option: WindowListOption, relativeToWindow: WindowID) callconv(.C) core_foundation.ArrayRef;
 pub const windowListCopyWindowInfo = CGWindowListCopyWindowInfo;
@@ -2480,14 +2412,13 @@ pub const windowListCreate = CGWindowListCreate;
 extern "CoreGraphics" fn CGWindowListCreateDescriptionFromArray(windowArray: core_foundation.ArrayRef) callconv(.C) core_foundation.ArrayRef;
 pub const windowListCreateDescriptionFromArray = CGWindowListCreateDescriptionFromArray;
 
-pub const WindowImageOption = enum(objc.uint32_t) {
-    Default = 0,
-    BoundsIgnoreFraming = 1,
-    ShouldBeOpaque = 2,
-    OnlyShadows = 4,
-    BestResolution = 8,
-    NominalResolution = 16,
-};
+pub const WindowImageOption = objc.uint32_t;
+pub const WindowImageOption_Default: objc.uint32_t = 0;
+pub const WindowImageOption_BoundsIgnoreFraming: objc.uint32_t = 1;
+pub const WindowImageOption_ShouldBeOpaque: objc.uint32_t = 2;
+pub const WindowImageOption_OnlyShadows: objc.uint32_t = 4;
+pub const WindowImageOption_BestResolution: objc.uint32_t = 8;
+pub const WindowImageOption_NominalResolution: objc.uint32_t = 16;
 
 extern "CoreGraphics" fn CGWindowListCreateImage(
     screenBounds: core_foundation.CGRect,
@@ -2506,30 +2437,29 @@ pub const preflightScreenCaptureAccess = CGPreflightScreenCaptureAccess;
 extern "CoreGraphics" fn CGRequestScreenCaptureAccess() callconv(.C) i32;
 pub const requestScreenCaptureAccess = CGRequestScreenCaptureAccess;
 
-pub const WindowLevelKey = enum(objc.int32_t) {
-    BaseWindowLevelKey = 0,
-    MinimumWindowLevelKey = 1,
-    DesktopWindowLevelKey = 2,
-    BackstopMenuLevelKey = 3,
-    NormalWindowLevelKey = 4,
-    FloatingWindowLevelKey = 5,
-    TornOffMenuWindowLevelKey = 6,
-    DockWindowLevelKey = 7,
-    MainMenuWindowLevelKey = 8,
-    StatusWindowLevelKey = 9,
-    ModalPanelWindowLevelKey = 10,
-    PopUpMenuWindowLevelKey = 11,
-    DraggingWindowLevelKey = 12,
-    ScreenSaverWindowLevelKey = 13,
-    MaximumWindowLevelKey = 14,
-    OverlayWindowLevelKey = 15,
-    HelpWindowLevelKey = 16,
-    UtilityWindowLevelKey = 17,
-    DesktopIconWindowLevelKey = 18,
-    CursorWindowLevelKey = 19,
-    AssistiveTechHighWindowLevelKey = 20,
-    NumberOfWindowLevelKeys = 21,
-};
+pub const WindowLevelKey = objc.int32_t;
+pub const WindowLevelKey_BaseWindowLevelKey: objc.int32_t = 0;
+pub const WindowLevelKey_MinimumWindowLevelKey: objc.int32_t = 1;
+pub const WindowLevelKey_DesktopWindowLevelKey: objc.int32_t = 2;
+pub const WindowLevelKey_BackstopMenuLevelKey: objc.int32_t = 3;
+pub const WindowLevelKey_NormalWindowLevelKey: objc.int32_t = 4;
+pub const WindowLevelKey_FloatingWindowLevelKey: objc.int32_t = 5;
+pub const WindowLevelKey_TornOffMenuWindowLevelKey: objc.int32_t = 6;
+pub const WindowLevelKey_DockWindowLevelKey: objc.int32_t = 7;
+pub const WindowLevelKey_MainMenuWindowLevelKey: objc.int32_t = 8;
+pub const WindowLevelKey_StatusWindowLevelKey: objc.int32_t = 9;
+pub const WindowLevelKey_ModalPanelWindowLevelKey: objc.int32_t = 10;
+pub const WindowLevelKey_PopUpMenuWindowLevelKey: objc.int32_t = 11;
+pub const WindowLevelKey_DraggingWindowLevelKey: objc.int32_t = 12;
+pub const WindowLevelKey_ScreenSaverWindowLevelKey: objc.int32_t = 13;
+pub const WindowLevelKey_MaximumWindowLevelKey: objc.int32_t = 14;
+pub const WindowLevelKey_OverlayWindowLevelKey: objc.int32_t = 15;
+pub const WindowLevelKey_HelpWindowLevelKey: objc.int32_t = 16;
+pub const WindowLevelKey_UtilityWindowLevelKey: objc.int32_t = 17;
+pub const WindowLevelKey_DesktopIconWindowLevelKey: objc.int32_t = 18;
+pub const WindowLevelKey_CursorWindowLevelKey: objc.int32_t = 19;
+pub const WindowLevelKey_AssistiveTechHighWindowLevelKey: objc.int32_t = 20;
+pub const WindowLevelKey_NumberOfWindowLevelKeys: objc.int32_t = 21;
 
 pub const WindowLevel = objc.int32_t;
 
@@ -2544,7 +2474,7 @@ pub const RefreshRate = f64;
 
 pub const DisplayMode = extern struct {};
 
-pub const DisplayModeRef = ?*DisplayMode;
+pub const DisplayModeRef = DisplayMode;
 
 extern "CoreGraphics" fn CGMainDisplayID() callconv(.C) DirectDisplayID;
 pub const mainDisplayID = CGMainDisplayID;
@@ -2703,10 +2633,9 @@ pub const setDisplayTransferByByteTable = CGSetDisplayTransferByByteTable;
 extern "CoreGraphics" fn CGDisplayRestoreColorSyncSettings() callconv(.C) void;
 pub const displayRestoreColorSyncSettings = CGDisplayRestoreColorSyncSettings;
 
-pub const CaptureOptions = enum(objc.uint32_t) {
-    NoOptions = 0,
-    NoFill = 1,
-};
+pub const CaptureOptions = objc.uint32_t;
+pub const CaptureOptions_NoOptions: objc.uint32_t = 0;
+pub const CaptureOptions_NoFill: objc.uint32_t = 1;
 
 extern "CoreGraphics" fn CGDisplayIsCaptured(display: DirectDisplayID) callconv(.C) objc.boolean_t;
 pub const displayIsCaptured = CGDisplayIsCaptured;
@@ -2796,7 +2725,7 @@ pub const DeviceColor = extern struct {
 
 pub const _CGDisplayConfigRef = extern struct {};
 
-pub const DisplayConfigRef = ?*_CGDisplayConfigRef;
+pub const DisplayConfigRef = _CGDisplayConfigRef;
 
 extern "CoreGraphics" fn CGBeginDisplayConfiguration(config: ?*DisplayConfigRef) callconv(.C) Error;
 pub const beginDisplayConfiguration = CGBeginDisplayConfiguration;
@@ -2831,11 +2760,10 @@ pub const configureDisplayMirrorOfDisplay = CGConfigureDisplayMirrorOfDisplay;
 extern "CoreGraphics" fn CGCancelDisplayConfiguration(config: DisplayConfigRef) callconv(.C) Error;
 pub const cancelDisplayConfiguration = CGCancelDisplayConfiguration;
 
-pub const ConfigureOption = enum(objc.uint32_t) {
-    ForAppOnly = 0,
-    ForSession = 1,
-    Permanently = 2,
-};
+pub const ConfigureOption = objc.uint32_t;
+pub const ConfigureOption_ForAppOnly: objc.uint32_t = 0;
+pub const ConfigureOption_ForSession: objc.uint32_t = 1;
+pub const ConfigureOption_Permanently: objc.uint32_t = 2;
 
 extern "CoreGraphics" fn CGCompleteDisplayConfiguration(config: DisplayConfigRef, option: ConfigureOption) callconv(.C) Error;
 pub const completeDisplayConfiguration = CGCompleteDisplayConfiguration;
@@ -2843,19 +2771,18 @@ pub const completeDisplayConfiguration = CGCompleteDisplayConfiguration;
 extern "CoreGraphics" fn CGRestorePermanentDisplayConfiguration() callconv(.C) void;
 pub const restorePermanentDisplayConfiguration = CGRestorePermanentDisplayConfiguration;
 
-pub const DisplayChangeSummaryFlags = enum(objc.uint32_t) {
-    BeginConfigurationFlag = 1,
-    MovedFlag = 2,
-    SetMainFlag = 4,
-    SetModeFlag = 8,
-    AddFlag = 16,
-    RemoveFlag = 32,
-    EnabledFlag = 256,
-    DisabledFlag = 512,
-    MirrorFlag = 1024,
-    UnMirrorFlag = 2048,
-    DesktopShapeChangedFlag = 4096,
-};
+pub const DisplayChangeSummaryFlags = objc.uint32_t;
+pub const DisplayChangeSummaryFlags_BeginConfigurationFlag: objc.uint32_t = 1;
+pub const DisplayChangeSummaryFlags_MovedFlag: objc.uint32_t = 2;
+pub const DisplayChangeSummaryFlags_SetMainFlag: objc.uint32_t = 4;
+pub const DisplayChangeSummaryFlags_SetModeFlag: objc.uint32_t = 8;
+pub const DisplayChangeSummaryFlags_AddFlag: objc.uint32_t = 16;
+pub const DisplayChangeSummaryFlags_RemoveFlag: objc.uint32_t = 32;
+pub const DisplayChangeSummaryFlags_EnabledFlag: objc.uint32_t = 256;
+pub const DisplayChangeSummaryFlags_DisabledFlag: objc.uint32_t = 512;
+pub const DisplayChangeSummaryFlags_MirrorFlag: objc.uint32_t = 1024;
+pub const DisplayChangeSummaryFlags_UnMirrorFlag: objc.uint32_t = 2048;
+pub const DisplayChangeSummaryFlags_DesktopShapeChangedFlag: objc.uint32_t = 4096;
 
 pub const DisplayReconfigurationCallBack = ?*const fn (DirectDisplayID, DisplayChangeSummaryFlags, ?*anyopaque) callconv(.C) void;
 
@@ -2977,25 +2904,23 @@ pub const displayFadeOperationInProgress = CGDisplayFadeOperationInProgress;
 
 pub const DisplayStream = extern struct {};
 
-pub const DisplayStreamRef = ?*DisplayStream;
+pub const DisplayStreamRef = DisplayStream;
 
 pub const DisplayStreamUpdate = extern struct {};
 
-pub const DisplayStreamUpdateRef = ?*DisplayStreamUpdate;
+pub const DisplayStreamUpdateRef = DisplayStreamUpdate;
 
-pub const DisplayStreamUpdateRectType = enum(objc.int32_t) {
-    RefreshedRects = 0,
-    MovedRects = 1,
-    DirtyRects = 2,
-    ReducedDirtyRects = 3,
-};
+pub const DisplayStreamUpdateRectType = objc.int32_t;
+pub const DisplayStreamUpdateRectType_RefreshedRects: objc.int32_t = 0;
+pub const DisplayStreamUpdateRectType_MovedRects: objc.int32_t = 1;
+pub const DisplayStreamUpdateRectType_DirtyRects: objc.int32_t = 2;
+pub const DisplayStreamUpdateRectType_ReducedDirtyRects: objc.int32_t = 3;
 
-pub const DisplayStreamFrameStatus = enum(objc.int32_t) {
-    FrameComplete = 0,
-    FrameIdle = 1,
-    FrameBlank = 2,
-    Stopped = 3,
-};
+pub const DisplayStreamFrameStatus = objc.int32_t;
+pub const DisplayStreamFrameStatus_FrameComplete: objc.int32_t = 0;
+pub const DisplayStreamFrameStatus_FrameIdle: objc.int32_t = 1;
+pub const DisplayStreamFrameStatus_FrameBlank: objc.int32_t = 2;
+pub const DisplayStreamFrameStatus_Stopped: objc.int32_t = 3;
 
 pub const DisplayStreamFrameAvailableHandler = *const fn (
     DisplayStreamFrameStatus,
@@ -3073,11 +2998,10 @@ pub const unregisterScreenRefreshCallback = CGUnregisterScreenRefreshCallback;
 extern "CoreGraphics" fn CGWaitForScreenRefreshRects(rects: ?*?*core_foundation.CGRect, count: ?*objc.uint32_t) callconv(.C) Error;
 pub const waitForScreenRefreshRects = CGWaitForScreenRefreshRects;
 
-pub const ScreenUpdateOperation = enum(objc.uint32_t) {
-    Refresh = 0,
-    Move = 1,
-    ReducedDirtyRectangleCount = -2147483648,
-};
+pub const ScreenUpdateOperation = objc.uint32_t;
+pub const ScreenUpdateOperation_Refresh: objc.uint32_t = 0;
+pub const ScreenUpdateOperation_Move: objc.uint32_t = 1;
+pub const ScreenUpdateOperation_ReducedDirtyRectangleCount: objc.uint32_t = -2147483648;
 
 pub const ScreenUpdateMoveDelta = extern struct {
     dX: objc.int32_t,
@@ -3144,17 +3068,15 @@ pub const postScrollWheelEvent = CGPostScrollWheelEvent;
 extern "CoreGraphics" fn CGPostKeyboardEvent(keyChar: CharCode, virtualKey: KeyCode, keyDown: objc.boolean_t) callconv(.C) Error;
 pub const postKeyboardEvent = CGPostKeyboardEvent;
 
-pub const EventFilterMask = enum(objc.uint32_t) {
-    PermitLocalMouseEvents = 1,
-    PermitLocalKeyboardEvents = 2,
-    PermitSystemDefinedEvents = 4,
-};
+pub const EventFilterMask = objc.uint32_t;
+pub const EventFilterMask_PermitLocalMouseEvents: objc.uint32_t = 1;
+pub const EventFilterMask_PermitLocalKeyboardEvents: objc.uint32_t = 2;
+pub const EventFilterMask_PermitSystemDefinedEvents: objc.uint32_t = 4;
 
-pub const EventSuppressionState = enum(objc.uint32_t) {
-    SuppressionInterval = 0,
-    RemoteMouseDrag = 1,
-    NumberOfEventSuppressionStates = 2,
-};
+pub const EventSuppressionState = objc.uint32_t;
+pub const EventSuppressionState_SuppressionInterval: objc.uint32_t = 0;
+pub const EventSuppressionState_RemoteMouseDrag: objc.uint32_t = 1;
+pub const EventSuppressionState_NumberOfEventSuppressionStates: objc.uint32_t = 2;
 
 extern "CoreGraphics" fn CGSetLocalEventsFilterDuringSuppressionState(filter: EventFilterMask, state: EventSuppressionState) callconv(.C) Error;
 pub const setLocalEventsFilterDuringSuppressionState = CGSetLocalEventsFilterDuringSuppressionState;
@@ -3169,181 +3091,164 @@ pub const RectCount = objc.uint32_t;
 
 pub const __CGEvent = extern struct {};
 
-pub const EventRef = ?*__CGEvent;
+pub const EventRef = __CGEvent;
 
-pub const MouseButton = enum(objc.uint32_t) {
-    Left = 0,
-    Right = 1,
-    Center = 2,
-};
+pub const MouseButton = objc.uint32_t;
+pub const MouseButton_Left: objc.uint32_t = 0;
+pub const MouseButton_Right: objc.uint32_t = 1;
+pub const MouseButton_Center: objc.uint32_t = 2;
 
-pub const ScrollEventUnit = enum(objc.uint32_t) {
-    Pixel = 0,
-    Line = 1,
-};
+pub const ScrollEventUnit = objc.uint32_t;
+pub const ScrollEventUnit_Pixel: objc.uint32_t = 0;
+pub const ScrollEventUnit_Line: objc.uint32_t = 1;
 
-pub const MomentumScrollPhase = enum(objc.uint32_t) {
-    None = 0,
-    Begin = 1,
-    Continue = 2,
-    End = 3,
-};
+pub const MomentumScrollPhase = objc.uint32_t;
+pub const MomentumScrollPhase_None: objc.uint32_t = 0;
+pub const MomentumScrollPhase_Begin: objc.uint32_t = 1;
+pub const MomentumScrollPhase_Continue: objc.uint32_t = 2;
+pub const MomentumScrollPhase_End: objc.uint32_t = 3;
 
-pub const ScrollPhase = enum(objc.uint32_t) {
-    Began = 1,
-    Changed = 2,
-    Ended = 4,
-    Cancelled = 8,
-    MayBegin = 128,
-};
+pub const ScrollPhase = objc.uint32_t;
+pub const ScrollPhase_Began: objc.uint32_t = 1;
+pub const ScrollPhase_Changed: objc.uint32_t = 2;
+pub const ScrollPhase_Ended: objc.uint32_t = 4;
+pub const ScrollPhase_Cancelled: objc.uint32_t = 8;
+pub const ScrollPhase_MayBegin: objc.uint32_t = 128;
 
-pub const GesturePhase = enum(objc.uint32_t) {
-    None = 0,
-    Began = 1,
-    Changed = 2,
-    Ended = 4,
-    Cancelled = 8,
-    MayBegin = 128,
-};
+pub const GesturePhase = objc.uint32_t;
+pub const GesturePhase_None: objc.uint32_t = 0;
+pub const GesturePhase_Began: objc.uint32_t = 1;
+pub const GesturePhase_Changed: objc.uint32_t = 2;
+pub const GesturePhase_Ended: objc.uint32_t = 4;
+pub const GesturePhase_Cancelled: objc.uint32_t = 8;
+pub const GesturePhase_MayBegin: objc.uint32_t = 128;
 
-pub const EventFlags = enum(objc.uint64_t) {
-    MaskAlphaShift = 65536,
-    MaskShift = 131072,
-    MaskControl = 262144,
-    MaskAlternate = 524288,
-    MaskCommand = 1048576,
-    MaskHelp = 4194304,
-    MaskSecondaryFn = 8388608,
-    MaskNumericPad = 2097152,
-    MaskNonCoalesced = 256,
-};
+pub const EventFlags = objc.uint64_t;
+pub const EventFlags_MaskAlphaShift: objc.uint64_t = 65536;
+pub const EventFlags_MaskShift: objc.uint64_t = 131072;
+pub const EventFlags_MaskControl: objc.uint64_t = 262144;
+pub const EventFlags_MaskAlternate: objc.uint64_t = 524288;
+pub const EventFlags_MaskCommand: objc.uint64_t = 1048576;
+pub const EventFlags_MaskHelp: objc.uint64_t = 4194304;
+pub const EventFlags_MaskSecondaryFn: objc.uint64_t = 8388608;
+pub const EventFlags_MaskNumericPad: objc.uint64_t = 2097152;
+pub const EventFlags_MaskNonCoalesced: objc.uint64_t = 256;
 
-pub const EventType = enum(objc.uint32_t) {
-    Null = 0,
-    LeftMouseDown = 1,
-    LeftMouseUp = 2,
-    RightMouseDown = 3,
-    RightMouseUp = 4,
-    MouseMoved = 5,
-    LeftMouseDragged = 6,
-    RightMouseDragged = 7,
-    KeyDown = 10,
-    KeyUp = 11,
-    FlagsChanged = 12,
-    ScrollWheel = 22,
-    TabletPointer = 23,
-    TabletProximity = 24,
-    OtherMouseDown = 25,
-    OtherMouseUp = 26,
-    OtherMouseDragged = 27,
-    TapDisabledByTimeout = -2,
-    TapDisabledByUserInput = -1,
-};
+pub const EventType = objc.uint32_t;
+pub const EventType_Null: objc.uint32_t = 0;
+pub const EventType_LeftMouseDown: objc.uint32_t = 1;
+pub const EventType_LeftMouseUp: objc.uint32_t = 2;
+pub const EventType_RightMouseDown: objc.uint32_t = 3;
+pub const EventType_RightMouseUp: objc.uint32_t = 4;
+pub const EventType_MouseMoved: objc.uint32_t = 5;
+pub const EventType_LeftMouseDragged: objc.uint32_t = 6;
+pub const EventType_RightMouseDragged: objc.uint32_t = 7;
+pub const EventType_KeyDown: objc.uint32_t = 10;
+pub const EventType_KeyUp: objc.uint32_t = 11;
+pub const EventType_FlagsChanged: objc.uint32_t = 12;
+pub const EventType_ScrollWheel: objc.uint32_t = 22;
+pub const EventType_TabletPointer: objc.uint32_t = 23;
+pub const EventType_TabletProximity: objc.uint32_t = 24;
+pub const EventType_OtherMouseDown: objc.uint32_t = 25;
+pub const EventType_OtherMouseUp: objc.uint32_t = 26;
+pub const EventType_OtherMouseDragged: objc.uint32_t = 27;
+pub const EventType_TapDisabledByTimeout: objc.uint32_t = -2;
+pub const EventType_TapDisabledByUserInput: objc.uint32_t = -1;
 
 pub const EventTimestamp = objc.uint64_t;
 
-pub const EventField = enum(objc.uint32_t) {
-    MouseEventNumber = 0,
-    MouseEventClickState = 1,
-    MouseEventPressure = 2,
-    MouseEventButtonNumber = 3,
-    MouseEventDeltaX = 4,
-    MouseEventDeltaY = 5,
-    MouseEventInstantMouser = 6,
-    MouseEventSubtype = 7,
-    KeyboardEventAutorepeat = 8,
-    KeyboardEventKeycode = 9,
-    KeyboardEventKeyboardType = 10,
-    ScrollWheelEventDeltaAxis1 = 11,
-    ScrollWheelEventDeltaAxis2 = 12,
-    ScrollWheelEventDeltaAxis3 = 13,
-    ScrollWheelEventFixedPtDeltaAxis1 = 93,
-    ScrollWheelEventFixedPtDeltaAxis2 = 94,
-    ScrollWheelEventFixedPtDeltaAxis3 = 95,
-    ScrollWheelEventPointDeltaAxis1 = 96,
-    ScrollWheelEventPointDeltaAxis2 = 97,
-    ScrollWheelEventPointDeltaAxis3 = 98,
-    ScrollWheelEventScrollPhase = 99,
-    ScrollWheelEventScrollCount = 100,
-    ScrollWheelEventMomentumPhase = 123,
-    ScrollWheelEventInstantMouser = 14,
-    TabletEventPointX = 15,
-    TabletEventPointY = 16,
-    TabletEventPointZ = 17,
-    TabletEventPointButtons = 18,
-    TabletEventPointPressure = 19,
-    TabletEventTiltX = 20,
-    TabletEventTiltY = 21,
-    TabletEventRotation = 22,
-    TabletEventTangentialPressure = 23,
-    TabletEventDeviceID = 24,
-    TabletEventVendor1 = 25,
-    TabletEventVendor2 = 26,
-    TabletEventVendor3 = 27,
-    TabletProximityEventVendorID = 28,
-    TabletProximityEventTabletID = 29,
-    TabletProximityEventPointerID = 30,
-    TabletProximityEventDeviceID = 31,
-    TabletProximityEventSystemTabletID = 32,
-    TabletProximityEventVendorPointerType = 33,
-    TabletProximityEventVendorPointerSerialNumber = 34,
-    TabletProximityEventVendorUniqueID = 35,
-    TabletProximityEventCapabilityMask = 36,
-    TabletProximityEventPointerType = 37,
-    TabletProximityEventEnterProximity = 38,
-    TargetProcessSerialNumber = 39,
-    TargetUnixProcessID = 40,
-    SourceUnixProcessID = 41,
-    SourceUserData = 42,
-    SourceUserID = 43,
-    SourceGroupID = 44,
-    SourceStateID = 45,
-    ScrollWheelEventIsContinuous = 88,
-    MouseEventWindowUnderMousePointer = 91,
-    MouseEventWindowUnderMousePointerThatCanHandleThisEvent = 92,
-    UnacceleratedPointerMovementX = 170,
-    UnacceleratedPointerMovementY = 171,
-    ScrollWheelEventMomentumOptionPhase = 173,
-    ScrollWheelEventAcceleratedDeltaAxis1 = 176,
-    ScrollWheelEventAcceleratedDeltaAxis2 = 175,
-    ScrollWheelEventRawDeltaAxis1 = 178,
-    ScrollWheelEventRawDeltaAxis2 = 177,
-};
+pub const EventField = objc.uint32_t;
+pub const EventField_MouseEventNumber: objc.uint32_t = 0;
+pub const EventField_MouseEventClickState: objc.uint32_t = 1;
+pub const EventField_MouseEventPressure: objc.uint32_t = 2;
+pub const EventField_MouseEventButtonNumber: objc.uint32_t = 3;
+pub const EventField_MouseEventDeltaX: objc.uint32_t = 4;
+pub const EventField_MouseEventDeltaY: objc.uint32_t = 5;
+pub const EventField_MouseEventInstantMouser: objc.uint32_t = 6;
+pub const EventField_MouseEventSubtype: objc.uint32_t = 7;
+pub const EventField_KeyboardEventAutorepeat: objc.uint32_t = 8;
+pub const EventField_KeyboardEventKeycode: objc.uint32_t = 9;
+pub const EventField_KeyboardEventKeyboardType: objc.uint32_t = 10;
+pub const EventField_ScrollWheelEventDeltaAxis1: objc.uint32_t = 11;
+pub const EventField_ScrollWheelEventDeltaAxis2: objc.uint32_t = 12;
+pub const EventField_ScrollWheelEventDeltaAxis3: objc.uint32_t = 13;
+pub const EventField_ScrollWheelEventFixedPtDeltaAxis1: objc.uint32_t = 93;
+pub const EventField_ScrollWheelEventFixedPtDeltaAxis2: objc.uint32_t = 94;
+pub const EventField_ScrollWheelEventFixedPtDeltaAxis3: objc.uint32_t = 95;
+pub const EventField_ScrollWheelEventPointDeltaAxis1: objc.uint32_t = 96;
+pub const EventField_ScrollWheelEventPointDeltaAxis2: objc.uint32_t = 97;
+pub const EventField_ScrollWheelEventPointDeltaAxis3: objc.uint32_t = 98;
+pub const EventField_ScrollWheelEventScrollPhase: objc.uint32_t = 99;
+pub const EventField_ScrollWheelEventScrollCount: objc.uint32_t = 100;
+pub const EventField_ScrollWheelEventMomentumPhase: objc.uint32_t = 123;
+pub const EventField_ScrollWheelEventInstantMouser: objc.uint32_t = 14;
+pub const EventField_TabletEventPointX: objc.uint32_t = 15;
+pub const EventField_TabletEventPointY: objc.uint32_t = 16;
+pub const EventField_TabletEventPointZ: objc.uint32_t = 17;
+pub const EventField_TabletEventPointButtons: objc.uint32_t = 18;
+pub const EventField_TabletEventPointPressure: objc.uint32_t = 19;
+pub const EventField_TabletEventTiltX: objc.uint32_t = 20;
+pub const EventField_TabletEventTiltY: objc.uint32_t = 21;
+pub const EventField_TabletEventRotation: objc.uint32_t = 22;
+pub const EventField_TabletEventTangentialPressure: objc.uint32_t = 23;
+pub const EventField_TabletEventDeviceID: objc.uint32_t = 24;
+pub const EventField_TabletEventVendor1: objc.uint32_t = 25;
+pub const EventField_TabletEventVendor2: objc.uint32_t = 26;
+pub const EventField_TabletEventVendor3: objc.uint32_t = 27;
+pub const EventField_TabletProximityEventVendorID: objc.uint32_t = 28;
+pub const EventField_TabletProximityEventTabletID: objc.uint32_t = 29;
+pub const EventField_TabletProximityEventPointerID: objc.uint32_t = 30;
+pub const EventField_TabletProximityEventDeviceID: objc.uint32_t = 31;
+pub const EventField_TabletProximityEventSystemTabletID: objc.uint32_t = 32;
+pub const EventField_TabletProximityEventVendorPointerType: objc.uint32_t = 33;
+pub const EventField_TabletProximityEventVendorPointerSerialNumber: objc.uint32_t = 34;
+pub const EventField_TabletProximityEventVendorUniqueID: objc.uint32_t = 35;
+pub const EventField_TabletProximityEventCapabilityMask: objc.uint32_t = 36;
+pub const EventField_TabletProximityEventPointerType: objc.uint32_t = 37;
+pub const EventField_TabletProximityEventEnterProximity: objc.uint32_t = 38;
+pub const EventField_TargetProcessSerialNumber: objc.uint32_t = 39;
+pub const EventField_TargetUnixProcessID: objc.uint32_t = 40;
+pub const EventField_SourceUnixProcessID: objc.uint32_t = 41;
+pub const EventField_SourceUserData: objc.uint32_t = 42;
+pub const EventField_SourceUserID: objc.uint32_t = 43;
+pub const EventField_SourceGroupID: objc.uint32_t = 44;
+pub const EventField_SourceStateID: objc.uint32_t = 45;
+pub const EventField_ScrollWheelEventIsContinuous: objc.uint32_t = 88;
+pub const EventField_MouseEventWindowUnderMousePointer: objc.uint32_t = 91;
+pub const EventField_MouseEventWindowUnderMousePointerThatCanHandleThisEvent: objc.uint32_t = 92;
+pub const EventField_UnacceleratedPointerMovementX: objc.uint32_t = 170;
+pub const EventField_UnacceleratedPointerMovementY: objc.uint32_t = 171;
+pub const EventField_ScrollWheelEventMomentumOptionPhase: objc.uint32_t = 173;
+pub const EventField_ScrollWheelEventAcceleratedDeltaAxis1: objc.uint32_t = 176;
+pub const EventField_ScrollWheelEventAcceleratedDeltaAxis2: objc.uint32_t = 175;
+pub const EventField_ScrollWheelEventRawDeltaAxis1: objc.uint32_t = 178;
+pub const EventField_ScrollWheelEventRawDeltaAxis2: objc.uint32_t = 177;
 
-pub const EventMouseSubtype = enum(objc.uint32_t) {
-    Default = 0,
-    TabletPoint = 1,
-    TabletProximity = 2,
-};
+pub const EventMouseSubtype = objc.uint32_t;
+pub const EventMouseSubtype_Default: objc.uint32_t = 0;
+pub const EventMouseSubtype_TabletPoint: objc.uint32_t = 1;
+pub const EventMouseSubtype_TabletProximity: objc.uint32_t = 2;
 
-pub const EventTapLocation = enum(objc.uint32_t) {
-    HIDEventTap = 0,
-    SessionEventTap = 1,
-    AnnotatedSessionEventTap = 2,
-};
+pub const EventTapLocation = objc.uint32_t;
+pub const EventTapLocation_HIDEventTap: objc.uint32_t = 0;
+pub const EventTapLocation_SessionEventTap: objc.uint32_t = 1;
+pub const EventTapLocation_AnnotatedSessionEventTap: objc.uint32_t = 2;
 
-pub const EventTapPlacement = enum(objc.uint32_t) {
-    HeadInsertEventTap = 0,
-    TailAppendEventTap = 1,
-};
+pub const EventTapPlacement = objc.uint32_t;
+pub const EventTapPlacement_HeadInsertEventTap: objc.uint32_t = 0;
+pub const EventTapPlacement_TailAppendEventTap: objc.uint32_t = 1;
 
-pub const EventTapOptions = enum(objc.uint32_t) {
-    Default = 0,
-    ListenOnly = 1,
-};
+pub const EventTapOptions = objc.uint32_t;
+pub const EventTapOptions_Default: objc.uint32_t = 0;
+pub const EventTapOptions_ListenOnly: objc.uint32_t = 1;
 
 pub const EventMask = objc.uint64_t;
 
 pub const __CGEventTapProxy = extern struct {};
 
-pub const EventTapProxy = ?*__CGEventTapProxy;
+pub const EventTapProxy = __CGEventTapProxy;
 
-pub const EventTapCallBack = ?*const fn (
-    EventTapProxy,
-    EventType,
-    EventRef,
-    ?*anyopaque,
-) callconv(.C) EventRef;
+pub const EventTapCallBack = EventRef;
 
 pub const __CGEventTapInformation = extern struct {
     eventTapID: objc.uint32_t,
@@ -3362,13 +3267,12 @@ pub const EventTapInformation = __CGEventTapInformation;
 
 pub const __CGEventSource = extern struct {};
 
-pub const EventSourceRef = ?*__CGEventSource;
+pub const EventSourceRef = __CGEventSource;
 
-pub const EventSourceStateID = enum(objc.int32_t) {
-    Private = -1,
-    CombinedSessionState = 0,
-    HIDSystemState = 1,
-};
+pub const EventSourceStateID = objc.int32_t;
+pub const EventSourceStateID_Private: objc.int32_t = -1;
+pub const EventSourceStateID_CombinedSessionState: objc.int32_t = 0;
+pub const EventSourceStateID_HIDSystemState: objc.int32_t = 1;
 
 pub const EventSourceKeyboardType = objc.uint32_t;
 
@@ -3591,7 +3495,7 @@ pub const eventSourceGetLocalEventsSuppressionInterval = CGEventSourceGetLocalEv
 
 pub const PSConverter = extern struct {};
 
-pub const PSConverterRef = ?*PSConverter;
+pub const PSConverterRef = PSConverter;
 
 pub const PSConverterBeginDocumentCallback = ?*const fn (?*anyopaque) callconv(.C) void;
 

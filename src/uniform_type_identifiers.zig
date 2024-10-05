@@ -6,16 +6,15 @@ const foundation = @import("foundation.zig"); // Framework dependency Foundation
 
 /// https://developer.apple.com/documentation/UniformTypeIdentifiers/UTType?language=objc
 pub const Type = opaque {
-    pub const InternalInfo = objc.ExternClass("UTType", @This(), objc.NSObject, &.{ foundation.Copying, foundation.SecureCoding });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("UTType", @This(), objc.NSObject, &.{ foundation.Copying, foundation.SecureCoding });
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -23,39 +22,39 @@ pub const Type = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -63,7 +62,7 @@ pub const Type = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -83,20 +82,20 @@ pub const Type = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -107,52 +106,52 @@ pub const Type = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -163,16 +162,16 @@ pub const Type = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -183,28 +182,28 @@ pub const Type = opaque {
         return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
     }
 
-    pub fn supportsSecureCoding(_self: *@This()) objc.BOOL {
-        return objc.msgSend(_self, "supportsSecureCoding", objc.BOOL, .{});
+    pub fn supportsSecureCoding() objc.BOOL {
+        return objc.msgSend(Internal.class(), "supportsSecureCoding", objc.BOOL, .{});
     }
 
-    pub fn typeWithIdentifier(_self: *@This(), _identifier: ?*foundation.String) *@This() {
-        return objc.msgSend(_self, "typeWithIdentifier:", *@This(), .{_identifier});
+    pub fn typeWithIdentifier(_identifier: ?*foundation.String) *@This() {
+        return objc.msgSend(Internal.class(), "typeWithIdentifier:", *@This(), .{_identifier});
     }
 
-    pub fn typeWithFilenameExtension(_self: *@This(), _filenameExtension: ?*foundation.String) *@This() {
-        return objc.msgSend(_self, "typeWithFilenameExtension:", *@This(), .{_filenameExtension});
+    pub fn typeWithFilenameExtension(_filenameExtension: ?*foundation.String) *@This() {
+        return objc.msgSend(Internal.class(), "typeWithFilenameExtension:", *@This(), .{_filenameExtension});
     }
 
-    pub fn typeWithFilenameExtensionConformingToType(_self: *@This(), _filenameExtension: ?*foundation.String, _supertype: ?*Type) *@This() {
-        return objc.msgSend(_self, "typeWithFilenameExtension:conformingToType:", *@This(), .{ _filenameExtension, _supertype });
+    pub fn typeWithFilenameExtensionConformingToType(_filenameExtension: ?*foundation.String, _supertype: ?*Type) *@This() {
+        return objc.msgSend(Internal.class(), "typeWithFilenameExtension:conformingToType:", *@This(), .{ _filenameExtension, _supertype });
     }
 
-    pub fn typeWithMIMEType(_self: *@This(), _mimeType: ?*foundation.String) *@This() {
-        return objc.msgSend(_self, "typeWithMIMEType:", *@This(), .{_mimeType});
+    pub fn typeWithMIMEType(_mimeType: ?*foundation.String) *@This() {
+        return objc.msgSend(Internal.class(), "typeWithMIMEType:", *@This(), .{_mimeType});
     }
 
-    pub fn typeWithMIMETypeConformingToType(_self: *@This(), _mimeType: ?*foundation.String, _supertype: ?*Type) *@This() {
-        return objc.msgSend(_self, "typeWithMIMEType:conformingToType:", *@This(), .{ _mimeType, _supertype });
+    pub fn typeWithMIMETypeConformingToType(_mimeType: ?*foundation.String, _supertype: ?*Type) *@This() {
+        return objc.msgSend(Internal.class(), "typeWithMIMEType:conformingToType:", *@This(), .{ _mimeType, _supertype });
     }
 
     pub fn identifier(_self: *@This()) ?*foundation.String {

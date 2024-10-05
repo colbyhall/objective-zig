@@ -5,25 +5,9 @@ const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 const core_foundation = @import("core_foundation.zig"); // Framework dependency CoreFoundation.
 const io_kit = @import("io_kit.zig"); // Framework dependency IOKit.
 
-pub const anon741 = enum(u32) {
-    DADiskUnmountOptionDefault = 0,
-    DADiskUnmountOptionForce = 524288,
-    DADiskUnmountOptionWhole = 1,
-};
-
-pub const anon461 = enum(u32) {
-    DADiskMountOptionDefault = 0,
-    DADiskMountOptionWhole = 1,
-    DADiskMountOptionNoFollow = 2,
-};
-
-pub const anon881 = enum(u32) {
-    DADiskEjectOptionDefault = 0,
-};
-
 pub const __DASession = extern struct {};
 
-pub const SessionRef = ?*__DASession;
+pub const SessionRef = __DASession;
 
 extern "DiskArbitration" fn DASessionGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const sessionGetTypeID = DASessionGetTypeID;
@@ -40,7 +24,7 @@ pub const sessionUnscheduleFromRunLoop = DASessionUnscheduleFromRunLoop;
 extern "DiskArbitration" fn DASessionSetDispatchQueue(session: SessionRef, queue: objc.dispatch_queue_t) callconv(.C) void;
 pub const sessionSetDispatchQueue = DASessionSetDispatchQueue;
 
-pub const ApprovalSessionRef = ?*__DASession;
+pub const ApprovalSessionRef = __DASession;
 
 extern "DiskArbitration" fn DAApprovalSessionGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const approvalSessionGetTypeID = DAApprovalSessionGetTypeID;
@@ -56,7 +40,7 @@ pub const approvalSessionUnscheduleFromRunLoop = DAApprovalSessionUnscheduleFrom
 
 pub const __DADisk = extern struct {};
 
-pub const DiskRef = ?*__DADisk;
+pub const DiskRef = __DADisk;
 
 extern "DiskArbitration" fn DADiskGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const diskGetTypeID = DADiskGetTypeID;
@@ -82,27 +66,26 @@ pub const diskCopyDescription = DADiskCopyDescription;
 extern "DiskArbitration" fn DADiskCopyWholeDisk(disk: DiskRef) callconv(.C) DiskRef;
 pub const diskCopyWholeDisk = DADiskCopyWholeDisk;
 
-pub const anon441 = enum(i32) {
-    DAReturnSuccess = 0,
-    DAReturnError = -119930879,
-    DAReturnBusy = -119930878,
-    DAReturnBadArgument = -119930877,
-    DAReturnExclusiveAccess = -119930876,
-    DAReturnNoResources = -119930875,
-    DAReturnNotFound = -119930874,
-    DAReturnNotMounted = -119930873,
-    DAReturnNotPermitted = -119930872,
-    DAReturnNotPrivileged = -119930871,
-    DAReturnNotReady = -119930870,
-    DAReturnNotWritable = -119930869,
-    DAReturnUnsupported = -119930868,
-};
+pub const anon441 = i32;
+pub const anon441_DAReturnSuccess: i32 = 0;
+pub const anon441_DAReturnError: i32 = -119930879;
+pub const anon441_DAReturnBusy: i32 = -119930878;
+pub const anon441_DAReturnBadArgument: i32 = -119930877;
+pub const anon441_DAReturnExclusiveAccess: i32 = -119930876;
+pub const anon441_DAReturnNoResources: i32 = -119930875;
+pub const anon441_DAReturnNotFound: i32 = -119930874;
+pub const anon441_DAReturnNotMounted: i32 = -119930873;
+pub const anon441_DAReturnNotPermitted: i32 = -119930872;
+pub const anon441_DAReturnNotPrivileged: i32 = -119930871;
+pub const anon441_DAReturnNotReady: i32 = -119930870;
+pub const anon441_DAReturnNotWritable: i32 = -119930869;
+pub const anon441_DAReturnUnsupported: i32 = -119930868;
 
 pub const Return = objc.mach_error_t;
 
 pub const __DADissenter = extern struct {};
 
-pub const DissenterRef = ?*__DADissenter;
+pub const DissenterRef = __DADissenter;
 
 extern "DiskArbitration" fn DADissenterCreate(allocator: core_foundation.AllocatorRef, status: Return, string: core_foundation.StringRef) callconv(.C) DissenterRef;
 pub const dissenterCreate = DADissenterCreate;
@@ -115,9 +98,8 @@ pub const dissenterGetStatusString = DADissenterGetStatusString;
 
 pub const DiskMountOptions = objc.UInt32;
 
-pub const anon601 = enum(u32) {
-    DADiskRenameOptionDefault = 0,
-};
+pub const anon601 = u32;
+pub const anon601_DADiskRenameOptionDefault: u32 = 0;
 
 pub const DiskRenameOptions = objc.UInt32;
 
@@ -125,15 +107,13 @@ pub const DiskUnmountOptions = objc.UInt32;
 
 pub const DiskEjectOptions = objc.UInt32;
 
-pub const anon1001 = enum(u32) {
-    DADiskClaimOptionDefault = 0,
-};
+pub const anon1001 = u32;
+pub const anon1001_DADiskClaimOptionDefault: u32 = 0;
 
 pub const DiskClaimOptions = objc.UInt32;
 
-pub const anon1121 = enum(u32) {
-    DADiskOptionDefault = 0,
-};
+pub const anon1121 = u32;
+pub const anon1121_DADiskOptionDefault: u32 = 0;
 
 pub const DiskOptions = objc.UInt32;
 
@@ -189,7 +169,7 @@ extern "DiskArbitration" fn DADiskMountWithArguments(
 ) callconv(.C) void;
 pub const diskMountWithArguments = DADiskMountWithArguments;
 
-pub const DiskMountApprovalCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
+pub const DiskMountApprovalCallback = DissenterRef;
 
 extern "DiskArbitration" fn DARegisterDiskMountApprovalCallback(
     session: SessionRef,
@@ -220,7 +200,7 @@ extern "DiskArbitration" fn DADiskUnmount(
 ) callconv(.C) void;
 pub const diskUnmount = DADiskUnmount;
 
-pub const DiskUnmountApprovalCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
+pub const DiskUnmountApprovalCallback = DissenterRef;
 
 extern "DiskArbitration" fn DARegisterDiskUnmountApprovalCallback(
     session: SessionRef,
@@ -240,7 +220,7 @@ extern "DiskArbitration" fn DADiskEject(
 ) callconv(.C) void;
 pub const diskEject = DADiskEject;
 
-pub const DiskEjectApprovalCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
+pub const DiskEjectApprovalCallback = DissenterRef;
 
 extern "DiskArbitration" fn DARegisterDiskEjectApprovalCallback(
     session: SessionRef,
@@ -252,7 +232,7 @@ pub const registerDiskEjectApprovalCallback = DARegisterDiskEjectApprovalCallbac
 
 pub const DiskClaimCallback = ?*const fn (DiskRef, DissenterRef, ?*anyopaque) callconv(.C) void;
 
-pub const DiskClaimReleaseCallback = ?*const fn (DiskRef, ?*anyopaque) callconv(.C) DissenterRef;
+pub const DiskClaimReleaseCallback = DissenterRef;
 
 extern "DiskArbitration" fn DADiskClaim(
     disk: DiskRef,

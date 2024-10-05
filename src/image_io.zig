@@ -7,16 +7,16 @@ const core_graphics = @import("core_graphics.zig"); // Framework dependency Core
 
 pub const Source = extern struct {};
 
-pub const SourceRef = ?*Source;
+pub const SourceRef = Source;
 
 pub const Metadata = extern struct {};
 
-pub const MetadataRef = ?*Metadata;
+pub const MetadataRef = Metadata;
 
 extern "ImageIO" fn CGImageMetadataGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const metadataGetTypeID = CGImageMetadataGetTypeID;
 
-pub const CGMutableImageMetadataRef = ?*Metadata;
+pub const CGMutableImageMetadataRef = Metadata;
 
 extern "ImageIO" fn CGImageMetadataCreateMutable() callconv(.C) CGMutableImageMetadataRef;
 pub const metadataCreateMutable = CGImageMetadataCreateMutable;
@@ -26,21 +26,20 @@ pub const metadataCreateMutableCopy = CGImageMetadataCreateMutableCopy;
 
 pub const MetadataTag = extern struct {};
 
-pub const MetadataTagRef = ?*MetadataTag;
+pub const MetadataTagRef = MetadataTag;
 
 extern "ImageIO" fn CGImageMetadataTagGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const metadataTagGetTypeID = CGImageMetadataTagGetTypeID;
 
-pub const MetadataType = enum(objc.int32_t) {
-    Invalid = -1,
-    Default = 0,
-    String = 1,
-    ArrayUnordered = 2,
-    ArrayOrdered = 3,
-    AlternateArray = 4,
-    AlternateText = 5,
-    Structure = 6,
-};
+pub const MetadataType = objc.int32_t;
+pub const MetadataType_Invalid: objc.int32_t = -1;
+pub const MetadataType_Default: objc.int32_t = 0;
+pub const MetadataType_String: objc.int32_t = 1;
+pub const MetadataType_ArrayUnordered: objc.int32_t = 2;
+pub const MetadataType_ArrayOrdered: objc.int32_t = 3;
+pub const MetadataType_AlternateArray: objc.int32_t = 4;
+pub const MetadataType_AlternateText: objc.int32_t = 5;
+pub const MetadataType_Structure: objc.int32_t = 6;
 
 extern "ImageIO" fn CGImageMetadataTagCreate(
     xmlns: core_foundation.StringRef,
@@ -112,22 +111,20 @@ pub const metadataCreateXMPData = CGImageMetadataCreateXMPData;
 extern "ImageIO" fn CGImageMetadataCreateFromXMPData(data: core_foundation.DataRef) callconv(.C) MetadataRef;
 pub const metadataCreateFromXMPData = CGImageMetadataCreateFromXMPData;
 
-pub const MetadataErrors = enum(objc.int32_t) {
-    Unknown = 0,
-    UnsupportedFormat = 1,
-    BadArgument = 2,
-    ConflictingArguments = 3,
-    PrefixConflict = 4,
-};
+pub const MetadataErrors = objc.int32_t;
+pub const MetadataErrors_Unknown: objc.int32_t = 0;
+pub const MetadataErrors_UnsupportedFormat: objc.int32_t = 1;
+pub const MetadataErrors_BadArgument: objc.int32_t = 2;
+pub const MetadataErrors_ConflictingArguments: objc.int32_t = 3;
+pub const MetadataErrors_PrefixConflict: objc.int32_t = 4;
 
-pub const SourceStatus = enum(objc.int32_t) {
-    StatusUnexpectedEOF = -5,
-    StatusInvalidData = -4,
-    StatusUnknownType = -3,
-    StatusReadingHeader = -2,
-    StatusIncomplete = -1,
-    StatusComplete = 0,
-};
+pub const SourceStatus = objc.int32_t;
+pub const SourceStatus_StatusUnexpectedEOF: objc.int32_t = -5;
+pub const SourceStatus_StatusInvalidData: objc.int32_t = -4;
+pub const SourceStatus_StatusUnknownType: objc.int32_t = -3;
+pub const SourceStatus_StatusReadingHeader: objc.int32_t = -2;
+pub const SourceStatus_StatusIncomplete: objc.int32_t = -1;
+pub const SourceStatus_StatusComplete: objc.int32_t = 0;
 
 extern "ImageIO" fn CGImageSourceGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const sourceGetTypeID = CGImageSourceGetTypeID;
@@ -194,7 +191,7 @@ pub const sourceSetAllowableTypes = CGImageSourceSetAllowableTypes;
 
 pub const Destination = extern struct {};
 
-pub const DestinationRef = ?*Destination;
+pub const DestinationRef = Destination;
 
 extern "ImageIO" fn CGImageDestinationGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const destinationGetTypeID = CGImageDestinationGetTypeID;
@@ -257,29 +254,26 @@ pub const destinationCopyImageSource = CGImageDestinationCopyImageSource;
 extern "ImageIO" fn CGImageDestinationAddAuxiliaryDataInfo(idst: DestinationRef, auxiliaryImageDataType: core_foundation.StringRef, auxiliaryDataInfoDictionary: core_foundation.DictionaryRef) callconv(.C) void;
 pub const destinationAddAuxiliaryDataInfo = CGImageDestinationAddAuxiliaryDataInfo;
 
-pub const PropertyOrientation = enum(objc.uint32_t) {
-    Up = 1,
-    UpMirrored = 2,
-    Down = 3,
-    DownMirrored = 4,
-    LeftMirrored = 5,
-    Right = 6,
-    RightMirrored = 7,
-    Left = 8,
-};
+pub const PropertyOrientation = objc.uint32_t;
+pub const PropertyOrientation_Up: objc.uint32_t = 1;
+pub const PropertyOrientation_UpMirrored: objc.uint32_t = 2;
+pub const PropertyOrientation_Down: objc.uint32_t = 3;
+pub const PropertyOrientation_DownMirrored: objc.uint32_t = 4;
+pub const PropertyOrientation_LeftMirrored: objc.uint32_t = 5;
+pub const PropertyOrientation_Right: objc.uint32_t = 6;
+pub const PropertyOrientation_RightMirrored: objc.uint32_t = 7;
+pub const PropertyOrientation_Left: objc.uint32_t = 8;
 
-pub const PropertyTGACompression = enum(objc.uint32_t) {
-    TGACompressionNone = 0,
-    TGACompressionRLE = 1,
-};
+pub const PropertyTGACompression = objc.uint32_t;
+pub const PropertyTGACompression_TGACompressionNone: objc.uint32_t = 0;
+pub const PropertyTGACompression_TGACompressionRLE: objc.uint32_t = 1;
 
-pub const AnimationStatus = enum(objc.OSStatus) {
-    _ParameterError = -22140,
-    _CorruptInputImage = -22141,
-    _UnsupportedFormat = -22142,
-    _IncompleteInputImage = -22143,
-    _AllocationFailure = -22144,
-};
+pub const AnimationStatus = objc.OSStatus;
+pub const AnimationStatus__ParameterError: objc.OSStatus = -22140;
+pub const AnimationStatus__CorruptInputImage: objc.OSStatus = -22141;
+pub const AnimationStatus__UnsupportedFormat: objc.OSStatus = -22142;
+pub const AnimationStatus__IncompleteInputImage: objc.OSStatus = -22143;
+pub const AnimationStatus__AllocationFailure: objc.OSStatus = -22144;
 
 pub const SourceAnimationBlock = *const fn (objc.size_t, core_graphics.ImageRef, ?*objc.bool) callconv(.C) void;
 

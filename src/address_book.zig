@@ -5,88 +5,76 @@ const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 const foundation = @import("foundation.zig"); // Framework dependency Foundation.
 const core_foundation = @import("core_foundation.zig"); // Framework dependency CoreFoundation.
 
-pub const _ABPropertyType = enum(u32) {
-    ABErrorInProperty = 0,
-    ABStringProperty = 1,
-    ABIntegerProperty = 2,
-    ABRealProperty = 3,
-    ABDateProperty = 4,
-    ABArrayProperty = 5,
-    ABDictionaryProperty = 6,
-    ABDataProperty = 7,
-    ABDateComponentsProperty = 8,
-    ABMultiStringProperty = 257,
-    ABMultiIntegerProperty = 258,
-    ABMultiRealProperty = 259,
-    ABMultiDateProperty = 260,
-    ABMultiArrayProperty = 261,
-    ABMultiDictionaryProperty = 262,
-    ABMultiDataProperty = 263,
-    ABMultiDateComponentsProperty = 264,
-};
+pub const _ABPropertyType = u32;
+pub const _ABPropertyType_ABErrorInProperty: u32 = 0;
+pub const _ABPropertyType_ABStringProperty: u32 = 1;
+pub const _ABPropertyType_ABIntegerProperty: u32 = 2;
+pub const _ABPropertyType_ABRealProperty: u32 = 3;
+pub const _ABPropertyType_ABDateProperty: u32 = 4;
+pub const _ABPropertyType_ABArrayProperty: u32 = 5;
+pub const _ABPropertyType_ABDictionaryProperty: u32 = 6;
+pub const _ABPropertyType_ABDataProperty: u32 = 7;
+pub const _ABPropertyType_ABDateComponentsProperty: u32 = 8;
+pub const _ABPropertyType_ABMultiStringProperty: u32 = 257;
+pub const _ABPropertyType_ABMultiIntegerProperty: u32 = 258;
+pub const _ABPropertyType_ABMultiRealProperty: u32 = 259;
+pub const _ABPropertyType_ABMultiDateProperty: u32 = 260;
+pub const _ABPropertyType_ABMultiArrayProperty: u32 = 261;
+pub const _ABPropertyType_ABMultiDictionaryProperty: u32 = 262;
+pub const _ABPropertyType_ABMultiDataProperty: u32 = 263;
+pub const _ABPropertyType_ABMultiDateComponentsProperty: u32 = 264;
 
 pub const PropertyType = core_foundation.Index;
 
-pub const _ABSearchComparison = enum(u32) {
-    ABEqual = 0,
-    ABNotEqual = 1,
-    ABLessThan = 2,
-    ABLessThanOrEqual = 3,
-    ABGreaterThan = 4,
-    ABGreaterThanOrEqual = 5,
-    ABEqualCaseInsensitive = 6,
-    ABContainsSubString = 7,
-    ABContainsSubStringCaseInsensitive = 8,
-    ABPrefixMatch = 9,
-    ABPrefixMatchCaseInsensitive = 10,
-    ABBitsInBitFieldMatch = 11,
-    ABDoesNotContainSubString = 12,
-    ABDoesNotContainSubStringCaseInsensitive = 13,
-    ABNotEqualCaseInsensitive = 14,
-    ABSuffixMatch = 15,
-    ABSuffixMatchCaseInsensitive = 16,
-    ABWithinIntervalAroundToday = 17,
-    ABWithinIntervalAroundTodayYearless = 18,
-    ABNotWithinIntervalAroundToday = 19,
-    ABNotWithinIntervalAroundTodayYearless = 20,
-    ABWithinIntervalFromToday = 21,
-    ABWithinIntervalFromTodayYearless = 22,
-    ABNotWithinIntervalFromToday = 23,
-    ABNotWithinIntervalFromTodayYearless = 24,
-};
+pub const _ABSearchComparison = u32;
+pub const _ABSearchComparison_ABEqual: u32 = 0;
+pub const _ABSearchComparison_ABNotEqual: u32 = 1;
+pub const _ABSearchComparison_ABLessThan: u32 = 2;
+pub const _ABSearchComparison_ABLessThanOrEqual: u32 = 3;
+pub const _ABSearchComparison_ABGreaterThan: u32 = 4;
+pub const _ABSearchComparison_ABGreaterThanOrEqual: u32 = 5;
+pub const _ABSearchComparison_ABEqualCaseInsensitive: u32 = 6;
+pub const _ABSearchComparison_ABContainsSubString: u32 = 7;
+pub const _ABSearchComparison_ABContainsSubStringCaseInsensitive: u32 = 8;
+pub const _ABSearchComparison_ABPrefixMatch: u32 = 9;
+pub const _ABSearchComparison_ABPrefixMatchCaseInsensitive: u32 = 10;
+pub const _ABSearchComparison_ABBitsInBitFieldMatch: u32 = 11;
+pub const _ABSearchComparison_ABDoesNotContainSubString: u32 = 12;
+pub const _ABSearchComparison_ABDoesNotContainSubStringCaseInsensitive: u32 = 13;
+pub const _ABSearchComparison_ABNotEqualCaseInsensitive: u32 = 14;
+pub const _ABSearchComparison_ABSuffixMatch: u32 = 15;
+pub const _ABSearchComparison_ABSuffixMatchCaseInsensitive: u32 = 16;
+pub const _ABSearchComparison_ABWithinIntervalAroundToday: u32 = 17;
+pub const _ABSearchComparison_ABWithinIntervalAroundTodayYearless: u32 = 18;
+pub const _ABSearchComparison_ABNotWithinIntervalAroundToday: u32 = 19;
+pub const _ABSearchComparison_ABNotWithinIntervalAroundTodayYearless: u32 = 20;
+pub const _ABSearchComparison_ABWithinIntervalFromToday: u32 = 21;
+pub const _ABSearchComparison_ABWithinIntervalFromTodayYearless: u32 = 22;
+pub const _ABSearchComparison_ABNotWithinIntervalFromToday: u32 = 23;
+pub const _ABSearchComparison_ABNotWithinIntervalFromTodayYearless: u32 = 24;
 
 pub const SearchComparison = core_foundation.Index;
 
-pub const _ABSearchConjunction = enum(u32) {
-    ABSearchAnd = 0,
-    ABSearchOr = 1,
-};
+pub const _ABSearchConjunction = u32;
+pub const _ABSearchConjunction_ABSearchAnd: u32 = 0;
+pub const _ABSearchConjunction_ABSearchOr: u32 = 1;
 
 pub const SearchConjunction = core_foundation.Index;
-
-pub const anon141 = enum(u32) {
-    ABAddRecordsError = 1001,
-    ABRemoveRecordsError = 1002,
-    ABPropertyValueValidationError = 1012,
-    ABPropertyUnsupportedBySourceError = 1013,
-    ABPropertyReadOnlyError = 1014,
-};
 
 extern "AddressBook" fn ABLocalizedPropertyOrLabel(propertyOrLabel: ?*foundation.String) callconv(.C) ?*foundation.String;
 pub const localizedPropertyOrLabel = ABLocalizedPropertyOrLabel;
 
 /// https://developer.apple.com/documentation/AddressBook/ABAddressBook?language=objc
 pub const AddressBook = opaque {
-    pub const InternalInfo = objc.ExternClass("ABAddressBook", @This(), objc.NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("ABAddressBook", @This(), objc.NSObject, &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -94,39 +82,39 @@ pub const AddressBook = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -134,7 +122,7 @@ pub const AddressBook = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -154,20 +142,20 @@ pub const AddressBook = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -178,52 +166,52 @@ pub const AddressBook = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -234,24 +222,24 @@ pub const AddressBook = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn sharedAddressBook(_self: *@This()) ?*AddressBook {
-        return objc.msgSend(_self, "sharedAddressBook", ?*AddressBook, .{});
+    pub fn sharedAddressBook() ?*AddressBook {
+        return objc.msgSend(Internal.class(), "sharedAddressBook", ?*AddressBook, .{});
     }
 
-    pub fn addressBook(_self: *@This()) ?*AddressBook {
-        return objc.msgSend(_self, "addressBook", ?*AddressBook, .{});
+    pub fn addressBook() ?*AddressBook {
+        return objc.msgSend(Internal.class(), "addressBook", ?*AddressBook, .{});
     }
 
     pub fn recordsMatchingSearchElement(_self: *@This(), _search: ?*SearchElement) ?*foundation.Array {
@@ -325,16 +313,15 @@ pub const AddressBook = opaque {
 
 /// https://developer.apple.com/documentation/AddressBook/ABRecord?language=objc
 pub const Record = opaque {
-    pub const InternalInfo = objc.ExternClass("ABRecord", @This(), objc.NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("ABRecord", @This(), objc.NSObject, &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -342,39 +329,39 @@ pub const Record = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -382,7 +369,7 @@ pub const Record = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -402,20 +389,20 @@ pub const Record = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -426,52 +413,52 @@ pub const Record = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -482,31 +469,31 @@ pub const Record = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn initWithAddressBook(_self: *@This(), _addressBook: ?*AddressBook) *objc.Id {
-        return objc.msgSend(_self, "initWithAddressBook:", *objc.Id, .{_addressBook});
+    pub fn initWithAddressBook(_self: *@This(), _addressBook: ?*AddressBook) ?objc.Id {
+        return objc.msgSend(_self, "initWithAddressBook:", ?objc.Id, .{_addressBook});
     }
 
-    pub fn valueForProperty(_self: *@This(), _property: ?*foundation.String) *objc.Id {
-        return objc.msgSend(_self, "valueForProperty:", *objc.Id, .{_property});
+    pub fn valueForProperty(_self: *@This(), _property: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForProperty:", ?objc.Id, .{_property});
     }
 
-    pub fn setValueForPropertyError(_self: *@This(), _value: *objc.Id, _property: ?*foundation.String, _error: ?*?*foundation.Error) objc.BOOL {
+    pub fn setValueForPropertyError(_self: *@This(), _value: ?objc.Id, _property: ?*foundation.String, _error: ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(_self, "setValue:forProperty:error:", objc.BOOL, .{ _value, _property, _error });
     }
 
-    pub fn setValueForProperty(_self: *@This(), _value: *objc.Id, _property: ?*foundation.String) objc.BOOL {
+    pub fn setValueForProperty(_self: *@This(), _value: ?objc.Id, _property: ?*foundation.String) objc.BOOL {
         return objc.msgSend(_self, "setValue:forProperty:", objc.BOOL, .{ _value, _property });
     }
 
@@ -521,16 +508,15 @@ pub const Record = opaque {
 
 /// https://developer.apple.com/documentation/AddressBook/ABGroup?language=objc
 pub const Group = opaque {
-    pub const InternalInfo = objc.ExternClass("ABGroup", @This(), Record, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("ABGroup", @This(), Record, &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -538,39 +524,39 @@ pub const Group = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -578,7 +564,7 @@ pub const Group = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -598,20 +584,20 @@ pub const Group = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -622,52 +608,52 @@ pub const Group = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -678,31 +664,31 @@ pub const Group = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn initWithAddressBook(_self: *@This(), _addressBook: ?*AddressBook) *objc.Id {
-        return objc.msgSend(_self, "initWithAddressBook:", *objc.Id, .{_addressBook});
+    pub fn initWithAddressBook(_self: *@This(), _addressBook: ?*AddressBook) ?objc.Id {
+        return objc.msgSend(_self, "initWithAddressBook:", ?objc.Id, .{_addressBook});
     }
 
-    pub fn valueForProperty(_self: *@This(), _property: ?*foundation.String) *objc.Id {
-        return objc.msgSend(_self, "valueForProperty:", *objc.Id, .{_property});
+    pub fn valueForProperty(_self: *@This(), _property: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForProperty:", ?objc.Id, .{_property});
     }
 
-    pub fn setValueForPropertyError(_self: *@This(), _value: *objc.Id, _property: ?*foundation.String, _error: ?*?*foundation.Error) objc.BOOL {
+    pub fn setValueForPropertyError(_self: *@This(), _value: ?objc.Id, _property: ?*foundation.String, _error: ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(_self, "setValue:forProperty:error:", objc.BOOL, .{ _value, _property, _error });
     }
 
-    pub fn setValueForProperty(_self: *@This(), _value: *objc.Id, _property: ?*foundation.String) objc.BOOL {
+    pub fn setValueForProperty(_self: *@This(), _value: ?objc.Id, _property: ?*foundation.String) objc.BOOL {
         return objc.msgSend(_self, "setValue:forProperty:", objc.BOOL, .{ _value, _property });
     }
 
@@ -753,16 +739,15 @@ pub const Group = opaque {
 
 /// https://developer.apple.com/documentation/AddressBook/ABPerson?language=objc
 pub const Person = opaque {
-    pub const InternalInfo = objc.ExternClass("ABPerson", @This(), Record, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("ABPerson", @This(), Record, &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -770,39 +755,39 @@ pub const Person = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -810,7 +795,7 @@ pub const Person = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -830,20 +815,20 @@ pub const Person = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -854,52 +839,52 @@ pub const Person = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -910,31 +895,31 @@ pub const Person = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn initWithAddressBook(_self: *@This(), _addressBook: ?*AddressBook) *objc.Id {
-        return objc.msgSend(_self, "initWithAddressBook:", *objc.Id, .{_addressBook});
+    pub fn initWithAddressBook(_self: *@This(), _addressBook: ?*AddressBook) ?objc.Id {
+        return objc.msgSend(_self, "initWithAddressBook:", ?objc.Id, .{_addressBook});
     }
 
-    pub fn valueForProperty(_self: *@This(), _property: ?*foundation.String) *objc.Id {
-        return objc.msgSend(_self, "valueForProperty:", *objc.Id, .{_property});
+    pub fn valueForProperty(_self: *@This(), _property: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForProperty:", ?objc.Id, .{_property});
     }
 
-    pub fn setValueForPropertyError(_self: *@This(), _value: *objc.Id, _property: ?*foundation.String, _error: ?*?*foundation.Error) objc.BOOL {
+    pub fn setValueForPropertyError(_self: *@This(), _value: ?objc.Id, _property: ?*foundation.String, _error: ?*?*foundation.Error) objc.BOOL {
         return objc.msgSend(_self, "setValue:forProperty:error:", objc.BOOL, .{ _value, _property, _error });
     }
 
-    pub fn setValueForProperty(_self: *@This(), _value: *objc.Id, _property: ?*foundation.String) objc.BOOL {
+    pub fn setValueForProperty(_self: *@This(), _value: ?objc.Id, _property: ?*foundation.String) objc.BOOL {
         return objc.msgSend(_self, "setValue:forProperty:", objc.BOOL, .{ _value, _property });
     }
 
@@ -957,13 +942,13 @@ pub const Person = opaque {
 
 /// https://developer.apple.com/documentation/AddressBook/ABImageClient?language=objc
 pub const ImageClient = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -971,39 +956,39 @@ pub const ImageClient = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -1011,7 +996,7 @@ pub const ImageClient = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -1038,16 +1023,15 @@ pub const ImageClient = opaque {
 
 /// https://developer.apple.com/documentation/AddressBook/ABSearchElement?language=objc
 pub const SearchElement = opaque {
-    pub const InternalInfo = objc.ExternClass("ABSearchElement", @This(), objc.NSObject, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("ABSearchElement", @This(), objc.NSObject, &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -1055,39 +1039,39 @@ pub const SearchElement = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -1095,7 +1079,7 @@ pub const SearchElement = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -1115,20 +1099,20 @@ pub const SearchElement = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -1139,52 +1123,52 @@ pub const SearchElement = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -1195,20 +1179,20 @@ pub const SearchElement = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn searchElementForConjunctionChildren(_self: *@This(), _conjuction: SearchConjunction, _children: ?*foundation.Array) ?*SearchElement {
-        return objc.msgSend(_self, "searchElementForConjunction:children:", ?*SearchElement, .{ _conjuction, _children });
+    pub fn searchElementForConjunctionChildren(_conjuction: SearchConjunction, _children: ?*foundation.Array) ?*SearchElement {
+        return objc.msgSend(Internal.class(), "searchElementForConjunction:children:", ?*SearchElement, .{ _conjuction, _children });
     }
 
     pub fn matchesRecord(_self: *@This(), _record: ?*Record) objc.BOOL {
@@ -1218,16 +1202,15 @@ pub const SearchElement = opaque {
 
 /// https://developer.apple.com/documentation/AddressBook/ABMultiValue?language=objc
 pub const MultiValue = opaque {
-    pub const InternalInfo = objc.ExternClass("ABMultiValue", @This(), objc.NSObject, &.{ foundation.Copying, foundation.MutableCopying, foundation.FastEnumeration });
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("ABMultiValue", @This(), objc.NSObject, &.{ foundation.Copying, foundation.MutableCopying, foundation.FastEnumeration });
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -1235,39 +1218,39 @@ pub const MultiValue = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -1275,7 +1258,7 @@ pub const MultiValue = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -1295,20 +1278,20 @@ pub const MultiValue = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -1319,52 +1302,52 @@ pub const MultiValue = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -1375,19 +1358,19 @@ pub const MultiValue = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn countByEnumeratingWithStateObjectsCount(_self: *@This(), _state: ?*foundation.FastEnumerationState, _buffer: ?**objc.Id, _len: objc.NSUInteger) objc.NSUInteger {
+    pub fn countByEnumeratingWithStateObjectsCount(_self: *@This(), _state: ?*foundation.FastEnumerationState, _buffer: ?*?objc.Id, _len: objc.NSUInteger) objc.NSUInteger {
         return objc.msgSend(_self, "countByEnumeratingWithState:objects:count:", objc.NSUInteger, .{ _state, _buffer, _len });
     }
 
@@ -1395,8 +1378,8 @@ pub const MultiValue = opaque {
         return objc.msgSend(_self, "count", objc.NSUInteger, .{});
     }
 
-    pub fn valueAtIndex(_self: *@This(), _index: objc.NSUInteger) *objc.Id {
-        return objc.msgSend(_self, "valueAtIndex:", *objc.Id, .{_index});
+    pub fn valueAtIndex(_self: *@This(), _index: objc.NSUInteger) ?objc.Id {
+        return objc.msgSend(_self, "valueAtIndex:", ?objc.Id, .{_index});
     }
 
     pub fn labelAtIndex(_self: *@This(), _index: objc.NSUInteger) ?*foundation.String {
@@ -1419,27 +1402,26 @@ pub const MultiValue = opaque {
         return objc.msgSend(_self, "propertyType", PropertyType, .{});
     }
 
-    pub fn valueForIdentifier(_self: *@This(), _identifier: ?*foundation.String) *objc.Id {
-        return objc.msgSend(_self, "valueForIdentifier:", *objc.Id, .{_identifier});
+    pub fn valueForIdentifier(_self: *@This(), _identifier: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForIdentifier:", ?objc.Id, .{_identifier});
     }
 
-    pub fn labelForIdentifier(_self: *@This(), _identifier: ?*foundation.String) *objc.Id {
-        return objc.msgSend(_self, "labelForIdentifier:", *objc.Id, .{_identifier});
+    pub fn labelForIdentifier(_self: *@This(), _identifier: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "labelForIdentifier:", ?objc.Id, .{_identifier});
     }
 };
 
 /// https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue?language=objc
 pub const MutableMultiValue = opaque {
-    pub const InternalInfo = objc.ExternClass("ABMutableMultiValue", @This(), MultiValue, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("ABMutableMultiValue", @This(), MultiValue, &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -1447,39 +1429,39 @@ pub const MutableMultiValue = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -1487,7 +1469,7 @@ pub const MutableMultiValue = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -1507,20 +1489,20 @@ pub const MutableMultiValue = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -1531,52 +1513,52 @@ pub const MutableMultiValue = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -1587,19 +1569,19 @@ pub const MutableMultiValue = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn countByEnumeratingWithStateObjectsCount(_self: *@This(), _state: ?*foundation.FastEnumerationState, _buffer: ?**objc.Id, _len: objc.NSUInteger) objc.NSUInteger {
+    pub fn countByEnumeratingWithStateObjectsCount(_self: *@This(), _state: ?*foundation.FastEnumerationState, _buffer: ?*?objc.Id, _len: objc.NSUInteger) objc.NSUInteger {
         return objc.msgSend(_self, "countByEnumeratingWithState:objects:count:", objc.NSUInteger, .{ _state, _buffer, _len });
     }
 
@@ -1607,8 +1589,8 @@ pub const MutableMultiValue = opaque {
         return objc.msgSend(_self, "count", objc.NSUInteger, .{});
     }
 
-    pub fn valueAtIndex(_self: *@This(), _index: objc.NSUInteger) *objc.Id {
-        return objc.msgSend(_self, "valueAtIndex:", *objc.Id, .{_index});
+    pub fn valueAtIndex(_self: *@This(), _index: objc.NSUInteger) ?objc.Id {
+        return objc.msgSend(_self, "valueAtIndex:", ?objc.Id, .{_index});
     }
 
     pub fn labelAtIndex(_self: *@This(), _index: objc.NSUInteger) ?*foundation.String {
@@ -1631,19 +1613,19 @@ pub const MutableMultiValue = opaque {
         return objc.msgSend(_self, "propertyType", PropertyType, .{});
     }
 
-    pub fn valueForIdentifier(_self: *@This(), _identifier: ?*foundation.String) *objc.Id {
-        return objc.msgSend(_self, "valueForIdentifier:", *objc.Id, .{_identifier});
+    pub fn valueForIdentifier(_self: *@This(), _identifier: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForIdentifier:", ?objc.Id, .{_identifier});
     }
 
-    pub fn labelForIdentifier(_self: *@This(), _identifier: ?*foundation.String) *objc.Id {
-        return objc.msgSend(_self, "labelForIdentifier:", *objc.Id, .{_identifier});
+    pub fn labelForIdentifier(_self: *@This(), _identifier: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "labelForIdentifier:", ?objc.Id, .{_identifier});
     }
 
-    pub fn addValueWithLabel(_self: *@This(), _value: *objc.Id, _label: ?*foundation.String) ?*foundation.String {
+    pub fn addValueWithLabel(_self: *@This(), _value: ?objc.Id, _label: ?*foundation.String) ?*foundation.String {
         return objc.msgSend(_self, "addValue:withLabel:", ?*foundation.String, .{ _value, _label });
     }
 
-    pub fn insertValueWithLabelAtIndex(_self: *@This(), _value: *objc.Id, _label: ?*foundation.String, _index: objc.NSUInteger) ?*foundation.String {
+    pub fn insertValueWithLabelAtIndex(_self: *@This(), _value: ?objc.Id, _label: ?*foundation.String, _index: objc.NSUInteger) ?*foundation.String {
         return objc.msgSend(_self, "insertValue:withLabel:atIndex:", ?*foundation.String, .{ _value, _label, _index });
     }
 
@@ -1651,7 +1633,7 @@ pub const MutableMultiValue = opaque {
         return objc.msgSend(_self, "removeValueAndLabelAtIndex:", objc.BOOL, .{_index});
     }
 
-    pub fn replaceValueAtIndexWithValue(_self: *@This(), _index: objc.NSUInteger, _value: *objc.Id) objc.BOOL {
+    pub fn replaceValueAtIndexWithValue(_self: *@This(), _index: objc.NSUInteger, _value: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "replaceValueAtIndex:withValue:", objc.BOOL, .{ _index, _value });
     }
 

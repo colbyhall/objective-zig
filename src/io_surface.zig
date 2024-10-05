@@ -6,74 +6,66 @@ const core_foundation = @import("core_foundation.zig"); // Framework dependency 
 
 pub const ID = objc.uint32_t;
 
-pub const LockOptions = enum(objc.uint32_t) {
-    ReadOnly = 1,
-    AvoidSync = 2,
-};
+pub const LockOptions = objc.uint32_t;
+pub const LockOptions_ReadOnly: objc.uint32_t = 1;
+pub const LockOptions_AvoidSync: objc.uint32_t = 2;
 
-pub const PurgeabilityState = enum(objc.uint32_t) {
-    PurgeableNonVolatile = 0,
-    PurgeableVolatile = 1,
-    PurgeableEmpty = 2,
-    PurgeableKeepCurrent = 3,
-};
+pub const PurgeabilityState = objc.uint32_t;
+pub const PurgeabilityState_PurgeableNonVolatile: objc.uint32_t = 0;
+pub const PurgeabilityState_PurgeableVolatile: objc.uint32_t = 1;
+pub const PurgeabilityState_PurgeableEmpty: objc.uint32_t = 2;
+pub const PurgeabilityState_PurgeableKeepCurrent: objc.uint32_t = 3;
 
-pub const anon431 = enum(u32) {
-    IOSurfaceDefaultCache = 0,
-    IOSurfaceInhibitCache = 1,
-    IOSurfaceWriteThruCache = 2,
-    IOSurfaceCopybackCache = 3,
-    IOSurfaceWriteCombineCache = 4,
-    IOSurfaceCopybackInnerCache = 5,
-};
+pub const anon431 = u32;
+pub const anon431_IOSurfaceDefaultCache: u32 = 0;
+pub const anon431_IOSurfaceInhibitCache: u32 = 1;
+pub const anon431_IOSurfaceWriteThruCache: u32 = 2;
+pub const anon431_IOSurfaceCopybackCache: u32 = 3;
+pub const anon431_IOSurfaceWriteCombineCache: u32 = 4;
+pub const anon431_IOSurfaceCopybackInnerCache: u32 = 5;
 
-pub const anon531 = enum(u32) {
-    IOSurfaceMapCacheShift = 8,
-    IOSurfaceMapDefaultCache = 0,
-    IOSurfaceMapInhibitCache = 256,
-    IOSurfaceMapWriteThruCache = 512,
-    IOSurfaceMapCopybackCache = 768,
-    IOSurfaceMapWriteCombineCache = 1024,
-    IOSurfaceMapCopybackInnerCache = 1280,
-};
+pub const anon531 = u32;
+pub const anon531_IOSurfaceMapCacheShift: u32 = 8;
+pub const anon531_IOSurfaceMapDefaultCache: u32 = 0;
+pub const anon531_IOSurfaceMapInhibitCache: u32 = 256;
+pub const anon531_IOSurfaceMapWriteThruCache: u32 = 512;
+pub const anon531_IOSurfaceMapCopybackCache: u32 = 768;
+pub const anon531_IOSurfaceMapWriteCombineCache: u32 = 1024;
+pub const anon531_IOSurfaceMapCopybackInnerCache: u32 = 1280;
 
 pub const __IOSurface = extern struct {};
 
-pub const Ref = ?*__IOSurface;
+pub const Ref = __IOSurface;
 
-pub const ComponentName = enum(objc.int32_t) {
-    Unknown = 0,
-    Alpha = 1,
-    Red = 2,
-    Green = 3,
-    Blue = 4,
-    Luma = 5,
-    ChromaRed = 6,
-    ChromaBlue = 7,
-};
+pub const ComponentName = objc.int32_t;
+pub const ComponentName_Unknown: objc.int32_t = 0;
+pub const ComponentName_Alpha: objc.int32_t = 1;
+pub const ComponentName_Red: objc.int32_t = 2;
+pub const ComponentName_Green: objc.int32_t = 3;
+pub const ComponentName_Blue: objc.int32_t = 4;
+pub const ComponentName_Luma: objc.int32_t = 5;
+pub const ComponentName_ChromaRed: objc.int32_t = 6;
+pub const ComponentName_ChromaBlue: objc.int32_t = 7;
 
-pub const ComponentType = enum(objc.int32_t) {
-    Unknown = 0,
-    UnsignedInteger = 1,
-    SignedInteger = 2,
-    Float = 3,
-    SignedNormalized = 4,
-};
+pub const ComponentType = objc.int32_t;
+pub const ComponentType_Unknown: objc.int32_t = 0;
+pub const ComponentType_UnsignedInteger: objc.int32_t = 1;
+pub const ComponentType_SignedInteger: objc.int32_t = 2;
+pub const ComponentType_Float: objc.int32_t = 3;
+pub const ComponentType_SignedNormalized: objc.int32_t = 4;
 
-pub const ComponentRange = enum(objc.int32_t) {
-    Unknown = 0,
-    FullRange = 1,
-    VideoRange = 2,
-    WideRange = 3,
-};
+pub const ComponentRange = objc.int32_t;
+pub const ComponentRange_Unknown: objc.int32_t = 0;
+pub const ComponentRange_FullRange: objc.int32_t = 1;
+pub const ComponentRange_VideoRange: objc.int32_t = 2;
+pub const ComponentRange_WideRange: objc.int32_t = 3;
 
-pub const Subsampling = enum(objc.int32_t) {
-    Unknown = 0,
-    None = 1,
-    _422 = 2,
-    _420 = 3,
-    _411 = 4,
-};
+pub const Subsampling = objc.int32_t;
+pub const Subsampling_Unknown: objc.int32_t = 0;
+pub const Subsampling_None: objc.int32_t = 1;
+pub const Subsampling_422: objc.int32_t = 2;
+pub const Subsampling_420: objc.int32_t = 3;
+pub const Subsampling_411: objc.int32_t = 4;
 
 extern "IOSurface" fn IOSurfaceGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const getTypeID = IOSurfaceGetTypeID;
@@ -219,17 +211,15 @@ pub const allowsPixelSizeCasting = IOSurfaceAllowsPixelSizeCasting;
 extern "IOSurface" fn IOSurfaceSetPurgeable(buffer: Ref, newState: objc.uint32_t, oldState: ?*objc.uint32_t) callconv(.C) objc.kern_return_t;
 pub const setPurgeable = IOSurfaceSetPurgeable;
 
-pub const MemoryLedgerTags = enum(i32) {
-    Default = 1,
-    Network = 2,
-    Media = 3,
-    Graphics = 4,
-    Neural = 5,
-};
+pub const MemoryLedgerTags = i32;
+pub const MemoryLedgerTags_Default: i32 = 1;
+pub const MemoryLedgerTags_Network: i32 = 2;
+pub const MemoryLedgerTags_Media: i32 = 3;
+pub const MemoryLedgerTags_Graphics: i32 = 4;
+pub const MemoryLedgerTags_Neural: i32 = 5;
 
-pub const MemoryLedgerFlags = enum(objc.uint32_t) {
-    NoFootprint = 1,
-};
+pub const MemoryLedgerFlags = objc.uint32_t;
+pub const MemoryLedgerFlags_NoFootprint: objc.uint32_t = 1;
 
 extern "IOSurface" fn IOSurfaceSetOwnershipIdentity(
     buffer: Ref,

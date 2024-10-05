@@ -6,188 +6,199 @@ const core_foundation = @import("core_foundation.zig"); // Framework dependency 
 const disk_arbitration = @import("disk_arbitration.zig"); // Framework dependency DiskArbitration.
 const security = @import("security.zig"); // Framework dependency Security.
 
-pub const anon5721 = enum(u32) {
-    PEFExpSymClassShift = 24,
-    PEFExpSymNameOffsetMask = 16777215,
-    PEFExpSymMaxNameOffset = 16777215,
-};
+pub const anon271 = u32;
+pub const anon271_ClippingCreator: u32 = 1685217639;
+pub const anon271_ClippingPictureType: u32 = 1668051056;
+pub const anon271_ClippingTextType: u32 = 1668051060;
+pub const anon271_ClippingSoundType: u32 = 1668051059;
+pub const anon271_ClippingUnknownType: u32 = 1668051061;
+pub const anon271_paramErr: u32 = -50;
+pub const anon271_noHardwareErr: u32 = -200;
+pub const anon271_notEnoughHardwareErr: u32 = -201;
+pub const anon271_userCanceledErr: u32 = -128;
+pub const anon271_qErr: u32 = -1;
+pub const anon271_vTypErr: u32 = -2;
+pub const anon271_corErr: u32 = -3;
+pub const anon271_unimpErr: u32 = -4;
+pub const anon271_SlpTypeErr: u32 = -5;
+pub const anon271_seNoDB: u32 = -8;
+pub const anon271_controlErr: u32 = -17;
+pub const anon271_statusErr: u32 = -18;
+pub const anon271_readErr: u32 = -19;
+pub const anon271_writErr: u32 = -20;
+pub const anon271_badUnitErr: u32 = -21;
+pub const anon271_unitEmptyErr: u32 = -22;
+pub const anon271_openErr: u32 = -23;
+pub const anon271_closErr: u32 = -24;
+pub const anon271_dRemovErr: u32 = -25;
+pub const anon271_dInstErr: u32 = -26;
 
-pub const anon1061 = enum(u32) {
-    IconFamilyType = 1768124019,
-};
+pub const anon371 = u32;
+pub const anon371_InternetLocationCreator: u32 = 1685217639;
+pub const anon371_InternetLocationHTTP: u32 = 1768712308;
+pub const anon371_InternetLocationFTP: u32 = 1768711796;
+pub const anon371_InternetLocationFile: u32 = 1768711785;
+pub const anon371_InternetLocationMail: u32 = 1768713569;
+pub const anon371_InternetLocationNNTP: u32 = 1768713847;
+pub const anon371_InternetLocationAFP: u32 = 1768710502;
+pub const anon371_InternetLocationAppleTalk: u32 = 1768710516;
+pub const anon371_InternetLocationNSL: u32 = 1768713843;
+pub const anon371_InternetLocationGeneric: u32 = 1768712037;
+pub const anon371_CollectionDontWantTag: u32 = 0;
+pub const anon371_CollectionDontWantId: u32 = 0;
+pub const anon371_CollectionDontWantSize: u32 = 0;
+pub const anon371_CollectionDontWantAttributes: u32 = 0;
+pub const anon371_CollectionDontWantIndex: u32 = 0;
+pub const anon371_CollectionDontWantData: u32 = 0;
+pub const anon371_MacMemoryMaximumMemoryManagerBlockSize: u32 = 2147483632;
+pub const anon371_IODefaultCache: u32 = 0;
+pub const anon371_IOInhibitCache: u32 = 1;
+pub const anon371_IOWriteThruCache: u32 = 2;
+pub const anon371_IOCopybackCache: u32 = 3;
+pub const anon371_IOWriteCombineCache: u32 = 4;
+pub const anon371_IOCopybackInnerCache: u32 = 5;
+pub const anon371_IOPostedWrite: u32 = 6;
+pub const anon371_IORealTimeCache: u32 = 7;
+pub const anon371_IOPostedReordered: u32 = 8;
+pub const anon371_IOPostedCombinedReordered: u32 = 9;
+pub const anon371_FSAliasInfoNone: u32 = 0;
+pub const anon371_FSAliasInfoVolumeCreateDate: u32 = 1;
+pub const anon371_FSAliasInfoTargetCreateDate: u32 = 2;
+pub const anon371_FSAliasInfoFinderInfo: u32 = 4;
+pub const anon371_FSAliasInfoIsDirectory: u32 = 8;
+pub const anon371_FSAliasInfoIDs: u32 = 16;
+pub const anon371_FSAliasInfoFSInfo: u32 = 32;
+pub const anon371_FSAliasInfoVolumeFlags: u32 = 64;
+pub const anon371_cAEList: u32 = 1818850164;
+pub const anon371_cApplication: u32 = 1667330160;
+pub const anon371_cArc: u32 = 1667330659;
+pub const anon371_cBoolean: u32 = 1651470188;
+pub const anon371_cCell: u32 = 1667458412;
+pub const anon371_cChar: u32 = 1667784992;
+pub const anon371_cColorTable: u32 = 1668051572;
+pub const anon371_cColumn: u32 = 1667460972;
+pub const anon371_cDocument: u32 = 1685021557;
+pub const anon371_cDrawingArea: u32 = 1667527287;
+pub const anon371_cEnumeration: u32 = 1701737837;
+pub const anon371_cFile: u32 = 1718185061;
+pub const anon371_cFixed: u32 = 1718188132;
+pub const anon371_cFixedPoint: u32 = 1718644340;
+pub const anon371_cFixedRectangle: u32 = 1718772596;
+pub const anon371_cGraphicLine: u32 = 1735158126;
+pub const anon371_cGraphicObject: u32 = 1667723106;
+pub const anon371_cGraphicShape: u32 = 1667724136;
+pub const anon371_cGraphicText: u32 = 1667724408;
+pub const anon371_cGroupedGraphic: u32 = 1668311395;
 
-pub const FSRef = extern struct {
-    hidden: [80]objc.UInt8,
-};
+pub const anon521 = i32;
+pub const anon521_CustomIconResource: i32 = -16455;
+pub const anon521_smRoman: i32 = 0;
+pub const anon521_smJapanese: i32 = 1;
+pub const anon521_smTradChinese: i32 = 2;
+pub const anon521_smKorean: i32 = 3;
+pub const anon521_smArabic: i32 = 4;
+pub const anon521_smHebrew: i32 = 5;
+pub const anon521_smGreek: i32 = 6;
+pub const anon521_smCyrillic: i32 = 7;
+pub const anon521_smRSymbol: i32 = 8;
+pub const anon521_smDevanagari: i32 = 9;
+pub const anon521_smGurmukhi: i32 = 10;
+pub const anon521_smGujarati: i32 = 11;
+pub const anon521_smOriya: i32 = 12;
+pub const anon521_smBengali: i32 = 13;
+pub const anon521_smTamil: i32 = 14;
+pub const anon521_smTelugu: i32 = 15;
+pub const anon521_smKannada: i32 = 16;
+pub const anon521_smMalayalam: i32 = 17;
+pub const anon521_smSinhalese: i32 = 18;
+pub const anon521_smBurmese: i32 = 19;
+pub const anon521_smKhmer: i32 = 20;
+pub const anon521_smThai: i32 = 21;
+pub const anon521_smLao: i32 = 22;
+pub const anon521_smGeorgian: i32 = 23;
+pub const anon521_smArmenian: i32 = 24;
+pub const anon521_smSimpChinese: i32 = 25;
+pub const anon521_smTibetan: i32 = 26;
+pub const anon521_smMongolian: i32 = 27;
+pub const anon521_smEthiopic: i32 = 28;
+pub const anon521_smGeez: i32 = 28;
+pub const anon521_smCentralEuroRoman: i32 = 29;
+pub const anon521_smVietnamese: i32 = 30;
+pub const anon521_smExtArabic: i32 = 31;
+pub const anon521_smUninterp: i32 = 32;
+pub const anon521_ARMMountVol: i32 = 1;
+pub const anon521_ARMNoUI: i32 = 2;
+pub const anon521_ARMMultVols: i32 = 8;
+pub const anon521_ARMSearch: i32 = 256;
+pub const anon521_ARMSearchMore: i32 = 512;
+pub const anon521_ARMSearchRelFirst: i32 = 1024;
+pub const anon521_ARMTryFileIDFirst: i32 = 2048;
+pub const anon521_ReadyThreadState: i32 = 0;
+pub const anon521_StoppedThreadState: i32 = 1;
+pub const anon521_RunningThreadState: i32 = 2;
+pub const anon521_AIFCVersion1: i32 = -1568648896;
+pub const anon521_TECAvailableEncodingsResType: i32 = 1668703598;
+pub const anon521_TECAvailableSniffersResType: i32 = 1668707174;
+pub const anon521_TECSubTextEncodingsResType: i32 = 1668707170;
+pub const anon521_TECConversionInfoResType: i32 = 1668704614;
+pub const anon521_TECMailEncodingsResType: i32 = 1668705644;
+pub const anon521_TECWebEncodingsResType: i32 = 1668708194;
+pub const anon521_TECInternetNamesResType: i32 = 1668705645;
 
-pub const anon1231 = enum(u32) {
-    WriteReference = 0,
-    ReadReference = 1,
-    FetchReference = 2,
-    writeReference = 0,
-    readReference = 1,
-    fetchReference = 2,
-};
-
-pub const anon741 = enum(u32) {
-    fPositive = 0,
-    fNegative = 1,
-    fZero = 2,
-};
-
-pub const anon1211 = enum(u32) {
-    typeWhoseDescriptor = 2003332979,
-    formWhose = 2003332979,
-    typeWhoseRange = 2003988071,
-    eyAEWhoseRangeStart = 2004055154,
-    eyAEWhoseRangeStop = 2004055152,
-    eyAEIndex = 1802069112,
-    eyAETest = 1802793844,
-};
-
-pub const anon2441 = enum(objc.OSType) {
-    AESetPosition = 1886352238,
-    AEShadow = 1936220516,
-    AEShowClipboard = 1936221036,
-    AEShutDown = 1936225652,
-    AESleep = 1936483696,
-    AESmallCaps = 1936548720,
-    AESpecialClassProperties = 1665147681,
-    AEStrikethrough = 1937011307,
-    AESubscript = 1935831907,
-    AESuperscript = 1936749411,
-    AETableSuite = 1952607347,
-    AETextSuite = 1413830740,
-    AETransactionTerminated = 1953788525,
-    AEUnderline = 1970168940,
-    AEUndo = 1970168943,
-    AEWholeWordEquals = 2004313457,
-    AEYes = 2036691744,
-    AEZoom = 2054123373,
-};
-
-pub const anon231 = enum(objc.OSStatus) {
-    LSNo32BitEnvironmentErr = -10386,
-    LSMalformedLocErr = -10400,
-    LSAppInTrashErr = -10660,
-    LSExecutableIncorrectFormat = -10661,
-    LSAttributeNotFoundErr = -10662,
-    LSAttributeNotSettableErr = -10663,
-    LSIncompatibleApplicationVersionErr = -10664,
-    LSNoRosettaEnvironmentErr = -10665,
-    LSGarbageCollectionUnsupportedErr = -10666,
-    LSUnknownErr = -10810,
-    LSNotAnApplicationErr = -10811,
-    LSNotInitializedErr = -10812,
-    LSDataUnavailableErr = -10813,
-    LSApplicationNotFoundErr = -10814,
-    LSUnknownTypeErr = -10815,
-    LSDataTooOldErr = -10816,
-    LSDataErr = -10817,
-    LSLaunchInProgressErr = -10818,
-    LSNotRegisteredErr = -10819,
-    LSAppDoesNotClaimTypeErr = -10820,
-    LSAppDoesNotSupportSchemeWarning = -10821,
-    LSServerCommunicationErr = -10822,
-    LSCannotSetInfoErr = -10823,
-    LSNoRegistrationInfoErr = -10824,
-    LSIncompatibleSystemVersionErr = -10825,
-    LSNoLaunchPermissionErr = -10826,
-    LSNoExecutableErr = -10827,
-    LSNoClassicEnvironmentErr = -10828,
-    LSMultipleSessionsNotSupportedErr = -10829,
-};
-
-pub const anon651 = enum(u32) {
-    IdleKCEvent = 0,
-    LockKCEvent = 1,
-    UnlockKCEvent = 2,
-    AddKCEvent = 3,
-    DeleteKCEvent = 4,
-    UpdateKCEvent = 5,
-    PasswordChangedKCEvent = 6,
-    SystemKCEvent = 8,
-    DefaultChangedKCEvent = 9,
-    DataAccessKCEvent = 10,
-    KeychainListChangedKCEvent = 11,
-};
-
-pub const anon1141 = enum(u32) {
-    UCKeyStateEntryTerminalFormat = 1,
-    UCKeyStateEntryRangeFormat = 2,
-};
-
-pub const anon271 = enum(i32) {
-    paramErr = -50,
-    noHardwareErr = -200,
-    notEnoughHardwareErr = -201,
-    userCanceledErr = -128,
-    qErr = -1,
-    vTypErr = -2,
-    corErr = -3,
-    unimpErr = -4,
-    SlpTypeErr = -5,
-    seNoDB = -8,
-    controlErr = -17,
-    statusErr = -18,
-    readErr = -19,
-    writErr = -20,
-    badUnitErr = -21,
-    unitEmptyErr = -22,
-    openErr = -23,
-    closErr = -24,
-    dRemovErr = -25,
-    dInstErr = -26,
-};
-
-pub const anon371 = enum(objc.OSType) {
-    cAEList = 1818850164,
-    cApplication = 1667330160,
-    cArc = 1667330659,
-    cBoolean = 1651470188,
-    cCell = 1667458412,
-    cChar = 1667784992,
-    cColorTable = 1668051572,
-    cColumn = 1667460972,
-    cDocument = 1685021557,
-    cDrawingArea = 1667527287,
-    cEnumeration = 1701737837,
-    cFile = 1718185061,
-    cFixed = 1718188132,
-    cFixedPoint = 1718644340,
-    cFixedRectangle = 1718772596,
-    cGraphicLine = 1735158126,
-    cGraphicObject = 1667723106,
-    cGraphicShape = 1667724136,
-    cGraphicText = 1667724408,
-    cGroupedGraphic = 1668311395,
-};
-
-pub const anon521 = enum(u32) {
-    TECAvailableEncodingsResType = 1668703598,
-    TECAvailableSniffersResType = 1668707174,
-    TECSubTextEncodingsResType = 1668707170,
-    TECConversionInfoResType = 1668704614,
-    TECMailEncodingsResType = 1668705644,
-    TECWebEncodingsResType = 1668708194,
-    TECInternetNamesResType = 1668705645,
-};
-
-pub const anon611 = enum(u32) {
-    Large1BitMask = 1229147683,
-    Large4BitData = 1768123444,
-    Large8BitData = 1768123448,
-    Large32BitData = 1768698674,
-    Large8BitMask = 1815637355,
-    Small1BitMask = 1768125219,
-    Small4BitData = 1768125236,
-    Small8BitData = 1768125240,
-    Small32BitData = 1769157426,
-    Small8BitMask = 1933077867,
-    Mini1BitMask = 1768123683,
-    Mini4BitData = 1768123700,
-    Mini8BitData = 1768123704,
-};
+pub const anon611 = i32;
+pub const anon611_CustomBadgeResourceType: i32 = 1650549863;
+pub const anon611_CustomBadgeResourceID: i32 = -16455;
+pub const anon611_CustomBadgeResourceVersion: i32 = 0;
+pub const anon611_CollectionUser0Bit: i32 = 0;
+pub const anon611_CollectionUser1Bit: i32 = 1;
+pub const anon611_CollectionUser2Bit: i32 = 2;
+pub const anon611_CollectionUser3Bit: i32 = 3;
+pub const anon611_CollectionUser4Bit: i32 = 4;
+pub const anon611_CollectionUser5Bit: i32 = 5;
+pub const anon611_CollectionUser6Bit: i32 = 6;
+pub const anon611_CollectionUser7Bit: i32 = 7;
+pub const anon611_CollectionUser8Bit: i32 = 8;
+pub const anon611_CollectionUser9Bit: i32 = 9;
+pub const anon611_CollectionUser10Bit: i32 = 10;
+pub const anon611_CollectionUser11Bit: i32 = 11;
+pub const anon611_CollectionUser12Bit: i32 = 12;
+pub const anon611_CollectionUser13Bit: i32 = 13;
+pub const anon611_CollectionUser14Bit: i32 = 14;
+pub const anon611_CollectionUser15Bit: i32 = 15;
+pub const anon611_CollectionReserved0Bit: i32 = 16;
+pub const anon611_CollectionReserved1Bit: i32 = 17;
+pub const anon611_CollectionReserved2Bit: i32 = 18;
+pub const anon611_CollectionReserved3Bit: i32 = 19;
+pub const anon611_CollectionReserved4Bit: i32 = 20;
+pub const anon611_CollectionReserved5Bit: i32 = 21;
+pub const anon611_CollectionReserved6Bit: i32 = 22;
+pub const anon611_CollectionReserved7Bit: i32 = 23;
+pub const anon611_CollectionReserved8Bit: i32 = 24;
+pub const anon611_CollectionReserved9Bit: i32 = 25;
+pub const anon611_CollectionReserved10Bit: i32 = 26;
+pub const anon611_CollectionReserved11Bit: i32 = 27;
+pub const anon611_CollectionReserved12Bit: i32 = 28;
+pub const anon611_CollectionReserved13Bit: i32 = 29;
+pub const anon611_CollectionPersistenceBit: i32 = 30;
+pub const anon611_CollectionLockBit: i32 = 31;
+pub const anon611_OSNotificationMessageID: i32 = 53;
+pub const anon611_OSAsyncCompleteMessageID: i32 = 57;
+pub const anon611_MaxAsyncArgs: i32 = 16;
+pub const anon611_typeUTF16ExternalRepresentation: i32 = 1970549046;
+pub const anon611_typeUTF8Text: i32 = 1970562616;
+pub const anon611_Large1BitMask: i32 = 1229147683;
+pub const anon611_Large4BitData: i32 = 1768123444;
+pub const anon611_Large8BitData: i32 = 1768123448;
+pub const anon611_Large32BitData: i32 = 1768698674;
+pub const anon611_Large8BitMask: i32 = 1815637355;
+pub const anon611_Small1BitMask: i32 = 1768125219;
+pub const anon611_Small4BitData: i32 = 1768125236;
+pub const anon611_Small8BitData: i32 = 1768125240;
+pub const anon611_Small32BitData: i32 = 1769157426;
+pub const anon611_Small8BitMask: i32 = 1933077867;
+pub const anon611_Mini1BitMask: i32 = 1768123683;
+pub const anon611_Mini4BitData: i32 = 1768123700;
+pub const anon611_Mini8BitData: i32 = 1768123704;
 
 pub const CustomBadgeResource = extern struct {
     version: objc.SInt16,
@@ -200,17 +211,25 @@ pub const CustomBadgeResource = extern struct {
     overrideCreator: objc.OSType,
 };
 
-pub const CustomBadgeResourcePtr = ?*CustomBadgeResource;
+pub const CustomBadgeResourcePtr = CustomBadgeResource;
 
-pub const CustomBadgeResourceHandle = ?*CustomBadgeResourcePtr;
+pub const CustomBadgeResourceHandle = CustomBadgeResourcePtr;
 
-pub const anon931 = enum(u32) {
-    OverallAct = 0,
-    UsrActivity = 1,
-    NetActivity = 2,
-    HDActivity = 3,
-    IdleActivity = 4,
-};
+pub const anon931 = u32;
+pub const anon931_RoutingResourceType: u32 = 1919907188;
+pub const anon931_RoutingResourceID: u32 = 0;
+pub const anon931_smallDateBit: u32 = 31;
+pub const anon931_togChar12HourBit: u32 = 30;
+pub const anon931_togCharZCycleBit: u32 = 29;
+pub const anon931_togDelta12HourBit: u32 = 28;
+pub const anon931_genCdevRangeBit: u32 = 27;
+pub const anon931_validDateFields: u32 = -1;
+pub const anon931_maxDateField: u32 = 10;
+pub const anon931_OverallAct: u32 = 0;
+pub const anon931_UsrActivity: u32 = 1;
+pub const anon931_NetActivity: u32 = 2;
+pub const anon931_HDActivity: u32 = 3;
+pub const anon931_IdleActivity: u32 = 4;
 
 pub const RoutingResourceEntry = extern struct {
     creator: objc.OSType,
@@ -220,105 +239,210 @@ pub const RoutingResourceEntry = extern struct {
     reservedField: objc.OSType,
 };
 
-pub const RoutingResourcePtr = ?*RoutingResourceEntry;
+pub const RoutingResourcePtr = RoutingResourceEntry;
 
-pub const RoutingResourceHandle = ?*RoutingResourcePtr;
+pub const RoutingResourceHandle = RoutingResourcePtr;
 
-pub const anon1271 = enum(u32) {
-    SystemFolderAliasType = 1717662585,
-    AppleMenuFolderAliasType = 1717657965,
-    StartupFolderAliasType = 1717662580,
-    PrintMonitorDocsFolderAliasType = 1717661806,
-    PreferencesFolderAliasType = 1717661798,
-    ControlPanelFolderAliasType = 1717658484,
-    ExtensionFolderAliasType = 1717659000,
-};
+pub const anon1101 = u32;
+pub const anon1101_ContainerFolderAliasType: u32 = 1717858928;
+pub const anon1101_ContainerTrashAliasType: u32 = 1953657704;
+pub const anon1101_ContainerHardDiskAliasType: u32 = 1751413611;
+pub const anon1101_ContainerFloppyAliasType: u32 = 1718382713;
+pub const anon1101_ContainerServerAliasType: u32 = 1936881266;
+pub const anon1101_ApplicationAliasType: u32 = 1633972848;
+pub const anon1101_ContainerAliasType: u32 = 1685221232;
+pub const anon1101_DesktopPrinterAliasType: u32 = 1685352545;
+pub const anon1101_ContainerCDROMAliasType: u32 = 1667523698;
+pub const anon1101_ApplicationCPAliasType: u32 = 1633903728;
+pub const anon1101_ApplicationDAAliasType: u32 = 1633969264;
+pub const anon1101_PackageAliasType: u32 = 1718643553;
+pub const anon1101_AppPackageAliasType: u32 = 1717661793;
+pub const anon1101_MPNoID: u32 = 0;
+pub const anon1101_PEFTag1: u32 = 1248819489;
+pub const anon1101_PEFTag2: u32 = 1885693542;
+pub const anon1101_PEFVersion: u32 = 1;
+pub const anon1101_AEUnknownSource: u32 = 0;
+pub const anon1101_AEDirectCall: u32 = 1;
+pub const anon1101_AESameProcess: u32 = 2;
+pub const anon1101_AELocalProcess: u32 = 3;
+pub const anon1101_AERemoteProcess: u32 = 4;
+pub const anon1101_AEIDoMinimum: u32 = 0;
+pub const anon1101_AEIDoWhose: u32 = 1;
+pub const anon1101_AEIDoMarking: u32 = 4;
+pub const anon1101_AEPassSubDescs: u32 = 8;
+pub const anon1101_AEResolveNestedLists: u32 = 16;
+pub const anon1101_AEHandleSimpleRanges: u32 = 32;
+pub const anon1101_AEUseRelativeIterators: u32 = 64;
+pub const anon1101_CSSM_ERRCODE_OPERATION_AUTH_DENIED: u32 = 32;
+pub const anon1101_CSSM_ERRCODE_OBJECT_USE_AUTH_DENIED: u32 = 33;
+pub const anon1101_CSSM_ERRCODE_OBJECT_MANIP_AUTH_DENIED: u32 = 34;
+pub const anon1101_CSSM_ERRCODE_OBJECT_ACL_NOT_SUPPORTED: u32 = 35;
+pub const anon1101_CSSM_ERRCODE_OBJECT_ACL_REQUIRED: u32 = 36;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACCESS_CREDENTIALS: u32 = 37;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_BASE_CERTS: u32 = 38;
+pub const anon1101_CSSM_ERRCODE_ACL_BASE_CERTS_NOT_SUPPORTED: u32 = 39;
+pub const anon1101_CSSM_ERRCODE_INVALID_SAMPLE_VALUE: u32 = 40;
+pub const anon1101_CSSM_ERRCODE_SAMPLE_VALUE_NOT_SUPPORTED: u32 = 41;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_SUBJECT_VALUE: u32 = 42;
+pub const anon1101_CSSM_ERRCODE_ACL_SUBJECT_TYPE_NOT_SUPPORTED: u32 = 43;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_CHALLENGE_CALLBACK: u32 = 44;
+pub const anon1101_CSSM_ERRCODE_ACL_CHALLENGE_CALLBACK_FAILED: u32 = 45;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_ENTRY_TAG: u32 = 46;
+pub const anon1101_CSSM_ERRCODE_ACL_ENTRY_TAG_NOT_FOUND: u32 = 47;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_EDIT_MODE: u32 = 48;
+pub const anon1101_CSSM_ERRCODE_ACL_CHANGE_FAILED: u32 = 49;
+pub const anon1101_CSSM_ERRCODE_INVALID_NEW_ACL_ENTRY: u32 = 50;
+pub const anon1101_CSSM_ERRCODE_INVALID_NEW_ACL_OWNER: u32 = 51;
+pub const anon1101_CSSM_ERRCODE_ACL_DELETE_FAILED: u32 = 52;
+pub const anon1101_CSSM_ERRCODE_ACL_REPLACE_FAILED: u32 = 53;
+pub const anon1101_CSSM_ERRCODE_ACL_ADD_FAILED: u32 = 54;
 
-pub const anon1381 = enum(u32) {
-    shortDate = 0,
-    longDate = 1,
-    abbrevDate = 2,
-};
+pub const anon1271 = u32;
+pub const anon1271_SystemFolderAliasType: u32 = 1717662585;
+pub const anon1271_AppleMenuFolderAliasType: u32 = 1717657965;
+pub const anon1271_StartupFolderAliasType: u32 = 1717662580;
+pub const anon1271_PrintMonitorDocsFolderAliasType: u32 = 1717661806;
+pub const anon1271_PreferencesFolderAliasType: u32 = 1717661798;
+pub const anon1271_ControlPanelFolderAliasType: u32 = 1717658484;
+pub const anon1271_ExtensionFolderAliasType: u32 = 1717659000;
 
-pub const anon1491 = enum(u32) {
-    CSIdentityFlagNone = 0,
-    CSIdentityFlagHidden = 1,
-};
+pub const anon1381 = u32;
+pub const anon1381_ExportedFolderAliasType: u32 = 1717658996;
+pub const anon1381_DropFolderAliasType: u32 = 1717658738;
+pub const anon1381_SharedFolderAliasType: u32 = 1717662568;
+pub const anon1381_MountedFolderAliasType: u32 = 1717661038;
+pub const anon1381_TextEncodingMacUnicode: u32 = 126;
+pub const anon1381_shortDate: u32 = 0;
+pub const anon1381_longDate: u32 = 1;
+pub const anon1381_abbrevDate: u32 = 2;
 
-pub const anon1761 = enum(u32) {
-    ClipboardIcon = 1129072976,
-    ClippingUnknownTypeIcon = 1668051061,
-    ClippingPictureTypeIcon = 1668051056,
-    ClippingTextTypeIcon = 1668051060,
-    ClippingSoundTypeIcon = 1668051059,
-    DesktopIcon = 1684370283,
-    FinderIcon = 1179534418,
-    ComputerIcon = 1919905652,
-    FontSuitcaseIcon = 1179011404,
-    FullTrashIcon = 1718907496,
-    GenericApplicationIcon = 1095782476,
-    GenericCDROMIcon = 1667523698,
-    GenericControlPanelIcon = 1095782467,
-    GenericControlStripModuleIcon = 1935959414,
-    GenericComponentIcon = 1953001063,
-    GenericDeskAccessoryIcon = 1095782468,
-    GenericDocumentIcon = 1685021557,
-    GenericEditionFileIcon = 1701082214,
-    GenericExtensionIcon = 1229867348,
-    GenericFileServerIcon = 1936881266,
-    GenericFontIcon = 1717987692,
-    GenericFontScalerIcon = 1935895666,
-    GenericFloppyIcon = 1718382713,
-    GenericHardDiskIcon = 1751413611,
-    GenericIDiskIcon = 1768190827,
-    GenericRemovableMediaIcon = 1919774582,
-    GenericMoverObjectIcon = 1836021362,
-    GenericPCCardIcon = 1885564259,
-    GenericPreferencesIcon = 1886545254,
-    GenericQueryDocumentIcon = 1902473849,
-    GenericRAMDiskIcon = 1918987620,
-    GenericSharedLibaryIcon = 1936223330,
-    GenericStationeryIcon = 1935961955,
-    GenericSuitcaseIcon = 1937074548,
-    GenericURLIcon = 1735750252,
-    GenericWORMIcon = 2003792493,
-    InternationalResourcesIcon = 1768319340,
-    KeyboardLayoutIcon = 1801873772,
-    SoundFileIcon = 1936091500,
-    SystemSuitcaseIcon = 2054388083,
-    TrashIcon = 1953657704,
-    TrueTypeFontIcon = 1952868716,
-    TrueTypeFlatFontIcon = 1936092788,
-    TrueTypeMultiFlatFontIcon = 1953784678,
-    UserIDiskIcon = 1969517419,
-    UnknownFSObjectIcon = 1970169459,
-    InternationResourcesIcon = 1768319340,
-};
+pub const anon1491 = u32;
+pub const anon1491_IsOnDesk: u32 = 1;
+pub const anon1491_Color: u32 = 14;
+pub const anon1491_IsShared: u32 = 64;
+pub const anon1491_HasNoINITs: u32 = 128;
+pub const anon1491_HasBeenInited: u32 = 256;
+pub const anon1491_HasCustomIcon: u32 = 1024;
+pub const anon1491_IsStationery: u32 = 2048;
+pub const anon1491_NameLocked: u32 = 4096;
+pub const anon1491_HasBundle: u32 = 8192;
+pub const anon1491_IsInvisible: u32 = 16384;
+pub const anon1491_IsAlias: u32 = 32768;
+pub const anon1491_FragmentIsPrepared: u32 = 0;
+pub const anon1491_FragmentNeedsPreparing: u32 = 2;
+pub const anon1491_CSIdentityFlagNone: u32 = 0;
+pub const anon1491_CSIdentityFlagHidden: u32 = 1;
 
-pub const anon1981 = enum(u32) {
-    SecOptionReserved = 255,
-    CertUsageShift = 8,
-    CertUsageSigningAdd = 256,
-    CertUsageSigningAskAndAdd = 512,
-    CertUsageVerifyAdd = 1024,
-    CertUsageVerifyAskAndAdd = 2048,
-    CertUsageEncryptAdd = 4096,
-    CertUsageEncryptAskAndAdd = 8192,
-    CertUsageDecryptAdd = 16384,
-    CertUsageDecryptAskAndAdd = 32768,
-    CertUsageKeyExchAdd = 65536,
-    CertUsageKeyExchAskAndAdd = 131072,
-    CertUsageRootAdd = 262144,
-    CertUsageRootAskAndAdd = 524288,
-    CertUsageSSLAdd = 1048576,
-    CertUsageSSLAskAndAdd = 2097152,
-    CertUsageAllAdd = 2147483392,
-};
+pub const anon1761 = u32;
+pub const anon1761_fOnDesk: u32 = 1;
+pub const anon1761_fHasBundle: u32 = 8192;
+pub const anon1761_fInvisible: u32 = 16384;
+pub const anon1761_ClipboardIcon: u32 = 1129072976;
+pub const anon1761_ClippingUnknownTypeIcon: u32 = 1668051061;
+pub const anon1761_ClippingPictureTypeIcon: u32 = 1668051056;
+pub const anon1761_ClippingTextTypeIcon: u32 = 1668051060;
+pub const anon1761_ClippingSoundTypeIcon: u32 = 1668051059;
+pub const anon1761_DesktopIcon: u32 = 1684370283;
+pub const anon1761_FinderIcon: u32 = 1179534418;
+pub const anon1761_ComputerIcon: u32 = 1919905652;
+pub const anon1761_FontSuitcaseIcon: u32 = 1179011404;
+pub const anon1761_FullTrashIcon: u32 = 1718907496;
+pub const anon1761_GenericApplicationIcon: u32 = 1095782476;
+pub const anon1761_GenericCDROMIcon: u32 = 1667523698;
+pub const anon1761_GenericControlPanelIcon: u32 = 1095782467;
+pub const anon1761_GenericControlStripModuleIcon: u32 = 1935959414;
+pub const anon1761_GenericComponentIcon: u32 = 1953001063;
+pub const anon1761_GenericDeskAccessoryIcon: u32 = 1095782468;
+pub const anon1761_GenericDocumentIcon: u32 = 1685021557;
+pub const anon1761_GenericEditionFileIcon: u32 = 1701082214;
+pub const anon1761_GenericExtensionIcon: u32 = 1229867348;
+pub const anon1761_GenericFileServerIcon: u32 = 1936881266;
+pub const anon1761_GenericFontIcon: u32 = 1717987692;
+pub const anon1761_GenericFontScalerIcon: u32 = 1935895666;
+pub const anon1761_GenericFloppyIcon: u32 = 1718382713;
+pub const anon1761_GenericHardDiskIcon: u32 = 1751413611;
+pub const anon1761_GenericIDiskIcon: u32 = 1768190827;
+pub const anon1761_GenericRemovableMediaIcon: u32 = 1919774582;
+pub const anon1761_GenericMoverObjectIcon: u32 = 1836021362;
+pub const anon1761_GenericPCCardIcon: u32 = 1885564259;
+pub const anon1761_GenericPreferencesIcon: u32 = 1886545254;
+pub const anon1761_GenericQueryDocumentIcon: u32 = 1902473849;
+pub const anon1761_GenericRAMDiskIcon: u32 = 1918987620;
+pub const anon1761_GenericSharedLibaryIcon: u32 = 1936223330;
+pub const anon1761_GenericStationeryIcon: u32 = 1935961955;
+pub const anon1761_GenericSuitcaseIcon: u32 = 1937074548;
+pub const anon1761_GenericURLIcon: u32 = 1735750252;
+pub const anon1761_GenericWORMIcon: u32 = 2003792493;
+pub const anon1761_InternationalResourcesIcon: u32 = 1768319340;
+pub const anon1761_KeyboardLayoutIcon: u32 = 1801873772;
+pub const anon1761_SoundFileIcon: u32 = 1936091500;
+pub const anon1761_SystemSuitcaseIcon: u32 = 2054388083;
+pub const anon1761_TrashIcon: u32 = 1953657704;
+pub const anon1761_TrueTypeFontIcon: u32 = 1952868716;
+pub const anon1761_TrueTypeFlatFontIcon: u32 = 1936092788;
+pub const anon1761_TrueTypeMultiFlatFontIcon: u32 = 1953784678;
+pub const anon1761_UserIDiskIcon: u32 = 1969517419;
+pub const anon1761_UnknownFSObjectIcon: u32 = 1970169459;
+pub const anon1761_InternationResourcesIcon: u32 = 1768319340;
 
-pub const anon2131 = enum(u32) {
-    FirstMagicBusyFiletype = 1652193568,
-    LastMagicBusyFiletype = 1652193599,
-};
+pub const anon1831 = i32;
+pub const anon1831_fTrash: i32 = -3;
+pub const anon1831_fDesktop: i32 = -2;
+pub const anon1831_fDisk: i32 = 0;
+pub const anon1831_eLenErr: i32 = -92;
+pub const anon1831_eMultiErr: i32 = -91;
+pub const anon1831_CSSM_ACL_KEYCHAIN_PROMPT_CURRENT_VERSION: i32 = 257;
+
+pub const anon1981 = u32;
+pub const anon1981_ExtendedFlagsAreInvalid: u32 = 32768;
+pub const anon1981_ExtendedFlagHasCustomBadge: u32 = 256;
+pub const anon1981_ExtendedFlagObjectIsBusy: u32 = 128;
+pub const anon1981_ExtendedFlagHasRoutingInfo: u32 = 4;
+pub const anon1981_SecOptionReserved: u32 = 255;
+pub const anon1981_CertUsageShift: u32 = 8;
+pub const anon1981_CertUsageSigningAdd: u32 = 256;
+pub const anon1981_CertUsageSigningAskAndAdd: u32 = 512;
+pub const anon1981_CertUsageVerifyAdd: u32 = 1024;
+pub const anon1981_CertUsageVerifyAskAndAdd: u32 = 2048;
+pub const anon1981_CertUsageEncryptAdd: u32 = 4096;
+pub const anon1981_CertUsageEncryptAskAndAdd: u32 = 8192;
+pub const anon1981_CertUsageDecryptAdd: u32 = 16384;
+pub const anon1981_CertUsageDecryptAskAndAdd: u32 = 32768;
+pub const anon1981_CertUsageKeyExchAdd: u32 = 65536;
+pub const anon1981_CertUsageKeyExchAskAndAdd: u32 = 131072;
+pub const anon1981_CertUsageRootAdd: u32 = 262144;
+pub const anon1981_CertUsageRootAskAndAdd: u32 = 524288;
+pub const anon1981_CertUsageSSLAdd: u32 = 1048576;
+pub const anon1981_CertUsageSSLAskAndAdd: u32 = 2097152;
+pub const anon1981_CertUsageAllAdd: u32 = 2147483392;
+
+pub const anon2131 = u32;
+pub const anon2131_FirstMagicBusyFiletype: u32 = 1652193568;
+pub const anon2131_LastMagicBusyFiletype: u32 = 1652193599;
+
+pub const anon2231 = u32;
+pub const anon2231_MagicBusyCreationDate: u32 = 1329266096;
+pub const anon2231_langWelsh: u32 = 128;
+pub const anon2231_langBasque: u32 = 129;
+pub const anon2231_langCatalan: u32 = 130;
+pub const anon2231_langLatin: u32 = 131;
+pub const anon2231_langQuechua: u32 = 132;
+pub const anon2231_langGuarani: u32 = 133;
+pub const anon2231_langAymara: u32 = 134;
+pub const anon2231_langTatar: u32 = 135;
+pub const anon2231_langUighur: u32 = 136;
+pub const anon2231_langDzongkha: u32 = 137;
+pub const anon2231_langJavaneseRom: u32 = 138;
+pub const anon2231_langSundaneseRom: u32 = 139;
+pub const anon2231_langGalician: u32 = 140;
+pub const anon2231_langAfrikaans: u32 = 141;
+pub const anon2231_IOMaxBusStall40usec: u32 = 40000;
+pub const anon2231_IOMaxBusStall30usec: u32 = 30000;
+pub const anon2231_IOMaxBusStall25usec: u32 = 25000;
+pub const anon2231_IOMaxBusStall20usec: u32 = 20000;
+pub const anon2231_IOMaxBusStall10usec: u32 = 10000;
+pub const anon2231_IOMaxBusStall5usec: u32 = 5000;
+pub const anon2231_IOMaxBusStallNone: u32 = 0;
 
 pub const FileInfo = extern struct {
     fileType: objc.OSType,
@@ -441,86 +565,179 @@ pub extern "CoreServices" fn WideBitShift(target: ?*objc.wide, shift: objc.SInt3
 
 pub extern "CoreServices" fn UnsignedFixedMulDiv(value: objc.UnsignedFixed, multiplier: objc.UnsignedFixed, divisor: objc.UnsignedFixed) callconv(.C) objc.UnsignedFixed;
 
-pub const anon311 = enum(u32) {
-    itlcShowIcon = 7,
-    itlcDualCaret = 6,
-    itlcSysDirection = 15,
-};
+pub const anon311 = u32;
+pub const anon311_itlcShowIcon: u32 = 7;
+pub const anon311_itlcDualCaret: u32 = 6;
+pub const anon311_itlcSysDirection: u32 = 15;
 
-pub const anon391 = enum(u32) {
-    AEUTHasReturningParam = 31,
-    AEUTOptional = 15,
-    AEUTlistOfItems = 14,
-    AEUTEnumerated = 13,
-    AEUTReadWrite = 12,
-    AEUTChangesState = 12,
-    AEUTTightBindingFunction = 12,
-    AEUTEnumsAreTypes = 11,
-    AEUTEnumListIsExclusive = 10,
-    AEUTReplyIsReference = 9,
-    AEUTDirectParamIsReference = 9,
-    AEUTParamIsReference = 9,
-    AEUTPropertyIsReference = 9,
-    AEUTNotDirectParamIsTarget = 8,
-    AEUTParamIsTarget = 8,
-    AEUTApostrophe = 3,
-    AEUTFeminine = 2,
-    AEUTMasculine = 1,
-    AEUTPlural = 0,
-};
+pub const anon391 = u32;
+pub const anon391_itlcDisableKeyScriptSync: u32 = 3;
+pub const anon391_AEUTHasReturningParam: u32 = 31;
+pub const anon391_AEUTOptional: u32 = 15;
+pub const anon391_AEUTlistOfItems: u32 = 14;
+pub const anon391_AEUTEnumerated: u32 = 13;
+pub const anon391_AEUTReadWrite: u32 = 12;
+pub const anon391_AEUTChangesState: u32 = 12;
+pub const anon391_AEUTTightBindingFunction: u32 = 12;
+pub const anon391_AEUTEnumsAreTypes: u32 = 11;
+pub const anon391_AEUTEnumListIsExclusive: u32 = 10;
+pub const anon391_AEUTReplyIsReference: u32 = 9;
+pub const anon391_AEUTDirectParamIsReference: u32 = 9;
+pub const anon391_AEUTParamIsReference: u32 = 9;
+pub const anon391_AEUTPropertyIsReference: u32 = 9;
+pub const anon391_AEUTNotDirectParamIsTarget: u32 = 8;
+pub const anon391_AEUTParamIsTarget: u32 = 8;
+pub const anon391_AEUTApostrophe: u32 = 3;
+pub const anon391_AEUTFeminine: u32 = 2;
+pub const anon391_AEUTMasculine: u32 = 1;
+pub const anon391_AEUTPlural: u32 = 0;
 
-pub const anon441 = enum(u32) {
-    resSysRefBit = 7,
-    resSysHeapBit = 6,
-    resPurgeableBit = 5,
-    resLockedBit = 4,
-    resProtectedBit = 3,
-    resPreloadBit = 2,
-    resChangedBit = 1,
-};
+pub const anon441 = u32;
+pub const anon441_itlcDisableKeyScriptSyncMask: u32 = 8;
+pub const anon441_resSysRefBit: u32 = 7;
+pub const anon441_resSysHeapBit: u32 = 6;
+pub const anon441_resPurgeableBit: u32 = 5;
+pub const anon441_resLockedBit: u32 = 4;
+pub const anon441_resProtectedBit: u32 = 3;
+pub const anon441_resPreloadBit: u32 = 2;
+pub const anon441_resChangedBit: u32 = 1;
 
-pub const anon501 = enum(i32) {
-    GenericDocumentIconResource = -4000,
-    GenericStationeryIconResource = -3985,
-    GenericEditionFileIconResource = -3989,
-    GenericApplicationIconResource = -3996,
-    GenericDeskAccessoryIconResource = -3991,
-    GenericFolderIconResource = -3999,
-    PrivateFolderIconResource = -3994,
-    FloppyIconResource = -3998,
-    TrashIconResource = -3993,
-    GenericRAMDiskIconResource = -3988,
-    GenericCDROMIconResource = -3987,
-};
+pub const anon501 = u32;
+pub const anon501_tokLeftQuote: u32 = 1;
+pub const anon501_tokRightQuote: u32 = 2;
+pub const anon501_tokLeadPlacer: u32 = 3;
+pub const anon501_tokLeader: u32 = 4;
+pub const anon501_tokNonLeader: u32 = 5;
+pub const anon501_tokZeroLead: u32 = 6;
+pub const anon501_tokPercent: u32 = 7;
+pub const anon501_tokPlusSign: u32 = 8;
+pub const anon501_tokMinusSign: u32 = 9;
+pub const anon501_tokThousands: u32 = 10;
+pub const anon501_tokReserved: u32 = 11;
+pub const anon501_tokSeparator: u32 = 12;
+pub const anon501_tokEscape: u32 = 13;
+pub const anon501_tokDecPoint: u32 = 14;
+pub const anon501_tokEPlus: u32 = 15;
+pub const anon501_tokEMinus: u32 = 16;
+pub const anon501_tokMaxSymbols: u32 = 31;
+pub const anon501_curNumberPartsVersion: u32 = 1;
+pub const anon501_abortErr: u32 = -27;
+pub const anon501_iIOAbortErr: u32 = -27;
+pub const anon501_notOpenErr: u32 = -28;
+pub const anon501_unitTblFullErr: u32 = -29;
+pub const anon501_dceExtErr: u32 = -30;
+pub const anon501_slotNumErr: u32 = -360;
+pub const anon501_gcrOnMFMErr: u32 = -400;
+pub const anon501_dirFulErr: u32 = -33;
+pub const anon501_dskFulErr: u32 = -34;
+pub const anon501_nsvErr: u32 = -35;
+pub const anon501_ioErr: u32 = -36;
+pub const anon501_bdNamErr: u32 = -37;
+pub const anon501_fnOpnErr: u32 = -38;
+pub const anon501_eofErr: u32 = -39;
+pub const anon501_posErr: u32 = -40;
+pub const anon501_mFulErr: u32 = -41;
+pub const anon501_tmfoErr: u32 = -42;
+pub const anon501_fnfErr: u32 = -43;
+pub const anon501_wPrErr: u32 = -44;
+pub const anon501_fLckdErr: u32 = -45;
+pub const anon501_typeStyledUnicodeText: u32 = 1937077368;
+pub const anon501_typeEncodedString: u32 = 1701733235;
+pub const anon501_typeUnicodeText: u32 = 1970567284;
+pub const anon501_typeCString: u32 = 1668510834;
+pub const anon501_typePString: u32 = 1886614642;
+pub const anon501_errWSInternalError: u32 = -65793;
+pub const anon501_errWSTransportError: u32 = -65794;
+pub const anon501_errWSParseError: u32 = -65795;
+pub const anon501_errWSTimeoutError: u32 = -65796;
+pub const anon501_GenericDocumentIconResource: u32 = -4000;
+pub const anon501_GenericStationeryIconResource: u32 = -3985;
+pub const anon501_GenericEditionFileIconResource: u32 = -3989;
+pub const anon501_GenericApplicationIconResource: u32 = -3996;
+pub const anon501_GenericDeskAccessoryIconResource: u32 = -3991;
+pub const anon501_GenericFolderIconResource: u32 = -3999;
+pub const anon501_PrivateFolderIconResource: u32 = -3994;
+pub const anon501_FloppyIconResource: u32 = -3998;
+pub const anon501_TrashIconResource: u32 = -3993;
+pub const anon501_GenericRAMDiskIconResource: u32 = -3988;
+pub const anon501_GenericCDROMIconResource: u32 = -3987;
 
-pub const anon711 = enum(DescType) {
-    CoreEventClass = 1634039412,
-};
+pub const anon711 = u32;
+pub const anon711_currSymLead: u32 = 16;
+pub const anon711_currNegSym: u32 = 32;
+pub const anon711_currTrailingZ: u32 = 64;
+pub const anon711_currLeadingZ: u32 = 128;
+pub const anon711_32BitHeap: u32 = 1;
+pub const anon711_NewStyleHeap: u32 = 2;
+pub const anon711_NewDebugHeap: u32 = 4;
+pub const anon711_NoThreadID: u32 = 0;
+pub const anon711_CurrentThreadID: u32 = 1;
+pub const anon711_ApplicationThreadID: u32 = 2;
+pub const anon711_verUnspecified: u32 = 32767;
+pub const anon711_TECResourceID: u32 = 128;
+pub const anon711_CoreEventClass: u32 = 1634039412;
 
-pub const anon781 = enum(u32) {
-    large1BitMask = 1229147683,
-    large4BitData = 1768123444,
-    large8BitData = 1768123448,
-    small1BitMask = 1768125219,
-    small4BitData = 1768125236,
-    small8BitData = 1768125240,
-    mini1BitMask = 1768123683,
-    mini4BitData = 1768123700,
-    mini8BitData = 1768123704,
-};
+pub const anon781 = u32;
+pub const anon781_mdy: u32 = 0;
+pub const anon781_dmy: u32 = 1;
+pub const anon781_ymd: u32 = 2;
+pub const anon781_myd: u32 = 3;
+pub const anon781_dym: u32 = 4;
+pub const anon781_ydm: u32 = 5;
+pub const anon781_toggleUndefined: u32 = 0;
+pub const anon781_toggleOK: u32 = 1;
+pub const anon781_toggleBadField: u32 = 2;
+pub const anon781_toggleBadDelta: u32 = 3;
+pub const anon781_toggleBadChar: u32 = 4;
+pub const anon781_toggleUnknown: u32 = 5;
+pub const anon781_toggleBadNum: u32 = 6;
+pub const anon781_toggleOutOfRange: u32 = 7;
+pub const anon781_toggleErr3: u32 = 7;
+pub const anon781_toggleErr4: u32 = 8;
+pub const anon781_toggleErr5: u32 = 9;
+pub const anon781_CSSM_FALSE: u32 = 0;
+pub const anon781_CSSM_TRUE: u32 = 1;
+pub const anon781_large1BitMask: u32 = 1229147683;
+pub const anon781_large4BitData: u32 = 1768123444;
+pub const anon781_large8BitData: u32 = 1768123448;
+pub const anon781_small1BitMask: u32 = 1768125219;
+pub const anon781_small4BitData: u32 = 1768125236;
+pub const anon781_small8BitData: u32 = 1768125240;
+pub const anon781_mini1BitMask: u32 = 1768123683;
+pub const anon781_mini4BitData: u32 = 1768123700;
+pub const anon781_mini8BitData: u32 = 1768123704;
 
 pub const DateOrders = objc.SInt8;
 
-pub const anon881 = enum(DescType) {
-    eyAERestoreAppState = 1920169071,
-};
+pub const anon881 = u32;
+pub const anon881_timeCycle24: u32 = 0;
+pub const anon881_timeCycleZero: u32 = 1;
+pub const anon881_timeCycle12: u32 = 255;
+pub const anon881_zeroCycle: u32 = 1;
+pub const anon881_longDay: u32 = 0;
+pub const anon881_longWeek: u32 = 1;
+pub const anon881_longMonth: u32 = 2;
+pub const anon881_longYear: u32 = 3;
+pub const anon881_supDay: u32 = 1;
+pub const anon881_supWeek: u32 = 2;
+pub const anon881_supMonth: u32 = 4;
+pub const anon881_supYear: u32 = 8;
+pub const anon881_dayLdingZ: u32 = 32;
+pub const anon881_mntLdingZ: u32 = 64;
+pub const anon881_century: u32 = 128;
+pub const anon881_secLeadingZ: u32 = 32;
+pub const anon881_minLeadingZ: u32 = 64;
+pub const anon881_hrLeadingZ: u32 = 128;
+pub const anon881_OSAsyncRef64Count: u32 = 8;
+pub const anon881_OSAsyncRef64Size: u32 = 64;
+pub const anon881_eyAERestoreAppState: u32 = 1920169071;
 
 pub const OffPair = extern struct {
     offFirst: i16,
     offSecond: i16,
 };
 
-pub const OffsetTable = [3]OffPair;
+pub const OffsetTable = OffPair;
 
 pub const Intl0Rec = extern struct {
     decimalPt: i8,
@@ -550,9 +767,9 @@ pub const Intl0Rec = extern struct {
     intl0Vers: i16,
 };
 
-pub const Intl0Ptr = ?*Intl0Rec;
+pub const Intl0Ptr = Intl0Rec;
 
-pub const Intl0Hndl = ?*Intl0Ptr;
+pub const Intl0Hndl = Intl0Ptr;
 
 pub const Intl1Rec = extern struct {
     days: [7]objc.Str15,
@@ -570,9 +787,9 @@ pub const Intl1Rec = extern struct {
     localRtn: [1]i16,
 };
 
-pub const Intl1Ptr = ?*Intl1Rec;
+pub const Intl1Ptr = Intl1Rec;
 
-pub const Intl1Hndl = ?*Intl1Ptr;
+pub const Intl1Hndl = Intl1Ptr;
 
 pub const Itl1ExtRec = extern struct {
     base: Intl1Rec,
@@ -598,18 +815,18 @@ pub const UntokenTable = extern struct {
     index: [256]i16,
 };
 
-pub const UntokenTablePtr = ?*UntokenTable;
+pub const UntokenTablePtr = UntokenTable;
 
-pub const UntokenTableHandle = ?*UntokenTablePtr;
+pub const UntokenTableHandle = UntokenTablePtr;
 
 pub const WideChar = extern union {
-    a: anon2083,
-    b: i16,
-};
+    pub const anon2083 = extern struct {
+        lo: i8,
+        hi: i8,
+    };
 
-pub const anon2083 = extern struct {
-    lo: i8,
-    hi: i8,
+    a: WideChar.anon2083,
+    b: i16,
 };
 
 pub const WideCharArr = extern struct {
@@ -627,7 +844,7 @@ pub const NumberParts = extern struct {
     reserved: [20]i8,
 };
 
-pub const NumberPartsPtr = ?*NumberParts;
+pub const NumberPartsPtr = NumberParts;
 
 pub const Itl4Rec = extern struct {
     flags: i16,
@@ -647,9 +864,9 @@ pub const Itl4Rec = extern struct {
     resOffset8: objc.SInt32,
 };
 
-pub const Itl4Ptr = ?*Itl4Rec;
+pub const Itl4Ptr = Itl4Rec;
 
-pub const Itl4Handle = ?*Itl4Ptr;
+pub const Itl4Handle = Itl4Ptr;
 
 pub const NItl4Rec = extern struct {
     flags: i16,
@@ -678,9 +895,9 @@ pub const NItl4Rec = extern struct {
     resLength8: i16,
 };
 
-pub const NItl4Ptr = ?*NItl4Rec;
+pub const NItl4Ptr = NItl4Rec;
 
-pub const NItl4Handle = ?*NItl4Ptr;
+pub const NItl4Handle = NItl4Ptr;
 
 pub const TableDirectoryRecord = extern struct {
     tableSignature: objc.OSType,
@@ -752,522 +969,935 @@ pub const ItlbExtRecord = extern struct {
     itlbAliasStyle: objc.Style,
 };
 
-pub const anon341 = enum(u32) {
-    IconServices16PixelDataARGB = 1768108084,
-    IconServices32PixelDataARGB = 1768108085,
-    IconServices48PixelDataARGB = 1768108086,
-    IconServices128PixelDataARGB = 1768108087,
-};
+pub const anon341 = i32;
+pub const anon341_smSystemScript: i32 = -1;
+pub const anon341_smCurrentScript: i32 = -2;
+pub const anon341_smAllScripts: i32 = -3;
+pub const anon341_IconServices16PixelDataARGB: i32 = 1768108084;
+pub const anon341_IconServices32PixelDataARGB: i32 = 1768108085;
+pub const anon341_IconServices48PixelDataARGB: i32 = 1768108086;
+pub const anon341_IconServices128PixelDataARGB: i32 = 1768108087;
 
-pub const anon901 = enum(u32) {
-    OpaqueAnyID = 0,
-    OpaqueProcessID = 1,
-    OpaqueTaskID = 2,
-    OpaqueTimerID = 3,
-    OpaqueQueueID = 4,
-    OpaqueSemaphoreID = 5,
-    OpaqueCriticalRegionID = 6,
-    OpaqueCpuID = 7,
-    OpaqueAddressSpaceID = 8,
-    OpaqueEventID = 9,
-    OpaqueCoherenceID = 10,
-    OpaqueAreaID = 11,
-    OpaqueNotificationID = 12,
-    OpaqueConsoleID = 13,
-};
+pub const anon901 = u32;
+pub const anon901_smUnicodeScript: u32 = 126;
+pub const anon901_OpaqueAnyID: u32 = 0;
+pub const anon901_OpaqueProcessID: u32 = 1;
+pub const anon901_OpaqueTaskID: u32 = 2;
+pub const anon901_OpaqueTimerID: u32 = 3;
+pub const anon901_OpaqueQueueID: u32 = 4;
+pub const anon901_OpaqueSemaphoreID: u32 = 5;
+pub const anon901_OpaqueCriticalRegionID: u32 = 6;
+pub const anon901_OpaqueCpuID: u32 = 7;
+pub const anon901_OpaqueAddressSpaceID: u32 = 8;
+pub const anon901_OpaqueEventID: u32 = 9;
+pub const anon901_OpaqueCoherenceID: u32 = 10;
+pub const anon901_OpaqueAreaID: u32 = 11;
+pub const anon901_OpaqueNotificationID: u32 = 12;
+pub const anon901_OpaqueConsoleID: u32 = 13;
 
-pub const anon951 = enum(u32) {
-    smChinese = 2,
-    smRussian = 7,
-    smLaotian = 22,
-    smAmharic = 28,
-    smSlavic = 29,
-    smEastEurRoman = 29,
-    smSindhi = 31,
-    smKlingon = 32,
-};
+pub const anon951 = u32;
+pub const anon951_smChinese: u32 = 2;
+pub const anon951_smRussian: u32 = 7;
+pub const anon951_smLaotian: u32 = 22;
+pub const anon951_smAmharic: u32 = 28;
+pub const anon951_smSlavic: u32 = 29;
+pub const anon951_smEastEurRoman: u32 = 29;
+pub const anon951_smSindhi: u32 = 31;
+pub const anon951_smKlingon: u32 = 32;
 
-pub const anon1121 = enum(u32) {
-    langEnglish = 0,
-    langFrench = 1,
-    langGerman = 2,
-    langItalian = 3,
-    langDutch = 4,
-    langSwedish = 5,
-    langSpanish = 6,
-    langDanish = 7,
-    langPortuguese = 8,
-    langNorwegian = 9,
-    langHebrew = 10,
-    langJapanese = 11,
-    langArabic = 12,
-    langFinnish = 13,
-    langGreek = 14,
-    langIcelandic = 15,
-    langMaltese = 16,
-    langTurkish = 17,
-    langCroatian = 18,
-    langTradChinese = 19,
-    langUrdu = 20,
-    langHindi = 21,
-    langThai = 22,
-    langKorean = 23,
-};
+pub const anon1121 = u32;
+pub const anon1121_langEnglish: u32 = 0;
+pub const anon1121_langFrench: u32 = 1;
+pub const anon1121_langGerman: u32 = 2;
+pub const anon1121_langItalian: u32 = 3;
+pub const anon1121_langDutch: u32 = 4;
+pub const anon1121_langSwedish: u32 = 5;
+pub const anon1121_langSpanish: u32 = 6;
+pub const anon1121_langDanish: u32 = 7;
+pub const anon1121_langPortuguese: u32 = 8;
+pub const anon1121_langNorwegian: u32 = 9;
+pub const anon1121_langHebrew: u32 = 10;
+pub const anon1121_langJapanese: u32 = 11;
+pub const anon1121_langArabic: u32 = 12;
+pub const anon1121_langFinnish: u32 = 13;
+pub const anon1121_langGreek: u32 = 14;
+pub const anon1121_langIcelandic: u32 = 15;
+pub const anon1121_langMaltese: u32 = 16;
+pub const anon1121_langTurkish: u32 = 17;
+pub const anon1121_langCroatian: u32 = 18;
+pub const anon1121_langTradChinese: u32 = 19;
+pub const anon1121_langUrdu: u32 = 20;
+pub const anon1121_langHindi: u32 = 21;
+pub const anon1121_langThai: u32 = 22;
+pub const anon1121_langKorean: u32 = 23;
 
-pub const anon1391 = enum(u32) {
-    langLithuanian = 24,
-    langPolish = 25,
-    langHungarian = 26,
-    langEstonian = 27,
-    langLatvian = 28,
-    langSami = 29,
-    langFaroese = 30,
-    langFarsi = 31,
-    langPersian = 31,
-    langRussian = 32,
-    langSimpChinese = 33,
-    langFlemish = 34,
-    langIrishGaelic = 35,
-    langAlbanian = 36,
-    langRomanian = 37,
-    langCzech = 38,
-    langSlovak = 39,
-    langSlovenian = 40,
-    langYiddish = 41,
-    langSerbian = 42,
-    langMacedonian = 43,
-    langBulgarian = 44,
-    langUkrainian = 45,
-    langByelorussian = 46,
-    langBelorussian = 46,
-};
+pub const anon1391 = u32;
+pub const anon1391_langLithuanian: u32 = 24;
+pub const anon1391_langPolish: u32 = 25;
+pub const anon1391_langHungarian: u32 = 26;
+pub const anon1391_langEstonian: u32 = 27;
+pub const anon1391_langLatvian: u32 = 28;
+pub const anon1391_langSami: u32 = 29;
+pub const anon1391_langFaroese: u32 = 30;
+pub const anon1391_langFarsi: u32 = 31;
+pub const anon1391_langPersian: u32 = 31;
+pub const anon1391_langRussian: u32 = 32;
+pub const anon1391_langSimpChinese: u32 = 33;
+pub const anon1391_langFlemish: u32 = 34;
+pub const anon1391_langIrishGaelic: u32 = 35;
+pub const anon1391_langAlbanian: u32 = 36;
+pub const anon1391_langRomanian: u32 = 37;
+pub const anon1391_langCzech: u32 = 38;
+pub const anon1391_langSlovak: u32 = 39;
+pub const anon1391_langSlovenian: u32 = 40;
+pub const anon1391_langYiddish: u32 = 41;
+pub const anon1391_langSerbian: u32 = 42;
+pub const anon1391_langMacedonian: u32 = 43;
+pub const anon1391_langBulgarian: u32 = 44;
+pub const anon1391_langUkrainian: u32 = 45;
+pub const anon1391_langByelorussian: u32 = 46;
+pub const anon1391_langBelorussian: u32 = 46;
 
-pub const anon1671 = enum(u32) {
-    UnicodeFallbackSequencingMask = 3,
-    UnicodeFallbackInterruptSafeMask = 4,
-};
+pub const anon1671 = u32;
+pub const anon1671_langUzbek: u32 = 47;
+pub const anon1671_langKazakh: u32 = 48;
+pub const anon1671_langAzerbaijani: u32 = 49;
+pub const anon1671_langAzerbaijanAr: u32 = 50;
+pub const anon1671_langArmenian: u32 = 51;
+pub const anon1671_langGeorgian: u32 = 52;
+pub const anon1671_langMoldavian: u32 = 53;
+pub const anon1671_langKirghiz: u32 = 54;
+pub const anon1671_langTajiki: u32 = 55;
+pub const anon1671_langTurkmen: u32 = 56;
+pub const anon1671_langMongolian: u32 = 57;
+pub const anon1671_langMongolianCyr: u32 = 58;
+pub const anon1671_langPashto: u32 = 59;
+pub const anon1671_langKurdish: u32 = 60;
+pub const anon1671_langKashmiri: u32 = 61;
+pub const anon1671_langSindhi: u32 = 62;
+pub const anon1671_langTibetan: u32 = 63;
+pub const anon1671_langNepali: u32 = 64;
+pub const anon1671_langSanskrit: u32 = 65;
+pub const anon1671_langMarathi: u32 = 66;
+pub const anon1671_langBengali: u32 = 67;
+pub const anon1671_langAssamese: u32 = 68;
+pub const anon1671_langGujarati: u32 = 69;
+pub const anon1671_langPunjabi: u32 = 70;
+pub const anon1671_UnicodeFallbackSequencingMask: u32 = 3;
+pub const anon1671_UnicodeFallbackInterruptSafeMask: u32 = 4;
 
-pub const anon1941 = enum(u32) {
-    langOriya = 71,
-    langMalayalam = 72,
-    langKannada = 73,
-    langTamil = 74,
-    langTelugu = 75,
-    langSinhalese = 76,
-    langBurmese = 77,
-    langKhmer = 78,
-    langLao = 79,
-    langVietnamese = 80,
-    langIndonesian = 81,
-    langTagalog = 82,
-    langMalayRoman = 83,
-    langMalayArabic = 84,
-    langAmharic = 85,
-    langTigrinya = 86,
-    langOromo = 87,
-    langSomali = 88,
-    langSwahili = 89,
-    langKinyarwanda = 90,
-    langRuanda = 90,
-    langRundi = 91,
-    langNyanja = 92,
-    langChewa = 92,
-    langMalagasy = 93,
-    langEsperanto = 94,
-};
+pub const anon1941 = u32;
+pub const anon1941_langOriya: u32 = 71;
+pub const anon1941_langMalayalam: u32 = 72;
+pub const anon1941_langKannada: u32 = 73;
+pub const anon1941_langTamil: u32 = 74;
+pub const anon1941_langTelugu: u32 = 75;
+pub const anon1941_langSinhalese: u32 = 76;
+pub const anon1941_langBurmese: u32 = 77;
+pub const anon1941_langKhmer: u32 = 78;
+pub const anon1941_langLao: u32 = 79;
+pub const anon1941_langVietnamese: u32 = 80;
+pub const anon1941_langIndonesian: u32 = 81;
+pub const anon1941_langTagalog: u32 = 82;
+pub const anon1941_langMalayRoman: u32 = 83;
+pub const anon1941_langMalayArabic: u32 = 84;
+pub const anon1941_langAmharic: u32 = 85;
+pub const anon1941_langTigrinya: u32 = 86;
+pub const anon1941_langOromo: u32 = 87;
+pub const anon1941_langSomali: u32 = 88;
+pub const anon1941_langSwahili: u32 = 89;
+pub const anon1941_langKinyarwanda: u32 = 90;
+pub const anon1941_langRuanda: u32 = 90;
+pub const anon1941_langRundi: u32 = 91;
+pub const anon1941_langNyanja: u32 = 92;
+pub const anon1941_langChewa: u32 = 92;
+pub const anon1941_langMalagasy: u32 = 93;
+pub const anon1941_langEsperanto: u32 = 94;
 
-pub const anon2401 = enum(u32) {
-    GenericFolderIcon = 1718379634,
-    DropFolderIcon = 1684172664,
-    MountedFolderIcon = 1835955300,
-    OpenFolderIcon = 1868983396,
-    OwnedFolderIcon = 1870098020,
-    PrivateFolderIcon = 1886549606,
-    SharedFolderIcon = 1936221804,
-};
+pub const anon2401 = u32;
+pub const anon2401_langBreton: u32 = 142;
+pub const anon2401_langInuktitut: u32 = 143;
+pub const anon2401_langScottishGaelic: u32 = 144;
+pub const anon2401_langManxGaelic: u32 = 145;
+pub const anon2401_langIrishGaelicScript: u32 = 146;
+pub const anon2401_langTongan: u32 = 147;
+pub const anon2401_langGreekAncient: u32 = 148;
+pub const anon2401_langGreenlandic: u32 = 149;
+pub const anon2401_langAzerbaijanRoman: u32 = 150;
+pub const anon2401_langNynorsk: u32 = 151;
+pub const anon2401_GenericFolderIcon: u32 = 1718379634;
+pub const anon2401_DropFolderIcon: u32 = 1684172664;
+pub const anon2401_MountedFolderIcon: u32 = 1835955300;
+pub const anon2401_OpenFolderIcon: u32 = 1868983396;
+pub const anon2401_OwnedFolderIcon: u32 = 1870098020;
+pub const anon2401_PrivateFolderIcon: u32 = 1886549606;
+pub const anon2401_SharedFolderIcon: u32 = 1936221804;
 
-pub const anon2531 = enum(u32) {
-    langUnspecified = 32767,
-};
+pub const anon2531 = u32;
+pub const anon2531_langUnspecified: u32 = 32767;
 
-pub const anon2611 = enum(u32) {
-    UserFolderIcon = 1969646692,
-    WorkgroupFolderIcon = 2003201124,
-    GuestUserIcon = 1735750514,
-    UserIcon = 1970496882,
-    OwnerIcon = 1937077106,
-    GroupIcon = 1735554416,
-};
+pub const anon2611 = u32;
+pub const anon2611_langPortugese: u32 = 8;
+pub const anon2611_langMalta: u32 = 16;
+pub const anon2611_langYugoslavian: u32 = 18;
+pub const anon2611_langChinese: u32 = 19;
+pub const anon2611_langLettish: u32 = 28;
+pub const anon2611_langLapponian: u32 = 29;
+pub const anon2611_langLappish: u32 = 29;
+pub const anon2611_langSaamisk: u32 = 29;
+pub const anon2611_langFaeroese: u32 = 30;
+pub const anon2611_langIrish: u32 = 35;
+pub const anon2611_langGalla: u32 = 87;
+pub const anon2611_langAfricaans: u32 = 141;
+pub const anon2611_langGreekPoly: u32 = 148;
+pub const anon2611_UserFolderIcon: u32 = 1969646692;
+pub const anon2611_WorkgroupFolderIcon: u32 = 2003201124;
+pub const anon2611_GuestUserIcon: u32 = 1735750514;
+pub const anon2611_UserIcon: u32 = 1970496882;
+pub const anon2611_OwnerIcon: u32 = 1937077106;
+pub const anon2611_GroupIcon: u32 = 1735554416;
 
-pub const anon2891 = enum(u32) {
-    verUS = 0,
-    verFrance = 1,
-    verBritain = 2,
-    verGermany = 3,
-    verItaly = 4,
-    verNetherlands = 5,
-    verFlemish = 6,
-    verSweden = 7,
-    verSpain = 8,
-    verDenmark = 9,
-    verPortugal = 10,
-    verFrCanada = 11,
-    verNorway = 12,
-    verIsrael = 13,
-    verJapan = 14,
-    verAustralia = 15,
-    verArabic = 16,
-    verFinland = 17,
-    verFrSwiss = 18,
-    verGrSwiss = 19,
-    verGreece = 20,
-    verIceland = 21,
-    verMalta = 22,
-    verCyprus = 23,
-    verTurkey = 24,
-    verYugoCroatian = 25,
-};
+pub const anon2891 = u32;
+pub const anon2891_verUS: u32 = 0;
+pub const anon2891_verFrance: u32 = 1;
+pub const anon2891_verBritain: u32 = 2;
+pub const anon2891_verGermany: u32 = 3;
+pub const anon2891_verItaly: u32 = 4;
+pub const anon2891_verNetherlands: u32 = 5;
+pub const anon2891_verFlemish: u32 = 6;
+pub const anon2891_verSweden: u32 = 7;
+pub const anon2891_verSpain: u32 = 8;
+pub const anon2891_verDenmark: u32 = 9;
+pub const anon2891_verPortugal: u32 = 10;
+pub const anon2891_verFrCanada: u32 = 11;
+pub const anon2891_verNorway: u32 = 12;
+pub const anon2891_verIsrael: u32 = 13;
+pub const anon2891_verJapan: u32 = 14;
+pub const anon2891_verAustralia: u32 = 15;
+pub const anon2891_verArabic: u32 = 16;
+pub const anon2891_verFinland: u32 = 17;
+pub const anon2891_verFrSwiss: u32 = 18;
+pub const anon2891_verGrSwiss: u32 = 19;
+pub const anon2891_verGreece: u32 = 20;
+pub const anon2891_verIceland: u32 = 21;
+pub const anon2891_verMalta: u32 = 22;
+pub const anon2891_verCyprus: u32 = 23;
+pub const anon2891_verTurkey: u32 = 24;
+pub const anon2891_verYugoCroatian: u32 = 25;
 
-pub const anon3191 = enum(u32) {
-    AppleScriptBadgeIcon = 1935897200,
-    LockedBadgeIcon = 1818387559,
-    MountedBadgeIcon = 1835164775,
-    SharedBadgeIcon = 1935828071,
-    AliasBadgeIcon = 1633838183,
-    AlertCautionBadgeIcon = 1667392615,
-};
+pub const anon3191 = u32;
+pub const anon3191_verNetherlandsComma: u32 = 26;
+pub const anon3191_verFlemishPoint: u32 = 27;
+pub const anon3191_verCanadaComma: u32 = 28;
+pub const anon3191_verCanadaPoint: u32 = 29;
+pub const anon3191_vervariantPortugal: u32 = 30;
+pub const anon3191_vervariantNorway: u32 = 31;
+pub const anon3191_vervariantDenmark: u32 = 32;
+pub const anon3191_AppleScriptBadgeIcon: u32 = 1935897200;
+pub const anon3191_LockedBadgeIcon: u32 = 1818387559;
+pub const anon3191_MountedBadgeIcon: u32 = 1835164775;
+pub const anon3191_SharedBadgeIcon: u32 = 1935828071;
+pub const anon3191_AliasBadgeIcon: u32 = 1633838183;
+pub const anon3191_AlertCautionBadgeIcon: u32 = 1667392615;
 
-pub const anon3291 = enum(u32) {
-    AlertNoteIcon = 1852798053,
-    AlertCautionIcon = 1667331444,
-    AlertStopIcon = 1937010544,
-};
+pub const anon3291 = u32;
+pub const anon3291_verIndiaHindi: u32 = 33;
+pub const anon3291_verPakistanUrdu: u32 = 34;
+pub const anon3291_verTurkishModified: u32 = 35;
+pub const anon3291_verItalianSwiss: u32 = 36;
+pub const anon3291_verInternational: u32 = 37;
+pub const anon3291_verRomania: u32 = 39;
+pub const anon3291_verGreekAncient: u32 = 40;
+pub const anon3291_verLithuania: u32 = 41;
+pub const anon3291_verPoland: u32 = 42;
+pub const anon3291_verHungary: u32 = 43;
+pub const anon3291_verEstonia: u32 = 44;
+pub const anon3291_verLatvia: u32 = 45;
+pub const anon3291_verSami: u32 = 46;
+pub const anon3291_verFaroeIsl: u32 = 47;
+pub const anon3291_verIran: u32 = 48;
+pub const anon3291_verRussia: u32 = 49;
+pub const anon3291_verIreland: u32 = 50;
+pub const anon3291_verKorea: u32 = 51;
+pub const anon3291_verChina: u32 = 52;
+pub const anon3291_verTaiwan: u32 = 53;
+pub const anon3291_verThailand: u32 = 54;
+pub const anon3291_verScriptGeneric: u32 = 55;
+pub const anon3291_verCzech: u32 = 56;
+pub const anon3291_verSlovak: u32 = 57;
+pub const anon3291_verEastAsiaGeneric: u32 = 58;
+pub const anon3291_verMagyar: u32 = 59;
+pub const anon3291_verBengali: u32 = 60;
+pub const anon3291_verBelarus: u32 = 61;
+pub const anon3291_midiNoClientErr: u32 = -250;
+pub const anon3291_midiNoPortErr: u32 = -251;
+pub const anon3291_midiTooManyPortsErr: u32 = -252;
+pub const anon3291_midiTooManyConsErr: u32 = -253;
+pub const anon3291_midiVConnectErr: u32 = -254;
+pub const anon3291_midiVConnectMade: u32 = -255;
+pub const anon3291_midiVConnectRmvd: u32 = -256;
+pub const anon3291_midiNoConErr: u32 = -257;
+pub const anon3291_midiWriteErr: u32 = -258;
+pub const anon3291_midiNameLenErr: u32 = -259;
+pub const anon3291_midiDupIDErr: u32 = -260;
+pub const anon3291_midiInvalidCmdErr: u32 = -261;
+pub const anon3291_AlertNoteIcon: u32 = 1852798053;
+pub const anon3291_AlertCautionIcon: u32 = 1667331444;
+pub const anon3291_AlertStopIcon: u32 = 1937010544;
 
-pub const anon3611 = enum(u32) {
-    MacRomanianDefaultVariant = 0,
-    MacRomanianCurrencySignVariant = 1,
-    MacRomanianEuroSignVariant = 2,
-};
+pub const anon3611 = u32;
+pub const anon3611_verUkraine: u32 = 62;
+pub const anon3611_verGreeceAlt: u32 = 64;
+pub const anon3611_verSerbian: u32 = 65;
+pub const anon3611_verSlovenian: u32 = 66;
+pub const anon3611_verMacedonian: u32 = 67;
+pub const anon3611_verCroatia: u32 = 68;
+pub const anon3611_verGermanReformed: u32 = 70;
+pub const anon3611_verBrazil: u32 = 71;
+pub const anon3611_verBulgaria: u32 = 72;
+pub const anon3611_verCatalonia: u32 = 73;
+pub const anon3611_verMultilingual: u32 = 74;
+pub const anon3611_verScottishGaelic: u32 = 75;
+pub const anon3611_verManxGaelic: u32 = 76;
+pub const anon3611_verBreton: u32 = 77;
+pub const anon3611_verNunavut: u32 = 78;
+pub const anon3611_verWelsh: u32 = 79;
+pub const anon3611_verIrishGaelicScript: u32 = 81;
+pub const anon3611_verEngCanada: u32 = 82;
+pub const anon3611_verBhutan: u32 = 83;
+pub const anon3611_verArmenian: u32 = 84;
+pub const anon3611_verGeorgian: u32 = 85;
+pub const anon3611_verSpLatinAmerica: u32 = 86;
+pub const anon3611_verTonga: u32 = 88;
+pub const anon3611_verFrenchUniversal: u32 = 91;
+pub const anon3611_verAustria: u32 = 92;
+pub const anon3611_verGujarati: u32 = 94;
+pub const anon3611_verPunjabi: u32 = 95;
+pub const anon3611_verIndiaUrdu: u32 = 96;
+pub const anon3611_verVietnam: u32 = 97;
+pub const anon3611_smSDMInitErr: u32 = -290;
+pub const anon3611_smSRTInitErr: u32 = -291;
+pub const anon3611_smPRAMInitErr: u32 = -292;
+pub const anon3611_smPriInitErr: u32 = -293;
+pub const anon3611_smEmptySlot: u32 = -300;
+pub const anon3611_smCRCFail: u32 = -301;
+pub const anon3611_smFormatErr: u32 = -302;
+pub const anon3611_smRevisionErr: u32 = -303;
+pub const anon3611_smNoDir: u32 = -304;
+pub const anon3611_smDisabledSlot: u32 = -305;
+pub const anon3611_smNosInfoArray: u32 = -306;
+pub const anon3611_MacRomanianDefaultVariant: u32 = 0;
+pub const anon3611_MacRomanianCurrencySignVariant: u32 = 1;
+pub const anon3611_MacRomanianEuroSignVariant: u32 = 2;
 
-pub const anon4001 = enum(u32) {
-    verFrBelgium = 98,
-    verUzbek = 99,
-    verSingapore = 100,
-    verNynorsk = 101,
-    verAfrikaans = 102,
-    verEsperanto = 103,
-    verMarathi = 104,
-    verTibetan = 105,
-    verNepal = 106,
-    verGreenland = 107,
-    verIrelandEnglish = 108,
-};
+pub const anon4001 = u32;
+pub const anon4001_verFrBelgium: u32 = 98;
+pub const anon4001_verUzbek: u32 = 99;
+pub const anon4001_verSingapore: u32 = 100;
+pub const anon4001_verNynorsk: u32 = 101;
+pub const anon4001_verAfrikaans: u32 = 102;
+pub const anon4001_verEsperanto: u32 = 103;
+pub const anon4001_verMarathi: u32 = 104;
+pub const anon4001_verTibetan: u32 = 105;
+pub const anon4001_verNepal: u32 = 106;
+pub const anon4001_verGreenland: u32 = 107;
+pub const anon4001_verIrelandEnglish: u32 = 108;
 
-pub const anon4271 = enum(u32) {
-    CSIdentityQueryEventSearchPhaseFinished = 1,
-    CSIdentityQueryEventResultsAdded = 2,
-    CSIdentityQueryEventResultsChanged = 3,
-    CSIdentityQueryEventResultsRemoved = 4,
-    CSIdentityQueryEventErrorOccurred = 5,
-};
+pub const anon4271 = u32;
+pub const anon4271_verFrBelgiumLux: u32 = 6;
+pub const anon4271_verBelgiumLux: u32 = 6;
+pub const anon4271_verArabia: u32 = 16;
+pub const anon4271_verYugoslavia: u32 = 25;
+pub const anon4271_verBelgiumLuxPoint: u32 = 27;
+pub const anon4271_verIndia: u32 = 33;
+pub const anon4271_verPakistan: u32 = 34;
+pub const anon4271_verRumania: u32 = 39;
+pub const anon4271_verGreecePoly: u32 = 40;
+pub const anon4271_verLapland: u32 = 46;
+pub const anon4271_verFaeroeIsl: u32 = 47;
+pub const anon4271_verGenericFE: u32 = 58;
+pub const anon4271_verFarEastGeneric: u32 = 58;
+pub const anon4271_verByeloRussian: u32 = 61;
+pub const anon4271_verUkrania: u32 = 62;
+pub const anon4271_verAlternateGr: u32 = 64;
+pub const anon4271_verSerbia: u32 = 65;
+pub const anon4271_verSlovenia: u32 = 66;
+pub const anon4271_verMacedonia: u32 = 67;
+pub const anon4271_verBrittany: u32 = 77;
+pub const anon4271_verWales: u32 = 79;
+pub const anon4271_verArmenia: u32 = 84;
+pub const anon4271_verGeorgia: u32 = 85;
+pub const anon4271_verAustriaGerman: u32 = 92;
+pub const anon4271_verTibet: u32 = 105;
+pub const anon4271_CSIdentityQueryEventSearchPhaseFinished: u32 = 1;
+pub const anon4271_CSIdentityQueryEventResultsAdded: u32 = 2;
+pub const anon4271_CSIdentityQueryEventResultsChanged: u32 = 3;
+pub const anon4271_CSIdentityQueryEventResultsRemoved: u32 = 4;
+pub const anon4271_CSIdentityQueryEventErrorOccurred: u32 = 5;
 
-pub const anon4551 = enum(u32) {
-    minCountry = 0,
-    maxCountry = 108,
-};
+pub const anon4551 = u32;
+pub const anon4551_minCountry: u32 = 0;
+pub const anon4551_maxCountry: u32 = 108;
 
-pub const anon4601 = enum(u32) {
-    calGregorian = 0,
-    calArabicCivil = 1,
-    calArabicLunar = 2,
-    calJapanese = 3,
-    calJewish = 4,
-    calCoptic = 5,
-    calPersian = 6,
-};
+pub const anon4601 = u32;
+pub const anon4601_calGregorian: u32 = 0;
+pub const anon4601_calArabicCivil: u32 = 1;
+pub const anon4601_calArabicLunar: u32 = 2;
+pub const anon4601_calJapanese: u32 = 3;
+pub const anon4601_calJewish: u32 = 4;
+pub const anon4601_calCoptic: u32 = 5;
+pub const anon4601_calPersian: u32 = 6;
 
-pub const anon4711 = enum(i32) {
-    procNotFound = -600,
-    memFragErr = -601,
-    appModeErr = -602,
-    protocolErr = -603,
-    hardwareConfigErr = -604,
-    appMemFullErr = -605,
-    appIsDaemon = -606,
-    bufferIsSmall = -607,
-    noOutstandingHLE = -608,
-    connectionInvalid = -609,
-    noUserInteractionAllowed = -610,
-};
+pub const anon4711 = u32;
+pub const anon4711_intWestern: u32 = 0;
+pub const anon4711_intArabic: u32 = 1;
+pub const anon4711_intRoman: u32 = 2;
+pub const anon4711_intJapanese: u32 = 3;
+pub const anon4711_intEuropean: u32 = 4;
+pub const anon4711_intOutputMask: u32 = 32768;
+pub const anon4711_procNotFound: u32 = -600;
+pub const anon4711_memFragErr: u32 = -601;
+pub const anon4711_appModeErr: u32 = -602;
+pub const anon4711_protocolErr: u32 = -603;
+pub const anon4711_hardwareConfigErr: u32 = -604;
+pub const anon4711_appMemFullErr: u32 = -605;
+pub const anon4711_appIsDaemon: u32 = -606;
+pub const anon4711_bufferIsSmall: u32 = -607;
+pub const anon4711_noOutstandingHLE: u32 = -608;
+pub const anon4711_connectionInvalid: u32 = -609;
+pub const anon4711_noUserInteractionAllowed: u32 = -610;
 
-pub const anon4811 = enum(objc.OSType) {
-    pNewElementLoc = 1886283116,
-    pPenColor = 1886413676,
-    pPenPattern = 1886416993,
-    pPenWidth = 1886418788,
-    pPixelDepth = 1885630580,
-    pPointList = 1886678132,
-    pPointSize = 1886679930,
-    pProtection = 1886417519,
-    pRotation = 1886547828,
-    pScale = 1886610284,
-    pScript = 1935896692,
-    pScriptTag = 1886610292,
-    pSelected = 1936026723,
-    pSelection = 1936026725,
-    pStartAngle = 1885433447,
-    pStartPoint = 1886614640,
-    pTextColor = 1886681187,
-    pTextFont = 1886681190,
-    pTextItemDelimiters = 1954047084,
-    pTextPointSize = 1886679155,
-};
+pub const anon4811 = i32;
+pub const anon4811_smSingleByte: i32 = 0;
+pub const anon4811_smFirstByte: i32 = -1;
+pub const anon4811_smLastByte: i32 = 1;
+pub const anon4811_smMiddleByte: i32 = 2;
+pub const anon4811_pNewElementLoc: i32 = 1886283116;
+pub const anon4811_pPenColor: i32 = 1886413676;
+pub const anon4811_pPenPattern: i32 = 1886416993;
+pub const anon4811_pPenWidth: i32 = 1886418788;
+pub const anon4811_pPixelDepth: i32 = 1885630580;
+pub const anon4811_pPointList: i32 = 1886678132;
+pub const anon4811_pPointSize: i32 = 1886679930;
+pub const anon4811_pProtection: i32 = 1886417519;
+pub const anon4811_pRotation: i32 = 1886547828;
+pub const anon4811_pScale: i32 = 1886610284;
+pub const anon4811_pScript: i32 = 1935896692;
+pub const anon4811_pScriptTag: i32 = 1886610292;
+pub const anon4811_pSelected: i32 = 1936026723;
+pub const anon4811_pSelection: i32 = 1936026725;
+pub const anon4811_pStartAngle: i32 = 1885433447;
+pub const anon4811_pStartPoint: i32 = 1886614640;
+pub const anon4811_pTextColor: i32 = 1886681187;
+pub const anon4811_pTextFont: i32 = 1886681190;
+pub const anon4811_pTextItemDelimiters: i32 = 1954047084;
+pub const anon4811_pTextPointSize: i32 = 1886679155;
 
-pub const anon5001 = enum(i32) {
-    threadBadAppContextErr = -616,
-};
+pub const anon4891 = u32;
+pub const anon4891_smcTypeMask: u32 = 15;
+pub const anon4891_smcReserved: u32 = 240;
+pub const anon4891_smcClassMask: u32 = 3840;
+pub const anon4891_smcOrientationMask: u32 = 4096;
+pub const anon4891_smcRightMask: u32 = 8192;
+pub const anon4891_smcUpperMask: u32 = 16384;
+pub const anon4891_smcDoubleMask: u32 = 32768;
+pub const anon4891_HFSPlusAttrInlineData: u32 = 16;
+pub const anon4891_HFSPlusAttrForkData: u32 = 32;
+pub const anon4891_HFSPlusAttrExtents: u32 = 48;
 
-pub const anon5251 = enum(u32) {
-    smCharFISGreek = 5,
-    smCharFISRussian = 6,
-    smPunctNormal = 0,
-    smPunctNumber = 256,
-    smPunctSymbol = 512,
-    smPunctBlank = 768,
-    smPunctRepeat = 1024,
-    smPunctGraphic = 1280,
-    smKanaSmall = 256,
-    smKanaHardOK = 512,
-    smKanaSoftOK = 768,
-    smIdeographicLevel1 = 0,
-    smIdeographicLevel2 = 256,
-    smIdeographicUser = 512,
-    smFISClassLvl1 = 0,
-    smFISClassLvl2 = 256,
-    smFISClassUser = 512,
-    smJamoJaeum = 0,
-    smJamoBogJaeum = 256,
-    smJamoMoeum = 512,
-    smJamoBogMoeum = 768,
-};
+pub const anon5001 = u32;
+pub const anon5001_smCharPunct: u32 = 0;
+pub const anon5001_smCharAscii: u32 = 1;
+pub const anon5001_smCharEuro: u32 = 7;
+pub const anon5001_smCharExtAscii: u32 = 7;
+pub const anon5001_smCharKatakana: u32 = 2;
+pub const anon5001_smCharHiragana: u32 = 3;
+pub const anon5001_smCharIdeographic: u32 = 4;
+pub const anon5001_smCharTwoByteGreek: u32 = 5;
+pub const anon5001_smCharTwoByteRussian: u32 = 6;
+pub const anon5001_smCharBidirect: u32 = 8;
+pub const anon5001_smCharContextualLR: u32 = 9;
+pub const anon5001_smCharNonContextualLR: u32 = 10;
+pub const anon5001_smCharHangul: u32 = 12;
+pub const anon5001_smCharJamo: u32 = 13;
+pub const anon5001_smCharBopomofo: u32 = 14;
+pub const anon5001_smCharGanaKana: u32 = 15;
+pub const anon5001_smCharFISKana: u32 = 2;
+pub const anon5001_smCharFISGana: u32 = 3;
+pub const anon5001_smCharFISIdeo: u32 = 4;
+pub const anon5001_threadBadAppContextErr: u32 = -616;
 
-pub const anon5541 = enum(u32) {
-    smCharHorizontal = 0,
-    smCharVertical = 4096,
-    smCharLeft = 0,
-    smCharRight = 8192,
-    smCharLower = 0,
-    smCharUpper = 16384,
-    smChar1byte = 0,
-    smChar2byte = 32768,
-};
+pub const anon5251 = u32;
+pub const anon5251_smCharFISGreek: u32 = 5;
+pub const anon5251_smCharFISRussian: u32 = 6;
+pub const anon5251_smPunctNormal: u32 = 0;
+pub const anon5251_smPunctNumber: u32 = 256;
+pub const anon5251_smPunctSymbol: u32 = 512;
+pub const anon5251_smPunctBlank: u32 = 768;
+pub const anon5251_smPunctRepeat: u32 = 1024;
+pub const anon5251_smPunctGraphic: u32 = 1280;
+pub const anon5251_smKanaSmall: u32 = 256;
+pub const anon5251_smKanaHardOK: u32 = 512;
+pub const anon5251_smKanaSoftOK: u32 = 768;
+pub const anon5251_smIdeographicLevel1: u32 = 0;
+pub const anon5251_smIdeographicLevel2: u32 = 256;
+pub const anon5251_smIdeographicUser: u32 = 512;
+pub const anon5251_smFISClassLvl1: u32 = 0;
+pub const anon5251_smFISClassLvl2: u32 = 256;
+pub const anon5251_smFISClassUser: u32 = 512;
+pub const anon5251_smJamoJaeum: u32 = 0;
+pub const anon5251_smJamoBogJaeum: u32 = 256;
+pub const anon5251_smJamoMoeum: u32 = 512;
+pub const anon5251_smJamoBogMoeum: u32 = 768;
 
-pub const anon5671 = enum(u32) {
-    RelativeFolder = 1919249510,
-    RedirectedRelativeFolder = 1920099692,
-    SpecialFolder = 1936745318,
-};
+pub const anon5541 = u32;
+pub const anon5541_smCharHorizontal: u32 = 0;
+pub const anon5541_smCharVertical: u32 = 4096;
+pub const anon5541_smCharLeft: u32 = 0;
+pub const anon5541_smCharRight: u32 = 8192;
+pub const anon5541_smCharLower: u32 = 0;
+pub const anon5541_smCharUpper: u32 = 16384;
+pub const anon5541_smChar1byte: u32 = 0;
+pub const anon5541_smChar2byte: u32 = 32768;
 
-pub const anon5801 = enum(u32) {
-    CurrentUserFolderLocation = 1668641638,
-};
+pub const anon5671 = u32;
+pub const anon5671_smTransAscii: u32 = 0;
+pub const anon5671_smTransNative: u32 = 1;
+pub const anon5671_smTransCase: u32 = 254;
+pub const anon5671_smTransSystem: u32 = 255;
+pub const anon5671_smTransAscii1: u32 = 2;
+pub const anon5671_smTransAscii2: u32 = 3;
+pub const anon5671_smTransKana1: u32 = 4;
+pub const anon5671_smTransKana2: u32 = 5;
+pub const anon5671_RelativeFolder: u32 = 1919249510;
+pub const anon5671_RedirectedRelativeFolder: u32 = 1920099692;
+pub const anon5671_SpecialFolder: u32 = 1936745318;
 
-pub const anon5961 = enum(AEKeyword) {
-    eyMenuID = 1835623456,
-    eyMenuItem = 1835627629,
-    eyCloseAllWindows = 1667331872,
-    eyOriginalBounds = 1868721764,
-    eyNewBounds = 1851944548,
-    eyLocalWhere = 1819764850,
-};
+pub const anon5801 = u32;
+pub const anon5801_smTransGana2: u32 = 7;
+pub const anon5801_smTransHangul2: u32 = 8;
+pub const anon5801_smTransJamo2: u32 = 9;
+pub const anon5801_smTransBopomofo2: u32 = 10;
+pub const anon5801_smTransLower: u32 = 16384;
+pub const anon5801_smTransUpper: u32 = 32768;
+pub const anon5801_smTransRuleBaseFormat: u32 = 1;
+pub const anon5801_smTransHangulFormat: u32 = 2;
+pub const anon5801_smTransPreDoubleByting: u32 = 1;
+pub const anon5801_smTransPreLowerCasing: u32 = 2;
+pub const anon5801_CurrentUserFolderLocation: u32 = 1668641638;
 
-pub const anon6131 = enum(i32) {
-    iuSystemScript = -1,
-    iuCurrentScript = -2,
-};
+pub const anon5961 = i32;
+pub const anon5961_smMaskAll: i32 = -1;
+pub const anon5961_smMaskAscii: i32 = 1;
+pub const anon5961_smMaskNative: i32 = 2;
+pub const anon5961_smMaskAscii1: i32 = 4;
+pub const anon5961_smMaskAscii2: i32 = 8;
+pub const anon5961_smMaskKana1: i32 = 16;
+pub const anon5961_smMaskKana2: i32 = 32;
+pub const anon5961_smMaskGana2: i32 = 128;
+pub const anon5961_smMaskHangul2: i32 = 256;
+pub const anon5961_smMaskJamo2: i32 = 512;
+pub const anon5961_smMaskBopomofo2: i32 = 1024;
+pub const anon5961_eyMenuID: i32 = 1835623456;
+pub const anon5961_eyMenuItem: i32 = 1835627629;
+pub const anon5961_eyCloseAllWindows: i32 = 1667331872;
+pub const anon5961_eyOriginalBounds: i32 = 1868721764;
+pub const anon5961_eyNewBounds: i32 = 1851944548;
+pub const anon5961_eyLocalWhere: i32 = 1819764850;
 
-pub const anon6191 = enum(i32) {
-    smKeyNextScript = -1,
-    smKeySysScript = -2,
-    smKeySwapScript = -3,
-    smKeyNextKybd = -4,
-    smKeySwapKybd = -5,
-    smKeyDisableKybds = -6,
-    smKeyEnableKybds = -7,
-    smKeyToggleInline = -8,
-    smKeyToggleDirection = -9,
-    smKeyNextInputMethod = -10,
-    smKeySwapInputMethod = -11,
-    smKeyDisableKybdSwitch = -12,
-    smKeySetDirLeftRight = -15,
-    smKeySetDirRightLeft = -16,
-    smKeyRoman = -17,
-};
+pub const anon6131 = i32;
+pub const anon6131_iuSystemScript: i32 = -1;
+pub const anon6131_iuCurrentScript: i32 = -2;
 
-pub const anon6391 = enum(objc.OSType) {
-    TextServiceClass = 1953724003,
-    UpdateActiveInputArea = 1970300020,
-    ShowHideInputWindow = 1936222583,
-    Pos2Offset = 1882354548,
-    Offset2Pos = 1936994928,
-    UnicodeNotFromInputMethod = 1970170221,
-    GetSelectedText = 1735686260,
-    eyAETSMDocumentRefcon = 1919247971,
-    eyAEServerInstance = 1936881257,
-    eyAETheData = 1801740660,
-    eyAEFixLength = 1718188140,
-    eyAEUpdateRange = 1969516135,
-    eyAECurrentPoint = 1668312947,
-    eyAEBufferSize = 1651861094,
-    eyAEMoveView = 1836480119,
-    eyAENextBody = 1853383268,
-    eyAETSMScriptTag = 1935895655,
-    eyAETSMTextFont = 1802795110,
-    eyAETSMTextFMFont = 1802795117,
-    eyAETSMTextPointSize = 1802793075,
-    eyAETSMEventRecord = 1952806516,
-    eyAETSMEventRef = 1952806514,
-    eyAETextServiceEncoding = 1953719662,
-    eyAETextServiceMacEncoding = 1953326446,
-    eyAETSMGlyphInfoArray = 1952934241,
-    typeTextRange = 1954050670,
-    typeComponentInstance = 1668116585,
-    typeOffsetArray = 1868980601,
-    typeTextRangeArray = 1953653113,
-    typeLowLevelEventRecord = 1702261874,
-    typeGlyphInfoArray = 1735158113,
-    typeEventRef = 1702261350,
-    typeText = 1413830740,
-};
+pub const anon6191 = i32;
+pub const anon6191_smKeyNextScript: i32 = -1;
+pub const anon6191_smKeySysScript: i32 = -2;
+pub const anon6191_smKeySwapScript: i32 = -3;
+pub const anon6191_smKeyNextKybd: i32 = -4;
+pub const anon6191_smKeySwapKybd: i32 = -5;
+pub const anon6191_smKeyDisableKybds: i32 = -6;
+pub const anon6191_smKeyEnableKybds: i32 = -7;
+pub const anon6191_smKeyToggleInline: i32 = -8;
+pub const anon6191_smKeyToggleDirection: i32 = -9;
+pub const anon6191_smKeyNextInputMethod: i32 = -10;
+pub const anon6191_smKeySwapInputMethod: i32 = -11;
+pub const anon6191_smKeyDisableKybdSwitch: i32 = -12;
+pub const anon6191_smKeySetDirLeftRight: i32 = -15;
+pub const anon6191_smKeySetDirRightLeft: i32 = -16;
+pub const anon6191_smKeyRoman: i32 = -17;
 
-pub const anon6591 = enum(u32) {
-    diaeresisUprY = 217,
-    fraction = 218,
-    intlCurrency = 219,
-    leftSingGuillemet = 220,
-    rightSingGuillemet = 221,
-    fiLigature = 222,
-    flLigature = 223,
-    dblDagger = 224,
-    centeredDot = 225,
-    baseSingQuote = 226,
-    baseDblQuote = 227,
-    perThousand = 228,
-    circumflexUprA = 229,
-    circumflexUprE = 230,
-    acuteUprA = 231,
-    diaeresisUprE = 232,
-    graveUprE = 233,
-    acuteUprI = 234,
-    circumflexUprI = 235,
-    diaeresisUprI = 236,
-    graveUprI = 237,
-    acuteUprO = 238,
-    circumflexUprO = 239,
-    appleLogo = 240,
-    graveUprO = 241,
-    acuteUprU = 242,
-    circumflexUprU = 243,
-    graveUprU = 244,
-    dotlessLwrI = 245,
-    circumflex = 246,
-    tilde = 247,
-    macron = 248,
-    breveMark = 249,
-    overDot = 250,
-    ringMark = 251,
-    cedilla = 252,
-    doubleAcute = 253,
-    ogonek = 254,
-    hachek = 255,
-};
+pub const anon6391 = u32;
+pub const anon6391_smKeyForceKeyScriptBit: u32 = 7;
+pub const anon6391_smKeyForceKeyScriptMask: u32 = 128;
+pub const anon6391_TextServiceClass: u32 = 1953724003;
+pub const anon6391_UpdateActiveInputArea: u32 = 1970300020;
+pub const anon6391_ShowHideInputWindow: u32 = 1936222583;
+pub const anon6391_Pos2Offset: u32 = 1882354548;
+pub const anon6391_Offset2Pos: u32 = 1936994928;
+pub const anon6391_UnicodeNotFromInputMethod: u32 = 1970170221;
+pub const anon6391_GetSelectedText: u32 = 1735686260;
+pub const anon6391_eyAETSMDocumentRefcon: u32 = 1919247971;
+pub const anon6391_eyAEServerInstance: u32 = 1936881257;
+pub const anon6391_eyAETheData: u32 = 1801740660;
+pub const anon6391_eyAEFixLength: u32 = 1718188140;
+pub const anon6391_eyAEUpdateRange: u32 = 1969516135;
+pub const anon6391_eyAECurrentPoint: u32 = 1668312947;
+pub const anon6391_eyAEBufferSize: u32 = 1651861094;
+pub const anon6391_eyAEMoveView: u32 = 1836480119;
+pub const anon6391_eyAENextBody: u32 = 1853383268;
+pub const anon6391_eyAETSMScriptTag: u32 = 1935895655;
+pub const anon6391_eyAETSMTextFont: u32 = 1802795110;
+pub const anon6391_eyAETSMTextFMFont: u32 = 1802795117;
+pub const anon6391_eyAETSMTextPointSize: u32 = 1802793075;
+pub const anon6391_eyAETSMEventRecord: u32 = 1952806516;
+pub const anon6391_eyAETSMEventRef: u32 = 1952806514;
+pub const anon6391_eyAETextServiceEncoding: u32 = 1953719662;
+pub const anon6391_eyAETextServiceMacEncoding: u32 = 1953326446;
+pub const anon6391_eyAETSMGlyphInfoArray: u32 = 1952934241;
+pub const anon6391_typeTextRange: u32 = 1954050670;
+pub const anon6391_typeComponentInstance: u32 = 1668116585;
+pub const anon6391_typeOffsetArray: u32 = 1868980601;
+pub const anon6391_typeTextRangeArray: u32 = 1953653113;
+pub const anon6391_typeLowLevelEventRecord: u32 = 1702261874;
+pub const anon6391_typeGlyphInfoArray: u32 = 1735158113;
+pub const anon6391_typeEventRef: u32 = 1702261350;
+pub const anon6391_typeText: u32 = 1413830740;
 
-pub const anon7021 = enum(i32) {
-    tokenIntl = 4,
-    tokenEmpty = -1,
-};
+pub const anon6451 = u32;
+pub const anon6451_romanSysFond: u32 = 16383;
+pub const anon6451_romanAppFond: u32 = 3;
+pub const anon6451_romanFlags: u32 = 7;
+pub const anon6451_smFondStart: u32 = 16384;
+pub const anon6451_smFondEnd: u32 = 49152;
+pub const anon6451_smUprHalfCharSet: u32 = 128;
+pub const anon6451_CSSM_APPLECSPDL_DB_LOCK: u32 = 0;
+pub const anon6451_CSSM_APPLECSPDL_DB_UNLOCK: u32 = 1;
+pub const anon6451_CSSM_APPLECSPDL_DB_GET_SETTINGS: u32 = 2;
+pub const anon6451_CSSM_APPLECSPDL_DB_SET_SETTINGS: u32 = 3;
+pub const anon6451_CSSM_APPLECSPDL_DB_IS_LOCKED: u32 = 4;
+pub const anon6451_CSSM_APPLECSPDL_DB_CHANGE_PASSWORD: u32 = 5;
+pub const anon6451_CSSM_APPLECSPDL_DB_GET_HANDLE: u32 = 6;
+pub const anon6451_CSSM_APPLESCPDL_CSP_GET_KEYHANDLE: u32 = 7;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_8: u32 = 8;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_9: u32 = 9;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_10: u32 = 10;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_11: u32 = 11;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_12: u32 = 12;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_13: u32 = 13;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_14: u32 = 14;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_15: u32 = 15;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_16: u32 = 16;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_17: u32 = 17;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_18: u32 = 18;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_19: u32 = 19;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_20: u32 = 20;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_21: u32 = 21;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_22: u32 = 22;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_23: u32 = 23;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_24: u32 = 24;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_25: u32 = 25;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_26: u32 = 26;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_27: u32 = 27;
+pub const anon6451_CSSM_APPLECSP_KEYDIGEST: u32 = 256;
+pub const anon6451_CSSM_APPLECSP_PUBKEY: u32 = 257;
 
-pub const anon7081 = enum(u32) {
-    tokenUnknown = 0,
-    tokenWhite = 1,
-    tokenLeftLit = 2,
-    tokenRightLit = 3,
-    tokenAlpha = 4,
-    tokenNumeric = 5,
-    tokenNewLine = 6,
-    tokenLeftComment = 7,
-    tokenRightComment = 8,
-    tokenLiteral = 9,
-    tokenEscape = 10,
-    tokenAltNum = 11,
-    tokenRealNum = 12,
-    tokenAltReal = 13,
-    tokenReserve1 = 14,
-    tokenReserve2 = 15,
-    tokenLeftParen = 16,
-    tokenRightParen = 17,
-    tokenLeftBracket = 18,
-    tokenRightBracket = 19,
-};
+pub const anon6591 = u32;
+pub const anon6591_diaeresisUprY: u32 = 217;
+pub const anon6591_fraction: u32 = 218;
+pub const anon6591_intlCurrency: u32 = 219;
+pub const anon6591_leftSingGuillemet: u32 = 220;
+pub const anon6591_rightSingGuillemet: u32 = 221;
+pub const anon6591_fiLigature: u32 = 222;
+pub const anon6591_flLigature: u32 = 223;
+pub const anon6591_dblDagger: u32 = 224;
+pub const anon6591_centeredDot: u32 = 225;
+pub const anon6591_baseSingQuote: u32 = 226;
+pub const anon6591_baseDblQuote: u32 = 227;
+pub const anon6591_perThousand: u32 = 228;
+pub const anon6591_circumflexUprA: u32 = 229;
+pub const anon6591_circumflexUprE: u32 = 230;
+pub const anon6591_acuteUprA: u32 = 231;
+pub const anon6591_diaeresisUprE: u32 = 232;
+pub const anon6591_graveUprE: u32 = 233;
+pub const anon6591_acuteUprI: u32 = 234;
+pub const anon6591_circumflexUprI: u32 = 235;
+pub const anon6591_diaeresisUprI: u32 = 236;
+pub const anon6591_graveUprI: u32 = 237;
+pub const anon6591_acuteUprO: u32 = 238;
+pub const anon6591_circumflexUprO: u32 = 239;
+pub const anon6591_appleLogo: u32 = 240;
+pub const anon6591_graveUprO: u32 = 241;
+pub const anon6591_acuteUprU: u32 = 242;
+pub const anon6591_circumflexUprU: u32 = 243;
+pub const anon6591_graveUprU: u32 = 244;
+pub const anon6591_dotlessLwrI: u32 = 245;
+pub const anon6591_circumflex: u32 = 246;
+pub const anon6591_tilde: u32 = 247;
+pub const anon6591_macron: u32 = 248;
+pub const anon6591_breveMark: u32 = 249;
+pub const anon6591_overDot: u32 = 250;
+pub const anon6591_ringMark: u32 = 251;
+pub const anon6591_cedilla: u32 = 252;
+pub const anon6591_doubleAcute: u32 = 253;
+pub const anon6591_ogonek: u32 = 254;
+pub const anon6591_hachek: u32 = 255;
 
-pub const anon7311 = enum(u32) {
-    gestaltControlStripVersion = 1668511346,
-};
+pub const anon7021 = i32;
+pub const anon7021_tokenIntl: i32 = 4;
+pub const anon7021_tokenEmpty: i32 = -1;
 
-pub const anon7541 = enum(u32) {
-    tokenNotEqual = 40,
-    tokenLessGreat = 41,
-    tokenExclamEqual = 42,
-    tokenExclam = 43,
-    tokenTilde = 44,
-    tokenComma = 45,
-    tokenPeriod = 46,
-    tokenLeft2Quote = 47,
-    tokenRight2Quote = 48,
-    tokenLeft1Quote = 49,
-    tokenRight1Quote = 50,
-    token2Quote = 51,
-    token1Quote = 52,
-    tokenSemicolon = 53,
-    tokenPercent = 54,
-    tokenCaret = 55,
-    tokenUnderline = 56,
-    tokenAmpersand = 57,
-    tokenAtSign = 58,
-    tokenBar = 59,
-};
+pub const anon7081 = u32;
+pub const anon7081_tokenUnknown: u32 = 0;
+pub const anon7081_tokenWhite: u32 = 1;
+pub const anon7081_tokenLeftLit: u32 = 2;
+pub const anon7081_tokenRightLit: u32 = 3;
+pub const anon7081_tokenAlpha: u32 = 4;
+pub const anon7081_tokenNumeric: u32 = 5;
+pub const anon7081_tokenNewLine: u32 = 6;
+pub const anon7081_tokenLeftComment: u32 = 7;
+pub const anon7081_tokenRightComment: u32 = 8;
+pub const anon7081_tokenLiteral: u32 = 9;
+pub const anon7081_tokenEscape: u32 = 10;
+pub const anon7081_tokenAltNum: u32 = 11;
+pub const anon7081_tokenRealNum: u32 = 12;
+pub const anon7081_tokenAltReal: u32 = 13;
+pub const anon7081_tokenReserve1: u32 = 14;
+pub const anon7081_tokenReserve2: u32 = 15;
+pub const anon7081_tokenLeftParen: u32 = 16;
+pub const anon7081_tokenRightParen: u32 = 17;
+pub const anon7081_tokenLeftBracket: u32 = 18;
+pub const anon7081_tokenRightBracket: u32 = 19;
 
-pub const anon8001 = enum(objc.OSType) {
-    FAServerApp = 1936945782,
-    DoFolderActionEvent = 1718578273,
-    FolderActionCode = 1633907822,
-    FolderOpenedEvent = 1718579310,
-    FolderClosedEvent = 1717791855,
-    FolderWindowMovedEvent = 1718839674,
-    FolderItemsAddedEvent = 1718052212,
-    FolderItemsRemovedEvent = 1718382451,
-    ItemList = 1718383476,
-    NewSizeParameter = 1718514554,
-    FASuiteCode = 1717658479,
-    FAAttachCommand = 1635018337,
-    FARemoveCommand = 1919772257,
-    FAEditCommand = 1701078625,
-    FAFileParam = 1717657964,
-    FAIndexParam = 1768842360,
-};
+pub const anon7311 = u32;
+pub const anon7311_tokenLeftCurly: u32 = 20;
+pub const anon7311_tokenRightCurly: u32 = 21;
+pub const anon7311_tokenLeftEnclose: u32 = 22;
+pub const anon7311_tokenRightEnclose: u32 = 23;
+pub const anon7311_tokenPlus: u32 = 24;
+pub const anon7311_tokenMinus: u32 = 25;
+pub const anon7311_tokenAsterisk: u32 = 26;
+pub const anon7311_tokenDivide: u32 = 27;
+pub const anon7311_tokenPlusMinus: u32 = 28;
+pub const anon7311_tokenSlash: u32 = 29;
+pub const anon7311_tokenBackSlash: u32 = 30;
+pub const anon7311_tokenLess: u32 = 31;
+pub const anon7311_tokenGreat: u32 = 32;
+pub const anon7311_tokenEqual: u32 = 33;
+pub const anon7311_tokenLessEqual2: u32 = 34;
+pub const anon7311_tokenLessEqual1: u32 = 35;
+pub const anon7311_tokenGreatEqual2: u32 = 36;
+pub const anon7311_tokenGreatEqual1: u32 = 37;
+pub const anon7311_token2Equal: u32 = 38;
+pub const anon7311_tokenColonEqual: u32 = 39;
+pub const anon7311_gestaltControlStripVersion: u32 = 1668511346;
 
-pub const anon8061 = enum(u32) {
-    smWordSelectTable = 0,
-    smWordWrapTable = 1,
-    smNumberPartsTable = 2,
-    smUnTokenTable = 3,
-    smWhiteSpaceList = 4,
-    iuWordSelectTable = 0,
-    iuWordWrapTable = 1,
-    iuNumberPartsTable = 2,
-    iuUnTokenTable = 3,
-    iuWhiteSpaceList = 4,
-};
+pub const anon7541 = u32;
+pub const anon7541_tokenNotEqual: u32 = 40;
+pub const anon7541_tokenLessGreat: u32 = 41;
+pub const anon7541_tokenExclamEqual: u32 = 42;
+pub const anon7541_tokenExclam: u32 = 43;
+pub const anon7541_tokenTilde: u32 = 44;
+pub const anon7541_tokenComma: u32 = 45;
+pub const anon7541_tokenPeriod: u32 = 46;
+pub const anon7541_tokenLeft2Quote: u32 = 47;
+pub const anon7541_tokenRight2Quote: u32 = 48;
+pub const anon7541_tokenLeft1Quote: u32 = 49;
+pub const anon7541_tokenRight1Quote: u32 = 50;
+pub const anon7541_token2Quote: u32 = 51;
+pub const anon7541_token1Quote: u32 = 52;
+pub const anon7541_tokenSemicolon: u32 = 53;
+pub const anon7541_tokenPercent: u32 = 54;
+pub const anon7541_tokenCaret: u32 = 55;
+pub const anon7541_tokenUnderline: u32 = 56;
+pub const anon7541_tokenAmpersand: u32 = 57;
+pub const anon7541_tokenAtSign: u32 = 58;
+pub const anon7541_tokenBar: u32 = 59;
+
+pub const anon7771 = u32;
+pub const anon7771_tokenQuestion: u32 = 60;
+pub const anon7771_tokenPi: u32 = 61;
+pub const anon7771_tokenRoot: u32 = 62;
+pub const anon7771_tokenSigma: u32 = 63;
+pub const anon7771_tokenIntegral: u32 = 64;
+pub const anon7771_tokenMicro: u32 = 65;
+pub const anon7771_tokenCapPi: u32 = 66;
+pub const anon7771_tokenInfinity: u32 = 67;
+pub const anon7771_tokenColon: u32 = 68;
+pub const anon7771_tokenHash: u32 = 69;
+pub const anon7771_tokenDollar: u32 = 70;
+pub const anon7771_tokenNoBreakSpace: u32 = 71;
+pub const anon7771_tokenFraction: u32 = 72;
+pub const anon7771_tokenIntlCurrency: u32 = 73;
+pub const anon7771_tokenLeftSingGuillemet: u32 = 74;
+pub const anon7771_tokenRightSingGuillemet: u32 = 75;
+pub const anon7771_tokenPerThousand: u32 = 76;
+pub const anon7771_tokenEllipsis: u32 = 77;
+pub const anon7771_tokenCenterDot: u32 = 78;
+pub const anon7771_tokenNil: u32 = 127;
+pub const anon7771_HFSCaseFolding: u32 = 207;
+pub const anon7771_HFSBinaryCompare: u32 = 188;
+
+pub const anon8001 = i32;
+pub const anon8001_delimPad: i32 = -2;
+pub const anon8001_tokenTilda: i32 = 44;
+pub const anon8001_tokenCarat: i32 = 55;
+pub const anon8001_gestaltDragMgrAttr: i32 = 1685217639;
+pub const anon8001_gestaltDragMgrPresent: i32 = 0;
+pub const anon8001_gestaltDragMgrFloatingWind: i32 = 1;
+pub const anon8001_gestaltPPCDragLibPresent: i32 = 2;
+pub const anon8001_gestaltDragMgrHasImageSupport: i32 = 3;
+pub const anon8001_gestaltCanStartDragInFloatWindow: i32 = 4;
+pub const anon8001_gestaltSetDragImageUpdates: i32 = 5;
+pub const anon8001_FAServerApp: i32 = 1936945782;
+pub const anon8001_DoFolderActionEvent: i32 = 1718578273;
+pub const anon8001_FolderActionCode: i32 = 1633907822;
+pub const anon8001_FolderOpenedEvent: i32 = 1718579310;
+pub const anon8001_FolderClosedEvent: i32 = 1717791855;
+pub const anon8001_FolderWindowMovedEvent: i32 = 1718839674;
+pub const anon8001_FolderItemsAddedEvent: i32 = 1718052212;
+pub const anon8001_FolderItemsRemovedEvent: i32 = 1718382451;
+pub const anon8001_ItemList: i32 = 1718383476;
+pub const anon8001_NewSizeParameter: i32 = 1718514554;
+pub const anon8001_FASuiteCode: i32 = 1717658479;
+pub const anon8001_FAAttachCommand: i32 = 1635018337;
+pub const anon8001_FARemoveCommand: i32 = 1919772257;
+pub const anon8001_FAEditCommand: i32 = 1701078625;
+pub const anon8001_FAFileParam: i32 = 1717657964;
+pub const anon8001_FAIndexParam: i32 = 1768842360;
+
+pub const anon8061 = u32;
+pub const anon8061_smWordSelectTable: u32 = 0;
+pub const anon8061_smWordWrapTable: u32 = 1;
+pub const anon8061_smNumberPartsTable: u32 = 2;
+pub const anon8061_smUnTokenTable: u32 = 3;
+pub const anon8061_smWhiteSpaceList: u32 = 4;
+pub const anon8061_iuWordSelectTable: u32 = 0;
+pub const anon8061_iuWordWrapTable: u32 = 1;
+pub const anon8061_iuNumberPartsTable: u32 = 2;
+pub const anon8061_iuUnTokenTable: u32 = 3;
+pub const anon8061_iuWhiteSpaceList: u32 = 4;
+
+pub const anon8211 = u32;
+pub const anon8211_tokenOK: u32 = 0;
+pub const anon8211_tokenOverflow: u32 = 1;
+pub const anon8211_stringOverflow: u32 = 2;
+pub const anon8211_badDelim: u32 = 3;
+pub const anon8211_badEnding: u32 = 4;
+pub const anon8211_crash: u32 = 5;
+pub const anon8211_AEInternetSuite: u32 = 1735750252;
+pub const anon8211_AEISWebStarSuite: u32 = 1465341885;
+pub const anon8211_CSSM_ALGID_NONE: u32 = 0;
+pub const anon8211_CSSM_ALGID_CUSTOM: u32 = 1;
+pub const anon8211_CSSM_ALGID_DH: u32 = 2;
+pub const anon8211_CSSM_ALGID_PH: u32 = 3;
+pub const anon8211_CSSM_ALGID_KEA: u32 = 4;
+pub const anon8211_CSSM_ALGID_MD2: u32 = 5;
+pub const anon8211_CSSM_ALGID_MD4: u32 = 6;
+pub const anon8211_CSSM_ALGID_MD5: u32 = 7;
+pub const anon8211_CSSM_ALGID_SHA1: u32 = 8;
+pub const anon8211_CSSM_ALGID_NHASH: u32 = 9;
+pub const anon8211_CSSM_ALGID_HAVAL: u32 = 10;
+pub const anon8211_CSSM_ALGID_RIPEMD: u32 = 11;
+pub const anon8211_CSSM_ALGID_IBCHASH: u32 = 12;
+pub const anon8211_CSSM_ALGID_RIPEMAC: u32 = 13;
+pub const anon8211_CSSM_ALGID_DES: u32 = 14;
+pub const anon8211_CSSM_ALGID_DESX: u32 = 15;
+pub const anon8211_CSSM_ALGID_RDES: u32 = 16;
+pub const anon8211_CSSM_ALGID_3DES_3KEY_EDE: u32 = 17;
+pub const anon8211_CSSM_ALGID_3DES_2KEY_EDE: u32 = 18;
+pub const anon8211_CSSM_ALGID_3DES_1KEY_EEE: u32 = 19;
+pub const anon8211_CSSM_ALGID_3DES_3KEY: u32 = 17;
+pub const anon8211_CSSM_ALGID_3DES_3KEY_EEE: u32 = 20;
+pub const anon8211_CSSM_ALGID_3DES_2KEY: u32 = 18;
+pub const anon8211_CSSM_ALGID_3DES_2KEY_EEE: u32 = 21;
+pub const anon8211_CSSM_ALGID_3DES_1KEY: u32 = 20;
+pub const anon8211_CSSM_ALGID_IDEA: u32 = 22;
+pub const anon8211_CSSM_ALGID_RC2: u32 = 23;
+pub const anon8211_CSSM_ALGID_RC5: u32 = 24;
+pub const anon8211_CSSM_ALGID_RC4: u32 = 25;
+pub const anon8211_CSSM_ALGID_SEAL: u32 = 26;
+pub const anon8211_CSSM_ALGID_CAST: u32 = 27;
+pub const anon8211_CSSM_ALGID_BLOWFISH: u32 = 28;
+pub const anon8211_CSSM_ALGID_SKIPJACK: u32 = 29;
+pub const anon8211_CSSM_ALGID_LUCIFER: u32 = 30;
+pub const anon8211_CSSM_ALGID_MADRYGA: u32 = 31;
+pub const anon8211_CSSM_ALGID_FEAL: u32 = 32;
+pub const anon8211_CSSM_ALGID_REDOC: u32 = 33;
+pub const anon8211_CSSM_ALGID_REDOC3: u32 = 34;
+pub const anon8211_CSSM_ALGID_LOKI: u32 = 35;
+pub const anon8211_CSSM_ALGID_KHUFU: u32 = 36;
+pub const anon8211_CSSM_ALGID_KHAFRE: u32 = 37;
+pub const anon8211_CSSM_ALGID_MMB: u32 = 38;
+pub const anon8211_CSSM_ALGID_GOST: u32 = 39;
+pub const anon8211_CSSM_ALGID_SAFER: u32 = 40;
+pub const anon8211_CSSM_ALGID_CRAB: u32 = 41;
+pub const anon8211_CSSM_ALGID_RSA: u32 = 42;
+pub const anon8211_CSSM_ALGID_DSA: u32 = 43;
+pub const anon8211_CSSM_ALGID_MD5WithRSA: u32 = 44;
+pub const anon8211_CSSM_ALGID_MD2WithRSA: u32 = 45;
+pub const anon8211_CSSM_ALGID_ElGamal: u32 = 46;
+pub const anon8211_CSSM_ALGID_MD2Random: u32 = 47;
+pub const anon8211_CSSM_ALGID_MD5Random: u32 = 48;
+pub const anon8211_CSSM_ALGID_SHARandom: u32 = 49;
+pub const anon8211_CSSM_ALGID_DESRandom: u32 = 50;
+pub const anon8211_CSSM_ALGID_SHA1WithRSA: u32 = 51;
+pub const anon8211_CSSM_ALGID_CDMF: u32 = 52;
+pub const anon8211_CSSM_ALGID_CAST3: u32 = 53;
+pub const anon8211_CSSM_ALGID_CAST5: u32 = 54;
+pub const anon8211_CSSM_ALGID_GenericSecret: u32 = 55;
+pub const anon8211_CSSM_ALGID_ConcatBaseAndKey: u32 = 56;
+pub const anon8211_CSSM_ALGID_ConcatKeyAndBase: u32 = 57;
+pub const anon8211_CSSM_ALGID_ConcatBaseAndData: u32 = 58;
+pub const anon8211_CSSM_ALGID_ConcatDataAndBase: u32 = 59;
+pub const anon8211_CSSM_ALGID_XORBaseAndData: u32 = 60;
+pub const anon8211_CSSM_ALGID_ExtractFromKey: u32 = 61;
+pub const anon8211_CSSM_ALGID_SSL3PrePrimaryGen: u32 = 62;
+pub const anon8211_CSSM_ALGID_SSL3PreMasterGen: u32 = 62;
+pub const anon8211_CSSM_ALGID_SSL3PrimaryDerive: u32 = 63;
+pub const anon8211_CSSM_ALGID_SSL3MasterDerive: u32 = 63;
+pub const anon8211_CSSM_ALGID_SSL3KeyAndMacDerive: u32 = 64;
+pub const anon8211_CSSM_ALGID_SSL3MD5_MAC: u32 = 65;
+pub const anon8211_CSSM_ALGID_SSL3SHA1_MAC: u32 = 66;
+pub const anon8211_CSSM_ALGID_PKCS5_PBKDF1_MD5: u32 = 67;
+pub const anon8211_CSSM_ALGID_PKCS5_PBKDF1_MD2: u32 = 68;
+pub const anon8211_CSSM_ALGID_PKCS5_PBKDF1_SHA1: u32 = 69;
+pub const anon8211_CSSM_ALGID_WrapLynks: u32 = 70;
+pub const anon8211_CSSM_ALGID_WrapSET_OAEP: u32 = 71;
+pub const anon8211_CSSM_ALGID_BATON: u32 = 72;
+pub const anon8211_CSSM_ALGID_ECDSA: u32 = 73;
+pub const anon8211_CSSM_ALGID_MAYFLY: u32 = 74;
+pub const anon8211_CSSM_ALGID_JUNIPER: u32 = 75;
+pub const anon8211_CSSM_ALGID_FASTHASH: u32 = 76;
+pub const anon8211_CSSM_ALGID_3DES: u32 = 77;
+pub const anon8211_CSSM_ALGID_SSL3MD5: u32 = 78;
+pub const anon8211_CSSM_ALGID_SSL3SHA1: u32 = 79;
+pub const anon8211_CSSM_ALGID_FortezzaTimestamp: u32 = 80;
+pub const anon8211_CSSM_ALGID_SHA1WithDSA: u32 = 81;
+pub const anon8211_CSSM_ALGID_SHA1WithECDSA: u32 = 82;
+pub const anon8211_CSSM_ALGID_DSA_BSAFE: u32 = 83;
+pub const anon8211_CSSM_ALGID_ECDH: u32 = 84;
+pub const anon8211_CSSM_ALGID_ECMQV: u32 = 85;
+pub const anon8211_CSSM_ALGID_PKCS12_SHA1_PBE: u32 = 86;
+pub const anon8211_CSSM_ALGID_ECNRA: u32 = 87;
+pub const anon8211_CSSM_ALGID_SHA1WithECNRA: u32 = 88;
+pub const anon8211_CSSM_ALGID_ECES: u32 = 89;
+pub const anon8211_CSSM_ALGID_ECAES: u32 = 90;
+pub const anon8211_CSSM_ALGID_SHA1HMAC: u32 = 91;
+pub const anon8211_CSSM_ALGID_FIPS186Random: u32 = 92;
+pub const anon8211_CSSM_ALGID_ECC: u32 = 93;
+pub const anon8211_CSSM_ALGID_MQV: u32 = 94;
+pub const anon8211_CSSM_ALGID_NRA: u32 = 95;
+pub const anon8211_CSSM_ALGID_IntelPlatformRandom: u32 = 96;
+pub const anon8211_CSSM_ALGID_UTC: u32 = 97;
+pub const anon8211_CSSM_ALGID_HAVAL3: u32 = 98;
+pub const anon8211_CSSM_ALGID_HAVAL4: u32 = 99;
+pub const anon8211_CSSM_ALGID_HAVAL5: u32 = 100;
+pub const anon8211_CSSM_ALGID_TIGER: u32 = 101;
+pub const anon8211_CSSM_ALGID_MD5HMAC: u32 = 102;
+pub const anon8211_CSSM_ALGID_PKCS5_PBKDF2: u32 = 103;
+pub const anon8211_CSSM_ALGID_RUNNING_COUNTER: u32 = 104;
+pub const anon8211_CSSM_ALGID_LAST: u32 = 2147483647;
+pub const anon8211_CSSM_ALGID_VENDOR_DEFINED: u32 = -2147483648;
 
 pub const TokenResults = objc.SInt8;
 
@@ -1275,9 +1905,9 @@ pub const CharByteTable = [256]i8;
 
 pub const ScriptTokenType = i16;
 
-pub const DelimType = [2]ScriptTokenType;
+pub const DelimType = ScriptTokenType;
 
-pub const CommentType = [4]ScriptTokenType;
+pub const CommentType = ScriptTokenType;
 
 pub const TokenRec = extern struct {
     theToken: ScriptTokenType,
@@ -1286,7 +1916,7 @@ pub const TokenRec = extern struct {
     stringPosition: objc.StringPtr,
 };
 
-pub const TokenRecPtr = ?*TokenRec;
+pub const TokenRecPtr = TokenRec;
 
 pub const TokenBlock = extern struct {
     source: objc.Ptr,
@@ -1311,2309 +1941,2658 @@ pub const TokenBlock = extern struct {
     reserved: [8]i64,
 };
 
-pub const TokenBlockPtr = ?*TokenBlock;
+pub const TokenBlockPtr = TokenBlock;
 
-pub const anon8701 = enum(i32) {
-    smNotInstalled = 0,
-    smBadVerb = -1,
-    smBadScript = -2,
-};
+pub const anon8701 = i32;
+pub const anon8701_smNotInstalled: i32 = 0;
+pub const anon8701_smBadVerb: i32 = -1;
+pub const anon8701_smBadScript: i32 = -2;
 
-pub const anon8781 = enum(u32) {
-    smfShowIcon = 31,
-    smfDualCaret = 30,
-    smfNameTagEnab = 29,
-    smfUseAssocFontInfo = 28,
-    smfDisableKeyScriptSync = 27,
-};
+pub const anon8781 = u32;
+pub const anon8781_smfShowIcon: u32 = 31;
+pub const anon8781_smfDualCaret: u32 = 30;
+pub const anon8781_smfNameTagEnab: u32 = 29;
+pub const anon8781_smfUseAssocFontInfo: u32 = 28;
+pub const anon8781_smfDisableKeyScriptSync: u32 = 27;
 
-pub const anon8871 = enum(u32) {
-    smfDisableKeyScriptSyncMask = 134217728,
-};
+pub const anon8871 = u32;
+pub const anon8871_smfDisableKeyScriptSyncMask: u32 = 134217728;
 
-pub const anon8921 = enum(u32) {
-    smSysScript = 18,
-    smKeyScript = 22,
-    smKCHRCache = 38,
-    smRegionCode = 40,
-};
+pub const anon8921 = u32;
+pub const anon8921_smSysScript: u32 = 18;
+pub const anon8921_smKeyScript: u32 = 22;
+pub const anon8921_smKCHRCache: u32 = 38;
+pub const anon8921_smRegionCode: u32 = 40;
 
 pub extern "CoreServices" fn GetScriptManagerVariable(selector: i16) callconv(.C) i64;
 
 pub extern "CoreServices" fn SetScriptManagerVariable(selector: i16, param: i64) callconv(.C) objc.OSErr;
 
-pub const anon10241 = enum(u32) {
-    smsfIntellCP = 0,
-    smsfSingByte = 1,
-    smsfNatCase = 2,
-    smsfContext = 3,
-    smsfNoForceFont = 4,
-    smsfB0Digits = 5,
-    smsfAutoInit = 6,
-    smsfUnivExt = 7,
-    smsfSynchUnstyledTE = 8,
-    smsfForms = 13,
-    smsfLigatures = 14,
-    smsfReverse = 15,
-};
-
-pub const anon731 = enum(u32) {
-    ResolveAliasFileNoUI = 1,
-    ResolveAliasTryFileIDFirst = 2,
-};
-
-pub const anon961 = enum(i32) {
-    fidNotFound = -1300,
-    fidExists = -1301,
-    notAFileErr = -1302,
-    diffVolErr = -1303,
-    catChangedErr = -1304,
-    desktopDamagedErr = -1305,
-    sameFileErr = -1306,
-    badFidErr = -1307,
-    notARemountErr = -1308,
-    fileBoundsErr = -1309,
-    fsDataTooBigErr = -1310,
-    volVMBusyErr = -1311,
-    badFCBErr = -1327,
-    errFSUnknownCall = -1400,
-    errFSBadFSRef = -1401,
-    errFSBadForkName = -1402,
-    errFSBadBuffer = -1403,
-    errFSBadForkRef = -1404,
-    errFSBadInfoBitmap = -1405,
-    errFSMissingCatInfo = -1406,
-    errFSNotAFolder = -1407,
-    errFSForkNotFound = -1409,
-    errFSNameTooLong = -1410,
-    errFSMissingName = -1411,
-    errFSBadPosMode = -1412,
-    errFSBadAllocFlags = -1413,
-    errFSNoMoreItems = -1417,
-    errFSBadItemCount = -1418,
-    errFSBadSearchParams = -1419,
-    errFSRefsDifferent = -1420,
-    errFSForkExists = -1421,
-    errFSBadIteratorFlags = -1422,
-    errFSIteratorNotFound = -1423,
-    errFSIteratorNotSupported = -1424,
-    errFSQuotaExceeded = -1425,
-    errFSOperationNotSupported = -1426,
-    errFSAttributeNotFound = -1427,
-    errFSPropertyNotValid = -1428,
-    errFSNotEnoughSpaceForOperation = -1429,
-    envNotPresent = -5500,
-    envBadVers = -5501,
-    envVersTooBig = -5502,
-    fontDecError = -64,
-    fontNotDeclared = -65,
-    fontSubErr = -66,
-    fontNotOutlineErr = -32615,
-    firstDskErr = -84,
-    lastDskErr = -64,
-    noDriveErr = -64,
-    offLinErr = -65,
-    noNybErr = -66,
-};
-
-pub const anon1501 = enum(i32) {
-    noAdrMkErr = -67,
-    dataVerErr = -68,
-    badCksmErr = -69,
-    badBtSlpErr = -70,
-    noDtaMkErr = -71,
-    badDCksum = -72,
-    badDBtSlp = -73,
-    wrUnderrun = -74,
-    cantStepErr = -75,
-    tk0BadErr = -76,
-    initIWMErr = -77,
-    twoSideErr = -78,
-    spdAdjErr = -79,
-    seekErr = -80,
-    sectNFErr = -81,
-    fmt1Err = -82,
-    fmt2Err = -83,
-    verErr = -84,
-    clkRdErr = -85,
-    clkWrErr = -86,
-    prWrErr = -87,
-    prInitErr = -88,
-    rcvrErr = -89,
-    breakRecd = -90,
-};
-
-pub const anon1771 = enum(i32) {
-    noScrapErr = -100,
-    noTypeErr = -102,
-};
-
-pub const anon2171 = enum(i32) {
-    iMemFullErr = -108,
-    iIOAbort = -27,
-};
-
-pub const anon2241 = enum(i32) {
-    resourceInMemory = -188,
-    writingPastEnd = -189,
-    inputOutOfBounds = -190,
-    resNotFound = -192,
-    resFNotFound = -193,
-    addResFailed = -194,
-    addRefFailed = -195,
-    rmvResFailed = -196,
-    rmvRefFailed = -197,
-    resAttrErr = -198,
-    mapReadErr = -199,
-    CantDecompress = -186,
-    badExtResource = -185,
-    noMemForPictPlaybackErr = -145,
-    rgnOverflowErr = -147,
-    rgnTooBigError = -147,
-    pixMapTooDeepErr = -148,
-    insufficientStackErr = -149,
-    nsStackErr = -149,
-};
-
-pub const anon2461 = enum(u32) {
-    evtNotEnb = 1,
-};
-
-pub const anon2511 = enum(u32) {
-    SharingPrivsNotApplicableIcon = 1936223841,
-    SharingPrivsReadOnlyIcon = 1936224879,
-    SharingPrivsReadWriteIcon = 1936224887,
-    SharingPrivsUnknownIcon = 1936225643,
-    SharingPrivsWritableIcon = 2003986804,
-};
-
-pub const anon2711 = enum(u32) {
-    LSSharedFileListNoUserInteraction = 1,
-    LSSharedFileListDoNotMountVolumes = 2,
-};
-
-pub const anon2861 = enum(u32) {
-    SpecialCase = 15,
-};
-
-pub const anon3171 = enum(u32) {
-    UCCollateTypeSourceMask = 255,
-    UCCollateTypeShiftBits = 24,
-};
-
-pub const anon3501 = enum(u32) {
-    UCTSDirectionNext = 0,
-    UCTSDirectionPrevious = 1,
-};
-
-pub const anon3761 = enum(i32) {
-    smResrvErr = -307,
-    smUnExBusErr = -308,
-    smBLFieldBad = -309,
-    smFHBlockRdErr = -310,
-    smFHBlkDispErr = -311,
-    smDisposePErr = -312,
-    smNoBoardSRsrc = -313,
-    smGetPRErr = -314,
-    smNoBoardId = -315,
-    smInitStatVErr = -316,
-    smInitTblVErr = -317,
-    smNoJmpTbl = -318,
-    smReservedSlot = -318,
-    smBadBoardId = -319,
-    smBusErrTO = -320,
-    svTempDisable = -32768,
-    svDisabled = -32640,
-    smBadRefId = -330,
-    smBadsList = -331,
-    smReservedErr = -332,
-    smCodeRevErr = -333,
-};
-
-pub const anon4011 = enum(u32) {
-    IconServicesNormalUsageFlag = 0,
-    IconServicesNoBadgeFlag = 1,
-    IconServicesUpdateIfNeededFlag = 2,
-};
-
-pub const anon4231 = enum(i32) {
-    notBTree = -410,
-    btNoSpace = -413,
-    btDupRecErr = -414,
-    btRecNotFnd = -415,
-    btKeyLenErr = -416,
-    btKeyAttrErr = -417,
-    unknownInsertModeErr = -20000,
-    recordDataTooBigErr = -20001,
-    invalidIndexErr = -20002,
-};
-
-pub const anon4401 = enum(i32) {
-    fsmFFSNotFoundErr = -431,
-    fsmBusyFFSErr = -432,
-    fsmBadFFSNameErr = -433,
-    fsmBadFSDLenErr = -434,
-    fsmDuplicateFSIDErr = -435,
-    fsmBadFSDVersionErr = -436,
-    fsmNoAlternateStackErr = -437,
-    fsmUnknownFSMMessageErr = -438,
-};
-
-pub const anon4521 = enum(u32) {
-    ISOLatinHebrewImplicitOrderVariant = 0,
-    ISOLatinHebrewVisualOrderVariant = 1,
-    ISOLatinHebrewExplicitOrderVariant = 2,
-};
-
-pub const anon4651 = enum(u32) {
-    DOSJapaneseStandardVariant = 0,
-    DOSJapanesePalmVariant = 1,
-};
-
-pub const anon4861 = enum(i32) {
-    wrongApplicationPlatform = -875,
-    appVersionTooOld = -876,
-    notAppropriateForClassic = -877,
-};
-
-pub const anon4941 = enum(i32) {
-    threadTooManyReqsErr = -617,
-    threadNotFoundErr = -618,
-    threadProtocolErr = -619,
-};
-
-pub const anon5051 = enum(i32) {
-    notEnoughMemoryErr = -620,
-    notHeldErr = -621,
-    cannotMakeContiguousErr = -622,
-    notLockedErr = -623,
-    interruptsMaskedErr = -624,
-    cannotDeferErr = -625,
-    noMMUErr = -626,
-};
-
-pub const anon5161 = enum(i32) {
-    vmMorePhysicalThanVirtualErr = -628,
-    vmKernelMMUInitErr = -629,
-    vmOffErr = -630,
-    vmMemLckdErr = -631,
-    vmBadDriver = -632,
-    vmNoVectorErr = -633,
-};
-
-pub const anon5261 = enum(u32) {
-    DeveloperDocsFolderType = 1684303715,
-    DeveloperHelpFolderType = 1684371048,
-    DeveloperFolderType = 1684371046,
-    DeveloperApplicationsFolderType = 1684107376,
-};
-
-pub const anon5391 = enum(i32) {
-    rcDBNull = -800,
-    rcDBValue = -801,
-    rcDBError = -802,
-    rcDBBadType = -803,
-    rcDBBreak = -804,
-    rcDBExec = -805,
-    rcDBBadSessID = -806,
-    rcDBBadSessNum = -807,
-    rcDBBadDDEV = -808,
-    rcDBAsyncNotSupp = -809,
-    rcDBBadAsyncPB = -810,
-    rcDBNoHandler = -811,
-    rcDBWrongVersion = -812,
-    rcDBPackNotInited = -813,
-};
-
-pub const anon5581 = enum(i32) {
-    hmHelpDisabled = -850,
-    hmBalloonAborted = -853,
-    hmSameAsLastBalloon = -854,
-    hmHelpManagerNotInited = -855,
-    hmSkippedBalloon = -857,
-    hmWrongVersion = -858,
-    hmUnknownHelpType = -859,
-    hmOperationUnsupported = -861,
-    hmNoBalloonUp = -862,
-    hmCloseViewActive = -863,
-};
-
-pub const anon5731 = enum(i32) {
-    notInitErr = -900,
-    nameTypeErr = -902,
-    noPortErr = -903,
-    noGlobalsErr = -904,
-    localOnlyErr = -905,
-    destPortErr = -906,
-    sessTableErr = -907,
-    noSessionErr = -908,
-    badReqErr = -909,
-    portNameExistsErr = -910,
-    noUserNameErr = -911,
-    userRejectErr = -912,
-    noMachineNameErr = -913,
-    noToolboxNameErr = -914,
-    noResponseErr = -915,
-    portClosedErr = -916,
-    sessClosedErr = -917,
-    badPortNameErr = -919,
-    noDefaultUserErr = -922,
-    notLoggedInErr = -923,
-    noUserRefErr = -924,
-    networkErr = -925,
-    noInformErr = -926,
-    authFailErr = -927,
-    noUserRecErr = -928,
-    badServiceMethodErr = -930,
-    badLocNameErr = -931,
-    guestNotAllowedErr = -932,
-};
-
-pub const anon6171 = enum(i32) {
-    noMaskFoundErr = -1000,
-};
-
-pub const anon6211 = enum(u32) {
-    gestaltControlMgrVersion = 1668118130,
-};
-
-pub const anon6301 = enum(i32) {
-    aspBadVersNum = -1066,
-    aspBufTooSmall = -1067,
-    aspNoMoreSess = -1068,
-    aspNoServers = -1069,
-    aspParamErr = -1070,
-    aspServerBusy = -1071,
-    aspSessClosed = -1072,
-    aspSizeErr = -1073,
-    aspTooMany = -1074,
-    aspNoAck = -1075,
-};
-
-pub const anon6431 = enum(i32) {
-    reqFailed = -1096,
-    tooManyReqs = -1097,
-    tooManySkts = -1098,
-    badATPSkt = -1099,
-    badBuffNum = -1100,
-    noRelErr = -1101,
-    cbNotFound = -1102,
-    noSendResp = -1103,
-    noDataArea = -1104,
-    reqAborted = -1105,
-};
-
-pub const anon6571 = enum(i32) {
-    errRefNum = -1280,
-    errAborted = -1279,
-    errState = -1278,
-    errOpening = -1277,
-    errAttention = -1276,
-    errFwdReset = -1275,
-    errDSPQueueSize = -1274,
-    errOpenDenied = -1273,
-};
-
-pub const anon6741 = enum(i32) {
-    errAECoercionFail = -1700,
-    errAEDescNotFound = -1701,
-    errAECorruptData = -1702,
-    errAEWrongDataType = -1703,
-    errAENotAEDesc = -1704,
-    errAEBadListItem = -1705,
-    errAENewerVersion = -1706,
-    errAENotAppleEvent = -1707,
-    errAEEventNotHandled = -1708,
-    errAEReplyNotValid = -1709,
-    errAEUnknownSendMode = -1710,
-    errAEWaitCanceled = -1711,
-    errAETimeout = -1712,
-    errAENoUserInteraction = -1713,
-    errAENotASpecialFunction = -1714,
-    errAEParamMissed = -1715,
-    errAEUnknownAddressType = -1716,
-    errAEHandlerNotFound = -1717,
-    errAEReplyNotArrived = -1718,
-    errAEIllegalIndex = -1719,
-    errAEImpossibleRange = -1720,
-    errAEWrongNumberArgs = -1721,
-    errAEAccessorNotFound = -1723,
-    errAENoSuchLogical = -1725,
-    errAEBadTestKey = -1726,
-    errAENotAnObjSpec = -1727,
-    errAENoSuchObject = -1728,
-    errAENegativeCount = -1729,
-    errAEEmptyListContainer = -1730,
-    errAEUnknownObjectType = -1731,
-    errAERecordingIsAlreadyOn = -1732,
-    errAEReceiveTerminate = -1733,
-    errAEReceiveEscapeCurrent = -1734,
-    errAEEventFiltered = -1735,
-    errAEDuplicateHandler = -1736,
-    errAEStreamBadNesting = -1737,
-    errAEStreamAlreadyConverted = -1738,
-    errAEDescIsNull = -1739,
-    errAEBuildSyntaxError = -1740,
-    errAEBufferTooSmall = -1741,
-};
-
-pub const anon7171 = enum(i32) {
-    errOSASystemError = -1750,
-    errOSAInvalidID = -1751,
-    errOSABadStorageType = -1752,
-    errOSAScriptError = -1753,
-    errOSABadSelector = -1754,
-    errOSASourceNotAvailable = -1756,
-    errOSANoSuchDialect = -1757,
-    errOSADataFormatObsolete = -1758,
-    errOSADataFormatTooNew = -1759,
-    errOSACorruptData = -1702,
-    errOSARecordingIsAlreadyOn = -1732,
-    errOSAComponentMismatch = -1761,
-    errOSACantOpenComponent = -1762,
-    errOSACantStorePointers = -1763,
-};
-
-pub const anon7471 = enum(i32) {
-    badDragRefErr = -1850,
-    badDragItemErr = -1851,
-    badDragFlavorErr = -1852,
-    duplicateFlavorErr = -1853,
-    cantGetFlavorErr = -1854,
-    duplicateHandlerErr = -1855,
-    handlerNotFoundErr = -1856,
-    dragNotAcceptedErr = -1857,
-    unsupportedForPlatformErr = -1858,
-    noSuitableDisplaysErr = -1859,
-    badImageRgnErr = -1860,
-    badImageErr = -1861,
-    nonDragOriginatorErr = -1862,
-};
-
-pub const anon7661 = enum(i32) {
-    couldNotResolveDataRef = -2000,
-    badImageDescription = -2001,
-    badPublicMovieAtom = -2002,
-    cantFindHandler = -2003,
-    cantOpenHandler = -2004,
-    badComponentType = -2005,
-    noMediaHandler = -2006,
-    noDataHandler = -2007,
-    invalidMedia = -2008,
-    invalidTrack = -2009,
-    invalidMovie = -2010,
-    invalidSampleTable = -2011,
-    invalidDataRef = -2012,
-    invalidHandler = -2013,
-    invalidDuration = -2014,
-    invalidTime = -2015,
-    cantPutPublicMovieAtom = -2016,
-    badEditList = -2017,
-    mediaTypesDontMatch = -2018,
-    progressProcAborted = -2019,
-    movieToolboxUninitialized = -2020,
-    noRecordOfApp = -2020,
-    wfFileNotFound = -2021,
-    cantCreateSingleForkFile = -2022,
-    invalidEditState = -2023,
-    nonMatchingEditState = -2024,
-    staleEditState = -2025,
-    userDataItemNotFound = -2026,
-    maxSizeToGrowTooSmall = -2027,
-    badTrackIndex = -2028,
-    trackIDNotFound = -2029,
-    trackNotInMovie = -2030,
-    timeNotInTrack = -2031,
-    timeNotInMedia = -2032,
-    badEditIndex = -2033,
-    internalQuickTimeError = -2034,
-    cantEnableTrack = -2035,
-    invalidRect = -2036,
-    invalidSampleNum = -2037,
-    invalidChunkNum = -2038,
-    invalidSampleDescIndex = -2039,
-    invalidChunkCache = -2040,
-    invalidSampleDescription = -2041,
-    dataNotOpenForRead = -2042,
-    dataNotOpenForWrite = -2043,
-    dataAlreadyOpenForWrite = -2044,
-    dataAlreadyClosed = -2045,
-    endOfDataReached = -2046,
-    dataNoDataRef = -2047,
-    noMovieFound = -2048,
-    invalidDataRefContainer = -2049,
-    badDataRefIndex = -2050,
-    noDefaultDataRef = -2051,
-    couldNotUseAnExistingSample = -2052,
-    featureUnsupported = -2053,
-    noVideoTrackInMovieErr = -2054,
-    noSoundTrackInMovieErr = -2055,
-    soundSupportNotAvailableErr = -2056,
-    unsupportedAuxiliaryImportData = -2057,
-    auxiliaryExportDataUnavailable = -2058,
-    samplesAlreadyInMediaErr = -2059,
-    noSourceTreeFoundErr = -2060,
-    sourceNotFoundErr = -2061,
-    movieTextNotFoundErr = -2062,
-    missingRequiredParameterErr = -2063,
-    invalidSpriteWorldPropertyErr = -2064,
-    invalidSpritePropertyErr = -2065,
-    gWorldsNotSameDepthAndSizeErr = -2066,
-    invalidSpriteIndexErr = -2067,
-    invalidImageIndexErr = -2068,
-    invalidSpriteIDErr = -2069,
-};
-
-pub const anon8401 = enum(i32) {
-    internalComponentErr = -2070,
-    notImplementedMusicOSErr = -2071,
-    cantSendToSynthesizerOSErr = -2072,
-    cantReceiveFromSynthesizerOSErr = -2073,
-    illegalVoiceAllocationOSErr = -2074,
-    illegalPartOSErr = -2075,
-    illegalChannelOSErr = -2076,
-    illegalKnobOSErr = -2077,
-    illegalKnobValueOSErr = -2078,
-    illegalInstrumentOSErr = -2079,
-    illegalControllerOSErr = -2080,
-    midiManagerAbsentOSErr = -2081,
-    synthesizerNotRespondingOSErr = -2082,
-    synthesizerOSErr = -2083,
-    illegalNoteChannelOSErr = -2084,
-    noteChannelNotAllocatedOSErr = -2085,
-    tunePlayerFullOSErr = -2086,
-    tuneParseOSErr = -2087,
-    noExportProcAvailableErr = -2089,
-    videoOutputInUseErr = -2090,
-};
-
-pub const anon8631 = enum(u32) {
-    gestaltFBCIndexingState = 1717724009,
-    gestaltFBCindexingSafe = 0,
-    gestaltFBCindexingCritical = 1,
-};
-
-pub const anon8741 = enum(i32) {
-    cannotFindAtomErr = -2101,
-    notLeafAtomErr = -2102,
-    atomsNotOfSameTypeErr = -2103,
-    atomIndexInvalidErr = -2104,
-    duplicateAtomTypeAndIDErr = -2105,
-    invalidAtomErr = -2106,
-    invalidAtomContainerErr = -2107,
-    invalidAtomTypeErr = -2108,
-    cannotBeLeafAtomErr = -2109,
-    pathTooLongErr = -2110,
-    emptyPathErr = -2111,
-    noPathMappingErr = -2112,
-    pathNotVerifiedErr = -2113,
-    unknownFormatErr = -2114,
-    wackBadFileErr = -2115,
-    wackForkNotFoundErr = -2116,
-    wackBadMetaDataErr = -2117,
-    qfcbNotFoundErr = -2118,
-    qfcbNotCreatedErr = -2119,
-    AAPNotCreatedErr = -2120,
-    AAPNotFoundErr = -2121,
-    ASDBadHeaderErr = -2122,
-    ASDBadForkErr = -2123,
-    ASDEntryNotFoundErr = -2124,
-    fileOffsetTooBigErr = -2125,
-    notAllowedToSaveMovieErr = -2126,
-    qtNetworkAlreadyAllocatedErr = -2127,
-    urlDataHHTTPProtocolErr = -2129,
-    urlDataHHTTPNoNetDriverErr = -2130,
-    urlDataHHTTPURLErr = -2131,
-    urlDataHHTTPRedirectErr = -2132,
-    urlDataHFTPProtocolErr = -2133,
-    urlDataHFTPShutdownErr = -2134,
-    urlDataHFTPBadUserErr = -2135,
-    urlDataHFTPBadPasswordErr = -2136,
-    urlDataHFTPServerErr = -2137,
-    urlDataHFTPDataConnectionErr = -2138,
-    urlDataHFTPNoDirectoryErr = -2139,
-    urlDataHFTPQuotaErr = -2140,
-    urlDataHFTPPermissionsErr = -2141,
-    urlDataHFTPFilenameErr = -2142,
-    urlDataHFTPNoNetDriverErr = -2143,
-    urlDataHFTPBadNameListErr = -2144,
-    urlDataHFTPNeedPasswordErr = -2145,
-    urlDataHFTPNoPasswordErr = -2146,
-    urlDataHFTPServerDisconnectedErr = -2147,
-    urlDataHFTPURLErr = -2148,
-    notEnoughDataErr = -2149,
-    qtActionNotHandledErr = -2157,
-    qtXMLParseErr = -2158,
-    qtXMLApplicationErr = -2159,
-};
-
-pub const anon9291 = enum(i32) {
-    digiUnimpErr = -2201,
-    qtParamErr = -2202,
-    matrixErr = -2203,
-    notExactMatrixErr = -2204,
-    noMoreKeyColorsErr = -2205,
-    notExactSizeErr = -2206,
-    badDepthErr = -2207,
-    noDMAErr = -2208,
-    badCallOrderErr = -2209,
-};
-
-pub const anon9431 = enum(i32) {
-    ernelIncompleteErr = -2401,
-    ernelCanceledErr = -2402,
-    ernelOptionsErr = -2403,
-    ernelPrivilegeErr = -2404,
-    ernelUnsupportedErr = -2405,
-    ernelObjectExistsErr = -2406,
-    ernelWritePermissionErr = -2407,
-    ernelReadPermissionErr = -2408,
-    ernelExecutePermissionErr = -2409,
-    ernelDeletePermissionErr = -2410,
-    ernelExecutionLevelErr = -2411,
-    ernelAttributeErr = -2412,
-    ernelAsyncSendLimitErr = -2413,
-    ernelAsyncReceiveLimitErr = -2414,
-    ernelTimeoutErr = -2415,
-    ernelInUseErr = -2416,
-    ernelTerminatedErr = -2417,
-    ernelExceptionErr = -2418,
-    ernelIDErr = -2419,
-    ernelAlreadyFreeErr = -2421,
-    ernelReturnValueErr = -2422,
-    ernelUnrecoverableErr = -2499,
-};
-
-pub const anon9701 = enum(i32) {
-    tsmComponentNoErr = 0,
-    tsmUnsupScriptLanguageErr = -2500,
-    tsmInputMethodNotFoundErr = -2501,
-    tsmNotAnAppErr = -2502,
-    tsmAlreadyRegisteredErr = -2503,
-    tsmNeverRegisteredErr = -2504,
-    tsmInvalidDocIDErr = -2505,
-    tsmTSMDocBusyErr = -2506,
-    tsmDocNotActiveErr = -2507,
-    tsmNoOpenTSErr = -2508,
-    tsmCantOpenComponentErr = -2509,
-    tsmTextServiceNotFoundErr = -2510,
-    tsmDocumentOpenErr = -2511,
-    tsmUseInputWindowErr = -2512,
-    tsmTSHasNoMenuErr = -2513,
-    tsmTSNotOpenErr = -2514,
-    tsmComponentAlreadyOpenErr = -2515,
-    tsmInputMethodIsOldErr = -2516,
-    tsmScriptHasNoIMErr = -2517,
-    tsmUnsupportedTypeErr = -2518,
-    tsmUnknownErr = -2519,
-    tsmInvalidContext = -2520,
-    tsmNoHandler = -2521,
-    tsmNoMoreTokens = -2522,
-    tsmNoStem = -2523,
-    tsmDefaultIsNotInputMethodErr = -2524,
-    tsmDocPropertyNotFoundErr = -2528,
-    tsmDocPropertyBufferTooSmallErr = -2529,
-    tsmCantChangeForcedClassStateErr = -2530,
-    tsmComponentPropertyUnsupportedErr = -2531,
-    tsmComponentPropertyNotFoundErr = -2532,
-    tsmInputModeChangeFailedErr = -2533,
-};
-
-pub const anon10071 = enum(i32) {
-    mmInternalError = -2526,
-};
-
-pub const anon10131 = enum(i32) {
-    nrLockedErr = -2536,
-    nrNotEnoughMemoryErr = -2537,
-    nrInvalidNodeErr = -2538,
-    nrNotFoundErr = -2539,
-    nrNotCreatedErr = -2540,
-    nrNameErr = -2541,
-    nrNotSlotDeviceErr = -2542,
-    nrDataTruncatedErr = -2543,
-    nrPowerErr = -2544,
-    nrPowerSwitchAbortErr = -2545,
-    nrTypeMismatchErr = -2546,
-    nrNotModifiedErr = -2547,
-    nrOverrunErr = -2548,
-    nrResultCodeBase = -2549,
-    nrPathNotFound = -2550,
-    nrPathBufferTooSmall = -2551,
-    nrInvalidEntryIterationOp = -2552,
-    nrPropertyAlreadyExists = -2553,
-    nrIterationDone = -2554,
-    nrExitedIteratorScope = -2555,
-    nrTransactionAborted = -2556,
-    nrCallNotSupported = -2557,
-};
-
-pub const anon10391 = enum(i32) {
-    invalidIconRefErr = -2580,
-    noSuchIconErr = -2581,
-    noIconDataAvailableErr = -2582,
-};
-
-pub const anon10521 = enum(i32) {
-    errOSACantCoerce = -1700,
-    errOSACantAccess = -1728,
-    errOSACantAssign = -10006,
-    errOSAGeneralError = -2700,
-    errOSADivideByZero = -2701,
-    errOSANumericOverflow = -2702,
-    errOSACantLaunch = -2703,
-    errOSAAppNotHighLevelEventAware = -2704,
-    errOSACorruptTerminology = -2705,
-    errOSAStackOverflow = -2706,
-    errOSAInternalTableOverflow = -2707,
-    errOSADataBlockTooLarge = -2708,
-    errOSACantGetTerminology = -2709,
-    errOSACantCreate = -2710,
-};
-
-pub const anon10831 = enum(u32) {
-    gestaltPortable2001ANSIKbd = 202,
-    gestaltPortable2001ISOKbd = 203,
-    gestaltPortable2001JISKbd = 207,
-};
-
-pub const anon11241 = enum(i32) {
-    errASCantConsiderAndIgnore = -2720,
-    errASCantCompareMoreThan32k = -2721,
-    errASTerminologyNestingTooDeep = -2760,
-    errASIllegalFormalParameter = -2761,
-    errASParameterNotForEvent = -2762,
-    errASNoResultReturned = -2763,
-    errASInconsistentNames = -2780,
-};
-
-pub const anon11361 = enum(i32) {
-    cfragFirstErrCode = -2800,
-    cfragContextIDErr = -2800,
-    cfragConnectionIDErr = -2801,
-    cfragNoSymbolErr = -2802,
-    cfragNoSectionErr = -2803,
-    cfragNoLibraryErr = -2804,
-    cfragDupRegistrationErr = -2805,
-    cfragFragmentFormatErr = -2806,
-    cfragUnresolvedErr = -2807,
-    cfragNoPositionErr = -2808,
-    cfragNoPrivateMemErr = -2809,
-    cfragNoClientMemErr = -2810,
-    cfragNoIDsErr = -2811,
-    cfragInitOrderErr = -2812,
-    cfragImportTooOldErr = -2813,
-    cfragImportTooNewErr = -2814,
-    cfragInitLoopErr = -2815,
-    cfragInitAtBootErr = -2816,
-    cfragLibConnErr = -2817,
-    cfragCFMStartupErr = -2818,
-    cfragCFMInternalErr = -2819,
-    cfragFragmentCorruptErr = -2820,
-    cfragInitFunctionErr = -2821,
-    cfragNoApplicationErr = -2822,
-    cfragArchitectureErr = -2823,
-    cfragFragmentUsageErr = -2824,
-    cfragFileSizeErr = -2825,
-    cfragNotClosureErr = -2826,
-    cfragNoRegistrationErr = -2827,
-    cfragContainerIDErr = -2828,
-    cfragClosureIDErr = -2829,
-    cfragAbortClosureErr = -2830,
-    cfragOutputLengthErr = -2831,
-    cfragMapFileErr = -2851,
-    cfragExecFileRefErr = -2854,
-    cfragStdFolderErr = -2855,
-    cfragRsrcForkErr = -2856,
-    cfragCFragRsrcErr = -2857,
-    cfragLastErrCode = -2899,
-};
-
-pub const anon11781 = enum(i32) {
-    cfragFirstReservedCode = -2897,
-    cfragReservedCode_3 = -2897,
-    cfragReservedCode_2 = -2898,
-    cfragReservedCode_1 = -2899,
-};
-
-pub const anon12191 = enum(i32) {
-    invalidComponentID = -3000,
-    validInstancesExist = -3001,
-    componentNotCaptured = -3002,
-    componentDontRegister = -3003,
-    unresolvedComponentDLLErr = -3004,
-    retryComponentRegistrationErr = -3005,
-};
-
-pub const anon12291 = enum(i32) {
-    invalidTranslationPathErr = -3025,
-    couldNotParseSourceFileErr = -3026,
-    noTranslationPathErr = -3030,
-    badTranslationSpecErr = -3031,
-    noPrefAppErr = -3032,
-};
-
-pub const anon12371 = enum(i32) {
-    buf2SmallErr = -3101,
-    noMPPErr = -3102,
-    ckSumErr = -3103,
-    extractErr = -3104,
-    readQErr = -3105,
-    atpLenErr = -3106,
-    atpBadRsp = -3107,
-    recNotFnd = -3108,
-    sktClosedErr = -3109,
-};
-
-pub const anon12511 = enum(i32) {
-    OTNoError = 0,
-    OTOutOfMemoryErr = -3211,
-    OTNotFoundErr = -3201,
-    OTDuplicateFoundErr = -3216,
-    OTBadAddressErr = -3150,
-    OTBadOptionErr = -3151,
-    OTAccessErr = -3152,
-    OTBadReferenceErr = -3153,
-    OTNoAddressErr = -3154,
-    OTOutStateErr = -3155,
-    OTBadSequenceErr = -3156,
-    OTSysErrorErr = -3157,
-    OTLookErr = -3158,
-    OTBadDataErr = -3159,
-    OTBufferOverflowErr = -3160,
-    OTFlowErr = -3161,
-    OTNoDataErr = -3162,
-    OTNoDisconnectErr = -3163,
-    OTNoUDErrErr = -3164,
-    OTBadFlagErr = -3165,
-    OTNoReleaseErr = -3166,
-    OTNotSupportedErr = -3167,
-    OTStateChangeErr = -3168,
-    OTNoStructureTypeErr = -3169,
-    OTBadNameErr = -3170,
-    OTBadQLenErr = -3171,
-    OTAddressBusyErr = -3172,
-    OTIndOutErr = -3173,
-    OTProviderMismatchErr = -3174,
-    OTResQLenErr = -3175,
-    OTResAddressErr = -3176,
-    OTQFullErr = -3177,
-    OTProtocolErr = -3178,
-    OTBadSyncErr = -3179,
-    OTCanceledErr = -3180,
-    EPERMErr = -3200,
-    ENOENTErr = -3201,
-    ENORSRCErr = -3202,
-    EINTRErr = -3203,
-    EIOErr = -3204,
-    ENXIOErr = -3205,
-    EBADFErr = -3208,
-    EAGAINErr = -3210,
-    ENOMEMErr = -3211,
-    EACCESErr = -3212,
-    EFAULTErr = -3213,
-    EBUSYErr = -3215,
-    EEXISTErr = -3216,
-    ENODEVErr = -3218,
-    EINVALErr = -3221,
-    ENOTTYErr = -3224,
-    EPIPEErr = -3231,
-    ERANGEErr = -3233,
-    EWOULDBLOCKErr = -3234,
-    EDEADLKErr = -3234,
-    EALREADYErr = -3236,
-    ENOTSOCKErr = -3237,
-    EDESTADDRREQErr = -3238,
-    EMSGSIZEErr = -3239,
-    EPROTOTYPEErr = -3240,
-    ENOPROTOOPTErr = -3241,
-    EPROTONOSUPPORTErr = -3242,
-    ESOCKTNOSUPPORTErr = -3243,
-    EOPNOTSUPPErr = -3244,
-    EADDRINUSEErr = -3247,
-    EADDRNOTAVAILErr = -3248,
-    ENETDOWNErr = -3249,
-    ENETUNREACHErr = -3250,
-    ENETRESETErr = -3251,
-    ECONNABORTEDErr = -3252,
-    ECONNRESETErr = -3253,
-    ENOBUFSErr = -3254,
-    EISCONNErr = -3255,
-    ENOTCONNErr = -3256,
-    ESHUTDOWNErr = -3257,
-    ETOOMANYREFSErr = -3258,
-    ETIMEDOUTErr = -3259,
-    ECONNREFUSEDErr = -3260,
-    EHOSTDOWNErr = -3263,
-    EHOSTUNREACHErr = -3264,
-    EPROTOErr = -3269,
-    ETIMEErr = -3270,
-    ENOSRErr = -3271,
-    EBADMSGErr = -3272,
-    ECANCELErr = -3273,
-    ENOSTRErr = -3274,
-    ENODATAErr = -3275,
-    EINPROGRESSErr = -3276,
-    ESRCHErr = -3277,
-    ENOMSGErr = -3278,
-    OTClientNotInittedErr = -3279,
-    OTPortHasDiedErr = -3280,
-    OTPortWasEjectedErr = -3281,
-    OTBadConfigurationErr = -3282,
-    OTConfigurationChangedErr = -3283,
-    OTUserRequestedErr = -3284,
-    OTPortLostConnection = -3285,
-};
-
-pub const anon13531 = enum(i32) {
-    QDNoPalette = -3950,
-    QDNoColorHWCursorSupport = -3951,
-    QDCursorAlreadyRegistered = -3952,
-    QDCursorNotRegistered = -3953,
-    QDCorruptPICTDataErr = -3954,
-};
-
-pub const anon13641 = enum(i32) {
-    firstPickerError = -4000,
-    invalidPickerType = -4000,
-    requiredFlagsDontMatch = -4001,
-    pickerResourceError = -4002,
-    cantLoadPicker = -4003,
-    cantCreatePickerWindow = -4004,
-    cantLoadPackage = -4005,
-    pickerCantLive = -4006,
-    colorSyncNotInstalled = -4007,
-    badProfileError = -4008,
-    noHelpForItem = -4009,
-};
-
-pub const anon13811 = enum(i32) {
-    NSL68kContextNotSupported = -4170,
-    NSLSchedulerError = -4171,
-    NSLBadURLSyntax = -4172,
-    NSLNoCarbonLib = -4173,
-    NSLUILibraryNotAvailable = -4174,
-    NSLNotImplementedYet = -4175,
-    NSLErrNullPtrError = -4176,
-    NSLSomePluginsFailedToLoad = -4177,
-    NSLNullNeighborhoodPtr = -4178,
-    NSLNoPluginsForSearch = -4179,
-    NSLSearchAlreadyInProgress = -4180,
-    NSLNoPluginsFound = -4181,
-    NSLPluginLoadFailed = -4182,
-    NSLBadProtocolTypeErr = -4183,
-    NSLNullListPtr = -4184,
-    NSLBadClientInfoPtr = -4185,
-    NSLCannotContinueLookup = -4186,
-    NSLBufferTooSmallForData = -4187,
-    NSLNoContextAvailable = -4188,
-    NSLRequestBufferAlreadyInList = -4189,
-    NSLInvalidPluginSpec = -4190,
-    NSLNoSupportForService = -4191,
-    NSLBadNetConnection = -4192,
-    NSLBadDataTypeErr = -4193,
-    NSLBadServiceTypeErr = -4194,
-    NSLBadReferenceErr = -4195,
-    NSLNoElementsInList = -4196,
-    NSLInsufficientOTVer = -4197,
-    NSLInsufficientSysVer = -4198,
-    NSLNotInitialized = -4199,
-    NSLInitializationFailed = -4200,
-};
-
-pub const anon14181 = enum(i32) {
-    DTPHoldJobErr = -4200,
-    DTPStopQueueErr = -4201,
-    DTPTryAgainErr = -4202,
-    DTPAbortJobErr = 128,
-};
-
-pub const anon14271 = enum(u32) {
-    MPLowLevelDebugger = 0,
-    MPMidLevelDebugger = 268435456,
-    MPHighLevelDebugger = 536870912,
-};
-
-pub const anon14511 = enum(i32) {
-    badFolderDescErr = -4270,
-    duplicateFolderDescErr = -4271,
-    noMoreFolderDescErr = -4272,
-    invalidFolderTypeErr = -4273,
-    duplicateRoutingErr = -4274,
-    routingNotFoundErr = -4275,
-    badRoutingSizeErr = -4276,
-};
-
-pub const anon14631 = enum(i32) {
-    coreFoundationUnknownErr = -4960,
-};
-
-pub const anon14681 = enum(i32) {
-    errCoreEndianDataTooShortForFormat = -4940,
-    errCoreEndianDataTooLongForFormat = -4941,
-    errCoreEndianDataDoesNotMatchFormat = -4942,
-};
-
-pub const anon14941 = enum(i32) {
-    afpAccessDenied = -5000,
-    afpAuthContinue = -5001,
-    afpBadUAM = -5002,
-    afpBadVersNum = -5003,
-    afpBitmapErr = -5004,
-    afpCantMove = -5005,
-    afpDenyConflict = -5006,
-    afpDirNotEmpty = -5007,
-    afpDiskFull = -5008,
-    afpEofError = -5009,
-    afpFileBusy = -5010,
-    afpFlatVol = -5011,
-    afpItemNotFound = -5012,
-    afpLockErr = -5013,
-    afpMiscErr = -5014,
-    afpNoMoreLocks = -5015,
-    afpNoServer = -5016,
-    afpObjectExists = -5017,
-    afpObjectNotFound = -5018,
-    afpParmErr = -5019,
-    afpRangeNotLocked = -5020,
-    afpRangeOverlap = -5021,
-    afpSessClosed = -5022,
-    afpUserNotAuth = -5023,
-    afpCallNotSupported = -5024,
-    afpObjectTypeErr = -5025,
-    afpTooManyFilesOpen = -5026,
-    afpServerGoingDown = -5027,
-    afpCantRename = -5028,
-    afpDirNotFound = -5029,
-    afpIconTypeError = -5030,
-    afpVolLocked = -5031,
-    afpObjectLocked = -5032,
-    afpContainsSharedErr = -5033,
-    afpIDNotFound = -5034,
-    afpIDExists = -5035,
-    afpDiffVolErr = -5036,
-    afpCatalogChanged = -5037,
-    afpSameObjectErr = -5038,
-    afpBadIDErr = -5039,
-    afpPwdSameErr = -5040,
-    afpPwdTooShortErr = -5041,
-    afpPwdExpiredErr = -5042,
-    afpInsideSharedErr = -5043,
-    afpInsideTrashErr = -5044,
-    afpPwdNeedsChangeErr = -5045,
-    afpPwdPolicyErr = -5046,
-    afpAlreadyLoggedInErr = -5047,
-    afpCallNotAllowed = -5048,
-};
-
-pub const anon15491 = enum(i32) {
-    afpBadDirIDType = -5060,
-    afpCantMountMoreSrvre = -5061,
-    afpAlreadyMounted = -5062,
-    afpSameNodeErr = -5063,
-};
-
-pub const anon15621 = enum(i32) {
-    numberFormattingNotANumberErr = -5200,
-    numberFormattingOverflowInDestinationErr = -5201,
-    numberFormattingBadNumberFormattingObjectErr = -5202,
-    numberFormattingSpuriousCharErr = -5203,
-    numberFormattingLiteralMissingErr = -5204,
-    numberFormattingDelimiterMissingErr = -5205,
-    numberFormattingEmptyFormatErr = -5206,
-    numberFormattingBadFormatErr = -5207,
-    numberFormattingBadOptionsErr = -5208,
-    numberFormattingBadTokenErr = -5209,
-    numberFormattingUnOrderedCurrencyRangeErr = -5210,
-    numberFormattingBadCurrencyPositionErr = -5211,
-    numberFormattingNotADigitErr = -5212,
-    numberFormattingUnOrdredCurrencyRangeErr = -5210,
-    numberFortmattingNotADigitErr = -5212,
-};
-
-pub const anon15811 = enum(i32) {
-    textParserBadParamErr = -5220,
-    textParserObjectNotFoundErr = -5221,
-    textParserBadTokenValueErr = -5222,
-    textParserBadParserObjectErr = -5223,
-    textParserParamErr = -5224,
-    textParserNoMoreTextErr = -5225,
-    textParserBadTextLanguageErr = -5226,
-    textParserBadTextEncodingErr = -5227,
-    textParserNoSuchTokenFoundErr = -5228,
-    textParserNoMoreTokensErr = -5229,
-};
-
-pub const anon15941 = enum(i32) {
-    errUnknownAttributeTag = -5240,
-    errMarginWilllNotFit = -5241,
-    errNotInImagingMode = -5242,
-    errAlreadyInImagingMode = -5243,
-    errEngineNotFound = -5244,
-    errIteratorReachedEnd = -5245,
-    errInvalidRange = -5246,
-    errOffsetNotOnElementBounday = -5247,
-    errNoHiliteText = -5248,
-    errEmptyScrap = -5249,
-    errReadOnlyText = -5250,
-    errUnknownElement = -5251,
-    errNonContiuousAttribute = -5252,
-    errCannotUndo = -5253,
-};
-
-pub const anon16131 = enum(u32) {
-    gestaltProcClkSpeed = 1885564011,
-};
-
-pub const anon16371 = enum(i32) {
-    qtsBadSelectorErr = -5400,
-    qtsBadStateErr = -5401,
-    qtsBadDataErr = -5402,
-    qtsUnsupportedDataTypeErr = -5403,
-    qtsUnsupportedRateErr = -5404,
-    qtsUnsupportedFeatureErr = -5405,
-    qtsTooMuchDataErr = -5406,
-    qtsUnknownValueErr = -5407,
-    qtsTimeoutErr = -5408,
-    qtsConnectionFailedErr = -5420,
-    qtsAddressBusyErr = -5421,
-};
-
-pub const anon16521 = enum(u32) {
-    gestaltPopupAttr = 1886351393,
-    gestaltPopupPresent = 0,
-};
-
-pub const anon16621 = enum(i32) {
-    menuPropertyInvalidErr = -5603,
-    menuPropertyInvalid = -5603,
-    menuPropertyNotFoundErr = -5604,
-    menuNotFoundErr = -5620,
-    menuUsesSystemDefErr = -5621,
-    menuItemNotFoundErr = -5622,
-    menuInvalidErr = -5623,
-};
-
-pub const anon16741 = enum(i32) {
-    errInvalidWindowPtr = -5600,
-    errInvalidWindowRef = -5600,
-    errUnsupportedWindowAttributesForClass = -5601,
-    errWindowDoesNotHaveProxy = -5602,
-    errInvalidWindowProperty = -5603,
-    errWindowPropertyNotFound = -5604,
-    errUnrecognizedWindowClass = -5605,
-    errCorruptWindowDescription = -5606,
-    errUserWantsToDragWindow = -5607,
-    errWindowsAlreadyInitialized = -5608,
-    errFloatingWindowsNotInitialized = -5609,
-    errWindowNotFound = -5610,
-    errWindowDoesNotFitOnscreen = -5611,
-    windowAttributeImmutableErr = -5612,
-    windowAttributesConflictErr = -5613,
-    windowManagerInternalErr = -5614,
-    windowWrongStateErr = -5615,
-    windowGroupInvalidErr = -5616,
-    windowAppModalStateAlreadyExistsErr = -5617,
-    windowNoAppModalStateErr = -5618,
-    errWindowDoesntSupportFocus = -30583,
-    errWindowRegionCodeInvalid = -30593,
-};
-
-pub const anon17011 = enum(i32) {
-    dialogNoTimeoutErr = -5640,
-};
-
-pub const anon17071 = enum(i32) {
-    NavWrongDialogStateErr = -5694,
-    NavWrongDialogClassErr = -5695,
-    NavInvalidSystemConfigErr = -5696,
-    NavCustomControlMessageFailedErr = -5697,
-    NavInvalidCustomControlMessageErr = -5698,
-    NavMissingKindStringErr = -5699,
-};
-
-pub const anon17181 = enum(u32) {
-    gestaltSDPPromptVersion = 1886548086,
-};
-
-pub const anon17271 = enum(i32) {
-    QTSSUnknownErr = -6150,
-};
-
-pub const anon17321 = enum(u32) {
-    gestaltQD3DViewer = 1899198051,
-    gestaltQD3DViewerPresent = 0,
-};
-
-pub const anon17571 = enum(u32) {
-    gestaltQD3D = 1902392164,
-    gestaltQD3DPresent = 0,
-};
-
-pub const anon17781 = enum(u32) {
-    USBNoErr = 0,
-    USBNoTran = 0,
-    USBNoDelay = 0,
-    USBPending = 1,
-};
-
-pub const anon17981 = enum(i32) {
-    USBNotSent2Err = -6901,
-    USBNotSent1Err = -6902,
-    USBBufUnderRunErr = -6903,
-    USBBufOvrRunErr = -6904,
-    USBRes2Err = -6905,
-    USBRes1Err = -6906,
-    USBUnderRunErr = -6907,
-    USBOverRunErr = -6908,
-    USBWrongPIDErr = -6909,
-    USBPIDCheckErr = -6910,
-    USBNotRespondingErr = -6911,
-    USBEndpointStallErr = -6912,
-    USBDataToggleErr = -6913,
-    USBBitstufErr = -6914,
-    USBCRCErr = -6915,
-    USBLinkErr = -6916,
-};
-
-pub const anon18221 = enum(i32) {
-    USBQueueFull = -6948,
-    USBNotHandled = -6987,
-    USBUnknownNotification = -6949,
-    USBBadDispatchTable = -6950,
-};
-
-pub const anon18351 = enum(i32) {
-    USBInternalReserved10 = -6951,
-    USBInternalReserved9 = -6952,
-    USBInternalReserved8 = -6953,
-    USBInternalReserved7 = -6954,
-    USBInternalReserved6 = -6955,
-    USBInternalReserved5 = -6956,
-    USBInternalReserved4 = -6957,
-    USBInternalReserved3 = -6958,
-    USBInternalReserved2 = -6959,
-    USBInternalReserved1 = -6960,
-};
-
-pub const anon18491 = enum(i32) {
-    USBPortDisabled = -6969,
-    USBQueueAborted = -6970,
-    USBTimedOut = -6971,
-    USBDeviceDisconnected = -6972,
-    USBDeviceNotSuspended = -6973,
-    USBDeviceSuspended = -6974,
-    USBInvalidBuffer = -6975,
-    USBDevicePowerProblem = -6976,
-    USBDeviceBusy = -6977,
-    USBUnknownInterfaceErr = -6978,
-    USBPipeStalledError = -6979,
-    USBPipeIdleError = -6980,
-    USBNoBandwidthError = -6981,
-    USBAbortedError = -6982,
-    USBFlagsError = -6983,
-    USBCompletionError = -6984,
-    USBPBLengthError = -6985,
-    USBPBVersionError = -6986,
-    USBNotFound = -6987,
-    USBOutOfMemoryErr = -6988,
-    USBDeviceErr = -6989,
-    USBNoDeviceErr = -6990,
-    USBAlreadyOpenErr = -6991,
-    USBTooManyTransactionsErr = -6992,
-    USBUnknownRequestErr = -6993,
-    USBRqErr = -6994,
-    USBIncorrectTypeErr = -6995,
-    USBTooManyPipesErr = -6996,
-    USBUnknownPipeErr = -6997,
-    USBUnknownDeviceErr = -6998,
-    USBInternalErr = -6999,
-};
-
-pub const anon18871 = enum(i32) {
-    dcmParamErr = -7100,
-    dcmNotDictionaryErr = -7101,
-    dcmBadDictionaryErr = -7102,
-    dcmPermissionErr = -7103,
-    dcmDictionaryNotOpenErr = -7104,
-    dcmDictionaryBusyErr = -7105,
-    dcmBlockFullErr = -7107,
-    dcmNoRecordErr = -7108,
-    dcmDupRecordErr = -7109,
-    dcmNecessaryFieldErr = -7110,
-    dcmBadFieldInfoErr = -7111,
-    dcmBadFieldTypeErr = -7112,
-    dcmNoFieldErr = -7113,
-    dcmBadKeyErr = -7115,
-    dcmTooManyKeyErr = -7116,
-    dcmBadDataSizeErr = -7117,
-    dcmBadFindMethodErr = -7118,
-    dcmBadPropertyErr = -7119,
-    dcmProtectedErr = -7121,
-    dcmNoAccessMethodErr = -7122,
-    dcmBadFeatureErr = -7124,
-    dcmIterationCompleteErr = -7126,
-    dcmBufferOverflowErr = -7127,
-};
-
-pub const anon19151 = enum(i32) {
-    RAInvalidParameter = -7100,
-    RAInvalidPort = -7101,
-    RAStartupFailed = -7102,
-    RAPortSetupFailed = -7103,
-    RAOutOfMemory = -7104,
-    RANotSupported = -7105,
-    RAMissingResources = -7106,
-    RAIncompatiblePrefs = -7107,
-    RANotConnected = -7108,
-    RAConnectionCanceled = -7109,
-    RAUnknownUser = -7110,
-    RAInvalidPassword = -7111,
-    RAInternalError = -7112,
-    RAInstallationDamaged = -7113,
-    RAPortBusy = -7114,
-    RAUnknownPortState = -7115,
-    RAInvalidPortState = -7116,
-    RAInvalidSerialProtocol = -7117,
-    RAUserLoginDisabled = -7118,
-    RAUserPwdChangeRequired = -7119,
-    RAUserPwdEntryRequired = -7120,
-    RAUserInteractionRequired = -7121,
-    RAInitOpenTransportFailed = -7122,
-    RARemoteAccessNotReady = -7123,
-    RATCPIPInactive = -7124,
-    RATCPIPNotConfigured = -7125,
-    RANotPrimaryInterface = -7126,
-    RAConfigurationDBInitErr = -7127,
-    RAPPPProtocolRejected = -7128,
-    RAPPPAuthenticationFailed = -7129,
-    RAPPPNegotiationFailed = -7130,
-    RAPPPUserDisconnected = -7131,
-    RAPPPPeerDisconnected = -7132,
-    RAPeerNotResponding = -7133,
-    RAATalkInactive = -7134,
-    RAExtAuthenticationFailed = -7135,
-    RANCPRejectedbyPeer = -7136,
-    RADuplicateIPAddr = -7137,
-    RACallBackFailed = -7138,
-    RANotEnabled = -7139,
-};
-
-pub const anon19661 = enum(i32) {
-    ATSUInvalidTextLayoutErr = -8790,
-    ATSUInvalidStyleErr = -8791,
-    ATSUInvalidTextRangeErr = -8792,
-    ATSUFontsMatched = -8793,
-    ATSUFontsNotMatched = -8794,
-    ATSUNoCorrespondingFontErr = -8795,
-    ATSUInvalidFontErr = -8796,
-    ATSUInvalidAttributeValueErr = -8797,
-    ATSUInvalidAttributeSizeErr = -8798,
-    ATSUInvalidAttributeTagErr = -8799,
-    ATSUInvalidCacheErr = -8800,
-    ATSUNotSetErr = -8801,
-    ATSUNoStyleRunsAssignedErr = -8802,
-    ATSUQuickDrawTextErr = -8803,
-    ATSULowLevelErr = -8804,
-    ATSUNoFontCmapAvailableErr = -8805,
-    ATSUNoFontScalerAvailableErr = -8806,
-    ATSUCoordinateOverflowErr = -8807,
-    ATSULineBreakInWord = -8808,
-    ATSUBusyObjectErr = -8809,
-};
-
-pub const anon20311 = enum(i32) {
-    TextUnsupportedEncodingErr = -8738,
-    TextMalformedInputErr = -8739,
-    TextUndefinedElementErr = -8740,
-    TECMissingTableErr = -8745,
-    TECTableChecksumErr = -8746,
-    TECTableFormatErr = -8747,
-    TECCorruptConverterErr = -8748,
-    TECNoConversionPathErr = -8749,
-    TECBufferBelowMinimumSizeErr = -8750,
-    TECArrayFullErr = -8751,
-    TECBadTextRunErr = -8752,
-    TECPartialCharErr = -8753,
-    TECUnmappableElementErr = -8754,
-    TECIncompleteElementErr = -8755,
-    TECDirectionErr = -8756,
-    TECGlobalsUnavailableErr = -8770,
-    TECItemUnavailableErr = -8771,
-    TECUsedFallbacksStatus = -8783,
-    TECNeedFlushStatus = -8784,
-    TECOutputBufferFullStatus = -8785,
-    unicodeChecksumErr = -8769,
-    unicodeNoTableErr = -8768,
-    unicodeVariantErr = -8767,
-    unicodeFallbacksErr = -8766,
-    unicodePartConvertErr = -8765,
-    unicodeBufErr = -8764,
-    unicodeCharErr = -8763,
-    unicodeElementErr = -8762,
-    unicodeNotFoundErr = -8761,
-    unicodeTableFormatErr = -8760,
-    unicodeDirectionErr = -8759,
-    unicodeContextualErr = -8758,
-    unicodeTextEncodingDataErr = -8757,
-};
-
-pub const anon20721 = enum(i32) {
-    UTCUnderflowErr = -8850,
-    UTCOverflowErr = -8851,
-    IllegalClockValueErr = -8852,
-};
-
-pub const anon20821 = enum(i32) {
-    ATSUInvalidFontFallbacksErr = -8900,
-    ATSUUnsupportedStreamFormatErr = -8901,
-    ATSUBadStreamErr = -8902,
-    ATSUOutputBufferTooSmallErr = -8903,
-    ATSUInvalidCallInsideCallbackErr = -8904,
-    ATSUNoFontNameErr = -8905,
-    ATSULastErr = -8959,
-};
-
-pub const anon21011 = enum(u32) {
-    gestaltTE6 = 6,
-};
-
-pub const anon21421 = enum(i32) {
-    BadAdapterErr = -9050,
-    BadAttributeErr = -9051,
-    BadBaseErr = -9052,
-    BadEDCErr = -9053,
-    BadIRQErr = -9054,
-    BadOffsetErr = -9055,
-    BadPageErr = -9056,
-    BadSizeErr = -9057,
-    BadSocketErr = -9058,
-    BadTypeErr = -9059,
-    BadVccErr = -9060,
-    BadVppErr = -9061,
-    BadWindowErr = -9062,
-    BadArgLengthErr = -9063,
-    BadArgsErr = -9064,
-    BadHandleErr = -9065,
-    BadCISErr = -9066,
-    BadSpeedErr = -9067,
-    ReadFailureErr = -9068,
-    WriteFailureErr = -9069,
-    GeneralFailureErr = -9070,
-    NoCardErr = -9071,
-    UnsupportedFunctionErr = -9072,
-    UnsupportedModeErr = -9073,
-    BusyErr = -9074,
-    WriteProtectedErr = -9075,
-    ConfigurationLockedErr = -9076,
-    InUseErr = -9077,
-    NoMoreItemsErr = -9078,
-    OutOfResourceErr = -9079,
-    NoCardSevicesSocketsErr = -9080,
-    InvalidRegEntryErr = -9081,
-    BadLinkErr = -9082,
-    BadDeviceErr = -9083,
-    _16BitCardErr = -9084,
-    CardBusCardErr = -9085,
-    PassCallToChainErr = -9086,
-    CantConfigureCardErr = -9087,
-    PostCardEventErr = -9088,
-    InvalidDeviceNumber = -9089,
-    UnsupportedVsErr = -9090,
-    InvalidCSClientErr = -9091,
-    BadTupleDataErr = -9092,
-    BadCustomIFIDErr = -9093,
-    NoIOWindowRequestedErr = -9094,
-    NoMoreTimerClientsErr = -9095,
-    NoMoreInterruptSlotsErr = -9096,
-    NoClientTableErr = -9097,
-    UnsupportedCardErr = -9098,
-    NoCardEnablersFoundErr = -9099,
-    NoEnablerForCardErr = -9100,
-    NoCompatibleNameErr = -9101,
-    ClientRequestDenied = -9102,
-    NotReadyErr = -9103,
-    TooManyIOWindowsErr = -9104,
-    AlreadySavedStateErr = -9105,
-    AttemptDupCardEntryErr = -9106,
-    CardPowerOffErr = -9107,
-    NotZVCapableErr = -9108,
-    NoCardBusCISErr = -9109,
-};
-
-pub const anon22071 = enum(i32) {
-    noDeviceForChannel = -9400,
-    grabTimeComplete = -9401,
-    cantDoThatInCurrentMode = -9402,
-    notEnoughMemoryToGrab = -9403,
-    notEnoughDiskSpaceToGrab = -9404,
-    couldntGetRequiredComponent = -9405,
-    badSGChannel = -9406,
-    seqGrabInfoNotAvailable = -9407,
-    deviceCantMeetRequest = -9408,
-    badControllerHeight = -9994,
-    editingNotAllowed = -9995,
-    controllerBoundsNotExact = -9996,
-    cannotSetWidthOfAttachedController = -9997,
-    controllerHasFixedHeight = -9998,
-    cannotMoveAttachedController = -9999,
-};
-
-pub const anon22261 = enum(u32) {
-    gestaltATSUFeatures = 1969845094,
-    gestaltATSUTrackingFeature = 1,
-    gestaltATSUMemoryFeature = 1,
-    gestaltATSUFallbacksFeature = 1,
-    gestaltATSUGlyphBoundsFeature = 1,
-    gestaltATSULineControlFeature = 1,
-    gestaltATSULayoutCreateAndCopyFeature = 1,
-    gestaltATSULayoutCacheClearFeature = 1,
-    gestaltATSUTextLocatorUsageFeature = 2,
-    gestaltATSULowLevelOrigFeatures = 4,
-    gestaltATSUFallbacksObjFeatures = 8,
-    gestaltATSUIgnoreLeadingFeature = 8,
-    gestaltATSUByCharacterClusterFeature = 16,
-    gestaltATSUAscentDescentControlsFeature = 16,
-    gestaltATSUHighlightInactiveTextFeature = 16,
-    gestaltATSUPositionToCursorFeature = 16,
-    gestaltATSUBatchBreakLinesFeature = 16,
-    gestaltATSUTabSupportFeature = 16,
-    gestaltATSUDirectAccess = 16,
-    gestaltATSUDecimalTabFeature = 32,
-    gestaltATSUBiDiCursorPositionFeature = 32,
-    gestaltATSUNearestCharLineBreakFeature = 32,
-    gestaltATSUHighlightColorControlFeature = 32,
-    gestaltATSUUnderlineOptionsStyleFeature = 32,
-    gestaltATSUStrikeThroughStyleFeature = 32,
-    gestaltATSUDropShadowStyleFeature = 32,
-};
-
-pub const anon22501 = enum(i32) {
-    telGenericError = -1,
-    telNoErr = 0,
-    telNoTools = 8,
-    telBadTermErr = -10001,
-    telBadDNErr = -10002,
-    telBadCAErr = -10003,
-    telBadHandErr = -10004,
-    telBadProcErr = -10005,
-    telCAUnavail = -10006,
-    telNoMemErr = -10007,
-    telNoOpenErr = -10008,
-    telBadHTypeErr = -10010,
-    telHTypeNotSupp = -10011,
-    telBadLevelErr = -10012,
-    telBadVTypeErr = -10013,
-    telVTypeNotSupp = -10014,
-    telBadAPattErr = -10015,
-    telAPattNotSupp = -10016,
-    telBadIndex = -10017,
-    telIndexNotSupp = -10018,
-    telBadStateErr = -10019,
-    telStateNotSupp = -10020,
-    telBadIntExt = -10021,
-    telIntExtNotSupp = -10022,
-    telBadDNDType = -10023,
-    telDNDTypeNotSupp = -10024,
-    telFeatNotSub = -10030,
-    telFeatNotAvail = -10031,
-    telFeatActive = -10032,
-    telFeatNotSupp = -10033,
-    telConfLimitErr = -10040,
-    telConfNoLimit = -10041,
-    telConfErr = -10042,
-    telConfRej = -10043,
-    telTransferErr = -10044,
-    telTransferRej = -10045,
-    telCBErr = -10046,
-    telConfLimitExceeded = -10047,
-    telBadDNType = -10050,
-    telBadPageID = -10051,
-    telBadIntercomID = -10052,
-    telBadFeatureID = -10053,
-    telBadFwdType = -10054,
-    telBadPickupGroupID = -10055,
-    telBadParkID = -10056,
-    telBadSelect = -10057,
-    telBadBearerType = -10058,
-    telBadRate = -10059,
-    telDNTypeNotSupp = -10060,
-    telFwdTypeNotSupp = -10061,
-    telBadDisplayMode = -10062,
-    telDisplayModeNotSupp = -10063,
-    telNoCallbackRef = -10064,
-    telAlreadyOpen = -10070,
-    telStillNeeded = -10071,
-    telTermNotOpen = -10072,
-    telCANotAcceptable = -10080,
-    telCANotRejectable = -10081,
-    telCANotDeflectable = -10082,
-    telPBErr = -10090,
-    telBadFunction = -10091,
-    telNoSuchTool = -10102,
-    telUnknownErr = -10103,
-    telNoCommFolder = -10106,
-    telInitFailed = -10107,
-    telBadCodeResource = -10108,
-    telDeviceNotFound = -10109,
-    telBadProcID = -10110,
-    telValidateFailed = -10111,
-    telAutoAnsNotOn = -10112,
-    telDetAlreadyOn = -10113,
-    telBadSWErr = -10114,
-    telBadSampleRate = -10115,
-    telNotEnoughdspBW = -10116,
-};
-
-pub const anon23281 = enum(i32) {
-    errTaskNotFound = -10780,
-};
-
-pub const anon23361 = enum(i32) {
-    pmBusyErr = -13000,
-    pmReplyTOErr = -13001,
-    pmSendStartErr = -13002,
-    pmSendEndErr = -13003,
-    pmRecvStartErr = -13004,
-    pmRecvEndErr = -13005,
-};
-
-pub const anon23471 = enum(i32) {
-    PowerHandlerExistsForDeviceErr = -13006,
-    PowerHandlerNotFoundForDeviceErr = -13007,
-    PowerHandlerNotFoundForProcErr = -13008,
-    PowerMgtMessageNotHandled = -13009,
-    PowerMgtRequestDenied = -13010,
-    CantReportProcessorTemperatureErr = -13013,
-    ProcessorTempRoutineRequiresMPLib2 = -13014,
-    NoSuchPowerSource = -13020,
-    BridgeSoftwareRunningCantSleep = -13038,
-};
-
-pub const anon23611 = enum(i32) {
-    debuggingExecutionContextErr = -13880,
-    debuggingDuplicateSignatureErr = -13881,
-    debuggingDuplicateOptionErr = -13882,
-    debuggingInvalidSignatureErr = -13883,
-    debuggingInvalidOptionErr = -13884,
-    debuggingInvalidNameErr = -13885,
-    debuggingNoCallbackErr = -13886,
-    debuggingNoMatchErr = -13887,
-};
-
-pub const anon23741 = enum(i32) {
-    HIDVersionIncompatibleErr = -13909,
-    HIDDeviceNotReady = -13910,
-};
-
-pub const anon23811 = enum(u32) {
-    gestaltX86AdditionalFeatures = 2016949857,
-    gestaltX86HasSSE3 = 0,
-    gestaltX86HasMONITOR = 3,
-    gestaltX86HasDSCPL = 4,
-    gestaltX86HasVMX = 5,
-    gestaltX86HasSMX = 6,
-    gestaltX86HasEST = 7,
-    gestaltX86HasTM2 = 8,
-    gestaltX86HasSupplementalSSE3 = 9,
-    gestaltX86HasCID = 10,
-    gestaltX86HasCX16 = 13,
-    gestaltX86HasxTPR = 14,
-};
-
-pub const anon24151 = enum(i32) {
-    ModemOutOfMemory = -14000,
-    ModemPreferencesMissing = -14001,
-    ModemScriptMissing = -14002,
-};
-
-pub const anon24241 = enum(i32) {
-    TXNEndIterationErr = -22000,
-    TXNCannotAddFrameErr = -22001,
-    TXNInvalidFrameIDErr = -22002,
-    TXNIllegalToCrossDataBoundariesErr = -22003,
-    TXNUserCanceledOperationErr = -22004,
-    TXNBadDefaultFileTypeWarning = -22005,
-    TXNCannotSetAutoIndentErr = -22006,
-    TXNRunIndexOutofBoundsErr = -22007,
-    TXNNoMatchErr = -22008,
-    TXNAttributeTagInvalidForRunErr = -22009,
-    TXNSomeOrAllTagsInvalidForRunErr = -22010,
-    TXNInvalidRunIndex = -22011,
-    TXNAlreadyInitializedErr = -22012,
-    TXNCannotTurnTSMOffWhenUsingUnicodeErr = -22013,
-    TXNCopyNotAllowedInEchoModeErr = -22014,
-    TXNDataTypeNotAllowedErr = -22015,
-    TXNATSUIIsNotInstalledErr = -22016,
-    TXNOutsideOfLineErr = -22017,
-    TXNOutsideOfFrameErr = -22018,
-};
-
-pub const anon24501 = enum(i32) {
-    printerStatusOpCodeNotSupportedErr = -25280,
-};
-
-pub const anon24561 = enum(i32) {
-    errKCNotAvailable = -25291,
-    errKCReadOnly = -25292,
-    errKCAuthFailed = -25293,
-    errKCNoSuchKeychain = -25294,
-    errKCInvalidKeychain = -25295,
-    errKCDuplicateKeychain = -25296,
-    errKCDuplicateCallback = -25297,
-    errKCInvalidCallback = -25298,
-    errKCDuplicateItem = -25299,
-    errKCItemNotFound = -25300,
-    errKCBufferTooSmall = -25301,
-    errKCDataTooLarge = -25302,
-    errKCNoSuchAttr = -25303,
-    errKCInvalidItemRef = -25304,
-    errKCInvalidSearchRef = -25305,
-    errKCNoSuchClass = -25306,
-    errKCNoDefaultKeychain = -25307,
-    errKCInteractionNotAllowed = -25308,
-    errKCReadOnlyAttr = -25309,
-    errKCWrongKCVersion = -25310,
-    errKCKeySizeNotAllowed = -25311,
-    errKCNoStorageModule = -25312,
-    errKCNoCertificateModule = -25313,
-    errKCNoPolicyModule = -25314,
-    errKCInteractionRequired = -25315,
-    errKCDataNotAvailable = -25316,
-    errKCDataNotModifiable = -25317,
-    errKCCreateChainFailed = -25318,
-};
-
-pub const anon24891 = enum(i32) {
-    UCOutputBufferTooSmall = -25340,
-    UCTextBreakLocatorMissingType = -25341,
-};
-
-pub const anon24941 = enum(i32) {
-    UCTSNoKeysAddedToObjectErr = -25342,
-    UCTSSearchListErr = -25343,
-};
-
-pub const anon24991 = enum(i32) {
-    UCTokenizerIterationFinished = -25344,
-    UCTokenizerUnknownLang = -25345,
-    UCTokenNotFound = -25346,
-};
-
-pub const anon25061 = enum(i32) {
-    MPIterationEndErr = -29275,
-    MPPrivilegedErr = -29276,
-    MPProcessCreatedErr = -29288,
-    MPProcessTerminatedErr = -29289,
-    MPTaskCreatedErr = -29290,
-    MPTaskBlockedErr = -29291,
-    MPTaskStoppedErr = -29292,
-    MPBlueBlockingErr = -29293,
-    MPDeletedErr = -29295,
-    MPTimeoutErr = -29296,
-    MPTaskAbortedErr = -29297,
-    MPInsufficientResourcesErr = -29298,
-    MPInvalidIDErr = -29299,
-};
-
-pub const anon25221 = enum(i32) {
-    MPNanokernelNeedsMemoryErr = -29294,
-};
-
-pub const anon25271 = enum(i32) {
-    CollateAttributesNotFoundErr = -29500,
-    CollateInvalidOptions = -29501,
-    CollateMissingUnicodeTableErr = -29502,
-    CollateUnicodeConvertFailedErr = -29503,
-    CollatePatternNotFoundErr = -29504,
-    CollateInvalidChar = -29505,
-    CollateBufferTooSmall = -29506,
-    CollateInvalidCollationRef = -29507,
-};
-
-pub const anon25401 = enum(i32) {
-    FNSInvalidReferenceErr = -29580,
-    FNSBadReferenceVersionErr = -29581,
-    FNSInvalidProfileErr = -29582,
-    FNSBadProfileVersionErr = -29583,
-    FNSDuplicateReferenceErr = -29584,
-    FNSMismatchErr = -29585,
-    FNSInsufficientDataErr = -29586,
-    FNSBadFlattenedSizeErr = -29587,
-    FNSNameNotFoundErr = -29589,
-};
-
-pub const anon25551 = enum(i32) {
-    LocalesBufferTooSmallErr = -30001,
-    LocalesTableFormatErr = -30002,
-    LocalesDefaultDisplayStatus = -30029,
-};
-
-pub const anon25631 = enum(i32) {
-    ALMInternalErr = -30049,
-    ALMGroupNotFoundErr = -30048,
-    ALMNoSuchModuleErr = -30047,
-    ALMModuleCommunicationErr = -30046,
-    ALMDuplicateModuleErr = -30045,
-    ALMInstallationErr = -30044,
-    ALMDeferSwitchErr = -30043,
-    ALMRebootFlagsLevelErr = -30042,
-};
-
-pub const anon25741 = enum(i32) {
-    ALMLocationNotFoundErr = -30048,
-};
-
-pub const anon25801 = enum(i32) {
-    SSpInternalErr = -30340,
-    SSpVersionErr = -30341,
-    SSpCantInstallErr = -30342,
-    SSpParallelUpVectorErr = -30343,
-    SSpScaleToZeroErr = -30344,
-};
-
-pub const anon25901 = enum(i32) {
-    NSpInitializationFailedErr = -30360,
-    NSpAlreadyInitializedErr = -30361,
-    NSpTopologyNotSupportedErr = -30362,
-    NSpPipeFullErr = -30364,
-    NSpHostFailedErr = -30365,
-    NSpProtocolNotAvailableErr = -30366,
-    NSpInvalidGameRefErr = -30367,
-    NSpInvalidParameterErr = -30369,
-    NSpOTNotPresentErr = -30370,
-    NSpOTVersionTooOldErr = -30371,
-    NSpMemAllocationErr = -30373,
-    NSpAlreadyAdvertisingErr = -30374,
-    NSpNotAdvertisingErr = -30376,
-    NSpInvalidAddressErr = -30377,
-    NSpFreeQExhaustedErr = -30378,
-    NSpRemovePlayerFailedErr = -30379,
-    NSpAddressInUseErr = -30380,
-    NSpFeatureNotImplementedErr = -30381,
-    NSpNameRequiredErr = -30382,
-    NSpInvalidPlayerIDErr = -30383,
-    NSpInvalidGroupIDErr = -30384,
-    NSpNoPlayersErr = -30385,
-    NSpNoGroupsErr = -30386,
-    NSpNoHostVolunteersErr = -30387,
-    NSpCreateGroupFailedErr = -30388,
-    NSpAddPlayerFailedErr = -30389,
-    NSpInvalidDefinitionErr = -30390,
-    NSpInvalidProtocolRefErr = -30391,
-    NSpInvalidProtocolListErr = -30392,
-    NSpTimeoutErr = -30393,
-    NSpGameTerminatedErr = -30394,
-    NSpConnectFailedErr = -30395,
-    NSpSendFailedErr = -30396,
-    NSpMessageTooBigErr = -30397,
-    NSpCantBlockErr = -30398,
-    NSpJoinFailedErr = -30399,
-};
-
-pub const anon26311 = enum(i32) {
-    ISpInternalErr = -30420,
-    ISpSystemListErr = -30421,
-    ISpBufferToSmallErr = -30422,
-    ISpElementInListErr = -30423,
-    ISpElementNotInListErr = -30424,
-    ISpSystemInactiveErr = -30425,
-    ISpDeviceInactiveErr = -30426,
-    ISpSystemActiveErr = -30427,
-    ISpDeviceActiveErr = -30428,
-    ISpListBusyErr = -30429,
-};
-
-pub const anon26451 = enum(i32) {
-    DSpNotInitializedErr = -30440,
-    DSpSystemSWTooOldErr = -30441,
-    DSpInvalidContextErr = -30442,
-    DSpInvalidAttributesErr = -30443,
-    DSpContextAlreadyReservedErr = -30444,
-    DSpContextNotReservedErr = -30445,
-    DSpContextNotFoundErr = -30446,
-    DSpFrameRateNotReadyErr = -30447,
-    DSpConfirmSwitchWarning = -30448,
-    DSpInternalErr = -30449,
-    DSpStereoContextErr = -30450,
-};
-
-pub const anon26651 = enum(i32) {
-    FBCvTwinExceptionErr = -30500,
-    FBCnoIndexesFound = -30501,
-    FBCallocFailed = -30502,
-    FBCbadParam = -30503,
-    FBCfileNotIndexed = -30504,
-    FBCbadIndexFile = -30505,
-    FBCcompactionFailed = -30506,
-    FBCvalidationFailed = -30507,
-    FBCindexingFailed = -30508,
-    FBCcommitFailed = -30509,
-    FBCdeletionFailed = -30510,
-    FBCmoveFailed = -30511,
-    FBCtokenizationFailed = -30512,
-    FBCmergingFailed = -30513,
-    FBCindexCreationFailed = -30514,
-    FBCaccessorStoreFailed = -30515,
-    FBCaddDocFailed = -30516,
-    FBCflushFailed = -30517,
-    FBCindexNotFound = -30518,
-    FBCnoSearchSession = -30519,
-    FBCindexingCanceled = -30520,
-    FBCaccessCanceled = -30521,
-    FBCindexFileDestroyed = -30522,
-    FBCindexNotAvailable = -30523,
-    FBCsearchFailed = -30524,
-    FBCsomeFilesNotIndexed = -30525,
-    FBCillegalSessionChange = -30526,
-    FBCanalysisNotAvailable = -30527,
-    FBCbadIndexFileVersion = -30528,
-    FBCsummarizationCanceled = -30529,
-    FBCindexDiskIOFailed = -30530,
-    FBCbadSearchSession = -30531,
-    FBCnoSuchHit = -30532,
-};
-
-pub const anon27041 = enum(i32) {
-    notAQTVRMovieErr = -30540,
-    constraintReachedErr = -30541,
-    callNotSupportedByNodeErr = -30542,
-    selectorNotSupportedByNodeErr = -30543,
-    invalidNodeIDErr = -30544,
-    invalidViewStateErr = -30545,
-    timeNotInViewErr = -30546,
-    propertyNotSupportedByNodeErr = -30547,
-    settingNotSupportedByNodeErr = -30548,
-    limitReachedErr = -30549,
-    invalidNodeFormatErr = -30550,
-    invalidHotSpotIDErr = -30551,
-    noMemoryNodeFailedInitialize = -30552,
-    streamingNodeNotReadyErr = -30553,
-    qtvrLibraryLoadErr = -30554,
-    qtvrUninitialized = -30555,
-};
-
-pub const anon27251 = enum(i32) {
-    themeInvalidBrushErr = -30560,
-    themeProcessRegisteredErr = -30561,
-    themeProcessNotRegisteredErr = -30562,
-    themeBadTextColorErr = -30563,
-    themeHasNoAccentsErr = -30564,
-    themeBadCursorIndexErr = -30565,
-    themeScriptFontNotFoundErr = -30566,
-    themeMonitorDepthNotSupportedErr = -30567,
-    themeNoAppropriateBrushErr = -30568,
-};
-
-pub const anon27431 = enum(i32) {
-    errMessageNotSupported = -30580,
-    errDataNotSupported = -30581,
-    errControlDoesntSupportFocus = -30582,
-    errUnknownControl = -30584,
-    errCouldntSetFocus = -30585,
-    errNoRootControl = -30586,
-    errRootAlreadyExists = -30587,
-    errInvalidPartCode = -30588,
-    errControlsAlreadyExist = -30589,
-    errControlIsNotEmbedder = -30590,
-    errDataSizeMismatch = -30591,
-    errControlHiddenOrDisabled = -30592,
-    errCantEmbedIntoSelf = -30594,
-    errCantEmbedRoot = -30595,
-    errItemNotControl = -30596,
-    controlInvalidDataVersionErr = -30597,
-    controlPropertyInvalid = -5603,
-    controlPropertyNotFoundErr = -5604,
-    controlHandleInvalidErr = -30599,
-};
-
-pub const anon28871 = enum(i32) {
-    URLInvalidURLReferenceError = -30770,
-    URLProgressAlreadyDisplayedError = -30771,
-    URLDestinationExistsError = -30772,
-    URLInvalidURLError = -30773,
-    URLUnsupportedSchemeError = -30774,
-    URLServerBusyError = -30775,
-    URLAuthenticationError = -30776,
-    URLPropertyNotYetKnownError = -30777,
-    URLUnknownPropertyError = -30778,
-    URLPropertyBufferTooSmallError = -30779,
-    URLUnsettablePropertyError = -30780,
-    URLInvalidCallError = -30781,
-    URLFileEmptyError = -30783,
-    URLExtensionFailureError = -30785,
-    URLInvalidConfigurationError = -30786,
-    URLAccessNotAvailableError = -30787,
-    URL68kNotSupportedError = -30788,
-};
-
-pub const anon29161 = enum(i32) {
-    errCppGeneral = -32000,
-    errCppbad_alloc = -32001,
-    errCppbad_cast = -32002,
-    errCppbad_exception = -32003,
-    errCppbad_typeid = -32004,
-    errCpplogic_error = -32005,
-    errCppdomain_error = -32006,
-    errCppinvalid_argument = -32007,
-    errCpplength_error = -32008,
-    errCppout_of_range = -32009,
-    errCppruntime_error = -32010,
-    errCppoverflow_error = -32011,
-    errCpprange_error = -32012,
-    errCppunderflow_error = -32013,
-    errCppios_base_failure = -32014,
-    errCppLastSystemDefinedError = -32020,
-    errCppLastUserDefinedError = -32049,
-};
-
-pub const anon29371 = enum(i32) {
-    badComponentInstance = -2147450879,
-    badComponentSelector = -2147450878,
-};
-
-pub const anon29441 = enum(u32) {
-    dsBusError = 1,
-    dsAddressErr = 2,
-    dsIllInstErr = 3,
-    dsZeroDivErr = 4,
-    dsChkErr = 5,
-    dsOvflowErr = 6,
-    dsPrivErr = 7,
-    dsTraceErr = 8,
-    dsLineAErr = 9,
-    dsLineFErr = 10,
-    dsMiscErr = 11,
-    dsCoreErr = 12,
-    dsIrqErr = 13,
-    dsIOCoreErr = 14,
-    dsLoadErr = 15,
-    dsFPErr = 16,
-    dsNoPackErr = 17,
-    dsNoPk1 = 18,
-    dsNoPk2 = 19,
-};
-
-pub const anon29661 = enum(u32) {
-    dsNoPk3 = 20,
-    dsNoPk4 = 21,
-    dsNoPk5 = 22,
-    dsNoPk6 = 23,
-    dsNoPk7 = 24,
-    dsMemFullErr = 25,
-    dsBadLaunch = 26,
-    dsFSErr = 27,
-    dsStknHeap = 28,
-    negZcbFreeErr = 33,
-    dsFinderErr = 41,
-    dsBadSlotInt = 51,
-    dsBadSANEOpcode = 81,
-    dsBadPatchHeader = 83,
-    menuPrgErr = 84,
-    dsMBarNFnd = 85,
-    dsHMenuFindErr = 86,
-    dsWDEFNotFound = 87,
-    dsCDEFNotFound = 88,
-    dsMDEFNotFound = 89,
-};
-
-pub const anon29891 = enum(u32) {
-    dsNoFPU = 90,
-    dsNoPatch = 98,
-    dsBadPatch = 99,
-    dsParityErr = 101,
-    dsOldSystem = 102,
-    ds32BitMode = 103,
-    dsNeedToWriteBootBlocks = 104,
-    dsNotEnoughRAMToBoot = 105,
-    dsBufPtrTooLow = 106,
-    dsVMDeferredFuncTableFull = 112,
-    dsVMBadBackingStore = 113,
-    dsCantHoldSystemHeap = 114,
-    dsSystemRequiresPowerPC = 116,
-    dsGibblyMovedToDisabledFolder = 117,
-    dsUnBootableSystem = 118,
-    dsMustUseFCBAccessors = 119,
-    dsMacOSROMVersionTooOld = 120,
-    dsLostConnectionToNetworkDisk = 121,
-    dsRAMDiskTooBig = 122,
-    dsWriteToSupervisorStackGuardPage = 128,
-    dsReinsert = 30,
-    shutDownAlert = 42,
-    dsShutDownOrRestart = 20000,
-    dsSwitchOffOrRestart = 20001,
-    dsForcedQuit = 20002,
-    dsRemoveDisk = 20003,
-    dsDirtyDisk = 20004,
-    dsShutDownOrResume = 20109,
-    dsSCSIWarn = 20010,
-    dsMBSysError = 29200,
-    dsMBFlpySysError = 29201,
-    dsMBATASysError = 29202,
-    dsMBATAPISysError = 29203,
-    dsMBExternFlpySysError = 29204,
-    dsPCCardATASysError = 29205,
-};
-
-pub const anon30321 = enum(i32) {
-    dsNoExtsMacsBug = -1,
-    dsNoExtsDisassembler = -2,
-    dsMacsBugInstalled = -10,
-    dsDisassemblerInstalled = -11,
-    dsExtensionsDisabled = -13,
-    dsGreeting = 40,
-    dsSysErr = 32767,
-    WDEFNFnd = 87,
-};
-
-pub const anon30441 = enum(i32) {
-    CDEFNFnd = 88,
-    dsNotThe1 = 31,
-    dsBadStartupDisk = 42,
-    dsSystemFileErr = 43,
-    dsHD20Installed = -12,
-    mBarNFnd = -126,
-    fsDSIntErr = -127,
-    hMenuFindErr = -127,
-    userBreak = -490,
-    strUserBreak = -491,
-    exUserBreak = -492,
-};
-
-pub const anon30591 = enum(u32) {
-    dsBadLibrary = 1010,
-    dsMixedModeFailure = 1011,
-};
-
-pub const anon30721 = enum(u32) {
-    POSIXErrorBase = 100000,
-    POSIXErrorEPERM = 100001,
-    POSIXErrorENOENT = 100002,
-    POSIXErrorESRCH = 100003,
-    POSIXErrorEINTR = 100004,
-    POSIXErrorEIO = 100005,
-    POSIXErrorENXIO = 100006,
-    POSIXErrorE2BIG = 100007,
-    POSIXErrorENOEXEC = 100008,
-    POSIXErrorEBADF = 100009,
-    POSIXErrorECHILD = 100010,
-    POSIXErrorEDEADLK = 100011,
-    POSIXErrorENOMEM = 100012,
-    POSIXErrorEACCES = 100013,
-    POSIXErrorEFAULT = 100014,
-    POSIXErrorENOTBLK = 100015,
-    POSIXErrorEBUSY = 100016,
-    POSIXErrorEEXIST = 100017,
-    POSIXErrorEXDEV = 100018,
-    POSIXErrorENODEV = 100019,
-    POSIXErrorENOTDIR = 100020,
-    POSIXErrorEISDIR = 100021,
-    POSIXErrorEINVAL = 100022,
-    POSIXErrorENFILE = 100023,
-    POSIXErrorEMFILE = 100024,
-    POSIXErrorENOTTY = 100025,
-    POSIXErrorETXTBSY = 100026,
-    POSIXErrorEFBIG = 100027,
-    POSIXErrorENOSPC = 100028,
-    POSIXErrorESPIPE = 100029,
-    POSIXErrorEROFS = 100030,
-    POSIXErrorEMLINK = 100031,
-    POSIXErrorEPIPE = 100032,
-    POSIXErrorEDOM = 100033,
-    POSIXErrorERANGE = 100034,
-    POSIXErrorEAGAIN = 100035,
-    POSIXErrorEINPROGRESS = 100036,
-    POSIXErrorEALREADY = 100037,
-    POSIXErrorENOTSOCK = 100038,
-    POSIXErrorEDESTADDRREQ = 100039,
-    POSIXErrorEMSGSIZE = 100040,
-    POSIXErrorEPROTOTYPE = 100041,
-    POSIXErrorENOPROTOOPT = 100042,
-    POSIXErrorEPROTONOSUPPORT = 100043,
-    POSIXErrorESOCKTNOSUPPORT = 100044,
-    POSIXErrorENOTSUP = 100045,
-    POSIXErrorEPFNOSUPPORT = 100046,
-    POSIXErrorEAFNOSUPPORT = 100047,
-    POSIXErrorEADDRINUSE = 100048,
-    POSIXErrorEADDRNOTAVAIL = 100049,
-    POSIXErrorENETDOWN = 100050,
-    POSIXErrorENETUNREACH = 100051,
-    POSIXErrorENETRESET = 100052,
-    POSIXErrorECONNABORTED = 100053,
-    POSIXErrorECONNRESET = 100054,
-    POSIXErrorENOBUFS = 100055,
-    POSIXErrorEISCONN = 100056,
-    POSIXErrorENOTCONN = 100057,
-    POSIXErrorESHUTDOWN = 100058,
-    POSIXErrorETOOMANYREFS = 100059,
-    POSIXErrorETIMEDOUT = 100060,
-    POSIXErrorECONNREFUSED = 100061,
-    POSIXErrorELOOP = 100062,
-    POSIXErrorENAMETOOLONG = 100063,
-    POSIXErrorEHOSTDOWN = 100064,
-    POSIXErrorEHOSTUNREACH = 100065,
-    POSIXErrorENOTEMPTY = 100066,
-    POSIXErrorEPROCLIM = 100067,
-    POSIXErrorEUSERS = 100068,
-    POSIXErrorEDQUOT = 100069,
-    POSIXErrorESTALE = 100070,
-    POSIXErrorEREMOTE = 100071,
-    POSIXErrorEBADRPC = 100072,
-    POSIXErrorERPCMISMATCH = 100073,
-    POSIXErrorEPROGUNAVAIL = 100074,
-    POSIXErrorEPROGMISMATCH = 100075,
-    POSIXErrorEPROCUNAVAIL = 100076,
-    POSIXErrorENOLCK = 100077,
-    POSIXErrorENOSYS = 100078,
-    POSIXErrorEFTYPE = 100079,
-    POSIXErrorEAUTH = 100080,
-    POSIXErrorENEEDAUTH = 100081,
-    POSIXErrorEPWROFF = 100082,
-    POSIXErrorEDEVERR = 100083,
-    POSIXErrorEOVERFLOW = 100084,
-    POSIXErrorEBADEXEC = 100085,
-    POSIXErrorEBADARCH = 100086,
-    POSIXErrorESHLIBVERS = 100087,
-    POSIXErrorEBADMACHO = 100088,
-    POSIXErrorECANCELED = 100089,
-    POSIXErrorEIDRM = 100090,
-    POSIXErrorENOMSG = 100091,
-    POSIXErrorEILSEQ = 100092,
-    POSIXErrorENOATTR = 100093,
-    POSIXErrorEBADMSG = 100094,
-    POSIXErrorEMULTIHOP = 100095,
-    POSIXErrorENODATA = 100096,
-    POSIXErrorENOLINK = 100097,
-    POSIXErrorENOSR = 100098,
-    POSIXErrorENOSTR = 100099,
-    POSIXErrorEPROTO = 100100,
-    POSIXErrorETIME = 100101,
-    POSIXErrorEOPNOTSUPP = 100102,
-};
+pub const anon10241 = u32;
+pub const anon10241_smsfIntellCP: u32 = 0;
+pub const anon10241_smsfSingByte: u32 = 1;
+pub const anon10241_smsfNatCase: u32 = 2;
+pub const anon10241_smsfContext: u32 = 3;
+pub const anon10241_smsfNoForceFont: u32 = 4;
+pub const anon10241_smsfB0Digits: u32 = 5;
+pub const anon10241_smsfAutoInit: u32 = 6;
+pub const anon10241_smsfUnivExt: u32 = 7;
+pub const anon10241_smsfSynchUnstyledTE: u32 = 8;
+pub const anon10241_smsfForms: u32 = 13;
+pub const anon10241_smsfLigatures: u32 = 14;
+pub const anon10241_smsfReverse: u32 = 15;
+
+pub const anon731 = i32;
+pub const anon731_vLckdErr: i32 = -46;
+pub const anon731_fBsyErr: i32 = -47;
+pub const anon731_dupFNErr: i32 = -48;
+pub const anon731_opWrErr: i32 = -49;
+pub const anon731_rfNumErr: i32 = -51;
+pub const anon731_gfpErr: i32 = -52;
+pub const anon731_volOffLinErr: i32 = -53;
+pub const anon731_permErr: i32 = -54;
+pub const anon731_volOnLinErr: i32 = -55;
+pub const anon731_nsDrvErr: i32 = -56;
+pub const anon731_noMacDskErr: i32 = -57;
+pub const anon731_extFSErr: i32 = -58;
+pub const anon731_fsRnErr: i32 = -59;
+pub const anon731_badMDBErr: i32 = -60;
+pub const anon731_wrPermErr: i32 = -61;
+pub const anon731_dirNFErr: i32 = -120;
+pub const anon731_tmwdoErr: i32 = -121;
+pub const anon731_badMovErr: i32 = -122;
+pub const anon731_wrgVolTypErr: i32 = -123;
+pub const anon731_volGoneErr: i32 = -124;
+pub const anon731_ResolveAliasFileNoUI: i32 = 1;
+pub const anon731_ResolveAliasTryFileIDFirst: i32 = 2;
+
+pub const anon961 = i32;
+pub const anon961_fidNotFound: i32 = -1300;
+pub const anon961_fidExists: i32 = -1301;
+pub const anon961_notAFileErr: i32 = -1302;
+pub const anon961_diffVolErr: i32 = -1303;
+pub const anon961_catChangedErr: i32 = -1304;
+pub const anon961_desktopDamagedErr: i32 = -1305;
+pub const anon961_sameFileErr: i32 = -1306;
+pub const anon961_badFidErr: i32 = -1307;
+pub const anon961_notARemountErr: i32 = -1308;
+pub const anon961_fileBoundsErr: i32 = -1309;
+pub const anon961_fsDataTooBigErr: i32 = -1310;
+pub const anon961_volVMBusyErr: i32 = -1311;
+pub const anon961_badFCBErr: i32 = -1327;
+pub const anon961_errFSUnknownCall: i32 = -1400;
+pub const anon961_errFSBadFSRef: i32 = -1401;
+pub const anon961_errFSBadForkName: i32 = -1402;
+pub const anon961_errFSBadBuffer: i32 = -1403;
+pub const anon961_errFSBadForkRef: i32 = -1404;
+pub const anon961_errFSBadInfoBitmap: i32 = -1405;
+pub const anon961_errFSMissingCatInfo: i32 = -1406;
+pub const anon961_errFSNotAFolder: i32 = -1407;
+pub const anon961_errFSForkNotFound: i32 = -1409;
+pub const anon961_errFSNameTooLong: i32 = -1410;
+pub const anon961_errFSMissingName: i32 = -1411;
+pub const anon961_errFSBadPosMode: i32 = -1412;
+pub const anon961_errFSBadAllocFlags: i32 = -1413;
+pub const anon961_errFSNoMoreItems: i32 = -1417;
+pub const anon961_errFSBadItemCount: i32 = -1418;
+pub const anon961_errFSBadSearchParams: i32 = -1419;
+pub const anon961_errFSRefsDifferent: i32 = -1420;
+pub const anon961_errFSForkExists: i32 = -1421;
+pub const anon961_errFSBadIteratorFlags: i32 = -1422;
+pub const anon961_errFSIteratorNotFound: i32 = -1423;
+pub const anon961_errFSIteratorNotSupported: i32 = -1424;
+pub const anon961_errFSQuotaExceeded: i32 = -1425;
+pub const anon961_errFSOperationNotSupported: i32 = -1426;
+pub const anon961_errFSAttributeNotFound: i32 = -1427;
+pub const anon961_errFSPropertyNotValid: i32 = -1428;
+pub const anon961_errFSNotEnoughSpaceForOperation: i32 = -1429;
+pub const anon961_envNotPresent: i32 = -5500;
+pub const anon961_envBadVers: i32 = -5501;
+pub const anon961_envVersTooBig: i32 = -5502;
+pub const anon961_fontDecError: i32 = -64;
+pub const anon961_fontNotDeclared: i32 = -65;
+pub const anon961_fontSubErr: i32 = -66;
+pub const anon961_fontNotOutlineErr: i32 = -32615;
+pub const anon961_firstDskErr: i32 = -84;
+pub const anon961_lastDskErr: i32 = -64;
+pub const anon961_noDriveErr: i32 = -64;
+pub const anon961_offLinErr: i32 = -65;
+pub const anon961_noNybErr: i32 = -66;
+
+pub const anon1501 = i32;
+pub const anon1501_noAdrMkErr: i32 = -67;
+pub const anon1501_dataVerErr: i32 = -68;
+pub const anon1501_badCksmErr: i32 = -69;
+pub const anon1501_badBtSlpErr: i32 = -70;
+pub const anon1501_noDtaMkErr: i32 = -71;
+pub const anon1501_badDCksum: i32 = -72;
+pub const anon1501_badDBtSlp: i32 = -73;
+pub const anon1501_wrUnderrun: i32 = -74;
+pub const anon1501_cantStepErr: i32 = -75;
+pub const anon1501_tk0BadErr: i32 = -76;
+pub const anon1501_initIWMErr: i32 = -77;
+pub const anon1501_twoSideErr: i32 = -78;
+pub const anon1501_spdAdjErr: i32 = -79;
+pub const anon1501_seekErr: i32 = -80;
+pub const anon1501_sectNFErr: i32 = -81;
+pub const anon1501_fmt1Err: i32 = -82;
+pub const anon1501_fmt2Err: i32 = -83;
+pub const anon1501_verErr: i32 = -84;
+pub const anon1501_clkRdErr: i32 = -85;
+pub const anon1501_clkWrErr: i32 = -86;
+pub const anon1501_prWrErr: i32 = -87;
+pub const anon1501_prInitErr: i32 = -88;
+pub const anon1501_rcvrErr: i32 = -89;
+pub const anon1501_breakRecd: i32 = -90;
+
+pub const anon1771 = i32;
+pub const anon1771_noScrapErr: i32 = -100;
+pub const anon1771_noTypeErr: i32 = -102;
+
+pub const anon1891 = i32;
+pub const anon1891_ddpSktErr: i32 = -91;
+pub const anon1891_ddpLenErr: i32 = -92;
+pub const anon1891_noBridgeErr: i32 = -93;
+pub const anon1891_lapProtErr: i32 = -94;
+pub const anon1891_excessCollsns: i32 = -95;
+pub const anon1891_portNotPwr: i32 = -96;
+pub const anon1891_portInUse: i32 = -97;
+pub const anon1891_portNotCf: i32 = -98;
+pub const anon1891_SelectorsAreNotIndexable: i32 = 0;
+pub const anon1891_SelectorsAreIndexable: i32 = 1;
+pub const anon1891_CSSM_CSSM_BASE_CSSM_ERROR: i32 = -2147417840;
+pub const anon1891_CSSMERR_CSSM_SCOPE_NOT_SUPPORTED: i32 = -2147417839;
+pub const anon1891_CSSMERR_CSSM_PVC_ALREADY_CONFIGURED: i32 = -2147417838;
+pub const anon1891_CSSMERR_CSSM_INVALID_PVC: i32 = -2147417837;
+pub const anon1891_CSSMERR_CSSM_EMM_LOAD_FAILED: i32 = -2147417836;
+pub const anon1891_CSSMERR_CSSM_EMM_UNLOAD_FAILED: i32 = -2147417835;
+pub const anon1891_CSSMERR_CSSM_ADDIN_LOAD_FAILED: i32 = -2147417834;
+pub const anon1891_CSSMERR_CSSM_INVALID_KEY_HIERARCHY: i32 = -2147417833;
+pub const anon1891_CSSMERR_CSSM_ADDIN_UNLOAD_FAILED: i32 = -2147417832;
+pub const anon1891_CSSMERR_CSSM_LIB_REF_NOT_FOUND: i32 = -2147417831;
+pub const anon1891_CSSMERR_CSSM_INVALID_ADDIN_FUNCTION_TABLE: i32 = -2147417830;
+pub const anon1891_CSSMERR_CSSM_EMM_AUTHENTICATE_FAILED: i32 = -2147417829;
+pub const anon1891_CSSMERR_CSSM_ADDIN_AUTHENTICATE_FAILED: i32 = -2147417828;
+pub const anon1891_CSSMERR_CSSM_INVALID_SERVICE_MASK: i32 = -2147417827;
+pub const anon1891_CSSMERR_CSSM_MODULE_NOT_LOADED: i32 = -2147417826;
+pub const anon1891_CSSMERR_CSSM_INVALID_SUBSERVICEID: i32 = -2147417825;
+pub const anon1891_CSSMERR_CSSM_BUFFER_TOO_SMALL: i32 = -2147417824;
+pub const anon1891_CSSMERR_CSSM_INVALID_ATTRIBUTE: i32 = -2147417823;
+pub const anon1891_CSSMERR_CSSM_ATTRIBUTE_NOT_IN_CONTEXT: i32 = -2147417822;
+pub const anon1891_CSSMERR_CSSM_MODULE_MANAGER_INITIALIZE_FAIL: i32 = -2147417821;
+pub const anon1891_CSSMERR_CSSM_MODULE_MANAGER_NOT_FOUND: i32 = -2147417820;
+pub const anon1891_CSSMERR_CSSM_EVENT_NOTIFICATION_CALLBACK_NOT_FOUND: i32 = -2147417819;
+
+pub const anon2001 = i32;
+pub const anon2001_memROZWarn: i32 = -99;
+pub const anon2001_memROZError: i32 = -99;
+pub const anon2001_memROZErr: i32 = -99;
+pub const anon2001_memFullErr: i32 = -108;
+pub const anon2001_nilHandleErr: i32 = -109;
+pub const anon2001_memWZErr: i32 = -111;
+pub const anon2001_memPurErr: i32 = -112;
+pub const anon2001_memAdrErr: i32 = -110;
+pub const anon2001_memAZErr: i32 = -113;
+pub const anon2001_memPCErr: i32 = -114;
+pub const anon2001_memBCErr: i32 = -115;
+pub const anon2001_memSCErr: i32 = -116;
+pub const anon2001_memLockedErr: i32 = -117;
+pub const anon2001_NanosecondScale: i32 = 1;
+pub const anon2001_MicrosecondScale: i32 = 1000;
+pub const anon2001_MillisecondScale: i32 = 1000000;
+pub const anon2001_SecondScale: i32 = 1000000000;
+pub const anon2001_TickScale: i32 = 10000000;
+
+pub const anon2171 = i32;
+pub const anon2171_iMemFullErr: i32 = -108;
+pub const anon2171_iIOAbort: i32 = -27;
+
+pub const anon2241 = i32;
+pub const anon2241_resourceInMemory: i32 = -188;
+pub const anon2241_writingPastEnd: i32 = -189;
+pub const anon2241_inputOutOfBounds: i32 = -190;
+pub const anon2241_resNotFound: i32 = -192;
+pub const anon2241_resFNotFound: i32 = -193;
+pub const anon2241_addResFailed: i32 = -194;
+pub const anon2241_addRefFailed: i32 = -195;
+pub const anon2241_rmvResFailed: i32 = -196;
+pub const anon2241_rmvRefFailed: i32 = -197;
+pub const anon2241_resAttrErr: i32 = -198;
+pub const anon2241_mapReadErr: i32 = -199;
+pub const anon2241_CantDecompress: i32 = -186;
+pub const anon2241_badExtResource: i32 = -185;
+pub const anon2241_noMemForPictPlaybackErr: i32 = -145;
+pub const anon2241_rgnOverflowErr: i32 = -147;
+pub const anon2241_rgnTooBigError: i32 = -147;
+pub const anon2241_pixMapTooDeepErr: i32 = -148;
+pub const anon2241_insufficientStackErr: i32 = -149;
+pub const anon2241_nsStackErr: i32 = -149;
+
+pub const anon2461 = u32;
+pub const anon2461_evtNotEnb: u32 = 1;
+
+pub const anon2511 = i32;
+pub const anon2511_cMatchErr: i32 = -150;
+pub const anon2511_cTempMemErr: i32 = -151;
+pub const anon2511_cNoMemErr: i32 = -152;
+pub const anon2511_cRangeErr: i32 = -153;
+pub const anon2511_cProtectErr: i32 = -154;
+pub const anon2511_cDevErr: i32 = -155;
+pub const anon2511_cResErr: i32 = -156;
+pub const anon2511_cDepthErr: i32 = -157;
+pub const anon2511_rgnTooBigErr: i32 = -500;
+pub const anon2511_updPixMemErr: i32 = -125;
+pub const anon2511_pictInfoVersionErr: i32 = -11000;
+pub const anon2511_pictInfoIDErr: i32 = -11001;
+pub const anon2511_pictInfoVerbErr: i32 = -11002;
+pub const anon2511_cantLoadPickMethodErr: i32 = -11003;
+pub const anon2511_colorsRequestedErr: i32 = -11004;
+pub const anon2511_pictureDataErr: i32 = -11005;
+pub const anon2511_bHasDirectIO: i32 = 1;
+pub const anon2511_SharingPrivsNotApplicableIcon: i32 = 1936223841;
+pub const anon2511_SharingPrivsReadOnlyIcon: i32 = 1936224879;
+pub const anon2511_SharingPrivsReadWriteIcon: i32 = 1936224887;
+pub const anon2511_SharingPrivsUnknownIcon: i32 = 1936225643;
+pub const anon2511_SharingPrivsWritableIcon: i32 = 2003986804;
+
+pub const anon2711 = i32;
+pub const anon2711_cmProfileError: i32 = -170;
+pub const anon2711_cmMethodError: i32 = -171;
+pub const anon2711_cmMethodNotFound: i32 = -175;
+pub const anon2711_cmProfileNotFound: i32 = -176;
+pub const anon2711_cmProfilesIdentical: i32 = -177;
+pub const anon2711_cmCantConcatenateError: i32 = -178;
+pub const anon2711_cmCantXYZ: i32 = -179;
+pub const anon2711_cmCantDeleteProfile: i32 = -180;
+pub const anon2711_cmUnsupportedDataType: i32 = -181;
+pub const anon2711_cmNoCurrentProfile: i32 = -182;
+pub const anon2711_AppearanceFolderIcon: i32 = 1634758770;
+pub const anon2711_AppleExtrasFolderIcon: i32 = 1634040004;
+pub const anon2711_AppleMenuFolderIcon: i32 = 1634561653;
+pub const anon2711_ApplicationsFolderIcon: i32 = 1634758771;
+pub const anon2711_ApplicationSupportFolderIcon: i32 = 1634956656;
+pub const anon2711_AssistantsFolderIcon: i32 = 1634956484;
+pub const anon2711_ColorSyncFolderIcon: i32 = 1886547814;
+pub const anon2711_ContextualMenuItemsFolderIcon: i32 = 1668116085;
+pub const anon2711_ControlPanelDisabledFolderIcon: i32 = 1668575812;
+pub const anon2711_ControlPanelFolderIcon: i32 = 1668575852;
+pub const anon2711_ControlStripModulesFolderIcon: i32 = 1935963844;
+pub const anon2711_DocumentsFolderIcon: i32 = 1685021555;
+pub const anon2711_ExtensionsDisabledFolderIcon: i32 = 1702392900;
+pub const anon2711_ExtensionsFolderIcon: i32 = 1702392942;
+pub const anon2711_FavoritesFolderIcon: i32 = 1717663347;
+pub const anon2711_FontsFolderIcon: i32 = 1718578804;
+pub const anon2711_HelpFolderIcon: i32 = -999789456;
+pub const anon2711_InternetFolderIcon: i32 = 1768846532;
+pub const anon2711_InternetPlugInFolderIcon: i32 = -999398028;
+pub const anon2711_InternetSearchSitesFolderIcon: i32 = 1769173862;
+pub const anon2711_LocalesFolderIcon: i32 = -999526557;
+pub const anon2711_MacOSReadMeFolderIcon: i32 = 1836020420;
+pub const anon2711_PublicFolderIcon: i32 = 1886741094;
+pub const anon2711_PreferencesFolderIcon: i32 = 1886545604;
+pub const anon2711_PrinterDescriptionFolderIcon: i32 = 1886413926;
+pub const anon2711_PrinterDriverFolderIcon: i32 = -999263644;
+pub const anon2711_PrintMonitorFolderIcon: i32 = 1886547572;
+pub const anon2711_RecentApplicationsFolderIcon: i32 = 1918988400;
+pub const anon2711_RecentDocumentsFolderIcon: i32 = 1919184739;
+pub const anon2711_RecentServersFolderIcon: i32 = 1920168566;
+pub const anon2711_ScriptingAdditionsFolderIcon: i32 = -999070862;
+pub const anon2711_SharedLibrariesFolderIcon: i32 = -999528094;
+pub const anon2711_ScriptsFolderIcon: i32 = 1935897284;
+pub const anon2711_ShutdownItemsDisabledFolderIcon: i32 = 1936221252;
+pub const anon2711_ShutdownItemsFolderIcon: i32 = 1936221286;
+pub const anon2711_SpeakableItemsFolder: i32 = 1936747369;
+pub const anon2711_StartupItemsDisabledFolderIcon: i32 = 1937011268;
+pub const anon2711_StartupItemsFolderIcon: i32 = 1937011316;
+pub const anon2711_SystemExtensionDisabledFolderIcon: i32 = 1835098948;
+pub const anon2711_SystemFolderIcon: i32 = 1835098995;
+pub const anon2711_TextEncodingsFolderIcon: i32 = -999004808;
+pub const anon2711_UsersFolderIcon: i32 = 1970500292;
+pub const anon2711_UtilitiesFolderIcon: i32 = 1970563524;
+pub const anon2711_VoicesFolderIcon: i32 = 1719037795;
+pub const anon2711_LSSharedFileListNoUserInteraction: i32 = 1;
+pub const anon2711_LSSharedFileListDoNotMountVolumes: i32 = 2;
+
+pub const anon2861 = i32;
+pub const anon2861_noHardware: i32 = -200;
+pub const anon2861_notEnoughHardware: i32 = -201;
+pub const anon2861_queueFull: i32 = -203;
+pub const anon2861_resProblem: i32 = -204;
+pub const anon2861_badChannel: i32 = -205;
+pub const anon2861_badFormat: i32 = -206;
+pub const anon2861_notEnoughBufferSpace: i32 = -207;
+pub const anon2861_badFileFormat: i32 = -208;
+pub const anon2861_channelBusy: i32 = -209;
+pub const anon2861_buffersTooSmall: i32 = -210;
+pub const anon2861_channelNotBusy: i32 = -211;
+pub const anon2861_noMoreRealTime: i32 = -212;
+pub const anon2861_siVBRCompressionNotSupported: i32 = -213;
+pub const anon2861_siNoSoundInHardware: i32 = -220;
+pub const anon2861_siBadSoundInDevice: i32 = -221;
+pub const anon2861_siNoBufferSpecified: i32 = -222;
+pub const anon2861_siInvalidCompression: i32 = -223;
+pub const anon2861_siHardDriveTooSlow: i32 = -224;
+pub const anon2861_siInvalidSampleRate: i32 = -225;
+pub const anon2861_siInvalidSampleSize: i32 = -226;
+pub const anon2861_siDeviceBusyErr: i32 = -227;
+pub const anon2861_siBadDeviceName: i32 = -228;
+pub const anon2861_siBadRefNum: i32 = -229;
+pub const anon2861_siInputDeviceErr: i32 = -230;
+pub const anon2861_siUnknownInfoType: i32 = -231;
+pub const anon2861_siUnknownQuality: i32 = -232;
+pub const anon2861_SpecialCase: i32 = 15;
+
+pub const anon3171 = i32;
+pub const anon3171_noSynthFound: i32 = -240;
+pub const anon3171_synthOpenFailed: i32 = -241;
+pub const anon3171_synthNotReady: i32 = -242;
+pub const anon3171_bufTooSmall: i32 = -243;
+pub const anon3171_voiceNotFound: i32 = -244;
+pub const anon3171_incompatibleVoice: i32 = -245;
+pub const anon3171_badDictFormat: i32 = -246;
+pub const anon3171_badInputText: i32 = -247;
+pub const anon3171_UCCollateTypeSourceMask: i32 = 255;
+pub const anon3171_UCCollateTypeShiftBits: i32 = 24;
+
+pub const anon3451 = i32;
+pub const anon3451_nmTypErr: i32 = -299;
+pub const anon3451_CSSMERR_CSP_APPLE_ADD_APPLICATION_ACL_SUBJECT: i32 = -2147415040;
+pub const anon3451_CSSMERR_CSP_APPLE_PUBLIC_KEY_INCOMPLETE: i32 = -2147415039;
+pub const anon3451_CSSMERR_CSP_APPLE_SIGNATURE_MISMATCH: i32 = -2147415038;
+pub const anon3451_CSSMERR_CSP_APPLE_INVALID_KEY_START_DATE: i32 = -2147415037;
+pub const anon3451_CSSMERR_CSP_APPLE_INVALID_KEY_END_DATE: i32 = -2147415036;
+pub const anon3451_CSSMERR_CSPDL_APPLE_DL_CONVERSION_ERROR: i32 = -2147415035;
+pub const anon3451_CSSMERR_CSP_APPLE_SSLv2_ROLLBACK: i32 = -2147415034;
+
+pub const anon3501 = u32;
+pub const anon3501_siInitSDTblErr: u32 = 1;
+pub const anon3501_siInitVBLQsErr: u32 = 2;
+pub const anon3501_siInitSPTblErr: u32 = 3;
+pub const anon3501_sdmJTInitErr: u32 = 10;
+pub const anon3501_sdmInitErr: u32 = 11;
+pub const anon3501_sdmSRTInitErr: u32 = 12;
+pub const anon3501_sdmPRAMInitErr: u32 = 13;
+pub const anon3501_sdmPriInitErr: u32 = 14;
+pub const anon3501_UCTSDirectionNext: u32 = 0;
+pub const anon3501_UCTSDirectionPrevious: u32 = 1;
+
+pub const anon3761 = i32;
+pub const anon3761_smResrvErr: i32 = -307;
+pub const anon3761_smUnExBusErr: i32 = -308;
+pub const anon3761_smBLFieldBad: i32 = -309;
+pub const anon3761_smFHBlockRdErr: i32 = -310;
+pub const anon3761_smFHBlkDispErr: i32 = -311;
+pub const anon3761_smDisposePErr: i32 = -312;
+pub const anon3761_smNoBoardSRsrc: i32 = -313;
+pub const anon3761_smGetPRErr: i32 = -314;
+pub const anon3761_smNoBoardId: i32 = -315;
+pub const anon3761_smInitStatVErr: i32 = -316;
+pub const anon3761_smInitTblVErr: i32 = -317;
+pub const anon3761_smNoJmpTbl: i32 = -318;
+pub const anon3761_smReservedSlot: i32 = -318;
+pub const anon3761_smBadBoardId: i32 = -319;
+pub const anon3761_smBusErrTO: i32 = -320;
+pub const anon3761_svTempDisable: i32 = -32768;
+pub const anon3761_svDisabled: i32 = -32640;
+pub const anon3761_smBadRefId: i32 = -330;
+pub const anon3761_smBadsList: i32 = -331;
+pub const anon3761_smReservedErr: i32 = -332;
+pub const anon3761_smCodeRevErr: i32 = -333;
+
+pub const anon4011 = i32;
+pub const anon4011_smCPUErr: i32 = -334;
+pub const anon4011_smsPointerNil: i32 = -335;
+pub const anon4011_smNilsBlockErr: i32 = -336;
+pub const anon4011_smSlotOOBErr: i32 = -337;
+pub const anon4011_smSelOOBErr: i32 = -338;
+pub const anon4011_smNewPErr: i32 = -339;
+pub const anon4011_smBlkMoveErr: i32 = -340;
+pub const anon4011_smCkStatusErr: i32 = -341;
+pub const anon4011_smGetDrvrNamErr: i32 = -342;
+pub const anon4011_smDisDrvrNamErr: i32 = -343;
+pub const anon4011_smNoMoresRsrcs: i32 = -344;
+pub const anon4011_smsGetDrvrErr: i32 = -345;
+pub const anon4011_smBadsPtrErr: i32 = -346;
+pub const anon4011_smByteLanesErr: i32 = -347;
+pub const anon4011_smOffsetErr: i32 = -348;
+pub const anon4011_smNoGoodOpens: i32 = -349;
+pub const anon4011_smSRTOvrFlErr: i32 = -350;
+pub const anon4011_smRecNotFnd: i32 = -351;
+pub const anon4011_IconServicesNormalUsageFlag: i32 = 0;
+pub const anon4011_IconServicesNoBadgeFlag: i32 = 1;
+pub const anon4011_IconServicesUpdateIfNeededFlag: i32 = 2;
+
+pub const anon4231 = i32;
+pub const anon4231_notBTree: i32 = -410;
+pub const anon4231_btNoSpace: i32 = -413;
+pub const anon4231_btDupRecErr: i32 = -414;
+pub const anon4231_btRecNotFnd: i32 = -415;
+pub const anon4231_btKeyLenErr: i32 = -416;
+pub const anon4231_btKeyAttrErr: i32 = -417;
+pub const anon4231_unknownInsertModeErr: i32 = -20000;
+pub const anon4231_recordDataTooBigErr: i32 = -20001;
+pub const anon4231_invalidIndexErr: i32 = -20002;
+
+pub const anon4401 = i32;
+pub const anon4401_fsmFFSNotFoundErr: i32 = -431;
+pub const anon4401_fsmBusyFFSErr: i32 = -432;
+pub const anon4401_fsmBadFFSNameErr: i32 = -433;
+pub const anon4401_fsmBadFSDLenErr: i32 = -434;
+pub const anon4401_fsmDuplicateFSIDErr: i32 = -435;
+pub const anon4401_fsmBadFSDVersionErr: i32 = -436;
+pub const anon4401_fsmNoAlternateStackErr: i32 = -437;
+pub const anon4401_fsmUnknownFSMMessageErr: i32 = -438;
+
+pub const anon4521 = i32;
+pub const anon4521_editionMgrInitErr: i32 = -450;
+pub const anon4521_badSectionErr: i32 = -451;
+pub const anon4521_notRegisteredSectionErr: i32 = -452;
+pub const anon4521_badEditionFileErr: i32 = -453;
+pub const anon4521_badSubPartErr: i32 = -454;
+pub const anon4521_multiplePublisherWrn: i32 = -460;
+pub const anon4521_containerNotFoundWrn: i32 = -461;
+pub const anon4521_containerAlreadyOpenWrn: i32 = -462;
+pub const anon4521_notThePublisherWrn: i32 = -463;
+pub const anon4521_ISOLatinHebrewImplicitOrderVariant: i32 = 0;
+pub const anon4521_ISOLatinHebrewVisualOrderVariant: i32 = 1;
+pub const anon4521_ISOLatinHebrewExplicitOrderVariant: i32 = 2;
+
+pub const anon4651 = i32;
+pub const anon4651_teScrapSizeErr: i32 = -501;
+pub const anon4651_hwParamErr: i32 = -502;
+pub const anon4651_driverHardwareGoneErr: i32 = -503;
+pub const anon4651_DOSJapaneseStandardVariant: i32 = 0;
+pub const anon4651_DOSJapanesePalmVariant: i32 = 1;
+
+pub const anon4861 = i32;
+pub const anon4861_wrongApplicationPlatform: i32 = -875;
+pub const anon4861_appVersionTooOld: i32 = -876;
+pub const anon4861_notAppropriateForClassic: i32 = -877;
+
+pub const anon4941 = i32;
+pub const anon4941_threadTooManyReqsErr: i32 = -617;
+pub const anon4941_threadNotFoundErr: i32 = -618;
+pub const anon4941_threadProtocolErr: i32 = -619;
+
+pub const anon5051 = i32;
+pub const anon5051_notEnoughMemoryErr: i32 = -620;
+pub const anon5051_notHeldErr: i32 = -621;
+pub const anon5051_cannotMakeContiguousErr: i32 = -622;
+pub const anon5051_notLockedErr: i32 = -623;
+pub const anon5051_interruptsMaskedErr: i32 = -624;
+pub const anon5051_cannotDeferErr: i32 = -625;
+pub const anon5051_noMMUErr: i32 = -626;
+
+pub const anon5161 = i32;
+pub const anon5161_vmMorePhysicalThanVirtualErr: i32 = -628;
+pub const anon5161_vmKernelMMUInitErr: i32 = -629;
+pub const anon5161_vmOffErr: i32 = -630;
+pub const anon5161_vmMemLckdErr: i32 = -631;
+pub const anon5161_vmBadDriver: i32 = -632;
+pub const anon5161_vmNoVectorErr: i32 = -633;
+
+pub const anon5261 = i32;
+pub const anon5261_vmInvalidBackingFileIDErr: i32 = -640;
+pub const anon5261_vmMappingPrivilegesErr: i32 = -641;
+pub const anon5261_vmBusyBackingFileErr: i32 = -642;
+pub const anon5261_vmNoMoreBackingFilesErr: i32 = -643;
+pub const anon5261_vmInvalidFileViewIDErr: i32 = -644;
+pub const anon5261_vmFileViewAccessErr: i32 = -645;
+pub const anon5261_vmNoMoreFileViewsErr: i32 = -646;
+pub const anon5261_vmAddressNotInFileViewErr: i32 = -647;
+pub const anon5261_vmInvalidOwningProcessErr: i32 = -648;
+pub const anon5261_DeveloperDocsFolderType: i32 = 1684303715;
+pub const anon5261_DeveloperHelpFolderType: i32 = 1684371048;
+pub const anon5261_DeveloperFolderType: i32 = 1684371046;
+pub const anon5261_DeveloperApplicationsFolderType: i32 = 1684107376;
+
+pub const anon5391 = i32;
+pub const anon5391_rcDBNull: i32 = -800;
+pub const anon5391_rcDBValue: i32 = -801;
+pub const anon5391_rcDBError: i32 = -802;
+pub const anon5391_rcDBBadType: i32 = -803;
+pub const anon5391_rcDBBreak: i32 = -804;
+pub const anon5391_rcDBExec: i32 = -805;
+pub const anon5391_rcDBBadSessID: i32 = -806;
+pub const anon5391_rcDBBadSessNum: i32 = -807;
+pub const anon5391_rcDBBadDDEV: i32 = -808;
+pub const anon5391_rcDBAsyncNotSupp: i32 = -809;
+pub const anon5391_rcDBBadAsyncPB: i32 = -810;
+pub const anon5391_rcDBNoHandler: i32 = -811;
+pub const anon5391_rcDBWrongVersion: i32 = -812;
+pub const anon5391_rcDBPackNotInited: i32 = -813;
+
+pub const anon5581 = i32;
+pub const anon5581_hmHelpDisabled: i32 = -850;
+pub const anon5581_hmBalloonAborted: i32 = -853;
+pub const anon5581_hmSameAsLastBalloon: i32 = -854;
+pub const anon5581_hmHelpManagerNotInited: i32 = -855;
+pub const anon5581_hmSkippedBalloon: i32 = -857;
+pub const anon5581_hmWrongVersion: i32 = -858;
+pub const anon5581_hmUnknownHelpType: i32 = -859;
+pub const anon5581_hmOperationUnsupported: i32 = -861;
+pub const anon5581_hmNoBalloonUp: i32 = -862;
+pub const anon5581_hmCloseViewActive: i32 = -863;
+
+pub const anon5731 = i32;
+pub const anon5731_notInitErr: i32 = -900;
+pub const anon5731_nameTypeErr: i32 = -902;
+pub const anon5731_noPortErr: i32 = -903;
+pub const anon5731_noGlobalsErr: i32 = -904;
+pub const anon5731_localOnlyErr: i32 = -905;
+pub const anon5731_destPortErr: i32 = -906;
+pub const anon5731_sessTableErr: i32 = -907;
+pub const anon5731_noSessionErr: i32 = -908;
+pub const anon5731_badReqErr: i32 = -909;
+pub const anon5731_portNameExistsErr: i32 = -910;
+pub const anon5731_noUserNameErr: i32 = -911;
+pub const anon5731_userRejectErr: i32 = -912;
+pub const anon5731_noMachineNameErr: i32 = -913;
+pub const anon5731_noToolboxNameErr: i32 = -914;
+pub const anon5731_noResponseErr: i32 = -915;
+pub const anon5731_portClosedErr: i32 = -916;
+pub const anon5731_sessClosedErr: i32 = -917;
+pub const anon5731_badPortNameErr: i32 = -919;
+pub const anon5731_noDefaultUserErr: i32 = -922;
+pub const anon5731_notLoggedInErr: i32 = -923;
+pub const anon5731_noUserRefErr: i32 = -924;
+pub const anon5731_networkErr: i32 = -925;
+pub const anon5731_noInformErr: i32 = -926;
+pub const anon5731_authFailErr: i32 = -927;
+pub const anon5731_noUserRecErr: i32 = -928;
+pub const anon5731_badServiceMethodErr: i32 = -930;
+pub const anon5731_badLocNameErr: i32 = -931;
+pub const anon5731_guestNotAllowedErr: i32 = -932;
+
+pub const anon6081 = i32;
+pub const anon6081_FMIterationCompleted: i32 = -980;
+pub const anon6081_FMInvalidFontFamilyErr: i32 = -981;
+pub const anon6081_FMInvalidFontErr: i32 = -982;
+pub const anon6081_FMIterationScopeModifiedErr: i32 = -983;
+pub const anon6081_FMFontTableAccessErr: i32 = -984;
+pub const anon6081_FMFontContainerAccessErr: i32 = -985;
+pub const anon6081_CSSM_APPLEDL_OPEN_PARAMETERS_VERSION: i32 = 1;
+
+pub const anon6171 = i32;
+pub const anon6171_noMaskFoundErr: i32 = -1000;
+
+pub const anon6211 = i32;
+pub const anon6211_nbpBuffOvr: i32 = -1024;
+pub const anon6211_nbpNoConfirm: i32 = -1025;
+pub const anon6211_nbpConfDiff: i32 = -1026;
+pub const anon6211_nbpDuplicate: i32 = -1027;
+pub const anon6211_nbpNotFound: i32 = -1028;
+pub const anon6211_nbpNISErr: i32 = -1029;
+pub const anon6211_gestaltControlMgrVersion: i32 = 1668118130;
+
+pub const anon6301 = i32;
+pub const anon6301_aspBadVersNum: i32 = -1066;
+pub const anon6301_aspBufTooSmall: i32 = -1067;
+pub const anon6301_aspNoMoreSess: i32 = -1068;
+pub const anon6301_aspNoServers: i32 = -1069;
+pub const anon6301_aspParamErr: i32 = -1070;
+pub const anon6301_aspServerBusy: i32 = -1071;
+pub const anon6301_aspSessClosed: i32 = -1072;
+pub const anon6301_aspSizeErr: i32 = -1073;
+pub const anon6301_aspTooMany: i32 = -1074;
+pub const anon6301_aspNoAck: i32 = -1075;
+
+pub const anon6431 = i32;
+pub const anon6431_reqFailed: i32 = -1096;
+pub const anon6431_tooManyReqs: i32 = -1097;
+pub const anon6431_tooManySkts: i32 = -1098;
+pub const anon6431_badATPSkt: i32 = -1099;
+pub const anon6431_badBuffNum: i32 = -1100;
+pub const anon6431_noRelErr: i32 = -1101;
+pub const anon6431_cbNotFound: i32 = -1102;
+pub const anon6431_noSendResp: i32 = -1103;
+pub const anon6431_noDataArea: i32 = -1104;
+pub const anon6431_reqAborted: i32 = -1105;
+
+pub const anon6571 = i32;
+pub const anon6571_errRefNum: i32 = -1280;
+pub const anon6571_errAborted: i32 = -1279;
+pub const anon6571_errState: i32 = -1278;
+pub const anon6571_errOpening: i32 = -1277;
+pub const anon6571_errAttention: i32 = -1276;
+pub const anon6571_errFwdReset: i32 = -1275;
+pub const anon6571_errDSPQueueSize: i32 = -1274;
+pub const anon6571_errOpenDenied: i32 = -1273;
+
+pub const anon6741 = i32;
+pub const anon6741_errAECoercionFail: i32 = -1700;
+pub const anon6741_errAEDescNotFound: i32 = -1701;
+pub const anon6741_errAECorruptData: i32 = -1702;
+pub const anon6741_errAEWrongDataType: i32 = -1703;
+pub const anon6741_errAENotAEDesc: i32 = -1704;
+pub const anon6741_errAEBadListItem: i32 = -1705;
+pub const anon6741_errAENewerVersion: i32 = -1706;
+pub const anon6741_errAENotAppleEvent: i32 = -1707;
+pub const anon6741_errAEEventNotHandled: i32 = -1708;
+pub const anon6741_errAEReplyNotValid: i32 = -1709;
+pub const anon6741_errAEUnknownSendMode: i32 = -1710;
+pub const anon6741_errAEWaitCanceled: i32 = -1711;
+pub const anon6741_errAETimeout: i32 = -1712;
+pub const anon6741_errAENoUserInteraction: i32 = -1713;
+pub const anon6741_errAENotASpecialFunction: i32 = -1714;
+pub const anon6741_errAEParamMissed: i32 = -1715;
+pub const anon6741_errAEUnknownAddressType: i32 = -1716;
+pub const anon6741_errAEHandlerNotFound: i32 = -1717;
+pub const anon6741_errAEReplyNotArrived: i32 = -1718;
+pub const anon6741_errAEIllegalIndex: i32 = -1719;
+pub const anon6741_errAEImpossibleRange: i32 = -1720;
+pub const anon6741_errAEWrongNumberArgs: i32 = -1721;
+pub const anon6741_errAEAccessorNotFound: i32 = -1723;
+pub const anon6741_errAENoSuchLogical: i32 = -1725;
+pub const anon6741_errAEBadTestKey: i32 = -1726;
+pub const anon6741_errAENotAnObjSpec: i32 = -1727;
+pub const anon6741_errAENoSuchObject: i32 = -1728;
+pub const anon6741_errAENegativeCount: i32 = -1729;
+pub const anon6741_errAEEmptyListContainer: i32 = -1730;
+pub const anon6741_errAEUnknownObjectType: i32 = -1731;
+pub const anon6741_errAERecordingIsAlreadyOn: i32 = -1732;
+pub const anon6741_errAEReceiveTerminate: i32 = -1733;
+pub const anon6741_errAEReceiveEscapeCurrent: i32 = -1734;
+pub const anon6741_errAEEventFiltered: i32 = -1735;
+pub const anon6741_errAEDuplicateHandler: i32 = -1736;
+pub const anon6741_errAEStreamBadNesting: i32 = -1737;
+pub const anon6741_errAEStreamAlreadyConverted: i32 = -1738;
+pub const anon6741_errAEDescIsNull: i32 = -1739;
+pub const anon6741_errAEBuildSyntaxError: i32 = -1740;
+pub const anon6741_errAEBufferTooSmall: i32 = -1741;
+
+pub const anon7171 = i32;
+pub const anon7171_errOSASystemError: i32 = -1750;
+pub const anon7171_errOSAInvalidID: i32 = -1751;
+pub const anon7171_errOSABadStorageType: i32 = -1752;
+pub const anon7171_errOSAScriptError: i32 = -1753;
+pub const anon7171_errOSABadSelector: i32 = -1754;
+pub const anon7171_errOSASourceNotAvailable: i32 = -1756;
+pub const anon7171_errOSANoSuchDialect: i32 = -1757;
+pub const anon7171_errOSADataFormatObsolete: i32 = -1758;
+pub const anon7171_errOSADataFormatTooNew: i32 = -1759;
+pub const anon7171_errOSACorruptData: i32 = -1702;
+pub const anon7171_errOSARecordingIsAlreadyOn: i32 = -1732;
+pub const anon7171_errOSAComponentMismatch: i32 = -1761;
+pub const anon7171_errOSACantOpenComponent: i32 = -1762;
+pub const anon7171_errOSACantStorePointers: i32 = -1763;
+
+pub const anon7371 = i32;
+pub const anon7371_errOffsetInvalid: i32 = -1800;
+pub const anon7371_errOffsetIsOutsideOfView: i32 = -1801;
+pub const anon7371_errTopOfDocument: i32 = -1810;
+pub const anon7371_errTopOfBody: i32 = -1811;
+pub const anon7371_errEndOfDocument: i32 = -1812;
+pub const anon7371_errEndOfBody: i32 = -1813;
+pub const anon7371_CSSM_KEYBLOB_RAW: i32 = 0;
+pub const anon7371_CSSM_KEYBLOB_REFERENCE: i32 = 2;
+pub const anon7371_CSSM_KEYBLOB_WRAPPED: i32 = 3;
+pub const anon7371_CSSM_KEYBLOB_OTHER: i32 = -1;
+
+pub const anon7471 = i32;
+pub const anon7471_badDragRefErr: i32 = -1850;
+pub const anon7471_badDragItemErr: i32 = -1851;
+pub const anon7471_badDragFlavorErr: i32 = -1852;
+pub const anon7471_duplicateFlavorErr: i32 = -1853;
+pub const anon7471_cantGetFlavorErr: i32 = -1854;
+pub const anon7471_duplicateHandlerErr: i32 = -1855;
+pub const anon7471_handlerNotFoundErr: i32 = -1856;
+pub const anon7471_dragNotAcceptedErr: i32 = -1857;
+pub const anon7471_unsupportedForPlatformErr: i32 = -1858;
+pub const anon7471_noSuitableDisplaysErr: i32 = -1859;
+pub const anon7471_badImageRgnErr: i32 = -1860;
+pub const anon7471_badImageErr: i32 = -1861;
+pub const anon7471_nonDragOriginatorErr: i32 = -1862;
+
+pub const anon7661 = i32;
+pub const anon7661_couldNotResolveDataRef: i32 = -2000;
+pub const anon7661_badImageDescription: i32 = -2001;
+pub const anon7661_badPublicMovieAtom: i32 = -2002;
+pub const anon7661_cantFindHandler: i32 = -2003;
+pub const anon7661_cantOpenHandler: i32 = -2004;
+pub const anon7661_badComponentType: i32 = -2005;
+pub const anon7661_noMediaHandler: i32 = -2006;
+pub const anon7661_noDataHandler: i32 = -2007;
+pub const anon7661_invalidMedia: i32 = -2008;
+pub const anon7661_invalidTrack: i32 = -2009;
+pub const anon7661_invalidMovie: i32 = -2010;
+pub const anon7661_invalidSampleTable: i32 = -2011;
+pub const anon7661_invalidDataRef: i32 = -2012;
+pub const anon7661_invalidHandler: i32 = -2013;
+pub const anon7661_invalidDuration: i32 = -2014;
+pub const anon7661_invalidTime: i32 = -2015;
+pub const anon7661_cantPutPublicMovieAtom: i32 = -2016;
+pub const anon7661_badEditList: i32 = -2017;
+pub const anon7661_mediaTypesDontMatch: i32 = -2018;
+pub const anon7661_progressProcAborted: i32 = -2019;
+pub const anon7661_movieToolboxUninitialized: i32 = -2020;
+pub const anon7661_noRecordOfApp: i32 = -2020;
+pub const anon7661_wfFileNotFound: i32 = -2021;
+pub const anon7661_cantCreateSingleForkFile: i32 = -2022;
+pub const anon7661_invalidEditState: i32 = -2023;
+pub const anon7661_nonMatchingEditState: i32 = -2024;
+pub const anon7661_staleEditState: i32 = -2025;
+pub const anon7661_userDataItemNotFound: i32 = -2026;
+pub const anon7661_maxSizeToGrowTooSmall: i32 = -2027;
+pub const anon7661_badTrackIndex: i32 = -2028;
+pub const anon7661_trackIDNotFound: i32 = -2029;
+pub const anon7661_trackNotInMovie: i32 = -2030;
+pub const anon7661_timeNotInTrack: i32 = -2031;
+pub const anon7661_timeNotInMedia: i32 = -2032;
+pub const anon7661_badEditIndex: i32 = -2033;
+pub const anon7661_internalQuickTimeError: i32 = -2034;
+pub const anon7661_cantEnableTrack: i32 = -2035;
+pub const anon7661_invalidRect: i32 = -2036;
+pub const anon7661_invalidSampleNum: i32 = -2037;
+pub const anon7661_invalidChunkNum: i32 = -2038;
+pub const anon7661_invalidSampleDescIndex: i32 = -2039;
+pub const anon7661_invalidChunkCache: i32 = -2040;
+pub const anon7661_invalidSampleDescription: i32 = -2041;
+pub const anon7661_dataNotOpenForRead: i32 = -2042;
+pub const anon7661_dataNotOpenForWrite: i32 = -2043;
+pub const anon7661_dataAlreadyOpenForWrite: i32 = -2044;
+pub const anon7661_dataAlreadyClosed: i32 = -2045;
+pub const anon7661_endOfDataReached: i32 = -2046;
+pub const anon7661_dataNoDataRef: i32 = -2047;
+pub const anon7661_noMovieFound: i32 = -2048;
+pub const anon7661_invalidDataRefContainer: i32 = -2049;
+pub const anon7661_badDataRefIndex: i32 = -2050;
+pub const anon7661_noDefaultDataRef: i32 = -2051;
+pub const anon7661_couldNotUseAnExistingSample: i32 = -2052;
+pub const anon7661_featureUnsupported: i32 = -2053;
+pub const anon7661_noVideoTrackInMovieErr: i32 = -2054;
+pub const anon7661_noSoundTrackInMovieErr: i32 = -2055;
+pub const anon7661_soundSupportNotAvailableErr: i32 = -2056;
+pub const anon7661_unsupportedAuxiliaryImportData: i32 = -2057;
+pub const anon7661_auxiliaryExportDataUnavailable: i32 = -2058;
+pub const anon7661_samplesAlreadyInMediaErr: i32 = -2059;
+pub const anon7661_noSourceTreeFoundErr: i32 = -2060;
+pub const anon7661_sourceNotFoundErr: i32 = -2061;
+pub const anon7661_movieTextNotFoundErr: i32 = -2062;
+pub const anon7661_missingRequiredParameterErr: i32 = -2063;
+pub const anon7661_invalidSpriteWorldPropertyErr: i32 = -2064;
+pub const anon7661_invalidSpritePropertyErr: i32 = -2065;
+pub const anon7661_gWorldsNotSameDepthAndSizeErr: i32 = -2066;
+pub const anon7661_invalidSpriteIndexErr: i32 = -2067;
+pub const anon7661_invalidImageIndexErr: i32 = -2068;
+pub const anon7661_invalidSpriteIDErr: i32 = -2069;
+
+pub const anon8401 = i32;
+pub const anon8401_internalComponentErr: i32 = -2070;
+pub const anon8401_notImplementedMusicOSErr: i32 = -2071;
+pub const anon8401_cantSendToSynthesizerOSErr: i32 = -2072;
+pub const anon8401_cantReceiveFromSynthesizerOSErr: i32 = -2073;
+pub const anon8401_illegalVoiceAllocationOSErr: i32 = -2074;
+pub const anon8401_illegalPartOSErr: i32 = -2075;
+pub const anon8401_illegalChannelOSErr: i32 = -2076;
+pub const anon8401_illegalKnobOSErr: i32 = -2077;
+pub const anon8401_illegalKnobValueOSErr: i32 = -2078;
+pub const anon8401_illegalInstrumentOSErr: i32 = -2079;
+pub const anon8401_illegalControllerOSErr: i32 = -2080;
+pub const anon8401_midiManagerAbsentOSErr: i32 = -2081;
+pub const anon8401_synthesizerNotRespondingOSErr: i32 = -2082;
+pub const anon8401_synthesizerOSErr: i32 = -2083;
+pub const anon8401_illegalNoteChannelOSErr: i32 = -2084;
+pub const anon8401_noteChannelNotAllocatedOSErr: i32 = -2085;
+pub const anon8401_tunePlayerFullOSErr: i32 = -2086;
+pub const anon8401_tuneParseOSErr: i32 = -2087;
+pub const anon8401_noExportProcAvailableErr: i32 = -2089;
+pub const anon8401_videoOutputInUseErr: i32 = -2090;
+
+pub const anon8631 = i32;
+pub const anon8631_componentDllLoadErr: i32 = -2091;
+pub const anon8631_componentDllEntryNotFoundErr: i32 = -2092;
+pub const anon8631_qtmlDllLoadErr: i32 = -2093;
+pub const anon8631_qtmlDllEntryNotFoundErr: i32 = -2094;
+pub const anon8631_qtmlUninitialized: i32 = -2095;
+pub const anon8631_unsupportedOSErr: i32 = -2096;
+pub const anon8631_unsupportedProcessorErr: i32 = -2097;
+pub const anon8631_componentNotThreadSafeErr: i32 = -2098;
+pub const anon8631_gestaltFBCIndexingState: i32 = 1717724009;
+pub const anon8631_gestaltFBCindexingSafe: i32 = 0;
+pub const anon8631_gestaltFBCindexingCritical: i32 = 1;
+
+pub const anon8741 = i32;
+pub const anon8741_cannotFindAtomErr: i32 = -2101;
+pub const anon8741_notLeafAtomErr: i32 = -2102;
+pub const anon8741_atomsNotOfSameTypeErr: i32 = -2103;
+pub const anon8741_atomIndexInvalidErr: i32 = -2104;
+pub const anon8741_duplicateAtomTypeAndIDErr: i32 = -2105;
+pub const anon8741_invalidAtomErr: i32 = -2106;
+pub const anon8741_invalidAtomContainerErr: i32 = -2107;
+pub const anon8741_invalidAtomTypeErr: i32 = -2108;
+pub const anon8741_cannotBeLeafAtomErr: i32 = -2109;
+pub const anon8741_pathTooLongErr: i32 = -2110;
+pub const anon8741_emptyPathErr: i32 = -2111;
+pub const anon8741_noPathMappingErr: i32 = -2112;
+pub const anon8741_pathNotVerifiedErr: i32 = -2113;
+pub const anon8741_unknownFormatErr: i32 = -2114;
+pub const anon8741_wackBadFileErr: i32 = -2115;
+pub const anon8741_wackForkNotFoundErr: i32 = -2116;
+pub const anon8741_wackBadMetaDataErr: i32 = -2117;
+pub const anon8741_qfcbNotFoundErr: i32 = -2118;
+pub const anon8741_qfcbNotCreatedErr: i32 = -2119;
+pub const anon8741_AAPNotCreatedErr: i32 = -2120;
+pub const anon8741_AAPNotFoundErr: i32 = -2121;
+pub const anon8741_ASDBadHeaderErr: i32 = -2122;
+pub const anon8741_ASDBadForkErr: i32 = -2123;
+pub const anon8741_ASDEntryNotFoundErr: i32 = -2124;
+pub const anon8741_fileOffsetTooBigErr: i32 = -2125;
+pub const anon8741_notAllowedToSaveMovieErr: i32 = -2126;
+pub const anon8741_qtNetworkAlreadyAllocatedErr: i32 = -2127;
+pub const anon8741_urlDataHHTTPProtocolErr: i32 = -2129;
+pub const anon8741_urlDataHHTTPNoNetDriverErr: i32 = -2130;
+pub const anon8741_urlDataHHTTPURLErr: i32 = -2131;
+pub const anon8741_urlDataHHTTPRedirectErr: i32 = -2132;
+pub const anon8741_urlDataHFTPProtocolErr: i32 = -2133;
+pub const anon8741_urlDataHFTPShutdownErr: i32 = -2134;
+pub const anon8741_urlDataHFTPBadUserErr: i32 = -2135;
+pub const anon8741_urlDataHFTPBadPasswordErr: i32 = -2136;
+pub const anon8741_urlDataHFTPServerErr: i32 = -2137;
+pub const anon8741_urlDataHFTPDataConnectionErr: i32 = -2138;
+pub const anon8741_urlDataHFTPNoDirectoryErr: i32 = -2139;
+pub const anon8741_urlDataHFTPQuotaErr: i32 = -2140;
+pub const anon8741_urlDataHFTPPermissionsErr: i32 = -2141;
+pub const anon8741_urlDataHFTPFilenameErr: i32 = -2142;
+pub const anon8741_urlDataHFTPNoNetDriverErr: i32 = -2143;
+pub const anon8741_urlDataHFTPBadNameListErr: i32 = -2144;
+pub const anon8741_urlDataHFTPNeedPasswordErr: i32 = -2145;
+pub const anon8741_urlDataHFTPNoPasswordErr: i32 = -2146;
+pub const anon8741_urlDataHFTPServerDisconnectedErr: i32 = -2147;
+pub const anon8741_urlDataHFTPURLErr: i32 = -2148;
+pub const anon8741_notEnoughDataErr: i32 = -2149;
+pub const anon8741_qtActionNotHandledErr: i32 = -2157;
+pub const anon8741_qtXMLParseErr: i32 = -2158;
+pub const anon8741_qtXMLApplicationErr: i32 = -2159;
+
+pub const anon9291 = i32;
+pub const anon9291_digiUnimpErr: i32 = -2201;
+pub const anon9291_qtParamErr: i32 = -2202;
+pub const anon9291_matrixErr: i32 = -2203;
+pub const anon9291_notExactMatrixErr: i32 = -2204;
+pub const anon9291_noMoreKeyColorsErr: i32 = -2205;
+pub const anon9291_notExactSizeErr: i32 = -2206;
+pub const anon9291_badDepthErr: i32 = -2207;
+pub const anon9291_noDMAErr: i32 = -2208;
+pub const anon9291_badCallOrderErr: i32 = -2209;
+
+pub const anon9431 = i32;
+pub const anon9431_ernelIncompleteErr: i32 = -2401;
+pub const anon9431_ernelCanceledErr: i32 = -2402;
+pub const anon9431_ernelOptionsErr: i32 = -2403;
+pub const anon9431_ernelPrivilegeErr: i32 = -2404;
+pub const anon9431_ernelUnsupportedErr: i32 = -2405;
+pub const anon9431_ernelObjectExistsErr: i32 = -2406;
+pub const anon9431_ernelWritePermissionErr: i32 = -2407;
+pub const anon9431_ernelReadPermissionErr: i32 = -2408;
+pub const anon9431_ernelExecutePermissionErr: i32 = -2409;
+pub const anon9431_ernelDeletePermissionErr: i32 = -2410;
+pub const anon9431_ernelExecutionLevelErr: i32 = -2411;
+pub const anon9431_ernelAttributeErr: i32 = -2412;
+pub const anon9431_ernelAsyncSendLimitErr: i32 = -2413;
+pub const anon9431_ernelAsyncReceiveLimitErr: i32 = -2414;
+pub const anon9431_ernelTimeoutErr: i32 = -2415;
+pub const anon9431_ernelInUseErr: i32 = -2416;
+pub const anon9431_ernelTerminatedErr: i32 = -2417;
+pub const anon9431_ernelExceptionErr: i32 = -2418;
+pub const anon9431_ernelIDErr: i32 = -2419;
+pub const anon9431_ernelAlreadyFreeErr: i32 = -2421;
+pub const anon9431_ernelReturnValueErr: i32 = -2422;
+pub const anon9431_ernelUnrecoverableErr: i32 = -2499;
+
+pub const anon9701 = i32;
+pub const anon9701_tsmComponentNoErr: i32 = 0;
+pub const anon9701_tsmUnsupScriptLanguageErr: i32 = -2500;
+pub const anon9701_tsmInputMethodNotFoundErr: i32 = -2501;
+pub const anon9701_tsmNotAnAppErr: i32 = -2502;
+pub const anon9701_tsmAlreadyRegisteredErr: i32 = -2503;
+pub const anon9701_tsmNeverRegisteredErr: i32 = -2504;
+pub const anon9701_tsmInvalidDocIDErr: i32 = -2505;
+pub const anon9701_tsmTSMDocBusyErr: i32 = -2506;
+pub const anon9701_tsmDocNotActiveErr: i32 = -2507;
+pub const anon9701_tsmNoOpenTSErr: i32 = -2508;
+pub const anon9701_tsmCantOpenComponentErr: i32 = -2509;
+pub const anon9701_tsmTextServiceNotFoundErr: i32 = -2510;
+pub const anon9701_tsmDocumentOpenErr: i32 = -2511;
+pub const anon9701_tsmUseInputWindowErr: i32 = -2512;
+pub const anon9701_tsmTSHasNoMenuErr: i32 = -2513;
+pub const anon9701_tsmTSNotOpenErr: i32 = -2514;
+pub const anon9701_tsmComponentAlreadyOpenErr: i32 = -2515;
+pub const anon9701_tsmInputMethodIsOldErr: i32 = -2516;
+pub const anon9701_tsmScriptHasNoIMErr: i32 = -2517;
+pub const anon9701_tsmUnsupportedTypeErr: i32 = -2518;
+pub const anon9701_tsmUnknownErr: i32 = -2519;
+pub const anon9701_tsmInvalidContext: i32 = -2520;
+pub const anon9701_tsmNoHandler: i32 = -2521;
+pub const anon9701_tsmNoMoreTokens: i32 = -2522;
+pub const anon9701_tsmNoStem: i32 = -2523;
+pub const anon9701_tsmDefaultIsNotInputMethodErr: i32 = -2524;
+pub const anon9701_tsmDocPropertyNotFoundErr: i32 = -2528;
+pub const anon9701_tsmDocPropertyBufferTooSmallErr: i32 = -2529;
+pub const anon9701_tsmCantChangeForcedClassStateErr: i32 = -2530;
+pub const anon9701_tsmComponentPropertyUnsupportedErr: i32 = -2531;
+pub const anon9701_tsmComponentPropertyNotFoundErr: i32 = -2532;
+pub const anon9701_tsmInputModeChangeFailedErr: i32 = -2533;
+
+pub const anon10071 = i32;
+pub const anon10071_mmInternalError: i32 = -2526;
+
+pub const anon10131 = i32;
+pub const anon10131_nrLockedErr: i32 = -2536;
+pub const anon10131_nrNotEnoughMemoryErr: i32 = -2537;
+pub const anon10131_nrInvalidNodeErr: i32 = -2538;
+pub const anon10131_nrNotFoundErr: i32 = -2539;
+pub const anon10131_nrNotCreatedErr: i32 = -2540;
+pub const anon10131_nrNameErr: i32 = -2541;
+pub const anon10131_nrNotSlotDeviceErr: i32 = -2542;
+pub const anon10131_nrDataTruncatedErr: i32 = -2543;
+pub const anon10131_nrPowerErr: i32 = -2544;
+pub const anon10131_nrPowerSwitchAbortErr: i32 = -2545;
+pub const anon10131_nrTypeMismatchErr: i32 = -2546;
+pub const anon10131_nrNotModifiedErr: i32 = -2547;
+pub const anon10131_nrOverrunErr: i32 = -2548;
+pub const anon10131_nrResultCodeBase: i32 = -2549;
+pub const anon10131_nrPathNotFound: i32 = -2550;
+pub const anon10131_nrPathBufferTooSmall: i32 = -2551;
+pub const anon10131_nrInvalidEntryIterationOp: i32 = -2552;
+pub const anon10131_nrPropertyAlreadyExists: i32 = -2553;
+pub const anon10131_nrIterationDone: i32 = -2554;
+pub const anon10131_nrExitedIteratorScope: i32 = -2555;
+pub const anon10131_nrTransactionAborted: i32 = -2556;
+pub const anon10131_nrCallNotSupported: i32 = -2557;
+
+pub const anon10391 = i32;
+pub const anon10391_invalidIconRefErr: i32 = -2580;
+pub const anon10391_noSuchIconErr: i32 = -2581;
+pub const anon10391_noIconDataAvailableErr: i32 = -2582;
+
+pub const anon10521 = i32;
+pub const anon10521_errOSACantCoerce: i32 = -1700;
+pub const anon10521_errOSACantAccess: i32 = -1728;
+pub const anon10521_errOSACantAssign: i32 = -10006;
+pub const anon10521_errOSAGeneralError: i32 = -2700;
+pub const anon10521_errOSADivideByZero: i32 = -2701;
+pub const anon10521_errOSANumericOverflow: i32 = -2702;
+pub const anon10521_errOSACantLaunch: i32 = -2703;
+pub const anon10521_errOSAAppNotHighLevelEventAware: i32 = -2704;
+pub const anon10521_errOSACorruptTerminology: i32 = -2705;
+pub const anon10521_errOSAStackOverflow: i32 = -2706;
+pub const anon10521_errOSAInternalTableOverflow: i32 = -2707;
+pub const anon10521_errOSADataBlockTooLarge: i32 = -2708;
+pub const anon10521_errOSACantGetTerminology: i32 = -2709;
+pub const anon10521_errOSACantCreate: i32 = -2710;
+
+pub const anon10831 = i32;
+pub const anon10831_errOSATypeError: i32 = -1703;
+pub const anon10831_OSAMessageNotUnderstood: i32 = -1708;
+pub const anon10831_OSAUndefinedHandler: i32 = -1717;
+pub const anon10831_OSAIllegalAccess: i32 = -1723;
+pub const anon10831_OSAIllegalIndex: i32 = -1719;
+pub const anon10831_OSAIllegalRange: i32 = -1720;
+pub const anon10831_OSAIllegalAssign: i32 = -10003;
+pub const anon10831_OSASyntaxError: i32 = -2740;
+pub const anon10831_OSASyntaxTypeError: i32 = -2741;
+pub const anon10831_OSATokenTooLong: i32 = -2742;
+pub const anon10831_OSAMissingParameter: i32 = -1701;
+pub const anon10831_OSAParameterMismatch: i32 = -1721;
+pub const anon10831_OSADuplicateParameter: i32 = -2750;
+pub const anon10831_OSADuplicateProperty: i32 = -2751;
+pub const anon10831_OSADuplicateHandler: i32 = -2752;
+pub const anon10831_OSAUndefinedVariable: i32 = -2753;
+pub const anon10831_OSAInconsistentDeclarations: i32 = -2754;
+pub const anon10831_OSAControlFlowError: i32 = -2755;
+pub const anon10831_gestaltPortable2001ANSIKbd: i32 = 202;
+pub const anon10831_gestaltPortable2001ISOKbd: i32 = 203;
+pub const anon10831_gestaltPortable2001JISKbd: i32 = 207;
+
+pub const anon11241 = i32;
+pub const anon11241_errASCantConsiderAndIgnore: i32 = -2720;
+pub const anon11241_errASCantCompareMoreThan32k: i32 = -2721;
+pub const anon11241_errASTerminologyNestingTooDeep: i32 = -2760;
+pub const anon11241_errASIllegalFormalParameter: i32 = -2761;
+pub const anon11241_errASParameterNotForEvent: i32 = -2762;
+pub const anon11241_errASNoResultReturned: i32 = -2763;
+pub const anon11241_errASInconsistentNames: i32 = -2780;
+
+pub const anon11361 = i32;
+pub const anon11361_cfragFirstErrCode: i32 = -2800;
+pub const anon11361_cfragContextIDErr: i32 = -2800;
+pub const anon11361_cfragConnectionIDErr: i32 = -2801;
+pub const anon11361_cfragNoSymbolErr: i32 = -2802;
+pub const anon11361_cfragNoSectionErr: i32 = -2803;
+pub const anon11361_cfragNoLibraryErr: i32 = -2804;
+pub const anon11361_cfragDupRegistrationErr: i32 = -2805;
+pub const anon11361_cfragFragmentFormatErr: i32 = -2806;
+pub const anon11361_cfragUnresolvedErr: i32 = -2807;
+pub const anon11361_cfragNoPositionErr: i32 = -2808;
+pub const anon11361_cfragNoPrivateMemErr: i32 = -2809;
+pub const anon11361_cfragNoClientMemErr: i32 = -2810;
+pub const anon11361_cfragNoIDsErr: i32 = -2811;
+pub const anon11361_cfragInitOrderErr: i32 = -2812;
+pub const anon11361_cfragImportTooOldErr: i32 = -2813;
+pub const anon11361_cfragImportTooNewErr: i32 = -2814;
+pub const anon11361_cfragInitLoopErr: i32 = -2815;
+pub const anon11361_cfragInitAtBootErr: i32 = -2816;
+pub const anon11361_cfragLibConnErr: i32 = -2817;
+pub const anon11361_cfragCFMStartupErr: i32 = -2818;
+pub const anon11361_cfragCFMInternalErr: i32 = -2819;
+pub const anon11361_cfragFragmentCorruptErr: i32 = -2820;
+pub const anon11361_cfragInitFunctionErr: i32 = -2821;
+pub const anon11361_cfragNoApplicationErr: i32 = -2822;
+pub const anon11361_cfragArchitectureErr: i32 = -2823;
+pub const anon11361_cfragFragmentUsageErr: i32 = -2824;
+pub const anon11361_cfragFileSizeErr: i32 = -2825;
+pub const anon11361_cfragNotClosureErr: i32 = -2826;
+pub const anon11361_cfragNoRegistrationErr: i32 = -2827;
+pub const anon11361_cfragContainerIDErr: i32 = -2828;
+pub const anon11361_cfragClosureIDErr: i32 = -2829;
+pub const anon11361_cfragAbortClosureErr: i32 = -2830;
+pub const anon11361_cfragOutputLengthErr: i32 = -2831;
+pub const anon11361_cfragMapFileErr: i32 = -2851;
+pub const anon11361_cfragExecFileRefErr: i32 = -2854;
+pub const anon11361_cfragStdFolderErr: i32 = -2855;
+pub const anon11361_cfragRsrcForkErr: i32 = -2856;
+pub const anon11361_cfragCFragRsrcErr: i32 = -2857;
+pub const anon11361_cfragLastErrCode: i32 = -2899;
+
+pub const anon11781 = i32;
+pub const anon11781_cfragFirstReservedCode: i32 = -2897;
+pub const anon11781_cfragReservedCode_3: i32 = -2897;
+pub const anon11781_cfragReservedCode_2: i32 = -2898;
+pub const anon11781_cfragReservedCode_1: i32 = -2899;
+
+pub const anon12191 = i32;
+pub const anon12191_invalidComponentID: i32 = -3000;
+pub const anon12191_validInstancesExist: i32 = -3001;
+pub const anon12191_componentNotCaptured: i32 = -3002;
+pub const anon12191_componentDontRegister: i32 = -3003;
+pub const anon12191_unresolvedComponentDLLErr: i32 = -3004;
+pub const anon12191_retryComponentRegistrationErr: i32 = -3005;
+
+pub const anon12291 = i32;
+pub const anon12291_invalidTranslationPathErr: i32 = -3025;
+pub const anon12291_couldNotParseSourceFileErr: i32 = -3026;
+pub const anon12291_noTranslationPathErr: i32 = -3030;
+pub const anon12291_badTranslationSpecErr: i32 = -3031;
+pub const anon12291_noPrefAppErr: i32 = -3032;
+
+pub const anon12371 = i32;
+pub const anon12371_buf2SmallErr: i32 = -3101;
+pub const anon12371_noMPPErr: i32 = -3102;
+pub const anon12371_ckSumErr: i32 = -3103;
+pub const anon12371_extractErr: i32 = -3104;
+pub const anon12371_readQErr: i32 = -3105;
+pub const anon12371_atpLenErr: i32 = -3106;
+pub const anon12371_atpBadRsp: i32 = -3107;
+pub const anon12371_recNotFnd: i32 = -3108;
+pub const anon12371_sktClosedErr: i32 = -3109;
+
+pub const anon12511 = i32;
+pub const anon12511_OTNoError: i32 = 0;
+pub const anon12511_OTOutOfMemoryErr: i32 = -3211;
+pub const anon12511_OTNotFoundErr: i32 = -3201;
+pub const anon12511_OTDuplicateFoundErr: i32 = -3216;
+pub const anon12511_OTBadAddressErr: i32 = -3150;
+pub const anon12511_OTBadOptionErr: i32 = -3151;
+pub const anon12511_OTAccessErr: i32 = -3152;
+pub const anon12511_OTBadReferenceErr: i32 = -3153;
+pub const anon12511_OTNoAddressErr: i32 = -3154;
+pub const anon12511_OTOutStateErr: i32 = -3155;
+pub const anon12511_OTBadSequenceErr: i32 = -3156;
+pub const anon12511_OTSysErrorErr: i32 = -3157;
+pub const anon12511_OTLookErr: i32 = -3158;
+pub const anon12511_OTBadDataErr: i32 = -3159;
+pub const anon12511_OTBufferOverflowErr: i32 = -3160;
+pub const anon12511_OTFlowErr: i32 = -3161;
+pub const anon12511_OTNoDataErr: i32 = -3162;
+pub const anon12511_OTNoDisconnectErr: i32 = -3163;
+pub const anon12511_OTNoUDErrErr: i32 = -3164;
+pub const anon12511_OTBadFlagErr: i32 = -3165;
+pub const anon12511_OTNoReleaseErr: i32 = -3166;
+pub const anon12511_OTNotSupportedErr: i32 = -3167;
+pub const anon12511_OTStateChangeErr: i32 = -3168;
+pub const anon12511_OTNoStructureTypeErr: i32 = -3169;
+pub const anon12511_OTBadNameErr: i32 = -3170;
+pub const anon12511_OTBadQLenErr: i32 = -3171;
+pub const anon12511_OTAddressBusyErr: i32 = -3172;
+pub const anon12511_OTIndOutErr: i32 = -3173;
+pub const anon12511_OTProviderMismatchErr: i32 = -3174;
+pub const anon12511_OTResQLenErr: i32 = -3175;
+pub const anon12511_OTResAddressErr: i32 = -3176;
+pub const anon12511_OTQFullErr: i32 = -3177;
+pub const anon12511_OTProtocolErr: i32 = -3178;
+pub const anon12511_OTBadSyncErr: i32 = -3179;
+pub const anon12511_OTCanceledErr: i32 = -3180;
+pub const anon12511_EPERMErr: i32 = -3200;
+pub const anon12511_ENOENTErr: i32 = -3201;
+pub const anon12511_ENORSRCErr: i32 = -3202;
+pub const anon12511_EINTRErr: i32 = -3203;
+pub const anon12511_EIOErr: i32 = -3204;
+pub const anon12511_ENXIOErr: i32 = -3205;
+pub const anon12511_EBADFErr: i32 = -3208;
+pub const anon12511_EAGAINErr: i32 = -3210;
+pub const anon12511_ENOMEMErr: i32 = -3211;
+pub const anon12511_EACCESErr: i32 = -3212;
+pub const anon12511_EFAULTErr: i32 = -3213;
+pub const anon12511_EBUSYErr: i32 = -3215;
+pub const anon12511_EEXISTErr: i32 = -3216;
+pub const anon12511_ENODEVErr: i32 = -3218;
+pub const anon12511_EINVALErr: i32 = -3221;
+pub const anon12511_ENOTTYErr: i32 = -3224;
+pub const anon12511_EPIPEErr: i32 = -3231;
+pub const anon12511_ERANGEErr: i32 = -3233;
+pub const anon12511_EWOULDBLOCKErr: i32 = -3234;
+pub const anon12511_EDEADLKErr: i32 = -3234;
+pub const anon12511_EALREADYErr: i32 = -3236;
+pub const anon12511_ENOTSOCKErr: i32 = -3237;
+pub const anon12511_EDESTADDRREQErr: i32 = -3238;
+pub const anon12511_EMSGSIZEErr: i32 = -3239;
+pub const anon12511_EPROTOTYPEErr: i32 = -3240;
+pub const anon12511_ENOPROTOOPTErr: i32 = -3241;
+pub const anon12511_EPROTONOSUPPORTErr: i32 = -3242;
+pub const anon12511_ESOCKTNOSUPPORTErr: i32 = -3243;
+pub const anon12511_EOPNOTSUPPErr: i32 = -3244;
+pub const anon12511_EADDRINUSEErr: i32 = -3247;
+pub const anon12511_EADDRNOTAVAILErr: i32 = -3248;
+pub const anon12511_ENETDOWNErr: i32 = -3249;
+pub const anon12511_ENETUNREACHErr: i32 = -3250;
+pub const anon12511_ENETRESETErr: i32 = -3251;
+pub const anon12511_ECONNABORTEDErr: i32 = -3252;
+pub const anon12511_ECONNRESETErr: i32 = -3253;
+pub const anon12511_ENOBUFSErr: i32 = -3254;
+pub const anon12511_EISCONNErr: i32 = -3255;
+pub const anon12511_ENOTCONNErr: i32 = -3256;
+pub const anon12511_ESHUTDOWNErr: i32 = -3257;
+pub const anon12511_ETOOMANYREFSErr: i32 = -3258;
+pub const anon12511_ETIMEDOUTErr: i32 = -3259;
+pub const anon12511_ECONNREFUSEDErr: i32 = -3260;
+pub const anon12511_EHOSTDOWNErr: i32 = -3263;
+pub const anon12511_EHOSTUNREACHErr: i32 = -3264;
+pub const anon12511_EPROTOErr: i32 = -3269;
+pub const anon12511_ETIMEErr: i32 = -3270;
+pub const anon12511_ENOSRErr: i32 = -3271;
+pub const anon12511_EBADMSGErr: i32 = -3272;
+pub const anon12511_ECANCELErr: i32 = -3273;
+pub const anon12511_ENOSTRErr: i32 = -3274;
+pub const anon12511_ENODATAErr: i32 = -3275;
+pub const anon12511_EINPROGRESSErr: i32 = -3276;
+pub const anon12511_ESRCHErr: i32 = -3277;
+pub const anon12511_ENOMSGErr: i32 = -3278;
+pub const anon12511_OTClientNotInittedErr: i32 = -3279;
+pub const anon12511_OTPortHasDiedErr: i32 = -3280;
+pub const anon12511_OTPortWasEjectedErr: i32 = -3281;
+pub const anon12511_OTBadConfigurationErr: i32 = -3282;
+pub const anon12511_OTConfigurationChangedErr: i32 = -3283;
+pub const anon12511_OTUserRequestedErr: i32 = -3284;
+pub const anon12511_OTPortLostConnection: i32 = -3285;
+
+pub const anon13531 = i32;
+pub const anon13531_QDNoPalette: i32 = -3950;
+pub const anon13531_QDNoColorHWCursorSupport: i32 = -3951;
+pub const anon13531_QDCursorAlreadyRegistered: i32 = -3952;
+pub const anon13531_QDCursorNotRegistered: i32 = -3953;
+pub const anon13531_QDCorruptPICTDataErr: i32 = -3954;
+
+pub const anon13641 = i32;
+pub const anon13641_firstPickerError: i32 = -4000;
+pub const anon13641_invalidPickerType: i32 = -4000;
+pub const anon13641_requiredFlagsDontMatch: i32 = -4001;
+pub const anon13641_pickerResourceError: i32 = -4002;
+pub const anon13641_cantLoadPicker: i32 = -4003;
+pub const anon13641_cantCreatePickerWindow: i32 = -4004;
+pub const anon13641_cantLoadPackage: i32 = -4005;
+pub const anon13641_pickerCantLive: i32 = -4006;
+pub const anon13641_colorSyncNotInstalled: i32 = -4007;
+pub const anon13641_badProfileError: i32 = -4008;
+pub const anon13641_noHelpForItem: i32 = -4009;
+
+pub const anon13811 = i32;
+pub const anon13811_NSL68kContextNotSupported: i32 = -4170;
+pub const anon13811_NSLSchedulerError: i32 = -4171;
+pub const anon13811_NSLBadURLSyntax: i32 = -4172;
+pub const anon13811_NSLNoCarbonLib: i32 = -4173;
+pub const anon13811_NSLUILibraryNotAvailable: i32 = -4174;
+pub const anon13811_NSLNotImplementedYet: i32 = -4175;
+pub const anon13811_NSLErrNullPtrError: i32 = -4176;
+pub const anon13811_NSLSomePluginsFailedToLoad: i32 = -4177;
+pub const anon13811_NSLNullNeighborhoodPtr: i32 = -4178;
+pub const anon13811_NSLNoPluginsForSearch: i32 = -4179;
+pub const anon13811_NSLSearchAlreadyInProgress: i32 = -4180;
+pub const anon13811_NSLNoPluginsFound: i32 = -4181;
+pub const anon13811_NSLPluginLoadFailed: i32 = -4182;
+pub const anon13811_NSLBadProtocolTypeErr: i32 = -4183;
+pub const anon13811_NSLNullListPtr: i32 = -4184;
+pub const anon13811_NSLBadClientInfoPtr: i32 = -4185;
+pub const anon13811_NSLCannotContinueLookup: i32 = -4186;
+pub const anon13811_NSLBufferTooSmallForData: i32 = -4187;
+pub const anon13811_NSLNoContextAvailable: i32 = -4188;
+pub const anon13811_NSLRequestBufferAlreadyInList: i32 = -4189;
+pub const anon13811_NSLInvalidPluginSpec: i32 = -4190;
+pub const anon13811_NSLNoSupportForService: i32 = -4191;
+pub const anon13811_NSLBadNetConnection: i32 = -4192;
+pub const anon13811_NSLBadDataTypeErr: i32 = -4193;
+pub const anon13811_NSLBadServiceTypeErr: i32 = -4194;
+pub const anon13811_NSLBadReferenceErr: i32 = -4195;
+pub const anon13811_NSLNoElementsInList: i32 = -4196;
+pub const anon13811_NSLInsufficientOTVer: i32 = -4197;
+pub const anon13811_NSLInsufficientSysVer: i32 = -4198;
+pub const anon13811_NSLNotInitialized: i32 = -4199;
+pub const anon13811_NSLInitializationFailed: i32 = -4200;
+
+pub const anon14181 = i32;
+pub const anon14181_DTPHoldJobErr: i32 = -4200;
+pub const anon14181_DTPStopQueueErr: i32 = -4201;
+pub const anon14181_DTPTryAgainErr: i32 = -4202;
+pub const anon14181_DTPAbortJobErr: i32 = 128;
+
+pub const anon14271 = i32;
+pub const anon14271_cmElementTagNotFound: i32 = -4200;
+pub const anon14271_cmIndexRangeErr: i32 = -4201;
+pub const anon14271_cmCantDeleteElement: i32 = -4202;
+pub const anon14271_cmFatalProfileErr: i32 = -4203;
+pub const anon14271_cmInvalidProfile: i32 = -4204;
+pub const anon14271_cmInvalidProfileLocation: i32 = -4205;
+pub const anon14271_cmCantCopyModifiedV1Profile: i32 = -4215;
+pub const anon14271_cmInvalidSearch: i32 = -4206;
+pub const anon14271_cmSearchError: i32 = -4207;
+pub const anon14271_cmErrIncompatibleProfile: i32 = -4208;
+pub const anon14271_cmInvalidColorSpace: i32 = -4209;
+pub const anon14271_cmInvalidSrcMap: i32 = -4210;
+pub const anon14271_cmInvalidDstMap: i32 = -4211;
+pub const anon14271_cmNoGDevicesError: i32 = -4212;
+pub const anon14271_cmInvalidProfileComment: i32 = -4213;
+pub const anon14271_cmRangeOverFlow: i32 = -4214;
+pub const anon14271_cmNamedColorNotFound: i32 = -4216;
+pub const anon14271_cmCantGamutCheckError: i32 = -4217;
+pub const anon14271_MPLowLevelDebugger: i32 = 0;
+pub const anon14271_MPMidLevelDebugger: i32 = 268435456;
+pub const anon14271_MPHighLevelDebugger: i32 = 536870912;
+
+pub const anon14511 = i32;
+pub const anon14511_badFolderDescErr: i32 = -4270;
+pub const anon14511_duplicateFolderDescErr: i32 = -4271;
+pub const anon14511_noMoreFolderDescErr: i32 = -4272;
+pub const anon14511_invalidFolderTypeErr: i32 = -4273;
+pub const anon14511_duplicateRoutingErr: i32 = -4274;
+pub const anon14511_routingNotFoundErr: i32 = -4275;
+pub const anon14511_badRoutingSizeErr: i32 = -4276;
+
+pub const anon14631 = i32;
+pub const anon14631_coreFoundationUnknownErr: i32 = -4960;
+
+pub const anon14681 = i32;
+pub const anon14681_errCoreEndianDataTooShortForFormat: i32 = -4940;
+pub const anon14681_errCoreEndianDataTooLongForFormat: i32 = -4941;
+pub const anon14681_errCoreEndianDataDoesNotMatchFormat: i32 = -4942;
+
+pub const anon14761 = i32;
+pub const anon14761_internalScrapErr: i32 = -4988;
+pub const anon14761_duplicateScrapFlavorErr: i32 = -4989;
+pub const anon14761_badScrapRefErr: i32 = -4990;
+pub const anon14761_processStateIncorrectErr: i32 = -4991;
+pub const anon14761_scrapPromiseNotKeptErr: i32 = -4992;
+pub const anon14761_noScrapPromiseKeeperErr: i32 = -4993;
+pub const anon14761_nilScrapFlavorDataErr: i32 = -4994;
+pub const anon14761_scrapFlavorFlagsMismatchErr: i32 = -4995;
+pub const anon14761_scrapFlavorSizeMismatchErr: i32 = -4996;
+pub const anon14761_illegalScrapFlavorFlagsErr: i32 = -4997;
+pub const anon14761_illegalScrapFlavorTypeErr: i32 = -4998;
+pub const anon14761_illegalScrapFlavorSizeErr: i32 = -4999;
+pub const anon14761_scrapFlavorNotFoundErr: i32 = -102;
+pub const anon14761_needClearScrapErr: i32 = -100;
+pub const anon14761_CSSM_ESTIMATED_TIME_UNKNOWN: i32 = -1;
+
+pub const anon14941 = i32;
+pub const anon14941_afpAccessDenied: i32 = -5000;
+pub const anon14941_afpAuthContinue: i32 = -5001;
+pub const anon14941_afpBadUAM: i32 = -5002;
+pub const anon14941_afpBadVersNum: i32 = -5003;
+pub const anon14941_afpBitmapErr: i32 = -5004;
+pub const anon14941_afpCantMove: i32 = -5005;
+pub const anon14941_afpDenyConflict: i32 = -5006;
+pub const anon14941_afpDirNotEmpty: i32 = -5007;
+pub const anon14941_afpDiskFull: i32 = -5008;
+pub const anon14941_afpEofError: i32 = -5009;
+pub const anon14941_afpFileBusy: i32 = -5010;
+pub const anon14941_afpFlatVol: i32 = -5011;
+pub const anon14941_afpItemNotFound: i32 = -5012;
+pub const anon14941_afpLockErr: i32 = -5013;
+pub const anon14941_afpMiscErr: i32 = -5014;
+pub const anon14941_afpNoMoreLocks: i32 = -5015;
+pub const anon14941_afpNoServer: i32 = -5016;
+pub const anon14941_afpObjectExists: i32 = -5017;
+pub const anon14941_afpObjectNotFound: i32 = -5018;
+pub const anon14941_afpParmErr: i32 = -5019;
+pub const anon14941_afpRangeNotLocked: i32 = -5020;
+pub const anon14941_afpRangeOverlap: i32 = -5021;
+pub const anon14941_afpSessClosed: i32 = -5022;
+pub const anon14941_afpUserNotAuth: i32 = -5023;
+pub const anon14941_afpCallNotSupported: i32 = -5024;
+pub const anon14941_afpObjectTypeErr: i32 = -5025;
+pub const anon14941_afpTooManyFilesOpen: i32 = -5026;
+pub const anon14941_afpServerGoingDown: i32 = -5027;
+pub const anon14941_afpCantRename: i32 = -5028;
+pub const anon14941_afpDirNotFound: i32 = -5029;
+pub const anon14941_afpIconTypeError: i32 = -5030;
+pub const anon14941_afpVolLocked: i32 = -5031;
+pub const anon14941_afpObjectLocked: i32 = -5032;
+pub const anon14941_afpContainsSharedErr: i32 = -5033;
+pub const anon14941_afpIDNotFound: i32 = -5034;
+pub const anon14941_afpIDExists: i32 = -5035;
+pub const anon14941_afpDiffVolErr: i32 = -5036;
+pub const anon14941_afpCatalogChanged: i32 = -5037;
+pub const anon14941_afpSameObjectErr: i32 = -5038;
+pub const anon14941_afpBadIDErr: i32 = -5039;
+pub const anon14941_afpPwdSameErr: i32 = -5040;
+pub const anon14941_afpPwdTooShortErr: i32 = -5041;
+pub const anon14941_afpPwdExpiredErr: i32 = -5042;
+pub const anon14941_afpInsideSharedErr: i32 = -5043;
+pub const anon14941_afpInsideTrashErr: i32 = -5044;
+pub const anon14941_afpPwdNeedsChangeErr: i32 = -5045;
+pub const anon14941_afpPwdPolicyErr: i32 = -5046;
+pub const anon14941_afpAlreadyLoggedInErr: i32 = -5047;
+pub const anon14941_afpCallNotAllowed: i32 = -5048;
+
+pub const anon15491 = i32;
+pub const anon15491_afpBadDirIDType: i32 = -5060;
+pub const anon15491_afpCantMountMoreSrvre: i32 = -5061;
+pub const anon15491_afpAlreadyMounted: i32 = -5062;
+pub const anon15491_afpSameNodeErr: i32 = -5063;
+
+pub const anon15621 = i32;
+pub const anon15621_numberFormattingNotANumberErr: i32 = -5200;
+pub const anon15621_numberFormattingOverflowInDestinationErr: i32 = -5201;
+pub const anon15621_numberFormattingBadNumberFormattingObjectErr: i32 = -5202;
+pub const anon15621_numberFormattingSpuriousCharErr: i32 = -5203;
+pub const anon15621_numberFormattingLiteralMissingErr: i32 = -5204;
+pub const anon15621_numberFormattingDelimiterMissingErr: i32 = -5205;
+pub const anon15621_numberFormattingEmptyFormatErr: i32 = -5206;
+pub const anon15621_numberFormattingBadFormatErr: i32 = -5207;
+pub const anon15621_numberFormattingBadOptionsErr: i32 = -5208;
+pub const anon15621_numberFormattingBadTokenErr: i32 = -5209;
+pub const anon15621_numberFormattingUnOrderedCurrencyRangeErr: i32 = -5210;
+pub const anon15621_numberFormattingBadCurrencyPositionErr: i32 = -5211;
+pub const anon15621_numberFormattingNotADigitErr: i32 = -5212;
+pub const anon15621_numberFormattingUnOrdredCurrencyRangeErr: i32 = -5210;
+pub const anon15621_numberFortmattingNotADigitErr: i32 = -5212;
+
+pub const anon15811 = i32;
+pub const anon15811_textParserBadParamErr: i32 = -5220;
+pub const anon15811_textParserObjectNotFoundErr: i32 = -5221;
+pub const anon15811_textParserBadTokenValueErr: i32 = -5222;
+pub const anon15811_textParserBadParserObjectErr: i32 = -5223;
+pub const anon15811_textParserParamErr: i32 = -5224;
+pub const anon15811_textParserNoMoreTextErr: i32 = -5225;
+pub const anon15811_textParserBadTextLanguageErr: i32 = -5226;
+pub const anon15811_textParserBadTextEncodingErr: i32 = -5227;
+pub const anon15811_textParserNoSuchTokenFoundErr: i32 = -5228;
+pub const anon15811_textParserNoMoreTokensErr: i32 = -5229;
+
+pub const anon15941 = i32;
+pub const anon15941_errUnknownAttributeTag: i32 = -5240;
+pub const anon15941_errMarginWilllNotFit: i32 = -5241;
+pub const anon15941_errNotInImagingMode: i32 = -5242;
+pub const anon15941_errAlreadyInImagingMode: i32 = -5243;
+pub const anon15941_errEngineNotFound: i32 = -5244;
+pub const anon15941_errIteratorReachedEnd: i32 = -5245;
+pub const anon15941_errInvalidRange: i32 = -5246;
+pub const anon15941_errOffsetNotOnElementBounday: i32 = -5247;
+pub const anon15941_errNoHiliteText: i32 = -5248;
+pub const anon15941_errEmptyScrap: i32 = -5249;
+pub const anon15941_errReadOnlyText: i32 = -5250;
+pub const anon15941_errUnknownElement: i32 = -5251;
+pub const anon15941_errNonContiuousAttribute: i32 = -5252;
+pub const anon15941_errCannotUndo: i32 = -5253;
+
+pub const anon16131 = i32;
+pub const anon16131_hrHTMLRenderingLibNotInstalledErr: i32 = -5360;
+pub const anon16131_hrMiscellaneousExceptionErr: i32 = -5361;
+pub const anon16131_hrUnableToResizeHandleErr: i32 = -5362;
+pub const anon16131_hrURLNotHandledErr: i32 = -5363;
+pub const anon16131_gestaltProcClkSpeed: i32 = 1885564011;
+
+pub const anon16221 = i32;
+pub const anon16221_errIANoErr: i32 = 0;
+pub const anon16221_errIAUnknownErr: i32 = -5380;
+pub const anon16221_errIAAllocationErr: i32 = -5381;
+pub const anon16221_errIAParamErr: i32 = -5382;
+pub const anon16221_errIANoMoreItems: i32 = -5383;
+pub const anon16221_errIABufferTooSmall: i32 = -5384;
+pub const anon16221_errIACanceled: i32 = -5385;
+pub const anon16221_errIAInvalidDocument: i32 = -5386;
+pub const anon16221_errIATextExtractionErr: i32 = -5387;
+pub const anon16221_errIAEndOfTextRun: i32 = -5388;
+pub const anon16221_CSSM_TP_CERTVERIFY_UNKNOWN: i32 = 0;
+pub const anon16221_CSSM_TP_CERTVERIFY_VALID: i32 = 1;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID: i32 = 2;
+pub const anon16221_CSSM_TP_CERTVERIFY_REVOKED: i32 = 3;
+pub const anon16221_CSSM_TP_CERTVERIFY_SUSPENDED: i32 = 4;
+pub const anon16221_CSSM_TP_CERTVERIFY_EXPIRED: i32 = 5;
+pub const anon16221_CSSM_TP_CERTVERIFY_NOT_VALID_YET: i32 = 6;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_AUTHORITY: i32 = 7;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_SIGNATURE: i32 = 8;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_CERT_VALUE: i32 = 9;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_CERTGROUP: i32 = 10;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_POLICY: i32 = 11;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_POLICY_IDS: i32 = 12;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_BASIC_CONSTRAINTS: i32 = 13;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_CRL_DIST_PT: i32 = 14;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_NAME_TREE: i32 = 15;
+pub const anon16221_CSSM_TP_CERTVERIFY_UNKNOWN_CRITICAL_EXT: i32 = 16;
+
+pub const anon16371 = i32;
+pub const anon16371_qtsBadSelectorErr: i32 = -5400;
+pub const anon16371_qtsBadStateErr: i32 = -5401;
+pub const anon16371_qtsBadDataErr: i32 = -5402;
+pub const anon16371_qtsUnsupportedDataTypeErr: i32 = -5403;
+pub const anon16371_qtsUnsupportedRateErr: i32 = -5404;
+pub const anon16371_qtsUnsupportedFeatureErr: i32 = -5405;
+pub const anon16371_qtsTooMuchDataErr: i32 = -5406;
+pub const anon16371_qtsUnknownValueErr: i32 = -5407;
+pub const anon16371_qtsTimeoutErr: i32 = -5408;
+pub const anon16371_qtsConnectionFailedErr: i32 = -5420;
+pub const anon16371_qtsAddressBusyErr: i32 = -5421;
+
+pub const anon16521 = i32;
+pub const anon16521_gestaltUnknownErr: i32 = -5550;
+pub const anon16521_gestaltUndefSelectorErr: i32 = -5551;
+pub const anon16521_gestaltDupSelectorErr: i32 = -5552;
+pub const anon16521_gestaltLocationErr: i32 = -5553;
+pub const anon16521_gestaltPopupAttr: i32 = 1886351393;
+pub const anon16521_gestaltPopupPresent: i32 = 0;
+
+pub const anon16621 = i32;
+pub const anon16621_menuPropertyInvalidErr: i32 = -5603;
+pub const anon16621_menuPropertyInvalid: i32 = -5603;
+pub const anon16621_menuPropertyNotFoundErr: i32 = -5604;
+pub const anon16621_menuNotFoundErr: i32 = -5620;
+pub const anon16621_menuUsesSystemDefErr: i32 = -5621;
+pub const anon16621_menuItemNotFoundErr: i32 = -5622;
+pub const anon16621_menuInvalidErr: i32 = -5623;
+
+pub const anon16741 = i32;
+pub const anon16741_errInvalidWindowPtr: i32 = -5600;
+pub const anon16741_errInvalidWindowRef: i32 = -5600;
+pub const anon16741_errUnsupportedWindowAttributesForClass: i32 = -5601;
+pub const anon16741_errWindowDoesNotHaveProxy: i32 = -5602;
+pub const anon16741_errInvalidWindowProperty: i32 = -5603;
+pub const anon16741_errWindowPropertyNotFound: i32 = -5604;
+pub const anon16741_errUnrecognizedWindowClass: i32 = -5605;
+pub const anon16741_errCorruptWindowDescription: i32 = -5606;
+pub const anon16741_errUserWantsToDragWindow: i32 = -5607;
+pub const anon16741_errWindowsAlreadyInitialized: i32 = -5608;
+pub const anon16741_errFloatingWindowsNotInitialized: i32 = -5609;
+pub const anon16741_errWindowNotFound: i32 = -5610;
+pub const anon16741_errWindowDoesNotFitOnscreen: i32 = -5611;
+pub const anon16741_windowAttributeImmutableErr: i32 = -5612;
+pub const anon16741_windowAttributesConflictErr: i32 = -5613;
+pub const anon16741_windowManagerInternalErr: i32 = -5614;
+pub const anon16741_windowWrongStateErr: i32 = -5615;
+pub const anon16741_windowGroupInvalidErr: i32 = -5616;
+pub const anon16741_windowAppModalStateAlreadyExistsErr: i32 = -5617;
+pub const anon16741_windowNoAppModalStateErr: i32 = -5618;
+pub const anon16741_errWindowDoesntSupportFocus: i32 = -30583;
+pub const anon16741_errWindowRegionCodeInvalid: i32 = -30593;
+
+pub const anon17011 = i32;
+pub const anon17011_dialogNoTimeoutErr: i32 = -5640;
+
+pub const anon17071 = i32;
+pub const anon17071_NavWrongDialogStateErr: i32 = -5694;
+pub const anon17071_NavWrongDialogClassErr: i32 = -5695;
+pub const anon17071_NavInvalidSystemConfigErr: i32 = -5696;
+pub const anon17071_NavCustomControlMessageFailedErr: i32 = -5697;
+pub const anon17071_NavInvalidCustomControlMessageErr: i32 = -5698;
+pub const anon17071_NavMissingKindStringErr: i32 = -5699;
+
+pub const anon17181 = i32;
+pub const anon17181_collectionItemLockedErr: i32 = -5750;
+pub const anon17181_collectionItemNotFoundErr: i32 = -5751;
+pub const anon17181_collectionIndexRangeErr: i32 = -5752;
+pub const anon17181_collectionVersionErr: i32 = -5753;
+pub const anon17181_gestaltSDPPromptVersion: i32 = 1886548086;
+
+pub const anon17271 = i32;
+pub const anon17271_QTSSUnknownErr: i32 = -6150;
+
+pub const anon17321 = i32;
+pub const anon17321_DMGenErr: i32 = -6220;
+pub const anon17321_DMMirroringOnAlready: i32 = -6221;
+pub const anon17321_DMWrongNumberOfDisplays: i32 = -6222;
+pub const anon17321_DMMirroringBlocked: i32 = -6223;
+pub const anon17321_DMCantBlock: i32 = -6224;
+pub const anon17321_DMMirroringNotOn: i32 = -6225;
+pub const anon17321_SysSWTooOld: i32 = -6226;
+pub const anon17321_DMSWNotInitializedErr: i32 = -6227;
+pub const anon17321_DMDriverNotDisplayMgrAwareErr: i32 = -6228;
+pub const anon17321_DMDisplayNotFoundErr: i32 = -6229;
+pub const anon17321_DMNotFoundErr: i32 = -6229;
+pub const anon17321_DMDisplayAlreadyInstalledErr: i32 = -6230;
+pub const anon17321_DMMainDisplayCannotMoveErr: i32 = -6231;
+pub const anon17321_DMNoDeviceTableclothErr: i32 = -6231;
+pub const anon17321_DMFoundErr: i32 = -6232;
+pub const anon17321_gestaltQD3DViewer: i32 = 1899198051;
+pub const anon17321_gestaltQD3DViewerPresent: i32 = 0;
+
+pub const anon17571 = i32;
+pub const anon17571_laTooSmallBufferErr: i32 = -6984;
+pub const anon17571_laEnvironmentBusyErr: i32 = -6985;
+pub const anon17571_laEnvironmentNotFoundErr: i32 = -6986;
+pub const anon17571_laEnvironmentExistErr: i32 = -6987;
+pub const anon17571_laInvalidPathErr: i32 = -6988;
+pub const anon17571_laNoMoreMorphemeErr: i32 = -6989;
+pub const anon17571_laFailAnalysisErr: i32 = -6990;
+pub const anon17571_laTextOverFlowErr: i32 = -6991;
+pub const anon17571_laDictionaryNotOpenedErr: i32 = -6992;
+pub const anon17571_laDictionaryUnknownErr: i32 = -6993;
+pub const anon17571_laDictionaryTooManyErr: i32 = -6994;
+pub const anon17571_laPropertyValueErr: i32 = -6995;
+pub const anon17571_laPropertyUnknownErr: i32 = -6996;
+pub const anon17571_laPropertyIsReadOnlyErr: i32 = -6997;
+pub const anon17571_laPropertyNotFoundErr: i32 = -6998;
+pub const anon17571_laPropertyErr: i32 = -6999;
+pub const anon17571_laEngineNotFoundErr: i32 = -7000;
+pub const anon17571_gestaltQD3D: i32 = 1902392164;
+pub const anon17571_gestaltQD3DPresent: i32 = 0;
+
+pub const anon17781 = u32;
+pub const anon17781_USBNoErr: u32 = 0;
+pub const anon17781_USBNoTran: u32 = 0;
+pub const anon17781_USBNoDelay: u32 = 0;
+pub const anon17781_USBPending: u32 = 1;
+
+pub const anon17981 = i32;
+pub const anon17981_USBNotSent2Err: i32 = -6901;
+pub const anon17981_USBNotSent1Err: i32 = -6902;
+pub const anon17981_USBBufUnderRunErr: i32 = -6903;
+pub const anon17981_USBBufOvrRunErr: i32 = -6904;
+pub const anon17981_USBRes2Err: i32 = -6905;
+pub const anon17981_USBRes1Err: i32 = -6906;
+pub const anon17981_USBUnderRunErr: i32 = -6907;
+pub const anon17981_USBOverRunErr: i32 = -6908;
+pub const anon17981_USBWrongPIDErr: i32 = -6909;
+pub const anon17981_USBPIDCheckErr: i32 = -6910;
+pub const anon17981_USBNotRespondingErr: i32 = -6911;
+pub const anon17981_USBEndpointStallErr: i32 = -6912;
+pub const anon17981_USBDataToggleErr: i32 = -6913;
+pub const anon17981_USBBitstufErr: i32 = -6914;
+pub const anon17981_USBCRCErr: i32 = -6915;
+pub const anon17981_USBLinkErr: i32 = -6916;
+
+pub const anon18221 = i32;
+pub const anon18221_USBQueueFull: i32 = -6948;
+pub const anon18221_USBNotHandled: i32 = -6987;
+pub const anon18221_USBUnknownNotification: i32 = -6949;
+pub const anon18221_USBBadDispatchTable: i32 = -6950;
+
+pub const anon18351 = i32;
+pub const anon18351_USBInternalReserved10: i32 = -6951;
+pub const anon18351_USBInternalReserved9: i32 = -6952;
+pub const anon18351_USBInternalReserved8: i32 = -6953;
+pub const anon18351_USBInternalReserved7: i32 = -6954;
+pub const anon18351_USBInternalReserved6: i32 = -6955;
+pub const anon18351_USBInternalReserved5: i32 = -6956;
+pub const anon18351_USBInternalReserved4: i32 = -6957;
+pub const anon18351_USBInternalReserved3: i32 = -6958;
+pub const anon18351_USBInternalReserved2: i32 = -6959;
+pub const anon18351_USBInternalReserved1: i32 = -6960;
+
+pub const anon18491 = i32;
+pub const anon18491_USBPortDisabled: i32 = -6969;
+pub const anon18491_USBQueueAborted: i32 = -6970;
+pub const anon18491_USBTimedOut: i32 = -6971;
+pub const anon18491_USBDeviceDisconnected: i32 = -6972;
+pub const anon18491_USBDeviceNotSuspended: i32 = -6973;
+pub const anon18491_USBDeviceSuspended: i32 = -6974;
+pub const anon18491_USBInvalidBuffer: i32 = -6975;
+pub const anon18491_USBDevicePowerProblem: i32 = -6976;
+pub const anon18491_USBDeviceBusy: i32 = -6977;
+pub const anon18491_USBUnknownInterfaceErr: i32 = -6978;
+pub const anon18491_USBPipeStalledError: i32 = -6979;
+pub const anon18491_USBPipeIdleError: i32 = -6980;
+pub const anon18491_USBNoBandwidthError: i32 = -6981;
+pub const anon18491_USBAbortedError: i32 = -6982;
+pub const anon18491_USBFlagsError: i32 = -6983;
+pub const anon18491_USBCompletionError: i32 = -6984;
+pub const anon18491_USBPBLengthError: i32 = -6985;
+pub const anon18491_USBPBVersionError: i32 = -6986;
+pub const anon18491_USBNotFound: i32 = -6987;
+pub const anon18491_USBOutOfMemoryErr: i32 = -6988;
+pub const anon18491_USBDeviceErr: i32 = -6989;
+pub const anon18491_USBNoDeviceErr: i32 = -6990;
+pub const anon18491_USBAlreadyOpenErr: i32 = -6991;
+pub const anon18491_USBTooManyTransactionsErr: i32 = -6992;
+pub const anon18491_USBUnknownRequestErr: i32 = -6993;
+pub const anon18491_USBRqErr: i32 = -6994;
+pub const anon18491_USBIncorrectTypeErr: i32 = -6995;
+pub const anon18491_USBTooManyPipesErr: i32 = -6996;
+pub const anon18491_USBUnknownPipeErr: i32 = -6997;
+pub const anon18491_USBUnknownDeviceErr: i32 = -6998;
+pub const anon18491_USBInternalErr: i32 = -6999;
+
+pub const anon18871 = i32;
+pub const anon18871_dcmParamErr: i32 = -7100;
+pub const anon18871_dcmNotDictionaryErr: i32 = -7101;
+pub const anon18871_dcmBadDictionaryErr: i32 = -7102;
+pub const anon18871_dcmPermissionErr: i32 = -7103;
+pub const anon18871_dcmDictionaryNotOpenErr: i32 = -7104;
+pub const anon18871_dcmDictionaryBusyErr: i32 = -7105;
+pub const anon18871_dcmBlockFullErr: i32 = -7107;
+pub const anon18871_dcmNoRecordErr: i32 = -7108;
+pub const anon18871_dcmDupRecordErr: i32 = -7109;
+pub const anon18871_dcmNecessaryFieldErr: i32 = -7110;
+pub const anon18871_dcmBadFieldInfoErr: i32 = -7111;
+pub const anon18871_dcmBadFieldTypeErr: i32 = -7112;
+pub const anon18871_dcmNoFieldErr: i32 = -7113;
+pub const anon18871_dcmBadKeyErr: i32 = -7115;
+pub const anon18871_dcmTooManyKeyErr: i32 = -7116;
+pub const anon18871_dcmBadDataSizeErr: i32 = -7117;
+pub const anon18871_dcmBadFindMethodErr: i32 = -7118;
+pub const anon18871_dcmBadPropertyErr: i32 = -7119;
+pub const anon18871_dcmProtectedErr: i32 = -7121;
+pub const anon18871_dcmNoAccessMethodErr: i32 = -7122;
+pub const anon18871_dcmBadFeatureErr: i32 = -7124;
+pub const anon18871_dcmIterationCompleteErr: i32 = -7126;
+pub const anon18871_dcmBufferOverflowErr: i32 = -7127;
+
+pub const anon19151 = i32;
+pub const anon19151_RAInvalidParameter: i32 = -7100;
+pub const anon19151_RAInvalidPort: i32 = -7101;
+pub const anon19151_RAStartupFailed: i32 = -7102;
+pub const anon19151_RAPortSetupFailed: i32 = -7103;
+pub const anon19151_RAOutOfMemory: i32 = -7104;
+pub const anon19151_RANotSupported: i32 = -7105;
+pub const anon19151_RAMissingResources: i32 = -7106;
+pub const anon19151_RAIncompatiblePrefs: i32 = -7107;
+pub const anon19151_RANotConnected: i32 = -7108;
+pub const anon19151_RAConnectionCanceled: i32 = -7109;
+pub const anon19151_RAUnknownUser: i32 = -7110;
+pub const anon19151_RAInvalidPassword: i32 = -7111;
+pub const anon19151_RAInternalError: i32 = -7112;
+pub const anon19151_RAInstallationDamaged: i32 = -7113;
+pub const anon19151_RAPortBusy: i32 = -7114;
+pub const anon19151_RAUnknownPortState: i32 = -7115;
+pub const anon19151_RAInvalidPortState: i32 = -7116;
+pub const anon19151_RAInvalidSerialProtocol: i32 = -7117;
+pub const anon19151_RAUserLoginDisabled: i32 = -7118;
+pub const anon19151_RAUserPwdChangeRequired: i32 = -7119;
+pub const anon19151_RAUserPwdEntryRequired: i32 = -7120;
+pub const anon19151_RAUserInteractionRequired: i32 = -7121;
+pub const anon19151_RAInitOpenTransportFailed: i32 = -7122;
+pub const anon19151_RARemoteAccessNotReady: i32 = -7123;
+pub const anon19151_RATCPIPInactive: i32 = -7124;
+pub const anon19151_RATCPIPNotConfigured: i32 = -7125;
+pub const anon19151_RANotPrimaryInterface: i32 = -7126;
+pub const anon19151_RAConfigurationDBInitErr: i32 = -7127;
+pub const anon19151_RAPPPProtocolRejected: i32 = -7128;
+pub const anon19151_RAPPPAuthenticationFailed: i32 = -7129;
+pub const anon19151_RAPPPNegotiationFailed: i32 = -7130;
+pub const anon19151_RAPPPUserDisconnected: i32 = -7131;
+pub const anon19151_RAPPPPeerDisconnected: i32 = -7132;
+pub const anon19151_RAPeerNotResponding: i32 = -7133;
+pub const anon19151_RAATalkInactive: i32 = -7134;
+pub const anon19151_RAExtAuthenticationFailed: i32 = -7135;
+pub const anon19151_RANCPRejectedbyPeer: i32 = -7136;
+pub const anon19151_RADuplicateIPAddr: i32 = -7137;
+pub const anon19151_RACallBackFailed: i32 = -7138;
+pub const anon19151_RANotEnabled: i32 = -7139;
+
+pub const anon19661 = i32;
+pub const anon19661_ATSUInvalidTextLayoutErr: i32 = -8790;
+pub const anon19661_ATSUInvalidStyleErr: i32 = -8791;
+pub const anon19661_ATSUInvalidTextRangeErr: i32 = -8792;
+pub const anon19661_ATSUFontsMatched: i32 = -8793;
+pub const anon19661_ATSUFontsNotMatched: i32 = -8794;
+pub const anon19661_ATSUNoCorrespondingFontErr: i32 = -8795;
+pub const anon19661_ATSUInvalidFontErr: i32 = -8796;
+pub const anon19661_ATSUInvalidAttributeValueErr: i32 = -8797;
+pub const anon19661_ATSUInvalidAttributeSizeErr: i32 = -8798;
+pub const anon19661_ATSUInvalidAttributeTagErr: i32 = -8799;
+pub const anon19661_ATSUInvalidCacheErr: i32 = -8800;
+pub const anon19661_ATSUNotSetErr: i32 = -8801;
+pub const anon19661_ATSUNoStyleRunsAssignedErr: i32 = -8802;
+pub const anon19661_ATSUQuickDrawTextErr: i32 = -8803;
+pub const anon19661_ATSULowLevelErr: i32 = -8804;
+pub const anon19661_ATSUNoFontCmapAvailableErr: i32 = -8805;
+pub const anon19661_ATSUNoFontScalerAvailableErr: i32 = -8806;
+pub const anon19661_ATSUCoordinateOverflowErr: i32 = -8807;
+pub const anon19661_ATSULineBreakInWord: i32 = -8808;
+pub const anon19661_ATSUBusyObjectErr: i32 = -8809;
+
+pub const anon20311 = i32;
+pub const anon20311_TextUnsupportedEncodingErr: i32 = -8738;
+pub const anon20311_TextMalformedInputErr: i32 = -8739;
+pub const anon20311_TextUndefinedElementErr: i32 = -8740;
+pub const anon20311_TECMissingTableErr: i32 = -8745;
+pub const anon20311_TECTableChecksumErr: i32 = -8746;
+pub const anon20311_TECTableFormatErr: i32 = -8747;
+pub const anon20311_TECCorruptConverterErr: i32 = -8748;
+pub const anon20311_TECNoConversionPathErr: i32 = -8749;
+pub const anon20311_TECBufferBelowMinimumSizeErr: i32 = -8750;
+pub const anon20311_TECArrayFullErr: i32 = -8751;
+pub const anon20311_TECBadTextRunErr: i32 = -8752;
+pub const anon20311_TECPartialCharErr: i32 = -8753;
+pub const anon20311_TECUnmappableElementErr: i32 = -8754;
+pub const anon20311_TECIncompleteElementErr: i32 = -8755;
+pub const anon20311_TECDirectionErr: i32 = -8756;
+pub const anon20311_TECGlobalsUnavailableErr: i32 = -8770;
+pub const anon20311_TECItemUnavailableErr: i32 = -8771;
+pub const anon20311_TECUsedFallbacksStatus: i32 = -8783;
+pub const anon20311_TECNeedFlushStatus: i32 = -8784;
+pub const anon20311_TECOutputBufferFullStatus: i32 = -8785;
+pub const anon20311_unicodeChecksumErr: i32 = -8769;
+pub const anon20311_unicodeNoTableErr: i32 = -8768;
+pub const anon20311_unicodeVariantErr: i32 = -8767;
+pub const anon20311_unicodeFallbacksErr: i32 = -8766;
+pub const anon20311_unicodePartConvertErr: i32 = -8765;
+pub const anon20311_unicodeBufErr: i32 = -8764;
+pub const anon20311_unicodeCharErr: i32 = -8763;
+pub const anon20311_unicodeElementErr: i32 = -8762;
+pub const anon20311_unicodeNotFoundErr: i32 = -8761;
+pub const anon20311_unicodeTableFormatErr: i32 = -8760;
+pub const anon20311_unicodeDirectionErr: i32 = -8759;
+pub const anon20311_unicodeContextualErr: i32 = -8758;
+pub const anon20311_unicodeTextEncodingDataErr: i32 = -8757;
+
+pub const anon20721 = i32;
+pub const anon20721_UTCUnderflowErr: i32 = -8850;
+pub const anon20721_UTCOverflowErr: i32 = -8851;
+pub const anon20721_IllegalClockValueErr: i32 = -8852;
+
+pub const anon20821 = i32;
+pub const anon20821_ATSUInvalidFontFallbacksErr: i32 = -8900;
+pub const anon20821_ATSUUnsupportedStreamFormatErr: i32 = -8901;
+pub const anon20821_ATSUBadStreamErr: i32 = -8902;
+pub const anon20821_ATSUOutputBufferTooSmallErr: i32 = -8903;
+pub const anon20821_ATSUInvalidCallInsideCallbackErr: i32 = -8904;
+pub const anon20821_ATSUNoFontNameErr: i32 = -8905;
+pub const anon20821_ATSULastErr: i32 = -8959;
+
+pub const anon21011 = i32;
+pub const anon21011_codecErr: i32 = -8960;
+pub const anon21011_noCodecErr: i32 = -8961;
+pub const anon21011_codecUnimpErr: i32 = -8962;
+pub const anon21011_codecSizeErr: i32 = -8963;
+pub const anon21011_codecScreenBufErr: i32 = -8964;
+pub const anon21011_codecImageBufErr: i32 = -8965;
+pub const anon21011_codecSpoolErr: i32 = -8966;
+pub const anon21011_codecAbortErr: i32 = -8967;
+pub const anon21011_codecWouldOffscreenErr: i32 = -8968;
+pub const anon21011_codecBadDataErr: i32 = -8969;
+pub const anon21011_codecDataVersErr: i32 = -8970;
+pub const anon21011_codecExtensionNotFoundErr: i32 = -8971;
+pub const anon21011_scTypeNotFoundErr: i32 = -8971;
+pub const anon21011_codecConditionErr: i32 = -8972;
+pub const anon21011_codecOpenErr: i32 = -8973;
+pub const anon21011_codecCantWhenErr: i32 = -8974;
+pub const anon21011_codecCantQueueErr: i32 = -8975;
+pub const anon21011_codecNothingToBlitErr: i32 = -8976;
+pub const anon21011_codecNoMemoryPleaseWaitErr: i32 = -8977;
+pub const anon21011_codecDisabledErr: i32 = -8978;
+pub const anon21011_codecNeedToFlushChainErr: i32 = -8979;
+pub const anon21011_lockPortBitsBadSurfaceErr: i32 = -8980;
+pub const anon21011_lockPortBitsWindowMovedErr: i32 = -8981;
+pub const anon21011_lockPortBitsWindowResizedErr: i32 = -8982;
+pub const anon21011_lockPortBitsWindowClippedErr: i32 = -8983;
+pub const anon21011_lockPortBitsBadPortErr: i32 = -8984;
+pub const anon21011_lockPortBitsSurfaceLostErr: i32 = -8985;
+pub const anon21011_codecParameterDialogConfirm: i32 = -8986;
+pub const anon21011_codecNeedAccessKeyErr: i32 = -8987;
+pub const anon21011_codecOffscreenFailedErr: i32 = -8988;
+pub const anon21011_codecDroppedFrameErr: i32 = -8989;
+pub const anon21011_directXObjectAlreadyExists: i32 = -8990;
+pub const anon21011_lockPortBitsWrongGDeviceErr: i32 = -8991;
+pub const anon21011_codecOffscreenFailedPleaseRetryErr: i32 = -8992;
+pub const anon21011_badCodecCharacterizationErr: i32 = -8993;
+pub const anon21011_noThumbnailFoundErr: i32 = -8994;
+pub const anon21011_gestaltTE6: i32 = 6;
+
+pub const anon21421 = i32;
+pub const anon21421_BadAdapterErr: i32 = -9050;
+pub const anon21421_BadAttributeErr: i32 = -9051;
+pub const anon21421_BadBaseErr: i32 = -9052;
+pub const anon21421_BadEDCErr: i32 = -9053;
+pub const anon21421_BadIRQErr: i32 = -9054;
+pub const anon21421_BadOffsetErr: i32 = -9055;
+pub const anon21421_BadPageErr: i32 = -9056;
+pub const anon21421_BadSizeErr: i32 = -9057;
+pub const anon21421_BadSocketErr: i32 = -9058;
+pub const anon21421_BadTypeErr: i32 = -9059;
+pub const anon21421_BadVccErr: i32 = -9060;
+pub const anon21421_BadVppErr: i32 = -9061;
+pub const anon21421_BadWindowErr: i32 = -9062;
+pub const anon21421_BadArgLengthErr: i32 = -9063;
+pub const anon21421_BadArgsErr: i32 = -9064;
+pub const anon21421_BadHandleErr: i32 = -9065;
+pub const anon21421_BadCISErr: i32 = -9066;
+pub const anon21421_BadSpeedErr: i32 = -9067;
+pub const anon21421_ReadFailureErr: i32 = -9068;
+pub const anon21421_WriteFailureErr: i32 = -9069;
+pub const anon21421_GeneralFailureErr: i32 = -9070;
+pub const anon21421_NoCardErr: i32 = -9071;
+pub const anon21421_UnsupportedFunctionErr: i32 = -9072;
+pub const anon21421_UnsupportedModeErr: i32 = -9073;
+pub const anon21421_BusyErr: i32 = -9074;
+pub const anon21421_WriteProtectedErr: i32 = -9075;
+pub const anon21421_ConfigurationLockedErr: i32 = -9076;
+pub const anon21421_InUseErr: i32 = -9077;
+pub const anon21421_NoMoreItemsErr: i32 = -9078;
+pub const anon21421_OutOfResourceErr: i32 = -9079;
+pub const anon21421_NoCardSevicesSocketsErr: i32 = -9080;
+pub const anon21421_InvalidRegEntryErr: i32 = -9081;
+pub const anon21421_BadLinkErr: i32 = -9082;
+pub const anon21421_BadDeviceErr: i32 = -9083;
+pub const anon21421_16BitCardErr: i32 = -9084;
+pub const anon21421_CardBusCardErr: i32 = -9085;
+pub const anon21421_PassCallToChainErr: i32 = -9086;
+pub const anon21421_CantConfigureCardErr: i32 = -9087;
+pub const anon21421_PostCardEventErr: i32 = -9088;
+pub const anon21421_InvalidDeviceNumber: i32 = -9089;
+pub const anon21421_UnsupportedVsErr: i32 = -9090;
+pub const anon21421_InvalidCSClientErr: i32 = -9091;
+pub const anon21421_BadTupleDataErr: i32 = -9092;
+pub const anon21421_BadCustomIFIDErr: i32 = -9093;
+pub const anon21421_NoIOWindowRequestedErr: i32 = -9094;
+pub const anon21421_NoMoreTimerClientsErr: i32 = -9095;
+pub const anon21421_NoMoreInterruptSlotsErr: i32 = -9096;
+pub const anon21421_NoClientTableErr: i32 = -9097;
+pub const anon21421_UnsupportedCardErr: i32 = -9098;
+pub const anon21421_NoCardEnablersFoundErr: i32 = -9099;
+pub const anon21421_NoEnablerForCardErr: i32 = -9100;
+pub const anon21421_NoCompatibleNameErr: i32 = -9101;
+pub const anon21421_ClientRequestDenied: i32 = -9102;
+pub const anon21421_NotReadyErr: i32 = -9103;
+pub const anon21421_TooManyIOWindowsErr: i32 = -9104;
+pub const anon21421_AlreadySavedStateErr: i32 = -9105;
+pub const anon21421_AttemptDupCardEntryErr: i32 = -9106;
+pub const anon21421_CardPowerOffErr: i32 = -9107;
+pub const anon21421_NotZVCapableErr: i32 = -9108;
+pub const anon21421_NoCardBusCISErr: i32 = -9109;
+
+pub const anon22071 = i32;
+pub const anon22071_noDeviceForChannel: i32 = -9400;
+pub const anon22071_grabTimeComplete: i32 = -9401;
+pub const anon22071_cantDoThatInCurrentMode: i32 = -9402;
+pub const anon22071_notEnoughMemoryToGrab: i32 = -9403;
+pub const anon22071_notEnoughDiskSpaceToGrab: i32 = -9404;
+pub const anon22071_couldntGetRequiredComponent: i32 = -9405;
+pub const anon22071_badSGChannel: i32 = -9406;
+pub const anon22071_seqGrabInfoNotAvailable: i32 = -9407;
+pub const anon22071_deviceCantMeetRequest: i32 = -9408;
+pub const anon22071_badControllerHeight: i32 = -9994;
+pub const anon22071_editingNotAllowed: i32 = -9995;
+pub const anon22071_controllerBoundsNotExact: i32 = -9996;
+pub const anon22071_cannotSetWidthOfAttachedController: i32 = -9997;
+pub const anon22071_controllerHasFixedHeight: i32 = -9998;
+pub const anon22071_cannotMoveAttachedController: i32 = -9999;
+
+pub const anon22261 = i32;
+pub const anon22261_errAEBadKeyForm: i32 = -10002;
+pub const anon22261_errAECantHandleClass: i32 = -10010;
+pub const anon22261_errAECantSupplyType: i32 = -10009;
+pub const anon22261_errAECantUndo: i32 = -10015;
+pub const anon22261_errAEEventFailed: i32 = -10000;
+pub const anon22261_errAEIndexTooLarge: i32 = -10007;
+pub const anon22261_errAEInTransaction: i32 = -10011;
+pub const anon22261_errAELocalOnly: i32 = -10016;
+pub const anon22261_errAENoSuchTransaction: i32 = -10012;
+pub const anon22261_errAENotAnElement: i32 = -10008;
+pub const anon22261_errAENotASingleObject: i32 = -10014;
+pub const anon22261_errAENotModifiable: i32 = -10003;
+pub const anon22261_errAENoUserSelection: i32 = -10013;
+pub const anon22261_errAEPrivilegeError: i32 = -10004;
+pub const anon22261_errAEReadDenied: i32 = -10005;
+pub const anon22261_errAETypeError: i32 = -10001;
+pub const anon22261_errAEWriteDenied: i32 = -10006;
+pub const anon22261_errAENotAnEnumMember: i32 = -10023;
+pub const anon22261_errAECantPutThatThere: i32 = -10024;
+pub const anon22261_errAEPropertiesClash: i32 = -10025;
+pub const anon22261_gestaltATSUFeatures: i32 = 1969845094;
+pub const anon22261_gestaltATSUTrackingFeature: i32 = 1;
+pub const anon22261_gestaltATSUMemoryFeature: i32 = 1;
+pub const anon22261_gestaltATSUFallbacksFeature: i32 = 1;
+pub const anon22261_gestaltATSUGlyphBoundsFeature: i32 = 1;
+pub const anon22261_gestaltATSULineControlFeature: i32 = 1;
+pub const anon22261_gestaltATSULayoutCreateAndCopyFeature: i32 = 1;
+pub const anon22261_gestaltATSULayoutCacheClearFeature: i32 = 1;
+pub const anon22261_gestaltATSUTextLocatorUsageFeature: i32 = 2;
+pub const anon22261_gestaltATSULowLevelOrigFeatures: i32 = 4;
+pub const anon22261_gestaltATSUFallbacksObjFeatures: i32 = 8;
+pub const anon22261_gestaltATSUIgnoreLeadingFeature: i32 = 8;
+pub const anon22261_gestaltATSUByCharacterClusterFeature: i32 = 16;
+pub const anon22261_gestaltATSUAscentDescentControlsFeature: i32 = 16;
+pub const anon22261_gestaltATSUHighlightInactiveTextFeature: i32 = 16;
+pub const anon22261_gestaltATSUPositionToCursorFeature: i32 = 16;
+pub const anon22261_gestaltATSUBatchBreakLinesFeature: i32 = 16;
+pub const anon22261_gestaltATSUTabSupportFeature: i32 = 16;
+pub const anon22261_gestaltATSUDirectAccess: i32 = 16;
+pub const anon22261_gestaltATSUDecimalTabFeature: i32 = 32;
+pub const anon22261_gestaltATSUBiDiCursorPositionFeature: i32 = 32;
+pub const anon22261_gestaltATSUNearestCharLineBreakFeature: i32 = 32;
+pub const anon22261_gestaltATSUHighlightColorControlFeature: i32 = 32;
+pub const anon22261_gestaltATSUUnderlineOptionsStyleFeature: i32 = 32;
+pub const anon22261_gestaltATSUStrikeThroughStyleFeature: i32 = 32;
+pub const anon22261_gestaltATSUDropShadowStyleFeature: i32 = 32;
+
+pub const anon22501 = i32;
+pub const anon22501_telGenericError: i32 = -1;
+pub const anon22501_telNoErr: i32 = 0;
+pub const anon22501_telNoTools: i32 = 8;
+pub const anon22501_telBadTermErr: i32 = -10001;
+pub const anon22501_telBadDNErr: i32 = -10002;
+pub const anon22501_telBadCAErr: i32 = -10003;
+pub const anon22501_telBadHandErr: i32 = -10004;
+pub const anon22501_telBadProcErr: i32 = -10005;
+pub const anon22501_telCAUnavail: i32 = -10006;
+pub const anon22501_telNoMemErr: i32 = -10007;
+pub const anon22501_telNoOpenErr: i32 = -10008;
+pub const anon22501_telBadHTypeErr: i32 = -10010;
+pub const anon22501_telHTypeNotSupp: i32 = -10011;
+pub const anon22501_telBadLevelErr: i32 = -10012;
+pub const anon22501_telBadVTypeErr: i32 = -10013;
+pub const anon22501_telVTypeNotSupp: i32 = -10014;
+pub const anon22501_telBadAPattErr: i32 = -10015;
+pub const anon22501_telAPattNotSupp: i32 = -10016;
+pub const anon22501_telBadIndex: i32 = -10017;
+pub const anon22501_telIndexNotSupp: i32 = -10018;
+pub const anon22501_telBadStateErr: i32 = -10019;
+pub const anon22501_telStateNotSupp: i32 = -10020;
+pub const anon22501_telBadIntExt: i32 = -10021;
+pub const anon22501_telIntExtNotSupp: i32 = -10022;
+pub const anon22501_telBadDNDType: i32 = -10023;
+pub const anon22501_telDNDTypeNotSupp: i32 = -10024;
+pub const anon22501_telFeatNotSub: i32 = -10030;
+pub const anon22501_telFeatNotAvail: i32 = -10031;
+pub const anon22501_telFeatActive: i32 = -10032;
+pub const anon22501_telFeatNotSupp: i32 = -10033;
+pub const anon22501_telConfLimitErr: i32 = -10040;
+pub const anon22501_telConfNoLimit: i32 = -10041;
+pub const anon22501_telConfErr: i32 = -10042;
+pub const anon22501_telConfRej: i32 = -10043;
+pub const anon22501_telTransferErr: i32 = -10044;
+pub const anon22501_telTransferRej: i32 = -10045;
+pub const anon22501_telCBErr: i32 = -10046;
+pub const anon22501_telConfLimitExceeded: i32 = -10047;
+pub const anon22501_telBadDNType: i32 = -10050;
+pub const anon22501_telBadPageID: i32 = -10051;
+pub const anon22501_telBadIntercomID: i32 = -10052;
+pub const anon22501_telBadFeatureID: i32 = -10053;
+pub const anon22501_telBadFwdType: i32 = -10054;
+pub const anon22501_telBadPickupGroupID: i32 = -10055;
+pub const anon22501_telBadParkID: i32 = -10056;
+pub const anon22501_telBadSelect: i32 = -10057;
+pub const anon22501_telBadBearerType: i32 = -10058;
+pub const anon22501_telBadRate: i32 = -10059;
+pub const anon22501_telDNTypeNotSupp: i32 = -10060;
+pub const anon22501_telFwdTypeNotSupp: i32 = -10061;
+pub const anon22501_telBadDisplayMode: i32 = -10062;
+pub const anon22501_telDisplayModeNotSupp: i32 = -10063;
+pub const anon22501_telNoCallbackRef: i32 = -10064;
+pub const anon22501_telAlreadyOpen: i32 = -10070;
+pub const anon22501_telStillNeeded: i32 = -10071;
+pub const anon22501_telTermNotOpen: i32 = -10072;
+pub const anon22501_telCANotAcceptable: i32 = -10080;
+pub const anon22501_telCANotRejectable: i32 = -10081;
+pub const anon22501_telCANotDeflectable: i32 = -10082;
+pub const anon22501_telPBErr: i32 = -10090;
+pub const anon22501_telBadFunction: i32 = -10091;
+pub const anon22501_telNoSuchTool: i32 = -10102;
+pub const anon22501_telUnknownErr: i32 = -10103;
+pub const anon22501_telNoCommFolder: i32 = -10106;
+pub const anon22501_telInitFailed: i32 = -10107;
+pub const anon22501_telBadCodeResource: i32 = -10108;
+pub const anon22501_telDeviceNotFound: i32 = -10109;
+pub const anon22501_telBadProcID: i32 = -10110;
+pub const anon22501_telValidateFailed: i32 = -10111;
+pub const anon22501_telAutoAnsNotOn: i32 = -10112;
+pub const anon22501_telDetAlreadyOn: i32 = -10113;
+pub const anon22501_telBadSWErr: i32 = -10114;
+pub const anon22501_telBadSampleRate: i32 = -10115;
+pub const anon22501_telNotEnoughdspBW: i32 = -10116;
+
+pub const anon23281 = i32;
+pub const anon23281_errTaskNotFound: i32 = -10780;
+
+pub const anon23361 = i32;
+pub const anon23361_pmBusyErr: i32 = -13000;
+pub const anon23361_pmReplyTOErr: i32 = -13001;
+pub const anon23361_pmSendStartErr: i32 = -13002;
+pub const anon23361_pmSendEndErr: i32 = -13003;
+pub const anon23361_pmRecvStartErr: i32 = -13004;
+pub const anon23361_pmRecvEndErr: i32 = -13005;
+
+pub const anon23471 = i32;
+pub const anon23471_PowerHandlerExistsForDeviceErr: i32 = -13006;
+pub const anon23471_PowerHandlerNotFoundForDeviceErr: i32 = -13007;
+pub const anon23471_PowerHandlerNotFoundForProcErr: i32 = -13008;
+pub const anon23471_PowerMgtMessageNotHandled: i32 = -13009;
+pub const anon23471_PowerMgtRequestDenied: i32 = -13010;
+pub const anon23471_CantReportProcessorTemperatureErr: i32 = -13013;
+pub const anon23471_ProcessorTempRoutineRequiresMPLib2: i32 = -13014;
+pub const anon23471_NoSuchPowerSource: i32 = -13020;
+pub const anon23471_BridgeSoftwareRunningCantSleep: i32 = -13038;
+
+pub const anon23611 = i32;
+pub const anon23611_debuggingExecutionContextErr: i32 = -13880;
+pub const anon23611_debuggingDuplicateSignatureErr: i32 = -13881;
+pub const anon23611_debuggingDuplicateOptionErr: i32 = -13882;
+pub const anon23611_debuggingInvalidSignatureErr: i32 = -13883;
+pub const anon23611_debuggingInvalidOptionErr: i32 = -13884;
+pub const anon23611_debuggingInvalidNameErr: i32 = -13885;
+pub const anon23611_debuggingNoCallbackErr: i32 = -13886;
+pub const anon23611_debuggingNoMatchErr: i32 = -13887;
+
+pub const anon23741 = i32;
+pub const anon23741_HIDVersionIncompatibleErr: i32 = -13909;
+pub const anon23741_HIDDeviceNotReady: i32 = -13910;
+
+pub const anon23811 = i32;
+pub const anon23811_HIDSuccess: i32 = 0;
+pub const anon23811_HIDInvalidRangePageErr: i32 = -13923;
+pub const anon23811_HIDReportIDZeroErr: i32 = -13924;
+pub const anon23811_HIDReportCountZeroErr: i32 = -13925;
+pub const anon23811_HIDReportSizeZeroErr: i32 = -13926;
+pub const anon23811_HIDUnmatchedDesignatorRangeErr: i32 = -13927;
+pub const anon23811_HIDUnmatchedStringRangeErr: i32 = -13928;
+pub const anon23811_HIDInvertedUsageRangeErr: i32 = -13929;
+pub const anon23811_HIDUnmatchedUsageRangeErr: i32 = -13930;
+pub const anon23811_HIDInvertedPhysicalRangeErr: i32 = -13931;
+pub const anon23811_HIDInvertedLogicalRangeErr: i32 = -13932;
+pub const anon23811_HIDBadLogicalMaximumErr: i32 = -13933;
+pub const anon23811_HIDBadLogicalMinimumErr: i32 = -13934;
+pub const anon23811_HIDUsagePageZeroErr: i32 = -13935;
+pub const anon23811_HIDEndOfDescriptorErr: i32 = -13936;
+pub const anon23811_HIDNotEnoughMemoryErr: i32 = -13937;
+pub const anon23811_HIDBadParameterErr: i32 = -13938;
+pub const anon23811_HIDNullPointerErr: i32 = -13939;
+pub const anon23811_HIDInvalidReportLengthErr: i32 = -13940;
+pub const anon23811_HIDInvalidReportTypeErr: i32 = -13941;
+pub const anon23811_HIDBadLogPhysValuesErr: i32 = -13942;
+pub const anon23811_HIDIncompatibleReportErr: i32 = -13943;
+pub const anon23811_HIDInvalidPreparsedDataErr: i32 = -13944;
+pub const anon23811_HIDNotValueArrayErr: i32 = -13945;
+pub const anon23811_HIDUsageNotFoundErr: i32 = -13946;
+pub const anon23811_HIDValueOutOfRangeErr: i32 = -13947;
+pub const anon23811_HIDBufferTooSmallErr: i32 = -13948;
+pub const anon23811_HIDNullStateErr: i32 = -13949;
+pub const anon23811_HIDBaseError: i32 = -13950;
+pub const anon23811_gestaltX86AdditionalFeatures: i32 = 2016949857;
+pub const anon23811_gestaltX86HasSSE3: i32 = 0;
+pub const anon23811_gestaltX86HasMONITOR: i32 = 3;
+pub const anon23811_gestaltX86HasDSCPL: i32 = 4;
+pub const anon23811_gestaltX86HasVMX: i32 = 5;
+pub const anon23811_gestaltX86HasSMX: i32 = 6;
+pub const anon23811_gestaltX86HasEST: i32 = 7;
+pub const anon23811_gestaltX86HasTM2: i32 = 8;
+pub const anon23811_gestaltX86HasSupplementalSSE3: i32 = 9;
+pub const anon23811_gestaltX86HasCID: i32 = 10;
+pub const anon23811_gestaltX86HasCX16: i32 = 13;
+pub const anon23811_gestaltX86HasxTPR: i32 = 14;
+
+pub const anon24151 = i32;
+pub const anon24151_ModemOutOfMemory: i32 = -14000;
+pub const anon24151_ModemPreferencesMissing: i32 = -14001;
+pub const anon24151_ModemScriptMissing: i32 = -14002;
+
+pub const anon24241 = i32;
+pub const anon24241_TXNEndIterationErr: i32 = -22000;
+pub const anon24241_TXNCannotAddFrameErr: i32 = -22001;
+pub const anon24241_TXNInvalidFrameIDErr: i32 = -22002;
+pub const anon24241_TXNIllegalToCrossDataBoundariesErr: i32 = -22003;
+pub const anon24241_TXNUserCanceledOperationErr: i32 = -22004;
+pub const anon24241_TXNBadDefaultFileTypeWarning: i32 = -22005;
+pub const anon24241_TXNCannotSetAutoIndentErr: i32 = -22006;
+pub const anon24241_TXNRunIndexOutofBoundsErr: i32 = -22007;
+pub const anon24241_TXNNoMatchErr: i32 = -22008;
+pub const anon24241_TXNAttributeTagInvalidForRunErr: i32 = -22009;
+pub const anon24241_TXNSomeOrAllTagsInvalidForRunErr: i32 = -22010;
+pub const anon24241_TXNInvalidRunIndex: i32 = -22011;
+pub const anon24241_TXNAlreadyInitializedErr: i32 = -22012;
+pub const anon24241_TXNCannotTurnTSMOffWhenUsingUnicodeErr: i32 = -22013;
+pub const anon24241_TXNCopyNotAllowedInEchoModeErr: i32 = -22014;
+pub const anon24241_TXNDataTypeNotAllowedErr: i32 = -22015;
+pub const anon24241_TXNATSUIIsNotInstalledErr: i32 = -22016;
+pub const anon24241_TXNOutsideOfLineErr: i32 = -22017;
+pub const anon24241_TXNOutsideOfFrameErr: i32 = -22018;
+
+pub const anon24501 = i32;
+pub const anon24501_printerStatusOpCodeNotSupportedErr: i32 = -25280;
+
+pub const anon24561 = i32;
+pub const anon24561_errKCNotAvailable: i32 = -25291;
+pub const anon24561_errKCReadOnly: i32 = -25292;
+pub const anon24561_errKCAuthFailed: i32 = -25293;
+pub const anon24561_errKCNoSuchKeychain: i32 = -25294;
+pub const anon24561_errKCInvalidKeychain: i32 = -25295;
+pub const anon24561_errKCDuplicateKeychain: i32 = -25296;
+pub const anon24561_errKCDuplicateCallback: i32 = -25297;
+pub const anon24561_errKCInvalidCallback: i32 = -25298;
+pub const anon24561_errKCDuplicateItem: i32 = -25299;
+pub const anon24561_errKCItemNotFound: i32 = -25300;
+pub const anon24561_errKCBufferTooSmall: i32 = -25301;
+pub const anon24561_errKCDataTooLarge: i32 = -25302;
+pub const anon24561_errKCNoSuchAttr: i32 = -25303;
+pub const anon24561_errKCInvalidItemRef: i32 = -25304;
+pub const anon24561_errKCInvalidSearchRef: i32 = -25305;
+pub const anon24561_errKCNoSuchClass: i32 = -25306;
+pub const anon24561_errKCNoDefaultKeychain: i32 = -25307;
+pub const anon24561_errKCInteractionNotAllowed: i32 = -25308;
+pub const anon24561_errKCReadOnlyAttr: i32 = -25309;
+pub const anon24561_errKCWrongKCVersion: i32 = -25310;
+pub const anon24561_errKCKeySizeNotAllowed: i32 = -25311;
+pub const anon24561_errKCNoStorageModule: i32 = -25312;
+pub const anon24561_errKCNoCertificateModule: i32 = -25313;
+pub const anon24561_errKCNoPolicyModule: i32 = -25314;
+pub const anon24561_errKCInteractionRequired: i32 = -25315;
+pub const anon24561_errKCDataNotAvailable: i32 = -25316;
+pub const anon24561_errKCDataNotModifiable: i32 = -25317;
+pub const anon24561_errKCCreateChainFailed: i32 = -25318;
+
+pub const anon24891 = i32;
+pub const anon24891_UCOutputBufferTooSmall: i32 = -25340;
+pub const anon24891_UCTextBreakLocatorMissingType: i32 = -25341;
+
+pub const anon24941 = i32;
+pub const anon24941_UCTSNoKeysAddedToObjectErr: i32 = -25342;
+pub const anon24941_UCTSSearchListErr: i32 = -25343;
+
+pub const anon24991 = i32;
+pub const anon24991_UCTokenizerIterationFinished: i32 = -25344;
+pub const anon24991_UCTokenizerUnknownLang: i32 = -25345;
+pub const anon24991_UCTokenNotFound: i32 = -25346;
+
+pub const anon25061 = i32;
+pub const anon25061_MPIterationEndErr: i32 = -29275;
+pub const anon25061_MPPrivilegedErr: i32 = -29276;
+pub const anon25061_MPProcessCreatedErr: i32 = -29288;
+pub const anon25061_MPProcessTerminatedErr: i32 = -29289;
+pub const anon25061_MPTaskCreatedErr: i32 = -29290;
+pub const anon25061_MPTaskBlockedErr: i32 = -29291;
+pub const anon25061_MPTaskStoppedErr: i32 = -29292;
+pub const anon25061_MPBlueBlockingErr: i32 = -29293;
+pub const anon25061_MPDeletedErr: i32 = -29295;
+pub const anon25061_MPTimeoutErr: i32 = -29296;
+pub const anon25061_MPTaskAbortedErr: i32 = -29297;
+pub const anon25061_MPInsufficientResourcesErr: i32 = -29298;
+pub const anon25061_MPInvalidIDErr: i32 = -29299;
+
+pub const anon25221 = i32;
+pub const anon25221_MPNanokernelNeedsMemoryErr: i32 = -29294;
+
+pub const anon25271 = i32;
+pub const anon25271_CollateAttributesNotFoundErr: i32 = -29500;
+pub const anon25271_CollateInvalidOptions: i32 = -29501;
+pub const anon25271_CollateMissingUnicodeTableErr: i32 = -29502;
+pub const anon25271_CollateUnicodeConvertFailedErr: i32 = -29503;
+pub const anon25271_CollatePatternNotFoundErr: i32 = -29504;
+pub const anon25271_CollateInvalidChar: i32 = -29505;
+pub const anon25271_CollateBufferTooSmall: i32 = -29506;
+pub const anon25271_CollateInvalidCollationRef: i32 = -29507;
+
+pub const anon25401 = i32;
+pub const anon25401_FNSInvalidReferenceErr: i32 = -29580;
+pub const anon25401_FNSBadReferenceVersionErr: i32 = -29581;
+pub const anon25401_FNSInvalidProfileErr: i32 = -29582;
+pub const anon25401_FNSBadProfileVersionErr: i32 = -29583;
+pub const anon25401_FNSDuplicateReferenceErr: i32 = -29584;
+pub const anon25401_FNSMismatchErr: i32 = -29585;
+pub const anon25401_FNSInsufficientDataErr: i32 = -29586;
+pub const anon25401_FNSBadFlattenedSizeErr: i32 = -29587;
+pub const anon25401_FNSNameNotFoundErr: i32 = -29589;
+
+pub const anon25551 = i32;
+pub const anon25551_LocalesBufferTooSmallErr: i32 = -30001;
+pub const anon25551_LocalesTableFormatErr: i32 = -30002;
+pub const anon25551_LocalesDefaultDisplayStatus: i32 = -30029;
+
+pub const anon25631 = i32;
+pub const anon25631_ALMInternalErr: i32 = -30049;
+pub const anon25631_ALMGroupNotFoundErr: i32 = -30048;
+pub const anon25631_ALMNoSuchModuleErr: i32 = -30047;
+pub const anon25631_ALMModuleCommunicationErr: i32 = -30046;
+pub const anon25631_ALMDuplicateModuleErr: i32 = -30045;
+pub const anon25631_ALMInstallationErr: i32 = -30044;
+pub const anon25631_ALMDeferSwitchErr: i32 = -30043;
+pub const anon25631_ALMRebootFlagsLevelErr: i32 = -30042;
+
+pub const anon25741 = i32;
+pub const anon25741_ALMLocationNotFoundErr: i32 = -30048;
+
+pub const anon25801 = i32;
+pub const anon25801_SSpInternalErr: i32 = -30340;
+pub const anon25801_SSpVersionErr: i32 = -30341;
+pub const anon25801_SSpCantInstallErr: i32 = -30342;
+pub const anon25801_SSpParallelUpVectorErr: i32 = -30343;
+pub const anon25801_SSpScaleToZeroErr: i32 = -30344;
+
+pub const anon25901 = i32;
+pub const anon25901_NSpInitializationFailedErr: i32 = -30360;
+pub const anon25901_NSpAlreadyInitializedErr: i32 = -30361;
+pub const anon25901_NSpTopologyNotSupportedErr: i32 = -30362;
+pub const anon25901_NSpPipeFullErr: i32 = -30364;
+pub const anon25901_NSpHostFailedErr: i32 = -30365;
+pub const anon25901_NSpProtocolNotAvailableErr: i32 = -30366;
+pub const anon25901_NSpInvalidGameRefErr: i32 = -30367;
+pub const anon25901_NSpInvalidParameterErr: i32 = -30369;
+pub const anon25901_NSpOTNotPresentErr: i32 = -30370;
+pub const anon25901_NSpOTVersionTooOldErr: i32 = -30371;
+pub const anon25901_NSpMemAllocationErr: i32 = -30373;
+pub const anon25901_NSpAlreadyAdvertisingErr: i32 = -30374;
+pub const anon25901_NSpNotAdvertisingErr: i32 = -30376;
+pub const anon25901_NSpInvalidAddressErr: i32 = -30377;
+pub const anon25901_NSpFreeQExhaustedErr: i32 = -30378;
+pub const anon25901_NSpRemovePlayerFailedErr: i32 = -30379;
+pub const anon25901_NSpAddressInUseErr: i32 = -30380;
+pub const anon25901_NSpFeatureNotImplementedErr: i32 = -30381;
+pub const anon25901_NSpNameRequiredErr: i32 = -30382;
+pub const anon25901_NSpInvalidPlayerIDErr: i32 = -30383;
+pub const anon25901_NSpInvalidGroupIDErr: i32 = -30384;
+pub const anon25901_NSpNoPlayersErr: i32 = -30385;
+pub const anon25901_NSpNoGroupsErr: i32 = -30386;
+pub const anon25901_NSpNoHostVolunteersErr: i32 = -30387;
+pub const anon25901_NSpCreateGroupFailedErr: i32 = -30388;
+pub const anon25901_NSpAddPlayerFailedErr: i32 = -30389;
+pub const anon25901_NSpInvalidDefinitionErr: i32 = -30390;
+pub const anon25901_NSpInvalidProtocolRefErr: i32 = -30391;
+pub const anon25901_NSpInvalidProtocolListErr: i32 = -30392;
+pub const anon25901_NSpTimeoutErr: i32 = -30393;
+pub const anon25901_NSpGameTerminatedErr: i32 = -30394;
+pub const anon25901_NSpConnectFailedErr: i32 = -30395;
+pub const anon25901_NSpSendFailedErr: i32 = -30396;
+pub const anon25901_NSpMessageTooBigErr: i32 = -30397;
+pub const anon25901_NSpCantBlockErr: i32 = -30398;
+pub const anon25901_NSpJoinFailedErr: i32 = -30399;
+
+pub const anon26311 = i32;
+pub const anon26311_ISpInternalErr: i32 = -30420;
+pub const anon26311_ISpSystemListErr: i32 = -30421;
+pub const anon26311_ISpBufferToSmallErr: i32 = -30422;
+pub const anon26311_ISpElementInListErr: i32 = -30423;
+pub const anon26311_ISpElementNotInListErr: i32 = -30424;
+pub const anon26311_ISpSystemInactiveErr: i32 = -30425;
+pub const anon26311_ISpDeviceInactiveErr: i32 = -30426;
+pub const anon26311_ISpSystemActiveErr: i32 = -30427;
+pub const anon26311_ISpDeviceActiveErr: i32 = -30428;
+pub const anon26311_ISpListBusyErr: i32 = -30429;
+
+pub const anon26451 = i32;
+pub const anon26451_DSpNotInitializedErr: i32 = -30440;
+pub const anon26451_DSpSystemSWTooOldErr: i32 = -30441;
+pub const anon26451_DSpInvalidContextErr: i32 = -30442;
+pub const anon26451_DSpInvalidAttributesErr: i32 = -30443;
+pub const anon26451_DSpContextAlreadyReservedErr: i32 = -30444;
+pub const anon26451_DSpContextNotReservedErr: i32 = -30445;
+pub const anon26451_DSpContextNotFoundErr: i32 = -30446;
+pub const anon26451_DSpFrameRateNotReadyErr: i32 = -30447;
+pub const anon26451_DSpConfirmSwitchWarning: i32 = -30448;
+pub const anon26451_DSpInternalErr: i32 = -30449;
+pub const anon26451_DSpStereoContextErr: i32 = -30450;
+
+pub const anon26651 = i32;
+pub const anon26651_FBCvTwinExceptionErr: i32 = -30500;
+pub const anon26651_FBCnoIndexesFound: i32 = -30501;
+pub const anon26651_FBCallocFailed: i32 = -30502;
+pub const anon26651_FBCbadParam: i32 = -30503;
+pub const anon26651_FBCfileNotIndexed: i32 = -30504;
+pub const anon26651_FBCbadIndexFile: i32 = -30505;
+pub const anon26651_FBCcompactionFailed: i32 = -30506;
+pub const anon26651_FBCvalidationFailed: i32 = -30507;
+pub const anon26651_FBCindexingFailed: i32 = -30508;
+pub const anon26651_FBCcommitFailed: i32 = -30509;
+pub const anon26651_FBCdeletionFailed: i32 = -30510;
+pub const anon26651_FBCmoveFailed: i32 = -30511;
+pub const anon26651_FBCtokenizationFailed: i32 = -30512;
+pub const anon26651_FBCmergingFailed: i32 = -30513;
+pub const anon26651_FBCindexCreationFailed: i32 = -30514;
+pub const anon26651_FBCaccessorStoreFailed: i32 = -30515;
+pub const anon26651_FBCaddDocFailed: i32 = -30516;
+pub const anon26651_FBCflushFailed: i32 = -30517;
+pub const anon26651_FBCindexNotFound: i32 = -30518;
+pub const anon26651_FBCnoSearchSession: i32 = -30519;
+pub const anon26651_FBCindexingCanceled: i32 = -30520;
+pub const anon26651_FBCaccessCanceled: i32 = -30521;
+pub const anon26651_FBCindexFileDestroyed: i32 = -30522;
+pub const anon26651_FBCindexNotAvailable: i32 = -30523;
+pub const anon26651_FBCsearchFailed: i32 = -30524;
+pub const anon26651_FBCsomeFilesNotIndexed: i32 = -30525;
+pub const anon26651_FBCillegalSessionChange: i32 = -30526;
+pub const anon26651_FBCanalysisNotAvailable: i32 = -30527;
+pub const anon26651_FBCbadIndexFileVersion: i32 = -30528;
+pub const anon26651_FBCsummarizationCanceled: i32 = -30529;
+pub const anon26651_FBCindexDiskIOFailed: i32 = -30530;
+pub const anon26651_FBCbadSearchSession: i32 = -30531;
+pub const anon26651_FBCnoSuchHit: i32 = -30532;
+
+pub const anon27041 = i32;
+pub const anon27041_notAQTVRMovieErr: i32 = -30540;
+pub const anon27041_constraintReachedErr: i32 = -30541;
+pub const anon27041_callNotSupportedByNodeErr: i32 = -30542;
+pub const anon27041_selectorNotSupportedByNodeErr: i32 = -30543;
+pub const anon27041_invalidNodeIDErr: i32 = -30544;
+pub const anon27041_invalidViewStateErr: i32 = -30545;
+pub const anon27041_timeNotInViewErr: i32 = -30546;
+pub const anon27041_propertyNotSupportedByNodeErr: i32 = -30547;
+pub const anon27041_settingNotSupportedByNodeErr: i32 = -30548;
+pub const anon27041_limitReachedErr: i32 = -30549;
+pub const anon27041_invalidNodeFormatErr: i32 = -30550;
+pub const anon27041_invalidHotSpotIDErr: i32 = -30551;
+pub const anon27041_noMemoryNodeFailedInitialize: i32 = -30552;
+pub const anon27041_streamingNodeNotReadyErr: i32 = -30553;
+pub const anon27041_qtvrLibraryLoadErr: i32 = -30554;
+pub const anon27041_qtvrUninitialized: i32 = -30555;
+
+pub const anon27251 = i32;
+pub const anon27251_themeInvalidBrushErr: i32 = -30560;
+pub const anon27251_themeProcessRegisteredErr: i32 = -30561;
+pub const anon27251_themeProcessNotRegisteredErr: i32 = -30562;
+pub const anon27251_themeBadTextColorErr: i32 = -30563;
+pub const anon27251_themeHasNoAccentsErr: i32 = -30564;
+pub const anon27251_themeBadCursorIndexErr: i32 = -30565;
+pub const anon27251_themeScriptFontNotFoundErr: i32 = -30566;
+pub const anon27251_themeMonitorDepthNotSupportedErr: i32 = -30567;
+pub const anon27251_themeNoAppropriateBrushErr: i32 = -30568;
+
+pub const anon27431 = i32;
+pub const anon27431_errMessageNotSupported: i32 = -30580;
+pub const anon27431_errDataNotSupported: i32 = -30581;
+pub const anon27431_errControlDoesntSupportFocus: i32 = -30582;
+pub const anon27431_errUnknownControl: i32 = -30584;
+pub const anon27431_errCouldntSetFocus: i32 = -30585;
+pub const anon27431_errNoRootControl: i32 = -30586;
+pub const anon27431_errRootAlreadyExists: i32 = -30587;
+pub const anon27431_errInvalidPartCode: i32 = -30588;
+pub const anon27431_errControlsAlreadyExist: i32 = -30589;
+pub const anon27431_errControlIsNotEmbedder: i32 = -30590;
+pub const anon27431_errDataSizeMismatch: i32 = -30591;
+pub const anon27431_errControlHiddenOrDisabled: i32 = -30592;
+pub const anon27431_errCantEmbedIntoSelf: i32 = -30594;
+pub const anon27431_errCantEmbedRoot: i32 = -30595;
+pub const anon27431_errItemNotControl: i32 = -30596;
+pub const anon27431_controlInvalidDataVersionErr: i32 = -30597;
+pub const anon27431_controlPropertyInvalid: i32 = -5603;
+pub const anon27431_controlPropertyNotFoundErr: i32 = -5604;
+pub const anon27431_controlHandleInvalidErr: i32 = -30599;
+
+pub const anon28871 = i32;
+pub const anon28871_URLInvalidURLReferenceError: i32 = -30770;
+pub const anon28871_URLProgressAlreadyDisplayedError: i32 = -30771;
+pub const anon28871_URLDestinationExistsError: i32 = -30772;
+pub const anon28871_URLInvalidURLError: i32 = -30773;
+pub const anon28871_URLUnsupportedSchemeError: i32 = -30774;
+pub const anon28871_URLServerBusyError: i32 = -30775;
+pub const anon28871_URLAuthenticationError: i32 = -30776;
+pub const anon28871_URLPropertyNotYetKnownError: i32 = -30777;
+pub const anon28871_URLUnknownPropertyError: i32 = -30778;
+pub const anon28871_URLPropertyBufferTooSmallError: i32 = -30779;
+pub const anon28871_URLUnsettablePropertyError: i32 = -30780;
+pub const anon28871_URLInvalidCallError: i32 = -30781;
+pub const anon28871_URLFileEmptyError: i32 = -30783;
+pub const anon28871_URLExtensionFailureError: i32 = -30785;
+pub const anon28871_URLInvalidConfigurationError: i32 = -30786;
+pub const anon28871_URLAccessNotAvailableError: i32 = -30787;
+pub const anon28871_URL68kNotSupportedError: i32 = -30788;
+
+pub const anon29161 = i32;
+pub const anon29161_errCppGeneral: i32 = -32000;
+pub const anon29161_errCppbad_alloc: i32 = -32001;
+pub const anon29161_errCppbad_cast: i32 = -32002;
+pub const anon29161_errCppbad_exception: i32 = -32003;
+pub const anon29161_errCppbad_typeid: i32 = -32004;
+pub const anon29161_errCpplogic_error: i32 = -32005;
+pub const anon29161_errCppdomain_error: i32 = -32006;
+pub const anon29161_errCppinvalid_argument: i32 = -32007;
+pub const anon29161_errCpplength_error: i32 = -32008;
+pub const anon29161_errCppout_of_range: i32 = -32009;
+pub const anon29161_errCppruntime_error: i32 = -32010;
+pub const anon29161_errCppoverflow_error: i32 = -32011;
+pub const anon29161_errCpprange_error: i32 = -32012;
+pub const anon29161_errCppunderflow_error: i32 = -32013;
+pub const anon29161_errCppios_base_failure: i32 = -32014;
+pub const anon29161_errCppLastSystemDefinedError: i32 = -32020;
+pub const anon29161_errCppLastUserDefinedError: i32 = -32049;
+
+pub const anon29371 = i32;
+pub const anon29371_badComponentInstance: i32 = -2147450879;
+pub const anon29371_badComponentSelector: i32 = -2147450878;
+
+pub const anon29441 = u32;
+pub const anon29441_dsBusError: u32 = 1;
+pub const anon29441_dsAddressErr: u32 = 2;
+pub const anon29441_dsIllInstErr: u32 = 3;
+pub const anon29441_dsZeroDivErr: u32 = 4;
+pub const anon29441_dsChkErr: u32 = 5;
+pub const anon29441_dsOvflowErr: u32 = 6;
+pub const anon29441_dsPrivErr: u32 = 7;
+pub const anon29441_dsTraceErr: u32 = 8;
+pub const anon29441_dsLineAErr: u32 = 9;
+pub const anon29441_dsLineFErr: u32 = 10;
+pub const anon29441_dsMiscErr: u32 = 11;
+pub const anon29441_dsCoreErr: u32 = 12;
+pub const anon29441_dsIrqErr: u32 = 13;
+pub const anon29441_dsIOCoreErr: u32 = 14;
+pub const anon29441_dsLoadErr: u32 = 15;
+pub const anon29441_dsFPErr: u32 = 16;
+pub const anon29441_dsNoPackErr: u32 = 17;
+pub const anon29441_dsNoPk1: u32 = 18;
+pub const anon29441_dsNoPk2: u32 = 19;
+
+pub const anon29661 = u32;
+pub const anon29661_dsNoPk3: u32 = 20;
+pub const anon29661_dsNoPk4: u32 = 21;
+pub const anon29661_dsNoPk5: u32 = 22;
+pub const anon29661_dsNoPk6: u32 = 23;
+pub const anon29661_dsNoPk7: u32 = 24;
+pub const anon29661_dsMemFullErr: u32 = 25;
+pub const anon29661_dsBadLaunch: u32 = 26;
+pub const anon29661_dsFSErr: u32 = 27;
+pub const anon29661_dsStknHeap: u32 = 28;
+pub const anon29661_negZcbFreeErr: u32 = 33;
+pub const anon29661_dsFinderErr: u32 = 41;
+pub const anon29661_dsBadSlotInt: u32 = 51;
+pub const anon29661_dsBadSANEOpcode: u32 = 81;
+pub const anon29661_dsBadPatchHeader: u32 = 83;
+pub const anon29661_menuPrgErr: u32 = 84;
+pub const anon29661_dsMBarNFnd: u32 = 85;
+pub const anon29661_dsHMenuFindErr: u32 = 86;
+pub const anon29661_dsWDEFNotFound: u32 = 87;
+pub const anon29661_dsCDEFNotFound: u32 = 88;
+pub const anon29661_dsMDEFNotFound: u32 = 89;
+
+pub const anon29891 = u32;
+pub const anon29891_dsNoFPU: u32 = 90;
+pub const anon29891_dsNoPatch: u32 = 98;
+pub const anon29891_dsBadPatch: u32 = 99;
+pub const anon29891_dsParityErr: u32 = 101;
+pub const anon29891_dsOldSystem: u32 = 102;
+pub const anon29891_ds32BitMode: u32 = 103;
+pub const anon29891_dsNeedToWriteBootBlocks: u32 = 104;
+pub const anon29891_dsNotEnoughRAMToBoot: u32 = 105;
+pub const anon29891_dsBufPtrTooLow: u32 = 106;
+pub const anon29891_dsVMDeferredFuncTableFull: u32 = 112;
+pub const anon29891_dsVMBadBackingStore: u32 = 113;
+pub const anon29891_dsCantHoldSystemHeap: u32 = 114;
+pub const anon29891_dsSystemRequiresPowerPC: u32 = 116;
+pub const anon29891_dsGibblyMovedToDisabledFolder: u32 = 117;
+pub const anon29891_dsUnBootableSystem: u32 = 118;
+pub const anon29891_dsMustUseFCBAccessors: u32 = 119;
+pub const anon29891_dsMacOSROMVersionTooOld: u32 = 120;
+pub const anon29891_dsLostConnectionToNetworkDisk: u32 = 121;
+pub const anon29891_dsRAMDiskTooBig: u32 = 122;
+pub const anon29891_dsWriteToSupervisorStackGuardPage: u32 = 128;
+pub const anon29891_dsReinsert: u32 = 30;
+pub const anon29891_shutDownAlert: u32 = 42;
+pub const anon29891_dsShutDownOrRestart: u32 = 20000;
+pub const anon29891_dsSwitchOffOrRestart: u32 = 20001;
+pub const anon29891_dsForcedQuit: u32 = 20002;
+pub const anon29891_dsRemoveDisk: u32 = 20003;
+pub const anon29891_dsDirtyDisk: u32 = 20004;
+pub const anon29891_dsShutDownOrResume: u32 = 20109;
+pub const anon29891_dsSCSIWarn: u32 = 20010;
+pub const anon29891_dsMBSysError: u32 = 29200;
+pub const anon29891_dsMBFlpySysError: u32 = 29201;
+pub const anon29891_dsMBATASysError: u32 = 29202;
+pub const anon29891_dsMBATAPISysError: u32 = 29203;
+pub const anon29891_dsMBExternFlpySysError: u32 = 29204;
+pub const anon29891_dsPCCardATASysError: u32 = 29205;
+
+pub const anon30321 = i32;
+pub const anon30321_dsNoExtsMacsBug: i32 = -1;
+pub const anon30321_dsNoExtsDisassembler: i32 = -2;
+pub const anon30321_dsMacsBugInstalled: i32 = -10;
+pub const anon30321_dsDisassemblerInstalled: i32 = -11;
+pub const anon30321_dsExtensionsDisabled: i32 = -13;
+pub const anon30321_dsGreeting: i32 = 40;
+pub const anon30321_dsSysErr: i32 = 32767;
+pub const anon30321_WDEFNFnd: i32 = 87;
+
+pub const anon30441 = i32;
+pub const anon30441_CDEFNFnd: i32 = 88;
+pub const anon30441_dsNotThe1: i32 = 31;
+pub const anon30441_dsBadStartupDisk: i32 = 42;
+pub const anon30441_dsSystemFileErr: i32 = 43;
+pub const anon30441_dsHD20Installed: i32 = -12;
+pub const anon30441_mBarNFnd: i32 = -126;
+pub const anon30441_fsDSIntErr: i32 = -127;
+pub const anon30441_hMenuFindErr: i32 = -127;
+pub const anon30441_userBreak: i32 = -490;
+pub const anon30441_strUserBreak: i32 = -491;
+pub const anon30441_exUserBreak: i32 = -492;
+
+pub const anon30591 = u32;
+pub const anon30591_dsBadLibrary: u32 = 1010;
+pub const anon30591_dsMixedModeFailure: u32 = 1011;
+
+pub const anon30721 = u32;
+pub const anon30721_POSIXErrorBase: u32 = 100000;
+pub const anon30721_POSIXErrorEPERM: u32 = 100001;
+pub const anon30721_POSIXErrorENOENT: u32 = 100002;
+pub const anon30721_POSIXErrorESRCH: u32 = 100003;
+pub const anon30721_POSIXErrorEINTR: u32 = 100004;
+pub const anon30721_POSIXErrorEIO: u32 = 100005;
+pub const anon30721_POSIXErrorENXIO: u32 = 100006;
+pub const anon30721_POSIXErrorE2BIG: u32 = 100007;
+pub const anon30721_POSIXErrorENOEXEC: u32 = 100008;
+pub const anon30721_POSIXErrorEBADF: u32 = 100009;
+pub const anon30721_POSIXErrorECHILD: u32 = 100010;
+pub const anon30721_POSIXErrorEDEADLK: u32 = 100011;
+pub const anon30721_POSIXErrorENOMEM: u32 = 100012;
+pub const anon30721_POSIXErrorEACCES: u32 = 100013;
+pub const anon30721_POSIXErrorEFAULT: u32 = 100014;
+pub const anon30721_POSIXErrorENOTBLK: u32 = 100015;
+pub const anon30721_POSIXErrorEBUSY: u32 = 100016;
+pub const anon30721_POSIXErrorEEXIST: u32 = 100017;
+pub const anon30721_POSIXErrorEXDEV: u32 = 100018;
+pub const anon30721_POSIXErrorENODEV: u32 = 100019;
+pub const anon30721_POSIXErrorENOTDIR: u32 = 100020;
+pub const anon30721_POSIXErrorEISDIR: u32 = 100021;
+pub const anon30721_POSIXErrorEINVAL: u32 = 100022;
+pub const anon30721_POSIXErrorENFILE: u32 = 100023;
+pub const anon30721_POSIXErrorEMFILE: u32 = 100024;
+pub const anon30721_POSIXErrorENOTTY: u32 = 100025;
+pub const anon30721_POSIXErrorETXTBSY: u32 = 100026;
+pub const anon30721_POSIXErrorEFBIG: u32 = 100027;
+pub const anon30721_POSIXErrorENOSPC: u32 = 100028;
+pub const anon30721_POSIXErrorESPIPE: u32 = 100029;
+pub const anon30721_POSIXErrorEROFS: u32 = 100030;
+pub const anon30721_POSIXErrorEMLINK: u32 = 100031;
+pub const anon30721_POSIXErrorEPIPE: u32 = 100032;
+pub const anon30721_POSIXErrorEDOM: u32 = 100033;
+pub const anon30721_POSIXErrorERANGE: u32 = 100034;
+pub const anon30721_POSIXErrorEAGAIN: u32 = 100035;
+pub const anon30721_POSIXErrorEINPROGRESS: u32 = 100036;
+pub const anon30721_POSIXErrorEALREADY: u32 = 100037;
+pub const anon30721_POSIXErrorENOTSOCK: u32 = 100038;
+pub const anon30721_POSIXErrorEDESTADDRREQ: u32 = 100039;
+pub const anon30721_POSIXErrorEMSGSIZE: u32 = 100040;
+pub const anon30721_POSIXErrorEPROTOTYPE: u32 = 100041;
+pub const anon30721_POSIXErrorENOPROTOOPT: u32 = 100042;
+pub const anon30721_POSIXErrorEPROTONOSUPPORT: u32 = 100043;
+pub const anon30721_POSIXErrorESOCKTNOSUPPORT: u32 = 100044;
+pub const anon30721_POSIXErrorENOTSUP: u32 = 100045;
+pub const anon30721_POSIXErrorEPFNOSUPPORT: u32 = 100046;
+pub const anon30721_POSIXErrorEAFNOSUPPORT: u32 = 100047;
+pub const anon30721_POSIXErrorEADDRINUSE: u32 = 100048;
+pub const anon30721_POSIXErrorEADDRNOTAVAIL: u32 = 100049;
+pub const anon30721_POSIXErrorENETDOWN: u32 = 100050;
+pub const anon30721_POSIXErrorENETUNREACH: u32 = 100051;
+pub const anon30721_POSIXErrorENETRESET: u32 = 100052;
+pub const anon30721_POSIXErrorECONNABORTED: u32 = 100053;
+pub const anon30721_POSIXErrorECONNRESET: u32 = 100054;
+pub const anon30721_POSIXErrorENOBUFS: u32 = 100055;
+pub const anon30721_POSIXErrorEISCONN: u32 = 100056;
+pub const anon30721_POSIXErrorENOTCONN: u32 = 100057;
+pub const anon30721_POSIXErrorESHUTDOWN: u32 = 100058;
+pub const anon30721_POSIXErrorETOOMANYREFS: u32 = 100059;
+pub const anon30721_POSIXErrorETIMEDOUT: u32 = 100060;
+pub const anon30721_POSIXErrorECONNREFUSED: u32 = 100061;
+pub const anon30721_POSIXErrorELOOP: u32 = 100062;
+pub const anon30721_POSIXErrorENAMETOOLONG: u32 = 100063;
+pub const anon30721_POSIXErrorEHOSTDOWN: u32 = 100064;
+pub const anon30721_POSIXErrorEHOSTUNREACH: u32 = 100065;
+pub const anon30721_POSIXErrorENOTEMPTY: u32 = 100066;
+pub const anon30721_POSIXErrorEPROCLIM: u32 = 100067;
+pub const anon30721_POSIXErrorEUSERS: u32 = 100068;
+pub const anon30721_POSIXErrorEDQUOT: u32 = 100069;
+pub const anon30721_POSIXErrorESTALE: u32 = 100070;
+pub const anon30721_POSIXErrorEREMOTE: u32 = 100071;
+pub const anon30721_POSIXErrorEBADRPC: u32 = 100072;
+pub const anon30721_POSIXErrorERPCMISMATCH: u32 = 100073;
+pub const anon30721_POSIXErrorEPROGUNAVAIL: u32 = 100074;
+pub const anon30721_POSIXErrorEPROGMISMATCH: u32 = 100075;
+pub const anon30721_POSIXErrorEPROCUNAVAIL: u32 = 100076;
+pub const anon30721_POSIXErrorENOLCK: u32 = 100077;
+pub const anon30721_POSIXErrorENOSYS: u32 = 100078;
+pub const anon30721_POSIXErrorEFTYPE: u32 = 100079;
+pub const anon30721_POSIXErrorEAUTH: u32 = 100080;
+pub const anon30721_POSIXErrorENEEDAUTH: u32 = 100081;
+pub const anon30721_POSIXErrorEPWROFF: u32 = 100082;
+pub const anon30721_POSIXErrorEDEVERR: u32 = 100083;
+pub const anon30721_POSIXErrorEOVERFLOW: u32 = 100084;
+pub const anon30721_POSIXErrorEBADEXEC: u32 = 100085;
+pub const anon30721_POSIXErrorEBADARCH: u32 = 100086;
+pub const anon30721_POSIXErrorESHLIBVERS: u32 = 100087;
+pub const anon30721_POSIXErrorEBADMACHO: u32 = 100088;
+pub const anon30721_POSIXErrorECANCELED: u32 = 100089;
+pub const anon30721_POSIXErrorEIDRM: u32 = 100090;
+pub const anon30721_POSIXErrorENOMSG: u32 = 100091;
+pub const anon30721_POSIXErrorEILSEQ: u32 = 100092;
+pub const anon30721_POSIXErrorENOATTR: u32 = 100093;
+pub const anon30721_POSIXErrorEBADMSG: u32 = 100094;
+pub const anon30721_POSIXErrorEMULTIHOP: u32 = 100095;
+pub const anon30721_POSIXErrorENODATA: u32 = 100096;
+pub const anon30721_POSIXErrorENOLINK: u32 = 100097;
+pub const anon30721_POSIXErrorENOSR: u32 = 100098;
+pub const anon30721_POSIXErrorENOSTR: u32 = 100099;
+pub const anon30721_POSIXErrorEPROTO: u32 = 100100;
+pub const anon30721_POSIXErrorETIME: u32 = 100101;
+pub const anon30721_POSIXErrorEOPNOTSUPP: u32 = 100102;
 
 pub extern "CoreServices" fn SysError(errorCode: i16) callconv(.C) void;
 
-pub const anon411 = enum(u32) {
-    AEAND = 1095648288,
-    AEOR = 1330782240,
-    AENOT = 1313821728,
-    AEFirst = 1718186611,
-    AELast = 1818325876,
-    AEMiddle = 1835623524,
-    AEAny = 1634629920,
-    AEAll = 1634495520,
-    AENext = 1852143732,
-    AEPrevious = 1886545270,
-    eyAECompOperator = 1919249519,
-    eyAELogicalTerms = 1952805485,
-    eyAELogicalOperator = 1819240291,
-    eyAEObject1 = 1868720689,
-    eyAEObject2 = 1868720690,
-    eyAEDesiredClass = 2002873972,
-    eyAEContainer = 1718775661,
-    eyAEKeyForm = 1718579821,
-    eyAEKeyData = 1936026724,
-};
+pub const anon411 = u32;
+pub const anon411_UTCDefaultOptions: u32 = 0;
+pub const anon411_RoutineDescriptorVersion: u32 = 7;
+pub const anon411_typeBoolean: u32 = 1651470188;
+pub const anon411_typeChar: u32 = 1413830740;
+pub const anon411_AEAND: u32 = 1095648288;
+pub const anon411_AEOR: u32 = 1330782240;
+pub const anon411_AENOT: u32 = 1313821728;
+pub const anon411_AEFirst: u32 = 1718186611;
+pub const anon411_AELast: u32 = 1818325876;
+pub const anon411_AEMiddle: u32 = 1835623524;
+pub const anon411_AEAny: u32 = 1634629920;
+pub const anon411_AEAll: u32 = 1634495520;
+pub const anon411_AENext: u32 = 1852143732;
+pub const anon411_AEPrevious: u32 = 1886545270;
+pub const anon411_eyAECompOperator: u32 = 1919249519;
+pub const anon411_eyAELogicalTerms: u32 = 1952805485;
+pub const anon411_eyAELogicalOperator: u32 = 1819240291;
+pub const anon411_eyAEObject1: u32 = 1868720689;
+pub const anon411_eyAEObject2: u32 = 1868720690;
+pub const anon411_eyAEDesiredClass: u32 = 2002873972;
+pub const anon411_eyAEContainer: u32 = 1718775661;
+pub const anon411_eyAEKeyForm: u32 = 1718579821;
+pub const anon411_eyAEKeyData: u32 = 1936026724;
 
 pub const UTCDateTime = extern struct {
     highSeconds: objc.UInt16,
@@ -3621,9 +4600,9 @@ pub const UTCDateTime = extern struct {
     fraction: objc.UInt16,
 };
 
-pub const UTCDateTimePtr = ?*UTCDateTime;
+pub const UTCDateTimePtr = UTCDateTime;
 
-pub const UTCDateTimeHandle = ?*UTCDateTimePtr;
+pub const UTCDateTimeHandle = UTCDateTimePtr;
 
 pub const LocalDateTime = extern struct {
     highSeconds: objc.UInt16,
@@ -3631,353 +4610,601 @@ pub const LocalDateTime = extern struct {
     fraction: objc.UInt16,
 };
 
-pub const LocalDateTimePtr = ?*LocalDateTime;
+pub const LocalDateTimePtr = LocalDateTime;
 
-pub const LocalDateTimeHandle = ?*LocalDateTimePtr;
+pub const LocalDateTimeHandle = LocalDateTimePtr;
 
-pub const anon481 = enum(u32) {
-    SleepRequest = 1,
-    SleepDemand = 2,
-    SleepWakeUp = 3,
-    SleepRevoke = 4,
-    SleepUnlock = 4,
-    SleepDeny = 5,
-    SleepNow = 6,
-    DozeDemand = 7,
-    DozeWakeUp = 8,
-    DozeRequest = 9,
-    EnterStandby = 10,
-    EnterRun = 11,
-    SuspendRequest = 12,
-    SuspendDemand = 13,
-    SuspendRevoke = 14,
-    SuspendWakeUp = 15,
-    GetPowerLevel = 16,
-    SetPowerLevel = 17,
-    DeviceInitiatedWake = 18,
-    WakeToDoze = 19,
-    DozeToFullWakeUp = 20,
-    GetPowerInfo = 21,
-    GetWakeOnNetInfo = 22,
-    SuspendWakeToDoze = 23,
-    EnterIdle = 24,
-    StillIdle = 25,
-    ExitIdle = 26,
-};
+pub const anon481 = i32;
+pub const anon481_TextFlushDefault: i32 = 0;
+pub const anon481_TextCenter: i32 = 1;
+pub const anon481_TextFlushRight: i32 = -1;
+pub const anon481_TextFlushLeft: i32 = -2;
+pub const anon481_CollectionNoAttributes: i32 = 0;
+pub const anon481_CollectionAllAttributes: i32 = -1;
+pub const anon481_CollectionUserAttributes: i32 = 65535;
+pub const anon481_CollectionDefaultAttributes: i32 = 1073741824;
+pub const anon481_sortsBefore: i32 = -1;
+pub const anon481_sortsEqual: i32 = 0;
+pub const anon481_sortsAfter: i32 = 1;
+pub const anon481_rAliasType: i32 = 1634494835;
+pub const anon481_LocaleLanguageMask: i32 = 1;
+pub const anon481_LocaleLanguageVariantMask: i32 = 2;
+pub const anon481_LocaleScriptMask: i32 = 4;
+pub const anon481_LocaleScriptVariantMask: i32 = 8;
+pub const anon481_LocaleRegionMask: i32 = 16;
+pub const anon481_LocaleRegionVariantMask: i32 = 32;
+pub const anon481_LocaleAllPartsMask: i32 = 63;
+pub const anon481_SleepRequest: i32 = 1;
+pub const anon481_SleepDemand: i32 = 2;
+pub const anon481_SleepWakeUp: i32 = 3;
+pub const anon481_SleepRevoke: i32 = 4;
+pub const anon481_SleepUnlock: i32 = 4;
+pub const anon481_SleepDeny: i32 = 5;
+pub const anon481_SleepNow: i32 = 6;
+pub const anon481_DozeDemand: i32 = 7;
+pub const anon481_DozeWakeUp: i32 = 8;
+pub const anon481_DozeRequest: i32 = 9;
+pub const anon481_EnterStandby: i32 = 10;
+pub const anon481_EnterRun: i32 = 11;
+pub const anon481_SuspendRequest: i32 = 12;
+pub const anon481_SuspendDemand: i32 = 13;
+pub const anon481_SuspendRevoke: i32 = 14;
+pub const anon481_SuspendWakeUp: i32 = 15;
+pub const anon481_GetPowerLevel: i32 = 16;
+pub const anon481_SetPowerLevel: i32 = 17;
+pub const anon481_DeviceInitiatedWake: i32 = 18;
+pub const anon481_WakeToDoze: i32 = 19;
+pub const anon481_DozeToFullWakeUp: i32 = 20;
+pub const anon481_GetPowerInfo: i32 = 21;
+pub const anon481_GetWakeOnNetInfo: i32 = 22;
+pub const anon481_SuspendWakeToDoze: i32 = 23;
+pub const anon481_EnterIdle: i32 = 24;
+pub const anon481_StillIdle: i32 = 25;
+pub const anon481_ExitIdle: i32 = 26;
 
 pub const TextEncodingBase = objc.UInt32;
 
-pub const anon1191 = enum(u32) {
-    TextEncodingMacTradChinese = 2,
-    TextEncodingMacRSymbol = 8,
-    TextEncodingMacSimpChinese = 25,
-    TextEncodingMacGeez = 28,
-    TextEncodingMacEastEurRoman = 29,
-    TextEncodingMacUninterp = 32,
-};
+pub const anon1191 = u32;
+pub const anon1191_TextEncodingMacTradChinese: u32 = 2;
+pub const anon1191_TextEncodingMacRSymbol: u32 = 8;
+pub const anon1191_TextEncodingMacSimpChinese: u32 = 25;
+pub const anon1191_TextEncodingMacGeez: u32 = 28;
+pub const anon1191_TextEncodingMacEastEurRoman: u32 = 29;
+pub const anon1191_TextEncodingMacUninterp: u32 = 32;
 
-pub const anon1431 = enum(u32) {
-    TextEncodingMacFarsi = 140,
-    TextEncodingMacUkrainian = 152,
-    TextEncodingMacInuit = 236,
-    TextEncodingMacVT100 = 252,
-};
+pub const anon1431 = u32;
+pub const anon1431_TextEncodingMacFarsi: u32 = 140;
+pub const anon1431_TextEncodingMacUkrainian: u32 = 152;
+pub const anon1431_TextEncodingMacInuit: u32 = 236;
+pub const anon1431_TextEncodingMacVT100: u32 = 252;
 
-pub const anon1591 = enum(u32) {
-    PassSelector = 0,
-    DontPassSelector = 8,
-};
+pub const anon1541 = u32;
+pub const anon1541_TextEncodingMacHFS: u32 = 255;
+pub const anon1541_UseCurrentISA: u32 = 0;
+pub const anon1541_UseNativeISA: u32 = 4;
+pub const anon1541___fpcr_trap_invalid: u32 = 256;
+pub const anon1541___fpcr_trap_divbyzero: u32 = 512;
+pub const anon1541___fpcr_trap_overflow: u32 = 1024;
+pub const anon1541___fpcr_trap_underflow: u32 = 2048;
+pub const anon1541___fpcr_trap_inexact: u32 = 4096;
+pub const anon1541___fpcr_trap_denormal: u32 = 32768;
+pub const anon1541___fpcr_flush_to_zero: u32 = 16777216;
 
-pub const anon2411 = enum(u32) {
-    TextEncodingUS_ASCII = 1536,
-    TextEncodingANSEL = 1537,
-    TextEncodingJIS_X0201_76 = 1568,
-    TextEncodingJIS_X0208_83 = 1569,
-    TextEncodingJIS_X0208_90 = 1570,
-    TextEncodingJIS_X0212_90 = 1571,
-    TextEncodingJIS_C6226_78 = 1572,
-    TextEncodingShiftJIS_X0213 = 1576,
-    TextEncodingJIS_X0213_MenKuTen = 1577,
-    TextEncodingGB_2312_80 = 1584,
-    TextEncodingGBK_95 = 1585,
-    TextEncodingGB_18030_2000 = 1586,
-    TextEncodingGB_18030_2005 = 1586,
-    TextEncodingKSC_5601_87 = 1600,
-    TextEncodingKSC_5601_92_Johab = 1601,
-    TextEncodingCNS_11643_92_P1 = 1617,
-    TextEncodingCNS_11643_92_P2 = 1618,
-    TextEncodingCNS_11643_92_P3 = 1619,
-};
+pub const anon1591 = u32;
+pub const anon1591_TextEncodingUnicodeDefault: u32 = 256;
+pub const anon1591_TextEncodingUnicodeV1_1: u32 = 257;
+pub const anon1591_TextEncodingISO10646_1993: u32 = 257;
+pub const anon1591_TextEncodingUnicodeV2_0: u32 = 259;
+pub const anon1591_TextEncodingUnicodeV2_1: u32 = 259;
+pub const anon1591_TextEncodingUnicodeV3_0: u32 = 260;
+pub const anon1591_TextEncodingUnicodeV3_1: u32 = 261;
+pub const anon1591_TextEncodingUnicodeV3_2: u32 = 262;
+pub const anon1591_TextEncodingUnicodeV4_0: u32 = 264;
+pub const anon1591_TextEncodingUnicodeV5_0: u32 = 266;
+pub const anon1591_TextEncodingUnicodeV5_1: u32 = 267;
+pub const anon1591_TextEncodingUnicodeV6_0: u32 = 269;
+pub const anon1591_TextEncodingUnicodeV6_1: u32 = 270;
+pub const anon1591_TextEncodingUnicodeV6_3: u32 = 272;
+pub const anon1591_TextEncodingUnicodeV7_0: u32 = 273;
+pub const anon1591_TextEncodingUnicodeV8_0: u32 = 274;
+pub const anon1591_TextEncodingUnicodeV9_0: u32 = 275;
+pub const anon1591_TextEncodingUnicodeV10_0: u32 = 276;
+pub const anon1591_TextEncodingUnicodeV11_0: u32 = 277;
+pub const anon1591_TextEncodingUnicodeV12_1: u32 = 278;
+pub const anon1591_TextEncodingUnicodeV13_0: u32 = 279;
+pub const anon1591_TextEncodingUnicodeV14_0: u32 = 280;
+pub const anon1591_TextEncodingUnicodeV15_0: u32 = 281;
+pub const anon1591_TextEncodingUnicodeV15_1: u32 = 282;
+pub const anon1591_PassSelector: u32 = 0;
+pub const anon1591_DontPassSelector: u32 = 8;
 
-pub const anon2631 = enum(u32) {
-    TextEncodingISO_2022_JP = 2080,
-    TextEncodingISO_2022_JP_2 = 2081,
-    TextEncodingISO_2022_JP_1 = 2082,
-    TextEncodingISO_2022_JP_3 = 2083,
-    TextEncodingISO_2022_CN = 2096,
-    TextEncodingISO_2022_CN_EXT = 2097,
-    TextEncodingISO_2022_KR = 2112,
-};
+pub const anon1871 = u32;
+pub const anon1871_TextEncodingISOLatin1: u32 = 513;
+pub const anon1871_TextEncodingISOLatin2: u32 = 514;
+pub const anon1871_TextEncodingISOLatin3: u32 = 515;
+pub const anon1871_TextEncodingISOLatin4: u32 = 516;
+pub const anon1871_TextEncodingISOLatinCyrillic: u32 = 517;
+pub const anon1871_TextEncodingISOLatinArabic: u32 = 518;
+pub const anon1871_TextEncodingISOLatinGreek: u32 = 519;
+pub const anon1871_TextEncodingISOLatinHebrew: u32 = 520;
+pub const anon1871_TextEncodingISOLatin5: u32 = 521;
+pub const anon1871_TextEncodingISOLatin6: u32 = 522;
+pub const anon1871_TextEncodingISOLatin7: u32 = 525;
+pub const anon1871_TextEncodingISOLatin8: u32 = 526;
+pub const anon1871_TextEncodingISOLatin9: u32 = 527;
+pub const anon1871_TextEncodingISOLatin10: u32 = 528;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_REQUIRE_PASSPHRASE: u32 = 1;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_UNSIGNED: u32 = 16;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_UNSIGNED_ACT: u32 = 32;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_INVALID: u32 = 64;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_INVALID_ACT: u32 = 128;
 
-pub const anon2741 = enum(objc.OSType) {
-    AEMouseClass = 1836021107,
-    AEDown = 1685026670,
-    AEUp = 1970282528,
-    AEMoved = 1836021349,
-    AEStoppedMoving = 1937010544,
-    AEWindowClass = 2003398244,
-    AEUpdate = 1970300020,
-    AEActivate = 1633907830,
-    AEDeactivate = 1684104052,
-    AECommandClass = 1668116068,
-    AEKeyClass = 1801812323,
-    AERawKey = 1919640953,
-    AEVirtualKey = 1801812323,
-    AENavigationKey = 1851881061,
-    AEAutoDown = 1635087471,
-    AEApplicationClass = 1634758764,
-    AESuspend = 1937077104,
-    AEResume = 1920167269,
-    AEDiskEvent = 1684632427,
-    AENullEvent = 1853189228,
-    AEWakeUpEvent = 2002873189,
-    AEScrapEvent = 1935897200,
-    AEHighLevel = 1751738216,
-};
+pub const anon2051 = u32;
+pub const anon2051_TextEncodingDOSLatinUS: u32 = 1024;
+pub const anon2051_TextEncodingDOSGreek: u32 = 1029;
+pub const anon2051_TextEncodingDOSBalticRim: u32 = 1030;
+pub const anon2051_TextEncodingDOSLatin1: u32 = 1040;
+pub const anon2051_TextEncodingDOSGreek1: u32 = 1041;
+pub const anon2051_TextEncodingDOSLatin2: u32 = 1042;
+pub const anon2051_TextEncodingDOSCyrillic: u32 = 1043;
+pub const anon2051_TextEncodingDOSTurkish: u32 = 1044;
+pub const anon2051_TextEncodingDOSPortuguese: u32 = 1045;
+pub const anon2051_TextEncodingDOSIcelandic: u32 = 1046;
+pub const anon2051_TextEncodingDOSHebrew: u32 = 1047;
+pub const anon2051_TextEncodingDOSCanadianFrench: u32 = 1048;
+pub const anon2051_TextEncodingDOSArabic: u32 = 1049;
+pub const anon2051_TextEncodingDOSNordic: u32 = 1050;
+pub const anon2051_TextEncodingDOSRussian: u32 = 1051;
+pub const anon2051_TextEncodingDOSGreek2: u32 = 1052;
+pub const anon2051_TextEncodingDOSThai: u32 = 1053;
+pub const anon2051_TextEncodingDOSJapanese: u32 = 1056;
+pub const anon2051_TextEncodingDOSChineseSimplif: u32 = 1057;
+pub const anon2051_TextEncodingDOSKorean: u32 = 1058;
+pub const anon2051_TextEncodingDOSChineseTrad: u32 = 1059;
+pub const anon2051_TextEncodingWindowsLatin1: u32 = 1280;
+pub const anon2051_TextEncodingWindowsANSI: u32 = 1280;
+pub const anon2051_TextEncodingWindowsLatin2: u32 = 1281;
+pub const anon2051_TextEncodingWindowsCyrillic: u32 = 1282;
+pub const anon2051_TextEncodingWindowsGreek: u32 = 1283;
+pub const anon2051_TextEncodingWindowsLatin5: u32 = 1284;
+pub const anon2051_TextEncodingWindowsHebrew: u32 = 1285;
+pub const anon2051_TextEncodingWindowsArabic: u32 = 1286;
+pub const anon2051_TextEncodingWindowsBalticRim: u32 = 1287;
+pub const anon2051_TextEncodingWindowsVietnamese: u32 = 1288;
+pub const anon2051_TextEncodingWindowsKoreanJohab: u32 = 1296;
+pub const anon2051_SecNoGuest: u32 = 0;
 
-pub const anon2821 = enum(u32) {
-    TextEncodingShiftJIS = 2561,
-    TextEncodingKOI8_R = 2562,
-    TextEncodingBig5 = 2563,
-    TextEncodingMacRomanLatin1 = 2564,
-    TextEncodingHZ_GB_2312 = 2565,
-    TextEncodingBig5_HKSCS_1999 = 2566,
-    TextEncodingVISCII = 2567,
-    TextEncodingKOI8_U = 2568,
-    TextEncodingBig5_E = 2569,
-};
+pub const anon2411 = u32;
+pub const anon2411_TextEncodingUS_ASCII: u32 = 1536;
+pub const anon2411_TextEncodingANSEL: u32 = 1537;
+pub const anon2411_TextEncodingJIS_X0201_76: u32 = 1568;
+pub const anon2411_TextEncodingJIS_X0208_83: u32 = 1569;
+pub const anon2411_TextEncodingJIS_X0208_90: u32 = 1570;
+pub const anon2411_TextEncodingJIS_X0212_90: u32 = 1571;
+pub const anon2411_TextEncodingJIS_C6226_78: u32 = 1572;
+pub const anon2411_TextEncodingShiftJIS_X0213: u32 = 1576;
+pub const anon2411_TextEncodingJIS_X0213_MenKuTen: u32 = 1577;
+pub const anon2411_TextEncodingGB_2312_80: u32 = 1584;
+pub const anon2411_TextEncodingGBK_95: u32 = 1585;
+pub const anon2411_TextEncodingGB_18030_2000: u32 = 1586;
+pub const anon2411_TextEncodingGB_18030_2005: u32 = 1586;
+pub const anon2411_TextEncodingKSC_5601_87: u32 = 1600;
+pub const anon2411_TextEncodingKSC_5601_92_Johab: u32 = 1601;
+pub const anon2411_TextEncodingCNS_11643_92_P1: u32 = 1617;
+pub const anon2411_TextEncodingCNS_11643_92_P2: u32 = 1618;
+pub const anon2411_TextEncodingCNS_11643_92_P3: u32 = 1619;
 
-pub const anon2951 = enum(u32) {
-    TextEncodingNextStepLatin = 2817,
-    TextEncodingNextStepJapanese = 2818,
-};
+pub const anon2631 = u32;
+pub const anon2631_TextEncodingISO_2022_JP: u32 = 2080;
+pub const anon2631_TextEncodingISO_2022_JP_2: u32 = 2081;
+pub const anon2631_TextEncodingISO_2022_JP_1: u32 = 2082;
+pub const anon2631_TextEncodingISO_2022_JP_3: u32 = 2083;
+pub const anon2631_TextEncodingISO_2022_CN: u32 = 2096;
+pub const anon2631_TextEncodingISO_2022_CN_EXT: u32 = 2097;
+pub const anon2631_TextEncodingISO_2022_KR: u32 = 2112;
 
-pub const anon3011 = enum(u32) {
-    BlessedBusErrorBait = 1760651505,
-};
+pub const anon2741 = u32;
+pub const anon2741_TextEncodingEUC_JP: u32 = 2336;
+pub const anon2741_TextEncodingEUC_CN: u32 = 2352;
+pub const anon2741_TextEncodingEUC_TW: u32 = 2353;
+pub const anon2741_TextEncodingEUC_KR: u32 = 2368;
+pub const anon2741_AEMouseClass: u32 = 1836021107;
+pub const anon2741_AEDown: u32 = 1685026670;
+pub const anon2741_AEUp: u32 = 1970282528;
+pub const anon2741_AEMoved: u32 = 1836021349;
+pub const anon2741_AEStoppedMoving: u32 = 1937010544;
+pub const anon2741_AEWindowClass: u32 = 2003398244;
+pub const anon2741_AEUpdate: u32 = 1970300020;
+pub const anon2741_AEActivate: u32 = 1633907830;
+pub const anon2741_AEDeactivate: u32 = 1684104052;
+pub const anon2741_AECommandClass: u32 = 1668116068;
+pub const anon2741_AEKeyClass: u32 = 1801812323;
+pub const anon2741_AERawKey: u32 = 1919640953;
+pub const anon2741_AEVirtualKey: u32 = 1801812323;
+pub const anon2741_AENavigationKey: u32 = 1851881061;
+pub const anon2741_AEAutoDown: u32 = 1635087471;
+pub const anon2741_AEApplicationClass: u32 = 1634758764;
+pub const anon2741_AESuspend: u32 = 1937077104;
+pub const anon2741_AEResume: u32 = 1920167269;
+pub const anon2741_AEDiskEvent: u32 = 1684632427;
+pub const anon2741_AENullEvent: u32 = 1853189228;
+pub const anon2741_AEWakeUpEvent: u32 = 2002873189;
+pub const anon2741_AEScrapEvent: u32 = 1935897200;
+pub const anon2741_AEHighLevel: u32 = 1751738216;
 
-pub const anon3071 = enum(u32) {
-    TextEncodingMultiRun = 4095,
-    TextEncodingUnknown = 65535,
-};
+pub const anon2821 = u32;
+pub const anon2821_TextEncodingShiftJIS: u32 = 2561;
+pub const anon2821_TextEncodingKOI8_R: u32 = 2562;
+pub const anon2821_TextEncodingBig5: u32 = 2563;
+pub const anon2821_TextEncodingMacRomanLatin1: u32 = 2564;
+pub const anon2821_TextEncodingHZ_GB_2312: u32 = 2565;
+pub const anon2821_TextEncodingBig5_HKSCS_1999: u32 = 2566;
+pub const anon2821_TextEncodingVISCII: u32 = 2567;
+pub const anon2821_TextEncodingKOI8_U: u32 = 2568;
+pub const anon2821_TextEncodingBig5_E: u32 = 2569;
 
-pub const anon3131 = enum(u32) {
-    AESocks4Protocol = 4,
-    AESocks5Protocol = 5,
-};
+pub const anon2951 = u32;
+pub const anon2951_TextEncodingNextStepLatin: u32 = 2817;
+pub const anon2951_TextEncodingNextStepJapanese: u32 = 2818;
+
+pub const anon3011 = u32;
+pub const anon3011_TextEncodingEBCDIC_LatinCore: u32 = 3073;
+pub const anon3011_TextEncodingEBCDIC_CP037: u32 = 3074;
+pub const anon3011_BlessedBusErrorBait: u32 = 1760651505;
+
+pub const anon3071 = u32;
+pub const anon3071_TextEncodingMultiRun: u32 = 4095;
+pub const anon3071_TextEncodingUnknown: u32 = 65535;
+
+pub const anon3131 = u32;
+pub const anon3131_TextEncodingEBCDIC_US: u32 = 3073;
+pub const anon3131_noUser: u32 = 0;
+pub const anon3131_administratorUser: u32 = 1;
+pub const anon3131_AESocks4Protocol: u32 = 4;
+pub const anon3131_AESocks5Protocol: u32 = 5;
 
 pub const TextEncodingVariant = objc.UInt32;
 
-pub const anon3211 = enum(u32) {
-    TextEncodingDefaultVariant = 0,
-};
+pub const anon3211 = u32;
+pub const anon3211_TextEncodingDefaultVariant: u32 = 0;
 
-pub const anon3261 = enum(u32) {
-    MacRomanDefaultVariant = 0,
-    MacRomanCurrencySignVariant = 1,
-    MacRomanEuroSignVariant = 2,
-};
+pub const anon3261 = u32;
+pub const anon3261_MacRomanDefaultVariant: u32 = 0;
+pub const anon3261_MacRomanCurrencySignVariant: u32 = 1;
+pub const anon3261_MacRomanEuroSignVariant: u32 = 2;
 
-pub const anon3331 = enum(u32) {
-    MacCyrillicDefaultVariant = 0,
-    MacCyrillicCurrSignStdVariant = 1,
-    MacCyrillicCurrSignUkrVariant = 2,
-    MacCyrillicEuroSignVariant = 3,
-};
+pub const anon3331 = u32;
+pub const anon3331_MacCyrillicDefaultVariant: u32 = 0;
+pub const anon3331_MacCyrillicCurrSignStdVariant: u32 = 1;
+pub const anon3331_MacCyrillicCurrSignUkrVariant: u32 = 2;
+pub const anon3331_MacCyrillicEuroSignVariant: u32 = 3;
 
-pub const anon3531 = enum(u32) {
-    MacCroatianDefaultVariant = 0,
-    MacCroatianCurrencySignVariant = 1,
-    MacCroatianEuroSignVariant = 2,
-};
+pub const anon3411 = u32;
+pub const anon3411_MacIcelandicStdDefaultVariant: u32 = 0;
+pub const anon3411_MacIcelandicTTDefaultVariant: u32 = 1;
+pub const anon3411_MacIcelandicStdCurrSignVariant: u32 = 2;
+pub const anon3411_MacIcelandicTTCurrSignVariant: u32 = 3;
+pub const anon3411_MacIcelandicStdEuroSignVariant: u32 = 4;
+pub const anon3411_MacIcelandicTTEuroSignVariant: u32 = 5;
+pub const anon3411_DocumentsFolderType: u32 = 1685021555;
+pub const anon3411_PictureDocumentsFolderType: u32 = 1885630307;
+pub const anon3411_MovieDocumentsFolderType: u32 = 1835298659;
+pub const anon3411_MusicDocumentsFolderType: u32 = -1251709085;
+pub const anon3411_InternetSitesFolderType: u32 = 1936290917;
+pub const anon3411_PublicFolderType: u32 = 1886741090;
+pub const anon3411_HFSFileLockedBit: u32 = 0;
+pub const anon3411_HFSFileLockedMask: u32 = 1;
+pub const anon3411_HFSThreadExistsBit: u32 = 1;
+pub const anon3411_HFSThreadExistsMask: u32 = 2;
+pub const anon3411_HFSHasAttributesBit: u32 = 2;
+pub const anon3411_HFSHasAttributesMask: u32 = 4;
+pub const anon3411_HFSHasSecurityBit: u32 = 3;
+pub const anon3411_HFSHasSecurityMask: u32 = 8;
+pub const anon3411_HFSHasFolderCountBit: u32 = 4;
+pub const anon3411_HFSHasFolderCountMask: u32 = 16;
+pub const anon3411_HFSHasLinkChainBit: u32 = 5;
+pub const anon3411_HFSHasLinkChainMask: u32 = 32;
+pub const anon3411_HFSHasChildLinkBit: u32 = 6;
+pub const anon3411_HFSHasChildLinkMask: u32 = 64;
+pub const anon3411_HFSHasDateAddedBit: u32 = 7;
+pub const anon3411_HFSHasDateAddedMask: u32 = 128;
+pub const anon3411_HFSFastDevPinnedBit: u32 = 8;
+pub const anon3411_HFSFastDevPinnedMask: u32 = 256;
+pub const anon3411_HFSDoNotFastDevPinBit: u32 = 9;
+pub const anon3411_HFSDoNotFastDevPinMask: u32 = 512;
+pub const anon3411_HFSFastDevCandidateBit: u32 = 10;
+pub const anon3411_HFSFastDevCandidateMask: u32 = 1024;
+pub const anon3411_HFSAutoCandidateBit: u32 = 11;
+pub const anon3411_HFSAutoCandidateMask: u32 = 2048;
+pub const anon3411_HFSCatExpandedTimesBit: u32 = 12;
+pub const anon3411_HFSCatExpandedTimesMask: u32 = 4096;
 
-pub const anon3691 = enum(u32) {
-    AppleLogoIcon = 1667330156,
-    AppleMenuIcon = 1935765612,
-    BackwardArrowIcon = 1650553455,
-    FavoriteItemsIcon = 1717663346,
-    ForwardArrowIcon = 1717662319,
-    GridIcon = 1735551332,
-    HelpIcon = 1751477360,
-    KeepArrangedIcon = 1634889319,
-    LockedIcon = 1819239275,
-    NoFilesIcon = 1852205420,
-    NoFolderIcon = 1852206180,
-    NoWriteIcon = 1853321844,
-    ProtectedApplicationFolderIcon = 1885433968,
-    ProtectedSystemFolderIcon = 1886615923,
-    RecentItemsIcon = 1919118964,
-    ShortcutIcon = 1936224884,
-    SortAscendingIcon = 1634954852,
-    SortDescendingIcon = 1685286500,
-    UnlockedIcon = 1970037611,
-    ConnectToIcon = 1668178804,
-    GenericWindowIcon = 1735879022,
-    QuestionMarkIcon = 1903519091,
-    DeleteAliasIcon = 1684106345,
-    EjectMediaIcon = 1701471587,
-    BurningIcon = 1651864174,
-    RightContainerArrowIcon = 1919115634,
-};
+pub const anon3531 = u32;
+pub const anon3531_MacCroatianDefaultVariant: u32 = 0;
+pub const anon3531_MacCroatianCurrencySignVariant: u32 = 1;
+pub const anon3531_MacCroatianEuroSignVariant: u32 = 2;
 
-pub const anon3791 = enum(u32) {
-    AEDataArray = 0,
-    AEPackedArray = 1,
-    AEDescArray = 3,
-    AEKeyDescArray = 4,
-};
+pub const anon3691 = u32;
+pub const anon3691_MacJapaneseStandardVariant: u32 = 0;
+pub const anon3691_MacJapaneseStdNoVerticalsVariant: u32 = 1;
+pub const anon3691_MacJapaneseBasicVariant: u32 = 2;
+pub const anon3691_MacJapanesePostScriptScrnVariant: u32 = 3;
+pub const anon3691_MacJapanesePostScriptPrintVariant: u32 = 4;
+pub const anon3691_MacJapaneseVertAtKuPlusTenVariant: u32 = 5;
+pub const anon3691_AppleLogoIcon: u32 = 1667330156;
+pub const anon3691_AppleMenuIcon: u32 = 1935765612;
+pub const anon3691_BackwardArrowIcon: u32 = 1650553455;
+pub const anon3691_FavoriteItemsIcon: u32 = 1717663346;
+pub const anon3691_ForwardArrowIcon: u32 = 1717662319;
+pub const anon3691_GridIcon: u32 = 1735551332;
+pub const anon3691_HelpIcon: u32 = 1751477360;
+pub const anon3691_KeepArrangedIcon: u32 = 1634889319;
+pub const anon3691_LockedIcon: u32 = 1819239275;
+pub const anon3691_NoFilesIcon: u32 = 1852205420;
+pub const anon3691_NoFolderIcon: u32 = 1852206180;
+pub const anon3691_NoWriteIcon: u32 = 1853321844;
+pub const anon3691_ProtectedApplicationFolderIcon: u32 = 1885433968;
+pub const anon3691_ProtectedSystemFolderIcon: u32 = 1886615923;
+pub const anon3691_RecentItemsIcon: u32 = 1919118964;
+pub const anon3691_ShortcutIcon: u32 = 1936224884;
+pub const anon3691_SortAscendingIcon: u32 = 1634954852;
+pub const anon3691_SortDescendingIcon: u32 = 1685286500;
+pub const anon3691_UnlockedIcon: u32 = 1970037611;
+pub const anon3691_ConnectToIcon: u32 = 1668178804;
+pub const anon3691_GenericWindowIcon: u32 = 1735879022;
+pub const anon3691_QuestionMarkIcon: u32 = 1903519091;
+pub const anon3691_DeleteAliasIcon: u32 = 1684106345;
+pub const anon3691_EjectMediaIcon: u32 = 1701471587;
+pub const anon3691_BurningIcon: u32 = 1651864174;
+pub const anon3691_RightContainerArrowIcon: u32 = 1919115634;
 
-pub const anon3871 = enum(u32) {
-    AEHandleArray = 2,
-};
+pub const anon3791 = u32;
+pub const anon3791_MacArabicStandardVariant: u32 = 0;
+pub const anon3791_MacArabicTrueTypeVariant: u32 = 1;
+pub const anon3791_MacArabicThuluthVariant: u32 = 2;
+pub const anon3791_MacArabicAlBayanVariant: u32 = 3;
+pub const anon3791_AEDataArray: u32 = 0;
+pub const anon3791_AEPackedArray: u32 = 1;
+pub const anon3791_AEDescArray: u32 = 3;
+pub const anon3791_AEKeyDescArray: u32 = 4;
 
-pub const anon3931 = enum(u32) {
-    MacHebrewStandardVariant = 0,
-    MacHebrewFigureSpaceVariant = 1,
-};
+pub const anon3871 = u32;
+pub const anon3871_MacFarsiStandardVariant: u32 = 0;
+pub const anon3871_MacFarsiTrueTypeVariant: u32 = 1;
+pub const anon3871_AEHandleArray: u32 = 2;
 
-pub const anon3991 = enum(u32) {
-    MacGreekDefaultVariant = 0,
-    MacGreekNoEuroSignVariant = 1,
-    MacGreekEuroSignVariant = 2,
-};
+pub const anon3931 = u32;
+pub const anon3931_MacHebrewStandardVariant: u32 = 0;
+pub const anon3931_MacHebrewFigureSpaceVariant: u32 = 1;
 
-pub const anon4061 = enum(u32) {
-    MacVT100DefaultVariant = 0,
-    MacVT100CurrencySignVariant = 1,
-    MacVT100EuroSignVariant = 2,
-};
+pub const anon3991 = u32;
+pub const anon3991_MacGreekDefaultVariant: u32 = 0;
+pub const anon3991_MacGreekNoEuroSignVariant: u32 = 1;
+pub const anon3991_MacGreekEuroSignVariant: u32 = 2;
 
-pub const anon4221 = enum(u32) {
-    ISOLatin1StandardVariant = 0,
-    ISOLatin1MusicCDVariant = 1,
-};
+pub const anon4061 = u32;
+pub const anon4061_MacVT100DefaultVariant: u32 = 0;
+pub const anon4061_MacVT100CurrencySignVariant: u32 = 1;
+pub const anon4061_MacVT100EuroSignVariant: u32 = 2;
 
-pub const anon4461 = enum(u32) {
-    ServicesFolderType = 1937138547,
-};
+pub const anon4131 = u32;
+pub const anon4131_UnicodeNoSubset: u32 = 0;
+pub const anon4131_UnicodeNormalizationFormD: u32 = 5;
+pub const anon4131_UnicodeNormalizationFormC: u32 = 3;
+pub const anon4131_UnicodeHFSPlusDecompVariant: u32 = 8;
+pub const anon4131_UnicodeHFSPlusCompVariant: u32 = 9;
+pub const anon4131_CSSM_TP_BASE_TP_ERROR: u32 = -2147409664;
+pub const anon4131_CSSMERR_TP_INVALID_CALLERAUTH_CONTEXT_POINTER: u32 = -2147409663;
+pub const anon4131_CSSMERR_TP_INVALID_IDENTIFIER_POINTER: u32 = -2147409662;
+pub const anon4131_CSSMERR_TP_INVALID_KEYCACHE_HANDLE: u32 = -2147409661;
+pub const anon4131_CSSMERR_TP_INVALID_CERTGROUP: u32 = -2147409660;
+pub const anon4131_CSSMERR_TP_INVALID_CRLGROUP: u32 = -2147409659;
+pub const anon4131_CSSMERR_TP_INVALID_CRLGROUP_POINTER: u32 = -2147409658;
+pub const anon4131_CSSMERR_TP_AUTHENTICATION_FAILED: u32 = -2147409657;
+pub const anon4131_CSSMERR_TP_CERTGROUP_INCOMPLETE: u32 = -2147409656;
+pub const anon4131_CSSMERR_TP_CERTIFICATE_CANT_OPERATE: u32 = -2147409655;
+pub const anon4131_CSSMERR_TP_CERT_EXPIRED: u32 = -2147409654;
+pub const anon4131_CSSMERR_TP_CERT_NOT_VALID_YET: u32 = -2147409653;
+pub const anon4131_CSSMERR_TP_CERT_REVOKED: u32 = -2147409652;
+pub const anon4131_CSSMERR_TP_CERT_SUSPENDED: u32 = -2147409651;
+pub const anon4131_CSSMERR_TP_INSUFFICIENT_CREDENTIALS: u32 = -2147409650;
+pub const anon4131_CSSMERR_TP_INVALID_ACTION: u32 = -2147409649;
+pub const anon4131_CSSMERR_TP_INVALID_ACTION_DATA: u32 = -2147409648;
+pub const anon4131_CSSMERR_TP_INVALID_ANCHOR_CERT: u32 = -2147409646;
+pub const anon4131_CSSMERR_TP_INVALID_AUTHORITY: u32 = -2147409645;
+pub const anon4131_CSSMERR_TP_VERIFY_ACTION_FAILED: u32 = -2147409644;
+pub const anon4131_CSSMERR_TP_INVALID_CERTIFICATE: u32 = -2147409643;
+pub const anon4131_CSSMERR_TP_INVALID_CERT_AUTHORITY: u32 = -2147409642;
+pub const anon4131_CSSMERR_TP_INVALID_CRL_AUTHORITY: u32 = -2147409641;
+pub const anon4131_CSSMERR_TP_INVALID_CRL_ENCODING: u32 = -2147409640;
+pub const anon4131_CSSMERR_TP_INVALID_CRL_TYPE: u32 = -2147409639;
+pub const anon4131_CSSMERR_TP_INVALID_CRL: u32 = -2147409638;
+pub const anon4131_CSSMERR_TP_INVALID_FORM_TYPE: u32 = -2147409637;
+pub const anon4131_CSSMERR_TP_INVALID_ID: u32 = -2147409636;
+pub const anon4131_CSSMERR_TP_INVALID_IDENTIFIER: u32 = -2147409635;
+pub const anon4131_CSSMERR_TP_INVALID_INDEX: u32 = -2147409634;
+pub const anon4131_CSSMERR_TP_INVALID_NAME: u32 = -2147409633;
+pub const anon4131_CSSMERR_TP_INVALID_POLICY_IDENTIFIERS: u32 = -2147409632;
+pub const anon4131_CSSMERR_TP_INVALID_TIMESTRING: u32 = -2147409631;
+pub const anon4131_CSSMERR_TP_INVALID_REASON: u32 = -2147409630;
+pub const anon4131_CSSMERR_TP_INVALID_REQUEST_INPUTS: u32 = -2147409629;
+pub const anon4131_CSSMERR_TP_INVALID_RESPONSE_VECTOR: u32 = -2147409628;
+pub const anon4131_CSSMERR_TP_INVALID_SIGNATURE: u32 = -2147409627;
+pub const anon4131_CSSMERR_TP_INVALID_STOP_ON_POLICY: u32 = -2147409626;
+pub const anon4131_CSSMERR_TP_INVALID_CALLBACK: u32 = -2147409625;
+pub const anon4131_CSSMERR_TP_INVALID_TUPLE: u32 = -2147409624;
+pub const anon4131_CSSMERR_TP_NOT_SIGNER: u32 = -2147409623;
+pub const anon4131_CSSMERR_TP_NOT_TRUSTED: u32 = -2147409622;
+pub const anon4131_CSSMERR_TP_NO_DEFAULT_AUTHORITY: u32 = -2147409621;
+pub const anon4131_CSSMERR_TP_REJECTED_FORM: u32 = -2147409620;
+pub const anon4131_CSSMERR_TP_REQUEST_LOST: u32 = -2147409619;
+pub const anon4131_CSSMERR_TP_REQUEST_REJECTED: u32 = -2147409618;
+pub const anon4131_CSSMERR_TP_UNSUPPORTED_ADDR_TYPE: u32 = -2147409617;
+pub const anon4131_CSSMERR_TP_UNSUPPORTED_SERVICE: u32 = -2147409616;
+pub const anon4131_CSSMERR_TP_INVALID_TUPLEGROUP_POINTER: u32 = -2147409615;
+pub const anon4131_CSSMERR_TP_INVALID_TUPLEGROUP: u32 = -2147409614;
 
-pub const anon4591 = enum(u32) {
-    WindowsLatin1StandardVariant = 0,
-    WindowsLatin1PalmVariant = 1,
-};
+pub const anon4221 = u32;
+pub const anon4221_ISOLatin1StandardVariant: u32 = 0;
+pub const anon4221_ISOLatin1MusicCDVariant: u32 = 1;
 
-pub const anon4751 = enum(u32) {
-    EUC_CN_BasicVariant = 0,
-    EUC_CN_DOSVariant = 1,
-};
+pub const anon4461 = u32;
+pub const anon4461_ISOLatinArabicImplicitOrderVariant: u32 = 0;
+pub const anon4461_ISOLatinArabicVisualOrderVariant: u32 = 1;
+pub const anon4461_ISOLatinArabicExplicitOrderVariant: u32 = 2;
+pub const anon4461_ServicesFolderType: u32 = 1937138547;
 
-pub const anon4851 = enum(u32) {
-    EUC_KR_BasicVariant = 0,
-    EUC_KR_DOSVariant = 1,
-};
+pub const anon4591 = u32;
+pub const anon4591_WindowsLatin1StandardVariant: u32 = 0;
+pub const anon4591_WindowsLatin1PalmVariant: u32 = 1;
 
-pub const anon5061 = enum(u32) {
-    Big5_BasicVariant = 0,
-    Big5_StandardVariant = 1,
-    Big5_ETenVariant = 2,
-    Big5_DOSVariant = 3,
-};
+pub const anon4751 = u32;
+pub const anon4751_EUC_CN_BasicVariant: u32 = 0;
+pub const anon4751_EUC_CN_DOSVariant: u32 = 1;
 
-pub const anon5141 = enum(u32) {
-    MacRomanLatin1DefaultVariant = 0,
-    MacRomanLatin1StandardVariant = 2,
-    MacRomanLatin1TurkishVariant = 6,
-    MacRomanLatin1CroatianVariant = 8,
-    MacRomanLatin1IcelandicVariant = 11,
-    MacRomanLatin1RomanianVariant = 14,
-};
+pub const anon4851 = u32;
+pub const anon4851_EUC_KR_BasicVariant: u32 = 0;
+pub const anon4851_EUC_KR_DOSVariant: u32 = 1;
 
-pub const anon5241 = enum(u32) {
-    UnicodeNoCompatibilityVariant = 1,
-    UnicodeNoCorporateVariant = 4,
-};
+pub const anon4951 = u32;
+pub const anon4951_ShiftJIS_BasicVariant: u32 = 0;
+pub const anon4951_ShiftJIS_DOSVariant: u32 = 1;
+pub const anon4951_ShiftJIS_MusicCDVariant: u32 = 2;
+pub const anon4951_CSSM_CERT_ENCODING_UNKNOWN: u32 = 0;
+pub const anon4951_CSSM_CERT_ENCODING_CUSTOM: u32 = 1;
+pub const anon4951_CSSM_CERT_ENCODING_BER: u32 = 2;
+pub const anon4951_CSSM_CERT_ENCODING_DER: u32 = 3;
+pub const anon4951_CSSM_CERT_ENCODING_NDR: u32 = 4;
+pub const anon4951_CSSM_CERT_ENCODING_SEXPR: u32 = 5;
+pub const anon4951_CSSM_CERT_ENCODING_PGP: u32 = 6;
+pub const anon4951_CSSM_CERT_ENCODING_MULTIPLE: u32 = 32766;
+pub const anon4951_CSSM_CERT_ENCODING_LAST: u32 = 32767;
+pub const anon4951_CSSM_CL_CUSTOM_CERT_ENCODING: u32 = 32768;
 
-pub const anon5301 = enum(u32) {
-    MacRomanStandardVariant = 0,
-    MacIcelandicStandardVariant = 0,
-    MacIcelandicTrueTypeVariant = 1,
-    JapaneseStandardVariant = 0,
-    JapaneseStdNoVerticalsVariant = 1,
-    JapaneseBasicVariant = 2,
-    JapanesePostScriptScrnVariant = 3,
-    JapanesePostScriptPrintVariant = 4,
-    JapaneseVertAtKuPlusTenVariant = 5,
-    TextEncodingShiftJIS_X0213_00 = 1576,
-    HebrewStandardVariant = 0,
-    HebrewFigureSpaceVariant = 1,
-    UnicodeCanonicalDecompVariant = 2,
-    UnicodeMaxDecomposedVariant = 2,
-    UnicodeCanonicalCompVariant = 3,
-    UnicodeNoComposedVariant = 3,
-};
+pub const anon5061 = u32;
+pub const anon5061_Big5_BasicVariant: u32 = 0;
+pub const anon5061_Big5_StandardVariant: u32 = 1;
+pub const anon5061_Big5_ETenVariant: u32 = 2;
+pub const anon5061_Big5_DOSVariant: u32 = 3;
+
+pub const anon5141 = u32;
+pub const anon5141_MacRomanLatin1DefaultVariant: u32 = 0;
+pub const anon5141_MacRomanLatin1StandardVariant: u32 = 2;
+pub const anon5141_MacRomanLatin1TurkishVariant: u32 = 6;
+pub const anon5141_MacRomanLatin1CroatianVariant: u32 = 8;
+pub const anon5141_MacRomanLatin1IcelandicVariant: u32 = 11;
+pub const anon5141_MacRomanLatin1RomanianVariant: u32 = 14;
+
+pub const anon5241 = u32;
+pub const anon5241_UnicodeNoCompatibilityVariant: u32 = 1;
+pub const anon5241_UnicodeNoCorporateVariant: u32 = 4;
+
+pub const anon5301 = u32;
+pub const anon5301_MacRomanStandardVariant: u32 = 0;
+pub const anon5301_MacIcelandicStandardVariant: u32 = 0;
+pub const anon5301_MacIcelandicTrueTypeVariant: u32 = 1;
+pub const anon5301_JapaneseStandardVariant: u32 = 0;
+pub const anon5301_JapaneseStdNoVerticalsVariant: u32 = 1;
+pub const anon5301_JapaneseBasicVariant: u32 = 2;
+pub const anon5301_JapanesePostScriptScrnVariant: u32 = 3;
+pub const anon5301_JapanesePostScriptPrintVariant: u32 = 4;
+pub const anon5301_JapaneseVertAtKuPlusTenVariant: u32 = 5;
+pub const anon5301_TextEncodingShiftJIS_X0213_00: u32 = 1576;
+pub const anon5301_HebrewStandardVariant: u32 = 0;
+pub const anon5301_HebrewFigureSpaceVariant: u32 = 1;
+pub const anon5301_UnicodeCanonicalDecompVariant: u32 = 2;
+pub const anon5301_UnicodeMaxDecomposedVariant: u32 = 2;
+pub const anon5301_UnicodeCanonicalCompVariant: u32 = 3;
+pub const anon5301_UnicodeNoComposedVariant: u32 = 3;
 
 pub const TextEncodingFormat = objc.UInt32;
 
-pub const anon5591 = enum(u32) {
-    TextEncodingDefaultFormat = 0,
-    UnicodeUTF16Format = 0,
-    UnicodeUTF7Format = 1,
-    UnicodeUTF8Format = 2,
-    UnicodeUTF32Format = 3,
-    UnicodeUTF16BEFormat = 4,
-    UnicodeUTF16LEFormat = 5,
-    UnicodeUTF32BEFormat = 6,
-    UnicodeUTF32LEFormat = 7,
-    UnicodeSCSUFormat = 8,
-    Unicode16BitFormat = 0,
-    Unicode32BitFormat = 3,
-};
+pub const anon5591 = u32;
+pub const anon5591_TextEncodingDefaultFormat: u32 = 0;
+pub const anon5591_UnicodeUTF16Format: u32 = 0;
+pub const anon5591_UnicodeUTF7Format: u32 = 1;
+pub const anon5591_UnicodeUTF8Format: u32 = 2;
+pub const anon5591_UnicodeUTF32Format: u32 = 3;
+pub const anon5591_UnicodeUTF16BEFormat: u32 = 4;
+pub const anon5591_UnicodeUTF16LEFormat: u32 = 5;
+pub const anon5591_UnicodeUTF32BEFormat: u32 = 6;
+pub const anon5591_UnicodeUTF32LEFormat: u32 = 7;
+pub const anon5591_UnicodeSCSUFormat: u32 = 8;
+pub const anon5591_Unicode16BitFormat: u32 = 0;
+pub const anon5591_Unicode32BitFormat: u32 = 3;
 
 pub const TextEncoding = objc.UInt32;
 
 pub const TextEncodingNameSelector = objc.UInt32;
+
+pub const anon5881 = u32;
+pub const anon5881_TextEncodingFullName: u32 = 0;
+pub const anon5881_TextEncodingBaseName: u32 = 1;
+pub const anon5881_TextEncodingVariantName: u32 = 2;
+pub const anon5881_TextEncodingFormatName: u32 = 3;
+pub const anon5881_HFSVolumeHardwareLockBit: u32 = 7;
+pub const anon5881_HFSVolumeUnmountedBit: u32 = 8;
+pub const anon5881_HFSVolumeSparedBlocksBit: u32 = 9;
+pub const anon5881_HFSVolumeNoCacheRequiredBit: u32 = 10;
+pub const anon5881_HFSBootVolumeInconsistentBit: u32 = 11;
+pub const anon5881_HFSCatalogNodeIDsReusedBit: u32 = 12;
+pub const anon5881_HFSVolumeJournaledBit: u32 = 13;
+pub const anon5881_HFSVolumeInconsistentBit: u32 = 14;
+pub const anon5881_HFSVolumeSoftwareLockBit: u32 = 15;
+pub const anon5881_HFSUnusedNodeFixBit: u32 = 31;
+pub const anon5881_HFSContentProtectionBit: u32 = 30;
+pub const anon5881_HFSExpandedTimesBit: u32 = 29;
+pub const anon5881_HFSVolumeHardwareLockMask: u32 = 128;
+pub const anon5881_HFSVolumeUnmountedMask: u32 = 256;
+pub const anon5881_HFSVolumeSparedBlocksMask: u32 = 512;
+pub const anon5881_HFSVolumeNoCacheRequiredMask: u32 = 1024;
+pub const anon5881_HFSBootVolumeInconsistentMask: u32 = 2048;
+pub const anon5881_HFSCatalogNodeIDsReusedMask: u32 = 4096;
+pub const anon5881_HFSVolumeJournaledMask: u32 = 8192;
+pub const anon5881_HFSVolumeInconsistentMask: u32 = 16384;
+pub const anon5881_HFSVolumeSoftwareLockMask: u32 = 32768;
+pub const anon5881_HFSExpandedTimesMask: u32 = 536870912;
+pub const anon5881_HFSContentProtectionMask: u32 = 1073741824;
+pub const anon5881_HFSUnusedNodeFixMask: u32 = -2147483648;
+pub const anon5881_HFSMDBAttributesMask: u32 = 33664;
+pub const anon5881_CSSMERR_DL_INVALID_DB_HANDLE: u32 = -2147413942;
+pub const anon5881_CSSMERR_DL_INVALID_PASSTHROUGH_ID: u32 = -2147413930;
+pub const anon5881_CSSMERR_DL_INVALID_NETWORK_ADDR: u32 = -2147413929;
 
 pub const TextEncodingRun = extern struct {
     offset: objc.ByteOffset,
     textEncoding: TextEncoding,
 };
 
-pub const TextEncodingRunPtr = ?*TextEncodingRun;
+pub const TextEncodingRunPtr = TextEncodingRun;
 
-pub const ConstTextEncodingRunPtr = ?*TextEncodingRun;
+pub const ConstTextEncodingRunPtr = TextEncodingRun;
 
 pub const ScriptCodeRun = extern struct {
     offset: objc.ByteOffset,
     script: objc.ScriptCode,
 };
 
-pub const ScriptCodeRunPtr = ?*ScriptCodeRun;
+pub const ScriptCodeRunPtr = ScriptCodeRun;
 
-pub const ConstScriptCodeRunPtr = ?*ScriptCodeRun;
+pub const ConstScriptCodeRunPtr = ScriptCodeRun;
 
-pub const TextPtr = ?*objc.UInt8;
+pub const TextPtr = objc.UInt8;
 
-pub const ConstTextPtr = ?*objc.UInt8;
+pub const ConstTextPtr = objc.UInt8;
 
-pub const UniCharArrayPtr = ?*objc.UniChar;
+pub const UniCharArrayPtr = objc.UniChar;
 
-pub const ConstUniCharArrayPtr = ?*objc.UniChar;
+pub const ConstUniCharArrayPtr = objc.UniChar;
 
-pub const UniCharArrayHandle = ?*UniCharArrayPtr;
+pub const UniCharArrayHandle = UniCharArrayPtr;
 
 pub const UniCharArrayOffset = u64;
 
-pub const anon6261 = enum(i32) {
-    TextScriptDontCare = -128,
-    TextLanguageDontCare = -128,
-    TextRegionDontCare = -128,
-};
+pub const anon6261 = i32;
+pub const anon6261_TextScriptDontCare: i32 = -128;
+pub const anon6261_TextLanguageDontCare: i32 = -128;
+pub const anon6261_TextRegionDontCare: i32 = -128;
 
 pub const TECInfo = extern struct {
     format: objc.UInt16,
@@ -3991,90 +5218,112 @@ pub const TECInfo = extern struct {
     tecHighestTEFileVersion: objc.UInt16,
 };
 
-pub const TECInfoPtr = ?*TECInfo;
+pub const TECInfoPtr = TECInfo;
 
-pub const TECInfoHandle = ?*TECInfoPtr;
+pub const TECInfoHandle = TECInfoPtr;
 
-pub const anon6491 = enum(u32) {
-    TECInfoCurrentFormat = 2,
-};
+pub const anon6491 = u32;
+pub const anon6491_TECInfoCurrentFormat: u32 = 2;
 
-pub const anon6961 = enum(u32) {
-    TECKeepInfoFixBit = 0,
-    TECFallbackTextLengthFixBit = 1,
-    TECTextRunBitClearFixBit = 2,
-    TECTextToUnicodeScanFixBit = 3,
-    TECAddForceASCIIChangesBit = 4,
-    TECPreferredEncodingFixBit = 5,
-    TECAddTextRunHeuristicsBit = 6,
-    TECAddFallbackInterruptBit = 7,
-};
+pub const anon6961 = u32;
+pub const anon6961_TECKeepInfoFixBit: u32 = 0;
+pub const anon6961_TECFallbackTextLengthFixBit: u32 = 1;
+pub const anon6961_TECTextRunBitClearFixBit: u32 = 2;
+pub const anon6961_TECTextToUnicodeScanFixBit: u32 = 3;
+pub const anon6961_TECAddForceASCIIChangesBit: u32 = 4;
+pub const anon6961_TECPreferredEncodingFixBit: u32 = 5;
+pub const anon6961_TECAddTextRunHeuristicsBit: u32 = 6;
+pub const anon6961_TECAddFallbackInterruptBit: u32 = 7;
 
-pub const anon7071 = enum(u32) {
-    TECKeepInfoFixMask = 1,
-    TECFallbackTextLengthFixMask = 2,
-    TECTextRunBitClearFixMask = 4,
-    TECTextToUnicodeScanFixMask = 8,
-    TECAddForceASCIIChangesMask = 16,
-    TECPreferredEncodingFixMask = 32,
-    TECAddTextRunHeuristicsMask = 64,
-    TECAddFallbackInterruptMask = 128,
-};
+pub const anon7071 = u32;
+pub const anon7071_TECKeepInfoFixMask: u32 = 1;
+pub const anon7071_TECFallbackTextLengthFixMask: u32 = 2;
+pub const anon7071_TECTextRunBitClearFixMask: u32 = 4;
+pub const anon7071_TECTextToUnicodeScanFixMask: u32 = 8;
+pub const anon7071_TECAddForceASCIIChangesMask: u32 = 16;
+pub const anon7071_TECPreferredEncodingFixMask: u32 = 32;
+pub const anon7071_TECAddTextRunHeuristicsMask: u32 = 64;
+pub const anon7071_TECAddFallbackInterruptMask: u32 = 128;
 
-pub const anon7241 = enum(u32) {
-    gestaltCRMAttr = 1668443424,
-    gestaltCRMPresent = 0,
-    gestaltCRMPersistentFix = 1,
-    gestaltCRMToolRsrcCalls = 2,
-};
+pub const anon7241 = u32;
+pub const anon7241_UnicodeByteOrderMark: u32 = 65279;
+pub const anon7241_UnicodeObjectReplacement: u32 = 65532;
+pub const anon7241_UnicodeReplacementChar: u32 = 65533;
+pub const anon7241_UnicodeSwappedByteOrderMark: u32 = 65534;
+pub const anon7241_UnicodeNotAChar: u32 = 65535;
+pub const anon7241_gestaltCRMAttr: u32 = 1668443424;
+pub const anon7241_gestaltCRMPresent: u32 = 0;
+pub const anon7241_gestaltCRMPersistentFix: u32 = 1;
+pub const anon7241_gestaltCRMToolRsrcCalls: u32 = 2;
 
 pub const UCCharPropertyType = objc.SInt32;
 
-pub const anon7401 = enum(u32) {
-    UCCharPropTypeGenlCategory = 1,
-    UCCharPropTypeCombiningClass = 2,
-    UCCharPropTypeBidiCategory = 3,
-    UCCharPropTypeDecimalDigitValue = 4,
-};
+pub const anon7401 = u32;
+pub const anon7401_UCCharPropTypeGenlCategory: u32 = 1;
+pub const anon7401_UCCharPropTypeCombiningClass: u32 = 2;
+pub const anon7401_UCCharPropTypeBidiCategory: u32 = 3;
+pub const anon7401_UCCharPropTypeDecimalDigitValue: u32 = 4;
 
 pub const UCCharPropertyValue = objc.UInt32;
 
-pub const anon7491 = enum(u32) {
-    UCGenlCatOtherNotAssigned = 0,
-    UCGenlCatOtherControl = 1,
-    UCGenlCatOtherFormat = 2,
-    UCGenlCatOtherSurrogate = 3,
-    UCGenlCatOtherPrivateUse = 4,
-    UCGenlCatMarkNonSpacing = 5,
-    UCGenlCatMarkSpacingCombining = 6,
-    UCGenlCatMarkEnclosing = 7,
-    UCGenlCatNumberDecimalDigit = 8,
-    UCGenlCatNumberLetter = 9,
-    UCGenlCatNumberOther = 10,
-    UCGenlCatSeparatorSpace = 11,
-    UCGenlCatSeparatorLine = 12,
-    UCGenlCatSeparatorParagraph = 13,
-    UCGenlCatLetterUppercase = 14,
-    UCGenlCatLetterLowercase = 15,
-    UCGenlCatLetterTitlecase = 16,
-    UCGenlCatLetterModifier = 17,
-    UCGenlCatLetterOther = 18,
-    UCGenlCatPunctConnector = 20,
-    UCGenlCatPunctDash = 21,
-    UCGenlCatPunctOpen = 22,
-    UCGenlCatPunctClose = 23,
-    UCGenlCatPunctInitialQuote = 24,
-    UCGenlCatPunctFinalQuote = 25,
-    UCGenlCatPunctOther = 26,
-    UCGenlCatSymbolMath = 28,
-    UCGenlCatSymbolCurrency = 29,
-    UCGenlCatSymbolModifier = 30,
-    UCGenlCatSymbolOther = 31,
-};
+pub const anon7491 = u32;
+pub const anon7491_UCGenlCatOtherNotAssigned: u32 = 0;
+pub const anon7491_UCGenlCatOtherControl: u32 = 1;
+pub const anon7491_UCGenlCatOtherFormat: u32 = 2;
+pub const anon7491_UCGenlCatOtherSurrogate: u32 = 3;
+pub const anon7491_UCGenlCatOtherPrivateUse: u32 = 4;
+pub const anon7491_UCGenlCatMarkNonSpacing: u32 = 5;
+pub const anon7491_UCGenlCatMarkSpacingCombining: u32 = 6;
+pub const anon7491_UCGenlCatMarkEnclosing: u32 = 7;
+pub const anon7491_UCGenlCatNumberDecimalDigit: u32 = 8;
+pub const anon7491_UCGenlCatNumberLetter: u32 = 9;
+pub const anon7491_UCGenlCatNumberOther: u32 = 10;
+pub const anon7491_UCGenlCatSeparatorSpace: u32 = 11;
+pub const anon7491_UCGenlCatSeparatorLine: u32 = 12;
+pub const anon7491_UCGenlCatSeparatorParagraph: u32 = 13;
+pub const anon7491_UCGenlCatLetterUppercase: u32 = 14;
+pub const anon7491_UCGenlCatLetterLowercase: u32 = 15;
+pub const anon7491_UCGenlCatLetterTitlecase: u32 = 16;
+pub const anon7491_UCGenlCatLetterModifier: u32 = 17;
+pub const anon7491_UCGenlCatLetterOther: u32 = 18;
+pub const anon7491_UCGenlCatPunctConnector: u32 = 20;
+pub const anon7491_UCGenlCatPunctDash: u32 = 21;
+pub const anon7491_UCGenlCatPunctOpen: u32 = 22;
+pub const anon7491_UCGenlCatPunctClose: u32 = 23;
+pub const anon7491_UCGenlCatPunctInitialQuote: u32 = 24;
+pub const anon7491_UCGenlCatPunctFinalQuote: u32 = 25;
+pub const anon7491_UCGenlCatPunctOther: u32 = 26;
+pub const anon7491_UCGenlCatSymbolMath: u32 = 28;
+pub const anon7491_UCGenlCatSymbolCurrency: u32 = 29;
+pub const anon7491_UCGenlCatSymbolModifier: u32 = 30;
+pub const anon7491_UCGenlCatSymbolOther: u32 = 31;
 
-pub const anon7851 = enum(u32) {
-    gestaltDisplayMgrVers = 1685089398,
-};
+pub const anon7851 = u32;
+pub const anon7851_UCBidiCatNotApplicable: u32 = 0;
+pub const anon7851_UCBidiCatLeftRight: u32 = 1;
+pub const anon7851_UCBidiCatRightLeft: u32 = 2;
+pub const anon7851_UCBidiCatEuroNumber: u32 = 3;
+pub const anon7851_UCBidiCatEuroNumberSeparator: u32 = 4;
+pub const anon7851_UCBidiCatEuroNumberTerminator: u32 = 5;
+pub const anon7851_UCBidiCatArabicNumber: u32 = 6;
+pub const anon7851_UCBidiCatCommonNumberSeparator: u32 = 7;
+pub const anon7851_UCBidiCatBlockSeparator: u32 = 8;
+pub const anon7851_UCBidiCatSegmentSeparator: u32 = 9;
+pub const anon7851_UCBidiCatWhitespace: u32 = 10;
+pub const anon7851_UCBidiCatOtherNeutral: u32 = 11;
+pub const anon7851_UCBidiCatRightLeftArabic: u32 = 12;
+pub const anon7851_UCBidiCatLeftRightEmbedding: u32 = 13;
+pub const anon7851_UCBidiCatRightLeftEmbedding: u32 = 14;
+pub const anon7851_UCBidiCatLeftRightOverride: u32 = 15;
+pub const anon7851_UCBidiCatRightLeftOverride: u32 = 16;
+pub const anon7851_UCBidiCatPopDirectionalFormat: u32 = 17;
+pub const anon7851_UCBidiCatNonSpacingMark: u32 = 18;
+pub const anon7851_UCBidiCatBoundaryNeutral: u32 = 19;
+pub const anon7851_UCBidiCatLeftRightIsolate: u32 = 20;
+pub const anon7851_UCBidiCatRightLeftIsolate: u32 = 21;
+pub const anon7851_UCBidiCatFirstStrongIsolate: u32 = 22;
+pub const anon7851_UCBidiCatPopDirectionalIsolate: u32 = 23;
+pub const anon7851_gestaltDisplayMgrVers: u32 = 1685089398;
 
 pub extern "CoreServices" fn CreateTextEncoding(encodingBase: TextEncodingBase, encodingVariant: TextEncodingVariant, encodingFormat: TextEncodingFormat) callconv(.C) TextEncoding;
 
@@ -4133,134 +5382,242 @@ pub extern "CoreServices" fn UCGetCharProperty(
     propValue: ?*UCCharPropertyValue,
 ) callconv(.C) objc.OSStatus;
 
-pub const anon11071 = enum(u32) {
-    UCHighSurrogateRangeStart = 55296,
-    UCHighSurrogateRangeEnd = 56319,
-    UCLowSurrogateRangeStart = 56320,
-    UCLowSurrogateRangeEnd = 57343,
-};
+pub const anon11071 = u32;
+pub const anon11071_UCHighSurrogateRangeStart: u32 = 55296;
+pub const anon11071_UCHighSurrogateRangeEnd: u32 = 56319;
+pub const anon11071_UCLowSurrogateRangeStart: u32 = 56320;
+pub const anon11071_UCLowSurrogateRangeEnd: u32 = 57343;
 
-pub extern "CoreServices" fn UCIsSurrogateHighCharacter(character: objc.UniChar) callconv(.C) objc.Boolean;
+pub const anon461 = u32;
+pub const anon461__MixedModeMagic: u32 = 43774;
+pub const anon461_FirstIOKitNotificationType: u32 = 100;
+pub const anon461_IOServicePublishNotificationType: u32 = 100;
+pub const anon461_IOServiceMatchedNotificationType: u32 = 101;
+pub const anon461_IOServiceTerminatedNotificationType: u32 = 102;
+pub const anon461_IOAsyncCompletionNotificationType: u32 = 150;
+pub const anon461_IOServiceMessageNotificationType: u32 = 160;
+pub const anon461_LastIOKitNotificationType: u32 = 199;
+pub const anon461_IOKitNoticationTypeMask: u32 = 4095;
+pub const anon461_IOKitNoticationTypeSizeAdjShift: u32 = 30;
+pub const anon461_IOKitNoticationMsgSizeMask: u32 = 3;
+pub const anon461_TECSignature: u32 = 1701733238;
+pub const anon461_TECUnicodePluginSignature: u32 = 1886744169;
+pub const anon461_TECJapanesePluginSignature: u32 = 1886023790;
+pub const anon461_TECChinesePluginSignature: u32 = 1887070319;
+pub const anon461_TECKoreanPluginSignature: u32 = 1886089074;
 
-pub extern "CoreServices" fn UCIsSurrogateLowCharacter(character: objc.UniChar) callconv(.C) objc.Boolean;
-
-pub extern "CoreServices" fn UCGetUnicodeScalarValueForSurrogatePair(surrogateHigh: objc.UniChar, surrogateLow: objc.UniChar) callconv(.C) objc.UnicodeScalarValue;
-
-pub const anon461 = enum(u32) {
-    TECSignature = 1701733238,
-    TECUnicodePluginSignature = 1886744169,
-    TECJapanesePluginSignature = 1886023790,
-    TECChinesePluginSignature = 1887070319,
-    TECKoreanPluginSignature = 1886089074,
-};
-
-pub const anon511 = enum(u32) {
-    Huge1BitMask = 1768122403,
-    Huge4BitData = 1768122420,
-    Huge8BitData = 1768122424,
-    Huge32BitData = 1768436530,
-    Huge8BitMask = 1748528491,
-};
+pub const anon511 = u32;
+pub const anon511_CurrentMixedModeStateRecord: u32 = 1;
+pub const anon511_IOMapAnywhere: u32 = 1;
+pub const anon511_IOMapCacheMask: u32 = 3840;
+pub const anon511_IOMapCacheShift: u32 = 8;
+pub const anon511_IOMapDefaultCache: u32 = 0;
+pub const anon511_IOMapInhibitCache: u32 = 256;
+pub const anon511_IOMapWriteThruCache: u32 = 512;
+pub const anon511_IOMapCopybackCache: u32 = 768;
+pub const anon511_IOMapWriteCombineCache: u32 = 1024;
+pub const anon511_IOMapCopybackInnerCache: u32 = 1280;
+pub const anon511_IOMapPostedWrite: u32 = 1536;
+pub const anon511_IOMapRealTimeCache: u32 = 1792;
+pub const anon511_IOMapPostedReordered: u32 = 2048;
+pub const anon511_IOMapPostedCombinedReordered: u32 = 2304;
+pub const anon511_IOMapUserOptionsMask: u32 = 4095;
+pub const anon511_IOMapReadOnly: u32 = 4096;
+pub const anon511_IOMapStatic: u32 = 16777216;
+pub const anon511_IOMapReference: u32 = 33554432;
+pub const anon511_IOMapUnique: u32 = 67108864;
+pub const anon511_IOMapPrefault: u32 = 268435456;
+pub const anon511_IOMapOverwrite: u32 = 536870912;
+pub const anon511_IOMapGuardedMask: u32 = -1073741824;
+pub const anon511_IOMapGuardedSmall: u32 = 1073741824;
+pub const anon511_IOMapGuardedLarge: u32 = -2147483648;
+pub const anon511_UnicodeUseLatestMapping: u32 = -1;
+pub const anon511_UnicodeUseHFSPlusMapping: u32 = 4;
+pub const anon511_HFSSigWord: u32 = 16964;
+pub const anon511_HFSPlusSigWord: u32 = 18475;
+pub const anon511_HFSXSigWord: u32 = 18520;
+pub const anon511_HFSPlusVersion: u32 = 4;
+pub const anon511_HFSXVersion: u32 = 5;
+pub const anon511_HFSPlusMountVersion: u32 = 825241136;
+pub const anon511_HFSJMountVersion: u32 = 1212568394;
+pub const anon511_FSKMountVersion: u32 = 1179863841;
+pub const anon511_Huge1BitMask: u32 = 1768122403;
+pub const anon511_Huge4BitData: u32 = 1768122420;
+pub const anon511_Huge8BitData: u32 = 1768122424;
+pub const anon511_Huge32BitData: u32 = 1768436530;
+pub const anon511_Huge8BitMask: u32 = 1748528491;
 
 pub const CallingConventionType = u16;
 
-pub const anon571 = enum(u32) {
-    PascalStackBased = 0,
-    CStackBased = 1,
-    RegisterBased = 2,
-    D0DispatchedPascalStackBased = 8,
-    D1DispatchedPascalStackBased = 12,
-    D0DispatchedCStackBased = 9,
-    StackDispatchedPascalStackBased = 14,
-    ThinkCStackBased = 5,
-};
+pub const anon571 = u32;
+pub const anon571_PascalStackBased: u32 = 0;
+pub const anon571_CStackBased: u32 = 1;
+pub const anon571_RegisterBased: u32 = 2;
+pub const anon571_D0DispatchedPascalStackBased: u32 = 8;
+pub const anon571_D1DispatchedPascalStackBased: u32 = 12;
+pub const anon571_D0DispatchedCStackBased: u32 = 9;
+pub const anon571_StackDispatchedPascalStackBased: u32 = 14;
+pub const anon571_ThinkCStackBased: u32 = 5;
 
 pub const ISAType = objc.SInt8;
 
-pub const anon751 = enum(i32) {
-    ClassicDomain = -32762,
-};
+pub const anon751 = u32;
+pub const anon751_X86ISA: u32 = 2;
+pub const anon751_TECInternetNameDefaultUsageMask: u32 = 0;
+pub const anon751_TECInternetNameStrictUsageMask: u32 = 1;
+pub const anon751_TECInternetNameTolerantUsageMask: u32 = 2;
+pub const anon751_ClassicDomain: u32 = -32762;
 
 pub const RTAType = objc.SInt8;
 
-pub const anon871 = enum(i32) {
-    genericDocumentIconResource = -4000,
-    genericStationeryIconResource = -3985,
-    genericEditionFileIconResource = -3989,
-    genericApplicationIconResource = -3996,
-    genericDeskAccessoryIconResource = -3991,
-    genericFolderIconResource = -3999,
-    privateFolderIconResource = -3994,
-    floppyIconResource = -3998,
-    trashIconResource = -3993,
-    genericRAMDiskIconResource = -3988,
-    genericCDROMIconResource = -3987,
-    desktopIconResource = -3992,
-    openFolderIconResource = -3997,
-    genericHardDiskIconResource = -3995,
-    genericFileServerIconResource = -3972,
-    genericSuitcaseIconResource = -3970,
-    genericMoverObjectIconResource = -3969,
-    genericPreferencesIconResource = -3971,
-    genericQueryDocumentIconResource = -16506,
-    genericExtensionIconResource = -16415,
-    systemFolderIconResource = -3983,
-    appleMenuFolderIconResource = -3982,
-};
+pub const anon811 = u32;
+pub const anon811_Old68kRTA: u32 = 0;
+pub const anon811_PowerPCRTA: u32 = 0;
+pub const anon811_CFM68kRTA: u32 = 16;
+pub const anon811_fFormatOK: u32 = 0;
+pub const anon811_fBestGuess: u32 = 1;
+pub const anon811_fOutOfSynch: u32 = 2;
+pub const anon811_fSpuriousChars: u32 = 3;
+pub const anon811_fMissingDelimiter: u32 = 4;
+pub const anon811_fExtraDecimal: u32 = 5;
+pub const anon811_fMissingLiteral: u32 = 6;
+pub const anon811_fExtraExp: u32 = 7;
+pub const anon811_fFormatOverflow: u32 = 8;
+pub const anon811_fFormStrIsNAN: u32 = 9;
+pub const anon811_fBadPartsTable: u32 = 10;
+pub const anon811_fExtraPercent: u32 = 11;
+pub const anon811_fExtraSeparator: u32 = 12;
+pub const anon811_fEmptyFormatString: u32 = 13;
+pub const anon811_iuSystemCurLang: u32 = -2;
+pub const anon811_iuSystemDefLang: u32 = -3;
+pub const anon811_iuCurrentCurLang: u32 = -4;
+pub const anon811_iuCurrentDefLang: u32 = -5;
+pub const anon811_iuScriptCurLang: u32 = -6;
+pub const anon811_iuScriptDefLang: u32 = -7;
+pub const anon811_noSecuritySession: u32 = 0;
+pub const anon811_callerSecuritySession: u32 = -1;
 
-pub const anon1081 = enum(u32) {
-    RegisterD0 = 0,
-    RegisterD1 = 1,
-    RegisterD2 = 2,
-    RegisterD3 = 3,
-    RegisterD4 = 8,
-    RegisterD5 = 9,
-    RegisterD6 = 10,
-    RegisterD7 = 11,
-    RegisterA0 = 4,
-    RegisterA1 = 5,
-    RegisterA2 = 6,
-    RegisterA3 = 7,
-    RegisterA4 = 12,
-    RegisterA5 = 13,
-    RegisterA6 = 14,
-    CCRegisterCBit = 16,
-    CCRegisterVBit = 17,
-    CCRegisterZBit = 18,
-    CCRegisterNBit = 19,
-    CCRegisterXBit = 20,
-};
+pub const anon871 = u32;
+pub const anon871_X86RTA: u32 = 32;
+pub const anon871_UnicodeUseFallbacksMask: u32 = 1;
+pub const anon871_UnicodeKeepInfoMask: u32 = 2;
+pub const anon871_UnicodeDirectionalityMask: u32 = 12;
+pub const anon871_UnicodeVerticalFormMask: u32 = 16;
+pub const anon871_UnicodeLooseMappingsMask: u32 = 32;
+pub const anon871_UnicodeStringUnterminatedMask: u32 = 64;
+pub const anon871_UnicodeTextRunMask: u32 = 128;
+pub const anon871_UnicodeKeepSameEncodingMask: u32 = 256;
+pub const anon871_UnicodeForceASCIIRangeMask: u32 = 512;
+pub const anon871_UnicodeNoHalfwidthCharsMask: u32 = 1024;
+pub const anon871_UnicodeTextRunHeuristicsMask: u32 = 2048;
+pub const anon871_UnicodeMapLineFeedToReturnMask: u32 = 4096;
+pub const anon871_UnicodeUseExternalEncodingFormMask: u32 = 8192;
+pub const anon871_CreateFolder: u32 = 0;
+pub const anon871_DontCreateFolder: u32 = 1;
+pub const anon871_errAuthorizationSuccess: u32 = 0;
+pub const anon871_errAuthorizationInvalidSet: u32 = -60001;
+pub const anon871_errAuthorizationInvalidRef: u32 = -60002;
+pub const anon871_errAuthorizationInvalidTag: u32 = -60003;
+pub const anon871_errAuthorizationInvalidPointer: u32 = -60004;
+pub const anon871_errAuthorizationDenied: u32 = -60005;
+pub const anon871_errAuthorizationCanceled: u32 = -60006;
+pub const anon871_errAuthorizationInteractionNotAllowed: u32 = -60007;
+pub const anon871_errAuthorizationInternal: u32 = -60008;
+pub const anon871_errAuthorizationExternalizeNotAllowed: u32 = -60009;
+pub const anon871_errAuthorizationInternalizeNotAllowed: u32 = -60010;
+pub const anon871_errAuthorizationInvalidFlags: u32 = -60011;
+pub const anon871_errAuthorizationToolExecuteFailure: u32 = -60031;
+pub const anon871_errAuthorizationToolEnvironmentError: u32 = -60032;
+pub const anon871_errAuthorizationBadAddress: u32 = -60033;
+pub const anon871_genericDocumentIconResource: u32 = -4000;
+pub const anon871_genericStationeryIconResource: u32 = -3985;
+pub const anon871_genericEditionFileIconResource: u32 = -3989;
+pub const anon871_genericApplicationIconResource: u32 = -3996;
+pub const anon871_genericDeskAccessoryIconResource: u32 = -3991;
+pub const anon871_genericFolderIconResource: u32 = -3999;
+pub const anon871_privateFolderIconResource: u32 = -3994;
+pub const anon871_floppyIconResource: u32 = -3998;
+pub const anon871_trashIconResource: u32 = -3993;
+pub const anon871_genericRAMDiskIconResource: u32 = -3988;
+pub const anon871_genericCDROMIconResource: u32 = -3987;
+pub const anon871_desktopIconResource: u32 = -3992;
+pub const anon871_openFolderIconResource: u32 = -3997;
+pub const anon871_genericHardDiskIconResource: u32 = -3995;
+pub const anon871_genericFileServerIconResource: u32 = -3972;
+pub const anon871_genericSuitcaseIconResource: u32 = -3970;
+pub const anon871_genericMoverObjectIconResource: u32 = -3969;
+pub const anon871_genericPreferencesIconResource: u32 = -3971;
+pub const anon871_genericQueryDocumentIconResource: u32 = -16506;
+pub const anon871_genericExtensionIconResource: u32 = -16415;
+pub const anon871_systemFolderIconResource: u32 = -3983;
+pub const anon871_appleMenuFolderIconResource: u32 = -3982;
+
+pub const anon1081 = u32;
+pub const anon1081_RegisterD0: u32 = 0;
+pub const anon1081_RegisterD1: u32 = 1;
+pub const anon1081_RegisterD2: u32 = 2;
+pub const anon1081_RegisterD3: u32 = 3;
+pub const anon1081_RegisterD4: u32 = 8;
+pub const anon1081_RegisterD5: u32 = 9;
+pub const anon1081_RegisterD6: u32 = 10;
+pub const anon1081_RegisterD7: u32 = 11;
+pub const anon1081_RegisterA0: u32 = 4;
+pub const anon1081_RegisterA1: u32 = 5;
+pub const anon1081_RegisterA2: u32 = 6;
+pub const anon1081_RegisterA3: u32 = 7;
+pub const anon1081_RegisterA4: u32 = 12;
+pub const anon1081_RegisterA5: u32 = 13;
+pub const anon1081_RegisterA6: u32 = 14;
+pub const anon1081_CCRegisterCBit: u32 = 16;
+pub const anon1081_CCRegisterVBit: u32 = 17;
+pub const anon1081_CCRegisterZBit: u32 = 18;
+pub const anon1081_CCRegisterNBit: u32 = 19;
+pub const anon1081_CCRegisterXBit: u32 = 20;
 
 pub const registerSelectorType = u16;
 
-pub const anon1331 = enum(u32) {
-    NoByteCode = 0,
-    OneByteCode = 1,
-    TwoByteCode = 2,
-    FourByteCode = 3,
-};
+pub const anon1331 = u32;
+pub const anon1331_NoByteCode: u32 = 0;
+pub const anon1331_OneByteCode: u32 = 1;
+pub const anon1331_TwoByteCode: u32 = 2;
+pub const anon1331_FourByteCode: u32 = 3;
 
 pub const ProcInfoType = u64;
 
 pub const RoutineFlagsType = u16;
 
-pub const anon1441 = enum(u32) {
-    UnicodeMatchUnicodeBaseBit = 0,
-    UnicodeMatchUnicodeVariantBit = 1,
-    UnicodeMatchUnicodeFormatBit = 2,
-    UnicodeMatchOtherBaseBit = 3,
-    UnicodeMatchOtherVariantBit = 4,
-    UnicodeMatchOtherFormatBit = 5,
-};
+pub const anon1441 = u32;
+pub const anon1441_ProcDescriptorIsAbsolute: u32 = 0;
+pub const anon1441_ProcDescriptorIsRelative: u32 = 1;
+pub const anon1441_fatalDateTime: u32 = 32768;
+pub const anon1441_longDateFound: u32 = 1;
+pub const anon1441_leftOverChars: u32 = 2;
+pub const anon1441_sepNotIntlSep: u32 = 4;
+pub const anon1441_fieldOrderNotIntl: u32 = 8;
+pub const anon1441_extraneousStrings: u32 = 16;
+pub const anon1441_tooManySeps: u32 = 32;
+pub const anon1441_sepNotConsistent: u32 = 64;
+pub const anon1441_tokenErr: u32 = 33024;
+pub const anon1441_cantReadUtilities: u32 = 33280;
+pub const anon1441_dateTimeNotFound: u32 = 33792;
+pub const anon1441_dateTimeInvalid: u32 = 34816;
+pub const anon1441_UnicodeMatchUnicodeBaseBit: u32 = 0;
+pub const anon1441_UnicodeMatchUnicodeVariantBit: u32 = 1;
+pub const anon1441_UnicodeMatchUnicodeFormatBit: u32 = 2;
+pub const anon1441_UnicodeMatchOtherBaseBit: u32 = 3;
+pub const anon1441_UnicodeMatchOtherVariantBit: u32 = 4;
+pub const anon1441_UnicodeMatchOtherFormatBit: u32 = 5;
 
-pub const anon1641 = enum(u32) {
-    SystemIconsCreator = 1835098995,
-};
+pub const anon1641 = u32;
+pub const anon1641_RoutineIsNotDispatchedDefaultRoutine: u32 = 0;
+pub const anon1641_RoutineIsDispatchedDefaultRoutine: u32 = 16;
+pub const anon1641_HFSExtentDensity: u32 = 3;
+pub const anon1641_HFSPlusExtentDensity: u32 = 8;
+pub const anon1641_SystemIconsCreator: u32 = 1835098995;
 
-pub const anon1691 = enum(u32) {
-    ProcDescriptorIsProcPtr = 0,
-    ProcDescriptorIsIndex = 32,
-};
+pub const anon1691 = u32;
+pub const anon1691_ProcDescriptorIsProcPtr: u32 = 0;
+pub const anon1691_ProcDescriptorIsIndex: u32 = 32;
 
 pub const RoutineRecord = extern struct {
     procInfo: ProcInfoType,
@@ -4272,9 +5629,9 @@ pub const RoutineRecord = extern struct {
     selector: objc.UInt32,
 };
 
-pub const RoutineRecordPtr = ?*RoutineRecord;
+pub const RoutineRecordPtr = RoutineRecord;
 
-pub const RoutineRecordHandle = ?*RoutineRecordPtr;
+pub const RoutineRecordHandle = RoutineRecordPtr;
 
 pub const RDFlagsType = objc.UInt8;
 
@@ -4289,9 +5646,9 @@ pub const RoutineDescriptor = extern struct {
     routineRecords: [1]RoutineRecord,
 };
 
-pub const RoutineDescriptorPtr = ?*RoutineDescriptor;
+pub const RoutineDescriptorPtr = RoutineDescriptor;
 
-pub const RoutineDescriptorHandle = ?*RoutineDescriptorPtr;
+pub const RoutineDescriptorHandle = RoutineDescriptorPtr;
 
 pub const MixedModeStateRecord = extern struct {
     state1: objc.UInt32,
@@ -4300,72 +5657,93 @@ pub const MixedModeStateRecord = extern struct {
     state4: objc.UInt32,
 };
 
-pub const anon2581 = enum(u32) {
-    AnyPort = 0,
-};
+pub const anon2581 = i32;
+pub const anon2581_CallingConventionWidth: i32 = 4;
+pub const anon2581_CallingConventionPhase: i32 = 0;
+pub const anon2581_CallingConventionMask: i32 = 15;
+pub const anon2581_ResultSizeWidth: i32 = 2;
+pub const anon2581_ResultSizePhase: i32 = 4;
+pub const anon2581_ResultSizeMask: i32 = 48;
+pub const anon2581_StackParameterWidth: i32 = 2;
+pub const anon2581_StackParameterPhase: i32 = 6;
+pub const anon2581_StackParameterMask: i32 = -64;
+pub const anon2581_RegisterResultLocationWidth: i32 = 5;
+pub const anon2581_RegisterResultLocationPhase: i32 = 6;
+pub const anon2581_RegisterParameterWidth: i32 = 5;
+pub const anon2581_RegisterParameterPhase: i32 = 11;
+pub const anon2581_RegisterParameterMask: i32 = 2147481600;
+pub const anon2581_RegisterParameterSizePhase: i32 = 0;
+pub const anon2581_RegisterParameterSizeWidth: i32 = 2;
+pub const anon2581_RegisterParameterWhichPhase: i32 = 2;
+pub const anon2581_RegisterParameterWhichWidth: i32 = 3;
+pub const anon2581_DispatchedSelectorSizeWidth: i32 = 2;
+pub const anon2581_DispatchedSelectorSizePhase: i32 = 6;
+pub const anon2581_DispatchedParameterPhase: i32 = 8;
+pub const anon2581_SpecialCaseSelectorWidth: i32 = 6;
+pub const anon2581_SpecialCaseSelectorPhase: i32 = 4;
+pub const anon2581_SpecialCaseSelectorMask: i32 = 1008;
+pub const anon2581_AnyPort: i32 = 0;
 
-pub const anon2901 = enum(u32) {
-    SpecialCaseHighHook = 0,
-    SpecialCaseCaretHook = 0,
-    SpecialCaseEOLHook = 1,
-    SpecialCaseWidthHook = 2,
-    SpecialCaseTextWidthHook = 2,
-    SpecialCaseNWidthHook = 3,
-    SpecialCaseDrawHook = 4,
-    SpecialCaseHitTestHook = 5,
-    SpecialCaseTEFindWord = 6,
-    SpecialCaseProtocolHandler = 7,
-    SpecialCaseSocketListener = 8,
-    SpecialCaseTERecalc = 9,
-    SpecialCaseTEDoText = 10,
-    SpecialCaseGNEFilterProc = 11,
-    SpecialCaseMBarHook = 12,
-};
+pub const anon2901 = u32;
+pub const anon2901_SpecialCaseHighHook: u32 = 0;
+pub const anon2901_SpecialCaseCaretHook: u32 = 0;
+pub const anon2901_SpecialCaseEOLHook: u32 = 1;
+pub const anon2901_SpecialCaseWidthHook: u32 = 2;
+pub const anon2901_SpecialCaseTextWidthHook: u32 = 2;
+pub const anon2901_SpecialCaseNWidthHook: u32 = 3;
+pub const anon2901_SpecialCaseDrawHook: u32 = 4;
+pub const anon2901_SpecialCaseHitTestHook: u32 = 5;
+pub const anon2901_SpecialCaseTEFindWord: u32 = 6;
+pub const anon2901_SpecialCaseProtocolHandler: u32 = 7;
+pub const anon2901_SpecialCaseSocketListener: u32 = 8;
+pub const anon2901_SpecialCaseTERecalc: u32 = 9;
+pub const anon2901_SpecialCaseTEDoText: u32 = 10;
+pub const anon2901_SpecialCaseGNEFilterProc: u32 = 11;
+pub const anon2901_SpecialCaseMBarHook: u32 = 12;
 
-pub const anon981 = enum(u32) {
-    CollectionUser0Mask = 1,
-    CollectionUser1Mask = 2,
-    CollectionUser2Mask = 4,
-    CollectionUser3Mask = 8,
-    CollectionUser4Mask = 16,
-    CollectionUser5Mask = 32,
-    CollectionUser6Mask = 64,
-    CollectionUser7Mask = 128,
-    CollectionUser8Mask = 256,
-    CollectionUser9Mask = 512,
-    CollectionUser10Mask = 1024,
-    CollectionUser11Mask = 2048,
-    CollectionUser12Mask = 4096,
-    CollectionUser13Mask = 8192,
-    CollectionUser14Mask = 16384,
-    CollectionUser15Mask = 32768,
-    CollectionReserved0Mask = 65536,
-    CollectionReserved1Mask = 131072,
-    CollectionReserved2Mask = 262144,
-    CollectionReserved3Mask = 524288,
-    CollectionReserved4Mask = 1048576,
-    CollectionReserved5Mask = 2097152,
-    CollectionReserved6Mask = 4194304,
-    CollectionReserved7Mask = 8388608,
-    CollectionReserved8Mask = 16777216,
-    CollectionReserved9Mask = 33554432,
-    CollectionReserved10Mask = 67108864,
-    CollectionReserved11Mask = 134217728,
-    CollectionReserved12Mask = 268435456,
-    CollectionReserved13Mask = 536870912,
-    CollectionPersistenceMask = 1073741824,
-    CollectionLockMask = -2147483648,
-};
+pub const anon981 = u32;
+pub const anon981_CollectionUser0Mask: u32 = 1;
+pub const anon981_CollectionUser1Mask: u32 = 2;
+pub const anon981_CollectionUser2Mask: u32 = 4;
+pub const anon981_CollectionUser3Mask: u32 = 8;
+pub const anon981_CollectionUser4Mask: u32 = 16;
+pub const anon981_CollectionUser5Mask: u32 = 32;
+pub const anon981_CollectionUser6Mask: u32 = 64;
+pub const anon981_CollectionUser7Mask: u32 = 128;
+pub const anon981_CollectionUser8Mask: u32 = 256;
+pub const anon981_CollectionUser9Mask: u32 = 512;
+pub const anon981_CollectionUser10Mask: u32 = 1024;
+pub const anon981_CollectionUser11Mask: u32 = 2048;
+pub const anon981_CollectionUser12Mask: u32 = 4096;
+pub const anon981_CollectionUser13Mask: u32 = 8192;
+pub const anon981_CollectionUser14Mask: u32 = 16384;
+pub const anon981_CollectionUser15Mask: u32 = 32768;
+pub const anon981_CollectionReserved0Mask: u32 = 65536;
+pub const anon981_CollectionReserved1Mask: u32 = 131072;
+pub const anon981_CollectionReserved2Mask: u32 = 262144;
+pub const anon981_CollectionReserved3Mask: u32 = 524288;
+pub const anon981_CollectionReserved4Mask: u32 = 1048576;
+pub const anon981_CollectionReserved5Mask: u32 = 2097152;
+pub const anon981_CollectionReserved6Mask: u32 = 4194304;
+pub const anon981_CollectionReserved7Mask: u32 = 8388608;
+pub const anon981_CollectionReserved8Mask: u32 = 16777216;
+pub const anon981_CollectionReserved9Mask: u32 = 33554432;
+pub const anon981_CollectionReserved10Mask: u32 = 67108864;
+pub const anon981_CollectionReserved11Mask: u32 = 134217728;
+pub const anon981_CollectionReserved12Mask: u32 = 268435456;
+pub const anon981_CollectionReserved13Mask: u32 = 536870912;
+pub const anon981_CollectionPersistenceMask: u32 = 1073741824;
+pub const anon981_CollectionLockMask: u32 = -2147483648;
 
 pub const OpaqueCollection = extern struct {};
 
-pub const Collection = ?*OpaqueCollection;
+pub const Collection = OpaqueCollection;
 
 pub const CollectionTag = objc.FourCharCode;
 
-pub const CollectionFlattenProcPtr = ?*const fn (objc.SInt32, ?*anyopaque, ?*anyopaque) callconv(.C) objc.OSErr;
+pub const CollectionFlattenProcPtr = objc.OSErr;
 
-pub const CollectionExceptionProcPtr = ?*const fn (Collection, objc.OSErr) callconv(.C) objc.OSErr;
+pub const CollectionExceptionProcPtr = objc.OSErr;
 
 pub const CollectionFlattenUPP = CollectionFlattenProcPtr;
 
@@ -4581,20 +5959,11 @@ pub const BigEndianOSType = extern struct {
     bigEndianValue: objc.OSType,
 };
 
-pub const anon3081 = enum(u32) {
-    CoreEndianResourceManagerDomain = 1920168547,
-    CoreEndianAppleEventManagerDomain = 1634039412,
-};
+pub const anon3081 = u32;
+pub const anon3081_CoreEndianResourceManagerDomain: u32 = 1920168547;
+pub const anon3081_CoreEndianAppleEventManagerDomain: u32 = 1634039412;
 
-pub const CoreEndianFlipProc = ?*const fn (
-    objc.OSType,
-    objc.OSType,
-    objc.SInt16,
-    ?*anyopaque,
-    objc.ByteCount,
-    objc.Boolean,
-    ?*anyopaque,
-) callconv(.C) objc.OSStatus;
+pub const CoreEndianFlipProc = objc.OSStatus;
 
 pub extern "CoreServices" fn CoreEndianInstallFlipper(
     dataDomain: objc.OSType,
@@ -4619,7 +5988,7 @@ pub extern "CoreServices" fn CoreEndianFlipData(
     currentlyNative: objc.Boolean,
 ) callconv(.C) objc.OSStatus;
 
-pub const SelectorFunctionProcPtr = ?*const fn (objc.OSType, ?*objc.SInt32) callconv(.C) objc.OSErr;
+pub const SelectorFunctionProcPtr = objc.OSErr;
 
 pub const SelectorFunctionUPP = SelectorFunctionProcPtr;
 
@@ -4639,1477 +6008,1545 @@ pub extern "CoreServices" fn DisposeSelectorFunctionUPP(userUPP: SelectorFunctio
 
 pub extern "CoreServices" fn InvokeSelectorFunctionUPP(selector: objc.OSType, response: ?*objc.SInt32, userUPP: SelectorFunctionUPP) callconv(.C) objc.OSErr;
 
-pub const anon4421 = enum(u32) {
-    QuickLookFolderType = 1902928747,
-};
-
-pub const anon4491 = enum(i32) {
-    gestaltAFPClient = 1634103411,
-    gestaltAFPClientVersionMask = 65535,
-    gestaltAFPClient3_5 = 1,
-    gestaltAFPClient3_6 = 2,
-    gestaltAFPClient3_6_1 = 3,
-    gestaltAFPClient3_6_2 = 4,
-    gestaltAFPClient3_6_3 = 5,
-    gestaltAFPClient3_7 = 6,
-    gestaltAFPClient3_7_2 = 7,
-    gestaltAFPClient3_8 = 8,
-    gestaltAFPClient3_8_1 = 9,
-    gestaltAFPClient3_8_3 = 10,
-    gestaltAFPClient3_8_4 = 11,
-    gestaltAFPClientAttributeMask = -65536,
-    gestaltAFPClientCfgRsrc = 16,
-    gestaltAFPClientSupportsIP = 29,
-    gestaltAFPClientVMUI = 30,
-    gestaltAFPClientMultiReq = 31,
-};
-
-pub const anon4871 = enum(u32) {
-    gestaltAppearanceAttr = 1634758770,
-    gestaltAppearanceExists = 0,
-    gestaltAppearanceCompatMode = 1,
-};
-
-pub const anon4991 = enum(u32) {
-    gestaltAppearanceVersion = 1634760306,
-};
-
-pub const anon5081 = enum(u32) {
-    gestaltAppleScriptVersion = 1634952054,
-};
-
-pub const anon5121 = enum(u32) {
-    gestaltAppleScriptAttr = 1634952050,
-    gestaltAppleScriptPresent = 0,
-    gestaltAppleScriptPowerPCSupport = 1,
-};
-
-pub const anon5231 = enum(u32) {
-    gestaltATalkVersion = 1635019638,
-};
-
-pub const anon5271 = enum(u32) {
-    gestaltAppleTalkVersion = 1635019883,
-};
-
-pub const anon5531 = enum(u32) {
-    gestaltAUXVersion = 1630500216,
-};
-
-pub const anon5641 = enum(u32) {
-    gestaltBusClkSpeed = 1650682987,
-};
-
-pub const anon5681 = enum(u32) {
-    gestaltBusClkSpeedMHz = 1650682989,
-};
-
-pub const anon5821 = enum(u32) {
-    gestaltCFMAttr = 1667658343,
-    gestaltCFMPresent = 0,
-    gestaltCFMPresentMask = 1,
-    gestaltCFM99Present = 2,
-    gestaltCFM99PresentMask = 4,
-};
-
-pub const anon5901 = enum(u32) {
-    gestaltProcessorCacheLineSize = 1668508026,
-};
-
-pub const anon5941 = enum(u32) {
-    gestaltCollectionMgrVersion = 1668052078,
-};
-
-pub const anon5981 = enum(u32) {
-    gestaltColorMatchingAttr = 1668117601,
-    gestaltHighLevelMatching = 0,
-    gestaltColorMatchingLibLoaded = 1,
-};
-
-pub const anon6041 = enum(i32) {
-    errAEEventWouldRequireUserConsent = -1744,
-};
-
-pub const anon6251 = enum(u32) {
-    gestaltControlMgrAttr = 1668183148,
-    gestaltControlMgrPresent = 1,
-    gestaltControlMgrPresentBit = 0,
-    gestaltControlMsgPresentMask = 1,
-};
-
-pub const anon6341 = enum(u32) {
-    AEZoomIn = 7,
-    AEZoomOut = 8,
-};
-
-pub const anon6421 = enum(u32) {
-    gestaltColorPickerVersion = 1668311922,
-    gestaltColorPicker = 1668311922,
-};
-
-pub const anon6471 = enum(u32) {
-    gestaltComponentMgr = 1668312692,
-    gestaltComponentPlatform = 1668247660,
-};
-
-pub const anon6801 = enum(u32) {
-    gestaltNativeCPUtype = 1668314484,
-    gestaltNativeCPUfamily = 1668314470,
-    gestaltCPU68000 = 0,
-    gestaltCPU68010 = 1,
-    gestaltCPU68020 = 2,
-    gestaltCPU68030 = 3,
-    gestaltCPU68040 = 4,
-    gestaltCPU601 = 257,
-    gestaltCPU603 = 259,
-    gestaltCPU604 = 260,
-    gestaltCPU603e = 262,
-    gestaltCPU603ev = 263,
-    gestaltCPU750 = 264,
-    gestaltCPU604e = 265,
-    gestaltCPU604ev = 266,
-    gestaltCPUG4 = 268,
-    gestaltCPUG47450 = 272,
-};
-
-pub const anon7001 = enum(u32) {
-    gestaltCPUApollo = 273,
-    gestaltCPUG47447 = 274,
-    gestaltCPU750FX = 288,
-    gestaltCPU970 = 313,
-    gestaltCPU970FX = 316,
-    gestaltCPU970MP = 324,
-};
-
-pub const anon7091 = enum(u32) {
-    gestaltCPU486 = 1765029942,
-    gestaltCPUPentium = 1765095478,
-    gestaltCPUPentiumPro = 1765109874,
-    gestaltCPUPentiumII = 1765108073,
-    gestaltCPUX86 = 1769502840,
-    gestaltCPUPentium4 = 1765108086,
-};
-
-pub const anon7191 = enum(u32) {
-    gestaltCPUARMFamily = 1634888992,
-    gestaltCPUARM64 = 1635268148,
-};
-
-pub const anon7351 = enum(u32) {
-    gestaltCountOfCPUs = 1668314483,
-};
-
-pub const anon7391 = enum(u32) {
-    gestaltCTBVersion = 1668571766,
-};
-
-pub const anon7431 = enum(u32) {
-    gestaltDBAccessMgrAttr = 1684169059,
-    gestaltDBAccessMgrPresent = 0,
-};
-
-pub const anon7481 = enum(u32) {
-    gestaltDiskCacheSize = 1684239226,
-};
-
-pub const anon7521 = enum(u32) {
-    gestaltSDPFindVersion = 1684434532,
-};
-
-pub const anon7561 = enum(u32) {
-    gestaltDictionaryMgrAttr = 1684628340,
-    gestaltDictionaryMgrPresent = 0,
-};
-
-pub const anon7671 = enum(u32) {
-    gestaltDialogMgrAttr = 1684828007,
-    gestaltDialogMgrPresent = 1,
-    gestaltDialogMgrPresentBit = 0,
-    gestaltDialogMgrHasAquaAlertBit = 2,
-    gestaltDialogMgrPresentMask = 1,
-    gestaltDialogMgrHasAquaAlertMask = 4,
-    gestaltDialogMsgPresentMask = 1,
-};
-
-pub const anon8101 = enum(u32) {
-    gestaltDrawSprocketVersion = 1685287030,
-};
-
-pub const anon8141 = enum(u32) {
-    gestaltDigitalSignatureVersion = 1685285223,
-};
-
-pub const anon8221 = enum(u32) {
-    gestaltDTPFeatures = 1685352550,
-    DTPThirdPartySupported = 4,
-};
-
-pub const anon8321 = enum(u32) {
-    gestaltDTPInfo = 1685352568,
-};
-
-pub const anon8361 = enum(u32) {
-    gestaltEasyAccessAttr = 1700885369,
-    gestaltEasyAccessOff = 0,
-    gestaltEasyAccessOn = 1,
-    gestaltEasyAccessSticky = 2,
-    gestaltEasyAccessLocked = 3,
-};
-
-pub const anon8441 = enum(u32) {
-    gestaltEditionMgrAttr = 1701082222,
-    gestaltEditionMgrPresent = 0,
-    gestaltEditionMgrTranslationAware = 1,
-};
-
-pub const anon8501 = enum(u32) {
-    gestaltAppleEventsAttr = 1702260340,
-    gestaltAppleEventsPresent = 0,
-    gestaltScriptingSupport = 1,
-    gestaltOSLInSystem = 2,
-    gestaltSupportsApplicationURL = 4,
-};
-
-pub const anon8691 = enum(u32) {
-    gestaltFBCVersion = 1717724022,
-    gestaltFBCCurrentVersion = 17,
-    gestaltOSXFBCCurrentVersion = 256,
-};
-
-pub const anon8761 = enum(u32) {
-    gestaltFileMappingAttr = 1718381936,
-    gestaltFileMappingPresent = 0,
-    gestaltFileMappingMultipleFilesFix = 1,
-};
-
-pub const anon8821 = enum(u32) {
-    gestaltFloppyAttr = 1718382713,
-    gestaltFloppyIsMFMOnly = 0,
-    gestaltFloppyIsManualEject = 1,
-    gestaltFloppyUsesDiskInPlace = 2,
-};
-
-pub const anon8891 = enum(u32) {
-    gestaltFinderAttr = 1718510706,
-    gestaltFinderDropEvent = 0,
-    gestaltFinderMagicPlacement = 1,
-    gestaltFinderCallsAEProcess = 2,
-    gestaltOSLCompliantFinder = 3,
-    gestaltFinderSupports4GBVolumes = 4,
-    gestaltFinderHasClippings = 6,
-    gestaltFinderFullDragManagerSupport = 7,
-    gestaltFinderFloppyRootComments = 8,
-    gestaltFinderLargeAndNotSavedFlavorsOK = 9,
-    gestaltFinderUsesExtensibleFolderManager = 10,
-    gestaltFinderUnderstandsRedirectedDesktopFolder = 11,
-};
-
-pub const anon9041 = enum(u32) {
-    gestaltFindFolderAttr = 1718578276,
-    gestaltFindFolderPresent = 0,
-    gestaltFolderDescSupport = 1,
-    gestaltFolderMgrFollowsAliasesWhenResolving = 2,
-    gestaltFolderMgrSupportsExtendedCalls = 3,
-    gestaltFolderMgrSupportsDomains = 4,
-    gestaltFolderMgrSupportsFSCalls = 5,
-};
-
-pub const anon9141 = enum(u32) {
-    gestaltFindFolderRedirectionAttr = 1718578277,
-};
-
-pub const anon9191 = enum(u32) {
-    gestaltFontMgrAttr = 1718578804,
-    gestaltOutlineFonts = 0,
-};
-
-pub const anon9241 = enum(u32) {
-    gestaltFPUType = 1718646048,
-    gestaltNoFPU = 0,
-    gestalt68881 = 1,
-    gestalt68882 = 2,
-    gestalt68040FPU = 3,
-};
-
-pub const anon9321 = enum(u32) {
-    gestaltFSAttr = 1718820896,
-    gestaltFullExtFSDispatching = 0,
-    gestaltHasFSSpecCalls = 1,
-    gestaltHasFileSystemManager = 2,
-    gestaltFSMDoesDynamicLoad = 3,
-    gestaltFSSupports4GBVols = 4,
-    gestaltFSSupports2TBVols = 5,
-    gestaltHasExtendedDiskInit = 6,
-    gestaltDTMgrSupportsFSM = 7,
-    gestaltFSNoMFSVols = 8,
-    gestaltFSSupportsHFSPlusVols = 9,
-    gestaltFSIncompatibleDFA82 = 10,
-};
-
-pub const anon9471 = enum(u32) {
-    gestaltFSSupportsDirectIO = 11,
-};
-
-pub const anon9511 = enum(u32) {
-    gestaltHasHFSPlusAPIs = 12,
-    gestaltMustUseFCBAccessors = 13,
-    gestaltFSUsesPOSIXPathsForConversion = 14,
-    gestaltFSSupportsExclusiveLocks = 15,
-    gestaltFSSupportsHardLinkDetection = 16,
-    gestaltFSAllowsConcurrentAsyncIO = 17,
-};
-
-pub const anon9601 = enum(u32) {
-    gestaltAdminFeaturesFlagsAttr = 1718773092,
-    gestaltFinderUsesSpecialOpenFoldersFile = 0,
-};
-
-pub const anon9651 = enum(u32) {
-    gestaltFSMVersion = 1718840608,
-};
-
-pub const anon9691 = enum(u32) {
-    gestaltFXfrMgrAttr = 1719166578,
-    gestaltFXfrMgrPresent = 0,
-    gestaltFXfrMgrMultiFile = 1,
-    gestaltFXfrMgrErrorString = 2,
-    gestaltFXfrMgrAsync = 3,
-};
-
-pub const anon9771 = enum(u32) {
-    gestaltGraphicsAttr = 1734768737,
-    gestaltGraphicsIsDebugging = 1,
-    gestaltGraphicsIsLoaded = 2,
-    gestaltGraphicsIsPowerPC = 4,
-};
-
-pub const anon9841 = enum(u32) {
-    gestaltGraphicsVersion = 1735550584,
-    gestaltCurrentGraphicsVersion = 66048,
-};
-
-pub const anon9891 = enum(u32) {
-    gestaltHardwareAttr = 1751414642,
-    gestaltHasVIA1 = 0,
-    gestaltHasVIA2 = 1,
-    gestaltHasASC = 3,
-    gestaltHasSCC = 4,
-    gestaltHasSCSI = 7,
-    gestaltHasSoftPowerOff = 19,
-    gestaltHasSCSI961 = 21,
-    gestaltHasSCSI962 = 22,
-    gestaltHasUniversalROM = 24,
-    gestaltHasEnhancedLtalk = 30,
-};
-
-pub const anon10031 = enum(u32) {
-    gestaltHelpMgrAttr = 1751477360,
-    gestaltHelpMgrPresent = 0,
-    gestaltHelpMgrExtensions = 1,
-    gestaltAppleGuideIsDebug = 30,
-    gestaltAppleGuidePresent = 31,
-};
-
-pub const anon10111 = enum(u32) {
-    gestaltHardwareVendorCode = 1752326500,
-    gestaltHardwareVendorApple = 1097887852,
-};
-
-pub const anon10161 = enum(u32) {
-    gestaltCompressionMgr = 1768123760,
-};
-
-pub const anon10201 = enum(u32) {
-    gestaltIconUtilitiesAttr = 1768124270,
-    gestaltIconUtilitiesPresent = 0,
-    gestaltIconUtilitiesHas48PixelIcons = 1,
-    gestaltIconUtilitiesHas32BitIcons = 2,
-    gestaltIconUtilitiesHas8BitDeepMasks = 3,
-    gestaltIconUtilitiesHasIconServices = 4,
-};
-
-pub const anon10291 = enum(u32) {
-    gestaltInternalDisplay = 1768190832,
-};
-
-pub const anon10371 = enum(u32) {
-    gestaltKeyboardType = 1801610272,
-    gestaltMacKbd = 1,
-    gestaltMacAndPad = 2,
-    gestaltMacPlusKbd = 3,
-    gestaltUnknownThirdPartyKbd = 3,
-    gestaltExtADBKbd = 4,
-    gestaltStdADBKbd = 5,
-    gestaltPrtblADBKbd = 6,
-    gestaltPrtblISOKbd = 7,
-    gestaltStdISOADBKbd = 8,
-    gestaltExtISOADBKbd = 9,
-    gestaltADBKbdII = 10,
-    gestaltADBISOKbdII = 11,
-    gestaltPwrBookADBKbd = 12,
-    gestaltPwrBookISOADBKbd = 13,
-    gestaltAppleAdjustKeypad = 14,
-    gestaltAppleAdjustADBKbd = 15,
-    gestaltAppleAdjustISOKbd = 16,
-    gestaltJapanAdjustADBKbd = 17,
-    gestaltPwrBkExtISOKbd = 20,
-    gestaltPwrBkExtJISKbd = 21,
-    gestaltPwrBkExtADBKbd = 24,
-    gestaltPS2Keyboard = 27,
-    gestaltPwrBkSubDomKbd = 28,
-    gestaltPwrBkSubISOKbd = 29,
-    gestaltPwrBkSubJISKbd = 30,
-    gestaltPortableUSBANSIKbd = 37,
-    gestaltPortableUSBISOKbd = 38,
-    gestaltPortableUSBJISKbd = 39,
-    gestaltThirdPartyANSIKbd = 40,
-    gestaltThirdPartyISOKbd = 41,
-    gestaltThirdPartyJISKbd = 42,
-    gestaltPwrBkEKDomKbd = 195,
-    gestaltPwrBkEKISOKbd = 196,
-    gestaltPwrBkEKJISKbd = 197,
-    gestaltUSBCosmoANSIKbd = 198,
-    gestaltUSBCosmoISOKbd = 199,
-    gestaltUSBCosmoJISKbd = 200,
-    gestaltPwrBk99JISKbd = 201,
-    gestaltUSBAndyANSIKbd = 204,
-    gestaltUSBAndyISOKbd = 205,
-    gestaltUSBAndyJISKbd = 206,
-};
-
-pub const anon10891 = enum(u32) {
-    gestaltUSBProF16ANSIKbd = 34,
-    gestaltUSBProF16ISOKbd = 35,
-    gestaltUSBProF16JISKbd = 36,
-    gestaltProF16ANSIKbd = 31,
-    gestaltProF16ISOKbd = 32,
-    gestaltProF16JISKbd = 33,
-};
-
-pub const anon11021 = enum(u32) {
-    gestaltUDFSupport = 1802855526,
-};
-
-pub const anon11061 = enum(u32) {
-    gestaltLowMemorySize = 1819108717,
-};
-
-pub const anon11101 = enum(u32) {
-    gestaltLogicalRAMSize = 1819435373,
-};
-
-pub const anon12111 = enum(u32) {
-    gestaltMachineType = 1835098984,
-    gestaltClassic = 1,
-    gestaltMacXL = 2,
-    gestaltMac512KE = 3,
-    gestaltMacPlus = 4,
-    gestaltMacSE = 5,
-    gestaltMacII = 6,
-    gestaltMacIIx = 7,
-    gestaltMacIIcx = 8,
-    gestaltMacSE030 = 9,
-    gestaltPortable = 10,
-    gestaltMacIIci = 11,
-    gestaltPowerMac8100_120 = 12,
-    gestaltMacIIfx = 13,
-    gestaltMacClassic = 17,
-    gestaltMacIIsi = 18,
-    gestaltMacLC = 19,
-    gestaltMacQuadra900 = 20,
-    gestaltPowerBook170 = 21,
-    gestaltMacQuadra700 = 22,
-    gestaltClassicII = 23,
-    gestaltPowerBook100 = 24,
-    gestaltPowerBook140 = 25,
-    gestaltMacQuadra950 = 26,
-    gestaltMacLCIII = 27,
-    gestaltPerforma450 = 27,
-    gestaltPowerBookDuo210 = 29,
-    gestaltMacCentris650 = 30,
-    gestaltPowerBookDuo230 = 32,
-    gestaltPowerBook180 = 33,
-    gestaltPowerBook160 = 34,
-    gestaltMacQuadra800 = 35,
-    gestaltMacQuadra650 = 36,
-    gestaltMacLCII = 37,
-    gestaltPowerBookDuo250 = 38,
-    gestaltAWS9150_80 = 39,
-    gestaltPowerMac8100_110 = 40,
-    gestaltAWS8150_110 = 40,
-    gestaltPowerMac5200 = 41,
-    gestaltPowerMac5260 = 41,
-    gestaltPerforma5300 = 41,
-    gestaltPowerMac6200 = 42,
-    gestaltPerforma6300 = 42,
-    gestaltMacIIvi = 44,
-    gestaltMacIIvm = 45,
-    gestaltPerforma600 = 45,
-    gestaltPowerMac7100_80 = 47,
-    gestaltMacIIvx = 48,
-    gestaltMacColorClassic = 49,
-    gestaltPerforma250 = 49,
-    gestaltPowerBook165c = 50,
-    gestaltMacCentris610 = 52,
-    gestaltMacQuadra610 = 53,
-    gestaltPowerBook145 = 54,
-    gestaltPowerMac8100_100 = 55,
-    gestaltMacLC520 = 56,
-    gestaltAWS9150_120 = 57,
-    gestaltPowerMac6400 = 58,
-    gestaltPerforma6400 = 58,
-    gestaltPerforma6360 = 58,
-    gestaltMacCentris660AV = 60,
-    gestaltMacQuadra660AV = 60,
-    gestaltPerforma46x = 62,
-    gestaltPowerMac8100_80 = 65,
-    gestaltAWS8150_80 = 65,
-    gestaltPowerMac9500 = 67,
-    gestaltPowerMac9600 = 67,
-    gestaltPowerMac7500 = 68,
-    gestaltPowerMac7600 = 68,
-    gestaltPowerMac8500 = 69,
-    gestaltPowerMac8600 = 69,
-    gestaltAWS8550 = 68,
-    gestaltPowerBook180c = 71,
-    gestaltPowerBook520 = 72,
-    gestaltPowerBook520c = 72,
-    gestaltPowerBook540 = 72,
-    gestaltPowerBook540c = 72,
-    gestaltPowerMac5400 = 74,
-    gestaltPowerMac6100_60 = 75,
-    gestaltAWS6150_60 = 75,
-    gestaltPowerBookDuo270c = 77,
-    gestaltMacQuadra840AV = 78,
-    gestaltPerforma550 = 80,
-    gestaltPowerBook165 = 84,
-    gestaltPowerBook190 = 85,
-    gestaltMacTV = 88,
-    gestaltMacLC475 = 89,
-    gestaltPerforma47x = 89,
-    gestaltMacLC575 = 92,
-    gestaltMacQuadra605 = 94,
-    gestaltMacQuadra630 = 98,
-    gestaltMacLC580 = 99,
-    gestaltPerforma580 = 99,
-    gestaltPowerMac6100_66 = 100,
-    gestaltAWS6150_66 = 100,
-    gestaltPowerBookDuo280 = 102,
-    gestaltPowerBookDuo280c = 103,
-    gestaltPowerMacLC475 = 104,
-    gestaltPowerMacPerforma47x = 104,
-    gestaltPowerMacLC575 = 105,
-    gestaltPowerMacPerforma57x = 105,
-    gestaltPowerMacQuadra630 = 106,
-    gestaltPowerMacLC630 = 106,
-    gestaltPowerMacPerforma63x = 106,
-    gestaltPowerMac7200 = 108,
-    gestaltPowerMac7300 = 109,
-    gestaltPowerMac7100_66 = 112,
-    gestaltPowerBook150 = 115,
-    gestaltPowerMacQuadra700 = 116,
-    gestaltPowerMacQuadra900 = 117,
-    gestaltPowerMacQuadra950 = 118,
-    gestaltPowerMacCentris610 = 119,
-    gestaltPowerMacCentris650 = 120,
-    gestaltPowerMacQuadra610 = 121,
-    gestaltPowerMacQuadra650 = 122,
-    gestaltPowerMacQuadra800 = 123,
-    gestaltPowerBookDuo2300 = 124,
-    gestaltPowerBook500PPCUpgrade = 126,
-    gestaltPowerBook5300 = 128,
-    gestaltPowerBook1400 = 310,
-    gestaltPowerBook3400 = 306,
-    gestaltPowerBook2400 = 307,
-    gestaltPowerBookG3Series = 312,
-    gestaltPowerBookG3 = 313,
-    gestaltPowerBookG3Series2 = 314,
-    gestaltPowerMacNewWorld = 406,
-    gestaltPowerMacG3 = 510,
-    gestaltPowerMac5500 = 512,
-    gestalt20thAnniversary = 512,
-    gestaltPowerMac6500 = 513,
-    gestaltPowerMac4400_160 = 514,
-    gestaltPowerMac4400 = 515,
-    gestaltMacOSCompatibility = 1206,
-};
-
-pub const anon13481 = enum(u32) {
-    gestaltQuadra605 = 94,
-    gestaltQuadra610 = 53,
-    gestaltQuadra630 = 98,
-    gestaltQuadra650 = 36,
-    gestaltQuadra660AV = 60,
-    gestaltQuadra700 = 22,
-    gestaltQuadra800 = 35,
-    gestaltQuadra840AV = 78,
-    gestaltQuadra900 = 20,
-    gestaltQuadra950 = 26,
-};
-
-pub const anon13611 = enum(i32) {
-    MachineNameStrID = -16395,
-};
-
-pub const anon13651 = enum(u32) {
-    gestaltSMPMailerVersion = 1835101298,
-};
-
-pub const anon13691 = enum(u32) {
-    gestaltMediaBay = 1835165032,
-    gestaltMBLegacy = 0,
-    gestaltMBSingleBay = 1,
-    gestaltMBMultipleBays = 2,
-};
-
-pub const anon13761 = enum(u32) {
-    gestaltMessageMgrVersion = 1835365235,
-};
-
-pub const anon13821 = enum(u32) {
-    gestaltMenuMgrAttr = 1835363957,
-    gestaltMenuMgrPresent = 1,
-    gestaltMenuMgrPresentBit = 0,
-    gestaltMenuMgrAquaLayoutBit = 1,
-    gestaltMenuMgrMultipleItemsWithCommandIDBit = 2,
-    gestaltMenuMgrRetainsIconRefBit = 3,
-    gestaltMenuMgrSendsMenuBoundsToDefProcBit = 4,
-    gestaltMenuMgrMoreThanFiveMenusDeepBit = 5,
-    gestaltMenuMgrCGImageMenuTitleBit = 6,
-    gestaltMenuMgrPresentMask = 1,
-    gestaltMenuMgrAquaLayoutMask = 2,
-    gestaltMenuMgrMultipleItemsWithCommandIDMask = 4,
-    gestaltMenuMgrRetainsIconRefMask = 8,
-    gestaltMenuMgrSendsMenuBoundsToDefProcMask = 16,
-    gestaltMenuMgrMoreThanFiveMenusDeepMask = 32,
-    gestaltMenuMgrCGImageMenuTitleMask = 64,
-};
-
-pub const anon14051 = enum(u32) {
-    gestaltMultipleUsersState = 1835426930,
-};
-
-pub const anon14101 = enum(u32) {
-    gestaltMachineIcon = 1835623278,
-};
-
-pub const anon14141 = enum(u32) {
-    gestaltMiscAttr = 1835627363,
-    gestaltScrollingThrottle = 0,
-    gestaltSquareMenuBar = 2,
-};
-
-pub const anon14351 = enum(u32) {
-    gestaltMixedModeVersion = 1835628644,
-};
-
-pub const anon14391 = enum(u32) {
-    gestaltMixedModeAttr = 1835628644,
-    gestaltMixedModePowerPC = 0,
-    gestaltPowerPCAware = 0,
-    gestaltMixedModeCFM68K = 1,
-    gestaltMixedModeCFM68KHasTrap = 2,
-    gestaltMixedModeCFM68KHasState = 3,
-};
-
-pub const anon14481 = enum(u32) {
-    gestaltQuickTimeConferencing = 1836346475,
-};
-
-pub const anon14521 = enum(u32) {
-    gestaltMemoryMapAttr = 1835884912,
-    gestaltMemoryMapSparse = 0,
-};
-
-pub const anon14571 = enum(u32) {
-    gestaltMMUType = 1835889952,
-    gestaltNoMMU = 0,
-    gestaltAMU = 1,
-    gestalt68851 = 2,
-    gestalt68030MMU = 3,
-    gestalt68040MMU = 4,
-    gestaltEMMU1 = 5,
-};
-
-pub const anon14671 = enum(u32) {
-    gestaltUserVisibleMachineName = 1835950445,
-};
-
-pub const anon14741 = enum(u32) {
-    gestaltMPCallableAPIsAttr = 1836086115,
-    gestaltMPFileManager = 0,
-    gestaltMPDeviceManager = 1,
-    gestaltMPTrapCalls = 2,
-};
-
-pub const anon14811 = enum(u32) {
-    gestaltStdNBPAttr = 1852601712,
-    gestaltStdNBPPresent = 0,
-    gestaltStdNBPSupportsAutoPosition = 1,
-};
-
-pub const anon14871 = enum(u32) {
-    gestaltNotificationMgrAttr = 1852663666,
-    gestaltNotificationPresent = 0,
-};
-
-pub const anon14921 = enum(u32) {
-    gestaltNameRegistryVersion = 1852990823,
-};
-
-pub const anon14961 = enum(u32) {
-    gestaltNuBusSlotCount = 1853186675,
-};
-
-pub const anon15001 = enum(u32) {
-    gestaltOCEToolboxVersion = 1868785012,
-    gestaltOCETB = 258,
-    gestaltSFServer = 256,
-};
-
-pub const anon15061 = enum(u32) {
-    gestaltOCEToolboxAttr = 1868785013,
-    gestaltOCETBPresent = 1,
-    gestaltOCETBAvailable = 2,
-    gestaltOCESFServerAvailable = 4,
-    gestaltOCETBNativeGlueAvailable = 16,
-};
-
-pub const anon15141 = enum(u32) {
-    gestaltOpenFirmwareInfo = 1869637239,
-};
-
-pub const anon15181 = enum(u32) {
-    gestaltOSAttr = 1869815840,
-    gestaltSysZoneGrowable = 0,
-    gestaltLaunchCanReturn = 1,
-    gestaltLaunchFullFileSpec = 2,
-    gestaltLaunchControl = 3,
-    gestaltTempMemSupport = 4,
-    gestaltRealTempMemory = 5,
-    gestaltTempMemTracked = 6,
-    gestaltIPCSupport = 7,
-    gestaltSysDebuggerSupport = 8,
-    gestaltNativeProcessMgrBit = 19,
-    gestaltAltivecRegistersSwappedCorrectlyBit = 20,
-};
-
-pub const anon15331 = enum(u32) {
-    gestaltOSTable = 1869837428,
-};
-
-pub const anon15441 = enum(u32) {
-    gestaltOpenTptNetworkSetup = 1869898598,
-    gestaltOpenTptNetworkSetupLegacyImport = 0,
-    gestaltOpenTptNetworkSetupLegacyExport = 1,
-    gestaltOpenTptNetworkSetupSupportsMultihoming = 2,
-};
-
-pub const anon15511 = enum(u32) {
-    gestaltOpenTptNetworkSetupVersion = 1869898614,
-};
-
-pub const anon15611 = enum(u32) {
-    gestaltOpenTptRemoteAccess = 1869902433,
-    gestaltOpenTptRemoteAccessPresent = 0,
-    gestaltOpenTptRemoteAccessLoaded = 1,
-    gestaltOpenTptRemoteAccessClientOnly = 2,
-    gestaltOpenTptRemoteAccessPServer = 3,
-    gestaltOpenTptRemoteAccessMPServer = 4,
-    gestaltOpenTptPPPPresent = 5,
-    gestaltOpenTptARAPPresent = 6,
-};
-
-pub const anon15721 = enum(u32) {
-    gestaltOpenTptRemoteAccessVersion = 1869902454,
-};
-
-pub const anon15801 = enum(u32) {
-    gestaltOpenTptVersions = 1869903474,
-};
-
-pub const anon15841 = enum(u32) {
-    gestaltOpenTpt = 1869898094,
-    gestaltOpenTptPresentMask = 1,
-    gestaltOpenTptLoadedMask = 2,
-    gestaltOpenTptAppleTalkPresentMask = 4,
-    gestaltOpenTptAppleTalkLoadedMask = 8,
-    gestaltOpenTptTCPPresentMask = 16,
-    gestaltOpenTptTCPLoadedMask = 32,
-    gestaltOpenTptIPXSPXPresentMask = 64,
-    gestaltOpenTptIPXSPXLoadedMask = 128,
-    gestaltOpenTptPresentBit = 0,
-    gestaltOpenTptLoadedBit = 1,
-    gestaltOpenTptAppleTalkPresentBit = 2,
-    gestaltOpenTptAppleTalkLoadedBit = 3,
-    gestaltOpenTptTCPPresentBit = 4,
-    gestaltOpenTptTCPLoadedBit = 5,
-    gestaltOpenTptIPXSPXPresentBit = 6,
-    gestaltOpenTptIPXSPXLoadedBit = 7,
-};
-
-pub const anon16051 = enum(u32) {
-    gestaltPCCard = 1885561700,
-    gestaltCardServicesPresent = 0,
-    gestaltPCCardFamilyPresent = 1,
-    gestaltPCCardHasPowerControl = 2,
-    gestaltPCCardSupportsCardBus = 3,
-};
-
-pub const anon16171 = enum(u32) {
-    gestaltProcClkSpeedMHz = 1835232363,
-};
-
-pub const anon16211 = enum(u32) {
-    gestaltPCXAttr = 1885567079,
-    gestaltPCXHas8and16BitFAT = 0,
-    gestaltPCXHasProDOS = 1,
-    gestaltPCXNewUI = 2,
-    gestaltPCXUseICMapping = 3,
-};
-
-pub const anon16291 = enum(u32) {
-    gestaltLogicalPageSize = 1885827962,
-};
-
-pub const anon16431 = enum(u32) {
-    gestaltScreenCaptureMain = 1885954865,
-    gestaltScreenCaptureDir = 1885954866,
-};
-
-pub const anon16481 = enum(u32) {
-    gestaltGXPrintingMgrVersion = 1886218098,
-};
-
-pub const anon16571 = enum(u32) {
-    gestaltPowerMgrAttr = 1886353266,
-    gestaltPMgrExists = 0,
-    gestaltPMgrCPUIdle = 1,
-    gestaltPMgrSCC = 2,
-    gestaltPMgrSound = 3,
-    gestaltPMgrDispatchExists = 4,
-    gestaltPMgrSupportsAVPowerStateAtSleepWake = 5,
-};
-
-pub const anon16671 = enum(u32) {
-    gestaltPowerMgrVers = 1886876278,
-};
-
-pub const anon16771 = enum(u32) {
-    gestaltPPCToolboxAttr = 1886413600,
-    gestaltPPCToolboxPresent = 0,
-    gestaltPPCSupportsRealTime = 4096,
-    gestaltPPCSupportsIncoming = 1,
-    gestaltPPCSupportsOutGoing = 2,
-    gestaltPPCSupportsTCP_IP = 4,
-    gestaltPPCSupportsIncomingAppleTalk = 16,
-    gestaltPPCSupportsIncomingTCP_IP = 32,
-    gestaltPPCSupportsOutgoingAppleTalk = 256,
-    gestaltPPCSupportsOutgoingTCP_IP = 512,
-};
-
-pub const anon16951 = enum(u32) {
-    gestaltPowerPCProcessorFeatures = 1886413670,
-    gestaltPowerPCHasGraphicsInstructions = 0,
-    gestaltPowerPCHasSTFIWXInstruction = 1,
-    gestaltPowerPCHasSquareRootInstructions = 2,
-    gestaltPowerPCHasDCBAInstruction = 3,
-    gestaltPowerPCHasVectorInstructions = 4,
-    gestaltPowerPCHasDataStreams = 5,
-    gestaltPowerPCHas64BitSupport = 6,
-    gestaltPowerPCHasDCBTStreams = 7,
-    gestaltPowerPCASArchitecture = 8,
-    gestaltPowerPCIgnoresDCBST = 9,
-};
-
-pub const anon17091 = enum(u32) {
-    gestaltProcessorType = 1886547811,
-    gestalt68000 = 1,
-    gestalt68010 = 2,
-    gestalt68020 = 3,
-    gestalt68030 = 4,
-    gestalt68040 = 5,
-};
-
-pub const anon17221 = enum(u32) {
-    gestaltParityAttr = 1886549113,
-    gestaltHasParityCapability = 0,
-    gestaltParityEnabled = 1,
-};
-
-pub const anon17281 = enum(u32) {
-    gestaltQD3DVersion = 1899197984,
-};
-
-pub const anon17451 = enum(u32) {
-    gestaltQuickdrawVersion = 1902387232,
-    gestaltOriginalQD = 0,
-    gestalt8BitQD = 256,
-    gestalt32BitQD = 512,
-    gestalt32BitQD11 = 513,
-    gestalt32BitQD12 = 544,
-    gestalt32BitQD13 = 560,
-    gestaltAllegroQD = 592,
-    gestaltMacOSXQD = 768,
-};
-
-pub const anon17701 = enum(u32) {
-    gestaltGXVersion = 1902405496,
-};
-
-pub const anon17741 = enum(u32) {
-    gestaltQuickdrawFeatures = 1902408311,
-    gestaltHasColor = 0,
-    gestaltHasDeepGWorlds = 1,
-    gestaltHasDirectPixMaps = 2,
-    gestaltHasGrayishTextOr = 3,
-    gestaltSupportsMirroring = 4,
-    gestaltQDHasLongRowBytes = 5,
-};
-
-pub const anon17841 = enum(u32) {
-    gestaltQDTextVersion = 1902408824,
-    gestaltOriginalQDText = 0,
-    gestaltAllegroQDText = 256,
-    gestaltMacOSXQDText = 512,
-};
-
-pub const anon17911 = enum(u32) {
-    gestaltQDTextFeatures = 1902408806,
-    gestaltWSIISupport = 0,
-    gestaltSbitFontSupport = 1,
-    gestaltAntiAliasedTextAvailable = 2,
-    gestaltOFA2available = 3,
-    gestaltCreatesAliasFontRsrc = 4,
-    gestaltNativeType1FontSupport = 5,
-    gestaltCanUseCGTextRendering = 6,
-};
-
-pub const anon18031 = enum(u32) {
-    gestaltQuickTimeConferencingInfo = 1903453033,
-};
-
-pub const anon18121 = enum(u32) {
-    gestaltQuickTimeFeatures = 1903456883,
-    gestaltPPCQuickTimeLibPresent = 0,
-};
-
-pub const anon18171 = enum(u32) {
-    gestaltQuickTimeStreamingFeatures = 1903457126,
-};
-
-pub const anon18211 = enum(u32) {
-    gestaltQuickTimeStreamingVersion = 1903457140,
-};
-
-pub const anon18251 = enum(u32) {
-    gestaltQuickTimeThreadSafeFeaturesAttr = 1903457384,
-    gestaltQuickTimeThreadSafeICM = 0,
-    gestaltQuickTimeThreadSafeMovieToolbox = 1,
-    gestaltQuickTimeThreadSafeMovieImport = 2,
-    gestaltQuickTimeThreadSafeMovieExport = 3,
-    gestaltQuickTimeThreadSafeGraphicsImport = 4,
-    gestaltQuickTimeThreadSafeGraphicsExport = 5,
-    gestaltQuickTimeThreadSafeMoviePlayback = 6,
-};
-
-pub const anon18361 = enum(u32) {
-    gestaltQTVRMgrAttr = 1903457906,
-    gestaltQTVRMgrPresent = 0,
-    gestaltQTVRObjMoviesPresent = 1,
-    gestaltQTVRCylinderPanosPresent = 2,
-    gestaltQTVRCubicPanosPresent = 3,
-};
-
-pub const anon18441 = enum(u32) {
-    gestaltQTVRMgrVers = 1903457910,
-};
-
-pub const anon18601 = enum(u32) {
-    gestaltPhysicalRAMSize = 1918987552,
-};
-
-pub const anon18641 = enum(u32) {
-    gestaltPhysicalRAMSizeInMegabytes = 1918987629,
-};
-
-pub const anon18681 = enum(u32) {
-    gestaltRBVAddr = 1919055392,
-};
-
-pub const anon18721 = enum(u32) {
-    gestaltROMSize = 1919905056,
-};
-
-pub const anon18761 = enum(u32) {
-    gestaltROMVersion = 1919905142,
-};
-
-pub const anon18801 = enum(u32) {
-    gestaltResourceMgrAttr = 1920168547,
-    gestaltPartialRsrcs = 0,
-    gestaltHasResourceOverrides = 1,
-};
-
-pub const anon18861 = enum(u32) {
-    gestaltResourceMgrBugFixesAttrs = 1919771239,
-    gestaltRMForceSysHeapRolledIn = 0,
-    gestaltRMFakeAppleMenuItemsRolledIn = 1,
-    gestaltSanityCheckResourceFiles = 2,
-    gestaltSupportsFSpResourceFileAlreadyOpenBit = 3,
-    gestaltRMSupportsFSCalls = 4,
-    gestaltRMTypeIndexOrderingReverse = 8,
-};
-
-pub const anon18971 = enum(u32) {
-    gestaltRealtimeMgrAttr = 1920232818,
-    gestaltRealtimeMgrPresent = 0,
-};
-
-pub const anon19031 = enum(u32) {
-    gestaltSafeOFAttr = 1935763045,
-    gestaltVMZerosPagesBit = 0,
-    gestaltInitHeapZerosOutHeapsBit = 1,
-    gestaltNewHandleReturnsZeroedMemoryBit = 2,
-    gestaltNewPtrReturnsZeroedMemoryBit = 3,
-    gestaltFileAllocationZeroedBlocksBit = 4,
-};
-
-pub const anon19131 = enum(u32) {
-    gestaltSCCReadAddr = 1935893362,
-};
-
-pub const anon19171 = enum(u32) {
-    gestaltSCCWriteAddr = 1935893367,
-};
-
-pub const anon19211 = enum(u32) {
-    gestaltScrapMgrAttr = 1935897185,
-    gestaltScrapMgrTranslationAware = 0,
-};
-
-pub const anon19261 = enum(u32) {
-    gestaltScriptMgrVersion = 1935897193,
-};
-
-pub const anon19341 = enum(u32) {
-    gestaltSCSI = 1935897449,
-    gestaltAsyncSCSI = 0,
-    gestaltAsyncSCSIINROM = 1,
-    gestaltSCSISlotBoot = 2,
-    gestaltSCSIPollSIH = 3,
-};
-
-pub const anon19421 = enum(u32) {
-    gestaltControlStripAttr = 1935959414,
-    gestaltControlStripExists = 0,
-    gestaltControlStripVersionFixed = 1,
-    gestaltControlStripUserFont = 2,
-    gestaltControlStripUserHotKey = 3,
-};
-
-pub const anon19501 = enum(u32) {
-    gestaltSDPStandardDirectoryVersion = 1935963762,
-};
-
-pub const anon19651 = enum(u32) {
-    gestaltShutdownAttributes = 1936225652,
-    gestaltShutdownHassdOnBootVolUnmount = 0,
-};
-
-pub const anon19701 = enum(u32) {
-    gestaltNuBusConnectors = 1936487523,
-};
-
-pub const anon19741 = enum(u32) {
-    gestaltSlotAttr = 1936486260,
-    gestaltSlotMgrExists = 0,
-    gestaltNuBusPresent = 1,
-    gestaltSESlotPresent = 2,
-    gestaltSE30SlotPresent = 3,
-    gestaltPortableSlotPresent = 4,
-};
-
-pub const anon19871 = enum(u32) {
-    gestaltSoundAttr = 1936614432,
-    gestaltStereoCapability = 0,
-    gestaltStereoMixing = 1,
-    gestaltSoundIOMgrPresent = 3,
-    gestaltBuiltInSoundInput = 4,
-    gestaltHasSoundInputDevice = 5,
-    gestaltPlayAndRecord = 6,
-    gestalt16BitSoundIO = 7,
-    gestaltStereoInput = 8,
-    gestaltLineLevelInput = 9,
-    gestaltSndPlayDoubleBuffer = 10,
-    gestaltMultiChannels = 11,
-    gestalt16BitAudioSupport = 12,
-};
-
-pub const anon20041 = enum(u32) {
-    gestaltSplitOSAttr = 1936748403,
-    gestaltSplitOSBootDriveIsNetworkVolume = 0,
-    gestaltSplitOSAware = 1,
-    gestaltSplitOSEnablerVolumeIsDifferentFromBootVolume = 2,
-    gestaltSplitOSMachineNameSetToNetworkNameTemp = 3,
-    gestaltSplitOSMachineNameStartupDiskIsNonPersistent = 5,
-};
-
-pub const anon20131 = enum(u32) {
-    gestaltSMPSPSendLetterVersion = 1936749420,
-};
-
-pub const anon20171 = enum(u32) {
-    gestaltSpeechRecognitionAttr = 1936880737,
-    gestaltDesktopSpeechRecognition = 1,
-    gestaltTelephoneSpeechRecognition = 2,
-};
-
-pub const anon20231 = enum(u32) {
-    gestaltSpeechRecognitionVersion = 1936880738,
-};
-
-pub const anon20271 = enum(u32) {
-    gestaltSoftwareVendorCode = 1936875876,
-    gestaltSoftwareVendorApple = 1097887852,
-    gestaltSoftwareVendorLicensee = 1281584755,
-};
-
-pub const anon20421 = enum(u32) {
-    gestaltSysArchitecture = 1937339233,
-    gestalt68k = 1,
-    gestaltPowerPC = 2,
-    gestaltIntel = 10,
-    gestaltArm = 20,
-};
-
-pub const anon20501 = enum(u32) {
-    gestaltSystemUpdateVersion = 1937339253,
-};
-
-pub const anon20811 = enum(u32) {
-    gestaltSystemVersion = 1937339254,
-    gestaltSystemVersionMajor = 1937339185,
-    gestaltSystemVersionMinor = 1937339186,
-    gestaltSystemVersionBugFix = 1937339187,
-};
-
-pub const anon20881 = enum(u32) {
-    gestaltToolboxTable = 1952609396,
-};
-
-pub const anon20921 = enum(u32) {
-    gestaltTextEditVersion = 1952784416,
-    gestaltTE1 = 1,
-    gestaltTE2 = 2,
-    gestaltTE3 = 3,
-    gestaltTE4 = 4,
-    gestaltTE5 = 5,
-};
-
-pub const anon21051 = enum(u32) {
-    gestaltTEAttr = 1952801140,
-    gestaltTEHasGetHiliteRgn = 0,
-    gestaltTESupportsInlineInput = 1,
-    gestaltTESupportsTextObjects = 2,
-    gestaltTEHasWhiteBackground = 3,
-};
-
-pub const anon21131 = enum(u32) {
-    gestaltTeleMgrAttr = 1952803941,
-    gestaltTeleMgrPresent = 0,
-    gestaltTeleMgrPowerPCSupport = 1,
-    gestaltTeleMgrSoundStreams = 2,
-    gestaltTeleMgrAutoAnswer = 3,
-    gestaltTeleMgrIndHandset = 4,
-    gestaltTeleMgrSilenceDetect = 5,
-    gestaltTeleMgrNewTELNewSupport = 6,
-};
-
-pub const anon21241 = enum(u32) {
-    gestaltTermMgrAttr = 1952805485,
-    gestaltTermMgrPresent = 0,
-    gestaltTermMgrErrorString = 2,
-};
-
-pub const anon21301 = enum(u32) {
-    gestaltThreadMgrAttr = 1952998515,
-    gestaltThreadMgrPresent = 0,
-    gestaltSpecificMatchSupport = 1,
-    gestaltThreadsLibraryPresent = 2,
-};
-
-pub const anon21371 = enum(u32) {
-    gestaltTimeMgrVersion = 1953326962,
-    gestaltStandardTimeMgr = 1,
-    gestaltRevisedTimeMgr = 2,
-    gestaltExtendedTimeMgr = 3,
-    gestaltNativeTimeMgr = 4,
-};
-
-pub const anon21451 = enum(u32) {
-    gestaltTSMTEVersion = 1953322070,
-    gestaltTSMTE1 = 256,
-    gestaltTSMTE15 = 336,
-    gestaltTSMTE152 = 338,
-};
-
-pub const anon21521 = enum(u32) {
-    gestaltTSMTEAttr = 1953322053,
-    gestaltTSMTEPresent = 0,
-    gestaltTSMTE = 0,
-};
-
-pub const anon21581 = enum(u32) {
-    gestaltAVLTreeAttr = 1953654117,
-    gestaltAVLTreePresentBit = 0,
-    gestaltAVLTreeSupportsHandleBasedTreeBit = 1,
-    gestaltAVLTreeSupportsTreeLockingBit = 2,
-};
-
-pub const anon21651 = enum(u32) {
-    gestaltALMAttr = 1953655152,
-    gestaltALMPresent = 0,
-    gestaltALMHasSFGroup = 1,
-    gestaltALMHasCFMSupport = 2,
-    gestaltALMHasRescanNotifiers = 3,
-};
-
-pub const anon21731 = enum(u32) {
-    gestaltALMHasSFLocation = 1,
-};
-
-pub const anon21771 = enum(u32) {
-    gestaltTSMgrVersion = 1953721718,
-    gestaltTSMgr15 = 336,
-    gestaltTSMgr20 = 512,
-    gestaltTSMgr22 = 544,
-    gestaltTSMgr23 = 560,
-};
-
-pub const anon21851 = enum(u32) {
-    gestaltTSMgrAttr = 1953721697,
-    gestaltTSMDisplayMgrAwareBit = 0,
-    gestaltTSMdoesTSMTEBit = 1,
-};
-
-pub const anon21911 = enum(u32) {
-    gestaltSpeechAttr = 1953788771,
-    gestaltSpeechMgrPresent = 0,
-    gestaltSpeechHasPPCGlue = 1,
-};
-
-pub const anon21971 = enum(u32) {
-    gestaltTVAttr = 1953898528,
-    gestaltHasTVTuner = 0,
-    gestaltHasSoundFader = 1,
-    gestaltHasHWClosedCaptioning = 2,
-    gestaltHasIRRemote = 3,
-    gestaltHasVidDecoderScaler = 4,
-    gestaltHasStereoDecoder = 5,
-    gestaltHasSerialFader = 6,
-    gestaltHasFMTuner = 7,
-    gestaltHasSystemIRFunction = 8,
-    gestaltIRDisabled = 9,
-    gestaltINeedIRPowerOffConfirm = 10,
-    gestaltHasZoomedVideo = 11,
-};
-
-pub const anon22141 = enum(u32) {
-    gestaltATSUVersion = 1969845110,
-    gestaltOriginalATSUVersion = 65536,
-    gestaltATSUUpdate1 = 131072,
-    gestaltATSUUpdate2 = 196608,
-    gestaltATSUUpdate3 = 262144,
-    gestaltATSUUpdate4 = 327680,
-    gestaltATSUUpdate5 = 393216,
-    gestaltATSUUpdate6 = 458752,
-    gestaltATSUUpdate7 = 524288,
-};
-
-pub const anon22551 = enum(u32) {
-    gestaltUSBAttr = 1970496032,
-    gestaltUSBPresent = 0,
-    gestaltUSBHasIsoch = 1,
-};
-
-pub const anon22611 = enum(u32) {
-    gestaltUSBVersion = 1970496118,
-};
-
-pub const anon22651 = enum(u32) {
-    gestaltVersion = 1986359923,
-    gestaltValueImplementedVers = 5,
-};
-
-pub const anon22701 = enum(u32) {
-    gestaltVIA1Addr = 1986617649,
-};
-
-pub const anon22741 = enum(u32) {
-    gestaltVIA2Addr = 1986617650,
-};
-
-pub const anon22781 = enum(u32) {
-    gestaltVMAttr = 1986863136,
-    gestaltVMPresent = 0,
-    gestaltVMHasLockMemoryForOutput = 1,
-    gestaltVMFilemappingOn = 3,
-    gestaltVMHasPagingControl = 4,
-};
-
-pub const anon22861 = enum(u32) {
-    gestaltVMInfoType = 1986881902,
-    gestaltVMInfoSizeStorageType = 0,
-    gestaltVMInfoSizeType = 1,
-    gestaltVMInfoSimpleType = 2,
-    gestaltVMInfoNoneType = 3,
-};
-
-pub const anon22951 = enum(u32) {
-    gestaltVMBackingStoreFileRefNum = 1986880115,
-};
-
-pub const anon23011 = enum(u32) {
-    gestaltALMVers = 2002873451,
-};
-
-pub const anon23051 = enum(u32) {
-    gestaltWindowMgrAttr = 2003398244,
-    gestaltWindowMgrPresent = 1,
-    gestaltWindowMgrPresentBit = 0,
-    gestaltExtendedWindowAttributes = 1,
-    gestaltExtendedWindowAttributesBit = 1,
-    gestaltHasFloatingWindows = 2,
-    gestaltHasFloatingWindowsBit = 2,
-    gestaltHasWindowBuffering = 3,
-    gestaltHasWindowBufferingBit = 3,
-    gestaltWindowLiveResizeBit = 4,
-    gestaltWindowMinimizeToDockBit = 5,
-    gestaltHasWindowShadowsBit = 6,
-    gestaltSheetsAreWindowModalBit = 7,
-    gestaltFrontWindowMayBeHiddenBit = 8,
-    gestaltWindowMgrPresentMask = 1,
-    gestaltExtendedWindowAttributesMask = 2,
-    gestaltHasFloatingWindowsMask = 4,
-    gestaltHasWindowBufferingMask = 8,
-    gestaltWindowLiveResizeMask = 16,
-    gestaltWindowMinimizeToDockMask = 32,
-    gestaltHasWindowShadowsMask = 64,
-    gestaltSheetsAreWindowModalMask = 128,
-    gestaltFrontWindowMayBeHiddenMask = 256,
-};
-
-pub const anon23341 = enum(u32) {
-    gestaltHasSingleWindowModeBit = 8,
-    gestaltHasSingleWindowModeMask = 256,
-};
-
-pub const anon23441 = enum(u32) {
-    gestaltX86Features = 2016949862,
-    gestaltX86HasFPU = 0,
-    gestaltX86HasVME = 1,
-    gestaltX86HasDE = 2,
-    gestaltX86HasPSE = 3,
-    gestaltX86HasTSC = 4,
-    gestaltX86HasMSR = 5,
-    gestaltX86HasPAE = 6,
-    gestaltX86HasMCE = 7,
-    gestaltX86HasCX8 = 8,
-    gestaltX86HasAPIC = 9,
-    gestaltX86HasSEP = 11,
-    gestaltX86HasMTRR = 12,
-    gestaltX86HasPGE = 13,
-    gestaltX86HasMCA = 14,
-    gestaltX86HasCMOV = 15,
-    gestaltX86HasPAT = 16,
-    gestaltX86HasPSE36 = 17,
-    gestaltX86HasPSN = 18,
-    gestaltX86HasCLFSH = 19,
-    gestaltX86Serviced20 = 20,
-    gestaltX86HasDS = 21,
-    gestaltX86ResACPI = 22,
-    gestaltX86HasMMX = 23,
-    gestaltX86HasFXSR = 24,
-    gestaltX86HasSSE = 25,
-    gestaltX86HasSSE2 = 26,
-    gestaltX86HasSS = 27,
-    gestaltX86HasHTT = 28,
-    gestaltX86HasTM = 29,
-};
-
-pub const anon23961 = enum(u32) {
-    gestaltTranslationAttr = 2020368756,
-    gestaltTranslationMgrExists = 0,
-    gestaltTranslationMgrHintOrder = 1,
-    gestaltTranslationPPCAvail = 2,
-    gestaltTranslationGetPathAPIAvail = 3,
-};
-
-pub const anon24041 = enum(u32) {
-    gestaltExtToolboxTable = 2020897908,
-};
-
-pub const anon24081 = enum(i32) {
-    gestaltUSBPrinterSharingVersion = 2053204768,
-    gestaltUSBPrinterSharingVersionMask = 65535,
-    gestaltUSBPrinterSharingAttr = 2053204768,
-    gestaltUSBPrinterSharingAttrMask = -65536,
-    gestaltUSBPrinterSharingAttrRunning = -2147483648,
-    gestaltUSBPrinterSharingAttrBooted = 1073741824,
-};
-
-pub const anon24181 = enum(u32) {
-    gestaltWorldScriptIIVersion = 1685026146,
-    gestaltWorldScriptIIAttr = 2004050292,
-    gestaltWSIICanPrintWithoutPrGeneralBit = 0,
-};
-
-pub const anon601 = enum(objc.OSType) {
-    cInsertionLoc = 1768846188,
-    cInsertionPoint = 1667853939,
-    cIntlText = 1769240692,
-    cIntlWritingCode = 1768846444,
-    cItem = 1667855469,
-    cLine = 1668049262,
-    cLongDateTime = 1818522656,
-    cLongFixed = 1818654820,
-    cLongFixedPoint = 1818652788,
-    cLongFixedRectangle = 1818653283,
-    cLongInteger = 1819242087,
-    cLongPoint = 1819307636,
-    cLongRectangle = 1819435892,
-    cMachineLoc = 1833725795,
-    cMenu = 1668116085,
-    cMenuItem = 1668113774,
-    cObject = 1668244074,
-    cObjectSpecifier = 1868720672,
-    cOpenableObject = 1668247394,
-    cOval = 1668249196,
-};
-
-pub const anon641 = enum(u32) {
-    aeBuildSyntaxNoErr = 0,
-    aeBuildSyntaxBadToken = 1,
-    aeBuildSyntaxBadEOF = 2,
-    aeBuildSyntaxNoEOF = 3,
-    aeBuildSyntaxBadNegative = 4,
-    aeBuildSyntaxMissingQuote = 5,
-    aeBuildSyntaxBadHex = 6,
-    aeBuildSyntaxOddHex = 7,
-    aeBuildSyntaxNoCloseHex = 8,
-    aeBuildSyntaxUncoercedHex = 9,
-    aeBuildSyntaxNoCloseString = 10,
-    aeBuildSyntaxBadDesc = 11,
-    aeBuildSyntaxBadData = 12,
-    aeBuildSyntaxNoCloseParen = 13,
-    aeBuildSyntaxNoCloseBracket = 14,
-    aeBuildSyntaxNoCloseBrace = 15,
-    aeBuildSyntaxNoKey = 16,
-    aeBuildSyntaxNoColon = 17,
-    aeBuildSyntaxCoercedList = 18,
-    aeBuildSyntaxUncoercedDoubleAt = 19,
-};
+pub const anon4421 = u32;
+pub const anon4421_gestaltAddressingModeAttr: u32 = 1633969266;
+pub const anon4421_gestalt32BitAddressing: u32 = 0;
+pub const anon4421_gestalt32BitSysZone: u32 = 1;
+pub const anon4421_gestalt32BitCapable: u32 = 2;
+pub const anon4421_UCTypeSelectMaxListSize: u32 = -1;
+pub const anon4421_QuickLookFolderType: u32 = 1902928747;
+
+pub const anon4491 = i32;
+pub const anon4491_gestaltAFPClient: i32 = 1634103411;
+pub const anon4491_gestaltAFPClientVersionMask: i32 = 65535;
+pub const anon4491_gestaltAFPClient3_5: i32 = 1;
+pub const anon4491_gestaltAFPClient3_6: i32 = 2;
+pub const anon4491_gestaltAFPClient3_6_1: i32 = 3;
+pub const anon4491_gestaltAFPClient3_6_2: i32 = 4;
+pub const anon4491_gestaltAFPClient3_6_3: i32 = 5;
+pub const anon4491_gestaltAFPClient3_7: i32 = 6;
+pub const anon4491_gestaltAFPClient3_7_2: i32 = 7;
+pub const anon4491_gestaltAFPClient3_8: i32 = 8;
+pub const anon4491_gestaltAFPClient3_8_1: i32 = 9;
+pub const anon4491_gestaltAFPClient3_8_3: i32 = 10;
+pub const anon4491_gestaltAFPClient3_8_4: i32 = 11;
+pub const anon4491_gestaltAFPClientAttributeMask: i32 = -65536;
+pub const anon4491_gestaltAFPClientCfgRsrc: i32 = 16;
+pub const anon4491_gestaltAFPClientSupportsIP: i32 = 29;
+pub const anon4491_gestaltAFPClientVMUI: i32 = 30;
+pub const anon4491_gestaltAFPClientMultiReq: i32 = 31;
+
+pub const anon4731 = u32;
+pub const anon4731_gestaltAliasMgrAttr: u32 = 1634494835;
+pub const anon4731_gestaltAliasMgrPresent: u32 = 0;
+pub const anon4731_gestaltAliasMgrSupportsRemoteAppletalk: u32 = 1;
+pub const anon4731_gestaltAliasMgrSupportsAOCEKeychain: u32 = 2;
+pub const anon4731_gestaltAliasMgrResolveAliasFileWithMountOptions: u32 = 3;
+pub const anon4731_gestaltAliasMgrFollowsAliasesWhenResolving: u32 = 4;
+pub const anon4731_gestaltAliasMgrSupportsExtendedCalls: u32 = 5;
+pub const anon4731_gestaltAliasMgrSupportsFSCalls: u32 = 6;
+pub const anon4731_gestaltAliasMgrPrefersPath: u32 = 7;
+pub const anon4731_gestaltAliasMgrRequiresAccessors: u32 = 8;
+pub const anon4731_CSSM_CERT_UNKNOWN: u32 = 0;
+pub const anon4731_CSSM_CERT_X_509v1: u32 = 1;
+pub const anon4731_CSSM_CERT_X_509v2: u32 = 2;
+pub const anon4731_CSSM_CERT_X_509v3: u32 = 3;
+pub const anon4731_CSSM_CERT_PGP: u32 = 4;
+pub const anon4731_CSSM_CERT_SPKI: u32 = 5;
+pub const anon4731_CSSM_CERT_SDSIv1: u32 = 6;
+pub const anon4731_CSSM_CERT_Intel: u32 = 8;
+pub const anon4731_CSSM_CERT_X_509_ATTRIBUTE: u32 = 9;
+pub const anon4731_CSSM_CERT_X9_ATTRIBUTE: u32 = 10;
+pub const anon4731_CSSM_CERT_TUPLE: u32 = 11;
+pub const anon4731_CSSM_CERT_ACL_ENTRY: u32 = 12;
+pub const anon4731_CSSM_CERT_MULTIPLE: u32 = 32766;
+pub const anon4731_CSSM_CERT_LAST: u32 = 32767;
+pub const anon4731_CSSM_CL_CUSTOM_CERT_TYPE: u32 = 32768;
+
+pub const anon4871 = u32;
+pub const anon4871_gestaltAppearanceAttr: u32 = 1634758770;
+pub const anon4871_gestaltAppearanceExists: u32 = 0;
+pub const anon4871_gestaltAppearanceCompatMode: u32 = 1;
+
+pub const anon4991 = u32;
+pub const anon4991_gestaltAppearanceVersion: u32 = 1634760306;
+
+pub const anon5031 = u32;
+pub const anon5031_gestaltArbitorAttr: u32 = 1634886176;
+pub const anon5031_gestaltSerialArbitrationExists: u32 = 0;
+pub const anon5031_PEFHashLengthShift: u32 = 16;
+pub const anon5031_PEFHashValueMask: u32 = 65535;
+pub const anon5031_PEFHashMaxLength: u32 = 65535;
+pub const anon5031_CSSMERR_CL_INTERNAL_ERROR: u32 = -2147411967;
+pub const anon5031_CSSMERR_CL_MEMORY_ERROR: u32 = -2147411966;
+pub const anon5031_CSSMERR_CL_MDS_ERROR: u32 = -2147411965;
+pub const anon5031_CSSMERR_CL_INVALID_POINTER: u32 = -2147411964;
+pub const anon5031_CSSMERR_CL_INVALID_INPUT_POINTER: u32 = -2147411963;
+pub const anon5031_CSSMERR_CL_INVALID_OUTPUT_POINTER: u32 = -2147411962;
+pub const anon5031_CSSMERR_CL_FUNCTION_NOT_IMPLEMENTED: u32 = -2147411961;
+pub const anon5031_CSSMERR_CL_SELF_CHECK_FAILED: u32 = -2147411960;
+pub const anon5031_CSSMERR_CL_OS_ACCESS_DENIED: u32 = -2147411959;
+pub const anon5031_CSSMERR_CL_FUNCTION_FAILED: u32 = -2147411958;
+pub const anon5031_CSSMERR_CL_INVALID_CONTEXT_HANDLE: u32 = -2147411904;
+pub const anon5031_CSSMERR_CL_INVALID_CERTGROUP_POINTER: u32 = -2147411902;
+pub const anon5031_CSSMERR_CL_INVALID_CERT_POINTER: u32 = -2147411901;
+pub const anon5031_CSSMERR_CL_INVALID_CRL_POINTER: u32 = -2147411900;
+pub const anon5031_CSSMERR_CL_INVALID_FIELD_POINTER: u32 = -2147411899;
+pub const anon5031_CSSMERR_CL_INVALID_DATA: u32 = -2147411898;
+pub const anon5031_CSSMERR_CL_CRL_ALREADY_SIGNED: u32 = -2147411897;
+pub const anon5031_CSSMERR_CL_INVALID_NUMBER_OF_FIELDS: u32 = -2147411896;
+pub const anon5031_CSSMERR_CL_VERIFICATION_FAILURE: u32 = -2147411895;
+pub const anon5031_CSSMERR_CL_UNKNOWN_FORMAT: u32 = -2147411890;
+pub const anon5031_CSSMERR_CL_UNKNOWN_TAG: u32 = -2147411889;
+pub const anon5031_CSSMERR_CL_INVALID_PASSTHROUGH_ID: u32 = -2147411882;
+
+pub const anon5081 = u32;
+pub const anon5081_gestaltAppleScriptVersion: u32 = 1634952054;
+
+pub const anon5121 = u32;
+pub const anon5121_gestaltAppleScriptAttr: u32 = 1634952050;
+pub const anon5121_gestaltAppleScriptPresent: u32 = 0;
+pub const anon5121_gestaltAppleScriptPowerPCSupport: u32 = 1;
+
+pub const anon5181 = u32;
+pub const anon5181_gestaltATAAttr: u32 = 1635016992;
+pub const anon5181_gestaltATAPresent: u32 = 0;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_NONE: u32 = 0;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_CUSTOM: u32 = 1;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_SEXPR: u32 = 2;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_COMPLEX: u32 = 3;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_OID_NAMED: u32 = 4;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_TUPLE: u32 = 5;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_MULTIPLE: u32 = 32766;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_LAST: u32 = 32767;
+pub const anon5181_CSSM_CL_CUSTOM_CERT_PARSE_FORMAT: u32 = 32768;
+
+pub const anon5231 = u32;
+pub const anon5231_gestaltATalkVersion: u32 = 1635019638;
+
+pub const anon5271 = u32;
+pub const anon5271_gestaltAppleTalkVersion: u32 = 1635019883;
+
+pub const anon5531 = u32;
+pub const anon5531_gestaltAUXVersion: u32 = 1630500216;
+
+pub const anon5571 = u32;
+pub const anon5571_gestaltMacOSCompatibilityBoxAttr: u32 = 1650618232;
+pub const anon5571_gestaltMacOSCompatibilityBoxPresent: u32 = 0;
+pub const anon5571_gestaltMacOSCompatibilityBoxHasSerial: u32 = 1;
+pub const anon5571_gestaltMacOSCompatibilityBoxless: u32 = 2;
+pub const anon5571_HFSMaxAttrNameLen: u32 = 127;
+
+pub const anon5641 = u32;
+pub const anon5641_gestaltBusClkSpeed: u32 = 1650682987;
+
+pub const anon5681 = u32;
+pub const anon5681_gestaltBusClkSpeedMHz: u32 = 1650682989;
+
+pub const anon5781 = u32;
+pub const anon5781_gestaltCarbonVersion: u32 = 1667395438;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_QUEUED: u32 = -2147408796;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_REDIRECT: u32 = -2147408795;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_ERR: u32 = -2147408794;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_PARAM: u32 = -2147408793;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_AUTH: u32 = -2147408792;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_UNIMPL: u32 = -2147408791;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_NOT_AVAIL: u32 = -2147408790;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_ALREADY_EXIST: u32 = -2147408789;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_SERVICE_ERROR: u32 = -2147408788;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_IS_PENDING: u32 = -2147408787;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_NO_REQ_PENDING: u32 = -2147408786;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_CSR_VERIFY_FAIL: u32 = -2147408785;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_FAILED_CONSISTENCY_CHECK: u32 = -2147408784;
+
+pub const anon5821 = u32;
+pub const anon5821_gestaltCFMAttr: u32 = 1667658343;
+pub const anon5821_gestaltCFMPresent: u32 = 0;
+pub const anon5821_gestaltCFMPresentMask: u32 = 1;
+pub const anon5821_gestaltCFM99Present: u32 = 2;
+pub const anon5821_gestaltCFM99PresentMask: u32 = 4;
+
+pub const anon5901 = u32;
+pub const anon5901_gestaltProcessorCacheLineSize: u32 = 1668508026;
+
+pub const anon5941 = u32;
+pub const anon5941_gestaltCollectionMgrVersion: u32 = 1668052078;
+
+pub const anon5981 = u32;
+pub const anon5981_gestaltColorMatchingAttr: u32 = 1668117601;
+pub const anon5981_gestaltHighLevelMatching: u32 = 0;
+pub const anon5981_gestaltColorMatchingLibLoaded: u32 = 1;
+
+pub const anon6041 = u32;
+pub const anon6041_gestaltColorMatchingVersion: u32 = 1668117603;
+pub const anon6041_gestaltColorSync10: u32 = 256;
+pub const anon6041_gestaltColorSync11: u32 = 272;
+pub const anon6041_gestaltColorSync104: u32 = 260;
+pub const anon6041_gestaltColorSync105: u32 = 261;
+pub const anon6041_gestaltColorSync20: u32 = 512;
+pub const anon6041_gestaltColorSync21: u32 = 528;
+pub const anon6041_gestaltColorSync211: u32 = 529;
+pub const anon6041_gestaltColorSync212: u32 = 530;
+pub const anon6041_gestaltColorSync213: u32 = 531;
+pub const anon6041_gestaltColorSync25: u32 = 592;
+pub const anon6041_gestaltColorSync26: u32 = 608;
+pub const anon6041_gestaltColorSync261: u32 = 609;
+pub const anon6041_gestaltColorSync30: u32 = 768;
+pub const anon6041_errAEEventWouldRequireUserConsent: u32 = -1744;
+
+pub const anon6251 = u32;
+pub const anon6251_gestaltControlMgrAttr: u32 = 1668183148;
+pub const anon6251_gestaltControlMgrPresent: u32 = 1;
+pub const anon6251_gestaltControlMgrPresentBit: u32 = 0;
+pub const anon6251_gestaltControlMsgPresentMask: u32 = 1;
+
+pub const anon6341 = u32;
+pub const anon6341_gestaltConnMgrAttr: u32 = 1668247150;
+pub const anon6341_gestaltConnMgrPresent: u32 = 0;
+pub const anon6341_gestaltConnMgrCMSearchFix: u32 = 1;
+pub const anon6341_gestaltConnMgrErrorString: u32 = 2;
+pub const anon6341_gestaltConnMgrMultiAsyncIO: u32 = 3;
+pub const anon6341_AEZoomIn: u32 = 7;
+pub const anon6341_AEZoomOut: u32 = 8;
+
+pub const anon6421 = u32;
+pub const anon6421_gestaltColorPickerVersion: u32 = 1668311922;
+pub const anon6421_gestaltColorPicker: u32 = 1668311922;
+
+pub const anon6471 = u32;
+pub const anon6471_gestaltComponentMgr: u32 = 1668312692;
+pub const anon6471_gestaltComponentPlatform: u32 = 1668247660;
+
+pub const anon6801 = u32;
+pub const anon6801_gestaltNativeCPUtype: u32 = 1668314484;
+pub const anon6801_gestaltNativeCPUfamily: u32 = 1668314470;
+pub const anon6801_gestaltCPU68000: u32 = 0;
+pub const anon6801_gestaltCPU68010: u32 = 1;
+pub const anon6801_gestaltCPU68020: u32 = 2;
+pub const anon6801_gestaltCPU68030: u32 = 3;
+pub const anon6801_gestaltCPU68040: u32 = 4;
+pub const anon6801_gestaltCPU601: u32 = 257;
+pub const anon6801_gestaltCPU603: u32 = 259;
+pub const anon6801_gestaltCPU604: u32 = 260;
+pub const anon6801_gestaltCPU603e: u32 = 262;
+pub const anon6801_gestaltCPU603ev: u32 = 263;
+pub const anon6801_gestaltCPU750: u32 = 264;
+pub const anon6801_gestaltCPU604e: u32 = 265;
+pub const anon6801_gestaltCPU604ev: u32 = 266;
+pub const anon6801_gestaltCPUG4: u32 = 268;
+pub const anon6801_gestaltCPUG47450: u32 = 272;
+
+pub const anon7001 = u32;
+pub const anon7001_gestaltCPUApollo: u32 = 273;
+pub const anon7001_gestaltCPUG47447: u32 = 274;
+pub const anon7001_gestaltCPU750FX: u32 = 288;
+pub const anon7001_gestaltCPU970: u32 = 313;
+pub const anon7001_gestaltCPU970FX: u32 = 316;
+pub const anon7001_gestaltCPU970MP: u32 = 324;
+
+pub const anon7091 = u32;
+pub const anon7091_gestaltCPU486: u32 = 1765029942;
+pub const anon7091_gestaltCPUPentium: u32 = 1765095478;
+pub const anon7091_gestaltCPUPentiumPro: u32 = 1765109874;
+pub const anon7091_gestaltCPUPentiumII: u32 = 1765108073;
+pub const anon7091_gestaltCPUX86: u32 = 1769502840;
+pub const anon7091_gestaltCPUPentium4: u32 = 1765108086;
+
+pub const anon7191 = u32;
+pub const anon7191_gestaltCPUARMFamily: u32 = 1634888992;
+pub const anon7191_gestaltCPUARM64: u32 = 1635268148;
+
+pub const anon7351 = u32;
+pub const anon7351_gestaltCountOfCPUs: u32 = 1668314483;
+
+pub const anon7391 = u32;
+pub const anon7391_gestaltCTBVersion: u32 = 1668571766;
+
+pub const anon7431 = u32;
+pub const anon7431_gestaltDBAccessMgrAttr: u32 = 1684169059;
+pub const anon7431_gestaltDBAccessMgrPresent: u32 = 0;
+
+pub const anon7481 = u32;
+pub const anon7481_gestaltDiskCacheSize: u32 = 1684239226;
+
+pub const anon7521 = u32;
+pub const anon7521_gestaltSDPFindVersion: u32 = 1684434532;
+
+pub const anon7561 = u32;
+pub const anon7561_gestaltDictionaryMgrAttr: u32 = 1684628340;
+pub const anon7561_gestaltDictionaryMgrPresent: u32 = 0;
+
+pub const anon7611 = u32;
+pub const anon7611_gestaltDITLExtAttr: u32 = 1684632684;
+pub const anon7611_gestaltDITLExtPresent: u32 = 0;
+pub const anon7611_gestaltDITLExtSupportsIctb: u32 = 1;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_NONE: u32 = 0;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_PKCS8: u32 = 1;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_PKCS7: u32 = 2;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_MSCAPI: u32 = 3;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_OTHER: u32 = -1;
+
+pub const anon7671 = u32;
+pub const anon7671_gestaltDialogMgrAttr: u32 = 1684828007;
+pub const anon7671_gestaltDialogMgrPresent: u32 = 1;
+pub const anon7671_gestaltDialogMgrPresentBit: u32 = 0;
+pub const anon7671_gestaltDialogMgrHasAquaAlertBit: u32 = 2;
+pub const anon7671_gestaltDialogMgrPresentMask: u32 = 1;
+pub const anon7671_gestaltDialogMgrHasAquaAlertMask: u32 = 4;
+pub const anon7671_gestaltDialogMsgPresentMask: u32 = 1;
+
+pub const anon7791 = u32;
+pub const anon7791_gestaltDesktopPicturesAttr: u32 = 1684762744;
+pub const anon7791_gestaltDesktopPicturesInstalled: u32 = 0;
+pub const anon7791_gestaltDesktopPicturesDisplayed: u32 = 1;
+pub const anon7791_CSSM_ATTRIBUTE_VENDOR_DEFINED: u32 = 8388608;
+
+pub const anon7891 = u32;
+pub const anon7891_gestaltDisplayMgrAttr: u32 = 1685089401;
+pub const anon7891_gestaltDisplayMgrPresent: u32 = 0;
+pub const anon7891_gestaltDisplayMgrCanSwitchMirrored: u32 = 2;
+pub const anon7891_gestaltDisplayMgrSetDepthNotifies: u32 = 3;
+pub const anon7891_gestaltDisplayMgrCanConfirm: u32 = 4;
+pub const anon7891_gestaltDisplayMgrColorSyncAware: u32 = 5;
+pub const anon7891_gestaltDisplayMgrGeneratesProfiles: u32 = 6;
+pub const anon7891_gestaltDisplayMgrSleepNotifies: u32 = 7;
+pub const anon7891_CSSM_KEYATTR_RETURN_DEFAULT: u32 = 0;
+pub const anon7891_CSSM_KEYATTR_RETURN_DATA: u32 = 268435456;
+pub const anon7891_CSSM_KEYATTR_RETURN_REF: u32 = 536870912;
+pub const anon7891_CSSM_KEYATTR_RETURN_NONE: u32 = 1073741824;
+pub const anon7891_CSSM_KEYATTR_PERMANENT: u32 = 1;
+pub const anon7891_CSSM_KEYATTR_PRIVATE: u32 = 2;
+pub const anon7891_CSSM_KEYATTR_MODIFIABLE: u32 = 4;
+pub const anon7891_CSSM_KEYATTR_SENSITIVE: u32 = 8;
+pub const anon7891_CSSM_KEYATTR_EXTRACTABLE: u32 = 32;
+pub const anon7891_CSSM_KEYATTR_ALWAYS_SENSITIVE: u32 = 16;
+pub const anon7891_CSSM_KEYATTR_NEVER_EXTRACTABLE: u32 = 64;
+
+pub const anon8101 = u32;
+pub const anon8101_gestaltDrawSprocketVersion: u32 = 1685287030;
+
+pub const anon8141 = u32;
+pub const anon8141_gestaltDigitalSignatureVersion: u32 = 1685285223;
+
+pub const anon8221 = u32;
+pub const anon8221_gestaltDTPFeatures: u32 = 1685352550;
+pub const anon8221_DTPThirdPartySupported: u32 = 4;
+
+pub const anon8321 = u32;
+pub const anon8321_gestaltDTPInfo: u32 = 1685352568;
+
+pub const anon8361 = u32;
+pub const anon8361_gestaltEasyAccessAttr: u32 = 1700885369;
+pub const anon8361_gestaltEasyAccessOff: u32 = 0;
+pub const anon8361_gestaltEasyAccessOn: u32 = 1;
+pub const anon8361_gestaltEasyAccessSticky: u32 = 2;
+pub const anon8361_gestaltEasyAccessLocked: u32 = 3;
+
+pub const anon8441 = u32;
+pub const anon8441_gestaltEditionMgrAttr: u32 = 1701082222;
+pub const anon8441_gestaltEditionMgrPresent: u32 = 0;
+pub const anon8441_gestaltEditionMgrTranslationAware: u32 = 1;
+
+pub const anon8501 = u32;
+pub const anon8501_gestaltAppleEventsAttr: u32 = 1702260340;
+pub const anon8501_gestaltAppleEventsPresent: u32 = 0;
+pub const anon8501_gestaltScriptingSupport: u32 = 1;
+pub const anon8501_gestaltOSLInSystem: u32 = 2;
+pub const anon8501_gestaltSupportsApplicationURL: u32 = 4;
+
+pub const anon8581 = u32;
+pub const anon8581_gestaltExtensionTableVersion: u32 = 1702126188;
+pub const anon8581_CSSM_FEE_CURVE_TYPE_DEFAULT: u32 = 0;
+pub const anon8581_CSSM_FEE_CURVE_TYPE_MONTGOMERY: u32 = 1;
+pub const anon8581_CSSM_FEE_CURVE_TYPE_WEIERSTRASS: u32 = 2;
+pub const anon8581_CSSM_FEE_CURVE_TYPE_ANSI_X9_62: u32 = 3;
+
+pub const anon8691 = u32;
+pub const anon8691_gestaltFBCVersion: u32 = 1717724022;
+pub const anon8691_gestaltFBCCurrentVersion: u32 = 17;
+pub const anon8691_gestaltOSXFBCCurrentVersion: u32 = 256;
+
+pub const anon8761 = u32;
+pub const anon8761_gestaltFileMappingAttr: u32 = 1718381936;
+pub const anon8761_gestaltFileMappingPresent: u32 = 0;
+pub const anon8761_gestaltFileMappingMultipleFilesFix: u32 = 1;
+
+pub const anon8821 = u32;
+pub const anon8821_gestaltFloppyAttr: u32 = 1718382713;
+pub const anon8821_gestaltFloppyIsMFMOnly: u32 = 0;
+pub const anon8821_gestaltFloppyIsManualEject: u32 = 1;
+pub const anon8821_gestaltFloppyUsesDiskInPlace: u32 = 2;
+
+pub const anon8891 = u32;
+pub const anon8891_gestaltFinderAttr: u32 = 1718510706;
+pub const anon8891_gestaltFinderDropEvent: u32 = 0;
+pub const anon8891_gestaltFinderMagicPlacement: u32 = 1;
+pub const anon8891_gestaltFinderCallsAEProcess: u32 = 2;
+pub const anon8891_gestaltOSLCompliantFinder: u32 = 3;
+pub const anon8891_gestaltFinderSupports4GBVolumes: u32 = 4;
+pub const anon8891_gestaltFinderHasClippings: u32 = 6;
+pub const anon8891_gestaltFinderFullDragManagerSupport: u32 = 7;
+pub const anon8891_gestaltFinderFloppyRootComments: u32 = 8;
+pub const anon8891_gestaltFinderLargeAndNotSavedFlavorsOK: u32 = 9;
+pub const anon8891_gestaltFinderUsesExtensibleFolderManager: u32 = 10;
+pub const anon8891_gestaltFinderUnderstandsRedirectedDesktopFolder: u32 = 11;
+
+pub const anon9041 = u32;
+pub const anon9041_gestaltFindFolderAttr: u32 = 1718578276;
+pub const anon9041_gestaltFindFolderPresent: u32 = 0;
+pub const anon9041_gestaltFolderDescSupport: u32 = 1;
+pub const anon9041_gestaltFolderMgrFollowsAliasesWhenResolving: u32 = 2;
+pub const anon9041_gestaltFolderMgrSupportsExtendedCalls: u32 = 3;
+pub const anon9041_gestaltFolderMgrSupportsDomains: u32 = 4;
+pub const anon9041_gestaltFolderMgrSupportsFSCalls: u32 = 5;
+
+pub const anon9141 = u32;
+pub const anon9141_gestaltFindFolderRedirectionAttr: u32 = 1718578277;
+
+pub const anon9191 = u32;
+pub const anon9191_gestaltFontMgrAttr: u32 = 1718578804;
+pub const anon9191_gestaltOutlineFonts: u32 = 0;
+
+pub const anon9241 = u32;
+pub const anon9241_gestaltFPUType: u32 = 1718646048;
+pub const anon9241_gestaltNoFPU: u32 = 0;
+pub const anon9241_gestalt68881: u32 = 1;
+pub const anon9241_gestalt68882: u32 = 2;
+pub const anon9241_gestalt68040FPU: u32 = 3;
+
+pub const anon9321 = u32;
+pub const anon9321_gestaltFSAttr: u32 = 1718820896;
+pub const anon9321_gestaltFullExtFSDispatching: u32 = 0;
+pub const anon9321_gestaltHasFSSpecCalls: u32 = 1;
+pub const anon9321_gestaltHasFileSystemManager: u32 = 2;
+pub const anon9321_gestaltFSMDoesDynamicLoad: u32 = 3;
+pub const anon9321_gestaltFSSupports4GBVols: u32 = 4;
+pub const anon9321_gestaltFSSupports2TBVols: u32 = 5;
+pub const anon9321_gestaltHasExtendedDiskInit: u32 = 6;
+pub const anon9321_gestaltDTMgrSupportsFSM: u32 = 7;
+pub const anon9321_gestaltFSNoMFSVols: u32 = 8;
+pub const anon9321_gestaltFSSupportsHFSPlusVols: u32 = 9;
+pub const anon9321_gestaltFSIncompatibleDFA82: u32 = 10;
+
+pub const anon9471 = u32;
+pub const anon9471_gestaltFSSupportsDirectIO: u32 = 11;
+
+pub const anon9511 = u32;
+pub const anon9511_gestaltHasHFSPlusAPIs: u32 = 12;
+pub const anon9511_gestaltMustUseFCBAccessors: u32 = 13;
+pub const anon9511_gestaltFSUsesPOSIXPathsForConversion: u32 = 14;
+pub const anon9511_gestaltFSSupportsExclusiveLocks: u32 = 15;
+pub const anon9511_gestaltFSSupportsHardLinkDetection: u32 = 16;
+pub const anon9511_gestaltFSAllowsConcurrentAsyncIO: u32 = 17;
+
+pub const anon9601 = u32;
+pub const anon9601_gestaltAdminFeaturesFlagsAttr: u32 = 1718773092;
+pub const anon9601_gestaltFinderUsesSpecialOpenFoldersFile: u32 = 0;
+
+pub const anon9651 = u32;
+pub const anon9651_gestaltFSMVersion: u32 = 1718840608;
+
+pub const anon9691 = u32;
+pub const anon9691_gestaltFXfrMgrAttr: u32 = 1719166578;
+pub const anon9691_gestaltFXfrMgrPresent: u32 = 0;
+pub const anon9691_gestaltFXfrMgrMultiFile: u32 = 1;
+pub const anon9691_gestaltFXfrMgrErrorString: u32 = 2;
+pub const anon9691_gestaltFXfrMgrAsync: u32 = 3;
+
+pub const anon9771 = u32;
+pub const anon9771_gestaltGraphicsAttr: u32 = 1734768737;
+pub const anon9771_gestaltGraphicsIsDebugging: u32 = 1;
+pub const anon9771_gestaltGraphicsIsLoaded: u32 = 2;
+pub const anon9771_gestaltGraphicsIsPowerPC: u32 = 4;
+
+pub const anon9841 = u32;
+pub const anon9841_gestaltGraphicsVersion: u32 = 1735550584;
+pub const anon9841_gestaltCurrentGraphicsVersion: u32 = 66048;
+
+pub const anon9891 = u32;
+pub const anon9891_gestaltHardwareAttr: u32 = 1751414642;
+pub const anon9891_gestaltHasVIA1: u32 = 0;
+pub const anon9891_gestaltHasVIA2: u32 = 1;
+pub const anon9891_gestaltHasASC: u32 = 3;
+pub const anon9891_gestaltHasSCC: u32 = 4;
+pub const anon9891_gestaltHasSCSI: u32 = 7;
+pub const anon9891_gestaltHasSoftPowerOff: u32 = 19;
+pub const anon9891_gestaltHasSCSI961: u32 = 21;
+pub const anon9891_gestaltHasSCSI962: u32 = 22;
+pub const anon9891_gestaltHasUniversalROM: u32 = 24;
+pub const anon9891_gestaltHasEnhancedLtalk: u32 = 30;
+
+pub const anon10031 = u32;
+pub const anon10031_gestaltHelpMgrAttr: u32 = 1751477360;
+pub const anon10031_gestaltHelpMgrPresent: u32 = 0;
+pub const anon10031_gestaltHelpMgrExtensions: u32 = 1;
+pub const anon10031_gestaltAppleGuideIsDebug: u32 = 30;
+pub const anon10031_gestaltAppleGuidePresent: u32 = 31;
+
+pub const anon10111 = u32;
+pub const anon10111_gestaltHardwareVendorCode: u32 = 1752326500;
+pub const anon10111_gestaltHardwareVendorApple: u32 = 1097887852;
+
+pub const anon10161 = u32;
+pub const anon10161_gestaltCompressionMgr: u32 = 1768123760;
+
+pub const anon10201 = u32;
+pub const anon10201_gestaltIconUtilitiesAttr: u32 = 1768124270;
+pub const anon10201_gestaltIconUtilitiesPresent: u32 = 0;
+pub const anon10201_gestaltIconUtilitiesHas48PixelIcons: u32 = 1;
+pub const anon10201_gestaltIconUtilitiesHas32BitIcons: u32 = 2;
+pub const anon10201_gestaltIconUtilitiesHas8BitDeepMasks: u32 = 3;
+pub const anon10201_gestaltIconUtilitiesHasIconServices: u32 = 4;
+
+pub const anon10291 = u32;
+pub const anon10291_gestaltInternalDisplay: u32 = 1768190832;
+
+pub const anon10371 = u32;
+pub const anon10371_gestaltKeyboardType: u32 = 1801610272;
+pub const anon10371_gestaltMacKbd: u32 = 1;
+pub const anon10371_gestaltMacAndPad: u32 = 2;
+pub const anon10371_gestaltMacPlusKbd: u32 = 3;
+pub const anon10371_gestaltUnknownThirdPartyKbd: u32 = 3;
+pub const anon10371_gestaltExtADBKbd: u32 = 4;
+pub const anon10371_gestaltStdADBKbd: u32 = 5;
+pub const anon10371_gestaltPrtblADBKbd: u32 = 6;
+pub const anon10371_gestaltPrtblISOKbd: u32 = 7;
+pub const anon10371_gestaltStdISOADBKbd: u32 = 8;
+pub const anon10371_gestaltExtISOADBKbd: u32 = 9;
+pub const anon10371_gestaltADBKbdII: u32 = 10;
+pub const anon10371_gestaltADBISOKbdII: u32 = 11;
+pub const anon10371_gestaltPwrBookADBKbd: u32 = 12;
+pub const anon10371_gestaltPwrBookISOADBKbd: u32 = 13;
+pub const anon10371_gestaltAppleAdjustKeypad: u32 = 14;
+pub const anon10371_gestaltAppleAdjustADBKbd: u32 = 15;
+pub const anon10371_gestaltAppleAdjustISOKbd: u32 = 16;
+pub const anon10371_gestaltJapanAdjustADBKbd: u32 = 17;
+pub const anon10371_gestaltPwrBkExtISOKbd: u32 = 20;
+pub const anon10371_gestaltPwrBkExtJISKbd: u32 = 21;
+pub const anon10371_gestaltPwrBkExtADBKbd: u32 = 24;
+pub const anon10371_gestaltPS2Keyboard: u32 = 27;
+pub const anon10371_gestaltPwrBkSubDomKbd: u32 = 28;
+pub const anon10371_gestaltPwrBkSubISOKbd: u32 = 29;
+pub const anon10371_gestaltPwrBkSubJISKbd: u32 = 30;
+pub const anon10371_gestaltPortableUSBANSIKbd: u32 = 37;
+pub const anon10371_gestaltPortableUSBISOKbd: u32 = 38;
+pub const anon10371_gestaltPortableUSBJISKbd: u32 = 39;
+pub const anon10371_gestaltThirdPartyANSIKbd: u32 = 40;
+pub const anon10371_gestaltThirdPartyISOKbd: u32 = 41;
+pub const anon10371_gestaltThirdPartyJISKbd: u32 = 42;
+pub const anon10371_gestaltPwrBkEKDomKbd: u32 = 195;
+pub const anon10371_gestaltPwrBkEKISOKbd: u32 = 196;
+pub const anon10371_gestaltPwrBkEKJISKbd: u32 = 197;
+pub const anon10371_gestaltUSBCosmoANSIKbd: u32 = 198;
+pub const anon10371_gestaltUSBCosmoISOKbd: u32 = 199;
+pub const anon10371_gestaltUSBCosmoJISKbd: u32 = 200;
+pub const anon10371_gestaltPwrBk99JISKbd: u32 = 201;
+pub const anon10371_gestaltUSBAndyANSIKbd: u32 = 204;
+pub const anon10371_gestaltUSBAndyISOKbd: u32 = 205;
+pub const anon10371_gestaltUSBAndyJISKbd: u32 = 206;
+
+pub const anon10891 = u32;
+pub const anon10891_gestaltUSBProF16ANSIKbd: u32 = 34;
+pub const anon10891_gestaltUSBProF16ISOKbd: u32 = 35;
+pub const anon10891_gestaltUSBProF16JISKbd: u32 = 36;
+pub const anon10891_gestaltProF16ANSIKbd: u32 = 31;
+pub const anon10891_gestaltProF16ISOKbd: u32 = 32;
+pub const anon10891_gestaltProF16JISKbd: u32 = 33;
+
+pub const anon11021 = u32;
+pub const anon11021_gestaltUDFSupport: u32 = 1802855526;
+
+pub const anon11061 = u32;
+pub const anon11061_gestaltLowMemorySize: u32 = 1819108717;
+
+pub const anon11101 = u32;
+pub const anon11101_gestaltLogicalRAMSize: u32 = 1819435373;
+
+pub const anon12111 = u32;
+pub const anon12111_gestaltMachineType: u32 = 1835098984;
+pub const anon12111_gestaltClassic: u32 = 1;
+pub const anon12111_gestaltMacXL: u32 = 2;
+pub const anon12111_gestaltMac512KE: u32 = 3;
+pub const anon12111_gestaltMacPlus: u32 = 4;
+pub const anon12111_gestaltMacSE: u32 = 5;
+pub const anon12111_gestaltMacII: u32 = 6;
+pub const anon12111_gestaltMacIIx: u32 = 7;
+pub const anon12111_gestaltMacIIcx: u32 = 8;
+pub const anon12111_gestaltMacSE030: u32 = 9;
+pub const anon12111_gestaltPortable: u32 = 10;
+pub const anon12111_gestaltMacIIci: u32 = 11;
+pub const anon12111_gestaltPowerMac8100_120: u32 = 12;
+pub const anon12111_gestaltMacIIfx: u32 = 13;
+pub const anon12111_gestaltMacClassic: u32 = 17;
+pub const anon12111_gestaltMacIIsi: u32 = 18;
+pub const anon12111_gestaltMacLC: u32 = 19;
+pub const anon12111_gestaltMacQuadra900: u32 = 20;
+pub const anon12111_gestaltPowerBook170: u32 = 21;
+pub const anon12111_gestaltMacQuadra700: u32 = 22;
+pub const anon12111_gestaltClassicII: u32 = 23;
+pub const anon12111_gestaltPowerBook100: u32 = 24;
+pub const anon12111_gestaltPowerBook140: u32 = 25;
+pub const anon12111_gestaltMacQuadra950: u32 = 26;
+pub const anon12111_gestaltMacLCIII: u32 = 27;
+pub const anon12111_gestaltPerforma450: u32 = 27;
+pub const anon12111_gestaltPowerBookDuo210: u32 = 29;
+pub const anon12111_gestaltMacCentris650: u32 = 30;
+pub const anon12111_gestaltPowerBookDuo230: u32 = 32;
+pub const anon12111_gestaltPowerBook180: u32 = 33;
+pub const anon12111_gestaltPowerBook160: u32 = 34;
+pub const anon12111_gestaltMacQuadra800: u32 = 35;
+pub const anon12111_gestaltMacQuadra650: u32 = 36;
+pub const anon12111_gestaltMacLCII: u32 = 37;
+pub const anon12111_gestaltPowerBookDuo250: u32 = 38;
+pub const anon12111_gestaltAWS9150_80: u32 = 39;
+pub const anon12111_gestaltPowerMac8100_110: u32 = 40;
+pub const anon12111_gestaltAWS8150_110: u32 = 40;
+pub const anon12111_gestaltPowerMac5200: u32 = 41;
+pub const anon12111_gestaltPowerMac5260: u32 = 41;
+pub const anon12111_gestaltPerforma5300: u32 = 41;
+pub const anon12111_gestaltPowerMac6200: u32 = 42;
+pub const anon12111_gestaltPerforma6300: u32 = 42;
+pub const anon12111_gestaltMacIIvi: u32 = 44;
+pub const anon12111_gestaltMacIIvm: u32 = 45;
+pub const anon12111_gestaltPerforma600: u32 = 45;
+pub const anon12111_gestaltPowerMac7100_80: u32 = 47;
+pub const anon12111_gestaltMacIIvx: u32 = 48;
+pub const anon12111_gestaltMacColorClassic: u32 = 49;
+pub const anon12111_gestaltPerforma250: u32 = 49;
+pub const anon12111_gestaltPowerBook165c: u32 = 50;
+pub const anon12111_gestaltMacCentris610: u32 = 52;
+pub const anon12111_gestaltMacQuadra610: u32 = 53;
+pub const anon12111_gestaltPowerBook145: u32 = 54;
+pub const anon12111_gestaltPowerMac8100_100: u32 = 55;
+pub const anon12111_gestaltMacLC520: u32 = 56;
+pub const anon12111_gestaltAWS9150_120: u32 = 57;
+pub const anon12111_gestaltPowerMac6400: u32 = 58;
+pub const anon12111_gestaltPerforma6400: u32 = 58;
+pub const anon12111_gestaltPerforma6360: u32 = 58;
+pub const anon12111_gestaltMacCentris660AV: u32 = 60;
+pub const anon12111_gestaltMacQuadra660AV: u32 = 60;
+pub const anon12111_gestaltPerforma46x: u32 = 62;
+pub const anon12111_gestaltPowerMac8100_80: u32 = 65;
+pub const anon12111_gestaltAWS8150_80: u32 = 65;
+pub const anon12111_gestaltPowerMac9500: u32 = 67;
+pub const anon12111_gestaltPowerMac9600: u32 = 67;
+pub const anon12111_gestaltPowerMac7500: u32 = 68;
+pub const anon12111_gestaltPowerMac7600: u32 = 68;
+pub const anon12111_gestaltPowerMac8500: u32 = 69;
+pub const anon12111_gestaltPowerMac8600: u32 = 69;
+pub const anon12111_gestaltAWS8550: u32 = 68;
+pub const anon12111_gestaltPowerBook180c: u32 = 71;
+pub const anon12111_gestaltPowerBook520: u32 = 72;
+pub const anon12111_gestaltPowerBook520c: u32 = 72;
+pub const anon12111_gestaltPowerBook540: u32 = 72;
+pub const anon12111_gestaltPowerBook540c: u32 = 72;
+pub const anon12111_gestaltPowerMac5400: u32 = 74;
+pub const anon12111_gestaltPowerMac6100_60: u32 = 75;
+pub const anon12111_gestaltAWS6150_60: u32 = 75;
+pub const anon12111_gestaltPowerBookDuo270c: u32 = 77;
+pub const anon12111_gestaltMacQuadra840AV: u32 = 78;
+pub const anon12111_gestaltPerforma550: u32 = 80;
+pub const anon12111_gestaltPowerBook165: u32 = 84;
+pub const anon12111_gestaltPowerBook190: u32 = 85;
+pub const anon12111_gestaltMacTV: u32 = 88;
+pub const anon12111_gestaltMacLC475: u32 = 89;
+pub const anon12111_gestaltPerforma47x: u32 = 89;
+pub const anon12111_gestaltMacLC575: u32 = 92;
+pub const anon12111_gestaltMacQuadra605: u32 = 94;
+pub const anon12111_gestaltMacQuadra630: u32 = 98;
+pub const anon12111_gestaltMacLC580: u32 = 99;
+pub const anon12111_gestaltPerforma580: u32 = 99;
+pub const anon12111_gestaltPowerMac6100_66: u32 = 100;
+pub const anon12111_gestaltAWS6150_66: u32 = 100;
+pub const anon12111_gestaltPowerBookDuo280: u32 = 102;
+pub const anon12111_gestaltPowerBookDuo280c: u32 = 103;
+pub const anon12111_gestaltPowerMacLC475: u32 = 104;
+pub const anon12111_gestaltPowerMacPerforma47x: u32 = 104;
+pub const anon12111_gestaltPowerMacLC575: u32 = 105;
+pub const anon12111_gestaltPowerMacPerforma57x: u32 = 105;
+pub const anon12111_gestaltPowerMacQuadra630: u32 = 106;
+pub const anon12111_gestaltPowerMacLC630: u32 = 106;
+pub const anon12111_gestaltPowerMacPerforma63x: u32 = 106;
+pub const anon12111_gestaltPowerMac7200: u32 = 108;
+pub const anon12111_gestaltPowerMac7300: u32 = 109;
+pub const anon12111_gestaltPowerMac7100_66: u32 = 112;
+pub const anon12111_gestaltPowerBook150: u32 = 115;
+pub const anon12111_gestaltPowerMacQuadra700: u32 = 116;
+pub const anon12111_gestaltPowerMacQuadra900: u32 = 117;
+pub const anon12111_gestaltPowerMacQuadra950: u32 = 118;
+pub const anon12111_gestaltPowerMacCentris610: u32 = 119;
+pub const anon12111_gestaltPowerMacCentris650: u32 = 120;
+pub const anon12111_gestaltPowerMacQuadra610: u32 = 121;
+pub const anon12111_gestaltPowerMacQuadra650: u32 = 122;
+pub const anon12111_gestaltPowerMacQuadra800: u32 = 123;
+pub const anon12111_gestaltPowerBookDuo2300: u32 = 124;
+pub const anon12111_gestaltPowerBook500PPCUpgrade: u32 = 126;
+pub const anon12111_gestaltPowerBook5300: u32 = 128;
+pub const anon12111_gestaltPowerBook1400: u32 = 310;
+pub const anon12111_gestaltPowerBook3400: u32 = 306;
+pub const anon12111_gestaltPowerBook2400: u32 = 307;
+pub const anon12111_gestaltPowerBookG3Series: u32 = 312;
+pub const anon12111_gestaltPowerBookG3: u32 = 313;
+pub const anon12111_gestaltPowerBookG3Series2: u32 = 314;
+pub const anon12111_gestaltPowerMacNewWorld: u32 = 406;
+pub const anon12111_gestaltPowerMacG3: u32 = 510;
+pub const anon12111_gestaltPowerMac5500: u32 = 512;
+pub const anon12111_gestalt20thAnniversary: u32 = 512;
+pub const anon12111_gestaltPowerMac6500: u32 = 513;
+pub const anon12111_gestaltPowerMac4400_160: u32 = 514;
+pub const anon12111_gestaltPowerMac4400: u32 = 515;
+pub const anon12111_gestaltMacOSCompatibility: u32 = 1206;
+
+pub const anon13481 = u32;
+pub const anon13481_gestaltQuadra605: u32 = 94;
+pub const anon13481_gestaltQuadra610: u32 = 53;
+pub const anon13481_gestaltQuadra630: u32 = 98;
+pub const anon13481_gestaltQuadra650: u32 = 36;
+pub const anon13481_gestaltQuadra660AV: u32 = 60;
+pub const anon13481_gestaltQuadra700: u32 = 22;
+pub const anon13481_gestaltQuadra800: u32 = 35;
+pub const anon13481_gestaltQuadra840AV: u32 = 78;
+pub const anon13481_gestaltQuadra900: u32 = 20;
+pub const anon13481_gestaltQuadra950: u32 = 26;
+
+pub const anon13611 = i32;
+pub const anon13611_MachineNameStrID: i32 = -16395;
+
+pub const anon13651 = u32;
+pub const anon13651_gestaltSMPMailerVersion: u32 = 1835101298;
+
+pub const anon13691 = u32;
+pub const anon13691_gestaltMediaBay: u32 = 1835165032;
+pub const anon13691_gestaltMBLegacy: u32 = 0;
+pub const anon13691_gestaltMBSingleBay: u32 = 1;
+pub const anon13691_gestaltMBMultipleBays: u32 = 2;
+
+pub const anon13761 = u32;
+pub const anon13761_gestaltMessageMgrVersion: u32 = 1835365235;
+
+pub const anon13821 = u32;
+pub const anon13821_gestaltMenuMgrAttr: u32 = 1835363957;
+pub const anon13821_gestaltMenuMgrPresent: u32 = 1;
+pub const anon13821_gestaltMenuMgrPresentBit: u32 = 0;
+pub const anon13821_gestaltMenuMgrAquaLayoutBit: u32 = 1;
+pub const anon13821_gestaltMenuMgrMultipleItemsWithCommandIDBit: u32 = 2;
+pub const anon13821_gestaltMenuMgrRetainsIconRefBit: u32 = 3;
+pub const anon13821_gestaltMenuMgrSendsMenuBoundsToDefProcBit: u32 = 4;
+pub const anon13821_gestaltMenuMgrMoreThanFiveMenusDeepBit: u32 = 5;
+pub const anon13821_gestaltMenuMgrCGImageMenuTitleBit: u32 = 6;
+pub const anon13821_gestaltMenuMgrPresentMask: u32 = 1;
+pub const anon13821_gestaltMenuMgrAquaLayoutMask: u32 = 2;
+pub const anon13821_gestaltMenuMgrMultipleItemsWithCommandIDMask: u32 = 4;
+pub const anon13821_gestaltMenuMgrRetainsIconRefMask: u32 = 8;
+pub const anon13821_gestaltMenuMgrSendsMenuBoundsToDefProcMask: u32 = 16;
+pub const anon13821_gestaltMenuMgrMoreThanFiveMenusDeepMask: u32 = 32;
+pub const anon13821_gestaltMenuMgrCGImageMenuTitleMask: u32 = 64;
+
+pub const anon14051 = u32;
+pub const anon14051_gestaltMultipleUsersState: u32 = 1835426930;
+
+pub const anon14101 = u32;
+pub const anon14101_gestaltMachineIcon: u32 = 1835623278;
+
+pub const anon14141 = u32;
+pub const anon14141_gestaltMiscAttr: u32 = 1835627363;
+pub const anon14141_gestaltScrollingThrottle: u32 = 0;
+pub const anon14141_gestaltSquareMenuBar: u32 = 2;
+
+pub const anon14351 = u32;
+pub const anon14351_gestaltMixedModeVersion: u32 = 1835628644;
+
+pub const anon14391 = u32;
+pub const anon14391_gestaltMixedModeAttr: u32 = 1835628644;
+pub const anon14391_gestaltMixedModePowerPC: u32 = 0;
+pub const anon14391_gestaltPowerPCAware: u32 = 0;
+pub const anon14391_gestaltMixedModeCFM68K: u32 = 1;
+pub const anon14391_gestaltMixedModeCFM68KHasTrap: u32 = 2;
+pub const anon14391_gestaltMixedModeCFM68KHasState: u32 = 3;
+
+pub const anon14481 = u32;
+pub const anon14481_gestaltQuickTimeConferencing: u32 = 1836346475;
+
+pub const anon14521 = u32;
+pub const anon14521_gestaltMemoryMapAttr: u32 = 1835884912;
+pub const anon14521_gestaltMemoryMapSparse: u32 = 0;
+
+pub const anon14571 = u32;
+pub const anon14571_gestaltMMUType: u32 = 1835889952;
+pub const anon14571_gestaltNoMMU: u32 = 0;
+pub const anon14571_gestaltAMU: u32 = 1;
+pub const anon14571_gestalt68851: u32 = 2;
+pub const anon14571_gestalt68030MMU: u32 = 3;
+pub const anon14571_gestalt68040MMU: u32 = 4;
+pub const anon14571_gestaltEMMU1: u32 = 5;
+
+pub const anon14671 = u32;
+pub const anon14671_gestaltUserVisibleMachineName: u32 = 1835950445;
+
+pub const anon14741 = u32;
+pub const anon14741_gestaltMPCallableAPIsAttr: u32 = 1836086115;
+pub const anon14741_gestaltMPFileManager: u32 = 0;
+pub const anon14741_gestaltMPDeviceManager: u32 = 1;
+pub const anon14741_gestaltMPTrapCalls: u32 = 2;
+
+pub const anon14811 = u32;
+pub const anon14811_gestaltStdNBPAttr: u32 = 1852601712;
+pub const anon14811_gestaltStdNBPPresent: u32 = 0;
+pub const anon14811_gestaltStdNBPSupportsAutoPosition: u32 = 1;
+
+pub const anon14871 = u32;
+pub const anon14871_gestaltNotificationMgrAttr: u32 = 1852663666;
+pub const anon14871_gestaltNotificationPresent: u32 = 0;
+
+pub const anon14921 = u32;
+pub const anon14921_gestaltNameRegistryVersion: u32 = 1852990823;
+
+pub const anon14961 = u32;
+pub const anon14961_gestaltNuBusSlotCount: u32 = 1853186675;
+
+pub const anon15001 = u32;
+pub const anon15001_gestaltOCEToolboxVersion: u32 = 1868785012;
+pub const anon15001_gestaltOCETB: u32 = 258;
+pub const anon15001_gestaltSFServer: u32 = 256;
+
+pub const anon15061 = u32;
+pub const anon15061_gestaltOCEToolboxAttr: u32 = 1868785013;
+pub const anon15061_gestaltOCETBPresent: u32 = 1;
+pub const anon15061_gestaltOCETBAvailable: u32 = 2;
+pub const anon15061_gestaltOCESFServerAvailable: u32 = 4;
+pub const anon15061_gestaltOCETBNativeGlueAvailable: u32 = 16;
+
+pub const anon15141 = u32;
+pub const anon15141_gestaltOpenFirmwareInfo: u32 = 1869637239;
+
+pub const anon15181 = u32;
+pub const anon15181_gestaltOSAttr: u32 = 1869815840;
+pub const anon15181_gestaltSysZoneGrowable: u32 = 0;
+pub const anon15181_gestaltLaunchCanReturn: u32 = 1;
+pub const anon15181_gestaltLaunchFullFileSpec: u32 = 2;
+pub const anon15181_gestaltLaunchControl: u32 = 3;
+pub const anon15181_gestaltTempMemSupport: u32 = 4;
+pub const anon15181_gestaltRealTempMemory: u32 = 5;
+pub const anon15181_gestaltTempMemTracked: u32 = 6;
+pub const anon15181_gestaltIPCSupport: u32 = 7;
+pub const anon15181_gestaltSysDebuggerSupport: u32 = 8;
+pub const anon15181_gestaltNativeProcessMgrBit: u32 = 19;
+pub const anon15181_gestaltAltivecRegistersSwappedCorrectlyBit: u32 = 20;
+
+pub const anon15331 = u32;
+pub const anon15331_gestaltOSTable: u32 = 1869837428;
+
+pub const anon15441 = u32;
+pub const anon15441_gestaltOpenTptNetworkSetup: u32 = 1869898598;
+pub const anon15441_gestaltOpenTptNetworkSetupLegacyImport: u32 = 0;
+pub const anon15441_gestaltOpenTptNetworkSetupLegacyExport: u32 = 1;
+pub const anon15441_gestaltOpenTptNetworkSetupSupportsMultihoming: u32 = 2;
+
+pub const anon15511 = u32;
+pub const anon15511_gestaltOpenTptNetworkSetupVersion: u32 = 1869898614;
+
+pub const anon15611 = u32;
+pub const anon15611_gestaltOpenTptRemoteAccess: u32 = 1869902433;
+pub const anon15611_gestaltOpenTptRemoteAccessPresent: u32 = 0;
+pub const anon15611_gestaltOpenTptRemoteAccessLoaded: u32 = 1;
+pub const anon15611_gestaltOpenTptRemoteAccessClientOnly: u32 = 2;
+pub const anon15611_gestaltOpenTptRemoteAccessPServer: u32 = 3;
+pub const anon15611_gestaltOpenTptRemoteAccessMPServer: u32 = 4;
+pub const anon15611_gestaltOpenTptPPPPresent: u32 = 5;
+pub const anon15611_gestaltOpenTptARAPPresent: u32 = 6;
+
+pub const anon15721 = u32;
+pub const anon15721_gestaltOpenTptRemoteAccessVersion: u32 = 1869902454;
+
+pub const anon15801 = u32;
+pub const anon15801_gestaltOpenTptVersions: u32 = 1869903474;
+
+pub const anon15841 = u32;
+pub const anon15841_gestaltOpenTpt: u32 = 1869898094;
+pub const anon15841_gestaltOpenTptPresentMask: u32 = 1;
+pub const anon15841_gestaltOpenTptLoadedMask: u32 = 2;
+pub const anon15841_gestaltOpenTptAppleTalkPresentMask: u32 = 4;
+pub const anon15841_gestaltOpenTptAppleTalkLoadedMask: u32 = 8;
+pub const anon15841_gestaltOpenTptTCPPresentMask: u32 = 16;
+pub const anon15841_gestaltOpenTptTCPLoadedMask: u32 = 32;
+pub const anon15841_gestaltOpenTptIPXSPXPresentMask: u32 = 64;
+pub const anon15841_gestaltOpenTptIPXSPXLoadedMask: u32 = 128;
+pub const anon15841_gestaltOpenTptPresentBit: u32 = 0;
+pub const anon15841_gestaltOpenTptLoadedBit: u32 = 1;
+pub const anon15841_gestaltOpenTptAppleTalkPresentBit: u32 = 2;
+pub const anon15841_gestaltOpenTptAppleTalkLoadedBit: u32 = 3;
+pub const anon15841_gestaltOpenTptTCPPresentBit: u32 = 4;
+pub const anon15841_gestaltOpenTptTCPLoadedBit: u32 = 5;
+pub const anon15841_gestaltOpenTptIPXSPXPresentBit: u32 = 6;
+pub const anon15841_gestaltOpenTptIPXSPXLoadedBit: u32 = 7;
+
+pub const anon16051 = u32;
+pub const anon16051_gestaltPCCard: u32 = 1885561700;
+pub const anon16051_gestaltCardServicesPresent: u32 = 0;
+pub const anon16051_gestaltPCCardFamilyPresent: u32 = 1;
+pub const anon16051_gestaltPCCardHasPowerControl: u32 = 2;
+pub const anon16051_gestaltPCCardSupportsCardBus: u32 = 3;
+
+pub const anon16171 = u32;
+pub const anon16171_gestaltProcClkSpeedMHz: u32 = 1835232363;
+
+pub const anon16211 = u32;
+pub const anon16211_gestaltPCXAttr: u32 = 1885567079;
+pub const anon16211_gestaltPCXHas8and16BitFAT: u32 = 0;
+pub const anon16211_gestaltPCXHasProDOS: u32 = 1;
+pub const anon16211_gestaltPCXNewUI: u32 = 2;
+pub const anon16211_gestaltPCXUseICMapping: u32 = 3;
+
+pub const anon16291 = u32;
+pub const anon16291_gestaltLogicalPageSize: u32 = 1885827962;
+
+pub const anon16431 = u32;
+pub const anon16431_gestaltScreenCaptureMain: u32 = 1885954865;
+pub const anon16431_gestaltScreenCaptureDir: u32 = 1885954866;
+
+pub const anon16481 = u32;
+pub const anon16481_gestaltGXPrintingMgrVersion: u32 = 1886218098;
+
+pub const anon16571 = u32;
+pub const anon16571_gestaltPowerMgrAttr: u32 = 1886353266;
+pub const anon16571_gestaltPMgrExists: u32 = 0;
+pub const anon16571_gestaltPMgrCPUIdle: u32 = 1;
+pub const anon16571_gestaltPMgrSCC: u32 = 2;
+pub const anon16571_gestaltPMgrSound: u32 = 3;
+pub const anon16571_gestaltPMgrDispatchExists: u32 = 4;
+pub const anon16571_gestaltPMgrSupportsAVPowerStateAtSleepWake: u32 = 5;
+
+pub const anon16671 = u32;
+pub const anon16671_gestaltPowerMgrVers: u32 = 1886876278;
+
+pub const anon16771 = u32;
+pub const anon16771_gestaltPPCToolboxAttr: u32 = 1886413600;
+pub const anon16771_gestaltPPCToolboxPresent: u32 = 0;
+pub const anon16771_gestaltPPCSupportsRealTime: u32 = 4096;
+pub const anon16771_gestaltPPCSupportsIncoming: u32 = 1;
+pub const anon16771_gestaltPPCSupportsOutGoing: u32 = 2;
+pub const anon16771_gestaltPPCSupportsTCP_IP: u32 = 4;
+pub const anon16771_gestaltPPCSupportsIncomingAppleTalk: u32 = 16;
+pub const anon16771_gestaltPPCSupportsIncomingTCP_IP: u32 = 32;
+pub const anon16771_gestaltPPCSupportsOutgoingAppleTalk: u32 = 256;
+pub const anon16771_gestaltPPCSupportsOutgoingTCP_IP: u32 = 512;
+
+pub const anon16951 = u32;
+pub const anon16951_gestaltPowerPCProcessorFeatures: u32 = 1886413670;
+pub const anon16951_gestaltPowerPCHasGraphicsInstructions: u32 = 0;
+pub const anon16951_gestaltPowerPCHasSTFIWXInstruction: u32 = 1;
+pub const anon16951_gestaltPowerPCHasSquareRootInstructions: u32 = 2;
+pub const anon16951_gestaltPowerPCHasDCBAInstruction: u32 = 3;
+pub const anon16951_gestaltPowerPCHasVectorInstructions: u32 = 4;
+pub const anon16951_gestaltPowerPCHasDataStreams: u32 = 5;
+pub const anon16951_gestaltPowerPCHas64BitSupport: u32 = 6;
+pub const anon16951_gestaltPowerPCHasDCBTStreams: u32 = 7;
+pub const anon16951_gestaltPowerPCASArchitecture: u32 = 8;
+pub const anon16951_gestaltPowerPCIgnoresDCBST: u32 = 9;
+
+pub const anon17091 = u32;
+pub const anon17091_gestaltProcessorType: u32 = 1886547811;
+pub const anon17091_gestalt68000: u32 = 1;
+pub const anon17091_gestalt68010: u32 = 2;
+pub const anon17091_gestalt68020: u32 = 3;
+pub const anon17091_gestalt68030: u32 = 4;
+pub const anon17091_gestalt68040: u32 = 5;
+
+pub const anon17221 = u32;
+pub const anon17221_gestaltParityAttr: u32 = 1886549113;
+pub const anon17221_gestaltHasParityCapability: u32 = 0;
+pub const anon17221_gestaltParityEnabled: u32 = 1;
+
+pub const anon17281 = u32;
+pub const anon17281_gestaltQD3DVersion: u32 = 1899197984;
+
+pub const anon17451 = u32;
+pub const anon17451_gestaltQuickdrawVersion: u32 = 1902387232;
+pub const anon17451_gestaltOriginalQD: u32 = 0;
+pub const anon17451_gestalt8BitQD: u32 = 256;
+pub const anon17451_gestalt32BitQD: u32 = 512;
+pub const anon17451_gestalt32BitQD11: u32 = 513;
+pub const anon17451_gestalt32BitQD12: u32 = 544;
+pub const anon17451_gestalt32BitQD13: u32 = 560;
+pub const anon17451_gestaltAllegroQD: u32 = 592;
+pub const anon17451_gestaltMacOSXQD: u32 = 768;
+
+pub const anon17701 = u32;
+pub const anon17701_gestaltGXVersion: u32 = 1902405496;
+
+pub const anon17741 = u32;
+pub const anon17741_gestaltQuickdrawFeatures: u32 = 1902408311;
+pub const anon17741_gestaltHasColor: u32 = 0;
+pub const anon17741_gestaltHasDeepGWorlds: u32 = 1;
+pub const anon17741_gestaltHasDirectPixMaps: u32 = 2;
+pub const anon17741_gestaltHasGrayishTextOr: u32 = 3;
+pub const anon17741_gestaltSupportsMirroring: u32 = 4;
+pub const anon17741_gestaltQDHasLongRowBytes: u32 = 5;
+
+pub const anon17841 = u32;
+pub const anon17841_gestaltQDTextVersion: u32 = 1902408824;
+pub const anon17841_gestaltOriginalQDText: u32 = 0;
+pub const anon17841_gestaltAllegroQDText: u32 = 256;
+pub const anon17841_gestaltMacOSXQDText: u32 = 512;
+
+pub const anon17911 = u32;
+pub const anon17911_gestaltQDTextFeatures: u32 = 1902408806;
+pub const anon17911_gestaltWSIISupport: u32 = 0;
+pub const anon17911_gestaltSbitFontSupport: u32 = 1;
+pub const anon17911_gestaltAntiAliasedTextAvailable: u32 = 2;
+pub const anon17911_gestaltOFA2available: u32 = 3;
+pub const anon17911_gestaltCreatesAliasFontRsrc: u32 = 4;
+pub const anon17911_gestaltNativeType1FontSupport: u32 = 5;
+pub const anon17911_gestaltCanUseCGTextRendering: u32 = 6;
+
+pub const anon18031 = u32;
+pub const anon18031_gestaltQuickTimeConferencingInfo: u32 = 1903453033;
+
+pub const anon18071 = u32;
+pub const anon18071_gestaltQuickTimeVersion: u32 = 1903454573;
+pub const anon18071_gestaltQuickTime: u32 = 1903454573;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_UNKNOWN: u32 = 0;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_CUSTOM: u32 = 1;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_BER: u32 = 2;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_DER: u32 = 3;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_SEXPR: u32 = 4;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_PGP: u32 = 5;
+
+pub const anon18121 = u32;
+pub const anon18121_gestaltQuickTimeFeatures: u32 = 1903456883;
+pub const anon18121_gestaltPPCQuickTimeLibPresent: u32 = 0;
+
+pub const anon18171 = u32;
+pub const anon18171_gestaltQuickTimeStreamingFeatures: u32 = 1903457126;
+
+pub const anon18211 = u32;
+pub const anon18211_gestaltQuickTimeStreamingVersion: u32 = 1903457140;
+
+pub const anon18251 = u32;
+pub const anon18251_gestaltQuickTimeThreadSafeFeaturesAttr: u32 = 1903457384;
+pub const anon18251_gestaltQuickTimeThreadSafeICM: u32 = 0;
+pub const anon18251_gestaltQuickTimeThreadSafeMovieToolbox: u32 = 1;
+pub const anon18251_gestaltQuickTimeThreadSafeMovieImport: u32 = 2;
+pub const anon18251_gestaltQuickTimeThreadSafeMovieExport: u32 = 3;
+pub const anon18251_gestaltQuickTimeThreadSafeGraphicsImport: u32 = 4;
+pub const anon18251_gestaltQuickTimeThreadSafeGraphicsExport: u32 = 5;
+pub const anon18251_gestaltQuickTimeThreadSafeMoviePlayback: u32 = 6;
+
+pub const anon18361 = u32;
+pub const anon18361_gestaltQTVRMgrAttr: u32 = 1903457906;
+pub const anon18361_gestaltQTVRMgrPresent: u32 = 0;
+pub const anon18361_gestaltQTVRObjMoviesPresent: u32 = 1;
+pub const anon18361_gestaltQTVRCylinderPanosPresent: u32 = 2;
+pub const anon18361_gestaltQTVRCubicPanosPresent: u32 = 3;
+
+pub const anon18441 = u32;
+pub const anon18441_gestaltQTVRMgrVers: u32 = 1903457910;
+
+pub const anon18601 = u32;
+pub const anon18601_gestaltPhysicalRAMSize: u32 = 1918987552;
+
+pub const anon18641 = u32;
+pub const anon18641_gestaltPhysicalRAMSizeInMegabytes: u32 = 1918987629;
+
+pub const anon18681 = u32;
+pub const anon18681_gestaltRBVAddr: u32 = 1919055392;
+
+pub const anon18721 = u32;
+pub const anon18721_gestaltROMSize: u32 = 1919905056;
+
+pub const anon18761 = u32;
+pub const anon18761_gestaltROMVersion: u32 = 1919905142;
+
+pub const anon18801 = u32;
+pub const anon18801_gestaltResourceMgrAttr: u32 = 1920168547;
+pub const anon18801_gestaltPartialRsrcs: u32 = 0;
+pub const anon18801_gestaltHasResourceOverrides: u32 = 1;
+
+pub const anon18861 = u32;
+pub const anon18861_gestaltResourceMgrBugFixesAttrs: u32 = 1919771239;
+pub const anon18861_gestaltRMForceSysHeapRolledIn: u32 = 0;
+pub const anon18861_gestaltRMFakeAppleMenuItemsRolledIn: u32 = 1;
+pub const anon18861_gestaltSanityCheckResourceFiles: u32 = 2;
+pub const anon18861_gestaltSupportsFSpResourceFileAlreadyOpenBit: u32 = 3;
+pub const anon18861_gestaltRMSupportsFSCalls: u32 = 4;
+pub const anon18861_gestaltRMTypeIndexOrderingReverse: u32 = 8;
+
+pub const anon18971 = u32;
+pub const anon18971_gestaltRealtimeMgrAttr: u32 = 1920232818;
+pub const anon18971_gestaltRealtimeMgrPresent: u32 = 0;
+
+pub const anon19031 = u32;
+pub const anon19031_gestaltSafeOFAttr: u32 = 1935763045;
+pub const anon19031_gestaltVMZerosPagesBit: u32 = 0;
+pub const anon19031_gestaltInitHeapZerosOutHeapsBit: u32 = 1;
+pub const anon19031_gestaltNewHandleReturnsZeroedMemoryBit: u32 = 2;
+pub const anon19031_gestaltNewPtrReturnsZeroedMemoryBit: u32 = 3;
+pub const anon19031_gestaltFileAllocationZeroedBlocksBit: u32 = 4;
+
+pub const anon19131 = u32;
+pub const anon19131_gestaltSCCReadAddr: u32 = 1935893362;
+
+pub const anon19171 = u32;
+pub const anon19171_gestaltSCCWriteAddr: u32 = 1935893367;
+
+pub const anon19211 = u32;
+pub const anon19211_gestaltScrapMgrAttr: u32 = 1935897185;
+pub const anon19211_gestaltScrapMgrTranslationAware: u32 = 0;
+
+pub const anon19261 = u32;
+pub const anon19261_gestaltScriptMgrVersion: u32 = 1935897193;
+
+pub const anon19301 = u32;
+pub const anon19301_gestaltScriptCount: u32 = 1935897123;
+pub const anon19301_CSSM_DB_INDEX_ON_UNKNOWN: u32 = 0;
+pub const anon19301_CSSM_DB_INDEX_ON_ATTRIBUTE: u32 = 1;
+pub const anon19301_CSSM_DB_INDEX_ON_RECORD: u32 = 2;
+
+pub const anon19341 = u32;
+pub const anon19341_gestaltSCSI: u32 = 1935897449;
+pub const anon19341_gestaltAsyncSCSI: u32 = 0;
+pub const anon19341_gestaltAsyncSCSIINROM: u32 = 1;
+pub const anon19341_gestaltSCSISlotBoot: u32 = 2;
+pub const anon19341_gestaltSCSIPollSIH: u32 = 3;
+
+pub const anon19421 = u32;
+pub const anon19421_gestaltControlStripAttr: u32 = 1935959414;
+pub const anon19421_gestaltControlStripExists: u32 = 0;
+pub const anon19421_gestaltControlStripVersionFixed: u32 = 1;
+pub const anon19421_gestaltControlStripUserFont: u32 = 2;
+pub const anon19421_gestaltControlStripUserHotKey: u32 = 3;
+
+pub const anon19501 = u32;
+pub const anon19501_gestaltSDPStandardDirectoryVersion: u32 = 1935963762;
+
+pub const anon19541 = u32;
+pub const anon19541_gestaltSerialAttr: u32 = 1936028192;
+pub const anon19541_gestaltHasGPIaToDCDa: u32 = 0;
+pub const anon19541_gestaltHasGPIaToRTxCa: u32 = 1;
+pub const anon19541_gestaltHasGPIbToDCDb: u32 = 2;
+pub const anon19541_gestaltHidePortA: u32 = 3;
+pub const anon19541_gestaltHidePortB: u32 = 4;
+pub const anon19541_gestaltPortADisabled: u32 = 5;
+pub const anon19541_gestaltPortBDisabled: u32 = 6;
+pub const anon19541_CSSM_DB_ACCESS_READ: u32 = 1;
+pub const anon19541_CSSM_DB_ACCESS_WRITE: u32 = 2;
+pub const anon19541_CSSM_DB_ACCESS_PRIVILEGED: u32 = 4;
+
+pub const anon19651 = u32;
+pub const anon19651_gestaltShutdownAttributes: u32 = 1936225652;
+pub const anon19651_gestaltShutdownHassdOnBootVolUnmount: u32 = 0;
+
+pub const anon19701 = u32;
+pub const anon19701_gestaltNuBusConnectors: u32 = 1936487523;
+
+pub const anon19741 = u32;
+pub const anon19741_gestaltSlotAttr: u32 = 1936486260;
+pub const anon19741_gestaltSlotMgrExists: u32 = 0;
+pub const anon19741_gestaltNuBusPresent: u32 = 1;
+pub const anon19741_gestaltSESlotPresent: u32 = 2;
+pub const anon19741_gestaltSE30SlotPresent: u32 = 3;
+pub const anon19741_gestaltPortableSlotPresent: u32 = 4;
+
+pub const anon19831 = u32;
+pub const anon19831_gestaltFirstSlotNumber: u32 = 1936487473;
+pub const anon19831_CSSM_DB_EQUAL: u32 = 0;
+pub const anon19831_CSSM_DB_NOT_EQUAL: u32 = 1;
+pub const anon19831_CSSM_DB_LESS_THAN: u32 = 2;
+pub const anon19831_CSSM_DB_GREATER_THAN: u32 = 3;
+pub const anon19831_CSSM_DB_CONTAINS: u32 = 4;
+pub const anon19831_CSSM_DB_CONTAINS_INITIAL_SUBSTRING: u32 = 5;
+pub const anon19831_CSSM_DB_CONTAINS_FINAL_SUBSTRING: u32 = 6;
+
+pub const anon19871 = u32;
+pub const anon19871_gestaltSoundAttr: u32 = 1936614432;
+pub const anon19871_gestaltStereoCapability: u32 = 0;
+pub const anon19871_gestaltStereoMixing: u32 = 1;
+pub const anon19871_gestaltSoundIOMgrPresent: u32 = 3;
+pub const anon19871_gestaltBuiltInSoundInput: u32 = 4;
+pub const anon19871_gestaltHasSoundInputDevice: u32 = 5;
+pub const anon19871_gestaltPlayAndRecord: u32 = 6;
+pub const anon19871_gestalt16BitSoundIO: u32 = 7;
+pub const anon19871_gestaltStereoInput: u32 = 8;
+pub const anon19871_gestaltLineLevelInput: u32 = 9;
+pub const anon19871_gestaltSndPlayDoubleBuffer: u32 = 10;
+pub const anon19871_gestaltMultiChannels: u32 = 11;
+pub const anon19871_gestalt16BitAudioSupport: u32 = 12;
+
+pub const anon20041 = u32;
+pub const anon20041_gestaltSplitOSAttr: u32 = 1936748403;
+pub const anon20041_gestaltSplitOSBootDriveIsNetworkVolume: u32 = 0;
+pub const anon20041_gestaltSplitOSAware: u32 = 1;
+pub const anon20041_gestaltSplitOSEnablerVolumeIsDifferentFromBootVolume: u32 = 2;
+pub const anon20041_gestaltSplitOSMachineNameSetToNetworkNameTemp: u32 = 3;
+pub const anon20041_gestaltSplitOSMachineNameStartupDiskIsNonPersistent: u32 = 5;
+
+pub const anon20131 = u32;
+pub const anon20131_gestaltSMPSPSendLetterVersion: u32 = 1936749420;
+
+pub const anon20171 = u32;
+pub const anon20171_gestaltSpeechRecognitionAttr: u32 = 1936880737;
+pub const anon20171_gestaltDesktopSpeechRecognition: u32 = 1;
+pub const anon20171_gestaltTelephoneSpeechRecognition: u32 = 2;
+
+pub const anon20231 = u32;
+pub const anon20231_gestaltSpeechRecognitionVersion: u32 = 1936880738;
+
+pub const anon20271 = u32;
+pub const anon20271_gestaltSoftwareVendorCode: u32 = 1936875876;
+pub const anon20271_gestaltSoftwareVendorApple: u32 = 1097887852;
+pub const anon20271_gestaltSoftwareVendorLicensee: u32 = 1281584755;
+
+pub const anon20331 = u32;
+pub const anon20331_gestaltStandardFileAttr: u32 = 1937007718;
+pub const anon20331_gestaltStandardFile58: u32 = 0;
+pub const anon20331_gestaltStandardFileTranslationAware: u32 = 1;
+pub const anon20331_gestaltStandardFileHasColorIcons: u32 = 2;
+pub const anon20331_gestaltStandardFileUseGenericIcons: u32 = 3;
+pub const anon20331_gestaltStandardFileHasDynamicVolumeAllocation: u32 = 4;
+pub const anon20331_CSSM_DL_UNKNOWN: u32 = 0;
+pub const anon20331_CSSM_DL_CUSTOM: u32 = 1;
+pub const anon20331_CSSM_DL_LDAP: u32 = 2;
+pub const anon20331_CSSM_DL_ODBC: u32 = 3;
+pub const anon20331_CSSM_DL_PKCS11: u32 = 4;
+pub const anon20331_CSSM_DL_FFS: u32 = 5;
+pub const anon20331_CSSM_DL_MEMORY: u32 = 6;
+pub const anon20331_CSSM_DL_REMOTEDIR: u32 = 7;
+
+pub const anon20421 = u32;
+pub const anon20421_gestaltSysArchitecture: u32 = 1937339233;
+pub const anon20421_gestalt68k: u32 = 1;
+pub const anon20421_gestaltPowerPC: u32 = 2;
+pub const anon20421_gestaltIntel: u32 = 10;
+pub const anon20421_gestaltArm: u32 = 20;
+
+pub const anon20501 = u32;
+pub const anon20501_gestaltSystemUpdateVersion: u32 = 1937339253;
+
+pub const anon20811 = u32;
+pub const anon20811_gestaltSystemVersion: u32 = 1937339254;
+pub const anon20811_gestaltSystemVersionMajor: u32 = 1937339185;
+pub const anon20811_gestaltSystemVersionMinor: u32 = 1937339186;
+pub const anon20811_gestaltSystemVersionBugFix: u32 = 1937339187;
+
+pub const anon20881 = u32;
+pub const anon20881_gestaltToolboxTable: u32 = 1952609396;
+
+pub const anon20921 = u32;
+pub const anon20921_gestaltTextEditVersion: u32 = 1952784416;
+pub const anon20921_gestaltTE1: u32 = 1;
+pub const anon20921_gestaltTE2: u32 = 2;
+pub const anon20921_gestaltTE3: u32 = 3;
+pub const anon20921_gestaltTE4: u32 = 4;
+pub const anon20921_gestaltTE5: u32 = 5;
+
+pub const anon21051 = u32;
+pub const anon21051_gestaltTEAttr: u32 = 1952801140;
+pub const anon21051_gestaltTEHasGetHiliteRgn: u32 = 0;
+pub const anon21051_gestaltTESupportsInlineInput: u32 = 1;
+pub const anon21051_gestaltTESupportsTextObjects: u32 = 2;
+pub const anon21051_gestaltTEHasWhiteBackground: u32 = 3;
+
+pub const anon21131 = u32;
+pub const anon21131_gestaltTeleMgrAttr: u32 = 1952803941;
+pub const anon21131_gestaltTeleMgrPresent: u32 = 0;
+pub const anon21131_gestaltTeleMgrPowerPCSupport: u32 = 1;
+pub const anon21131_gestaltTeleMgrSoundStreams: u32 = 2;
+pub const anon21131_gestaltTeleMgrAutoAnswer: u32 = 3;
+pub const anon21131_gestaltTeleMgrIndHandset: u32 = 4;
+pub const anon21131_gestaltTeleMgrSilenceDetect: u32 = 5;
+pub const anon21131_gestaltTeleMgrNewTELNewSupport: u32 = 6;
+
+pub const anon21241 = u32;
+pub const anon21241_gestaltTermMgrAttr: u32 = 1952805485;
+pub const anon21241_gestaltTermMgrPresent: u32 = 0;
+pub const anon21241_gestaltTermMgrErrorString: u32 = 2;
+
+pub const anon21301 = u32;
+pub const anon21301_gestaltThreadMgrAttr: u32 = 1952998515;
+pub const anon21301_gestaltThreadMgrPresent: u32 = 0;
+pub const anon21301_gestaltSpecificMatchSupport: u32 = 1;
+pub const anon21301_gestaltThreadsLibraryPresent: u32 = 2;
+
+pub const anon21371 = u32;
+pub const anon21371_gestaltTimeMgrVersion: u32 = 1953326962;
+pub const anon21371_gestaltStandardTimeMgr: u32 = 1;
+pub const anon21371_gestaltRevisedTimeMgr: u32 = 2;
+pub const anon21371_gestaltExtendedTimeMgr: u32 = 3;
+pub const anon21371_gestaltNativeTimeMgr: u32 = 4;
+
+pub const anon21451 = u32;
+pub const anon21451_gestaltTSMTEVersion: u32 = 1953322070;
+pub const anon21451_gestaltTSMTE1: u32 = 256;
+pub const anon21451_gestaltTSMTE15: u32 = 336;
+pub const anon21451_gestaltTSMTE152: u32 = 338;
+
+pub const anon21521 = u32;
+pub const anon21521_gestaltTSMTEAttr: u32 = 1953322053;
+pub const anon21521_gestaltTSMTEPresent: u32 = 0;
+pub const anon21521_gestaltTSMTE: u32 = 0;
+
+pub const anon21581 = u32;
+pub const anon21581_gestaltAVLTreeAttr: u32 = 1953654117;
+pub const anon21581_gestaltAVLTreePresentBit: u32 = 0;
+pub const anon21581_gestaltAVLTreeSupportsHandleBasedTreeBit: u32 = 1;
+pub const anon21581_gestaltAVLTreeSupportsTreeLockingBit: u32 = 2;
+
+pub const anon21651 = u32;
+pub const anon21651_gestaltALMAttr: u32 = 1953655152;
+pub const anon21651_gestaltALMPresent: u32 = 0;
+pub const anon21651_gestaltALMHasSFGroup: u32 = 1;
+pub const anon21651_gestaltALMHasCFMSupport: u32 = 2;
+pub const anon21651_gestaltALMHasRescanNotifiers: u32 = 3;
+
+pub const anon21731 = u32;
+pub const anon21731_gestaltALMHasSFLocation: u32 = 1;
+
+pub const anon21771 = u32;
+pub const anon21771_gestaltTSMgrVersion: u32 = 1953721718;
+pub const anon21771_gestaltTSMgr15: u32 = 336;
+pub const anon21771_gestaltTSMgr20: u32 = 512;
+pub const anon21771_gestaltTSMgr22: u32 = 544;
+pub const anon21771_gestaltTSMgr23: u32 = 560;
+
+pub const anon21851 = u32;
+pub const anon21851_gestaltTSMgrAttr: u32 = 1953721697;
+pub const anon21851_gestaltTSMDisplayMgrAwareBit: u32 = 0;
+pub const anon21851_gestaltTSMdoesTSMTEBit: u32 = 1;
+
+pub const anon21911 = u32;
+pub const anon21911_gestaltSpeechAttr: u32 = 1953788771;
+pub const anon21911_gestaltSpeechMgrPresent: u32 = 0;
+pub const anon21911_gestaltSpeechHasPPCGlue: u32 = 1;
+
+pub const anon21971 = u32;
+pub const anon21971_gestaltTVAttr: u32 = 1953898528;
+pub const anon21971_gestaltHasTVTuner: u32 = 0;
+pub const anon21971_gestaltHasSoundFader: u32 = 1;
+pub const anon21971_gestaltHasHWClosedCaptioning: u32 = 2;
+pub const anon21971_gestaltHasIRRemote: u32 = 3;
+pub const anon21971_gestaltHasVidDecoderScaler: u32 = 4;
+pub const anon21971_gestaltHasStereoDecoder: u32 = 5;
+pub const anon21971_gestaltHasSerialFader: u32 = 6;
+pub const anon21971_gestaltHasFMTuner: u32 = 7;
+pub const anon21971_gestaltHasSystemIRFunction: u32 = 8;
+pub const anon21971_gestaltIRDisabled: u32 = 9;
+pub const anon21971_gestaltINeedIRPowerOffConfirm: u32 = 10;
+pub const anon21971_gestaltHasZoomedVideo: u32 = 11;
+
+pub const anon22141 = u32;
+pub const anon22141_gestaltATSUVersion: u32 = 1969845110;
+pub const anon22141_gestaltOriginalATSUVersion: u32 = 65536;
+pub const anon22141_gestaltATSUUpdate1: u32 = 131072;
+pub const anon22141_gestaltATSUUpdate2: u32 = 196608;
+pub const anon22141_gestaltATSUUpdate3: u32 = 262144;
+pub const anon22141_gestaltATSUUpdate4: u32 = 327680;
+pub const anon22141_gestaltATSUUpdate5: u32 = 393216;
+pub const anon22141_gestaltATSUUpdate6: u32 = 458752;
+pub const anon22141_gestaltATSUUpdate7: u32 = 524288;
+
+pub const anon22551 = u32;
+pub const anon22551_gestaltUSBAttr: u32 = 1970496032;
+pub const anon22551_gestaltUSBPresent: u32 = 0;
+pub const anon22551_gestaltUSBHasIsoch: u32 = 1;
+
+pub const anon22611 = u32;
+pub const anon22611_gestaltUSBVersion: u32 = 1970496118;
+
+pub const anon22651 = u32;
+pub const anon22651_gestaltVersion: u32 = 1986359923;
+pub const anon22651_gestaltValueImplementedVers: u32 = 5;
+
+pub const anon22701 = u32;
+pub const anon22701_gestaltVIA1Addr: u32 = 1986617649;
+
+pub const anon22741 = u32;
+pub const anon22741_gestaltVIA2Addr: u32 = 1986617650;
+
+pub const anon22781 = u32;
+pub const anon22781_gestaltVMAttr: u32 = 1986863136;
+pub const anon22781_gestaltVMPresent: u32 = 0;
+pub const anon22781_gestaltVMHasLockMemoryForOutput: u32 = 1;
+pub const anon22781_gestaltVMFilemappingOn: u32 = 3;
+pub const anon22781_gestaltVMHasPagingControl: u32 = 4;
+
+pub const anon22861 = u32;
+pub const anon22861_gestaltVMInfoType: u32 = 1986881902;
+pub const anon22861_gestaltVMInfoSizeStorageType: u32 = 0;
+pub const anon22861_gestaltVMInfoSizeType: u32 = 1;
+pub const anon22861_gestaltVMInfoSimpleType: u32 = 2;
+pub const anon22861_gestaltVMInfoNoneType: u32 = 3;
+
+pub const anon22951 = u32;
+pub const anon22951_gestaltVMBackingStoreFileRefNum: u32 = 1986880115;
+
+pub const anon23011 = u32;
+pub const anon23011_gestaltALMVers: u32 = 2002873451;
+
+pub const anon23051 = u32;
+pub const anon23051_gestaltWindowMgrAttr: u32 = 2003398244;
+pub const anon23051_gestaltWindowMgrPresent: u32 = 1;
+pub const anon23051_gestaltWindowMgrPresentBit: u32 = 0;
+pub const anon23051_gestaltExtendedWindowAttributes: u32 = 1;
+pub const anon23051_gestaltExtendedWindowAttributesBit: u32 = 1;
+pub const anon23051_gestaltHasFloatingWindows: u32 = 2;
+pub const anon23051_gestaltHasFloatingWindowsBit: u32 = 2;
+pub const anon23051_gestaltHasWindowBuffering: u32 = 3;
+pub const anon23051_gestaltHasWindowBufferingBit: u32 = 3;
+pub const anon23051_gestaltWindowLiveResizeBit: u32 = 4;
+pub const anon23051_gestaltWindowMinimizeToDockBit: u32 = 5;
+pub const anon23051_gestaltHasWindowShadowsBit: u32 = 6;
+pub const anon23051_gestaltSheetsAreWindowModalBit: u32 = 7;
+pub const anon23051_gestaltFrontWindowMayBeHiddenBit: u32 = 8;
+pub const anon23051_gestaltWindowMgrPresentMask: u32 = 1;
+pub const anon23051_gestaltExtendedWindowAttributesMask: u32 = 2;
+pub const anon23051_gestaltHasFloatingWindowsMask: u32 = 4;
+pub const anon23051_gestaltHasWindowBufferingMask: u32 = 8;
+pub const anon23051_gestaltWindowLiveResizeMask: u32 = 16;
+pub const anon23051_gestaltWindowMinimizeToDockMask: u32 = 32;
+pub const anon23051_gestaltHasWindowShadowsMask: u32 = 64;
+pub const anon23051_gestaltSheetsAreWindowModalMask: u32 = 128;
+pub const anon23051_gestaltFrontWindowMayBeHiddenMask: u32 = 256;
+
+pub const anon23341 = u32;
+pub const anon23341_gestaltHasSingleWindowModeBit: u32 = 8;
+pub const anon23341_gestaltHasSingleWindowModeMask: u32 = 256;
+
+pub const anon23441 = u32;
+pub const anon23441_gestaltX86Features: u32 = 2016949862;
+pub const anon23441_gestaltX86HasFPU: u32 = 0;
+pub const anon23441_gestaltX86HasVME: u32 = 1;
+pub const anon23441_gestaltX86HasDE: u32 = 2;
+pub const anon23441_gestaltX86HasPSE: u32 = 3;
+pub const anon23441_gestaltX86HasTSC: u32 = 4;
+pub const anon23441_gestaltX86HasMSR: u32 = 5;
+pub const anon23441_gestaltX86HasPAE: u32 = 6;
+pub const anon23441_gestaltX86HasMCE: u32 = 7;
+pub const anon23441_gestaltX86HasCX8: u32 = 8;
+pub const anon23441_gestaltX86HasAPIC: u32 = 9;
+pub const anon23441_gestaltX86HasSEP: u32 = 11;
+pub const anon23441_gestaltX86HasMTRR: u32 = 12;
+pub const anon23441_gestaltX86HasPGE: u32 = 13;
+pub const anon23441_gestaltX86HasMCA: u32 = 14;
+pub const anon23441_gestaltX86HasCMOV: u32 = 15;
+pub const anon23441_gestaltX86HasPAT: u32 = 16;
+pub const anon23441_gestaltX86HasPSE36: u32 = 17;
+pub const anon23441_gestaltX86HasPSN: u32 = 18;
+pub const anon23441_gestaltX86HasCLFSH: u32 = 19;
+pub const anon23441_gestaltX86Serviced20: u32 = 20;
+pub const anon23441_gestaltX86HasDS: u32 = 21;
+pub const anon23441_gestaltX86ResACPI: u32 = 22;
+pub const anon23441_gestaltX86HasMMX: u32 = 23;
+pub const anon23441_gestaltX86HasFXSR: u32 = 24;
+pub const anon23441_gestaltX86HasSSE: u32 = 25;
+pub const anon23441_gestaltX86HasSSE2: u32 = 26;
+pub const anon23441_gestaltX86HasSS: u32 = 27;
+pub const anon23441_gestaltX86HasHTT: u32 = 28;
+pub const anon23441_gestaltX86HasTM: u32 = 29;
+
+pub const anon23961 = u32;
+pub const anon23961_gestaltTranslationAttr: u32 = 2020368756;
+pub const anon23961_gestaltTranslationMgrExists: u32 = 0;
+pub const anon23961_gestaltTranslationMgrHintOrder: u32 = 1;
+pub const anon23961_gestaltTranslationPPCAvail: u32 = 2;
+pub const anon23961_gestaltTranslationGetPathAPIAvail: u32 = 3;
+
+pub const anon24041 = u32;
+pub const anon24041_gestaltExtToolboxTable: u32 = 2020897908;
+
+pub const anon24081 = i32;
+pub const anon24081_gestaltUSBPrinterSharingVersion: i32 = 2053204768;
+pub const anon24081_gestaltUSBPrinterSharingVersionMask: i32 = 65535;
+pub const anon24081_gestaltUSBPrinterSharingAttr: i32 = 2053204768;
+pub const anon24081_gestaltUSBPrinterSharingAttrMask: i32 = -65536;
+pub const anon24081_gestaltUSBPrinterSharingAttrRunning: i32 = -2147483648;
+pub const anon24081_gestaltUSBPrinterSharingAttrBooted: i32 = 1073741824;
+
+pub const anon24181 = u32;
+pub const anon24181_gestaltWorldScriptIIVersion: u32 = 1685026146;
+pub const anon24181_gestaltWorldScriptIIAttr: u32 = 2004050292;
+pub const anon24181_gestaltWSIICanPrintWithoutPrGeneralBit: u32 = 0;
+
+pub const anon601 = u32;
+pub const anon601_defaultPhysicalEntryCount: u32 = 8;
+pub const anon601_cmpThreadSafe: u32 = 268435456;
+pub const anon601_cmpIsMissing: u32 = 536870912;
+pub const anon601_cmpWantsRegisterMessage: u32 = -2147483648;
+pub const anon601_cInsertionLoc: u32 = 1768846188;
+pub const anon601_cInsertionPoint: u32 = 1667853939;
+pub const anon601_cIntlText: u32 = 1769240692;
+pub const anon601_cIntlWritingCode: u32 = 1768846444;
+pub const anon601_cItem: u32 = 1667855469;
+pub const anon601_cLine: u32 = 1668049262;
+pub const anon601_cLongDateTime: u32 = 1818522656;
+pub const anon601_cLongFixed: u32 = 1818654820;
+pub const anon601_cLongFixedPoint: u32 = 1818652788;
+pub const anon601_cLongFixedRectangle: u32 = 1818653283;
+pub const anon601_cLongInteger: u32 = 1819242087;
+pub const anon601_cLongPoint: u32 = 1819307636;
+pub const anon601_cLongRectangle: u32 = 1819435892;
+pub const anon601_cMachineLoc: u32 = 1833725795;
+pub const anon601_cMenu: u32 = 1668116085;
+pub const anon601_cMenuItem: u32 = 1668113774;
+pub const anon601_cObject: u32 = 1668244074;
+pub const anon601_cObjectSpecifier: u32 = 1868720672;
+pub const anon601_cOpenableObject: u32 = 1668247394;
+pub const anon601_cOval: u32 = 1668249196;
+
+pub const anon641 = u32;
+pub const anon641_PageInMemory: u32 = 0;
+pub const anon641_PageOnDisk: u32 = 1;
+pub const anon641_NotPaged: u32 = 2;
+pub const anon641_CooperativeThread: u32 = 1;
+pub const anon641_PreemptiveThread: u32 = 2;
+pub const anon641_aeBuildSyntaxNoErr: u32 = 0;
+pub const anon641_aeBuildSyntaxBadToken: u32 = 1;
+pub const anon641_aeBuildSyntaxBadEOF: u32 = 2;
+pub const anon641_aeBuildSyntaxNoEOF: u32 = 3;
+pub const anon641_aeBuildSyntaxBadNegative: u32 = 4;
+pub const anon641_aeBuildSyntaxMissingQuote: u32 = 5;
+pub const anon641_aeBuildSyntaxBadHex: u32 = 6;
+pub const anon641_aeBuildSyntaxOddHex: u32 = 7;
+pub const anon641_aeBuildSyntaxNoCloseHex: u32 = 8;
+pub const anon641_aeBuildSyntaxUncoercedHex: u32 = 9;
+pub const anon641_aeBuildSyntaxNoCloseString: u32 = 10;
+pub const anon641_aeBuildSyntaxBadDesc: u32 = 11;
+pub const anon641_aeBuildSyntaxBadData: u32 = 12;
+pub const anon641_aeBuildSyntaxNoCloseParen: u32 = 13;
+pub const anon641_aeBuildSyntaxNoCloseBracket: u32 = 14;
+pub const anon641_aeBuildSyntaxNoCloseBrace: u32 = 15;
+pub const anon641_aeBuildSyntaxNoKey: u32 = 16;
+pub const anon641_aeBuildSyntaxNoColon: u32 = 17;
+pub const anon641_aeBuildSyntaxCoercedList: u32 = 18;
+pub const anon641_aeBuildSyntaxUncoercedDoubleAt: u32 = 19;
+
+pub const anon821 = u32;
+pub const anon821_HandleIsResourceBit: u32 = 5;
+pub const anon821_HandlePurgeableBit: u32 = 6;
+pub const anon821_HandleLockedBit: u32 = 7;
+pub const anon821_CSSM_WORDID_KEYCHAIN_PROMPT: u32 = 65536;
+pub const anon821_CSSM_WORDID_KEYCHAIN_LOCK: u32 = 65537;
+pub const anon821_CSSM_WORDID_KEYCHAIN_CHANGE_LOCK: u32 = 65538;
+pub const anon821_CSSM_WORDID_PROCESS: u32 = 65539;
+pub const anon821_CSSM_WORDID__RESERVED_1: u32 = 65540;
+pub const anon821_CSSM_WORDID_SYMMETRIC_KEY: u32 = 65541;
+pub const anon821_CSSM_WORDID_SYSTEM: u32 = 65542;
+pub const anon821_CSSM_WORDID_KEY: u32 = 65543;
+pub const anon821_CSSM_WORDID_PIN: u32 = 65544;
+pub const anon821_CSSM_WORDID_PREAUTH: u32 = 65545;
+pub const anon821_CSSM_WORDID_PREAUTH_SOURCE: u32 = 65546;
+pub const anon821_CSSM_WORDID_ASYMMETRIC_KEY: u32 = 65547;
+pub const anon821_CSSM_WORDID_PARTITION: u32 = 65548;
+pub const anon821_CSSM_WORDID_KEYBAG_KEY: u32 = 65549;
+pub const anon821_CSSM_WORDID__FIRST_UNUSED: u32 = 65550;
+pub const anon821_CSSM_HINT_NONE: u32 = 0;
+pub const anon821_CSSM_HINT_ADDRESS_APP: u32 = 1;
+pub const anon821_CSSM_HINT_ADDRESS_SP: u32 = 2;
+
+pub const anon891 = u32;
+pub const anon891_HandleIsResourceMask: u32 = 32;
+pub const anon891_HandlePurgeableMask: u32 = 64;
+pub const anon891_HandleLockedMask: u32 = 128;
+pub const anon891_CSSM_MODULE_STRING_SIZE: u32 = 64;
 
 pub extern "CoreServices" fn MemError() callconv(.C) objc.OSErr;
 
@@ -6177,125 +7614,19 @@ pub extern "CoreServices" fn IsHandleValid(h: objc.Handle) callconv(.C) objc.Boo
 
 pub extern "CoreServices" fn IsPointerValid(p: objc.Ptr) callconv(.C) objc.Boolean;
 
-pub extern "CoreServices" fn S64Max() callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64Min() callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64Add(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64Subtract(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64Negate(value: objc.SInt64) callconv(.C) objc.SInt64;
-
 pub extern "CoreServices" fn S64Absolute(value: objc.SInt64) callconv(.C) objc.SInt64;
 
-pub extern "CoreServices" fn S64Multiply(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64Mod(dividend: objc.SInt64, divisor: objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64Divide(dividend: objc.SInt64, divisor: objc.SInt64, remainderP: ?*objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64Div(dividend: objc.SInt64, divisor: objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64Set(value: objc.SInt32) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64SetU(value: objc.UInt32) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S32Set(value: objc.SInt64) callconv(.C) objc.SInt32;
-
-pub extern "CoreServices" fn S64And(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.Boolean;
-
-pub extern "CoreServices" fn S64Or(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.Boolean;
-
-pub extern "CoreServices" fn S64Eor(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.Boolean;
-
-pub extern "CoreServices" fn S64Not(value: objc.SInt64) callconv(.C) objc.Boolean;
-
-pub extern "CoreServices" fn S64Compare(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt32;
-
-pub extern "CoreServices" fn S64BitwiseAnd(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64BitwiseOr(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64BitwiseEor(left: objc.SInt64, right: objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64BitwiseNot(value: objc.SInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64ShiftRight(value: objc.SInt64, shift: objc.UInt32) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn S64ShiftLeft(value: objc.SInt64, shift: objc.UInt32) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn SInt64ToLongDouble(value: objc.SInt64) callconv(.C) f64;
-
-pub extern "CoreServices" fn LongDoubleToSInt64(value: f64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn U64Max() callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64Add(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64Subtract(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64Multiply(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64Mod(dividend: objc.UInt64, divisor: objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64Divide(dividend: objc.UInt64, divisor: objc.UInt64, remainder: ?*objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64Div(dividend: objc.UInt64, divisor: objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64Set(value: objc.SInt32) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64SetU(value: objc.UInt32) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U32SetU(value: objc.UInt64) callconv(.C) objc.UInt32;
-
-pub extern "CoreServices" fn U64And(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.Boolean;
-
-pub extern "CoreServices" fn U64Or(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.Boolean;
-
-pub extern "CoreServices" fn U64Eor(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.Boolean;
-
-pub extern "CoreServices" fn U64Not(value: objc.UInt64) callconv(.C) objc.Boolean;
-
 pub extern "CoreServices" fn U64Compare(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.SInt32;
-
-pub extern "CoreServices" fn U64BitwiseAnd(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64BitwiseOr(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64BitwiseEor(left: objc.UInt64, right: objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64BitwiseNot(value: objc.UInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64ShiftRight(value: objc.UInt64, shift: objc.UInt32) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn U64ShiftLeft(value: objc.UInt64, shift: objc.UInt32) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn UInt64ToLongDouble(value: objc.UInt64) callconv(.C) f64;
-
-pub extern "CoreServices" fn LongDoubleToUInt64(value: f64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn UInt64ToSInt64(value: objc.UInt64) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn SInt64ToUInt64(value: objc.SInt64) callconv(.C) objc.UInt64;
-
-pub extern "CoreServices" fn SInt64ToWide(s: objc.SInt64) callconv(.C) objc.wide;
-
-pub extern "CoreServices" fn WideToSInt64(w: objc.wide) callconv(.C) objc.SInt64;
-
-pub extern "CoreServices" fn UInt64ToUnsignedWide(u: objc.UInt64) callconv(.C) objc.UnsignedWide;
-
-pub extern "CoreServices" fn UnsignedWideToUInt64(uw: objc.UnsignedWide) callconv(.C) objc.UInt64;
 
 pub extern "CoreServices" fn CSBackupSetItemExcluded(item: core_foundation.URLRef, exclude: objc.Boolean, excludeByPath: objc.Boolean) callconv(.C) objc.OSStatus;
 
 pub extern "CoreServices" fn CSBackupIsItemExcluded(item: core_foundation.URLRef, excludeByPath: ?*objc.Boolean) callconv(.C) objc.Boolean;
 
-pub const anon451 = enum(u32) {
-    NoLooping = 0,
-    ForwardLooping = 1,
-    ForwardBackwardLooping = 2,
-};
+pub const anon451 = u32;
+pub const anon451_CSDiskSpaceRecoveryOptionNoUI: u32 = 1;
+pub const anon451_NoLooping: u32 = 0;
+pub const anon451_ForwardLooping: u32 = 1;
+pub const anon451_ForwardBackwardLooping: u32 = 2;
 
 pub const CSDiskSpaceRecoveryOptions = i32;
 
@@ -6316,55 +7647,84 @@ pub extern "CoreServices" fn CSDiskSpaceGetRecoveryEstimate(volumeURL: core_foun
 
 pub const ToggleResults = objc.SInt16;
 
-pub const anon1041 = enum(u32) {
-    UnlockStateKCStatus = 1,
-    RdPermKCStatus = 2,
-    WrPermKCStatus = 4,
-};
+pub const anon1041 = u32;
+pub const anon1041_eraMask: u32 = 1;
+pub const anon1041_yearMask: u32 = 2;
+pub const anon1041_monthMask: u32 = 4;
+pub const anon1041_dayMask: u32 = 8;
+pub const anon1041_hourMask: u32 = 16;
+pub const anon1041_minuteMask: u32 = 32;
+pub const anon1041_secondMask: u32 = 64;
+pub const anon1041_dayOfWeekMask: u32 = 128;
+pub const anon1041_dayOfYearMask: u32 = 256;
+pub const anon1041_weekOfYearMask: u32 = 512;
+pub const anon1041_pmMask: u32 = 1024;
+pub const anon1041_dateStdMask: u32 = 127;
+pub const anon1041_UnlockStateKCStatus: u32 = 1;
+pub const anon1041_RdPermKCStatus: u32 = 2;
+pub const anon1041_WrPermKCStatus: u32 = 4;
 
 pub const LongDateField = objc.SInt8;
 
-pub const anon1201 = enum(u32) {
-    ClassKCItemAttr = 1668047219,
-    CreationDateKCItemAttr = 1667522932,
-    ModDateKCItemAttr = 1835295092,
-    DescriptionKCItemAttr = 1684370275,
-    CommentKCItemAttr = 1768123764,
-    CreatorKCItemAttr = 1668445298,
-    TypeKCItemAttr = 1954115685,
-    ScriptCodeKCItemAttr = 1935897200,
-    LabelKCItemAttr = 1818321516,
-    InvisibleKCItemAttr = 1768846953,
-    NegativeKCItemAttr = 1852139361,
-    CustomIconKCItemAttr = 1668641641,
-    AccountKCItemAttr = 1633903476,
-    ServiceKCItemAttr = 1937138533,
-    GenericKCItemAttr = 1734700641,
-    SecurityDomainKCItemAttr = 1935961454,
-    ServerKCItemAttr = 1936881266,
-    AuthTypeKCItemAttr = 1635023216,
-    PortKCItemAttr = 1886351988,
-    PathKCItemAttr = 1885434984,
-    VolumeKCItemAttr = 1986817381,
-    AddressKCItemAttr = 1633969266,
-    SignatureKCItemAttr = 1936943463,
-    ProtocolKCItemAttr = 1886675820,
-    SubjectKCItemAttr = 1937072746,
-    CommonNameKCItemAttr = 1668161568,
-    IssuerKCItemAttr = 1769173877,
-    SerialNumberKCItemAttr = 1936614002,
-    EMailKCItemAttr = 1835100524,
-    PublicKeyHashKCItemAttr = 1752198009,
-    IssuerURLKCItemAttr = 1769304684,
-    EncryptKCItemAttr = 1701733234,
-    DecryptKCItemAttr = 1684366194,
-    SignKCItemAttr = 1936287598,
-    VerifyKCItemAttr = 1986359913,
-    WrapKCItemAttr = 2003984752,
-    UnwrapKCItemAttr = 1970173810,
-    StartDateKCItemAttr = 1935958388,
-    EndDateKCItemAttr = 1701077364,
-};
+pub const anon1201 = u32;
+pub const anon1201_eraField: u32 = 0;
+pub const anon1201_yearField: u32 = 1;
+pub const anon1201_monthField: u32 = 2;
+pub const anon1201_dayField: u32 = 3;
+pub const anon1201_hourField: u32 = 4;
+pub const anon1201_minuteField: u32 = 5;
+pub const anon1201_secondField: u32 = 6;
+pub const anon1201_dayOfWeekField: u32 = 7;
+pub const anon1201_dayOfYearField: u32 = 8;
+pub const anon1201_weekOfYearField: u32 = 9;
+pub const anon1201_pmField: u32 = 10;
+pub const anon1201_res1Field: u32 = 11;
+pub const anon1201_res2Field: u32 = 12;
+pub const anon1201_res3Field: u32 = 13;
+pub const anon1201_HardLinkFileType: u32 = 1751936619;
+pub const anon1201_HFSPlusCreator: u32 = 1751544619;
+pub const anon1201_CSSM_PRIVILEGE_SCOPE_NONE: u32 = 0;
+pub const anon1201_CSSM_PRIVILEGE_SCOPE_PROCESS: u32 = 1;
+pub const anon1201_CSSM_PRIVILEGE_SCOPE_THREAD: u32 = 2;
+pub const anon1201_ClassKCItemAttr: u32 = 1668047219;
+pub const anon1201_CreationDateKCItemAttr: u32 = 1667522932;
+pub const anon1201_ModDateKCItemAttr: u32 = 1835295092;
+pub const anon1201_DescriptionKCItemAttr: u32 = 1684370275;
+pub const anon1201_CommentKCItemAttr: u32 = 1768123764;
+pub const anon1201_CreatorKCItemAttr: u32 = 1668445298;
+pub const anon1201_TypeKCItemAttr: u32 = 1954115685;
+pub const anon1201_ScriptCodeKCItemAttr: u32 = 1935897200;
+pub const anon1201_LabelKCItemAttr: u32 = 1818321516;
+pub const anon1201_InvisibleKCItemAttr: u32 = 1768846953;
+pub const anon1201_NegativeKCItemAttr: u32 = 1852139361;
+pub const anon1201_CustomIconKCItemAttr: u32 = 1668641641;
+pub const anon1201_AccountKCItemAttr: u32 = 1633903476;
+pub const anon1201_ServiceKCItemAttr: u32 = 1937138533;
+pub const anon1201_GenericKCItemAttr: u32 = 1734700641;
+pub const anon1201_SecurityDomainKCItemAttr: u32 = 1935961454;
+pub const anon1201_ServerKCItemAttr: u32 = 1936881266;
+pub const anon1201_AuthTypeKCItemAttr: u32 = 1635023216;
+pub const anon1201_PortKCItemAttr: u32 = 1886351988;
+pub const anon1201_PathKCItemAttr: u32 = 1885434984;
+pub const anon1201_VolumeKCItemAttr: u32 = 1986817381;
+pub const anon1201_AddressKCItemAttr: u32 = 1633969266;
+pub const anon1201_SignatureKCItemAttr: u32 = 1936943463;
+pub const anon1201_ProtocolKCItemAttr: u32 = 1886675820;
+pub const anon1201_SubjectKCItemAttr: u32 = 1937072746;
+pub const anon1201_CommonNameKCItemAttr: u32 = 1668161568;
+pub const anon1201_IssuerKCItemAttr: u32 = 1769173877;
+pub const anon1201_SerialNumberKCItemAttr: u32 = 1936614002;
+pub const anon1201_EMailKCItemAttr: u32 = 1835100524;
+pub const anon1201_PublicKeyHashKCItemAttr: u32 = 1752198009;
+pub const anon1201_IssuerURLKCItemAttr: u32 = 1769304684;
+pub const anon1201_EncryptKCItemAttr: u32 = 1701733234;
+pub const anon1201_DecryptKCItemAttr: u32 = 1684366194;
+pub const anon1201_SignKCItemAttr: u32 = 1936287598;
+pub const anon1201_VerifyKCItemAttr: u32 = 1986359913;
+pub const anon1201_WrapKCItemAttr: u32 = 2003984752;
+pub const anon1201_UnwrapKCItemAttr: u32 = 1970173810;
+pub const anon1201_StartDateKCItemAttr: u32 = 1935958388;
+pub const anon1201_EndDateKCItemAttr: u32 = 1701077364;
 
 pub const DateForm = objc.SInt8;
 
@@ -6376,7 +7736,7 @@ pub const DateCacheRecord = extern struct {
     hidden: [256]i16,
 };
 
-pub const DateCachePtr = ?*DateCacheRecord;
+pub const DateCachePtr = DateCacheRecord;
 
 pub const DateTimeRec = extern struct {
     year: i16,
@@ -6391,41 +7751,41 @@ pub const DateTimeRec = extern struct {
 pub const LongDateTime = objc.SInt64;
 
 pub const LongDateCvt = extern union {
-    c: objc.SInt64,
-    hl: anon1913,
-};
+    pub const anon1913 = extern struct {
+        lLow: objc.UInt32,
+        lHigh: objc.UInt32,
+    };
 
-pub const anon1913 = extern struct {
-    lLow: objc.UInt32,
-    lHigh: objc.UInt32,
+    c: objc.SInt64,
+    hl: LongDateCvt.anon1913,
 };
 
 pub const LongDateRec = extern union {
-    ld: anon2003,
+    pub const anon2003 = extern struct {
+        era: i16,
+        year: i16,
+        month: i16,
+        day: i16,
+        hour: i16,
+        minute: i16,
+        second: i16,
+        dayOfWeek: i16,
+        dayOfYear: i16,
+        weekOfYear: i16,
+        pm: i16,
+        res1: i16,
+        res2: i16,
+        res3: i16,
+    };
+
+    pub const anon2173 = extern struct {
+        eraAlt: i16,
+        oldDate: DateTimeRec,
+    };
+
+    ld: LongDateRec.anon2003,
     list: [14]i16,
-    od: anon2173,
-};
-
-pub const anon2003 = extern struct {
-    era: i16,
-    year: i16,
-    month: i16,
-    day: i16,
-    hour: i16,
-    minute: i16,
-    second: i16,
-    dayOfWeek: i16,
-    dayOfYear: i16,
-    weekOfYear: i16,
-    pm: i16,
-    res1: i16,
-    res2: i16,
-    res3: i16,
-};
-
-pub const anon2173 = extern struct {
-    eraAlt: i16,
-    oldDate: DateTimeRec,
+    od: LongDateRec.anon2173,
 };
 
 pub const DateDelta = objc.SInt8;
@@ -6449,6 +7809,41 @@ pub extern "CoreServices" fn UCConvertCFAbsoluteTimeToSeconds(iCFTime: core_foun
 
 pub extern "CoreServices" fn UCConvertCFAbsoluteTimeToLongDateTime(iCFTime: core_foundation.AbsoluteTime, oLongDate: ?*LongDateTime) callconv(.C) objc.OSStatus;
 
+pub const anon551 = u32;
+pub const anon551_dummyType: u32 = 0;
+pub const anon551_vType: u32 = 1;
+pub const anon551_ioQType: u32 = 2;
+pub const anon551_drvQType: u32 = 3;
+pub const anon551_evType: u32 = 4;
+pub const anon551_fsQType: u32 = 5;
+pub const anon551_sIQType: u32 = 6;
+pub const anon551_dtQType: u32 = 7;
+pub const anon551_nmType: u32 = 8;
+pub const anon551_resSysHeap: u32 = 64;
+pub const anon551_resPurgeable: u32 = 32;
+pub const anon551_resLocked: u32 = 16;
+pub const anon551_resProtected: u32 = 8;
+pub const anon551_resPreload: u32 = 4;
+pub const anon551_resChanged: u32 = 2;
+pub const anon551_CSSM_BASE_ERROR: u32 = -2147418112;
+pub const anon551_CSSM_ERRORCODE_MODULE_EXTENT: u32 = 2048;
+pub const anon551_CSSM_ERRORCODE_CUSTOM_OFFSET: u32 = 1024;
+pub const anon551_CSSM_ERRORCODE_COMMON_EXTENT: u32 = 256;
+pub const anon551_CSSM_CSSM_BASE_ERROR: u32 = -2147418112;
+pub const anon551_CSSM_CSSM_PRIVATE_ERROR: u32 = -2147417088;
+pub const anon551_CSSM_CSP_BASE_ERROR: u32 = -2147416064;
+pub const anon551_CSSM_CSP_PRIVATE_ERROR: u32 = -2147415040;
+pub const anon551_CSSM_DL_BASE_ERROR: u32 = -2147414016;
+pub const anon551_CSSM_DL_PRIVATE_ERROR: u32 = -2147412992;
+pub const anon551_CSSM_CL_BASE_ERROR: u32 = -2147411968;
+pub const anon551_CSSM_CL_PRIVATE_ERROR: u32 = -2147410944;
+pub const anon551_CSSM_TP_BASE_ERROR: u32 = -2147409920;
+pub const anon551_CSSM_TP_PRIVATE_ERROR: u32 = -2147408896;
+pub const anon551_CSSM_KR_BASE_ERROR: u32 = -2147407872;
+pub const anon551_CSSM_KR_PRIVATE_ERROR: u32 = -2147406848;
+pub const anon551_CSSM_AC_BASE_ERROR: u32 = -2147405824;
+pub const anon551_CSSM_AC_PRIVATE_ERROR: u32 = -2147404800;
+
 pub const QTypes = objc.SignedByte;
 
 pub const QElem = extern struct {
@@ -6457,7 +7852,7 @@ pub const QElem = extern struct {
     qData: [1]i16,
 };
 
-pub const QElemPtr = ?*QElem;
+pub const QElemPtr = QElem;
 
 pub const QHdr = extern struct {
     qFlags: i16,
@@ -6465,22 +7860,22 @@ pub const QHdr = extern struct {
     qTail: QElemPtr,
 };
 
-pub const QHdrPtr = ?*QHdr;
+pub const QHdrPtr = QHdr;
 
 pub const MachineLocation = extern struct {
+    pub const anon1145 = extern union {
+        pub const anon1199 = extern struct {
+            pad: [3]objc.SInt8,
+            Delta: objc.SInt8,
+        };
+
+        gmtDelta: i64,
+        dls: MachineLocation.anon1145.anon1199,
+    };
+
     latitude: objc.Fract,
     longitude: objc.Fract,
-    u: anon1145,
-};
-
-pub const anon1145 = extern union {
-    gmtDelta: i64,
-    dls: anon1199,
-};
-
-pub const anon1199 = extern struct {
-    pad: [3]objc.SInt8,
-    Delta: objc.SInt8,
+    u: MachineLocation.anon1145,
 };
 
 pub extern "CoreServices" fn IsMetric() callconv(.C) objc.Boolean;
@@ -6499,18 +7894,16 @@ pub extern "CoreServices" fn CSCopyUserName(useShortName: objc.Boolean) callconv
 
 pub extern "CoreServices" fn CSCopyMachineName() callconv(.C) core_foundation.StringRef;
 
-pub const anon4481 = enum(u32) {
-    useFree = 0,
-    useATalk = 1,
-    useAsync = 2,
-    useExtClk = 3,
-    useMIDI = 4,
-};
+pub const anon4481 = u32;
+pub const anon4481_useFree: u32 = 0;
+pub const anon4481_useATalk: u32 = 1;
+pub const anon4481_useAsync: u32 = 2;
+pub const anon4481_useExtClk: u32 = 3;
+pub const anon4481_useMIDI: u32 = 4;
 
-pub const anon4561 = enum(u32) {
-    false32b = 0,
-    true32b = 1,
-};
+pub const anon4561 = u32;
+pub const anon4561_false32b: u32 = 0;
+pub const anon4561_true32b: u32 = 1;
 
 pub const SysPPtr = ?*anyopaque;
 
@@ -6533,179 +7926,659 @@ pub const DeferredTask = extern struct {
     dtReserved: i64,
 };
 
-pub const DeferredTaskPtr = ?*DeferredTask;
+pub const DeferredTaskPtr = DeferredTask;
 
-pub const anon671 = enum(DescType) {
-    typeSInt16 = 1936224114,
-    typeUInt16 = 1970497650,
-    typeSInt32 = 1819242087,
-    typeUInt32 = 1835100014,
-    typeSInt64 = 1668246896,
-    typeUInt64 = 1969450861,
-    typeIEEE32BitFloatingPoint = 1936289383,
-    typeIEEE64BitFloatingPoint = 1685026146,
-    type128BitFloatingPoint = 1818518124,
-    typeDecimalStruct = 1684366189,
-};
+pub const anon991 = u32;
+pub const anon991_fsCurPerm: u32 = 0;
+pub const anon991_fsRdPerm: u32 = 1;
+pub const anon991_fsWrPerm: u32 = 2;
+pub const anon991_fsRdWrPerm: u32 = 3;
+pub const anon991_fsRdWrShPerm: u32 = 4;
+pub const anon991_SecCSUseAllArchitectures: u32 = 1;
+pub const anon991_CSIdentityQueryStringEquals: u32 = 1;
+pub const anon991_CSIdentityQueryStringBeginsWith: u32 = 2;
 
-pub const anon1161 = enum(u32) {
-    UnicodeDefaultDirectionMask = 0,
-    UnicodeLeftToRightMask = 4,
-    UnicodeRightToLeftMask = 8,
-};
+pub const anon1181 = u32;
+pub const anon1181_fsRdAccessPerm: u32 = 1;
+pub const anon1181_fsWrAccessPerm: u32 = 2;
+pub const anon1181_fsRdDenyPerm: u32 = 16;
+pub const anon1181_fsWrDenyPerm: u32 = 32;
 
-pub const anon6101 = enum(objc.OSType) {
-    AEQuitPreserveState = 1937006964,
-    AEQuitReason = 2003335487,
-};
+pub const anon1251 = u32;
+pub const anon1251_fsRtParID: u32 = 1;
+pub const anon1251_fsRtDirID: u32 = 2;
+pub const anon1251_DurationImmediate: u32 = 0;
+pub const anon1251_DurationForever: u32 = 2147483647;
+pub const anon1251_DurationMillisecond: u32 = 1;
+pub const anon1251_DurationMicrosecond: u32 = -1;
 
-pub const anon10121 = enum(u32) {
-    MPMaxAllocSize = 1073741824,
-};
+pub const anon1301 = u32;
+pub const anon1301_fsAtMark: u32 = 0;
+pub const anon1301_fsFromStart: u32 = 1;
+pub const anon1301_fsFromLEOF: u32 = 2;
+pub const anon1301_fsFromMark: u32 = 3;
 
-pub const anon991 = enum(u32) {
-    CSIdentityQueryStringEquals = 1,
-    CSIdentityQueryStringBeginsWith = 2,
-};
+pub const anon1371 = u32;
+pub const anon1371_FSAllowConcurrentAsyncIOBit: u32 = 3;
+pub const anon1371_FSAllowConcurrentAsyncIOMask: u32 = 8;
+pub const anon1371_FSPleaseCacheBit: u32 = 4;
+pub const anon1371_FSPleaseCacheMask: u32 = 16;
+pub const anon1371_FSNoCacheBit: u32 = 5;
+pub const anon1371_FSNoCacheMask: u32 = 32;
+pub const anon1371_FSRdVerifyBit: u32 = 6;
+pub const anon1371_FSRdVerifyMask: u32 = 64;
+pub const anon1371_FSForceReadBit: u32 = 6;
+pub const anon1371_FSForceReadMask: u32 = 64;
+pub const anon1371_FSNewLineBit: u32 = 7;
+pub const anon1371_FSNewLineMask: u32 = 128;
+pub const anon1371_FSNewLineCharMask: u32 = 65280;
+pub const anon1371_CSSM_ERRCODE_INVALID_CONTEXT_HANDLE: u32 = 64;
+pub const anon1371_CSSM_ERRCODE_INCOMPATIBLE_VERSION: u32 = 65;
+pub const anon1371_CSSM_ERRCODE_INVALID_CERTGROUP_POINTER: u32 = 66;
+pub const anon1371_CSSM_ERRCODE_INVALID_CERT_POINTER: u32 = 67;
+pub const anon1371_CSSM_ERRCODE_INVALID_CRL_POINTER: u32 = 68;
+pub const anon1371_CSSM_ERRCODE_INVALID_FIELD_POINTER: u32 = 69;
+pub const anon1371_CSSM_ERRCODE_INVALID_DATA: u32 = 70;
+pub const anon1371_CSSM_ERRCODE_CRL_ALREADY_SIGNED: u32 = 71;
+pub const anon1371_CSSM_ERRCODE_INVALID_NUMBER_OF_FIELDS: u32 = 72;
+pub const anon1371_CSSM_ERRCODE_VERIFICATION_FAILURE: u32 = 73;
+pub const anon1371_CSSM_ERRCODE_INVALID_DB_HANDLE: u32 = 74;
+pub const anon1371_CSSM_ERRCODE_PRIVILEGE_NOT_GRANTED: u32 = 75;
+pub const anon1371_CSSM_ERRCODE_INVALID_DB_LIST: u32 = 76;
+pub const anon1371_CSSM_ERRCODE_INVALID_DB_LIST_POINTER: u32 = 77;
+pub const anon1371_CSSM_ERRCODE_UNKNOWN_FORMAT: u32 = 78;
+pub const anon1371_CSSM_ERRCODE_UNKNOWN_TAG: u32 = 79;
+pub const anon1371_CSSM_ERRCODE_INVALID_CSP_HANDLE: u32 = 80;
+pub const anon1371_CSSM_ERRCODE_INVALID_DL_HANDLE: u32 = 81;
+pub const anon1371_CSSM_ERRCODE_INVALID_CL_HANDLE: u32 = 82;
+pub const anon1371_CSSM_ERRCODE_INVALID_TP_HANDLE: u32 = 83;
+pub const anon1371_CSSM_ERRCODE_INVALID_KR_HANDLE: u32 = 84;
+pub const anon1371_CSSM_ERRCODE_INVALID_AC_HANDLE: u32 = 85;
+pub const anon1371_CSSM_ERRCODE_INVALID_PASSTHROUGH_ID: u32 = 86;
+pub const anon1371_CSSM_ERRCODE_INVALID_NETWORK_ADDR: u32 = 87;
+pub const anon1371_CSSM_ERRCODE_INVALID_CRYPTO_DATA: u32 = 88;
 
-pub const anon1181 = enum(u32) {
-    fsRdAccessPerm = 1,
-    fsWrAccessPerm = 2,
-    fsRdDenyPerm = 16,
-    fsWrDenyPerm = 32,
-};
+pub const anon1551 = u32;
+pub const anon1551_fsSBPartialName: u32 = 1;
+pub const anon1551_fsSBFullName: u32 = 2;
+pub const anon1551_fsSBFlAttrib: u32 = 4;
+pub const anon1551_fsSBFlFndrInfo: u32 = 8;
+pub const anon1551_fsSBFlLgLen: u32 = 32;
+pub const anon1551_fsSBFlPyLen: u32 = 64;
+pub const anon1551_fsSBFlRLgLen: u32 = 128;
+pub const anon1551_fsSBFlRPyLen: u32 = 256;
+pub const anon1551_fsSBFlCrDat: u32 = 512;
+pub const anon1551_fsSBFlMdDat: u32 = 1024;
+pub const anon1551_fsSBFlBkDat: u32 = 2048;
+pub const anon1551_fsSBFlXFndrInfo: u32 = 4096;
+pub const anon1551_fsSBFlParID: u32 = 8192;
+pub const anon1551_fsSBNegate: u32 = 16384;
+pub const anon1551_fsSBDrUsrWds: u32 = 8;
+pub const anon1551_fsSBDrNmFls: u32 = 16;
+pub const anon1551_fsSBDrCrDat: u32 = 512;
+pub const anon1551_fsSBDrMdDat: u32 = 1024;
+pub const anon1551_fsSBDrBkDat: u32 = 2048;
+pub const anon1551_fsSBDrFndrInfo: u32 = 4096;
+pub const anon1551_fsSBDrParID: u32 = 8192;
+pub const anon1551_fsSBNodeID: u32 = 32768;
+pub const anon1551_fsSBAttributeModDate: u32 = 65536;
+pub const anon1551_fsSBAccessDate: u32 = 131072;
+pub const anon1551_fsSBPermissions: u32 = 262144;
+pub const anon1551_fsSBSkipPackageContents: u32 = 524288;
+pub const anon1551_fsSBSkipHiddenItems: u32 = 1048576;
+pub const anon1551_fsSBUserID: u32 = 2097152;
+pub const anon1551_fsSBGroupID: u32 = 4194304;
 
-pub const anon1251 = enum(i32) {
-    DurationImmediate = 0,
-    DurationForever = 2147483647,
-    DurationMillisecond = 1,
-    DurationMicrosecond = -1,
-};
+pub const anon1881 = u32;
+pub const anon1881_fsSBPartialNameBit: u32 = 0;
+pub const anon1881_fsSBFullNameBit: u32 = 1;
+pub const anon1881_fsSBFlAttribBit: u32 = 2;
+pub const anon1881_fsSBFlFndrInfoBit: u32 = 3;
+pub const anon1881_fsSBFlLgLenBit: u32 = 5;
+pub const anon1881_fsSBFlPyLenBit: u32 = 6;
+pub const anon1881_fsSBFlRLgLenBit: u32 = 7;
+pub const anon1881_fsSBFlRPyLenBit: u32 = 8;
+pub const anon1881_fsSBFlCrDatBit: u32 = 9;
+pub const anon1881_fsSBFlMdDatBit: u32 = 10;
+pub const anon1881_fsSBFlBkDatBit: u32 = 11;
+pub const anon1881_fsSBFlXFndrInfoBit: u32 = 12;
+pub const anon1881_fsSBFlParIDBit: u32 = 13;
+pub const anon1881_fsSBNegateBit: u32 = 14;
+pub const anon1881_fsSBDrUsrWdsBit: u32 = 3;
+pub const anon1881_fsSBDrNmFlsBit: u32 = 4;
+pub const anon1881_fsSBDrCrDatBit: u32 = 9;
+pub const anon1881_fsSBDrMdDatBit: u32 = 10;
+pub const anon1881_fsSBDrBkDatBit: u32 = 11;
+pub const anon1881_fsSBDrFndrInfoBit: u32 = 12;
+pub const anon1881_fsSBDrParIDBit: u32 = 13;
+pub const anon1881_fsSBNodeIDBit: u32 = 15;
+pub const anon1881_fsSBAttributeModDateBit: u32 = 16;
+pub const anon1881_fsSBAccessDateBit: u32 = 17;
+pub const anon1881_fsSBPermissionsBit: u32 = 18;
+pub const anon1881_fsSBSkipPackageContentsBit: u32 = 19;
+pub const anon1881_fsSBSkipHiddenItemsBit: u32 = 20;
+pub const anon1881_fsSBUserIDBit: u32 = 21;
+pub const anon1881_fsSBGroupIDBit: u32 = 22;
 
-pub const anon1301 = enum(u32) {
-    fsAtMark = 0,
-    fsFromStart = 1,
-    fsFromLEOF = 2,
-    fsFromMark = 3,
-};
+pub const anon2211 = u32;
+pub const anon2211_bLimitFCBs: u32 = 31;
+pub const anon2211_bLocalWList: u32 = 30;
+pub const anon2211_bNoMiniFndr: u32 = 29;
+pub const anon2211_bNoVNEdit: u32 = 28;
+pub const anon2211_bNoLclSync: u32 = 27;
+pub const anon2211_bTrshOffLine: u32 = 26;
+pub const anon2211_bNoSwitchTo: u32 = 25;
+pub const anon2211_bNoDeskItems: u32 = 20;
+pub const anon2211_bNoBootBlks: u32 = 19;
+pub const anon2211_bAccessCntl: u32 = 18;
+pub const anon2211_bNoSysDir: u32 = 17;
+pub const anon2211_bHasExtFSVol: u32 = 16;
+pub const anon2211_bHasOpenDeny: u32 = 15;
+pub const anon2211_bHasCopyFile: u32 = 14;
+pub const anon2211_bHasMoveRename: u32 = 13;
+pub const anon2211_bHasDesktopMgr: u32 = 12;
+pub const anon2211_bHasShortName: u32 = 11;
+pub const anon2211_bHasFolderLock: u32 = 10;
+pub const anon2211_bHasPersonalAccessPrivileges: u32 = 9;
+pub const anon2211_bHasUserGroupList: u32 = 8;
+pub const anon2211_bHasCatSearch: u32 = 7;
+pub const anon2211_bHasFileIDs: u32 = 6;
+pub const anon2211_bHasBTreeMgr: u32 = 5;
+pub const anon2211_bHasBlankAccessPrivileges: u32 = 4;
+pub const anon2211_bSupportsAsyncRequests: u32 = 3;
+pub const anon2211_bSupportsTrashVolumeCache: u32 = 2;
+pub const anon2211_CSSM_ALGID_APPLE_YARROW: u32 = -2147483648;
+pub const anon2211_CSSM_ALGID_AES: u32 = -2147483647;
+pub const anon2211_CSSM_ALGID_FEE: u32 = -2147483646;
+pub const anon2211_CSSM_ALGID_FEE_MD5: u32 = -2147483645;
+pub const anon2211_CSSM_ALGID_FEE_SHA1: u32 = -2147483644;
+pub const anon2211_CSSM_ALGID_FEED: u32 = -2147483643;
+pub const anon2211_CSSM_ALGID_FEEDEXP: u32 = -2147483642;
+pub const anon2211_CSSM_ALGID_ASC: u32 = -2147483641;
+pub const anon2211_CSSM_ALGID_SHA1HMAC_LEGACY: u32 = -2147483640;
+pub const anon2211_CSSM_ALGID_KEYCHAIN_KEY: u32 = -2147483639;
+pub const anon2211_CSSM_ALGID_PKCS12_PBE_ENCR: u32 = -2147483638;
+pub const anon2211_CSSM_ALGID_PKCS12_PBE_MAC: u32 = -2147483637;
+pub const anon2211_CSSM_ALGID_SECURE_PASSPHRASE: u32 = -2147483636;
+pub const anon2211_CSSM_ALGID_PBE_OPENSSL_MD5: u32 = -2147483635;
+pub const anon2211_CSSM_ALGID_SHA256: u32 = -2147483634;
+pub const anon2211_CSSM_ALGID_SHA384: u32 = -2147483633;
+pub const anon2211_CSSM_ALGID_SHA512: u32 = -2147483632;
+pub const anon2211_CSSM_ALGID_ENTROPY_DEFAULT: u32 = -2147483631;
+pub const anon2211_CSSM_ALGID_SHA224: u32 = -2147483630;
+pub const anon2211_CSSM_ALGID_SHA224WithRSA: u32 = -2147483629;
+pub const anon2211_CSSM_ALGID_SHA256WithRSA: u32 = -2147483628;
+pub const anon2211_CSSM_ALGID_SHA384WithRSA: u32 = -2147483627;
+pub const anon2211_CSSM_ALGID_SHA512WithRSA: u32 = -2147483626;
+pub const anon2211_CSSM_ALGID_OPENSSH1: u32 = -2147483625;
+pub const anon2211_CSSM_ALGID_SHA224WithECDSA: u32 = -2147483624;
+pub const anon2211_CSSM_ALGID_SHA256WithECDSA: u32 = -2147483623;
+pub const anon2211_CSSM_ALGID_SHA384WithECDSA: u32 = -2147483622;
+pub const anon2211_CSSM_ALGID_SHA512WithECDSA: u32 = -2147483621;
+pub const anon2211_CSSM_ALGID_ECDSA_SPECIFIED: u32 = -2147483620;
+pub const anon2211_CSSM_ALGID_ECDH_X963_KDF: u32 = -2147483619;
+pub const anon2211_CSSM_ALGID__FIRST_UNUSED: u32 = -2147483618;
 
-pub const anon1551 = enum(u32) {
-    fsSBPartialName = 1,
-    fsSBFullName = 2,
-    fsSBFlAttrib = 4,
-    fsSBFlFndrInfo = 8,
-    fsSBFlLgLen = 32,
-    fsSBFlPyLen = 64,
-    fsSBFlRLgLen = 128,
-    fsSBFlRPyLen = 256,
-    fsSBFlCrDat = 512,
-    fsSBFlMdDat = 1024,
-    fsSBFlBkDat = 2048,
-    fsSBFlXFndrInfo = 4096,
-    fsSBFlParID = 8192,
-    fsSBNegate = 16384,
-    fsSBDrUsrWds = 8,
-    fsSBDrNmFls = 16,
-    fsSBDrCrDat = 512,
-    fsSBDrMdDat = 1024,
-    fsSBDrBkDat = 2048,
-    fsSBDrFndrInfo = 4096,
-    fsSBDrParID = 8192,
-    fsSBNodeID = 32768,
-    fsSBAttributeModDate = 65536,
-    fsSBAccessDate = 131072,
-    fsSBPermissions = 262144,
-    fsSBSkipPackageContents = 524288,
-    fsSBSkipHiddenItems = 1048576,
-    fsSBUserID = 2097152,
-    fsSBGroupID = 4194304,
-};
+pub const anon2561 = u32;
+pub const anon2561_bIsEjectable: u32 = 0;
+pub const anon2561_bSupportsHFSPlusAPIs: u32 = 1;
+pub const anon2561_bSupportsFSCatalogSearch: u32 = 2;
+pub const anon2561_bSupportsFSExchangeObjects: u32 = 3;
+pub const anon2561_bSupports2TBFiles: u32 = 4;
+pub const anon2561_bSupportsLongNames: u32 = 5;
+pub const anon2561_bSupportsMultiScriptNames: u32 = 6;
+pub const anon2561_bSupportsNamedForks: u32 = 7;
+pub const anon2561_bSupportsSubtreeIterators: u32 = 8;
+pub const anon2561_bL2PCanMapFileBlocks: u32 = 9;
+pub const anon2561_bParentModDateChanges: u32 = 10;
+pub const anon2561_bAncestorModDateChanges: u32 = 11;
+pub const anon2561_bSupportsSymbolicLinks: u32 = 13;
+pub const anon2561_bIsAutoMounted: u32 = 14;
+pub const anon2561_bAllowCDiDataHandler: u32 = 17;
+pub const anon2561_bSupportsExclusiveLocks: u32 = 18;
+pub const anon2561_bSupportsJournaling: u32 = 19;
+pub const anon2561_bNoVolumeSizes: u32 = 20;
+pub const anon2561_bIsOnInternalBus: u32 = 21;
+pub const anon2561_bIsCaseSensitive: u32 = 22;
+pub const anon2561_bIsCasePreserving: u32 = 23;
+pub const anon2561_bDoNotDisplay: u32 = 24;
+pub const anon2561_bIsRemovable: u32 = 25;
+pub const anon2561_bNoRootTimes: u32 = 26;
+pub const anon2561_bIsOnExternalBus: u32 = 27;
+pub const anon2561_bSupportsExtendedFileSecurity: u32 = 28;
 
-pub const anon1881 = enum(u32) {
-    fsSBPartialNameBit = 0,
-    fsSBFullNameBit = 1,
-    fsSBFlAttribBit = 2,
-    fsSBFlFndrInfoBit = 3,
-    fsSBFlLgLenBit = 5,
-    fsSBFlPyLenBit = 6,
-    fsSBFlRLgLenBit = 7,
-    fsSBFlRPyLenBit = 8,
-    fsSBFlCrDatBit = 9,
-    fsSBFlMdDatBit = 10,
-    fsSBFlBkDatBit = 11,
-    fsSBFlXFndrInfoBit = 12,
-    fsSBFlParIDBit = 13,
-    fsSBNegateBit = 14,
-    fsSBDrUsrWdsBit = 3,
-    fsSBDrNmFlsBit = 4,
-    fsSBDrCrDatBit = 9,
-    fsSBDrMdDatBit = 10,
-    fsSBDrBkDatBit = 11,
-    fsSBDrFndrInfoBit = 12,
-    fsSBDrParIDBit = 13,
-    fsSBNodeIDBit = 15,
-    fsSBAttributeModDateBit = 16,
-    fsSBAccessDateBit = 17,
-    fsSBPermissionsBit = 18,
-    fsSBSkipPackageContentsBit = 19,
-    fsSBSkipHiddenItemsBit = 20,
-    fsSBUserIDBit = 21,
-    fsSBGroupIDBit = 22,
-};
+pub const anon2911 = u32;
+pub const anon2911_WidePosOffsetBit: u32 = 8;
+pub const anon2911_UseWidePositioning: u32 = 256;
+pub const anon2911_MaximumBlocksIn4GB: u32 = 8388607;
+pub const anon2911_HFSRootParentID: u32 = 1;
+pub const anon2911_HFSRootFolderID: u32 = 2;
+pub const anon2911_HFSExtentsFileID: u32 = 3;
+pub const anon2911_HFSCatalogFileID: u32 = 4;
+pub const anon2911_HFSBadBlockFileID: u32 = 5;
+pub const anon2911_HFSAllocationFileID: u32 = 6;
+pub const anon2911_HFSStartupFileID: u32 = 7;
+pub const anon2911_HFSAttributesFileID: u32 = 8;
+pub const anon2911_HFSAttributeDataFileID: u32 = 13;
+pub const anon2911_HFSRepairCatalogFileID: u32 = 14;
+pub const anon2911_HFSBogusExtentFileID: u32 = 15;
+pub const anon2911_HFSFirstUserCatalogNodeID: u32 = 16;
 
-pub const anon2561 = enum(u32) {
-    bIsEjectable = 0,
-    bSupportsHFSPlusAPIs = 1,
-    bSupportsFSCatalogSearch = 2,
-    bSupportsFSExchangeObjects = 3,
-    bSupports2TBFiles = 4,
-    bSupportsLongNames = 5,
-    bSupportsMultiScriptNames = 6,
-    bSupportsNamedForks = 7,
-    bSupportsSubtreeIterators = 8,
-    bL2PCanMapFileBlocks = 9,
-    bParentModDateChanges = 10,
-    bAncestorModDateChanges = 11,
-    bSupportsSymbolicLinks = 13,
-    bIsAutoMounted = 14,
-    bAllowCDiDataHandler = 17,
-    bSupportsExclusiveLocks = 18,
-    bSupportsJournaling = 19,
-    bNoVolumeSizes = 20,
-    bIsOnInternalBus = 21,
-    bIsCaseSensitive = 22,
-    bIsCasePreserving = 23,
-    bDoNotDisplay = 24,
-    bIsRemovable = 25,
-    bNoRootTimes = 26,
-    bIsOnExternalBus = 27,
-    bSupportsExtendedFileSecurity = 28,
-};
+pub const anon2981 = u32;
+pub const anon2981_fsUnixPriv: u32 = 1;
 
-pub const anon2981 = enum(u32) {
-    fsUnixPriv = 1,
-};
+pub const anon3031 = u32;
+pub const anon3031_NoUserAuthentication: u32 = 1;
+pub const anon3031_Password: u32 = 2;
+pub const anon3031_EncryptPassword: u32 = 3;
+pub const anon3031_TwoWayEncryptPassword: u32 = 6;
 
-pub const anon3031 = enum(u32) {
-    NoUserAuthentication = 1,
-    Password = 2,
-    EncryptPassword = 3,
-    TwoWayEncryptPassword = 6,
-};
+pub const anon3181 = u32;
+pub const anon3181_noGroup: u32 = 0;
+pub const anon3181_AEUseSocksAttr: u32 = 2020828019;
+pub const anon3181_AESocksProxyAttr: u32 = 2020831083;
+pub const anon3181_AESocksHostAttr: u32 = 2020829299;
+pub const anon3181_AESocksPortAttr: u32 = 2020829296;
+pub const anon3181_AESocksUserAttr: u32 = 2020829301;
+pub const anon3181_AESocksPasswordAttr: u32 = 2020829303;
+pub const anon3181_errSecSuccess: u32 = 0;
+pub const anon3181_errSecUnimplemented: u32 = -4;
+pub const anon3181_errSecDiskFull: u32 = -34;
+pub const anon3181_errSecDskFull: u32 = -34;
+pub const anon3181_errSecIO: u32 = -36;
+pub const anon3181_errSecOpWr: u32 = -49;
+pub const anon3181_errSecParam: u32 = -50;
+pub const anon3181_errSecWrPerm: u32 = -61;
+pub const anon3181_errSecAllocate: u32 = -108;
+pub const anon3181_errSecUserCanceled: u32 = -128;
+pub const anon3181_errSecBadReq: u32 = -909;
+pub const anon3181_errSecInternalComponent: u32 = -2070;
+pub const anon3181_errSecCoreFoundationUnknown: u32 = -4960;
+pub const anon3181_errSecMissingEntitlement: u32 = -34018;
+pub const anon3181_errSecRestrictedAPI: u32 = -34020;
+pub const anon3181_errSecNotAvailable: u32 = -25291;
+pub const anon3181_errSecReadOnly: u32 = -25292;
+pub const anon3181_errSecAuthFailed: u32 = -25293;
+pub const anon3181_errSecNoSuchKeychain: u32 = -25294;
+pub const anon3181_errSecInvalidKeychain: u32 = -25295;
+pub const anon3181_errSecDuplicateKeychain: u32 = -25296;
+pub const anon3181_errSecDuplicateCallback: u32 = -25297;
+pub const anon3181_errSecInvalidCallback: u32 = -25298;
+pub const anon3181_errSecDuplicateItem: u32 = -25299;
+pub const anon3181_errSecItemNotFound: u32 = -25300;
+pub const anon3181_errSecBufferTooSmall: u32 = -25301;
+pub const anon3181_errSecDataTooLarge: u32 = -25302;
+pub const anon3181_errSecNoSuchAttr: u32 = -25303;
+pub const anon3181_errSecInvalidItemRef: u32 = -25304;
+pub const anon3181_errSecInvalidSearchRef: u32 = -25305;
+pub const anon3181_errSecNoSuchClass: u32 = -25306;
+pub const anon3181_errSecNoDefaultKeychain: u32 = -25307;
+pub const anon3181_errSecInteractionNotAllowed: u32 = -25308;
+pub const anon3181_errSecReadOnlyAttr: u32 = -25309;
+pub const anon3181_errSecWrongSecVersion: u32 = -25310;
+pub const anon3181_errSecKeySizeNotAllowed: u32 = -25311;
+pub const anon3181_errSecNoStorageModule: u32 = -25312;
+pub const anon3181_errSecNoCertificateModule: u32 = -25313;
+pub const anon3181_errSecNoPolicyModule: u32 = -25314;
+pub const anon3181_errSecInteractionRequired: u32 = -25315;
+pub const anon3181_errSecDataNotAvailable: u32 = -25316;
+pub const anon3181_errSecDataNotModifiable: u32 = -25317;
+pub const anon3181_errSecCreateChainFailed: u32 = -25318;
+pub const anon3181_errSecInvalidPrefsDomain: u32 = -25319;
+pub const anon3181_errSecInDarkWake: u32 = -25320;
+pub const anon3181_errSecACLNotSimple: u32 = -25240;
+pub const anon3181_errSecPolicyNotFound: u32 = -25241;
+pub const anon3181_errSecInvalidTrustSetting: u32 = -25242;
+pub const anon3181_errSecNoAccessForItem: u32 = -25243;
+pub const anon3181_errSecInvalidOwnerEdit: u32 = -25244;
+pub const anon3181_errSecTrustNotAvailable: u32 = -25245;
+pub const anon3181_errSecUnsupportedFormat: u32 = -25256;
+pub const anon3181_errSecUnknownFormat: u32 = -25257;
+pub const anon3181_errSecKeyIsSensitive: u32 = -25258;
+pub const anon3181_errSecMultiplePrivKeys: u32 = -25259;
+pub const anon3181_errSecPassphraseRequired: u32 = -25260;
+pub const anon3181_errSecInvalidPasswordRef: u32 = -25261;
+pub const anon3181_errSecInvalidTrustSettings: u32 = -25262;
+pub const anon3181_errSecNoTrustSettings: u32 = -25263;
+pub const anon3181_errSecPkcs12VerifyFailure: u32 = -25264;
+pub const anon3181_errSecNotSigner: u32 = -26267;
+pub const anon3181_errSecDecode: u32 = -26275;
+pub const anon3181_errSecServiceNotAvailable: u32 = -67585;
+pub const anon3181_errSecInsufficientClientID: u32 = -67586;
+pub const anon3181_errSecDeviceReset: u32 = -67587;
+pub const anon3181_errSecDeviceFailed: u32 = -67588;
+pub const anon3181_errSecAppleAddAppACLSubject: u32 = -67589;
+pub const anon3181_errSecApplePublicKeyIncomplete: u32 = -67590;
+pub const anon3181_errSecAppleSignatureMismatch: u32 = -67591;
+pub const anon3181_errSecAppleInvalidKeyStartDate: u32 = -67592;
+pub const anon3181_errSecAppleInvalidKeyEndDate: u32 = -67593;
+pub const anon3181_errSecConversionError: u32 = -67594;
+pub const anon3181_errSecAppleSSLv2Rollback: u32 = -67595;
+pub const anon3181_errSecQuotaExceeded: u32 = -67596;
+pub const anon3181_errSecFileTooBig: u32 = -67597;
+pub const anon3181_errSecInvalidDatabaseBlob: u32 = -67598;
+pub const anon3181_errSecInvalidKeyBlob: u32 = -67599;
+pub const anon3181_errSecIncompatibleDatabaseBlob: u32 = -67600;
+pub const anon3181_errSecIncompatibleKeyBlob: u32 = -67601;
+pub const anon3181_errSecHostNameMismatch: u32 = -67602;
+pub const anon3181_errSecUnknownCriticalExtensionFlag: u32 = -67603;
+pub const anon3181_errSecNoBasicConstraints: u32 = -67604;
+pub const anon3181_errSecNoBasicConstraintsCA: u32 = -67605;
+pub const anon3181_errSecInvalidAuthorityKeyID: u32 = -67606;
+pub const anon3181_errSecInvalidSubjectKeyID: u32 = -67607;
+pub const anon3181_errSecInvalidKeyUsageForPolicy: u32 = -67608;
+pub const anon3181_errSecInvalidExtendedKeyUsage: u32 = -67609;
+pub const anon3181_errSecInvalidIDLinkage: u32 = -67610;
+pub const anon3181_errSecPathLengthConstraintExceeded: u32 = -67611;
+pub const anon3181_errSecInvalidRoot: u32 = -67612;
+pub const anon3181_errSecCRLExpired: u32 = -67613;
+pub const anon3181_errSecCRLNotValidYet: u32 = -67614;
+pub const anon3181_errSecCRLNotFound: u32 = -67615;
+pub const anon3181_errSecCRLServerDown: u32 = -67616;
+pub const anon3181_errSecCRLBadURI: u32 = -67617;
+pub const anon3181_errSecUnknownCertExtension: u32 = -67618;
+pub const anon3181_errSecUnknownCRLExtension: u32 = -67619;
+pub const anon3181_errSecCRLNotTrusted: u32 = -67620;
+pub const anon3181_errSecCRLPolicyFailed: u32 = -67621;
+pub const anon3181_errSecIDPFailure: u32 = -67622;
+pub const anon3181_errSecSMIMEEmailAddressesNotFound: u32 = -67623;
+pub const anon3181_errSecSMIMEBadExtendedKeyUsage: u32 = -67624;
+pub const anon3181_errSecSMIMEBadKeyUsage: u32 = -67625;
+pub const anon3181_errSecSMIMEKeyUsageNotCritical: u32 = -67626;
+pub const anon3181_errSecSMIMENoEmailAddress: u32 = -67627;
+pub const anon3181_errSecSMIMESubjAltNameNotCritical: u32 = -67628;
+pub const anon3181_errSecSSLBadExtendedKeyUsage: u32 = -67629;
+pub const anon3181_errSecOCSPBadResponse: u32 = -67630;
+pub const anon3181_errSecOCSPBadRequest: u32 = -67631;
+pub const anon3181_errSecOCSPUnavailable: u32 = -67632;
+pub const anon3181_errSecOCSPStatusUnrecognized: u32 = -67633;
+pub const anon3181_errSecEndOfData: u32 = -67634;
+pub const anon3181_errSecIncompleteCertRevocationCheck: u32 = -67635;
+pub const anon3181_errSecNetworkFailure: u32 = -67636;
+pub const anon3181_errSecOCSPNotTrustedToAnchor: u32 = -67637;
+pub const anon3181_errSecRecordModified: u32 = -67638;
+pub const anon3181_errSecOCSPSignatureError: u32 = -67639;
+pub const anon3181_errSecOCSPNoSigner: u32 = -67640;
+pub const anon3181_errSecOCSPResponderMalformedReq: u32 = -67641;
+pub const anon3181_errSecOCSPResponderInternalError: u32 = -67642;
+pub const anon3181_errSecOCSPResponderTryLater: u32 = -67643;
+pub const anon3181_errSecOCSPResponderSignatureRequired: u32 = -67644;
+pub const anon3181_errSecOCSPResponderUnauthorized: u32 = -67645;
+pub const anon3181_errSecOCSPResponseNonceMismatch: u32 = -67646;
+pub const anon3181_errSecCodeSigningBadCertChainLength: u32 = -67647;
+pub const anon3181_errSecCodeSigningNoBasicConstraints: u32 = -67648;
+pub const anon3181_errSecCodeSigningBadPathLengthConstraint: u32 = -67649;
+pub const anon3181_errSecCodeSigningNoExtendedKeyUsage: u32 = -67650;
+pub const anon3181_errSecCodeSigningDevelopment: u32 = -67651;
+pub const anon3181_errSecResourceSignBadCertChainLength: u32 = -67652;
+pub const anon3181_errSecResourceSignBadExtKeyUsage: u32 = -67653;
+pub const anon3181_errSecTrustSettingDeny: u32 = -67654;
+pub const anon3181_errSecInvalidSubjectName: u32 = -67655;
+pub const anon3181_errSecUnknownQualifiedCertStatement: u32 = -67656;
+pub const anon3181_errSecMobileMeRequestQueued: u32 = -67657;
+pub const anon3181_errSecMobileMeRequestRedirected: u32 = -67658;
+pub const anon3181_errSecMobileMeServerError: u32 = -67659;
+pub const anon3181_errSecMobileMeServerNotAvailable: u32 = -67660;
+pub const anon3181_errSecMobileMeServerAlreadyExists: u32 = -67661;
+pub const anon3181_errSecMobileMeServerServiceErr: u32 = -67662;
+pub const anon3181_errSecMobileMeRequestAlreadyPending: u32 = -67663;
+pub const anon3181_errSecMobileMeNoRequestPending: u32 = -67664;
+pub const anon3181_errSecMobileMeCSRVerifyFailure: u32 = -67665;
+pub const anon3181_errSecMobileMeFailedConsistencyCheck: u32 = -67666;
+pub const anon3181_errSecNotInitialized: u32 = -67667;
+pub const anon3181_errSecInvalidHandleUsage: u32 = -67668;
+pub const anon3181_errSecPVCReferentNotFound: u32 = -67669;
+pub const anon3181_errSecFunctionIntegrityFail: u32 = -67670;
+pub const anon3181_errSecInternalError: u32 = -67671;
+pub const anon3181_errSecMemoryError: u32 = -67672;
+pub const anon3181_errSecInvalidData: u32 = -67673;
+pub const anon3181_errSecMDSError: u32 = -67674;
+pub const anon3181_errSecInvalidPointer: u32 = -67675;
+pub const anon3181_errSecSelfCheckFailed: u32 = -67676;
+pub const anon3181_errSecFunctionFailed: u32 = -67677;
+pub const anon3181_errSecModuleManifestVerifyFailed: u32 = -67678;
+pub const anon3181_errSecInvalidGUID: u32 = -67679;
+pub const anon3181_errSecInvalidHandle: u32 = -67680;
+pub const anon3181_errSecInvalidDBList: u32 = -67681;
+pub const anon3181_errSecInvalidPassthroughID: u32 = -67682;
+pub const anon3181_errSecInvalidNetworkAddress: u32 = -67683;
+pub const anon3181_errSecCRLAlreadySigned: u32 = -67684;
+pub const anon3181_errSecInvalidNumberOfFields: u32 = -67685;
+pub const anon3181_errSecVerificationFailure: u32 = -67686;
+pub const anon3181_errSecUnknownTag: u32 = -67687;
+pub const anon3181_errSecInvalidSignature: u32 = -67688;
+pub const anon3181_errSecInvalidName: u32 = -67689;
+pub const anon3181_errSecInvalidCertificateRef: u32 = -67690;
+pub const anon3181_errSecInvalidCertificateGroup: u32 = -67691;
+pub const anon3181_errSecTagNotFound: u32 = -67692;
+pub const anon3181_errSecInvalidQuery: u32 = -67693;
+pub const anon3181_errSecInvalidValue: u32 = -67694;
+pub const anon3181_errSecCallbackFailed: u32 = -67695;
+pub const anon3181_errSecACLDeleteFailed: u32 = -67696;
+pub const anon3181_errSecACLReplaceFailed: u32 = -67697;
+pub const anon3181_errSecACLAddFailed: u32 = -67698;
+pub const anon3181_errSecACLChangeFailed: u32 = -67699;
+pub const anon3181_errSecInvalidAccessCredentials: u32 = -67700;
+pub const anon3181_errSecInvalidRecord: u32 = -67701;
+pub const anon3181_errSecInvalidACL: u32 = -67702;
+pub const anon3181_errSecInvalidSampleValue: u32 = -67703;
+pub const anon3181_errSecIncompatibleVersion: u32 = -67704;
+pub const anon3181_errSecPrivilegeNotGranted: u32 = -67705;
+pub const anon3181_errSecInvalidScope: u32 = -67706;
+pub const anon3181_errSecPVCAlreadyConfigured: u32 = -67707;
+pub const anon3181_errSecInvalidPVC: u32 = -67708;
+pub const anon3181_errSecEMMLoadFailed: u32 = -67709;
+pub const anon3181_errSecEMMUnloadFailed: u32 = -67710;
+pub const anon3181_errSecAddinLoadFailed: u32 = -67711;
+pub const anon3181_errSecInvalidKeyRef: u32 = -67712;
+pub const anon3181_errSecInvalidKeyHierarchy: u32 = -67713;
+pub const anon3181_errSecAddinUnloadFailed: u32 = -67714;
+pub const anon3181_errSecLibraryReferenceNotFound: u32 = -67715;
+pub const anon3181_errSecInvalidAddinFunctionTable: u32 = -67716;
+pub const anon3181_errSecInvalidServiceMask: u32 = -67717;
+pub const anon3181_errSecModuleNotLoaded: u32 = -67718;
+pub const anon3181_errSecInvalidSubServiceID: u32 = -67719;
+pub const anon3181_errSecAttributeNotInContext: u32 = -67720;
+pub const anon3181_errSecModuleManagerInitializeFailed: u32 = -67721;
+pub const anon3181_errSecModuleManagerNotFound: u32 = -67722;
+pub const anon3181_errSecEventNotificationCallbackNotFound: u32 = -67723;
+pub const anon3181_errSecInputLengthError: u32 = -67724;
+pub const anon3181_errSecOutputLengthError: u32 = -67725;
+pub const anon3181_errSecPrivilegeNotSupported: u32 = -67726;
+pub const anon3181_errSecDeviceError: u32 = -67727;
+pub const anon3181_errSecAttachHandleBusy: u32 = -67728;
+pub const anon3181_errSecNotLoggedIn: u32 = -67729;
+pub const anon3181_errSecAlgorithmMismatch: u32 = -67730;
+pub const anon3181_errSecKeyUsageIncorrect: u32 = -67731;
+pub const anon3181_errSecKeyBlobTypeIncorrect: u32 = -67732;
+pub const anon3181_errSecKeyHeaderInconsistent: u32 = -67733;
+pub const anon3181_errSecUnsupportedKeyFormat: u32 = -67734;
+pub const anon3181_errSecUnsupportedKeySize: u32 = -67735;
+pub const anon3181_errSecInvalidKeyUsageMask: u32 = -67736;
+pub const anon3181_errSecUnsupportedKeyUsageMask: u32 = -67737;
+pub const anon3181_errSecInvalidKeyAttributeMask: u32 = -67738;
+pub const anon3181_errSecUnsupportedKeyAttributeMask: u32 = -67739;
+pub const anon3181_errSecInvalidKeyLabel: u32 = -67740;
+pub const anon3181_errSecUnsupportedKeyLabel: u32 = -67741;
+pub const anon3181_errSecInvalidKeyFormat: u32 = -67742;
+pub const anon3181_errSecUnsupportedVectorOfBuffers: u32 = -67743;
+pub const anon3181_errSecInvalidInputVector: u32 = -67744;
+pub const anon3181_errSecInvalidOutputVector: u32 = -67745;
+pub const anon3181_errSecInvalidContext: u32 = -67746;
+pub const anon3181_errSecInvalidAlgorithm: u32 = -67747;
+pub const anon3181_errSecInvalidAttributeKey: u32 = -67748;
+pub const anon3181_errSecMissingAttributeKey: u32 = -67749;
+pub const anon3181_errSecInvalidAttributeInitVector: u32 = -67750;
+pub const anon3181_errSecMissingAttributeInitVector: u32 = -67751;
+pub const anon3181_errSecInvalidAttributeSalt: u32 = -67752;
+pub const anon3181_errSecMissingAttributeSalt: u32 = -67753;
+pub const anon3181_errSecInvalidAttributePadding: u32 = -67754;
+pub const anon3181_errSecMissingAttributePadding: u32 = -67755;
+pub const anon3181_errSecInvalidAttributeRandom: u32 = -67756;
+pub const anon3181_errSecMissingAttributeRandom: u32 = -67757;
+pub const anon3181_errSecInvalidAttributeSeed: u32 = -67758;
+pub const anon3181_errSecMissingAttributeSeed: u32 = -67759;
+pub const anon3181_errSecInvalidAttributePassphrase: u32 = -67760;
+pub const anon3181_errSecMissingAttributePassphrase: u32 = -67761;
+pub const anon3181_errSecInvalidAttributeKeyLength: u32 = -67762;
+pub const anon3181_errSecMissingAttributeKeyLength: u32 = -67763;
+pub const anon3181_errSecInvalidAttributeBlockSize: u32 = -67764;
+pub const anon3181_errSecMissingAttributeBlockSize: u32 = -67765;
+pub const anon3181_errSecInvalidAttributeOutputSize: u32 = -67766;
+pub const anon3181_errSecMissingAttributeOutputSize: u32 = -67767;
+pub const anon3181_errSecInvalidAttributeRounds: u32 = -67768;
+pub const anon3181_errSecMissingAttributeRounds: u32 = -67769;
+pub const anon3181_errSecInvalidAlgorithmParms: u32 = -67770;
+pub const anon3181_errSecMissingAlgorithmParms: u32 = -67771;
+pub const anon3181_errSecInvalidAttributeLabel: u32 = -67772;
+pub const anon3181_errSecMissingAttributeLabel: u32 = -67773;
+pub const anon3181_errSecInvalidAttributeKeyType: u32 = -67774;
+pub const anon3181_errSecMissingAttributeKeyType: u32 = -67775;
+pub const anon3181_errSecInvalidAttributeMode: u32 = -67776;
+pub const anon3181_errSecMissingAttributeMode: u32 = -67777;
+pub const anon3181_errSecInvalidAttributeEffectiveBits: u32 = -67778;
+pub const anon3181_errSecMissingAttributeEffectiveBits: u32 = -67779;
+pub const anon3181_errSecInvalidAttributeStartDate: u32 = -67780;
+pub const anon3181_errSecMissingAttributeStartDate: u32 = -67781;
+pub const anon3181_errSecInvalidAttributeEndDate: u32 = -67782;
+pub const anon3181_errSecMissingAttributeEndDate: u32 = -67783;
+pub const anon3181_errSecInvalidAttributeVersion: u32 = -67784;
+pub const anon3181_errSecMissingAttributeVersion: u32 = -67785;
+pub const anon3181_errSecInvalidAttributePrime: u32 = -67786;
+pub const anon3181_errSecMissingAttributePrime: u32 = -67787;
+pub const anon3181_errSecInvalidAttributeBase: u32 = -67788;
+pub const anon3181_errSecMissingAttributeBase: u32 = -67789;
+pub const anon3181_errSecInvalidAttributeSubprime: u32 = -67790;
+pub const anon3181_errSecMissingAttributeSubprime: u32 = -67791;
+pub const anon3181_errSecInvalidAttributeIterationCount: u32 = -67792;
+pub const anon3181_errSecMissingAttributeIterationCount: u32 = -67793;
+pub const anon3181_errSecInvalidAttributeDLDBHandle: u32 = -67794;
+pub const anon3181_errSecMissingAttributeDLDBHandle: u32 = -67795;
+pub const anon3181_errSecInvalidAttributeAccessCredentials: u32 = -67796;
+pub const anon3181_errSecMissingAttributeAccessCredentials: u32 = -67797;
+pub const anon3181_errSecInvalidAttributePublicKeyFormat: u32 = -67798;
+pub const anon3181_errSecMissingAttributePublicKeyFormat: u32 = -67799;
+pub const anon3181_errSecInvalidAttributePrivateKeyFormat: u32 = -67800;
+pub const anon3181_errSecMissingAttributePrivateKeyFormat: u32 = -67801;
+pub const anon3181_errSecInvalidAttributeSymmetricKeyFormat: u32 = -67802;
+pub const anon3181_errSecMissingAttributeSymmetricKeyFormat: u32 = -67803;
+pub const anon3181_errSecInvalidAttributeWrappedKeyFormat: u32 = -67804;
+pub const anon3181_errSecMissingAttributeWrappedKeyFormat: u32 = -67805;
+pub const anon3181_errSecStagedOperationInProgress: u32 = -67806;
+pub const anon3181_errSecStagedOperationNotStarted: u32 = -67807;
+pub const anon3181_errSecVerifyFailed: u32 = -67808;
+pub const anon3181_errSecQuerySizeUnknown: u32 = -67809;
+pub const anon3181_errSecBlockSizeMismatch: u32 = -67810;
+pub const anon3181_errSecPublicKeyInconsistent: u32 = -67811;
+pub const anon3181_errSecDeviceVerifyFailed: u32 = -67812;
+pub const anon3181_errSecInvalidLoginName: u32 = -67813;
+pub const anon3181_errSecAlreadyLoggedIn: u32 = -67814;
+pub const anon3181_errSecInvalidDigestAlgorithm: u32 = -67815;
+pub const anon3181_errSecInvalidCRLGroup: u32 = -67816;
+pub const anon3181_errSecCertificateCannotOperate: u32 = -67817;
+pub const anon3181_errSecCertificateExpired: u32 = -67818;
+pub const anon3181_errSecCertificateNotValidYet: u32 = -67819;
+pub const anon3181_errSecCertificateRevoked: u32 = -67820;
+pub const anon3181_errSecCertificateSuspended: u32 = -67821;
+pub const anon3181_errSecInsufficientCredentials: u32 = -67822;
+pub const anon3181_errSecInvalidAction: u32 = -67823;
+pub const anon3181_errSecInvalidAuthority: u32 = -67824;
+pub const anon3181_errSecVerifyActionFailed: u32 = -67825;
+pub const anon3181_errSecInvalidCertAuthority: u32 = -67826;
+pub const anon3181_errSecInvalidCRLAuthority: u32 = -67827;
+pub const anon3181_errSecInvaldCRLAuthority: u32 = -67827;
+pub const anon3181_errSecInvalidCRLEncoding: u32 = -67828;
+pub const anon3181_errSecInvalidCRLType: u32 = -67829;
+pub const anon3181_errSecInvalidCRL: u32 = -67830;
+pub const anon3181_errSecInvalidFormType: u32 = -67831;
+pub const anon3181_errSecInvalidID: u32 = -67832;
+pub const anon3181_errSecInvalidIdentifier: u32 = -67833;
+pub const anon3181_errSecInvalidIndex: u32 = -67834;
+pub const anon3181_errSecInvalidPolicyIdentifiers: u32 = -67835;
+pub const anon3181_errSecInvalidTimeString: u32 = -67836;
+pub const anon3181_errSecInvalidReason: u32 = -67837;
+pub const anon3181_errSecInvalidRequestInputs: u32 = -67838;
+pub const anon3181_errSecInvalidResponseVector: u32 = -67839;
+pub const anon3181_errSecInvalidStopOnPolicy: u32 = -67840;
+pub const anon3181_errSecInvalidTuple: u32 = -67841;
+pub const anon3181_errSecMultipleValuesUnsupported: u32 = -67842;
+pub const anon3181_errSecNotTrusted: u32 = -67843;
+pub const anon3181_errSecNoDefaultAuthority: u32 = -67844;
+pub const anon3181_errSecRejectedForm: u32 = -67845;
+pub const anon3181_errSecRequestLost: u32 = -67846;
+pub const anon3181_errSecRequestRejected: u32 = -67847;
+pub const anon3181_errSecUnsupportedAddressType: u32 = -67848;
+pub const anon3181_errSecUnsupportedService: u32 = -67849;
+pub const anon3181_errSecInvalidTupleGroup: u32 = -67850;
+pub const anon3181_errSecInvalidBaseACLs: u32 = -67851;
+pub const anon3181_errSecInvalidTupleCredentials: u32 = -67852;
+pub const anon3181_errSecInvalidTupleCredendtials: u32 = -67852;
+pub const anon3181_errSecInvalidEncoding: u32 = -67853;
+pub const anon3181_errSecInvalidValidityPeriod: u32 = -67854;
+pub const anon3181_errSecInvalidRequestor: u32 = -67855;
+pub const anon3181_errSecRequestDescriptor: u32 = -67856;
+pub const anon3181_errSecInvalidBundleInfo: u32 = -67857;
+pub const anon3181_errSecInvalidCRLIndex: u32 = -67858;
+pub const anon3181_errSecNoFieldValues: u32 = -67859;
+pub const anon3181_errSecUnsupportedFieldFormat: u32 = -67860;
+pub const anon3181_errSecUnsupportedIndexInfo: u32 = -67861;
+pub const anon3181_errSecUnsupportedLocality: u32 = -67862;
+pub const anon3181_errSecUnsupportedNumAttributes: u32 = -67863;
+pub const anon3181_errSecUnsupportedNumIndexes: u32 = -67864;
+pub const anon3181_errSecUnsupportedNumRecordTypes: u32 = -67865;
+pub const anon3181_errSecFieldSpecifiedMultiple: u32 = -67866;
+pub const anon3181_errSecIncompatibleFieldFormat: u32 = -67867;
+pub const anon3181_errSecInvalidParsingModule: u32 = -67868;
+pub const anon3181_errSecDatabaseLocked: u32 = -67869;
+pub const anon3181_errSecDatastoreIsOpen: u32 = -67870;
+pub const anon3181_errSecMissingValue: u32 = -67871;
+pub const anon3181_errSecUnsupportedQueryLimits: u32 = -67872;
+pub const anon3181_errSecUnsupportedNumSelectionPreds: u32 = -67873;
+pub const anon3181_errSecUnsupportedOperator: u32 = -67874;
+pub const anon3181_errSecInvalidDBLocation: u32 = -67875;
+pub const anon3181_errSecInvalidAccessRequest: u32 = -67876;
+pub const anon3181_errSecInvalidIndexInfo: u32 = -67877;
+pub const anon3181_errSecInvalidNewOwner: u32 = -67878;
+pub const anon3181_errSecInvalidModifyMode: u32 = -67879;
+pub const anon3181_errSecMissingRequiredExtension: u32 = -67880;
+pub const anon3181_errSecExtendedKeyUsageNotCritical: u32 = -67881;
+pub const anon3181_errSecTimestampMissing: u32 = -67882;
+pub const anon3181_errSecTimestampInvalid: u32 = -67883;
+pub const anon3181_errSecTimestampNotTrusted: u32 = -67884;
+pub const anon3181_errSecTimestampServiceNotAvailable: u32 = -67885;
+pub const anon3181_errSecTimestampBadAlg: u32 = -67886;
+pub const anon3181_errSecTimestampBadRequest: u32 = -67887;
+pub const anon3181_errSecTimestampBadDataFormat: u32 = -67888;
+pub const anon3181_errSecTimestampTimeNotAvailable: u32 = -67889;
+pub const anon3181_errSecTimestampUnacceptedPolicy: u32 = -67890;
+pub const anon3181_errSecTimestampUnacceptedExtension: u32 = -67891;
+pub const anon3181_errSecTimestampAddInfoNotAvailable: u32 = -67892;
+pub const anon3181_errSecTimestampSystemFailure: u32 = -67893;
+pub const anon3181_errSecSigningTimeMissing: u32 = -67894;
+pub const anon3181_errSecTimestampRejection: u32 = -67895;
+pub const anon3181_errSecTimestampWaiting: u32 = -67896;
+pub const anon3181_errSecTimestampRevocationWarning: u32 = -67897;
+pub const anon3181_errSecTimestampRevocationNotification: u32 = -67898;
+pub const anon3181_errSecCertificatePolicyNotAllowed: u32 = -67899;
+pub const anon3181_errSecCertificateNameNotAllowed: u32 = -67900;
+pub const anon3181_errSecCertificateValidityPeriodTooLong: u32 = -67901;
+pub const anon3181_errSecCertificateIsCA: u32 = -67902;
+pub const anon3181_errSecCertificateDuplicateExtension: u32 = -67903;
 
 pub const FSVolumeRefNum = objc.SInt16;
 
 pub const FSIORefNum = i32;
 
-pub const anon3301 = enum(u32) {
-    FSInvalidVolumeRefNum = 0,
-};
+pub const anon3301 = u32;
+pub const anon3301_FSInvalidVolumeRefNum: u32 = 0;
 
-pub const FSRefPtr = ?*FSRef;
+pub const FSRef = core_foundation.FSRef;
+
+pub const FSRefPtr = FSRef;
 
 pub const __FSFileSecurity = extern struct {};
 
-pub const FSFileSecurityRef = ?*__FSFileSecurity;
+pub const FSFileSecurityRef = __FSFileSecurity;
 
 pub const CatPositionRec = extern struct {
     initialize: objc.SInt32,
@@ -6716,13 +8589,13 @@ pub const FSSpec = extern struct {
     hidden: [70]objc.UInt8,
 };
 
-pub const FSSpecPtr = ?*FSSpec;
+pub const FSSpecPtr = FSSpec;
 
-pub const FSSpecHandle = ?*FSSpecPtr;
+pub const FSSpecHandle = FSSpecPtr;
 
 pub const FSSpecArrayPtr = FSSpecPtr;
 
-pub const ConstFSSpecPtr = ?*FSSpec;
+pub const ConstFSSpecPtr = FSSpec;
 
 pub const ParamBlockRec = extern union {};
 
@@ -6743,60 +8616,57 @@ pub const FSPermissionInfo = extern struct {
 
 pub const FSCatalogInfoBitmap = objc.UInt32;
 
-pub const anon10821 = enum(i32) {
-    FSCatInfoNone = 0,
-    FSCatInfoTextEncoding = 1,
-    FSCatInfoNodeFlags = 2,
-    FSCatInfoVolume = 4,
-    FSCatInfoParentDirID = 8,
-    FSCatInfoNodeID = 16,
-    FSCatInfoCreateDate = 32,
-    FSCatInfoContentMod = 64,
-    FSCatInfoAttrMod = 128,
-    FSCatInfoAccessDate = 256,
-    FSCatInfoBackupDate = 512,
-    FSCatInfoPermissions = 1024,
-    FSCatInfoFinderInfo = 2048,
-    FSCatInfoFinderXInfo = 4096,
-    FSCatInfoValence = 8192,
-    FSCatInfoDataSizes = 16384,
-    FSCatInfoRsrcSizes = 32768,
-    FSCatInfoSharingFlags = 65536,
-    FSCatInfoUserPrivs = 131072,
-    FSCatInfoUserAccess = 524288,
-    FSCatInfoSetOwnership = 1048576,
-    FSCatInfoFSFileSecurityRef = 4194304,
-    FSCatInfoAllDates = 992,
-    FSCatInfoGettableInfo = 262143,
-    FSCatInfoSettableInfo = 8163,
-    FSCatInfoReserved = -262144,
-};
+pub const anon10821 = i32;
+pub const anon10821_FSCatInfoNone: i32 = 0;
+pub const anon10821_FSCatInfoTextEncoding: i32 = 1;
+pub const anon10821_FSCatInfoNodeFlags: i32 = 2;
+pub const anon10821_FSCatInfoVolume: i32 = 4;
+pub const anon10821_FSCatInfoParentDirID: i32 = 8;
+pub const anon10821_FSCatInfoNodeID: i32 = 16;
+pub const anon10821_FSCatInfoCreateDate: i32 = 32;
+pub const anon10821_FSCatInfoContentMod: i32 = 64;
+pub const anon10821_FSCatInfoAttrMod: i32 = 128;
+pub const anon10821_FSCatInfoAccessDate: i32 = 256;
+pub const anon10821_FSCatInfoBackupDate: i32 = 512;
+pub const anon10821_FSCatInfoPermissions: i32 = 1024;
+pub const anon10821_FSCatInfoFinderInfo: i32 = 2048;
+pub const anon10821_FSCatInfoFinderXInfo: i32 = 4096;
+pub const anon10821_FSCatInfoValence: i32 = 8192;
+pub const anon10821_FSCatInfoDataSizes: i32 = 16384;
+pub const anon10821_FSCatInfoRsrcSizes: i32 = 32768;
+pub const anon10821_FSCatInfoSharingFlags: i32 = 65536;
+pub const anon10821_FSCatInfoUserPrivs: i32 = 131072;
+pub const anon10821_FSCatInfoUserAccess: i32 = 524288;
+pub const anon10821_FSCatInfoSetOwnership: i32 = 1048576;
+pub const anon10821_FSCatInfoFSFileSecurityRef: i32 = 4194304;
+pub const anon10821_FSCatInfoAllDates: i32 = 992;
+pub const anon10821_FSCatInfoGettableInfo: i32 = 262143;
+pub const anon10821_FSCatInfoSettableInfo: i32 = 8163;
+pub const anon10821_FSCatInfoReserved: i32 = -262144;
 
-pub const anon11121 = enum(u32) {
-    FSNodeLockedBit = 0,
-    FSNodeLockedMask = 1,
-    FSNodeResOpenBit = 2,
-    FSNodeResOpenMask = 4,
-    FSNodeDataOpenBit = 3,
-    FSNodeDataOpenMask = 8,
-    FSNodeIsDirectoryBit = 4,
-    FSNodeIsDirectoryMask = 16,
-    FSNodeCopyProtectBit = 6,
-    FSNodeCopyProtectMask = 64,
-    FSNodeForkOpenBit = 7,
-    FSNodeForkOpenMask = 128,
-    FSNodeHardLinkBit = 8,
-    FSNodeHardLinkMask = 256,
-};
+pub const anon11121 = u32;
+pub const anon11121_FSNodeLockedBit: u32 = 0;
+pub const anon11121_FSNodeLockedMask: u32 = 1;
+pub const anon11121_FSNodeResOpenBit: u32 = 2;
+pub const anon11121_FSNodeResOpenMask: u32 = 4;
+pub const anon11121_FSNodeDataOpenBit: u32 = 3;
+pub const anon11121_FSNodeDataOpenMask: u32 = 8;
+pub const anon11121_FSNodeIsDirectoryBit: u32 = 4;
+pub const anon11121_FSNodeIsDirectoryMask: u32 = 16;
+pub const anon11121_FSNodeCopyProtectBit: u32 = 6;
+pub const anon11121_FSNodeCopyProtectMask: u32 = 64;
+pub const anon11121_FSNodeForkOpenBit: u32 = 7;
+pub const anon11121_FSNodeForkOpenMask: u32 = 128;
+pub const anon11121_FSNodeHardLinkBit: u32 = 8;
+pub const anon11121_FSNodeHardLinkMask: u32 = 256;
 
-pub const anon11301 = enum(u32) {
-    FSNodeInSharedBit = 2,
-    FSNodeInSharedMask = 4,
-    FSNodeIsMountedBit = 3,
-    FSNodeIsMountedMask = 8,
-    FSNodeIsSharePointBit = 5,
-    FSNodeIsSharePointMask = 32,
-};
+pub const anon11301 = u32;
+pub const anon11301_FSNodeInSharedBit: u32 = 2;
+pub const anon11301_FSNodeInSharedMask: u32 = 4;
+pub const anon11301_FSNodeIsMountedBit: u32 = 3;
+pub const anon11301_FSNodeIsMountedMask: u32 = 8;
+pub const anon11301_FSNodeIsSharePointBit: u32 = 5;
+pub const anon11301_FSNodeIsSharePointMask: u32 = 32;
 
 pub const FSCatalogInfo = extern struct {
     nodeFlags: objc.UInt16,
@@ -6823,7 +8693,7 @@ pub const FSCatalogInfo = extern struct {
     textEncodingHint: TextEncoding,
 };
 
-pub const FSCatalogInfoPtr = ?*FSCatalogInfo;
+pub const FSCatalogInfoPtr = FSCatalogInfo;
 
 pub const FSRefParam = extern struct {
     qLink: QElemPtr,
@@ -6850,7 +8720,7 @@ pub const FSRefParam = extern struct {
     outName: ?*objc.HFSUniStr255,
 };
 
-pub const FSRefParamPtr = ?*FSRefParam;
+pub const FSRefParamPtr = FSRefParam;
 
 pub const FSRefForkIOParam = extern struct {
     qLink: QElemPtr,
@@ -6872,18 +8742,17 @@ pub const FSRefForkIOParam = extern struct {
     newRef: ?*FSRef,
 };
 
-pub const FSRefForkIOParamPtr = ?*FSRefForkIOParam;
+pub const FSRefForkIOParamPtr = FSRefForkIOParam;
 
 pub const OpaqueFSIterator = extern struct {};
 
-pub const FSIterator = ?*OpaqueFSIterator;
+pub const FSIterator = OpaqueFSIterator;
 
-pub const anon13551 = enum(i32) {
-    FSIterateFlat = 0,
-    FSIterateSubtree = 1,
-    FSIterateDelete = 2,
-    FSIterateReserved = -4,
-};
+pub const anon13551 = i32;
+pub const anon13551_FSIterateFlat: i32 = 0;
+pub const anon13551_FSIterateSubtree: i32 = 1;
+pub const anon13551_FSIterateDelete: i32 = 2;
+pub const anon13551_FSIterateReserved: i32 = -4;
 
 pub const FSIteratorFlags = objc.OptionBits;
 
@@ -6896,7 +8765,7 @@ pub const FSSearchParams = extern struct {
     searchInfo2: ?*FSCatalogInfo,
 };
 
-pub const FSSearchParamsPtr = ?*FSSearchParams;
+pub const FSSearchParamsPtr = FSSearchParams;
 
 pub const FSCatalogBulkParam = extern struct {
     qLink: QElemPtr,
@@ -6920,17 +8789,16 @@ pub const FSCatalogBulkParam = extern struct {
     searchParams: ?*FSSearchParams,
 };
 
-pub const FSCatalogBulkParamPtr = ?*FSCatalogBulkParam;
+pub const FSCatalogBulkParamPtr = FSCatalogBulkParam;
 
 pub const FSAllocationFlags = objc.UInt16;
 
-pub const anon13981 = enum(u32) {
-    FSAllocDefaultFlags = 0,
-    FSAllocAllOrNothingMask = 1,
-    FSAllocContiguousMask = 2,
-    FSAllocNoRoundUpMask = 4,
-    FSAllocReservedMask = 65528,
-};
+pub const anon13981 = u32;
+pub const anon13981_FSAllocDefaultFlags: u32 = 0;
+pub const anon13981_FSAllocAllOrNothingMask: u32 = 1;
+pub const anon13981_FSAllocContiguousMask: u32 = 2;
+pub const anon13981_FSAllocNoRoundUpMask: u32 = 4;
+pub const anon13981_FSAllocReservedMask: u32 = 65528;
 
 pub const FSForkIOParam = extern struct {
     qLink: QElemPtr,
@@ -6958,7 +8826,7 @@ pub const FSForkIOParam = extern struct {
     outForkName: ?*objc.HFSUniStr255,
 };
 
-pub const FSForkIOParamPtr = ?*FSForkIOParam;
+pub const FSForkIOParamPtr = FSForkIOParam;
 
 pub const FSForkInfoFlags = objc.UInt8;
 
@@ -6975,7 +8843,7 @@ pub const FSForkInfo = extern struct {
     process: objc.UInt64,
 };
 
-pub const FSForkInfoPtr = ?*FSForkInfo;
+pub const FSForkInfoPtr = FSForkInfo;
 
 pub const FSForkCBInfoParam = extern struct {
     qLink: QElemPtr,
@@ -6993,7 +8861,7 @@ pub const FSForkCBInfoParam = extern struct {
     forkName: ?*objc.HFSUniStr255,
 };
 
-pub const FSForkCBInfoParamPtr = ?*FSForkCBInfoParam;
+pub const FSForkCBInfoParamPtr = FSForkCBInfoParam;
 
 pub const FSRangeLockParam = extern struct {
     qLink: QElemPtr,
@@ -7009,44 +8877,42 @@ pub const FSRangeLockParam = extern struct {
     rangeStart: objc.UInt64,
 };
 
-pub const FSRangeLockParamPtr = ?*FSRangeLockParam;
+pub const FSRangeLockParamPtr = FSRangeLockParam;
 
 pub const FSVolumeInfoBitmap = objc.UInt32;
 
-pub const anon14891 = enum(u32) {
-    FSVolInfoNone = 0,
-    FSVolInfoCreateDate = 1,
-    FSVolInfoModDate = 2,
-    FSVolInfoBackupDate = 4,
-    FSVolInfoCheckedDate = 8,
-    FSVolInfoFileCount = 16,
-    FSVolInfoDirCount = 32,
-    FSVolInfoSizes = 64,
-    FSVolInfoBlocks = 128,
-    FSVolInfoNextAlloc = 256,
-    FSVolInfoRsrcClump = 512,
-    FSVolInfoDataClump = 1024,
-    FSVolInfoNextID = 2048,
-    FSVolInfoFinderInfo = 4096,
-    FSVolInfoFlags = 8192,
-    FSVolInfoFSInfo = 16384,
-    FSVolInfoDriveInfo = 32768,
-    FSVolInfoGettableInfo = 65535,
-    FSVolInfoSettableInfo = 12292,
-};
+pub const anon14891 = u32;
+pub const anon14891_FSVolInfoNone: u32 = 0;
+pub const anon14891_FSVolInfoCreateDate: u32 = 1;
+pub const anon14891_FSVolInfoModDate: u32 = 2;
+pub const anon14891_FSVolInfoBackupDate: u32 = 4;
+pub const anon14891_FSVolInfoCheckedDate: u32 = 8;
+pub const anon14891_FSVolInfoFileCount: u32 = 16;
+pub const anon14891_FSVolInfoDirCount: u32 = 32;
+pub const anon14891_FSVolInfoSizes: u32 = 64;
+pub const anon14891_FSVolInfoBlocks: u32 = 128;
+pub const anon14891_FSVolInfoNextAlloc: u32 = 256;
+pub const anon14891_FSVolInfoRsrcClump: u32 = 512;
+pub const anon14891_FSVolInfoDataClump: u32 = 1024;
+pub const anon14891_FSVolInfoNextID: u32 = 2048;
+pub const anon14891_FSVolInfoFinderInfo: u32 = 4096;
+pub const anon14891_FSVolInfoFlags: u32 = 8192;
+pub const anon14891_FSVolInfoFSInfo: u32 = 16384;
+pub const anon14891_FSVolInfoDriveInfo: u32 = 32768;
+pub const anon14891_FSVolInfoGettableInfo: u32 = 65535;
+pub const anon14891_FSVolInfoSettableInfo: u32 = 12292;
 
-pub const anon15121 = enum(u32) {
-    FSVolFlagDefaultVolumeBit = 5,
-    FSVolFlagDefaultVolumeMask = 32,
-    FSVolFlagFilesOpenBit = 6,
-    FSVolFlagFilesOpenMask = 64,
-    FSVolFlagHardwareLockedBit = 7,
-    FSVolFlagHardwareLockedMask = 128,
-    FSVolFlagJournalingActiveBit = 14,
-    FSVolFlagJournalingActiveMask = 16384,
-    FSVolFlagSoftwareLockedBit = 15,
-    FSVolFlagSoftwareLockedMask = 32768,
-};
+pub const anon15121 = u32;
+pub const anon15121_FSVolFlagDefaultVolumeBit: u32 = 5;
+pub const anon15121_FSVolFlagDefaultVolumeMask: u32 = 32;
+pub const anon15121_FSVolFlagFilesOpenBit: u32 = 6;
+pub const anon15121_FSVolFlagFilesOpenMask: u32 = 64;
+pub const anon15121_FSVolFlagHardwareLockedBit: u32 = 7;
+pub const anon15121_FSVolFlagHardwareLockedMask: u32 = 128;
+pub const anon15121_FSVolFlagJournalingActiveBit: u32 = 14;
+pub const anon15121_FSVolFlagJournalingActiveMask: u32 = 16384;
+pub const anon15121_FSVolFlagSoftwareLockedBit: u32 = 15;
+pub const anon15121_FSVolFlagSoftwareLockedMask: u32 = 32768;
 
 pub const FSVolumeInfo = extern struct {
     createDate: UTCDateTime,
@@ -7072,7 +8938,7 @@ pub const FSVolumeInfo = extern struct {
     driverRefNum: FSIORefNum,
 };
 
-pub const FSVolumeInfoPtr = ?*FSVolumeInfo;
+pub const FSVolumeInfoPtr = FSVolumeInfo;
 
 pub const FSVolumeInfoParam = extern struct {
     qLink: QElemPtr,
@@ -7090,7 +8956,7 @@ pub const FSVolumeInfoParam = extern struct {
     ref: ?*FSRef,
 };
 
-pub const FSVolumeInfoParamPtr = ?*FSVolumeInfoParam;
+pub const FSVolumeInfoParamPtr = FSVolumeInfoParam;
 
 pub const GetVolParmsInfoBuffer = extern struct {
     vMVersion: objc.SInt16,
@@ -7106,16 +8972,15 @@ pub const GetVolParmsInfoBuffer = extern struct {
 
 pub const VolumeType = objc.OSType;
 
-pub const anon16021 = enum(u32) {
-    AppleShareMediaType = 1634103405,
-};
+pub const anon16021 = u32;
+pub const anon16021_AppleShareMediaType: u32 = 1634103405;
 
 pub const VolMountInfoHeader = extern struct {
     length: objc.SInt16,
     media: VolumeType,
 };
 
-pub const VolMountInfoPtr = ?*VolMountInfoHeader;
+pub const VolMountInfoPtr = VolMountInfoHeader;
 
 pub const VolumeMountInfoHeader = extern struct {
     length: objc.SInt16,
@@ -7123,20 +8988,19 @@ pub const VolumeMountInfoHeader = extern struct {
     flags: objc.SInt16,
 };
 
-pub const VolumeMountInfoHeaderPtr = ?*VolumeMountInfoHeader;
+pub const VolumeMountInfoHeaderPtr = VolumeMountInfoHeader;
 
-pub const anon16281 = enum(u32) {
-    volMountNoLoginMsgFlagBit = 0,
-    volMountNoLoginMsgFlagMask = 1,
-    volMountExtendedFlagsBit = 7,
-    volMountExtendedFlagsMask = 128,
-    volMountInteractBit = 15,
-    volMountInteractMask = 32768,
-    volMountChangedBit = 14,
-    volMountChangedMask = 16384,
-    volMountFSReservedMask = 255,
-    volMountSysReservedMask = 65280,
-};
+pub const anon16281 = u32;
+pub const anon16281_volMountNoLoginMsgFlagBit: u32 = 0;
+pub const anon16281_volMountNoLoginMsgFlagMask: u32 = 1;
+pub const anon16281_volMountExtendedFlagsBit: u32 = 7;
+pub const anon16281_volMountExtendedFlagsMask: u32 = 128;
+pub const anon16281_volMountInteractBit: u32 = 15;
+pub const anon16281_volMountInteractMask: u32 = 32768;
+pub const anon16281_volMountChangedBit: u32 = 14;
+pub const anon16281_volMountChangedMask: u32 = 16384;
+pub const anon16281_volMountFSReservedMask: u32 = 255;
+pub const anon16281_volMountSysReservedMask: u32 = 65280;
 
 pub const AFPVolMountInfo = extern struct {
     length: objc.SInt16,
@@ -7154,7 +9018,7 @@ pub const AFPVolMountInfo = extern struct {
     AFPData: [144]i8,
 };
 
-pub const AFPVolMountInfoPtr = ?*AFPVolMountInfo;
+pub const AFPVolMountInfoPtr = AFPVolMountInfo;
 
 pub const AFPXVolMountInfo = extern struct {
     length: objc.SInt16,
@@ -7175,24 +9039,21 @@ pub const AFPXVolMountInfo = extern struct {
     AFPData: [176]i8,
 };
 
-pub const AFPXVolMountInfoPtr = ?*AFPXVolMountInfo;
+pub const AFPXVolMountInfoPtr = AFPXVolMountInfo;
 
-pub const anon16831 = enum(u32) {
-    AFPExtendedFlagsAlternateAddressMask = 1,
-};
+pub const anon16831 = u32;
+pub const anon16831_AFPExtendedFlagsAlternateAddressMask: u32 = 1;
 
-pub const anon16881 = enum(u32) {
-    AFPTagTypeIP = 1,
-    AFPTagTypeIPPort = 2,
-    AFPTagTypeDDP = 3,
-    AFPTagTypeDNS = 4,
-};
+pub const anon16881 = u32;
+pub const anon16881_AFPTagTypeIP: u32 = 1;
+pub const anon16881_AFPTagTypeIPPort: u32 = 2;
+pub const anon16881_AFPTagTypeDDP: u32 = 3;
+pub const anon16881_AFPTagTypeDNS: u32 = 4;
 
-pub const anon16971 = enum(u32) {
-    AFPTagLengthIP = 6,
-    AFPTagLengthIPPort = 8,
-    AFPTagLengthDDP = 6,
-};
+pub const anon16971 = u32;
+pub const anon16971_AFPTagLengthIP: u32 = 6;
+pub const anon16971_AFPTagLengthIPPort: u32 = 8;
+pub const anon16971_AFPTagLengthDDP: u32 = 6;
 
 pub const AFPTagData = extern struct {
     fLength: objc.UInt8,
@@ -7206,14 +9067,13 @@ pub const AFPAlternateAddress = extern struct {
     fAddressList: [1]objc.UInt8,
 };
 
-pub const anon17171 = enum(u32) {
-    LargeIconSize = 256,
-    Large4BitIconSize = 512,
-    Large8BitIconSize = 1024,
-    SmallIconSize = 64,
-    Small4BitIconSize = 128,
-    Small8BitIconSize = 256,
-};
+pub const anon17171 = u32;
+pub const anon17171_LargeIconSize: u32 = 256;
+pub const anon17171_Large4BitIconSize: u32 = 512;
+pub const anon17171_Large8BitIconSize: u32 = 1024;
+pub const anon17171_SmallIconSize: u32 = 64;
+pub const anon17171_Small4BitIconSize: u32 = 128;
+pub const anon17171_Small8BitIconSize: u32 = 256;
 
 pub extern "CoreServices" fn NewIOCompletionUPP(userRoutine: IOCompletionProcPtr) callconv(.C) IOCompletionUPP;
 
@@ -7292,14 +9152,13 @@ pub extern "CoreServices" fn PBExchangeObjectsSync(paramBlock: ?*FSRefParam) cal
 
 pub extern "CoreServices" fn PBExchangeObjectsAsync(paramBlock: ?*FSRefParam) callconv(.C) void;
 
-pub const anon23231 = enum(u32) {
-    FSReplaceObjectDefaultOptions = 0,
-    FSReplaceObjectReplaceMetadata = 1,
-    FSReplaceObjectSaveOriginalAsABackup = 2,
-    FSReplaceObjectReplacePermissionInfo = 4,
-    FSReplaceObjectPreservePermissionInfo = 8,
-    FSReplaceObjectDoNotCheckObjectWriteAccess = 16,
-};
+pub const anon23231 = u32;
+pub const anon23231_FSReplaceObjectDefaultOptions: u32 = 0;
+pub const anon23231_FSReplaceObjectReplaceMetadata: u32 = 1;
+pub const anon23231_FSReplaceObjectSaveOriginalAsABackup: u32 = 2;
+pub const anon23231_FSReplaceObjectReplacePermissionInfo: u32 = 4;
+pub const anon23231_FSReplaceObjectPreservePermissionInfo: u32 = 8;
+pub const anon23231_FSReplaceObjectDoNotCheckObjectWriteAccess: u32 = 16;
 
 pub extern "CoreServices" fn FSReplaceObject(
     originalObject: ?*FSRef,
@@ -7599,10 +9458,9 @@ pub extern "CoreServices" fn FSRefMakePath(ref: ?*FSRef, path: ?*objc.UInt8, pat
 
 pub extern "CoreServices" fn FSPathMakeRef(path: ?*objc.UInt8, ref: ?*FSRef, isDirectory: ?*objc.Boolean) callconv(.C) objc.OSStatus;
 
-pub const anon41251 = enum(u32) {
-    FSPathMakeRefDefaultOptions = 0,
-    FSPathMakeRefDoNotFollowLeafSymlink = 1,
-};
+pub const anon41251 = u32;
+pub const anon41251_FSPathMakeRefDefaultOptions: u32 = 0;
+pub const anon41251_FSPathMakeRefDoNotFollowLeafSymlink: u32 = 1;
 
 pub extern "CoreServices" fn FSPathMakeRefWithOptions(
     path: ?*objc.UInt8,
@@ -7615,9 +9473,8 @@ pub extern "CoreServices" fn FSIsFSRefValid(ref: ?*FSRef) callconv(.C) objc.Bool
 
 pub const FNMessage = objc.UInt32;
 
-pub const anon41981 = enum(u32) {
-    FNDirectoryModifiedMessage = 1,
-};
+pub const anon41981 = u32;
+pub const anon41981_FNDirectoryModifiedMessage: u32 = 1;
 
 pub extern "CoreServices" fn FNNotify(ref: ?*FSRef, message: FNMessage, flags: objc.OptionBits) callconv(.C) objc.OSStatus;
 
@@ -7627,12 +9484,11 @@ pub extern "CoreServices" fn FNNotifyAll(message: FNMessage, flags: objc.OptionB
 
 pub const OpaqueFNSubscriptionRef = extern struct {};
 
-pub const FNSubscriptionRef = ?*OpaqueFNSubscriptionRef;
+pub const FNSubscriptionRef = OpaqueFNSubscriptionRef;
 
-pub const anon43161 = enum(u32) {
-    FNNoImplicitAllSubscription = 1,
-    FNNotifyInBackground = 2,
-};
+pub const anon43161 = u32;
+pub const anon43161_FNNoImplicitAllSubscription: u32 = 1;
+pub const anon43161_FNNotifyInBackground: u32 = 2;
 
 pub const FNSubscriptionProcPtr = ?*const fn (
     FNMessage,
@@ -7675,14 +9531,13 @@ pub extern "CoreServices" fn FNUnsubscribe(subscription: FNSubscriptionRef) call
 
 pub extern "CoreServices" fn FNGetDirectoryForSubscription(subscription: FNSubscriptionRef, ref: ?*FSRef) callconv(.C) objc.OSStatus;
 
-pub const anon45341 = enum(u32) {
-    AsyncMountInProgress = 1,
-    AsyncMountComplete = 2,
-    AsyncUnmountInProgress = 3,
-    AsyncUnmountComplete = 4,
-    AsyncEjectInProgress = 5,
-    AsyncEjectComplete = 6,
-};
+pub const anon45341 = u32;
+pub const anon45341_AsyncMountInProgress: u32 = 1;
+pub const anon45341_AsyncMountComplete: u32 = 2;
+pub const anon45341_AsyncUnmountInProgress: u32 = 3;
+pub const anon45341_AsyncUnmountComplete: u32 = 4;
+pub const anon45341_AsyncEjectInProgress: u32 = 5;
+pub const anon45341_AsyncEjectComplete: u32 = 6;
 
 pub const FSMountStatus = objc.UInt32;
 
@@ -7692,7 +9547,7 @@ pub const FSUnmountStatus = objc.UInt32;
 
 pub const OpaqueFSVolumeOperation = extern struct {};
 
-pub const FSVolumeOperation = ?*OpaqueFSVolumeOperation;
+pub const FSVolumeOperation = OpaqueFSVolumeOperation;
 
 pub const FSVolumeMountProcPtr = ?*const fn (
     FSVolumeOperation,
@@ -7761,23 +9616,19 @@ pub extern "CoreServices" fn InvokeFSVolumeEjectUPP(
     userUPP: FSVolumeEjectUPP,
 ) callconv(.C) void;
 
-pub const anon47001 = enum(u32) {
-    FSMountServerMarkDoNotDisplay = 1,
-    FSMountServerMountOnMountDir = 4,
-    FSMountServerSuppressConnectionUI = 64,
-};
+pub const anon47001 = u32;
+pub const anon47001_FSMountServerMarkDoNotDisplay: u32 = 1;
+pub const anon47001_FSMountServerMountOnMountDir: u32 = 4;
+pub const anon47001_FSMountServerSuppressConnectionUI: u32 = 64;
 
-pub const anon47281 = enum(u32) {
-    FSMountServerMountWithoutNotification = 2,
-};
+pub const anon47281 = u32;
+pub const anon47281_FSMountServerMountWithoutNotification: u32 = 2;
 
-pub const anon47431 = enum(u32) {
-    FSEjectVolumeForceEject = 1,
-};
+pub const anon47431 = u32;
+pub const anon47431_FSEjectVolumeForceEject: u32 = 1;
 
-pub const anon47611 = enum(u32) {
-    FSUnmountVolumeForceUnmount = 1,
-};
+pub const anon47611 = u32;
+pub const anon47611_FSUnmountVolumeForceUnmount: u32 = 1;
 
 pub extern "CoreServices" fn FSCreateVolumeOperation(volumeOp: ?*FSVolumeOperation) callconv(.C) objc.OSStatus;
 
@@ -7887,7 +9738,7 @@ pub extern "CoreServices" fn FSGetVolumeForDADisk(disk: disk_arbitration.DiskRef
 
 pub const __FSFileOperation = extern struct {};
 
-pub const FSFileOperationRef = ?*__FSFileOperation;
+pub const FSFileOperationRef = __FSFileOperation;
 
 pub const FSFileOperationStage = objc.UInt32;
 
@@ -7917,20 +9768,18 @@ pub const FSPathFileOperationStatusProcPtr = ?*const fn (
     ?*anyopaque,
 ) callconv(.C) void;
 
-pub const anon55751 = enum(u32) {
-    FSFileOperationDefaultOptions = 0,
-    FSFileOperationOverwrite = 1,
-    FSFileOperationSkipSourcePermissionErrors = 2,
-    FSFileOperationDoNotMoveAcrossVolumes = 4,
-    FSFileOperationSkipPreflight = 8,
-};
+pub const anon55751 = u32;
+pub const anon55751_FSFileOperationDefaultOptions: u32 = 0;
+pub const anon55751_FSFileOperationOverwrite: u32 = 1;
+pub const anon55751_FSFileOperationSkipSourcePermissionErrors: u32 = 2;
+pub const anon55751_FSFileOperationDoNotMoveAcrossVolumes: u32 = 4;
+pub const anon55751_FSFileOperationSkipPreflight: u32 = 8;
 
-pub const anon56181 = enum(u32) {
-    FSOperationStageUndefined = 0,
-    FSOperationStagePreflighting = 1,
-    FSOperationStageRunning = 2,
-    FSOperationStageComplete = 3,
-};
+pub const anon56181 = u32;
+pub const anon56181_FSOperationStageUndefined: u32 = 0;
+pub const anon56181_FSOperationStagePreflighting: u32 = 1;
+pub const anon56181_FSOperationStageRunning: u32 = 2;
+pub const anon56181_FSOperationStageComplete: u32 = 3;
 
 pub extern "CoreServices" fn FSCopyObjectSync(
     source: ?*FSRef,
@@ -8094,157 +9943,148 @@ pub extern "CoreServices" fn FSFileSecurityGetMode(fileSec: FSFileSecurityRef, m
 
 pub extern "CoreServices" fn FSFileSecuritySetMode(fileSec: FSFileSecurityRef, mode: objc.UInt16) callconv(.C) objc.OSStatus;
 
-pub const anon70501 = enum(u32) {
-    pleaseCacheBit = 4,
-    pleaseCacheMask = 16,
-    noCacheBit = 5,
-    noCacheMask = 32,
-    rdVerifyBit = 6,
-    rdVerifyMask = 64,
-    rdVerify = 64,
-    forceReadBit = 6,
-    forceReadMask = 64,
-    newLineBit = 7,
-    newLineMask = 128,
-    newLineCharMask = 65280,
-};
+pub const anon70501 = u32;
+pub const anon70501_pleaseCacheBit: u32 = 4;
+pub const anon70501_pleaseCacheMask: u32 = 16;
+pub const anon70501_noCacheBit: u32 = 5;
+pub const anon70501_noCacheMask: u32 = 32;
+pub const anon70501_rdVerifyBit: u32 = 6;
+pub const anon70501_rdVerifyMask: u32 = 64;
+pub const anon70501_rdVerify: u32 = 64;
+pub const anon70501_forceReadBit: u32 = 6;
+pub const anon70501_forceReadMask: u32 = 64;
+pub const anon70501_newLineBit: u32 = 7;
+pub const anon70501_newLineMask: u32 = 128;
+pub const anon70501_newLineCharMask: u32 = 65280;
 
-pub const anon70681 = enum(u32) {
-    OwnerID2Name = 1,
-    GroupID2Name = 2,
-    OwnerName2ID = 3,
-    GroupName2ID = 4,
-    ReturnNextUser = 1,
-    ReturnNextGroup = 2,
-    ReturnNextUG = 3,
-};
+pub const anon70681 = u32;
+pub const anon70681_OwnerID2Name: u32 = 1;
+pub const anon70681_GroupID2Name: u32 = 2;
+pub const anon70681_OwnerName2ID: u32 = 3;
+pub const anon70681_GroupName2ID: u32 = 4;
+pub const anon70681_ReturnNextUser: u32 = 1;
+pub const anon70681_ReturnNextGroup: u32 = 2;
+pub const anon70681_ReturnNextUG: u32 = 3;
 
-pub const anon70791 = enum(u32) {
-    VCBFlagsIdleFlushBit = 3,
-    VCBFlagsIdleFlushMask = 8,
-    VCBFlagsHFSPlusAPIsBit = 4,
-    VCBFlagsHFSPlusAPIsMask = 16,
-    VCBFlagsHardwareGoneBit = 5,
-    VCBFlagsHardwareGoneMask = 32,
-    VCBFlagsVolumeDirtyBit = 15,
-    VCBFlagsVolumeDirtyMask = 32768,
-};
+pub const anon70791 = u32;
+pub const anon70791_VCBFlagsIdleFlushBit: u32 = 3;
+pub const anon70791_VCBFlagsIdleFlushMask: u32 = 8;
+pub const anon70791_VCBFlagsHFSPlusAPIsBit: u32 = 4;
+pub const anon70791_VCBFlagsHFSPlusAPIsMask: u32 = 16;
+pub const anon70791_VCBFlagsHardwareGoneBit: u32 = 5;
+pub const anon70791_VCBFlagsHardwareGoneMask: u32 = 32;
+pub const anon70791_VCBFlagsVolumeDirtyBit: u32 = 15;
+pub const anon70791_VCBFlagsVolumeDirtyMask: u32 = 32768;
 
-pub const anon70911 = enum(u32) {
-    ioVAtrbDefaultVolumeBit = 5,
-    ioVAtrbDefaultVolumeMask = 32,
-    ioVAtrbFilesOpenBit = 6,
-    ioVAtrbFilesOpenMask = 64,
-    ioVAtrbHardwareLockedBit = 7,
-    ioVAtrbHardwareLockedMask = 128,
-    ioVAtrbSoftwareLockedBit = 15,
-    ioVAtrbSoftwareLockedMask = 32768,
-};
+pub const anon70911 = u32;
+pub const anon70911_ioVAtrbDefaultVolumeBit: u32 = 5;
+pub const anon70911_ioVAtrbDefaultVolumeMask: u32 = 32;
+pub const anon70911_ioVAtrbFilesOpenBit: u32 = 6;
+pub const anon70911_ioVAtrbFilesOpenMask: u32 = 64;
+pub const anon70911_ioVAtrbHardwareLockedBit: u32 = 7;
+pub const anon70911_ioVAtrbHardwareLockedMask: u32 = 128;
+pub const anon70911_ioVAtrbSoftwareLockedBit: u32 = 15;
+pub const anon70911_ioVAtrbSoftwareLockedMask: u32 = 32768;
 
-pub const anon71031 = enum(u32) {
-    ioFlAttribLockedBit = 0,
-    ioFlAttribLockedMask = 1,
-    ioFlAttribResOpenBit = 2,
-    ioFlAttribResOpenMask = 4,
-    ioFlAttribDataOpenBit = 3,
-    ioFlAttribDataOpenMask = 8,
-    ioFlAttribDirBit = 4,
-    ioFlAttribDirMask = 16,
-    ioDirFlg = 4,
-    ioDirMask = 16,
-    ioFlAttribCopyProtBit = 6,
-    ioFlAttribCopyProtMask = 64,
-    ioFlAttribFileOpenBit = 7,
-    ioFlAttribFileOpenMask = 128,
-    ioFlAttribInSharedBit = 2,
-    ioFlAttribInSharedMask = 4,
-    ioFlAttribMountedBit = 3,
-    ioFlAttribMountedMask = 8,
-    ioFlAttribSharePointBit = 5,
-    ioFlAttribSharePointMask = 32,
-};
+pub const anon71031 = u32;
+pub const anon71031_ioFlAttribLockedBit: u32 = 0;
+pub const anon71031_ioFlAttribLockedMask: u32 = 1;
+pub const anon71031_ioFlAttribResOpenBit: u32 = 2;
+pub const anon71031_ioFlAttribResOpenMask: u32 = 4;
+pub const anon71031_ioFlAttribDataOpenBit: u32 = 3;
+pub const anon71031_ioFlAttribDataOpenMask: u32 = 8;
+pub const anon71031_ioFlAttribDirBit: u32 = 4;
+pub const anon71031_ioFlAttribDirMask: u32 = 16;
+pub const anon71031_ioDirFlg: u32 = 4;
+pub const anon71031_ioDirMask: u32 = 16;
+pub const anon71031_ioFlAttribCopyProtBit: u32 = 6;
+pub const anon71031_ioFlAttribCopyProtMask: u32 = 64;
+pub const anon71031_ioFlAttribFileOpenBit: u32 = 7;
+pub const anon71031_ioFlAttribFileOpenMask: u32 = 128;
+pub const anon71031_ioFlAttribInSharedBit: u32 = 2;
+pub const anon71031_ioFlAttribInSharedMask: u32 = 4;
+pub const anon71031_ioFlAttribMountedBit: u32 = 3;
+pub const anon71031_ioFlAttribMountedMask: u32 = 8;
+pub const anon71031_ioFlAttribSharePointBit: u32 = 5;
+pub const anon71031_ioFlAttribSharePointMask: u32 = 32;
 
-pub const anon71311 = enum(u32) {
-    ioFCBWriteBit = 8,
-    ioFCBWriteMask = 256,
-    ioFCBResourceBit = 9,
-    ioFCBResourceMask = 512,
-    ioFCBWriteLockedBit = 10,
-    ioFCBWriteLockedMask = 1024,
-    ioFCBLargeFileBit = 11,
-    ioFCBLargeFileMask = 2048,
-    ioFCBSharedWriteBit = 12,
-    ioFCBSharedWriteMask = 4096,
-    ioFCBFileLockedBit = 13,
-    ioFCBFileLockedMask = 8192,
-    ioFCBOwnClumpBit = 14,
-    ioFCBOwnClumpMask = 16384,
-    ioFCBModifiedBit = 15,
-    ioFCBModifiedMask = 32768,
-};
+pub const anon71311 = u32;
+pub const anon71311_ioFCBWriteBit: u32 = 8;
+pub const anon71311_ioFCBWriteMask: u32 = 256;
+pub const anon71311_ioFCBResourceBit: u32 = 9;
+pub const anon71311_ioFCBResourceMask: u32 = 512;
+pub const anon71311_ioFCBWriteLockedBit: u32 = 10;
+pub const anon71311_ioFCBWriteLockedMask: u32 = 1024;
+pub const anon71311_ioFCBLargeFileBit: u32 = 11;
+pub const anon71311_ioFCBLargeFileMask: u32 = 2048;
+pub const anon71311_ioFCBSharedWriteBit: u32 = 12;
+pub const anon71311_ioFCBSharedWriteMask: u32 = 4096;
+pub const anon71311_ioFCBFileLockedBit: u32 = 13;
+pub const anon71311_ioFCBFileLockedMask: u32 = 8192;
+pub const anon71311_ioFCBOwnClumpBit: u32 = 14;
+pub const anon71311_ioFCBOwnClumpMask: u32 = 16384;
+pub const anon71311_ioFCBModifiedBit: u32 = 15;
+pub const anon71311_ioFCBModifiedMask: u32 = 32768;
 
-pub const anon71531 = enum(u32) {
-    ForkInfoFlagsWriteBit = 0,
-    ForkInfoFlagsWriteMask = 1,
-    ForkInfoFlagsResourceBit = 1,
-    ForkInfoFlagsResourceMask = 2,
-    ForkInfoFlagsWriteLockedBit = 2,
-    ForkInfoFlagsWriteLockedMask = 4,
-    ForkInfoFlagsLargeFileBit = 3,
-    ForkInfoFlagsLargeFileMask = 8,
-    ForkInfoFlagsSharedWriteBit = 4,
-    ForkInfoFlagsSharedWriteMask = 16,
-    ForkInfoFlagsFileLockedBit = 5,
-    ForkInfoFlagsFileLockedMask = 32,
-    ForkInfoFlagsOwnClumpBit = 6,
-    ForkInfoFlagsOwnClumpMask = 64,
-    ForkInfoFlagsModifiedBit = 7,
-    ForkInfoFlagsModifiedMask = 128,
-};
+pub const anon71531 = u32;
+pub const anon71531_ForkInfoFlagsWriteBit: u32 = 0;
+pub const anon71531_ForkInfoFlagsWriteMask: u32 = 1;
+pub const anon71531_ForkInfoFlagsResourceBit: u32 = 1;
+pub const anon71531_ForkInfoFlagsResourceMask: u32 = 2;
+pub const anon71531_ForkInfoFlagsWriteLockedBit: u32 = 2;
+pub const anon71531_ForkInfoFlagsWriteLockedMask: u32 = 4;
+pub const anon71531_ForkInfoFlagsLargeFileBit: u32 = 3;
+pub const anon71531_ForkInfoFlagsLargeFileMask: u32 = 8;
+pub const anon71531_ForkInfoFlagsSharedWriteBit: u32 = 4;
+pub const anon71531_ForkInfoFlagsSharedWriteMask: u32 = 16;
+pub const anon71531_ForkInfoFlagsFileLockedBit: u32 = 5;
+pub const anon71531_ForkInfoFlagsFileLockedMask: u32 = 32;
+pub const anon71531_ForkInfoFlagsOwnClumpBit: u32 = 6;
+pub const anon71531_ForkInfoFlagsOwnClumpMask: u32 = 64;
+pub const anon71531_ForkInfoFlagsModifiedBit: u32 = 7;
+pub const anon71531_ForkInfoFlagsModifiedMask: u32 = 128;
 
-pub const anon71741 = enum(u32) {
-    ioACUserNoSeeFolderBit = 0,
-    ioACUserNoSeeFolderMask = 1,
-    ioACUserNoSeeFilesBit = 1,
-    ioACUserNoSeeFilesMask = 2,
-    ioACUserNoMakeChangesBit = 2,
-    ioACUserNoMakeChangesMask = 4,
-    ioACUserNotOwnerBit = 7,
-    ioACUserNotOwnerMask = 128,
-};
+pub const anon71741 = u32;
+pub const anon71741_ioACUserNoSeeFolderBit: u32 = 0;
+pub const anon71741_ioACUserNoSeeFolderMask: u32 = 1;
+pub const anon71741_ioACUserNoSeeFilesBit: u32 = 1;
+pub const anon71741_ioACUserNoSeeFilesMask: u32 = 2;
+pub const anon71741_ioACUserNoMakeChangesBit: u32 = 2;
+pub const anon71741_ioACUserNoMakeChangesMask: u32 = 4;
+pub const anon71741_ioACUserNotOwnerBit: u32 = 7;
+pub const anon71741_ioACUserNotOwnerMask: u32 = 128;
 
-pub const anon71861 = enum(i32) {
-    ioACAccessOwnerBit = 31,
-    ioACAccessOwnerMask = -2147483648,
-    ioACAccessBlankAccessBit = 28,
-    ioACAccessBlankAccessMask = 268435456,
-    ioACAccessUserWriteBit = 26,
-    ioACAccessUserWriteMask = 67108864,
-    ioACAccessUserReadBit = 25,
-    ioACAccessUserReadMask = 33554432,
-    ioACAccessUserSearchBit = 24,
-    ioACAccessUserSearchMask = 16777216,
-    ioACAccessEveryoneWriteBit = 18,
-    ioACAccessEveryoneWriteMask = 262144,
-    ioACAccessEveryoneReadBit = 17,
-    ioACAccessEveryoneReadMask = 131072,
-    ioACAccessEveryoneSearchBit = 16,
-    ioACAccessEveryoneSearchMask = 65536,
-    ioACAccessGroupWriteBit = 10,
-    ioACAccessGroupWriteMask = 1024,
-    ioACAccessGroupReadBit = 9,
-    ioACAccessGroupReadMask = 512,
-    ioACAccessGroupSearchBit = 8,
-    ioACAccessGroupSearchMask = 256,
-    ioACAccessOwnerWriteBit = 2,
-    ioACAccessOwnerWriteMask = 4,
-    ioACAccessOwnerReadBit = 1,
-    ioACAccessOwnerReadMask = 2,
-    ioACAccessOwnerSearchBit = 0,
-    ioACAccessOwnerSearchMask = 1,
-    fullPrivileges = 458759,
-    ownerPrivileges = 7,
-};
+pub const anon71861 = i32;
+pub const anon71861_ioACAccessOwnerBit: i32 = 31;
+pub const anon71861_ioACAccessOwnerMask: i32 = -2147483648;
+pub const anon71861_ioACAccessBlankAccessBit: i32 = 28;
+pub const anon71861_ioACAccessBlankAccessMask: i32 = 268435456;
+pub const anon71861_ioACAccessUserWriteBit: i32 = 26;
+pub const anon71861_ioACAccessUserWriteMask: i32 = 67108864;
+pub const anon71861_ioACAccessUserReadBit: i32 = 25;
+pub const anon71861_ioACAccessUserReadMask: i32 = 33554432;
+pub const anon71861_ioACAccessUserSearchBit: i32 = 24;
+pub const anon71861_ioACAccessUserSearchMask: i32 = 16777216;
+pub const anon71861_ioACAccessEveryoneWriteBit: i32 = 18;
+pub const anon71861_ioACAccessEveryoneWriteMask: i32 = 262144;
+pub const anon71861_ioACAccessEveryoneReadBit: i32 = 17;
+pub const anon71861_ioACAccessEveryoneReadMask: i32 = 131072;
+pub const anon71861_ioACAccessEveryoneSearchBit: i32 = 16;
+pub const anon71861_ioACAccessEveryoneSearchMask: i32 = 65536;
+pub const anon71861_ioACAccessGroupWriteBit: i32 = 10;
+pub const anon71861_ioACAccessGroupWriteMask: i32 = 1024;
+pub const anon71861_ioACAccessGroupReadBit: i32 = 9;
+pub const anon71861_ioACAccessGroupReadMask: i32 = 512;
+pub const anon71861_ioACAccessGroupSearchBit: i32 = 8;
+pub const anon71861_ioACAccessGroupSearchMask: i32 = 256;
+pub const anon71861_ioACAccessOwnerWriteBit: i32 = 2;
+pub const anon71861_ioACAccessOwnerWriteMask: i32 = 4;
+pub const anon71861_ioACAccessOwnerReadBit: i32 = 1;
+pub const anon71861_ioACAccessOwnerReadMask: i32 = 2;
+pub const anon71861_ioACAccessOwnerSearchBit: i32 = 0;
+pub const anon71861_ioACAccessOwnerSearchMask: i32 = 1;
+pub const anon71861_fullPrivileges: i32 = 458759;
+pub const anon71861_ownerPrivileges: i32 = 7;
 
 pub extern "CoreServices" fn FSGetVolumeParms(volume: FSVolumeRefNum, buffer: ?*GetVolParmsInfoBuffer, bufferSize: objc.ByteCount) callconv(.C) objc.OSStatus;
 
@@ -8287,17 +10127,32 @@ pub const ResourceIndex = objc.SInt16;
 
 pub const ResFileRefNum = FSIORefNum;
 
-pub const anon721 = enum(u32) {
-    CSIdentityQueryGenerateUpdateEvents = 1,
-    CSIdentityQueryIncludeHiddenIdentities = 2,
-};
+pub const anon721 = u32;
+pub const anon721_mapReadOnly: u32 = 128;
+pub const anon721_mapCompact: u32 = 64;
+pub const anon721_mapChanged: u32 = 32;
+pub const anon721_LaunchToGetTerminology: u32 = 32768;
+pub const anon721_DontFindAppBySignature: u32 = 16384;
+pub const anon721_AlwaysSendSubject: u32 = 8192;
+pub const anon721_CSIdentityQueryGenerateUpdateEvents: u32 = 1;
+pub const anon721_CSIdentityQueryIncludeHiddenIdentities: u32 = 2;
 
-pub const anon791 = enum(u32) {
-    noCalls = 1,
-    noRequest = 2,
-    slpQType = 16,
-    sleepQType = 16,
-};
+pub const anon791 = i32;
+pub const anon791_ResFileNotOpened: i32 = -1;
+pub const anon791_SystemResFile: i32 = 0;
+pub const anon791_NewSuspend: i32 = 1;
+pub const anon791_UsePremadeThread: i32 = 2;
+pub const anon791_CreateIfNeeded: i32 = 4;
+pub const anon791_FPUNotNeeded: i32 = 8;
+pub const anon791_ExactMatchThread: i32 = 16;
+pub const anon791_ReadExtensionTermsMask: i32 = 32768;
+pub const anon791_eyReplyPortAttr: i32 = 1919250544;
+pub const anon791_CSSM_MDS_BASE_ERROR: i32 = -2147414016;
+pub const anon791_CSSM_MDS_PRIVATE_ERROR: i32 = -2147412992;
+pub const anon791_noCalls: i32 = 1;
+pub const anon791_noRequest: i32 = 2;
+pub const anon791_slpQType: i32 = 16;
+pub const anon791_sleepQType: i32 = 16;
 
 pub const ResErrProcPtr = ?*const fn (objc.OSErr) callconv(.C) void;
 
@@ -8309,7 +10164,7 @@ pub extern "CoreServices" fn DisposeResErrUPP(userUPP: ResErrUPP) callconv(.C) v
 
 pub extern "CoreServices" fn InvokeResErrUPP(thErr: objc.OSErr, userUPP: ResErrUPP) callconv(.C) void;
 
-pub const ResourceEndianFilterPtr = ?*const fn (objc.Handle, objc.Boolean) callconv(.C) objc.OSErr;
+pub const ResourceEndianFilterPtr = objc.OSErr;
 
 pub extern "CoreServices" fn CloseResFile(refNum: ResFileRefNum) callconv(.C) void;
 
@@ -8415,12 +10270,11 @@ pub extern "CoreServices" fn GetNextFOND(fondHandle: objc.Handle) callconv(.C) o
 
 pub const RsrcChainLocation = objc.SInt16;
 
-pub const anon8151 = enum(u32) {
-    RsrcChainBelowSystemMap = 0,
-    RsrcChainBelowApplicationMap = 1,
-    RsrcChainAboveApplicationMap = 2,
-    RsrcChainAboveAllMaps = 4,
-};
+pub const anon8151 = u32;
+pub const anon8151_RsrcChainBelowSystemMap: u32 = 0;
+pub const anon8151_RsrcChainBelowApplicationMap: u32 = 1;
+pub const anon8151_RsrcChainAboveApplicationMap: u32 = 2;
+pub const anon8151_RsrcChainAboveAllMaps: u32 = 4;
 
 pub extern "CoreServices" fn InsertResourceFile(refNum: ResFileRefNum, where: RsrcChainLocation) callconv(.C) objc.OSErr;
 
@@ -8473,46 +10327,260 @@ pub extern "CoreServices" fn FSOpenResourceFile(
     refNum: ?*ResFileRefNum,
 ) callconv(.C) objc.OSErr;
 
-pub const anon531 = enum(u32) {
-    AnyComponentType = 0,
-    AnyComponentSubType = 0,
-    AnyComponentManufacturer = 0,
-    AnyComponentFlagsMask = 0,
-};
+pub const anon471 = u32;
+pub const anon471_AppleManufacturer: u32 = 1634758764;
+pub const anon471_ComponentResourceType: u32 = 1953001063;
+pub const anon471_ComponentAliasResourceType: u32 = 1952999265;
+pub const anon471_SSL_NULL_WITH_NULL_NULL: u32 = 0;
+pub const anon471_SSL_RSA_WITH_NULL_MD5: u32 = 1;
+pub const anon471_SSL_RSA_WITH_NULL_SHA: u32 = 2;
+pub const anon471_SSL_RSA_EXPORT_WITH_RC4_40_MD5: u32 = 3;
+pub const anon471_SSL_RSA_WITH_RC4_128_MD5: u32 = 4;
+pub const anon471_SSL_RSA_WITH_RC4_128_SHA: u32 = 5;
+pub const anon471_SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5: u32 = 6;
+pub const anon471_SSL_RSA_WITH_IDEA_CBC_SHA: u32 = 7;
+pub const anon471_SSL_RSA_EXPORT_WITH_DES40_CBC_SHA: u32 = 8;
+pub const anon471_SSL_RSA_WITH_DES_CBC_SHA: u32 = 9;
+pub const anon471_SSL_RSA_WITH_3DES_EDE_CBC_SHA: u32 = 10;
+pub const anon471_SSL_DH_DSS_EXPORT_WITH_DES40_CBC_SHA: u32 = 11;
+pub const anon471_SSL_DH_DSS_WITH_DES_CBC_SHA: u32 = 12;
+pub const anon471_SSL_DH_DSS_WITH_3DES_EDE_CBC_SHA: u32 = 13;
+pub const anon471_SSL_DH_RSA_EXPORT_WITH_DES40_CBC_SHA: u32 = 14;
+pub const anon471_SSL_DH_RSA_WITH_DES_CBC_SHA: u32 = 15;
+pub const anon471_SSL_DH_RSA_WITH_3DES_EDE_CBC_SHA: u32 = 16;
+pub const anon471_SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA: u32 = 17;
+pub const anon471_SSL_DHE_DSS_WITH_DES_CBC_SHA: u32 = 18;
+pub const anon471_SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA: u32 = 19;
+pub const anon471_SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA: u32 = 20;
+pub const anon471_SSL_DHE_RSA_WITH_DES_CBC_SHA: u32 = 21;
+pub const anon471_SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA: u32 = 22;
+pub const anon471_SSL_DH_anon_EXPORT_WITH_RC4_40_MD5: u32 = 23;
+pub const anon471_SSL_DH_anon_WITH_RC4_128_MD5: u32 = 24;
+pub const anon471_SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA: u32 = 25;
+pub const anon471_SSL_DH_anon_WITH_DES_CBC_SHA: u32 = 26;
+pub const anon471_SSL_DH_anon_WITH_3DES_EDE_CBC_SHA: u32 = 27;
+pub const anon471_SSL_FORTEZZA_DMS_WITH_NULL_SHA: u32 = 28;
+pub const anon471_SSL_FORTEZZA_DMS_WITH_FORTEZZA_CBC_SHA: u32 = 29;
+pub const anon471_TLS_RSA_WITH_AES_128_CBC_SHA: u32 = 47;
+pub const anon471_TLS_DH_DSS_WITH_AES_128_CBC_SHA: u32 = 48;
+pub const anon471_TLS_DH_RSA_WITH_AES_128_CBC_SHA: u32 = 49;
+pub const anon471_TLS_DHE_DSS_WITH_AES_128_CBC_SHA: u32 = 50;
+pub const anon471_TLS_DHE_RSA_WITH_AES_128_CBC_SHA: u32 = 51;
+pub const anon471_TLS_DH_anon_WITH_AES_128_CBC_SHA: u32 = 52;
+pub const anon471_TLS_RSA_WITH_AES_256_CBC_SHA: u32 = 53;
+pub const anon471_TLS_DH_DSS_WITH_AES_256_CBC_SHA: u32 = 54;
+pub const anon471_TLS_DH_RSA_WITH_AES_256_CBC_SHA: u32 = 55;
+pub const anon471_TLS_DHE_DSS_WITH_AES_256_CBC_SHA: u32 = 56;
+pub const anon471_TLS_DHE_RSA_WITH_AES_256_CBC_SHA: u32 = 57;
+pub const anon471_TLS_DH_anon_WITH_AES_256_CBC_SHA: u32 = 58;
+pub const anon471_TLS_ECDH_ECDSA_WITH_NULL_SHA: u32 = -16383;
+pub const anon471_TLS_ECDH_ECDSA_WITH_RC4_128_SHA: u32 = -16382;
+pub const anon471_TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA: u32 = -16381;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA: u32 = -16380;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA: u32 = -16379;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_NULL_SHA: u32 = -16378;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_RC4_128_SHA: u32 = -16377;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA: u32 = -16376;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA: u32 = -16375;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA: u32 = -16374;
+pub const anon471_TLS_ECDH_RSA_WITH_NULL_SHA: u32 = -16373;
+pub const anon471_TLS_ECDH_RSA_WITH_RC4_128_SHA: u32 = -16372;
+pub const anon471_TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA: u32 = -16371;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_128_CBC_SHA: u32 = -16370;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_256_CBC_SHA: u32 = -16369;
+pub const anon471_TLS_ECDHE_RSA_WITH_NULL_SHA: u32 = -16368;
+pub const anon471_TLS_ECDHE_RSA_WITH_RC4_128_SHA: u32 = -16367;
+pub const anon471_TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA: u32 = -16366;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA: u32 = -16365;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA: u32 = -16364;
+pub const anon471_TLS_ECDH_anon_WITH_NULL_SHA: u32 = -16363;
+pub const anon471_TLS_ECDH_anon_WITH_RC4_128_SHA: u32 = -16362;
+pub const anon471_TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA: u32 = -16361;
+pub const anon471_TLS_ECDH_anon_WITH_AES_128_CBC_SHA: u32 = -16360;
+pub const anon471_TLS_ECDH_anon_WITH_AES_256_CBC_SHA: u32 = -16359;
+pub const anon471_TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA: u32 = -16331;
+pub const anon471_TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA: u32 = -16330;
+pub const anon471_TLS_PSK_WITH_CHACHA20_POLY1305_SHA256: u32 = -13141;
+pub const anon471_TLS_NULL_WITH_NULL_NULL: u32 = 0;
+pub const anon471_TLS_RSA_WITH_NULL_MD5: u32 = 1;
+pub const anon471_TLS_RSA_WITH_NULL_SHA: u32 = 2;
+pub const anon471_TLS_RSA_WITH_RC4_128_MD5: u32 = 4;
+pub const anon471_TLS_RSA_WITH_RC4_128_SHA: u32 = 5;
+pub const anon471_TLS_RSA_WITH_3DES_EDE_CBC_SHA: u32 = 10;
+pub const anon471_TLS_RSA_WITH_NULL_SHA256: u32 = 59;
+pub const anon471_TLS_RSA_WITH_AES_128_CBC_SHA256: u32 = 60;
+pub const anon471_TLS_RSA_WITH_AES_256_CBC_SHA256: u32 = 61;
+pub const anon471_TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA: u32 = 13;
+pub const anon471_TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA: u32 = 16;
+pub const anon471_TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA: u32 = 19;
+pub const anon471_TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA: u32 = 22;
+pub const anon471_TLS_DH_DSS_WITH_AES_128_CBC_SHA256: u32 = 62;
+pub const anon471_TLS_DH_RSA_WITH_AES_128_CBC_SHA256: u32 = 63;
+pub const anon471_TLS_DHE_DSS_WITH_AES_128_CBC_SHA256: u32 = 64;
+pub const anon471_TLS_DHE_RSA_WITH_AES_128_CBC_SHA256: u32 = 103;
+pub const anon471_TLS_DH_DSS_WITH_AES_256_CBC_SHA256: u32 = 104;
+pub const anon471_TLS_DH_RSA_WITH_AES_256_CBC_SHA256: u32 = 105;
+pub const anon471_TLS_DHE_DSS_WITH_AES_256_CBC_SHA256: u32 = 106;
+pub const anon471_TLS_DHE_RSA_WITH_AES_256_CBC_SHA256: u32 = 107;
+pub const anon471_TLS_DH_anon_WITH_RC4_128_MD5: u32 = 24;
+pub const anon471_TLS_DH_anon_WITH_3DES_EDE_CBC_SHA: u32 = 27;
+pub const anon471_TLS_DH_anon_WITH_AES_128_CBC_SHA256: u32 = 108;
+pub const anon471_TLS_DH_anon_WITH_AES_256_CBC_SHA256: u32 = 109;
+pub const anon471_TLS_PSK_WITH_RC4_128_SHA: u32 = 138;
+pub const anon471_TLS_PSK_WITH_3DES_EDE_CBC_SHA: u32 = 139;
+pub const anon471_TLS_PSK_WITH_AES_128_CBC_SHA: u32 = 140;
+pub const anon471_TLS_PSK_WITH_AES_256_CBC_SHA: u32 = 141;
+pub const anon471_TLS_DHE_PSK_WITH_RC4_128_SHA: u32 = 142;
+pub const anon471_TLS_DHE_PSK_WITH_3DES_EDE_CBC_SHA: u32 = 143;
+pub const anon471_TLS_DHE_PSK_WITH_AES_128_CBC_SHA: u32 = 144;
+pub const anon471_TLS_DHE_PSK_WITH_AES_256_CBC_SHA: u32 = 145;
+pub const anon471_TLS_RSA_PSK_WITH_RC4_128_SHA: u32 = 146;
+pub const anon471_TLS_RSA_PSK_WITH_3DES_EDE_CBC_SHA: u32 = 147;
+pub const anon471_TLS_RSA_PSK_WITH_AES_128_CBC_SHA: u32 = 148;
+pub const anon471_TLS_RSA_PSK_WITH_AES_256_CBC_SHA: u32 = 149;
+pub const anon471_TLS_PSK_WITH_NULL_SHA: u32 = 44;
+pub const anon471_TLS_DHE_PSK_WITH_NULL_SHA: u32 = 45;
+pub const anon471_TLS_RSA_PSK_WITH_NULL_SHA: u32 = 46;
+pub const anon471_TLS_RSA_WITH_AES_128_GCM_SHA256: u32 = 156;
+pub const anon471_TLS_RSA_WITH_AES_256_GCM_SHA384: u32 = 157;
+pub const anon471_TLS_DHE_RSA_WITH_AES_128_GCM_SHA256: u32 = 158;
+pub const anon471_TLS_DHE_RSA_WITH_AES_256_GCM_SHA384: u32 = 159;
+pub const anon471_TLS_DH_RSA_WITH_AES_128_GCM_SHA256: u32 = 160;
+pub const anon471_TLS_DH_RSA_WITH_AES_256_GCM_SHA384: u32 = 161;
+pub const anon471_TLS_DHE_DSS_WITH_AES_128_GCM_SHA256: u32 = 162;
+pub const anon471_TLS_DHE_DSS_WITH_AES_256_GCM_SHA384: u32 = 163;
+pub const anon471_TLS_DH_DSS_WITH_AES_128_GCM_SHA256: u32 = 164;
+pub const anon471_TLS_DH_DSS_WITH_AES_256_GCM_SHA384: u32 = 165;
+pub const anon471_TLS_DH_anon_WITH_AES_128_GCM_SHA256: u32 = 166;
+pub const anon471_TLS_DH_anon_WITH_AES_256_GCM_SHA384: u32 = 167;
+pub const anon471_TLS_PSK_WITH_AES_128_GCM_SHA256: u32 = 168;
+pub const anon471_TLS_PSK_WITH_AES_256_GCM_SHA384: u32 = 169;
+pub const anon471_TLS_DHE_PSK_WITH_AES_128_GCM_SHA256: u32 = 170;
+pub const anon471_TLS_DHE_PSK_WITH_AES_256_GCM_SHA384: u32 = 171;
+pub const anon471_TLS_RSA_PSK_WITH_AES_128_GCM_SHA256: u32 = 172;
+pub const anon471_TLS_RSA_PSK_WITH_AES_256_GCM_SHA384: u32 = 173;
+pub const anon471_TLS_PSK_WITH_AES_128_CBC_SHA256: u32 = 174;
+pub const anon471_TLS_PSK_WITH_AES_256_CBC_SHA384: u32 = 175;
+pub const anon471_TLS_PSK_WITH_NULL_SHA256: u32 = 176;
+pub const anon471_TLS_PSK_WITH_NULL_SHA384: u32 = 177;
+pub const anon471_TLS_DHE_PSK_WITH_AES_128_CBC_SHA256: u32 = 178;
+pub const anon471_TLS_DHE_PSK_WITH_AES_256_CBC_SHA384: u32 = 179;
+pub const anon471_TLS_DHE_PSK_WITH_NULL_SHA256: u32 = 180;
+pub const anon471_TLS_DHE_PSK_WITH_NULL_SHA384: u32 = 181;
+pub const anon471_TLS_RSA_PSK_WITH_AES_128_CBC_SHA256: u32 = 182;
+pub const anon471_TLS_RSA_PSK_WITH_AES_256_CBC_SHA384: u32 = 183;
+pub const anon471_TLS_RSA_PSK_WITH_NULL_SHA256: u32 = 184;
+pub const anon471_TLS_RSA_PSK_WITH_NULL_SHA384: u32 = 185;
+pub const anon471_TLS_AES_128_GCM_SHA256: u32 = 4865;
+pub const anon471_TLS_AES_256_GCM_SHA384: u32 = 4866;
+pub const anon471_TLS_CHACHA20_POLY1305_SHA256: u32 = 4867;
+pub const anon471_TLS_AES_128_CCM_SHA256: u32 = 4868;
+pub const anon471_TLS_AES_128_CCM_8_SHA256: u32 = 4869;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256: u32 = -16349;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384: u32 = -16348;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256: u32 = -16347;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384: u32 = -16346;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256: u32 = -16345;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384: u32 = -16344;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256: u32 = -16343;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384: u32 = -16342;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256: u32 = -16341;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384: u32 = -16340;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256: u32 = -16339;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384: u32 = -16338;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256: u32 = -16337;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384: u32 = -16336;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256: u32 = -16335;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384: u32 = -16334;
+pub const anon471_TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256: u32 = -13144;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256: u32 = -13143;
+pub const anon471_TLS_EMPTY_RENEGOTIATION_INFO_SCSV: u32 = 255;
+pub const anon471_SSL_RSA_WITH_RC2_CBC_MD5: u32 = -128;
+pub const anon471_SSL_RSA_WITH_IDEA_CBC_MD5: u32 = -127;
+pub const anon471_SSL_RSA_WITH_DES_CBC_MD5: u32 = -126;
+pub const anon471_SSL_RSA_WITH_3DES_EDE_CBC_MD5: u32 = -125;
+pub const anon471_SSL_NO_SUCH_CIPHERSUITE: u32 = -1;
+pub const anon471_CSSM_CONTEXT_EVENT_CREATE: u32 = 1;
+pub const anon471_CSSM_CONTEXT_EVENT_DELETE: u32 = 2;
+pub const anon471_CSSM_CONTEXT_EVENT_UPDATE: u32 = 3;
 
-pub const anon661 = enum(i32) {
-    DesktopIconResource = -3992,
-    OpenFolderIconResource = -3997,
-    GenericHardDiskIconResource = -3995,
-    GenericFileServerIconResource = -3972,
-    GenericSuitcaseIconResource = -3970,
-    GenericMoverObjectIconResource = -3969,
-};
+pub const anon531 = u32;
+pub const anon531_AnyComponentType: u32 = 0;
+pub const anon531_AnyComponentSubType: u32 = 0;
+pub const anon531_AnyComponentManufacturer: u32 = 0;
+pub const anon531_AnyComponentFlagsMask: u32 = 0;
 
-pub const anon801 = enum(u32) {
-    IdleKCEventMask = 1,
-    LockKCEventMask = 2,
-    UnlockKCEventMask = 4,
-    AddKCEventMask = 8,
-    DeleteKCEventMask = 16,
-    UpdateKCEventMask = 32,
-    PasswordChangedKCEventMask = 64,
-    SystemEventKCEventMask = 256,
-    DefaultChangedKCEventMask = 512,
-    DataAccessKCEventMask = 1024,
-    EveryKCEventMask = 65535,
-};
+pub const anon661 = i32;
+pub const anon661_ComponentOpenSelect: i32 = -1;
+pub const anon661_ComponentCloseSelect: i32 = -2;
+pub const anon661_ComponentCanDoSelect: i32 = -3;
+pub const anon661_ComponentVersionSelect: i32 = -4;
+pub const anon661_ComponentRegisterSelect: i32 = -5;
+pub const anon661_ComponentTargetSelect: i32 = -6;
+pub const anon661_ComponentUnregisterSelect: i32 = -7;
+pub const anon661_ComponentGetMPWorkFunctionSelect: i32 = -8;
+pub const anon661_ComponentExecuteWiredActionSelect: i32 = -9;
+pub const anon661_ComponentGetPublicResourceSelect: i32 = -10;
+pub const anon661_UnicodeUseFallbacksBit: i32 = 0;
+pub const anon661_UnicodeKeepInfoBit: i32 = 1;
+pub const anon661_UnicodeDirectionalityBits: i32 = 2;
+pub const anon661_UnicodeVerticalFormBit: i32 = 4;
+pub const anon661_UnicodeLooseMappingsBit: i32 = 5;
+pub const anon661_UnicodeStringUnterminatedBit: i32 = 6;
+pub const anon661_UnicodeTextRunBit: i32 = 7;
+pub const anon661_UnicodeKeepSameEncodingBit: i32 = 8;
+pub const anon661_UnicodeForceASCIIRangeBit: i32 = 9;
+pub const anon661_UnicodeNoHalfwidthCharsBit: i32 = 10;
+pub const anon661_UnicodeTextRunHeuristicsBit: i32 = 11;
+pub const anon661_UnicodeMapLineFeedToReturnBit: i32 = 12;
+pub const anon661_UnicodeUseExternalEncodingFormBit: i32 = 13;
+pub const anon661_DesktopIconResource: i32 = -3992;
+pub const anon661_OpenFolderIconResource: i32 = -3997;
+pub const anon661_GenericHardDiskIconResource: i32 = -3995;
+pub const anon661_GenericFileServerIconResource: i32 = -3972;
+pub const anon661_GenericSuitcaseIconResource: i32 = -3970;
+pub const anon661_GenericMoverObjectIconResource: i32 = -3969;
 
-pub const anon911 = enum(u32) {
-    SKSearchOptionDefault = 0,
-    SKSearchOptionNoRelevanceScores = 1,
-    SKSearchOptionSpaceMeansOR = 2,
-    SKSearchOptionFindSimilar = 4,
-};
+pub const anon801 = u32;
+pub const anon801_componentDoAutoVersion: u32 = 1;
+pub const anon801_componentWantsUnregister: u32 = 2;
+pub const anon801_componentAutoVersionIncludeFlags: u32 = 4;
+pub const anon801_componentHasMultiplePlatforms: u32 = 8;
+pub const anon801_componentLoadResident: u32 = 16;
+pub const anon801_UCKeyOutputStateIndexMask: u32 = 16384;
+pub const anon801_UCKeyOutputSequenceIndexMask: u32 = 32768;
+pub const anon801_UCKeyOutputTestForIndexMask: u32 = 49152;
+pub const anon801_UCKeyOutputGetIndexMask: u32 = 16383;
+pub const anon801_IdleKCEventMask: u32 = 1;
+pub const anon801_LockKCEventMask: u32 = 2;
+pub const anon801_UnlockKCEventMask: u32 = 4;
+pub const anon801_AddKCEventMask: u32 = 8;
+pub const anon801_DeleteKCEventMask: u32 = 16;
+pub const anon801_UpdateKCEventMask: u32 = 32;
+pub const anon801_PasswordChangedKCEventMask: u32 = 64;
+pub const anon801_SystemEventKCEventMask: u32 = 256;
+pub const anon801_DefaultChangedKCEventMask: u32 = 512;
+pub const anon801_DataAccessKCEventMask: u32 = 1024;
+pub const anon801_EveryKCEventMask: u32 = 65535;
 
-pub const anon1011 = enum(i32) {
-    TEC_MIBEnumDontCare = -1,
-};
+pub const anon911 = u32;
+pub const anon911_defaultComponentIdentical: u32 = 0;
+pub const anon911_defaultComponentAnyFlags: u32 = 1;
+pub const anon911_defaultComponentAnyManufacturer: u32 = 2;
+pub const anon911_defaultComponentAnySubType: u32 = 4;
+pub const anon911_defaultComponentAnyFlagsAnyManufacturer: u32 = 3;
+pub const anon911_defaultComponentAnyFlagsAnyManufacturerAnySubType: u32 = 7;
+pub const anon911_SKSearchOptionDefault: u32 = 0;
+pub const anon911_SKSearchOptionNoRelevanceScores: u32 = 1;
+pub const anon911_SKSearchOptionSpaceMeansOR: u32 = 2;
+pub const anon911_SKSearchOptionFindSimilar: u32 = 4;
+
+pub const anon1011 = u32;
+pub const anon1011_registerComponentGlobal: u32 = 1;
+pub const anon1011_registerComponentNoDuplicates: u32 = 2;
+pub const anon1011_registerComponentAfterExisting: u32 = 4;
+pub const anon1011_registerComponentAliasesOnly: u32 = 8;
+pub const anon1011_TEC_MIBEnumDontCare: u32 = -1;
 
 pub const ComponentDescription = extern struct {
     componentType: objc.OSType,
@@ -8535,9 +10603,9 @@ pub const ComponentResource = extern struct {
     componentIcon: ResourceSpec,
 };
 
-pub const ComponentResourcePtr = ?*ComponentResource;
+pub const ComponentResourcePtr = ComponentResource;
 
-pub const ComponentResourceHandle = ?*ComponentResourcePtr;
+pub const ComponentResourceHandle = ComponentResourcePtr;
 
 pub const ComponentPlatformInfo = extern struct {
     componentFlags: objc.SInt32,
@@ -8569,9 +10637,9 @@ pub const ExtComponentResource = extern struct {
     platformArray: [1]ComponentPlatformInfo,
 };
 
-pub const ExtComponentResourcePtr = ?*ExtComponentResource;
+pub const ExtComponentResourcePtr = ExtComponentResource;
 
-pub const ExtComponentResourceHandle = ?*ExtComponentResourcePtr;
+pub const ExtComponentResourceHandle = ExtComponentResourcePtr;
 
 pub const ComponentAliasResource = extern struct {
     cr: ComponentResource,
@@ -8590,39 +10658,114 @@ pub const ComponentRecord = extern struct {
     data: [1]i64,
 };
 
-pub const Component = ?*ComponentRecord;
+pub const Component = ComponentRecord;
 
 pub const ComponentInstanceRecord = extern struct {
     data: [1]i64,
 };
 
-pub const ComponentInstance = ?*ComponentInstanceRecord;
+pub const ComponentInstance = ComponentInstanceRecord;
 
 pub const RegisteredComponentRecord = extern struct {
     data: [1]i64,
 };
 
-pub const RegisteredComponentRecordPtr = ?*RegisteredComponentRecord;
+pub const RegisteredComponentRecordPtr = RegisteredComponentRecord;
 
 pub const RegisteredComponentInstanceRecord = extern struct {
     data: [1]i64,
 };
 
-pub const RegisteredComponentInstanceRecordPtr = ?*RegisteredComponentInstanceRecord;
+pub const RegisteredComponentInstanceRecordPtr = RegisteredComponentInstanceRecord;
 
 pub const ComponentResult = objc.SInt32;
 
-pub const anon2391 = enum(u32) {
-    cmpAliasNoFlags = 0,
-    cmpAliasOnlyThisFile = 1,
-};
+pub const anon2041 = u32;
+pub const anon2041_platform68k: u32 = 1;
+pub const anon2041_platformPowerPC: u32 = 2;
+pub const anon2041_platformInterpreted: u32 = 3;
+pub const anon2041_platformWin32: u32 = 4;
+pub const anon2041_platformPowerPCNativeEntryPoint: u32 = 5;
+pub const anon2041_platformIA32NativeEntryPoint: u32 = 6;
+pub const anon2041_platformPowerPC64NativeEntryPoint: u32 = 7;
+pub const anon2041_platformX86_64NativeEntryPoint: u32 = 8;
+pub const anon2041_platformArm64NativeEntryPoint: u32 = 9;
+pub const anon2041_CSSM_NET_PROTO_NONE: u32 = 0;
+pub const anon2041_CSSM_NET_PROTO_CUSTOM: u32 = 1;
+pub const anon2041_CSSM_NET_PROTO_UNSPECIFIED: u32 = 2;
+pub const anon2041_CSSM_NET_PROTO_LDAP: u32 = 3;
+pub const anon2041_CSSM_NET_PROTO_LDAPS: u32 = 4;
+pub const anon2041_CSSM_NET_PROTO_LDAPNS: u32 = 5;
+pub const anon2041_CSSM_NET_PROTO_X500DAP: u32 = 6;
+pub const anon2041_CSSM_NET_PROTO_FTP: u32 = 7;
+pub const anon2041_CSSM_NET_PROTO_FTPS: u32 = 8;
+pub const anon2041_CSSM_NET_PROTO_OCSP: u32 = 9;
+pub const anon2041_CSSM_NET_PROTO_CMP: u32 = 10;
+pub const anon2041_CSSM_NET_PROTO_CMPS: u32 = 11;
+
+pub const anon2161 = u32;
+pub const anon2161_platformIRIXmips: u32 = 1000;
+pub const anon2161_platformSunOSsparc: u32 = 1100;
+pub const anon2161_platformSunOSintel: u32 = 1101;
+pub const anon2161_platformLinuxppc: u32 = 1200;
+pub const anon2161_platformLinuxintel: u32 = 1201;
+pub const anon2161_platformAIXppc: u32 = 1300;
+pub const anon2161_platformNeXTIntel: u32 = 1400;
+pub const anon2161_platformNeXTppc: u32 = 1401;
+pub const anon2161_platformNeXTsparc: u32 = 1402;
+pub const anon2161_platformNeXT68k: u32 = 1403;
+pub const anon2161_platformMacOSx86: u32 = 1500;
+pub const anon2161_CSSMERR_CSP_INTERNAL_ERROR: u32 = -2147416063;
+pub const anon2161_CSSMERR_CSP_MEMORY_ERROR: u32 = -2147416062;
+pub const anon2161_CSSMERR_CSP_MDS_ERROR: u32 = -2147416061;
+pub const anon2161_CSSMERR_CSP_INVALID_POINTER: u32 = -2147416060;
+pub const anon2161_CSSMERR_CSP_INVALID_INPUT_POINTER: u32 = -2147416059;
+pub const anon2161_CSSMERR_CSP_INVALID_OUTPUT_POINTER: u32 = -2147416058;
+pub const anon2161_CSSMERR_CSP_FUNCTION_NOT_IMPLEMENTED: u32 = -2147416057;
+pub const anon2161_CSSMERR_CSP_SELF_CHECK_FAILED: u32 = -2147416056;
+pub const anon2161_CSSMERR_CSP_OS_ACCESS_DENIED: u32 = -2147416055;
+pub const anon2161_CSSMERR_CSP_FUNCTION_FAILED: u32 = -2147416054;
+
+pub const anon2301 = u32;
+pub const anon2301_mpWorkFlagDoWork: u32 = 1;
+pub const anon2301_mpWorkFlagDoCompletion: u32 = 2;
+pub const anon2301_mpWorkFlagCopyWorkBlock: u32 = 4;
+pub const anon2301_mpWorkFlagDontBlock: u32 = 8;
+pub const anon2301_mpWorkFlagGetProcessorCount: u32 = 16;
+pub const anon2301_mpWorkFlagGetIsRunning: u32 = 64;
+pub const anon2301_CSSMERR_CSP_OPERATION_AUTH_DENIED: u32 = -2147416032;
+pub const anon2301_CSSMERR_CSP_OBJECT_USE_AUTH_DENIED: u32 = -2147416031;
+pub const anon2301_CSSMERR_CSP_OBJECT_MANIP_AUTH_DENIED: u32 = -2147416030;
+pub const anon2301_CSSMERR_CSP_OBJECT_ACL_NOT_SUPPORTED: u32 = -2147416029;
+pub const anon2301_CSSMERR_CSP_OBJECT_ACL_REQUIRED: u32 = -2147416028;
+pub const anon2301_CSSMERR_CSP_INVALID_ACCESS_CREDENTIALS: u32 = -2147416027;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_BASE_CERTS: u32 = -2147416026;
+pub const anon2301_CSSMERR_CSP_ACL_BASE_CERTS_NOT_SUPPORTED: u32 = -2147416025;
+pub const anon2301_CSSMERR_CSP_INVALID_SAMPLE_VALUE: u32 = -2147416024;
+pub const anon2301_CSSMERR_CSP_SAMPLE_VALUE_NOT_SUPPORTED: u32 = -2147416023;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_SUBJECT_VALUE: u32 = -2147416022;
+pub const anon2301_CSSMERR_CSP_ACL_SUBJECT_TYPE_NOT_SUPPORTED: u32 = -2147416021;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_CHALLENGE_CALLBACK: u32 = -2147416020;
+pub const anon2301_CSSMERR_CSP_ACL_CHALLENGE_CALLBACK_FAILED: u32 = -2147416019;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_ENTRY_TAG: u32 = -2147416018;
+pub const anon2301_CSSMERR_CSP_ACL_ENTRY_TAG_NOT_FOUND: u32 = -2147416017;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_EDIT_MODE: u32 = -2147416016;
+pub const anon2301_CSSMERR_CSP_ACL_CHANGE_FAILED: u32 = -2147416015;
+pub const anon2301_CSSMERR_CSP_INVALID_NEW_ACL_ENTRY: u32 = -2147416014;
+pub const anon2301_CSSMERR_CSP_INVALID_NEW_ACL_OWNER: u32 = -2147416013;
+pub const anon2301_CSSMERR_CSP_ACL_DELETE_FAILED: u32 = -2147416012;
+pub const anon2301_CSSMERR_CSP_ACL_REPLACE_FAILED: u32 = -2147416011;
+pub const anon2301_CSSMERR_CSP_ACL_ADD_FAILED: u32 = -2147416010;
+
+pub const anon2391 = u32;
+pub const anon2391_cmpAliasNoFlags: u32 = 0;
+pub const anon2391_cmpAliasOnlyThisFile: u32 = 1;
 
 pub const CSComponentsThreadMode = objc.UInt32;
 
-pub const anon2451 = enum(u32) {
-    CSAcceptAllComponentsMode = 0,
-    CSAcceptThreadSafeComponentsOnlyMode = 1,
-};
+pub const anon2451 = u32;
+pub const anon2451_CSAcceptAllComponentsMode: u32 = 0;
+pub const anon2451_CSAcceptThreadSafeComponentsOnlyMode: u32 = 1;
 
 pub extern "CoreServices" fn CSSetComponentsThreadMode(mode: CSComponentsThreadMode) callconv(.C) void;
 
@@ -8637,19 +10780,13 @@ pub const ComponentMPWorkFunctionHeaderRecord = extern struct {
     isRunning: objc.UInt8,
 };
 
-pub const ComponentMPWorkFunctionHeaderRecordPtr = ?*ComponentMPWorkFunctionHeaderRecord;
+pub const ComponentMPWorkFunctionHeaderRecordPtr = ComponentMPWorkFunctionHeaderRecord;
 
-pub const ComponentMPWorkFunctionProcPtr = ?*const fn (?*anyopaque, ComponentMPWorkFunctionHeaderRecordPtr) callconv(.C) ComponentResult;
+pub const ComponentMPWorkFunctionProcPtr = ComponentResult;
 
-pub const ComponentRoutineProcPtr = ?*const fn (?*ComponentParameters, objc.Handle) callconv(.C) ComponentResult;
+pub const ComponentRoutineProcPtr = ComponentResult;
 
-pub const GetMissingComponentResourceProcPtr = ?*const fn (
-    Component,
-    objc.OSType,
-    objc.SInt16,
-    ?*anyopaque,
-    ?*objc.Handle,
-) callconv(.C) objc.OSErr;
+pub const GetMissingComponentResourceProcPtr = objc.OSErr;
 
 pub const ComponentMPWorkFunctionUPP = ComponentMPWorkFunctionProcPtr;
 
@@ -8842,76 +10979,75 @@ pub extern "CoreServices" fn InvokeGetMissingComponentResourceUPP(
     userUPP: GetMissingComponentResourceUPP,
 ) callconv(.C) objc.OSErr;
 
-pub const anon15701 = enum(u32) {
-    uppComponentFunctionImplementedProcInfo = 752,
-    uppGetComponentVersionProcInfo = 240,
-    uppComponentSetTargetProcInfo = 1008,
-    uppCallComponentOpenProcInfo = 1008,
-    uppCallComponentCloseProcInfo = 1008,
-    uppCallComponentCanDoProcInfo = 752,
-    uppCallComponentVersionProcInfo = 240,
-    uppCallComponentRegisterProcInfo = 240,
-    uppCallComponentTargetProcInfo = 1008,
-    uppCallComponentUnregisterProcInfo = 240,
-    uppCallComponentGetMPWorkFunctionProcInfo = 4080,
-    uppCallComponentGetPublicResourceProcInfo = 15344,
-};
+pub const anon15701 = u32;
+pub const anon15701_uppComponentFunctionImplementedProcInfo: u32 = 752;
+pub const anon15701_uppGetComponentVersionProcInfo: u32 = 240;
+pub const anon15701_uppComponentSetTargetProcInfo: u32 = 1008;
+pub const anon15701_uppCallComponentOpenProcInfo: u32 = 1008;
+pub const anon15701_uppCallComponentCloseProcInfo: u32 = 1008;
+pub const anon15701_uppCallComponentCanDoProcInfo: u32 = 752;
+pub const anon15701_uppCallComponentVersionProcInfo: u32 = 240;
+pub const anon15701_uppCallComponentRegisterProcInfo: u32 = 240;
+pub const anon15701_uppCallComponentTargetProcInfo: u32 = 1008;
+pub const anon15701_uppCallComponentUnregisterProcInfo: u32 = 240;
+pub const anon15701_uppCallComponentGetMPWorkFunctionProcInfo: u32 = 4080;
+pub const anon15701_uppCallComponentGetPublicResourceProcInfo: u32 = 15344;
 
 pub const OpaqueMPProcessID = extern struct {};
 
-pub const MPProcessID = ?*OpaqueMPProcessID;
+pub const MPProcessID = OpaqueMPProcessID;
 
 pub const OpaqueMPTaskID = extern struct {};
 
-pub const MPTaskID = ?*OpaqueMPTaskID;
+pub const MPTaskID = OpaqueMPTaskID;
 
 pub const OpaqueMPQueueID = extern struct {};
 
-pub const MPQueueID = ?*OpaqueMPQueueID;
+pub const MPQueueID = OpaqueMPQueueID;
 
 pub const OpaqueMPSemaphoreID = extern struct {};
 
-pub const MPSemaphoreID = ?*OpaqueMPSemaphoreID;
+pub const MPSemaphoreID = OpaqueMPSemaphoreID;
 
 pub const OpaqueMPCriticalRegionID = extern struct {};
 
-pub const MPCriticalRegionID = ?*OpaqueMPCriticalRegionID;
+pub const MPCriticalRegionID = OpaqueMPCriticalRegionID;
 
 pub const OpaqueMPTimerID = extern struct {};
 
-pub const MPTimerID = ?*OpaqueMPTimerID;
+pub const MPTimerID = OpaqueMPTimerID;
 
 pub const OpaqueMPEventID = extern struct {};
 
-pub const MPEventID = ?*OpaqueMPEventID;
+pub const MPEventID = OpaqueMPEventID;
 
 pub const OpaqueMPAddressSpaceID = extern struct {};
 
-pub const MPAddressSpaceID = ?*OpaqueMPAddressSpaceID;
+pub const MPAddressSpaceID = OpaqueMPAddressSpaceID;
 
 pub const OpaqueMPNotificationID = extern struct {};
 
-pub const MPNotificationID = ?*OpaqueMPNotificationID;
+pub const MPNotificationID = OpaqueMPNotificationID;
 
 pub const OpaqueMPCoherenceID = extern struct {};
 
-pub const MPCoherenceID = ?*OpaqueMPCoherenceID;
+pub const MPCoherenceID = OpaqueMPCoherenceID;
 
 pub const OpaqueMPCpuID = extern struct {};
 
-pub const MPCpuID = ?*OpaqueMPCpuID;
+pub const MPCpuID = OpaqueMPCpuID;
 
 pub const OpaqueMPAreaID = extern struct {};
 
-pub const MPAreaID = ?*OpaqueMPAreaID;
+pub const MPAreaID = OpaqueMPAreaID;
 
 pub const OpaqueMPConsoleID = extern struct {};
 
-pub const MPConsoleID = ?*OpaqueMPConsoleID;
+pub const MPConsoleID = OpaqueMPConsoleID;
 
 pub const OpaqueMPOpaqueID = extern struct {};
 
-pub const MPOpaqueID = ?*OpaqueMPOpaqueID;
+pub const MPOpaqueID = OpaqueMPOpaqueID;
 
 pub const MPOpaqueIDClass = objc.UInt32;
 
@@ -8937,7 +11073,16 @@ pub extern "CoreServices" fn MPProcessors() callconv(.C) objc.ItemCount;
 
 pub extern "CoreServices" fn MPProcessorsScheduled() callconv(.C) objc.ItemCount;
 
-pub const TaskProc = ?*const fn (?*anyopaque) callconv(.C) objc.OSStatus;
+pub const anon1821 = u32;
+pub const anon1821_MPCreateTaskSuspendedMask: u32 = 1;
+pub const anon1821_MPCreateTaskTakesAllExceptionsMask: u32 = 2;
+pub const anon1821_MPCreateTaskNotDebuggableMask: u32 = 4;
+pub const anon1821_MPCreateTaskValidOptionsMask: u32 = 7;
+pub const anon1821_CSSMERR_CSSM_INVALID_CONTEXT_HANDLE: u32 = -2147418048;
+pub const anon1821_CSSMERR_CSSM_INCOMPATIBLE_VERSION: u32 = -2147418047;
+pub const anon1821_CSSMERR_CSSM_PRIVILEGE_NOT_GRANTED: u32 = -2147418037;
+
+pub const TaskProc = objc.OSStatus;
 
 pub extern "CoreServices" fn MPCreateTask(
     entryPoint: TaskProc,
@@ -9039,11 +11184,10 @@ pub extern "CoreServices" fn MPModifyNotificationParameters(
 
 pub extern "CoreServices" fn MPCauseNotification(notificationID: MPNotificationID) callconv(.C) objc.OSStatus;
 
-pub const anon8721 = enum(u32) {
-    MPPreserveTimerIDMask = 1,
-    MPTimeIsDeltaMask = 2,
-    MPTimeIsDurationMask = 4,
-};
+pub const anon8721 = u32;
+pub const anon8721_MPPreserveTimerIDMask: u32 = 1;
+pub const anon8721_MPTimeIsDeltaMask: u32 = 2;
+pub const anon8721_MPTimeIsDurationMask: u32 = 4;
 
 pub extern "CoreServices" fn MPDelayUntil(expirationTime: ?*objc.AbsoluteTime) callconv(.C) objc.OSStatus;
 
@@ -9063,27 +11207,25 @@ pub extern "CoreServices" fn MPArmTimer(timerID: MPTimerID, expirationTime: ?*ob
 
 pub extern "CoreServices" fn MPCancelTimer(timerID: MPTimerID, timeRemaining: ?*objc.AbsoluteTime) callconv(.C) objc.OSStatus;
 
-pub const anon10171 = enum(u32) {
-    MPAllocateDefaultAligned = 0,
-    MPAllocate8ByteAligned = 3,
-    MPAllocate16ByteAligned = 4,
-    MPAllocate32ByteAligned = 5,
-    MPAllocate1024ByteAligned = 10,
-    MPAllocate4096ByteAligned = 12,
-    MPAllocateMaxAlignment = 16,
-    MPAllocateAltiVecAligned = 4,
-    MPAllocateVMXAligned = 4,
-    MPAllocateVMPageAligned = 254,
-    MPAllocateInterlockAligned = 255,
-};
+pub const anon10171 = u32;
+pub const anon10171_MPAllocateDefaultAligned: u32 = 0;
+pub const anon10171_MPAllocate8ByteAligned: u32 = 3;
+pub const anon10171_MPAllocate16ByteAligned: u32 = 4;
+pub const anon10171_MPAllocate32ByteAligned: u32 = 5;
+pub const anon10171_MPAllocate1024ByteAligned: u32 = 10;
+pub const anon10171_MPAllocate4096ByteAligned: u32 = 12;
+pub const anon10171_MPAllocateMaxAlignment: u32 = 16;
+pub const anon10171_MPAllocateAltiVecAligned: u32 = 4;
+pub const anon10171_MPAllocateVMXAligned: u32 = 4;
+pub const anon10171_MPAllocateVMPageAligned: u32 = 254;
+pub const anon10171_MPAllocateInterlockAligned: u32 = 255;
 
-pub const anon10341 = enum(u32) {
-    MPAllocateClearMask = 1,
-    MPAllocateGloballyMask = 2,
-    MPAllocateResidentMask = 4,
-    MPAllocateNoGrowthMask = 16,
-    MPAllocateNoCreateMask = 32,
-};
+pub const anon10341 = u32;
+pub const anon10341_MPAllocateClearMask: u32 = 1;
+pub const anon10341_MPAllocateGloballyMask: u32 = 2;
+pub const anon10341_MPAllocateResidentMask: u32 = 4;
+pub const anon10341_MPAllocateNoGrowthMask: u32 = 16;
+pub const anon10341_MPAllocateNoCreateMask: u32 = 32;
 
 pub extern "CoreServices" fn MPAllocateAligned(size: objc.ByteCount, alignment: objc.UInt8, options: objc.OptionBits) callconv(.C) objc.LogicalAddress;
 
@@ -9097,34 +11239,30 @@ pub extern "CoreServices" fn MPBlockCopy(source: objc.LogicalAddress, destinatio
 
 pub extern "CoreServices" fn MPBlockClear(address: objc.LogicalAddress, size: objc.ByteCount) callconv(.C) void;
 
-pub const anon12221 = enum(u32) {
-    MPTaskStateRegisters = 0,
-    MPTaskStateFPU = 1,
-    MPTaskStateVectors = 2,
-    MPTaskStateMachine = 3,
-    MPTaskState32BitMemoryException = 4,
-    MPTaskStateTaskInfo = 5,
-};
+pub const anon12221 = u32;
+pub const anon12221_MPTaskStateRegisters: u32 = 0;
+pub const anon12221_MPTaskStateFPU: u32 = 1;
+pub const anon12221_MPTaskStateVectors: u32 = 2;
+pub const anon12221_MPTaskStateMachine: u32 = 3;
+pub const anon12221_MPTaskState32BitMemoryException: u32 = 4;
+pub const anon12221_MPTaskStateTaskInfo: u32 = 5;
 
-pub const anon12341 = enum(u32) {
-    MPTaskPropagate = 0,
-    MPTaskResumeStep = 1,
-    MPTaskResumeBranch = 2,
-    MPTaskResumeMask = 0,
-    MPTaskPropagateMask = 1,
-    MPTaskResumeStepMask = 2,
-    MPTaskResumeBranchMask = 4,
-};
+pub const anon12341 = u32;
+pub const anon12341_MPTaskPropagate: u32 = 0;
+pub const anon12341_MPTaskResumeStep: u32 = 1;
+pub const anon12341_MPTaskResumeBranch: u32 = 2;
+pub const anon12341_MPTaskResumeMask: u32 = 0;
+pub const anon12341_MPTaskPropagateMask: u32 = 1;
+pub const anon12341_MPTaskResumeStepMask: u32 = 2;
+pub const anon12341_MPTaskResumeBranchMask: u32 = 4;
 
-pub const anon12471 = enum(u32) {
-    MPTaskBlocked = 0,
-    MPTaskReady = 1,
-    MPTaskRunning = 2,
-};
+pub const anon12471 = u32;
+pub const anon12471_MPTaskBlocked: u32 = 0;
+pub const anon12471_MPTaskReady: u32 = 1;
+pub const anon12471_MPTaskRunning: u32 = 2;
 
-pub const anon12541 = enum(u32) {
-    MPTaskInfoVersion = 3,
-};
+pub const anon12541 = u32;
+pub const anon12541_MPTaskInfoVersion: u32 = 3;
 
 pub const MPTaskInfoVersion2 = extern struct {
     version: objc.PBVersion,
@@ -9185,12 +11323,11 @@ pub const MPRemoteProcedure = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
 
 pub const MPRemoteContext = objc.UInt8;
 
-pub const anon14821 = enum(u32) {
-    MPAnyRemoteContext = 0,
-    MPOwningProcessRemoteContext = 1,
-    MPInterruptRemoteContext = 2,
-    MPAsyncInterruptRemoteContext = 3,
-};
+pub const anon14821 = u32;
+pub const anon14821_MPAnyRemoteContext: u32 = 0;
+pub const anon14821_MPOwningProcessRemoteContext: u32 = 1;
+pub const anon14821_MPInterruptRemoteContext: u32 = 2;
+pub const anon14821_MPAsyncInterruptRemoteContext: u32 = 3;
 
 pub extern "CoreServices" fn MPRemoteCall(remoteProc: MPRemoteProcedure, parameter: ?*anyopaque, context: MPRemoteContext) callconv(.C) ?*anyopaque;
 
@@ -9198,7 +11335,7 @@ pub extern "CoreServices" fn MPRemoteCallCFM(remoteProc: MPRemoteProcedure, para
 
 pub extern "CoreServices" fn _MPIsFullyInitialized() callconv(.C) objc.Boolean;
 
-pub const MPIsFullyInitializedProc = ?*const fn () callconv(.C) objc.Boolean;
+pub const MPIsFullyInitializedProc = objc.Boolean;
 
 pub extern "CoreServices" fn _MPLibraryVersion(
     versionCString: ?*?*i8,
@@ -9218,18 +11355,119 @@ pub extern "CoreServices" fn _MPLibraryIsCompatible(
 
 pub const FSAliasInfoBitmap = objc.UInt32;
 
-pub const anon631 = enum(objc.OSType) {
-    LSUnknownType = 0,
-    LSUnknownCreator = 0,
-};
+pub const anon631 = i32;
+pub const anon631_asiZoneName: i32 = -3;
+pub const anon631_asiServerName: i32 = -2;
+pub const anon631_asiVolumeName: i32 = -1;
+pub const anon631_asiAliasName: i32 = 0;
+pub const anon631_asiParentName: i32 = 1;
+pub const anon631_OnSystemDisk: i32 = -32768;
+pub const anon631_OnAppropriateDisk: i32 = -32767;
+pub const anon631_SystemDomain: i32 = -32766;
+pub const anon631_LocalDomain: i32 = -32765;
+pub const anon631_NetworkDomain: i32 = -32764;
+pub const anon631_UserDomain: i32 = -32763;
+pub const anon631_FolderManagerLastDomain: i32 = -32760;
+pub const anon631_NoneType: i32 = 1313820229;
+pub const anon631_ACE2Type: i32 = 1094927666;
+pub const anon631_ACE8Type: i32 = 1094927672;
+pub const anon631_MACE3Type: i32 = 1296122675;
+pub const anon631_MACE6Type: i32 = 1296122678;
+pub const anon631_AEApplicationActivationExpected: i32 = 1633775716;
+pub const anon631_errSecCSUnimplemented: i32 = -67072;
+pub const anon631_errSecCSInvalidObjectRef: i32 = -67071;
+pub const anon631_errSecCSInvalidFlags: i32 = -67070;
+pub const anon631_errSecCSObjectRequired: i32 = -67069;
+pub const anon631_errSecCSStaticCodeNotFound: i32 = -67068;
+pub const anon631_errSecCSUnsupportedGuestAttributes: i32 = -67067;
+pub const anon631_errSecCSInvalidAttributeValues: i32 = -67066;
+pub const anon631_errSecCSNoSuchCode: i32 = -67065;
+pub const anon631_errSecCSMultipleGuests: i32 = -67064;
+pub const anon631_errSecCSGuestInvalid: i32 = -67063;
+pub const anon631_errSecCSUnsigned: i32 = -67062;
+pub const anon631_errSecCSSignatureFailed: i32 = -67061;
+pub const anon631_errSecCSSignatureNotVerifiable: i32 = -67060;
+pub const anon631_errSecCSSignatureUnsupported: i32 = -67059;
+pub const anon631_errSecCSBadDictionaryFormat: i32 = -67058;
+pub const anon631_errSecCSResourcesNotSealed: i32 = -67057;
+pub const anon631_errSecCSResourcesNotFound: i32 = -67056;
+pub const anon631_errSecCSResourcesInvalid: i32 = -67055;
+pub const anon631_errSecCSBadResource: i32 = -67054;
+pub const anon631_errSecCSResourceRulesInvalid: i32 = -67053;
+pub const anon631_errSecCSReqInvalid: i32 = -67052;
+pub const anon631_errSecCSReqUnsupported: i32 = -67051;
+pub const anon631_errSecCSReqFailed: i32 = -67050;
+pub const anon631_errSecCSBadObjectFormat: i32 = -67049;
+pub const anon631_errSecCSInternalError: i32 = -67048;
+pub const anon631_errSecCSHostReject: i32 = -67047;
+pub const anon631_errSecCSNotAHost: i32 = -67046;
+pub const anon631_errSecCSSignatureInvalid: i32 = -67045;
+pub const anon631_errSecCSHostProtocolRelativePath: i32 = -67044;
+pub const anon631_errSecCSHostProtocolContradiction: i32 = -67043;
+pub const anon631_errSecCSHostProtocolDedicationError: i32 = -67042;
+pub const anon631_errSecCSHostProtocolNotProxy: i32 = -67041;
+pub const anon631_errSecCSHostProtocolStateError: i32 = -67040;
+pub const anon631_errSecCSHostProtocolUnrelated: i32 = -67039;
+pub const anon631_errSecCSNotSupported: i32 = -67037;
+pub const anon631_errSecCSCMSTooLarge: i32 = -67036;
+pub const anon631_errSecCSHostProtocolInvalidHash: i32 = -67035;
+pub const anon631_errSecCSStaticCodeChanged: i32 = -67034;
+pub const anon631_errSecCSDBDenied: i32 = -67033;
+pub const anon631_errSecCSDBAccess: i32 = -67032;
+pub const anon631_errSecCSSigDBDenied: i32 = -67033;
+pub const anon631_errSecCSSigDBAccess: i32 = -67032;
+pub const anon631_errSecCSHostProtocolInvalidAttribute: i32 = -67031;
+pub const anon631_errSecCSInfoPlistFailed: i32 = -67030;
+pub const anon631_errSecCSNoMainExecutable: i32 = -67029;
+pub const anon631_errSecCSBadBundleFormat: i32 = -67028;
+pub const anon631_errSecCSNoMatches: i32 = -67027;
+pub const anon631_errSecCSFileHardQuarantined: i32 = -67026;
+pub const anon631_errSecCSOutdated: i32 = -67025;
+pub const anon631_errSecCSDbCorrupt: i32 = -67024;
+pub const anon631_errSecCSResourceDirectoryFailed: i32 = -67023;
+pub const anon631_errSecCSUnsignedNestedCode: i32 = -67022;
+pub const anon631_errSecCSBadNestedCode: i32 = -67021;
+pub const anon631_errSecCSBadCallbackValue: i32 = -67020;
+pub const anon631_errSecCSHelperFailed: i32 = -67019;
+pub const anon631_errSecCSVetoed: i32 = -67018;
+pub const anon631_errSecCSBadLVArch: i32 = -67017;
+pub const anon631_errSecCSResourceNotSupported: i32 = -67016;
+pub const anon631_errSecCSRegularFile: i32 = -67015;
+pub const anon631_errSecCSUnsealedAppRoot: i32 = -67014;
+pub const anon631_errSecCSWeakResourceRules: i32 = -67013;
+pub const anon631_errSecCSDSStoreSymlink: i32 = -67012;
+pub const anon631_errSecCSAmbiguousBundleFormat: i32 = -67011;
+pub const anon631_errSecCSBadMainExecutable: i32 = -67010;
+pub const anon631_errSecCSBadFrameworkVersion: i32 = -67009;
+pub const anon631_errSecCSUnsealedFrameworkRoot: i32 = -67008;
+pub const anon631_errSecCSWeakResourceEnvelope: i32 = -67007;
+pub const anon631_errSecCSCancelled: i32 = -67006;
+pub const anon631_errSecCSInvalidPlatform: i32 = -67005;
+pub const anon631_errSecCSTooBig: i32 = -67004;
+pub const anon631_errSecCSInvalidSymlink: i32 = -67003;
+pub const anon631_errSecCSNotAppLike: i32 = -67002;
+pub const anon631_errSecCSBadDiskImageFormat: i32 = -67001;
+pub const anon631_errSecCSUnsupportedDigestAlgorithm: i32 = -67000;
+pub const anon631_errSecCSInvalidAssociatedFileData: i32 = -66999;
+pub const anon631_errSecCSInvalidTeamIdentifier: i32 = -66998;
+pub const anon631_errSecCSBadTeamIdentifier: i32 = -66997;
+pub const anon631_errSecCSSignatureUntrusted: i32 = -66996;
+pub const anon631_errSecMultipleExecSegments: i32 = -66995;
+pub const anon631_errSecCSInvalidEntitlements: i32 = -66994;
+pub const anon631_errSecCSInvalidRuntimeVersion: i32 = -66993;
+pub const anon631_errSecCSRevokedNotarization: i32 = -66992;
+pub const anon631_errSecCSCMSConstructionFailed: i32 = -66991;
+pub const anon631_errSecCSRemoteSignerFailed: i32 = -66990;
+pub const anon631_LSUnknownType: i32 = 0;
+pub const anon631_LSUnknownCreator: i32 = 0;
 
 pub const AliasRecord = extern struct {
     hidden: [6]objc.UInt8,
 };
 
-pub const AliasPtr = ?*AliasRecord;
+pub const AliasPtr = AliasRecord;
 
-pub const AliasHandle = ?*AliasPtr;
+pub const AliasHandle = AliasPtr;
 
 pub const FSAliasInfo = extern struct {
     volumeCreateDate: UTCDateTime,
@@ -9247,11 +11485,11 @@ pub const FSAliasInfo = extern struct {
     isDirectory: objc.Boolean,
 };
 
-pub const FSAliasInfoPtr = ?*FSAliasInfo;
+pub const FSAliasInfoPtr = FSAliasInfo;
 
 pub const AliasInfoType = i16;
 
-pub const FSAliasFilterProcPtr = ?*const fn (?*FSRef, ?*objc.Boolean, objc.Ptr) callconv(.C) objc.Boolean;
+pub const FSAliasFilterProcPtr = objc.Boolean;
 
 pub extern "CoreServices" fn FSNewAlias(fromFile: ?*FSRef, target: ?*FSRef, inAlias: ?*AliasHandle) callconv(.C) objc.OSErr;
 
@@ -9363,7 +11601,7 @@ pub extern "CoreServices" fn SetAliasUserTypeWithPtr(alias: AliasPtr, userType: 
 
 pub const OpaqueLocaleRef = extern struct {};
 
-pub const LocaleRef = ?*OpaqueLocaleRef;
+pub const LocaleRef = OpaqueLocaleRef;
 
 pub const LocalePartMask = objc.UInt32;
 
@@ -9378,9 +11616,11 @@ pub const LocaleAndVariant = extern struct {
 
 pub const LocaleNameMask = objc.UInt32;
 
-pub const anon691 = enum(u32) {
-    fVNumber = 0,
-};
+pub const anon691 = u32;
+pub const anon691_LocaleNameMask: u32 = 1;
+pub const anon691_LocaleOperationVariantNameMask: u32 = 2;
+pub const anon691_LocaleAndVariantNameMask: u32 = 3;
+pub const anon691_fVNumber: u32 = 0;
 
 pub extern "CoreServices" fn LocaleRefFromLangOrRegionCode(lang: objc.LangCode, region: objc.RegionCode, locale: ?*LocaleRef) callconv(.C) objc.OSStatus;
 
@@ -9462,16 +11702,33 @@ pub extern "CoreServices" fn DebugAssert(
     value: ?*anyopaque,
 ) callconv(.C) void;
 
+pub const anon3681 = u32;
+pub const anon3681_68kInterruptLevelMask: u32 = 7;
+pub const anon3681_InVBLTaskMask: u32 = 16;
+pub const anon3681_InDeferredTaskMask: u32 = 32;
+pub const anon3681_InSecondaryIntHandlerMask: u32 = 64;
+pub const anon3681_InNestedInterruptMask: u32 = 128;
+pub const anon3681_CSSM_LIST_ELEMENT_DATUM: u32 = 0;
+pub const anon3681_CSSM_LIST_ELEMENT_SUBLIST: u32 = 1;
+pub const anon3681_CSSM_LIST_ELEMENT_WORDID: u32 = 2;
+pub const anon3681_CSSM_DL_DB_RECORD_GENERIC_PASSWORD: u32 = -2147483648;
+pub const anon3681_CSSM_DL_DB_RECORD_INTERNET_PASSWORD: u32 = -2147483647;
+pub const anon3681_CSSM_DL_DB_RECORD_APPLESHARE_PASSWORD: u32 = -2147483646;
+pub const anon3681_CSSM_DL_DB_RECORD_X509_CERTIFICATE: u32 = -2147479552;
+pub const anon3681_CSSM_DL_DB_RECORD_USER_TRUST: u32 = -2147479551;
+pub const anon3681_CSSM_DL_DB_RECORD_X509_CRL: u32 = -2147479550;
+pub const anon3681_CSSM_DL_DB_RECORD_UNLOCK_REFERRAL: u32 = -2147479549;
+pub const anon3681_CSSM_DL_DB_RECORD_EXTENDED_ATTRIBUTE: u32 = -2147479548;
+pub const anon3681_CSSM_DL_DB_RECORD_METADATA: u32 = -2147450880;
+
 pub extern "CoreServices" fn TaskLevel() callconv(.C) objc.UInt32;
 
-pub const anon4041 = enum(u32) {
-    ComponentDebugOption = 0,
-};
+pub const anon4041 = u32;
+pub const anon4041_ComponentDebugOption: u32 = 0;
 
-pub const anon4081 = enum(u32) {
-    GetDebugOption = 1,
-    SetDebugOption = 2,
-};
+pub const anon4081 = u32;
+pub const anon4081_GetDebugOption: u32 = 1;
+pub const anon4081_SetDebugOption: u32 = 2;
 
 pub const DebugComponentCallbackProcPtr = ?*const fn (objc.SInt32, objc.UInt32, ?*objc.Boolean) callconv(.C) void;
 
@@ -9613,7 +11870,7 @@ pub extern "CoreServices" fn BitXorAtomic(mask: objc.UInt32, address: ?*objc.UIn
 
 pub const OpaqueAreaID = extern struct {};
 
-pub const AreaID = ?*OpaqueAreaID;
+pub const AreaID = OpaqueAreaID;
 
 pub const MachineInformationPowerPC = extern struct {
     CTR: objc.UnsignedWide,
@@ -9691,26 +11948,25 @@ pub const MemoryExceptionInformation = extern struct {
     theReference: MemoryReferenceKind,
 };
 
-pub const anon1411 = enum(u32) {
-    UnknownException = 0,
-    IllegalInstructionException = 1,
-    TrapException = 2,
-    AccessException = 3,
-    UnmappedMemoryException = 4,
-    ExcludedMemoryException = 5,
-    ReadOnlyMemoryException = 6,
-    UnresolvablePageFaultException = 7,
-    PrivilegeViolationException = 8,
-    TraceException = 9,
-    InstructionBreakpointException = 10,
-    DataBreakpointException = 11,
-    IntegerException = 12,
-    FloatingPointException = 13,
-    StackOverflowException = 14,
-    TaskTerminationException = 15,
-    TaskCreationException = 16,
-    DataAlignmentException = 17,
-};
+pub const anon1411 = u32;
+pub const anon1411_UnknownException: u32 = 0;
+pub const anon1411_IllegalInstructionException: u32 = 1;
+pub const anon1411_TrapException: u32 = 2;
+pub const anon1411_AccessException: u32 = 3;
+pub const anon1411_UnmappedMemoryException: u32 = 4;
+pub const anon1411_ExcludedMemoryException: u32 = 5;
+pub const anon1411_ReadOnlyMemoryException: u32 = 6;
+pub const anon1411_UnresolvablePageFaultException: u32 = 7;
+pub const anon1411_PrivilegeViolationException: u32 = 8;
+pub const anon1411_TraceException: u32 = 9;
+pub const anon1411_InstructionBreakpointException: u32 = 10;
+pub const anon1411_DataBreakpointException: u32 = 11;
+pub const anon1411_IntegerException: u32 = 12;
+pub const anon1411_FloatingPointException: u32 = 13;
+pub const anon1411_StackOverflowException: u32 = 14;
+pub const anon1411_TaskTerminationException: u32 = 15;
+pub const anon1411_TaskCreationException: u32 = 16;
+pub const anon1411_DataAlignmentException: u32 = 17;
 
 pub const ExceptionKind = u64;
 
@@ -9752,7 +12008,7 @@ pub const ExceptionInformation = extern struct {
     vectorImage: ?*VectorInformation,
 };
 
-pub const ExceptionHandlerProcPtr = ?*const fn (?*ExceptionInformation) callconv(.C) objc.OSStatus;
+pub const ExceptionHandlerProcPtr = objc.OSStatus;
 
 pub const ExceptionHandlerUPP = ExceptionHandlerProcPtr;
 
@@ -9767,6 +12023,28 @@ pub const ExceptionHandlerTPP = ExceptionHandlerUPP;
 pub const ExceptionHandler = ExceptionHandlerTPP;
 
 pub extern "CoreServices" fn InstallExceptionHandler(theHandler: ExceptionHandlerTPP) callconv(.C) ExceptionHandlerTPP;
+
+pub const anon491 = i32;
+pub const anon491_durationMicrosecond: i32 = -1;
+pub const anon491_durationMillisecond: i32 = 1;
+pub const anon491_durationSecond: i32 = 1000;
+pub const anon491_durationMinute: i32 = 60000;
+pub const anon491_durationHour: i32 = 3600000;
+pub const anon491_durationDay: i32 = 86400000;
+pub const anon491_durationNoWait: i32 = 0;
+pub const anon491_durationForever: i32 = 2147483647;
+pub const anon491_eyDirectObject: i32 = 757935405;
+pub const anon491_eyErrorNumber: i32 = 1701999214;
+pub const anon491_eyErrorString: i32 = 1701999219;
+pub const anon491_eyProcessSerialNumber: i32 = 1886613024;
+pub const anon491_eyPreDispatch: i32 = 1885888867;
+pub const anon491_eySelectProc: i32 = 1936026728;
+pub const anon491_eyAERecorderCount: i32 = 1919247218;
+pub const anon491_eyAEVersion: i32 = 1986359923;
+pub const anon491_SecUseOnlyUID: i32 = 1;
+pub const anon491_SecUseOnlyGID: i32 = 2;
+pub const anon491_SecHonorRoot: i32 = 256;
+pub const anon491_SecMatchBits: i32 = 3;
 
 pub const Nanoseconds = objc.UnsignedWide;
 
@@ -9819,7 +12097,7 @@ pub const FVector = extern struct {
     length: i16,
 };
 
-pub const TripleInt = [3]FVector;
+pub const TripleInt = FVector;
 
 pub extern "CoreServices" fn numtostring(theNum: i64, theString: ?*i8) callconv(.C) void;
 
@@ -9929,63 +12207,56 @@ pub const UCKeySequenceDataIndex = extern struct {
     charSequenceOffsets: [1]objc.UInt16,
 };
 
-pub const anon2421 = enum(u32) {
-    UCKeyLayoutHeaderFormat = 4098,
-    UCKeyLayoutFeatureInfoFormat = 8193,
-    UCKeyModifiersToTableNumFormat = 12289,
-    UCKeyToCharTableIndexFormat = 16385,
-    UCKeyStateRecordsIndexFormat = 20481,
-    UCKeyStateTerminatorsFormat = 24577,
-    UCKeySequenceDataIndexFormat = 28673,
-};
+pub const anon2421 = u32;
+pub const anon2421_UCKeyLayoutHeaderFormat: u32 = 4098;
+pub const anon2421_UCKeyLayoutFeatureInfoFormat: u32 = 8193;
+pub const anon2421_UCKeyModifiersToTableNumFormat: u32 = 12289;
+pub const anon2421_UCKeyToCharTableIndexFormat: u32 = 16385;
+pub const anon2421_UCKeyStateRecordsIndexFormat: u32 = 20481;
+pub const anon2421_UCKeyStateTerminatorsFormat: u32 = 24577;
+pub const anon2421_UCKeySequenceDataIndexFormat: u32 = 28673;
 
-pub const anon2591 = enum(u32) {
-    UCKeyActionDown = 0,
-    UCKeyActionUp = 1,
-    UCKeyActionAutoKey = 2,
-    UCKeyActionDisplay = 3,
-};
+pub const anon2591 = u32;
+pub const anon2591_UCKeyActionDown: u32 = 0;
+pub const anon2591_UCKeyActionUp: u32 = 1;
+pub const anon2591_UCKeyActionAutoKey: u32 = 2;
+pub const anon2591_UCKeyActionDisplay: u32 = 3;
 
-pub const anon2721 = enum(u32) {
-    UCKeyTranslateNoDeadKeysBit = 0,
-};
+pub const anon2721 = u32;
+pub const anon2721_UCKeyTranslateNoDeadKeysBit: u32 = 0;
 
-pub const anon2761 = enum(u32) {
-    UCKeyTranslateNoDeadKeysMask = 1,
-};
+pub const anon2761 = u32;
+pub const anon2761_UCKeyTranslateNoDeadKeysMask: u32 = 1;
 
-pub const anon2871 = enum(u32) {
-    UnicodeCollationClass = 1969450860,
-};
+pub const anon2871 = u32;
+pub const anon2871_UnicodeCollationClass: u32 = 1969450860;
 
 pub const OpaqueCollatorRef = extern struct {};
 
-pub const CollatorRef = ?*OpaqueCollatorRef;
+pub const CollatorRef = OpaqueCollatorRef;
 
 pub const UCCollateOptions = objc.UInt32;
 
-pub const anon3041 = enum(u32) {
-    MPQueueInfoVersion = 262145,
-    MPSemaphoreInfoVersion = 327681,
-    MPEventInfoVersion = 589825,
-    MPCriticalRegionInfoVersion = 393217,
-    MPNotificationInfoVersion = 786433,
-    MPAddressSpaceInfoVersion = 524289,
-};
+pub const anon3041 = u32;
+pub const anon3041_UCCollateStandardOptions: u32 = 6;
+pub const anon3041_MPQueueInfoVersion: u32 = 262145;
+pub const anon3041_MPSemaphoreInfoVersion: u32 = 327681;
+pub const anon3041_MPEventInfoVersion: u32 = 589825;
+pub const anon3041_MPCriticalRegionInfoVersion: u32 = 393217;
+pub const anon3041_MPNotificationInfoVersion: u32 = 786433;
+pub const anon3041_MPAddressSpaceInfoVersion: u32 = 524289;
 
-pub const anon3121 = enum(u32) {
-    UCCollateTypeHFSExtended = 1,
-};
+pub const anon3121 = u32;
+pub const anon3121_UCCollateTypeHFSExtended: u32 = 1;
 
-pub const anon3221 = enum(u32) {
-    UCCollateTypeMask = -16777216,
-};
+pub const anon3221 = u32;
+pub const anon3221_UCCollateTypeMask: u32 = -16777216;
 
 pub const UCCollationValue = objc.UInt32;
 
 pub const OpaqueUCTypeSelectRef = extern struct {};
 
-pub const UCTypeSelectRef = ?*OpaqueUCTypeSelectRef;
+pub const UCTypeSelectRef = OpaqueUCTypeSelectRef;
 
 pub const UCTypeSelectCompareResult = objc.SInt32;
 
@@ -9993,40 +12264,36 @@ pub const UCTSWalkDirection = objc.UInt16;
 
 pub const UCTypeSelectOptions = objc.UInt16;
 
-pub const anon3721 = enum(u32) {
-    FSEventStreamEventFlagNone = 0,
-    FSEventStreamEventFlagMustScanSubDirs = 1,
-    FSEventStreamEventFlagUserDropped = 2,
-    FSEventStreamEventFlagKernelDropped = 4,
-    FSEventStreamEventFlagEventIdsWrapped = 8,
-    FSEventStreamEventFlagHistoryDone = 16,
-    FSEventStreamEventFlagRootChanged = 32,
-    FSEventStreamEventFlagMount = 64,
-    FSEventStreamEventFlagUnmount = 128,
-    FSEventStreamEventFlagItemCreated = 256,
-    FSEventStreamEventFlagItemRemoved = 512,
-    FSEventStreamEventFlagItemInodeMetaMod = 1024,
-    FSEventStreamEventFlagItemRenamed = 2048,
-    FSEventStreamEventFlagItemModified = 4096,
-    FSEventStreamEventFlagItemFinderInfoMod = 8192,
-    FSEventStreamEventFlagItemChangeOwner = 16384,
-    FSEventStreamEventFlagItemXattrMod = 32768,
-    FSEventStreamEventFlagItemIsFile = 65536,
-    FSEventStreamEventFlagItemIsDir = 131072,
-    FSEventStreamEventFlagItemIsSymlink = 262144,
-    FSEventStreamEventFlagOwnEvent = 524288,
-    FSEventStreamEventFlagItemIsHardlink = 1048576,
-    FSEventStreamEventFlagItemIsLastHardlink = 2097152,
-    FSEventStreamEventFlagItemCloned = 4194304,
-};
+pub const anon3721 = u32;
+pub const anon3721_UCTSOptionsNoneMask: u32 = 0;
+pub const anon3721_UCTSOptionsReleaseStringMask: u32 = 1;
+pub const anon3721_UCTSOptionsDataIsOrderedMask: u32 = 2;
+pub const anon3721_FSEventStreamEventFlagNone: u32 = 0;
+pub const anon3721_FSEventStreamEventFlagMustScanSubDirs: u32 = 1;
+pub const anon3721_FSEventStreamEventFlagUserDropped: u32 = 2;
+pub const anon3721_FSEventStreamEventFlagKernelDropped: u32 = 4;
+pub const anon3721_FSEventStreamEventFlagEventIdsWrapped: u32 = 8;
+pub const anon3721_FSEventStreamEventFlagHistoryDone: u32 = 16;
+pub const anon3721_FSEventStreamEventFlagRootChanged: u32 = 32;
+pub const anon3721_FSEventStreamEventFlagMount: u32 = 64;
+pub const anon3721_FSEventStreamEventFlagUnmount: u32 = 128;
+pub const anon3721_FSEventStreamEventFlagItemCreated: u32 = 256;
+pub const anon3721_FSEventStreamEventFlagItemRemoved: u32 = 512;
+pub const anon3721_FSEventStreamEventFlagItemInodeMetaMod: u32 = 1024;
+pub const anon3721_FSEventStreamEventFlagItemRenamed: u32 = 2048;
+pub const anon3721_FSEventStreamEventFlagItemModified: u32 = 4096;
+pub const anon3721_FSEventStreamEventFlagItemFinderInfoMod: u32 = 8192;
+pub const anon3721_FSEventStreamEventFlagItemChangeOwner: u32 = 16384;
+pub const anon3721_FSEventStreamEventFlagItemXattrMod: u32 = 32768;
+pub const anon3721_FSEventStreamEventFlagItemIsFile: u32 = 65536;
+pub const anon3721_FSEventStreamEventFlagItemIsDir: u32 = 131072;
+pub const anon3721_FSEventStreamEventFlagItemIsSymlink: u32 = 262144;
+pub const anon3721_FSEventStreamEventFlagOwnEvent: u32 = 524288;
+pub const anon3721_FSEventStreamEventFlagItemIsHardlink: u32 = 1048576;
+pub const anon3721_FSEventStreamEventFlagItemIsLastHardlink: u32 = 2097152;
+pub const anon3721_FSEventStreamEventFlagItemCloned: u32 = 4194304;
 
-pub const IndexToUCStringProcPtr = ?*const fn (
-    objc.UInt32,
-    ?*anyopaque,
-    ?*anyopaque,
-    ?*core_foundation.StringRef,
-    ?*UCTypeSelectOptions,
-) callconv(.C) objc.Boolean;
+pub const IndexToUCStringProcPtr = objc.Boolean;
 
 pub const IndexToUCStringUPP = IndexToUCStringProcPtr;
 
@@ -10043,28 +12310,47 @@ pub extern "CoreServices" fn InvokeIndexToUCStringUPP(
     userUPP: IndexToUCStringUPP,
 ) callconv(.C) objc.Boolean;
 
-pub const anon4541 = enum(u32) {
-    UnicodeTextBreakClass = 1969386091,
-};
+pub const anon4541 = u32;
+pub const anon4541_UnicodeTextBreakClass: u32 = 1969386091;
 
 pub const OpaqueTextBreakLocatorRef = extern struct {};
 
-pub const TextBreakLocatorRef = ?*OpaqueTextBreakLocatorRef;
+pub const TextBreakLocatorRef = OpaqueTextBreakLocatorRef;
 
 pub const UCTextBreakType = objc.UInt32;
 
+pub const anon4671 = u32;
+pub const anon4671_UCTextBreakCharMask: u32 = 1;
+pub const anon4671_UCTextBreakClusterMask: u32 = 4;
+pub const anon4671_UCTextBreakWordMask: u32 = 16;
+pub const anon4671_UCTextBreakLineMask: u32 = 64;
+pub const anon4671_UCTextBreakParagraphMask: u32 = 256;
+pub const anon4671_PEFHashSlotSymCountShift: u32 = 18;
+pub const anon4671_PEFHashSlotFirstKeyMask: u32 = 262143;
+pub const anon4671_PEFHashSlotMaxSymbolCount: u32 = 16383;
+pub const anon4671_PEFHashSlotMaxKeyIndex: u32 = 262143;
+pub const anon4671_SecCSInternalInformation: u32 = 1;
+pub const anon4671_SecCSSigningInformation: u32 = 2;
+pub const anon4671_SecCSRequirementInformation: u32 = 4;
+pub const anon4671_SecCSDynamicInformation: u32 = 8;
+pub const anon4671_SecCSContentInformation: u32 = 16;
+pub const anon4671_SecCSSkipResourceDirectory: u32 = 32;
+pub const anon4671_SecCSCalculateCMSDigest: u32 = 64;
+
 pub const UCTextBreakOptions = objc.UInt32;
 
-pub const anon5041 = enum(objc.OSType) {
-    pTextStyles = 1954050932,
-    pTransferMode = 1886418029,
-    pTranslation = 1886679667,
-    pUniformStyles = 1970500716,
-    pUpdateOn = 1886744676,
-    pUserSelection = 1886745452,
-    pVersion = 1986359923,
-    pVisible = 1886808435,
-};
+pub const anon5041 = u32;
+pub const anon5041_UCTextBreakLeadingEdgeMask: u32 = 1;
+pub const anon5041_UCTextBreakGoBackwardsMask: u32 = 2;
+pub const anon5041_UCTextBreakIterateMask: u32 = 4;
+pub const anon5041_pTextStyles: u32 = 1954050932;
+pub const anon5041_pTransferMode: u32 = 1886418029;
+pub const anon5041_pTranslation: u32 = 1886679667;
+pub const anon5041_pUniformStyles: u32 = 1970500716;
+pub const anon5041_pUpdateOn: u32 = 1886744676;
+pub const anon5041_pUserSelection: u32 = 1886745452;
+pub const anon5041_pVersion: u32 = 1986359923;
+pub const anon5041_pVisible: u32 = 1886808435;
 
 pub extern "CoreServices" fn UCKeyTranslate(
     keyLayoutPtr: ?*UCKeyboardLayout,
@@ -10205,26 +12491,25 @@ pub extern "CoreServices" fn randomx(x: ?*objc.double_t) callconv(.C) objc.doubl
 
 pub const relop = i16;
 
-pub const anon12621 = enum(u32) {
-    GREATERTHAN = 0,
-    LESSTHAN = 1,
-    EQUALTO = 2,
-    UNORDERED = 3,
-};
+pub const anon12621 = u32;
+pub const anon12621_GREATERTHAN: u32 = 0;
+pub const anon12621_LESSTHAN: u32 = 1;
+pub const anon12621_EQUALTO: u32 = 2;
+pub const anon12621_UNORDERED: u32 = 3;
 
 pub extern "CoreServices" fn relation(x: objc.double_t, y: objc.double_t) callconv(.C) relop;
 
 pub const decimal = extern struct {
+    pub const anon13205 = extern struct {
+        length: u8,
+        text: [36]u8,
+        unused: u8,
+    };
+
     sgn: i8,
     unused: i8,
     exp: i16,
-    sig: anon13205,
-};
-
-pub const anon13205 = extern struct {
-    length: u8,
-    text: [36]u8,
-    unused: u8,
+    sig: decimal.anon13205,
 };
 
 pub const decform = extern struct {
@@ -10272,11 +12557,11 @@ pub const TECPluginVersion = objc.UInt32;
 
 pub const OpaqueTECObjectRef = extern struct {};
 
-pub const TECObjectRef = ?*OpaqueTECObjectRef;
+pub const TECObjectRef = OpaqueTECObjectRef;
 
 pub const OpaqueTECSnifferObjectRef = extern struct {};
 
-pub const TECSnifferObjectRef = ?*OpaqueTECSnifferObjectRef;
+pub const TECSnifferObjectRef = OpaqueTECSnifferObjectRef;
 
 pub const TECPluginSig = objc.OSType;
 
@@ -10289,12 +12574,13 @@ pub const TECConversionInfo = extern struct {
 
 pub const TECInternetNameUsageMask = objc.UInt32;
 
-pub const anon1111 = enum(u32) {
-    CertificateKCItemClass = 1667592820,
-    AppleSharePasswordKCItemClass = 1634953328,
-    InternetPasswordKCItemClass = 1768842612,
-    GenericPasswordKCItemClass = 1734700656,
-};
+pub const anon1111 = u32;
+pub const anon1111_TECDisableFallbacksMask: u32 = 65536;
+pub const anon1111_TECDisableLooseMappingsMask: u32 = 131072;
+pub const anon1111_CertificateKCItemClass: u32 = 1667592820;
+pub const anon1111_AppleSharePasswordKCItemClass: u32 = 1634953328;
+pub const anon1111_InternetPasswordKCItemClass: u32 = 1768842612;
+pub const anon1111_GenericPasswordKCItemClass: u32 = 1734700656;
 
 pub extern "CoreServices" fn TECCountAvailableTextEncodings(numberEncodings: ?*objc.ItemCount) callconv(.C) objc.OSStatus;
 
@@ -10441,15 +12727,15 @@ pub extern "CoreServices" fn TECGetTextEncodingFromInternetNameOrMIB(
 
 pub const OpaqueTextToUnicodeInfo = extern struct {};
 
-pub const TextToUnicodeInfo = ?*OpaqueTextToUnicodeInfo;
+pub const TextToUnicodeInfo = OpaqueTextToUnicodeInfo;
 
 pub const OpaqueUnicodeToTextInfo = extern struct {};
 
-pub const UnicodeToTextInfo = ?*OpaqueUnicodeToTextInfo;
+pub const UnicodeToTextInfo = OpaqueUnicodeToTextInfo;
 
 pub const OpaqueUnicodeToTextRunInfo = extern struct {};
 
-pub const UnicodeToTextRunInfo = ?*OpaqueUnicodeToTextRunInfo;
+pub const UnicodeToTextRunInfo = OpaqueUnicodeToTextRunInfo;
 
 pub const ConstTextToUnicodeInfo = TextToUnicodeInfo;
 
@@ -10463,42 +12749,37 @@ pub const UnicodeMapping = extern struct {
     mappingVersion: UnicodeMapVersion,
 };
 
-pub const UnicodeMappingPtr = ?*UnicodeMapping;
+pub const UnicodeMappingPtr = UnicodeMapping;
 
-pub const ConstUnicodeMappingPtr = ?*UnicodeMapping;
+pub const ConstUnicodeMappingPtr = UnicodeMapping;
 
-pub const anon1091 = enum(u32) {
-    UnicodeDefaultDirection = 0,
-    UnicodeLeftToRight = 1,
-    UnicodeRightToLeft = 2,
-};
+pub const anon1091 = u32;
+pub const anon1091_UnicodeDefaultDirection: u32 = 0;
+pub const anon1091_UnicodeLeftToRight: u32 = 1;
+pub const anon1091_UnicodeRightToLeft: u32 = 2;
 
-pub const anon1531 = enum(u32) {
-    UnicodeMatchUnicodeBaseMask = 1,
-    UnicodeMatchUnicodeVariantMask = 2,
-    UnicodeMatchUnicodeFormatMask = 4,
-    UnicodeMatchOtherBaseMask = 8,
-    UnicodeMatchOtherVariantMask = 16,
-    UnicodeMatchOtherFormatMask = 32,
-};
+pub const anon1531 = u32;
+pub const anon1531_UnicodeMatchUnicodeBaseMask: u32 = 1;
+pub const anon1531_UnicodeMatchUnicodeVariantMask: u32 = 2;
+pub const anon1531_UnicodeMatchUnicodeFormatMask: u32 = 4;
+pub const anon1531_UnicodeMatchOtherBaseMask: u32 = 8;
+pub const anon1531_UnicodeMatchOtherVariantMask: u32 = 16;
+pub const anon1531_UnicodeMatchOtherFormatMask: u32 = 32;
 
-pub const anon1731 = enum(u32) {
-    UnicodeFallbackDefaultOnly = 0,
-    UnicodeFallbackCustomOnly = 1,
-    UnicodeFallbackDefaultFirst = 2,
-    UnicodeFallbackCustomFirst = 3,
-};
+pub const anon1631 = u32;
+pub const anon1631_UnicodeFallbackSequencingBits: u32 = 0;
+pub const anon1631_CSSM_ACL_MATCH_UID: u32 = 1;
+pub const anon1631_CSSM_ACL_MATCH_GID: u32 = 2;
+pub const anon1631_CSSM_ACL_MATCH_HONOR_ROOT: u32 = 256;
+pub const anon1631_CSSM_ACL_MATCH_BITS: u32 = 3;
 
-pub const UnicodeToTextFallbackProcPtr = ?*const fn (
-    ?*objc.UniChar,
-    objc.ByteCount,
-    ?*objc.ByteCount,
-    TextPtr,
-    objc.ByteCount,
-    ?*objc.ByteCount,
-    objc.LogicalAddress,
-    ConstUnicodeMappingPtr,
-) callconv(.C) objc.OSStatus;
+pub const anon1731 = u32;
+pub const anon1731_UnicodeFallbackDefaultOnly: u32 = 0;
+pub const anon1731_UnicodeFallbackCustomOnly: u32 = 1;
+pub const anon1731_UnicodeFallbackDefaultFirst: u32 = 2;
+pub const anon1731_UnicodeFallbackCustomFirst: u32 = 3;
+
+pub const UnicodeToTextFallbackProcPtr = objc.OSStatus;
 
 pub const UnicodeToTextFallbackUPP = UnicodeToTextFallbackProcPtr;
 
@@ -10687,13 +12968,13 @@ pub const SchedulerInfoRec = extern struct {
     InterruptedCoopThreadID: ThreadID,
 };
 
-pub const SchedulerInfoRecPtr = ?*SchedulerInfoRec;
+pub const SchedulerInfoRecPtr = SchedulerInfoRec;
 
 pub const voidPtr = ?*anyopaque;
 
-pub const ThreadEntryProcPtr = ?*const fn (?*anyopaque) callconv(.C) voidPtr;
+pub const ThreadEntryProcPtr = voidPtr;
 
-pub const ThreadSchedulerProcPtr = ?*const fn (SchedulerInfoRecPtr) callconv(.C) ThreadID;
+pub const ThreadSchedulerProcPtr = ThreadID;
 
 pub const ThreadSwitchProcPtr = ?*const fn (ThreadID, ?*anyopaque) callconv(.C) void;
 
@@ -10703,7 +12984,7 @@ pub const DebuggerNewThreadProcPtr = ?*const fn (ThreadID) callconv(.C) void;
 
 pub const DebuggerDisposeThreadProcPtr = ?*const fn (ThreadID) callconv(.C) void;
 
-pub const DebuggerThreadSchedulerProcPtr = ?*const fn (SchedulerInfoRecPtr) callconv(.C) ThreadID;
+pub const DebuggerThreadSchedulerProcPtr = ThreadID;
 
 pub const ThreadEntryUPP = ThreadEntryProcPtr;
 
@@ -10828,12 +13109,39 @@ pub extern "CoreServices" fn GetThreadStateGivenTaskRef(threadTRef: ThreadTaskRe
 
 pub extern "CoreServices" fn SetThreadReadyGivenTaskRef(threadTRef: ThreadTaskRef, threadToSet: ThreadID) callconv(.C) objc.OSErr;
 
-pub const anon831 = enum(u32) {
-    OSIZDontOpenResourceFile = 15,
-    OSIZdontAcceptRemoteEvents = 14,
-    OSIZOpenWithReadPermission = 13,
-    OSIZCodeInSharedLibraries = 11,
-};
+pub const anon831 = i32;
+pub const anon831_LastDomainConstant: i32 = -32760;
+pub const anon831_formAbsolutePosition: i32 = 1768842360;
+pub const anon831_formRelativePosition: i32 = 1919249509;
+pub const anon831_formTest: i32 = 1952805748;
+pub const anon831_formRange: i32 = 1918987879;
+pub const anon831_formPropertyID: i32 = 1886547824;
+pub const anon831_formName: i32 = 1851878757;
+pub const anon831_formUniqueID: i32 = 1229201440;
+pub const anon831_cParagraph: i32 = 1668309362;
+pub const anon831_cPICT: i32 = 1346978644;
+pub const anon831_cPixel: i32 = 1668315244;
+pub const anon831_cPixelMap: i32 = 1668311416;
+pub const anon831_cPolygon: i32 = 1668310894;
+pub const anon831_cProperty: i32 = 1886547824;
+pub const anon831_cQDPoint: i32 = 1363439732;
+pub const anon831_cQDRectangle: i32 = 1902408308;
+pub const anon831_cRectangle: i32 = 1668441443;
+pub const anon831_cRGBColor: i32 = 1666336578;
+pub const anon831_cRotation: i32 = 1953656692;
+pub const anon831_cRoundedRectangle: i32 = 1668444771;
+pub const anon831_cRow: i32 = 1668444023;
+pub const anon831_cSelection: i32 = 1668506988;
+pub const anon831_cShortInteger: i32 = 1936224114;
+pub const anon831_cTable: i32 = 1668571756;
+pub const anon831_cText: i32 = 1668577396;
+pub const anon831_cTextFlow: i32 = 1667656815;
+pub const anon831_cTextStyles: i32 = 1953723513;
+pub const anon831_cType: i32 = 1954115685;
+pub const anon831_OSIZDontOpenResourceFile: i32 = 15;
+pub const anon831_OSIZdontAcceptRemoteEvents: i32 = 14;
+pub const anon831_OSIZOpenWithReadPermission: i32 = 13;
+pub const anon831_OSIZCodeInSharedLibraries: i32 = 11;
 
 pub extern "CoreServices" fn FindFolder(
     vRefNum: FSVolumeRefNum,
@@ -10852,257 +13160,263 @@ pub extern "CoreServices" fn FSFindFolder(
     foundRef: ?*FSRef,
 ) callconv(.C) objc.OSErr;
 
-pub const anon3021 = enum(u32) {
-    DesktopFolderType = 1684370283,
-    TrashFolderType = 1953657704,
-    WhereToEmptyTrashFolderType = 1701671028,
-    FontsFolderType = 1718578804,
-    PreferencesFolderType = 1886545254,
-    SystemPreferencesFolderType = 1936749158,
-    TemporaryFolderType = 1952804208,
-    ChewableItemsFolderType = 1718382196,
-    TemporaryItemsInCacheDataFolderType = 1987341680,
-    ApplicationsFolderType = 1634758771,
-    VolumeRootFolderType = 1919905652,
-    DomainTopLevelFolderType = 1685352304,
-    DomainLibraryFolderType = 1684826466,
-    UsersFolderType = 1970500211,
-    CurrentUserFolderType = 1668641650,
-    SharedUserDataFolderType = 1935958388,
-};
+pub const anon3021 = u32;
+pub const anon3021_DesktopFolderType: u32 = 1684370283;
+pub const anon3021_TrashFolderType: u32 = 1953657704;
+pub const anon3021_WhereToEmptyTrashFolderType: u32 = 1701671028;
+pub const anon3021_FontsFolderType: u32 = 1718578804;
+pub const anon3021_PreferencesFolderType: u32 = 1886545254;
+pub const anon3021_SystemPreferencesFolderType: u32 = 1936749158;
+pub const anon3021_TemporaryFolderType: u32 = 1952804208;
+pub const anon3021_ChewableItemsFolderType: u32 = 1718382196;
+pub const anon3021_TemporaryItemsInCacheDataFolderType: u32 = 1987341680;
+pub const anon3021_ApplicationsFolderType: u32 = 1634758771;
+pub const anon3021_VolumeRootFolderType: u32 = 1919905652;
+pub const anon3021_DomainTopLevelFolderType: u32 = 1685352304;
+pub const anon3021_DomainLibraryFolderType: u32 = 1684826466;
+pub const anon3021_UsersFolderType: u32 = 1970500211;
+pub const anon3021_CurrentUserFolderType: u32 = 1668641650;
+pub const anon3021_SharedUserDataFolderType: u32 = 1935958388;
 
-pub const anon3511 = enum(AEKeyword) {
-    eyAEKeyword = 1803122532,
-    eyAELevel = 1818588780,
-    eyAELineArrow = 1634890351,
-    eyAEName = 1886282093,
-    eyAENewElementLoc = 1886283116,
-    eyAEObject = 1802461802,
-    eyAEObjectClass = 1802462060,
-    eyAEOffStyles = 1868985204,
-    eyAEOnStyles = 1869509492,
-    eyAEParameters = 1886547315,
-    eyAEParamFlags = 1886217831,
-    eyAEPenColor = 1886413676,
-    eyAEPenPattern = 1886416993,
-    eyAEPenWidth = 1886418788,
-    eyAEPixelDepth = 1885630580,
-    eyAEPixMapMinus = 1802530157,
-    eyAEPMTable = 1802530164,
-    eyAEPointList = 1886678132,
-    eyAEPointSize = 1886679930,
-    eyAEPosition = 1802530675,
-};
+pub const anon3511 = u32;
+pub const anon3511_DropBoxFolderType: u32 = 1685221232;
+pub const anon3511_eyAEKeyword: u32 = 1803122532;
+pub const anon3511_eyAELevel: u32 = 1818588780;
+pub const anon3511_eyAELineArrow: u32 = 1634890351;
+pub const anon3511_eyAEName: u32 = 1886282093;
+pub const anon3511_eyAENewElementLoc: u32 = 1886283116;
+pub const anon3511_eyAEObject: u32 = 1802461802;
+pub const anon3511_eyAEObjectClass: u32 = 1802462060;
+pub const anon3511_eyAEOffStyles: u32 = 1868985204;
+pub const anon3511_eyAEOnStyles: u32 = 1869509492;
+pub const anon3511_eyAEParameters: u32 = 1886547315;
+pub const anon3511_eyAEParamFlags: u32 = 1886217831;
+pub const anon3511_eyAEPenColor: u32 = 1886413676;
+pub const anon3511_eyAEPenPattern: u32 = 1886416993;
+pub const anon3511_eyAEPenWidth: u32 = 1886418788;
+pub const anon3511_eyAEPixelDepth: u32 = 1885630580;
+pub const anon3511_eyAEPixMapMinus: u32 = 1802530157;
+pub const anon3511_eyAEPMTable: u32 = 1802530164;
+pub const anon3511_eyAEPointList: u32 = 1886678132;
+pub const anon3511_eyAEPointSize: u32 = 1886679930;
+pub const anon3511_eyAEPosition: u32 = 1802530675;
 
-pub const anon3551 = enum(u32) {
-    SharedLibrariesFolderType = -999528094,
-    VoicesFolderType = 1719037795,
-    UtilitiesFolderType = 1970563524,
-    ThemesFolderType = 1953000805,
-    FavoritesFolderType = 1717663347,
-    InternetSearchSitesFolderType = 1769173862,
-    InstallerLogsFolderType = 1768712038,
-    ScriptsFolderType = 1935897284,
-    FolderActionsFolderType = 1717662566,
-    SpeakableItemsFolderType = 1936747369,
-    KeychainFolderType = 1801676910,
-};
+pub const anon3551 = u32;
+pub const anon3551_SharedLibrariesFolderType: u32 = -999528094;
+pub const anon3551_VoicesFolderType: u32 = 1719037795;
+pub const anon3551_UtilitiesFolderType: u32 = 1970563524;
+pub const anon3551_ThemesFolderType: u32 = 1953000805;
+pub const anon3551_FavoritesFolderType: u32 = 1717663347;
+pub const anon3551_InternetSearchSitesFolderType: u32 = 1769173862;
+pub const anon3551_InstallerLogsFolderType: u32 = 1768712038;
+pub const anon3551_ScriptsFolderType: u32 = 1935897284;
+pub const anon3551_FolderActionsFolderType: u32 = 1717662566;
+pub const anon3551_SpeakableItemsFolderType: u32 = 1936747369;
+pub const anon3551_KeychainFolderType: u32 = 1801676910;
 
-pub const anon3711 = enum(u32) {
-    ColorSyncFolderType = 1937337955,
-    ColorSyncCMMFolderType = 1667460461,
-    ColorSyncScriptingFolderType = 1668506482,
-    PrintersFolderType = 1768779890,
-    SpeechFolderType = 1936745320,
-    CarbonLibraryFolderType = 1667330658,
-    DocumentationFolderType = 1768842863,
-    ISSDownloadsFolderType = 1769173860,
-    UserSpecificTmpFolderType = 1970564464,
-    CachedDataFolderType = 1667326824,
-    FrameworksFolderType = 1718772077,
-    PrivateFrameworksFolderType = 1885762157,
-    ClassicDesktopFolderType = 1935962987,
-    SystemSoundsFolderType = 1936944740,
-    ComponentsFolderType = 1668116580,
-    QuickTimeComponentsFolderType = 2003004784,
-    CoreServicesFolderType = 1668510326,
-    AudioSupportFolderType = 1633970543,
-    AudioPresetsFolderType = 1634759540,
-    AudioSoundsFolderType = 1634954852,
-    AudioSoundBanksFolderType = 1650552427,
-    AudioAlertSoundsFolderType = 1634497140,
-    AudioPlugInsFolderType = 1634757735,
-    AudioComponentsFolderType = 1633906032,
-    KernelExtensionsFolderType = 1801812084,
-    DirectoryServicesFolderType = 1685287542,
-    DirectoryServicesPlugInsFolderType = 1685089383,
-    InstallerReceiptsFolderType = 1919119476,
-    FileSystemSupportFolderType = 1718843763,
-    AppleShareSupportFolderType = 1936220530,
-    AppleShareAuthenticationFolderType = 1635087464,
-    MIDIDriversFolderType = 1835623529,
-    KeyboardLayoutsFolderType = 1802264953,
-    IndexFilesFolderType = 1768842360,
-    FindByContentIndexesFolderType = 1717724024,
-    ManagedItemsFolderType = 1835101799,
-    BootTimeStartupItemsFolderType = 1701671034,
-    AutomatorWorkflowsFolderType = 1718382455,
-    AutosaveInformationFolderType = 1634951542,
-    SpotlightSavedSearchesFolderType = 1936748404,
-    SpotlightImportersFolderType = 1936289136,
-    SpotlightMetadataCacheFolderType = 1935893352,
-    InputManagersFolderType = 1768845428,
-    InputMethodsFolderType = 1768845414,
-    LibraryAssistantsFolderType = 1634956396,
-    AudioDigidesignFolderType = 1633970535,
-    AudioVSTFolderType = 1635152756,
-    ColorPickersFolderType = 1668311922,
-    CompositionsFolderType = 1668116595,
-    FontCollectionsFolderType = 1718510444,
-    iMovieFolderType = 1768779638,
-    iMoviePlugInsFolderType = 1768779881,
-    iMovieSoundEffectsFolderType = 1768780645,
-    DownloadsFolderType = 1685026670,
-};
+pub const anon3711 = u32;
+pub const anon3711_ColorSyncFolderType: u32 = 1937337955;
+pub const anon3711_ColorSyncCMMFolderType: u32 = 1667460461;
+pub const anon3711_ColorSyncScriptingFolderType: u32 = 1668506482;
+pub const anon3711_PrintersFolderType: u32 = 1768779890;
+pub const anon3711_SpeechFolderType: u32 = 1936745320;
+pub const anon3711_CarbonLibraryFolderType: u32 = 1667330658;
+pub const anon3711_DocumentationFolderType: u32 = 1768842863;
+pub const anon3711_ISSDownloadsFolderType: u32 = 1769173860;
+pub const anon3711_UserSpecificTmpFolderType: u32 = 1970564464;
+pub const anon3711_CachedDataFolderType: u32 = 1667326824;
+pub const anon3711_FrameworksFolderType: u32 = 1718772077;
+pub const anon3711_PrivateFrameworksFolderType: u32 = 1885762157;
+pub const anon3711_ClassicDesktopFolderType: u32 = 1935962987;
+pub const anon3711_SystemSoundsFolderType: u32 = 1936944740;
+pub const anon3711_ComponentsFolderType: u32 = 1668116580;
+pub const anon3711_QuickTimeComponentsFolderType: u32 = 2003004784;
+pub const anon3711_CoreServicesFolderType: u32 = 1668510326;
+pub const anon3711_AudioSupportFolderType: u32 = 1633970543;
+pub const anon3711_AudioPresetsFolderType: u32 = 1634759540;
+pub const anon3711_AudioSoundsFolderType: u32 = 1634954852;
+pub const anon3711_AudioSoundBanksFolderType: u32 = 1650552427;
+pub const anon3711_AudioAlertSoundsFolderType: u32 = 1634497140;
+pub const anon3711_AudioPlugInsFolderType: u32 = 1634757735;
+pub const anon3711_AudioComponentsFolderType: u32 = 1633906032;
+pub const anon3711_KernelExtensionsFolderType: u32 = 1801812084;
+pub const anon3711_DirectoryServicesFolderType: u32 = 1685287542;
+pub const anon3711_DirectoryServicesPlugInsFolderType: u32 = 1685089383;
+pub const anon3711_InstallerReceiptsFolderType: u32 = 1919119476;
+pub const anon3711_FileSystemSupportFolderType: u32 = 1718843763;
+pub const anon3711_AppleShareSupportFolderType: u32 = 1936220530;
+pub const anon3711_AppleShareAuthenticationFolderType: u32 = 1635087464;
+pub const anon3711_MIDIDriversFolderType: u32 = 1835623529;
+pub const anon3711_KeyboardLayoutsFolderType: u32 = 1802264953;
+pub const anon3711_IndexFilesFolderType: u32 = 1768842360;
+pub const anon3711_FindByContentIndexesFolderType: u32 = 1717724024;
+pub const anon3711_ManagedItemsFolderType: u32 = 1835101799;
+pub const anon3711_BootTimeStartupItemsFolderType: u32 = 1701671034;
+pub const anon3711_AutomatorWorkflowsFolderType: u32 = 1718382455;
+pub const anon3711_AutosaveInformationFolderType: u32 = 1634951542;
+pub const anon3711_SpotlightSavedSearchesFolderType: u32 = 1936748404;
+pub const anon3711_SpotlightImportersFolderType: u32 = 1936289136;
+pub const anon3711_SpotlightMetadataCacheFolderType: u32 = 1935893352;
+pub const anon3711_InputManagersFolderType: u32 = 1768845428;
+pub const anon3711_InputMethodsFolderType: u32 = 1768845414;
+pub const anon3711_LibraryAssistantsFolderType: u32 = 1634956396;
+pub const anon3711_AudioDigidesignFolderType: u32 = 1633970535;
+pub const anon3711_AudioVSTFolderType: u32 = 1635152756;
+pub const anon3711_ColorPickersFolderType: u32 = 1668311922;
+pub const anon3711_CompositionsFolderType: u32 = 1668116595;
+pub const anon3711_FontCollectionsFolderType: u32 = 1718510444;
+pub const anon3711_iMovieFolderType: u32 = 1768779638;
+pub const anon3711_iMoviePlugInsFolderType: u32 = 1768779881;
+pub const anon3711_iMovieSoundEffectsFolderType: u32 = 1768780645;
+pub const anon3711_DownloadsFolderType: u32 = 1685026670;
 
-pub const anon4291 = enum(u32) {
-    ColorSyncProfilesFolderType = 1886547814,
-    ApplicationSupportFolderType = 1634956656,
-    TextEncodingsFolderType = -999004808,
-    PrinterDescriptionFolderType = 1886413926,
-    PrinterDriverFolderType = -999263644,
-    ScriptingAdditionsFolderType = -999070862,
-};
+pub const anon4291 = u32;
+pub const anon4291_ColorSyncProfilesFolderType: u32 = 1886547814;
+pub const anon4291_ApplicationSupportFolderType: u32 = 1634956656;
+pub const anon4291_TextEncodingsFolderType: u32 = -999004808;
+pub const anon4291_PrinterDescriptionFolderType: u32 = 1886413926;
+pub const anon4291_PrinterDriverFolderType: u32 = -999263644;
+pub const anon4291_ScriptingAdditionsFolderType: u32 = -999070862;
 
-pub const anon4381 = enum(u32) {
-    ClassicPreferencesFolderType = 1668313702,
-};
+pub const anon4381 = u32;
+pub const anon4381_ClassicPreferencesFolderType: u32 = 1668313702;
 
-pub const anon4501 = enum(u32) {
-    SystemFolderType = 1835098995,
-    SystemDesktopFolderType = 1935962987,
-    SystemTrashFolderType = 1937011315,
-    PrintMonitorDocsFolderType = 1886547572,
-    ALMModulesFolderType = 2002873451,
-    ALMPreferencesFolderType = 1953655152,
-    ALMLocationsFolderType = 1717660780,
-    AppleExtrasFolderType = 1634040004,
-    ContextualMenuItemsFolderType = 1668116085,
-    MacOSReadMesFolderType = 1836020420,
-    StartupFolderType = 1937011316,
-    ShutdownFolderType = 1936221286,
-    AppleMenuFolderType = 1634561653,
-    ControlPanelFolderType = 1668575852,
-    SystemControlPanelFolderType = 1935897708,
-    ExtensionFolderType = 1702392942,
-    ExtensionDisabledFolderType = 1702392900,
-    ControlPanelDisabledFolderType = 1668575812,
-    SystemExtensionDisabledFolderType = 1835098948,
-    StartupItemsDisabledFolderType = 1937011268,
-    ShutdownItemsDisabledFolderType = 1936221252,
-    AssistantsFolderType = 1634956484,
-    StationeryFolderType = 1868854132,
-    OpenDocFolderType = 1868853092,
-    OpenDocShellPlugInsFolderType = 1868854128,
-    EditorsFolderType = 1868850532,
-    OpenDocEditorsFolderType = -999332762,
-    OpenDocLibrariesFolderType = 1868852322,
-    GenEditorsFolderType = -999988119,
-    HelpFolderType = -999789456,
-    InternetPlugInFolderType = -999398028,
-    ModemScriptsFolderType = -999461020,
-    ControlStripModulesFolderType = 1935959414,
-    InternetFolderType = 1768846532,
-    AppearanceFolderType = 1634758770,
-    SoundSetsFolderType = 1936614515,
-    DesktopPicturesFolderType = 1685352644,
-    FindSupportFolderType = 1718510707,
-    RecentApplicationsFolderType = 1918988400,
-    RecentDocumentsFolderType = 1919184739,
-    RecentServersFolderType = 1920169586,
-    LauncherItemsFolderType = 1818326382,
-    QuickTimeExtensionsFolderType = 1903453560,
-    DisplayExtensionsFolderType = 1685287020,
-    MultiprocessingFolderType = 1836087398,
-    PrintingPlugInsFolderType = 1886415975,
-    AppleshareAutomountServerAliasesFolderType = 1936881348,
-    VolumeSettingsFolderType = 1987274340,
-    PreMacOS91ApplicationsFolderType = -1938788237,
-    PreMacOS91InstallerLogsFolderType = -1804834970,
-    PreMacOS91AssistantsFolderType = -1938590524,
-    PreMacOS91UtilitiesFolderType = -1619760700,
-    PreMacOS91AppleExtrasFolderType = -1939507004,
-    PreMacOS91MacOSReadMesFolderType = -1250987324,
-    PreMacOS91InternetFolderType = -1804700476,
-    PreMacOS91AutomountedServersFolderType = -1485670716,
-    PreMacOS91StationeryFolderType = -1083935884,
-    LocalesFolderType = -999526557,
-    FindByContentPluginsFolderType = 1717724016,
-    FindByContentFolderType = 1717724006,
-};
+pub const anon4501 = u32;
+pub const anon4501_SystemFolderType: u32 = 1835098995;
+pub const anon4501_SystemDesktopFolderType: u32 = 1935962987;
+pub const anon4501_SystemTrashFolderType: u32 = 1937011315;
+pub const anon4501_PrintMonitorDocsFolderType: u32 = 1886547572;
+pub const anon4501_ALMModulesFolderType: u32 = 2002873451;
+pub const anon4501_ALMPreferencesFolderType: u32 = 1953655152;
+pub const anon4501_ALMLocationsFolderType: u32 = 1717660780;
+pub const anon4501_AppleExtrasFolderType: u32 = 1634040004;
+pub const anon4501_ContextualMenuItemsFolderType: u32 = 1668116085;
+pub const anon4501_MacOSReadMesFolderType: u32 = 1836020420;
+pub const anon4501_StartupFolderType: u32 = 1937011316;
+pub const anon4501_ShutdownFolderType: u32 = 1936221286;
+pub const anon4501_AppleMenuFolderType: u32 = 1634561653;
+pub const anon4501_ControlPanelFolderType: u32 = 1668575852;
+pub const anon4501_SystemControlPanelFolderType: u32 = 1935897708;
+pub const anon4501_ExtensionFolderType: u32 = 1702392942;
+pub const anon4501_ExtensionDisabledFolderType: u32 = 1702392900;
+pub const anon4501_ControlPanelDisabledFolderType: u32 = 1668575812;
+pub const anon4501_SystemExtensionDisabledFolderType: u32 = 1835098948;
+pub const anon4501_StartupItemsDisabledFolderType: u32 = 1937011268;
+pub const anon4501_ShutdownItemsDisabledFolderType: u32 = 1936221252;
+pub const anon4501_AssistantsFolderType: u32 = 1634956484;
+pub const anon4501_StationeryFolderType: u32 = 1868854132;
+pub const anon4501_OpenDocFolderType: u32 = 1868853092;
+pub const anon4501_OpenDocShellPlugInsFolderType: u32 = 1868854128;
+pub const anon4501_EditorsFolderType: u32 = 1868850532;
+pub const anon4501_OpenDocEditorsFolderType: u32 = -999332762;
+pub const anon4501_OpenDocLibrariesFolderType: u32 = 1868852322;
+pub const anon4501_GenEditorsFolderType: u32 = -999988119;
+pub const anon4501_HelpFolderType: u32 = -999789456;
+pub const anon4501_InternetPlugInFolderType: u32 = -999398028;
+pub const anon4501_ModemScriptsFolderType: u32 = -999461020;
+pub const anon4501_ControlStripModulesFolderType: u32 = 1935959414;
+pub const anon4501_InternetFolderType: u32 = 1768846532;
+pub const anon4501_AppearanceFolderType: u32 = 1634758770;
+pub const anon4501_SoundSetsFolderType: u32 = 1936614515;
+pub const anon4501_DesktopPicturesFolderType: u32 = 1685352644;
+pub const anon4501_FindSupportFolderType: u32 = 1718510707;
+pub const anon4501_RecentApplicationsFolderType: u32 = 1918988400;
+pub const anon4501_RecentDocumentsFolderType: u32 = 1919184739;
+pub const anon4501_RecentServersFolderType: u32 = 1920169586;
+pub const anon4501_LauncherItemsFolderType: u32 = 1818326382;
+pub const anon4501_QuickTimeExtensionsFolderType: u32 = 1903453560;
+pub const anon4501_DisplayExtensionsFolderType: u32 = 1685287020;
+pub const anon4501_MultiprocessingFolderType: u32 = 1836087398;
+pub const anon4501_PrintingPlugInsFolderType: u32 = 1886415975;
+pub const anon4501_AppleshareAutomountServerAliasesFolderType: u32 = 1936881348;
+pub const anon4501_VolumeSettingsFolderType: u32 = 1987274340;
+pub const anon4501_PreMacOS91ApplicationsFolderType: u32 = -1938788237;
+pub const anon4501_PreMacOS91InstallerLogsFolderType: u32 = -1804834970;
+pub const anon4501_PreMacOS91AssistantsFolderType: u32 = -1938590524;
+pub const anon4501_PreMacOS91UtilitiesFolderType: u32 = -1619760700;
+pub const anon4501_PreMacOS91AppleExtrasFolderType: u32 = -1939507004;
+pub const anon4501_PreMacOS91MacOSReadMesFolderType: u32 = -1250987324;
+pub const anon4501_PreMacOS91InternetFolderType: u32 = -1804700476;
+pub const anon4501_PreMacOS91AutomountedServersFolderType: u32 = -1485670716;
+pub const anon4501_PreMacOS91StationeryFolderType: u32 = -1083935884;
+pub const anon4501_LocalesFolderType: u32 = -999526557;
+pub const anon4501_FindByContentPluginsFolderType: u32 = 1717724016;
+pub const anon4501_FindByContentFolderType: u32 = 1717724006;
 
-pub const anon5151 = enum(DescType) {
-    typeAEText = 1951684692,
-    typeArc = 1667330659,
-    typeBest = 1650815860,
-    typeCell = 1667458412,
-    typeClassInfo = 1734569065,
-    typeColorTable = 1668051572,
-    typeColumn = 1667460972,
-    typeDashStyle = 1952735603,
-    typeData = 1952740449,
-    typeDrawingArea = 1667527287,
-    typeElemInfo = 1701603694,
-    typeEnumeration = 1701737837,
-    typeEPS = 1162892064,
-    typeEventInfo = 1702259054,
-};
+pub const anon5151 = u32;
+pub const anon5151_MagicTemporaryItemsFolderType: u32 = 1836346736;
+pub const anon5151_TemporaryItemsInUserDomainFolderType: u32 = 1952804209;
+pub const anon5151_CurrentUserRemoteFolderLocation: u32 = 1920299878;
+pub const anon5151_CurrentUserRemoteFolderType: u32 = 1920299890;
+pub const anon5151_typeAEText: u32 = 1951684692;
+pub const anon5151_typeArc: u32 = 1667330659;
+pub const anon5151_typeBest: u32 = 1650815860;
+pub const anon5151_typeCell: u32 = 1667458412;
+pub const anon5151_typeClassInfo: u32 = 1734569065;
+pub const anon5151_typeColorTable: u32 = 1668051572;
+pub const anon5151_typeColumn: u32 = 1667460972;
+pub const anon5151_typeDashStyle: u32 = 1952735603;
+pub const anon5151_typeData: u32 = 1952740449;
+pub const anon5151_typeDrawingArea: u32 = 1667527287;
+pub const anon5151_typeElemInfo: u32 = 1701603694;
+pub const anon5151_typeEnumeration: u32 = 1701737837;
+pub const anon5151_typeEPS: u32 = 1162892064;
+pub const anon5151_typeEventInfo: u32 = 1702259054;
 
-pub const anon5341 = enum(u32) {
-    CreateFolderAtBoot = 2,
-    CreateFolderAtBootBit = 1,
-    FolderCreatedInvisible = 4,
-    FolderCreatedInvisibleBit = 2,
-    FolderCreatedNameLocked = 8,
-    FolderCreatedNameLockedBit = 3,
-    FolderCreatedAdminPrivs = 16,
-    FolderCreatedAdminPrivsBit = 4,
-};
+pub const anon5341 = u32;
+pub const anon5341_CreateFolderAtBoot: u32 = 2;
+pub const anon5341_CreateFolderAtBootBit: u32 = 1;
+pub const anon5341_FolderCreatedInvisible: u32 = 4;
+pub const anon5341_FolderCreatedInvisibleBit: u32 = 2;
+pub const anon5341_FolderCreatedNameLocked: u32 = 8;
+pub const anon5341_FolderCreatedNameLockedBit: u32 = 3;
+pub const anon5341_FolderCreatedAdminPrivs: u32 = 16;
+pub const anon5341_FolderCreatedAdminPrivsBit: u32 = 4;
 
-pub const anon5451 = enum(u32) {
-    FolderInUserFolder = 32,
-    FolderInUserFolderBit = 5,
-    FolderTrackedByAlias = 64,
-    FolderTrackedByAliasBit = 6,
-    FolderInRemoteUserFolderIfAvailable = 128,
-    FolderInRemoteUserFolderIfAvailableBit = 7,
-    FolderNeverMatchedInIdentifyFolder = 256,
-    FolderNeverMatchedInIdentifyFolderBit = 8,
-    FolderMustStayOnSameVolume = 512,
-    FolderMustStayOnSameVolumeBit = 9,
-    FolderManagerFolderInMacOS9FolderIfMacOSXIsInstalledMask = 1024,
-    FolderManagerFolderInMacOS9FolderIfMacOSXIsInstalledBit = 10,
-    FolderInLocalOrRemoteUserFolder = 160,
-    FolderManagerNotCreatedOnRemoteVolumesBit = 11,
-    FolderManagerNotCreatedOnRemoteVolumesMask = 2048,
-    FolderManagerNewlyCreatedFolderIsLocalizedBit = 12,
-    FolderManagerNewlyCreatedFolderShouldHaveDotLocalizedCreatedWithinMask = 4096,
-};
+pub const anon5451 = u32;
+pub const anon5451_FolderInUserFolder: u32 = 32;
+pub const anon5451_FolderInUserFolderBit: u32 = 5;
+pub const anon5451_FolderTrackedByAlias: u32 = 64;
+pub const anon5451_FolderTrackedByAliasBit: u32 = 6;
+pub const anon5451_FolderInRemoteUserFolderIfAvailable: u32 = 128;
+pub const anon5451_FolderInRemoteUserFolderIfAvailableBit: u32 = 7;
+pub const anon5451_FolderNeverMatchedInIdentifyFolder: u32 = 256;
+pub const anon5451_FolderNeverMatchedInIdentifyFolderBit: u32 = 8;
+pub const anon5451_FolderMustStayOnSameVolume: u32 = 512;
+pub const anon5451_FolderMustStayOnSameVolumeBit: u32 = 9;
+pub const anon5451_FolderManagerFolderInMacOS9FolderIfMacOSXIsInstalledMask: u32 = 1024;
+pub const anon5451_FolderManagerFolderInMacOS9FolderIfMacOSXIsInstalledBit: u32 = 10;
+pub const anon5451_FolderInLocalOrRemoteUserFolder: u32 = 160;
+pub const anon5451_FolderManagerNotCreatedOnRemoteVolumesBit: u32 = 11;
+pub const anon5451_FolderManagerNotCreatedOnRemoteVolumesMask: u32 = 2048;
+pub const anon5451_FolderManagerNewlyCreatedFolderIsLocalizedBit: u32 = 12;
+pub const anon5451_FolderManagerNewlyCreatedFolderShouldHaveDotLocalizedCreatedWithinMask: u32 = 4096;
 
 pub const FolderDescFlags = objc.UInt32;
 
 pub const FolderClass = objc.OSType;
 
-pub const anon5851 = enum(u32) {
-    DictionariesFolderType = 1684628340,
-    LogsFolderType = 1819240307,
-    PreferencePanesFolderType = 1886413166,
-};
+pub const anon5751 = u32;
+pub const anon5751_BlessedFolder: u32 = 1651274598;
+pub const anon5751_RootFolder: u32 = 1919906918;
+pub const anon5751_HFSPlusExtentKeyMaximumLength: u32 = 10;
+pub const anon5751_HFSExtentKeyMaximumLength: u32 = 7;
+pub const anon5751_HFSPlusCatalogKeyMaximumLength: u32 = 516;
+pub const anon5751_HFSPlusCatalogKeyMinimumLength: u32 = 6;
+pub const anon5751_HFSCatalogKeyMaximumLength: u32 = 37;
+pub const anon5751_HFSCatalogKeyMinimumLength: u32 = 6;
+pub const anon5751_HFSPlusCatalogMinNodeSize: u32 = 4096;
+pub const anon5751_HFSPlusExtentMinNodeSize: u32 = 512;
+pub const anon5751_HFSPlusAttrMinNodeSize: u32 = 4096;
 
-pub const anon5921 = enum(u32) {
-    WidgetsFolderType = 2003068788,
-    ScreenSaversFolderType = 1935897198,
-};
+pub const anon5851 = u32;
+pub const anon5851_DictionariesFolderType: u32 = 1684628340;
+pub const anon5851_LogsFolderType: u32 = 1819240307;
+pub const anon5851_PreferencePanesFolderType: u32 = 1886413166;
+
+pub const anon5921 = u32;
+pub const anon5921_WidgetsFolderType: u32 = 2003068788;
+pub const anon5921_ScreenSaversFolderType: u32 = 1935897198;
 
 pub const FolderType = objc.OSType;
 
@@ -11120,7 +13434,7 @@ pub const FolderDesc = extern struct {
     name: objc.StrFileName,
 };
 
-pub const FolderDescPtr = ?*FolderDesc;
+pub const FolderDescPtr = FolderDesc;
 
 pub const RoutingFlags = objc.UInt32;
 
@@ -11132,7 +13446,7 @@ pub const FolderRouting = extern struct {
     flags: RoutingFlags,
 };
 
-pub const FolderRoutingPtr = ?*FolderRouting;
+pub const FolderRoutingPtr = FolderRouting;
 
 pub extern "CoreServices" fn AddFolderDescriptor(
     foldType: FolderType,
@@ -11175,7 +13489,7 @@ pub extern "CoreServices" fn DetermineIfPathIsEnclosedByFolder(
     outResult: ?*objc.Boolean,
 ) callconv(.C) objc.OSErr;
 
-pub const FolderManagerNotificationProcPtr = ?*const fn (objc.OSType, ?*anyopaque, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const FolderManagerNotificationProcPtr = objc.OSStatus;
 
 pub const FolderManagerNotificationUPP = FolderManagerNotificationProcPtr;
 
@@ -11192,9 +13506,8 @@ pub extern "CoreServices" fn InvokeFolderManagerNotificationUPP(
 
 pub extern "CoreServices" fn Microseconds(microTickCount: ?*objc.UnsignedWide) callconv(.C) void;
 
-pub const anon1051 = enum(u32) {
-    TMTaskActive = 32768,
-};
+pub const anon1051 = u32;
+pub const anon1051_TMTaskActive: u32 = 32768;
 
 pub const TMTask = extern struct {
     qLink: QElemPtr,
@@ -11205,7 +13518,7 @@ pub const TMTask = extern struct {
     tmReserved: i64,
 };
 
-pub const TMTaskPtr = ?*TMTask;
+pub const TMTaskPtr = TMTask;
 
 pub const TimerProcPtr = ?*const fn (TMTaskPtr) callconv(.C) void;
 
@@ -11348,9 +13661,8 @@ pub const PEFContainerHeader = extern struct {
     reservedA: objc.UInt32,
 };
 
-pub const anon1171 = enum(u32) {
-    PEFFirstSectionHeaderOffset = 40,
-};
+pub const anon1171 = u32;
+pub const anon1171_PEFFirstSectionHeaderOffset: u32 = 40;
 
 pub const PEFSectionHeader = extern struct {
     nameOffset: objc.SInt32,
@@ -11365,59 +13677,60 @@ pub const PEFSectionHeader = extern struct {
     reservedA: objc.UInt8,
 };
 
-pub const anon1451 = enum(u32) {
-    PEFCodeSection = 0,
-    PEFUnpackedDataSection = 1,
-    PEFPackedDataSection = 2,
-    PEFConstantSection = 3,
-    PEFExecDataSection = 6,
-    PEFLoaderSection = 4,
-    PEFDebugSection = 5,
-    PEFExceptionSection = 7,
-    PEFTracebackSection = 8,
-};
+pub const anon1451 = u32;
+pub const anon1451_PEFCodeSection: u32 = 0;
+pub const anon1451_PEFUnpackedDataSection: u32 = 1;
+pub const anon1451_PEFPackedDataSection: u32 = 2;
+pub const anon1451_PEFConstantSection: u32 = 3;
+pub const anon1451_PEFExecDataSection: u32 = 6;
+pub const anon1451_PEFLoaderSection: u32 = 4;
+pub const anon1451_PEFDebugSection: u32 = 5;
+pub const anon1451_PEFExceptionSection: u32 = 7;
+pub const anon1451_PEFTracebackSection: u32 = 8;
 
-pub const anon1611 = enum(u32) {
-    PEFProcessShare = 1,
-    PEFGlobalShare = 4,
-    PEFProtectedShare = 5,
-};
+pub const anon1611 = u32;
+pub const anon1611_PEFProcessShare: u32 = 1;
+pub const anon1611_PEFGlobalShare: u32 = 4;
+pub const anon1611_PEFProtectedShare: u32 = 5;
 
-pub const anon1911 = enum(AEKeyword) {
-    eyTransactionIDAttr = 1953653102,
-    eyReturnIDAttr = 1920231780,
-    eyEventClassAttr = 1702257516,
-    eyEventIDAttr = 1702259044,
-    eyAddressAttr = 1633969266,
-    eyOptionalKeywordAttr = 1869640811,
-    eyTimeoutAttr = 1953066351,
-    eyInteractLevelAttr = 1768846437,
-    eyEventSourceAttr = 1702064739,
-    eyMissedKeywordAttr = 1835627379,
-    eyOriginalAddressAttr = 1718775661,
-    eyAcceptTimeoutAttr = 1633907821,
-    eyReplyRequestedAttr = 1919250545,
-    eySenderEUIDAttr = 1936025956,
-    eySenderEGIDAttr = 1936157028,
-    eySenderUIDAttr = 1969841267,
-    eySenderGIDAttr = 1734960243,
-    eySenderPIDAttr = 1936746852,
-    eySenderAuditTokenAttr = 1953459054,
-    eySenderApplescriptEntitlementsAttr = 1701737580,
-    eySenderApplicationIdentifierEntitlementAttr = 1634297185,
-    eySenderApplicationSandboxed = 1936946018,
-    eyActualSenderAuditToken = 1633902964,
-    eyAppleEventAttributesAttr = 1635021938,
-};
+pub const anon1911 = u32;
+pub const anon1911_PEFPkDataZero: u32 = 0;
+pub const anon1911_PEFPkDataBlock: u32 = 1;
+pub const anon1911_PEFPkDataRepeat: u32 = 2;
+pub const anon1911_PEFPkDataRepeatBlock: u32 = 3;
+pub const anon1911_PEFPkDataRepeatZero: u32 = 4;
+pub const anon1911_eyTransactionIDAttr: u32 = 1953653102;
+pub const anon1911_eyReturnIDAttr: u32 = 1920231780;
+pub const anon1911_eyEventClassAttr: u32 = 1702257516;
+pub const anon1911_eyEventIDAttr: u32 = 1702259044;
+pub const anon1911_eyAddressAttr: u32 = 1633969266;
+pub const anon1911_eyOptionalKeywordAttr: u32 = 1869640811;
+pub const anon1911_eyTimeoutAttr: u32 = 1953066351;
+pub const anon1911_eyInteractLevelAttr: u32 = 1768846437;
+pub const anon1911_eyEventSourceAttr: u32 = 1702064739;
+pub const anon1911_eyMissedKeywordAttr: u32 = 1835627379;
+pub const anon1911_eyOriginalAddressAttr: u32 = 1718775661;
+pub const anon1911_eyAcceptTimeoutAttr: u32 = 1633907821;
+pub const anon1911_eyReplyRequestedAttr: u32 = 1919250545;
+pub const anon1911_eySenderEUIDAttr: u32 = 1936025956;
+pub const anon1911_eySenderEGIDAttr: u32 = 1936157028;
+pub const anon1911_eySenderUIDAttr: u32 = 1969841267;
+pub const anon1911_eySenderGIDAttr: u32 = 1734960243;
+pub const anon1911_eySenderPIDAttr: u32 = 1936746852;
+pub const anon1911_eySenderAuditTokenAttr: u32 = 1953459054;
+pub const anon1911_eySenderApplescriptEntitlementsAttr: u32 = 1701737580;
+pub const anon1911_eySenderApplicationIdentifierEntitlementAttr: u32 = 1634297185;
+pub const anon1911_eySenderApplicationSandboxed: u32 = 1936946018;
+pub const anon1911_eyActualSenderAuditToken: u32 = 1633902964;
+pub const anon1911_eyAppleEventAttributesAttr: u32 = 1635021938;
 
-pub const anon2011 = enum(u32) {
-    PEFPkDataOpcodeShift = 5,
-    PEFPkDataCount5Mask = 31,
-    PEFPkDataMaxCount5 = 31,
-    PEFPkDataVCountShift = 7,
-    PEFPkDataVCountMask = 127,
-    PEFPkDataVCountEndMask = 128,
-};
+pub const anon2011 = u32;
+pub const anon2011_PEFPkDataOpcodeShift: u32 = 5;
+pub const anon2011_PEFPkDataCount5Mask: u32 = 31;
+pub const anon2011_PEFPkDataMaxCount5: u32 = 31;
+pub const anon2011_PEFPkDataVCountShift: u32 = 7;
+pub const anon2011_PEFPkDataVCountMask: u32 = 127;
+pub const anon2011_PEFPkDataVCountEndMask: u32 = 128;
 
 pub const PEFLoaderInfoHeader = extern struct {
     mainSection: objc.SInt32,
@@ -11447,30 +13760,27 @@ pub const PEFImportedLibrary = extern struct {
     reservedB: objc.UInt16,
 };
 
-pub const anon3421 = enum(u32) {
-    PEFWeakImportLibMask = 64,
-    PEFInitLibBeforeMask = 128,
-};
+pub const anon3421 = u32;
+pub const anon3421_PEFWeakImportLibMask: u32 = 64;
+pub const anon3421_PEFInitLibBeforeMask: u32 = 128;
 
 pub const PEFImportedSymbol = extern struct {
     classAndName: objc.UInt32,
 };
 
-pub const anon3731 = enum(u32) {
-    PEFImpSymClassShift = 24,
-    PEFImpSymNameOffsetMask = 16777215,
-    PEFImpSymMaxNameOffset = 16777215,
-};
+pub const anon3731 = u32;
+pub const anon3731_PEFImpSymClassShift: u32 = 24;
+pub const anon3731_PEFImpSymNameOffsetMask: u32 = 16777215;
+pub const anon3731_PEFImpSymMaxNameOffset: u32 = 16777215;
 
-pub const anon3851 = enum(u32) {
-    PEFCodeSymbol = 0,
-    PEFDataSymbol = 1,
-    PEFTVectorSymbol = 2,
-    PEFTOCSymbol = 3,
-    PEFGlueSymbol = 4,
-    PEFUndefinedSymbol = 15,
-    PEFWeakImportSymMask = 128,
-};
+pub const anon3851 = u32;
+pub const anon3851_PEFCodeSymbol: u32 = 0;
+pub const anon3851_PEFDataSymbol: u32 = 1;
+pub const anon3851_PEFTVectorSymbol: u32 = 2;
+pub const anon3851_PEFTOCSymbol: u32 = 3;
+pub const anon3851_PEFGlueSymbol: u32 = 4;
+pub const anon3851_PEFUndefinedSymbol: u32 = 15;
+pub const anon3851_PEFWeakImportSymMask: u32 = 128;
 
 pub const PEFExportedSymbolHashSlot = extern struct {
     countAndStart: objc.UInt32,
@@ -11482,12 +13792,12 @@ pub const PEFSplitHashWord = extern struct {
 };
 
 pub const PEFExportedSymbolKey = extern struct {
-    u: anon4973,
-};
+    pub const anon4973 = extern union {
+        fullHashWord: objc.UInt32,
+        splitHashWord: PEFSplitHashWord,
+    };
 
-pub const anon4973 = extern union {
-    fullHashWord: objc.UInt32,
-    splitHashWord: PEFSplitHashWord,
+    u: PEFExportedSymbolKey.anon4973,
 };
 
 pub const PEFExportedSymbol = extern struct {
@@ -11496,10 +13806,9 @@ pub const PEFExportedSymbol = extern struct {
     sectionIndex: objc.SInt16,
 };
 
-pub const anon5841 = enum(i32) {
-    PEFAbsoluteExport = -2,
-    PEFReexportedImport = -3,
-};
+pub const anon5841 = i32;
+pub const anon5841_PEFAbsoluteExport: i32 = -2;
+pub const anon5841_PEFReexportedImport: i32 = -3;
 
 pub const PEFRelocChunk = objc.UInt16;
 
@@ -11510,75 +13819,63 @@ pub const PEFLoaderRelocationHeader = extern struct {
     firstRelocOffset: objc.UInt32,
 };
 
-pub const anon6561 = enum(u32) {
-    PEFRelocBasicOpcodeRange = 128,
-};
+pub const anon6561 = u32;
+pub const anon6561_PEFRelocBasicOpcodeRange: u32 = 128;
 
-pub const anon6691 = enum(u32) {
-    PEFRelocBySectDWithSkip = 0,
-    PEFRelocBySectC = 32,
-    PEFRelocBySectD = 33,
-    PEFRelocTVector12 = 34,
-    PEFRelocTVector8 = 35,
-    PEFRelocVTable8 = 36,
-    PEFRelocImportRun = 37,
-    PEFRelocSmByImport = 48,
-    PEFRelocSmSetSectC = 49,
-    PEFRelocSmSetSectD = 50,
-    PEFRelocSmBySection = 51,
-    PEFRelocIncrPosition = 64,
-    PEFRelocSmRepeat = 72,
-    PEFRelocSetPosition = 80,
-    PEFRelocLgByImport = 82,
-    PEFRelocLgRepeat = 88,
-    PEFRelocLgSetOrBySection = 90,
-    PEFRelocUndefinedOpcode = 255,
-};
+pub const anon6691 = u32;
+pub const anon6691_PEFRelocBySectDWithSkip: u32 = 0;
+pub const anon6691_PEFRelocBySectC: u32 = 32;
+pub const anon6691_PEFRelocBySectD: u32 = 33;
+pub const anon6691_PEFRelocTVector12: u32 = 34;
+pub const anon6691_PEFRelocTVector8: u32 = 35;
+pub const anon6691_PEFRelocVTable8: u32 = 36;
+pub const anon6691_PEFRelocImportRun: u32 = 37;
+pub const anon6691_PEFRelocSmByImport: u32 = 48;
+pub const anon6691_PEFRelocSmSetSectC: u32 = 49;
+pub const anon6691_PEFRelocSmSetSectD: u32 = 50;
+pub const anon6691_PEFRelocSmBySection: u32 = 51;
+pub const anon6691_PEFRelocIncrPosition: u32 = 64;
+pub const anon6691_PEFRelocSmRepeat: u32 = 72;
+pub const anon6691_PEFRelocSetPosition: u32 = 80;
+pub const anon6691_PEFRelocLgByImport: u32 = 82;
+pub const anon6691_PEFRelocLgRepeat: u32 = 88;
+pub const anon6691_PEFRelocLgSetOrBySection: u32 = 90;
+pub const anon6691_PEFRelocUndefinedOpcode: u32 = 255;
 
-pub const anon6981 = enum(u32) {
-    PEFRelocLgBySectionSubopcode = 0,
-    PEFRelocLgSetSectCSubopcode = 1,
-    PEFRelocLgSetSectDSubopcode = 2,
-};
+pub const anon6981 = u32;
+pub const anon6981_PEFRelocLgBySectionSubopcode: u32 = 0;
+pub const anon6981_PEFRelocLgSetSectCSubopcode: u32 = 1;
+pub const anon6981_PEFRelocLgSetSectDSubopcode: u32 = 2;
 
-pub const anon7821 = enum(u32) {
-    PEFRelocWithSkipMaxSkipCount = 255,
-    PEFRelocWithSkipMaxRelocCount = 63,
-};
+pub const anon7821 = u32;
+pub const anon7821_PEFRelocWithSkipMaxSkipCount: u32 = 255;
+pub const anon7821_PEFRelocWithSkipMaxRelocCount: u32 = 63;
 
-pub const anon8161 = enum(u32) {
-    PEFRelocRunMaxRunLength = 512,
-};
+pub const anon8161 = u32;
+pub const anon8161_PEFRelocRunMaxRunLength: u32 = 512;
 
-pub const anon8551 = enum(u32) {
-    PEFRelocSmIndexMaxIndex = 511,
-};
+pub const anon8551 = u32;
+pub const anon8551_PEFRelocSmIndexMaxIndex: u32 = 511;
 
-pub const anon8911 = enum(u32) {
-    PEFRelocIncrPositionMaxOffset = 4096,
-};
+pub const anon8911 = u32;
+pub const anon8911_PEFRelocIncrPositionMaxOffset: u32 = 4096;
 
-pub const anon9211 = enum(u32) {
-    PEFRelocSmRepeatMaxChunkCount = 16,
-    PEFRelocSmRepeatMaxRepeatCount = 256,
-};
+pub const anon9211 = u32;
+pub const anon9211_PEFRelocSmRepeatMaxChunkCount: u32 = 16;
+pub const anon9211_PEFRelocSmRepeatMaxRepeatCount: u32 = 256;
 
-pub const anon9521 = enum(u32) {
-    PEFRelocSetPosMaxOffset = 67108863,
-};
+pub const anon9521 = u32;
+pub const anon9521_PEFRelocSetPosMaxOffset: u32 = 67108863;
 
-pub const anon9861 = enum(u32) {
-    PEFRelocLgByImportMaxIndex = 67108863,
-};
+pub const anon9861 = u32;
+pub const anon9861_PEFRelocLgByImportMaxIndex: u32 = 67108863;
 
-pub const anon10211 = enum(u32) {
-    PEFRelocLgRepeatMaxChunkCount = 16,
-    PEFRelocLgRepeatMaxRepeatCount = 4194303,
-};
+pub const anon10211 = u32;
+pub const anon10211_PEFRelocLgRepeatMaxChunkCount: u32 = 16;
+pub const anon10211_PEFRelocLgRepeatMaxRepeatCount: u32 = 4194303;
 
-pub const anon10591 = enum(u32) {
-    PEFRelocLgSetOrBySectionMaxIndex = 4194303,
-};
+pub const anon10591 = u32;
+pub const anon10591_PEFRelocLgSetOrBySectionMaxIndex: u32 = 4194303;
 
 pub const XLibContainerHeader = extern struct {
     tag1: objc.OSType,
@@ -11603,12 +13900,11 @@ pub const XLibContainerHeader = extern struct {
     oldImpVersion: objc.UInt32,
 };
 
-pub const anon11711 = enum(i32) {
-    XLibTag1 = -263364253,
-    VLibTag2 = 1447848290,
-    BLibTag2 = 1112303970,
-    XLibVersion = 1,
-};
+pub const anon11711 = i32;
+pub const anon11711_XLibTag1: i32 = -263364253;
+pub const anon11711_VLibTag2: i32 = 1447848290;
+pub const anon11711_BLibTag2: i32 = 1112303970;
+pub const anon11711_XLibVersion: i32 = 1;
 
 pub const XLibExportedSymbolHashSlot = PEFExportedSymbolHashSlot;
 
@@ -11619,64 +13915,25 @@ pub const XLibExportedSymbol = extern struct {
     bpOffset: objc.UInt32,
 };
 
-pub const anon1291 = enum(u32) {
-    TileIconVariant = 1953066085,
-    RolloverIconVariant = 1870030194,
-    DropIconVariant = 1685221232,
-    OpenIconVariant = 1869636974,
-    OpenDropIconVariant = 1868853872,
-};
-
-pub const anon7691 = enum(DescType) {
-    typeMeters = 1835365490,
-    typeInches = 1768842088,
-    typeFeet = 1717921140,
-    typeYards = 2036429412,
-    typeMiles = 1835625573,
-    typeKilometers = 1802335346,
-    typeCentimeters = 1668117618,
-    typeSquareMeters = 1936814701,
-    typeSquareFeet = 1936811636,
-    typeSquareYards = 1936816484,
-    typeSquareMiles = 1936813417,
-    typeSquareKilometers = 1936812909,
-    typeLiters = 1818850418,
-    typeQuarts = 1903326323,
-    typeGallons = 1734437998,
-    typeCubicMeters = 1668113780,
-    typeCubicFeet = 1667655028,
-    typeCubicInches = 1668639086,
-    typeCubicCentimeter = 1667460468,
-    typeCubicYards = 1668903524,
-    typeKilograms = 1801941613,
-    typeGrams = 1735549293,
-    typeOunces = 1870295840,
-    typePounds = 1818391328,
-    typeDegreesC = 1684367203,
-    typeDegreesF = 1684367206,
-    typeDegreesK = 1684367211,
-};
-
 pub const HFSCatalogNodeID = objc.UInt32;
 
-pub const anon261 = enum(u32) {
-    AIFFID = 1095321158,
-    AIFCID = 1095321155,
-    FormatVersionID = 1180058962,
-    CommonID = 1129270605,
-    FORMID = 1179603533,
-    SoundDataID = 1397968452,
-    MarkerID = 1296126539,
-    InstrumentID = 1229869908,
-    MIDIDataID = 1296647241,
-    AudioRecordingID = 1095062340,
-    ApplicationSpecificID = 1095782476,
-    CommentID = 1129270612,
-    NameID = 1312902469,
-    AuthorID = 1096111176,
-    CopyrightID = 677587232,
-    AnnotationID = 1095650895,
-};
+pub const anon261 = u32;
+pub const anon261_AIFFID: u32 = 1095321158;
+pub const anon261_AIFCID: u32 = 1095321155;
+pub const anon261_FormatVersionID: u32 = 1180058962;
+pub const anon261_CommonID: u32 = 1129270605;
+pub const anon261_FORMID: u32 = 1179603533;
+pub const anon261_SoundDataID: u32 = 1397968452;
+pub const anon261_MarkerID: u32 = 1296126539;
+pub const anon261_InstrumentID: u32 = 1229869908;
+pub const anon261_MIDIDataID: u32 = 1296647241;
+pub const anon261_AudioRecordingID: u32 = 1095062340;
+pub const anon261_ApplicationSpecificID: u32 = 1095782476;
+pub const anon261_CommentID: u32 = 1129270612;
+pub const anon261_NameID: u32 = 1312902469;
+pub const anon261_AuthorID: u32 = 1096111176;
+pub const anon261_CopyrightID: u32 = 677587232;
+pub const anon261_AnnotationID: u32 = 1095650895;
 
 pub const MarkerIdType = objc.SInt16;
 
@@ -11697,7 +13954,7 @@ pub const FormatVersionChunk = extern struct {
     timestamp: objc.UInt32,
 };
 
-pub const FormatVersionChunkPtr = ?*FormatVersionChunk;
+pub const FormatVersionChunkPtr = FormatVersionChunk;
 
 pub const CommonChunk = extern struct {
     ckID: objc.UInt32,
@@ -11708,7 +13965,7 @@ pub const CommonChunk = extern struct {
     sampleRate: objc.extended80,
 };
 
-pub const CommonChunkPtr = ?*CommonChunk;
+pub const CommonChunkPtr = CommonChunk;
 
 pub const ExtCommonChunk = extern struct {
     ckID: objc.UInt32,
@@ -11721,7 +13978,7 @@ pub const ExtCommonChunk = extern struct {
     compressionName: [1]i8,
 };
 
-pub const ExtCommonChunkPtr = ?*ExtCommonChunk;
+pub const ExtCommonChunkPtr = ExtCommonChunk;
 
 pub const SoundDataChunk = extern struct {
     ckID: objc.UInt32,
@@ -11730,7 +13987,7 @@ pub const SoundDataChunk = extern struct {
     blockSize: objc.UInt32,
 };
 
-pub const SoundDataChunkPtr = ?*SoundDataChunk;
+pub const SoundDataChunkPtr = SoundDataChunk;
 
 pub const Marker = extern struct {
     id: MarkerIdType,
@@ -11745,7 +14002,7 @@ pub const MarkerChunk = extern struct {
     Markers: [1]Marker,
 };
 
-pub const MarkerChunkPtr = ?*MarkerChunk;
+pub const MarkerChunkPtr = MarkerChunk;
 
 pub const AIFFLoop = extern struct {
     playMode: objc.SInt16,
@@ -11767,7 +14024,7 @@ pub const InstrumentChunk = extern struct {
     releaseLoop: AIFFLoop,
 };
 
-pub const InstrumentChunkPtr = ?*InstrumentChunk;
+pub const InstrumentChunkPtr = InstrumentChunk;
 
 pub const MIDIDataChunk = extern struct {
     ckID: objc.UInt32,
@@ -11775,7 +14032,7 @@ pub const MIDIDataChunk = extern struct {
     MIDIdata: [1]objc.UInt8,
 };
 
-pub const MIDIDataChunkPtr = ?*MIDIDataChunk;
+pub const MIDIDataChunkPtr = MIDIDataChunk;
 
 pub const AudioRecordingChunk = extern struct {
     ckID: objc.UInt32,
@@ -11783,7 +14040,7 @@ pub const AudioRecordingChunk = extern struct {
     AESChannelStatus: [24]objc.UInt8,
 };
 
-pub const AudioRecordingChunkPtr = ?*AudioRecordingChunk;
+pub const AudioRecordingChunkPtr = AudioRecordingChunk;
 
 pub const ApplicationSpecificChunk = extern struct {
     ckID: objc.UInt32,
@@ -11792,7 +14049,7 @@ pub const ApplicationSpecificChunk = extern struct {
     data: [1]objc.UInt8,
 };
 
-pub const ApplicationSpecificChunkPtr = ?*ApplicationSpecificChunk;
+pub const ApplicationSpecificChunkPtr = ApplicationSpecificChunk;
 
 pub const Comment = extern struct {
     timeStamp: objc.UInt32,
@@ -11808,7 +14065,7 @@ pub const CommentsChunk = extern struct {
     comments: [1]Comment,
 };
 
-pub const CommentsChunkPtr = ?*CommentsChunk;
+pub const CommentsChunkPtr = CommentsChunk;
 
 pub const TextChunk = extern struct {
     ckID: objc.UInt32,
@@ -11816,16 +14073,15 @@ pub const TextChunk = extern struct {
     text: [1]i8,
 };
 
-pub const TextChunkPtr = ?*TextChunk;
+pub const TextChunkPtr = TextChunk;
 
-pub const anon621 = enum(u32) {
-    TECPluginType = 1701015655,
-    TECPluginCreator = 1701733238,
-    TECPluginOneToOne = 1869901679,
-    TECPluginOneToMany = 1869901677,
-    TECPluginManyToOne = 1836347247,
-    TECPluginSniffObj = 1936615782,
-};
+pub const anon621 = u32;
+pub const anon621_TECPluginType: u32 = 1701015655;
+pub const anon621_TECPluginCreator: u32 = 1701733238;
+pub const anon621_TECPluginOneToOne: u32 = 1869901679;
+pub const anon621_TECPluginOneToMany: u32 = 1869901677;
+pub const anon621_TECPluginManyToOne: u32 = 1836347247;
+pub const anon621_TECPluginSniffObj: u32 = 1936615782;
 
 pub const TextEncodingRec = extern struct {
     base: objc.UInt32,
@@ -11838,9 +14094,9 @@ pub const TECEncodingsListRec = extern struct {
     encodings: TextEncodingRec,
 };
 
-pub const TECEncodingsListPtr = ?*TECEncodingsListRec;
+pub const TECEncodingsListPtr = TECEncodingsListRec;
 
-pub const TECEncodingsListHandle = ?*TECEncodingsListPtr;
+pub const TECEncodingsListHandle = TECEncodingsListPtr;
 
 pub const TECSubTextEncodingRec = extern struct {
     offset: objc.UInt32,
@@ -11854,9 +14110,9 @@ pub const TECSubTextEncodingsRec = extern struct {
     subTextEncodingRec: TECSubTextEncodingRec,
 };
 
-pub const TECSubTextEncodingsPtr = ?*TECSubTextEncodingsRec;
+pub const TECSubTextEncodingsPtr = TECSubTextEncodingsRec;
 
-pub const TECSubTextEncodingsHandle = ?*TECSubTextEncodingsPtr;
+pub const TECSubTextEncodingsHandle = TECSubTextEncodingsPtr;
 
 pub const TECEncodingPairRec = extern struct {
     source: TextEncodingRec,
@@ -11874,9 +14130,9 @@ pub const TECEncodingPairsRec = extern struct {
     encodingPairs: TECEncodingPairs,
 };
 
-pub const TECEncodingPairsPtr = ?*TECEncodingPairsRec;
+pub const TECEncodingPairsPtr = TECEncodingPairsRec;
 
-pub const TECEncodingPairsHandle = ?*TECEncodingPairsPtr;
+pub const TECEncodingPairsHandle = TECEncodingPairsPtr;
 
 pub const TECLocaleListToEncodingListRec = extern struct {
     offset: objc.UInt32,
@@ -11884,16 +14140,16 @@ pub const TECLocaleListToEncodingListRec = extern struct {
     locales: objc.RegionCode,
 };
 
-pub const TECLocaleListToEncodingListPtr = ?*TECLocaleListToEncodingListRec;
+pub const TECLocaleListToEncodingListPtr = TECLocaleListToEncodingListRec;
 
 pub const TECLocaleToEncodingsListRec = extern struct {
     count: objc.UInt32,
     localeListToEncodingList: TECLocaleListToEncodingListRec,
 };
 
-pub const TECLocaleToEncodingsListPtr = ?*TECLocaleToEncodingsListRec;
+pub const TECLocaleToEncodingsListPtr = TECLocaleToEncodingsListRec;
 
-pub const TECLocaleToEncodingsListHandle = ?*TECLocaleToEncodingsListPtr;
+pub const TECLocaleToEncodingsListHandle = TECLocaleToEncodingsListPtr;
 
 pub const TECInternetNameRec = extern struct {
     offset: objc.UInt32,
@@ -11907,9 +14163,9 @@ pub const TECInternetNamesRec = extern struct {
     InternetNames: TECInternetNameRec,
 };
 
-pub const TECInternetNamesPtr = ?*TECInternetNamesRec;
+pub const TECInternetNamesPtr = TECInternetNamesRec;
 
-pub const TECInternetNamesHandle = ?*TECInternetNamesPtr;
+pub const TECInternetNamesHandle = TECInternetNamesPtr;
 
 pub const TECBufferContextRec = extern struct {
     textInputBuffer: ConstTextPtr,
@@ -11964,63 +14220,47 @@ pub const TECSnifferContextRec = extern struct {
     pluginState: TECPluginStateRec,
 };
 
-pub const TECPluginNewEncodingConverterPtr = ?*const fn (
-    ?*TECObjectRef,
-    ?*TECConverterContextRec,
-    TextEncoding,
-    TextEncoding,
-) callconv(.C) objc.OSStatus;
+pub const TECPluginNewEncodingConverterPtr = objc.OSStatus;
 
-pub const TECPluginClearContextInfoPtr = ?*const fn (TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginClearContextInfoPtr = objc.OSStatus;
 
-pub const TECPluginConvertTextEncodingPtr = ?*const fn (TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginConvertTextEncodingPtr = objc.OSStatus;
 
-pub const TECPluginFlushConversionPtr = ?*const fn (TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginFlushConversionPtr = objc.OSStatus;
 
-pub const TECPluginDisposeEncodingConverterPtr = ?*const fn (TECObjectRef, ?*TECConverterContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginDisposeEncodingConverterPtr = objc.OSStatus;
 
-pub const TECPluginNewEncodingSnifferPtr = ?*const fn (?*TECSnifferObjectRef, ?*TECSnifferContextRec, TextEncoding) callconv(.C) objc.OSStatus;
+pub const TECPluginNewEncodingSnifferPtr = objc.OSStatus;
 
-pub const TECPluginClearSnifferContextInfoPtr = ?*const fn (TECSnifferObjectRef, ?*TECSnifferContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginClearSnifferContextInfoPtr = objc.OSStatus;
 
-pub const TECPluginSniffTextEncodingPtr = ?*const fn (TECSnifferObjectRef, ?*TECSnifferContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginSniffTextEncodingPtr = objc.OSStatus;
 
-pub const TECPluginDisposeEncodingSnifferPtr = ?*const fn (TECSnifferObjectRef, ?*TECSnifferContextRec) callconv(.C) objc.OSStatus;
+pub const TECPluginDisposeEncodingSnifferPtr = objc.OSStatus;
 
-pub const TECPluginGetCountAvailableTextEncodingsPtr = ?*const fn (?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountAvailableTextEncodingsPtr = objc.OSStatus;
 
-pub const TECPluginGetCountAvailableTextEncodingPairsPtr = ?*const fn (?*TECConversionInfo, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountAvailableTextEncodingPairsPtr = objc.OSStatus;
 
-pub const TECPluginGetCountDestinationTextEncodingsPtr = ?*const fn (
-    TextEncoding,
-    ?*TextEncoding,
-    objc.ItemCount,
-    ?*objc.ItemCount,
-) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountDestinationTextEncodingsPtr = objc.OSStatus;
 
-pub const TECPluginGetCountSubTextEncodingsPtr = ?*const fn (
-    TextEncoding,
-    *TextEncoding,
-    objc.ItemCount,
-    ?*objc.ItemCount,
-) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountSubTextEncodingsPtr = objc.OSStatus;
 
-pub const TECPluginGetCountAvailableSniffersPtr = ?*const fn (?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountAvailableSniffersPtr = objc.OSStatus;
 
-pub const TECPluginGetTextEncodingInternetNamePtr = ?*const fn (TextEncoding, objc.Str255) callconv(.C) objc.OSStatus;
+pub const TECPluginGetTextEncodingInternetNamePtr = objc.OSStatus;
 
-pub const TECPluginGetTextEncodingFromInternetNamePtr = ?*const fn (?*TextEncoding, objc.ConstStr255Param) callconv(.C) objc.OSStatus;
+pub const TECPluginGetTextEncodingFromInternetNamePtr = objc.OSStatus;
 
-pub const TECPluginGetCountWebEncodingsPtr = ?*const fn (?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountWebEncodingsPtr = objc.OSStatus;
 
-pub const TECPluginGetCountMailEncodingsPtr = ?*const fn (?*TextEncoding, objc.ItemCount, ?*objc.ItemCount) callconv(.C) objc.OSStatus;
+pub const TECPluginGetCountMailEncodingsPtr = objc.OSStatus;
 
-pub const anon2551 = enum(u32) {
-    TECPluginDispatchTableVersion1 = 65536,
-    TECPluginDispatchTableVersion1_1 = 65537,
-    TECPluginDispatchTableVersion1_2 = 65538,
-    TECPluginDispatchTableCurrentVersion = 65538,
-};
+pub const anon2551 = u32;
+pub const anon2551_TECPluginDispatchTableVersion1: u32 = 65536;
+pub const anon2551_TECPluginDispatchTableVersion1_1: u32 = 65537;
+pub const anon2551_TECPluginDispatchTableVersion1_2: u32 = 65538;
+pub const anon2551_TECPluginDispatchTableCurrentVersion: u32 = 65538;
 
 pub const TECPluginDispatchTable = extern struct {
     version: TECPluginVersion,
@@ -12046,131 +14286,143 @@ pub const TECPluginDispatchTable = extern struct {
     PluginGetTextEncodingFromInternetName: TECPluginGetTextEncodingFromInternetNamePtr,
 };
 
-pub const TECPluginGetPluginDispatchTablePtr = ?*const fn () callconv(.C) ?*TECPluginDispatchTable;
+pub const TECPluginGetPluginDispatchTablePtr = TECPluginDispatchTable;
 
 pub const DescType = objc.ResType;
 
 pub const AEKeyword = objc.FourCharCode;
 
-pub const anon1221 = enum(DescType) {
-    typeAEList = 1818850164,
-    typeAERecord = 1919247215,
-    typeAppleEvent = 1634039412,
-    typeEventRecord = 1702261347,
-    typeTrue = 1953658213,
-    typeFalse = 1717660787,
-    typeAlias = 1634494835,
-    typeEnumerated = 1701737837,
-    typeType = 1954115685,
-    typeAppParameters = 1634758753,
-    typeProperty = 1886547824,
-    typeFSRef = 1718841958,
-    typeFileURL = 1718973036,
-    typeBookmarkData = 1651339883,
-    typeKeyword = 1801812343,
-    typeSectionH = 1936024436,
-    typeWildCard = 707406378,
-    typeApplSignature = 1936287598,
-    typeQDRectangle = 1902408308,
-    typeFixed = 1718188132,
-    typeProcessSerialNumber = 1886613024,
-    typeApplicationURL = 1634759276,
-    typeNull = 1853189228,
-};
+pub const anon1221 = DescType;
+pub const anon1221_typeAEList: DescType = 1818850164;
+pub const anon1221_typeAERecord: DescType = 1919247215;
+pub const anon1221_typeAppleEvent: DescType = 1634039412;
+pub const anon1221_typeEventRecord: DescType = 1702261347;
+pub const anon1221_typeTrue: DescType = 1953658213;
+pub const anon1221_typeFalse: DescType = 1717660787;
+pub const anon1221_typeAlias: DescType = 1634494835;
+pub const anon1221_typeEnumerated: DescType = 1701737837;
+pub const anon1221_typeType: DescType = 1954115685;
+pub const anon1221_typeAppParameters: DescType = 1634758753;
+pub const anon1221_typeProperty: DescType = 1886547824;
+pub const anon1221_typeFSRef: DescType = 1718841958;
+pub const anon1221_typeFileURL: DescType = 1718973036;
+pub const anon1221_typeBookmarkData: DescType = 1651339883;
+pub const anon1221_typeKeyword: DescType = 1801812343;
+pub const anon1221_typeSectionH: DescType = 1936024436;
+pub const anon1221_typeWildCard: DescType = 707406378;
+pub const anon1221_typeApplSignature: DescType = 1936287598;
+pub const anon1221_typeQDRectangle: DescType = 1902408308;
+pub const anon1221_typeFixed: DescType = 1718188132;
+pub const anon1221_typeProcessSerialNumber: DescType = 1886613024;
+pub const anon1221_typeApplicationURL: DescType = 1634759276;
+pub const anon1221_typeNull: DescType = 1853189228;
 
-pub const anon1601 = enum(DescType) {
-    typeCFAttributedStringRef = 1667654003,
-    typeCFMutableAttributedStringRef = 1667653985,
-    typeCFStringRef = 1667658612,
-    typeCFMutableStringRef = 1667657075,
-    typeCFArrayRef = 1667654002,
-    typeCFMutableArrayRef = 1667657057,
-    typeCFDictionaryRef = 1667654755,
-    typeCFMutableDictionaryRef = 1667657060,
-    typeCFNumberRef = 1667657314,
-    typeCFBooleanRef = 1667658854,
-    typeCFTypeRef = 1667658873,
-};
+pub const anon1601 = DescType;
+pub const anon1601_typeCFAttributedStringRef: DescType = 1667654003;
+pub const anon1601_typeCFMutableAttributedStringRef: DescType = 1667653985;
+pub const anon1601_typeCFStringRef: DescType = 1667658612;
+pub const anon1601_typeCFMutableStringRef: DescType = 1667657075;
+pub const anon1601_typeCFArrayRef: DescType = 1667654002;
+pub const anon1601_typeCFMutableArrayRef: DescType = 1667657057;
+pub const anon1601_typeCFDictionaryRef: DescType = 1667654755;
+pub const anon1601_typeCFMutableDictionaryRef: DescType = 1667657060;
+pub const anon1601_typeCFNumberRef: DescType = 1667657314;
+pub const anon1601_typeCFBooleanRef: DescType = 1667658854;
+pub const anon1601_typeCFTypeRef: DescType = 1667658873;
 
-pub const anon1811 = enum(DescType) {
-    typeAuditToken = 1953459054,
-};
+pub const anon1751 = DescType;
+pub const anon1751_typeKernelProcessID: DescType = 1802529124;
+pub const anon1751_typeMachPort: DescType = 1886351988;
+pub const anon1751_SecCSCheckAllArchitectures: DescType = 1;
+pub const anon1751_SecCSDoNotValidateExecutable: DescType = 2;
+pub const anon1751_SecCSDoNotValidateResources: DescType = 4;
+pub const anon1751_SecCSBasicValidateOnly: DescType = 6;
+pub const anon1751_SecCSCheckNestedCode: DescType = 8;
+pub const anon1751_SecCSStrictValidate: DescType = 16;
+pub const anon1751_SecCSFullReport: DescType = 32;
+pub const anon1751_SecCSCheckGatekeeperArchitectures: DescType = 65;
+pub const anon1751_SecCSRestrictSymlinks: DescType = 128;
+pub const anon1751_SecCSRestrictToAppLike: DescType = 256;
+pub const anon1751_SecCSRestrictSidebandData: DescType = 512;
+pub const anon1751_SecCSUseSoftwareSigningCert: DescType = 1024;
+pub const anon1751_SecCSValidatePEH: DescType = 2048;
+pub const anon1751_SecCSSingleThreaded: DescType = 4096;
+pub const anon1751_SecCSAllowNetworkAccess: DescType = 65536;
+pub const anon1751_SecCSFastExecutableValidation: DescType = 131072;
 
-pub const anon1861 = enum(DescType) {
-    typeApplicationBundleID = 1651863140,
-};
+pub const anon1811 = DescType;
+pub const anon1811_typeAuditToken: DescType = 1953459054;
 
-pub const anon2261 = enum(i32) {
-    AEDebugPOSTHeader = 1,
-    AEDebugReplyHeader = 2,
-    AEDebugXMLRequest = 4,
-    AEDebugXMLResponse = 8,
-    AEDebugXMLDebugAll = -1,
-};
+pub const anon1861 = DescType;
+pub const anon1861_typeApplicationBundleID: DescType = 1651863140;
 
-pub const anon2381 = enum(u32) {
-    SOAP1999Schema = 1936931129,
-    SOAP2001Schema = 1936928817,
-};
+pub const anon2261 = i32;
+pub const anon2261_AEDebugPOSTHeader: i32 = 1;
+pub const anon2261_AEDebugReplyHeader: i32 = 2;
+pub const anon2261_AEDebugXMLRequest: i32 = 4;
+pub const anon2261_AEDebugXMLResponse: i32 = 8;
+pub const anon2261_AEDebugXMLDebugAll: i32 = -1;
 
-pub const anon2431 = enum(AEKeyword) {
-    eyUserNameAttr = 1970168173,
-    eyUserPasswordAttr = 1885434739,
-    eyDisableAuthenticationAttr = 1635087464,
-    eyXMLDebuggingAttr = 2019844711,
-    AERPCClass = 1919968032,
-    AEXMLRPCScheme = 1380991794,
-    AESOAPScheme = 1397702992,
-    AESharedScriptHandler = 2004050800,
-    eyRPCMethodName = 1835365480,
-    eyRPCMethodParam = 1885434477,
-    eyRPCMethodParamOrder = 795832932,
-    eyAEPOSTHeaderData = 1885889892,
-    eyAEReplyHeaderData = 1919444324,
-    eyAEXMLRequestData = 2020762993,
-    eyAEXMLReplyData = 2020762992,
-    eyAdditionalHTTPHeaders = 1634231652,
-    eySOAPAction = 1935762292,
-    eySOAPMethodNameSpace = 1836281955,
-    eySOAPMethodNameSpaceURI = 1836281973,
-    eySOAPSchemaVersion = 1936941928,
-};
+pub const anon2381 = u32;
+pub const anon2381_SOAP1999Schema: u32 = 1936931129;
+pub const anon2381_SOAP2001Schema: u32 = 1936928817;
 
-pub const anon2881 = enum(AEKeyword) {
-    eySOAPStructureMetaData = 796093796,
-    eySOAPSMDNamespace = 1936944755,
-    eySOAPSMDNamespaceURI = 1936944757,
-    eySOAPSMDType = 1936946288,
-};
+pub const anon2431 = AEKeyword;
+pub const anon2431_eyUserNameAttr: AEKeyword = 1970168173;
+pub const anon2431_eyUserPasswordAttr: AEKeyword = 1885434739;
+pub const anon2431_eyDisableAuthenticationAttr: AEKeyword = 1635087464;
+pub const anon2431_eyXMLDebuggingAttr: AEKeyword = 2019844711;
+pub const anon2431_AERPCClass: AEKeyword = 1919968032;
+pub const anon2431_AEXMLRPCScheme: AEKeyword = 1380991794;
+pub const anon2431_AESOAPScheme: AEKeyword = 1397702992;
+pub const anon2431_AESharedScriptHandler: AEKeyword = 2004050800;
+pub const anon2431_eyRPCMethodName: AEKeyword = 1835365480;
+pub const anon2431_eyRPCMethodParam: AEKeyword = 1885434477;
+pub const anon2431_eyRPCMethodParamOrder: AEKeyword = 795832932;
+pub const anon2431_eyAEPOSTHeaderData: AEKeyword = 1885889892;
+pub const anon2431_eyAEReplyHeaderData: AEKeyword = 1919444324;
+pub const anon2431_eyAEXMLRequestData: AEKeyword = 2020762993;
+pub const anon2431_eyAEXMLReplyData: AEKeyword = 2020762992;
+pub const anon2431_eyAdditionalHTTPHeaders: AEKeyword = 1634231652;
+pub const anon2431_eySOAPAction: AEKeyword = 1935762292;
+pub const anon2431_eySOAPMethodNameSpace: AEKeyword = 1836281955;
+pub const anon2431_eySOAPMethodNameSpaceURI: AEKeyword = 1836281973;
+pub const anon2431_eySOAPSchemaVersion: AEKeyword = 1936941928;
 
-pub const anon3001 = enum(AEKeyword) {
-    eyAEAngle = 1801547367,
-    eyAEArcAngle = 1885434467,
-};
+pub const anon2881 = AEKeyword;
+pub const anon2881_eySOAPStructureMetaData: AEKeyword = 796093796;
+pub const anon2881_eySOAPSMDNamespace: AEKeyword = 1936944755;
+pub const anon2881_eySOAPSMDNamespaceURI: AEKeyword = 1936944757;
+pub const anon2881_eySOAPSMDType: AEKeyword = 1936946288;
 
-pub const anon3321 = enum(u32) {
-    AEDescListFactorNone = 0,
-    AEDescListFactorType = 4,
-    AEDescListFactorTypeAndSize = 8,
-};
+pub const anon3001 = u32;
+pub const anon3001_AEUseHTTPProxyAttr: u32 = 2020962418;
+pub const anon3001_AEHTTPProxyPortAttr: u32 = 2020111472;
+pub const anon3001_AEHTTPProxyHostAttr: u32 = 2020111464;
+pub const anon3001_eyAEAngle: u32 = 1801547367;
+pub const anon3001_eyAEArcAngle: u32 = 1885434467;
 
-pub const anon3391 = enum(i32) {
-    AutoGenerateReturnID = -1,
-    AnyTransactionID = 0,
-};
+pub const anon3321 = u32;
+pub const anon3321_AEDescListFactorNone: u32 = 0;
+pub const anon3321_AEDescListFactorType: u32 = 4;
+pub const anon3321_AEDescListFactorTypeAndSize: u32 = 8;
+
+pub const anon3391 = i32;
+pub const anon3391_AutoGenerateReturnID: i32 = -1;
+pub const anon3391_AnyTransactionID: i32 = 0;
 
 pub const OpaqueAEDataStorageType = extern struct {};
 
-pub const AEDataStorageType = ?*OpaqueAEDataStorageType;
+pub const AEDataStorageType = OpaqueAEDataStorageType;
 
-pub const AEDataStorage = ?*AEDataStorageType;
+pub const AEDataStorage = AEDataStorageType;
 
 pub const AEDesc = extern struct {
     descriptorType: DescType,
     dataHandle: AEDataStorage,
 };
 
-pub const AEDescPtr = ?*AEDesc;
+pub const AEDescPtr = AEDesc;
 
 pub const AEKeyDesc = extern struct {
     descKey: AEKeyword,
@@ -12185,7 +14437,7 @@ pub const AEAddressDesc = AEDesc;
 
 pub const AppleEvent = AERecord;
 
-pub const AppleEventPtr = ?*AppleEvent;
+pub const AppleEventPtr = AppleEvent;
 
 pub const AEReturnID = objc.SInt16;
 
@@ -12205,53 +14457,38 @@ pub const AEArrayData = extern union {
     kAEKeyDescArray: [1]AEKeyDesc,
 };
 
-pub const AEArrayDataPointer = ?*AEArrayData;
+pub const AEArrayDataPointer = AEArrayData;
 
 pub const AESendPriority = objc.SInt16;
 
-pub const anon4051 = enum(u32) {
-    AENormalPriority = 0,
-    AEHighPriority = 1,
-};
+pub const anon4051 = u32;
+pub const anon4051_AENormalPriority: u32 = 0;
+pub const anon4051_AEHighPriority: u32 = 1;
 
 pub const AESendMode = objc.SInt32;
 
-pub const anon4121 = enum(u32) {
-    AENoReply = 1,
-    AEQueueReply = 2,
-    AEWaitReply = 3,
-    AEDontReconnect = 128,
-    AEWantReceipt = 512,
-    AENeverInteract = 16,
-    AECanInteract = 32,
-    AEAlwaysInteract = 48,
-    AECanSwitchLayer = 64,
-    AEDontRecord = 4096,
-    AEDontExecute = 8192,
-    AEProcessNonReplyEvents = 32768,
-    AEDoNotAutomaticallyAddAnnotationsToEvent = 65536,
-};
+pub const anon4121 = u32;
+pub const anon4121_AENoReply: u32 = 1;
+pub const anon4121_AEQueueReply: u32 = 2;
+pub const anon4121_AEWaitReply: u32 = 3;
+pub const anon4121_AEDontReconnect: u32 = 128;
+pub const anon4121_AEWantReceipt: u32 = 512;
+pub const anon4121_AENeverInteract: u32 = 16;
+pub const anon4121_AECanInteract: u32 = 32;
+pub const anon4121_AEAlwaysInteract: u32 = 48;
+pub const anon4121_AECanSwitchLayer: u32 = 64;
+pub const anon4121_AEDontRecord: u32 = 4096;
+pub const anon4121_AEDontExecute: u32 = 8192;
+pub const anon4121_AEProcessNonReplyEvents: u32 = 32768;
+pub const anon4121_AEDoNotAutomaticallyAddAnnotationsToEvent: u32 = 65536;
 
-pub const anon4301 = enum(i32) {
-    AEDefaultTimeout = -1,
-    NoTimeOut = -2,
-};
+pub const anon4301 = i32;
+pub const anon4301_AEDefaultTimeout: i32 = -1;
+pub const anon4301_NoTimeOut: i32 = -2;
 
-pub const AECoerceDescProcPtr = ?*const fn (
-    ?*AEDesc,
-    DescType,
-    objc.SRefCon,
-    ?*AEDesc,
-) callconv(.C) objc.OSErr;
+pub const AECoerceDescProcPtr = objc.OSErr;
 
-pub const AECoercePtrProcPtr = ?*const fn (
-    DescType,
-    ?*anyopaque,
-    objc.Size,
-    DescType,
-    objc.SRefCon,
-    ?*AEDesc,
-) callconv(.C) objc.OSErr;
+pub const AECoercePtrProcPtr = objc.OSErr;
 
 pub const AECoerceDescUPP = AECoerceDescProcPtr;
 
@@ -12526,7 +14763,7 @@ pub extern "CoreServices" fn AEGetDescDataRange(
     length: objc.Size,
 ) callconv(.C) objc.OSStatus;
 
-pub const AEEventHandlerProcPtr = ?*const fn (?*AppleEvent, ?*AppleEvent, objc.SRefCon) callconv(.C) objc.OSErr;
+pub const AEEventHandlerProcPtr = objc.OSErr;
 
 pub const AEEventHandlerUPP = AEEventHandlerProcPtr;
 
@@ -12552,23 +14789,51 @@ pub extern "CoreServices" fn InvokeAEEventHandlerUPP(
     userUPP: AEEventHandlerUPP,
 ) callconv(.C) objc.OSErr;
 
-pub const anon761 = enum(AEEventID) {
-    AEOpenApplication = 1868656752,
-    AEOpenDocuments = 1868853091,
-    AEPrintDocuments = 1885630307,
-    AEOpenContents = 1868787566,
-    AEQuitApplication = 1903520116,
-    AEAnswer = 1634628466,
-    AEApplicationDied = 1868720500,
-    AEShowPreferences = 1886545254,
-};
+pub const anon761 = AEEventID;
+pub const anon761_AEOpenApplication: AEEventID = 1868656752;
+pub const anon761_AEOpenDocuments: AEEventID = 1868853091;
+pub const anon761_AEPrintDocuments: AEEventID = 1885630307;
+pub const anon761_AEOpenContents: AEEventID = 1868787566;
+pub const anon761_AEQuitApplication: AEEventID = 1903520116;
+pub const anon761_AEAnswer: AEEventID = 1634628466;
+pub const anon761_AEApplicationDied: AEEventID = 1868720500;
+pub const anon761_AEShowPreferences: AEEventID = 1886545254;
+
+pub const anon941 = AEEventID;
+pub const anon941_AEStartRecording: AEEventID = 1919247201;
+pub const anon941_AEStopRecording: AEEventID = 1919247203;
+pub const anon941_AENotifyStartRecording: AEEventID = 1919247153;
+pub const anon941_AENotifyStopRecording: AEEventID = 1919247152;
+pub const anon941_AENotifyRecording: AEEventID = 1919247218;
+pub const anon941_typeObjectSpecifier: AEEventID = 1868720672;
+pub const anon941_typeObjectBeingExamined: AEEventID = 1702391150;
+pub const anon941_typeCurrentContainer: AEEventID = 1667460724;
+pub const anon941_typeToken: AEEventID = 1953459045;
+pub const anon941_typeRelativeDescriptor: AEEventID = 1919249440;
+pub const anon941_typeAbsoluteOrdinal: AEEventID = 1633842031;
+pub const anon941_typeIndexDescriptor: AEEventID = 1768842341;
+pub const anon941_typeRangeDescriptor: AEEventID = 1918987879;
+pub const anon941_typeLogicalDescriptor: AEEventID = 1819240297;
+pub const anon941_typeCompDescriptor: AEEventID = 1668116580;
+pub const anon941_typeOSLTokenList: AEEventID = 1869837420;
+pub const anon941_CSSM_ERRCODE_INTERNAL_ERROR: AEEventID = 1;
+pub const anon941_CSSM_ERRCODE_MEMORY_ERROR: AEEventID = 2;
+pub const anon941_CSSM_ERRCODE_MDS_ERROR: AEEventID = 3;
+pub const anon941_CSSM_ERRCODE_INVALID_POINTER: AEEventID = 4;
+pub const anon941_CSSM_ERRCODE_INVALID_INPUT_POINTER: AEEventID = 5;
+pub const anon941_CSSM_ERRCODE_INVALID_OUTPUT_POINTER: AEEventID = 6;
+pub const anon941_CSSM_ERRCODE_FUNCTION_NOT_IMPLEMENTED: AEEventID = 7;
+pub const anon941_CSSM_ERRCODE_SELF_CHECK_FAILED: AEEventID = 8;
+pub const anon941_CSSM_ERRCODE_OS_ACCESS_DENIED: AEEventID = 9;
+pub const anon941_CSSM_ERRCODE_FUNCTION_FAILED: AEEventID = 10;
+pub const anon941_CSSM_ERRCODE_MODULE_MANIFEST_VERIFY_FAILED: AEEventID = 11;
+pub const anon941_CSSM_ERRCODE_INVALID_GUID: AEEventID = 12;
 
 pub const AEEventSource = objc.SInt8;
 
-pub const anon1202 = enum(i32) {
-    errAETargetAddressNotPermitted = -1742,
-    errAEEventNotPermitted = -1743,
-};
+pub const anon1202 = i32;
+pub const anon1202_errAETargetAddressNotPermitted: i32 = -1742;
+pub const anon1202_errAEEventNotPermitted: i32 = -1743;
 
 pub extern "CoreServices" fn AEInstallEventHandler(
     theAEEventClass: AEEventClass,
@@ -12611,7 +14876,7 @@ pub const AERemoteProcessResolverContext = extern struct {
 
 pub const AERemoteProcessResolver = extern struct {};
 
-pub const AERemoteProcessResolverRef = ?*AERemoteProcessResolver;
+pub const AERemoteProcessResolverRef = AERemoteProcessResolver;
 
 pub extern "CoreServices" fn AECreateRemoteProcessResolver(allocator: core_foundation.AllocatorRef, url: core_foundation.URLRef) callconv(.C) AERemoteProcessResolverRef;
 
@@ -12636,9 +14901,8 @@ pub extern "CoreServices" fn AEDeterminePermissionToAutomateTarget(
     askUserIfNeeded: objc.Boolean,
 ) callconv(.C) objc.OSStatus;
 
-pub const anon6151 = enum(u32) {
-    AEDoNotPromptForUserConsent = 131072,
-};
+pub const anon6151 = u32;
+pub const anon6151_AEDoNotPromptForUserConsent: u32 = 131072;
 
 pub extern "CoreServices" fn CreateOffsetDescriptor(theOffset: i64, theDescriptor: ?*AEDesc) callconv(.C) objc.OSErr;
 
@@ -12673,60 +14937,41 @@ pub extern "CoreServices" fn CreateRangeDescriptor(
     theDescriptor: ?*AEDesc,
 ) callconv(.C) objc.OSErr;
 
-pub const anon681 = enum(AEKeyword) {
-    eyAERangeStart = 1937006962,
-    eyAERangeStop = 1937010544,
-    eyDisposeTokenProc = 2020896619,
-    eyAECompareProc = 1668116594,
-    eyAECountProc = 1668247156,
-    eyAEMarkTokenProc = 1835755876,
-    eyAEMarkProc = 1835102827,
-    eyAEAdjustMarksProc = 1633970797,
-    eyAEGetErrDescProc = 1768842339,
-};
+pub const anon681 = AEKeyword;
+pub const anon681_eyAERangeStart: AEKeyword = 1937006962;
+pub const anon681_eyAERangeStop: AEKeyword = 1937010544;
+pub const anon681_eyDisposeTokenProc: AEKeyword = 2020896619;
+pub const anon681_eyAECompareProc: AEKeyword = 1668116594;
+pub const anon681_eyAECountProc: AEKeyword = 1668247156;
+pub const anon681_eyAEMarkTokenProc: AEKeyword = 1835755876;
+pub const anon681_eyAEMarkProc: AEKeyword = 1835102827;
+pub const anon681_eyAEAdjustMarksProc: AEKeyword = 1633970797;
+pub const anon681_eyAEGetErrDescProc: AEKeyword = 1768842339;
 
 pub const ccntTokenRecord = extern struct {
     tokenClass: DescType,
     token: AEDesc,
 };
 
-pub const ccntTokenRecPtr = ?*ccntTokenRecord;
+pub const ccntTokenRecPtr = ccntTokenRecord;
 
-pub const ccntTokenRecHandle = ?*ccntTokenRecPtr;
+pub const ccntTokenRecHandle = ccntTokenRecPtr;
 
-pub const OSLAccessorProcPtr = ?*const fn (
-    DescType,
-    ?*AEDesc,
-    DescType,
-    DescType,
-    ?*AEDesc,
-    ?*AEDesc,
-    objc.SRefCon,
-) callconv(.C) objc.OSErr;
+pub const OSLAccessorProcPtr = objc.OSErr;
 
-pub const OSLCompareProcPtr = ?*const fn (
-    DescType,
-    ?*AEDesc,
-    ?*AEDesc,
-    ?*objc.Boolean,
-) callconv(.C) objc.OSErr;
+pub const OSLCompareProcPtr = objc.OSErr;
 
-pub const OSLCountProcPtr = ?*const fn (
-    DescType,
-    DescType,
-    ?*AEDesc,
-    ?*i64,
-) callconv(.C) objc.OSErr;
+pub const OSLCountProcPtr = objc.OSErr;
 
-pub const OSLDisposeTokenProcPtr = ?*const fn (?*AEDesc) callconv(.C) objc.OSErr;
+pub const OSLDisposeTokenProcPtr = objc.OSErr;
 
-pub const OSLGetMarkTokenProcPtr = ?*const fn (?*AEDesc, DescType, ?*AEDesc) callconv(.C) objc.OSErr;
+pub const OSLGetMarkTokenProcPtr = objc.OSErr;
 
-pub const OSLGetErrDescProcPtr = ?*const fn (?*?*AEDesc) callconv(.C) objc.OSErr;
+pub const OSLGetErrDescProcPtr = objc.OSErr;
 
-pub const OSLMarkProcPtr = ?*const fn (?*AEDesc, ?*AEDesc, i64) callconv(.C) objc.OSErr;
+pub const OSLMarkProcPtr = objc.OSErr;
 
-pub const OSLAdjustMarksProcPtr = ?*const fn (i64, i64, ?*AEDesc) callconv(.C) objc.OSErr;
+pub const OSLAdjustMarksProcPtr = objc.OSErr;
 
 pub const OSLAccessorUPP = OSLAccessorProcPtr;
 
@@ -12876,334 +15121,488 @@ pub extern "CoreServices" fn AECallObjectAccessor(
     token: ?*AEDesc,
 ) callconv(.C) objc.OSErr;
 
-pub const anon1281 = enum(i32) {
-    startupFolderIconResource = -3981,
-    ownedFolderIconResource = -3980,
-    dropFolderIconResource = -3979,
-    sharedFolderIconResource = -3978,
-    mountedFolderIconResource = -3977,
-    controlPanelFolderIconResource = -3976,
-    printMonitorFolderIconResource = -3975,
-    preferencesFolderIconResource = -3974,
-    extensionsFolderIconResource = -3973,
-    fontsFolderIconResource = -3968,
-    fullTrashIconResource = -3984,
-};
+pub const anon1281 = objc.OSType;
+pub const anon1281_AEAsk: objc.OSType = 1634954016;
+pub const anon1281_AEBefore: objc.OSType = 1650812527;
+pub const anon1281_AEBeginning: objc.OSType = 1650945639;
+pub const anon1281_AEBeginsWith: objc.OSType = 1650947956;
+pub const anon1281_AEBeginTransaction: objc.OSType = 1650812777;
+pub const anon1281_AEBold: objc.OSType = 1651469412;
+pub const anon1281_AECaseSensEquals: objc.OSType = 1668506993;
+pub const anon1281_AECentered: objc.OSType = 1667591796;
+pub const anon1281_AEChangeView: objc.OSType = 1986618743;
+pub const anon1281_AEClone: objc.OSType = 1668050798;
+pub const anon1281_AEClose: objc.OSType = 1668050803;
+pub const anon1281_AECondensed: objc.OSType = 1668247140;
+pub const anon1281_AEContains: objc.OSType = 1668247156;
+pub const anon1281_AECopy: objc.OSType = 1668247673;
+pub const anon1281_AECoreSuite: objc.OSType = 1668248165;
+pub const anon1281_AECountElements: objc.OSType = 1668183141;
+pub const anon1281_AECreateElement: objc.OSType = 1668441452;
+pub const anon1281_AECreatePublisher: objc.OSType = 1668314466;
+pub const anon1281_AECut: objc.OSType = 1668641824;
+pub const anon1281_AEDelete: objc.OSType = 1684368495;
+pub const anon1281_CSIdentityClassUser: objc.OSType = 1;
+pub const anon1281_CSIdentityClassGroup: objc.OSType = 2;
+pub const anon1281_startupFolderIconResource: objc.OSType = -3981;
+pub const anon1281_ownedFolderIconResource: objc.OSType = -3980;
+pub const anon1281_dropFolderIconResource: objc.OSType = -3979;
+pub const anon1281_sharedFolderIconResource: objc.OSType = -3978;
+pub const anon1281_mountedFolderIconResource: objc.OSType = -3977;
+pub const anon1281_controlPanelFolderIconResource: objc.OSType = -3976;
+pub const anon1281_printMonitorFolderIconResource: objc.OSType = -3975;
+pub const anon1281_preferencesFolderIconResource: objc.OSType = -3974;
+pub const anon1281_extensionsFolderIconResource: objc.OSType = -3973;
+pub const anon1281_fontsFolderIconResource: objc.OSType = -3968;
+pub const anon1281_fullTrashIconResource: objc.OSType = -3984;
 
-pub const anon1511 = enum(objc.OSType) {
-    AEDoObjectsExist = 1685022072,
-    AEDoScript = 1685025635,
-    AEDrag = 1685217639,
-    AEDuplicateSelection = 1935963504,
-    AEEditGraphic = 1701079412,
-    AEEmptyTrash = 1701671028,
-    AEEnd = 1701733408,
-    AEEndsWith = 1701733491,
-    AEEndTransaction = 1701733492,
-    AEEquals = 1025515552,
-    AEExpanded = 1885698160,
-    AEFast = 1717662580,
-    AEFinderEvents = 1179534418,
-    AEFormulaProtect = 1718645359,
-    AEFullyJustified = 1718971500,
-    AEGetClassInfo = 1903125098,
-    AEGetData = 1734702180,
-    AEGetDataSize = 1685285242,
-    AEGetEventInfo = 1735681385,
-    AEGetInfoSelection = 1936289382,
-};
+pub const anon1511 = objc.OSType;
+pub const anon1511_AEDoObjectsExist: objc.OSType = 1685022072;
+pub const anon1511_AEDoScript: objc.OSType = 1685025635;
+pub const anon1511_AEDrag: objc.OSType = 1685217639;
+pub const anon1511_AEDuplicateSelection: objc.OSType = 1935963504;
+pub const anon1511_AEEditGraphic: objc.OSType = 1701079412;
+pub const anon1511_AEEmptyTrash: objc.OSType = 1701671028;
+pub const anon1511_AEEnd: objc.OSType = 1701733408;
+pub const anon1511_AEEndsWith: objc.OSType = 1701733491;
+pub const anon1511_AEEndTransaction: objc.OSType = 1701733492;
+pub const anon1511_AEEquals: objc.OSType = 1025515552;
+pub const anon1511_AEExpanded: objc.OSType = 1885698160;
+pub const anon1511_AEFast: objc.OSType = 1717662580;
+pub const anon1511_AEFinderEvents: objc.OSType = 1179534418;
+pub const anon1511_AEFormulaProtect: objc.OSType = 1718645359;
+pub const anon1511_AEFullyJustified: objc.OSType = 1718971500;
+pub const anon1511_AEGetClassInfo: objc.OSType = 1903125098;
+pub const anon1511_AEGetData: objc.OSType = 1734702180;
+pub const anon1511_AEGetDataSize: objc.OSType = 1685285242;
+pub const anon1511_AEGetEventInfo: objc.OSType = 1735681385;
+pub const anon1511_AEGetInfoSelection: objc.OSType = 1936289382;
 
-pub const anon1971 = enum(objc.OSType) {
-    AENonmodifiable = 1852665700,
-    AEOpen = 1868853091,
-    AEOpenSelection = 1936683109,
-    AEOutline = 1869968492,
-    AEPageSetup = 1885827957,
-    AEPaste = 1885434740,
-    AEPlain = 1886151022,
-    AEPrint = 1885630307,
-    AEPrintSelection = 1936749161,
-    AEPrintWindow = 1886873966,
-    AEPutAwaySelection = 1936749940,
-    AEQDAddOver = 1633969263,
-    AEQDAddPin = 1633969264,
-    AEQDAdMax = 1633971576,
-    AEQDAdMin = 1633971566,
-    AEQDBic = 1651073824,
-    AEQDBlend = 1651273316,
-    AEQDCopy = 1668315424,
-    AEQDNotBic = 1851943267,
-    AEQDNotCopy = 1852010617,
-};
+pub const anon1741 = objc.OSType;
+pub const anon1741_AEGetPrivilegeSelection: objc.OSType = 1936749174;
+pub const anon1741_AEGetSuiteInfo: objc.OSType = 1735684969;
+pub const anon1741_AEGreaterThan: objc.OSType = 1042292768;
+pub const anon1741_AEGreaterThanEquals: objc.OSType = 1044193312;
+pub const anon1741_AEGrow: objc.OSType = 1735552887;
+pub const anon1741_AEHidden: objc.OSType = 1751737454;
+pub const anon1741_AEHiQuality: objc.OSType = 1751740789;
+pub const anon1741_AEImageGraphic: objc.OSType = 1768777586;
+pub const anon1741_AEIsUniform: objc.OSType = 1769174382;
+pub const anon1741_AEItalic: objc.OSType = 1769234796;
+pub const anon1741_AELeftJustified: objc.OSType = 1818584692;
+pub const anon1741_AELessThan: objc.OSType = 1008738336;
+pub const anon1741_AELessThanEquals: objc.OSType = 1010638880;
+pub const anon1741_AELowercase: objc.OSType = 1819244387;
+pub const anon1741_AEMakeObjectsVisible: objc.OSType = 1836476787;
+pub const anon1741_AEMiscStandards: objc.OSType = 1835627363;
+pub const anon1741_AEModifiable: objc.OSType = 1836016742;
+pub const anon1741_AEMove: objc.OSType = 1836021349;
+pub const anon1741_AENo: objc.OSType = 1852776480;
+pub const anon1741_AENoArrow: objc.OSType = 1634889327;
+pub const anon1741_CSSM_USEE_LAST: objc.OSType = 255;
+pub const anon1741_CSSM_USEE_NONE: objc.OSType = 0;
+pub const anon1741_CSSM_USEE_DOMESTIC: objc.OSType = 1;
+pub const anon1741_CSSM_USEE_FINANCIAL: objc.OSType = 2;
+pub const anon1741_CSSM_USEE_KRLE: objc.OSType = 3;
+pub const anon1741_CSSM_USEE_KRENT: objc.OSType = 4;
+pub const anon1741_CSSM_USEE_SSL: objc.OSType = 5;
+pub const anon1741_CSSM_USEE_AUTHENTICATION: objc.OSType = 6;
+pub const anon1741_CSSM_USEE_KEYEXCH: objc.OSType = 7;
+pub const anon1741_CSSM_USEE_MEDICAL: objc.OSType = 8;
+pub const anon1741_CSSM_USEE_INSURANCE: objc.OSType = 9;
+pub const anon1741_CSSM_USEE_WEAK: objc.OSType = 10;
 
-pub const anon2201 = enum(objc.OSType) {
-    AEQDNotOr = 1853124466,
-    AEQDNotXor = 1853386610,
-    AEQDOr = 1869750304,
-    AEQDSubOver = 1937072751,
-    AEQDSubPin = 1937072752,
-    AEQDSupplementalSuite = 1902408560,
-    AEQDXor = 2020569632,
-    AEQuickdrawSuite = 1902408311,
-    AEQuitAll = 1903520097,
-    AERedo = 1919247471,
-    AERegular = 1919248236,
-    AEReopenApplication = 1918988400,
-    AEReplace = 1919970403,
-    AERequiredSuite = 1919250788,
-    AERestart = 1919251316,
-    AERevealSelection = 1936876918,
-    AERevert = 1920365172,
-    AERightJustified = 1919379572,
-    AESave = 1935767141,
-    AESelect = 1936483188,
-    AESetData = 1936028772,
-};
+pub const anon1971 = objc.OSType;
+pub const anon1971_AENonmodifiable: objc.OSType = 1852665700;
+pub const anon1971_AEOpen: objc.OSType = 1868853091;
+pub const anon1971_AEOpenSelection: objc.OSType = 1936683109;
+pub const anon1971_AEOutline: objc.OSType = 1869968492;
+pub const anon1971_AEPageSetup: objc.OSType = 1885827957;
+pub const anon1971_AEPaste: objc.OSType = 1885434740;
+pub const anon1971_AEPlain: objc.OSType = 1886151022;
+pub const anon1971_AEPrint: objc.OSType = 1885630307;
+pub const anon1971_AEPrintSelection: objc.OSType = 1936749161;
+pub const anon1971_AEPrintWindow: objc.OSType = 1886873966;
+pub const anon1971_AEPutAwaySelection: objc.OSType = 1936749940;
+pub const anon1971_AEQDAddOver: objc.OSType = 1633969263;
+pub const anon1971_AEQDAddPin: objc.OSType = 1633969264;
+pub const anon1971_AEQDAdMax: objc.OSType = 1633971576;
+pub const anon1971_AEQDAdMin: objc.OSType = 1633971566;
+pub const anon1971_AEQDBic: objc.OSType = 1651073824;
+pub const anon1971_AEQDBlend: objc.OSType = 1651273316;
+pub const anon1971_AEQDCopy: objc.OSType = 1668315424;
+pub const anon1971_AEQDNotBic: objc.OSType = 1851943267;
+pub const anon1971_AEQDNotCopy: objc.OSType = 1852010617;
 
-pub const anon3051 = enum(AEKeyword) {
-    eyAEBaseAddr = 1650549860,
-    eyAEBestType = 1885500276,
-    eyAEBgndColor = 1801610092,
-    eyAEBgndPattern = 1801613428,
-    eyAEBounds = 1885498980,
-    eyAECellList = 1801677940,
-    eyAEClassID = 1668041028,
-    eyAEColor = 1668246642,
-    eyAEColorTable = 1668052066,
-    eyAECurveHeight = 1801676900,
-    eyAECurveWidth = 1801680740,
-    eyAEDashStyle = 1885631348,
-    eyAEData = 1684108385,
-    eyAEDefaultType = 1684366964,
-    eyAEDefinitionRect = 1885631092,
-    eyAEDescType = 1685288048,
-    eyAEDestination = 1684370292,
-    eyAEDoAntiAlias = 1634628705,
-    eyAEDoDithered = 1734633844,
-    eyAEDoRotate = 1801745012,
-};
+pub const anon2201 = objc.OSType;
+pub const anon2201_AEQDNotOr: objc.OSType = 1853124466;
+pub const anon2201_AEQDNotXor: objc.OSType = 1853386610;
+pub const anon2201_AEQDOr: objc.OSType = 1869750304;
+pub const anon2201_AEQDSubOver: objc.OSType = 1937072751;
+pub const anon2201_AEQDSubPin: objc.OSType = 1937072752;
+pub const anon2201_AEQDSupplementalSuite: objc.OSType = 1902408560;
+pub const anon2201_AEQDXor: objc.OSType = 2020569632;
+pub const anon2201_AEQuickdrawSuite: objc.OSType = 1902408311;
+pub const anon2201_AEQuitAll: objc.OSType = 1903520097;
+pub const anon2201_AERedo: objc.OSType = 1919247471;
+pub const anon2201_AERegular: objc.OSType = 1919248236;
+pub const anon2201_AEReopenApplication: objc.OSType = 1918988400;
+pub const anon2201_AEReplace: objc.OSType = 1919970403;
+pub const anon2201_AERequiredSuite: objc.OSType = 1919250788;
+pub const anon2201_AERestart: objc.OSType = 1919251316;
+pub const anon2201_AERevealSelection: objc.OSType = 1936876918;
+pub const anon2201_AERevert: objc.OSType = 1920365172;
+pub const anon2201_AERightJustified: objc.OSType = 1919379572;
+pub const anon2201_AESave: objc.OSType = 1935767141;
+pub const anon2201_AESelect: objc.OSType = 1936483188;
+pub const anon2201_AESetData: objc.OSType = 1936028772;
 
-pub const anon3281 = enum(AEKeyword) {
-    eyAEDoScale = 1802724193,
-    eyAEDoTranslate = 1802793569,
-    eyAEEditionFileLoc = 1701605219,
-    eyAEElements = 1701604723,
-    eyAEEndPoint = 1885695588,
-    eyAEEventClass = 1702257516,
-    eyAEEventID = 1702261865,
-    eyAEFile = 1801873772,
-    eyAEFileType = 1718383728,
-    eyAEFillColor = 1718379372,
-    eyAEFillPattern = 1718382708,
-    eyAEFlipHorizontal = 1801873519,
-    eyAEFlipVertical = 1801877108,
-    eyAEFont = 1718578804,
-    eyAEFormula = 1885761394,
-    eyAEGraphicObjects = 1735352947,
-    eyAEID = 1229201440,
-    eyAEImageQuality = 1735488865,
-    eyAEInsertHere = 1768846184,
-    eyAEKeyForms = 1801812326,
-};
+pub const anon2661 = objc.OSType;
+pub const anon2661_AELogOut: objc.OSType = 1819240303;
+pub const anon2661_AEReallyLogOut: objc.OSType = 1919706991;
+pub const anon2661_AEShowRestartDialog: objc.OSType = 1920103284;
+pub const anon2661_AEShowShutdownDialog: objc.OSType = 1920164974;
+pub const anon2661_CSSM_CSP_BASE_CSP_ERROR: objc.OSType = -2147415808;
+pub const anon2661_CSSMERR_CSP_INPUT_LENGTH_ERROR: objc.OSType = -2147415807;
+pub const anon2661_CSSMERR_CSP_OUTPUT_LENGTH_ERROR: objc.OSType = -2147415806;
+pub const anon2661_CSSMERR_CSP_PRIVILEGE_NOT_SUPPORTED: objc.OSType = -2147415805;
+pub const anon2661_CSSMERR_CSP_DEVICE_ERROR: objc.OSType = -2147415804;
+pub const anon2661_CSSMERR_CSP_DEVICE_MEMORY_ERROR: objc.OSType = -2147415803;
+pub const anon2661_CSSMERR_CSP_ATTACH_HANDLE_BUSY: objc.OSType = -2147415802;
+pub const anon2661_CSSMERR_CSP_NOT_LOGGED_IN: objc.OSType = -2147415801;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY: objc.OSType = -2147415792;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_REFERENCE: objc.OSType = -2147415791;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_CLASS: objc.OSType = -2147415790;
+pub const anon2661_CSSMERR_CSP_ALGID_MISMATCH: objc.OSType = -2147415789;
+pub const anon2661_CSSMERR_CSP_KEY_USAGE_INCORRECT: objc.OSType = -2147415788;
+pub const anon2661_CSSMERR_CSP_KEY_BLOB_TYPE_INCORRECT: objc.OSType = -2147415787;
+pub const anon2661_CSSMERR_CSP_KEY_HEADER_INCONSISTENT: objc.OSType = -2147415786;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEY_FORMAT: objc.OSType = -2147415785;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEY_SIZE: objc.OSType = -2147415784;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_POINTER: objc.OSType = -2147415783;
+pub const anon2661_CSSMERR_CSP_INVALID_KEYUSAGE_MASK: objc.OSType = -2147415782;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEYUSAGE_MASK: objc.OSType = -2147415781;
+pub const anon2661_CSSMERR_CSP_INVALID_KEYATTR_MASK: objc.OSType = -2147415780;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEYATTR_MASK: objc.OSType = -2147415779;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_LABEL: objc.OSType = -2147415778;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEY_LABEL: objc.OSType = -2147415777;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_FORMAT: objc.OSType = -2147415776;
+pub const anon2661_CSSMERR_CSP_INVALID_DATA_COUNT: objc.OSType = -2147415768;
+pub const anon2661_CSSMERR_CSP_VECTOR_OF_BUFS_UNSUPPORTED: objc.OSType = -2147415767;
+pub const anon2661_CSSMERR_CSP_INVALID_INPUT_VECTOR: objc.OSType = -2147415766;
+pub const anon2661_CSSMERR_CSP_INVALID_OUTPUT_VECTOR: objc.OSType = -2147415765;
+pub const anon2661_CSSMERR_CSP_INVALID_CONTEXT: objc.OSType = -2147415760;
+pub const anon2661_CSSMERR_CSP_INVALID_ALGORITHM: objc.OSType = -2147415759;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_KEY: objc.OSType = -2147415754;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_KEY: objc.OSType = -2147415753;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_INIT_VECTOR: objc.OSType = -2147415752;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_INIT_VECTOR: objc.OSType = -2147415751;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_SALT: objc.OSType = -2147415750;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_SALT: objc.OSType = -2147415749;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PADDING: objc.OSType = -2147415748;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PADDING: objc.OSType = -2147415747;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_RANDOM: objc.OSType = -2147415746;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_RANDOM: objc.OSType = -2147415745;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_SEED: objc.OSType = -2147415744;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_SEED: objc.OSType = -2147415743;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PASSPHRASE: objc.OSType = -2147415742;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PASSPHRASE: objc.OSType = -2147415741;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_KEY_LENGTH: objc.OSType = -2147415740;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_KEY_LENGTH: objc.OSType = -2147415739;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_BLOCK_SIZE: objc.OSType = -2147415738;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_BLOCK_SIZE: objc.OSType = -2147415737;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_OUTPUT_SIZE: objc.OSType = -2147415708;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_OUTPUT_SIZE: objc.OSType = -2147415707;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_ROUNDS: objc.OSType = -2147415706;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_ROUNDS: objc.OSType = -2147415705;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_ALG_PARAMS: objc.OSType = -2147415704;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_ALG_PARAMS: objc.OSType = -2147415703;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_LABEL: objc.OSType = -2147415702;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_LABEL: objc.OSType = -2147415701;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_KEY_TYPE: objc.OSType = -2147415700;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_KEY_TYPE: objc.OSType = -2147415699;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_MODE: objc.OSType = -2147415698;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_MODE: objc.OSType = -2147415697;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_EFFECTIVE_BITS: objc.OSType = -2147415696;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_EFFECTIVE_BITS: objc.OSType = -2147415695;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_START_DATE: objc.OSType = -2147415694;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_START_DATE: objc.OSType = -2147415693;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_END_DATE: objc.OSType = -2147415692;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_END_DATE: objc.OSType = -2147415691;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_VERSION: objc.OSType = -2147415690;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_VERSION: objc.OSType = -2147415689;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PRIME: objc.OSType = -2147415688;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PRIME: objc.OSType = -2147415687;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_BASE: objc.OSType = -2147415686;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_BASE: objc.OSType = -2147415685;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_SUBPRIME: objc.OSType = -2147415684;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_SUBPRIME: objc.OSType = -2147415683;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_ITERATION_COUNT: objc.OSType = -2147415682;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_ITERATION_COUNT: objc.OSType = -2147415681;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_DL_DB_HANDLE: objc.OSType = -2147415680;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_DL_DB_HANDLE: objc.OSType = -2147415679;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_ACCESS_CREDENTIALS: objc.OSType = -2147415678;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_ACCESS_CREDENTIALS: objc.OSType = -2147415677;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PUBLIC_KEY_FORMAT: objc.OSType = -2147415676;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PUBLIC_KEY_FORMAT: objc.OSType = -2147415675;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PRIVATE_KEY_FORMAT: objc.OSType = -2147415674;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PRIVATE_KEY_FORMAT: objc.OSType = -2147415673;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_SYMMETRIC_KEY_FORMAT: objc.OSType = -2147415672;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_SYMMETRIC_KEY_FORMAT: objc.OSType = -2147415671;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_WRAPPED_KEY_FORMAT: objc.OSType = -2147415670;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_WRAPPED_KEY_FORMAT: objc.OSType = -2147415669;
+pub const anon2661_CSSMERR_CSP_STAGED_OPERATION_IN_PROGRESS: objc.OSType = -2147415736;
+pub const anon2661_CSSMERR_CSP_STAGED_OPERATION_NOT_STARTED: objc.OSType = -2147415735;
+pub const anon2661_CSSMERR_CSP_VERIFY_FAILED: objc.OSType = -2147415734;
+pub const anon2661_CSSMERR_CSP_INVALID_SIGNATURE: objc.OSType = -2147415733;
+pub const anon2661_CSSMERR_CSP_QUERY_SIZE_UNKNOWN: objc.OSType = -2147415732;
+pub const anon2661_CSSMERR_CSP_BLOCK_SIZE_MISMATCH: objc.OSType = -2147415731;
+pub const anon2661_CSSMERR_CSP_PRIVATE_KEY_NOT_FOUND: objc.OSType = -2147415730;
+pub const anon2661_CSSMERR_CSP_PUBLIC_KEY_INCONSISTENT: objc.OSType = -2147415729;
+pub const anon2661_CSSMERR_CSP_DEVICE_VERIFY_FAILED: objc.OSType = -2147415728;
+pub const anon2661_CSSMERR_CSP_INVALID_LOGIN_NAME: objc.OSType = -2147415727;
+pub const anon2661_CSSMERR_CSP_ALREADY_LOGGED_IN: objc.OSType = -2147415726;
+pub const anon2661_CSSMERR_CSP_PRIVATE_KEY_ALREADY_EXISTS: objc.OSType = -2147415725;
+pub const anon2661_CSSMERR_CSP_KEY_LABEL_ALREADY_EXISTS: objc.OSType = -2147415724;
+pub const anon2661_CSSMERR_CSP_INVALID_DIGEST_ALGORITHM: objc.OSType = -2147415723;
+pub const anon2661_CSSMERR_CSP_CRYPTO_DATA_CALLBACK_FAILED: objc.OSType = -2147415722;
 
-pub const anon3741 = enum(AEKeyword) {
-    eyAEPropData = 1886545012,
-    eyAEProperties = 1903194735,
-    eyAEProperty = 1802531440,
-    eyAEPropFlags = 1886545511,
-    eyAEPropID = 1886547824,
-    eyAEProtection = 1886417519,
-    eyAERenderAs = 1802659182,
-    eyAERequestedType = 1920235888,
-    eyAEResult = 757935405,
-    eyAEResultInfo = 1920166254,
-    eyAERotation = 1886547828,
-    eyAERotPoint = 1802663024,
-    eyAERowList = 1802660979,
-    eyAESaveOptions = 1935767151,
-    eyAEScale = 1886610284,
-    eyAEScriptTag = 1886610292,
-    eyAESearchText = 1937012852,
-    eyAEShowWhere = 1936224119,
-    eyAEStartAngle = 1885433447,
-    eyAEStartPoint = 1886614640,
-    eyAEStyles = 1802728569,
-};
+pub const anon3051 = AEKeyword;
+pub const anon3051_eyAEBaseAddr: AEKeyword = 1650549860;
+pub const anon3051_eyAEBestType: AEKeyword = 1885500276;
+pub const anon3051_eyAEBgndColor: AEKeyword = 1801610092;
+pub const anon3051_eyAEBgndPattern: AEKeyword = 1801613428;
+pub const anon3051_eyAEBounds: AEKeyword = 1885498980;
+pub const anon3051_eyAECellList: AEKeyword = 1801677940;
+pub const anon3051_eyAEClassID: AEKeyword = 1668041028;
+pub const anon3051_eyAEColor: AEKeyword = 1668246642;
+pub const anon3051_eyAEColorTable: AEKeyword = 1668052066;
+pub const anon3051_eyAECurveHeight: AEKeyword = 1801676900;
+pub const anon3051_eyAECurveWidth: AEKeyword = 1801680740;
+pub const anon3051_eyAEDashStyle: AEKeyword = 1885631348;
+pub const anon3051_eyAEData: AEKeyword = 1684108385;
+pub const anon3051_eyAEDefaultType: AEKeyword = 1684366964;
+pub const anon3051_eyAEDefinitionRect: AEKeyword = 1885631092;
+pub const anon3051_eyAEDescType: AEKeyword = 1685288048;
+pub const anon3051_eyAEDestination: AEKeyword = 1684370292;
+pub const anon3051_eyAEDoAntiAlias: AEKeyword = 1634628705;
+pub const anon3051_eyAEDoDithered: AEKeyword = 1734633844;
+pub const anon3051_eyAEDoRotate: AEKeyword = 1801745012;
 
-pub const anon3981 = enum(AEKeyword) {
-    eyAESuiteID = 1937074548,
-    eyAEText = 1802795124,
-    eyAETextColor = 1886681187,
-    eyAETextFont = 1886681190,
-    eyAETextPointSize = 1886679155,
-    eyAETextStyles = 1954050932,
-    eyAETextLineHeight = 1802792040,
-    eyAETextLineAscent = 1802789235,
-    eyAETheText = 1953002616,
-    eyAETransferMode = 1886418029,
-    eyAETranslation = 1886679667,
-    eyAETryAsStructGraf = 1953460071,
-    eyAEUniformStyles = 1970500716,
-    eyAEUpdateOn = 1886744676,
-    eyAEUserTerm = 1970565741,
-    eyAEWindow = 2003723383,
-    eyAEWritingCode = 2003985252,
-};
+pub const anon3281 = AEKeyword;
+pub const anon3281_eyAEDoScale: AEKeyword = 1802724193;
+pub const anon3281_eyAEDoTranslate: AEKeyword = 1802793569;
+pub const anon3281_eyAEEditionFileLoc: AEKeyword = 1701605219;
+pub const anon3281_eyAEElements: AEKeyword = 1701604723;
+pub const anon3281_eyAEEndPoint: AEKeyword = 1885695588;
+pub const anon3281_eyAEEventClass: AEKeyword = 1702257516;
+pub const anon3281_eyAEEventID: AEKeyword = 1702261865;
+pub const anon3281_eyAEFile: AEKeyword = 1801873772;
+pub const anon3281_eyAEFileType: AEKeyword = 1718383728;
+pub const anon3281_eyAEFillColor: AEKeyword = 1718379372;
+pub const anon3281_eyAEFillPattern: AEKeyword = 1718382708;
+pub const anon3281_eyAEFlipHorizontal: AEKeyword = 1801873519;
+pub const anon3281_eyAEFlipVertical: AEKeyword = 1801877108;
+pub const anon3281_eyAEFont: AEKeyword = 1718578804;
+pub const anon3281_eyAEFormula: AEKeyword = 1885761394;
+pub const anon3281_eyAEGraphicObjects: AEKeyword = 1735352947;
+pub const anon3281_eyAEID: AEKeyword = 1229201440;
+pub const anon3281_eyAEImageQuality: AEKeyword = 1735488865;
+pub const anon3281_eyAEInsertHere: AEKeyword = 1768846184;
+pub const anon3281_eyAEKeyForms: AEKeyword = 1801812326;
 
-pub const anon4181 = enum(AEKeyword) {
-    eyMiscellaneous = 1718448995,
-    eySelection = 1718838636,
-    eyWindow = 1802989156,
-    eyWhen = 2003330414,
-    eyWhere = 2003330418,
-    eyModifiers = 1836016755,
-    eyKey = 1801812256,
-    eyKeyCode = 1668244581,
-    eyKeyboard = 1801812322,
-    eyDriveNumber = 1685222947,
-    eyErrorCode = 1701999139,
-    eyHighLevelClass = 1751346291,
-    eyHighLevelID = 1751737376,
-};
+pub const anon3741 = AEKeyword;
+pub const anon3741_eyAEPropData: AEKeyword = 1886545012;
+pub const anon3741_eyAEProperties: AEKeyword = 1903194735;
+pub const anon3741_eyAEProperty: AEKeyword = 1802531440;
+pub const anon3741_eyAEPropFlags: AEKeyword = 1886545511;
+pub const anon3741_eyAEPropID: AEKeyword = 1886547824;
+pub const anon3741_eyAEProtection: AEKeyword = 1886417519;
+pub const anon3741_eyAERenderAs: AEKeyword = 1802659182;
+pub const anon3741_eyAERequestedType: AEKeyword = 1920235888;
+pub const anon3741_eyAEResult: AEKeyword = 757935405;
+pub const anon3741_eyAEResultInfo: AEKeyword = 1920166254;
+pub const anon3741_eyAERotation: AEKeyword = 1886547828;
+pub const anon3741_eyAERotPoint: AEKeyword = 1802663024;
+pub const anon3741_eyAERowList: AEKeyword = 1802660979;
+pub const anon3741_eyAESaveOptions: AEKeyword = 1935767151;
+pub const anon3741_eyAEScale: AEKeyword = 1886610284;
+pub const anon3741_eyAEScriptTag: AEKeyword = 1886610292;
+pub const anon3741_eyAESearchText: AEKeyword = 1937012852;
+pub const anon3741_eyAEShowWhere: AEKeyword = 1936224119;
+pub const anon3741_eyAEStartAngle: AEKeyword = 1885433447;
+pub const anon3741_eyAEStartPoint: AEKeyword = 1886614640;
+pub const anon3741_eyAEStyles: AEKeyword = 1802728569;
 
-pub const anon4351 = enum(objc.OSType) {
-    pArcAngle = 1885434467,
-    pBackgroundColor = 1885496172,
-    pBackgroundPattern = 1885499508,
-    pBestType = 1885500276,
-    pBounds = 1885498980,
-    pClass = 1885564019,
-    pClipboard = 1885564009,
-    pColor = 1668246642,
-    pColorTable = 1668052066,
-    pContents = 1885564532,
-    pCornerCurveHeight = 1885562980,
-    pCornerCurveWidth = 1885566820,
-    pDashStyle = 1885631348,
-    pDefaultType = 1684366964,
-    pDefinitionRect = 1885631092,
-    pEnabled = 1701732972,
-    pEndPoint = 1885695588,
-    pFillColor = 1718379372,
-    pFillPattern = 1718382708,
-    pFont = 1718578804,
-};
+pub const anon3981 = AEKeyword;
+pub const anon3981_eyAESuiteID: AEKeyword = 1937074548;
+pub const anon3981_eyAEText: AEKeyword = 1802795124;
+pub const anon3981_eyAETextColor: AEKeyword = 1886681187;
+pub const anon3981_eyAETextFont: AEKeyword = 1886681190;
+pub const anon3981_eyAETextPointSize: AEKeyword = 1886679155;
+pub const anon3981_eyAETextStyles: AEKeyword = 1954050932;
+pub const anon3981_eyAETextLineHeight: AEKeyword = 1802792040;
+pub const anon3981_eyAETextLineAscent: AEKeyword = 1802789235;
+pub const anon3981_eyAETheText: AEKeyword = 1953002616;
+pub const anon3981_eyAETransferMode: AEKeyword = 1886418029;
+pub const anon3981_eyAETranslation: AEKeyword = 1886679667;
+pub const anon3981_eyAETryAsStructGraf: AEKeyword = 1953460071;
+pub const anon3981_eyAEUniformStyles: AEKeyword = 1970500716;
+pub const anon3981_eyAEUpdateOn: AEKeyword = 1886744676;
+pub const anon3981_eyAEUserTerm: AEKeyword = 1970565741;
+pub const anon3981_eyAEWindow: AEKeyword = 2003723383;
+pub const anon3981_eyAEWritingCode: AEKeyword = 2003985252;
 
-pub const anon4581 = enum(objc.OSType) {
-    pFormula = 1885761394,
-    pGraphicObjects = 1735352947,
-    pHasCloseBox = 1751346274,
-    pHasTitleBar = 1886677364,
-    pID = 1229201440,
-    pIndex = 1885955192,
-    pInsertionLoc = 1885957747,
-    pIsFloating = 1769170540,
-    pIsFrontProcess = 1885959014,
-    pIsModal = 1886220132,
-    pIsModified = 1768779620,
-    pIsResizable = 1886548858,
-    pIsStationeryPad = 1886613604,
-    pIsZoomable = 1769175661,
-    pIsZoomed = 1887073645,
-    pItemNumber = 1769237870,
-    pJustification = 1886024564,
-    pLineArrow = 1634890351,
-    pMenuID = 1835952484,
-    pName = 1886282093,
-};
+pub const anon4181 = AEKeyword;
+pub const anon4181_eyMiscellaneous: AEKeyword = 1718448995;
+pub const anon4181_eySelection: AEKeyword = 1718838636;
+pub const anon4181_eyWindow: AEKeyword = 1802989156;
+pub const anon4181_eyWhen: AEKeyword = 2003330414;
+pub const anon4181_eyWhere: AEKeyword = 2003330418;
+pub const anon4181_eyModifiers: AEKeyword = 1836016755;
+pub const anon4181_eyKey: AEKeyword = 1801812256;
+pub const anon4181_eyKeyCode: AEKeyword = 1668244581;
+pub const anon4181_eyKeyboard: AEKeyword = 1801812322;
+pub const anon4181_eyDriveNumber: AEKeyword = 1685222947;
+pub const anon4181_eyErrorCode: AEKeyword = 1701999139;
+pub const anon4181_eyHighLevelClass: AEKeyword = 1751346291;
+pub const anon4181_eyHighLevelID: AEKeyword = 1751737376;
 
-pub const anon5321 = enum(DescType) {
-    typeFinderWindow = 1719101806,
-    typeFixedPoint = 1718644340,
-    typeFixedRectangle = 1718772596,
-    typeGraphicLine = 1735158126,
-    typeGraphicText = 1667724408,
-    typeGroupedGraphic = 1668311395,
-    typeInsertionLoc = 1768846188,
-    typeIntlText = 1769240692,
-    typeIntlWritingCode = 1768846444,
-    typeLongDateTime = 1818522656,
-    typeCFAbsoluteTime = 1667654004,
-    typeISO8601DateTime = 1769172852,
-    typeLongFixed = 1818654820,
-    typeLongFixedPoint = 1818652788,
-    typeLongFixedRectangle = 1818653283,
-    typeLongPoint = 1819307636,
-    typeLongRectangle = 1819435892,
-    typeMachineLoc = 1833725795,
-    typeOval = 1668249196,
-    typeParamInfo = 1886218606,
-    typePict = 1346978644,
-};
+pub const anon4351 = objc.OSType;
+pub const anon4351_pArcAngle: objc.OSType = 1885434467;
+pub const anon4351_pBackgroundColor: objc.OSType = 1885496172;
+pub const anon4351_pBackgroundPattern: objc.OSType = 1885499508;
+pub const anon4351_pBestType: objc.OSType = 1885500276;
+pub const anon4351_pBounds: objc.OSType = 1885498980;
+pub const anon4351_pClass: objc.OSType = 1885564019;
+pub const anon4351_pClipboard: objc.OSType = 1885564009;
+pub const anon4351_pColor: objc.OSType = 1668246642;
+pub const anon4351_pColorTable: objc.OSType = 1668052066;
+pub const anon4351_pContents: objc.OSType = 1885564532;
+pub const anon4351_pCornerCurveHeight: objc.OSType = 1885562980;
+pub const anon4351_pCornerCurveWidth: objc.OSType = 1885566820;
+pub const anon4351_pDashStyle: objc.OSType = 1885631348;
+pub const anon4351_pDefaultType: objc.OSType = 1684366964;
+pub const anon4351_pDefinitionRect: objc.OSType = 1885631092;
+pub const anon4351_pEnabled: objc.OSType = 1701732972;
+pub const anon4351_pEndPoint: objc.OSType = 1885695588;
+pub const anon4351_pFillColor: objc.OSType = 1718379372;
+pub const anon4351_pFillPattern: objc.OSType = 1718382708;
+pub const anon4351_pFont: objc.OSType = 1718578804;
 
-pub const anon5561 = enum(DescType) {
-    typePixelMap = 1668311416,
-    typePixMapMinus = 1953525101,
-    typePolygon = 1668310894,
-    typePropInfo = 1885957734,
-    typePtr = 1886679584,
-    typeQDPoint = 1363439732,
-    typeQDRegion = 1366452078,
-    typeRectangle = 1668441443,
-    typeRGB16 = 1953640758,
-    typeRGB96 = 1953642806,
-    typeRGBColor = 1666336578,
-    typeRotation = 1953656692,
-    typeRoundedRectangle = 1668444771,
-    typeRow = 1668444023,
-    typeScrapStyles = 1937013100,
-    typeScript = 1935896692,
-    typeStyledText = 1398036564,
-    typeSuiteInfo = 1937074542,
-    typeTable = 1668571756,
-    typeTextStyles = 1953723513,
-};
+pub const anon4581 = objc.OSType;
+pub const anon4581_pFormula: objc.OSType = 1885761394;
+pub const anon4581_pGraphicObjects: objc.OSType = 1735352947;
+pub const anon4581_pHasCloseBox: objc.OSType = 1751346274;
+pub const anon4581_pHasTitleBar: objc.OSType = 1886677364;
+pub const anon4581_pID: objc.OSType = 1229201440;
+pub const anon4581_pIndex: objc.OSType = 1885955192;
+pub const anon4581_pInsertionLoc: objc.OSType = 1885957747;
+pub const anon4581_pIsFloating: objc.OSType = 1769170540;
+pub const anon4581_pIsFrontProcess: objc.OSType = 1885959014;
+pub const anon4581_pIsModal: objc.OSType = 1886220132;
+pub const anon4581_pIsModified: objc.OSType = 1768779620;
+pub const anon4581_pIsResizable: objc.OSType = 1886548858;
+pub const anon4581_pIsStationeryPad: objc.OSType = 1886613604;
+pub const anon4581_pIsZoomable: objc.OSType = 1769175661;
+pub const anon4581_pIsZoomed: objc.OSType = 1887073645;
+pub const anon4581_pItemNumber: objc.OSType = 1769237870;
+pub const anon4581_pJustification: objc.OSType = 1886024564;
+pub const anon4581_pLineArrow: objc.OSType = 1634890351;
+pub const anon4581_pMenuID: objc.OSType = 1835952484;
+pub const anon4581_pName: objc.OSType = 1886282093;
 
-pub const anon5791 = enum(DescType) {
-    typeTIFF = 1414088262,
-    typeJPEG = 1246774599,
-    typeGIF = 1195984486,
-    typeVersion = 1986359923,
-};
+pub const anon5321 = DescType;
+pub const anon5321_typeFinderWindow: DescType = 1719101806;
+pub const anon5321_typeFixedPoint: DescType = 1718644340;
+pub const anon5321_typeFixedRectangle: DescType = 1718772596;
+pub const anon5321_typeGraphicLine: DescType = 1735158126;
+pub const anon5321_typeGraphicText: DescType = 1667724408;
+pub const anon5321_typeGroupedGraphic: DescType = 1668311395;
+pub const anon5321_typeInsertionLoc: DescType = 1768846188;
+pub const anon5321_typeIntlText: DescType = 1769240692;
+pub const anon5321_typeIntlWritingCode: DescType = 1768846444;
+pub const anon5321_typeLongDateTime: DescType = 1818522656;
+pub const anon5321_typeCFAbsoluteTime: DescType = 1667654004;
+pub const anon5321_typeISO8601DateTime: DescType = 1769172852;
+pub const anon5321_typeLongFixed: DescType = 1818654820;
+pub const anon5321_typeLongFixedPoint: DescType = 1818652788;
+pub const anon5321_typeLongFixedRectangle: DescType = 1818653283;
+pub const anon5321_typeLongPoint: DescType = 1819307636;
+pub const anon5321_typeLongRectangle: DescType = 1819435892;
+pub const anon5321_typeMachineLoc: DescType = 1833725795;
+pub const anon5321_typeOval: DescType = 1668249196;
+pub const anon5321_typeParamInfo: DescType = 1886218606;
+pub const anon5321_typePict: DescType = 1346978644;
 
-pub const anon5861 = enum(objc.OSType) {
-    AEMenuClass = 1835363957,
-    AEMenuSelect = 1835559284,
-    AEMouseDown = 1835300718,
-    AEMouseDownInBack = 1835295339,
-    AEKeyDown = 1801746286,
-    AEResized = 1920166266,
-    AEPromise = 1886547821,
-};
+pub const anon5561 = DescType;
+pub const anon5561_typePixelMap: DescType = 1668311416;
+pub const anon5561_typePixMapMinus: DescType = 1953525101;
+pub const anon5561_typePolygon: DescType = 1668310894;
+pub const anon5561_typePropInfo: DescType = 1885957734;
+pub const anon5561_typePtr: DescType = 1886679584;
+pub const anon5561_typeQDPoint: DescType = 1363439732;
+pub const anon5561_typeQDRegion: DescType = 1366452078;
+pub const anon5561_typeRectangle: DescType = 1668441443;
+pub const anon5561_typeRGB16: DescType = 1953640758;
+pub const anon5561_typeRGB96: DescType = 1953642806;
+pub const anon5561_typeRGBColor: DescType = 1666336578;
+pub const anon5561_typeRotation: DescType = 1953656692;
+pub const anon5561_typeRoundedRectangle: DescType = 1668444771;
+pub const anon5561_typeRow: DescType = 1668444023;
+pub const anon5561_typeScrapStyles: DescType = 1937013100;
+pub const anon5561_typeScript: DescType = 1935896692;
+pub const anon5561_typeStyledText: DescType = 1398036564;
+pub const anon5561_typeSuiteInfo: DescType = 1937074542;
+pub const anon5561_typeTable: DescType = 1668571756;
+pub const anon5561_typeTextStyles: DescType = 1953723513;
 
-pub const anon6051 = enum(DescType) {
-    typeHIMenu = 1836016234,
-    typeHIWindow = 2003788394,
-};
+pub const anon5791 = DescType;
+pub const anon5791_typeTIFF: DescType = 1414088262;
+pub const anon5791_typeJPEG: DescType = 1246774599;
+pub const anon5791_typeGIF: DescType = 1195984486;
+pub const anon5791_typeVersion: DescType = 1986359923;
 
-pub const anon6161 = enum(u32) {
-    BySmallIcon = 0,
-    ByIconView = 1,
-    ByNameView = 2,
-    ByDateView = 3,
-    BySizeView = 4,
-    ByKindView = 5,
-    ByCommentView = 6,
-    ByLabelView = 7,
-    ByVersionView = 8,
-};
+pub const anon5861 = objc.OSType;
+pub const anon5861_AEMenuClass: objc.OSType = 1835363957;
+pub const anon5861_AEMenuSelect: objc.OSType = 1835559284;
+pub const anon5861_AEMouseDown: objc.OSType = 1835300718;
+pub const anon5861_AEMouseDownInBack: objc.OSType = 1835295339;
+pub const anon5861_AEKeyDown: objc.OSType = 1801746286;
+pub const anon5861_AEResized: objc.OSType = 1920166266;
+pub const anon5861_AEPromise: objc.OSType = 1886547821;
 
-pub const anon6281 = enum(u32) {
-    AEInfo = 11,
-    AEMain = 0,
-    AESharing = 13,
-};
+pub const anon6051 = DescType;
+pub const anon6051_typeHIMenu: DescType = 1836016234;
+pub const anon6051_typeHIWindow: DescType = 2003788394;
 
-pub const anon6771 = enum(u32) {
-    TSMOutsideOfBody = 1,
-    TSMInsideOfBody = 2,
-    TSMInsideOfActiveInputArea = 3,
-};
+pub const anon6161 = u32;
+pub const anon6161_BySmallIcon: u32 = 0;
+pub const anon6161_ByIconView: u32 = 1;
+pub const anon6161_ByNameView: u32 = 2;
+pub const anon6161_ByDateView: u32 = 3;
+pub const anon6161_BySizeView: u32 = 4;
+pub const anon6161_ByKindView: u32 = 5;
+pub const anon6161_ByCommentView: u32 = 6;
+pub const anon6161_ByLabelView: u32 = 7;
+pub const anon6161_ByVersionView: u32 = 8;
+
+pub const anon6281 = u32;
+pub const anon6281_AEInfo: u32 = 11;
+pub const anon6281_AEMain: u32 = 0;
+pub const anon6281_AESharing: u32 = 13;
+
+pub const anon6771 = u32;
+pub const anon6771_TSMOutsideOfBody: u32 = 1;
+pub const anon6771_TSMInsideOfBody: u32 = 2;
+pub const anon6771_TSMInsideOfActiveInputArea: u32 = 3;
+
+pub const anon6831 = u32;
+pub const anon6831_NextBody: u32 = 1;
+pub const anon6831_PreviousBody: u32 = 2;
+pub const anon6831_CSSM_ACL_EDIT_MODE_ADD: u32 = 1;
+pub const anon6831_CSSM_ACL_EDIT_MODE_DELETE: u32 = 2;
+pub const anon6831_CSSM_ACL_EDIT_MODE_REPLACE: u32 = 3;
 
 pub const TextRange = extern struct {
     fStart: objc.SInt32,
@@ -13211,27 +15610,27 @@ pub const TextRange = extern struct {
     fHiliteStyle: objc.SInt16,
 };
 
-pub const TextRangePtr = ?*TextRange;
+pub const TextRangePtr = TextRange;
 
-pub const TextRangeHandle = ?*TextRangePtr;
+pub const TextRangeHandle = TextRangePtr;
 
 pub const TextRangeArray = extern struct {
     fNumOfRanges: objc.SInt16,
     fRange: [1]TextRange,
 };
 
-pub const TextRangeArrayPtr = ?*TextRangeArray;
+pub const TextRangeArrayPtr = TextRangeArray;
 
-pub const TextRangeArrayHandle = ?*TextRangeArrayPtr;
+pub const TextRangeArrayHandle = TextRangeArrayPtr;
 
 pub const OffsetArray = extern struct {
     fNumOfOffsets: objc.SInt16,
     fOffset: [1]objc.SInt32,
 };
 
-pub const OffsetArrayPtr = ?*OffsetArray;
+pub const OffsetArrayPtr = OffsetArray;
 
-pub const OffsetArrayHandle = ?*OffsetArrayPtr;
+pub const OffsetArrayHandle = OffsetArrayPtr;
 
 pub const WritingCode = extern struct {
     theScriptCode: objc.ScriptCode,
@@ -13244,247 +15643,236 @@ pub const IntlText = extern struct {
     theText: [1]i8,
 };
 
-pub const anon7231 = enum(u32) {
-    TSMHiliteCaretPosition = 1,
-    TSMHiliteRawText = 2,
-    TSMHiliteSelectedRawText = 3,
-    TSMHiliteConvertedText = 4,
-    TSMHiliteSelectedConvertedText = 5,
-    TSMHiliteBlockFillText = 6,
-    TSMHiliteOutlineText = 7,
-    TSMHiliteSelectedText = 8,
-    TSMHiliteNoHilite = 9,
-};
+pub const anon7231 = u32;
+pub const anon7231_TSMHiliteCaretPosition: u32 = 1;
+pub const anon7231_TSMHiliteRawText: u32 = 2;
+pub const anon7231_TSMHiliteSelectedRawText: u32 = 3;
+pub const anon7231_TSMHiliteConvertedText: u32 = 4;
+pub const anon7231_TSMHiliteSelectedConvertedText: u32 = 5;
+pub const anon7231_TSMHiliteBlockFillText: u32 = 6;
+pub const anon7231_TSMHiliteOutlineText: u32 = 7;
+pub const anon7231_TSMHiliteSelectedText: u32 = 8;
+pub const anon7231_TSMHiliteNoHilite: u32 = 9;
 
-pub const anon7501 = enum(AEKeyword) {
-    eyAEHiliteRange = 1752329831,
-    eyAEPinRange = 1886286439,
-    eyAEClauseOffsets = 1668047221,
-    eyAEOffset = 1868985204,
-    eyAEPoint = 1735421811,
-    eyAELeftSide = 1802265958,
-    eyAERegionClass = 1919381091,
-    eyAEDragging = 1651470188,
-};
+pub const anon7501 = AEKeyword;
+pub const anon7501_eyAEHiliteRange: AEKeyword = 1752329831;
+pub const anon7501_eyAEPinRange: AEKeyword = 1886286439;
+pub const anon7501_eyAEClauseOffsets: AEKeyword = 1668047221;
+pub const anon7501_eyAEOffset: AEKeyword = 1868985204;
+pub const anon7501_eyAEPoint: AEKeyword = 1735421811;
+pub const anon7501_eyAELeftSide: AEKeyword = 1802265958;
+pub const anon7501_eyAERegionClass: AEKeyword = 1919381091;
+pub const anon7501_eyAEDragging: AEKeyword = 1651470188;
 
-pub const anon8271 = enum(objc.OSType) {
-    AEISGetURL = 1735750252,
-    KAEISHandleCGI = 1935961955,
-};
+pub const anon8271 = objc.OSType;
+pub const anon8271_AEISGetURL: objc.OSType = 1735750252;
+pub const anon8271_KAEISHandleCGI: objc.OSType = 1935961955;
 
-pub const anon8331 = enum(objc.OSType) {
-    cURL = 1970433056,
-    cInternetAddress = 1229996356,
-    cHTML = 1752460652,
-    cFTPItem = 1718906912,
-};
+pub const anon8331 = objc.OSType;
+pub const anon8331_cURL: objc.OSType = 1970433056;
+pub const anon8331_cInternetAddress: objc.OSType = 1229996356;
+pub const anon8331_cHTML: objc.OSType = 1752460652;
+pub const anon8331_cFTPItem: objc.OSType = 1718906912;
 
-pub const anon8411 = enum(objc.OSType) {
-    AEISHTTPSearchArgs = 1801875314,
-    AEISPostArgs = 1886352244,
-    AEISMethod = 1835365480,
-    AEISClientAddress = 1633969266,
-    AEISUserName = 1970496882,
-    AEISPassword = 1885434739,
-    AEISFromUser = 1718775157,
-    AEISServerName = 1937141357,
-    AEISServerPort = 1937141876,
-    AEISScriptName = 1935896173,
-    AEISContentType = 1668577648,
-    AEISReferrer = 1919247986,
-    AEISUserAgent = 1097297524,
-    AEISAction = 1264673652,
-    AEISActionPath = 1264676980,
-    AEISClientIP = 1264806256,
-    AEISFullRequest = 1265005169,
-};
+pub const anon8411 = objc.OSType;
+pub const anon8411_AEISHTTPSearchArgs: objc.OSType = 1801875314;
+pub const anon8411_AEISPostArgs: objc.OSType = 1886352244;
+pub const anon8411_AEISMethod: objc.OSType = 1835365480;
+pub const anon8411_AEISClientAddress: objc.OSType = 1633969266;
+pub const anon8411_AEISUserName: objc.OSType = 1970496882;
+pub const anon8411_AEISPassword: objc.OSType = 1885434739;
+pub const anon8411_AEISFromUser: objc.OSType = 1718775157;
+pub const anon8411_AEISServerName: objc.OSType = 1937141357;
+pub const anon8411_AEISServerPort: objc.OSType = 1937141876;
+pub const anon8411_AEISScriptName: objc.OSType = 1935896173;
+pub const anon8411_AEISContentType: objc.OSType = 1668577648;
+pub const anon8411_AEISReferrer: objc.OSType = 1919247986;
+pub const anon8411_AEISUserAgent: objc.OSType = 1097297524;
+pub const anon8411_AEISAction: objc.OSType = 1264673652;
+pub const anon8411_AEISActionPath: objc.OSType = 1264676980;
+pub const anon8411_AEISClientIP: objc.OSType = 1264806256;
+pub const anon8411_AEISFullRequest: objc.OSType = 1265005169;
 
-pub const anon8621 = enum(objc.OSType) {
-    pScheme = 1886745443,
-    pHost = 1213158228,
-    pPath = 1179930723,
-    pUserName = 1380021614,
-    pUserPassword = 1380020343,
-    pDNSForm = 1883524691,
-    pURL = 1884639820,
-    pTextEncoding = 1886681189,
-    pFTPKind = 1802071652,
-};
+pub const anon8621 = objc.OSType;
+pub const anon8621_pScheme: objc.OSType = 1886745443;
+pub const anon8621_pHost: objc.OSType = 1213158228;
+pub const anon8621_pPath: objc.OSType = 1179930723;
+pub const anon8621_pUserName: objc.OSType = 1380021614;
+pub const anon8621_pUserPassword: objc.OSType = 1380020343;
+pub const anon8621_pDNSForm: objc.OSType = 1883524691;
+pub const anon8621_pURL: objc.OSType = 1884639820;
+pub const anon8621_pTextEncoding: objc.OSType = 1886681189;
+pub const anon8621_pFTPKind: objc.OSType = 1802071652;
 
-pub const anon8751 = enum(objc.OSType) {
-    eScheme = 1702060904,
-    eurlHTTP = 1752462448,
-    eurlHTTPS = 1752461427,
-    eurlFTP = 1718906912,
-    eurlMail = 1835100524,
-    eurlFile = 1718185061,
-    eurlGopher = 1735420018,
-    eurlTelnet = 1953263220,
-    eurlNews = 1852143475,
-    eurlSNews = 1936619379,
-    eurlNNTP = 1852732528,
-    eurlMessage = 1835365235,
-    eurlMailbox = 1835167608,
-    eurlMulti = 1836412020,
-    eurlLaunch = 1818326382,
-    eurlAFP = 1634103328,
-    eurlAT = 1635000352,
-    eurlEPPC = 1701867619,
-    eurlRTSP = 1920234352,
-    eurlIMAP = 1768776048,
-    eurlNFS = 1970169459,
-    eurlPOP = 1970302832,
-    eurlLDAP = 1970037872,
-    eurlUnknown = 1970433087,
-};
+pub const anon8751 = objc.OSType;
+pub const anon8751_eScheme: objc.OSType = 1702060904;
+pub const anon8751_eurlHTTP: objc.OSType = 1752462448;
+pub const anon8751_eurlHTTPS: objc.OSType = 1752461427;
+pub const anon8751_eurlFTP: objc.OSType = 1718906912;
+pub const anon8751_eurlMail: objc.OSType = 1835100524;
+pub const anon8751_eurlFile: objc.OSType = 1718185061;
+pub const anon8751_eurlGopher: objc.OSType = 1735420018;
+pub const anon8751_eurlTelnet: objc.OSType = 1953263220;
+pub const anon8751_eurlNews: objc.OSType = 1852143475;
+pub const anon8751_eurlSNews: objc.OSType = 1936619379;
+pub const anon8751_eurlNNTP: objc.OSType = 1852732528;
+pub const anon8751_eurlMessage: objc.OSType = 1835365235;
+pub const anon8751_eurlMailbox: objc.OSType = 1835167608;
+pub const anon8751_eurlMulti: objc.OSType = 1836412020;
+pub const anon8751_eurlLaunch: objc.OSType = 1818326382;
+pub const anon8751_eurlAFP: objc.OSType = 1634103328;
+pub const anon8751_eurlAT: objc.OSType = 1635000352;
+pub const anon8751_eurlEPPC: objc.OSType = 1701867619;
+pub const anon8751_eurlRTSP: objc.OSType = 1920234352;
+pub const anon8751_eurlIMAP: objc.OSType = 1768776048;
+pub const anon8751_eurlNFS: objc.OSType = 1970169459;
+pub const anon8751_eurlPOP: objc.OSType = 1970302832;
+pub const anon8751_eurlLDAP: objc.OSType = 1970037872;
+pub const anon8751_eurlUnknown: objc.OSType = 1970433087;
 
-pub const anon9031 = enum(objc.OSType) {
-    ConnSuite = 1835098979,
-    cDevSpec = 1667523958,
-    cAddressSpec = 1667327090,
-    cADBAddress = 1667327074,
-    cAppleTalkAddress = 1667331104,
-    cBusAddress = 1667396979,
-    cEthernetAddress = 1667591712,
-    cFireWireAddress = 1667659552,
-    cIPAddress = 1667854368,
-    cLocalTalkAddress = 1668052000,
-    cSCSIAddress = 1668506483,
-    cTokenRingAddress = 1668575083,
-    cUSBAddress = 1668641634,
-    pDeviceType = 1885632116,
-    pDeviceAddress = 1885632097,
-    pConduit = 1885564782,
-    pProtocol = 1886417524,
-    pATMachine = 1885434989,
-    pATZone = 1885435002,
-    pATType = 1885434996,
-    pDottedDecimal = 1885958244,
-    pDNS = 1885630067,
-    pPort = 1886416754,
-    pNetwork = 1886283124,
-    pNode = 1886285668,
-    pSocket = 1886613347,
-    pSCSIBus = 1886610274,
-    pSCSILUN = 1886612597,
-    eDeviceType = 1701082740,
-    eAddressSpec = 1700881523,
-    eConduit = 1701015406,
-    eProtocol = 1701868143,
-    eADB = 1700881506,
-    eAnalogAudio = 1701863797,
-    eAppleTalk = 1701863796,
-    eAudioLineIn = 1701011817,
-    eAudioLineOut = 1701011820,
-    eAudioOut = 1701011823,
-    eBus = 1700951411,
-    eCDROM = 1701012512,
-    eCommSlot = 1701012333,
-    eDigitalAudio = 1701864545,
-    eDisplay = 1701078131,
-    eDVD = 1701082724,
-    eEthernet = 1701012846,
-    eFireWire = 1701013111,
-    eFloppy = 1701209120,
-    eHD = 1701340192,
-    eInfrared = 1701013874,
-    eIP = 1701865840,
-    eIrDA = 1701865842,
-    eIRTalk = 1701865844,
-    eKeyboard = 1701536356,
-    eLCD = 1701080163,
-    eLocalTalk = 1701014644,
-    eMacIP = 1701866857,
-    eMacVideo = 1701866870,
-    eMicrophone = 1701014889,
-    eModemPort = 1701014896,
-    eModemPrinterPort = 1701671024,
-    eModem = 1701080429,
-    eMonitorOut = 1701014894,
-    eMouse = 1701670773,
-    eNuBusCard = 1701080674,
-    eNuBus = 1701737826,
-    ePCcard = 1701015651,
-    ePCIbus = 1701015657,
-    ePCIcard = 1701081193,
-    ePDSslot = 1701015652,
-    ePDScard = 1701864563,
-    ePointingDevice = 1701081188,
-    ePostScript = 1701867635,
-    ePPP = 1701867632,
-    ePrinterPort = 1701015664,
-    ePrinter = 1701081202,
-    eSvideo = 1701868406,
-    eSCSI = 1701016419,
-    eSerial = 1701868402,
-    eSpeakers = 1701081968,
-    eStorageDevice = 1701081972,
-    eSVGA = 1701868391,
-    eTokenRing = 1702129515,
-    eTrackball = 1702130283,
-    eTrackpad = 1701082224,
-    eUSB = 1701016947,
-    eVideoIn = 1701017193,
-    eVideoMonitor = 1701082733,
-    eVideoOut = 1701017199,
-};
+pub const anon9031 = objc.OSType;
+pub const anon9031_ConnSuite: objc.OSType = 1835098979;
+pub const anon9031_cDevSpec: objc.OSType = 1667523958;
+pub const anon9031_cAddressSpec: objc.OSType = 1667327090;
+pub const anon9031_cADBAddress: objc.OSType = 1667327074;
+pub const anon9031_cAppleTalkAddress: objc.OSType = 1667331104;
+pub const anon9031_cBusAddress: objc.OSType = 1667396979;
+pub const anon9031_cEthernetAddress: objc.OSType = 1667591712;
+pub const anon9031_cFireWireAddress: objc.OSType = 1667659552;
+pub const anon9031_cIPAddress: objc.OSType = 1667854368;
+pub const anon9031_cLocalTalkAddress: objc.OSType = 1668052000;
+pub const anon9031_cSCSIAddress: objc.OSType = 1668506483;
+pub const anon9031_cTokenRingAddress: objc.OSType = 1668575083;
+pub const anon9031_cUSBAddress: objc.OSType = 1668641634;
+pub const anon9031_pDeviceType: objc.OSType = 1885632116;
+pub const anon9031_pDeviceAddress: objc.OSType = 1885632097;
+pub const anon9031_pConduit: objc.OSType = 1885564782;
+pub const anon9031_pProtocol: objc.OSType = 1886417524;
+pub const anon9031_pATMachine: objc.OSType = 1885434989;
+pub const anon9031_pATZone: objc.OSType = 1885435002;
+pub const anon9031_pATType: objc.OSType = 1885434996;
+pub const anon9031_pDottedDecimal: objc.OSType = 1885958244;
+pub const anon9031_pDNS: objc.OSType = 1885630067;
+pub const anon9031_pPort: objc.OSType = 1886416754;
+pub const anon9031_pNetwork: objc.OSType = 1886283124;
+pub const anon9031_pNode: objc.OSType = 1886285668;
+pub const anon9031_pSocket: objc.OSType = 1886613347;
+pub const anon9031_pSCSIBus: objc.OSType = 1886610274;
+pub const anon9031_pSCSILUN: objc.OSType = 1886612597;
+pub const anon9031_eDeviceType: objc.OSType = 1701082740;
+pub const anon9031_eAddressSpec: objc.OSType = 1700881523;
+pub const anon9031_eConduit: objc.OSType = 1701015406;
+pub const anon9031_eProtocol: objc.OSType = 1701868143;
+pub const anon9031_eADB: objc.OSType = 1700881506;
+pub const anon9031_eAnalogAudio: objc.OSType = 1701863797;
+pub const anon9031_eAppleTalk: objc.OSType = 1701863796;
+pub const anon9031_eAudioLineIn: objc.OSType = 1701011817;
+pub const anon9031_eAudioLineOut: objc.OSType = 1701011820;
+pub const anon9031_eAudioOut: objc.OSType = 1701011823;
+pub const anon9031_eBus: objc.OSType = 1700951411;
+pub const anon9031_eCDROM: objc.OSType = 1701012512;
+pub const anon9031_eCommSlot: objc.OSType = 1701012333;
+pub const anon9031_eDigitalAudio: objc.OSType = 1701864545;
+pub const anon9031_eDisplay: objc.OSType = 1701078131;
+pub const anon9031_eDVD: objc.OSType = 1701082724;
+pub const anon9031_eEthernet: objc.OSType = 1701012846;
+pub const anon9031_eFireWire: objc.OSType = 1701013111;
+pub const anon9031_eFloppy: objc.OSType = 1701209120;
+pub const anon9031_eHD: objc.OSType = 1701340192;
+pub const anon9031_eInfrared: objc.OSType = 1701013874;
+pub const anon9031_eIP: objc.OSType = 1701865840;
+pub const anon9031_eIrDA: objc.OSType = 1701865842;
+pub const anon9031_eIRTalk: objc.OSType = 1701865844;
+pub const anon9031_eKeyboard: objc.OSType = 1701536356;
+pub const anon9031_eLCD: objc.OSType = 1701080163;
+pub const anon9031_eLocalTalk: objc.OSType = 1701014644;
+pub const anon9031_eMacIP: objc.OSType = 1701866857;
+pub const anon9031_eMacVideo: objc.OSType = 1701866870;
+pub const anon9031_eMicrophone: objc.OSType = 1701014889;
+pub const anon9031_eModemPort: objc.OSType = 1701014896;
+pub const anon9031_eModemPrinterPort: objc.OSType = 1701671024;
+pub const anon9031_eModem: objc.OSType = 1701080429;
+pub const anon9031_eMonitorOut: objc.OSType = 1701014894;
+pub const anon9031_eMouse: objc.OSType = 1701670773;
+pub const anon9031_eNuBusCard: objc.OSType = 1701080674;
+pub const anon9031_eNuBus: objc.OSType = 1701737826;
+pub const anon9031_ePCcard: objc.OSType = 1701015651;
+pub const anon9031_ePCIbus: objc.OSType = 1701015657;
+pub const anon9031_ePCIcard: objc.OSType = 1701081193;
+pub const anon9031_ePDSslot: objc.OSType = 1701015652;
+pub const anon9031_ePDScard: objc.OSType = 1701864563;
+pub const anon9031_ePointingDevice: objc.OSType = 1701081188;
+pub const anon9031_ePostScript: objc.OSType = 1701867635;
+pub const anon9031_ePPP: objc.OSType = 1701867632;
+pub const anon9031_ePrinterPort: objc.OSType = 1701015664;
+pub const anon9031_ePrinter: objc.OSType = 1701081202;
+pub const anon9031_eSvideo: objc.OSType = 1701868406;
+pub const anon9031_eSCSI: objc.OSType = 1701016419;
+pub const anon9031_eSerial: objc.OSType = 1701868402;
+pub const anon9031_eSpeakers: objc.OSType = 1701081968;
+pub const anon9031_eStorageDevice: objc.OSType = 1701081972;
+pub const anon9031_eSVGA: objc.OSType = 1701868391;
+pub const anon9031_eTokenRing: objc.OSType = 1702129515;
+pub const anon9031_eTrackball: objc.OSType = 1702130283;
+pub const anon9031_eTrackpad: objc.OSType = 1701082224;
+pub const anon9031_eUSB: objc.OSType = 1701016947;
+pub const anon9031_eVideoIn: objc.OSType = 1701017193;
+pub const anon9031_eVideoMonitor: objc.OSType = 1701082733;
+pub const anon9031_eVideoOut: objc.OSType = 1701017199;
 
-pub const anon9971 = enum(objc.OSType) {
-    cKeystroke = 1802531443,
-    pKeystrokeKey = 1800237927,
-    pModifiers = 1800236900,
-    pKeyKind = 1802202724,
-    eModifiers = 1699570803,
-    eOptionDown = 1265594484,
-    eCommandDown = 1264807268,
-    eControlDown = 1264809068,
-    eShiftDown = 1265854068,
-    eCapsLockDown = 1264807019,
-    eKeyKind = 1701540724,
-    eEscapeKey = 1802712320,
-    eDeleteKey = 1802711808,
-    eTabKey = 1802711040,
-    eReturnKey = 1802707968,
-    eClearKey = 1802716928,
-    eEnterKey = 1802718208,
-    eUpArrowKey = 1802731008,
-    eDownArrowKey = 1802730752,
-    eLeftArrowKey = 1802730240,
-    eRightArrowKey = 1802730496,
-    eHelpKey = 1802727936,
-    eHomeKey = 1802728192,
-    ePageUpKey = 1802728448,
-    ePageDownKey = 1802729728,
-    eForwardDelKey = 1802728704,
-    eEndKey = 1802729216,
-    eF1Key = 1802729984,
-    eF2Key = 1802729472,
-    eF3Key = 1802724096,
-    eF4Key = 1802728960,
-    eF5Key = 1802723328,
-    eF6Key = 1802723584,
-    eF7Key = 1802723840,
-    eF8Key = 1802724352,
-    eF9Key = 1802724608,
-    eF10Key = 1802726656,
-    eF11Key = 1802725120,
-    eF12Key = 1802727168,
-    eF13Key = 1802725632,
-    eF14Key = 1802726144,
-    eF15Key = 1802727680,
-};
+pub const anon9971 = objc.OSType;
+pub const anon9971_cKeystroke: objc.OSType = 1802531443;
+pub const anon9971_pKeystrokeKey: objc.OSType = 1800237927;
+pub const anon9971_pModifiers: objc.OSType = 1800236900;
+pub const anon9971_pKeyKind: objc.OSType = 1802202724;
+pub const anon9971_eModifiers: objc.OSType = 1699570803;
+pub const anon9971_eOptionDown: objc.OSType = 1265594484;
+pub const anon9971_eCommandDown: objc.OSType = 1264807268;
+pub const anon9971_eControlDown: objc.OSType = 1264809068;
+pub const anon9971_eShiftDown: objc.OSType = 1265854068;
+pub const anon9971_eCapsLockDown: objc.OSType = 1264807019;
+pub const anon9971_eKeyKind: objc.OSType = 1701540724;
+pub const anon9971_eEscapeKey: objc.OSType = 1802712320;
+pub const anon9971_eDeleteKey: objc.OSType = 1802711808;
+pub const anon9971_eTabKey: objc.OSType = 1802711040;
+pub const anon9971_eReturnKey: objc.OSType = 1802707968;
+pub const anon9971_eClearKey: objc.OSType = 1802716928;
+pub const anon9971_eEnterKey: objc.OSType = 1802718208;
+pub const anon9971_eUpArrowKey: objc.OSType = 1802731008;
+pub const anon9971_eDownArrowKey: objc.OSType = 1802730752;
+pub const anon9971_eLeftArrowKey: objc.OSType = 1802730240;
+pub const anon9971_eRightArrowKey: objc.OSType = 1802730496;
+pub const anon9971_eHelpKey: objc.OSType = 1802727936;
+pub const anon9971_eHomeKey: objc.OSType = 1802728192;
+pub const anon9971_ePageUpKey: objc.OSType = 1802728448;
+pub const anon9971_ePageDownKey: objc.OSType = 1802729728;
+pub const anon9971_eForwardDelKey: objc.OSType = 1802728704;
+pub const anon9971_eEndKey: objc.OSType = 1802729216;
+pub const anon9971_eF1Key: objc.OSType = 1802729984;
+pub const anon9971_eF2Key: objc.OSType = 1802729472;
+pub const anon9971_eF3Key: objc.OSType = 1802724096;
+pub const anon9971_eF4Key: objc.OSType = 1802728960;
+pub const anon9971_eF5Key: objc.OSType = 1802723328;
+pub const anon9971_eF6Key: objc.OSType = 1802723584;
+pub const anon9971_eF7Key: objc.OSType = 1802723840;
+pub const anon9971_eF8Key: objc.OSType = 1802724352;
+pub const anon9971_eF9Key: objc.OSType = 1802724608;
+pub const anon9971_eF10Key: objc.OSType = 1802726656;
+pub const anon9971_eF11Key: objc.OSType = 1802725120;
+pub const anon9971_eF12Key: objc.OSType = 1802727168;
+pub const anon9971_eF13Key: objc.OSType = 1802725632;
+pub const anon9971_eF14Key: objc.OSType = 1802726144;
+pub const anon9971_eF15Key: objc.OSType = 1802727680;
 
-pub const anon10441 = enum(AEKeyword) {
-    eyAELaunchedAsLogInItem = 1818716532,
-    eyAELaunchedAsServiceItem = 1937140084,
-};
+pub const anon10441 = AEKeyword;
+pub const anon10441_eyAELaunchedAsLogInItem: AEKeyword = 1818716532;
+pub const anon10441_eyAELaunchedAsServiceItem: AEKeyword = 1937140084;
 
-pub const anon321 = enum(objc.OSType) {
-    AEUserTerminology = 1634039156,
-    AETerminologyExtension = 1634038885,
-    AEScriptingSizeResource = 1935897466,
-    AEOSAXSizeResource = 1869834618,
-};
+pub const anon321 = objc.OSType;
+pub const anon321_AEUserTerminology: objc.OSType = 1634039156;
+pub const anon321_AETerminologyExtension: objc.OSType = 1634038885;
+pub const anon321_AEScriptingSizeResource: objc.OSType = 1935897466;
+pub const anon321_AEOSAXSizeResource: objc.OSType = 1869834618;
 
 pub const TScriptingSizeResource = extern struct {
     scriptingSizeFlags: objc.SInt16,
@@ -13552,7 +15940,7 @@ pub extern "CoreServices" fn AEPrintDescToHandle(desc: ?*AEDesc, result: ?*objc.
 
 pub const OpaqueAEStreamRef = extern struct {};
 
-pub const AEStreamRef = ?*OpaqueAEStreamRef;
+pub const AEStreamRef = OpaqueAEStreamRef;
 
 pub extern "CoreServices" fn AEStreamOpen() callconv(.C) AEStreamRef;
 
@@ -13609,9 +15997,8 @@ pub extern "CoreServices" fn AEStreamOpenEvent(event: ?*AppleEvent) callconv(.C)
 
 pub extern "CoreServices" fn AEStreamOptionalParam(ref: AEStreamRef, key: AEKeyword) callconv(.C) objc.OSStatus;
 
-pub const anon841 = enum(DescType) {
-    typeReplyPortAttr = 1919250544,
-};
+pub const anon841 = DescType;
+pub const anon841_typeReplyPortAttr: DescType = 1919250544;
 
 pub extern "CoreServices" fn AEGetRegisteredMachPort() callconv(.C) objc.mach_port_t;
 
@@ -13628,26 +16015,25 @@ pub extern "CoreServices" fn AESendMessage(
 
 pub const __DCSDictionary = extern struct {};
 
-pub const DCSDictionaryRef = ?*__DCSDictionary;
+pub const DCSDictionaryRef = __DCSDictionary;
 
 pub extern "CoreServices" fn DCSGetTermRangeInString(dictionary: DCSDictionaryRef, textString: core_foundation.StringRef, offset: core_foundation.Index) callconv(.C) core_foundation.Range;
 
 pub extern "CoreServices" fn DCSCopyTextDefinition(dictionary: DCSDictionaryRef, textString: core_foundation.StringRef, range: core_foundation.Range) callconv(.C) core_foundation.StringRef;
 
-pub const anon591 = enum(i32) {
-    CSIdentityUnknownAuthorityErr = -1,
-    CSIdentityAuthorityNotAccessibleErr = -2,
-    CSIdentityPermissionErr = -3,
-    CSIdentityDeletedErr = -4,
-    CSIdentityInvalidFullNameErr = -5,
-    CSIdentityDuplicateFullNameErr = -6,
-    CSIdentityInvalidPosixNameErr = -7,
-    CSIdentityDuplicatePosixNameErr = -8,
-};
+pub const anon591 = i32;
+pub const anon591_CSIdentityUnknownAuthorityErr: i32 = -1;
+pub const anon591_CSIdentityAuthorityNotAccessibleErr: i32 = -2;
+pub const anon591_CSIdentityPermissionErr: i32 = -3;
+pub const anon591_CSIdentityDeletedErr: i32 = -4;
+pub const anon591_CSIdentityInvalidFullNameErr: i32 = -5;
+pub const anon591_CSIdentityDuplicateFullNameErr: i32 = -6;
+pub const anon591_CSIdentityInvalidPosixNameErr: i32 = -7;
+pub const anon591_CSIdentityDuplicatePosixNameErr: i32 = -8;
 
 pub const __CSIdentityAuthority = extern struct {};
 
-pub const CSIdentityAuthorityRef = ?*__CSIdentityAuthority;
+pub const CSIdentityAuthorityRef = __CSIdentityAuthority;
 
 pub extern "CoreServices" fn CSIdentityAuthorityGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -13659,36 +16045,13 @@ pub extern "CoreServices" fn CSGetManagedIdentityAuthority() callconv(.C) CSIden
 
 pub extern "CoreServices" fn CSIdentityAuthorityCopyLocalizedName(authority: CSIdentityAuthorityRef) callconv(.C) core_foundation.StringRef;
 
-pub const anon1131 = enum(i32) {
-    StartupFolderIconResource = -3981,
-    OwnedFolderIconResource = -3980,
-    DropFolderIconResource = -3979,
-    SharedFolderIconResource = -3978,
-    MountedFolderIconResource = -3977,
-    ControlPanelFolderIconResource = -3976,
-    PrintMonitorFolderIconResource = -3975,
-    PreferencesFolderIconResource = -3974,
-    ExtensionsFolderIconResource = -3973,
-    FontsFolderIconResource = -3968,
-    FullTrashIconResource = -3984,
-};
-
-pub const anon1701 = enum(u32) {
-    KCAuthTypeNTLM = 1853123693,
-    KCAuthTypeMSN = 1836281441,
-    KCAuthTypeDPA = 1685086561,
-    KCAuthTypeRPA = 1919967585,
-    KCAuthTypeHTTPDigest = 1752462436,
-    KCAuthTypeDefault = 1684434036,
-};
-
 pub const __CSIdentity = extern struct {};
 
-pub const CSIdentityRef = ?*__CSIdentity;
+pub const CSIdentityRef = __CSIdentity;
 
 pub const __CSIdentityQuery = extern struct {};
 
-pub const CSIdentityQueryRef = ?*__CSIdentityQuery;
+pub const CSIdentityQueryRef = __CSIdentityQuery;
 
 pub const CSIdentityClass = core_foundation.Index;
 
@@ -13769,9 +16132,8 @@ pub extern "CoreServices" fn CSIdentityDelete(identity: CSIdentityRef) callconv(
 
 pub extern "CoreServices" fn CSIdentityCommit(identity: CSIdentityRef, authorization: security.AuthorizationRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) objc.Boolean;
 
-pub const anon13521 = enum(u32) {
-    CSIdentityCommitCompleted = 1,
-};
+pub const anon13521 = u32;
+pub const anon13521_CSIdentityCommitCompleted: u32 = 1;
 
 pub const CSIdentityStatusUpdatedCallback = ?*const fn (
     CSIdentityRef,
@@ -13863,13 +16225,12 @@ pub extern "CoreServices" fn CSIdentityQueryExecuteAsynchronously(
 
 pub extern "CoreServices" fn CSIdentityQueryStop(query: CSIdentityQueryRef) callconv(.C) void;
 
-pub const anon431 = enum(u32) {
-    IconServices256PixelDataARGB = 1768108088,
-    IconServices512PixelDataARGB = 1768108089,
-    IconServices1024PixelDataARGB = 1768108336,
-    Thumbnail32BitData = 1769222962,
-    Thumbnail8BitMask = 1949855083,
-};
+pub const anon431 = u32;
+pub const anon431_IconServices256PixelDataARGB: u32 = 1768108088;
+pub const anon431_IconServices512PixelDataARGB: u32 = 1768108089;
+pub const anon431_IconServices1024PixelDataARGB: u32 = 1768108336;
+pub const anon431_Thumbnail32BitData: u32 = 1769222962;
+pub const anon431_Thumbnail8BitMask: u32 = 1949855083;
 
 pub const IconFamilyElement = extern struct {
     elementType: objc.OSType,
@@ -13883,9 +16244,9 @@ pub const IconFamilyResource = extern struct {
     elements: [1]IconFamilyElement,
 };
 
-pub const IconFamilyPtr = ?*IconFamilyResource;
+pub const IconFamilyPtr = IconFamilyResource;
 
-pub const IconFamilyHandle = ?*IconFamilyPtr;
+pub const IconFamilyHandle = IconFamilyPtr;
 
 pub const SleepQRec = extern struct {
     sleepQLink: SleepQRecPtr,
@@ -13894,7 +16255,7 @@ pub const SleepQRec = extern struct {
     sleepQFlags: i16,
 };
 
-pub const SleepQRecPtr = ?*SleepQRec;
+pub const SleepQRecPtr = SleepQRec;
 
 pub const SleepQProcPtr = ?*const fn (i64, SleepQRecPtr) callconv(.C) i64;
 
@@ -13940,9 +16301,9 @@ pub const KCEvent = objc.UInt16;
 
 pub const KCEventMask = objc.UInt16;
 
-pub const AFPServerSignature = [16]objc.UInt8;
+pub const AFPServerSignature = objc.UInt8;
 
-pub const KCPublicKeyHash = [20]objc.UInt8;
+pub const KCPublicKeyHash = objc.UInt8;
 
 pub const KCCallbackInfo = extern struct {
     version: objc.UInt32,
@@ -13958,21 +16319,20 @@ pub const KCItemAttr = objc.FourCharCode;
 
 pub const KCAuthType = objc.FourCharCode;
 
-pub const anon1801 = enum(u32) {
-    KCProtocolTypeFTP = 1718906912,
-    KCProtocolTypeFTPAccount = 1718906977,
-    KCProtocolTypeHTTP = 1752462448,
-    KCProtocolTypeIRC = 1769104160,
-    KCProtocolTypeNNTP = 1852732528,
-    KCProtocolTypePOP3 = 1886351411,
-    KCProtocolTypeSMTP = 1936553072,
-    KCProtocolTypeSOCKS = 1936685088,
-    KCProtocolTypeIMAP = 1768776048,
-    KCProtocolTypeLDAP = 1818517872,
-    KCProtocolTypeAppleTalk = 1635019883,
-    KCProtocolTypeAFP = 1634103328,
-    KCProtocolTypeTelnet = 1952803950,
-};
+pub const anon1801 = u32;
+pub const anon1801_KCProtocolTypeFTP: u32 = 1718906912;
+pub const anon1801_KCProtocolTypeFTPAccount: u32 = 1718906977;
+pub const anon1801_KCProtocolTypeHTTP: u32 = 1752462448;
+pub const anon1801_KCProtocolTypeIRC: u32 = 1769104160;
+pub const anon1801_KCProtocolTypeNNTP: u32 = 1852732528;
+pub const anon1801_KCProtocolTypePOP3: u32 = 1886351411;
+pub const anon1801_KCProtocolTypeSMTP: u32 = 1936553072;
+pub const anon1801_KCProtocolTypeSOCKS: u32 = 1936685088;
+pub const anon1801_KCProtocolTypeIMAP: u32 = 1768776048;
+pub const anon1801_KCProtocolTypeLDAP: u32 = 1818517872;
+pub const anon1801_KCProtocolTypeAppleTalk: u32 = 1635019883;
+pub const anon1801_KCProtocolTypeAFP: u32 = 1634103328;
+pub const anon1801_KCProtocolTypeTelnet: u32 = 1952803950;
 
 pub const KCProtocolType = objc.FourCharCode;
 
@@ -13980,31 +16340,55 @@ pub const KCCertAddOptions = objc.UInt32;
 
 pub const KCVerifyStopOn = objc.UInt16;
 
-pub const anon2191 = enum(u32) {
-    PolicyKCStopOn = 0,
-    NoneKCStopOn = 1,
-    FirstPassKCStopOn = 2,
-    FirstFailKCStopOn = 3,
-};
+pub const anon2191 = u32;
+pub const anon2191_PolicyKCStopOn: u32 = 0;
+pub const anon2191_NoneKCStopOn: u32 = 1;
+pub const anon2191_FirstPassKCStopOn: u32 = 2;
+pub const anon2191_FirstFailKCStopOn: u32 = 3;
 
 pub const KCCertSearchOptions = objc.UInt32;
 
-pub const anon2271 = enum(u32) {
-    InternetLocationHTTPIcon = 1768712308,
-    InternetLocationFTPIcon = 1768711796,
-    InternetLocationAppleShareIcon = 1768710502,
-    InternetLocationAppleTalkZoneIcon = 1768710516,
-    InternetLocationFileIcon = 1768711785,
-    InternetLocationMailIcon = 1768713569,
-    InternetLocationNewsIcon = 1768713847,
-    InternetLocationNSLNeighborhoodIcon = 1768713843,
-    InternetLocationGenericIcon = 1768712037,
-};
+pub const anon2271 = u32;
+pub const anon2271_CertSearchShift: u32 = 0;
+pub const anon2271_CertSearchSigningIgnored: u32 = 0;
+pub const anon2271_CertSearchSigningAllowed: u32 = 1;
+pub const anon2271_CertSearchSigningDisallowed: u32 = 2;
+pub const anon2271_CertSearchSigningMask: u32 = 3;
+pub const anon2271_CertSearchVerifyIgnored: u32 = 0;
+pub const anon2271_CertSearchVerifyAllowed: u32 = 4;
+pub const anon2271_CertSearchVerifyDisallowed: u32 = 8;
+pub const anon2271_CertSearchVerifyMask: u32 = 12;
+pub const anon2271_CertSearchEncryptIgnored: u32 = 0;
+pub const anon2271_CertSearchEncryptAllowed: u32 = 16;
+pub const anon2271_CertSearchEncryptDisallowed: u32 = 32;
+pub const anon2271_CertSearchEncryptMask: u32 = 48;
+pub const anon2271_CertSearchDecryptIgnored: u32 = 0;
+pub const anon2271_CertSearchDecryptAllowed: u32 = 64;
+pub const anon2271_CertSearchDecryptDisallowed: u32 = 128;
+pub const anon2271_CertSearchDecryptMask: u32 = 192;
+pub const anon2271_CertSearchWrapIgnored: u32 = 0;
+pub const anon2271_CertSearchWrapAllowed: u32 = 256;
+pub const anon2271_CertSearchWrapDisallowed: u32 = 512;
+pub const anon2271_CertSearchWrapMask: u32 = 768;
+pub const anon2271_CertSearchUnwrapIgnored: u32 = 0;
+pub const anon2271_CertSearchUnwrapAllowed: u32 = 1024;
+pub const anon2271_CertSearchUnwrapDisallowed: u32 = 2048;
+pub const anon2271_CertSearchUnwrapMask: u32 = 3072;
+pub const anon2271_CertSearchPrivKeyRequired: u32 = 4096;
+pub const anon2271_CertSearchAny: u32 = 0;
+pub const anon2271_InternetLocationHTTPIcon: u32 = 1768712308;
+pub const anon2271_InternetLocationFTPIcon: u32 = 1768711796;
+pub const anon2271_InternetLocationAppleShareIcon: u32 = 1768710502;
+pub const anon2271_InternetLocationAppleTalkZoneIcon: u32 = 1768710516;
+pub const anon2271_InternetLocationFileIcon: u32 = 1768711785;
+pub const anon2271_InternetLocationMailIcon: u32 = 1768713569;
+pub const anon2271_InternetLocationNewsIcon: u32 = 1768713847;
+pub const anon2271_InternetLocationNSLNeighborhoodIcon: u32 = 1768713843;
+pub const anon2271_InternetLocationGenericIcon: u32 = 1768712037;
 
-pub const anon2621 = enum(u32) {
-    AnyProtocol = 0,
-    AnyAuthType = 0,
-};
+pub const anon2621 = u32;
+pub const anon2621_AnyProtocol: u32 = 0;
+pub const anon2621_AnyAuthType: u32 = 0;
 
 pub extern "CoreServices" fn KCGetKeychainManagerVersion(returnVers: ?*objc.UInt32) callconv(.C) objc.OSStatus;
 
@@ -14034,7 +16418,7 @@ pub extern "CoreServices" fn KCCountKeychains() callconv(.C) objc.UInt16;
 
 pub extern "CoreServices" fn KCGetIndKeychain(index: objc.UInt16, keychain: ?*KCRef) callconv(.C) objc.OSStatus;
 
-pub const KCCallbackProcPtr = ?*const fn (KCEvent, ?*KCCallbackInfo, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const KCCallbackProcPtr = objc.OSStatus;
 
 pub const KCCallbackUPP = KCCallbackProcPtr;
 
@@ -14193,24 +16577,23 @@ pub extern "CoreServices" fn kcfindgenericpassword(
     item: ?*KCItemRef,
 ) callconv(.C) objc.OSStatus;
 
-pub const WSTypeID = enum(u32) {
-    eWSUnknownType = 0,
-    eWSNullType = 1,
-    eWSBooleanType = 2,
-    eWSIntegerType = 3,
-    eWSDoubleType = 4,
-    eWSStringType = 5,
-    eWSDateType = 6,
-    eWSDataType = 7,
-    eWSArrayType = 8,
-    eWSDictionaryType = 9,
-};
+pub const WSTypeID = u32;
+pub const WSTypeID_eWSUnknownType: u32 = 0;
+pub const WSTypeID_eWSNullType: u32 = 1;
+pub const WSTypeID_eWSBooleanType: u32 = 2;
+pub const WSTypeID_eWSIntegerType: u32 = 3;
+pub const WSTypeID_eWSDoubleType: u32 = 4;
+pub const WSTypeID_eWSStringType: u32 = 5;
+pub const WSTypeID_eWSDateType: u32 = 6;
+pub const WSTypeID_eWSDataType: u32 = 7;
+pub const WSTypeID_eWSArrayType: u32 = 8;
+pub const WSTypeID_eWSDictionaryType: u32 = 9;
 
 pub const WSClientContextRetainCallBackProcPtr = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
 
 pub const WSClientContextReleaseCallBackProcPtr = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const WSClientContextCopyDescriptionCallBackProcPtr = ?*const fn (?*anyopaque) callconv(.C) core_foundation.StringRef;
+pub const WSClientContextCopyDescriptionCallBackProcPtr = core_foundation.StringRef;
 
 pub const WSClientContext = extern struct {
     version: core_foundation.Index,
@@ -14226,7 +16609,7 @@ pub extern "CoreServices" fn WSGetCFTypeIDFromWSTypeID(typeID: WSTypeID) callcon
 
 pub const OpaqueWSMethodInvocationRef = extern struct {};
 
-pub const WSMethodInvocationRef = ?*OpaqueWSMethodInvocationRef;
+pub const WSMethodInvocationRef = OpaqueWSMethodInvocationRef;
 
 pub extern "CoreServices" fn WSMethodInvocationGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -14256,7 +16639,7 @@ pub extern "CoreServices" fn WSMethodInvocationUnscheduleFromRunLoop(invocation:
 
 pub extern "CoreServices" fn WSMethodResultIsFault(methodResult: core_foundation.DictionaryRef) callconv(.C) objc.Boolean;
 
-pub const WSMethodInvocationSerializationProcPtr = ?*const fn (WSMethodInvocationRef, core_foundation.TypeRef, ?*anyopaque) callconv(.C) core_foundation.StringRef;
+pub const WSMethodInvocationSerializationProcPtr = core_foundation.StringRef;
 
 pub extern "CoreServices" fn WSMethodInvocationAddSerializationOverride(
     invocation: WSMethodInvocationRef,
@@ -14265,12 +16648,7 @@ pub extern "CoreServices" fn WSMethodInvocationAddSerializationOverride(
     context: ?*WSClientContext,
 ) callconv(.C) void;
 
-pub const WSMethodInvocationDeserializationProcPtr = ?*const fn (
-    WSMethodInvocationRef,
-    core_foundation.XMLTreeRef,
-    core_foundation.XMLTreeRef,
-    ?*anyopaque,
-) callconv(.C) core_foundation.TypeRef;
+pub const WSMethodInvocationDeserializationProcPtr = core_foundation.TypeRef;
 
 pub extern "CoreServices" fn WSMethodInvocationAddDeserializationOverride(
     invocation: WSMethodInvocationRef,
@@ -14282,7 +16660,7 @@ pub extern "CoreServices" fn WSMethodInvocationAddDeserializationOverride(
 
 pub const OpaqueWSProtocolHandlerRef = extern struct {};
 
-pub const WSProtocolHandlerRef = ?*OpaqueWSProtocolHandlerRef;
+pub const WSProtocolHandlerRef = OpaqueWSProtocolHandlerRef;
 
 pub extern "CoreServices" fn WSProtocolHandlerGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -14308,7 +16686,7 @@ pub extern "CoreServices" fn WSProtocolHandlerCopyProperty(ref: WSProtocolHandle
 
 pub extern "CoreServices" fn WSProtocolHandlerSetProperty(ref: WSProtocolHandlerRef, propertyName: core_foundation.StringRef, propertyValue: core_foundation.TypeRef) callconv(.C) void;
 
-pub const WSProtocolHandlerSerializationProcPtr = ?*const fn (WSProtocolHandlerRef, core_foundation.TypeRef, ?*anyopaque) callconv(.C) core_foundation.StringRef;
+pub const WSProtocolHandlerSerializationProcPtr = core_foundation.StringRef;
 
 pub extern "CoreServices" fn WSProtocolHandlerSetSerializationOverride(
     protocol: WSProtocolHandlerRef,
@@ -14317,12 +16695,7 @@ pub extern "CoreServices" fn WSProtocolHandlerSetSerializationOverride(
     context: ?*WSClientContext,
 ) callconv(.C) void;
 
-pub const WSProtocolHandlerDeserializationProcPtr = ?*const fn (
-    WSProtocolHandlerRef,
-    core_foundation.XMLTreeRef,
-    core_foundation.XMLTreeRef,
-    ?*anyopaque,
-) callconv(.C) core_foundation.TypeRef;
+pub const WSProtocolHandlerDeserializationProcPtr = core_foundation.TypeRef;
 
 pub extern "CoreServices" fn WSProtocolHandlerSetDeserializationOverride(
     protocol: WSProtocolHandlerRef,
@@ -14332,55 +16705,51 @@ pub extern "CoreServices" fn WSProtocolHandlerSetDeserializationOverride(
     context: ?*WSClientContext,
 ) callconv(.C) void;
 
-pub const anon771 = enum(i32) {
-    GenericPreferencesIconResource = -3971,
-    GenericQueryDocumentIconResource = -16506,
-    GenericExtensionIconResource = -16415,
-    SystemFolderIconResource = -3983,
-    HelpIconResource = -20271,
-    AppleMenuFolderIconResource = -3982,
-};
+pub const anon771 = i32;
+pub const anon771_GenericPreferencesIconResource: i32 = -3971;
+pub const anon771_GenericQueryDocumentIconResource: i32 = -16506;
+pub const anon771_GenericExtensionIconResource: i32 = -16415;
+pub const anon771_SystemFolderIconResource: i32 = -3983;
+pub const anon771_HelpIconResource: i32 = -20271;
+pub const anon771_AppleMenuFolderIconResource: i32 = -3982;
 
 pub const OpaqueIconRef = extern struct {};
 
-pub const IconRef = ?*OpaqueIconRef;
+pub const IconRef = OpaqueIconRef;
 
-pub const anon3361 = enum(u32) {
-    AppleTalkIcon = 1635019883,
-    AppleTalkZoneIcon = 1635023470,
-    AFPServerIcon = 1634103411,
-    FTPServerIcon = 1718906995,
-    HTTPServerIcon = 1752461427,
-    GenericNetworkIcon = 1735288180,
-    IPFileServerIcon = 1769173622,
-};
+pub const anon3361 = u32;
+pub const anon3361_AppleTalkIcon: u32 = 1635019883;
+pub const anon3361_AppleTalkZoneIcon: u32 = 1635023470;
+pub const anon3361_AFPServerIcon: u32 = 1634103411;
+pub const anon3361_FTPServerIcon: u32 = 1718906995;
+pub const anon3361_HTTPServerIcon: u32 = 1752461427;
+pub const anon3361_GenericNetworkIcon: u32 = 1735288180;
+pub const anon3361_IPFileServerIcon: u32 = 1769173622;
 
-pub const anon3471 = enum(u32) {
-    ToolbarCustomizeIcon = 1952675187,
-    ToolbarDeleteIcon = 1952736620,
-    ToolbarFavoritesIcon = 1952866678,
-    ToolbarHomeIcon = 1953001325,
-    ToolbarAdvancedIcon = 1952604534,
-    ToolbarInfoIcon = 1952606574,
-    ToolbarLabelsIcon = 1952607330,
-    ToolbarApplicationsFolderIcon = 1950445683,
-    ToolbarDocumentsFolderIcon = 1950642019,
-    ToolbarMovieFolderIcon = 1951231862,
-    ToolbarMusicFolderIcon = 1951233395,
-    ToolbarPicturesFolderIcon = 1951426915,
-    ToolbarPublicFolderIcon = 1951429986,
-    ToolbarDesktopFolderIcon = 1950643051,
-    ToolbarDownloadsFolderIcon = 1950644078,
-    ToolbarLibraryFolderIcon = 1951164770,
-    ToolbarUtilitiesFolderIcon = 1951757420,
-    ToolbarSitesFolderIcon = 1951626355,
-};
+pub const anon3471 = u32;
+pub const anon3471_ToolbarCustomizeIcon: u32 = 1952675187;
+pub const anon3471_ToolbarDeleteIcon: u32 = 1952736620;
+pub const anon3471_ToolbarFavoritesIcon: u32 = 1952866678;
+pub const anon3471_ToolbarHomeIcon: u32 = 1953001325;
+pub const anon3471_ToolbarAdvancedIcon: u32 = 1952604534;
+pub const anon3471_ToolbarInfoIcon: u32 = 1952606574;
+pub const anon3471_ToolbarLabelsIcon: u32 = 1952607330;
+pub const anon3471_ToolbarApplicationsFolderIcon: u32 = 1950445683;
+pub const anon3471_ToolbarDocumentsFolderIcon: u32 = 1950642019;
+pub const anon3471_ToolbarMovieFolderIcon: u32 = 1951231862;
+pub const anon3471_ToolbarMusicFolderIcon: u32 = 1951233395;
+pub const anon3471_ToolbarPicturesFolderIcon: u32 = 1951426915;
+pub const anon3471_ToolbarPublicFolderIcon: u32 = 1951429986;
+pub const anon3471_ToolbarDesktopFolderIcon: u32 = 1950643051;
+pub const anon3471_ToolbarDownloadsFolderIcon: u32 = 1950644078;
+pub const anon3471_ToolbarLibraryFolderIcon: u32 = 1951164770;
+pub const anon3471_ToolbarUtilitiesFolderIcon: u32 = 1951757420;
+pub const anon3471_ToolbarSitesFolderIcon: u32 = 1951626355;
 
 pub const IconServicesUsageFlags = objc.UInt32;
 
-pub const anon4151 = enum(u32) {
-    IconServicesCatalogInfoMask = 531550,
-};
+pub const anon4151 = u32;
+pub const anon4151_IconServicesCatalogInfoMask: u32 = 531550;
 
 pub extern "CoreServices" fn GetIconRefOwners(theIconRef: IconRef, owners: ?*objc.UInt16) callconv(.C) objc.OSErr;
 
@@ -14464,18 +16833,16 @@ pub extern "CoreServices" fn GetCustomIconsEnabled(vRefNum: objc.SInt16, customI
 
 pub extern "CoreServices" fn ReadIconFromFSRef(ref: ?*FSRef, iconFamily: ?*IconFamilyHandle) callconv(.C) objc.OSStatus;
 
-pub const LSRolesMask = enum(objc.OptionBits) {
-    None = 1,
-    Viewer = 2,
-    Editor = 4,
-    Shell = 8,
-    All = -1,
-};
+pub const LSRolesMask = objc.OptionBits;
+pub const LSRolesMask_None: objc.OptionBits = 1;
+pub const LSRolesMask_Viewer: objc.OptionBits = 2;
+pub const LSRolesMask_Editor: objc.OptionBits = 4;
+pub const LSRolesMask_Shell: objc.OptionBits = 8;
+pub const LSRolesMask_All: objc.OptionBits = -1;
 
-pub const LSAcceptanceFlags = enum(objc.OptionBits) {
-    Default = 1,
-    AllowLoginUI = 2,
-};
+pub const LSAcceptanceFlags = objc.OptionBits;
+pub const LSAcceptanceFlags_Default: objc.OptionBits = 1;
+pub const LSAcceptanceFlags_AllowLoginUI: objc.OptionBits = 2;
 
 pub extern "CoreServices" fn LSCopyDefaultApplicationURLForURL(inURL: core_foundation.URLRef, inRoleMask: LSRolesMask, outError: ?*core_foundation.ErrorRef) callconv(.C) core_foundation.URLRef;
 
@@ -14507,33 +16874,31 @@ pub extern "CoreServices" fn LSCopyAllHandlersForURLScheme(inURLScheme: core_fou
 
 pub extern "CoreServices" fn LSSetDefaultHandlerForURLScheme(inURLScheme: core_foundation.StringRef, inHandlerBundleID: core_foundation.StringRef) callconv(.C) objc.OSStatus;
 
-pub const LSRequestedInfo = enum(objc.OptionBits) {
-    Extension = 1,
-    TypeCreator = 2,
-    BasicFlagsOnly = 4,
-    AppTypeFlags = 8,
-    AllFlags = 16,
-    IconAndKind = 32,
-    ExtensionFlagsOnly = 64,
-    AllInfo = -1,
-};
+pub const LSRequestedInfo = objc.OptionBits;
+pub const LSRequestedInfo_Extension: objc.OptionBits = 1;
+pub const LSRequestedInfo_TypeCreator: objc.OptionBits = 2;
+pub const LSRequestedInfo_BasicFlagsOnly: objc.OptionBits = 4;
+pub const LSRequestedInfo_AppTypeFlags: objc.OptionBits = 8;
+pub const LSRequestedInfo_AllFlags: objc.OptionBits = 16;
+pub const LSRequestedInfo_IconAndKind: objc.OptionBits = 32;
+pub const LSRequestedInfo_ExtensionFlagsOnly: objc.OptionBits = 64;
+pub const LSRequestedInfo_AllInfo: objc.OptionBits = -1;
 
-pub const LSItemInfoFlags = enum(objc.OptionBits) {
-    IsPlainFile = 1,
-    IsPackage = 2,
-    IsApplication = 4,
-    IsContainer = 8,
-    IsAliasFile = 16,
-    IsSymlink = 32,
-    IsInvisible = 64,
-    IsNativeApp = 128,
-    IsClassicApp = 256,
-    AppPrefersNative = 512,
-    AppPrefersClassic = 1024,
-    AppIsScriptable = 2048,
-    IsVolume = 4096,
-    ExtensionIsHidden = 1048576,
-};
+pub const LSItemInfoFlags = objc.OptionBits;
+pub const LSItemInfoFlags_IsPlainFile: objc.OptionBits = 1;
+pub const LSItemInfoFlags_IsPackage: objc.OptionBits = 2;
+pub const LSItemInfoFlags_IsApplication: objc.OptionBits = 4;
+pub const LSItemInfoFlags_IsContainer: objc.OptionBits = 8;
+pub const LSItemInfoFlags_IsAliasFile: objc.OptionBits = 16;
+pub const LSItemInfoFlags_IsSymlink: objc.OptionBits = 32;
+pub const LSItemInfoFlags_IsInvisible: objc.OptionBits = 64;
+pub const LSItemInfoFlags_IsNativeApp: objc.OptionBits = 128;
+pub const LSItemInfoFlags_IsClassicApp: objc.OptionBits = 256;
+pub const LSItemInfoFlags_AppPrefersNative: objc.OptionBits = 512;
+pub const LSItemInfoFlags_AppPrefersClassic: objc.OptionBits = 1024;
+pub const LSItemInfoFlags_AppIsScriptable: objc.OptionBits = 2048;
+pub const LSItemInfoFlags_IsVolume: objc.OptionBits = 4096;
+pub const LSItemInfoFlags_ExtensionIsHidden: objc.OptionBits = 1048576;
 
 pub const LSItemInfoRecord = extern struct {
     flags: LSItemInfoFlags,
@@ -14633,26 +16998,24 @@ pub extern "CoreServices" fn LSSetItemAttribute(
     inValue: core_foundation.TypeRef,
 ) callconv(.C) objc.OSStatus;
 
-pub const LSHandlerOptions = enum(objc.OptionBits) {
-    Default = 0,
-    IgnoreCreator = 1,
-};
+pub const LSHandlerOptions = objc.OptionBits;
+pub const LSHandlerOptions_Default: objc.OptionBits = 0;
+pub const LSHandlerOptions_IgnoreCreator: objc.OptionBits = 1;
 
 pub extern "CoreServices" fn LSGetHandlerOptionsForContentType(inContentType: core_foundation.StringRef) callconv(.C) LSHandlerOptions;
 
 pub extern "CoreServices" fn LSSetHandlerOptionsForContentType(inContentType: core_foundation.StringRef, inOptions: LSHandlerOptions) callconv(.C) objc.OSStatus;
 
-pub const LSLaunchFlags = enum(objc.OptionBits) {
-    Defaults = 1,
-    AndPrint = 2,
-    AndDisplayErrors = 64,
-    DontAddToRecents = 256,
-    DontSwitch = 512,
-    Async = 65536,
-    NewInstance = 524288,
-    AndHide = 1048576,
-    AndHideOthers = 2097152,
-};
+pub const LSLaunchFlags = objc.OptionBits;
+pub const LSLaunchFlags_Defaults: objc.OptionBits = 1;
+pub const LSLaunchFlags_AndPrint: objc.OptionBits = 2;
+pub const LSLaunchFlags_AndDisplayErrors: objc.OptionBits = 64;
+pub const LSLaunchFlags_DontAddToRecents: objc.OptionBits = 256;
+pub const LSLaunchFlags_DontSwitch: objc.OptionBits = 512;
+pub const LSLaunchFlags_Async: objc.OptionBits = 65536;
+pub const LSLaunchFlags_NewInstance: objc.OptionBits = 524288;
+pub const LSLaunchFlags_AndHide: objc.OptionBits = 1048576;
+pub const LSLaunchFlags_AndHideOthers: objc.OptionBits = 2097152;
 
 pub const LSLaunchURLSpec = extern struct {
     appURL: core_foundation.URLRef,
@@ -14666,13 +17029,12 @@ pub extern "CoreServices" fn LSOpenCFURLRef(inURL: core_foundation.URLRef, outLa
 
 pub extern "CoreServices" fn LSOpenFromURLSpec(inLaunchSpec: ?*LSLaunchURLSpec, outLaunchedURL: ?*core_foundation.URLRef) callconv(.C) objc.OSStatus;
 
-pub const anon281 = enum(u32) {
-    LSLaunchInhibitBGOnly = 128,
-    LSLaunchNoParams = 2048,
-    LSLaunchStartClassic = 131072,
-    LSLaunchInClassic = 262144,
-    LSLaunchHasUntrustedContents = 4194304,
-};
+pub const anon281 = u32;
+pub const anon281_LSLaunchInhibitBGOnly: u32 = 128;
+pub const anon281_LSLaunchNoParams: u32 = 2048;
+pub const anon281_LSLaunchStartClassic: u32 = 131072;
+pub const anon281_LSLaunchInClassic: u32 = 262144;
+pub const anon281_LSLaunchHasUntrustedContents: u32 = 4194304;
 
 pub const LSLaunchFSRefSpec = extern struct {
     appRef: ?*FSRef,
@@ -14746,7 +17108,7 @@ pub extern "CoreServices" fn UTGetOSTypeFromString(inString: core_foundation.Str
 
 pub const __MDItem = extern struct {};
 
-pub const MDItemRef = ?*__MDItem;
+pub const MDItemRef = __MDItem;
 
 pub extern "CoreServices" fn MDItemGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -14770,13 +17132,12 @@ pub extern "CoreServices" fn __MDItemCopyAttributesEllipsis1(item: MDItemRef) ca
 
 pub const __MDQuery = extern struct {};
 
-pub const MDQueryRef = ?*__MDQuery;
+pub const MDQueryRef = __MDQuery;
 
-pub const MDQueryOptionFlags = enum(u32) {
-    Synchronous = 1,
-    WantsUpdates = 4,
-    AllowFSTranslation = 8,
-};
+pub const MDQueryOptionFlags = u32;
+pub const MDQueryOptionFlags_Synchronous: u32 = 1;
+pub const MDQueryOptionFlags_WantsUpdates: u32 = 4;
+pub const MDQueryOptionFlags_AllowFSTranslation: u32 = 8;
 
 pub extern "CoreServices" fn MDQueryGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -14871,15 +17232,14 @@ pub extern "CoreServices" fn MDQueryGetCountOfResultsWithAttributeValue(query: M
 
 pub extern "CoreServices" fn MDQuerySetSortOrder(query: MDQueryRef, sortingAttrs: core_foundation.ArrayRef) callconv(.C) objc.Boolean;
 
-pub const MDQuerySortOptionFlags = enum(u32) {
-    ReverseSortOrderFlag = 1,
-};
+pub const MDQuerySortOptionFlags = u32;
+pub const MDQuerySortOptionFlags_ReverseSortOrderFlag: u32 = 1;
 
 pub extern "CoreServices" fn MDQuerySetSortOptionFlagsForAttribute(query: MDQueryRef, fieldName: core_foundation.StringRef, flags: objc.uint32_t) callconv(.C) objc.Boolean;
 
 pub extern "CoreServices" fn MDQueryGetSortOptionFlagsForAttribute(query: MDQueryRef, fieldName: core_foundation.StringRef) callconv(.C) objc.uint32_t;
 
-pub const MDQuerySortComparatorFunction = ?*const fn (*core_foundation.TypeRef, *core_foundation.TypeRef, ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
+pub const MDQuerySortComparatorFunction = core_foundation.ComparisonResult;
 
 pub extern "CoreServices" fn MDQuerySetSortComparator(query: MDQueryRef, comparator: MDQuerySortComparatorFunction, context: ?*anyopaque) callconv(.C) void;
 
@@ -14891,7 +17251,7 @@ pub extern "CoreServices" fn MDQuerySetMaxCount(query: MDQueryRef, size: core_fo
 
 pub const __MDLabel = extern struct {};
 
-pub const MDLabelRef = ?*__MDLabel;
+pub const MDLabelRef = __MDLabel;
 
 pub extern "CoreServices" fn MDLabelGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -14901,10 +17261,9 @@ pub extern "CoreServices" fn MDItemSetLabel(item: MDItemRef, label: MDLabelRef) 
 
 pub extern "CoreServices" fn MDItemRemoveLabel(item: MDItemRef, label: MDLabelRef) callconv(.C) objc.Boolean;
 
-pub const MDLabelDomain = enum(u32) {
-    UserDomain = 0,
-    LocalDomain = 1,
-};
+pub const MDLabelDomain = u32;
+pub const MDLabelDomain_UserDomain: u32 = 0;
+pub const MDLabelDomain_LocalDomain: u32 = 1;
 
 pub extern "CoreServices" fn MDLabelCreate(
     allocator: core_foundation.AllocatorRef,
@@ -14957,29 +17316,27 @@ pub extern "CoreServices" fn SKDocumentGetParent(inDocument: SKDocumentRef) call
 
 pub const __SKIndex = extern struct {};
 
-pub const SKIndexRef = ?*__SKIndex;
+pub const SKIndexRef = __SKIndex;
 
 pub extern "CoreServices" fn SKIndexGetTypeID() callconv(.C) core_foundation.TypeID;
 
 pub const __SKIndexDocumentIterator = extern struct {};
 
-pub const SKIndexDocumentIteratorRef = ?*__SKIndexDocumentIterator;
+pub const SKIndexDocumentIteratorRef = __SKIndexDocumentIterator;
 
 pub extern "CoreServices" fn SKIndexDocumentIteratorGetTypeID() callconv(.C) core_foundation.TypeID;
 
-pub const SKIndexType = enum(u32) {
-    Unknown = 0,
-    Inverted = 1,
-    Vector = 2,
-    InvertedVector = 3,
-};
+pub const SKIndexType = u32;
+pub const SKIndexType_Unknown: u32 = 0;
+pub const SKIndexType_Inverted: u32 = 1;
+pub const SKIndexType_Vector: u32 = 2;
+pub const SKIndexType_InvertedVector: u32 = 3;
 
-pub const SKDocumentIndexState = enum(u32) {
-    StateNotIndexed = 0,
-    StateIndexed = 1,
-    StateAddPending = 2,
-    StateDeletePending = 3,
-};
+pub const SKDocumentIndexState = u32;
+pub const SKDocumentIndexState_StateNotIndexed: u32 = 0;
+pub const SKDocumentIndexState_StateIndexed: u32 = 1;
+pub const SKDocumentIndexState_StateAddPending: u32 = 2;
+pub const SKDocumentIndexState_StateDeletePending: u32 = 3;
 
 pub extern "CoreServices" fn SKIndexCreateWithURL(
     inURL: core_foundation.URLRef,
@@ -15075,7 +17432,7 @@ pub extern "CoreServices" fn SKLoadDefaultExtractorPlugIns() callconv(.C) void;
 
 pub const __SKSearch = extern struct {};
 
-pub const SKSearchRef = ?*__SKSearch;
+pub const SKSearchRef = __SKSearch;
 
 pub extern "CoreServices" fn SKSearchGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -15118,24 +17475,23 @@ pub extern "CoreServices" fn SKIndexCopyDocumentURLsForDocumentIDs(
 
 pub const __SKSearchGroup = extern struct {};
 
-pub const SKSearchGroupRef = ?*__SKSearchGroup;
+pub const SKSearchGroupRef = __SKSearchGroup;
 
 pub extern "CoreServices" fn SKSearchGroupGetTypeID() callconv(.C) core_foundation.TypeID;
 
 pub const __SKSearchResults = extern struct {};
 
-pub const SKSearchResultsRef = ?*__SKSearchResults;
+pub const SKSearchResultsRef = __SKSearchResults;
 
 pub extern "CoreServices" fn SKSearchResultsGetTypeID() callconv(.C) core_foundation.TypeID;
 
-pub const SKSearchType = enum(u32) {
-    Ranked = 0,
-    BooleanRanked = 1,
-    RequiredRanked = 2,
-    PrefixRanked = 3,
-};
+pub const SKSearchType = u32;
+pub const SKSearchType_Ranked: u32 = 0;
+pub const SKSearchType_BooleanRanked: u32 = 1;
+pub const SKSearchType_RequiredRanked: u32 = 2;
+pub const SKSearchType_PrefixRanked: u32 = 3;
 
-pub const SKSearchResultsFilterCallBack = ?*const fn (SKIndexRef, SKDocumentRef, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const SKSearchResultsFilterCallBack = objc.Boolean;
 
 pub extern "CoreServices" fn SKSearchGroupCreate(inArrayOfInIndexes: core_foundation.ArrayRef) callconv(.C) SKSearchGroupRef;
 
@@ -15172,7 +17528,7 @@ pub extern "CoreServices" fn SKSearchResultsCopyMatchingTerms(inSearchResults: S
 
 pub const __SKSummary = extern struct {};
 
-pub const SKSummaryRef = ?*__SKSummary;
+pub const SKSummaryRef = __SKSummary;
 
 pub extern "CoreServices" fn SKSummaryGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -15207,32 +17563,30 @@ pub extern "CoreServices" fn SKSummaryGetParagraphSummaryInfo(
 
 pub const FSEventStreamCreateFlags = objc.UInt32;
 
-pub const anon2061 = enum(u32) {
-    FSEventStreamCreateFlagNone = 0,
-    FSEventStreamCreateFlagUseCFTypes = 1,
-    FSEventStreamCreateFlagNoDefer = 2,
-    FSEventStreamCreateFlagWatchRoot = 4,
-    FSEventStreamCreateFlagIgnoreSelf = 8,
-    FSEventStreamCreateFlagFileEvents = 16,
-    FSEventStreamCreateFlagMarkSelf = 32,
-    FSEventStreamCreateFlagUseExtendedData = 64,
-    FSEventStreamCreateFlagFullHistory = 128,
-    FSEventStreamCreateWithDocID = 256,
-};
+pub const anon2061 = u32;
+pub const anon2061_FSEventStreamCreateFlagNone: u32 = 0;
+pub const anon2061_FSEventStreamCreateFlagUseCFTypes: u32 = 1;
+pub const anon2061_FSEventStreamCreateFlagNoDefer: u32 = 2;
+pub const anon2061_FSEventStreamCreateFlagWatchRoot: u32 = 4;
+pub const anon2061_FSEventStreamCreateFlagIgnoreSelf: u32 = 8;
+pub const anon2061_FSEventStreamCreateFlagFileEvents: u32 = 16;
+pub const anon2061_FSEventStreamCreateFlagMarkSelf: u32 = 32;
+pub const anon2061_FSEventStreamCreateFlagUseExtendedData: u32 = 64;
+pub const anon2061_FSEventStreamCreateFlagFullHistory: u32 = 128;
+pub const anon2061_FSEventStreamCreateWithDocID: u32 = 256;
 
 pub const FSEventStreamEventFlags = objc.UInt32;
 
 pub const FSEventStreamEventId = objc.UInt64;
 
-pub const anon5761 = enum(u64) {
-    FSEventStreamEventIdSinceNow = -1,
-};
+pub const anon5761 = u64;
+pub const anon5761_FSEventStreamEventIdSinceNow: u64 = -1;
 
 pub const __FSEventStream = extern struct {};
 
-pub const FSEventStreamRef = ?*__FSEventStream;
+pub const FSEventStreamRef = __FSEventStream;
 
-pub const ConstFSEventStreamRef = ?*__FSEventStream;
+pub const ConstFSEventStreamRef = __FSEventStream;
 
 pub const FSEventStreamContext = extern struct {
     version: core_foundation.Index,
@@ -15314,11 +17668,11 @@ pub extern "CoreServices" fn FSEventStreamSetExclusionPaths(streamRef: FSEventSt
 
 pub const OpaqueLSSharedFileListRef = extern struct {};
 
-pub const LSSharedFileListRef = ?*OpaqueLSSharedFileListRef;
+pub const LSSharedFileListRef = OpaqueLSSharedFileListRef;
 
 pub const OpaqueLSSharedFileListItemRef = extern struct {};
 
-pub const LSSharedFileListItemRef = ?*OpaqueLSSharedFileListItemRef;
+pub const LSSharedFileListItemRef = OpaqueLSSharedFileListItemRef;
 
 pub const LSSharedFileListResolutionFlags = objc.UInt32;
 

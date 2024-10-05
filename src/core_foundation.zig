@@ -2,6 +2,7 @@
 
 const std = @import("std");
 const objc = @import("objc.zig"); // Objective-C Runtime in zig.
+const core_services = @import("core_services.zig"); // Framework dependency CoreServices.
 
 pub const AllocatorTypeID = u64;
 
@@ -17,46 +18,42 @@ pub const TypeRef = ?*anyopaque;
 
 pub const __CFString = extern struct {};
 
-pub const StringRef = ?*__CFString;
+pub const StringRef = __CFString;
 
-pub const MutableStringRef = ?*__CFString;
+pub const MutableStringRef = __CFString;
 
 pub const PropertyListRef = TypeRef;
 
-pub const ComparisonResult = enum(Index) {
-    CompareLessThan = -1,
-    CompareEqualTo = 0,
-    CompareGreaterThan = 1,
-};
+pub const ComparisonResult = Index;
+pub const ComparisonResult_CompareLessThan: Index = -1;
+pub const ComparisonResult_CompareEqualTo: Index = 0;
+pub const ComparisonResult_CompareGreaterThan: Index = 1;
 
-pub const ComparatorFunction = ?*const fn (?*anyopaque, ?*anyopaque, ?*anyopaque) callconv(.C) ComparisonResult;
+pub const ComparatorFunction = ComparisonResult;
 
 pub const Range = extern struct {
     location: Index,
     length: Index,
 };
 
-extern "CoreFoundation" fn CFRangeMake(loc: Index, len: Index) callconv(.C) Range;
-pub const rangeMake = CFRangeMake;
-
 pub extern "CoreFoundation" fn __CFRangeMake(loc: Index, len: Index) callconv(.C) Range;
 
 pub const __CFNull = extern struct {};
 
-pub const NullRef = ?*__CFNull;
+pub const NullRef = __CFNull;
 
 extern "CoreFoundation" fn CFNullGetTypeID() callconv(.C) TypeID;
 pub const nullGetTypeID = CFNullGetTypeID;
 
 pub const __CFAllocator = extern struct {};
 
-pub const AllocatorRef = ?*__CFAllocator;
+pub const AllocatorRef = __CFAllocator;
 
 pub const AllocatorRetainCallBack = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
 
 pub const AllocatorReleaseCallBack = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const AllocatorCopyDescriptionCallBack = ?*const fn (?*anyopaque) callconv(.C) StringRef;
+pub const AllocatorCopyDescriptionCallBack = StringRef;
 
 pub const AllocatorAllocateCallBack = ?*const fn (Index, OptionFlags, ?*anyopaque) callconv(.C) ?*anyopaque;
 
@@ -69,7 +66,7 @@ pub const AllocatorReallocateCallBack = ?*const fn (
 
 pub const AllocatorDeallocateCallBack = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
 
-pub const AllocatorPreferredSizeCallBack = ?*const fn (Index, OptionFlags, ?*anyopaque) callconv(.C) Index;
+pub const AllocatorPreferredSizeCallBack = Index;
 
 pub const AllocatorContext = extern struct {
     version: Index,
@@ -180,9 +177,9 @@ pub const ArrayRetainCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(
 
 pub const ArrayReleaseCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) void;
 
-pub const ArrayCopyDescriptionCallBack = ?*const fn (?*anyopaque) callconv(.C) StringRef;
+pub const ArrayCopyDescriptionCallBack = StringRef;
 
-pub const ArrayEqualCallBack = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const ArrayEqualCallBack = objc.Boolean;
 
 pub const ArrayCallBacks = extern struct {
     version: Index,
@@ -196,9 +193,9 @@ pub const ArrayApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) callconv(
 
 pub const __CFArray = extern struct {};
 
-pub const ArrayRef = ?*__CFArray;
+pub const ArrayRef = __CFArray;
 
-pub const MutableArrayRef = ?*__CFArray;
+pub const MutableArrayRef = __CFArray;
 
 extern "CoreFoundation" fn CFArrayGetTypeID() callconv(.C) TypeID;
 pub const arrayGetTypeID = CFArrayGetTypeID;
@@ -299,11 +296,11 @@ pub const BagRetainCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C
 
 pub const BagReleaseCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) void;
 
-pub const BagCopyDescriptionCallBack = ?*const fn (?*anyopaque) callconv(.C) StringRef;
+pub const BagCopyDescriptionCallBack = StringRef;
 
-pub const BagEqualCallBack = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const BagEqualCallBack = objc.Boolean;
 
-pub const BagHashCallBack = ?*const fn (?*anyopaque) callconv(.C) HashCode;
+pub const BagHashCallBack = HashCode;
 
 pub const BagCallBacks = extern struct {
     version: Index,
@@ -318,9 +315,9 @@ pub const BagApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C
 
 pub const __CFBag = extern struct {};
 
-pub const BagRef = ?*__CFBag;
+pub const BagRef = __CFBag;
 
-pub const MutableBagRef = ?*__CFBag;
+pub const MutableBagRef = __CFBag;
 
 extern "CoreFoundation" fn CFBagGetTypeID() callconv(.C) TypeID;
 pub const bagGetTypeID = CFBagGetTypeID;
@@ -398,7 +395,7 @@ pub const BinaryHeapApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) call
 
 pub const __CFBinaryHeap = extern struct {};
 
-pub const BinaryHeapRef = ?*__CFBinaryHeap;
+pub const BinaryHeapRef = __CFBinaryHeap;
 
 extern "CoreFoundation" fn CFBinaryHeapGetTypeID() callconv(.C) TypeID;
 pub const binaryHeapGetTypeID = CFBinaryHeapGetTypeID;
@@ -448,9 +445,9 @@ pub const Bit = objc.UInt32;
 
 pub const __CFBitVector = extern struct {};
 
-pub const BitVectorRef = ?*__CFBitVector;
+pub const BitVectorRef = __CFBitVector;
 
-pub const MutableBitVectorRef = ?*__CFBitVector;
+pub const MutableBitVectorRef = __CFBitVector;
 
 extern "CoreFoundation" fn CFBitVectorGetTypeID() callconv(.C) TypeID;
 pub const bitVectorGetTypeID = CFBitVectorGetTypeID;
@@ -506,66 +503,12 @@ pub const bitVectorSetBits = CFBitVectorSetBits;
 extern "CoreFoundation" fn CFBitVectorSetAllBits(bv: MutableBitVectorRef, value: Bit) callconv(.C) void;
 pub const bitVectorSetAllBits = CFBitVectorSetAllBits;
 
-pub const anon701 = enum(OptionFlags) {
-    CFNotificationDeliverImmediately = 1,
-    CFNotificationPostToAllSessions = 2,
-};
-
-pub const __CFByteOrder = enum(u32) {
-    CFByteOrderUnknown = 0,
-    CFByteOrderLittleEndian = 1,
-    CFByteOrderBigEndian = 2,
-};
+pub const __CFByteOrder = u32;
+pub const __CFByteOrder_CFByteOrderUnknown: u32 = 0;
+pub const __CFByteOrder_CFByteOrderLittleEndian: u32 = 1;
+pub const __CFByteOrder_CFByteOrderBigEndian: u32 = 2;
 
 pub const ByteOrder = Index;
-
-extern "CoreFoundation" fn CFByteOrderGetCurrent() callconv(.C) ByteOrder;
-pub const byteOrderGetCurrent = CFByteOrderGetCurrent;
-
-extern "CoreFoundation" fn CFSwapInt16(arg: objc.uint16_t) callconv(.C) objc.uint16_t;
-pub const swapInt16 = CFSwapInt16;
-
-extern "CoreFoundation" fn CFSwapInt32(arg: objc.uint32_t) callconv(.C) objc.uint32_t;
-pub const swapInt32 = CFSwapInt32;
-
-extern "CoreFoundation" fn CFSwapInt64(arg: objc.uint64_t) callconv(.C) objc.uint64_t;
-pub const swapInt64 = CFSwapInt64;
-
-extern "CoreFoundation" fn CFSwapInt16BigToHost(arg: objc.uint16_t) callconv(.C) objc.uint16_t;
-pub const swapInt16BigToHost = CFSwapInt16BigToHost;
-
-extern "CoreFoundation" fn CFSwapInt32BigToHost(arg: objc.uint32_t) callconv(.C) objc.uint32_t;
-pub const swapInt32BigToHost = CFSwapInt32BigToHost;
-
-extern "CoreFoundation" fn CFSwapInt64BigToHost(arg: objc.uint64_t) callconv(.C) objc.uint64_t;
-pub const swapInt64BigToHost = CFSwapInt64BigToHost;
-
-extern "CoreFoundation" fn CFSwapInt16HostToBig(arg: objc.uint16_t) callconv(.C) objc.uint16_t;
-pub const swapInt16HostToBig = CFSwapInt16HostToBig;
-
-extern "CoreFoundation" fn CFSwapInt32HostToBig(arg: objc.uint32_t) callconv(.C) objc.uint32_t;
-pub const swapInt32HostToBig = CFSwapInt32HostToBig;
-
-extern "CoreFoundation" fn CFSwapInt64HostToBig(arg: objc.uint64_t) callconv(.C) objc.uint64_t;
-pub const swapInt64HostToBig = CFSwapInt64HostToBig;
-
-extern "CoreFoundation" fn CFSwapInt16LittleToHost(arg: objc.uint16_t) callconv(.C) objc.uint16_t;
-pub const swapInt16LittleToHost = CFSwapInt16LittleToHost;
-
-extern "CoreFoundation" fn CFSwapInt32LittleToHost(arg: objc.uint32_t) callconv(.C) objc.uint32_t;
-pub const swapInt32LittleToHost = CFSwapInt32LittleToHost;
-
-extern "CoreFoundation" fn CFSwapInt64LittleToHost(arg: objc.uint64_t) callconv(.C) objc.uint64_t;
-pub const swapInt64LittleToHost = CFSwapInt64LittleToHost;
-
-extern "CoreFoundation" fn CFSwapInt16HostToLittle(arg: objc.uint16_t) callconv(.C) objc.uint16_t;
-pub const swapInt16HostToLittle = CFSwapInt16HostToLittle;
-
-extern "CoreFoundation" fn CFSwapInt32HostToLittle(arg: objc.uint32_t) callconv(.C) objc.uint32_t;
-pub const swapInt32HostToLittle = CFSwapInt32HostToLittle;
-
-extern "CoreFoundation" fn CFSwapInt64HostToLittle(arg: objc.uint64_t) callconv(.C) objc.uint64_t;
-pub const swapInt64HostToLittle = CFSwapInt64HostToLittle;
 
 pub const SwappedFloat32 = extern struct {
     v: objc.uint32_t,
@@ -575,39 +518,15 @@ pub const SwappedFloat64 = extern struct {
     v: objc.uint64_t,
 };
 
-extern "CoreFoundation" fn CFConvertFloat32HostToSwapped(arg: objc.Float32) callconv(.C) SwappedFloat32;
-pub const convertFloat32HostToSwapped = CFConvertFloat32HostToSwapped;
-
-extern "CoreFoundation" fn CFConvertFloat32SwappedToHost(arg: SwappedFloat32) callconv(.C) objc.Float32;
-pub const convertFloat32SwappedToHost = CFConvertFloat32SwappedToHost;
-
-extern "CoreFoundation" fn CFConvertFloat64HostToSwapped(arg: objc.Float64) callconv(.C) SwappedFloat64;
-pub const convertFloat64HostToSwapped = CFConvertFloat64HostToSwapped;
-
-extern "CoreFoundation" fn CFConvertFloat64SwappedToHost(arg: SwappedFloat64) callconv(.C) objc.Float64;
-pub const convertFloat64SwappedToHost = CFConvertFloat64SwappedToHost;
-
-extern "CoreFoundation" fn CFConvertFloatHostToSwapped(arg: f32) callconv(.C) SwappedFloat32;
-pub const convertFloatHostToSwapped = CFConvertFloatHostToSwapped;
-
-extern "CoreFoundation" fn CFConvertFloatSwappedToHost(arg: SwappedFloat32) callconv(.C) f32;
-pub const convertFloatSwappedToHost = CFConvertFloatSwappedToHost;
-
-extern "CoreFoundation" fn CFConvertDoubleHostToSwapped(arg: f64) callconv(.C) SwappedFloat64;
-pub const convertDoubleHostToSwapped = CFConvertDoubleHostToSwapped;
-
-extern "CoreFoundation" fn CFConvertDoubleSwappedToHost(arg: SwappedFloat64) callconv(.C) f64;
-pub const convertDoubleSwappedToHost = CFConvertDoubleSwappedToHost;
-
 pub const DictionaryRetainCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) ?*anyopaque;
 
 pub const DictionaryReleaseCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) void;
 
-pub const DictionaryCopyDescriptionCallBack = ?*const fn (?*anyopaque) callconv(.C) StringRef;
+pub const DictionaryCopyDescriptionCallBack = StringRef;
 
-pub const DictionaryEqualCallBack = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const DictionaryEqualCallBack = objc.Boolean;
 
-pub const DictionaryHashCallBack = ?*const fn (?*anyopaque) callconv(.C) HashCode;
+pub const DictionaryHashCallBack = HashCode;
 
 pub const DictionaryKeyCallBacks = extern struct {
     version: Index,
@@ -630,9 +549,9 @@ pub const DictionaryApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque, ?*an
 
 pub const __CFDictionary = extern struct {};
 
-pub const DictionaryRef = ?*__CFDictionary;
+pub const DictionaryRef = __CFDictionary;
 
-pub const MutableDictionaryRef = ?*__CFDictionary;
+pub const MutableDictionaryRef = __CFDictionary;
 
 extern "CoreFoundation" fn CFDictionaryGetTypeID() callconv(.C) TypeID;
 pub const dictionaryGetTypeID = CFDictionaryGetTypeID;
@@ -707,7 +626,7 @@ pub const NotificationName = StringRef;
 
 pub const __CFNotificationCenter = extern struct {};
 
-pub const NotificationCenterRef = ?*__CFNotificationCenter;
+pub const NotificationCenterRef = __CFNotificationCenter;
 
 pub const NotificationCallback = ?*const fn (
     NotificationCenterRef,
@@ -717,12 +636,11 @@ pub const NotificationCallback = ?*const fn (
     DictionaryRef,
 ) callconv(.C) void;
 
-pub const NotificationSuspensionBehavior = enum(Index) {
-    Drop = 1,
-    Coalesce = 2,
-    Hold = 3,
-    DeliverImmediately = 4,
-};
+pub const NotificationSuspensionBehavior = Index;
+pub const NotificationSuspensionBehavior_Drop: Index = 1;
+pub const NotificationSuspensionBehavior_Coalesce: Index = 2;
+pub const NotificationSuspensionBehavior_Hold: Index = 3;
+pub const NotificationSuspensionBehavior_DeliverImmediately: Index = 4;
 
 extern "CoreFoundation" fn CFNotificationCenterGetTypeID() callconv(.C) TypeID;
 pub const notificationCenterGetTypeID = CFNotificationCenterGetTypeID;
@@ -781,7 +699,7 @@ pub const LocaleKey = StringRef;
 
 pub const __CFLocale = extern struct {};
 
-pub const LocaleRef = ?*__CFLocale;
+pub const LocaleRef = __CFLocale;
 
 extern "CoreFoundation" fn CFLocaleGetTypeID() callconv(.C) TypeID;
 pub const localeGetTypeID = CFLocaleGetTypeID;
@@ -825,13 +743,12 @@ pub const localeCreateLocaleIdentifierFromWindowsLocaleCode = CFLocaleCreateLoca
 extern "CoreFoundation" fn CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier: LocaleIdentifier) callconv(.C) objc.uint32_t;
 pub const localeGetWindowsLocaleCodeFromLocaleIdentifier = CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier;
 
-pub const LocaleLanguageDirection = enum(Index) {
-    Unknown = 0,
-    LeftToRight = 1,
-    RightToLeft = 2,
-    TopToBottom = 3,
-    BottomToTop = 4,
-};
+pub const LocaleLanguageDirection = Index;
+pub const LocaleLanguageDirection_Unknown: Index = 0;
+pub const LocaleLanguageDirection_LeftToRight: Index = 1;
+pub const LocaleLanguageDirection_RightToLeft: Index = 2;
+pub const LocaleLanguageDirection_TopToBottom: Index = 3;
+pub const LocaleLanguageDirection_BottomToTop: Index = 4;
 
 extern "CoreFoundation" fn CFLocaleGetLanguageCharacterDirection(isoLangCode: StringRef) callconv(.C) LocaleLanguageDirection;
 pub const localeGetLanguageCharacterDirection = CFLocaleGetLanguageCharacterDirection;
@@ -871,7 +788,7 @@ pub const absoluteTimeGetCurrent = CFAbsoluteTimeGetCurrent;
 
 pub const __CFDate = extern struct {};
 
-pub const DateRef = ?*__CFDate;
+pub const DateRef = __CFDate;
 
 extern "CoreFoundation" fn CFDateGetTypeID() callconv(.C) TypeID;
 pub const dateGetTypeID = CFDateGetTypeID;
@@ -890,7 +807,7 @@ pub const dateCompare = CFDateCompare;
 
 pub const __CFTimeZone = extern struct {};
 
-pub const TimeZoneRef = ?*__CFTimeZone;
+pub const TimeZoneRef = __CFTimeZone;
 
 pub const GregorianDate = extern struct {
     year: objc.SInt32,
@@ -910,15 +827,14 @@ pub const GregorianUnits = extern struct {
     seconds: f64,
 };
 
-pub const GregorianUnitFlags = enum(OptionFlags) {
-    UnitsYears = 1,
-    UnitsMonths = 2,
-    UnitsDays = 4,
-    UnitsHours = 8,
-    UnitsMinutes = 16,
-    UnitsSeconds = 32,
-    AllUnits = 16777215,
-};
+pub const GregorianUnitFlags = OptionFlags;
+pub const GregorianUnitFlags_UnitsYears: OptionFlags = 1;
+pub const GregorianUnitFlags_UnitsMonths: OptionFlags = 2;
+pub const GregorianUnitFlags_UnitsDays: OptionFlags = 4;
+pub const GregorianUnitFlags_UnitsHours: OptionFlags = 8;
+pub const GregorianUnitFlags_UnitsMinutes: OptionFlags = 16;
+pub const GregorianUnitFlags_UnitsSeconds: OptionFlags = 32;
+pub const GregorianUnitFlags_AllUnits: OptionFlags = 16777215;
 
 extern "CoreFoundation" fn CFGregorianDateIsValid(gdate: GregorianDate, unitFlags: OptionFlags) callconv(.C) objc.Boolean;
 pub const gregorianDateIsValid = CFGregorianDateIsValid;
@@ -951,9 +867,9 @@ pub const absoluteTimeGetWeekOfYear = CFAbsoluteTimeGetWeekOfYear;
 
 pub const __CFData = extern struct {};
 
-pub const DataRef = ?*__CFData;
+pub const DataRef = __CFData;
 
-pub const MutableDataRef = ?*__CFData;
+pub const MutableDataRef = __CFData;
 
 extern "CoreFoundation" fn CFDataGetTypeID() callconv(.C) TypeID;
 pub const dataGetTypeID = CFDataGetTypeID;
@@ -1010,10 +926,9 @@ pub const dataReplaceBytes = CFDataReplaceBytes;
 extern "CoreFoundation" fn CFDataDeleteBytes(theData: MutableDataRef, range: Range) callconv(.C) void;
 pub const dataDeleteBytes = CFDataDeleteBytes;
 
-pub const DataSearchFlags = enum(OptionFlags) {
-    Backwards = 1,
-    Anchored = 2,
-};
+pub const DataSearchFlags = OptionFlags;
+pub const DataSearchFlags_Backwards: OptionFlags = 1;
+pub const DataSearchFlags_Anchored: OptionFlags = 2;
 
 extern "CoreFoundation" fn CFDataFind(
     theData: DataRef,
@@ -1025,27 +940,26 @@ pub const dataFind = CFDataFind;
 
 pub const __CFCharacterSet = extern struct {};
 
-pub const CharacterSetRef = ?*__CFCharacterSet;
+pub const CharacterSetRef = __CFCharacterSet;
 
-pub const MutableCharacterSetRef = ?*__CFCharacterSet;
+pub const MutableCharacterSetRef = __CFCharacterSet;
 
-pub const CharacterSetPredefinedSet = enum(Index) {
-    Control = 1,
-    Whitespace = 2,
-    WhitespaceAndNewline = 3,
-    DecimalDigit = 4,
-    Letter = 5,
-    LowercaseLetter = 6,
-    UppercaseLetter = 7,
-    NonBase = 8,
-    Decomposable = 9,
-    AlphaNumeric = 10,
-    Punctuation = 11,
-    CapitalizedLetter = 13,
-    Symbol = 14,
-    Newline = 15,
-    Illegal = 12,
-};
+pub const CharacterSetPredefinedSet = Index;
+pub const CharacterSetPredefinedSet_Control: Index = 1;
+pub const CharacterSetPredefinedSet_Whitespace: Index = 2;
+pub const CharacterSetPredefinedSet_WhitespaceAndNewline: Index = 3;
+pub const CharacterSetPredefinedSet_DecimalDigit: Index = 4;
+pub const CharacterSetPredefinedSet_Letter: Index = 5;
+pub const CharacterSetPredefinedSet_LowercaseLetter: Index = 6;
+pub const CharacterSetPredefinedSet_UppercaseLetter: Index = 7;
+pub const CharacterSetPredefinedSet_NonBase: Index = 8;
+pub const CharacterSetPredefinedSet_Decomposable: Index = 9;
+pub const CharacterSetPredefinedSet_AlphaNumeric: Index = 10;
+pub const CharacterSetPredefinedSet_Punctuation: Index = 11;
+pub const CharacterSetPredefinedSet_CapitalizedLetter: Index = 13;
+pub const CharacterSetPredefinedSet_Symbol: Index = 14;
+pub const CharacterSetPredefinedSet_Newline: Index = 15;
+pub const CharacterSetPredefinedSet_Illegal: Index = 12;
 
 extern "CoreFoundation" fn CFCharacterSetGetTypeID() callconv(.C) TypeID;
 pub const characterSetGetTypeID = CFCharacterSetGetTypeID;
@@ -1114,7 +1028,7 @@ pub const ErrorDomain = StringRef;
 
 pub const __CFError = extern struct {};
 
-pub const ErrorRef = ?*__CFError;
+pub const ErrorRef = __CFError;
 
 extern "CoreFoundation" fn CFErrorGetTypeID() callconv(.C) TypeID;
 pub const errorGetTypeID = CFErrorGetTypeID;
@@ -1157,22 +1071,21 @@ pub const errorCopyRecoverySuggestion = CFErrorCopyRecoverySuggestion;
 
 pub const StringEncoding = objc.UInt32;
 
-pub const StringBuiltInEncodings = enum(StringEncoding) {
-    EncodingMacRoman = 0,
-    EncodingWindowsLatin1 = 1280,
-    EncodingISOLatin1 = 513,
-    EncodingNextStepLatin = 2817,
-    EncodingASCII = 1536,
-    EncodingUnicode = 256,
-    EncodingUTF8 = 134217984,
-    EncodingNonLossyASCII = 3071,
-    EncodingUTF16 = 256,
-    EncodingUTF16BE = 268435712,
-    EncodingUTF16LE = 335544576,
-    EncodingUTF32 = 201326848,
-    EncodingUTF32BE = 402653440,
-    EncodingUTF32LE = 469762304,
-};
+pub const StringBuiltInEncodings = StringEncoding;
+pub const StringBuiltInEncodings_EncodingMacRoman: StringEncoding = 0;
+pub const StringBuiltInEncodings_EncodingWindowsLatin1: StringEncoding = 1280;
+pub const StringBuiltInEncodings_EncodingISOLatin1: StringEncoding = 513;
+pub const StringBuiltInEncodings_EncodingNextStepLatin: StringEncoding = 2817;
+pub const StringBuiltInEncodings_EncodingASCII: StringEncoding = 1536;
+pub const StringBuiltInEncodings_EncodingUnicode: StringEncoding = 256;
+pub const StringBuiltInEncodings_EncodingUTF8: StringEncoding = 134217984;
+pub const StringBuiltInEncodings_EncodingNonLossyASCII: StringEncoding = 3071;
+pub const StringBuiltInEncodings_EncodingUTF16: StringEncoding = 256;
+pub const StringBuiltInEncodings_EncodingUTF16BE: StringEncoding = 268435712;
+pub const StringBuiltInEncodings_EncodingUTF16LE: StringEncoding = 335544576;
+pub const StringBuiltInEncodings_EncodingUTF32: StringEncoding = 201326848;
+pub const StringBuiltInEncodings_EncodingUTF32BE: StringEncoding = 402653440;
+pub const StringBuiltInEncodings_EncodingUTF32LE: StringEncoding = 469762304;
 
 extern "CoreFoundation" fn CFStringGetTypeID() callconv(.C) TypeID;
 pub const stringGetTypeID = CFStringGetTypeID;
@@ -1358,17 +1271,16 @@ pub const stringGetMaximumSizeOfFileSystemRepresentation = CFStringGetMaximumSiz
 extern "CoreFoundation" fn CFStringCreateWithFileSystemRepresentation(alloc: AllocatorRef, buffer: ?*i8) callconv(.C) StringRef;
 pub const stringCreateWithFileSystemRepresentation = CFStringCreateWithFileSystemRepresentation;
 
-pub const StringCompareFlags = enum(OptionFlags) {
-    CompareCaseInsensitive = 1,
-    CompareBackwards = 4,
-    CompareAnchored = 8,
-    CompareNonliteral = 16,
-    CompareLocalized = 32,
-    CompareNumerically = 64,
-    CompareDiacriticInsensitive = 128,
-    CompareWidthInsensitive = 256,
-    CompareForcedOrdering = 512,
-};
+pub const StringCompareFlags = OptionFlags;
+pub const StringCompareFlags_CompareCaseInsensitive: OptionFlags = 1;
+pub const StringCompareFlags_CompareBackwards: OptionFlags = 4;
+pub const StringCompareFlags_CompareAnchored: OptionFlags = 8;
+pub const StringCompareFlags_CompareNonliteral: OptionFlags = 16;
+pub const StringCompareFlags_CompareLocalized: OptionFlags = 32;
+pub const StringCompareFlags_CompareNumerically: OptionFlags = 64;
+pub const StringCompareFlags_CompareDiacriticInsensitive: OptionFlags = 128;
+pub const StringCompareFlags_CompareWidthInsensitive: OptionFlags = 256;
+pub const StringCompareFlags_CompareForcedOrdering: OptionFlags = 512;
 
 extern "CoreFoundation" fn CFStringCompareWithOptionsAndLocale(
     theString1: StringRef,
@@ -1557,12 +1469,11 @@ pub const stringUppercase = CFStringUppercase;
 extern "CoreFoundation" fn CFStringCapitalize(theString: MutableStringRef, locale: LocaleRef) callconv(.C) void;
 pub const stringCapitalize = CFStringCapitalize;
 
-pub const StringNormalizationForm = enum(Index) {
-    D = 0,
-    KD = 1,
-    C = 2,
-    KC = 3,
-};
+pub const StringNormalizationForm = Index;
+pub const StringNormalizationForm_D: Index = 0;
+pub const StringNormalizationForm_KD: Index = 1;
+pub const StringNormalizationForm_C: Index = 2;
+pub const StringNormalizationForm_KC: Index = 3;
 
 extern "CoreFoundation" fn CFStringNormalize(theString: MutableStringRef, theForm: StringNormalizationForm) callconv(.C) void;
 pub const stringNormalize = CFStringNormalize;
@@ -1617,24 +1528,6 @@ pub const StringInlineBuffer = extern struct {
     bufferedRangeStart: Index,
     bufferedRangeEnd: Index,
 };
-
-extern "CoreFoundation" fn CFStringInitInlineBuffer(str: StringRef, buf: ?*StringInlineBuffer, range: Range) callconv(.C) void;
-pub const stringInitInlineBuffer = CFStringInitInlineBuffer;
-
-extern "CoreFoundation" fn CFStringGetCharacterFromInlineBuffer(buf: ?*StringInlineBuffer, idx: Index) callconv(.C) objc.UniChar;
-pub const stringGetCharacterFromInlineBuffer = CFStringGetCharacterFromInlineBuffer;
-
-extern "CoreFoundation" fn CFStringIsSurrogateHighCharacter(character: objc.UniChar) callconv(.C) objc.Boolean;
-pub const stringIsSurrogateHighCharacter = CFStringIsSurrogateHighCharacter;
-
-extern "CoreFoundation" fn CFStringIsSurrogateLowCharacter(character: objc.UniChar) callconv(.C) objc.Boolean;
-pub const stringIsSurrogateLowCharacter = CFStringIsSurrogateLowCharacter;
-
-extern "CoreFoundation" fn CFStringGetLongCharacterForSurrogatePair(surrogateHigh: objc.UniChar, surrogateLow: objc.UniChar) callconv(.C) objc.UTF32Char;
-pub const stringGetLongCharacterForSurrogatePair = CFStringGetLongCharacterForSurrogatePair;
-
-extern "CoreFoundation" fn CFStringGetSurrogatePairForLongCharacter(character: objc.UTF32Char, surrogates: ?*objc.UniChar) callconv(.C) objc.Boolean;
-pub const stringGetSurrogatePairForLongCharacter = CFStringGetSurrogatePairForLongCharacter;
 
 extern "CoreFoundation" fn CFShow(obj: TypeRef) callconv(.C) void;
 pub const show = CFShow;
@@ -1698,21 +1591,20 @@ pub const timeZoneGetDaylightSavingTimeOffset = CFTimeZoneGetDaylightSavingTimeO
 extern "CoreFoundation" fn CFTimeZoneGetNextDaylightSavingTimeTransition(tz: TimeZoneRef, at: AbsoluteTime) callconv(.C) AbsoluteTime;
 pub const timeZoneGetNextDaylightSavingTimeTransition = CFTimeZoneGetNextDaylightSavingTimeTransition;
 
-pub const TimeZoneNameStyle = enum(Index) {
-    Standard = 0,
-    ShortStandard = 1,
-    DaylightSaving = 2,
-    ShortDaylightSaving = 3,
-    Generic = 4,
-    ShortGeneric = 5,
-};
+pub const TimeZoneNameStyle = Index;
+pub const TimeZoneNameStyle_Standard: Index = 0;
+pub const TimeZoneNameStyle_ShortStandard: Index = 1;
+pub const TimeZoneNameStyle_DaylightSaving: Index = 2;
+pub const TimeZoneNameStyle_ShortDaylightSaving: Index = 3;
+pub const TimeZoneNameStyle_Generic: Index = 4;
+pub const TimeZoneNameStyle_ShortGeneric: Index = 5;
 
 extern "CoreFoundation" fn CFTimeZoneCopyLocalizedName(tz: TimeZoneRef, style: TimeZoneNameStyle, locale: LocaleRef) callconv(.C) StringRef;
 pub const timeZoneCopyLocalizedName = CFTimeZoneCopyLocalizedName;
 
 pub const __CFCalendar = extern struct {};
 
-pub const CalendarRef = ?*__CFCalendar;
+pub const CalendarRef = __CFCalendar;
 
 extern "CoreFoundation" fn CFCalendarGetTypeID() callconv(.C) TypeID;
 pub const calendarGetTypeID = CFCalendarGetTypeID;
@@ -1750,23 +1642,22 @@ pub const calendarGetMinimumDaysInFirstWeek = CFCalendarGetMinimumDaysInFirstWee
 extern "CoreFoundation" fn CFCalendarSetMinimumDaysInFirstWeek(calendar: CalendarRef, mwd: Index) callconv(.C) void;
 pub const calendarSetMinimumDaysInFirstWeek = CFCalendarSetMinimumDaysInFirstWeek;
 
-pub const CalendarUnit = enum(OptionFlags) {
-    Era = 2,
-    Year = 4,
-    Month = 8,
-    Day = 16,
-    Hour = 32,
-    Minute = 64,
-    Second = 128,
-    Week = 256,
-    Weekday = 512,
-    WeekdayOrdinal = 1024,
-    Quarter = 2048,
-    WeekOfMonth = 4096,
-    WeekOfYear = 8192,
-    YearForWeekOfYear = 16384,
-    DayOfYear = 65536,
-};
+pub const CalendarUnit = OptionFlags;
+pub const CalendarUnit_Era: OptionFlags = 2;
+pub const CalendarUnit_Year: OptionFlags = 4;
+pub const CalendarUnit_Month: OptionFlags = 8;
+pub const CalendarUnit_Day: OptionFlags = 16;
+pub const CalendarUnit_Hour: OptionFlags = 32;
+pub const CalendarUnit_Minute: OptionFlags = 64;
+pub const CalendarUnit_Second: OptionFlags = 128;
+pub const CalendarUnit_Week: OptionFlags = 256;
+pub const CalendarUnit_Weekday: OptionFlags = 512;
+pub const CalendarUnit_WeekdayOrdinal: OptionFlags = 1024;
+pub const CalendarUnit_Quarter: OptionFlags = 2048;
+pub const CalendarUnit_WeekOfMonth: OptionFlags = 4096;
+pub const CalendarUnit_WeekOfYear: OptionFlags = 8192;
+pub const CalendarUnit_YearForWeekOfYear: OptionFlags = 16384;
+pub const CalendarUnit_DayOfYear: OptionFlags = 65536;
 
 extern "CoreFoundation" fn CFCalendarGetMinimumRangeOfUnit(calendar: CalendarRef, unit: CalendarUnit) callconv(.C) Range;
 pub const calendarGetMinimumRangeOfUnit = CFCalendarGetMinimumRangeOfUnit;
@@ -1805,9 +1696,8 @@ pub const calendarComposeAbsoluteTime = CFCalendarComposeAbsoluteTime;
 extern "CoreFoundation" fn CFCalendarDecomposeAbsoluteTime(calendar: CalendarRef, at: AbsoluteTime, componentDesc: ?*i8) callconv(.C) objc.Boolean;
 pub const calendarDecomposeAbsoluteTime = CFCalendarDecomposeAbsoluteTime;
 
-pub const anon1061 = enum(OptionFlags) {
-    CFCalendarComponentsWrap = 1,
-};
+pub const anon1061 = OptionFlags;
+pub const anon1061_CFCalendarComponentsWrap: OptionFlags = 1;
 
 extern "CoreFoundation" fn CFCalendarAddComponents(
     calendar: CalendarRef,
@@ -1828,20 +1718,31 @@ pub const calendarGetComponentDifference = CFCalendarGetComponentDifference;
 
 pub const CGFloat = f64;
 
-pub const CGPoint = extern struct {};
-
-pub const CGSize = extern struct {};
-
-pub const CGVector = extern struct {};
-
-pub const CGRect = extern struct {};
-
-pub const CGRectEdge = enum(objc.uint32_t) {
-    MinXEdge = 0,
-    MinYEdge = 1,
-    MaxXEdge = 2,
-    MaxYEdge = 3,
+pub const CGPoint = extern struct {
+    x: CGFloat,
+    y: CGFloat,
 };
+
+pub const CGSize = extern struct {
+    width: CGFloat,
+    height: CGFloat,
+};
+
+pub const CGVector = extern struct {
+    dx: CGFloat,
+    dy: CGFloat,
+};
+
+pub const CGRect = extern struct {
+    origin: CGPoint,
+    size: CGSize,
+};
+
+pub const CGRectEdge = objc.uint32_t;
+pub const CGRectEdge_MinXEdge: objc.uint32_t = 0;
+pub const CGRectEdge_MinYEdge: objc.uint32_t = 1;
+pub const CGRectEdge_MaxXEdge: objc.uint32_t = 2;
+pub const CGRectEdge_MaxYEdge: objc.uint32_t = 3;
 
 pub const CGAffineTransform = extern struct {
     a: CGFloat,
@@ -1863,7 +1764,7 @@ pub const DateFormatterKey = StringRef;
 
 pub const __CFDateFormatter = extern struct {};
 
-pub const DateFormatterRef = ?*__CFDateFormatter;
+pub const DateFormatterRef = __CFDateFormatter;
 
 extern "CoreFoundation" fn CFDateFormatterCreateDateFormatFromTemplate(
     allocator: AllocatorRef,
@@ -1876,30 +1777,28 @@ pub const dateFormatterCreateDateFormatFromTemplate = CFDateFormatterCreateDateF
 extern "CoreFoundation" fn CFDateFormatterGetTypeID() callconv(.C) TypeID;
 pub const dateFormatterGetTypeID = CFDateFormatterGetTypeID;
 
-pub const DateFormatterStyle = enum(Index) {
-    NoStyle = 0,
-    ShortStyle = 1,
-    MediumStyle = 2,
-    LongStyle = 3,
-    FullStyle = 4,
-};
+pub const DateFormatterStyle = Index;
+pub const DateFormatterStyle_NoStyle: Index = 0;
+pub const DateFormatterStyle_ShortStyle: Index = 1;
+pub const DateFormatterStyle_MediumStyle: Index = 2;
+pub const DateFormatterStyle_LongStyle: Index = 3;
+pub const DateFormatterStyle_FullStyle: Index = 4;
 
-pub const ISO8601DateFormatOptions = enum(OptionFlags) {
-    WithYear = 1,
-    WithMonth = 2,
-    WithWeekOfYear = 4,
-    WithDay = 16,
-    WithTime = 32,
-    WithTimeZone = 64,
-    WithSpaceBetweenDateAndTime = 128,
-    WithDashSeparatorInDate = 256,
-    WithColonSeparatorInTime = 512,
-    WithColonSeparatorInTimeZone = 1024,
-    WithFractionalSeconds = 2048,
-    WithFullDate = 275,
-    WithFullTime = 1632,
-    WithInternetDateTime = 1907,
-};
+pub const ISO8601DateFormatOptions = OptionFlags;
+pub const ISO8601DateFormatOptions_WithYear: OptionFlags = 1;
+pub const ISO8601DateFormatOptions_WithMonth: OptionFlags = 2;
+pub const ISO8601DateFormatOptions_WithWeekOfYear: OptionFlags = 4;
+pub const ISO8601DateFormatOptions_WithDay: OptionFlags = 16;
+pub const ISO8601DateFormatOptions_WithTime: OptionFlags = 32;
+pub const ISO8601DateFormatOptions_WithTimeZone: OptionFlags = 64;
+pub const ISO8601DateFormatOptions_WithSpaceBetweenDateAndTime: OptionFlags = 128;
+pub const ISO8601DateFormatOptions_WithDashSeparatorInDate: OptionFlags = 256;
+pub const ISO8601DateFormatOptions_WithColonSeparatorInTime: OptionFlags = 512;
+pub const ISO8601DateFormatOptions_WithColonSeparatorInTimeZone: OptionFlags = 1024;
+pub const ISO8601DateFormatOptions_WithFractionalSeconds: OptionFlags = 2048;
+pub const ISO8601DateFormatOptions_WithFullDate: OptionFlags = 275;
+pub const ISO8601DateFormatOptions_WithFullTime: OptionFlags = 1632;
+pub const ISO8601DateFormatOptions_WithInternetDateTime: OptionFlags = 1907;
 
 extern "CoreFoundation" fn CFDateFormatterCreateISO8601Formatter(allocator: AllocatorRef, formatOptions: ISO8601DateFormatOptions) callconv(.C) DateFormatterRef;
 pub const dateFormatterCreateISO8601Formatter = CFDateFormatterCreateISO8601Formatter;
@@ -1957,7 +1856,7 @@ pub const dateFormatterCopyProperty = CFDateFormatterCopyProperty;
 
 pub const __CFBoolean = extern struct {};
 
-pub const BooleanRef = ?*__CFBoolean;
+pub const BooleanRef = __CFBoolean;
 
 extern "CoreFoundation" fn CFBooleanGetTypeID() callconv(.C) TypeID;
 pub const booleanGetTypeID = CFBooleanGetTypeID;
@@ -1965,29 +1864,28 @@ pub const booleanGetTypeID = CFBooleanGetTypeID;
 extern "CoreFoundation" fn CFBooleanGetValue(boolean: BooleanRef) callconv(.C) objc.Boolean;
 pub const booleanGetValue = CFBooleanGetValue;
 
-pub const NumberType = enum(Index) {
-    SInt8Type = 1,
-    SInt16Type = 2,
-    SInt32Type = 3,
-    SInt64Type = 4,
-    Float32Type = 5,
-    Float64Type = 6,
-    CharType = 7,
-    ShortType = 8,
-    IntType = 9,
-    LongType = 10,
-    LongLongType = 11,
-    FloatType = 12,
-    DoubleType = 13,
-    CFIndexType = 14,
-    NSIntegerType = 15,
-    CGFloatType = 16,
-    MaxType = 16,
-};
+pub const NumberType = Index;
+pub const NumberType_SInt8Type: Index = 1;
+pub const NumberType_SInt16Type: Index = 2;
+pub const NumberType_SInt32Type: Index = 3;
+pub const NumberType_SInt64Type: Index = 4;
+pub const NumberType_Float32Type: Index = 5;
+pub const NumberType_Float64Type: Index = 6;
+pub const NumberType_CharType: Index = 7;
+pub const NumberType_ShortType: Index = 8;
+pub const NumberType_IntType: Index = 9;
+pub const NumberType_LongType: Index = 10;
+pub const NumberType_LongLongType: Index = 11;
+pub const NumberType_FloatType: Index = 12;
+pub const NumberType_DoubleType: Index = 13;
+pub const NumberType_CFIndexType: Index = 14;
+pub const NumberType_NSIntegerType: Index = 15;
+pub const NumberType_CGFloatType: Index = 16;
+pub const NumberType_MaxType: Index = 16;
 
 pub const __CFNumber = extern struct {};
 
-pub const NumberRef = ?*__CFNumber;
+pub const NumberRef = __CFNumber;
 
 extern "CoreFoundation" fn CFNumberGetTypeID() callconv(.C) TypeID;
 pub const numberGetTypeID = CFNumberGetTypeID;
@@ -2014,23 +1912,22 @@ pub const NumberFormatterKey = StringRef;
 
 pub const __CFNumberFormatter = extern struct {};
 
-pub const NumberFormatterRef = ?*__CFNumberFormatter;
+pub const NumberFormatterRef = __CFNumberFormatter;
 
 extern "CoreFoundation" fn CFNumberFormatterGetTypeID() callconv(.C) TypeID;
 pub const numberFormatterGetTypeID = CFNumberFormatterGetTypeID;
 
-pub const NumberFormatterStyle = enum(Index) {
-    NoStyle = 0,
-    DecimalStyle = 1,
-    CurrencyStyle = 2,
-    PercentStyle = 3,
-    ScientificStyle = 4,
-    SpellOutStyle = 5,
-    OrdinalStyle = 6,
-    CurrencyISOCodeStyle = 8,
-    CurrencyPluralStyle = 9,
-    CurrencyAccountingStyle = 10,
-};
+pub const NumberFormatterStyle = Index;
+pub const NumberFormatterStyle_NoStyle: Index = 0;
+pub const NumberFormatterStyle_DecimalStyle: Index = 1;
+pub const NumberFormatterStyle_CurrencyStyle: Index = 2;
+pub const NumberFormatterStyle_PercentStyle: Index = 3;
+pub const NumberFormatterStyle_ScientificStyle: Index = 4;
+pub const NumberFormatterStyle_SpellOutStyle: Index = 5;
+pub const NumberFormatterStyle_OrdinalStyle: Index = 6;
+pub const NumberFormatterStyle_CurrencyISOCodeStyle: Index = 8;
+pub const NumberFormatterStyle_CurrencyPluralStyle: Index = 9;
+pub const NumberFormatterStyle_CurrencyAccountingStyle: Index = 10;
 
 extern "CoreFoundation" fn CFNumberFormatterCreate(allocator: AllocatorRef, locale: LocaleRef, style: NumberFormatterStyle) callconv(.C) NumberFormatterRef;
 pub const numberFormatterCreate = CFNumberFormatterCreate;
@@ -2058,9 +1955,8 @@ extern "CoreFoundation" fn CFNumberFormatterCreateStringWithValue(
 ) callconv(.C) StringRef;
 pub const numberFormatterCreateStringWithValue = CFNumberFormatterCreateStringWithValue;
 
-pub const NumberFormatterOptionFlags = enum(OptionFlags) {
-    ParseIntegersOnly = 1,
-};
+pub const NumberFormatterOptionFlags = OptionFlags;
+pub const NumberFormatterOptionFlags_ParseIntegersOnly: OptionFlags = 1;
 
 extern "CoreFoundation" fn CFNumberFormatterCreateNumberFromString(
     allocator: AllocatorRef,
@@ -2086,22 +1982,20 @@ pub const numberFormatterSetProperty = CFNumberFormatterSetProperty;
 extern "CoreFoundation" fn CFNumberFormatterCopyProperty(formatter: NumberFormatterRef, key: NumberFormatterKey) callconv(.C) TypeRef;
 pub const numberFormatterCopyProperty = CFNumberFormatterCopyProperty;
 
-pub const NumberFormatterRoundingMode = enum(Index) {
-    Ceiling = 0,
-    Floor = 1,
-    Down = 2,
-    Up = 3,
-    HalfEven = 4,
-    HalfDown = 5,
-    HalfUp = 6,
-};
+pub const NumberFormatterRoundingMode = Index;
+pub const NumberFormatterRoundingMode_Ceiling: Index = 0;
+pub const NumberFormatterRoundingMode_Floor: Index = 1;
+pub const NumberFormatterRoundingMode_Down: Index = 2;
+pub const NumberFormatterRoundingMode_Up: Index = 3;
+pub const NumberFormatterRoundingMode_HalfEven: Index = 4;
+pub const NumberFormatterRoundingMode_HalfDown: Index = 5;
+pub const NumberFormatterRoundingMode_HalfUp: Index = 6;
 
-pub const NumberFormatterPadPosition = enum(Index) {
-    BeforePrefix = 0,
-    AfterPrefix = 1,
-    BeforeSuffix = 2,
-    AfterSuffix = 3,
-};
+pub const NumberFormatterPadPosition = Index;
+pub const NumberFormatterPadPosition_BeforePrefix: Index = 0;
+pub const NumberFormatterPadPosition_AfterPrefix: Index = 1;
+pub const NumberFormatterPadPosition_BeforeSuffix: Index = 2;
+pub const NumberFormatterPadPosition_AfterSuffix: Index = 3;
 
 extern "CoreFoundation" fn CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode: StringRef, defaultFractionDigits: ?*objc.int32_t, roundingIncrement: ?*f64) callconv(.C) objc.Boolean;
 pub const numberFormatterGetDecimalInfoForCurrencyCode = CFNumberFormatterGetDecimalInfoForCurrencyCode;
@@ -2173,15 +2067,14 @@ pub const preferencesCopyKeyList = CFPreferencesCopyKeyList;
 extern "CoreFoundation" fn CFPreferencesAppValueIsForced(key: StringRef, applicationID: StringRef) callconv(.C) objc.Boolean;
 pub const preferencesAppValueIsForced = CFPreferencesAppValueIsForced;
 
-pub const URLPathStyle = enum(Index) {
-    OSIXPathStyle = 0,
-    HFSPathStyle = 1,
-    WindowsPathStyle = 2,
-};
+pub const URLPathStyle = Index;
+pub const URLPathStyle_OSIXPathStyle: Index = 0;
+pub const URLPathStyle_HFSPathStyle: Index = 1;
+pub const URLPathStyle_WindowsPathStyle: Index = 2;
 
 pub const __CFURL = extern struct {};
 
-pub const URLRef = ?*__CFURL;
+pub const URLRef = __CFURL;
 
 extern "CoreFoundation" fn CFURLGetTypeID() callconv(.C) TypeID;
 pub const urlGetTypeID = CFURLGetTypeID;
@@ -2338,20 +2231,19 @@ pub const urlCreateCopyDeletingPathExtension = CFURLCreateCopyDeletingPathExtens
 extern "CoreFoundation" fn CFURLGetBytes(url: URLRef, buffer: ?*objc.UInt8, bufferLength: Index) callconv(.C) Index;
 pub const urlGetBytes = CFURLGetBytes;
 
-pub const URLComponentType = enum(Index) {
-    Scheme = 1,
-    NetLocation = 2,
-    Path = 3,
-    ResourceSpecifier = 4,
-    User = 5,
-    Password = 6,
-    UserInfo = 7,
-    Host = 8,
-    Port = 9,
-    ParameterString = 10,
-    Query = 11,
-    Fragment = 12,
-};
+pub const URLComponentType = Index;
+pub const URLComponentType_Scheme: Index = 1;
+pub const URLComponentType_NetLocation: Index = 2;
+pub const URLComponentType_Path: Index = 3;
+pub const URLComponentType_ResourceSpecifier: Index = 4;
+pub const URLComponentType_User: Index = 5;
+pub const URLComponentType_Password: Index = 6;
+pub const URLComponentType_UserInfo: Index = 7;
+pub const URLComponentType_Host: Index = 8;
+pub const URLComponentType_Port: Index = 9;
+pub const URLComponentType_ParameterString: Index = 10;
+pub const URLComponentType_Query: Index = 11;
+pub const URLComponentType_Fragment: Index = 12;
 
 extern "CoreFoundation" fn CFURLGetByteRangeForComponent(url: URLRef, component: URLComponentType, rangeIncludingSeparators: ?*Range) callconv(.C) Range;
 pub const urlGetByteRangeForComponent = CFURLGetByteRangeForComponent;
@@ -2387,10 +2279,10 @@ pub const urlCreateFilePathURL = CFURLCreateFilePathURL;
 
 pub const FSRef = extern struct {};
 
-extern "CoreFoundation" fn CFURLCreateFromFSRef(allocator: AllocatorRef, fsRef: ?*FSRef) callconv(.C) URLRef;
+extern "CoreFoundation" fn CFURLCreateFromFSRef(allocator: AllocatorRef, fsRef: ?*core_services.FSRef) callconv(.C) URLRef;
 pub const urlCreateFromFSRef = CFURLCreateFromFSRef;
 
-extern "CoreFoundation" fn CFURLGetFSRef(url: URLRef, fsRef: ?*FSRef) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFURLGetFSRef(url: URLRef, fsRef: ?*core_services.FSRef) callconv(.C) objc.Boolean;
 pub const urlGetFSRef = CFURLGetFSRef;
 
 extern "CoreFoundation" fn CFURLCopyResourcePropertyForKey(
@@ -2427,23 +2319,21 @@ pub const urlSetTemporaryResourcePropertyForKey = CFURLSetTemporaryResourcePrope
 extern "CoreFoundation" fn CFURLResourceIsReachable(url: URLRef, @"error": ?*ErrorRef) callconv(.C) objc.Boolean;
 pub const urlResourceIsReachable = CFURLResourceIsReachable;
 
-pub const URLBookmarkCreationOptions = enum(OptionFlags) {
-    MinimalBookmarkMask = 512,
-    SuitableForBookmarkFile = 1024,
-    WithSecurityScope = 2048,
-    SecurityScopeAllowOnlyReadAccess = 4096,
-    WithoutImplicitSecurityScope = 536870912,
-    PreferFileIDResolutionMask = 256,
-};
+pub const URLBookmarkCreationOptions = OptionFlags;
+pub const URLBookmarkCreationOptions_MinimalBookmarkMask: OptionFlags = 512;
+pub const URLBookmarkCreationOptions_SuitableForBookmarkFile: OptionFlags = 1024;
+pub const URLBookmarkCreationOptions_WithSecurityScope: OptionFlags = 2048;
+pub const URLBookmarkCreationOptions_SecurityScopeAllowOnlyReadAccess: OptionFlags = 4096;
+pub const URLBookmarkCreationOptions_WithoutImplicitSecurityScope: OptionFlags = 536870912;
+pub const URLBookmarkCreationOptions_PreferFileIDResolutionMask: OptionFlags = 256;
 
-pub const URLBookmarkResolutionOptions = enum(OptionFlags) {
-    WithoutUIMask = 256,
-    WithoutMountingMask = 512,
-    WithSecurityScope = 1024,
-    WithoutImplicitStartAccessing = 32768,
-    BookmarkResolutionWithoutUIMask = 256,
-    BookmarkResolutionWithoutMountingMask = 512,
-};
+pub const URLBookmarkResolutionOptions = OptionFlags;
+pub const URLBookmarkResolutionOptions_WithoutUIMask: OptionFlags = 256;
+pub const URLBookmarkResolutionOptions_WithoutMountingMask: OptionFlags = 512;
+pub const URLBookmarkResolutionOptions_WithSecurityScope: OptionFlags = 1024;
+pub const URLBookmarkResolutionOptions_WithoutImplicitStartAccessing: OptionFlags = 32768;
+pub const URLBookmarkResolutionOptions_BookmarkResolutionWithoutUIMask: OptionFlags = 256;
+pub const URLBookmarkResolutionOptions_BookmarkResolutionWithoutMountingMask: OptionFlags = 512;
 
 pub const URLBookmarkFileCreationOptions = OptionFlags;
 
@@ -2498,36 +2388,34 @@ pub const RunLoopMode = StringRef;
 
 pub const __CFRunLoop = extern struct {};
 
-pub const RunLoopRef = ?*__CFRunLoop;
+pub const RunLoopRef = __CFRunLoop;
 
 pub const __CFRunLoopSource = extern struct {};
 
-pub const RunLoopSourceRef = ?*__CFRunLoopSource;
+pub const RunLoopSourceRef = __CFRunLoopSource;
 
 pub const __CFRunLoopObserver = extern struct {};
 
-pub const RunLoopObserverRef = ?*__CFRunLoopObserver;
+pub const RunLoopObserverRef = __CFRunLoopObserver;
 
 pub const __CFRunLoopTimer = extern struct {};
 
-pub const RunLoopTimerRef = ?*__CFRunLoopTimer;
+pub const RunLoopTimerRef = __CFRunLoopTimer;
 
-pub const RunLoopRunResult = enum(objc.SInt32) {
-    Finished = 1,
-    Stopped = 2,
-    TimedOut = 3,
-    HandledSource = 4,
-};
+pub const RunLoopRunResult = objc.SInt32;
+pub const RunLoopRunResult_Finished: objc.SInt32 = 1;
+pub const RunLoopRunResult_Stopped: objc.SInt32 = 2;
+pub const RunLoopRunResult_TimedOut: objc.SInt32 = 3;
+pub const RunLoopRunResult_HandledSource: objc.SInt32 = 4;
 
-pub const RunLoopActivity = enum(OptionFlags) {
-    Entry = 1,
-    BeforeTimers = 2,
-    BeforeSources = 4,
-    BeforeWaiting = 32,
-    AfterWaiting = 64,
-    Exit = 128,
-    AllActivities = 268435455,
-};
+pub const RunLoopActivity = OptionFlags;
+pub const RunLoopActivity_Entry: OptionFlags = 1;
+pub const RunLoopActivity_BeforeTimers: OptionFlags = 2;
+pub const RunLoopActivity_BeforeSources: OptionFlags = 4;
+pub const RunLoopActivity_BeforeWaiting: OptionFlags = 32;
+pub const RunLoopActivity_AfterWaiting: OptionFlags = 64;
+pub const RunLoopActivity_Exit: OptionFlags = 128;
+pub const RunLoopActivity_AllActivities: OptionFlags = 268435455;
 
 extern "CoreFoundation" fn CFRunLoopGetTypeID() callconv(.C) TypeID;
 pub const runLoopGetTypeID = CFRunLoopGetTypeID;
@@ -2762,12 +2650,11 @@ pub const runLoopTimerSetTolerance = CFRunLoopTimerSetTolerance;
 
 pub const __CFSocket = extern struct {};
 
-pub const SocketRef = ?*__CFSocket;
+pub const SocketRef = __CFSocket;
 
-pub const SocketError = enum(Index) {
-    Success = 0,
-    Timeout = -2,
-};
+pub const SocketError = Index;
+pub const SocketError_Success: Index = 0;
+pub const SocketError_Timeout: Index = -2;
 
 pub const SocketSignature = extern struct {
     protocolFamily: objc.SInt32,
@@ -2776,23 +2663,21 @@ pub const SocketSignature = extern struct {
     address: DataRef,
 };
 
-pub const SocketCallBackType = enum(OptionFlags) {
-    NoCallBack = 0,
-    ReadCallBack = 1,
-    AcceptCallBack = 2,
-    DataCallBack = 3,
-    ConnectCallBack = 4,
-    WriteCallBack = 8,
-};
+pub const SocketCallBackType = OptionFlags;
+pub const SocketCallBackType_NoCallBack: OptionFlags = 0;
+pub const SocketCallBackType_ReadCallBack: OptionFlags = 1;
+pub const SocketCallBackType_AcceptCallBack: OptionFlags = 2;
+pub const SocketCallBackType_DataCallBack: OptionFlags = 3;
+pub const SocketCallBackType_ConnectCallBack: OptionFlags = 4;
+pub const SocketCallBackType_WriteCallBack: OptionFlags = 8;
 
-pub const anon1231 = enum(OptionFlags) {
-    CFSocketAutomaticallyReenableReadCallBack = 1,
-    CFSocketAutomaticallyReenableAcceptCallBack = 2,
-    CFSocketAutomaticallyReenableDataCallBack = 3,
-    CFSocketAutomaticallyReenableWriteCallBack = 8,
-    CFSocketLeaveErrors = 64,
-    CFSocketCloseOnInvalidate = 128,
-};
+pub const anon1231 = OptionFlags;
+pub const anon1231_CFSocketAutomaticallyReenableReadCallBack: OptionFlags = 1;
+pub const anon1231_CFSocketAutomaticallyReenableAcceptCallBack: OptionFlags = 2;
+pub const anon1231_CFSocketAutomaticallyReenableDataCallBack: OptionFlags = 3;
+pub const anon1231_CFSocketAutomaticallyReenableWriteCallBack: OptionFlags = 8;
+pub const anon1231_CFSocketLeaveErrors: OptionFlags = 64;
+pub const anon1231_CFSocketCloseOnInvalidate: OptionFlags = 128;
 
 pub const SocketCallBack = ?*const fn (
     SocketRef,
@@ -2951,25 +2836,23 @@ pub const StreamError = extern struct {
 
 pub const StreamPropertyKey = StringRef;
 
-pub const StreamStatus = enum(Index) {
-    NotOpen = 0,
-    Opening = 1,
-    Open = 2,
-    Reading = 3,
-    Writing = 4,
-    AtEnd = 5,
-    Closed = 6,
-    Error = 7,
-};
+pub const StreamStatus = Index;
+pub const StreamStatus_NotOpen: Index = 0;
+pub const StreamStatus_Opening: Index = 1;
+pub const StreamStatus_Open: Index = 2;
+pub const StreamStatus_Reading: Index = 3;
+pub const StreamStatus_Writing: Index = 4;
+pub const StreamStatus_AtEnd: Index = 5;
+pub const StreamStatus_Closed: Index = 6;
+pub const StreamStatus_Error: Index = 7;
 
-pub const StreamEventType = enum(OptionFlags) {
-    None = 0,
-    OpenCompleted = 1,
-    HasBytesAvailable = 2,
-    CanAcceptBytes = 4,
-    ErrorOccurred = 8,
-    EndEncountered = 16,
-};
+pub const StreamEventType = OptionFlags;
+pub const StreamEventType_None: OptionFlags = 0;
+pub const StreamEventType_OpenCompleted: OptionFlags = 1;
+pub const StreamEventType_HasBytesAvailable: OptionFlags = 2;
+pub const StreamEventType_CanAcceptBytes: OptionFlags = 4;
+pub const StreamEventType_ErrorOccurred: OptionFlags = 8;
+pub const StreamEventType_EndEncountered: OptionFlags = 16;
 
 pub const StreamClientContext = extern struct {
     version: Index,
@@ -2981,11 +2864,11 @@ pub const StreamClientContext = extern struct {
 
 pub const __CFReadStream = extern struct {};
 
-pub const ReadStreamRef = ?*__CFReadStream;
+pub const ReadStreamRef = __CFReadStream;
 
 pub const __CFWriteStream = extern struct {};
 
-pub const WriteStreamRef = ?*__CFWriteStream;
+pub const WriteStreamRef = __CFWriteStream;
 
 pub const ReadStreamClientCallBack = ?*const fn (ReadStreamRef, StreamEventType, ?*anyopaque) callconv(.C) void;
 
@@ -3141,11 +3024,10 @@ pub const readStreamCopyDispatchQueue = CFReadStreamCopyDispatchQueue;
 extern "CoreFoundation" fn CFWriteStreamCopyDispatchQueue(stream: WriteStreamRef) callconv(.C) objc.dispatch_queue_t;
 pub const writeStreamCopyDispatchQueue = CFWriteStreamCopyDispatchQueue;
 
-pub const StreamErrorDomain = enum(Index) {
-    Custom = -1,
-    POSIX = 1,
-    MacOSStatus = 2,
-};
+pub const StreamErrorDomain = Index;
+pub const StreamErrorDomain_Custom: Index = -1;
+pub const StreamErrorDomain_POSIX: Index = 1;
+pub const StreamErrorDomain_MacOSStatus: Index = 2;
 
 extern "CoreFoundation" fn CFReadStreamGetError(stream: ReadStreamRef) callconv(.C) StreamError;
 pub const readStreamGetError = CFReadStreamGetError;
@@ -3153,11 +3035,10 @@ pub const readStreamGetError = CFReadStreamGetError;
 extern "CoreFoundation" fn CFWriteStreamGetError(stream: WriteStreamRef) callconv(.C) StreamError;
 pub const writeStreamGetError = CFWriteStreamGetError;
 
-pub const PropertyListMutabilityOptions = enum(OptionFlags) {
-    Immutable = 0,
-    MutableContainers = 1,
-    MutableContainersAndLeaves = 2,
-};
+pub const PropertyListMutabilityOptions = OptionFlags;
+pub const PropertyListMutabilityOptions_Immutable: OptionFlags = 0;
+pub const PropertyListMutabilityOptions_MutableContainers: OptionFlags = 1;
+pub const PropertyListMutabilityOptions_MutableContainersAndLeaves: OptionFlags = 2;
 
 extern "CoreFoundation" fn CFPropertyListCreateFromXMLData(
     allocator: AllocatorRef,
@@ -3173,11 +3054,10 @@ pub const propertyListCreateXMLData = CFPropertyListCreateXMLData;
 extern "CoreFoundation" fn CFPropertyListCreateDeepCopy(allocator: AllocatorRef, propertyList: PropertyListRef, mutabilityOption: OptionFlags) callconv(.C) PropertyListRef;
 pub const propertyListCreateDeepCopy = CFPropertyListCreateDeepCopy;
 
-pub const PropertyListFormat = enum(Index) {
-    OpenStepFormat = 1,
-    XMLFormat_v1_0 = 100,
-    BinaryFormat_v1_0 = 200,
-};
+pub const PropertyListFormat = Index;
+pub const PropertyListFormat_OpenStepFormat: Index = 1;
+pub const PropertyListFormat_XMLFormat_v1_0: Index = 100;
+pub const PropertyListFormat_BinaryFormat_v1_0: Index = 200;
 
 extern "CoreFoundation" fn CFPropertyListIsValid(plist: PropertyListRef, format: PropertyListFormat) callconv(.C) objc.Boolean;
 pub const propertyListIsValid = CFPropertyListIsValid;
@@ -3200,10 +3080,13 @@ extern "CoreFoundation" fn CFPropertyListCreateFromStream(
 ) callconv(.C) PropertyListRef;
 pub const propertyListCreateFromStream = CFPropertyListCreateFromStream;
 
-pub const anon1211 = enum(OptionFlags) {
-    CFUserNotificationNoDefaultButtonFlag = 32,
-    CFUserNotificationUseRadioButtonsFlag = 64,
-};
+pub const anon1211 = Index;
+pub const anon1211_CFPropertyListReadCorruptError: Index = 3840;
+pub const anon1211_CFPropertyListReadUnknownVersionError: Index = 3841;
+pub const anon1211_CFPropertyListReadStreamError: Index = 3842;
+pub const anon1211_CFPropertyListWriteStreamError: Index = 3851;
+pub const anon1211_CFUserNotificationNoDefaultButtonFlag: Index = 32;
+pub const anon1211_CFUserNotificationUseRadioButtonsFlag: Index = 64;
 
 extern "CoreFoundation" fn CFPropertyListCreateWithData(
     allocator: AllocatorRef,
@@ -3246,11 +3129,11 @@ pub const SetRetainCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C
 
 pub const SetReleaseCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) void;
 
-pub const SetCopyDescriptionCallBack = ?*const fn (?*anyopaque) callconv(.C) StringRef;
+pub const SetCopyDescriptionCallBack = StringRef;
 
-pub const SetEqualCallBack = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const SetEqualCallBack = objc.Boolean;
 
-pub const SetHashCallBack = ?*const fn (?*anyopaque) callconv(.C) HashCode;
+pub const SetHashCallBack = HashCode;
 
 pub const SetCallBacks = extern struct {
     version: Index,
@@ -3265,9 +3148,9 @@ pub const SetApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C
 
 pub const __CFSet = extern struct {};
 
-pub const SetRef = ?*__CFSet;
+pub const SetRef = __CFSet;
 
-pub const MutableSetRef = ?*__CFSet;
+pub const MutableSetRef = __CFSet;
 
 extern "CoreFoundation" fn CFSetGetTypeID() callconv(.C) TypeID;
 pub const setGetTypeID = CFSetGetTypeID;
@@ -3325,143 +3208,142 @@ pub const setRemoveValue = CFSetRemoveValue;
 extern "CoreFoundation" fn CFSetRemoveAllValues(theSet: MutableSetRef) callconv(.C) void;
 pub const setRemoveAllValues = CFSetRemoveAllValues;
 
-pub const StringEncodings = enum(Index) {
-    MacJapanese = 1,
-    MacChineseTrad = 2,
-    MacKorean = 3,
-    MacArabic = 4,
-    MacHebrew = 5,
-    MacGreek = 6,
-    MacCyrillic = 7,
-    MacDevanagari = 9,
-    MacGurmukhi = 10,
-    MacGujarati = 11,
-    MacOriya = 12,
-    MacBengali = 13,
-    MacTamil = 14,
-    MacTelugu = 15,
-    MacKannada = 16,
-    MacMalayalam = 17,
-    MacSinhalese = 18,
-    MacBurmese = 19,
-    MacKhmer = 20,
-    MacThai = 21,
-    MacLaotian = 22,
-    MacGeorgian = 23,
-    MacArmenian = 24,
-    MacChineseSimp = 25,
-    MacTibetan = 26,
-    MacMongolian = 27,
-    MacEthiopic = 28,
-    MacCentralEurRoman = 29,
-    MacVietnamese = 30,
-    MacExtArabic = 31,
-    MacSymbol = 33,
-    MacDingbats = 34,
-    MacTurkish = 35,
-    MacCroatian = 36,
-    MacIcelandic = 37,
-    MacRomanian = 38,
-    MacCeltic = 39,
-    MacGaelic = 40,
-    MacFarsi = 140,
-    MacUkrainian = 152,
-    MacInuit = 236,
-    MacVT100 = 252,
-    MacHFS = 255,
-    ISOLatin2 = 514,
-    ISOLatin3 = 515,
-    ISOLatin4 = 516,
-    ISOLatinCyrillic = 517,
-    ISOLatinArabic = 518,
-    ISOLatinGreek = 519,
-    ISOLatinHebrew = 520,
-    ISOLatin5 = 521,
-    ISOLatin6 = 522,
-    ISOLatinThai = 523,
-    ISOLatin7 = 525,
-    ISOLatin8 = 526,
-    ISOLatin9 = 527,
-    ISOLatin10 = 528,
-    DOSLatinUS = 1024,
-    DOSGreek = 1029,
-    DOSBalticRim = 1030,
-    DOSLatin1 = 1040,
-    DOSGreek1 = 1041,
-    DOSLatin2 = 1042,
-    DOSCyrillic = 1043,
-    DOSTurkish = 1044,
-    DOSPortuguese = 1045,
-    DOSIcelandic = 1046,
-    DOSHebrew = 1047,
-    DOSCanadianFrench = 1048,
-    DOSArabic = 1049,
-    DOSNordic = 1050,
-    DOSRussian = 1051,
-    DOSGreek2 = 1052,
-    DOSThai = 1053,
-    DOSJapanese = 1056,
-    DOSChineseSimplif = 1057,
-    DOSKorean = 1058,
-    DOSChineseTrad = 1059,
-    WindowsLatin2 = 1281,
-    WindowsCyrillic = 1282,
-    WindowsGreek = 1283,
-    WindowsLatin5 = 1284,
-    WindowsHebrew = 1285,
-    WindowsArabic = 1286,
-    WindowsBalticRim = 1287,
-    WindowsVietnamese = 1288,
-    WindowsKoreanJohab = 1296,
-    ANSEL = 1537,
-    JIS_X0201_76 = 1568,
-    JIS_X0208_83 = 1569,
-    JIS_X0208_90 = 1570,
-    JIS_X0212_90 = 1571,
-    JIS_C6226_78 = 1572,
-    ShiftJIS_X0213 = 1576,
-    ShiftJIS_X0213_MenKuTen = 1577,
-    GB_2312_80 = 1584,
-    GBK_95 = 1585,
-    GB_18030_2000 = 1586,
-    KSC_5601_87 = 1600,
-    KSC_5601_92_Johab = 1601,
-    CNS_11643_92_P1 = 1617,
-    CNS_11643_92_P2 = 1618,
-    CNS_11643_92_P3 = 1619,
-    ISO_2022_JP = 2080,
-    ISO_2022_JP_2 = 2081,
-    ISO_2022_JP_1 = 2082,
-    ISO_2022_JP_3 = 2083,
-    ISO_2022_CN = 2096,
-    ISO_2022_CN_EXT = 2097,
-    ISO_2022_KR = 2112,
-    EUC_JP = 2336,
-    EUC_CN = 2352,
-    EUC_TW = 2353,
-    EUC_KR = 2368,
-    ShiftJIS = 2561,
-    KOI8_R = 2562,
-    Big5 = 2563,
-    MacRomanLatin1 = 2564,
-    HZ_GB_2312 = 2565,
-    Big5_HKSCS_1999 = 2566,
-    VISCII = 2567,
-    KOI8_U = 2568,
-    Big5_E = 2569,
-    NextStepJapanese = 2818,
-    EBCDIC_US = 3073,
-    EBCDIC_CP037 = 3074,
-    UTF7 = 67109120,
-    UTF7_IMAP = 2576,
-    ShiftJIS_X0213_00 = 1576,
-};
+pub const StringEncodings = Index;
+pub const StringEncodings_MacJapanese: Index = 1;
+pub const StringEncodings_MacChineseTrad: Index = 2;
+pub const StringEncodings_MacKorean: Index = 3;
+pub const StringEncodings_MacArabic: Index = 4;
+pub const StringEncodings_MacHebrew: Index = 5;
+pub const StringEncodings_MacGreek: Index = 6;
+pub const StringEncodings_MacCyrillic: Index = 7;
+pub const StringEncodings_MacDevanagari: Index = 9;
+pub const StringEncodings_MacGurmukhi: Index = 10;
+pub const StringEncodings_MacGujarati: Index = 11;
+pub const StringEncodings_MacOriya: Index = 12;
+pub const StringEncodings_MacBengali: Index = 13;
+pub const StringEncodings_MacTamil: Index = 14;
+pub const StringEncodings_MacTelugu: Index = 15;
+pub const StringEncodings_MacKannada: Index = 16;
+pub const StringEncodings_MacMalayalam: Index = 17;
+pub const StringEncodings_MacSinhalese: Index = 18;
+pub const StringEncodings_MacBurmese: Index = 19;
+pub const StringEncodings_MacKhmer: Index = 20;
+pub const StringEncodings_MacThai: Index = 21;
+pub const StringEncodings_MacLaotian: Index = 22;
+pub const StringEncodings_MacGeorgian: Index = 23;
+pub const StringEncodings_MacArmenian: Index = 24;
+pub const StringEncodings_MacChineseSimp: Index = 25;
+pub const StringEncodings_MacTibetan: Index = 26;
+pub const StringEncodings_MacMongolian: Index = 27;
+pub const StringEncodings_MacEthiopic: Index = 28;
+pub const StringEncodings_MacCentralEurRoman: Index = 29;
+pub const StringEncodings_MacVietnamese: Index = 30;
+pub const StringEncodings_MacExtArabic: Index = 31;
+pub const StringEncodings_MacSymbol: Index = 33;
+pub const StringEncodings_MacDingbats: Index = 34;
+pub const StringEncodings_MacTurkish: Index = 35;
+pub const StringEncodings_MacCroatian: Index = 36;
+pub const StringEncodings_MacIcelandic: Index = 37;
+pub const StringEncodings_MacRomanian: Index = 38;
+pub const StringEncodings_MacCeltic: Index = 39;
+pub const StringEncodings_MacGaelic: Index = 40;
+pub const StringEncodings_MacFarsi: Index = 140;
+pub const StringEncodings_MacUkrainian: Index = 152;
+pub const StringEncodings_MacInuit: Index = 236;
+pub const StringEncodings_MacVT100: Index = 252;
+pub const StringEncodings_MacHFS: Index = 255;
+pub const StringEncodings_ISOLatin2: Index = 514;
+pub const StringEncodings_ISOLatin3: Index = 515;
+pub const StringEncodings_ISOLatin4: Index = 516;
+pub const StringEncodings_ISOLatinCyrillic: Index = 517;
+pub const StringEncodings_ISOLatinArabic: Index = 518;
+pub const StringEncodings_ISOLatinGreek: Index = 519;
+pub const StringEncodings_ISOLatinHebrew: Index = 520;
+pub const StringEncodings_ISOLatin5: Index = 521;
+pub const StringEncodings_ISOLatin6: Index = 522;
+pub const StringEncodings_ISOLatinThai: Index = 523;
+pub const StringEncodings_ISOLatin7: Index = 525;
+pub const StringEncodings_ISOLatin8: Index = 526;
+pub const StringEncodings_ISOLatin9: Index = 527;
+pub const StringEncodings_ISOLatin10: Index = 528;
+pub const StringEncodings_DOSLatinUS: Index = 1024;
+pub const StringEncodings_DOSGreek: Index = 1029;
+pub const StringEncodings_DOSBalticRim: Index = 1030;
+pub const StringEncodings_DOSLatin1: Index = 1040;
+pub const StringEncodings_DOSGreek1: Index = 1041;
+pub const StringEncodings_DOSLatin2: Index = 1042;
+pub const StringEncodings_DOSCyrillic: Index = 1043;
+pub const StringEncodings_DOSTurkish: Index = 1044;
+pub const StringEncodings_DOSPortuguese: Index = 1045;
+pub const StringEncodings_DOSIcelandic: Index = 1046;
+pub const StringEncodings_DOSHebrew: Index = 1047;
+pub const StringEncodings_DOSCanadianFrench: Index = 1048;
+pub const StringEncodings_DOSArabic: Index = 1049;
+pub const StringEncodings_DOSNordic: Index = 1050;
+pub const StringEncodings_DOSRussian: Index = 1051;
+pub const StringEncodings_DOSGreek2: Index = 1052;
+pub const StringEncodings_DOSThai: Index = 1053;
+pub const StringEncodings_DOSJapanese: Index = 1056;
+pub const StringEncodings_DOSChineseSimplif: Index = 1057;
+pub const StringEncodings_DOSKorean: Index = 1058;
+pub const StringEncodings_DOSChineseTrad: Index = 1059;
+pub const StringEncodings_WindowsLatin2: Index = 1281;
+pub const StringEncodings_WindowsCyrillic: Index = 1282;
+pub const StringEncodings_WindowsGreek: Index = 1283;
+pub const StringEncodings_WindowsLatin5: Index = 1284;
+pub const StringEncodings_WindowsHebrew: Index = 1285;
+pub const StringEncodings_WindowsArabic: Index = 1286;
+pub const StringEncodings_WindowsBalticRim: Index = 1287;
+pub const StringEncodings_WindowsVietnamese: Index = 1288;
+pub const StringEncodings_WindowsKoreanJohab: Index = 1296;
+pub const StringEncodings_ANSEL: Index = 1537;
+pub const StringEncodings_JIS_X0201_76: Index = 1568;
+pub const StringEncodings_JIS_X0208_83: Index = 1569;
+pub const StringEncodings_JIS_X0208_90: Index = 1570;
+pub const StringEncodings_JIS_X0212_90: Index = 1571;
+pub const StringEncodings_JIS_C6226_78: Index = 1572;
+pub const StringEncodings_ShiftJIS_X0213: Index = 1576;
+pub const StringEncodings_ShiftJIS_X0213_MenKuTen: Index = 1577;
+pub const StringEncodings_GB_2312_80: Index = 1584;
+pub const StringEncodings_GBK_95: Index = 1585;
+pub const StringEncodings_GB_18030_2000: Index = 1586;
+pub const StringEncodings_KSC_5601_87: Index = 1600;
+pub const StringEncodings_KSC_5601_92_Johab: Index = 1601;
+pub const StringEncodings_CNS_11643_92_P1: Index = 1617;
+pub const StringEncodings_CNS_11643_92_P2: Index = 1618;
+pub const StringEncodings_CNS_11643_92_P3: Index = 1619;
+pub const StringEncodings_ISO_2022_JP: Index = 2080;
+pub const StringEncodings_ISO_2022_JP_2: Index = 2081;
+pub const StringEncodings_ISO_2022_JP_1: Index = 2082;
+pub const StringEncodings_ISO_2022_JP_3: Index = 2083;
+pub const StringEncodings_ISO_2022_CN: Index = 2096;
+pub const StringEncodings_ISO_2022_CN_EXT: Index = 2097;
+pub const StringEncodings_ISO_2022_KR: Index = 2112;
+pub const StringEncodings_EUC_JP: Index = 2336;
+pub const StringEncodings_EUC_CN: Index = 2352;
+pub const StringEncodings_EUC_TW: Index = 2353;
+pub const StringEncodings_EUC_KR: Index = 2368;
+pub const StringEncodings_ShiftJIS: Index = 2561;
+pub const StringEncodings_KOI8_R: Index = 2562;
+pub const StringEncodings_Big5: Index = 2563;
+pub const StringEncodings_MacRomanLatin1: Index = 2564;
+pub const StringEncodings_HZ_GB_2312: Index = 2565;
+pub const StringEncodings_Big5_HKSCS_1999: Index = 2566;
+pub const StringEncodings_VISCII: Index = 2567;
+pub const StringEncodings_KOI8_U: Index = 2568;
+pub const StringEncodings_Big5_E: Index = 2569;
+pub const StringEncodings_NextStepJapanese: Index = 2818;
+pub const StringEncodings_EBCDIC_US: Index = 3073;
+pub const StringEncodings_EBCDIC_CP037: Index = 3074;
+pub const StringEncodings_UTF7: Index = 67109120;
+pub const StringEncodings_UTF7_IMAP: Index = 2576;
+pub const StringEncodings_ShiftJIS_X0213_00: Index = 1576;
 
 pub const TreeRetainCallBack = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
 
 pub const TreeReleaseCallBack = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const TreeCopyDescriptionCallBack = ?*const fn (?*anyopaque) callconv(.C) StringRef;
+pub const TreeCopyDescriptionCallBack = StringRef;
 
 pub const TreeContext = extern struct {
     version: Index,
@@ -3475,7 +3357,7 @@ pub const TreeApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.
 
 pub const __CFTree = extern struct {};
 
-pub const TreeRef = ?*__CFTree;
+pub const TreeRef = __CFTree;
 
 extern "CoreFoundation" fn CFTreeGetTypeID() callconv(.C) TypeID;
 pub const treeGetTypeID = CFTreeGetTypeID;
@@ -3560,21 +3442,20 @@ extern "CoreFoundation" fn CFURLCreatePropertyFromResource(
 ) callconv(.C) TypeRef;
 pub const urlCreatePropertyFromResource = CFURLCreatePropertyFromResource;
 
-pub const URLError = enum(Index) {
-    UnknownError = -10,
-    UnknownSchemeError = -11,
-    ResourceNotFoundError = -12,
-    ResourceAccessViolationError = -13,
-    RemoteHostUnavailableError = -14,
-    ImproperArgumentsError = -15,
-    UnknownPropertyKeyError = -16,
-    PropertyKeyUnavailableError = -17,
-    TimeoutError = -18,
-};
+pub const URLError = Index;
+pub const URLError_UnknownError: Index = -10;
+pub const URLError_UnknownSchemeError: Index = -11;
+pub const URLError_ResourceNotFoundError: Index = -12;
+pub const URLError_ResourceAccessViolationError: Index = -13;
+pub const URLError_RemoteHostUnavailableError: Index = -14;
+pub const URLError_ImproperArgumentsError: Index = -15;
+pub const URLError_UnknownPropertyKeyError: Index = -16;
+pub const URLError_PropertyKeyUnavailableError: Index = -17;
+pub const URLError_TimeoutError: Index = -18;
 
 pub const __CFUUID = extern struct {};
 
-pub const UUIDRef = ?*__CFUUID;
+pub const UUIDRef = __CFUUID;
 
 pub const UUIDBytes = extern struct {
     byte0: objc.UInt8,
@@ -3660,9 +3541,9 @@ pub const copyHomeDirectoryURL = CFCopyHomeDirectoryURL;
 
 pub const __CFBundle = extern struct {};
 
-pub const BundleRef = ?*__CFBundle;
+pub const BundleRef = __CFBundle;
 
-pub const PlugInRef = ?*__CFBundle;
+pub const PlugInRef = __CFBundle;
 
 extern "CoreFoundation" fn CFBundleGetMainBundle() callconv(.C) BundleRef;
 pub const bundleGetMainBundle = CFBundleGetMainBundle;
@@ -3798,13 +3679,12 @@ pub const bundleCopyExecutableArchitecturesForURL = CFBundleCopyExecutableArchit
 extern "CoreFoundation" fn CFBundleCopyExecutableURL(bundle: BundleRef) callconv(.C) URLRef;
 pub const bundleCopyExecutableURL = CFBundleCopyExecutableURL;
 
-pub const anon2441 = enum(u32) {
-    CFBundleExecutableArchitectureI386 = 7,
-    CFBundleExecutableArchitecturePPC = 18,
-    CFBundleExecutableArchitectureX86_64 = 16777223,
-    CFBundleExecutableArchitecturePPC64 = 16777234,
-    CFBundleExecutableArchitectureARM64 = 16777228,
-};
+pub const anon2441 = u32;
+pub const anon2441_CFBundleExecutableArchitectureI386: u32 = 7;
+pub const anon2441_CFBundleExecutableArchitecturePPC: u32 = 18;
+pub const anon2441_CFBundleExecutableArchitectureX86_64: u32 = 16777223;
+pub const anon2441_CFBundleExecutableArchitecturePPC64: u32 = 16777234;
+pub const anon2441_CFBundleExecutableArchitectureARM64: u32 = 16777228;
 
 extern "CoreFoundation" fn CFBundleCopyExecutableArchitectures(bundle: BundleRef) callconv(.C) ArrayRef;
 pub const bundleCopyExecutableArchitectures = CFBundleCopyExecutableArchitectures;
@@ -3864,16 +3744,15 @@ pub const bundleCloseBundleResourceMap = CFBundleCloseBundleResourceMap;
 
 pub const __CFMessagePort = extern struct {};
 
-pub const MessagePortRef = ?*__CFMessagePort;
+pub const MessagePortRef = __CFMessagePort;
 
-pub const anon231 = enum(objc.SInt32) {
-    CFMessagePortSuccess = 0,
-    CFMessagePortSendTimeout = -1,
-    CFMessagePortReceiveTimeout = -2,
-    CFMessagePortIsInvalid = -3,
-    CFMessagePortTransportError = -4,
-    CFMessagePortBecameInvalidError = -5,
-};
+pub const anon231 = objc.SInt32;
+pub const anon231_CFMessagePortSuccess: objc.SInt32 = 0;
+pub const anon231_CFMessagePortSendTimeout: objc.SInt32 = -1;
+pub const anon231_CFMessagePortReceiveTimeout: objc.SInt32 = -2;
+pub const anon231_CFMessagePortIsInvalid: objc.SInt32 = -3;
+pub const anon231_CFMessagePortTransportError: objc.SInt32 = -4;
+pub const anon231_CFMessagePortBecameInvalidError: objc.SInt32 = -5;
 
 pub const MessagePortContext = extern struct {
     version: Index,
@@ -3883,12 +3762,7 @@ pub const MessagePortContext = extern struct {
     copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
 };
 
-pub const MessagePortCallBack = ?*const fn (
-    MessagePortRef,
-    objc.SInt32,
-    DataRef,
-    ?*anyopaque,
-) callconv(.C) DataRef;
+pub const MessagePortCallBack = DataRef;
 
 pub const MessagePortInvalidationCallBack = ?*const fn (MessagePortRef, ?*anyopaque) callconv(.C) void;
 
@@ -4001,9 +3875,9 @@ pub const plugInRemoveInstanceForFactory = CFPlugInRemoveInstanceForFactory;
 
 pub const __CFPlugInInstance = extern struct {};
 
-pub const PlugInInstanceRef = ?*__CFPlugInInstance;
+pub const PlugInInstanceRef = __CFPlugInInstance;
 
-pub const PlugInInstanceGetInterfaceFunction = ?*const fn (PlugInInstanceRef, StringRef, ?*?*anyopaque) callconv(.C) objc.Boolean;
+pub const PlugInInstanceGetInterfaceFunction = objc.Boolean;
 
 pub const PlugInInstanceDeallocateInstanceDataFunction = ?*const fn (?*anyopaque) callconv(.C) void;
 
@@ -4030,7 +3904,7 @@ pub const plugInInstanceCreateWithInstanceDataSize = CFPlugInInstanceCreateWithI
 
 pub const __CFMachPort = extern struct {};
 
-pub const MachPortRef = ?*__CFMachPort;
+pub const MachPortRef = __CFMachPort;
 
 pub const MachPortContext = extern struct {
     version: Index,
@@ -4092,9 +3966,9 @@ pub const machPortCreateRunLoopSource = CFMachPortCreateRunLoopSource;
 
 pub const __CFAttributedString = extern struct {};
 
-pub const AttributedStringRef = ?*__CFAttributedString;
+pub const AttributedStringRef = __CFAttributedString;
 
-pub const MutableAttributedStringRef = ?*__CFAttributedString;
+pub const MutableAttributedStringRef = __CFAttributedString;
 
 extern "CoreFoundation" fn CFAttributedStringGetTypeID() callconv(.C) TypeID;
 pub const attributedStringGetTypeID = CFAttributedStringGetTypeID;
@@ -4187,21 +4061,20 @@ pub const attributedStringGetBidiLevelsAndResolvedDirections = CFAttributedStrin
 
 pub const __CFURLEnumerator = extern struct {};
 
-pub const URLEnumeratorRef = ?*__CFURLEnumerator;
+pub const URLEnumeratorRef = __CFURLEnumerator;
 
 extern "CoreFoundation" fn CFURLEnumeratorGetTypeID() callconv(.C) TypeID;
 pub const urlEnumeratorGetTypeID = CFURLEnumeratorGetTypeID;
 
-pub const URLEnumeratorOptions = enum(OptionFlags) {
-    DefaultBehavior = 0,
-    DescendRecursively = 1,
-    SkipInvisibles = 2,
-    GenerateFileReferenceURLs = 4,
-    SkipPackageContents = 8,
-    IncludeDirectoriesPreOrder = 16,
-    IncludeDirectoriesPostOrder = 32,
-    GenerateRelativePathURLs = 64,
-};
+pub const URLEnumeratorOptions = OptionFlags;
+pub const URLEnumeratorOptions_DefaultBehavior: OptionFlags = 0;
+pub const URLEnumeratorOptions_DescendRecursively: OptionFlags = 1;
+pub const URLEnumeratorOptions_SkipInvisibles: OptionFlags = 2;
+pub const URLEnumeratorOptions_GenerateFileReferenceURLs: OptionFlags = 4;
+pub const URLEnumeratorOptions_SkipPackageContents: OptionFlags = 8;
+pub const URLEnumeratorOptions_IncludeDirectoriesPreOrder: OptionFlags = 16;
+pub const URLEnumeratorOptions_IncludeDirectoriesPostOrder: OptionFlags = 32;
+pub const URLEnumeratorOptions_GenerateRelativePathURLs: OptionFlags = 64;
 
 extern "CoreFoundation" fn CFURLEnumeratorCreateForDirectoryURL(
     alloc: AllocatorRef,
@@ -4214,12 +4087,11 @@ pub const urlEnumeratorCreateForDirectoryURL = CFURLEnumeratorCreateForDirectory
 extern "CoreFoundation" fn CFURLEnumeratorCreateForMountedVolumes(alloc: AllocatorRef, option: URLEnumeratorOptions, propertyKeys: ArrayRef) callconv(.C) URLEnumeratorRef;
 pub const urlEnumeratorCreateForMountedVolumes = CFURLEnumeratorCreateForMountedVolumes;
 
-pub const URLEnumeratorResult = enum(Index) {
-    Success = 1,
-    End = 2,
-    Error = 3,
-    DirectoryPostOrderSuccess = 4,
-};
+pub const URLEnumeratorResult = Index;
+pub const URLEnumeratorResult_Success: Index = 1;
+pub const URLEnumeratorResult_End: Index = 2;
+pub const URLEnumeratorResult_Error: Index = 3;
+pub const URLEnumeratorResult_DirectoryPostOrderSuccess: Index = 4;
 
 extern "CoreFoundation" fn CFURLEnumeratorGetNextURL(enumerator: URLEnumeratorRef, url: ?*URLRef, @"error": ?*ErrorRef) callconv(.C) URLEnumeratorResult;
 pub const urlEnumeratorGetNextURL = CFURLEnumeratorGetNextURL;
@@ -4235,7 +4107,7 @@ pub const urlEnumeratorGetSourceDidChange = CFURLEnumeratorGetSourceDidChange;
 
 pub const __CFFileSecurity = extern struct {};
 
-pub const FileSecurityRef = ?*__CFFileSecurity;
+pub const FileSecurityRef = __CFFileSecurity;
 
 extern "CoreFoundation" fn CFFileSecurityGetTypeID() callconv(.C) TypeID;
 pub const fileSecurityGetTypeID = CFFileSecurityGetTypeID;
@@ -4282,14 +4154,13 @@ pub const fileSecurityGetMode = CFFileSecurityGetMode;
 extern "CoreFoundation" fn CFFileSecuritySetMode(fileSec: FileSecurityRef, mode: objc.mode_t) callconv(.C) objc.Boolean;
 pub const fileSecuritySetMode = CFFileSecuritySetMode;
 
-pub const FileSecurityClearOptions = enum(OptionFlags) {
-    Owner = 1,
-    Group = 2,
-    Mode = 4,
-    OwnerUUID = 8,
-    GroupUUID = 16,
-    AccessControlList = 32,
-};
+pub const FileSecurityClearOptions = OptionFlags;
+pub const FileSecurityClearOptions_Owner: OptionFlags = 1;
+pub const FileSecurityClearOptions_Group: OptionFlags = 2;
+pub const FileSecurityClearOptions_Mode: OptionFlags = 4;
+pub const FileSecurityClearOptions_OwnerUUID: OptionFlags = 8;
+pub const FileSecurityClearOptions_GroupUUID: OptionFlags = 16;
+pub const FileSecurityClearOptions_AccessControlList: OptionFlags = 32;
 
 extern "CoreFoundation" fn CFFileSecurityClearProperties(fileSec: FileSecurityRef, clearPropertyMask: FileSecurityClearOptions) callconv(.C) objc.Boolean;
 pub const fileSecurityClearProperties = CFFileSecurityClearProperties;
@@ -4299,27 +4170,25 @@ pub const stringTokenizerCopyBestStringLanguage = CFStringTokenizerCopyBestStrin
 
 pub const __CFStringTokenizer = extern struct {};
 
-pub const StringTokenizerRef = ?*__CFStringTokenizer;
+pub const StringTokenizerRef = __CFStringTokenizer;
 
-pub const anon651 = enum(OptionFlags) {
-    CFStringTokenizerUnitWord = 0,
-    CFStringTokenizerUnitSentence = 1,
-    CFStringTokenizerUnitParagraph = 2,
-    CFStringTokenizerUnitLineBreak = 3,
-    CFStringTokenizerUnitWordBoundary = 4,
-    CFStringTokenizerAttributeLatinTranscription = 65536,
-    CFStringTokenizerAttributeLanguage = 131072,
-};
+pub const anon651 = OptionFlags;
+pub const anon651_CFStringTokenizerUnitWord: OptionFlags = 0;
+pub const anon651_CFStringTokenizerUnitSentence: OptionFlags = 1;
+pub const anon651_CFStringTokenizerUnitParagraph: OptionFlags = 2;
+pub const anon651_CFStringTokenizerUnitLineBreak: OptionFlags = 3;
+pub const anon651_CFStringTokenizerUnitWordBoundary: OptionFlags = 4;
+pub const anon651_CFStringTokenizerAttributeLatinTranscription: OptionFlags = 65536;
+pub const anon651_CFStringTokenizerAttributeLanguage: OptionFlags = 131072;
 
-pub const StringTokenizerTokenType = enum(OptionFlags) {
-    None = 0,
-    Normal = 1,
-    HasSubTokensMask = 2,
-    HasDerivedSubTokensMask = 4,
-    HasHasNumbersMask = 8,
-    HasNonLettersMask = 16,
-    IsCJWordMask = 32,
-};
+pub const StringTokenizerTokenType = OptionFlags;
+pub const StringTokenizerTokenType_None: OptionFlags = 0;
+pub const StringTokenizerTokenType_Normal: OptionFlags = 1;
+pub const StringTokenizerTokenType_HasSubTokensMask: OptionFlags = 2;
+pub const StringTokenizerTokenType_HasDerivedSubTokensMask: OptionFlags = 4;
+pub const StringTokenizerTokenType_HasHasNumbersMask: OptionFlags = 8;
+pub const StringTokenizerTokenType_HasNonLettersMask: OptionFlags = 16;
+pub const StringTokenizerTokenType_IsCJWordMask: OptionFlags = 32;
 
 extern "CoreFoundation" fn CFStringTokenizerGetTypeID() callconv(.C) TypeID;
 pub const stringTokenizerGetTypeID = CFStringTokenizerGetTypeID;
@@ -4360,12 +4229,11 @@ pub const FileDescriptorNativeDescriptor = i32;
 
 pub const __CFFileDescriptor = extern struct {};
 
-pub const FileDescriptorRef = ?*__CFFileDescriptor;
+pub const FileDescriptorRef = __CFFileDescriptor;
 
-pub const anon181 = enum(OptionFlags) {
-    CFFileDescriptorReadCallBack = 1,
-    CFFileDescriptorWriteCallBack = 2,
-};
+pub const anon181 = OptionFlags;
+pub const anon181_CFFileDescriptorReadCallBack: OptionFlags = 1;
+pub const anon181_CFFileDescriptorWriteCallBack: OptionFlags = 2;
 
 pub const FileDescriptorCallBack = ?*const fn (FileDescriptorRef, OptionFlags, ?*anyopaque) callconv(.C) void;
 
@@ -4412,7 +4280,7 @@ pub const fileDescriptorCreateRunLoopSource = CFFileDescriptorCreateRunLoopSourc
 
 pub const __CFUserNotification = extern struct {};
 
-pub const UserNotificationRef = ?*__CFUserNotification;
+pub const UserNotificationRef = __CFUserNotification;
 
 pub const UserNotificationCallBack = ?*const fn (UserNotificationRef, OptionFlags) callconv(.C) void;
 
@@ -4483,56 +4351,43 @@ extern "CoreFoundation" fn CFUserNotificationDisplayAlert(
 ) callconv(.C) objc.SInt32;
 pub const userNotificationDisplayAlert = CFUserNotificationDisplayAlert;
 
-pub const anon1071 = enum(OptionFlags) {
-    CFUserNotificationStopAlertLevel = 0,
-    CFUserNotificationNoteAlertLevel = 1,
-    CFUserNotificationCautionAlertLevel = 2,
-    CFUserNotificationPlainAlertLevel = 3,
-};
+pub const anon1071 = OptionFlags;
+pub const anon1071_CFUserNotificationStopAlertLevel: OptionFlags = 0;
+pub const anon1071_CFUserNotificationNoteAlertLevel: OptionFlags = 1;
+pub const anon1071_CFUserNotificationCautionAlertLevel: OptionFlags = 2;
+pub const anon1071_CFUserNotificationPlainAlertLevel: OptionFlags = 3;
 
-pub const anon1141 = enum(OptionFlags) {
-    CFUserNotificationDefaultResponse = 0,
-    CFUserNotificationAlternateResponse = 1,
-    CFUserNotificationOtherResponse = 2,
-    CFUserNotificationCancelResponse = 3,
-};
+pub const anon1141 = OptionFlags;
+pub const anon1141_CFUserNotificationDefaultResponse: OptionFlags = 0;
+pub const anon1141_CFUserNotificationAlternateResponse: OptionFlags = 1;
+pub const anon1141_CFUserNotificationOtherResponse: OptionFlags = 2;
+pub const anon1141_CFUserNotificationCancelResponse: OptionFlags = 3;
 
-extern "CoreFoundation" fn CFUserNotificationCheckBoxChecked(i: Index) callconv(.C) OptionFlags;
-pub const userNotificationCheckBoxChecked = CFUserNotificationCheckBoxChecked;
-
-extern "CoreFoundation" fn CFUserNotificationSecureTextField(i: Index) callconv(.C) OptionFlags;
-pub const userNotificationSecureTextField = CFUserNotificationSecureTextField;
-
-extern "CoreFoundation" fn CFUserNotificationPopUpSelection(n: Index) callconv(.C) OptionFlags;
-pub const userNotificationPopUpSelection = CFUserNotificationPopUpSelection;
-
-pub const anon301 = enum(Index) {
-    CFXMLNodeCurrentVersion = 1,
-};
+pub const anon301 = Index;
+pub const anon301_CFXMLNodeCurrentVersion: Index = 1;
 
 pub const __CFXMLNode = extern struct {};
 
-pub const XMLNodeRef = ?*__CFXMLNode;
+pub const XMLNodeRef = __CFXMLNode;
 
 pub const XMLTreeRef = TreeRef;
 
-pub const XMLNodeTypeCode = enum(Index) {
-    Document = 1,
-    Element = 2,
-    Attribute = 3,
-    ProcessingInstruction = 4,
-    Comment = 5,
-    Text = 6,
-    DATASection = 7,
-    DocumentFragment = 8,
-    Entity = 9,
-    EntityReference = 10,
-    DocumentType = 11,
-    Whitespace = 12,
-    Notation = 13,
-    ElementTypeDeclaration = 14,
-    AttributeListDeclaration = 15,
-};
+pub const XMLNodeTypeCode = Index;
+pub const XMLNodeTypeCode_Document: Index = 1;
+pub const XMLNodeTypeCode_Element: Index = 2;
+pub const XMLNodeTypeCode_Attribute: Index = 3;
+pub const XMLNodeTypeCode_ProcessingInstruction: Index = 4;
+pub const XMLNodeTypeCode_Comment: Index = 5;
+pub const XMLNodeTypeCode_Text: Index = 6;
+pub const XMLNodeTypeCode_DATASection: Index = 7;
+pub const XMLNodeTypeCode_DocumentFragment: Index = 8;
+pub const XMLNodeTypeCode_Entity: Index = 9;
+pub const XMLNodeTypeCode_EntityReference: Index = 10;
+pub const XMLNodeTypeCode_DocumentType: Index = 11;
+pub const XMLNodeTypeCode_Whitespace: Index = 12;
+pub const XMLNodeTypeCode_Notation: Index = 13;
+pub const XMLNodeTypeCode_ElementTypeDeclaration: Index = 14;
+pub const XMLNodeTypeCode_AttributeListDeclaration: Index = 15;
 
 pub const XMLElementInfo = extern struct {
     attributes: DictionaryRef,
@@ -4578,13 +4433,12 @@ pub const XMLAttributeListDeclarationInfo = extern struct {
     attributes: ?*XMLAttributeDeclarationInfo,
 };
 
-pub const XMLEntityTypeCode = enum(Index) {
-    Parameter = 0,
-    ParsedInternal = 1,
-    ParsedExternal = 2,
-    Unparsed = 3,
-    Character = 4,
-};
+pub const XMLEntityTypeCode = Index;
+pub const XMLEntityTypeCode_Parameter: Index = 0;
+pub const XMLEntityTypeCode_ParsedInternal: Index = 1;
+pub const XMLEntityTypeCode_ParsedExternal: Index = 2;
+pub const XMLEntityTypeCode_Unparsed: Index = 3;
+pub const XMLEntityTypeCode_Character: Index = 4;
 
 pub const XMLEntityInfo = extern struct {
     entityType: XMLEntityTypeCode,
@@ -4632,39 +4486,37 @@ pub const xmlTreeGetNode = CFXMLTreeGetNode;
 
 pub const __CFXMLParser = extern struct {};
 
-pub const XMLParserRef = ?*__CFXMLParser;
+pub const XMLParserRef = __CFXMLParser;
 
-pub const XMLParserOptions = enum(OptionFlags) {
-    ValidateDocument = 1,
-    SkipMetaData = 2,
-    ReplacePhysicalEntities = 4,
-    SkipWhitespace = 8,
-    ResolveExternalEntities = 16,
-    AddImpliedAttributes = 32,
-    AllOptions = 16777215,
-    NoOptions = 0,
-};
+pub const XMLParserOptions = OptionFlags;
+pub const XMLParserOptions_ValidateDocument: OptionFlags = 1;
+pub const XMLParserOptions_SkipMetaData: OptionFlags = 2;
+pub const XMLParserOptions_ReplacePhysicalEntities: OptionFlags = 4;
+pub const XMLParserOptions_SkipWhitespace: OptionFlags = 8;
+pub const XMLParserOptions_ResolveExternalEntities: OptionFlags = 16;
+pub const XMLParserOptions_AddImpliedAttributes: OptionFlags = 32;
+pub const XMLParserOptions_AllOptions: OptionFlags = 16777215;
+pub const XMLParserOptions_NoOptions: OptionFlags = 0;
 
-pub const XMLParserStatusCode = enum(Index) {
-    StatusParseNotBegun = -2,
-    StatusParseInProgress = -1,
-    StatusParseSuccessful = 0,
-    ErrorUnexpectedEOF = 1,
-    ErrorUnknownEncoding = 2,
-    ErrorEncodingConversionFailure = 3,
-    ErrorMalformedProcessingInstruction = 4,
-    ErrorMalformedDTD = 5,
-    ErrorMalformedName = 6,
-    ErrorMalformedCDSect = 7,
-    ErrorMalformedCloseTag = 8,
-    ErrorMalformedStartTag = 9,
-    ErrorMalformedDocument = 10,
-    ErrorElementlessDocument = 11,
-    ErrorMalformedComment = 12,
-    ErrorMalformedCharacterReference = 13,
-    ErrorMalformedParsedCharacterData = 14,
-    ErrorNoData = 15,
-};
+pub const XMLParserStatusCode = Index;
+pub const XMLParserStatusCode_StatusParseNotBegun: Index = -2;
+pub const XMLParserStatusCode_StatusParseInProgress: Index = -1;
+pub const XMLParserStatusCode_StatusParseSuccessful: Index = 0;
+pub const XMLParserStatusCode_ErrorUnexpectedEOF: Index = 1;
+pub const XMLParserStatusCode_ErrorUnknownEncoding: Index = 2;
+pub const XMLParserStatusCode_ErrorEncodingConversionFailure: Index = 3;
+pub const XMLParserStatusCode_ErrorMalformedProcessingInstruction: Index = 4;
+pub const XMLParserStatusCode_ErrorMalformedDTD: Index = 5;
+pub const XMLParserStatusCode_ErrorMalformedName: Index = 6;
+pub const XMLParserStatusCode_ErrorMalformedCDSect: Index = 7;
+pub const XMLParserStatusCode_ErrorMalformedCloseTag: Index = 8;
+pub const XMLParserStatusCode_ErrorMalformedStartTag: Index = 9;
+pub const XMLParserStatusCode_ErrorMalformedDocument: Index = 10;
+pub const XMLParserStatusCode_ErrorElementlessDocument: Index = 11;
+pub const XMLParserStatusCode_ErrorMalformedComment: Index = 12;
+pub const XMLParserStatusCode_ErrorMalformedCharacterReference: Index = 13;
+pub const XMLParserStatusCode_ErrorMalformedParsedCharacterData: Index = 14;
+pub const XMLParserStatusCode_ErrorNoData: Index = 15;
 
 pub const XMLParserCreateXMLStructureCallBack = ?*const fn (XMLParserRef, XMLNodeRef, ?*anyopaque) callconv(.C) ?*anyopaque;
 
@@ -4677,9 +4529,9 @@ pub const XMLParserAddChildCallBack = ?*const fn (
 
 pub const XMLParserEndXMLStructureCallBack = ?*const fn (XMLParserRef, ?*anyopaque, ?*anyopaque) callconv(.C) void;
 
-pub const XMLParserResolveExternalEntityCallBack = ?*const fn (XMLParserRef, ?*XMLExternalID, ?*anyopaque) callconv(.C) DataRef;
+pub const XMLParserResolveExternalEntityCallBack = DataRef;
 
-pub const XMLParserHandleErrorCallBack = ?*const fn (XMLParserRef, XMLParserStatusCode, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const XMLParserHandleErrorCallBack = objc.Boolean;
 
 pub const XMLParserCallBacks = extern struct {
     version: Index,
@@ -4694,7 +4546,7 @@ pub const XMLParserRetainCallBack = ?*const fn (?*anyopaque) callconv(.C) ?*anyo
 
 pub const XMLParserReleaseCallBack = ?*const fn (?*anyopaque) callconv(.C) void;
 
-pub const XMLParserCopyDescriptionCallBack = ?*const fn (?*anyopaque) callconv(.C) StringRef;
+pub const XMLParserCopyDescriptionCallBack = StringRef;
 
 pub const XMLParserContext = extern struct {
     version: Index,

@@ -7,41 +7,41 @@ const foundation = @import("foundation.zig"); // Framework dependency Foundation
 
 pub const __SecCertificate = extern struct {};
 
-pub const CertificateRef = ?*__SecCertificate;
+pub const CertificateRef = __SecCertificate;
 
 pub const OpaqueSecCertificateRef = __SecCertificate;
 
 pub const __SecIdentity = extern struct {};
 
-pub const IdentityRef = ?*__SecIdentity;
+pub const IdentityRef = __SecIdentity;
 
 pub const OpaqueSecIdentityRef = __SecIdentity;
 
 pub const __SecKey = extern struct {};
 
-pub const KeyRef = ?*__SecKey;
+pub const KeyRef = __SecKey;
 
 pub const OpaqueSecKeyRef = __SecKey;
 
 pub const __SecPolicy = extern struct {};
 
-pub const PolicyRef = ?*__SecPolicy;
+pub const PolicyRef = __SecPolicy;
 
 pub const __SecAccessControl = extern struct {};
 
-pub const AccessControlRef = ?*__SecAccessControl;
+pub const AccessControlRef = __SecAccessControl;
 
 pub const __SecKeychain = extern struct {};
 
-pub const KeychainRef = ?*__SecKeychain;
+pub const KeychainRef = __SecKeychain;
 
 pub const __SecKeychainItem = extern struct {};
 
-pub const KeychainItemRef = ?*__SecKeychainItem;
+pub const KeychainItemRef = __SecKeychainItem;
 
 pub const __SecKeychainSearch = extern struct {};
 
-pub const KeychainSearchRef = ?*__SecKeychainSearch;
+pub const KeychainSearchRef = __SecKeychainSearch;
 
 pub const KeychainAttrType = objc.OSType;
 
@@ -51,7 +51,7 @@ pub const KeychainAttribute = extern struct {
     data: ?*anyopaque,
 };
 
-pub const KeychainAttributePtr = ?*KeychainAttribute;
+pub const KeychainAttributePtr = KeychainAttribute;
 
 pub const KeychainAttributeList = extern struct {
     count: objc.UInt32,
@@ -62,21 +62,21 @@ pub const KeychainStatus = objc.UInt32;
 
 pub const __SecTrustedApplication = extern struct {};
 
-pub const TrustedApplicationRef = ?*__SecTrustedApplication;
+pub const TrustedApplicationRef = __SecTrustedApplication;
 
 pub const __SecAccess = extern struct {};
 
-pub const AccessRef = ?*__SecAccess;
+pub const AccessRef = __SecAccess;
 
 pub const OpaqueSecAccessRef = __SecAccess;
 
 pub const __SecACL = extern struct {};
 
-pub const ACLRef = ?*__SecACL;
+pub const ACLRef = __SecACL;
 
 pub const __SecPassword = extern struct {};
 
-pub const PasswordRef = ?*__SecPassword;
+pub const PasswordRef = __SecPassword;
 
 pub const KeychainAttributeInfo = extern struct {
     count: objc.UInt32,
@@ -87,468 +87,466 @@ pub const KeychainAttributeInfo = extern struct {
 extern "Security" fn SecCopyErrorMessageString(status: objc.OSStatus, reserved: ?*anyopaque) callconv(.C) core_foundation.StringRef;
 pub const copyErrorMessageString = SecCopyErrorMessageString;
 
-pub const anon3181 = enum(objc.OSStatus) {
-    errSecSuccess = 0,
-    errSecUnimplemented = -4,
-    errSecDiskFull = -34,
-    errSecDskFull = -34,
-    errSecIO = -36,
-    errSecOpWr = -49,
-    errSecParam = -50,
-    errSecWrPerm = -61,
-    errSecAllocate = -108,
-    errSecUserCanceled = -128,
-    errSecBadReq = -909,
-    errSecInternalComponent = -2070,
-    errSecCoreFoundationUnknown = -4960,
-    errSecMissingEntitlement = -34018,
-    errSecRestrictedAPI = -34020,
-    errSecNotAvailable = -25291,
-    errSecReadOnly = -25292,
-    errSecAuthFailed = -25293,
-    errSecNoSuchKeychain = -25294,
-    errSecInvalidKeychain = -25295,
-    errSecDuplicateKeychain = -25296,
-    errSecDuplicateCallback = -25297,
-    errSecInvalidCallback = -25298,
-    errSecDuplicateItem = -25299,
-    errSecItemNotFound = -25300,
-    errSecBufferTooSmall = -25301,
-    errSecDataTooLarge = -25302,
-    errSecNoSuchAttr = -25303,
-    errSecInvalidItemRef = -25304,
-    errSecInvalidSearchRef = -25305,
-    errSecNoSuchClass = -25306,
-    errSecNoDefaultKeychain = -25307,
-    errSecInteractionNotAllowed = -25308,
-    errSecReadOnlyAttr = -25309,
-    errSecWrongSecVersion = -25310,
-    errSecKeySizeNotAllowed = -25311,
-    errSecNoStorageModule = -25312,
-    errSecNoCertificateModule = -25313,
-    errSecNoPolicyModule = -25314,
-    errSecInteractionRequired = -25315,
-    errSecDataNotAvailable = -25316,
-    errSecDataNotModifiable = -25317,
-    errSecCreateChainFailed = -25318,
-    errSecInvalidPrefsDomain = -25319,
-    errSecInDarkWake = -25320,
-    errSecACLNotSimple = -25240,
-    errSecPolicyNotFound = -25241,
-    errSecInvalidTrustSetting = -25242,
-    errSecNoAccessForItem = -25243,
-    errSecInvalidOwnerEdit = -25244,
-    errSecTrustNotAvailable = -25245,
-    errSecUnsupportedFormat = -25256,
-    errSecUnknownFormat = -25257,
-    errSecKeyIsSensitive = -25258,
-    errSecMultiplePrivKeys = -25259,
-    errSecPassphraseRequired = -25260,
-    errSecInvalidPasswordRef = -25261,
-    errSecInvalidTrustSettings = -25262,
-    errSecNoTrustSettings = -25263,
-    errSecPkcs12VerifyFailure = -25264,
-    errSecNotSigner = -26267,
-    errSecDecode = -26275,
-    errSecServiceNotAvailable = -67585,
-    errSecInsufficientClientID = -67586,
-    errSecDeviceReset = -67587,
-    errSecDeviceFailed = -67588,
-    errSecAppleAddAppACLSubject = -67589,
-    errSecApplePublicKeyIncomplete = -67590,
-    errSecAppleSignatureMismatch = -67591,
-    errSecAppleInvalidKeyStartDate = -67592,
-    errSecAppleInvalidKeyEndDate = -67593,
-    errSecConversionError = -67594,
-    errSecAppleSSLv2Rollback = -67595,
-    errSecQuotaExceeded = -67596,
-    errSecFileTooBig = -67597,
-    errSecInvalidDatabaseBlob = -67598,
-    errSecInvalidKeyBlob = -67599,
-    errSecIncompatibleDatabaseBlob = -67600,
-    errSecIncompatibleKeyBlob = -67601,
-    errSecHostNameMismatch = -67602,
-    errSecUnknownCriticalExtensionFlag = -67603,
-    errSecNoBasicConstraints = -67604,
-    errSecNoBasicConstraintsCA = -67605,
-    errSecInvalidAuthorityKeyID = -67606,
-    errSecInvalidSubjectKeyID = -67607,
-    errSecInvalidKeyUsageForPolicy = -67608,
-    errSecInvalidExtendedKeyUsage = -67609,
-    errSecInvalidIDLinkage = -67610,
-    errSecPathLengthConstraintExceeded = -67611,
-    errSecInvalidRoot = -67612,
-    errSecCRLExpired = -67613,
-    errSecCRLNotValidYet = -67614,
-    errSecCRLNotFound = -67615,
-    errSecCRLServerDown = -67616,
-    errSecCRLBadURI = -67617,
-    errSecUnknownCertExtension = -67618,
-    errSecUnknownCRLExtension = -67619,
-    errSecCRLNotTrusted = -67620,
-    errSecCRLPolicyFailed = -67621,
-    errSecIDPFailure = -67622,
-    errSecSMIMEEmailAddressesNotFound = -67623,
-    errSecSMIMEBadExtendedKeyUsage = -67624,
-    errSecSMIMEBadKeyUsage = -67625,
-    errSecSMIMEKeyUsageNotCritical = -67626,
-    errSecSMIMENoEmailAddress = -67627,
-    errSecSMIMESubjAltNameNotCritical = -67628,
-    errSecSSLBadExtendedKeyUsage = -67629,
-    errSecOCSPBadResponse = -67630,
-    errSecOCSPBadRequest = -67631,
-    errSecOCSPUnavailable = -67632,
-    errSecOCSPStatusUnrecognized = -67633,
-    errSecEndOfData = -67634,
-    errSecIncompleteCertRevocationCheck = -67635,
-    errSecNetworkFailure = -67636,
-    errSecOCSPNotTrustedToAnchor = -67637,
-    errSecRecordModified = -67638,
-    errSecOCSPSignatureError = -67639,
-    errSecOCSPNoSigner = -67640,
-    errSecOCSPResponderMalformedReq = -67641,
-    errSecOCSPResponderInternalError = -67642,
-    errSecOCSPResponderTryLater = -67643,
-    errSecOCSPResponderSignatureRequired = -67644,
-    errSecOCSPResponderUnauthorized = -67645,
-    errSecOCSPResponseNonceMismatch = -67646,
-    errSecCodeSigningBadCertChainLength = -67647,
-    errSecCodeSigningNoBasicConstraints = -67648,
-    errSecCodeSigningBadPathLengthConstraint = -67649,
-    errSecCodeSigningNoExtendedKeyUsage = -67650,
-    errSecCodeSigningDevelopment = -67651,
-    errSecResourceSignBadCertChainLength = -67652,
-    errSecResourceSignBadExtKeyUsage = -67653,
-    errSecTrustSettingDeny = -67654,
-    errSecInvalidSubjectName = -67655,
-    errSecUnknownQualifiedCertStatement = -67656,
-    errSecMobileMeRequestQueued = -67657,
-    errSecMobileMeRequestRedirected = -67658,
-    errSecMobileMeServerError = -67659,
-    errSecMobileMeServerNotAvailable = -67660,
-    errSecMobileMeServerAlreadyExists = -67661,
-    errSecMobileMeServerServiceErr = -67662,
-    errSecMobileMeRequestAlreadyPending = -67663,
-    errSecMobileMeNoRequestPending = -67664,
-    errSecMobileMeCSRVerifyFailure = -67665,
-    errSecMobileMeFailedConsistencyCheck = -67666,
-    errSecNotInitialized = -67667,
-    errSecInvalidHandleUsage = -67668,
-    errSecPVCReferentNotFound = -67669,
-    errSecFunctionIntegrityFail = -67670,
-    errSecInternalError = -67671,
-    errSecMemoryError = -67672,
-    errSecInvalidData = -67673,
-    errSecMDSError = -67674,
-    errSecInvalidPointer = -67675,
-    errSecSelfCheckFailed = -67676,
-    errSecFunctionFailed = -67677,
-    errSecModuleManifestVerifyFailed = -67678,
-    errSecInvalidGUID = -67679,
-    errSecInvalidHandle = -67680,
-    errSecInvalidDBList = -67681,
-    errSecInvalidPassthroughID = -67682,
-    errSecInvalidNetworkAddress = -67683,
-    errSecCRLAlreadySigned = -67684,
-    errSecInvalidNumberOfFields = -67685,
-    errSecVerificationFailure = -67686,
-    errSecUnknownTag = -67687,
-    errSecInvalidSignature = -67688,
-    errSecInvalidName = -67689,
-    errSecInvalidCertificateRef = -67690,
-    errSecInvalidCertificateGroup = -67691,
-    errSecTagNotFound = -67692,
-    errSecInvalidQuery = -67693,
-    errSecInvalidValue = -67694,
-    errSecCallbackFailed = -67695,
-    errSecACLDeleteFailed = -67696,
-    errSecACLReplaceFailed = -67697,
-    errSecACLAddFailed = -67698,
-    errSecACLChangeFailed = -67699,
-    errSecInvalidAccessCredentials = -67700,
-    errSecInvalidRecord = -67701,
-    errSecInvalidACL = -67702,
-    errSecInvalidSampleValue = -67703,
-    errSecIncompatibleVersion = -67704,
-    errSecPrivilegeNotGranted = -67705,
-    errSecInvalidScope = -67706,
-    errSecPVCAlreadyConfigured = -67707,
-    errSecInvalidPVC = -67708,
-    errSecEMMLoadFailed = -67709,
-    errSecEMMUnloadFailed = -67710,
-    errSecAddinLoadFailed = -67711,
-    errSecInvalidKeyRef = -67712,
-    errSecInvalidKeyHierarchy = -67713,
-    errSecAddinUnloadFailed = -67714,
-    errSecLibraryReferenceNotFound = -67715,
-    errSecInvalidAddinFunctionTable = -67716,
-    errSecInvalidServiceMask = -67717,
-    errSecModuleNotLoaded = -67718,
-    errSecInvalidSubServiceID = -67719,
-    errSecAttributeNotInContext = -67720,
-    errSecModuleManagerInitializeFailed = -67721,
-    errSecModuleManagerNotFound = -67722,
-    errSecEventNotificationCallbackNotFound = -67723,
-    errSecInputLengthError = -67724,
-    errSecOutputLengthError = -67725,
-    errSecPrivilegeNotSupported = -67726,
-    errSecDeviceError = -67727,
-    errSecAttachHandleBusy = -67728,
-    errSecNotLoggedIn = -67729,
-    errSecAlgorithmMismatch = -67730,
-    errSecKeyUsageIncorrect = -67731,
-    errSecKeyBlobTypeIncorrect = -67732,
-    errSecKeyHeaderInconsistent = -67733,
-    errSecUnsupportedKeyFormat = -67734,
-    errSecUnsupportedKeySize = -67735,
-    errSecInvalidKeyUsageMask = -67736,
-    errSecUnsupportedKeyUsageMask = -67737,
-    errSecInvalidKeyAttributeMask = -67738,
-    errSecUnsupportedKeyAttributeMask = -67739,
-    errSecInvalidKeyLabel = -67740,
-    errSecUnsupportedKeyLabel = -67741,
-    errSecInvalidKeyFormat = -67742,
-    errSecUnsupportedVectorOfBuffers = -67743,
-    errSecInvalidInputVector = -67744,
-    errSecInvalidOutputVector = -67745,
-    errSecInvalidContext = -67746,
-    errSecInvalidAlgorithm = -67747,
-    errSecInvalidAttributeKey = -67748,
-    errSecMissingAttributeKey = -67749,
-    errSecInvalidAttributeInitVector = -67750,
-    errSecMissingAttributeInitVector = -67751,
-    errSecInvalidAttributeSalt = -67752,
-    errSecMissingAttributeSalt = -67753,
-    errSecInvalidAttributePadding = -67754,
-    errSecMissingAttributePadding = -67755,
-    errSecInvalidAttributeRandom = -67756,
-    errSecMissingAttributeRandom = -67757,
-    errSecInvalidAttributeSeed = -67758,
-    errSecMissingAttributeSeed = -67759,
-    errSecInvalidAttributePassphrase = -67760,
-    errSecMissingAttributePassphrase = -67761,
-    errSecInvalidAttributeKeyLength = -67762,
-    errSecMissingAttributeKeyLength = -67763,
-    errSecInvalidAttributeBlockSize = -67764,
-    errSecMissingAttributeBlockSize = -67765,
-    errSecInvalidAttributeOutputSize = -67766,
-    errSecMissingAttributeOutputSize = -67767,
-    errSecInvalidAttributeRounds = -67768,
-    errSecMissingAttributeRounds = -67769,
-    errSecInvalidAlgorithmParms = -67770,
-    errSecMissingAlgorithmParms = -67771,
-    errSecInvalidAttributeLabel = -67772,
-    errSecMissingAttributeLabel = -67773,
-    errSecInvalidAttributeKeyType = -67774,
-    errSecMissingAttributeKeyType = -67775,
-    errSecInvalidAttributeMode = -67776,
-    errSecMissingAttributeMode = -67777,
-    errSecInvalidAttributeEffectiveBits = -67778,
-    errSecMissingAttributeEffectiveBits = -67779,
-    errSecInvalidAttributeStartDate = -67780,
-    errSecMissingAttributeStartDate = -67781,
-    errSecInvalidAttributeEndDate = -67782,
-    errSecMissingAttributeEndDate = -67783,
-    errSecInvalidAttributeVersion = -67784,
-    errSecMissingAttributeVersion = -67785,
-    errSecInvalidAttributePrime = -67786,
-    errSecMissingAttributePrime = -67787,
-    errSecInvalidAttributeBase = -67788,
-    errSecMissingAttributeBase = -67789,
-    errSecInvalidAttributeSubprime = -67790,
-    errSecMissingAttributeSubprime = -67791,
-    errSecInvalidAttributeIterationCount = -67792,
-    errSecMissingAttributeIterationCount = -67793,
-    errSecInvalidAttributeDLDBHandle = -67794,
-    errSecMissingAttributeDLDBHandle = -67795,
-    errSecInvalidAttributeAccessCredentials = -67796,
-    errSecMissingAttributeAccessCredentials = -67797,
-    errSecInvalidAttributePublicKeyFormat = -67798,
-    errSecMissingAttributePublicKeyFormat = -67799,
-    errSecInvalidAttributePrivateKeyFormat = -67800,
-    errSecMissingAttributePrivateKeyFormat = -67801,
-    errSecInvalidAttributeSymmetricKeyFormat = -67802,
-    errSecMissingAttributeSymmetricKeyFormat = -67803,
-    errSecInvalidAttributeWrappedKeyFormat = -67804,
-    errSecMissingAttributeWrappedKeyFormat = -67805,
-    errSecStagedOperationInProgress = -67806,
-    errSecStagedOperationNotStarted = -67807,
-    errSecVerifyFailed = -67808,
-    errSecQuerySizeUnknown = -67809,
-    errSecBlockSizeMismatch = -67810,
-    errSecPublicKeyInconsistent = -67811,
-    errSecDeviceVerifyFailed = -67812,
-    errSecInvalidLoginName = -67813,
-    errSecAlreadyLoggedIn = -67814,
-    errSecInvalidDigestAlgorithm = -67815,
-    errSecInvalidCRLGroup = -67816,
-    errSecCertificateCannotOperate = -67817,
-    errSecCertificateExpired = -67818,
-    errSecCertificateNotValidYet = -67819,
-    errSecCertificateRevoked = -67820,
-    errSecCertificateSuspended = -67821,
-    errSecInsufficientCredentials = -67822,
-    errSecInvalidAction = -67823,
-    errSecInvalidAuthority = -67824,
-    errSecVerifyActionFailed = -67825,
-    errSecInvalidCertAuthority = -67826,
-    errSecInvalidCRLAuthority = -67827,
-    errSecInvaldCRLAuthority = -67827,
-    errSecInvalidCRLEncoding = -67828,
-    errSecInvalidCRLType = -67829,
-    errSecInvalidCRL = -67830,
-    errSecInvalidFormType = -67831,
-    errSecInvalidID = -67832,
-    errSecInvalidIdentifier = -67833,
-    errSecInvalidIndex = -67834,
-    errSecInvalidPolicyIdentifiers = -67835,
-    errSecInvalidTimeString = -67836,
-    errSecInvalidReason = -67837,
-    errSecInvalidRequestInputs = -67838,
-    errSecInvalidResponseVector = -67839,
-    errSecInvalidStopOnPolicy = -67840,
-    errSecInvalidTuple = -67841,
-    errSecMultipleValuesUnsupported = -67842,
-    errSecNotTrusted = -67843,
-    errSecNoDefaultAuthority = -67844,
-    errSecRejectedForm = -67845,
-    errSecRequestLost = -67846,
-    errSecRequestRejected = -67847,
-    errSecUnsupportedAddressType = -67848,
-    errSecUnsupportedService = -67849,
-    errSecInvalidTupleGroup = -67850,
-    errSecInvalidBaseACLs = -67851,
-    errSecInvalidTupleCredentials = -67852,
-    errSecInvalidTupleCredendtials = -67852,
-    errSecInvalidEncoding = -67853,
-    errSecInvalidValidityPeriod = -67854,
-    errSecInvalidRequestor = -67855,
-    errSecRequestDescriptor = -67856,
-    errSecInvalidBundleInfo = -67857,
-    errSecInvalidCRLIndex = -67858,
-    errSecNoFieldValues = -67859,
-    errSecUnsupportedFieldFormat = -67860,
-    errSecUnsupportedIndexInfo = -67861,
-    errSecUnsupportedLocality = -67862,
-    errSecUnsupportedNumAttributes = -67863,
-    errSecUnsupportedNumIndexes = -67864,
-    errSecUnsupportedNumRecordTypes = -67865,
-    errSecFieldSpecifiedMultiple = -67866,
-    errSecIncompatibleFieldFormat = -67867,
-    errSecInvalidParsingModule = -67868,
-    errSecDatabaseLocked = -67869,
-    errSecDatastoreIsOpen = -67870,
-    errSecMissingValue = -67871,
-    errSecUnsupportedQueryLimits = -67872,
-    errSecUnsupportedNumSelectionPreds = -67873,
-    errSecUnsupportedOperator = -67874,
-    errSecInvalidDBLocation = -67875,
-    errSecInvalidAccessRequest = -67876,
-    errSecInvalidIndexInfo = -67877,
-    errSecInvalidNewOwner = -67878,
-    errSecInvalidModifyMode = -67879,
-    errSecMissingRequiredExtension = -67880,
-    errSecExtendedKeyUsageNotCritical = -67881,
-    errSecTimestampMissing = -67882,
-    errSecTimestampInvalid = -67883,
-    errSecTimestampNotTrusted = -67884,
-    errSecTimestampServiceNotAvailable = -67885,
-    errSecTimestampBadAlg = -67886,
-    errSecTimestampBadRequest = -67887,
-    errSecTimestampBadDataFormat = -67888,
-    errSecTimestampTimeNotAvailable = -67889,
-    errSecTimestampUnacceptedPolicy = -67890,
-    errSecTimestampUnacceptedExtension = -67891,
-    errSecTimestampAddInfoNotAvailable = -67892,
-    errSecTimestampSystemFailure = -67893,
-    errSecSigningTimeMissing = -67894,
-    errSecTimestampRejection = -67895,
-    errSecTimestampWaiting = -67896,
-    errSecTimestampRevocationWarning = -67897,
-    errSecTimestampRevocationNotification = -67898,
-    errSecCertificatePolicyNotAllowed = -67899,
-    errSecCertificateNameNotAllowed = -67900,
-    errSecCertificateValidityPeriodTooLong = -67901,
-    errSecCertificateIsCA = -67902,
-    errSecCertificateDuplicateExtension = -67903,
-};
+pub const anon3181 = objc.OSStatus;
+pub const anon3181_errSecSuccess: objc.OSStatus = 0;
+pub const anon3181_errSecUnimplemented: objc.OSStatus = -4;
+pub const anon3181_errSecDiskFull: objc.OSStatus = -34;
+pub const anon3181_errSecDskFull: objc.OSStatus = -34;
+pub const anon3181_errSecIO: objc.OSStatus = -36;
+pub const anon3181_errSecOpWr: objc.OSStatus = -49;
+pub const anon3181_errSecParam: objc.OSStatus = -50;
+pub const anon3181_errSecWrPerm: objc.OSStatus = -61;
+pub const anon3181_errSecAllocate: objc.OSStatus = -108;
+pub const anon3181_errSecUserCanceled: objc.OSStatus = -128;
+pub const anon3181_errSecBadReq: objc.OSStatus = -909;
+pub const anon3181_errSecInternalComponent: objc.OSStatus = -2070;
+pub const anon3181_errSecCoreFoundationUnknown: objc.OSStatus = -4960;
+pub const anon3181_errSecMissingEntitlement: objc.OSStatus = -34018;
+pub const anon3181_errSecRestrictedAPI: objc.OSStatus = -34020;
+pub const anon3181_errSecNotAvailable: objc.OSStatus = -25291;
+pub const anon3181_errSecReadOnly: objc.OSStatus = -25292;
+pub const anon3181_errSecAuthFailed: objc.OSStatus = -25293;
+pub const anon3181_errSecNoSuchKeychain: objc.OSStatus = -25294;
+pub const anon3181_errSecInvalidKeychain: objc.OSStatus = -25295;
+pub const anon3181_errSecDuplicateKeychain: objc.OSStatus = -25296;
+pub const anon3181_errSecDuplicateCallback: objc.OSStatus = -25297;
+pub const anon3181_errSecInvalidCallback: objc.OSStatus = -25298;
+pub const anon3181_errSecDuplicateItem: objc.OSStatus = -25299;
+pub const anon3181_errSecItemNotFound: objc.OSStatus = -25300;
+pub const anon3181_errSecBufferTooSmall: objc.OSStatus = -25301;
+pub const anon3181_errSecDataTooLarge: objc.OSStatus = -25302;
+pub const anon3181_errSecNoSuchAttr: objc.OSStatus = -25303;
+pub const anon3181_errSecInvalidItemRef: objc.OSStatus = -25304;
+pub const anon3181_errSecInvalidSearchRef: objc.OSStatus = -25305;
+pub const anon3181_errSecNoSuchClass: objc.OSStatus = -25306;
+pub const anon3181_errSecNoDefaultKeychain: objc.OSStatus = -25307;
+pub const anon3181_errSecInteractionNotAllowed: objc.OSStatus = -25308;
+pub const anon3181_errSecReadOnlyAttr: objc.OSStatus = -25309;
+pub const anon3181_errSecWrongSecVersion: objc.OSStatus = -25310;
+pub const anon3181_errSecKeySizeNotAllowed: objc.OSStatus = -25311;
+pub const anon3181_errSecNoStorageModule: objc.OSStatus = -25312;
+pub const anon3181_errSecNoCertificateModule: objc.OSStatus = -25313;
+pub const anon3181_errSecNoPolicyModule: objc.OSStatus = -25314;
+pub const anon3181_errSecInteractionRequired: objc.OSStatus = -25315;
+pub const anon3181_errSecDataNotAvailable: objc.OSStatus = -25316;
+pub const anon3181_errSecDataNotModifiable: objc.OSStatus = -25317;
+pub const anon3181_errSecCreateChainFailed: objc.OSStatus = -25318;
+pub const anon3181_errSecInvalidPrefsDomain: objc.OSStatus = -25319;
+pub const anon3181_errSecInDarkWake: objc.OSStatus = -25320;
+pub const anon3181_errSecACLNotSimple: objc.OSStatus = -25240;
+pub const anon3181_errSecPolicyNotFound: objc.OSStatus = -25241;
+pub const anon3181_errSecInvalidTrustSetting: objc.OSStatus = -25242;
+pub const anon3181_errSecNoAccessForItem: objc.OSStatus = -25243;
+pub const anon3181_errSecInvalidOwnerEdit: objc.OSStatus = -25244;
+pub const anon3181_errSecTrustNotAvailable: objc.OSStatus = -25245;
+pub const anon3181_errSecUnsupportedFormat: objc.OSStatus = -25256;
+pub const anon3181_errSecUnknownFormat: objc.OSStatus = -25257;
+pub const anon3181_errSecKeyIsSensitive: objc.OSStatus = -25258;
+pub const anon3181_errSecMultiplePrivKeys: objc.OSStatus = -25259;
+pub const anon3181_errSecPassphraseRequired: objc.OSStatus = -25260;
+pub const anon3181_errSecInvalidPasswordRef: objc.OSStatus = -25261;
+pub const anon3181_errSecInvalidTrustSettings: objc.OSStatus = -25262;
+pub const anon3181_errSecNoTrustSettings: objc.OSStatus = -25263;
+pub const anon3181_errSecPkcs12VerifyFailure: objc.OSStatus = -25264;
+pub const anon3181_errSecNotSigner: objc.OSStatus = -26267;
+pub const anon3181_errSecDecode: objc.OSStatus = -26275;
+pub const anon3181_errSecServiceNotAvailable: objc.OSStatus = -67585;
+pub const anon3181_errSecInsufficientClientID: objc.OSStatus = -67586;
+pub const anon3181_errSecDeviceReset: objc.OSStatus = -67587;
+pub const anon3181_errSecDeviceFailed: objc.OSStatus = -67588;
+pub const anon3181_errSecAppleAddAppACLSubject: objc.OSStatus = -67589;
+pub const anon3181_errSecApplePublicKeyIncomplete: objc.OSStatus = -67590;
+pub const anon3181_errSecAppleSignatureMismatch: objc.OSStatus = -67591;
+pub const anon3181_errSecAppleInvalidKeyStartDate: objc.OSStatus = -67592;
+pub const anon3181_errSecAppleInvalidKeyEndDate: objc.OSStatus = -67593;
+pub const anon3181_errSecConversionError: objc.OSStatus = -67594;
+pub const anon3181_errSecAppleSSLv2Rollback: objc.OSStatus = -67595;
+pub const anon3181_errSecQuotaExceeded: objc.OSStatus = -67596;
+pub const anon3181_errSecFileTooBig: objc.OSStatus = -67597;
+pub const anon3181_errSecInvalidDatabaseBlob: objc.OSStatus = -67598;
+pub const anon3181_errSecInvalidKeyBlob: objc.OSStatus = -67599;
+pub const anon3181_errSecIncompatibleDatabaseBlob: objc.OSStatus = -67600;
+pub const anon3181_errSecIncompatibleKeyBlob: objc.OSStatus = -67601;
+pub const anon3181_errSecHostNameMismatch: objc.OSStatus = -67602;
+pub const anon3181_errSecUnknownCriticalExtensionFlag: objc.OSStatus = -67603;
+pub const anon3181_errSecNoBasicConstraints: objc.OSStatus = -67604;
+pub const anon3181_errSecNoBasicConstraintsCA: objc.OSStatus = -67605;
+pub const anon3181_errSecInvalidAuthorityKeyID: objc.OSStatus = -67606;
+pub const anon3181_errSecInvalidSubjectKeyID: objc.OSStatus = -67607;
+pub const anon3181_errSecInvalidKeyUsageForPolicy: objc.OSStatus = -67608;
+pub const anon3181_errSecInvalidExtendedKeyUsage: objc.OSStatus = -67609;
+pub const anon3181_errSecInvalidIDLinkage: objc.OSStatus = -67610;
+pub const anon3181_errSecPathLengthConstraintExceeded: objc.OSStatus = -67611;
+pub const anon3181_errSecInvalidRoot: objc.OSStatus = -67612;
+pub const anon3181_errSecCRLExpired: objc.OSStatus = -67613;
+pub const anon3181_errSecCRLNotValidYet: objc.OSStatus = -67614;
+pub const anon3181_errSecCRLNotFound: objc.OSStatus = -67615;
+pub const anon3181_errSecCRLServerDown: objc.OSStatus = -67616;
+pub const anon3181_errSecCRLBadURI: objc.OSStatus = -67617;
+pub const anon3181_errSecUnknownCertExtension: objc.OSStatus = -67618;
+pub const anon3181_errSecUnknownCRLExtension: objc.OSStatus = -67619;
+pub const anon3181_errSecCRLNotTrusted: objc.OSStatus = -67620;
+pub const anon3181_errSecCRLPolicyFailed: objc.OSStatus = -67621;
+pub const anon3181_errSecIDPFailure: objc.OSStatus = -67622;
+pub const anon3181_errSecSMIMEEmailAddressesNotFound: objc.OSStatus = -67623;
+pub const anon3181_errSecSMIMEBadExtendedKeyUsage: objc.OSStatus = -67624;
+pub const anon3181_errSecSMIMEBadKeyUsage: objc.OSStatus = -67625;
+pub const anon3181_errSecSMIMEKeyUsageNotCritical: objc.OSStatus = -67626;
+pub const anon3181_errSecSMIMENoEmailAddress: objc.OSStatus = -67627;
+pub const anon3181_errSecSMIMESubjAltNameNotCritical: objc.OSStatus = -67628;
+pub const anon3181_errSecSSLBadExtendedKeyUsage: objc.OSStatus = -67629;
+pub const anon3181_errSecOCSPBadResponse: objc.OSStatus = -67630;
+pub const anon3181_errSecOCSPBadRequest: objc.OSStatus = -67631;
+pub const anon3181_errSecOCSPUnavailable: objc.OSStatus = -67632;
+pub const anon3181_errSecOCSPStatusUnrecognized: objc.OSStatus = -67633;
+pub const anon3181_errSecEndOfData: objc.OSStatus = -67634;
+pub const anon3181_errSecIncompleteCertRevocationCheck: objc.OSStatus = -67635;
+pub const anon3181_errSecNetworkFailure: objc.OSStatus = -67636;
+pub const anon3181_errSecOCSPNotTrustedToAnchor: objc.OSStatus = -67637;
+pub const anon3181_errSecRecordModified: objc.OSStatus = -67638;
+pub const anon3181_errSecOCSPSignatureError: objc.OSStatus = -67639;
+pub const anon3181_errSecOCSPNoSigner: objc.OSStatus = -67640;
+pub const anon3181_errSecOCSPResponderMalformedReq: objc.OSStatus = -67641;
+pub const anon3181_errSecOCSPResponderInternalError: objc.OSStatus = -67642;
+pub const anon3181_errSecOCSPResponderTryLater: objc.OSStatus = -67643;
+pub const anon3181_errSecOCSPResponderSignatureRequired: objc.OSStatus = -67644;
+pub const anon3181_errSecOCSPResponderUnauthorized: objc.OSStatus = -67645;
+pub const anon3181_errSecOCSPResponseNonceMismatch: objc.OSStatus = -67646;
+pub const anon3181_errSecCodeSigningBadCertChainLength: objc.OSStatus = -67647;
+pub const anon3181_errSecCodeSigningNoBasicConstraints: objc.OSStatus = -67648;
+pub const anon3181_errSecCodeSigningBadPathLengthConstraint: objc.OSStatus = -67649;
+pub const anon3181_errSecCodeSigningNoExtendedKeyUsage: objc.OSStatus = -67650;
+pub const anon3181_errSecCodeSigningDevelopment: objc.OSStatus = -67651;
+pub const anon3181_errSecResourceSignBadCertChainLength: objc.OSStatus = -67652;
+pub const anon3181_errSecResourceSignBadExtKeyUsage: objc.OSStatus = -67653;
+pub const anon3181_errSecTrustSettingDeny: objc.OSStatus = -67654;
+pub const anon3181_errSecInvalidSubjectName: objc.OSStatus = -67655;
+pub const anon3181_errSecUnknownQualifiedCertStatement: objc.OSStatus = -67656;
+pub const anon3181_errSecMobileMeRequestQueued: objc.OSStatus = -67657;
+pub const anon3181_errSecMobileMeRequestRedirected: objc.OSStatus = -67658;
+pub const anon3181_errSecMobileMeServerError: objc.OSStatus = -67659;
+pub const anon3181_errSecMobileMeServerNotAvailable: objc.OSStatus = -67660;
+pub const anon3181_errSecMobileMeServerAlreadyExists: objc.OSStatus = -67661;
+pub const anon3181_errSecMobileMeServerServiceErr: objc.OSStatus = -67662;
+pub const anon3181_errSecMobileMeRequestAlreadyPending: objc.OSStatus = -67663;
+pub const anon3181_errSecMobileMeNoRequestPending: objc.OSStatus = -67664;
+pub const anon3181_errSecMobileMeCSRVerifyFailure: objc.OSStatus = -67665;
+pub const anon3181_errSecMobileMeFailedConsistencyCheck: objc.OSStatus = -67666;
+pub const anon3181_errSecNotInitialized: objc.OSStatus = -67667;
+pub const anon3181_errSecInvalidHandleUsage: objc.OSStatus = -67668;
+pub const anon3181_errSecPVCReferentNotFound: objc.OSStatus = -67669;
+pub const anon3181_errSecFunctionIntegrityFail: objc.OSStatus = -67670;
+pub const anon3181_errSecInternalError: objc.OSStatus = -67671;
+pub const anon3181_errSecMemoryError: objc.OSStatus = -67672;
+pub const anon3181_errSecInvalidData: objc.OSStatus = -67673;
+pub const anon3181_errSecMDSError: objc.OSStatus = -67674;
+pub const anon3181_errSecInvalidPointer: objc.OSStatus = -67675;
+pub const anon3181_errSecSelfCheckFailed: objc.OSStatus = -67676;
+pub const anon3181_errSecFunctionFailed: objc.OSStatus = -67677;
+pub const anon3181_errSecModuleManifestVerifyFailed: objc.OSStatus = -67678;
+pub const anon3181_errSecInvalidGUID: objc.OSStatus = -67679;
+pub const anon3181_errSecInvalidHandle: objc.OSStatus = -67680;
+pub const anon3181_errSecInvalidDBList: objc.OSStatus = -67681;
+pub const anon3181_errSecInvalidPassthroughID: objc.OSStatus = -67682;
+pub const anon3181_errSecInvalidNetworkAddress: objc.OSStatus = -67683;
+pub const anon3181_errSecCRLAlreadySigned: objc.OSStatus = -67684;
+pub const anon3181_errSecInvalidNumberOfFields: objc.OSStatus = -67685;
+pub const anon3181_errSecVerificationFailure: objc.OSStatus = -67686;
+pub const anon3181_errSecUnknownTag: objc.OSStatus = -67687;
+pub const anon3181_errSecInvalidSignature: objc.OSStatus = -67688;
+pub const anon3181_errSecInvalidName: objc.OSStatus = -67689;
+pub const anon3181_errSecInvalidCertificateRef: objc.OSStatus = -67690;
+pub const anon3181_errSecInvalidCertificateGroup: objc.OSStatus = -67691;
+pub const anon3181_errSecTagNotFound: objc.OSStatus = -67692;
+pub const anon3181_errSecInvalidQuery: objc.OSStatus = -67693;
+pub const anon3181_errSecInvalidValue: objc.OSStatus = -67694;
+pub const anon3181_errSecCallbackFailed: objc.OSStatus = -67695;
+pub const anon3181_errSecACLDeleteFailed: objc.OSStatus = -67696;
+pub const anon3181_errSecACLReplaceFailed: objc.OSStatus = -67697;
+pub const anon3181_errSecACLAddFailed: objc.OSStatus = -67698;
+pub const anon3181_errSecACLChangeFailed: objc.OSStatus = -67699;
+pub const anon3181_errSecInvalidAccessCredentials: objc.OSStatus = -67700;
+pub const anon3181_errSecInvalidRecord: objc.OSStatus = -67701;
+pub const anon3181_errSecInvalidACL: objc.OSStatus = -67702;
+pub const anon3181_errSecInvalidSampleValue: objc.OSStatus = -67703;
+pub const anon3181_errSecIncompatibleVersion: objc.OSStatus = -67704;
+pub const anon3181_errSecPrivilegeNotGranted: objc.OSStatus = -67705;
+pub const anon3181_errSecInvalidScope: objc.OSStatus = -67706;
+pub const anon3181_errSecPVCAlreadyConfigured: objc.OSStatus = -67707;
+pub const anon3181_errSecInvalidPVC: objc.OSStatus = -67708;
+pub const anon3181_errSecEMMLoadFailed: objc.OSStatus = -67709;
+pub const anon3181_errSecEMMUnloadFailed: objc.OSStatus = -67710;
+pub const anon3181_errSecAddinLoadFailed: objc.OSStatus = -67711;
+pub const anon3181_errSecInvalidKeyRef: objc.OSStatus = -67712;
+pub const anon3181_errSecInvalidKeyHierarchy: objc.OSStatus = -67713;
+pub const anon3181_errSecAddinUnloadFailed: objc.OSStatus = -67714;
+pub const anon3181_errSecLibraryReferenceNotFound: objc.OSStatus = -67715;
+pub const anon3181_errSecInvalidAddinFunctionTable: objc.OSStatus = -67716;
+pub const anon3181_errSecInvalidServiceMask: objc.OSStatus = -67717;
+pub const anon3181_errSecModuleNotLoaded: objc.OSStatus = -67718;
+pub const anon3181_errSecInvalidSubServiceID: objc.OSStatus = -67719;
+pub const anon3181_errSecAttributeNotInContext: objc.OSStatus = -67720;
+pub const anon3181_errSecModuleManagerInitializeFailed: objc.OSStatus = -67721;
+pub const anon3181_errSecModuleManagerNotFound: objc.OSStatus = -67722;
+pub const anon3181_errSecEventNotificationCallbackNotFound: objc.OSStatus = -67723;
+pub const anon3181_errSecInputLengthError: objc.OSStatus = -67724;
+pub const anon3181_errSecOutputLengthError: objc.OSStatus = -67725;
+pub const anon3181_errSecPrivilegeNotSupported: objc.OSStatus = -67726;
+pub const anon3181_errSecDeviceError: objc.OSStatus = -67727;
+pub const anon3181_errSecAttachHandleBusy: objc.OSStatus = -67728;
+pub const anon3181_errSecNotLoggedIn: objc.OSStatus = -67729;
+pub const anon3181_errSecAlgorithmMismatch: objc.OSStatus = -67730;
+pub const anon3181_errSecKeyUsageIncorrect: objc.OSStatus = -67731;
+pub const anon3181_errSecKeyBlobTypeIncorrect: objc.OSStatus = -67732;
+pub const anon3181_errSecKeyHeaderInconsistent: objc.OSStatus = -67733;
+pub const anon3181_errSecUnsupportedKeyFormat: objc.OSStatus = -67734;
+pub const anon3181_errSecUnsupportedKeySize: objc.OSStatus = -67735;
+pub const anon3181_errSecInvalidKeyUsageMask: objc.OSStatus = -67736;
+pub const anon3181_errSecUnsupportedKeyUsageMask: objc.OSStatus = -67737;
+pub const anon3181_errSecInvalidKeyAttributeMask: objc.OSStatus = -67738;
+pub const anon3181_errSecUnsupportedKeyAttributeMask: objc.OSStatus = -67739;
+pub const anon3181_errSecInvalidKeyLabel: objc.OSStatus = -67740;
+pub const anon3181_errSecUnsupportedKeyLabel: objc.OSStatus = -67741;
+pub const anon3181_errSecInvalidKeyFormat: objc.OSStatus = -67742;
+pub const anon3181_errSecUnsupportedVectorOfBuffers: objc.OSStatus = -67743;
+pub const anon3181_errSecInvalidInputVector: objc.OSStatus = -67744;
+pub const anon3181_errSecInvalidOutputVector: objc.OSStatus = -67745;
+pub const anon3181_errSecInvalidContext: objc.OSStatus = -67746;
+pub const anon3181_errSecInvalidAlgorithm: objc.OSStatus = -67747;
+pub const anon3181_errSecInvalidAttributeKey: objc.OSStatus = -67748;
+pub const anon3181_errSecMissingAttributeKey: objc.OSStatus = -67749;
+pub const anon3181_errSecInvalidAttributeInitVector: objc.OSStatus = -67750;
+pub const anon3181_errSecMissingAttributeInitVector: objc.OSStatus = -67751;
+pub const anon3181_errSecInvalidAttributeSalt: objc.OSStatus = -67752;
+pub const anon3181_errSecMissingAttributeSalt: objc.OSStatus = -67753;
+pub const anon3181_errSecInvalidAttributePadding: objc.OSStatus = -67754;
+pub const anon3181_errSecMissingAttributePadding: objc.OSStatus = -67755;
+pub const anon3181_errSecInvalidAttributeRandom: objc.OSStatus = -67756;
+pub const anon3181_errSecMissingAttributeRandom: objc.OSStatus = -67757;
+pub const anon3181_errSecInvalidAttributeSeed: objc.OSStatus = -67758;
+pub const anon3181_errSecMissingAttributeSeed: objc.OSStatus = -67759;
+pub const anon3181_errSecInvalidAttributePassphrase: objc.OSStatus = -67760;
+pub const anon3181_errSecMissingAttributePassphrase: objc.OSStatus = -67761;
+pub const anon3181_errSecInvalidAttributeKeyLength: objc.OSStatus = -67762;
+pub const anon3181_errSecMissingAttributeKeyLength: objc.OSStatus = -67763;
+pub const anon3181_errSecInvalidAttributeBlockSize: objc.OSStatus = -67764;
+pub const anon3181_errSecMissingAttributeBlockSize: objc.OSStatus = -67765;
+pub const anon3181_errSecInvalidAttributeOutputSize: objc.OSStatus = -67766;
+pub const anon3181_errSecMissingAttributeOutputSize: objc.OSStatus = -67767;
+pub const anon3181_errSecInvalidAttributeRounds: objc.OSStatus = -67768;
+pub const anon3181_errSecMissingAttributeRounds: objc.OSStatus = -67769;
+pub const anon3181_errSecInvalidAlgorithmParms: objc.OSStatus = -67770;
+pub const anon3181_errSecMissingAlgorithmParms: objc.OSStatus = -67771;
+pub const anon3181_errSecInvalidAttributeLabel: objc.OSStatus = -67772;
+pub const anon3181_errSecMissingAttributeLabel: objc.OSStatus = -67773;
+pub const anon3181_errSecInvalidAttributeKeyType: objc.OSStatus = -67774;
+pub const anon3181_errSecMissingAttributeKeyType: objc.OSStatus = -67775;
+pub const anon3181_errSecInvalidAttributeMode: objc.OSStatus = -67776;
+pub const anon3181_errSecMissingAttributeMode: objc.OSStatus = -67777;
+pub const anon3181_errSecInvalidAttributeEffectiveBits: objc.OSStatus = -67778;
+pub const anon3181_errSecMissingAttributeEffectiveBits: objc.OSStatus = -67779;
+pub const anon3181_errSecInvalidAttributeStartDate: objc.OSStatus = -67780;
+pub const anon3181_errSecMissingAttributeStartDate: objc.OSStatus = -67781;
+pub const anon3181_errSecInvalidAttributeEndDate: objc.OSStatus = -67782;
+pub const anon3181_errSecMissingAttributeEndDate: objc.OSStatus = -67783;
+pub const anon3181_errSecInvalidAttributeVersion: objc.OSStatus = -67784;
+pub const anon3181_errSecMissingAttributeVersion: objc.OSStatus = -67785;
+pub const anon3181_errSecInvalidAttributePrime: objc.OSStatus = -67786;
+pub const anon3181_errSecMissingAttributePrime: objc.OSStatus = -67787;
+pub const anon3181_errSecInvalidAttributeBase: objc.OSStatus = -67788;
+pub const anon3181_errSecMissingAttributeBase: objc.OSStatus = -67789;
+pub const anon3181_errSecInvalidAttributeSubprime: objc.OSStatus = -67790;
+pub const anon3181_errSecMissingAttributeSubprime: objc.OSStatus = -67791;
+pub const anon3181_errSecInvalidAttributeIterationCount: objc.OSStatus = -67792;
+pub const anon3181_errSecMissingAttributeIterationCount: objc.OSStatus = -67793;
+pub const anon3181_errSecInvalidAttributeDLDBHandle: objc.OSStatus = -67794;
+pub const anon3181_errSecMissingAttributeDLDBHandle: objc.OSStatus = -67795;
+pub const anon3181_errSecInvalidAttributeAccessCredentials: objc.OSStatus = -67796;
+pub const anon3181_errSecMissingAttributeAccessCredentials: objc.OSStatus = -67797;
+pub const anon3181_errSecInvalidAttributePublicKeyFormat: objc.OSStatus = -67798;
+pub const anon3181_errSecMissingAttributePublicKeyFormat: objc.OSStatus = -67799;
+pub const anon3181_errSecInvalidAttributePrivateKeyFormat: objc.OSStatus = -67800;
+pub const anon3181_errSecMissingAttributePrivateKeyFormat: objc.OSStatus = -67801;
+pub const anon3181_errSecInvalidAttributeSymmetricKeyFormat: objc.OSStatus = -67802;
+pub const anon3181_errSecMissingAttributeSymmetricKeyFormat: objc.OSStatus = -67803;
+pub const anon3181_errSecInvalidAttributeWrappedKeyFormat: objc.OSStatus = -67804;
+pub const anon3181_errSecMissingAttributeWrappedKeyFormat: objc.OSStatus = -67805;
+pub const anon3181_errSecStagedOperationInProgress: objc.OSStatus = -67806;
+pub const anon3181_errSecStagedOperationNotStarted: objc.OSStatus = -67807;
+pub const anon3181_errSecVerifyFailed: objc.OSStatus = -67808;
+pub const anon3181_errSecQuerySizeUnknown: objc.OSStatus = -67809;
+pub const anon3181_errSecBlockSizeMismatch: objc.OSStatus = -67810;
+pub const anon3181_errSecPublicKeyInconsistent: objc.OSStatus = -67811;
+pub const anon3181_errSecDeviceVerifyFailed: objc.OSStatus = -67812;
+pub const anon3181_errSecInvalidLoginName: objc.OSStatus = -67813;
+pub const anon3181_errSecAlreadyLoggedIn: objc.OSStatus = -67814;
+pub const anon3181_errSecInvalidDigestAlgorithm: objc.OSStatus = -67815;
+pub const anon3181_errSecInvalidCRLGroup: objc.OSStatus = -67816;
+pub const anon3181_errSecCertificateCannotOperate: objc.OSStatus = -67817;
+pub const anon3181_errSecCertificateExpired: objc.OSStatus = -67818;
+pub const anon3181_errSecCertificateNotValidYet: objc.OSStatus = -67819;
+pub const anon3181_errSecCertificateRevoked: objc.OSStatus = -67820;
+pub const anon3181_errSecCertificateSuspended: objc.OSStatus = -67821;
+pub const anon3181_errSecInsufficientCredentials: objc.OSStatus = -67822;
+pub const anon3181_errSecInvalidAction: objc.OSStatus = -67823;
+pub const anon3181_errSecInvalidAuthority: objc.OSStatus = -67824;
+pub const anon3181_errSecVerifyActionFailed: objc.OSStatus = -67825;
+pub const anon3181_errSecInvalidCertAuthority: objc.OSStatus = -67826;
+pub const anon3181_errSecInvalidCRLAuthority: objc.OSStatus = -67827;
+pub const anon3181_errSecInvaldCRLAuthority: objc.OSStatus = -67827;
+pub const anon3181_errSecInvalidCRLEncoding: objc.OSStatus = -67828;
+pub const anon3181_errSecInvalidCRLType: objc.OSStatus = -67829;
+pub const anon3181_errSecInvalidCRL: objc.OSStatus = -67830;
+pub const anon3181_errSecInvalidFormType: objc.OSStatus = -67831;
+pub const anon3181_errSecInvalidID: objc.OSStatus = -67832;
+pub const anon3181_errSecInvalidIdentifier: objc.OSStatus = -67833;
+pub const anon3181_errSecInvalidIndex: objc.OSStatus = -67834;
+pub const anon3181_errSecInvalidPolicyIdentifiers: objc.OSStatus = -67835;
+pub const anon3181_errSecInvalidTimeString: objc.OSStatus = -67836;
+pub const anon3181_errSecInvalidReason: objc.OSStatus = -67837;
+pub const anon3181_errSecInvalidRequestInputs: objc.OSStatus = -67838;
+pub const anon3181_errSecInvalidResponseVector: objc.OSStatus = -67839;
+pub const anon3181_errSecInvalidStopOnPolicy: objc.OSStatus = -67840;
+pub const anon3181_errSecInvalidTuple: objc.OSStatus = -67841;
+pub const anon3181_errSecMultipleValuesUnsupported: objc.OSStatus = -67842;
+pub const anon3181_errSecNotTrusted: objc.OSStatus = -67843;
+pub const anon3181_errSecNoDefaultAuthority: objc.OSStatus = -67844;
+pub const anon3181_errSecRejectedForm: objc.OSStatus = -67845;
+pub const anon3181_errSecRequestLost: objc.OSStatus = -67846;
+pub const anon3181_errSecRequestRejected: objc.OSStatus = -67847;
+pub const anon3181_errSecUnsupportedAddressType: objc.OSStatus = -67848;
+pub const anon3181_errSecUnsupportedService: objc.OSStatus = -67849;
+pub const anon3181_errSecInvalidTupleGroup: objc.OSStatus = -67850;
+pub const anon3181_errSecInvalidBaseACLs: objc.OSStatus = -67851;
+pub const anon3181_errSecInvalidTupleCredentials: objc.OSStatus = -67852;
+pub const anon3181_errSecInvalidTupleCredendtials: objc.OSStatus = -67852;
+pub const anon3181_errSecInvalidEncoding: objc.OSStatus = -67853;
+pub const anon3181_errSecInvalidValidityPeriod: objc.OSStatus = -67854;
+pub const anon3181_errSecInvalidRequestor: objc.OSStatus = -67855;
+pub const anon3181_errSecRequestDescriptor: objc.OSStatus = -67856;
+pub const anon3181_errSecInvalidBundleInfo: objc.OSStatus = -67857;
+pub const anon3181_errSecInvalidCRLIndex: objc.OSStatus = -67858;
+pub const anon3181_errSecNoFieldValues: objc.OSStatus = -67859;
+pub const anon3181_errSecUnsupportedFieldFormat: objc.OSStatus = -67860;
+pub const anon3181_errSecUnsupportedIndexInfo: objc.OSStatus = -67861;
+pub const anon3181_errSecUnsupportedLocality: objc.OSStatus = -67862;
+pub const anon3181_errSecUnsupportedNumAttributes: objc.OSStatus = -67863;
+pub const anon3181_errSecUnsupportedNumIndexes: objc.OSStatus = -67864;
+pub const anon3181_errSecUnsupportedNumRecordTypes: objc.OSStatus = -67865;
+pub const anon3181_errSecFieldSpecifiedMultiple: objc.OSStatus = -67866;
+pub const anon3181_errSecIncompatibleFieldFormat: objc.OSStatus = -67867;
+pub const anon3181_errSecInvalidParsingModule: objc.OSStatus = -67868;
+pub const anon3181_errSecDatabaseLocked: objc.OSStatus = -67869;
+pub const anon3181_errSecDatastoreIsOpen: objc.OSStatus = -67870;
+pub const anon3181_errSecMissingValue: objc.OSStatus = -67871;
+pub const anon3181_errSecUnsupportedQueryLimits: objc.OSStatus = -67872;
+pub const anon3181_errSecUnsupportedNumSelectionPreds: objc.OSStatus = -67873;
+pub const anon3181_errSecUnsupportedOperator: objc.OSStatus = -67874;
+pub const anon3181_errSecInvalidDBLocation: objc.OSStatus = -67875;
+pub const anon3181_errSecInvalidAccessRequest: objc.OSStatus = -67876;
+pub const anon3181_errSecInvalidIndexInfo: objc.OSStatus = -67877;
+pub const anon3181_errSecInvalidNewOwner: objc.OSStatus = -67878;
+pub const anon3181_errSecInvalidModifyMode: objc.OSStatus = -67879;
+pub const anon3181_errSecMissingRequiredExtension: objc.OSStatus = -67880;
+pub const anon3181_errSecExtendedKeyUsageNotCritical: objc.OSStatus = -67881;
+pub const anon3181_errSecTimestampMissing: objc.OSStatus = -67882;
+pub const anon3181_errSecTimestampInvalid: objc.OSStatus = -67883;
+pub const anon3181_errSecTimestampNotTrusted: objc.OSStatus = -67884;
+pub const anon3181_errSecTimestampServiceNotAvailable: objc.OSStatus = -67885;
+pub const anon3181_errSecTimestampBadAlg: objc.OSStatus = -67886;
+pub const anon3181_errSecTimestampBadRequest: objc.OSStatus = -67887;
+pub const anon3181_errSecTimestampBadDataFormat: objc.OSStatus = -67888;
+pub const anon3181_errSecTimestampTimeNotAvailable: objc.OSStatus = -67889;
+pub const anon3181_errSecTimestampUnacceptedPolicy: objc.OSStatus = -67890;
+pub const anon3181_errSecTimestampUnacceptedExtension: objc.OSStatus = -67891;
+pub const anon3181_errSecTimestampAddInfoNotAvailable: objc.OSStatus = -67892;
+pub const anon3181_errSecTimestampSystemFailure: objc.OSStatus = -67893;
+pub const anon3181_errSecSigningTimeMissing: objc.OSStatus = -67894;
+pub const anon3181_errSecTimestampRejection: objc.OSStatus = -67895;
+pub const anon3181_errSecTimestampWaiting: objc.OSStatus = -67896;
+pub const anon3181_errSecTimestampRevocationWarning: objc.OSStatus = -67897;
+pub const anon3181_errSecTimestampRevocationNotification: objc.OSStatus = -67898;
+pub const anon3181_errSecCertificatePolicyNotAllowed: objc.OSStatus = -67899;
+pub const anon3181_errSecCertificateNameNotAllowed: objc.OSStatus = -67900;
+pub const anon3181_errSecCertificateValidityPeriodTooLong: objc.OSStatus = -67901;
+pub const anon3181_errSecCertificateIsCA: objc.OSStatus = -67902;
+pub const anon3181_errSecCertificateDuplicateExtension: objc.OSStatus = -67903;
 
-pub const anon7991 = enum(objc.OSStatus) {
-    errSSLProtocol = -9800,
-    errSSLNegotiation = -9801,
-    errSSLFatalAlert = -9802,
-    errSSLWouldBlock = -9803,
-    errSSLSessionNotFound = -9804,
-    errSSLClosedGraceful = -9805,
-    errSSLClosedAbort = -9806,
-    errSSLXCertChainInvalid = -9807,
-    errSSLBadCert = -9808,
-    errSSLCrypto = -9809,
-    errSSLInternal = -9810,
-    errSSLModuleAttach = -9811,
-    errSSLUnknownRootCert = -9812,
-    errSSLNoRootCert = -9813,
-    errSSLCertExpired = -9814,
-    errSSLCertNotYetValid = -9815,
-    errSSLClosedNoNotify = -9816,
-    errSSLBufferOverflow = -9817,
-    errSSLBadCipherSuite = -9818,
-    errSSLPeerUnexpectedMsg = -9819,
-    errSSLPeerBadRecordMac = -9820,
-    errSSLPeerDecryptionFail = -9821,
-    errSSLPeerRecordOverflow = -9822,
-    errSSLPeerDecompressFail = -9823,
-    errSSLPeerHandshakeFail = -9824,
-    errSSLPeerBadCert = -9825,
-    errSSLPeerUnsupportedCert = -9826,
-    errSSLPeerCertRevoked = -9827,
-    errSSLPeerCertExpired = -9828,
-    errSSLPeerCertUnknown = -9829,
-    errSSLIllegalParam = -9830,
-    errSSLPeerUnknownCA = -9831,
-    errSSLPeerAccessDenied = -9832,
-    errSSLPeerDecodeError = -9833,
-    errSSLPeerDecryptError = -9834,
-    errSSLPeerExportRestriction = -9835,
-    errSSLPeerProtocolVersion = -9836,
-    errSSLPeerInsufficientSecurity = -9837,
-    errSSLPeerInternalError = -9838,
-    errSSLPeerUserCancelled = -9839,
-    errSSLPeerNoRenegotiation = -9840,
-    errSSLPeerAuthCompleted = -9841,
-    errSSLClientCertRequested = -9842,
-    errSSLHostNameMismatch = -9843,
-    errSSLConnectionRefused = -9844,
-    errSSLDecryptionFail = -9845,
-    errSSLBadRecordMac = -9846,
-    errSSLRecordOverflow = -9847,
-    errSSLBadConfiguration = -9848,
-    errSSLUnexpectedRecord = -9849,
-    errSSLWeakPeerEphemeralDHKey = -9850,
-    errSSLClientHelloReceived = -9851,
-    errSSLTransportReset = -9852,
-    errSSLNetworkTimeout = -9853,
-    errSSLConfigurationFailed = -9854,
-    errSSLUnsupportedExtension = -9855,
-    errSSLUnexpectedMessage = -9856,
-    errSSLDecompressFail = -9857,
-    errSSLHandshakeFail = -9858,
-    errSSLDecodeError = -9859,
-    errSSLInappropriateFallback = -9860,
-    errSSLMissingExtension = -9861,
-    errSSLBadCertificateStatusResponse = -9862,
-    errSSLCertificateRequired = -9863,
-    errSSLUnknownPSKIdentity = -9864,
-    errSSLUnrecognizedName = -9865,
-    errSSLATSViolation = -9880,
-    errSSLATSMinimumVersionViolation = -9881,
-    errSSLATSCiphersuiteViolation = -9882,
-    errSSLATSMinimumKeySizeViolation = -9883,
-    errSSLATSLeafCertificateHashAlgorithmViolation = -9884,
-    errSSLATSCertificateHashAlgorithmViolation = -9885,
-    errSSLATSCertificateTrustViolation = -9886,
-    errSSLEarlyDataRejected = -9890,
-};
+pub const anon7991 = objc.OSStatus;
+pub const anon7991_errSSLProtocol: objc.OSStatus = -9800;
+pub const anon7991_errSSLNegotiation: objc.OSStatus = -9801;
+pub const anon7991_errSSLFatalAlert: objc.OSStatus = -9802;
+pub const anon7991_errSSLWouldBlock: objc.OSStatus = -9803;
+pub const anon7991_errSSLSessionNotFound: objc.OSStatus = -9804;
+pub const anon7991_errSSLClosedGraceful: objc.OSStatus = -9805;
+pub const anon7991_errSSLClosedAbort: objc.OSStatus = -9806;
+pub const anon7991_errSSLXCertChainInvalid: objc.OSStatus = -9807;
+pub const anon7991_errSSLBadCert: objc.OSStatus = -9808;
+pub const anon7991_errSSLCrypto: objc.OSStatus = -9809;
+pub const anon7991_errSSLInternal: objc.OSStatus = -9810;
+pub const anon7991_errSSLModuleAttach: objc.OSStatus = -9811;
+pub const anon7991_errSSLUnknownRootCert: objc.OSStatus = -9812;
+pub const anon7991_errSSLNoRootCert: objc.OSStatus = -9813;
+pub const anon7991_errSSLCertExpired: objc.OSStatus = -9814;
+pub const anon7991_errSSLCertNotYetValid: objc.OSStatus = -9815;
+pub const anon7991_errSSLClosedNoNotify: objc.OSStatus = -9816;
+pub const anon7991_errSSLBufferOverflow: objc.OSStatus = -9817;
+pub const anon7991_errSSLBadCipherSuite: objc.OSStatus = -9818;
+pub const anon7991_errSSLPeerUnexpectedMsg: objc.OSStatus = -9819;
+pub const anon7991_errSSLPeerBadRecordMac: objc.OSStatus = -9820;
+pub const anon7991_errSSLPeerDecryptionFail: objc.OSStatus = -9821;
+pub const anon7991_errSSLPeerRecordOverflow: objc.OSStatus = -9822;
+pub const anon7991_errSSLPeerDecompressFail: objc.OSStatus = -9823;
+pub const anon7991_errSSLPeerHandshakeFail: objc.OSStatus = -9824;
+pub const anon7991_errSSLPeerBadCert: objc.OSStatus = -9825;
+pub const anon7991_errSSLPeerUnsupportedCert: objc.OSStatus = -9826;
+pub const anon7991_errSSLPeerCertRevoked: objc.OSStatus = -9827;
+pub const anon7991_errSSLPeerCertExpired: objc.OSStatus = -9828;
+pub const anon7991_errSSLPeerCertUnknown: objc.OSStatus = -9829;
+pub const anon7991_errSSLIllegalParam: objc.OSStatus = -9830;
+pub const anon7991_errSSLPeerUnknownCA: objc.OSStatus = -9831;
+pub const anon7991_errSSLPeerAccessDenied: objc.OSStatus = -9832;
+pub const anon7991_errSSLPeerDecodeError: objc.OSStatus = -9833;
+pub const anon7991_errSSLPeerDecryptError: objc.OSStatus = -9834;
+pub const anon7991_errSSLPeerExportRestriction: objc.OSStatus = -9835;
+pub const anon7991_errSSLPeerProtocolVersion: objc.OSStatus = -9836;
+pub const anon7991_errSSLPeerInsufficientSecurity: objc.OSStatus = -9837;
+pub const anon7991_errSSLPeerInternalError: objc.OSStatus = -9838;
+pub const anon7991_errSSLPeerUserCancelled: objc.OSStatus = -9839;
+pub const anon7991_errSSLPeerNoRenegotiation: objc.OSStatus = -9840;
+pub const anon7991_errSSLPeerAuthCompleted: objc.OSStatus = -9841;
+pub const anon7991_errSSLClientCertRequested: objc.OSStatus = -9842;
+pub const anon7991_errSSLHostNameMismatch: objc.OSStatus = -9843;
+pub const anon7991_errSSLConnectionRefused: objc.OSStatus = -9844;
+pub const anon7991_errSSLDecryptionFail: objc.OSStatus = -9845;
+pub const anon7991_errSSLBadRecordMac: objc.OSStatus = -9846;
+pub const anon7991_errSSLRecordOverflow: objc.OSStatus = -9847;
+pub const anon7991_errSSLBadConfiguration: objc.OSStatus = -9848;
+pub const anon7991_errSSLUnexpectedRecord: objc.OSStatus = -9849;
+pub const anon7991_errSSLWeakPeerEphemeralDHKey: objc.OSStatus = -9850;
+pub const anon7991_errSSLClientHelloReceived: objc.OSStatus = -9851;
+pub const anon7991_errSSLTransportReset: objc.OSStatus = -9852;
+pub const anon7991_errSSLNetworkTimeout: objc.OSStatus = -9853;
+pub const anon7991_errSSLConfigurationFailed: objc.OSStatus = -9854;
+pub const anon7991_errSSLUnsupportedExtension: objc.OSStatus = -9855;
+pub const anon7991_errSSLUnexpectedMessage: objc.OSStatus = -9856;
+pub const anon7991_errSSLDecompressFail: objc.OSStatus = -9857;
+pub const anon7991_errSSLHandshakeFail: objc.OSStatus = -9858;
+pub const anon7991_errSSLDecodeError: objc.OSStatus = -9859;
+pub const anon7991_errSSLInappropriateFallback: objc.OSStatus = -9860;
+pub const anon7991_errSSLMissingExtension: objc.OSStatus = -9861;
+pub const anon7991_errSSLBadCertificateStatusResponse: objc.OSStatus = -9862;
+pub const anon7991_errSSLCertificateRequired: objc.OSStatus = -9863;
+pub const anon7991_errSSLUnknownPSKIdentity: objc.OSStatus = -9864;
+pub const anon7991_errSSLUnrecognizedName: objc.OSStatus = -9865;
+pub const anon7991_errSSLATSViolation: objc.OSStatus = -9880;
+pub const anon7991_errSSLATSMinimumVersionViolation: objc.OSStatus = -9881;
+pub const anon7991_errSSLATSCiphersuiteViolation: objc.OSStatus = -9882;
+pub const anon7991_errSSLATSMinimumKeySizeViolation: objc.OSStatus = -9883;
+pub const anon7991_errSSLATSLeafCertificateHashAlgorithmViolation: objc.OSStatus = -9884;
+pub const anon7991_errSSLATSCertificateHashAlgorithmViolation: objc.OSStatus = -9885;
+pub const anon7991_errSSLATSCertificateTrustViolation: objc.OSStatus = -9886;
+pub const anon7991_errSSLEarlyDataRejected: objc.OSStatus = -9890;
 
 pub const sint64 = objc.int64_t;
 
@@ -598,27 +596,21 @@ pub const Asn1Template_struct = extern struct {
 
 pub const Asn1Template = Asn1Template_struct;
 
-pub const Asn1TemplateChooser = fn (
-    ?*anyopaque,
-    objc.Boolean,
-    ?*i8,
-    objc.size_t,
-    ?*anyopaque,
-) callconv(.C) ?*Asn1Template;
+pub const Asn1TemplateChooser = Asn1Template;
 
-pub const Asn1TemplateChooserPtr = ?*Asn1TemplateChooser;
+pub const Asn1TemplateChooserPtr = Asn1TemplateChooser;
 
 pub const CSSM_HANDLE = CSSM_INTPTR;
 
-pub const CSSM_HANDLE_PTR = ?*CSSM_INTPTR;
+pub const CSSM_HANDLE_PTR = CSSM_INTPTR;
 
 pub const CSSM_LONG_HANDLE = uint64;
 
-pub const CSSM_LONG_HANDLE_PTR = ?*uint64;
+pub const CSSM_LONG_HANDLE_PTR = uint64;
 
 pub const CSSM_MODULE_HANDLE = CSSM_HANDLE;
 
-pub const CSSM_MODULE_HANDLE_PTR = ?*CSSM_HANDLE;
+pub const CSSM_MODULE_HANDLE_PTR = CSSM_HANDLE;
 
 pub const CSSM_CC_HANDLE = CSSM_LONG_HANDLE;
 
@@ -634,30 +626,36 @@ pub const CSSM_DL_HANDLE = CSSM_MODULE_HANDLE;
 
 pub const CSSM_DB_HANDLE = CSSM_MODULE_HANDLE;
 
+pub const anon701 = u32;
+pub const anon701_CSSM_INVALID_HANDLE: u32 = 0;
+pub const anon701_OSUnknownByteOrder: u32 = 0;
+pub const anon701_OSLittleEndian: u32 = 1;
+pub const anon701_OSBigEndian: u32 = 2;
+pub const anon701_CFNotificationDeliverImmediately: u32 = 1;
+pub const anon701_CFNotificationPostToAllSessions: u32 = 2;
+
 pub const CSSM_BOOL = sint32;
 
-pub const anon781 = enum(u32) {
-    CSSM_FALSE = 0,
-    CSSM_TRUE = 1,
-};
+pub const anon781 = u32;
+pub const anon781_CSSM_FALSE: u32 = 0;
+pub const anon781_CSSM_TRUE: u32 = 1;
 
 pub const CSSM_RETURN = sint32;
 
-pub const anon851 = enum(i32) {
-    CSSMERR_CSSM_INVALID_ADDIN_HANDLE = -2147417855,
-    CSSMERR_CSSM_NOT_INITIALIZED = -2147417854,
-    CSSMERR_CSSM_INVALID_HANDLE_USAGE = -2147417853,
-    CSSMERR_CSSM_PVC_REFERENT_NOT_FOUND = -2147417852,
-    CSSMERR_CSSM_FUNCTION_INTEGRITY_FAIL = -2147417851,
-};
+pub const anon851 = u32;
+pub const anon851_CSSM_OK: u32 = 0;
+pub const anon851_CSSMERR_CSSM_INVALID_ADDIN_HANDLE: u32 = -2147417855;
+pub const anon851_CSSMERR_CSSM_NOT_INITIALIZED: u32 = -2147417854;
+pub const anon851_CSSMERR_CSSM_INVALID_HANDLE_USAGE: u32 = -2147417853;
+pub const anon851_CSSMERR_CSSM_PVC_REFERENT_NOT_FOUND: u32 = -2147417852;
+pub const anon851_CSSMERR_CSSM_FUNCTION_INTEGRITY_FAIL: u32 = -2147417851;
 
-pub const anon891 = enum(u32) {
-    CSSM_MODULE_STRING_SIZE = 64,
-};
+pub const anon891 = u32;
+pub const anon891_CSSM_MODULE_STRING_SIZE: u32 = 64;
 
 pub const CSSM_STRING = [68]i8;
 
-pub const CSSM_DATA_PTR = ?*Asn1Item;
+pub const CSSM_DATA_PTR = Asn1Item;
 
 pub const cssm_guid = extern struct {
     Data1: uint32,
@@ -674,21 +672,25 @@ pub const CSSM_BITMASK = uint32;
 
 pub const CSSM_KEY_HIERARCHY = CSSM_BITMASK;
 
+pub const anon1061 = u32;
+pub const anon1061_CSSM_KEY_HIERARCHY_NONE: u32 = 0;
+pub const anon1061_CSSM_KEY_HIERARCHY_INTEG: u32 = 1;
+pub const anon1061_CSSM_KEY_HIERARCHY_EXPORT: u32 = 2;
+pub const anon1061_CFCalendarComponentsWrap: u32 = 1;
+
 pub const CSSM_PVC_MODE = CSSM_BITMASK;
 
-pub const anon1131 = enum(u32) {
-    CSSM_PVC_NONE = 0,
-    CSSM_PVC_APP = 1,
-    CSSM_PVC_SP = 2,
-};
+pub const anon1131 = u32;
+pub const anon1131_CSSM_PVC_NONE: u32 = 0;
+pub const anon1131_CSSM_PVC_APP: u32 = 1;
+pub const anon1131_CSSM_PVC_SP: u32 = 2;
 
 pub const CSSM_PRIVILEGE_SCOPE = uint32;
 
-pub const anon1201 = enum(u32) {
-    CSSM_PRIVILEGE_SCOPE_NONE = 0,
-    CSSM_PRIVILEGE_SCOPE_PROCESS = 1,
-    CSSM_PRIVILEGE_SCOPE_THREAD = 2,
-};
+pub const anon1201 = u32;
+pub const anon1201_CSSM_PRIVILEGE_SCOPE_NONE: u32 = 0;
+pub const anon1201_CSSM_PRIVILEGE_SCOPE_PROCESS: u32 = 1;
+pub const anon1201_CSSM_PRIVILEGE_SCOPE_THREAD: u32 = 2;
 
 pub const cssm_version = extern struct {
     Major: uint32,
@@ -701,14 +703,20 @@ pub const CSSM_VERSION_PTR = ?*cssm_version;
 
 pub const CSSM_SERVICE_MASK = uint32;
 
-pub const anon1321 = enum(u32) {
-    CSSM_ACL_AUTHORIZATION_CHANGE_ACL = 65536,
-    CSSM_ACL_AUTHORIZATION_CHANGE_OWNER = 65537,
-    CSSM_ACL_AUTHORIZATION_PARTITION_ID = 65538,
-    CSSM_ACL_AUTHORIZATION_INTEGRITY = 65539,
-    CSSM_ACL_AUTHORIZATION_PREAUTH_BASE = 16842752,
-    CSSM_ACL_AUTHORIZATION_PREAUTH_END = 16908288,
-};
+pub const anon1321 = u32;
+pub const anon1321_CSSM_SERVICE_CSSM: u32 = 1;
+pub const anon1321_CSSM_SERVICE_CSP: u32 = 2;
+pub const anon1321_CSSM_SERVICE_DL: u32 = 4;
+pub const anon1321_CSSM_SERVICE_CL: u32 = 8;
+pub const anon1321_CSSM_SERVICE_TP: u32 = 16;
+pub const anon1321_CSSM_SERVICE_AC: u32 = 32;
+pub const anon1321_CSSM_SERVICE_KR: u32 = 64;
+pub const anon1321_CSSM_ACL_AUTHORIZATION_CHANGE_ACL: u32 = 65536;
+pub const anon1321_CSSM_ACL_AUTHORIZATION_CHANGE_OWNER: u32 = 65537;
+pub const anon1321_CSSM_ACL_AUTHORIZATION_PARTITION_ID: u32 = 65538;
+pub const anon1321_CSSM_ACL_AUTHORIZATION_INTEGRITY: u32 = 65539;
+pub const anon1321_CSSM_ACL_AUTHORIZATION_PREAUTH_BASE: u32 = 16842752;
+pub const anon1321_CSSM_ACL_AUTHORIZATION_PREAUTH_END: u32 = 16908288;
 
 pub const CSSM_SERVICE_TYPE = CSSM_SERVICE_MASK;
 
@@ -725,67 +733,58 @@ pub const CSSM_SUBSERVICE_UID_PTR = ?*cssm_subservice_uid;
 
 pub const CSSM_MODULE_EVENT = uint32;
 
-pub const CSSM_MODULE_EVENT_PTR = ?*uint32;
+pub const CSSM_MODULE_EVENT_PTR = uint32;
 
-pub const anon1521 = enum(u32) {
-    CSSM_NOTIFY_INSERT = 1,
-    CSSM_NOTIFY_REMOVE = 2,
-    CSSM_NOTIFY_FAULT = 3,
-};
+pub const anon1521 = u32;
+pub const anon1521_CSSM_NOTIFY_INSERT: u32 = 1;
+pub const anon1521_CSSM_NOTIFY_REMOVE: u32 = 2;
+pub const anon1521_CSSM_NOTIFY_FAULT: u32 = 3;
 
-pub const CSSM_API_ModuleEventHandler = ?*const fn (
-    ?*CSSM_GUID,
-    ?*anyopaque,
-    uint32,
-    CSSM_SERVICE_TYPE,
-    CSSM_MODULE_EVENT,
-) callconv(.C) CSSM_RETURN;
+pub const CSSM_API_ModuleEventHandler = CSSM_RETURN;
 
 pub const CSSM_ATTACH_FLAGS = uint32;
 
-pub const anon1661 = enum(i32) {
-    CSSMERR_CSSM_INTERNAL_ERROR = -2147418111,
-    CSSMERR_CSSM_MEMORY_ERROR = -2147418110,
-    CSSMERR_CSSM_MDS_ERROR = -2147418109,
-    CSSMERR_CSSM_INVALID_POINTER = -2147418108,
-    CSSMERR_CSSM_INVALID_INPUT_POINTER = -2147418107,
-    CSSMERR_CSSM_INVALID_OUTPUT_POINTER = -2147418106,
-    CSSMERR_CSSM_FUNCTION_NOT_IMPLEMENTED = -2147418105,
-    CSSMERR_CSSM_SELF_CHECK_FAILED = -2147418104,
-    CSSMERR_CSSM_OS_ACCESS_DENIED = -2147418103,
-    CSSMERR_CSSM_FUNCTION_FAILED = -2147418102,
-    CSSMERR_CSSM_MODULE_MANIFEST_VERIFY_FAILED = -2147418101,
-    CSSMERR_CSSM_INVALID_GUID = -2147418100,
-};
+pub const anon1661 = u32;
+pub const anon1661_CSSM_ATTACH_READ_ONLY: u32 = 1;
+pub const anon1661_CSSMERR_CSSM_INTERNAL_ERROR: u32 = -2147418111;
+pub const anon1661_CSSMERR_CSSM_MEMORY_ERROR: u32 = -2147418110;
+pub const anon1661_CSSMERR_CSSM_MDS_ERROR: u32 = -2147418109;
+pub const anon1661_CSSMERR_CSSM_INVALID_POINTER: u32 = -2147418108;
+pub const anon1661_CSSMERR_CSSM_INVALID_INPUT_POINTER: u32 = -2147418107;
+pub const anon1661_CSSMERR_CSSM_INVALID_OUTPUT_POINTER: u32 = -2147418106;
+pub const anon1661_CSSMERR_CSSM_FUNCTION_NOT_IMPLEMENTED: u32 = -2147418105;
+pub const anon1661_CSSMERR_CSSM_SELF_CHECK_FAILED: u32 = -2147418104;
+pub const anon1661_CSSMERR_CSSM_OS_ACCESS_DENIED: u32 = -2147418103;
+pub const anon1661_CSSMERR_CSSM_FUNCTION_FAILED: u32 = -2147418102;
+pub const anon1661_CSSMERR_CSSM_MODULE_MANIFEST_VERIFY_FAILED: u32 = -2147418101;
+pub const anon1661_CSSMERR_CSSM_INVALID_GUID: u32 = -2147418100;
 
 pub const CSSM_PRIVILEGE = uint64;
 
 pub const CSSM_USEE_TAG = CSSM_PRIVILEGE;
 
-pub const anon1741 = enum(u32) {
-    CSSM_USEE_LAST = 255,
-    CSSM_USEE_NONE = 0,
-    CSSM_USEE_DOMESTIC = 1,
-    CSSM_USEE_FINANCIAL = 2,
-    CSSM_USEE_KRLE = 3,
-    CSSM_USEE_KRENT = 4,
-    CSSM_USEE_SSL = 5,
-    CSSM_USEE_AUTHENTICATION = 6,
-    CSSM_USEE_KEYEXCH = 7,
-    CSSM_USEE_MEDICAL = 8,
-    CSSM_USEE_INSURANCE = 9,
-    CSSM_USEE_WEAK = 10,
-};
+pub const anon1741 = u32;
+pub const anon1741_CSSM_USEE_LAST: u32 = 255;
+pub const anon1741_CSSM_USEE_NONE: u32 = 0;
+pub const anon1741_CSSM_USEE_DOMESTIC: u32 = 1;
+pub const anon1741_CSSM_USEE_FINANCIAL: u32 = 2;
+pub const anon1741_CSSM_USEE_KRLE: u32 = 3;
+pub const anon1741_CSSM_USEE_KRENT: u32 = 4;
+pub const anon1741_CSSM_USEE_SSL: u32 = 5;
+pub const anon1741_CSSM_USEE_AUTHENTICATION: u32 = 6;
+pub const anon1741_CSSM_USEE_KEYEXCH: u32 = 7;
+pub const anon1741_CSSM_USEE_MEDICAL: u32 = 8;
+pub const anon1741_CSSM_USEE_INSURANCE: u32 = 9;
+pub const anon1741_CSSM_USEE_WEAK: u32 = 10;
 
 pub const CSSM_NET_ADDRESS_TYPE = uint32;
 
-pub const anon1901 = enum(u32) {
-    CSSM_ADDR_NONE = 0,
-    CSSM_ADDR_CUSTOM = 1,
-    CSSM_ADDR_URL = 2,
-    CSSM_ADDR_SOCKADDR = 3,
-    CSSM_ADDR_NAME = 4,
-};
+pub const anon1901 = u32;
+pub const anon1901_CSSM_ADDR_NONE: u32 = 0;
+pub const anon1901_CSSM_ADDR_CUSTOM: u32 = 1;
+pub const anon1901_CSSM_ADDR_URL: u32 = 2;
+pub const anon1901_CSSM_ADDR_SOCKADDR: u32 = 3;
+pub const anon1901_CSSM_ADDR_NAME: u32 = 4;
 
 pub const cssm_net_address = extern struct {
     AddressType: CSSM_NET_ADDRESS_TYPE,
@@ -798,22 +797,21 @@ pub const CSSM_NET_ADDRESS_PTR = ?*cssm_net_address;
 
 pub const CSSM_NET_PROTOCOL = uint32;
 
-pub const anon2041 = enum(u32) {
-    CSSM_NET_PROTO_NONE = 0,
-    CSSM_NET_PROTO_CUSTOM = 1,
-    CSSM_NET_PROTO_UNSPECIFIED = 2,
-    CSSM_NET_PROTO_LDAP = 3,
-    CSSM_NET_PROTO_LDAPS = 4,
-    CSSM_NET_PROTO_LDAPNS = 5,
-    CSSM_NET_PROTO_X500DAP = 6,
-    CSSM_NET_PROTO_FTP = 7,
-    CSSM_NET_PROTO_FTPS = 8,
-    CSSM_NET_PROTO_OCSP = 9,
-    CSSM_NET_PROTO_CMP = 10,
-    CSSM_NET_PROTO_CMPS = 11,
-};
+pub const anon2041 = u32;
+pub const anon2041_CSSM_NET_PROTO_NONE: u32 = 0;
+pub const anon2041_CSSM_NET_PROTO_CUSTOM: u32 = 1;
+pub const anon2041_CSSM_NET_PROTO_UNSPECIFIED: u32 = 2;
+pub const anon2041_CSSM_NET_PROTO_LDAP: u32 = 3;
+pub const anon2041_CSSM_NET_PROTO_LDAPS: u32 = 4;
+pub const anon2041_CSSM_NET_PROTO_LDAPNS: u32 = 5;
+pub const anon2041_CSSM_NET_PROTO_X500DAP: u32 = 6;
+pub const anon2041_CSSM_NET_PROTO_FTP: u32 = 7;
+pub const anon2041_CSSM_NET_PROTO_FTPS: u32 = 8;
+pub const anon2041_CSSM_NET_PROTO_OCSP: u32 = 9;
+pub const anon2041_CSSM_NET_PROTO_CMP: u32 = 10;
+pub const anon2041_CSSM_NET_PROTO_CMPS: u32 = 11;
 
-pub const CSSM_CALLBACK = ?*const fn (CSSM_DATA_PTR, ?*anyopaque) callconv(.C) CSSM_RETURN;
+pub const CSSM_CALLBACK = CSSM_RETURN;
 
 pub const cssm_crypto_data = extern struct {
     Param: Asn1Item,
@@ -827,178 +825,183 @@ pub const CSSM_CRYPTO_DATA_PTR = ?*cssm_crypto_data;
 
 pub const CSSM_WORDID_TYPE = sint32;
 
-pub const anon2291 = enum(i32) {
-    CSSM_WORDID__UNK_ = -1,
-    CSSM_WORDID__NLU_ = 0,
-    CSSM_WORDID__STAR_ = 1,
-    CSSM_WORDID_A = 2,
-    CSSM_WORDID_ACL = 3,
-    CSSM_WORDID_ALPHA = 4,
-    CSSM_WORDID_B = 5,
-    CSSM_WORDID_BER = 6,
-    CSSM_WORDID_BINARY = 7,
-    CSSM_WORDID_BIOMETRIC = 8,
-    CSSM_WORDID_C = 9,
-    CSSM_WORDID_CANCELED = 10,
-    CSSM_WORDID_CERT = 11,
-    CSSM_WORDID_COMMENT = 12,
-    CSSM_WORDID_CRL = 13,
-    CSSM_WORDID_CUSTOM = 14,
-    CSSM_WORDID_D = 15,
-    CSSM_WORDID_DATE = 16,
-    CSSM_WORDID_DB_DELETE = 17,
-    CSSM_WORDID_DB_EXEC_STORED_QUERY = 18,
-    CSSM_WORDID_DB_INSERT = 19,
-    CSSM_WORDID_DB_MODIFY = 20,
-    CSSM_WORDID_DB_READ = 21,
-    CSSM_WORDID_DBS_CREATE = 22,
-    CSSM_WORDID_DBS_DELETE = 23,
-    CSSM_WORDID_DECRYPT = 24,
-    CSSM_WORDID_DELETE = 25,
-    CSSM_WORDID_DELTA_CRL = 26,
-    CSSM_WORDID_DER = 27,
-    CSSM_WORDID_DERIVE = 28,
-    CSSM_WORDID_DISPLAY = 29,
-    CSSM_WORDID_DO = 30,
-    CSSM_WORDID_DSA = 31,
-    CSSM_WORDID_DSA_SHA1 = 32,
-    CSSM_WORDID_E = 33,
-    CSSM_WORDID_ELGAMAL = 34,
-    CSSM_WORDID_ENCRYPT = 35,
-    CSSM_WORDID_ENTRY = 36,
-    CSSM_WORDID_EXPORT_CLEAR = 37,
-    CSSM_WORDID_EXPORT_WRAPPED = 38,
-    CSSM_WORDID_G = 39,
-    CSSM_WORDID_GE = 40,
-    CSSM_WORDID_GENKEY = 41,
-    CSSM_WORDID_HASH = 42,
-    CSSM_WORDID_HASHED_PASSWORD = 43,
-    CSSM_WORDID_HASHED_SUBJECT = 44,
-    CSSM_WORDID_HAVAL = 45,
-    CSSM_WORDID_IBCHASH = 46,
-    CSSM_WORDID_IMPORT_CLEAR = 47,
-    CSSM_WORDID_IMPORT_WRAPPED = 48,
-    CSSM_WORDID_INTEL = 49,
-    CSSM_WORDID_ISSUER = 50,
-    CSSM_WORDID_ISSUER_INFO = 51,
-    CSSM_WORDID_K_OF_N = 52,
-    CSSM_WORDID_KEA = 53,
-    CSSM_WORDID_KEYHOLDER = 54,
-    CSSM_WORDID_L = 55,
-    CSSM_WORDID_LE = 56,
-    CSSM_WORDID_LOGIN = 57,
-    CSSM_WORDID_LOGIN_NAME = 58,
-    CSSM_WORDID_MAC = 59,
-    CSSM_WORDID_MD2 = 60,
-    CSSM_WORDID_MD2WITHRSA = 61,
-    CSSM_WORDID_MD4 = 62,
-    CSSM_WORDID_MD5 = 63,
-    CSSM_WORDID_MD5WITHRSA = 64,
-    CSSM_WORDID_N = 65,
-    CSSM_WORDID_NAME = 66,
-    CSSM_WORDID_NDR = 67,
-    CSSM_WORDID_NHASH = 68,
-    CSSM_WORDID_NOT_AFTER = 69,
-    CSSM_WORDID_NOT_BEFORE = 70,
-    CSSM_WORDID_NULL = 71,
-    CSSM_WORDID_NUMERIC = 72,
-    CSSM_WORDID_OBJECT_HASH = 73,
-    CSSM_WORDID_ONE_TIME = 74,
-    CSSM_WORDID_ONLINE = 75,
-    CSSM_WORDID_OWNER = 76,
-    CSSM_WORDID_P = 77,
-    CSSM_WORDID_PAM_NAME = 78,
-    CSSM_WORDID_PASSWORD = 79,
-    CSSM_WORDID_PGP = 80,
-    CSSM_WORDID_PREFIX = 81,
-    CSSM_WORDID_PRIVATE_KEY = 82,
-    CSSM_WORDID_PROMPTED_BIOMETRIC = 83,
-    CSSM_WORDID_PROMPTED_PASSWORD = 84,
-    CSSM_WORDID_PROPAGATE = 85,
-    CSSM_WORDID_PROTECTED_BIOMETRIC = 86,
-    CSSM_WORDID_PROTECTED_PASSWORD = 87,
-    CSSM_WORDID_PROTECTED_PIN = 88,
-    CSSM_WORDID_PUBLIC_KEY = 89,
-    CSSM_WORDID_PUBLIC_KEY_FROM_CERT = 90,
-    CSSM_WORDID_Q = 91,
-    CSSM_WORDID_RANGE = 92,
-    CSSM_WORDID_REVAL = 93,
-    CSSM_WORDID_RIPEMAC = 94,
-    CSSM_WORDID_RIPEMD = 95,
-    CSSM_WORDID_RIPEMD160 = 96,
-    CSSM_WORDID_RSA = 97,
-    CSSM_WORDID_RSA_ISO9796 = 98,
-    CSSM_WORDID_RSA_PKCS = 99,
-    CSSM_WORDID_RSA_PKCS_MD5 = 100,
-    CSSM_WORDID_RSA_PKCS_SHA1 = 101,
-    CSSM_WORDID_RSA_PKCS1 = 102,
-    CSSM_WORDID_RSA_PKCS1_MD5 = 103,
-    CSSM_WORDID_RSA_PKCS1_SHA1 = 104,
-    CSSM_WORDID_RSA_PKCS1_SIG = 105,
-    CSSM_WORDID_RSA_RAW = 106,
-    CSSM_WORDID_SDSIV1 = 107,
-    CSSM_WORDID_SEQUENCE = 108,
-    CSSM_WORDID_SET = 109,
-    CSSM_WORDID_SEXPR = 110,
-    CSSM_WORDID_SHA1 = 111,
-    CSSM_WORDID_SHA1WITHDSA = 112,
-    CSSM_WORDID_SHA1WITHECDSA = 113,
-    CSSM_WORDID_SHA1WITHRSA = 114,
-    CSSM_WORDID_SIGN = 115,
-    CSSM_WORDID_SIGNATURE = 116,
-    CSSM_WORDID_SIGNED_NONCE = 117,
-    CSSM_WORDID_SIGNED_SECRET = 118,
-    CSSM_WORDID_SPKI = 119,
-    CSSM_WORDID_SUBJECT = 120,
-    CSSM_WORDID_SUBJECT_INFO = 121,
-    CSSM_WORDID_TAG = 122,
-    CSSM_WORDID_THRESHOLD = 123,
-    CSSM_WORDID_TIME = 124,
-    CSSM_WORDID_URI = 125,
-    CSSM_WORDID_VERSION = 126,
-    CSSM_WORDID_X509_ATTRIBUTE = 127,
-    CSSM_WORDID_X509V1 = 128,
-    CSSM_WORDID_X509V2 = 129,
-    CSSM_WORDID_X509V3 = 130,
-    CSSM_WORDID_X9_ATTRIBUTE = 131,
-    CSSM_WORDID_VENDOR_START = 65536,
-    CSSM_WORDID_VENDOR_END = 2147418112,
-};
+pub const anon2291 = i32;
+pub const anon2291_CSSM_WORDID__UNK_: i32 = -1;
+pub const anon2291_CSSM_WORDID__NLU_: i32 = 0;
+pub const anon2291_CSSM_WORDID__STAR_: i32 = 1;
+pub const anon2291_CSSM_WORDID_A: i32 = 2;
+pub const anon2291_CSSM_WORDID_ACL: i32 = 3;
+pub const anon2291_CSSM_WORDID_ALPHA: i32 = 4;
+pub const anon2291_CSSM_WORDID_B: i32 = 5;
+pub const anon2291_CSSM_WORDID_BER: i32 = 6;
+pub const anon2291_CSSM_WORDID_BINARY: i32 = 7;
+pub const anon2291_CSSM_WORDID_BIOMETRIC: i32 = 8;
+pub const anon2291_CSSM_WORDID_C: i32 = 9;
+pub const anon2291_CSSM_WORDID_CANCELED: i32 = 10;
+pub const anon2291_CSSM_WORDID_CERT: i32 = 11;
+pub const anon2291_CSSM_WORDID_COMMENT: i32 = 12;
+pub const anon2291_CSSM_WORDID_CRL: i32 = 13;
+pub const anon2291_CSSM_WORDID_CUSTOM: i32 = 14;
+pub const anon2291_CSSM_WORDID_D: i32 = 15;
+pub const anon2291_CSSM_WORDID_DATE: i32 = 16;
+pub const anon2291_CSSM_WORDID_DB_DELETE: i32 = 17;
+pub const anon2291_CSSM_WORDID_DB_EXEC_STORED_QUERY: i32 = 18;
+pub const anon2291_CSSM_WORDID_DB_INSERT: i32 = 19;
+pub const anon2291_CSSM_WORDID_DB_MODIFY: i32 = 20;
+pub const anon2291_CSSM_WORDID_DB_READ: i32 = 21;
+pub const anon2291_CSSM_WORDID_DBS_CREATE: i32 = 22;
+pub const anon2291_CSSM_WORDID_DBS_DELETE: i32 = 23;
+pub const anon2291_CSSM_WORDID_DECRYPT: i32 = 24;
+pub const anon2291_CSSM_WORDID_DELETE: i32 = 25;
+pub const anon2291_CSSM_WORDID_DELTA_CRL: i32 = 26;
+pub const anon2291_CSSM_WORDID_DER: i32 = 27;
+pub const anon2291_CSSM_WORDID_DERIVE: i32 = 28;
+pub const anon2291_CSSM_WORDID_DISPLAY: i32 = 29;
+pub const anon2291_CSSM_WORDID_DO: i32 = 30;
+pub const anon2291_CSSM_WORDID_DSA: i32 = 31;
+pub const anon2291_CSSM_WORDID_DSA_SHA1: i32 = 32;
+pub const anon2291_CSSM_WORDID_E: i32 = 33;
+pub const anon2291_CSSM_WORDID_ELGAMAL: i32 = 34;
+pub const anon2291_CSSM_WORDID_ENCRYPT: i32 = 35;
+pub const anon2291_CSSM_WORDID_ENTRY: i32 = 36;
+pub const anon2291_CSSM_WORDID_EXPORT_CLEAR: i32 = 37;
+pub const anon2291_CSSM_WORDID_EXPORT_WRAPPED: i32 = 38;
+pub const anon2291_CSSM_WORDID_G: i32 = 39;
+pub const anon2291_CSSM_WORDID_GE: i32 = 40;
+pub const anon2291_CSSM_WORDID_GENKEY: i32 = 41;
+pub const anon2291_CSSM_WORDID_HASH: i32 = 42;
+pub const anon2291_CSSM_WORDID_HASHED_PASSWORD: i32 = 43;
+pub const anon2291_CSSM_WORDID_HASHED_SUBJECT: i32 = 44;
+pub const anon2291_CSSM_WORDID_HAVAL: i32 = 45;
+pub const anon2291_CSSM_WORDID_IBCHASH: i32 = 46;
+pub const anon2291_CSSM_WORDID_IMPORT_CLEAR: i32 = 47;
+pub const anon2291_CSSM_WORDID_IMPORT_WRAPPED: i32 = 48;
+pub const anon2291_CSSM_WORDID_INTEL: i32 = 49;
+pub const anon2291_CSSM_WORDID_ISSUER: i32 = 50;
+pub const anon2291_CSSM_WORDID_ISSUER_INFO: i32 = 51;
+pub const anon2291_CSSM_WORDID_K_OF_N: i32 = 52;
+pub const anon2291_CSSM_WORDID_KEA: i32 = 53;
+pub const anon2291_CSSM_WORDID_KEYHOLDER: i32 = 54;
+pub const anon2291_CSSM_WORDID_L: i32 = 55;
+pub const anon2291_CSSM_WORDID_LE: i32 = 56;
+pub const anon2291_CSSM_WORDID_LOGIN: i32 = 57;
+pub const anon2291_CSSM_WORDID_LOGIN_NAME: i32 = 58;
+pub const anon2291_CSSM_WORDID_MAC: i32 = 59;
+pub const anon2291_CSSM_WORDID_MD2: i32 = 60;
+pub const anon2291_CSSM_WORDID_MD2WITHRSA: i32 = 61;
+pub const anon2291_CSSM_WORDID_MD4: i32 = 62;
+pub const anon2291_CSSM_WORDID_MD5: i32 = 63;
+pub const anon2291_CSSM_WORDID_MD5WITHRSA: i32 = 64;
+pub const anon2291_CSSM_WORDID_N: i32 = 65;
+pub const anon2291_CSSM_WORDID_NAME: i32 = 66;
+pub const anon2291_CSSM_WORDID_NDR: i32 = 67;
+pub const anon2291_CSSM_WORDID_NHASH: i32 = 68;
+pub const anon2291_CSSM_WORDID_NOT_AFTER: i32 = 69;
+pub const anon2291_CSSM_WORDID_NOT_BEFORE: i32 = 70;
+pub const anon2291_CSSM_WORDID_NULL: i32 = 71;
+pub const anon2291_CSSM_WORDID_NUMERIC: i32 = 72;
+pub const anon2291_CSSM_WORDID_OBJECT_HASH: i32 = 73;
+pub const anon2291_CSSM_WORDID_ONE_TIME: i32 = 74;
+pub const anon2291_CSSM_WORDID_ONLINE: i32 = 75;
+pub const anon2291_CSSM_WORDID_OWNER: i32 = 76;
+pub const anon2291_CSSM_WORDID_P: i32 = 77;
+pub const anon2291_CSSM_WORDID_PAM_NAME: i32 = 78;
+pub const anon2291_CSSM_WORDID_PASSWORD: i32 = 79;
+pub const anon2291_CSSM_WORDID_PGP: i32 = 80;
+pub const anon2291_CSSM_WORDID_PREFIX: i32 = 81;
+pub const anon2291_CSSM_WORDID_PRIVATE_KEY: i32 = 82;
+pub const anon2291_CSSM_WORDID_PROMPTED_BIOMETRIC: i32 = 83;
+pub const anon2291_CSSM_WORDID_PROMPTED_PASSWORD: i32 = 84;
+pub const anon2291_CSSM_WORDID_PROPAGATE: i32 = 85;
+pub const anon2291_CSSM_WORDID_PROTECTED_BIOMETRIC: i32 = 86;
+pub const anon2291_CSSM_WORDID_PROTECTED_PASSWORD: i32 = 87;
+pub const anon2291_CSSM_WORDID_PROTECTED_PIN: i32 = 88;
+pub const anon2291_CSSM_WORDID_PUBLIC_KEY: i32 = 89;
+pub const anon2291_CSSM_WORDID_PUBLIC_KEY_FROM_CERT: i32 = 90;
+pub const anon2291_CSSM_WORDID_Q: i32 = 91;
+pub const anon2291_CSSM_WORDID_RANGE: i32 = 92;
+pub const anon2291_CSSM_WORDID_REVAL: i32 = 93;
+pub const anon2291_CSSM_WORDID_RIPEMAC: i32 = 94;
+pub const anon2291_CSSM_WORDID_RIPEMD: i32 = 95;
+pub const anon2291_CSSM_WORDID_RIPEMD160: i32 = 96;
+pub const anon2291_CSSM_WORDID_RSA: i32 = 97;
+pub const anon2291_CSSM_WORDID_RSA_ISO9796: i32 = 98;
+pub const anon2291_CSSM_WORDID_RSA_PKCS: i32 = 99;
+pub const anon2291_CSSM_WORDID_RSA_PKCS_MD5: i32 = 100;
+pub const anon2291_CSSM_WORDID_RSA_PKCS_SHA1: i32 = 101;
+pub const anon2291_CSSM_WORDID_RSA_PKCS1: i32 = 102;
+pub const anon2291_CSSM_WORDID_RSA_PKCS1_MD5: i32 = 103;
+pub const anon2291_CSSM_WORDID_RSA_PKCS1_SHA1: i32 = 104;
+pub const anon2291_CSSM_WORDID_RSA_PKCS1_SIG: i32 = 105;
+pub const anon2291_CSSM_WORDID_RSA_RAW: i32 = 106;
+pub const anon2291_CSSM_WORDID_SDSIV1: i32 = 107;
+pub const anon2291_CSSM_WORDID_SEQUENCE: i32 = 108;
+pub const anon2291_CSSM_WORDID_SET: i32 = 109;
+pub const anon2291_CSSM_WORDID_SEXPR: i32 = 110;
+pub const anon2291_CSSM_WORDID_SHA1: i32 = 111;
+pub const anon2291_CSSM_WORDID_SHA1WITHDSA: i32 = 112;
+pub const anon2291_CSSM_WORDID_SHA1WITHECDSA: i32 = 113;
+pub const anon2291_CSSM_WORDID_SHA1WITHRSA: i32 = 114;
+pub const anon2291_CSSM_WORDID_SIGN: i32 = 115;
+pub const anon2291_CSSM_WORDID_SIGNATURE: i32 = 116;
+pub const anon2291_CSSM_WORDID_SIGNED_NONCE: i32 = 117;
+pub const anon2291_CSSM_WORDID_SIGNED_SECRET: i32 = 118;
+pub const anon2291_CSSM_WORDID_SPKI: i32 = 119;
+pub const anon2291_CSSM_WORDID_SUBJECT: i32 = 120;
+pub const anon2291_CSSM_WORDID_SUBJECT_INFO: i32 = 121;
+pub const anon2291_CSSM_WORDID_TAG: i32 = 122;
+pub const anon2291_CSSM_WORDID_THRESHOLD: i32 = 123;
+pub const anon2291_CSSM_WORDID_TIME: i32 = 124;
+pub const anon2291_CSSM_WORDID_URI: i32 = 125;
+pub const anon2291_CSSM_WORDID_VERSION: i32 = 126;
+pub const anon2291_CSSM_WORDID_X509_ATTRIBUTE: i32 = 127;
+pub const anon2291_CSSM_WORDID_X509V1: i32 = 128;
+pub const anon2291_CSSM_WORDID_X509V2: i32 = 129;
+pub const anon2291_CSSM_WORDID_X509V3: i32 = 130;
+pub const anon2291_CSSM_WORDID_X9_ATTRIBUTE: i32 = 131;
+pub const anon2291_CSSM_WORDID_VENDOR_START: i32 = 65536;
+pub const anon2291_CSSM_WORDID_VENDOR_END: i32 = 2147418112;
 
 pub const CSSM_LIST_ELEMENT_TYPE = uint32;
 
-pub const CSSM_LIST_ELEMENT_TYPE_PTR = ?*uint32;
+pub const CSSM_LIST_ELEMENT_TYPE_PTR = uint32;
 
-pub const anon3681 = enum(u32) {
-    CSSM_DL_DB_RECORD_GENERIC_PASSWORD = -2147483648,
-    CSSM_DL_DB_RECORD_INTERNET_PASSWORD = -2147483647,
-    CSSM_DL_DB_RECORD_APPLESHARE_PASSWORD = -2147483646,
-    CSSM_DL_DB_RECORD_X509_CERTIFICATE = -2147479552,
-    CSSM_DL_DB_RECORD_USER_TRUST = -2147479551,
-    CSSM_DL_DB_RECORD_X509_CRL = -2147479550,
-    CSSM_DL_DB_RECORD_UNLOCK_REFERRAL = -2147479549,
-    CSSM_DL_DB_RECORD_EXTENDED_ATTRIBUTE = -2147479548,
-    CSSM_DL_DB_RECORD_METADATA = -2147450880,
-};
+pub const anon3681 = u32;
+pub const anon3681_CSSM_LIST_ELEMENT_DATUM: u32 = 0;
+pub const anon3681_CSSM_LIST_ELEMENT_SUBLIST: u32 = 1;
+pub const anon3681_CSSM_LIST_ELEMENT_WORDID: u32 = 2;
+pub const anon3681_CSSM_DL_DB_RECORD_GENERIC_PASSWORD: u32 = -2147483648;
+pub const anon3681_CSSM_DL_DB_RECORD_INTERNET_PASSWORD: u32 = -2147483647;
+pub const anon3681_CSSM_DL_DB_RECORD_APPLESHARE_PASSWORD: u32 = -2147483646;
+pub const anon3681_CSSM_DL_DB_RECORD_X509_CERTIFICATE: u32 = -2147479552;
+pub const anon3681_CSSM_DL_DB_RECORD_USER_TRUST: u32 = -2147479551;
+pub const anon3681_CSSM_DL_DB_RECORD_X509_CRL: u32 = -2147479550;
+pub const anon3681_CSSM_DL_DB_RECORD_UNLOCK_REFERRAL: u32 = -2147479549;
+pub const anon3681_CSSM_DL_DB_RECORD_EXTENDED_ATTRIBUTE: u32 = -2147479548;
+pub const anon3681_CSSM_DL_DB_RECORD_METADATA: u32 = -2147450880;
 
 pub const CSSM_LIST_TYPE = uint32;
 
-pub const CSSM_LIST_TYPE_PTR = ?*uint32;
+pub const CSSM_LIST_TYPE_PTR = uint32;
 
-pub const anon3751 = enum(u32) {
-    CSSM_LIST_TYPE_UNKNOWN = 0,
-    CSSM_LIST_TYPE_CUSTOM = 1,
-    CSSM_LIST_TYPE_SEXPR = 2,
-};
+pub const anon3751 = u32;
+pub const anon3751_CSSM_LIST_TYPE_UNKNOWN: u32 = 0;
+pub const anon3751_CSSM_LIST_TYPE_CUSTOM: u32 = 1;
+pub const anon3751_CSSM_LIST_TYPE_SEXPR: u32 = 2;
 
 pub const cssm_list_element = extern struct {
+    pub const anon3945 = extern union {
+        Sublist: CSSM_LIST,
+        Word: Asn1Item,
+    };
+
     NextElement: ?*cssm_list_element,
     WordID: CSSM_WORDID_TYPE,
     ElementType: CSSM_LIST_ELEMENT_TYPE,
-    Element: anon3945,
+    Element: cssm_list_element.anon3945,
 };
 
-pub const CSSM_LIST_ELEMENT_PTR = ?*cssm_list_element;
+pub const CSSM_LIST_ELEMENT_PTR = cssm_list_element;
 
 pub const cssm_list = extern struct {
     ListType: CSSM_LIST_TYPE,
@@ -1009,11 +1012,6 @@ pub const cssm_list = extern struct {
 pub const CSSM_LIST = cssm_list;
 
 pub const CSSM_LIST_PTR = ?*cssm_list;
-
-pub const anon3945 = extern union {
-    Sublist: CSSM_LIST,
-    Word: Asn1Item,
-};
 
 pub const CSSM_LIST_ELEMENT = cssm_list_element;
 
@@ -1038,18 +1036,17 @@ pub const CSSM_TUPLEGROUP_PTR = ?*cssm_tuplegroup;
 
 pub const CSSM_SAMPLE_TYPE = CSSM_WORDID_TYPE;
 
-pub const anon4141 = enum(u32) {
-    CSSM_SAMPLE_TYPE_PASSWORD = 79,
-    CSSM_SAMPLE_TYPE_HASHED_PASSWORD = 43,
-    CSSM_SAMPLE_TYPE_PROTECTED_PASSWORD = 87,
-    CSSM_SAMPLE_TYPE_PROMPTED_PASSWORD = 84,
-    CSSM_SAMPLE_TYPE_SIGNED_NONCE = 117,
-    CSSM_SAMPLE_TYPE_SIGNED_SECRET = 118,
-    CSSM_SAMPLE_TYPE_BIOMETRIC = 8,
-    CSSM_SAMPLE_TYPE_PROTECTED_BIOMETRIC = 86,
-    CSSM_SAMPLE_TYPE_PROMPTED_BIOMETRIC = 83,
-    CSSM_SAMPLE_TYPE_THRESHOLD = 123,
-};
+pub const anon4141 = u32;
+pub const anon4141_CSSM_SAMPLE_TYPE_PASSWORD: u32 = 79;
+pub const anon4141_CSSM_SAMPLE_TYPE_HASHED_PASSWORD: u32 = 43;
+pub const anon4141_CSSM_SAMPLE_TYPE_PROTECTED_PASSWORD: u32 = 87;
+pub const anon4141_CSSM_SAMPLE_TYPE_PROMPTED_PASSWORD: u32 = 84;
+pub const anon4141_CSSM_SAMPLE_TYPE_SIGNED_NONCE: u32 = 117;
+pub const anon4141_CSSM_SAMPLE_TYPE_SIGNED_SECRET: u32 = 118;
+pub const anon4141_CSSM_SAMPLE_TYPE_BIOMETRIC: u32 = 8;
+pub const anon4141_CSSM_SAMPLE_TYPE_PROTECTED_BIOMETRIC: u32 = 86;
+pub const anon4141_CSSM_SAMPLE_TYPE_PROMPTED_BIOMETRIC: u32 = 83;
+pub const anon4141_CSSM_SAMPLE_TYPE_THRESHOLD: u32 = 123;
 
 pub const cssm_sample = extern struct {
     TypedSample: CSSM_LIST,
@@ -1091,53 +1088,46 @@ pub const CSSM_MEMORY_FUNCS_PTR = ?*cssm_memory_funcs;
 
 pub const CSSM_API_MEMORY_FUNCS = CSSM_MEMORY_FUNCS;
 
-pub const CSSM_API_MEMORY_FUNCS_PTR = ?*CSSM_API_MEMORY_FUNCS;
+pub const CSSM_API_MEMORY_FUNCS_PTR = CSSM_API_MEMORY_FUNCS;
 
-pub const CSSM_CHALLENGE_CALLBACK = ?*const fn (
-    ?*CSSM_LIST,
-    CSSM_SAMPLEGROUP_PTR,
-    ?*anyopaque,
-    ?*CSSM_MEMORY_FUNCS,
-) callconv(.C) CSSM_RETURN;
+pub const CSSM_CHALLENGE_CALLBACK = CSSM_RETURN;
 
 pub const CSSM_CERT_TYPE = uint32;
 
-pub const CSSM_CERT_TYPE_PTR = ?*uint32;
+pub const CSSM_CERT_TYPE_PTR = uint32;
 
-pub const anon4731 = enum(u32) {
-    CSSM_CERT_UNKNOWN = 0,
-    CSSM_CERT_X_509v1 = 1,
-    CSSM_CERT_X_509v2 = 2,
-    CSSM_CERT_X_509v3 = 3,
-    CSSM_CERT_PGP = 4,
-    CSSM_CERT_SPKI = 5,
-    CSSM_CERT_SDSIv1 = 6,
-    CSSM_CERT_Intel = 8,
-    CSSM_CERT_X_509_ATTRIBUTE = 9,
-    CSSM_CERT_X9_ATTRIBUTE = 10,
-    CSSM_CERT_TUPLE = 11,
-    CSSM_CERT_ACL_ENTRY = 12,
-    CSSM_CERT_MULTIPLE = 32766,
-    CSSM_CERT_LAST = 32767,
-    CSSM_CL_CUSTOM_CERT_TYPE = 32768,
-};
+pub const anon4731 = u32;
+pub const anon4731_CSSM_CERT_UNKNOWN: u32 = 0;
+pub const anon4731_CSSM_CERT_X_509v1: u32 = 1;
+pub const anon4731_CSSM_CERT_X_509v2: u32 = 2;
+pub const anon4731_CSSM_CERT_X_509v3: u32 = 3;
+pub const anon4731_CSSM_CERT_PGP: u32 = 4;
+pub const anon4731_CSSM_CERT_SPKI: u32 = 5;
+pub const anon4731_CSSM_CERT_SDSIv1: u32 = 6;
+pub const anon4731_CSSM_CERT_Intel: u32 = 8;
+pub const anon4731_CSSM_CERT_X_509_ATTRIBUTE: u32 = 9;
+pub const anon4731_CSSM_CERT_X9_ATTRIBUTE: u32 = 10;
+pub const anon4731_CSSM_CERT_TUPLE: u32 = 11;
+pub const anon4731_CSSM_CERT_ACL_ENTRY: u32 = 12;
+pub const anon4731_CSSM_CERT_MULTIPLE: u32 = 32766;
+pub const anon4731_CSSM_CERT_LAST: u32 = 32767;
+pub const anon4731_CSSM_CL_CUSTOM_CERT_TYPE: u32 = 32768;
 
 pub const CSSM_CERT_ENCODING = uint32;
 
-pub const CSSM_CERT_ENCODING_PTR = ?*uint32;
+pub const CSSM_CERT_ENCODING_PTR = uint32;
 
-pub const anon4951 = enum(u32) {
-    CSSM_CERT_ENCODING_UNKNOWN = 0,
-    CSSM_CERT_ENCODING_CUSTOM = 1,
-    CSSM_CERT_ENCODING_BER = 2,
-    CSSM_CERT_ENCODING_DER = 3,
-    CSSM_CERT_ENCODING_NDR = 4,
-    CSSM_CERT_ENCODING_SEXPR = 5,
-    CSSM_CERT_ENCODING_PGP = 6,
-    CSSM_CERT_ENCODING_MULTIPLE = 32766,
-    CSSM_CERT_ENCODING_LAST = 32767,
-    CSSM_CL_CUSTOM_CERT_ENCODING = 32768,
-};
+pub const anon4951 = u32;
+pub const anon4951_CSSM_CERT_ENCODING_UNKNOWN: u32 = 0;
+pub const anon4951_CSSM_CERT_ENCODING_CUSTOM: u32 = 1;
+pub const anon4951_CSSM_CERT_ENCODING_BER: u32 = 2;
+pub const anon4951_CSSM_CERT_ENCODING_DER: u32 = 3;
+pub const anon4951_CSSM_CERT_ENCODING_NDR: u32 = 4;
+pub const anon4951_CSSM_CERT_ENCODING_SEXPR: u32 = 5;
+pub const anon4951_CSSM_CERT_ENCODING_PGP: u32 = 6;
+pub const anon4951_CSSM_CERT_ENCODING_MULTIPLE: u32 = 32766;
+pub const anon4951_CSSM_CERT_ENCODING_LAST: u32 = 32767;
+pub const anon4951_CSSM_CL_CUSTOM_CERT_ENCODING: u32 = 32768;
 
 pub const cssm_encoded_cert = extern struct {
     CertType: CSSM_CERT_TYPE,
@@ -1151,19 +1141,18 @@ pub const CSSM_ENCODED_CERT_PTR = ?*cssm_encoded_cert;
 
 pub const CSSM_CERT_PARSE_FORMAT = uint32;
 
-pub const CSSM_CERT_PARSE_FORMAT_PTR = ?*uint32;
+pub const CSSM_CERT_PARSE_FORMAT_PTR = uint32;
 
-pub const anon5181 = enum(u32) {
-    CSSM_CERT_PARSE_FORMAT_NONE = 0,
-    CSSM_CERT_PARSE_FORMAT_CUSTOM = 1,
-    CSSM_CERT_PARSE_FORMAT_SEXPR = 2,
-    CSSM_CERT_PARSE_FORMAT_COMPLEX = 3,
-    CSSM_CERT_PARSE_FORMAT_OID_NAMED = 4,
-    CSSM_CERT_PARSE_FORMAT_TUPLE = 5,
-    CSSM_CERT_PARSE_FORMAT_MULTIPLE = 32766,
-    CSSM_CERT_PARSE_FORMAT_LAST = 32767,
-    CSSM_CL_CUSTOM_CERT_PARSE_FORMAT = 32768,
-};
+pub const anon5181 = u32;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_NONE: u32 = 0;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_CUSTOM: u32 = 1;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_SEXPR: u32 = 2;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_COMPLEX: u32 = 3;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_OID_NAMED: u32 = 4;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_TUPLE: u32 = 5;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_MULTIPLE: u32 = 32766;
+pub const anon5181_CSSM_CERT_PARSE_FORMAT_LAST: u32 = 32767;
+pub const anon5181_CSSM_CL_CUSTOM_CERT_PARSE_FORMAT: u32 = 32768;
 
 pub const cssm_parsed_cert = extern struct {
     CertType: CSSM_CERT_TYPE,
@@ -1186,29 +1175,28 @@ pub const CSSM_CERT_PAIR_PTR = ?*cssm_cert_pair;
 
 pub const CSSM_CERTGROUP_TYPE = uint32;
 
-pub const CSSM_CERTGROUP_TYPE_PTR = ?*uint32;
+pub const CSSM_CERTGROUP_TYPE_PTR = uint32;
 
-pub const anon5491 = enum(u32) {
-    CSSM_CERTGROUP_DATA = 0,
-    CSSM_CERTGROUP_ENCODED_CERT = 1,
-    CSSM_CERTGROUP_PARSED_CERT = 2,
-    CSSM_CERTGROUP_CERT_PAIR = 3,
-};
+pub const anon5491 = u32;
+pub const anon5491_CSSM_CERTGROUP_DATA: u32 = 0;
+pub const anon5491_CSSM_CERTGROUP_ENCODED_CERT: u32 = 1;
+pub const anon5491_CSSM_CERTGROUP_PARSED_CERT: u32 = 2;
+pub const anon5491_CSSM_CERTGROUP_CERT_PAIR: u32 = 3;
 
 pub const cssm_certgroup = extern struct {
+    pub const anon5605 = extern union {
+        CertList: CSSM_DATA_PTR,
+        EncodedCertList: CSSM_ENCODED_CERT_PTR,
+        ParsedCertList: CSSM_PARSED_CERT_PTR,
+        PairCertList: CSSM_CERT_PAIR_PTR,
+    };
+
     CertType: CSSM_CERT_TYPE,
     CertEncoding: CSSM_CERT_ENCODING,
     NumCerts: uint32,
-    GroupList: anon5605,
+    GroupList: cssm_certgroup.anon5605,
     CertGroupType: CSSM_CERTGROUP_TYPE,
     Reserved: ?*anyopaque,
-};
-
-pub const anon5605 = extern union {
-    CertList: CSSM_DATA_PTR,
-    EncodedCertList: CSSM_ENCODED_CERT_PTR,
-    ParsedCertList: CSSM_PARSED_CERT_PTR,
-    PairCertList: CSSM_CERT_PAIR_PTR,
 };
 
 pub const CSSM_CERTGROUP = cssm_certgroup;
@@ -1239,45 +1227,43 @@ pub const CSSM_ACCESS_CREDENTIALS_PTR = ?*cssm_access_credentials;
 
 pub const CSSM_ACL_SUBJECT_TYPE = sint32;
 
-pub const anon5891 = enum(u32) {
-    CSSM_ACL_SUBJECT_TYPE_ANY = 1,
-    CSSM_ACL_SUBJECT_TYPE_THRESHOLD = 123,
-    CSSM_ACL_SUBJECT_TYPE_PASSWORD = 79,
-    CSSM_ACL_SUBJECT_TYPE_PROTECTED_PASSWORD = 87,
-    CSSM_ACL_SUBJECT_TYPE_PROMPTED_PASSWORD = 84,
-    CSSM_ACL_SUBJECT_TYPE_PUBLIC_KEY = 89,
-    CSSM_ACL_SUBJECT_TYPE_HASHED_SUBJECT = 44,
-    CSSM_ACL_SUBJECT_TYPE_BIOMETRIC = 8,
-    CSSM_ACL_SUBJECT_TYPE_PROTECTED_BIOMETRIC = 86,
-    CSSM_ACL_SUBJECT_TYPE_PROMPTED_BIOMETRIC = 83,
-    CSSM_ACL_SUBJECT_TYPE_LOGIN_NAME = 58,
-    CSSM_ACL_SUBJECT_TYPE_EXT_PAM_NAME = 78,
-};
+pub const anon5891 = u32;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_ANY: u32 = 1;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_THRESHOLD: u32 = 123;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_PASSWORD: u32 = 79;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_PROTECTED_PASSWORD: u32 = 87;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_PROMPTED_PASSWORD: u32 = 84;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_PUBLIC_KEY: u32 = 89;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_HASHED_SUBJECT: u32 = 44;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_BIOMETRIC: u32 = 8;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_PROTECTED_BIOMETRIC: u32 = 86;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_PROMPTED_BIOMETRIC: u32 = 83;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_LOGIN_NAME: u32 = 58;
+pub const anon5891_CSSM_ACL_SUBJECT_TYPE_EXT_PAM_NAME: u32 = 78;
 
 pub const CSSM_ACL_AUTHORIZATION_TAG = sint32;
 
-pub const anon6061 = enum(u32) {
-    CSSM_ACL_AUTHORIZATION_TAG_VENDOR_DEFINED_START = 65536,
-    CSSM_ACL_AUTHORIZATION_ANY = 1,
-    CSSM_ACL_AUTHORIZATION_LOGIN = 57,
-    CSSM_ACL_AUTHORIZATION_GENKEY = 41,
-    CSSM_ACL_AUTHORIZATION_DELETE = 25,
-    CSSM_ACL_AUTHORIZATION_EXPORT_WRAPPED = 38,
-    CSSM_ACL_AUTHORIZATION_EXPORT_CLEAR = 37,
-    CSSM_ACL_AUTHORIZATION_IMPORT_WRAPPED = 48,
-    CSSM_ACL_AUTHORIZATION_IMPORT_CLEAR = 47,
-    CSSM_ACL_AUTHORIZATION_SIGN = 115,
-    CSSM_ACL_AUTHORIZATION_ENCRYPT = 35,
-    CSSM_ACL_AUTHORIZATION_DECRYPT = 24,
-    CSSM_ACL_AUTHORIZATION_MAC = 59,
-    CSSM_ACL_AUTHORIZATION_DERIVE = 28,
-    CSSM_ACL_AUTHORIZATION_DBS_CREATE = 22,
-    CSSM_ACL_AUTHORIZATION_DBS_DELETE = 23,
-    CSSM_ACL_AUTHORIZATION_DB_READ = 21,
-    CSSM_ACL_AUTHORIZATION_DB_INSERT = 19,
-    CSSM_ACL_AUTHORIZATION_DB_MODIFY = 20,
-    CSSM_ACL_AUTHORIZATION_DB_DELETE = 17,
-};
+pub const anon6061 = u32;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_TAG_VENDOR_DEFINED_START: u32 = 65536;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_ANY: u32 = 1;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_LOGIN: u32 = 57;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_GENKEY: u32 = 41;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_DELETE: u32 = 25;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_EXPORT_WRAPPED: u32 = 38;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_EXPORT_CLEAR: u32 = 37;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_IMPORT_WRAPPED: u32 = 48;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_IMPORT_CLEAR: u32 = 47;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_SIGN: u32 = 115;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_ENCRYPT: u32 = 35;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_DECRYPT: u32 = 24;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_MAC: u32 = 59;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_DERIVE: u32 = 28;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_DBS_CREATE: u32 = 22;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_DBS_DELETE: u32 = 23;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_DB_READ: u32 = 21;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_DB_INSERT: u32 = 19;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_DB_MODIFY: u32 = 20;
+pub const anon6061_CSSM_ACL_AUTHORIZATION_DB_DELETE: u32 = 17;
 
 pub const cssm_authorizationgroup = extern struct {
     NumberOfAuthTags: uint32,
@@ -1318,12 +1304,7 @@ pub const CSSM_ACL_OWNER_PROTOTYPE = cssm_acl_owner_prototype;
 
 pub const CSSM_ACL_OWNER_PROTOTYPE_PTR = ?*cssm_acl_owner_prototype;
 
-pub const CSSM_ACL_SUBJECT_CALLBACK = ?*const fn (
-    ?*CSSM_LIST,
-    CSSM_LIST_PTR,
-    ?*anyopaque,
-    ?*CSSM_MEMORY_FUNCS,
-) callconv(.C) CSSM_RETURN;
+pub const CSSM_ACL_SUBJECT_CALLBACK = CSSM_RETURN;
 
 pub const cssm_acl_entry_input = extern struct {
     Prototype: CSSM_ACL_ENTRY_PROTOTYPE,
@@ -1357,11 +1338,10 @@ pub const CSSM_ACL_ENTRY_INFO_PTR = ?*cssm_acl_entry_info;
 
 pub const CSSM_ACL_EDIT_MODE = uint32;
 
-pub const anon6831 = enum(u32) {
-    CSSM_ACL_EDIT_MODE_ADD = 1,
-    CSSM_ACL_EDIT_MODE_DELETE = 2,
-    CSSM_ACL_EDIT_MODE_REPLACE = 3,
-};
+pub const anon6831 = u32;
+pub const anon6831_CSSM_ACL_EDIT_MODE_ADD: u32 = 1;
+pub const anon6831_CSSM_ACL_EDIT_MODE_DELETE: u32 = 2;
+pub const anon6831_CSSM_ACL_EDIT_MODE_REPLACE: u32 = 3;
 
 pub const cssm_acl_edit = extern struct {
     EditMode: CSSM_ACL_EDIT_MODE,
@@ -1375,7 +1355,7 @@ pub const CSSM_ACL_EDIT_PTR = ?*cssm_acl_edit;
 
 pub const CSSM_PROC_ADDR = ?*const fn () callconv(.C) void;
 
-pub const CSSM_PROC_ADDR_PTR = ?*CSSM_PROC_ADDR;
+pub const CSSM_PROC_ADDR_PTR = CSSM_PROC_ADDR;
 
 pub const cssm_func_name_addr = extern struct {
     Name: CSSM_STRING,
@@ -1416,9 +1396,8 @@ pub const CSSM_QUERY_SIZE_DATA_PTR = ?*cssm_query_size_data;
 
 pub const CSSM_HEADERVERSION = uint32;
 
-pub const anon7271 = enum(u32) {
-    CSSM_KEYHEADER_VERSION = 2,
-};
+pub const anon7271 = u32;
+pub const anon7271_CSSM_KEYHEADER_VERSION: u32 = 2;
 
 pub const cssm_key_size = extern struct {
     LogicalKeySizeInBits: uint32,
@@ -1431,250 +1410,245 @@ pub const CSSM_KEY_SIZE_PTR = ?*cssm_key_size;
 
 pub const CSSM_KEYBLOB_TYPE = uint32;
 
-pub const anon7371 = enum(u32) {
-    CSSM_KEYBLOB_RAW = 0,
-    CSSM_KEYBLOB_REFERENCE = 2,
-    CSSM_KEYBLOB_WRAPPED = 3,
-    CSSM_KEYBLOB_OTHER = -1,
-};
+pub const anon7371 = u32;
+pub const anon7371_CSSM_KEYBLOB_RAW: u32 = 0;
+pub const anon7371_CSSM_KEYBLOB_REFERENCE: u32 = 2;
+pub const anon7371_CSSM_KEYBLOB_WRAPPED: u32 = 3;
+pub const anon7371_CSSM_KEYBLOB_OTHER: u32 = -1;
 
 pub const CSSM_KEYBLOB_FORMAT = uint32;
 
-pub const anon7451 = enum(u32) {
-    CSSM_KEYBLOB_RAW_FORMAT_NONE = 0,
-    CSSM_KEYBLOB_RAW_FORMAT_PKCS1 = 1,
-    CSSM_KEYBLOB_RAW_FORMAT_PKCS3 = 2,
-    CSSM_KEYBLOB_RAW_FORMAT_MSCAPI = 3,
-    CSSM_KEYBLOB_RAW_FORMAT_PGP = 4,
-    CSSM_KEYBLOB_RAW_FORMAT_FIPS186 = 5,
-    CSSM_KEYBLOB_RAW_FORMAT_BSAFE = 6,
-    CSSM_KEYBLOB_RAW_FORMAT_CCA = 9,
-    CSSM_KEYBLOB_RAW_FORMAT_PKCS8 = 10,
-    CSSM_KEYBLOB_RAW_FORMAT_SPKI = 11,
-    CSSM_KEYBLOB_RAW_FORMAT_OCTET_STRING = 12,
-    CSSM_KEYBLOB_RAW_FORMAT_OTHER = -1,
-};
+pub const anon7451 = u32;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_NONE: u32 = 0;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_PKCS1: u32 = 1;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_PKCS3: u32 = 2;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_MSCAPI: u32 = 3;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_PGP: u32 = 4;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_FIPS186: u32 = 5;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_BSAFE: u32 = 6;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_CCA: u32 = 9;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_PKCS8: u32 = 10;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_SPKI: u32 = 11;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_OCTET_STRING: u32 = 12;
+pub const anon7451_CSSM_KEYBLOB_RAW_FORMAT_OTHER: u32 = -1;
 
-pub const anon7611 = enum(u32) {
-    CSSM_KEYBLOB_WRAPPED_FORMAT_NONE = 0,
-    CSSM_KEYBLOB_WRAPPED_FORMAT_PKCS8 = 1,
-    CSSM_KEYBLOB_WRAPPED_FORMAT_PKCS7 = 2,
-    CSSM_KEYBLOB_WRAPPED_FORMAT_MSCAPI = 3,
-    CSSM_KEYBLOB_WRAPPED_FORMAT_OTHER = -1,
-};
+pub const anon7611 = u32;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_NONE: u32 = 0;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_PKCS8: u32 = 1;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_PKCS7: u32 = 2;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_MSCAPI: u32 = 3;
+pub const anon7611_CSSM_KEYBLOB_WRAPPED_FORMAT_OTHER: u32 = -1;
 
-pub const anon7701 = enum(u32) {
-    CSSM_KEYBLOB_WRAPPED_FORMAT_APPLE_CUSTOM = 100,
-    CSSM_KEYBLOB_WRAPPED_FORMAT_OPENSSL = 101,
-    CSSM_KEYBLOB_WRAPPED_FORMAT_OPENSSH1 = 102,
-};
+pub const anon7701 = u32;
+pub const anon7701_CSSM_KEYBLOB_REF_FORMAT_INTEGER: u32 = 0;
+pub const anon7701_CSSM_KEYBLOB_REF_FORMAT_STRING: u32 = 1;
+pub const anon7701_CSSM_KEYBLOB_REF_FORMAT_SPKI: u32 = 2;
+pub const anon7701_CSSM_KEYBLOB_REF_FORMAT_OTHER: u32 = -1;
+pub const anon7701_CSSM_KEYBLOB_WRAPPED_FORMAT_APPLE_CUSTOM: u32 = 100;
+pub const anon7701_CSSM_KEYBLOB_WRAPPED_FORMAT_OPENSSL: u32 = 101;
+pub const anon7701_CSSM_KEYBLOB_WRAPPED_FORMAT_OPENSSH1: u32 = 102;
 
 pub const CSSM_KEYCLASS = uint32;
 
-pub const anon7801 = enum(u32) {
-    CSSM_KEYCLASS_PUBLIC_KEY = 0,
-    CSSM_KEYCLASS_PRIVATE_KEY = 1,
-    CSSM_KEYCLASS_SESSION_KEY = 2,
-    CSSM_KEYCLASS_SECRET_PART = 3,
-    CSSM_KEYCLASS_OTHER = -1,
-};
+pub const anon7801 = u32;
+pub const anon7801_CSSM_KEYCLASS_PUBLIC_KEY: u32 = 0;
+pub const anon7801_CSSM_KEYCLASS_PRIVATE_KEY: u32 = 1;
+pub const anon7801_CSSM_KEYCLASS_SESSION_KEY: u32 = 2;
+pub const anon7801_CSSM_KEYCLASS_SECRET_PART: u32 = 3;
+pub const anon7801_CSSM_KEYCLASS_OTHER: u32 = -1;
 
 pub const CSSM_KEYATTR_FLAGS = uint32;
 
-pub const anon7891 = enum(u32) {
-    CSSM_KEYATTR_RETURN_DEFAULT = 0,
-    CSSM_KEYATTR_RETURN_DATA = 268435456,
-    CSSM_KEYATTR_RETURN_REF = 536870912,
-    CSSM_KEYATTR_RETURN_NONE = 1073741824,
-    CSSM_KEYATTR_PERMANENT = 1,
-    CSSM_KEYATTR_PRIVATE = 2,
-    CSSM_KEYATTR_MODIFIABLE = 4,
-    CSSM_KEYATTR_SENSITIVE = 8,
-    CSSM_KEYATTR_EXTRACTABLE = 32,
-    CSSM_KEYATTR_ALWAYS_SENSITIVE = 16,
-    CSSM_KEYATTR_NEVER_EXTRACTABLE = 64,
-};
+pub const anon7891 = u32;
+pub const anon7891_CSSM_KEYATTR_RETURN_DEFAULT: u32 = 0;
+pub const anon7891_CSSM_KEYATTR_RETURN_DATA: u32 = 268435456;
+pub const anon7891_CSSM_KEYATTR_RETURN_REF: u32 = 536870912;
+pub const anon7891_CSSM_KEYATTR_RETURN_NONE: u32 = 1073741824;
+pub const anon7891_CSSM_KEYATTR_PERMANENT: u32 = 1;
+pub const anon7891_CSSM_KEYATTR_PRIVATE: u32 = 2;
+pub const anon7891_CSSM_KEYATTR_MODIFIABLE: u32 = 4;
+pub const anon7891_CSSM_KEYATTR_SENSITIVE: u32 = 8;
+pub const anon7891_CSSM_KEYATTR_EXTRACTABLE: u32 = 32;
+pub const anon7891_CSSM_KEYATTR_ALWAYS_SENSITIVE: u32 = 16;
+pub const anon7891_CSSM_KEYATTR_NEVER_EXTRACTABLE: u32 = 64;
 
 pub const CSSM_KEYUSE = uint32;
 
-pub const anon8071 = enum(u32) {
-    CSSM_KEYUSE_ANY = -2147483648,
-    CSSM_KEYUSE_ENCRYPT = 1,
-    CSSM_KEYUSE_DECRYPT = 2,
-    CSSM_KEYUSE_SIGN = 4,
-    CSSM_KEYUSE_VERIFY = 8,
-    CSSM_KEYUSE_SIGN_RECOVER = 16,
-    CSSM_KEYUSE_VERIFY_RECOVER = 32,
-    CSSM_KEYUSE_WRAP = 64,
-    CSSM_KEYUSE_UNWRAP = 128,
-    CSSM_KEYUSE_DERIVE = 256,
-};
+pub const anon8071 = u32;
+pub const anon8071_CSSM_KEYUSE_ANY: u32 = -2147483648;
+pub const anon8071_CSSM_KEYUSE_ENCRYPT: u32 = 1;
+pub const anon8071_CSSM_KEYUSE_DECRYPT: u32 = 2;
+pub const anon8071_CSSM_KEYUSE_SIGN: u32 = 4;
+pub const anon8071_CSSM_KEYUSE_VERIFY: u32 = 8;
+pub const anon8071_CSSM_KEYUSE_SIGN_RECOVER: u32 = 16;
+pub const anon8071_CSSM_KEYUSE_VERIFY_RECOVER: u32 = 32;
+pub const anon8071_CSSM_KEYUSE_WRAP: u32 = 64;
+pub const anon8071_CSSM_KEYUSE_UNWRAP: u32 = 128;
+pub const anon8071_CSSM_KEYUSE_DERIVE: u32 = 256;
 
 pub const CSSM_ALGORITHMS = uint32;
 
-pub const anon8211 = enum(u32) {
-    CSSM_ALGID_NONE = 0,
-    CSSM_ALGID_CUSTOM = 1,
-    CSSM_ALGID_DH = 2,
-    CSSM_ALGID_PH = 3,
-    CSSM_ALGID_KEA = 4,
-    CSSM_ALGID_MD2 = 5,
-    CSSM_ALGID_MD4 = 6,
-    CSSM_ALGID_MD5 = 7,
-    CSSM_ALGID_SHA1 = 8,
-    CSSM_ALGID_NHASH = 9,
-    CSSM_ALGID_HAVAL = 10,
-    CSSM_ALGID_RIPEMD = 11,
-    CSSM_ALGID_IBCHASH = 12,
-    CSSM_ALGID_RIPEMAC = 13,
-    CSSM_ALGID_DES = 14,
-    CSSM_ALGID_DESX = 15,
-    CSSM_ALGID_RDES = 16,
-    CSSM_ALGID_3DES_3KEY_EDE = 17,
-    CSSM_ALGID_3DES_2KEY_EDE = 18,
-    CSSM_ALGID_3DES_1KEY_EEE = 19,
-    CSSM_ALGID_3DES_3KEY = 17,
-    CSSM_ALGID_3DES_3KEY_EEE = 20,
-    CSSM_ALGID_3DES_2KEY = 18,
-    CSSM_ALGID_3DES_2KEY_EEE = 21,
-    CSSM_ALGID_3DES_1KEY = 20,
-    CSSM_ALGID_IDEA = 22,
-    CSSM_ALGID_RC2 = 23,
-    CSSM_ALGID_RC5 = 24,
-    CSSM_ALGID_RC4 = 25,
-    CSSM_ALGID_SEAL = 26,
-    CSSM_ALGID_CAST = 27,
-    CSSM_ALGID_BLOWFISH = 28,
-    CSSM_ALGID_SKIPJACK = 29,
-    CSSM_ALGID_LUCIFER = 30,
-    CSSM_ALGID_MADRYGA = 31,
-    CSSM_ALGID_FEAL = 32,
-    CSSM_ALGID_REDOC = 33,
-    CSSM_ALGID_REDOC3 = 34,
-    CSSM_ALGID_LOKI = 35,
-    CSSM_ALGID_KHUFU = 36,
-    CSSM_ALGID_KHAFRE = 37,
-    CSSM_ALGID_MMB = 38,
-    CSSM_ALGID_GOST = 39,
-    CSSM_ALGID_SAFER = 40,
-    CSSM_ALGID_CRAB = 41,
-    CSSM_ALGID_RSA = 42,
-    CSSM_ALGID_DSA = 43,
-    CSSM_ALGID_MD5WithRSA = 44,
-    CSSM_ALGID_MD2WithRSA = 45,
-    CSSM_ALGID_ElGamal = 46,
-    CSSM_ALGID_MD2Random = 47,
-    CSSM_ALGID_MD5Random = 48,
-    CSSM_ALGID_SHARandom = 49,
-    CSSM_ALGID_DESRandom = 50,
-    CSSM_ALGID_SHA1WithRSA = 51,
-    CSSM_ALGID_CDMF = 52,
-    CSSM_ALGID_CAST3 = 53,
-    CSSM_ALGID_CAST5 = 54,
-    CSSM_ALGID_GenericSecret = 55,
-    CSSM_ALGID_ConcatBaseAndKey = 56,
-    CSSM_ALGID_ConcatKeyAndBase = 57,
-    CSSM_ALGID_ConcatBaseAndData = 58,
-    CSSM_ALGID_ConcatDataAndBase = 59,
-    CSSM_ALGID_XORBaseAndData = 60,
-    CSSM_ALGID_ExtractFromKey = 61,
-    CSSM_ALGID_SSL3PrePrimaryGen = 62,
-    CSSM_ALGID_SSL3PreMasterGen = 62,
-    CSSM_ALGID_SSL3PrimaryDerive = 63,
-    CSSM_ALGID_SSL3MasterDerive = 63,
-    CSSM_ALGID_SSL3KeyAndMacDerive = 64,
-    CSSM_ALGID_SSL3MD5_MAC = 65,
-    CSSM_ALGID_SSL3SHA1_MAC = 66,
-    CSSM_ALGID_PKCS5_PBKDF1_MD5 = 67,
-    CSSM_ALGID_PKCS5_PBKDF1_MD2 = 68,
-    CSSM_ALGID_PKCS5_PBKDF1_SHA1 = 69,
-    CSSM_ALGID_WrapLynks = 70,
-    CSSM_ALGID_WrapSET_OAEP = 71,
-    CSSM_ALGID_BATON = 72,
-    CSSM_ALGID_ECDSA = 73,
-    CSSM_ALGID_MAYFLY = 74,
-    CSSM_ALGID_JUNIPER = 75,
-    CSSM_ALGID_FASTHASH = 76,
-    CSSM_ALGID_3DES = 77,
-    CSSM_ALGID_SSL3MD5 = 78,
-    CSSM_ALGID_SSL3SHA1 = 79,
-    CSSM_ALGID_FortezzaTimestamp = 80,
-    CSSM_ALGID_SHA1WithDSA = 81,
-    CSSM_ALGID_SHA1WithECDSA = 82,
-    CSSM_ALGID_DSA_BSAFE = 83,
-    CSSM_ALGID_ECDH = 84,
-    CSSM_ALGID_ECMQV = 85,
-    CSSM_ALGID_PKCS12_SHA1_PBE = 86,
-    CSSM_ALGID_ECNRA = 87,
-    CSSM_ALGID_SHA1WithECNRA = 88,
-    CSSM_ALGID_ECES = 89,
-    CSSM_ALGID_ECAES = 90,
-    CSSM_ALGID_SHA1HMAC = 91,
-    CSSM_ALGID_FIPS186Random = 92,
-    CSSM_ALGID_ECC = 93,
-    CSSM_ALGID_MQV = 94,
-    CSSM_ALGID_NRA = 95,
-    CSSM_ALGID_IntelPlatformRandom = 96,
-    CSSM_ALGID_UTC = 97,
-    CSSM_ALGID_HAVAL3 = 98,
-    CSSM_ALGID_HAVAL4 = 99,
-    CSSM_ALGID_HAVAL5 = 100,
-    CSSM_ALGID_TIGER = 101,
-    CSSM_ALGID_MD5HMAC = 102,
-    CSSM_ALGID_PKCS5_PBKDF2 = 103,
-    CSSM_ALGID_RUNNING_COUNTER = 104,
-    CSSM_ALGID_LAST = 2147483647,
-    CSSM_ALGID_VENDOR_DEFINED = -2147483648,
-};
+pub const anon8211 = u32;
+pub const anon8211_CSSM_ALGID_NONE: u32 = 0;
+pub const anon8211_CSSM_ALGID_CUSTOM: u32 = 1;
+pub const anon8211_CSSM_ALGID_DH: u32 = 2;
+pub const anon8211_CSSM_ALGID_PH: u32 = 3;
+pub const anon8211_CSSM_ALGID_KEA: u32 = 4;
+pub const anon8211_CSSM_ALGID_MD2: u32 = 5;
+pub const anon8211_CSSM_ALGID_MD4: u32 = 6;
+pub const anon8211_CSSM_ALGID_MD5: u32 = 7;
+pub const anon8211_CSSM_ALGID_SHA1: u32 = 8;
+pub const anon8211_CSSM_ALGID_NHASH: u32 = 9;
+pub const anon8211_CSSM_ALGID_HAVAL: u32 = 10;
+pub const anon8211_CSSM_ALGID_RIPEMD: u32 = 11;
+pub const anon8211_CSSM_ALGID_IBCHASH: u32 = 12;
+pub const anon8211_CSSM_ALGID_RIPEMAC: u32 = 13;
+pub const anon8211_CSSM_ALGID_DES: u32 = 14;
+pub const anon8211_CSSM_ALGID_DESX: u32 = 15;
+pub const anon8211_CSSM_ALGID_RDES: u32 = 16;
+pub const anon8211_CSSM_ALGID_3DES_3KEY_EDE: u32 = 17;
+pub const anon8211_CSSM_ALGID_3DES_2KEY_EDE: u32 = 18;
+pub const anon8211_CSSM_ALGID_3DES_1KEY_EEE: u32 = 19;
+pub const anon8211_CSSM_ALGID_3DES_3KEY: u32 = 17;
+pub const anon8211_CSSM_ALGID_3DES_3KEY_EEE: u32 = 20;
+pub const anon8211_CSSM_ALGID_3DES_2KEY: u32 = 18;
+pub const anon8211_CSSM_ALGID_3DES_2KEY_EEE: u32 = 21;
+pub const anon8211_CSSM_ALGID_3DES_1KEY: u32 = 20;
+pub const anon8211_CSSM_ALGID_IDEA: u32 = 22;
+pub const anon8211_CSSM_ALGID_RC2: u32 = 23;
+pub const anon8211_CSSM_ALGID_RC5: u32 = 24;
+pub const anon8211_CSSM_ALGID_RC4: u32 = 25;
+pub const anon8211_CSSM_ALGID_SEAL: u32 = 26;
+pub const anon8211_CSSM_ALGID_CAST: u32 = 27;
+pub const anon8211_CSSM_ALGID_BLOWFISH: u32 = 28;
+pub const anon8211_CSSM_ALGID_SKIPJACK: u32 = 29;
+pub const anon8211_CSSM_ALGID_LUCIFER: u32 = 30;
+pub const anon8211_CSSM_ALGID_MADRYGA: u32 = 31;
+pub const anon8211_CSSM_ALGID_FEAL: u32 = 32;
+pub const anon8211_CSSM_ALGID_REDOC: u32 = 33;
+pub const anon8211_CSSM_ALGID_REDOC3: u32 = 34;
+pub const anon8211_CSSM_ALGID_LOKI: u32 = 35;
+pub const anon8211_CSSM_ALGID_KHUFU: u32 = 36;
+pub const anon8211_CSSM_ALGID_KHAFRE: u32 = 37;
+pub const anon8211_CSSM_ALGID_MMB: u32 = 38;
+pub const anon8211_CSSM_ALGID_GOST: u32 = 39;
+pub const anon8211_CSSM_ALGID_SAFER: u32 = 40;
+pub const anon8211_CSSM_ALGID_CRAB: u32 = 41;
+pub const anon8211_CSSM_ALGID_RSA: u32 = 42;
+pub const anon8211_CSSM_ALGID_DSA: u32 = 43;
+pub const anon8211_CSSM_ALGID_MD5WithRSA: u32 = 44;
+pub const anon8211_CSSM_ALGID_MD2WithRSA: u32 = 45;
+pub const anon8211_CSSM_ALGID_ElGamal: u32 = 46;
+pub const anon8211_CSSM_ALGID_MD2Random: u32 = 47;
+pub const anon8211_CSSM_ALGID_MD5Random: u32 = 48;
+pub const anon8211_CSSM_ALGID_SHARandom: u32 = 49;
+pub const anon8211_CSSM_ALGID_DESRandom: u32 = 50;
+pub const anon8211_CSSM_ALGID_SHA1WithRSA: u32 = 51;
+pub const anon8211_CSSM_ALGID_CDMF: u32 = 52;
+pub const anon8211_CSSM_ALGID_CAST3: u32 = 53;
+pub const anon8211_CSSM_ALGID_CAST5: u32 = 54;
+pub const anon8211_CSSM_ALGID_GenericSecret: u32 = 55;
+pub const anon8211_CSSM_ALGID_ConcatBaseAndKey: u32 = 56;
+pub const anon8211_CSSM_ALGID_ConcatKeyAndBase: u32 = 57;
+pub const anon8211_CSSM_ALGID_ConcatBaseAndData: u32 = 58;
+pub const anon8211_CSSM_ALGID_ConcatDataAndBase: u32 = 59;
+pub const anon8211_CSSM_ALGID_XORBaseAndData: u32 = 60;
+pub const anon8211_CSSM_ALGID_ExtractFromKey: u32 = 61;
+pub const anon8211_CSSM_ALGID_SSL3PrePrimaryGen: u32 = 62;
+pub const anon8211_CSSM_ALGID_SSL3PreMasterGen: u32 = 62;
+pub const anon8211_CSSM_ALGID_SSL3PrimaryDerive: u32 = 63;
+pub const anon8211_CSSM_ALGID_SSL3MasterDerive: u32 = 63;
+pub const anon8211_CSSM_ALGID_SSL3KeyAndMacDerive: u32 = 64;
+pub const anon8211_CSSM_ALGID_SSL3MD5_MAC: u32 = 65;
+pub const anon8211_CSSM_ALGID_SSL3SHA1_MAC: u32 = 66;
+pub const anon8211_CSSM_ALGID_PKCS5_PBKDF1_MD5: u32 = 67;
+pub const anon8211_CSSM_ALGID_PKCS5_PBKDF1_MD2: u32 = 68;
+pub const anon8211_CSSM_ALGID_PKCS5_PBKDF1_SHA1: u32 = 69;
+pub const anon8211_CSSM_ALGID_WrapLynks: u32 = 70;
+pub const anon8211_CSSM_ALGID_WrapSET_OAEP: u32 = 71;
+pub const anon8211_CSSM_ALGID_BATON: u32 = 72;
+pub const anon8211_CSSM_ALGID_ECDSA: u32 = 73;
+pub const anon8211_CSSM_ALGID_MAYFLY: u32 = 74;
+pub const anon8211_CSSM_ALGID_JUNIPER: u32 = 75;
+pub const anon8211_CSSM_ALGID_FASTHASH: u32 = 76;
+pub const anon8211_CSSM_ALGID_3DES: u32 = 77;
+pub const anon8211_CSSM_ALGID_SSL3MD5: u32 = 78;
+pub const anon8211_CSSM_ALGID_SSL3SHA1: u32 = 79;
+pub const anon8211_CSSM_ALGID_FortezzaTimestamp: u32 = 80;
+pub const anon8211_CSSM_ALGID_SHA1WithDSA: u32 = 81;
+pub const anon8211_CSSM_ALGID_SHA1WithECDSA: u32 = 82;
+pub const anon8211_CSSM_ALGID_DSA_BSAFE: u32 = 83;
+pub const anon8211_CSSM_ALGID_ECDH: u32 = 84;
+pub const anon8211_CSSM_ALGID_ECMQV: u32 = 85;
+pub const anon8211_CSSM_ALGID_PKCS12_SHA1_PBE: u32 = 86;
+pub const anon8211_CSSM_ALGID_ECNRA: u32 = 87;
+pub const anon8211_CSSM_ALGID_SHA1WithECNRA: u32 = 88;
+pub const anon8211_CSSM_ALGID_ECES: u32 = 89;
+pub const anon8211_CSSM_ALGID_ECAES: u32 = 90;
+pub const anon8211_CSSM_ALGID_SHA1HMAC: u32 = 91;
+pub const anon8211_CSSM_ALGID_FIPS186Random: u32 = 92;
+pub const anon8211_CSSM_ALGID_ECC: u32 = 93;
+pub const anon8211_CSSM_ALGID_MQV: u32 = 94;
+pub const anon8211_CSSM_ALGID_NRA: u32 = 95;
+pub const anon8211_CSSM_ALGID_IntelPlatformRandom: u32 = 96;
+pub const anon8211_CSSM_ALGID_UTC: u32 = 97;
+pub const anon8211_CSSM_ALGID_HAVAL3: u32 = 98;
+pub const anon8211_CSSM_ALGID_HAVAL4: u32 = 99;
+pub const anon8211_CSSM_ALGID_HAVAL5: u32 = 100;
+pub const anon8211_CSSM_ALGID_TIGER: u32 = 101;
+pub const anon8211_CSSM_ALGID_MD5HMAC: u32 = 102;
+pub const anon8211_CSSM_ALGID_PKCS5_PBKDF2: u32 = 103;
+pub const anon8211_CSSM_ALGID_RUNNING_COUNTER: u32 = 104;
+pub const anon8211_CSSM_ALGID_LAST: u32 = 2147483647;
+pub const anon8211_CSSM_ALGID_VENDOR_DEFINED: u32 = -2147483648;
 
 pub const CSSM_ENCRYPT_MODE = uint32;
 
-pub const anon9401 = enum(u32) {
-    CSSM_ALGMODE_NONE = 0,
-    CSSM_ALGMODE_CUSTOM = 1,
-    CSSM_ALGMODE_ECB = 2,
-    CSSM_ALGMODE_ECBPad = 3,
-    CSSM_ALGMODE_CBC = 4,
-    CSSM_ALGMODE_CBC_IV8 = 5,
-    CSSM_ALGMODE_CBCPadIV8 = 6,
-    CSSM_ALGMODE_CFB = 7,
-    CSSM_ALGMODE_CFB_IV8 = 8,
-    CSSM_ALGMODE_CFBPadIV8 = 9,
-    CSSM_ALGMODE_OFB = 10,
-    CSSM_ALGMODE_OFB_IV8 = 11,
-    CSSM_ALGMODE_OFBPadIV8 = 12,
-    CSSM_ALGMODE_COUNTER = 13,
-    CSSM_ALGMODE_BC = 14,
-    CSSM_ALGMODE_PCBC = 15,
-    CSSM_ALGMODE_CBCC = 16,
-    CSSM_ALGMODE_OFBNLF = 17,
-    CSSM_ALGMODE_PBC = 18,
-    CSSM_ALGMODE_PFB = 19,
-    CSSM_ALGMODE_CBCPD = 20,
-    CSSM_ALGMODE_PUBLIC_KEY = 21,
-    CSSM_ALGMODE_PRIVATE_KEY = 22,
-    CSSM_ALGMODE_SHUFFLE = 23,
-    CSSM_ALGMODE_ECB64 = 24,
-    CSSM_ALGMODE_CBC64 = 25,
-    CSSM_ALGMODE_OFB64 = 26,
-    CSSM_ALGMODE_CFB32 = 28,
-    CSSM_ALGMODE_CFB16 = 29,
-    CSSM_ALGMODE_CFB8 = 30,
-    CSSM_ALGMODE_WRAP = 31,
-    CSSM_ALGMODE_PRIVATE_WRAP = 32,
-    CSSM_ALGMODE_RELAYX = 33,
-    CSSM_ALGMODE_ECB128 = 34,
-    CSSM_ALGMODE_ECB96 = 35,
-    CSSM_ALGMODE_CBC128 = 36,
-    CSSM_ALGMODE_OAEP_HASH = 37,
-    CSSM_ALGMODE_PKCS1_EME_V15 = 38,
-    CSSM_ALGMODE_PKCS1_EME_OAEP = 39,
-    CSSM_ALGMODE_PKCS1_EMSA_V15 = 40,
-    CSSM_ALGMODE_ISO_9796 = 41,
-    CSSM_ALGMODE_X9_31 = 42,
-    CSSM_ALGMODE_LAST = 2147483647,
-    CSSM_ALGMODE_VENDOR_DEFINED = -2147483648,
-};
+pub const anon9401 = u32;
+pub const anon9401_CSSM_ALGMODE_NONE: u32 = 0;
+pub const anon9401_CSSM_ALGMODE_CUSTOM: u32 = 1;
+pub const anon9401_CSSM_ALGMODE_ECB: u32 = 2;
+pub const anon9401_CSSM_ALGMODE_ECBPad: u32 = 3;
+pub const anon9401_CSSM_ALGMODE_CBC: u32 = 4;
+pub const anon9401_CSSM_ALGMODE_CBC_IV8: u32 = 5;
+pub const anon9401_CSSM_ALGMODE_CBCPadIV8: u32 = 6;
+pub const anon9401_CSSM_ALGMODE_CFB: u32 = 7;
+pub const anon9401_CSSM_ALGMODE_CFB_IV8: u32 = 8;
+pub const anon9401_CSSM_ALGMODE_CFBPadIV8: u32 = 9;
+pub const anon9401_CSSM_ALGMODE_OFB: u32 = 10;
+pub const anon9401_CSSM_ALGMODE_OFB_IV8: u32 = 11;
+pub const anon9401_CSSM_ALGMODE_OFBPadIV8: u32 = 12;
+pub const anon9401_CSSM_ALGMODE_COUNTER: u32 = 13;
+pub const anon9401_CSSM_ALGMODE_BC: u32 = 14;
+pub const anon9401_CSSM_ALGMODE_PCBC: u32 = 15;
+pub const anon9401_CSSM_ALGMODE_CBCC: u32 = 16;
+pub const anon9401_CSSM_ALGMODE_OFBNLF: u32 = 17;
+pub const anon9401_CSSM_ALGMODE_PBC: u32 = 18;
+pub const anon9401_CSSM_ALGMODE_PFB: u32 = 19;
+pub const anon9401_CSSM_ALGMODE_CBCPD: u32 = 20;
+pub const anon9401_CSSM_ALGMODE_PUBLIC_KEY: u32 = 21;
+pub const anon9401_CSSM_ALGMODE_PRIVATE_KEY: u32 = 22;
+pub const anon9401_CSSM_ALGMODE_SHUFFLE: u32 = 23;
+pub const anon9401_CSSM_ALGMODE_ECB64: u32 = 24;
+pub const anon9401_CSSM_ALGMODE_CBC64: u32 = 25;
+pub const anon9401_CSSM_ALGMODE_OFB64: u32 = 26;
+pub const anon9401_CSSM_ALGMODE_CFB32: u32 = 28;
+pub const anon9401_CSSM_ALGMODE_CFB16: u32 = 29;
+pub const anon9401_CSSM_ALGMODE_CFB8: u32 = 30;
+pub const anon9401_CSSM_ALGMODE_WRAP: u32 = 31;
+pub const anon9401_CSSM_ALGMODE_PRIVATE_WRAP: u32 = 32;
+pub const anon9401_CSSM_ALGMODE_RELAYX: u32 = 33;
+pub const anon9401_CSSM_ALGMODE_ECB128: u32 = 34;
+pub const anon9401_CSSM_ALGMODE_ECB96: u32 = 35;
+pub const anon9401_CSSM_ALGMODE_CBC128: u32 = 36;
+pub const anon9401_CSSM_ALGMODE_OAEP_HASH: u32 = 37;
+pub const anon9401_CSSM_ALGMODE_PKCS1_EME_V15: u32 = 38;
+pub const anon9401_CSSM_ALGMODE_PKCS1_EME_OAEP: u32 = 39;
+pub const anon9401_CSSM_ALGMODE_PKCS1_EMSA_V15: u32 = 40;
+pub const anon9401_CSSM_ALGMODE_ISO_9796: u32 = 41;
+pub const anon9401_CSSM_ALGMODE_X9_31: u32 = 42;
+pub const anon9401_CSSM_ALGMODE_LAST: u32 = 2147483647;
+pub const anon9401_CSSM_ALGMODE_VENDOR_DEFINED: u32 = -2147483648;
 
 pub const cssm_keyheader = extern struct {
     HeaderVersion: CSSM_HEADERVERSION,
@@ -1708,15 +1682,14 @@ pub const CSSM_KEY_PTR = ?*cssm_key;
 
 pub const CSSM_WRAP_KEY = CSSM_KEY;
 
-pub const CSSM_WRAP_KEY_PTR = ?*CSSM_KEY;
+pub const CSSM_WRAP_KEY_PTR = CSSM_KEY;
 
 pub const CSSM_CSPTYPE = uint32;
 
-pub const anon10151 = enum(u32) {
-    CSSM_CSP_SOFTWARE = 1,
-    CSSM_CSP_HARDWARE = 2,
-    CSSM_CSP_HYBRID = 3,
-};
+pub const anon10151 = u32;
+pub const anon10151_CSSM_CSP_SOFTWARE: u32 = 1;
+pub const anon10151_CSSM_CSP_HARDWARE: u32 = 2;
+pub const anon10151_CSSM_CSP_HYBRID: u32 = 3;
 
 pub const cssm_dl_db_handle = extern struct {
     DLHandle: CSSM_DL_HANDLE,
@@ -1729,136 +1702,132 @@ pub const CSSM_DL_DB_HANDLE_PTR = ?*cssm_dl_db_handle;
 
 pub const CSSM_CONTEXT_TYPE = uint32;
 
-pub const anon10281 = enum(u32) {
-    CSSM_ALGCLASS_NONE = 0,
-    CSSM_ALGCLASS_CUSTOM = 1,
-    CSSM_ALGCLASS_SIGNATURE = 2,
-    CSSM_ALGCLASS_SYMMETRIC = 3,
-    CSSM_ALGCLASS_DIGEST = 4,
-    CSSM_ALGCLASS_RANDOMGEN = 5,
-    CSSM_ALGCLASS_UNIQUEGEN = 6,
-    CSSM_ALGCLASS_MAC = 7,
-    CSSM_ALGCLASS_ASYMMETRIC = 8,
-    CSSM_ALGCLASS_KEYGEN = 9,
-    CSSM_ALGCLASS_DERIVEKEY = 10,
-};
+pub const anon10281 = u32;
+pub const anon10281_CSSM_ALGCLASS_NONE: u32 = 0;
+pub const anon10281_CSSM_ALGCLASS_CUSTOM: u32 = 1;
+pub const anon10281_CSSM_ALGCLASS_SIGNATURE: u32 = 2;
+pub const anon10281_CSSM_ALGCLASS_SYMMETRIC: u32 = 3;
+pub const anon10281_CSSM_ALGCLASS_DIGEST: u32 = 4;
+pub const anon10281_CSSM_ALGCLASS_RANDOMGEN: u32 = 5;
+pub const anon10281_CSSM_ALGCLASS_UNIQUEGEN: u32 = 6;
+pub const anon10281_CSSM_ALGCLASS_MAC: u32 = 7;
+pub const anon10281_CSSM_ALGCLASS_ASYMMETRIC: u32 = 8;
+pub const anon10281_CSSM_ALGCLASS_KEYGEN: u32 = 9;
+pub const anon10281_CSSM_ALGCLASS_DERIVEKEY: u32 = 10;
 
-pub const anon10431 = enum(u32) {
-    CSSM_ATTRIBUTE_DATA_NONE = 0,
-    CSSM_ATTRIBUTE_DATA_UINT32 = 268435456,
-    CSSM_ATTRIBUTE_DATA_CSSM_DATA = 536870912,
-    CSSM_ATTRIBUTE_DATA_CRYPTO_DATA = 805306368,
-    CSSM_ATTRIBUTE_DATA_KEY = 1073741824,
-    CSSM_ATTRIBUTE_DATA_STRING = 1342177280,
-    CSSM_ATTRIBUTE_DATA_DATE = 1610612736,
-    CSSM_ATTRIBUTE_DATA_RANGE = 1879048192,
-    CSSM_ATTRIBUTE_DATA_ACCESS_CREDENTIALS = -2147483648,
-    CSSM_ATTRIBUTE_DATA_VERSION = 16777216,
-    CSSM_ATTRIBUTE_DATA_DL_DB_HANDLE = 33554432,
-    CSSM_ATTRIBUTE_DATA_KR_PROFILE = 50331648,
-    CSSM_ATTRIBUTE_TYPE_MASK = -16777216,
-};
+pub const anon10431 = u32;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_NONE: u32 = 0;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_UINT32: u32 = 268435456;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_CSSM_DATA: u32 = 536870912;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_CRYPTO_DATA: u32 = 805306368;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_KEY: u32 = 1073741824;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_STRING: u32 = 1342177280;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_DATE: u32 = 1610612736;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_RANGE: u32 = 1879048192;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_ACCESS_CREDENTIALS: u32 = -2147483648;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_VERSION: u32 = 16777216;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_DL_DB_HANDLE: u32 = 33554432;
+pub const anon10431_CSSM_ATTRIBUTE_DATA_KR_PROFILE: u32 = 50331648;
+pub const anon10431_CSSM_ATTRIBUTE_TYPE_MASK: u32 = -16777216;
 
 pub const CSSM_ATTRIBUTE_TYPE = uint32;
 
-pub const anon10601 = enum(u32) {
-    CSSM_ATTRIBUTE_NONE = 0,
-    CSSM_ATTRIBUTE_CUSTOM = 536870913,
-    CSSM_ATTRIBUTE_DESCRIPTION = 1342177282,
-    CSSM_ATTRIBUTE_KEY = 1073741827,
-    CSSM_ATTRIBUTE_INIT_VECTOR = 536870916,
-    CSSM_ATTRIBUTE_SALT = 536870917,
-    CSSM_ATTRIBUTE_PADDING = 268435462,
-    CSSM_ATTRIBUTE_RANDOM = 536870919,
-    CSSM_ATTRIBUTE_SEED = 805306376,
-    CSSM_ATTRIBUTE_PASSPHRASE = 805306377,
-    CSSM_ATTRIBUTE_KEY_LENGTH = 268435466,
-    CSSM_ATTRIBUTE_KEY_LENGTH_RANGE = 1879048203,
-    CSSM_ATTRIBUTE_BLOCK_SIZE = 268435468,
-    CSSM_ATTRIBUTE_OUTPUT_SIZE = 268435469,
-    CSSM_ATTRIBUTE_ROUNDS = 268435470,
-    CSSM_ATTRIBUTE_IV_SIZE = 268435471,
-    CSSM_ATTRIBUTE_ALG_PARAMS = 536870928,
-    CSSM_ATTRIBUTE_LABEL = 536870929,
-    CSSM_ATTRIBUTE_KEY_TYPE = 268435474,
-    CSSM_ATTRIBUTE_MODE = 268435475,
-    CSSM_ATTRIBUTE_EFFECTIVE_BITS = 268435476,
-    CSSM_ATTRIBUTE_START_DATE = 1610612757,
-    CSSM_ATTRIBUTE_END_DATE = 1610612758,
-    CSSM_ATTRIBUTE_KEYUSAGE = 268435479,
-    CSSM_ATTRIBUTE_KEYATTR = 268435480,
-    CSSM_ATTRIBUTE_VERSION = 16777241,
-    CSSM_ATTRIBUTE_PRIME = 536870938,
-    CSSM_ATTRIBUTE_BASE = 536870939,
-    CSSM_ATTRIBUTE_SUBPRIME = 536870940,
-    CSSM_ATTRIBUTE_ALG_ID = 268435485,
-    CSSM_ATTRIBUTE_ITERATION_COUNT = 268435486,
-    CSSM_ATTRIBUTE_ROUNDS_RANGE = 1879048223,
-    CSSM_ATTRIBUTE_KRPROFILE_LOCAL = 50331680,
-    CSSM_ATTRIBUTE_KRPROFILE_REMOTE = 50331681,
-    CSSM_ATTRIBUTE_CSP_HANDLE = 268435490,
-    CSSM_ATTRIBUTE_DL_DB_HANDLE = 33554467,
-    CSSM_ATTRIBUTE_ACCESS_CREDENTIALS = -2147483612,
-    CSSM_ATTRIBUTE_PUBLIC_KEY_FORMAT = 268435493,
-    CSSM_ATTRIBUTE_PRIVATE_KEY_FORMAT = 268435494,
-    CSSM_ATTRIBUTE_SYMMETRIC_KEY_FORMAT = 268435495,
-    CSSM_ATTRIBUTE_WRAPPED_KEY_FORMAT = 268435496,
-};
+pub const anon10601 = u32;
+pub const anon10601_CSSM_ATTRIBUTE_NONE: u32 = 0;
+pub const anon10601_CSSM_ATTRIBUTE_CUSTOM: u32 = 536870913;
+pub const anon10601_CSSM_ATTRIBUTE_DESCRIPTION: u32 = 1342177282;
+pub const anon10601_CSSM_ATTRIBUTE_KEY: u32 = 1073741827;
+pub const anon10601_CSSM_ATTRIBUTE_INIT_VECTOR: u32 = 536870916;
+pub const anon10601_CSSM_ATTRIBUTE_SALT: u32 = 536870917;
+pub const anon10601_CSSM_ATTRIBUTE_PADDING: u32 = 268435462;
+pub const anon10601_CSSM_ATTRIBUTE_RANDOM: u32 = 536870919;
+pub const anon10601_CSSM_ATTRIBUTE_SEED: u32 = 805306376;
+pub const anon10601_CSSM_ATTRIBUTE_PASSPHRASE: u32 = 805306377;
+pub const anon10601_CSSM_ATTRIBUTE_KEY_LENGTH: u32 = 268435466;
+pub const anon10601_CSSM_ATTRIBUTE_KEY_LENGTH_RANGE: u32 = 1879048203;
+pub const anon10601_CSSM_ATTRIBUTE_BLOCK_SIZE: u32 = 268435468;
+pub const anon10601_CSSM_ATTRIBUTE_OUTPUT_SIZE: u32 = 268435469;
+pub const anon10601_CSSM_ATTRIBUTE_ROUNDS: u32 = 268435470;
+pub const anon10601_CSSM_ATTRIBUTE_IV_SIZE: u32 = 268435471;
+pub const anon10601_CSSM_ATTRIBUTE_ALG_PARAMS: u32 = 536870928;
+pub const anon10601_CSSM_ATTRIBUTE_LABEL: u32 = 536870929;
+pub const anon10601_CSSM_ATTRIBUTE_KEY_TYPE: u32 = 268435474;
+pub const anon10601_CSSM_ATTRIBUTE_MODE: u32 = 268435475;
+pub const anon10601_CSSM_ATTRIBUTE_EFFECTIVE_BITS: u32 = 268435476;
+pub const anon10601_CSSM_ATTRIBUTE_START_DATE: u32 = 1610612757;
+pub const anon10601_CSSM_ATTRIBUTE_END_DATE: u32 = 1610612758;
+pub const anon10601_CSSM_ATTRIBUTE_KEYUSAGE: u32 = 268435479;
+pub const anon10601_CSSM_ATTRIBUTE_KEYATTR: u32 = 268435480;
+pub const anon10601_CSSM_ATTRIBUTE_VERSION: u32 = 16777241;
+pub const anon10601_CSSM_ATTRIBUTE_PRIME: u32 = 536870938;
+pub const anon10601_CSSM_ATTRIBUTE_BASE: u32 = 536870939;
+pub const anon10601_CSSM_ATTRIBUTE_SUBPRIME: u32 = 536870940;
+pub const anon10601_CSSM_ATTRIBUTE_ALG_ID: u32 = 268435485;
+pub const anon10601_CSSM_ATTRIBUTE_ITERATION_COUNT: u32 = 268435486;
+pub const anon10601_CSSM_ATTRIBUTE_ROUNDS_RANGE: u32 = 1879048223;
+pub const anon10601_CSSM_ATTRIBUTE_KRPROFILE_LOCAL: u32 = 50331680;
+pub const anon10601_CSSM_ATTRIBUTE_KRPROFILE_REMOTE: u32 = 50331681;
+pub const anon10601_CSSM_ATTRIBUTE_CSP_HANDLE: u32 = 268435490;
+pub const anon10601_CSSM_ATTRIBUTE_DL_DB_HANDLE: u32 = 33554467;
+pub const anon10601_CSSM_ATTRIBUTE_ACCESS_CREDENTIALS: u32 = -2147483612;
+pub const anon10601_CSSM_ATTRIBUTE_PUBLIC_KEY_FORMAT: u32 = 268435493;
+pub const anon10601_CSSM_ATTRIBUTE_PRIVATE_KEY_FORMAT: u32 = 268435494;
+pub const anon10601_CSSM_ATTRIBUTE_SYMMETRIC_KEY_FORMAT: u32 = 268435495;
+pub const anon10601_CSSM_ATTRIBUTE_WRAPPED_KEY_FORMAT: u32 = 268435496;
 
 pub const CSSM_PADDING = uint32;
 
-pub const anon11051 = enum(u32) {
-    CSSM_PADDING_NONE = 0,
-    CSSM_PADDING_CUSTOM = 1,
-    CSSM_PADDING_ZERO = 2,
-    CSSM_PADDING_ONE = 3,
-    CSSM_PADDING_ALTERNATE = 4,
-    CSSM_PADDING_FF = 5,
-    CSSM_PADDING_PKCS5 = 6,
-    CSSM_PADDING_PKCS7 = 7,
-    CSSM_PADDING_CIPHERSTEALING = 8,
-    CSSM_PADDING_RANDOM = 9,
-    CSSM_PADDING_PKCS1 = 10,
-    CSSM_PADDING_SIGRAW = 11,
-    CSSM_PADDING_VENDOR_DEFINED = -2147483648,
-};
+pub const anon11051 = u32;
+pub const anon11051_CSSM_PADDING_NONE: u32 = 0;
+pub const anon11051_CSSM_PADDING_CUSTOM: u32 = 1;
+pub const anon11051_CSSM_PADDING_ZERO: u32 = 2;
+pub const anon11051_CSSM_PADDING_ONE: u32 = 3;
+pub const anon11051_CSSM_PADDING_ALTERNATE: u32 = 4;
+pub const anon11051_CSSM_PADDING_FF: u32 = 5;
+pub const anon11051_CSSM_PADDING_PKCS5: u32 = 6;
+pub const anon11051_CSSM_PADDING_PKCS7: u32 = 7;
+pub const anon11051_CSSM_PADDING_CIPHERSTEALING: u32 = 8;
+pub const anon11051_CSSM_PADDING_RANDOM: u32 = 9;
+pub const anon11051_CSSM_PADDING_PKCS1: u32 = 10;
+pub const anon11051_CSSM_PADDING_SIGRAW: u32 = 11;
+pub const anon11051_CSSM_PADDING_VENDOR_DEFINED: u32 = -2147483648;
 
 pub const CSSM_KEY_TYPE = CSSM_ALGORITHMS;
 
 pub const cssm_context_attribute = extern struct {
+    pub const _value = extern union {
+        pub const cssm_kr_profile = extern struct {
+            UserName: CSSM_KR_NAME,
+            UserCertificate: CSSM_CERTGROUP_PTR,
+            KRSCertChain: CSSM_CERTGROUP_PTR,
+            LE_KRANum: uint8,
+            LE_KRACertChainList: CSSM_CERTGROUP_PTR,
+            ENT_KRANum: uint8,
+            ENT_KRACertChainList: CSSM_CERTGROUP_PTR,
+            INDIV_KRANum: uint8,
+            INDIV_KRACertChainList: CSSM_CERTGROUP_PTR,
+            INDIV_AuthenticationInfo: CSSM_DATA_PTR,
+            KRSPFlags: uint32,
+            KRSPExtensions: CSSM_DATA_PTR,
+        };
+
+        String: ?*i8,
+        Uint32: uint32,
+        AccessCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
+        Key: CSSM_KEY_PTR,
+        Data: CSSM_DATA_PTR,
+        Padding: CSSM_PADDING,
+        Date: CSSM_DATE_PTR,
+        Range: CSSM_RANGE_PTR,
+        CryptoData: CSSM_CRYPTO_DATA_PTR,
+        Version: CSSM_VERSION_PTR,
+        DLDBHandle: CSSM_DL_DB_HANDLE_PTR,
+        KRProfile: ?*cssm_context_attribute._value.cssm_kr_profile,
+    };
+
     AttributeType: CSSM_ATTRIBUTE_TYPE,
     AttributeLength: uint32,
-    Attribute: cssm_context_attribute_value,
-};
-
-pub const cssm_context_attribute_value = extern union {
-    String: ?*i8,
-    Uint32: uint32,
-    AccessCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
-    Key: CSSM_KEY_PTR,
-    Data: CSSM_DATA_PTR,
-    Padding: CSSM_PADDING,
-    Date: CSSM_DATE_PTR,
-    Range: CSSM_RANGE_PTR,
-    CryptoData: CSSM_CRYPTO_DATA_PTR,
-    Version: CSSM_VERSION_PTR,
-    DLDBHandle: CSSM_DL_DB_HANDLE_PTR,
-    KRProfile: ?*cssm_kr_profile,
-};
-
-pub const cssm_kr_profile = extern struct {
-    UserName: CSSM_KR_NAME,
-    UserCertificate: CSSM_CERTGROUP_PTR,
-    KRSCertChain: CSSM_CERTGROUP_PTR,
-    LE_KRANum: uint8,
-    LE_KRACertChainList: CSSM_CERTGROUP_PTR,
-    ENT_KRANum: uint8,
-    ENT_KRACertChainList: CSSM_CERTGROUP_PTR,
-    INDIV_KRANum: uint8,
-    INDIV_KRACertChainList: CSSM_CERTGROUP_PTR,
-    INDIV_AuthenticationInfo: CSSM_DATA_PTR,
-    KRSPFlags: uint32,
-    KRSPExtensions: CSSM_DATA_PTR,
+    Attribute: cssm_context_attribute._value,
 };
 
 pub const CSSM_CONTEXT_ATTRIBUTE = cssm_context_attribute;
@@ -1883,50 +1852,45 @@ pub const CSSM_CONTEXT_PTR = ?*cssm_context;
 
 pub const CSSM_SC_FLAGS = uint32;
 
-pub const anon11581 = enum(u32) {
-    CSSM_CSP_TOK_RNG = 1,
-    CSSM_CSP_TOK_CLOCK_EXISTS = 64,
-};
+pub const anon11581 = u32;
+pub const anon11581_CSSM_CSP_TOK_RNG: u32 = 1;
+pub const anon11581_CSSM_CSP_TOK_CLOCK_EXISTS: u32 = 64;
 
 pub const CSSM_CSP_READER_FLAGS = uint32;
 
-pub const anon11641 = enum(u32) {
-    CSSM_CSP_RDR_TOKENPRESENT = 1,
-    CSSM_CSP_RDR_EXISTS = 2,
-    CSSM_CSP_RDR_HW = 4,
-};
+pub const anon11641 = u32;
+pub const anon11641_CSSM_CSP_RDR_TOKENPRESENT: u32 = 1;
+pub const anon11641_CSSM_CSP_RDR_EXISTS: u32 = 2;
+pub const anon11641_CSSM_CSP_RDR_HW: u32 = 4;
 
 pub const CSSM_CSP_FLAGS = uint32;
 
-pub const anon11751 = enum(u32) {
-    CSSM_CSP_TOK_WRITE_PROTECTED = 2,
-    CSSM_CSP_TOK_LOGIN_REQUIRED = 4,
-    CSSM_CSP_TOK_USER_PIN_INITIALIZED = 8,
-    CSSM_CSP_TOK_PROT_AUTHENTICATION = 256,
-    CSSM_CSP_TOK_USER_PIN_EXPIRED = 1048576,
-    CSSM_CSP_TOK_SESSION_KEY_PASSWORD = 2097152,
-    CSSM_CSP_TOK_PRIVATE_KEY_PASSWORD = 4194304,
-    CSSM_CSP_STORES_PRIVATE_KEYS = 16777216,
-    CSSM_CSP_STORES_PUBLIC_KEYS = 33554432,
-    CSSM_CSP_STORES_SESSION_KEYS = 67108864,
-    CSSM_CSP_STORES_CERTIFICATES = 134217728,
-    CSSM_CSP_STORES_GENERIC = 268435456,
-};
+pub const anon11751 = u32;
+pub const anon11751_CSSM_CSP_TOK_WRITE_PROTECTED: u32 = 2;
+pub const anon11751_CSSM_CSP_TOK_LOGIN_REQUIRED: u32 = 4;
+pub const anon11751_CSSM_CSP_TOK_USER_PIN_INITIALIZED: u32 = 8;
+pub const anon11751_CSSM_CSP_TOK_PROT_AUTHENTICATION: u32 = 256;
+pub const anon11751_CSSM_CSP_TOK_USER_PIN_EXPIRED: u32 = 1048576;
+pub const anon11751_CSSM_CSP_TOK_SESSION_KEY_PASSWORD: u32 = 2097152;
+pub const anon11751_CSSM_CSP_TOK_PRIVATE_KEY_PASSWORD: u32 = 4194304;
+pub const anon11751_CSSM_CSP_STORES_PRIVATE_KEYS: u32 = 16777216;
+pub const anon11751_CSSM_CSP_STORES_PUBLIC_KEYS: u32 = 33554432;
+pub const anon11751_CSSM_CSP_STORES_SESSION_KEYS: u32 = 67108864;
+pub const anon11751_CSSM_CSP_STORES_CERTIFICATES: u32 = 134217728;
+pub const anon11751_CSSM_CSP_STORES_GENERIC: u32 = 268435456;
 
 pub const CSSM_PKCS_OAEP_MGF = uint32;
 
-pub const anon11911 = enum(u32) {
-    CSSM_PKCS_OAEP_MGF_NONE = 0,
-    CSSM_PKCS_OAEP_MGF1_SHA1 = 1,
-    CSSM_PKCS_OAEP_MGF1_MD5 = 2,
-};
+pub const anon11911 = u32;
+pub const anon11911_CSSM_PKCS_OAEP_MGF_NONE: u32 = 0;
+pub const anon11911_CSSM_PKCS_OAEP_MGF1_SHA1: u32 = 1;
+pub const anon11911_CSSM_PKCS_OAEP_MGF1_MD5: u32 = 2;
 
 pub const CSSM_PKCS_OAEP_PSOURCE = uint32;
 
-pub const anon11981 = enum(u32) {
-    CSSM_PKCS_OAEP_PSOURCE_NONE = 0,
-    CSSM_PKCS_OAEP_PSOURCE_Pspecified = 1,
-};
+pub const anon11981 = u32;
+pub const anon11981_CSSM_PKCS_OAEP_PSOURCE_NONE: u32 = 0;
+pub const anon11981_CSSM_PKCS_OAEP_PSOURCE_Pspecified: u32 = 1;
 
 pub const cssm_pkcs1_oaep_params = extern struct {
     HashAlgorithm: uint32,
@@ -1958,9 +1922,8 @@ pub const CSSM_CSP_OPERATIONAL_STATISTICS = cssm_csp_operational_statistics;
 
 pub const CSSM_CSP_OPERATIONAL_STATISTICS_PTR = ?*cssm_csp_operational_statistics;
 
-pub const anon12281 = enum(i32) {
-    CSSM_VALUE_NOT_AVAILABLE = -1,
-};
+pub const anon12281 = i32;
+pub const anon12281_CSSM_VALUE_NOT_AVAILABLE: i32 = -1;
 
 pub const cssm_pkcs5_pbkdf1_params = extern struct {
     Passphrase: Asn1Item,
@@ -1973,9 +1936,8 @@ pub const CSSM_PKCS5_PBKDF1_PARAMS_PTR = ?*cssm_pkcs5_pbkdf1_params;
 
 pub const CSSM_PKCS5_PBKDF2_PRF = uint32;
 
-pub const anon12381 = enum(u32) {
-    CSSM_PKCS5_PBKDF2_PRF_HMAC_SHA1 = 0,
-};
+pub const anon12381 = u32;
+pub const anon12381_CSSM_PKCS5_PBKDF2_PRF_HMAC_SHA1: u32 = 0;
 
 pub const cssm_pkcs5_pbkdf2_params = extern struct {
     Passphrase: Asn1Item,
@@ -2006,22 +1968,21 @@ pub const CSSM_TP_AUTHORITY_ID_PTR = ?*cssm_tp_authority_id;
 
 pub const CSSM_TP_AUTHORITY_REQUEST_TYPE = uint32;
 
-pub const CSSM_TP_AUTHORITY_REQUEST_TYPE_PTR = ?*uint32;
+pub const CSSM_TP_AUTHORITY_REQUEST_TYPE_PTR = uint32;
 
-pub const anon12611 = enum(u32) {
-    CSSM_TP_AUTHORITY_REQUEST_CERTISSUE = 1,
-    CSSM_TP_AUTHORITY_REQUEST_CERTREVOKE = 2,
-    CSSM_TP_AUTHORITY_REQUEST_CERTSUSPEND = 3,
-    CSSM_TP_AUTHORITY_REQUEST_CERTRESUME = 4,
-    CSSM_TP_AUTHORITY_REQUEST_CERTVERIFY = 5,
-    CSSM_TP_AUTHORITY_REQUEST_CERTNOTARIZE = 6,
-    CSSM_TP_AUTHORITY_REQUEST_CERTUSERECOVER = 7,
-    CSSM_TP_AUTHORITY_REQUEST_CRLISSUE = 256,
-};
+pub const anon12611 = u32;
+pub const anon12611_CSSM_TP_AUTHORITY_REQUEST_CERTISSUE: u32 = 1;
+pub const anon12611_CSSM_TP_AUTHORITY_REQUEST_CERTREVOKE: u32 = 2;
+pub const anon12611_CSSM_TP_AUTHORITY_REQUEST_CERTSUSPEND: u32 = 3;
+pub const anon12611_CSSM_TP_AUTHORITY_REQUEST_CERTRESUME: u32 = 4;
+pub const anon12611_CSSM_TP_AUTHORITY_REQUEST_CERTVERIFY: u32 = 5;
+pub const anon12611_CSSM_TP_AUTHORITY_REQUEST_CERTNOTARIZE: u32 = 6;
+pub const anon12611_CSSM_TP_AUTHORITY_REQUEST_CERTUSERECOVER: u32 = 7;
+pub const anon12611_CSSM_TP_AUTHORITY_REQUEST_CRLISSUE: u32 = 256;
 
-pub const CSSM_TP_VERIFICATION_RESULTS_CALLBACK = ?*const fn (CSSM_MODULE_HANDLE, ?*anyopaque, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN;
+pub const CSSM_TP_VERIFICATION_RESULTS_CALLBACK = CSSM_RETURN;
 
-pub const CSSM_OID_PTR = ?*Asn1Oid;
+pub const CSSM_OID_PTR = Asn1Oid;
 
 pub const cssm_field = extern struct {
     FieldOid: Asn1Oid,
@@ -2044,28 +2005,25 @@ pub const CSSM_TP_POLICYINFO_PTR = ?*cssm_tp_policyinfo;
 
 pub const CSSM_TP_SERVICES = uint32;
 
-pub const anon12941 = enum(u32) {
-    CSSM_TP_KEY_ARCHIVE = 1,
-    CSSM_TP_CERT_PUBLISH = 2,
-    CSSM_TP_CERT_NOTIFY_RENEW = 4,
-    CSSM_TP_CERT_DIR_UPDATE = 8,
-    CSSM_TP_CRL_DISTRIBUTE = 16,
-};
+pub const anon12941 = u32;
+pub const anon12941_CSSM_TP_KEY_ARCHIVE: u32 = 1;
+pub const anon12941_CSSM_TP_CERT_PUBLISH: u32 = 2;
+pub const anon12941_CSSM_TP_CERT_NOTIFY_RENEW: u32 = 4;
+pub const anon12941_CSSM_TP_CERT_DIR_UPDATE: u32 = 8;
+pub const anon12941_CSSM_TP_CRL_DISTRIBUTE: u32 = 16;
 
 pub const CSSM_TP_ACTION = uint32;
 
-pub const anon13041 = enum(u32) {
-    CSSM_TP_ACTION_DEFAULT = 0,
-};
+pub const anon13041 = u32;
+pub const anon13041_CSSM_TP_ACTION_DEFAULT: u32 = 0;
 
 pub const CSSM_TP_STOP_ON = uint32;
 
-pub const anon13091 = enum(u32) {
-    CSSM_TP_STOP_ON_POLICY = 0,
-    CSSM_TP_STOP_ON_NONE = 1,
-    CSSM_TP_STOP_ON_FIRST_PASS = 2,
-    CSSM_TP_STOP_ON_FIRST_FAIL = 3,
-};
+pub const anon13091 = u32;
+pub const anon13091_CSSM_TP_STOP_ON_POLICY: u32 = 0;
+pub const anon13091_CSSM_TP_STOP_ON_NONE: u32 = 1;
+pub const anon13091_CSSM_TP_STOP_ON_FIRST_PASS: u32 = 2;
+pub const anon13091_CSSM_TP_STOP_ON_FIRST_FAIL: u32 = 3;
 
 pub const CSSM_TIMESTRING = ?*i8;
 
@@ -2095,45 +2053,42 @@ pub const CSSM_TP_CALLERAUTH_CONTEXT_PTR = ?*cssm_tp_callerauth_context;
 
 pub const CSSM_CRL_PARSE_FORMAT = uint32;
 
-pub const CSSM_CRL_PARSE_FORMAT_PTR = ?*uint32;
+pub const CSSM_CRL_PARSE_FORMAT_PTR = uint32;
 
-pub const anon13371 = enum(u32) {
-    CSSM_CRL_PARSE_FORMAT_NONE = 0,
-    CSSM_CRL_PARSE_FORMAT_CUSTOM = 1,
-    CSSM_CRL_PARSE_FORMAT_SEXPR = 2,
-    CSSM_CRL_PARSE_FORMAT_COMPLEX = 3,
-    CSSM_CRL_PARSE_FORMAT_OID_NAMED = 4,
-    CSSM_CRL_PARSE_FORMAT_TUPLE = 5,
-    CSSM_CRL_PARSE_FORMAT_MULTIPLE = 32766,
-    CSSM_CRL_PARSE_FORMAT_LAST = 32767,
-    CSSM_CL_CUSTOM_CRL_PARSE_FORMAT = 32768,
-};
+pub const anon13371 = u32;
+pub const anon13371_CSSM_CRL_PARSE_FORMAT_NONE: u32 = 0;
+pub const anon13371_CSSM_CRL_PARSE_FORMAT_CUSTOM: u32 = 1;
+pub const anon13371_CSSM_CRL_PARSE_FORMAT_SEXPR: u32 = 2;
+pub const anon13371_CSSM_CRL_PARSE_FORMAT_COMPLEX: u32 = 3;
+pub const anon13371_CSSM_CRL_PARSE_FORMAT_OID_NAMED: u32 = 4;
+pub const anon13371_CSSM_CRL_PARSE_FORMAT_TUPLE: u32 = 5;
+pub const anon13371_CSSM_CRL_PARSE_FORMAT_MULTIPLE: u32 = 32766;
+pub const anon13371_CSSM_CRL_PARSE_FORMAT_LAST: u32 = 32767;
+pub const anon13371_CSSM_CL_CUSTOM_CRL_PARSE_FORMAT: u32 = 32768;
 
 pub const CSSM_CRL_TYPE = uint32;
 
-pub const CSSM_CRL_TYPE_PTR = ?*uint32;
+pub const CSSM_CRL_TYPE_PTR = uint32;
 
-pub const anon13541 = enum(u32) {
-    CSSM_CRL_TYPE_UNKNOWN = 0,
-    CSSM_CRL_TYPE_X_509v1 = 1,
-    CSSM_CRL_TYPE_X_509v2 = 2,
-    CSSM_CRL_TYPE_SPKI = 3,
-    CSSM_CRL_TYPE_MULTIPLE = 32766,
-};
+pub const anon13541 = u32;
+pub const anon13541_CSSM_CRL_TYPE_UNKNOWN: u32 = 0;
+pub const anon13541_CSSM_CRL_TYPE_X_509v1: u32 = 1;
+pub const anon13541_CSSM_CRL_TYPE_X_509v2: u32 = 2;
+pub const anon13541_CSSM_CRL_TYPE_SPKI: u32 = 3;
+pub const anon13541_CSSM_CRL_TYPE_MULTIPLE: u32 = 32766;
 
 pub const CSSM_CRL_ENCODING = uint32;
 
-pub const CSSM_CRL_ENCODING_PTR = ?*uint32;
+pub const CSSM_CRL_ENCODING_PTR = uint32;
 
-pub const anon13631 = enum(u32) {
-    CSSM_CRL_ENCODING_UNKNOWN = 0,
-    CSSM_CRL_ENCODING_CUSTOM = 1,
-    CSSM_CRL_ENCODING_BER = 2,
-    CSSM_CRL_ENCODING_DER = 3,
-    CSSM_CRL_ENCODING_BLOOM = 4,
-    CSSM_CRL_ENCODING_SEXPR = 5,
-    CSSM_CRL_ENCODING_MULTIPLE = 32766,
-};
+pub const anon13631 = u32;
+pub const anon13631_CSSM_CRL_ENCODING_UNKNOWN: u32 = 0;
+pub const anon13631_CSSM_CRL_ENCODING_CUSTOM: u32 = 1;
+pub const anon13631_CSSM_CRL_ENCODING_BER: u32 = 2;
+pub const anon13631_CSSM_CRL_ENCODING_DER: u32 = 3;
+pub const anon13631_CSSM_CRL_ENCODING_BLOOM: u32 = 4;
+pub const anon13631_CSSM_CRL_ENCODING_SEXPR: u32 = 5;
+pub const anon13631_CSSM_CRL_ENCODING_MULTIPLE: u32 = 32766;
 
 pub const cssm_encoded_crl = extern struct {
     CrlType: CSSM_CRL_TYPE,
@@ -2166,28 +2121,27 @@ pub const CSSM_CRL_PAIR_PTR = ?*cssm_crl_pair;
 
 pub const CSSM_CRLGROUP_TYPE = uint32;
 
-pub const CSSM_CRLGROUP_TYPE_PTR = ?*uint32;
+pub const CSSM_CRLGROUP_TYPE_PTR = uint32;
 
-pub const anon13931 = enum(u32) {
-    CSSM_CRLGROUP_DATA = 0,
-    CSSM_CRLGROUP_ENCODED_CRL = 1,
-    CSSM_CRLGROUP_PARSED_CRL = 2,
-    CSSM_CRLGROUP_CRL_PAIR = 3,
-};
+pub const anon13931 = u32;
+pub const anon13931_CSSM_CRLGROUP_DATA: u32 = 0;
+pub const anon13931_CSSM_CRLGROUP_ENCODED_CRL: u32 = 1;
+pub const anon13931_CSSM_CRLGROUP_PARSED_CRL: u32 = 2;
+pub const anon13931_CSSM_CRLGROUP_CRL_PAIR: u32 = 3;
 
 pub const cssm_crlgroup = extern struct {
+    pub const anon14045 = extern union {
+        CrlList: CSSM_DATA_PTR,
+        EncodedCrlList: CSSM_ENCODED_CRL_PTR,
+        ParsedCrlList: CSSM_PARSED_CRL_PTR,
+        PairCrlList: CSSM_CRL_PAIR_PTR,
+    };
+
     CrlType: CSSM_CRL_TYPE,
     CrlEncoding: CSSM_CRL_ENCODING,
     NumberOfCrls: uint32,
-    GroupCrlList: anon14045,
+    GroupCrlList: cssm_crlgroup.anon14045,
     CrlGroupType: CSSM_CRLGROUP_TYPE,
-};
-
-pub const anon14045 = extern union {
-    CrlList: CSSM_DATA_PTR,
-    EncodedCrlList: CSSM_ENCODED_CRL_PTR,
-    ParsedCrlList: CSSM_PARSED_CRL_PTR,
-    PairCrlList: CSSM_CRL_PAIR_PTR,
 };
 
 pub const CSSM_CRLGROUP = cssm_crlgroup;
@@ -2205,18 +2159,17 @@ pub const CSSM_FIELDGROUP_PTR = ?*cssm_fieldgroup;
 
 pub const CSSM_EVIDENCE_FORM = uint32;
 
-pub const anon14191 = enum(u32) {
-    CSSM_EVIDENCE_FORM_UNSPECIFIC = 0,
-    CSSM_EVIDENCE_FORM_CERT = 1,
-    CSSM_EVIDENCE_FORM_CRL = 2,
-    CSSM_EVIDENCE_FORM_CERT_ID = 3,
-    CSSM_EVIDENCE_FORM_CRL_ID = 4,
-    CSSM_EVIDENCE_FORM_VERIFIER_TIME = 5,
-    CSSM_EVIDENCE_FORM_CRL_THISTIME = 6,
-    CSSM_EVIDENCE_FORM_CRL_NEXTTIME = 7,
-    CSSM_EVIDENCE_FORM_POLICYINFO = 8,
-    CSSM_EVIDENCE_FORM_TUPLEGROUP = 9,
-};
+pub const anon14191 = u32;
+pub const anon14191_CSSM_EVIDENCE_FORM_UNSPECIFIC: u32 = 0;
+pub const anon14191_CSSM_EVIDENCE_FORM_CERT: u32 = 1;
+pub const anon14191_CSSM_EVIDENCE_FORM_CRL: u32 = 2;
+pub const anon14191_CSSM_EVIDENCE_FORM_CERT_ID: u32 = 3;
+pub const anon14191_CSSM_EVIDENCE_FORM_CRL_ID: u32 = 4;
+pub const anon14191_CSSM_EVIDENCE_FORM_VERIFIER_TIME: u32 = 5;
+pub const anon14191_CSSM_EVIDENCE_FORM_CRL_THISTIME: u32 = 6;
+pub const anon14191_CSSM_EVIDENCE_FORM_CRL_NEXTTIME: u32 = 7;
+pub const anon14191_CSSM_EVIDENCE_FORM_POLICYINFO: u32 = 8;
+pub const anon14191_CSSM_EVIDENCE_FORM_TUPLEGROUP: u32 = 9;
 
 pub const cssm_evidence = extern struct {
     EvidenceForm: CSSM_EVIDENCE_FORM,
@@ -2267,13 +2220,12 @@ pub const CSSM_TP_RESULT_SET_PTR = ?*cssm_tp_result_set;
 
 pub const CSSM_TP_CONFIRM_STATUS = uint32;
 
-pub const CSSM_TP_CONFIRM_STATUS_PTR = ?*uint32;
+pub const CSSM_TP_CONFIRM_STATUS_PTR = uint32;
 
-pub const anon14601 = enum(u32) {
-    CSSM_TP_CONFIRM_STATUS_UNKNOWN = 0,
-    CSSM_TP_CONFIRM_ACCEPT = 1,
-    CSSM_TP_CONFIRM_REJECT = 2,
-};
+pub const anon14601 = u32;
+pub const anon14601_CSSM_TP_CONFIRM_STATUS_UNKNOWN: u32 = 0;
+pub const anon14601_CSSM_TP_CONFIRM_ACCEPT: u32 = 1;
+pub const anon14601_CSSM_TP_CONFIRM_REJECT: u32 = 2;
 
 pub const cssm_tp_confirm_response = extern struct {
     NumberOfResponses: uint32,
@@ -2284,14 +2236,12 @@ pub const CSSM_TP_CONFIRM_RESPONSE = cssm_tp_confirm_response;
 
 pub const CSSM_TP_CONFIRM_RESPONSE_PTR = ?*cssm_tp_confirm_response;
 
-pub const anon14761 = enum(i32) {
-    CSSM_ESTIMATED_TIME_UNKNOWN = -1,
-};
+pub const anon14761 = i32;
+pub const anon14761_CSSM_ESTIMATED_TIME_UNKNOWN: i32 = -1;
 
-pub const anon14801 = enum(i32) {
-    CSSM_ELAPSED_TIME_UNKNOWN = -1,
-    CSSM_ELAPSED_TIME_COMPLETE = -2,
-};
+pub const anon14801 = i32;
+pub const anon14801_CSSM_ELAPSED_TIME_UNKNOWN: i32 = -1;
+pub const anon14801_CSSM_ELAPSED_TIME_COMPLETE: i32 = -2;
 
 pub const cssm_tp_certissue_input = extern struct {
     CSPSubserviceUid: CSSM_SUBSERVICE_UID,
@@ -2310,15 +2260,14 @@ pub const CSSM_TP_CERTISSUE_INPUT_PTR = ?*cssm_tp_certissue_input;
 
 pub const CSSM_TP_CERTISSUE_STATUS = uint32;
 
-pub const anon14971 = enum(u32) {
-    CSSM_TP_CERTISSUE_STATUS_UNKNOWN = 0,
-    CSSM_TP_CERTISSUE_OK = 1,
-    CSSM_TP_CERTISSUE_OKWITHCERTMODS = 2,
-    CSSM_TP_CERTISSUE_OKWITHSERVICEMODS = 3,
-    CSSM_TP_CERTISSUE_REJECTED = 4,
-    CSSM_TP_CERTISSUE_NOT_AUTHORIZED = 5,
-    CSSM_TP_CERTISSUE_WILL_BE_REVOKED = 6,
-};
+pub const anon14971 = u32;
+pub const anon14971_CSSM_TP_CERTISSUE_STATUS_UNKNOWN: u32 = 0;
+pub const anon14971_CSSM_TP_CERTISSUE_OK: u32 = 1;
+pub const anon14971_CSSM_TP_CERTISSUE_OKWITHCERTMODS: u32 = 2;
+pub const anon14971_CSSM_TP_CERTISSUE_OKWITHSERVICEMODS: u32 = 3;
+pub const anon14971_CSSM_TP_CERTISSUE_REJECTED: u32 = 4;
+pub const anon14971_CSSM_TP_CERTISSUE_NOT_AUTHORIZED: u32 = 5;
+pub const anon14971_CSSM_TP_CERTISSUE_WILL_BE_REVOKED: u32 = 6;
 
 pub const cssm_tp_certissue_output = extern struct {
     IssueStatus: CSSM_TP_CERTISSUE_STATUS,
@@ -2332,25 +2281,23 @@ pub const CSSM_TP_CERTISSUE_OUTPUT_PTR = ?*cssm_tp_certissue_output;
 
 pub const CSSM_TP_CERTCHANGE_ACTION = uint32;
 
-pub const anon15271 = enum(u32) {
-    CSSM_TP_CERTCHANGE_NONE = 0,
-    CSSM_TP_CERTCHANGE_REVOKE = 1,
-    CSSM_TP_CERTCHANGE_HOLD = 2,
-    CSSM_TP_CERTCHANGE_RELEASE = 3,
-};
+pub const anon15271 = u32;
+pub const anon15271_CSSM_TP_CERTCHANGE_NONE: u32 = 0;
+pub const anon15271_CSSM_TP_CERTCHANGE_REVOKE: u32 = 1;
+pub const anon15271_CSSM_TP_CERTCHANGE_HOLD: u32 = 2;
+pub const anon15271_CSSM_TP_CERTCHANGE_RELEASE: u32 = 3;
 
 pub const CSSM_TP_CERTCHANGE_REASON = uint32;
 
-pub const anon15541 = enum(u32) {
-    CSSM_TP_CERTCHANGE_REASON_UNKNOWN = 0,
-    CSSM_TP_CERTCHANGE_REASON_KEYCOMPROMISE = 1,
-    CSSM_TP_CERTCHANGE_REASON_CACOMPROMISE = 2,
-    CSSM_TP_CERTCHANGE_REASON_CEASEOPERATION = 3,
-    CSSM_TP_CERTCHANGE_REASON_AFFILIATIONCHANGE = 4,
-    CSSM_TP_CERTCHANGE_REASON_SUPERCEDED = 5,
-    CSSM_TP_CERTCHANGE_REASON_SUSPECTEDCOMPROMISE = 6,
-    CSSM_TP_CERTCHANGE_REASON_HOLDRELEASE = 7,
-};
+pub const anon15541 = u32;
+pub const anon15541_CSSM_TP_CERTCHANGE_REASON_UNKNOWN: u32 = 0;
+pub const anon15541_CSSM_TP_CERTCHANGE_REASON_KEYCOMPROMISE: u32 = 1;
+pub const anon15541_CSSM_TP_CERTCHANGE_REASON_CACOMPROMISE: u32 = 2;
+pub const anon15541_CSSM_TP_CERTCHANGE_REASON_CEASEOPERATION: u32 = 3;
+pub const anon15541_CSSM_TP_CERTCHANGE_REASON_AFFILIATIONCHANGE: u32 = 4;
+pub const anon15541_CSSM_TP_CERTCHANGE_REASON_SUPERCEDED: u32 = 5;
+pub const anon15541_CSSM_TP_CERTCHANGE_REASON_SUSPECTEDCOMPROMISE: u32 = 6;
+pub const anon15541_CSSM_TP_CERTCHANGE_REASON_HOLDRELEASE: u32 = 7;
 
 pub const cssm_tp_certchange_input = extern struct {
     Action: CSSM_TP_CERTCHANGE_ACTION,
@@ -2368,14 +2315,13 @@ pub const CSSM_TP_CERTCHANGE_INPUT_PTR = ?*cssm_tp_certchange_input;
 
 pub const CSSM_TP_CERTCHANGE_STATUS = uint32;
 
-pub const anon15881 = enum(u32) {
-    CSSM_TP_CERTCHANGE_STATUS_UNKNOWN = 0,
-    CSSM_TP_CERTCHANGE_OK = 1,
-    CSSM_TP_CERTCHANGE_OKWITHNEWTIME = 2,
-    CSSM_TP_CERTCHANGE_WRONGCA = 3,
-    CSSM_TP_CERTCHANGE_REJECTED = 4,
-    CSSM_TP_CERTCHANGE_NOT_AUTHORIZED = 5,
-};
+pub const anon15881 = u32;
+pub const anon15881_CSSM_TP_CERTCHANGE_STATUS_UNKNOWN: u32 = 0;
+pub const anon15881_CSSM_TP_CERTCHANGE_OK: u32 = 1;
+pub const anon15881_CSSM_TP_CERTCHANGE_OKWITHNEWTIME: u32 = 2;
+pub const anon15881_CSSM_TP_CERTCHANGE_WRONGCA: u32 = 3;
+pub const anon15881_CSSM_TP_CERTCHANGE_REJECTED: u32 = 4;
+pub const anon15881_CSSM_TP_CERTCHANGE_NOT_AUTHORIZED: u32 = 5;
 
 pub const cssm_tp_certchange_output = extern struct {
     ActionStatus: CSSM_TP_CERTCHANGE_STATUS,
@@ -2398,25 +2344,24 @@ pub const CSSM_TP_CERTVERIFY_INPUT_PTR = ?*cssm_tp_certverify_input;
 
 pub const CSSM_TP_CERTVERIFY_STATUS = uint32;
 
-pub const anon16221 = enum(u32) {
-    CSSM_TP_CERTVERIFY_UNKNOWN = 0,
-    CSSM_TP_CERTVERIFY_VALID = 1,
-    CSSM_TP_CERTVERIFY_INVALID = 2,
-    CSSM_TP_CERTVERIFY_REVOKED = 3,
-    CSSM_TP_CERTVERIFY_SUSPENDED = 4,
-    CSSM_TP_CERTVERIFY_EXPIRED = 5,
-    CSSM_TP_CERTVERIFY_NOT_VALID_YET = 6,
-    CSSM_TP_CERTVERIFY_INVALID_AUTHORITY = 7,
-    CSSM_TP_CERTVERIFY_INVALID_SIGNATURE = 8,
-    CSSM_TP_CERTVERIFY_INVALID_CERT_VALUE = 9,
-    CSSM_TP_CERTVERIFY_INVALID_CERTGROUP = 10,
-    CSSM_TP_CERTVERIFY_INVALID_POLICY = 11,
-    CSSM_TP_CERTVERIFY_INVALID_POLICY_IDS = 12,
-    CSSM_TP_CERTVERIFY_INVALID_BASIC_CONSTRAINTS = 13,
-    CSSM_TP_CERTVERIFY_INVALID_CRL_DIST_PT = 14,
-    CSSM_TP_CERTVERIFY_INVALID_NAME_TREE = 15,
-    CSSM_TP_CERTVERIFY_UNKNOWN_CRITICAL_EXT = 16,
-};
+pub const anon16221 = u32;
+pub const anon16221_CSSM_TP_CERTVERIFY_UNKNOWN: u32 = 0;
+pub const anon16221_CSSM_TP_CERTVERIFY_VALID: u32 = 1;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID: u32 = 2;
+pub const anon16221_CSSM_TP_CERTVERIFY_REVOKED: u32 = 3;
+pub const anon16221_CSSM_TP_CERTVERIFY_SUSPENDED: u32 = 4;
+pub const anon16221_CSSM_TP_CERTVERIFY_EXPIRED: u32 = 5;
+pub const anon16221_CSSM_TP_CERTVERIFY_NOT_VALID_YET: u32 = 6;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_AUTHORITY: u32 = 7;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_SIGNATURE: u32 = 8;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_CERT_VALUE: u32 = 9;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_CERTGROUP: u32 = 10;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_POLICY: u32 = 11;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_POLICY_IDS: u32 = 12;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_BASIC_CONSTRAINTS: u32 = 13;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_CRL_DIST_PT: u32 = 14;
+pub const anon16221_CSSM_TP_CERTVERIFY_INVALID_NAME_TREE: u32 = 15;
+pub const anon16221_CSSM_TP_CERTVERIFY_UNKNOWN_CRITICAL_EXT: u32 = 16;
 
 pub const cssm_tp_certverify_output = extern struct {
     VerifyStatus: CSSM_TP_CERTVERIFY_STATUS,
@@ -2446,14 +2391,13 @@ pub const CSSM_TP_CERTNOTARIZE_INPUT_PTR = ?*cssm_tp_certnotarize_input;
 
 pub const CSSM_TP_CERTNOTARIZE_STATUS = uint32;
 
-pub const anon16611 = enum(u32) {
-    CSSM_TP_CERTNOTARIZE_STATUS_UNKNOWN = 0,
-    CSSM_TP_CERTNOTARIZE_OK = 1,
-    CSSM_TP_CERTNOTARIZE_OKWITHOUTFIELDS = 2,
-    CSSM_TP_CERTNOTARIZE_OKWITHSERVICEMODS = 3,
-    CSSM_TP_CERTNOTARIZE_REJECTED = 4,
-    CSSM_TP_CERTNOTARIZE_NOT_AUTHORIZED = 5,
-};
+pub const anon16611 = u32;
+pub const anon16611_CSSM_TP_CERTNOTARIZE_STATUS_UNKNOWN: u32 = 0;
+pub const anon16611_CSSM_TP_CERTNOTARIZE_OK: u32 = 1;
+pub const anon16611_CSSM_TP_CERTNOTARIZE_OKWITHOUTFIELDS: u32 = 2;
+pub const anon16611_CSSM_TP_CERTNOTARIZE_OKWITHSERVICEMODS: u32 = 3;
+pub const anon16611_CSSM_TP_CERTNOTARIZE_REJECTED: u32 = 4;
+pub const anon16611_CSSM_TP_CERTNOTARIZE_NOT_AUTHORIZED: u32 = 5;
 
 pub const cssm_tp_certnotarize_output = extern struct {
     NotarizeStatus: CSSM_TP_CERTNOTARIZE_STATUS,
@@ -2478,13 +2422,12 @@ pub const CSSM_TP_CERTRECLAIM_INPUT_PTR = ?*cssm_tp_certreclaim_input;
 
 pub const CSSM_TP_CERTRECLAIM_STATUS = uint32;
 
-pub const anon16981 = enum(u32) {
-    CSSM_TP_CERTRECLAIM_STATUS_UNKNOWN = 0,
-    CSSM_TP_CERTRECLAIM_OK = 1,
-    CSSM_TP_CERTRECLAIM_NOMATCH = 2,
-    CSSM_TP_CERTRECLAIM_REJECTED = 3,
-    CSSM_TP_CERTRECLAIM_NOT_AUTHORIZED = 4,
-};
+pub const anon16981 = u32;
+pub const anon16981_CSSM_TP_CERTRECLAIM_STATUS_UNKNOWN: u32 = 0;
+pub const anon16981_CSSM_TP_CERTRECLAIM_OK: u32 = 1;
+pub const anon16981_CSSM_TP_CERTRECLAIM_NOMATCH: u32 = 2;
+pub const anon16981_CSSM_TP_CERTRECLAIM_REJECTED: u32 = 3;
+pub const anon16981_CSSM_TP_CERTRECLAIM_NOT_AUTHORIZED: u32 = 4;
 
 pub const cssm_tp_certreclaim_output = extern struct {
     ReclaimStatus: CSSM_TP_CERTRECLAIM_STATUS,
@@ -2510,15 +2453,14 @@ pub const CSSM_TP_CRLISSUE_INPUT_PTR = ?*cssm_tp_crlissue_input;
 
 pub const CSSM_TP_CRLISSUE_STATUS = uint32;
 
-pub const anon17331 = enum(u32) {
-    CSSM_TP_CRLISSUE_STATUS_UNKNOWN = 0,
-    CSSM_TP_CRLISSUE_OK = 1,
-    CSSM_TP_CRLISSUE_NOT_CURRENT = 2,
-    CSSM_TP_CRLISSUE_INVALID_DOMAIN = 3,
-    CSSM_TP_CRLISSUE_UNKNOWN_IDENTIFIER = 4,
-    CSSM_TP_CRLISSUE_REJECTED = 5,
-    CSSM_TP_CRLISSUE_NOT_AUTHORIZED = 6,
-};
+pub const anon17331 = u32;
+pub const anon17331_CSSM_TP_CRLISSUE_STATUS_UNKNOWN: u32 = 0;
+pub const anon17331_CSSM_TP_CRLISSUE_OK: u32 = 1;
+pub const anon17331_CSSM_TP_CRLISSUE_NOT_CURRENT: u32 = 2;
+pub const anon17331_CSSM_TP_CRLISSUE_INVALID_DOMAIN: u32 = 3;
+pub const anon17331_CSSM_TP_CRLISSUE_UNKNOWN_IDENTIFIER: u32 = 4;
+pub const anon17331_CSSM_TP_CRLISSUE_REJECTED: u32 = 5;
+pub const anon17331_CSSM_TP_CRLISSUE_NOT_AUTHORIZED: u32 = 6;
 
 pub const cssm_tp_crlissue_output = extern struct {
     IssueStatus: CSSM_TP_CRLISSUE_STATUS,
@@ -2532,43 +2474,39 @@ pub const CSSM_TP_CRLISSUE_OUTPUT_PTR = ?*cssm_tp_crlissue_output;
 
 pub const CSSM_TP_FORM_TYPE = uint32;
 
-pub const anon17731 = enum(u32) {
-    CSSM_TP_FORM_TYPE_GENERIC = 0,
-    CSSM_TP_FORM_TYPE_REGISTRATION = 1,
-};
+pub const anon17731 = u32;
+pub const anon17731_CSSM_TP_FORM_TYPE_GENERIC: u32 = 0;
+pub const anon17731_CSSM_TP_FORM_TYPE_REGISTRATION: u32 = 1;
 
 pub const CSSM_CL_TEMPLATE_TYPE = uint32;
 
-pub const anon17811 = enum(u32) {
-    CSSM_CL_TEMPLATE_INTERMEDIATE_CERT = 1,
-    CSSM_CL_TEMPLATE_PKIX_CERTTEMPLATE = 2,
-};
+pub const anon17811 = u32;
+pub const anon17811_CSSM_CL_TEMPLATE_INTERMEDIATE_CERT: u32 = 1;
+pub const anon17811_CSSM_CL_TEMPLATE_PKIX_CERTTEMPLATE: u32 = 2;
 
 pub const CSSM_CERT_BUNDLE_TYPE = uint32;
 
-pub const anon17901 = enum(u32) {
-    CSSM_CERT_BUNDLE_UNKNOWN = 0,
-    CSSM_CERT_BUNDLE_CUSTOM = 1,
-    CSSM_CERT_BUNDLE_PKCS7_SIGNED_DATA = 2,
-    CSSM_CERT_BUNDLE_PKCS7_SIGNED_ENVELOPED_DATA = 3,
-    CSSM_CERT_BUNDLE_PKCS12 = 4,
-    CSSM_CERT_BUNDLE_PFX = 5,
-    CSSM_CERT_BUNDLE_SPKI_SEQUENCE = 6,
-    CSSM_CERT_BUNDLE_PGP_KEYRING = 7,
-    CSSM_CERT_BUNDLE_LAST = 32767,
-    CSSM_CL_CUSTOM_CERT_BUNDLE_TYPE = 32768,
-};
+pub const anon17901 = u32;
+pub const anon17901_CSSM_CERT_BUNDLE_UNKNOWN: u32 = 0;
+pub const anon17901_CSSM_CERT_BUNDLE_CUSTOM: u32 = 1;
+pub const anon17901_CSSM_CERT_BUNDLE_PKCS7_SIGNED_DATA: u32 = 2;
+pub const anon17901_CSSM_CERT_BUNDLE_PKCS7_SIGNED_ENVELOPED_DATA: u32 = 3;
+pub const anon17901_CSSM_CERT_BUNDLE_PKCS12: u32 = 4;
+pub const anon17901_CSSM_CERT_BUNDLE_PFX: u32 = 5;
+pub const anon17901_CSSM_CERT_BUNDLE_SPKI_SEQUENCE: u32 = 6;
+pub const anon17901_CSSM_CERT_BUNDLE_PGP_KEYRING: u32 = 7;
+pub const anon17901_CSSM_CERT_BUNDLE_LAST: u32 = 32767;
+pub const anon17901_CSSM_CL_CUSTOM_CERT_BUNDLE_TYPE: u32 = 32768;
 
 pub const CSSM_CERT_BUNDLE_ENCODING = uint32;
 
-pub const anon18071 = enum(u32) {
-    CSSM_CERT_BUNDLE_ENCODING_UNKNOWN = 0,
-    CSSM_CERT_BUNDLE_ENCODING_CUSTOM = 1,
-    CSSM_CERT_BUNDLE_ENCODING_BER = 2,
-    CSSM_CERT_BUNDLE_ENCODING_DER = 3,
-    CSSM_CERT_BUNDLE_ENCODING_SEXPR = 4,
-    CSSM_CERT_BUNDLE_ENCODING_PGP = 5,
-};
+pub const anon18071 = u32;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_UNKNOWN: u32 = 0;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_CUSTOM: u32 = 1;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_BER: u32 = 2;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_DER: u32 = 3;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_SEXPR: u32 = 4;
+pub const anon18071_CSSM_CERT_BUNDLE_ENCODING_PGP: u32 = 5;
 
 pub const cssm_cert_bundle_header = extern struct {
     BundleType: CSSM_CERT_BUNDLE_TYPE,
@@ -2588,46 +2526,43 @@ pub const CSSM_CERT_BUNDLE = cssm_cert_bundle;
 
 pub const CSSM_CERT_BUNDLE_PTR = ?*cssm_cert_bundle;
 
-pub const anon18261 = enum(u32) {
-    CSSM_FIELDVALUE_COMPLEX_DATA_TYPE = -1,
-};
+pub const anon18261 = u32;
+pub const anon18261_CSSM_FIELDVALUE_COMPLEX_DATA_TYPE: u32 = -1;
 
 pub const CSSM_DB_ATTRIBUTE_NAME_FORMAT = uint32;
 
-pub const CSSM_DB_ATTRIBUTE_NAME_FORMAT_PTR = ?*uint32;
+pub const CSSM_DB_ATTRIBUTE_NAME_FORMAT_PTR = uint32;
 
-pub const anon18331 = enum(u32) {
-    CSSM_DB_ATTRIBUTE_NAME_AS_STRING = 0,
-    CSSM_DB_ATTRIBUTE_NAME_AS_OID = 1,
-    CSSM_DB_ATTRIBUTE_NAME_AS_INTEGER = 2,
-};
+pub const anon18331 = u32;
+pub const anon18331_CSSM_DB_ATTRIBUTE_NAME_AS_STRING: u32 = 0;
+pub const anon18331_CSSM_DB_ATTRIBUTE_NAME_AS_OID: u32 = 1;
+pub const anon18331_CSSM_DB_ATTRIBUTE_NAME_AS_INTEGER: u32 = 2;
 
 pub const CSSM_DB_ATTRIBUTE_FORMAT = uint32;
 
-pub const CSSM_DB_ATTRIBUTE_FORMAT_PTR = ?*uint32;
+pub const CSSM_DB_ATTRIBUTE_FORMAT_PTR = uint32;
 
-pub const anon18401 = enum(u32) {
-    CSSM_DB_ATTRIBUTE_FORMAT_STRING = 0,
-    CSSM_DB_ATTRIBUTE_FORMAT_SINT32 = 1,
-    CSSM_DB_ATTRIBUTE_FORMAT_UINT32 = 2,
-    CSSM_DB_ATTRIBUTE_FORMAT_BIG_NUM = 3,
-    CSSM_DB_ATTRIBUTE_FORMAT_REAL = 4,
-    CSSM_DB_ATTRIBUTE_FORMAT_TIME_DATE = 5,
-    CSSM_DB_ATTRIBUTE_FORMAT_BLOB = 6,
-    CSSM_DB_ATTRIBUTE_FORMAT_MULTI_UINT32 = 7,
-    CSSM_DB_ATTRIBUTE_FORMAT_COMPLEX = 8,
-};
+pub const anon18401 = u32;
+pub const anon18401_CSSM_DB_ATTRIBUTE_FORMAT_STRING: u32 = 0;
+pub const anon18401_CSSM_DB_ATTRIBUTE_FORMAT_SINT32: u32 = 1;
+pub const anon18401_CSSM_DB_ATTRIBUTE_FORMAT_UINT32: u32 = 2;
+pub const anon18401_CSSM_DB_ATTRIBUTE_FORMAT_BIG_NUM: u32 = 3;
+pub const anon18401_CSSM_DB_ATTRIBUTE_FORMAT_REAL: u32 = 4;
+pub const anon18401_CSSM_DB_ATTRIBUTE_FORMAT_TIME_DATE: u32 = 5;
+pub const anon18401_CSSM_DB_ATTRIBUTE_FORMAT_BLOB: u32 = 6;
+pub const anon18401_CSSM_DB_ATTRIBUTE_FORMAT_MULTI_UINT32: u32 = 7;
+pub const anon18401_CSSM_DB_ATTRIBUTE_FORMAT_COMPLEX: u32 = 8;
 
 pub const cssm_db_attribute_info = extern struct {
-    AttributeNameFormat: CSSM_DB_ATTRIBUTE_NAME_FORMAT,
-    Label: cssm_db_attribute_label,
-    AttributeFormat: CSSM_DB_ATTRIBUTE_FORMAT,
-};
+    pub const cssm_db_attribute_label = extern union {
+        AttributeName: ?*i8,
+        AttributeOID: Asn1Oid,
+        AttributeID: uint32,
+    };
 
-pub const cssm_db_attribute_label = extern union {
-    AttributeName: ?*i8,
-    AttributeOID: Asn1Oid,
-    AttributeID: uint32,
+    AttributeNameFormat: CSSM_DB_ATTRIBUTE_NAME_FORMAT,
+    Label: cssm_db_attribute_info.cssm_db_attribute_label,
+    AttributeFormat: CSSM_DB_ATTRIBUTE_FORMAT,
 };
 
 pub const CSSM_DB_ATTRIBUTE_INFO = cssm_db_attribute_info;
@@ -2646,36 +2581,34 @@ pub const CSSM_DB_ATTRIBUTE_DATA_PTR = ?*cssm_db_attribute_data;
 
 pub const CSSM_DB_RECORDTYPE = uint32;
 
-pub const anon18691 = enum(u32) {
-    CSSM_DB_RECORDTYPE_SCHEMA_START = 0,
-    CSSM_DB_RECORDTYPE_SCHEMA_END = 4,
-    CSSM_DB_RECORDTYPE_OPEN_GROUP_START = 10,
-    CSSM_DB_RECORDTYPE_OPEN_GROUP_END = 18,
-    CSSM_DB_RECORDTYPE_APP_DEFINED_START = -2147483648,
-    CSSM_DB_RECORDTYPE_APP_DEFINED_END = -1,
-    CSSM_DL_DB_SCHEMA_INFO = 0,
-    CSSM_DL_DB_SCHEMA_INDEXES = 1,
-    CSSM_DL_DB_SCHEMA_ATTRIBUTES = 2,
-    CSSM_DL_DB_SCHEMA_PARSING_MODULE = 3,
-    CSSM_DL_DB_RECORD_ANY = 10,
-    CSSM_DL_DB_RECORD_CERT = 11,
-    CSSM_DL_DB_RECORD_CRL = 12,
-    CSSM_DL_DB_RECORD_POLICY = 13,
-    CSSM_DL_DB_RECORD_GENERIC = 14,
-    CSSM_DL_DB_RECORD_PUBLIC_KEY = 15,
-    CSSM_DL_DB_RECORD_PRIVATE_KEY = 16,
-    CSSM_DL_DB_RECORD_SYMMETRIC_KEY = 17,
-    CSSM_DL_DB_RECORD_ALL_KEYS = 18,
-};
+pub const anon18691 = u32;
+pub const anon18691_CSSM_DB_RECORDTYPE_SCHEMA_START: u32 = 0;
+pub const anon18691_CSSM_DB_RECORDTYPE_SCHEMA_END: u32 = 4;
+pub const anon18691_CSSM_DB_RECORDTYPE_OPEN_GROUP_START: u32 = 10;
+pub const anon18691_CSSM_DB_RECORDTYPE_OPEN_GROUP_END: u32 = 18;
+pub const anon18691_CSSM_DB_RECORDTYPE_APP_DEFINED_START: u32 = -2147483648;
+pub const anon18691_CSSM_DB_RECORDTYPE_APP_DEFINED_END: u32 = -1;
+pub const anon18691_CSSM_DL_DB_SCHEMA_INFO: u32 = 0;
+pub const anon18691_CSSM_DL_DB_SCHEMA_INDEXES: u32 = 1;
+pub const anon18691_CSSM_DL_DB_SCHEMA_ATTRIBUTES: u32 = 2;
+pub const anon18691_CSSM_DL_DB_SCHEMA_PARSING_MODULE: u32 = 3;
+pub const anon18691_CSSM_DL_DB_RECORD_ANY: u32 = 10;
+pub const anon18691_CSSM_DL_DB_RECORD_CERT: u32 = 11;
+pub const anon18691_CSSM_DL_DB_RECORD_CRL: u32 = 12;
+pub const anon18691_CSSM_DL_DB_RECORD_POLICY: u32 = 13;
+pub const anon18691_CSSM_DL_DB_RECORD_GENERIC: u32 = 14;
+pub const anon18691_CSSM_DL_DB_RECORD_PUBLIC_KEY: u32 = 15;
+pub const anon18691_CSSM_DL_DB_RECORD_PRIVATE_KEY: u32 = 16;
+pub const anon18691_CSSM_DL_DB_RECORD_SYMMETRIC_KEY: u32 = 17;
+pub const anon18691_CSSM_DL_DB_RECORD_ALL_KEYS: u32 = 18;
 
-pub const anon18961 = enum(u32) {
-    CSSM_DB_CERT_USE_TRUSTED = 1,
-    CSSM_DB_CERT_USE_SYSTEM = 2,
-    CSSM_DB_CERT_USE_OWNER = 4,
-    CSSM_DB_CERT_USE_REVOKED = 8,
-    CSSM_DB_CERT_USE_SIGNING = 16,
-    CSSM_DB_CERT_USE_PRIVACY = 32,
-};
+pub const anon18961 = u32;
+pub const anon18961_CSSM_DB_CERT_USE_TRUSTED: u32 = 1;
+pub const anon18961_CSSM_DB_CERT_USE_SYSTEM: u32 = 2;
+pub const anon18961_CSSM_DB_CERT_USE_OWNER: u32 = 4;
+pub const anon18961_CSSM_DB_CERT_USE_REVOKED: u32 = 8;
+pub const anon18961_CSSM_DB_CERT_USE_SIGNING: u32 = 16;
+pub const anon18961_CSSM_DB_CERT_USE_PRIVACY: u32 = 32;
 
 pub const cssm_db_record_attribute_info = extern struct {
     DataRecordType: CSSM_DB_RECORDTYPE,
@@ -2709,18 +2642,16 @@ pub const CSSM_DB_PARSING_MODULE_INFO_PTR = ?*cssm_db_parsing_module_info;
 
 pub const CSSM_DB_INDEX_TYPE = uint32;
 
-pub const anon19241 = enum(u32) {
-    CSSM_DB_INDEX_UNIQUE = 0,
-    CSSM_DB_INDEX_NONUNIQUE = 1,
-};
+pub const anon19241 = u32;
+pub const anon19241_CSSM_DB_INDEX_UNIQUE: u32 = 0;
+pub const anon19241_CSSM_DB_INDEX_NONUNIQUE: u32 = 1;
 
 pub const CSSM_DB_INDEXED_DATA_LOCATION = uint32;
 
-pub const anon19301 = enum(u32) {
-    CSSM_DB_INDEX_ON_UNKNOWN = 0,
-    CSSM_DB_INDEX_ON_ATTRIBUTE = 1,
-    CSSM_DB_INDEX_ON_RECORD = 2,
-};
+pub const anon19301 = u32;
+pub const anon19301_CSSM_DB_INDEX_ON_UNKNOWN: u32 = 0;
+pub const anon19301_CSSM_DB_INDEX_ON_ATTRIBUTE: u32 = 1;
+pub const anon19301_CSSM_DB_INDEX_ON_RECORD: u32 = 2;
 
 pub const cssm_db_index_info = extern struct {
     IndexType: CSSM_DB_INDEX_TYPE,
@@ -2753,22 +2684,20 @@ pub const CSSM_DB_RECORD_INDEX_INFO_PTR = ?*cssm_db_record_index_info;
 
 pub const CSSM_DB_ACCESS_TYPE = uint32;
 
-pub const CSSM_DB_ACCESS_TYPE_PTR = ?*uint32;
+pub const CSSM_DB_ACCESS_TYPE_PTR = uint32;
 
-pub const anon19541 = enum(u32) {
-    CSSM_DB_ACCESS_READ = 1,
-    CSSM_DB_ACCESS_WRITE = 2,
-    CSSM_DB_ACCESS_PRIVILEGED = 4,
-};
+pub const anon19541 = u32;
+pub const anon19541_CSSM_DB_ACCESS_READ: u32 = 1;
+pub const anon19541_CSSM_DB_ACCESS_WRITE: u32 = 2;
+pub const anon19541_CSSM_DB_ACCESS_PRIVILEGED: u32 = 4;
 
 pub const CSSM_DB_MODIFY_MODE = uint32;
 
-pub const anon19611 = enum(u32) {
-    CSSM_DB_MODIFY_ATTRIBUTE_NONE = 0,
-    CSSM_DB_MODIFY_ATTRIBUTE_ADD = 1,
-    CSSM_DB_MODIFY_ATTRIBUTE_DELETE = 2,
-    CSSM_DB_MODIFY_ATTRIBUTE_REPLACE = 3,
-};
+pub const anon19611 = u32;
+pub const anon19611_CSSM_DB_MODIFY_ATTRIBUTE_NONE: u32 = 0;
+pub const anon19611_CSSM_DB_MODIFY_ATTRIBUTE_ADD: u32 = 1;
+pub const anon19611_CSSM_DB_MODIFY_ATTRIBUTE_DELETE: u32 = 2;
+pub const anon19611_CSSM_DB_MODIFY_ATTRIBUTE_REPLACE: u32 = 3;
 
 pub const cssm_dbinfo = extern struct {
     NumberOfRecordTypes: uint32,
@@ -2786,27 +2715,25 @@ pub const CSSM_DBINFO_PTR = ?*cssm_dbinfo;
 
 pub const CSSM_DB_OPERATOR = uint32;
 
-pub const CSSM_DB_OPERATOR_PTR = ?*uint32;
+pub const CSSM_DB_OPERATOR_PTR = uint32;
 
-pub const anon19831 = enum(u32) {
-    CSSM_DB_EQUAL = 0,
-    CSSM_DB_NOT_EQUAL = 1,
-    CSSM_DB_LESS_THAN = 2,
-    CSSM_DB_GREATER_THAN = 3,
-    CSSM_DB_CONTAINS = 4,
-    CSSM_DB_CONTAINS_INITIAL_SUBSTRING = 5,
-    CSSM_DB_CONTAINS_FINAL_SUBSTRING = 6,
-};
+pub const anon19831 = u32;
+pub const anon19831_CSSM_DB_EQUAL: u32 = 0;
+pub const anon19831_CSSM_DB_NOT_EQUAL: u32 = 1;
+pub const anon19831_CSSM_DB_LESS_THAN: u32 = 2;
+pub const anon19831_CSSM_DB_GREATER_THAN: u32 = 3;
+pub const anon19831_CSSM_DB_CONTAINS: u32 = 4;
+pub const anon19831_CSSM_DB_CONTAINS_INITIAL_SUBSTRING: u32 = 5;
+pub const anon19831_CSSM_DB_CONTAINS_FINAL_SUBSTRING: u32 = 6;
 
 pub const CSSM_DB_CONJUNCTIVE = uint32;
 
-pub const CSSM_DB_CONJUNCTIVE_PTR = ?*uint32;
+pub const CSSM_DB_CONJUNCTIVE_PTR = uint32;
 
-pub const anon19941 = enum(u32) {
-    CSSM_DB_NONE = 0,
-    CSSM_DB_AND = 1,
-    CSSM_DB_OR = 2,
-};
+pub const anon19941 = u32;
+pub const anon19941_CSSM_DB_NONE: u32 = 0;
+pub const anon19941_CSSM_DB_AND: u32 = 1;
+pub const anon19941_CSSM_DB_OR: u32 = 2;
 
 pub const cssm_selection_predicate = extern struct {
     DbOperator: CSSM_DB_OPERATOR,
@@ -2817,13 +2744,11 @@ pub const CSSM_SELECTION_PREDICATE = cssm_selection_predicate;
 
 pub const CSSM_SELECTION_PREDICATE_PTR = ?*cssm_selection_predicate;
 
-pub const anon20051 = enum(u32) {
-    CSSM_QUERY_TIMELIMIT_NONE = 0,
-};
+pub const anon20051 = u32;
+pub const anon20051_CSSM_QUERY_TIMELIMIT_NONE: u32 = 0;
 
-pub const anon20091 = enum(u32) {
-    CSSM_QUERY_SIZELIMIT_NONE = 0,
-};
+pub const anon20091 = u32;
+pub const anon20091_CSSM_QUERY_SIZELIMIT_NONE: u32 = 0;
 
 pub const cssm_query_limits = extern struct {
     TimeLimit: uint32,
@@ -2836,9 +2761,8 @@ pub const CSSM_QUERY_LIMITS_PTR = ?*cssm_query_limits;
 
 pub const CSSM_QUERY_FLAGS = uint32;
 
-pub const anon20191 = enum(u32) {
-    CSSM_QUERY_RETURN_DATA = 1,
-};
+pub const anon20191 = u32;
+pub const anon20191_CSSM_QUERY_RETURN_DATA: u32 = 1;
 
 pub const cssm_query = extern struct {
     RecordType: CSSM_DB_RECORDTYPE,
@@ -2855,18 +2779,17 @@ pub const CSSM_QUERY_PTR = ?*cssm_query;
 
 pub const CSSM_DLTYPE = uint32;
 
-pub const CSSM_DLTYPE_PTR = ?*uint32;
+pub const CSSM_DLTYPE_PTR = uint32;
 
-pub const anon20331 = enum(u32) {
-    CSSM_DL_UNKNOWN = 0,
-    CSSM_DL_CUSTOM = 1,
-    CSSM_DL_LDAP = 2,
-    CSSM_DL_ODBC = 3,
-    CSSM_DL_PKCS11 = 4,
-    CSSM_DL_FFS = 5,
-    CSSM_DL_MEMORY = 6,
-    CSSM_DL_REMOTEDIR = 7,
-};
+pub const anon20331 = u32;
+pub const anon20331_CSSM_DL_UNKNOWN: u32 = 0;
+pub const anon20331_CSSM_DL_CUSTOM: u32 = 1;
+pub const anon20331_CSSM_DL_LDAP: u32 = 2;
+pub const anon20331_CSSM_DL_ODBC: u32 = 3;
+pub const anon20331_CSSM_DL_PKCS11: u32 = 4;
+pub const anon20331_CSSM_DL_FFS: u32 = 5;
+pub const anon20331_CSSM_DL_MEMORY: u32 = 6;
+pub const anon20331_CSSM_DL_REMOTEDIR: u32 = 7;
 
 pub const CSSM_DL_CUSTOM_ATTRIBUTES = ?*anyopaque;
 
@@ -2884,9 +2807,8 @@ pub const CSSM_DL_PKCS11_ATTRIBUTE = ?*cssm_dl_pkcs11_attributes;
 
 pub const CSSM_DL_PKCS11_ATTRIBUTE_PTR = ?*cssm_dl_pkcs11_attributes;
 
-pub const anon20531 = enum(u32) {
-    CSSM_DB_DATASTORES_UNKNOWN = -1,
-};
+pub const anon20531 = u32;
+pub const anon20531_CSSM_DB_DATASTORES_UNKNOWN: u32 = -1;
 
 pub const cssm_name_list = extern struct {
     NumStrings: uint32,
@@ -2899,10 +2821,9 @@ pub const CSSM_NAME_LIST_PTR = ?*cssm_name_list;
 
 pub const CSSM_DB_RETRIEVAL_MODES = uint32;
 
-pub const anon20631 = enum(u32) {
-    CSSM_DB_TRANSACTIONAL_MODE = 0,
-    CSSM_DB_FILESYSTEMSCAN_MODE = 1,
-};
+pub const anon20631 = u32;
+pub const anon20631_CSSM_DB_TRANSACTIONAL_MODE: u32 = 0;
+pub const anon20631_CSSM_DB_FILESYSTEMSCAN_MODE: u32 = 1;
 
 pub const cssm_db_schema_attribute_info = extern struct {
     AttributeId: uint32,
@@ -2928,7 +2849,7 @@ pub const CSSM_DB_SCHEMA_INDEX_INFO_PTR = ?*cssm_db_schema_index_info;
 
 pub const CSSM_BER_TAG = uint8;
 
-pub const CSSM_X509_ALGORITHM_IDENTIFIER_PTR = ?*Asn1AlgId;
+pub const CSSM_X509_ALGORITHM_IDENTIFIER_PTR = Asn1AlgId;
 
 pub const cssm_x509_type_value_pair = extern struct {
     type: Asn1Oid,
@@ -2958,7 +2879,7 @@ pub const CSSM_X509_NAME = cssm_x509_name;
 
 pub const CSSM_X509_NAME_PTR = ?*cssm_x509_name;
 
-pub const CSSM_X509_SUBJECT_PUBLIC_KEY_INFO_PTR = ?*Asn1PubKeyInfo;
+pub const CSSM_X509_SUBJECT_PUBLIC_KEY_INFO_PTR = Asn1PubKeyInfo;
 
 pub const cssm_x509_time = extern struct {
     timeType: CSSM_BER_TAG,
@@ -2990,11 +2911,10 @@ pub const CSSM_X509EXT_BASICCONSTRAINTS = cssm_x509ext_basicConstraints;
 
 pub const CSSM_X509EXT_BASICCONSTRAINTS_PTR = ?*cssm_x509ext_basicConstraints;
 
-pub const extension_data_format = enum(u32) {
-    CSSM_X509_DATAFORMAT_ENCODED = 0,
-    CSSM_X509_DATAFORMAT_PARSED = 1,
-    CSSM_X509_DATAFORMAT_PAIR = 2,
-};
+pub const extension_data_format = u32;
+pub const extension_data_format_CSSM_X509_DATAFORMAT_ENCODED: u32 = 0;
+pub const extension_data_format_CSSM_X509_DATAFORMAT_PARSED: u32 = 1;
+pub const extension_data_format_CSSM_X509_DATAFORMAT_PAIR: u32 = 2;
 
 pub const CSSM_X509EXT_DATA_FORMAT = extension_data_format;
 
@@ -3017,17 +2937,17 @@ pub const CSSM_X509EXT_PAIR = cssm_x509ext_pair;
 pub const CSSM_X509EXT_PAIR_PTR = ?*cssm_x509ext_pair;
 
 pub const cssm_x509_extension = extern struct {
+    pub const cssm_x509ext_value = extern union {
+        tagAndValue: ?*CSSM_X509EXT_TAGandVALUE,
+        parsedValue: ?*anyopaque,
+        valuePair: ?*CSSM_X509EXT_PAIR,
+    };
+
     extnId: Asn1Oid,
     critical: CSSM_BOOL,
     format: CSSM_X509EXT_DATA_FORMAT,
-    value: cssm_x509ext_value,
+    value: cssm_x509_extension.cssm_x509ext_value,
     BERvalue: Asn1Item,
-};
-
-pub const cssm_x509ext_value = extern union {
-    tagAndValue: ?*CSSM_X509EXT_TAGandVALUE,
-    parsedValue: ?*anyopaque,
-    valuePair: ?*CSSM_X509EXT_PAIR,
 };
 
 pub const CSSM_X509_EXTENSION = cssm_x509_extension;
@@ -3189,15 +3109,14 @@ pub const certificateCopyNotValidAfterDate = SecCertificateCopyNotValidAfterDate
 extern "Security" fn SecCertificateCopySerialNumber(certificate: CertificateRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DataRef;
 pub const certificateCopySerialNumber = SecCertificateCopySerialNumber;
 
-pub const anon2671 = enum(u32) {
-    SecSubjectItemAttr = 1937072746,
-    SecIssuerItemAttr = 1769173877,
-    SecSerialNumberItemAttr = 1936614002,
-    SecPublicKeyHashItemAttr = 1752198009,
-    SecSubjectKeyIdentifierItemAttr = 1936419172,
-    SecCertTypeItemAttr = 1668577648,
-    SecCertEncodingItemAttr = 1667591779,
-};
+pub const anon2671 = u32;
+pub const anon2671_SecSubjectItemAttr: u32 = 1937072746;
+pub const anon2671_SecIssuerItemAttr: u32 = 1769173877;
+pub const anon2671_SecSerialNumberItemAttr: u32 = 1936614002;
+pub const anon2671_SecPublicKeyHashItemAttr: u32 = 1752198009;
+pub const anon2671_SecSubjectKeyIdentifierItemAttr: u32 = 1936419172;
+pub const anon2671_SecCertTypeItemAttr: u32 = 1668577648;
+pub const anon2671_SecCertEncodingItemAttr: u32 = 1667591779;
 
 extern "Security" fn SecCertificateCreateFromData(
     data: ?*Asn1Item,
@@ -3245,21 +3164,20 @@ pub const certificateSetPreference = SecCertificateSetPreference;
 extern "Security" fn SecCertificateSetPreferred(certificate: CertificateRef, name: core_foundation.StringRef, keyUsage: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 pub const certificateSetPreferred = SecCertificateSetPreferred;
 
-pub const KeyUsage = enum(objc.uint32_t) {
-    Unspecified = 0,
-    DigitalSignature = 1,
-    NonRepudiation = 2,
-    ContentCommitment = 2,
-    KeyEncipherment = 4,
-    DataEncipherment = 8,
-    KeyAgreement = 16,
-    KeyCertSign = 32,
-    CRLSign = 64,
-    EncipherOnly = 128,
-    DecipherOnly = 256,
-    Critical = -2147483648,
-    All = 2147483647,
-};
+pub const KeyUsage = objc.uint32_t;
+pub const KeyUsage_Unspecified: objc.uint32_t = 0;
+pub const KeyUsage_DigitalSignature: objc.uint32_t = 1;
+pub const KeyUsage_NonRepudiation: objc.uint32_t = 2;
+pub const KeyUsage_ContentCommitment: objc.uint32_t = 2;
+pub const KeyUsage_KeyEncipherment: objc.uint32_t = 4;
+pub const KeyUsage_DataEncipherment: objc.uint32_t = 8;
+pub const KeyUsage_KeyAgreement: objc.uint32_t = 16;
+pub const KeyUsage_KeyCertSign: objc.uint32_t = 32;
+pub const KeyUsage_CRLSign: objc.uint32_t = 64;
+pub const KeyUsage_EncipherOnly: objc.uint32_t = 128;
+pub const KeyUsage_DecipherOnly: objc.uint32_t = 256;
+pub const KeyUsage_Critical: objc.uint32_t = -2147483648;
+pub const KeyUsage_All: objc.uint32_t = 2147483647;
 
 extern "Security" fn SecCertificateCopyValues(certificate: CertificateRef, keys: core_foundation.ArrayRef, @"error": ?*core_foundation.ErrorRef) callconv(.C) core_foundation.DictionaryRef;
 pub const certificateCopyValues = SecCertificateCopyValues;
@@ -3314,20 +3232,19 @@ pub const identitySetSystemIdentity = SecIdentitySetSystemIdentity;
 extern "Security" fn SecAccessControlGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const accessControlGetTypeID = SecAccessControlGetTypeID;
 
-pub const AccessControlCreateFlags = enum(core_foundation.OptionFlags) {
-    UserPresence = 1,
-    BiometryAny = 2,
-    TouchIDAny = 2,
-    BiometryCurrentSet = 8,
-    TouchIDCurrentSet = 8,
-    DevicePasscode = 16,
-    Watch = 32,
-    Companion = 32,
-    Or = 16384,
-    And = 32768,
-    PrivateKeyUsage = 1073741824,
-    ApplicationPassword = 2147483648,
-};
+pub const AccessControlCreateFlags = core_foundation.OptionFlags;
+pub const AccessControlCreateFlags_UserPresence: core_foundation.OptionFlags = 1;
+pub const AccessControlCreateFlags_BiometryAny: core_foundation.OptionFlags = 2;
+pub const AccessControlCreateFlags_TouchIDAny: core_foundation.OptionFlags = 2;
+pub const AccessControlCreateFlags_BiometryCurrentSet: core_foundation.OptionFlags = 8;
+pub const AccessControlCreateFlags_TouchIDCurrentSet: core_foundation.OptionFlags = 8;
+pub const AccessControlCreateFlags_DevicePasscode: core_foundation.OptionFlags = 16;
+pub const AccessControlCreateFlags_Watch: core_foundation.OptionFlags = 32;
+pub const AccessControlCreateFlags_Companion: core_foundation.OptionFlags = 32;
+pub const AccessControlCreateFlags_Or: core_foundation.OptionFlags = 16384;
+pub const AccessControlCreateFlags_And: core_foundation.OptionFlags = 32768;
+pub const AccessControlCreateFlags_PrivateKeyUsage: core_foundation.OptionFlags = 1073741824;
+pub const AccessControlCreateFlags_ApplicationPassword: core_foundation.OptionFlags = 2147483648;
 
 extern "Security" fn SecAccessControlCreateWithFlags(
     allocator: core_foundation.AllocatorRef,
@@ -3351,12 +3268,11 @@ pub const itemDelete = SecItemDelete;
 
 pub const AccessOwnerType = objc.UInt32;
 
-pub const anon491 = enum(u32) {
-    SecUseOnlyUID = 1,
-    SecUseOnlyGID = 2,
-    SecHonorRoot = 256,
-    SecMatchBits = 3,
-};
+pub const anon491 = u32;
+pub const anon491_SecUseOnlyUID: u32 = 1;
+pub const anon491_SecUseOnlyGID: u32 = 2;
+pub const anon491_SecHonorRoot: u32 = 256;
+pub const anon491_SecMatchBits: u32 = 3;
 
 extern "Security" fn SecAccessGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const accessGetTypeID = SecAccessGetTypeID;
@@ -3407,69 +3323,65 @@ pub const accessCopySelectedACLList = SecAccessCopySelectedACLList;
 extern "Security" fn SecAccessCopyMatchingACLList(accessRef: AccessRef, authorizationTag: core_foundation.TypeRef) callconv(.C) core_foundation.ArrayRef;
 pub const accessCopyMatchingACLList = SecAccessCopyMatchingACLList;
 
-pub const anon1241 = enum(i32) {
-    SecKeyKeyClass = 0,
-    SecKeyPrintName = 1,
-    SecKeyAlias = 2,
-    SecKeyPermanent = 3,
-    SecKeyPrivate = 4,
-    SecKeyModifiable = 5,
-    SecKeyLabel = 6,
-    SecKeyApplicationTag = 7,
-    SecKeyKeyCreator = 8,
-    SecKeyKeyType = 9,
-    SecKeyKeySizeInBits = 10,
-    SecKeyEffectiveKeySize = 11,
-    SecKeyStartDate = 12,
-    SecKeyEndDate = 13,
-    SecKeySensitive = 14,
-    SecKeyAlwaysSensitive = 15,
-    SecKeyExtractable = 16,
-    SecKeyNeverExtractable = 17,
-    SecKeyEncrypt = 18,
-    SecKeyDecrypt = 19,
-    SecKeyDerive = 20,
-    SecKeySign = 21,
-    SecKeyVerify = 22,
-    SecKeySignRecover = 23,
-    SecKeyVerifyRecover = 24,
-    SecKeyWrap = 25,
-    SecKeyUnwrap = 26,
-};
+pub const anon1241 = i32;
+pub const anon1241_SecKeyKeyClass: i32 = 0;
+pub const anon1241_SecKeyPrintName: i32 = 1;
+pub const anon1241_SecKeyAlias: i32 = 2;
+pub const anon1241_SecKeyPermanent: i32 = 3;
+pub const anon1241_SecKeyPrivate: i32 = 4;
+pub const anon1241_SecKeyModifiable: i32 = 5;
+pub const anon1241_SecKeyLabel: i32 = 6;
+pub const anon1241_SecKeyApplicationTag: i32 = 7;
+pub const anon1241_SecKeyKeyCreator: i32 = 8;
+pub const anon1241_SecKeyKeyType: i32 = 9;
+pub const anon1241_SecKeyKeySizeInBits: i32 = 10;
+pub const anon1241_SecKeyEffectiveKeySize: i32 = 11;
+pub const anon1241_SecKeyStartDate: i32 = 12;
+pub const anon1241_SecKeyEndDate: i32 = 13;
+pub const anon1241_SecKeySensitive: i32 = 14;
+pub const anon1241_SecKeyAlwaysSensitive: i32 = 15;
+pub const anon1241_SecKeyExtractable: i32 = 16;
+pub const anon1241_SecKeyNeverExtractable: i32 = 17;
+pub const anon1241_SecKeyEncrypt: i32 = 18;
+pub const anon1241_SecKeyDecrypt: i32 = 19;
+pub const anon1241_SecKeyDerive: i32 = 20;
+pub const anon1241_SecKeySign: i32 = 21;
+pub const anon1241_SecKeyVerify: i32 = 22;
+pub const anon1241_SecKeySignRecover: i32 = 23;
+pub const anon1241_SecKeyVerifyRecover: i32 = 24;
+pub const anon1241_SecKeyWrap: i32 = 25;
+pub const anon1241_SecKeyUnwrap: i32 = 26;
 
-pub const CredentialType = enum(uint32) {
-    Default = 0,
-    WithUI = 1,
-    NoUI = 2,
-};
+pub const CredentialType = uint32;
+pub const CredentialType_Default: uint32 = 0;
+pub const CredentialType_WithUI: uint32 = 1;
+pub const CredentialType_NoUI: uint32 = 2;
 
-pub const Padding = enum(objc.uint32_t) {
-    None = 0,
-    PKCS1 = 1,
-    OAEP = 2,
-    SigRaw = 16384,
-    PKCS1MD2 = 32768,
-    PKCS1MD5 = 32769,
-    PKCS1SHA1 = 32770,
-    PKCS1SHA224 = 32771,
-    PKCS1SHA256 = 32772,
-    PKCS1SHA384 = 32773,
-    PKCS1SHA512 = 32774,
-};
+pub const Padding = objc.uint32_t;
+pub const Padding_None: objc.uint32_t = 0;
+pub const Padding_PKCS1: objc.uint32_t = 1;
+pub const Padding_OAEP: objc.uint32_t = 2;
+pub const Padding_SigRaw: objc.uint32_t = 16384;
+pub const Padding_PKCS1MD2: objc.uint32_t = 32768;
+pub const Padding_PKCS1MD5: objc.uint32_t = 32769;
+pub const Padding_PKCS1SHA1: objc.uint32_t = 32770;
+pub const Padding_PKCS1SHA224: objc.uint32_t = 32771;
+pub const Padding_PKCS1SHA256: objc.uint32_t = 32772;
+pub const Padding_PKCS1SHA384: objc.uint32_t = 32773;
+pub const Padding_PKCS1SHA512: objc.uint32_t = 32774;
 
-pub const KeySizes = enum(objc.uint32_t) {
-    DefaultKeySize = 0,
-    Sec3DES192 = 192,
-    AES128 = 128,
-    AES192 = 192,
-    AES256 = 256,
-    Secp192r1 = 192,
-    Secp256r1 = 256,
-    Secp384r1 = 384,
-    Secp521r1 = 521,
-    RSAMin = 1024,
-    RSAMax = 4096,
-};
+pub const KeySizes = objc.uint32_t;
+pub const KeySizes_DefaultKeySize: objc.uint32_t = 0;
+pub const KeySizes_Sec3DES192: objc.uint32_t = 192;
+pub const KeySizes_AES128: objc.uint32_t = 128;
+pub const KeySizes_AES192: objc.uint32_t = 192;
+pub const KeySizes_AES256: objc.uint32_t = 256;
+pub const KeySizes_Secp192r1: objc.uint32_t = 192;
+pub const KeySizes_Secp256r1: objc.uint32_t = 256;
+pub const KeySizes_Secp384r1: objc.uint32_t = 384;
+pub const KeySizes_Secp521r1: objc.uint32_t = 521;
+pub const KeySizes_RSAMin: objc.uint32_t = 1024;
+pub const KeySizes_RSAMax: objc.uint32_t = 4096;
 
 extern "Security" fn SecKeyGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const keyGetTypeID = SecKeyGetTypeID;
@@ -3612,13 +3524,12 @@ extern "Security" fn SecKeyCopyKeyExchangeResult(
 ) callconv(.C) core_foundation.DataRef;
 pub const keyCopyKeyExchangeResult = SecKeyCopyKeyExchangeResult;
 
-pub const KeyOperationType = enum(core_foundation.Index) {
-    Sign = 0,
-    Verify = 1,
-    Encrypt = 2,
-    Decrypt = 3,
-    KeyExchange = 4,
-};
+pub const KeyOperationType = core_foundation.Index;
+pub const KeyOperationType_Sign: core_foundation.Index = 0;
+pub const KeyOperationType_Verify: core_foundation.Index = 1;
+pub const KeyOperationType_Encrypt: core_foundation.Index = 2;
+pub const KeyOperationType_Decrypt: core_foundation.Index = 3;
+pub const KeyOperationType_KeyExchange: core_foundation.Index = 4;
 
 extern "Security" fn SecKeyIsAlgorithmSupported(key: KeyRef, operation: KeyOperationType, algorithm: KeyAlgorithm) callconv(.C) objc.Boolean;
 pub const keyIsAlgorithmSupported = SecKeyIsAlgorithmSupported;
@@ -3635,14 +3546,13 @@ pub const policyCreateBasicX509 = SecPolicyCreateBasicX509;
 extern "Security" fn SecPolicyCreateSSL(server: objc.Boolean, hostname: core_foundation.StringRef) callconv(.C) PolicyRef;
 pub const policyCreateSSL = SecPolicyCreateSSL;
 
-pub const anon2091 = enum(core_foundation.OptionFlags) {
-    SecRevocationOCSPMethod = 1,
-    SecRevocationCRLMethod = 2,
-    SecRevocationPreferCRL = 4,
-    SecRevocationRequirePositiveResponse = 8,
-    SecRevocationNetworkAccessDisabled = 16,
-    SecRevocationUseAnyAvailableMethod = 3,
-};
+pub const anon2091 = core_foundation.OptionFlags;
+pub const anon2091_SecRevocationOCSPMethod: core_foundation.OptionFlags = 1;
+pub const anon2091_SecRevocationCRLMethod: core_foundation.OptionFlags = 2;
+pub const anon2091_SecRevocationPreferCRL: core_foundation.OptionFlags = 4;
+pub const anon2091_SecRevocationRequirePositiveResponse: core_foundation.OptionFlags = 8;
+pub const anon2091_SecRevocationNetworkAccessDisabled: core_foundation.OptionFlags = 16;
+pub const anon2091_SecRevocationUseAnyAvailableMethod: core_foundation.OptionFlags = 3;
 
 extern "Security" fn SecPolicyCreateRevocation(revocationFlags: core_foundation.OptionFlags) callconv(.C) PolicyRef;
 pub const policyCreateRevocation = SecPolicyCreateRevocation;
@@ -3670,546 +3580,529 @@ pub const policyGetTPHandle = SecPolicyGetTPHandle;
 
 pub const __SecRandom = extern struct {};
 
-pub const RandomRef = ?*__SecRandom;
+pub const RandomRef = __SecRandom;
 
 extern "Security" fn SecRandomCopyBytes(rnd: RandomRef, count: objc.size_t, bytes: ?*anyopaque) callconv(.C) i32;
 pub const randomCopyBytes = SecRandomCopyBytes;
 
-pub const anon551 = enum(i32) {
-    CSSM_BASE_ERROR = -2147418112,
-    CSSM_ERRORCODE_MODULE_EXTENT = 2048,
-    CSSM_ERRORCODE_CUSTOM_OFFSET = 1024,
-    CSSM_ERRORCODE_COMMON_EXTENT = 256,
-    CSSM_CSSM_BASE_ERROR = -2147418112,
-    CSSM_CSSM_PRIVATE_ERROR = -2147417088,
-    CSSM_CSP_BASE_ERROR = -2147416064,
-    CSSM_CSP_PRIVATE_ERROR = -2147415040,
-    CSSM_DL_BASE_ERROR = -2147414016,
-    CSSM_DL_PRIVATE_ERROR = -2147412992,
-    CSSM_CL_BASE_ERROR = -2147411968,
-    CSSM_CL_PRIVATE_ERROR = -2147410944,
-    CSSM_TP_BASE_ERROR = -2147409920,
-    CSSM_TP_PRIVATE_ERROR = -2147408896,
-    CSSM_KR_BASE_ERROR = -2147407872,
-    CSSM_KR_PRIVATE_ERROR = -2147406848,
-    CSSM_AC_BASE_ERROR = -2147405824,
-    CSSM_AC_PRIVATE_ERROR = -2147404800,
-};
+pub const anon551 = i32;
+pub const anon551_CSSM_BASE_ERROR: i32 = -2147418112;
+pub const anon551_CSSM_ERRORCODE_MODULE_EXTENT: i32 = 2048;
+pub const anon551_CSSM_ERRORCODE_CUSTOM_OFFSET: i32 = 1024;
+pub const anon551_CSSM_ERRORCODE_COMMON_EXTENT: i32 = 256;
+pub const anon551_CSSM_CSSM_BASE_ERROR: i32 = -2147418112;
+pub const anon551_CSSM_CSSM_PRIVATE_ERROR: i32 = -2147417088;
+pub const anon551_CSSM_CSP_BASE_ERROR: i32 = -2147416064;
+pub const anon551_CSSM_CSP_PRIVATE_ERROR: i32 = -2147415040;
+pub const anon551_CSSM_DL_BASE_ERROR: i32 = -2147414016;
+pub const anon551_CSSM_DL_PRIVATE_ERROR: i32 = -2147412992;
+pub const anon551_CSSM_CL_BASE_ERROR: i32 = -2147411968;
+pub const anon551_CSSM_CL_PRIVATE_ERROR: i32 = -2147410944;
+pub const anon551_CSSM_TP_BASE_ERROR: i32 = -2147409920;
+pub const anon551_CSSM_TP_PRIVATE_ERROR: i32 = -2147408896;
+pub const anon551_CSSM_KR_BASE_ERROR: i32 = -2147407872;
+pub const anon551_CSSM_KR_PRIVATE_ERROR: i32 = -2147406848;
+pub const anon551_CSSM_AC_BASE_ERROR: i32 = -2147405824;
+pub const anon551_CSSM_AC_PRIVATE_ERROR: i32 = -2147404800;
 
-pub const anon791 = enum(i32) {
-    CSSM_MDS_BASE_ERROR = -2147414016,
-    CSSM_MDS_PRIVATE_ERROR = -2147412992,
-};
+pub const anon791 = i32;
+pub const anon791_CSSM_MDS_BASE_ERROR: i32 = -2147414016;
+pub const anon791_CSSM_MDS_PRIVATE_ERROR: i32 = -2147412992;
 
-pub const anon941 = enum(u32) {
-    CSSM_ERRCODE_INTERNAL_ERROR = 1,
-    CSSM_ERRCODE_MEMORY_ERROR = 2,
-    CSSM_ERRCODE_MDS_ERROR = 3,
-    CSSM_ERRCODE_INVALID_POINTER = 4,
-    CSSM_ERRCODE_INVALID_INPUT_POINTER = 5,
-    CSSM_ERRCODE_INVALID_OUTPUT_POINTER = 6,
-    CSSM_ERRCODE_FUNCTION_NOT_IMPLEMENTED = 7,
-    CSSM_ERRCODE_SELF_CHECK_FAILED = 8,
-    CSSM_ERRCODE_OS_ACCESS_DENIED = 9,
-    CSSM_ERRCODE_FUNCTION_FAILED = 10,
-    CSSM_ERRCODE_MODULE_MANIFEST_VERIFY_FAILED = 11,
-    CSSM_ERRCODE_INVALID_GUID = 12,
-};
+pub const anon941 = u32;
+pub const anon941_CSSM_ERRCODE_INTERNAL_ERROR: u32 = 1;
+pub const anon941_CSSM_ERRCODE_MEMORY_ERROR: u32 = 2;
+pub const anon941_CSSM_ERRCODE_MDS_ERROR: u32 = 3;
+pub const anon941_CSSM_ERRCODE_INVALID_POINTER: u32 = 4;
+pub const anon941_CSSM_ERRCODE_INVALID_INPUT_POINTER: u32 = 5;
+pub const anon941_CSSM_ERRCODE_INVALID_OUTPUT_POINTER: u32 = 6;
+pub const anon941_CSSM_ERRCODE_FUNCTION_NOT_IMPLEMENTED: u32 = 7;
+pub const anon941_CSSM_ERRCODE_SELF_CHECK_FAILED: u32 = 8;
+pub const anon941_CSSM_ERRCODE_OS_ACCESS_DENIED: u32 = 9;
+pub const anon941_CSSM_ERRCODE_FUNCTION_FAILED: u32 = 10;
+pub const anon941_CSSM_ERRCODE_MODULE_MANIFEST_VERIFY_FAILED: u32 = 11;
+pub const anon941_CSSM_ERRCODE_INVALID_GUID: u32 = 12;
 
-pub const anon1101 = enum(u32) {
-    CSSM_ERRCODE_OPERATION_AUTH_DENIED = 32,
-    CSSM_ERRCODE_OBJECT_USE_AUTH_DENIED = 33,
-    CSSM_ERRCODE_OBJECT_MANIP_AUTH_DENIED = 34,
-    CSSM_ERRCODE_OBJECT_ACL_NOT_SUPPORTED = 35,
-    CSSM_ERRCODE_OBJECT_ACL_REQUIRED = 36,
-    CSSM_ERRCODE_INVALID_ACCESS_CREDENTIALS = 37,
-    CSSM_ERRCODE_INVALID_ACL_BASE_CERTS = 38,
-    CSSM_ERRCODE_ACL_BASE_CERTS_NOT_SUPPORTED = 39,
-    CSSM_ERRCODE_INVALID_SAMPLE_VALUE = 40,
-    CSSM_ERRCODE_SAMPLE_VALUE_NOT_SUPPORTED = 41,
-    CSSM_ERRCODE_INVALID_ACL_SUBJECT_VALUE = 42,
-    CSSM_ERRCODE_ACL_SUBJECT_TYPE_NOT_SUPPORTED = 43,
-    CSSM_ERRCODE_INVALID_ACL_CHALLENGE_CALLBACK = 44,
-    CSSM_ERRCODE_ACL_CHALLENGE_CALLBACK_FAILED = 45,
-    CSSM_ERRCODE_INVALID_ACL_ENTRY_TAG = 46,
-    CSSM_ERRCODE_ACL_ENTRY_TAG_NOT_FOUND = 47,
-    CSSM_ERRCODE_INVALID_ACL_EDIT_MODE = 48,
-    CSSM_ERRCODE_ACL_CHANGE_FAILED = 49,
-    CSSM_ERRCODE_INVALID_NEW_ACL_ENTRY = 50,
-    CSSM_ERRCODE_INVALID_NEW_ACL_OWNER = 51,
-    CSSM_ERRCODE_ACL_DELETE_FAILED = 52,
-    CSSM_ERRCODE_ACL_REPLACE_FAILED = 53,
-    CSSM_ERRCODE_ACL_ADD_FAILED = 54,
-};
+pub const anon1101 = u32;
+pub const anon1101_CSSM_ERRCODE_OPERATION_AUTH_DENIED: u32 = 32;
+pub const anon1101_CSSM_ERRCODE_OBJECT_USE_AUTH_DENIED: u32 = 33;
+pub const anon1101_CSSM_ERRCODE_OBJECT_MANIP_AUTH_DENIED: u32 = 34;
+pub const anon1101_CSSM_ERRCODE_OBJECT_ACL_NOT_SUPPORTED: u32 = 35;
+pub const anon1101_CSSM_ERRCODE_OBJECT_ACL_REQUIRED: u32 = 36;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACCESS_CREDENTIALS: u32 = 37;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_BASE_CERTS: u32 = 38;
+pub const anon1101_CSSM_ERRCODE_ACL_BASE_CERTS_NOT_SUPPORTED: u32 = 39;
+pub const anon1101_CSSM_ERRCODE_INVALID_SAMPLE_VALUE: u32 = 40;
+pub const anon1101_CSSM_ERRCODE_SAMPLE_VALUE_NOT_SUPPORTED: u32 = 41;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_SUBJECT_VALUE: u32 = 42;
+pub const anon1101_CSSM_ERRCODE_ACL_SUBJECT_TYPE_NOT_SUPPORTED: u32 = 43;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_CHALLENGE_CALLBACK: u32 = 44;
+pub const anon1101_CSSM_ERRCODE_ACL_CHALLENGE_CALLBACK_FAILED: u32 = 45;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_ENTRY_TAG: u32 = 46;
+pub const anon1101_CSSM_ERRCODE_ACL_ENTRY_TAG_NOT_FOUND: u32 = 47;
+pub const anon1101_CSSM_ERRCODE_INVALID_ACL_EDIT_MODE: u32 = 48;
+pub const anon1101_CSSM_ERRCODE_ACL_CHANGE_FAILED: u32 = 49;
+pub const anon1101_CSSM_ERRCODE_INVALID_NEW_ACL_ENTRY: u32 = 50;
+pub const anon1101_CSSM_ERRCODE_INVALID_NEW_ACL_OWNER: u32 = 51;
+pub const anon1101_CSSM_ERRCODE_ACL_DELETE_FAILED: u32 = 52;
+pub const anon1101_CSSM_ERRCODE_ACL_REPLACE_FAILED: u32 = 53;
+pub const anon1101_CSSM_ERRCODE_ACL_ADD_FAILED: u32 = 54;
 
-pub const anon1371 = enum(u32) {
-    CSSM_ERRCODE_INVALID_CONTEXT_HANDLE = 64,
-    CSSM_ERRCODE_INCOMPATIBLE_VERSION = 65,
-    CSSM_ERRCODE_INVALID_CERTGROUP_POINTER = 66,
-    CSSM_ERRCODE_INVALID_CERT_POINTER = 67,
-    CSSM_ERRCODE_INVALID_CRL_POINTER = 68,
-    CSSM_ERRCODE_INVALID_FIELD_POINTER = 69,
-    CSSM_ERRCODE_INVALID_DATA = 70,
-    CSSM_ERRCODE_CRL_ALREADY_SIGNED = 71,
-    CSSM_ERRCODE_INVALID_NUMBER_OF_FIELDS = 72,
-    CSSM_ERRCODE_VERIFICATION_FAILURE = 73,
-    CSSM_ERRCODE_INVALID_DB_HANDLE = 74,
-    CSSM_ERRCODE_PRIVILEGE_NOT_GRANTED = 75,
-    CSSM_ERRCODE_INVALID_DB_LIST = 76,
-    CSSM_ERRCODE_INVALID_DB_LIST_POINTER = 77,
-    CSSM_ERRCODE_UNKNOWN_FORMAT = 78,
-    CSSM_ERRCODE_UNKNOWN_TAG = 79,
-    CSSM_ERRCODE_INVALID_CSP_HANDLE = 80,
-    CSSM_ERRCODE_INVALID_DL_HANDLE = 81,
-    CSSM_ERRCODE_INVALID_CL_HANDLE = 82,
-    CSSM_ERRCODE_INVALID_TP_HANDLE = 83,
-    CSSM_ERRCODE_INVALID_KR_HANDLE = 84,
-    CSSM_ERRCODE_INVALID_AC_HANDLE = 85,
-    CSSM_ERRCODE_INVALID_PASSTHROUGH_ID = 86,
-    CSSM_ERRCODE_INVALID_NETWORK_ADDR = 87,
-    CSSM_ERRCODE_INVALID_CRYPTO_DATA = 88,
-};
+pub const anon1371 = u32;
+pub const anon1371_CSSM_ERRCODE_INVALID_CONTEXT_HANDLE: u32 = 64;
+pub const anon1371_CSSM_ERRCODE_INCOMPATIBLE_VERSION: u32 = 65;
+pub const anon1371_CSSM_ERRCODE_INVALID_CERTGROUP_POINTER: u32 = 66;
+pub const anon1371_CSSM_ERRCODE_INVALID_CERT_POINTER: u32 = 67;
+pub const anon1371_CSSM_ERRCODE_INVALID_CRL_POINTER: u32 = 68;
+pub const anon1371_CSSM_ERRCODE_INVALID_FIELD_POINTER: u32 = 69;
+pub const anon1371_CSSM_ERRCODE_INVALID_DATA: u32 = 70;
+pub const anon1371_CSSM_ERRCODE_CRL_ALREADY_SIGNED: u32 = 71;
+pub const anon1371_CSSM_ERRCODE_INVALID_NUMBER_OF_FIELDS: u32 = 72;
+pub const anon1371_CSSM_ERRCODE_VERIFICATION_FAILURE: u32 = 73;
+pub const anon1371_CSSM_ERRCODE_INVALID_DB_HANDLE: u32 = 74;
+pub const anon1371_CSSM_ERRCODE_PRIVILEGE_NOT_GRANTED: u32 = 75;
+pub const anon1371_CSSM_ERRCODE_INVALID_DB_LIST: u32 = 76;
+pub const anon1371_CSSM_ERRCODE_INVALID_DB_LIST_POINTER: u32 = 77;
+pub const anon1371_CSSM_ERRCODE_UNKNOWN_FORMAT: u32 = 78;
+pub const anon1371_CSSM_ERRCODE_UNKNOWN_TAG: u32 = 79;
+pub const anon1371_CSSM_ERRCODE_INVALID_CSP_HANDLE: u32 = 80;
+pub const anon1371_CSSM_ERRCODE_INVALID_DL_HANDLE: u32 = 81;
+pub const anon1371_CSSM_ERRCODE_INVALID_CL_HANDLE: u32 = 82;
+pub const anon1371_CSSM_ERRCODE_INVALID_TP_HANDLE: u32 = 83;
+pub const anon1371_CSSM_ERRCODE_INVALID_KR_HANDLE: u32 = 84;
+pub const anon1371_CSSM_ERRCODE_INVALID_AC_HANDLE: u32 = 85;
+pub const anon1371_CSSM_ERRCODE_INVALID_PASSTHROUGH_ID: u32 = 86;
+pub const anon1371_CSSM_ERRCODE_INVALID_NETWORK_ADDR: u32 = 87;
+pub const anon1371_CSSM_ERRCODE_INVALID_CRYPTO_DATA: u32 = 88;
 
-pub const anon1821 = enum(i32) {
-    CSSMERR_CSSM_INVALID_CONTEXT_HANDLE = -2147418048,
-    CSSMERR_CSSM_INCOMPATIBLE_VERSION = -2147418047,
-    CSSMERR_CSSM_PRIVILEGE_NOT_GRANTED = -2147418037,
-};
+pub const anon1821 = i32;
+pub const anon1821_CSSMERR_CSSM_INVALID_CONTEXT_HANDLE: i32 = -2147418048;
+pub const anon1821_CSSMERR_CSSM_INCOMPATIBLE_VERSION: i32 = -2147418047;
+pub const anon1821_CSSMERR_CSSM_PRIVILEGE_NOT_GRANTED: i32 = -2147418037;
 
-pub const anon1891 = enum(i32) {
-    CSSM_CSSM_BASE_CSSM_ERROR = -2147417840,
-    CSSMERR_CSSM_SCOPE_NOT_SUPPORTED = -2147417839,
-    CSSMERR_CSSM_PVC_ALREADY_CONFIGURED = -2147417838,
-    CSSMERR_CSSM_INVALID_PVC = -2147417837,
-    CSSMERR_CSSM_EMM_LOAD_FAILED = -2147417836,
-    CSSMERR_CSSM_EMM_UNLOAD_FAILED = -2147417835,
-    CSSMERR_CSSM_ADDIN_LOAD_FAILED = -2147417834,
-    CSSMERR_CSSM_INVALID_KEY_HIERARCHY = -2147417833,
-    CSSMERR_CSSM_ADDIN_UNLOAD_FAILED = -2147417832,
-    CSSMERR_CSSM_LIB_REF_NOT_FOUND = -2147417831,
-    CSSMERR_CSSM_INVALID_ADDIN_FUNCTION_TABLE = -2147417830,
-    CSSMERR_CSSM_EMM_AUTHENTICATE_FAILED = -2147417829,
-    CSSMERR_CSSM_ADDIN_AUTHENTICATE_FAILED = -2147417828,
-    CSSMERR_CSSM_INVALID_SERVICE_MASK = -2147417827,
-    CSSMERR_CSSM_MODULE_NOT_LOADED = -2147417826,
-    CSSMERR_CSSM_INVALID_SUBSERVICEID = -2147417825,
-    CSSMERR_CSSM_BUFFER_TOO_SMALL = -2147417824,
-    CSSMERR_CSSM_INVALID_ATTRIBUTE = -2147417823,
-    CSSMERR_CSSM_ATTRIBUTE_NOT_IN_CONTEXT = -2147417822,
-    CSSMERR_CSSM_MODULE_MANAGER_INITIALIZE_FAIL = -2147417821,
-    CSSMERR_CSSM_MODULE_MANAGER_NOT_FOUND = -2147417820,
-    CSSMERR_CSSM_EVENT_NOTIFICATION_CALLBACK_NOT_FOUND = -2147417819,
-};
+pub const anon1891 = i32;
+pub const anon1891_CSSM_CSSM_BASE_CSSM_ERROR: i32 = -2147417840;
+pub const anon1891_CSSMERR_CSSM_SCOPE_NOT_SUPPORTED: i32 = -2147417839;
+pub const anon1891_CSSMERR_CSSM_PVC_ALREADY_CONFIGURED: i32 = -2147417838;
+pub const anon1891_CSSMERR_CSSM_INVALID_PVC: i32 = -2147417837;
+pub const anon1891_CSSMERR_CSSM_EMM_LOAD_FAILED: i32 = -2147417836;
+pub const anon1891_CSSMERR_CSSM_EMM_UNLOAD_FAILED: i32 = -2147417835;
+pub const anon1891_CSSMERR_CSSM_ADDIN_LOAD_FAILED: i32 = -2147417834;
+pub const anon1891_CSSMERR_CSSM_INVALID_KEY_HIERARCHY: i32 = -2147417833;
+pub const anon1891_CSSMERR_CSSM_ADDIN_UNLOAD_FAILED: i32 = -2147417832;
+pub const anon1891_CSSMERR_CSSM_LIB_REF_NOT_FOUND: i32 = -2147417831;
+pub const anon1891_CSSMERR_CSSM_INVALID_ADDIN_FUNCTION_TABLE: i32 = -2147417830;
+pub const anon1891_CSSMERR_CSSM_EMM_AUTHENTICATE_FAILED: i32 = -2147417829;
+pub const anon1891_CSSMERR_CSSM_ADDIN_AUTHENTICATE_FAILED: i32 = -2147417828;
+pub const anon1891_CSSMERR_CSSM_INVALID_SERVICE_MASK: i32 = -2147417827;
+pub const anon1891_CSSMERR_CSSM_MODULE_NOT_LOADED: i32 = -2147417826;
+pub const anon1891_CSSMERR_CSSM_INVALID_SUBSERVICEID: i32 = -2147417825;
+pub const anon1891_CSSMERR_CSSM_BUFFER_TOO_SMALL: i32 = -2147417824;
+pub const anon1891_CSSMERR_CSSM_INVALID_ATTRIBUTE: i32 = -2147417823;
+pub const anon1891_CSSMERR_CSSM_ATTRIBUTE_NOT_IN_CONTEXT: i32 = -2147417822;
+pub const anon1891_CSSMERR_CSSM_MODULE_MANAGER_INITIALIZE_FAIL: i32 = -2147417821;
+pub const anon1891_CSSMERR_CSSM_MODULE_MANAGER_NOT_FOUND: i32 = -2147417820;
+pub const anon1891_CSSMERR_CSSM_EVENT_NOTIFICATION_CALLBACK_NOT_FOUND: i32 = -2147417819;
 
-pub const anon2161 = enum(i32) {
-    CSSMERR_CSP_INTERNAL_ERROR = -2147416063,
-    CSSMERR_CSP_MEMORY_ERROR = -2147416062,
-    CSSMERR_CSP_MDS_ERROR = -2147416061,
-    CSSMERR_CSP_INVALID_POINTER = -2147416060,
-    CSSMERR_CSP_INVALID_INPUT_POINTER = -2147416059,
-    CSSMERR_CSP_INVALID_OUTPUT_POINTER = -2147416058,
-    CSSMERR_CSP_FUNCTION_NOT_IMPLEMENTED = -2147416057,
-    CSSMERR_CSP_SELF_CHECK_FAILED = -2147416056,
-    CSSMERR_CSP_OS_ACCESS_DENIED = -2147416055,
-    CSSMERR_CSP_FUNCTION_FAILED = -2147416054,
-};
+pub const anon2161 = i32;
+pub const anon2161_CSSMERR_CSP_INTERNAL_ERROR: i32 = -2147416063;
+pub const anon2161_CSSMERR_CSP_MEMORY_ERROR: i32 = -2147416062;
+pub const anon2161_CSSMERR_CSP_MDS_ERROR: i32 = -2147416061;
+pub const anon2161_CSSMERR_CSP_INVALID_POINTER: i32 = -2147416060;
+pub const anon2161_CSSMERR_CSP_INVALID_INPUT_POINTER: i32 = -2147416059;
+pub const anon2161_CSSMERR_CSP_INVALID_OUTPUT_POINTER: i32 = -2147416058;
+pub const anon2161_CSSMERR_CSP_FUNCTION_NOT_IMPLEMENTED: i32 = -2147416057;
+pub const anon2161_CSSMERR_CSP_SELF_CHECK_FAILED: i32 = -2147416056;
+pub const anon2161_CSSMERR_CSP_OS_ACCESS_DENIED: i32 = -2147416055;
+pub const anon2161_CSSMERR_CSP_FUNCTION_FAILED: i32 = -2147416054;
 
-pub const anon2301 = enum(i32) {
-    CSSMERR_CSP_OPERATION_AUTH_DENIED = -2147416032,
-    CSSMERR_CSP_OBJECT_USE_AUTH_DENIED = -2147416031,
-    CSSMERR_CSP_OBJECT_MANIP_AUTH_DENIED = -2147416030,
-    CSSMERR_CSP_OBJECT_ACL_NOT_SUPPORTED = -2147416029,
-    CSSMERR_CSP_OBJECT_ACL_REQUIRED = -2147416028,
-    CSSMERR_CSP_INVALID_ACCESS_CREDENTIALS = -2147416027,
-    CSSMERR_CSP_INVALID_ACL_BASE_CERTS = -2147416026,
-    CSSMERR_CSP_ACL_BASE_CERTS_NOT_SUPPORTED = -2147416025,
-    CSSMERR_CSP_INVALID_SAMPLE_VALUE = -2147416024,
-    CSSMERR_CSP_SAMPLE_VALUE_NOT_SUPPORTED = -2147416023,
-    CSSMERR_CSP_INVALID_ACL_SUBJECT_VALUE = -2147416022,
-    CSSMERR_CSP_ACL_SUBJECT_TYPE_NOT_SUPPORTED = -2147416021,
-    CSSMERR_CSP_INVALID_ACL_CHALLENGE_CALLBACK = -2147416020,
-    CSSMERR_CSP_ACL_CHALLENGE_CALLBACK_FAILED = -2147416019,
-    CSSMERR_CSP_INVALID_ACL_ENTRY_TAG = -2147416018,
-    CSSMERR_CSP_ACL_ENTRY_TAG_NOT_FOUND = -2147416017,
-    CSSMERR_CSP_INVALID_ACL_EDIT_MODE = -2147416016,
-    CSSMERR_CSP_ACL_CHANGE_FAILED = -2147416015,
-    CSSMERR_CSP_INVALID_NEW_ACL_ENTRY = -2147416014,
-    CSSMERR_CSP_INVALID_NEW_ACL_OWNER = -2147416013,
-    CSSMERR_CSP_ACL_DELETE_FAILED = -2147416012,
-    CSSMERR_CSP_ACL_REPLACE_FAILED = -2147416011,
-    CSSMERR_CSP_ACL_ADD_FAILED = -2147416010,
-};
+pub const anon2301 = i32;
+pub const anon2301_CSSMERR_CSP_OPERATION_AUTH_DENIED: i32 = -2147416032;
+pub const anon2301_CSSMERR_CSP_OBJECT_USE_AUTH_DENIED: i32 = -2147416031;
+pub const anon2301_CSSMERR_CSP_OBJECT_MANIP_AUTH_DENIED: i32 = -2147416030;
+pub const anon2301_CSSMERR_CSP_OBJECT_ACL_NOT_SUPPORTED: i32 = -2147416029;
+pub const anon2301_CSSMERR_CSP_OBJECT_ACL_REQUIRED: i32 = -2147416028;
+pub const anon2301_CSSMERR_CSP_INVALID_ACCESS_CREDENTIALS: i32 = -2147416027;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_BASE_CERTS: i32 = -2147416026;
+pub const anon2301_CSSMERR_CSP_ACL_BASE_CERTS_NOT_SUPPORTED: i32 = -2147416025;
+pub const anon2301_CSSMERR_CSP_INVALID_SAMPLE_VALUE: i32 = -2147416024;
+pub const anon2301_CSSMERR_CSP_SAMPLE_VALUE_NOT_SUPPORTED: i32 = -2147416023;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_SUBJECT_VALUE: i32 = -2147416022;
+pub const anon2301_CSSMERR_CSP_ACL_SUBJECT_TYPE_NOT_SUPPORTED: i32 = -2147416021;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_CHALLENGE_CALLBACK: i32 = -2147416020;
+pub const anon2301_CSSMERR_CSP_ACL_CHALLENGE_CALLBACK_FAILED: i32 = -2147416019;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_ENTRY_TAG: i32 = -2147416018;
+pub const anon2301_CSSMERR_CSP_ACL_ENTRY_TAG_NOT_FOUND: i32 = -2147416017;
+pub const anon2301_CSSMERR_CSP_INVALID_ACL_EDIT_MODE: i32 = -2147416016;
+pub const anon2301_CSSMERR_CSP_ACL_CHANGE_FAILED: i32 = -2147416015;
+pub const anon2301_CSSMERR_CSP_INVALID_NEW_ACL_ENTRY: i32 = -2147416014;
+pub const anon2301_CSSMERR_CSP_INVALID_NEW_ACL_OWNER: i32 = -2147416013;
+pub const anon2301_CSSMERR_CSP_ACL_DELETE_FAILED: i32 = -2147416012;
+pub const anon2301_CSSMERR_CSP_ACL_REPLACE_FAILED: i32 = -2147416011;
+pub const anon2301_CSSMERR_CSP_ACL_ADD_FAILED: i32 = -2147416010;
 
-pub const anon2571 = enum(u32) {
-    CSSM_PADDING_APPLE_SSLv2 = -2147483648,
-};
+pub const anon2571 = i32;
+pub const anon2571_CSSMERR_CSP_INVALID_CONTEXT_HANDLE: i32 = -2147416000;
+pub const anon2571_CSSMERR_CSP_PRIVILEGE_NOT_GRANTED: i32 = -2147415989;
+pub const anon2571_CSSMERR_CSP_INVALID_DATA: i32 = -2147415994;
+pub const anon2571_CSSMERR_CSP_INVALID_PASSTHROUGH_ID: i32 = -2147415978;
+pub const anon2571_CSSMERR_CSP_INVALID_CRYPTO_DATA: i32 = -2147415976;
+pub const anon2571_CSSM_PADDING_APPLE_SSLv2: i32 = -2147483648;
 
-pub const anon2661 = enum(i32) {
-    CSSM_CSP_BASE_CSP_ERROR = -2147415808,
-    CSSMERR_CSP_INPUT_LENGTH_ERROR = -2147415807,
-    CSSMERR_CSP_OUTPUT_LENGTH_ERROR = -2147415806,
-    CSSMERR_CSP_PRIVILEGE_NOT_SUPPORTED = -2147415805,
-    CSSMERR_CSP_DEVICE_ERROR = -2147415804,
-    CSSMERR_CSP_DEVICE_MEMORY_ERROR = -2147415803,
-    CSSMERR_CSP_ATTACH_HANDLE_BUSY = -2147415802,
-    CSSMERR_CSP_NOT_LOGGED_IN = -2147415801,
-    CSSMERR_CSP_INVALID_KEY = -2147415792,
-    CSSMERR_CSP_INVALID_KEY_REFERENCE = -2147415791,
-    CSSMERR_CSP_INVALID_KEY_CLASS = -2147415790,
-    CSSMERR_CSP_ALGID_MISMATCH = -2147415789,
-    CSSMERR_CSP_KEY_USAGE_INCORRECT = -2147415788,
-    CSSMERR_CSP_KEY_BLOB_TYPE_INCORRECT = -2147415787,
-    CSSMERR_CSP_KEY_HEADER_INCONSISTENT = -2147415786,
-    CSSMERR_CSP_UNSUPPORTED_KEY_FORMAT = -2147415785,
-    CSSMERR_CSP_UNSUPPORTED_KEY_SIZE = -2147415784,
-    CSSMERR_CSP_INVALID_KEY_POINTER = -2147415783,
-    CSSMERR_CSP_INVALID_KEYUSAGE_MASK = -2147415782,
-    CSSMERR_CSP_UNSUPPORTED_KEYUSAGE_MASK = -2147415781,
-    CSSMERR_CSP_INVALID_KEYATTR_MASK = -2147415780,
-    CSSMERR_CSP_UNSUPPORTED_KEYATTR_MASK = -2147415779,
-    CSSMERR_CSP_INVALID_KEY_LABEL = -2147415778,
-    CSSMERR_CSP_UNSUPPORTED_KEY_LABEL = -2147415777,
-    CSSMERR_CSP_INVALID_KEY_FORMAT = -2147415776,
-    CSSMERR_CSP_INVALID_DATA_COUNT = -2147415768,
-    CSSMERR_CSP_VECTOR_OF_BUFS_UNSUPPORTED = -2147415767,
-    CSSMERR_CSP_INVALID_INPUT_VECTOR = -2147415766,
-    CSSMERR_CSP_INVALID_OUTPUT_VECTOR = -2147415765,
-    CSSMERR_CSP_INVALID_CONTEXT = -2147415760,
-    CSSMERR_CSP_INVALID_ALGORITHM = -2147415759,
-    CSSMERR_CSP_INVALID_ATTR_KEY = -2147415754,
-    CSSMERR_CSP_MISSING_ATTR_KEY = -2147415753,
-    CSSMERR_CSP_INVALID_ATTR_INIT_VECTOR = -2147415752,
-    CSSMERR_CSP_MISSING_ATTR_INIT_VECTOR = -2147415751,
-    CSSMERR_CSP_INVALID_ATTR_SALT = -2147415750,
-    CSSMERR_CSP_MISSING_ATTR_SALT = -2147415749,
-    CSSMERR_CSP_INVALID_ATTR_PADDING = -2147415748,
-    CSSMERR_CSP_MISSING_ATTR_PADDING = -2147415747,
-    CSSMERR_CSP_INVALID_ATTR_RANDOM = -2147415746,
-    CSSMERR_CSP_MISSING_ATTR_RANDOM = -2147415745,
-    CSSMERR_CSP_INVALID_ATTR_SEED = -2147415744,
-    CSSMERR_CSP_MISSING_ATTR_SEED = -2147415743,
-    CSSMERR_CSP_INVALID_ATTR_PASSPHRASE = -2147415742,
-    CSSMERR_CSP_MISSING_ATTR_PASSPHRASE = -2147415741,
-    CSSMERR_CSP_INVALID_ATTR_KEY_LENGTH = -2147415740,
-    CSSMERR_CSP_MISSING_ATTR_KEY_LENGTH = -2147415739,
-    CSSMERR_CSP_INVALID_ATTR_BLOCK_SIZE = -2147415738,
-    CSSMERR_CSP_MISSING_ATTR_BLOCK_SIZE = -2147415737,
-    CSSMERR_CSP_INVALID_ATTR_OUTPUT_SIZE = -2147415708,
-    CSSMERR_CSP_MISSING_ATTR_OUTPUT_SIZE = -2147415707,
-    CSSMERR_CSP_INVALID_ATTR_ROUNDS = -2147415706,
-    CSSMERR_CSP_MISSING_ATTR_ROUNDS = -2147415705,
-    CSSMERR_CSP_INVALID_ATTR_ALG_PARAMS = -2147415704,
-    CSSMERR_CSP_MISSING_ATTR_ALG_PARAMS = -2147415703,
-    CSSMERR_CSP_INVALID_ATTR_LABEL = -2147415702,
-    CSSMERR_CSP_MISSING_ATTR_LABEL = -2147415701,
-    CSSMERR_CSP_INVALID_ATTR_KEY_TYPE = -2147415700,
-    CSSMERR_CSP_MISSING_ATTR_KEY_TYPE = -2147415699,
-    CSSMERR_CSP_INVALID_ATTR_MODE = -2147415698,
-    CSSMERR_CSP_MISSING_ATTR_MODE = -2147415697,
-    CSSMERR_CSP_INVALID_ATTR_EFFECTIVE_BITS = -2147415696,
-    CSSMERR_CSP_MISSING_ATTR_EFFECTIVE_BITS = -2147415695,
-    CSSMERR_CSP_INVALID_ATTR_START_DATE = -2147415694,
-    CSSMERR_CSP_MISSING_ATTR_START_DATE = -2147415693,
-    CSSMERR_CSP_INVALID_ATTR_END_DATE = -2147415692,
-    CSSMERR_CSP_MISSING_ATTR_END_DATE = -2147415691,
-    CSSMERR_CSP_INVALID_ATTR_VERSION = -2147415690,
-    CSSMERR_CSP_MISSING_ATTR_VERSION = -2147415689,
-    CSSMERR_CSP_INVALID_ATTR_PRIME = -2147415688,
-    CSSMERR_CSP_MISSING_ATTR_PRIME = -2147415687,
-    CSSMERR_CSP_INVALID_ATTR_BASE = -2147415686,
-    CSSMERR_CSP_MISSING_ATTR_BASE = -2147415685,
-    CSSMERR_CSP_INVALID_ATTR_SUBPRIME = -2147415684,
-    CSSMERR_CSP_MISSING_ATTR_SUBPRIME = -2147415683,
-    CSSMERR_CSP_INVALID_ATTR_ITERATION_COUNT = -2147415682,
-    CSSMERR_CSP_MISSING_ATTR_ITERATION_COUNT = -2147415681,
-    CSSMERR_CSP_INVALID_ATTR_DL_DB_HANDLE = -2147415680,
-    CSSMERR_CSP_MISSING_ATTR_DL_DB_HANDLE = -2147415679,
-    CSSMERR_CSP_INVALID_ATTR_ACCESS_CREDENTIALS = -2147415678,
-    CSSMERR_CSP_MISSING_ATTR_ACCESS_CREDENTIALS = -2147415677,
-    CSSMERR_CSP_INVALID_ATTR_PUBLIC_KEY_FORMAT = -2147415676,
-    CSSMERR_CSP_MISSING_ATTR_PUBLIC_KEY_FORMAT = -2147415675,
-    CSSMERR_CSP_INVALID_ATTR_PRIVATE_KEY_FORMAT = -2147415674,
-    CSSMERR_CSP_MISSING_ATTR_PRIVATE_KEY_FORMAT = -2147415673,
-    CSSMERR_CSP_INVALID_ATTR_SYMMETRIC_KEY_FORMAT = -2147415672,
-    CSSMERR_CSP_MISSING_ATTR_SYMMETRIC_KEY_FORMAT = -2147415671,
-    CSSMERR_CSP_INVALID_ATTR_WRAPPED_KEY_FORMAT = -2147415670,
-    CSSMERR_CSP_MISSING_ATTR_WRAPPED_KEY_FORMAT = -2147415669,
-    CSSMERR_CSP_STAGED_OPERATION_IN_PROGRESS = -2147415736,
-    CSSMERR_CSP_STAGED_OPERATION_NOT_STARTED = -2147415735,
-    CSSMERR_CSP_VERIFY_FAILED = -2147415734,
-    CSSMERR_CSP_INVALID_SIGNATURE = -2147415733,
-    CSSMERR_CSP_QUERY_SIZE_UNKNOWN = -2147415732,
-    CSSMERR_CSP_BLOCK_SIZE_MISMATCH = -2147415731,
-    CSSMERR_CSP_PRIVATE_KEY_NOT_FOUND = -2147415730,
-    CSSMERR_CSP_PUBLIC_KEY_INCONSISTENT = -2147415729,
-    CSSMERR_CSP_DEVICE_VERIFY_FAILED = -2147415728,
-    CSSMERR_CSP_INVALID_LOGIN_NAME = -2147415727,
-    CSSMERR_CSP_ALREADY_LOGGED_IN = -2147415726,
-    CSSMERR_CSP_PRIVATE_KEY_ALREADY_EXISTS = -2147415725,
-    CSSMERR_CSP_KEY_LABEL_ALREADY_EXISTS = -2147415724,
-    CSSMERR_CSP_INVALID_DIGEST_ALGORITHM = -2147415723,
-    CSSMERR_CSP_CRYPTO_DATA_CALLBACK_FAILED = -2147415722,
-};
+pub const anon2661 = i32;
+pub const anon2661_CSSM_CSP_BASE_CSP_ERROR: i32 = -2147415808;
+pub const anon2661_CSSMERR_CSP_INPUT_LENGTH_ERROR: i32 = -2147415807;
+pub const anon2661_CSSMERR_CSP_OUTPUT_LENGTH_ERROR: i32 = -2147415806;
+pub const anon2661_CSSMERR_CSP_PRIVILEGE_NOT_SUPPORTED: i32 = -2147415805;
+pub const anon2661_CSSMERR_CSP_DEVICE_ERROR: i32 = -2147415804;
+pub const anon2661_CSSMERR_CSP_DEVICE_MEMORY_ERROR: i32 = -2147415803;
+pub const anon2661_CSSMERR_CSP_ATTACH_HANDLE_BUSY: i32 = -2147415802;
+pub const anon2661_CSSMERR_CSP_NOT_LOGGED_IN: i32 = -2147415801;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY: i32 = -2147415792;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_REFERENCE: i32 = -2147415791;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_CLASS: i32 = -2147415790;
+pub const anon2661_CSSMERR_CSP_ALGID_MISMATCH: i32 = -2147415789;
+pub const anon2661_CSSMERR_CSP_KEY_USAGE_INCORRECT: i32 = -2147415788;
+pub const anon2661_CSSMERR_CSP_KEY_BLOB_TYPE_INCORRECT: i32 = -2147415787;
+pub const anon2661_CSSMERR_CSP_KEY_HEADER_INCONSISTENT: i32 = -2147415786;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEY_FORMAT: i32 = -2147415785;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEY_SIZE: i32 = -2147415784;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_POINTER: i32 = -2147415783;
+pub const anon2661_CSSMERR_CSP_INVALID_KEYUSAGE_MASK: i32 = -2147415782;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEYUSAGE_MASK: i32 = -2147415781;
+pub const anon2661_CSSMERR_CSP_INVALID_KEYATTR_MASK: i32 = -2147415780;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEYATTR_MASK: i32 = -2147415779;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_LABEL: i32 = -2147415778;
+pub const anon2661_CSSMERR_CSP_UNSUPPORTED_KEY_LABEL: i32 = -2147415777;
+pub const anon2661_CSSMERR_CSP_INVALID_KEY_FORMAT: i32 = -2147415776;
+pub const anon2661_CSSMERR_CSP_INVALID_DATA_COUNT: i32 = -2147415768;
+pub const anon2661_CSSMERR_CSP_VECTOR_OF_BUFS_UNSUPPORTED: i32 = -2147415767;
+pub const anon2661_CSSMERR_CSP_INVALID_INPUT_VECTOR: i32 = -2147415766;
+pub const anon2661_CSSMERR_CSP_INVALID_OUTPUT_VECTOR: i32 = -2147415765;
+pub const anon2661_CSSMERR_CSP_INVALID_CONTEXT: i32 = -2147415760;
+pub const anon2661_CSSMERR_CSP_INVALID_ALGORITHM: i32 = -2147415759;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_KEY: i32 = -2147415754;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_KEY: i32 = -2147415753;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_INIT_VECTOR: i32 = -2147415752;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_INIT_VECTOR: i32 = -2147415751;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_SALT: i32 = -2147415750;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_SALT: i32 = -2147415749;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PADDING: i32 = -2147415748;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PADDING: i32 = -2147415747;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_RANDOM: i32 = -2147415746;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_RANDOM: i32 = -2147415745;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_SEED: i32 = -2147415744;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_SEED: i32 = -2147415743;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PASSPHRASE: i32 = -2147415742;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PASSPHRASE: i32 = -2147415741;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_KEY_LENGTH: i32 = -2147415740;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_KEY_LENGTH: i32 = -2147415739;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_BLOCK_SIZE: i32 = -2147415738;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_BLOCK_SIZE: i32 = -2147415737;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_OUTPUT_SIZE: i32 = -2147415708;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_OUTPUT_SIZE: i32 = -2147415707;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_ROUNDS: i32 = -2147415706;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_ROUNDS: i32 = -2147415705;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_ALG_PARAMS: i32 = -2147415704;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_ALG_PARAMS: i32 = -2147415703;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_LABEL: i32 = -2147415702;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_LABEL: i32 = -2147415701;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_KEY_TYPE: i32 = -2147415700;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_KEY_TYPE: i32 = -2147415699;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_MODE: i32 = -2147415698;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_MODE: i32 = -2147415697;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_EFFECTIVE_BITS: i32 = -2147415696;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_EFFECTIVE_BITS: i32 = -2147415695;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_START_DATE: i32 = -2147415694;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_START_DATE: i32 = -2147415693;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_END_DATE: i32 = -2147415692;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_END_DATE: i32 = -2147415691;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_VERSION: i32 = -2147415690;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_VERSION: i32 = -2147415689;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PRIME: i32 = -2147415688;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PRIME: i32 = -2147415687;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_BASE: i32 = -2147415686;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_BASE: i32 = -2147415685;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_SUBPRIME: i32 = -2147415684;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_SUBPRIME: i32 = -2147415683;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_ITERATION_COUNT: i32 = -2147415682;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_ITERATION_COUNT: i32 = -2147415681;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_DL_DB_HANDLE: i32 = -2147415680;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_DL_DB_HANDLE: i32 = -2147415679;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_ACCESS_CREDENTIALS: i32 = -2147415678;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_ACCESS_CREDENTIALS: i32 = -2147415677;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PUBLIC_KEY_FORMAT: i32 = -2147415676;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PUBLIC_KEY_FORMAT: i32 = -2147415675;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_PRIVATE_KEY_FORMAT: i32 = -2147415674;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_PRIVATE_KEY_FORMAT: i32 = -2147415673;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_SYMMETRIC_KEY_FORMAT: i32 = -2147415672;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_SYMMETRIC_KEY_FORMAT: i32 = -2147415671;
+pub const anon2661_CSSMERR_CSP_INVALID_ATTR_WRAPPED_KEY_FORMAT: i32 = -2147415670;
+pub const anon2661_CSSMERR_CSP_MISSING_ATTR_WRAPPED_KEY_FORMAT: i32 = -2147415669;
+pub const anon2661_CSSMERR_CSP_STAGED_OPERATION_IN_PROGRESS: i32 = -2147415736;
+pub const anon2661_CSSMERR_CSP_STAGED_OPERATION_NOT_STARTED: i32 = -2147415735;
+pub const anon2661_CSSMERR_CSP_VERIFY_FAILED: i32 = -2147415734;
+pub const anon2661_CSSMERR_CSP_INVALID_SIGNATURE: i32 = -2147415733;
+pub const anon2661_CSSMERR_CSP_QUERY_SIZE_UNKNOWN: i32 = -2147415732;
+pub const anon2661_CSSMERR_CSP_BLOCK_SIZE_MISMATCH: i32 = -2147415731;
+pub const anon2661_CSSMERR_CSP_PRIVATE_KEY_NOT_FOUND: i32 = -2147415730;
+pub const anon2661_CSSMERR_CSP_PUBLIC_KEY_INCONSISTENT: i32 = -2147415729;
+pub const anon2661_CSSMERR_CSP_DEVICE_VERIFY_FAILED: i32 = -2147415728;
+pub const anon2661_CSSMERR_CSP_INVALID_LOGIN_NAME: i32 = -2147415727;
+pub const anon2661_CSSMERR_CSP_ALREADY_LOGGED_IN: i32 = -2147415726;
+pub const anon2661_CSSMERR_CSP_PRIVATE_KEY_ALREADY_EXISTS: i32 = -2147415725;
+pub const anon2661_CSSMERR_CSP_KEY_LABEL_ALREADY_EXISTS: i32 = -2147415724;
+pub const anon2661_CSSMERR_CSP_INVALID_DIGEST_ALGORITHM: i32 = -2147415723;
+pub const anon2661_CSSMERR_CSP_CRYPTO_DATA_CALLBACK_FAILED: i32 = -2147415722;
 
-pub const anon3801 = enum(i32) {
-    CSSMERR_TP_INTERNAL_ERROR = -2147409919,
-    CSSMERR_TP_MEMORY_ERROR = -2147409918,
-    CSSMERR_TP_MDS_ERROR = -2147409917,
-    CSSMERR_TP_INVALID_POINTER = -2147409916,
-    CSSMERR_TP_INVALID_INPUT_POINTER = -2147409915,
-    CSSMERR_TP_INVALID_OUTPUT_POINTER = -2147409914,
-    CSSMERR_TP_FUNCTION_NOT_IMPLEMENTED = -2147409913,
-    CSSMERR_TP_SELF_CHECK_FAILED = -2147409912,
-    CSSMERR_TP_OS_ACCESS_DENIED = -2147409911,
-    CSSMERR_TP_FUNCTION_FAILED = -2147409910,
-    CSSMERR_TP_INVALID_CONTEXT_HANDLE = -2147409856,
-    CSSMERR_TP_INVALID_DATA = -2147409850,
-    CSSMERR_TP_INVALID_DB_LIST = -2147409844,
-    CSSMERR_TP_INVALID_CERTGROUP_POINTER = -2147409854,
-    CSSMERR_TP_INVALID_CERT_POINTER = -2147409853,
-    CSSMERR_TP_INVALID_CRL_POINTER = -2147409852,
-    CSSMERR_TP_INVALID_FIELD_POINTER = -2147409851,
-    CSSMERR_TP_INVALID_NETWORK_ADDR = -2147409833,
-    CSSMERR_TP_CRL_ALREADY_SIGNED = -2147409849,
-    CSSMERR_TP_INVALID_NUMBER_OF_FIELDS = -2147409848,
-    CSSMERR_TP_VERIFICATION_FAILURE = -2147409847,
-    CSSMERR_TP_INVALID_DB_HANDLE = -2147409846,
-    CSSMERR_TP_UNKNOWN_FORMAT = -2147409842,
-    CSSMERR_TP_UNKNOWN_TAG = -2147409841,
-    CSSMERR_TP_INVALID_PASSTHROUGH_ID = -2147409834,
-    CSSMERR_TP_INVALID_CSP_HANDLE = -2147409840,
-    CSSMERR_TP_INVALID_DL_HANDLE = -2147409839,
-    CSSMERR_TP_INVALID_CL_HANDLE = -2147409838,
-    CSSMERR_TP_INVALID_DB_LIST_POINTER = -2147409843,
-};
+pub const anon3801 = i32;
+pub const anon3801_CSSMERR_TP_INTERNAL_ERROR: i32 = -2147409919;
+pub const anon3801_CSSMERR_TP_MEMORY_ERROR: i32 = -2147409918;
+pub const anon3801_CSSMERR_TP_MDS_ERROR: i32 = -2147409917;
+pub const anon3801_CSSMERR_TP_INVALID_POINTER: i32 = -2147409916;
+pub const anon3801_CSSMERR_TP_INVALID_INPUT_POINTER: i32 = -2147409915;
+pub const anon3801_CSSMERR_TP_INVALID_OUTPUT_POINTER: i32 = -2147409914;
+pub const anon3801_CSSMERR_TP_FUNCTION_NOT_IMPLEMENTED: i32 = -2147409913;
+pub const anon3801_CSSMERR_TP_SELF_CHECK_FAILED: i32 = -2147409912;
+pub const anon3801_CSSMERR_TP_OS_ACCESS_DENIED: i32 = -2147409911;
+pub const anon3801_CSSMERR_TP_FUNCTION_FAILED: i32 = -2147409910;
+pub const anon3801_CSSMERR_TP_INVALID_CONTEXT_HANDLE: i32 = -2147409856;
+pub const anon3801_CSSMERR_TP_INVALID_DATA: i32 = -2147409850;
+pub const anon3801_CSSMERR_TP_INVALID_DB_LIST: i32 = -2147409844;
+pub const anon3801_CSSMERR_TP_INVALID_CERTGROUP_POINTER: i32 = -2147409854;
+pub const anon3801_CSSMERR_TP_INVALID_CERT_POINTER: i32 = -2147409853;
+pub const anon3801_CSSMERR_TP_INVALID_CRL_POINTER: i32 = -2147409852;
+pub const anon3801_CSSMERR_TP_INVALID_FIELD_POINTER: i32 = -2147409851;
+pub const anon3801_CSSMERR_TP_INVALID_NETWORK_ADDR: i32 = -2147409833;
+pub const anon3801_CSSMERR_TP_CRL_ALREADY_SIGNED: i32 = -2147409849;
+pub const anon3801_CSSMERR_TP_INVALID_NUMBER_OF_FIELDS: i32 = -2147409848;
+pub const anon3801_CSSMERR_TP_VERIFICATION_FAILURE: i32 = -2147409847;
+pub const anon3801_CSSMERR_TP_INVALID_DB_HANDLE: i32 = -2147409846;
+pub const anon3801_CSSMERR_TP_UNKNOWN_FORMAT: i32 = -2147409842;
+pub const anon3801_CSSMERR_TP_UNKNOWN_TAG: i32 = -2147409841;
+pub const anon3801_CSSMERR_TP_INVALID_PASSTHROUGH_ID: i32 = -2147409834;
+pub const anon3801_CSSMERR_TP_INVALID_CSP_HANDLE: i32 = -2147409840;
+pub const anon3801_CSSMERR_TP_INVALID_DL_HANDLE: i32 = -2147409839;
+pub const anon3801_CSSMERR_TP_INVALID_CL_HANDLE: i32 = -2147409838;
+pub const anon3801_CSSMERR_TP_INVALID_DB_LIST_POINTER: i32 = -2147409843;
 
-pub const anon4131 = enum(i32) {
-    CSSM_TP_BASE_TP_ERROR = -2147409664,
-    CSSMERR_TP_INVALID_CALLERAUTH_CONTEXT_POINTER = -2147409663,
-    CSSMERR_TP_INVALID_IDENTIFIER_POINTER = -2147409662,
-    CSSMERR_TP_INVALID_KEYCACHE_HANDLE = -2147409661,
-    CSSMERR_TP_INVALID_CERTGROUP = -2147409660,
-    CSSMERR_TP_INVALID_CRLGROUP = -2147409659,
-    CSSMERR_TP_INVALID_CRLGROUP_POINTER = -2147409658,
-    CSSMERR_TP_AUTHENTICATION_FAILED = -2147409657,
-    CSSMERR_TP_CERTGROUP_INCOMPLETE = -2147409656,
-    CSSMERR_TP_CERTIFICATE_CANT_OPERATE = -2147409655,
-    CSSMERR_TP_CERT_EXPIRED = -2147409654,
-    CSSMERR_TP_CERT_NOT_VALID_YET = -2147409653,
-    CSSMERR_TP_CERT_REVOKED = -2147409652,
-    CSSMERR_TP_CERT_SUSPENDED = -2147409651,
-    CSSMERR_TP_INSUFFICIENT_CREDENTIALS = -2147409650,
-    CSSMERR_TP_INVALID_ACTION = -2147409649,
-    CSSMERR_TP_INVALID_ACTION_DATA = -2147409648,
-    CSSMERR_TP_INVALID_ANCHOR_CERT = -2147409646,
-    CSSMERR_TP_INVALID_AUTHORITY = -2147409645,
-    CSSMERR_TP_VERIFY_ACTION_FAILED = -2147409644,
-    CSSMERR_TP_INVALID_CERTIFICATE = -2147409643,
-    CSSMERR_TP_INVALID_CERT_AUTHORITY = -2147409642,
-    CSSMERR_TP_INVALID_CRL_AUTHORITY = -2147409641,
-    CSSMERR_TP_INVALID_CRL_ENCODING = -2147409640,
-    CSSMERR_TP_INVALID_CRL_TYPE = -2147409639,
-    CSSMERR_TP_INVALID_CRL = -2147409638,
-    CSSMERR_TP_INVALID_FORM_TYPE = -2147409637,
-    CSSMERR_TP_INVALID_ID = -2147409636,
-    CSSMERR_TP_INVALID_IDENTIFIER = -2147409635,
-    CSSMERR_TP_INVALID_INDEX = -2147409634,
-    CSSMERR_TP_INVALID_NAME = -2147409633,
-    CSSMERR_TP_INVALID_POLICY_IDENTIFIERS = -2147409632,
-    CSSMERR_TP_INVALID_TIMESTRING = -2147409631,
-    CSSMERR_TP_INVALID_REASON = -2147409630,
-    CSSMERR_TP_INVALID_REQUEST_INPUTS = -2147409629,
-    CSSMERR_TP_INVALID_RESPONSE_VECTOR = -2147409628,
-    CSSMERR_TP_INVALID_SIGNATURE = -2147409627,
-    CSSMERR_TP_INVALID_STOP_ON_POLICY = -2147409626,
-    CSSMERR_TP_INVALID_CALLBACK = -2147409625,
-    CSSMERR_TP_INVALID_TUPLE = -2147409624,
-    CSSMERR_TP_NOT_SIGNER = -2147409623,
-    CSSMERR_TP_NOT_TRUSTED = -2147409622,
-    CSSMERR_TP_NO_DEFAULT_AUTHORITY = -2147409621,
-    CSSMERR_TP_REJECTED_FORM = -2147409620,
-    CSSMERR_TP_REQUEST_LOST = -2147409619,
-    CSSMERR_TP_REQUEST_REJECTED = -2147409618,
-    CSSMERR_TP_UNSUPPORTED_ADDR_TYPE = -2147409617,
-    CSSMERR_TP_UNSUPPORTED_SERVICE = -2147409616,
-    CSSMERR_TP_INVALID_TUPLEGROUP_POINTER = -2147409615,
-    CSSMERR_TP_INVALID_TUPLEGROUP = -2147409614,
-};
+pub const anon4131 = i32;
+pub const anon4131_CSSM_TP_BASE_TP_ERROR: i32 = -2147409664;
+pub const anon4131_CSSMERR_TP_INVALID_CALLERAUTH_CONTEXT_POINTER: i32 = -2147409663;
+pub const anon4131_CSSMERR_TP_INVALID_IDENTIFIER_POINTER: i32 = -2147409662;
+pub const anon4131_CSSMERR_TP_INVALID_KEYCACHE_HANDLE: i32 = -2147409661;
+pub const anon4131_CSSMERR_TP_INVALID_CERTGROUP: i32 = -2147409660;
+pub const anon4131_CSSMERR_TP_INVALID_CRLGROUP: i32 = -2147409659;
+pub const anon4131_CSSMERR_TP_INVALID_CRLGROUP_POINTER: i32 = -2147409658;
+pub const anon4131_CSSMERR_TP_AUTHENTICATION_FAILED: i32 = -2147409657;
+pub const anon4131_CSSMERR_TP_CERTGROUP_INCOMPLETE: i32 = -2147409656;
+pub const anon4131_CSSMERR_TP_CERTIFICATE_CANT_OPERATE: i32 = -2147409655;
+pub const anon4131_CSSMERR_TP_CERT_EXPIRED: i32 = -2147409654;
+pub const anon4131_CSSMERR_TP_CERT_NOT_VALID_YET: i32 = -2147409653;
+pub const anon4131_CSSMERR_TP_CERT_REVOKED: i32 = -2147409652;
+pub const anon4131_CSSMERR_TP_CERT_SUSPENDED: i32 = -2147409651;
+pub const anon4131_CSSMERR_TP_INSUFFICIENT_CREDENTIALS: i32 = -2147409650;
+pub const anon4131_CSSMERR_TP_INVALID_ACTION: i32 = -2147409649;
+pub const anon4131_CSSMERR_TP_INVALID_ACTION_DATA: i32 = -2147409648;
+pub const anon4131_CSSMERR_TP_INVALID_ANCHOR_CERT: i32 = -2147409646;
+pub const anon4131_CSSMERR_TP_INVALID_AUTHORITY: i32 = -2147409645;
+pub const anon4131_CSSMERR_TP_VERIFY_ACTION_FAILED: i32 = -2147409644;
+pub const anon4131_CSSMERR_TP_INVALID_CERTIFICATE: i32 = -2147409643;
+pub const anon4131_CSSMERR_TP_INVALID_CERT_AUTHORITY: i32 = -2147409642;
+pub const anon4131_CSSMERR_TP_INVALID_CRL_AUTHORITY: i32 = -2147409641;
+pub const anon4131_CSSMERR_TP_INVALID_CRL_ENCODING: i32 = -2147409640;
+pub const anon4131_CSSMERR_TP_INVALID_CRL_TYPE: i32 = -2147409639;
+pub const anon4131_CSSMERR_TP_INVALID_CRL: i32 = -2147409638;
+pub const anon4131_CSSMERR_TP_INVALID_FORM_TYPE: i32 = -2147409637;
+pub const anon4131_CSSMERR_TP_INVALID_ID: i32 = -2147409636;
+pub const anon4131_CSSMERR_TP_INVALID_IDENTIFIER: i32 = -2147409635;
+pub const anon4131_CSSMERR_TP_INVALID_INDEX: i32 = -2147409634;
+pub const anon4131_CSSMERR_TP_INVALID_NAME: i32 = -2147409633;
+pub const anon4131_CSSMERR_TP_INVALID_POLICY_IDENTIFIERS: i32 = -2147409632;
+pub const anon4131_CSSMERR_TP_INVALID_TIMESTRING: i32 = -2147409631;
+pub const anon4131_CSSMERR_TP_INVALID_REASON: i32 = -2147409630;
+pub const anon4131_CSSMERR_TP_INVALID_REQUEST_INPUTS: i32 = -2147409629;
+pub const anon4131_CSSMERR_TP_INVALID_RESPONSE_VECTOR: i32 = -2147409628;
+pub const anon4131_CSSMERR_TP_INVALID_SIGNATURE: i32 = -2147409627;
+pub const anon4131_CSSMERR_TP_INVALID_STOP_ON_POLICY: i32 = -2147409626;
+pub const anon4131_CSSMERR_TP_INVALID_CALLBACK: i32 = -2147409625;
+pub const anon4131_CSSMERR_TP_INVALID_TUPLE: i32 = -2147409624;
+pub const anon4131_CSSMERR_TP_NOT_SIGNER: i32 = -2147409623;
+pub const anon4131_CSSMERR_TP_NOT_TRUSTED: i32 = -2147409622;
+pub const anon4131_CSSMERR_TP_NO_DEFAULT_AUTHORITY: i32 = -2147409621;
+pub const anon4131_CSSMERR_TP_REJECTED_FORM: i32 = -2147409620;
+pub const anon4131_CSSMERR_TP_REQUEST_LOST: i32 = -2147409619;
+pub const anon4131_CSSMERR_TP_REQUEST_REJECTED: i32 = -2147409618;
+pub const anon4131_CSSMERR_TP_UNSUPPORTED_ADDR_TYPE: i32 = -2147409617;
+pub const anon4131_CSSMERR_TP_UNSUPPORTED_SERVICE: i32 = -2147409616;
+pub const anon4131_CSSMERR_TP_INVALID_TUPLEGROUP_POINTER: i32 = -2147409615;
+pub const anon4131_CSSMERR_TP_INVALID_TUPLEGROUP: i32 = -2147409614;
 
-pub const anon4681 = enum(i32) {
-    CSSMERR_AC_INTERNAL_ERROR = -2147405823,
-    CSSMERR_AC_MEMORY_ERROR = -2147405822,
-    CSSMERR_AC_MDS_ERROR = -2147405821,
-    CSSMERR_AC_INVALID_POINTER = -2147405820,
-    CSSMERR_AC_INVALID_INPUT_POINTER = -2147405819,
-    CSSMERR_AC_INVALID_OUTPUT_POINTER = -2147405818,
-    CSSMERR_AC_FUNCTION_NOT_IMPLEMENTED = -2147405817,
-    CSSMERR_AC_SELF_CHECK_FAILED = -2147405816,
-    CSSMERR_AC_OS_ACCESS_DENIED = -2147405815,
-    CSSMERR_AC_FUNCTION_FAILED = -2147405814,
-    CSSMERR_AC_INVALID_CONTEXT_HANDLE = -2147405760,
-    CSSMERR_AC_INVALID_DATA = -2147405754,
-    CSSMERR_AC_INVALID_DB_LIST = -2147405748,
-    CSSMERR_AC_INVALID_PASSTHROUGH_ID = -2147405738,
-    CSSMERR_AC_INVALID_DL_HANDLE = -2147405743,
-    CSSMERR_AC_INVALID_CL_HANDLE = -2147405742,
-    CSSMERR_AC_INVALID_TP_HANDLE = -2147405741,
-    CSSMERR_AC_INVALID_DB_HANDLE = -2147405750,
-    CSSMERR_AC_INVALID_DB_LIST_POINTER = -2147405747,
-};
+pub const anon4681 = i32;
+pub const anon4681_CSSMERR_AC_INTERNAL_ERROR: i32 = -2147405823;
+pub const anon4681_CSSMERR_AC_MEMORY_ERROR: i32 = -2147405822;
+pub const anon4681_CSSMERR_AC_MDS_ERROR: i32 = -2147405821;
+pub const anon4681_CSSMERR_AC_INVALID_POINTER: i32 = -2147405820;
+pub const anon4681_CSSMERR_AC_INVALID_INPUT_POINTER: i32 = -2147405819;
+pub const anon4681_CSSMERR_AC_INVALID_OUTPUT_POINTER: i32 = -2147405818;
+pub const anon4681_CSSMERR_AC_FUNCTION_NOT_IMPLEMENTED: i32 = -2147405817;
+pub const anon4681_CSSMERR_AC_SELF_CHECK_FAILED: i32 = -2147405816;
+pub const anon4681_CSSMERR_AC_OS_ACCESS_DENIED: i32 = -2147405815;
+pub const anon4681_CSSMERR_AC_FUNCTION_FAILED: i32 = -2147405814;
+pub const anon4681_CSSMERR_AC_INVALID_CONTEXT_HANDLE: i32 = -2147405760;
+pub const anon4681_CSSMERR_AC_INVALID_DATA: i32 = -2147405754;
+pub const anon4681_CSSMERR_AC_INVALID_DB_LIST: i32 = -2147405748;
+pub const anon4681_CSSMERR_AC_INVALID_PASSTHROUGH_ID: i32 = -2147405738;
+pub const anon4681_CSSMERR_AC_INVALID_DL_HANDLE: i32 = -2147405743;
+pub const anon4681_CSSMERR_AC_INVALID_CL_HANDLE: i32 = -2147405742;
+pub const anon4681_CSSMERR_AC_INVALID_TP_HANDLE: i32 = -2147405741;
+pub const anon4681_CSSMERR_AC_INVALID_DB_HANDLE: i32 = -2147405750;
+pub const anon4681_CSSMERR_AC_INVALID_DB_LIST_POINTER: i32 = -2147405747;
 
-pub const anon4911 = enum(i32) {
-    CSSM_AC_BASE_AC_ERROR = -2147405568,
-    CSSMERR_AC_INVALID_BASE_ACLS = -2147405567,
-    CSSMERR_AC_INVALID_TUPLE_CREDENTIALS = -2147405566,
-    CSSMERR_AC_INVALID_ENCODING = -2147405565,
-    CSSMERR_AC_INVALID_VALIDITY_PERIOD = -2147405564,
-    CSSMERR_AC_INVALID_REQUESTOR = -2147405563,
-    CSSMERR_AC_INVALID_REQUEST_DESCRIPTOR = -2147405562,
-};
+pub const anon4911 = i32;
+pub const anon4911_CSSM_AC_BASE_AC_ERROR: i32 = -2147405568;
+pub const anon4911_CSSMERR_AC_INVALID_BASE_ACLS: i32 = -2147405567;
+pub const anon4911_CSSMERR_AC_INVALID_TUPLE_CREDENTIALS: i32 = -2147405566;
+pub const anon4911_CSSMERR_AC_INVALID_ENCODING: i32 = -2147405565;
+pub const anon4911_CSSMERR_AC_INVALID_VALIDITY_PERIOD: i32 = -2147405564;
+pub const anon4911_CSSMERR_AC_INVALID_REQUESTOR: i32 = -2147405563;
+pub const anon4911_CSSMERR_AC_INVALID_REQUEST_DESCRIPTOR: i32 = -2147405562;
 
-pub const anon5031 = enum(i32) {
-    CSSMERR_CL_INTERNAL_ERROR = -2147411967,
-    CSSMERR_CL_MEMORY_ERROR = -2147411966,
-    CSSMERR_CL_MDS_ERROR = -2147411965,
-    CSSMERR_CL_INVALID_POINTER = -2147411964,
-    CSSMERR_CL_INVALID_INPUT_POINTER = -2147411963,
-    CSSMERR_CL_INVALID_OUTPUT_POINTER = -2147411962,
-    CSSMERR_CL_FUNCTION_NOT_IMPLEMENTED = -2147411961,
-    CSSMERR_CL_SELF_CHECK_FAILED = -2147411960,
-    CSSMERR_CL_OS_ACCESS_DENIED = -2147411959,
-    CSSMERR_CL_FUNCTION_FAILED = -2147411958,
-    CSSMERR_CL_INVALID_CONTEXT_HANDLE = -2147411904,
-    CSSMERR_CL_INVALID_CERTGROUP_POINTER = -2147411902,
-    CSSMERR_CL_INVALID_CERT_POINTER = -2147411901,
-    CSSMERR_CL_INVALID_CRL_POINTER = -2147411900,
-    CSSMERR_CL_INVALID_FIELD_POINTER = -2147411899,
-    CSSMERR_CL_INVALID_DATA = -2147411898,
-    CSSMERR_CL_CRL_ALREADY_SIGNED = -2147411897,
-    CSSMERR_CL_INVALID_NUMBER_OF_FIELDS = -2147411896,
-    CSSMERR_CL_VERIFICATION_FAILURE = -2147411895,
-    CSSMERR_CL_UNKNOWN_FORMAT = -2147411890,
-    CSSMERR_CL_UNKNOWN_TAG = -2147411889,
-    CSSMERR_CL_INVALID_PASSTHROUGH_ID = -2147411882,
-};
+pub const anon5031 = i32;
+pub const anon5031_CSSMERR_CL_INTERNAL_ERROR: i32 = -2147411967;
+pub const anon5031_CSSMERR_CL_MEMORY_ERROR: i32 = -2147411966;
+pub const anon5031_CSSMERR_CL_MDS_ERROR: i32 = -2147411965;
+pub const anon5031_CSSMERR_CL_INVALID_POINTER: i32 = -2147411964;
+pub const anon5031_CSSMERR_CL_INVALID_INPUT_POINTER: i32 = -2147411963;
+pub const anon5031_CSSMERR_CL_INVALID_OUTPUT_POINTER: i32 = -2147411962;
+pub const anon5031_CSSMERR_CL_FUNCTION_NOT_IMPLEMENTED: i32 = -2147411961;
+pub const anon5031_CSSMERR_CL_SELF_CHECK_FAILED: i32 = -2147411960;
+pub const anon5031_CSSMERR_CL_OS_ACCESS_DENIED: i32 = -2147411959;
+pub const anon5031_CSSMERR_CL_FUNCTION_FAILED: i32 = -2147411958;
+pub const anon5031_CSSMERR_CL_INVALID_CONTEXT_HANDLE: i32 = -2147411904;
+pub const anon5031_CSSMERR_CL_INVALID_CERTGROUP_POINTER: i32 = -2147411902;
+pub const anon5031_CSSMERR_CL_INVALID_CERT_POINTER: i32 = -2147411901;
+pub const anon5031_CSSMERR_CL_INVALID_CRL_POINTER: i32 = -2147411900;
+pub const anon5031_CSSMERR_CL_INVALID_FIELD_POINTER: i32 = -2147411899;
+pub const anon5031_CSSMERR_CL_INVALID_DATA: i32 = -2147411898;
+pub const anon5031_CSSMERR_CL_CRL_ALREADY_SIGNED: i32 = -2147411897;
+pub const anon5031_CSSMERR_CL_INVALID_NUMBER_OF_FIELDS: i32 = -2147411896;
+pub const anon5031_CSSMERR_CL_VERIFICATION_FAILURE: i32 = -2147411895;
+pub const anon5031_CSSMERR_CL_UNKNOWN_FORMAT: i32 = -2147411890;
+pub const anon5031_CSSMERR_CL_UNKNOWN_TAG: i32 = -2147411889;
+pub const anon5031_CSSMERR_CL_INVALID_PASSTHROUGH_ID: i32 = -2147411882;
 
-pub const anon5291 = enum(i32) {
-    CSSM_CL_BASE_CL_ERROR = -2147411712,
-    CSSMERR_CL_INVALID_BUNDLE_POINTER = -2147411711,
-    CSSMERR_CL_INVALID_CACHE_HANDLE = -2147411710,
-    CSSMERR_CL_INVALID_RESULTS_HANDLE = -2147411709,
-    CSSMERR_CL_INVALID_BUNDLE_INFO = -2147411708,
-    CSSMERR_CL_INVALID_CRL_INDEX = -2147411707,
-    CSSMERR_CL_INVALID_SCOPE = -2147411706,
-    CSSMERR_CL_NO_FIELD_VALUES = -2147411705,
-    CSSMERR_CL_SCOPE_NOT_SUPPORTED = -2147411704,
-};
+pub const anon5291 = i32;
+pub const anon5291_CSSM_CL_BASE_CL_ERROR: i32 = -2147411712;
+pub const anon5291_CSSMERR_CL_INVALID_BUNDLE_POINTER: i32 = -2147411711;
+pub const anon5291_CSSMERR_CL_INVALID_CACHE_HANDLE: i32 = -2147411710;
+pub const anon5291_CSSMERR_CL_INVALID_RESULTS_HANDLE: i32 = -2147411709;
+pub const anon5291_CSSMERR_CL_INVALID_BUNDLE_INFO: i32 = -2147411708;
+pub const anon5291_CSSMERR_CL_INVALID_CRL_INDEX: i32 = -2147411707;
+pub const anon5291_CSSMERR_CL_INVALID_SCOPE: i32 = -2147411706;
+pub const anon5291_CSSMERR_CL_NO_FIELD_VALUES: i32 = -2147411705;
+pub const anon5291_CSSMERR_CL_SCOPE_NOT_SUPPORTED: i32 = -2147411704;
 
-pub const anon5431 = enum(i32) {
-    CSSMERR_DL_INTERNAL_ERROR = -2147414015,
-    CSSMERR_DL_MEMORY_ERROR = -2147414014,
-    CSSMERR_DL_MDS_ERROR = -2147414013,
-    CSSMERR_DL_INVALID_POINTER = -2147414012,
-    CSSMERR_DL_INVALID_INPUT_POINTER = -2147414011,
-    CSSMERR_DL_INVALID_OUTPUT_POINTER = -2147414010,
-    CSSMERR_DL_FUNCTION_NOT_IMPLEMENTED = -2147414009,
-    CSSMERR_DL_SELF_CHECK_FAILED = -2147414008,
-    CSSMERR_DL_OS_ACCESS_DENIED = -2147414007,
-    CSSMERR_DL_FUNCTION_FAILED = -2147414006,
-    CSSMERR_DL_INVALID_CSP_HANDLE = -2147413936,
-    CSSMERR_DL_INVALID_DL_HANDLE = -2147413935,
-    CSSMERR_DL_INVALID_CL_HANDLE = -2147413934,
-    CSSMERR_DL_INVALID_DB_LIST_POINTER = -2147413939,
-};
+pub const anon5431 = i32;
+pub const anon5431_CSSMERR_DL_INTERNAL_ERROR: i32 = -2147414015;
+pub const anon5431_CSSMERR_DL_MEMORY_ERROR: i32 = -2147414014;
+pub const anon5431_CSSMERR_DL_MDS_ERROR: i32 = -2147414013;
+pub const anon5431_CSSMERR_DL_INVALID_POINTER: i32 = -2147414012;
+pub const anon5431_CSSMERR_DL_INVALID_INPUT_POINTER: i32 = -2147414011;
+pub const anon5431_CSSMERR_DL_INVALID_OUTPUT_POINTER: i32 = -2147414010;
+pub const anon5431_CSSMERR_DL_FUNCTION_NOT_IMPLEMENTED: i32 = -2147414009;
+pub const anon5431_CSSMERR_DL_SELF_CHECK_FAILED: i32 = -2147414008;
+pub const anon5431_CSSMERR_DL_OS_ACCESS_DENIED: i32 = -2147414007;
+pub const anon5431_CSSMERR_DL_FUNCTION_FAILED: i32 = -2147414006;
+pub const anon5431_CSSMERR_DL_INVALID_CSP_HANDLE: i32 = -2147413936;
+pub const anon5431_CSSMERR_DL_INVALID_DL_HANDLE: i32 = -2147413935;
+pub const anon5431_CSSMERR_DL_INVALID_CL_HANDLE: i32 = -2147413934;
+pub const anon5431_CSSMERR_DL_INVALID_DB_LIST_POINTER: i32 = -2147413939;
 
-pub const anon5611 = enum(i32) {
-    CSSMERR_DL_OPERATION_AUTH_DENIED = -2147413984,
-    CSSMERR_DL_OBJECT_USE_AUTH_DENIED = -2147413983,
-    CSSMERR_DL_OBJECT_MANIP_AUTH_DENIED = -2147413982,
-    CSSMERR_DL_OBJECT_ACL_NOT_SUPPORTED = -2147413981,
-    CSSMERR_DL_OBJECT_ACL_REQUIRED = -2147413980,
-    CSSMERR_DL_INVALID_ACCESS_CREDENTIALS = -2147413979,
-    CSSMERR_DL_INVALID_ACL_BASE_CERTS = -2147413978,
-    CSSMERR_DL_ACL_BASE_CERTS_NOT_SUPPORTED = -2147413977,
-    CSSMERR_DL_INVALID_SAMPLE_VALUE = -2147413976,
-    CSSMERR_DL_SAMPLE_VALUE_NOT_SUPPORTED = -2147413975,
-    CSSMERR_DL_INVALID_ACL_SUBJECT_VALUE = -2147413974,
-    CSSMERR_DL_ACL_SUBJECT_TYPE_NOT_SUPPORTED = -2147413973,
-    CSSMERR_DL_INVALID_ACL_CHALLENGE_CALLBACK = -2147413972,
-    CSSMERR_DL_ACL_CHALLENGE_CALLBACK_FAILED = -2147413971,
-    CSSMERR_DL_INVALID_ACL_ENTRY_TAG = -2147413970,
-    CSSMERR_DL_ACL_ENTRY_TAG_NOT_FOUND = -2147413969,
-    CSSMERR_DL_INVALID_ACL_EDIT_MODE = -2147413968,
-    CSSMERR_DL_ACL_CHANGE_FAILED = -2147413967,
-    CSSMERR_DL_INVALID_NEW_ACL_ENTRY = -2147413966,
-    CSSMERR_DL_INVALID_NEW_ACL_OWNER = -2147413965,
-    CSSMERR_DL_ACL_DELETE_FAILED = -2147413964,
-    CSSMERR_DL_ACL_REPLACE_FAILED = -2147413963,
-    CSSMERR_DL_ACL_ADD_FAILED = -2147413962,
-};
+pub const anon5611 = i32;
+pub const anon5611_CSSMERR_DL_OPERATION_AUTH_DENIED: i32 = -2147413984;
+pub const anon5611_CSSMERR_DL_OBJECT_USE_AUTH_DENIED: i32 = -2147413983;
+pub const anon5611_CSSMERR_DL_OBJECT_MANIP_AUTH_DENIED: i32 = -2147413982;
+pub const anon5611_CSSMERR_DL_OBJECT_ACL_NOT_SUPPORTED: i32 = -2147413981;
+pub const anon5611_CSSMERR_DL_OBJECT_ACL_REQUIRED: i32 = -2147413980;
+pub const anon5611_CSSMERR_DL_INVALID_ACCESS_CREDENTIALS: i32 = -2147413979;
+pub const anon5611_CSSMERR_DL_INVALID_ACL_BASE_CERTS: i32 = -2147413978;
+pub const anon5611_CSSMERR_DL_ACL_BASE_CERTS_NOT_SUPPORTED: i32 = -2147413977;
+pub const anon5611_CSSMERR_DL_INVALID_SAMPLE_VALUE: i32 = -2147413976;
+pub const anon5611_CSSMERR_DL_SAMPLE_VALUE_NOT_SUPPORTED: i32 = -2147413975;
+pub const anon5611_CSSMERR_DL_INVALID_ACL_SUBJECT_VALUE: i32 = -2147413974;
+pub const anon5611_CSSMERR_DL_ACL_SUBJECT_TYPE_NOT_SUPPORTED: i32 = -2147413973;
+pub const anon5611_CSSMERR_DL_INVALID_ACL_CHALLENGE_CALLBACK: i32 = -2147413972;
+pub const anon5611_CSSMERR_DL_ACL_CHALLENGE_CALLBACK_FAILED: i32 = -2147413971;
+pub const anon5611_CSSMERR_DL_INVALID_ACL_ENTRY_TAG: i32 = -2147413970;
+pub const anon5611_CSSMERR_DL_ACL_ENTRY_TAG_NOT_FOUND: i32 = -2147413969;
+pub const anon5611_CSSMERR_DL_INVALID_ACL_EDIT_MODE: i32 = -2147413968;
+pub const anon5611_CSSMERR_DL_ACL_CHANGE_FAILED: i32 = -2147413967;
+pub const anon5611_CSSMERR_DL_INVALID_NEW_ACL_ENTRY: i32 = -2147413966;
+pub const anon5611_CSSMERR_DL_INVALID_NEW_ACL_OWNER: i32 = -2147413965;
+pub const anon5611_CSSMERR_DL_ACL_DELETE_FAILED: i32 = -2147413964;
+pub const anon5611_CSSMERR_DL_ACL_REPLACE_FAILED: i32 = -2147413963;
+pub const anon5611_CSSMERR_DL_ACL_ADD_FAILED: i32 = -2147413962;
 
-pub const anon5881 = enum(i32) {
-    CSSMERR_DL_INVALID_DB_HANDLE = -2147413942,
-    CSSMERR_DL_INVALID_PASSTHROUGH_ID = -2147413930,
-    CSSMERR_DL_INVALID_NETWORK_ADDR = -2147413929,
-};
+pub const anon5881 = i32;
+pub const anon5881_CSSMERR_DL_INVALID_DB_HANDLE: i32 = -2147413942;
+pub const anon5881_CSSMERR_DL_INVALID_PASSTHROUGH_ID: i32 = -2147413930;
+pub const anon5881_CSSMERR_DL_INVALID_NETWORK_ADDR: i32 = -2147413929;
 
-pub const anon5951 = enum(i32) {
-    CSSM_DL_BASE_DL_ERROR = -2147413760,
-    CSSMERR_DL_DATABASE_CORRUPT = -2147413759,
-    CSSMERR_DL_INVALID_RECORD_INDEX = -2147413752,
-    CSSMERR_DL_INVALID_RECORDTYPE = -2147413751,
-    CSSMERR_DL_INVALID_FIELD_NAME = -2147413750,
-    CSSMERR_DL_UNSUPPORTED_FIELD_FORMAT = -2147413749,
-    CSSMERR_DL_UNSUPPORTED_INDEX_INFO = -2147413748,
-    CSSMERR_DL_UNSUPPORTED_LOCALITY = -2147413747,
-    CSSMERR_DL_UNSUPPORTED_NUM_ATTRIBUTES = -2147413746,
-    CSSMERR_DL_UNSUPPORTED_NUM_INDEXES = -2147413745,
-    CSSMERR_DL_UNSUPPORTED_NUM_RECORDTYPES = -2147413744,
-    CSSMERR_DL_UNSUPPORTED_RECORDTYPE = -2147413743,
-    CSSMERR_DL_FIELD_SPECIFIED_MULTIPLE = -2147413742,
-    CSSMERR_DL_INCOMPATIBLE_FIELD_FORMAT = -2147413741,
-    CSSMERR_DL_INVALID_PARSING_MODULE = -2147413740,
-    CSSMERR_DL_INVALID_DB_NAME = -2147413738,
-    CSSMERR_DL_DATASTORE_DOESNOT_EXIST = -2147413737,
-    CSSMERR_DL_DATASTORE_ALREADY_EXISTS = -2147413736,
-    CSSMERR_DL_DB_LOCKED = -2147413735,
-    CSSMERR_DL_DATASTORE_IS_OPEN = -2147413734,
-    CSSMERR_DL_RECORD_NOT_FOUND = -2147413733,
-    CSSMERR_DL_MISSING_VALUE = -2147413732,
-    CSSMERR_DL_UNSUPPORTED_QUERY = -2147413731,
-    CSSMERR_DL_UNSUPPORTED_QUERY_LIMITS = -2147413730,
-    CSSMERR_DL_UNSUPPORTED_NUM_SELECTION_PREDS = -2147413729,
-    CSSMERR_DL_UNSUPPORTED_OPERATOR = -2147413727,
-    CSSMERR_DL_INVALID_RESULTS_HANDLE = -2147413726,
-    CSSMERR_DL_INVALID_DB_LOCATION = -2147413725,
-    CSSMERR_DL_INVALID_ACCESS_REQUEST = -2147413724,
-    CSSMERR_DL_INVALID_INDEX_INFO = -2147413723,
-    CSSMERR_DL_INVALID_SELECTION_TAG = -2147413722,
-    CSSMERR_DL_INVALID_NEW_OWNER = -2147413721,
-    CSSMERR_DL_INVALID_RECORD_UID = -2147413720,
-    CSSMERR_DL_INVALID_UNIQUE_INDEX_DATA = -2147413719,
-    CSSMERR_DL_INVALID_MODIFY_MODE = -2147413718,
-    CSSMERR_DL_INVALID_OPEN_PARAMETERS = -2147413717,
-    CSSMERR_DL_RECORD_MODIFIED = -2147413716,
-    CSSMERR_DL_ENDOFDATA = -2147413715,
-    CSSMERR_DL_INVALID_QUERY = -2147413714,
-    CSSMERR_DL_INVALID_VALUE = -2147413713,
-    CSSMERR_DL_MULTIPLE_VALUES_UNSUPPORTED = -2147413712,
-    CSSMERR_DL_STALE_UNIQUE_RECORD = -2147413711,
-};
+pub const anon5951 = i32;
+pub const anon5951_CSSM_DL_BASE_DL_ERROR: i32 = -2147413760;
+pub const anon5951_CSSMERR_DL_DATABASE_CORRUPT: i32 = -2147413759;
+pub const anon5951_CSSMERR_DL_INVALID_RECORD_INDEX: i32 = -2147413752;
+pub const anon5951_CSSMERR_DL_INVALID_RECORDTYPE: i32 = -2147413751;
+pub const anon5951_CSSMERR_DL_INVALID_FIELD_NAME: i32 = -2147413750;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_FIELD_FORMAT: i32 = -2147413749;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_INDEX_INFO: i32 = -2147413748;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_LOCALITY: i32 = -2147413747;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_NUM_ATTRIBUTES: i32 = -2147413746;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_NUM_INDEXES: i32 = -2147413745;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_NUM_RECORDTYPES: i32 = -2147413744;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_RECORDTYPE: i32 = -2147413743;
+pub const anon5951_CSSMERR_DL_FIELD_SPECIFIED_MULTIPLE: i32 = -2147413742;
+pub const anon5951_CSSMERR_DL_INCOMPATIBLE_FIELD_FORMAT: i32 = -2147413741;
+pub const anon5951_CSSMERR_DL_INVALID_PARSING_MODULE: i32 = -2147413740;
+pub const anon5951_CSSMERR_DL_INVALID_DB_NAME: i32 = -2147413738;
+pub const anon5951_CSSMERR_DL_DATASTORE_DOESNOT_EXIST: i32 = -2147413737;
+pub const anon5951_CSSMERR_DL_DATASTORE_ALREADY_EXISTS: i32 = -2147413736;
+pub const anon5951_CSSMERR_DL_DB_LOCKED: i32 = -2147413735;
+pub const anon5951_CSSMERR_DL_DATASTORE_IS_OPEN: i32 = -2147413734;
+pub const anon5951_CSSMERR_DL_RECORD_NOT_FOUND: i32 = -2147413733;
+pub const anon5951_CSSMERR_DL_MISSING_VALUE: i32 = -2147413732;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_QUERY: i32 = -2147413731;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_QUERY_LIMITS: i32 = -2147413730;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_NUM_SELECTION_PREDS: i32 = -2147413729;
+pub const anon5951_CSSMERR_DL_UNSUPPORTED_OPERATOR: i32 = -2147413727;
+pub const anon5951_CSSMERR_DL_INVALID_RESULTS_HANDLE: i32 = -2147413726;
+pub const anon5951_CSSMERR_DL_INVALID_DB_LOCATION: i32 = -2147413725;
+pub const anon5951_CSSMERR_DL_INVALID_ACCESS_REQUEST: i32 = -2147413724;
+pub const anon5951_CSSMERR_DL_INVALID_INDEX_INFO: i32 = -2147413723;
+pub const anon5951_CSSMERR_DL_INVALID_SELECTION_TAG: i32 = -2147413722;
+pub const anon5951_CSSMERR_DL_INVALID_NEW_OWNER: i32 = -2147413721;
+pub const anon5951_CSSMERR_DL_INVALID_RECORD_UID: i32 = -2147413720;
+pub const anon5951_CSSMERR_DL_INVALID_UNIQUE_INDEX_DATA: i32 = -2147413719;
+pub const anon5951_CSSMERR_DL_INVALID_MODIFY_MODE: i32 = -2147413718;
+pub const anon5951_CSSMERR_DL_INVALID_OPEN_PARAMETERS: i32 = -2147413717;
+pub const anon5951_CSSMERR_DL_RECORD_MODIFIED: i32 = -2147413716;
+pub const anon5951_CSSMERR_DL_ENDOFDATA: i32 = -2147413715;
+pub const anon5951_CSSMERR_DL_INVALID_QUERY: i32 = -2147413714;
+pub const anon5951_CSSMERR_DL_INVALID_VALUE: i32 = -2147413713;
+pub const anon5951_CSSMERR_DL_MULTIPLE_VALUES_UNSUPPORTED: i32 = -2147413712;
+pub const anon5951_CSSMERR_DL_STALE_UNIQUE_RECORD: i32 = -2147413711;
 
-pub const __CE_GeneralNameType = enum(u32) {
-    GNT_OtherName = 0,
-    GNT_RFC822Name = 1,
-    GNT_DNSName = 2,
-    GNT_X400Address = 3,
-    GNT_DirectoryName = 4,
-    GNT_EdiPartyName = 5,
-    GNT_URI = 6,
-    GNT_IPAddress = 7,
-    GNT_RegisteredID = 8,
-};
+pub const __CE_GeneralNameType = u32;
+pub const __CE_GeneralNameType_GNT_OtherName: u32 = 0;
+pub const __CE_GeneralNameType_GNT_RFC822Name: u32 = 1;
+pub const __CE_GeneralNameType_GNT_DNSName: u32 = 2;
+pub const __CE_GeneralNameType_GNT_X400Address: u32 = 3;
+pub const __CE_GeneralNameType_GNT_DirectoryName: u32 = 4;
+pub const __CE_GeneralNameType_GNT_EdiPartyName: u32 = 5;
+pub const __CE_GeneralNameType_GNT_URI: u32 = 6;
+pub const __CE_GeneralNameType_GNT_IPAddress: u32 = 7;
+pub const __CE_GeneralNameType_GNT_RegisteredID: u32 = 8;
 
 pub const CE_GeneralNameType = __CE_GeneralNameType;
 
@@ -4293,21 +4186,20 @@ pub const CE_NetscapeCertType = uint16;
 
 pub const CE_CrlDistReasonFlags = uint8;
 
-pub const __CE_CrlDistributionPointNameType = enum(u32) {
-    CE_CDNT_FullName = 0,
-    CE_CDNT_NameRelativeToCrlIssuer = 1,
-};
+pub const __CE_CrlDistributionPointNameType = u32;
+pub const __CE_CrlDistributionPointNameType_CE_CDNT_FullName: u32 = 0;
+pub const __CE_CrlDistributionPointNameType_CE_CDNT_NameRelativeToCrlIssuer: u32 = 1;
 
 pub const CE_CrlDistributionPointNameType = __CE_CrlDistributionPointNameType;
 
 pub const __CE_DistributionPointName = extern struct {
-    nameType: CE_CrlDistributionPointNameType,
-    dpn: anon5372,
-};
+    pub const anon5372 = extern union {
+        fullName: ?*CE_GeneralNames,
+        rdn: CSSM_X509_RDN_PTR,
+    };
 
-pub const anon5372 = extern union {
-    fullName: ?*CE_GeneralNames,
-    rdn: CSSM_X509_RDN_PTR,
+    nameType: CE_CrlDistributionPointNameType,
+    dpn: __CE_DistributionPointName.anon5372,
 };
 
 pub const CE_DistributionPointName = __CE_DistributionPointName;
@@ -4432,29 +4324,28 @@ pub const CE_PolicyConstraints = __CE_PolicyConstraints;
 
 pub const CE_InhibitAnyPolicy = uint32;
 
-pub const __CE_DataType = enum(u32) {
-    DT_AuthorityKeyID = 0,
-    DT_SubjectKeyID = 1,
-    DT_KeyUsage = 2,
-    DT_SubjectAltName = 3,
-    DT_IssuerAltName = 4,
-    DT_ExtendedKeyUsage = 5,
-    DT_BasicConstraints = 6,
-    DT_CertPolicies = 7,
-    DT_NetscapeCertType = 8,
-    DT_CrlNumber = 9,
-    DT_DeltaCrl = 10,
-    DT_CrlReason = 11,
-    DT_CrlDistributionPoints = 12,
-    DT_IssuingDistributionPoint = 13,
-    DT_AuthorityInfoAccess = 14,
-    DT_Other = 15,
-    DT_QC_Statements = 16,
-    DT_NameConstraints = 17,
-    DT_PolicyMappings = 18,
-    DT_PolicyConstraints = 19,
-    DT_InhibitAnyPolicy = 20,
-};
+pub const __CE_DataType = u32;
+pub const __CE_DataType_DT_AuthorityKeyID: u32 = 0;
+pub const __CE_DataType_DT_SubjectKeyID: u32 = 1;
+pub const __CE_DataType_DT_KeyUsage: u32 = 2;
+pub const __CE_DataType_DT_SubjectAltName: u32 = 3;
+pub const __CE_DataType_DT_IssuerAltName: u32 = 4;
+pub const __CE_DataType_DT_ExtendedKeyUsage: u32 = 5;
+pub const __CE_DataType_DT_BasicConstraints: u32 = 6;
+pub const __CE_DataType_DT_CertPolicies: u32 = 7;
+pub const __CE_DataType_DT_NetscapeCertType: u32 = 8;
+pub const __CE_DataType_DT_CrlNumber: u32 = 9;
+pub const __CE_DataType_DT_DeltaCrl: u32 = 10;
+pub const __CE_DataType_DT_CrlReason: u32 = 11;
+pub const __CE_DataType_DT_CrlDistributionPoints: u32 = 12;
+pub const __CE_DataType_DT_IssuingDistributionPoint: u32 = 13;
+pub const __CE_DataType_DT_AuthorityInfoAccess: u32 = 14;
+pub const __CE_DataType_DT_Other: u32 = 15;
+pub const __CE_DataType_DT_QC_Statements: u32 = 16;
+pub const __CE_DataType_DT_NameConstraints: u32 = 17;
+pub const __CE_DataType_DT_PolicyMappings: u32 = 18;
+pub const __CE_DataType_DT_PolicyConstraints: u32 = 19;
+pub const __CE_DataType_DT_InhibitAnyPolicy: u32 = 20;
 
 pub const CE_DataType = __CE_DataType;
 
@@ -4490,49 +4381,68 @@ pub const __CE_DataAndType = extern struct {
 
 pub const CE_DataAndType = __CE_DataAndType;
 
-pub const anon821 = enum(u32) {
-    CSSM_HINT_NONE = 0,
-    CSSM_HINT_ADDRESS_APP = 1,
-    CSSM_HINT_ADDRESS_SP = 2,
-};
+pub const anon821 = u32;
+pub const anon821_CSSM_WORDID_KEYCHAIN_PROMPT: u32 = 65536;
+pub const anon821_CSSM_WORDID_KEYCHAIN_LOCK: u32 = 65537;
+pub const anon821_CSSM_WORDID_KEYCHAIN_CHANGE_LOCK: u32 = 65538;
+pub const anon821_CSSM_WORDID_PROCESS: u32 = 65539;
+pub const anon821_CSSM_WORDID__RESERVED_1: u32 = 65540;
+pub const anon821_CSSM_WORDID_SYMMETRIC_KEY: u32 = 65541;
+pub const anon821_CSSM_WORDID_SYSTEM: u32 = 65542;
+pub const anon821_CSSM_WORDID_KEY: u32 = 65543;
+pub const anon821_CSSM_WORDID_PIN: u32 = 65544;
+pub const anon821_CSSM_WORDID_PREAUTH: u32 = 65545;
+pub const anon821_CSSM_WORDID_PREAUTH_SOURCE: u32 = 65546;
+pub const anon821_CSSM_WORDID_ASYMMETRIC_KEY: u32 = 65547;
+pub const anon821_CSSM_WORDID_PARTITION: u32 = 65548;
+pub const anon821_CSSM_WORDID_KEYBAG_KEY: u32 = 65549;
+pub const anon821_CSSM_WORDID__FIRST_UNUSED: u32 = 65550;
+pub const anon821_CSSM_HINT_NONE: u32 = 0;
+pub const anon821_CSSM_HINT_ADDRESS_APP: u32 = 1;
+pub const anon821_CSSM_HINT_ADDRESS_SP: u32 = 2;
 
-pub const anon1021 = enum(u32) {
-    CSSM_ACL_SUBJECT_TYPE_KEYCHAIN_PROMPT = 65536,
-    CSSM_ACL_SUBJECT_TYPE_PROCESS = 65539,
-    CSSM_ACL_SUBJECT_TYPE_CODE_SIGNATURE = 116,
-    CSSM_ACL_SUBJECT_TYPE_COMMENT = 12,
-    CSSM_ACL_SUBJECT_TYPE_SYMMETRIC_KEY = 65541,
-    CSSM_ACL_SUBJECT_TYPE_PREAUTH = 65545,
-    CSSM_ACL_SUBJECT_TYPE_PREAUTH_SOURCE = 65546,
-    CSSM_ACL_SUBJECT_TYPE_ASYMMETRIC_KEY = 65547,
-    CSSM_ACL_SUBJECT_TYPE_PARTITION = 65548,
-};
+pub const anon1021 = u32;
+pub const anon1021_CSSM_ACL_SUBJECT_TYPE_KEYCHAIN_PROMPT: u32 = 65536;
+pub const anon1021_CSSM_ACL_SUBJECT_TYPE_PROCESS: u32 = 65539;
+pub const anon1021_CSSM_ACL_SUBJECT_TYPE_CODE_SIGNATURE: u32 = 116;
+pub const anon1021_CSSM_ACL_SUBJECT_TYPE_COMMENT: u32 = 12;
+pub const anon1021_CSSM_ACL_SUBJECT_TYPE_SYMMETRIC_KEY: u32 = 65541;
+pub const anon1021_CSSM_ACL_SUBJECT_TYPE_PREAUTH: u32 = 65545;
+pub const anon1021_CSSM_ACL_SUBJECT_TYPE_PREAUTH_SOURCE: u32 = 65546;
+pub const anon1021_CSSM_ACL_SUBJECT_TYPE_ASYMMETRIC_KEY: u32 = 65547;
+pub const anon1021_CSSM_ACL_SUBJECT_TYPE_PARTITION: u32 = 65548;
 
-pub const anon1151 = enum(objc.OSStatus) {
-    errSessionSuccess = 0,
-    errSessionInvalidId = -60500,
-    errSessionInvalidAttributes = -60501,
-    errSessionAuthorizationDenied = -60502,
-    errSessionValueNotSet = -60503,
-    errSessionInternal = -60008,
-    errSessionInvalidFlags = -60011,
-};
+pub const anon1151 = u32;
+pub const anon1151_CSSM_SAMPLE_TYPE_KEYCHAIN_PROMPT: u32 = 65536;
+pub const anon1151_CSSM_SAMPLE_TYPE_KEYCHAIN_LOCK: u32 = 65537;
+pub const anon1151_CSSM_SAMPLE_TYPE_KEYCHAIN_CHANGE_LOCK: u32 = 65538;
+pub const anon1151_CSSM_SAMPLE_TYPE_PROCESS: u32 = 65539;
+pub const anon1151_CSSM_SAMPLE_TYPE_COMMENT: u32 = 12;
+pub const anon1151_CSSM_SAMPLE_TYPE_RETRY_ID: u32 = 85;
+pub const anon1151_CSSM_SAMPLE_TYPE_SYMMETRIC_KEY: u32 = 65541;
+pub const anon1151_CSSM_SAMPLE_TYPE_PREAUTH: u32 = 65545;
+pub const anon1151_CSSM_SAMPLE_TYPE_ASYMMETRIC_KEY: u32 = 65547;
+pub const anon1151_CSSM_SAMPLE_TYPE_KEYBAG_KEY: u32 = 65549;
+pub const anon1151_errSessionSuccess: u32 = 0;
+pub const anon1151_errSessionInvalidId: u32 = -60500;
+pub const anon1151_errSessionInvalidAttributes: u32 = -60501;
+pub const anon1151_errSessionAuthorizationDenied: u32 = -60502;
+pub const anon1151_errSessionValueNotSet: u32 = -60503;
+pub const anon1151_errSessionInternal: u32 = -60008;
+pub const anon1151_errSessionInvalidFlags: u32 = -60011;
 
-pub const anon1561 = enum(u32) {
-    CSSM_ACL_CODE_SIGNATURE_INVALID = 0,
-    CSSM_ACL_CODE_SIGNATURE_OSX = 1,
-};
+pub const anon1561 = u32;
+pub const anon1561_CSSM_ACL_CODE_SIGNATURE_INVALID: u32 = 0;
+pub const anon1561_CSSM_ACL_CODE_SIGNATURE_OSX: u32 = 1;
 
-pub const anon1631 = enum(u32) {
-    CSSM_ACL_MATCH_UID = 1,
-    CSSM_ACL_MATCH_GID = 2,
-    CSSM_ACL_MATCH_HONOR_ROOT = 256,
-    CSSM_ACL_MATCH_BITS = 3,
-};
+pub const anon1631 = u32;
+pub const anon1631_CSSM_ACL_MATCH_UID: u32 = 1;
+pub const anon1631_CSSM_ACL_MATCH_GID: u32 = 2;
+pub const anon1631_CSSM_ACL_MATCH_HONOR_ROOT: u32 = 256;
+pub const anon1631_CSSM_ACL_MATCH_BITS: u32 = 3;
 
-pub const anon1701 = enum(u32) {
-    CSSM_ACL_PROCESS_SELECTOR_CURRENT_VERSION = 257,
-};
+pub const anon1701 = u32;
+pub const anon1701_CSSM_ACL_PROCESS_SELECTOR_CURRENT_VERSION: u32 = 257;
 
 pub const cssm_acl_process_subject_selector = extern struct {
     version: uint16,
@@ -4543,17 +4453,15 @@ pub const cssm_acl_process_subject_selector = extern struct {
 
 pub const CSSM_ACL_PROCESS_SUBJECT_SELECTOR = cssm_acl_process_subject_selector;
 
-pub const anon1831 = enum(u32) {
-    CSSM_ACL_KEYCHAIN_PROMPT_CURRENT_VERSION = 257,
-};
+pub const anon1831 = u32;
+pub const anon1831_CSSM_ACL_KEYCHAIN_PROMPT_CURRENT_VERSION: u32 = 257;
 
-pub const anon1871 = enum(u32) {
-    CSSM_ACL_KEYCHAIN_PROMPT_REQUIRE_PASSPHRASE = 1,
-    CSSM_ACL_KEYCHAIN_PROMPT_UNSIGNED = 16,
-    CSSM_ACL_KEYCHAIN_PROMPT_UNSIGNED_ACT = 32,
-    CSSM_ACL_KEYCHAIN_PROMPT_INVALID = 64,
-    CSSM_ACL_KEYCHAIN_PROMPT_INVALID_ACT = 128,
-};
+pub const anon1871 = u32;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_REQUIRE_PASSPHRASE: u32 = 1;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_UNSIGNED: u32 = 16;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_UNSIGNED_ACT: u32 = 32;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_INVALID: u32 = 64;
+pub const anon1871_CSSM_ACL_KEYCHAIN_PROMPT_INVALID_ACT: u32 = 128;
 
 pub const cssm_acl_keychain_prompt_selector = extern struct {
     version: uint16,
@@ -4564,243 +4472,228 @@ pub const CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR = cssm_acl_keychain_prompt_selector;
 
 pub const CSSM_ACL_PREAUTH_TRACKING_STATE = uint32;
 
-pub const anon2031 = enum(u32) {
-    CSSM_ACL_PREAUTH_TRACKING_COUNT_MASK = 255,
-    CSSM_ACL_PREAUTH_TRACKING_BLOCKED = 0,
-    CSSM_ACL_PREAUTH_TRACKING_UNKNOWN = 1073741824,
-    CSSM_ACL_PREAUTH_TRACKING_AUTHORIZED = -2147483648,
-};
+pub const anon2031 = u32;
+pub const anon2031_CSSM_ACL_PREAUTH_TRACKING_COUNT_MASK: u32 = 255;
+pub const anon2031_CSSM_ACL_PREAUTH_TRACKING_BLOCKED: u32 = 0;
+pub const anon2031_CSSM_ACL_PREAUTH_TRACKING_UNKNOWN: u32 = 1073741824;
+pub const anon2031_CSSM_ACL_PREAUTH_TRACKING_AUTHORIZED: u32 = -2147483648;
 
-pub const anon2151 = enum(u32) {
-    CSSM_DB_ACCESS_RESET = 65536,
-};
+pub const anon2151 = u32;
+pub const anon2151_CSSM_DB_ACCESS_RESET: u32 = 65536;
 
-pub const anon2211 = enum(u32) {
-    CSSM_ALGID_APPLE_YARROW = -2147483648,
-    CSSM_ALGID_AES = -2147483647,
-    CSSM_ALGID_FEE = -2147483646,
-    CSSM_ALGID_FEE_MD5 = -2147483645,
-    CSSM_ALGID_FEE_SHA1 = -2147483644,
-    CSSM_ALGID_FEED = -2147483643,
-    CSSM_ALGID_FEEDEXP = -2147483642,
-    CSSM_ALGID_ASC = -2147483641,
-    CSSM_ALGID_SHA1HMAC_LEGACY = -2147483640,
-    CSSM_ALGID_KEYCHAIN_KEY = -2147483639,
-    CSSM_ALGID_PKCS12_PBE_ENCR = -2147483638,
-    CSSM_ALGID_PKCS12_PBE_MAC = -2147483637,
-    CSSM_ALGID_SECURE_PASSPHRASE = -2147483636,
-    CSSM_ALGID_PBE_OPENSSL_MD5 = -2147483635,
-    CSSM_ALGID_SHA256 = -2147483634,
-    CSSM_ALGID_SHA384 = -2147483633,
-    CSSM_ALGID_SHA512 = -2147483632,
-    CSSM_ALGID_ENTROPY_DEFAULT = -2147483631,
-    CSSM_ALGID_SHA224 = -2147483630,
-    CSSM_ALGID_SHA224WithRSA = -2147483629,
-    CSSM_ALGID_SHA256WithRSA = -2147483628,
-    CSSM_ALGID_SHA384WithRSA = -2147483627,
-    CSSM_ALGID_SHA512WithRSA = -2147483626,
-    CSSM_ALGID_OPENSSH1 = -2147483625,
-    CSSM_ALGID_SHA224WithECDSA = -2147483624,
-    CSSM_ALGID_SHA256WithECDSA = -2147483623,
-    CSSM_ALGID_SHA384WithECDSA = -2147483622,
-    CSSM_ALGID_SHA512WithECDSA = -2147483621,
-    CSSM_ALGID_ECDSA_SPECIFIED = -2147483620,
-    CSSM_ALGID_ECDH_X963_KDF = -2147483619,
-    CSSM_ALGID__FIRST_UNUSED = -2147483618,
-};
+pub const anon2211 = u32;
+pub const anon2211_CSSM_ALGID_APPLE_YARROW: u32 = -2147483648;
+pub const anon2211_CSSM_ALGID_AES: u32 = -2147483647;
+pub const anon2211_CSSM_ALGID_FEE: u32 = -2147483646;
+pub const anon2211_CSSM_ALGID_FEE_MD5: u32 = -2147483645;
+pub const anon2211_CSSM_ALGID_FEE_SHA1: u32 = -2147483644;
+pub const anon2211_CSSM_ALGID_FEED: u32 = -2147483643;
+pub const anon2211_CSSM_ALGID_FEEDEXP: u32 = -2147483642;
+pub const anon2211_CSSM_ALGID_ASC: u32 = -2147483641;
+pub const anon2211_CSSM_ALGID_SHA1HMAC_LEGACY: u32 = -2147483640;
+pub const anon2211_CSSM_ALGID_KEYCHAIN_KEY: u32 = -2147483639;
+pub const anon2211_CSSM_ALGID_PKCS12_PBE_ENCR: u32 = -2147483638;
+pub const anon2211_CSSM_ALGID_PKCS12_PBE_MAC: u32 = -2147483637;
+pub const anon2211_CSSM_ALGID_SECURE_PASSPHRASE: u32 = -2147483636;
+pub const anon2211_CSSM_ALGID_PBE_OPENSSL_MD5: u32 = -2147483635;
+pub const anon2211_CSSM_ALGID_SHA256: u32 = -2147483634;
+pub const anon2211_CSSM_ALGID_SHA384: u32 = -2147483633;
+pub const anon2211_CSSM_ALGID_SHA512: u32 = -2147483632;
+pub const anon2211_CSSM_ALGID_ENTROPY_DEFAULT: u32 = -2147483631;
+pub const anon2211_CSSM_ALGID_SHA224: u32 = -2147483630;
+pub const anon2211_CSSM_ALGID_SHA224WithRSA: u32 = -2147483629;
+pub const anon2211_CSSM_ALGID_SHA256WithRSA: u32 = -2147483628;
+pub const anon2211_CSSM_ALGID_SHA384WithRSA: u32 = -2147483627;
+pub const anon2211_CSSM_ALGID_SHA512WithRSA: u32 = -2147483626;
+pub const anon2211_CSSM_ALGID_OPENSSH1: u32 = -2147483625;
+pub const anon2211_CSSM_ALGID_SHA224WithECDSA: u32 = -2147483624;
+pub const anon2211_CSSM_ALGID_SHA256WithECDSA: u32 = -2147483623;
+pub const anon2211_CSSM_ALGID_SHA384WithECDSA: u32 = -2147483622;
+pub const anon2211_CSSM_ALGID_SHA512WithECDSA: u32 = -2147483621;
+pub const anon2211_CSSM_ALGID_ECDSA_SPECIFIED: u32 = -2147483620;
+pub const anon2211_CSSM_ALGID_ECDH_X963_KDF: u32 = -2147483619;
+pub const anon2211_CSSM_ALGID__FIRST_UNUSED: u32 = -2147483618;
 
-pub const anon2651 = enum(u32) {
-    CSSM_KEYBLOB_RAW_FORMAT_VENDOR_DEFINED = -2147483648,
-};
+pub const anon2651 = u32;
+pub const anon2651_CSSM_KEYBLOB_RAW_FORMAT_VENDOR_DEFINED: u32 = -2147483648;
 
-pub const anon2681 = enum(u32) {
-    CSSM_KEYBLOB_RAW_FORMAT_X509 = -2147483648,
-    CSSM_KEYBLOB_RAW_FORMAT_OPENSSH = -2147483647,
-    CSSM_KEYBLOB_RAW_FORMAT_OPENSSL = -2147483646,
-    CSSM_KEYBLOB_RAW_FORMAT_OPENSSH2 = -2147483645,
-};
+pub const anon2681 = u32;
+pub const anon2681_CSSM_KEYBLOB_RAW_FORMAT_X509: u32 = -2147483648;
+pub const anon2681_CSSM_KEYBLOB_RAW_FORMAT_OPENSSH: u32 = -2147483647;
+pub const anon2681_CSSM_KEYBLOB_RAW_FORMAT_OPENSSL: u32 = -2147483646;
+pub const anon2681_CSSM_KEYBLOB_RAW_FORMAT_OPENSSH2: u32 = -2147483645;
 
-pub const anon2801 = enum(u32) {
-    CSSM_CUSTOM_COMMON_ERROR_EXTENT = 224,
-    CSSM_ERRCODE_NO_USER_INTERACTION = 224,
-    CSSM_ERRCODE_USER_CANCELED = 225,
-    CSSM_ERRCODE_SERVICE_NOT_AVAILABLE = 226,
-    CSSM_ERRCODE_INSUFFICIENT_CLIENT_IDENTIFICATION = 227,
-    CSSM_ERRCODE_DEVICE_RESET = 228,
-    CSSM_ERRCODE_DEVICE_FAILED = 229,
-    CSSM_ERRCODE_IN_DARK_WAKE = 230,
-};
+pub const anon2801 = u32;
+pub const anon2801_CSSM_CUSTOM_COMMON_ERROR_EXTENT: u32 = 224;
+pub const anon2801_CSSM_ERRCODE_NO_USER_INTERACTION: u32 = 224;
+pub const anon2801_CSSM_ERRCODE_USER_CANCELED: u32 = 225;
+pub const anon2801_CSSM_ERRCODE_SERVICE_NOT_AVAILABLE: u32 = 226;
+pub const anon2801_CSSM_ERRCODE_INSUFFICIENT_CLIENT_IDENTIFICATION: u32 = 227;
+pub const anon2801_CSSM_ERRCODE_DEVICE_RESET: u32 = 228;
+pub const anon2801_CSSM_ERRCODE_DEVICE_FAILED: u32 = 229;
+pub const anon2801_CSSM_ERRCODE_IN_DARK_WAKE: u32 = 230;
 
-pub const anon2931 = enum(i32) {
-    CSSMERR_CSSM_NO_USER_INTERACTION = -2147417888,
-    CSSMERR_AC_NO_USER_INTERACTION = -2147405600,
-    CSSMERR_CSP_NO_USER_INTERACTION = -2147415840,
-    CSSMERR_CL_NO_USER_INTERACTION = -2147411744,
-    CSSMERR_DL_NO_USER_INTERACTION = -2147413792,
-    CSSMERR_TP_NO_USER_INTERACTION = -2147409696,
-    CSSMERR_CSSM_USER_CANCELED = -2147417887,
-    CSSMERR_AC_USER_CANCELED = -2147405599,
-    CSSMERR_CSP_USER_CANCELED = -2147415839,
-    CSSMERR_CL_USER_CANCELED = -2147411743,
-    CSSMERR_DL_USER_CANCELED = -2147413791,
-    CSSMERR_TP_USER_CANCELED = -2147409695,
-    CSSMERR_CSSM_SERVICE_NOT_AVAILABLE = -2147417886,
-    CSSMERR_AC_SERVICE_NOT_AVAILABLE = -2147405598,
-    CSSMERR_CSP_SERVICE_NOT_AVAILABLE = -2147415838,
-    CSSMERR_CL_SERVICE_NOT_AVAILABLE = -2147411742,
-    CSSMERR_DL_SERVICE_NOT_AVAILABLE = -2147413790,
-    CSSMERR_TP_SERVICE_NOT_AVAILABLE = -2147409694,
-    CSSMERR_CSSM_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147417885,
-    CSSMERR_AC_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147405597,
-    CSSMERR_CSP_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147415837,
-    CSSMERR_CL_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147411741,
-    CSSMERR_DL_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147413789,
-    CSSMERR_TP_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147409693,
-    CSSMERR_CSSM_DEVICE_RESET = -2147417884,
-    CSSMERR_AC_DEVICE_RESET = -2147405596,
-    CSSMERR_CSP_DEVICE_RESET = -2147415836,
-    CSSMERR_CL_DEVICE_RESET = -2147411740,
-    CSSMERR_DL_DEVICE_RESET = -2147413788,
-    CSSMERR_TP_DEVICE_RESET = -2147409692,
-    CSSMERR_CSSM_DEVICE_FAILED = -2147417883,
-    CSSMERR_AC_DEVICE_FAILED = -2147405595,
-    CSSMERR_CSP_DEVICE_FAILED = -2147415835,
-    CSSMERR_CL_DEVICE_FAILED = -2147411739,
-    CSSMERR_DL_DEVICE_FAILED = -2147413787,
-    CSSMERR_TP_DEVICE_FAILED = -2147409691,
-    CSSMERR_CSSM_IN_DARK_WAKE = -2147417882,
-    CSSMERR_AC_IN_DARK_WAKE = -2147405594,
-    CSSMERR_CSP_IN_DARK_WAKE = -2147415834,
-    CSSMERR_CL_IN_DARK_WAKE = -2147411738,
-    CSSMERR_DL_IN_DARK_WAKE = -2147413786,
-    CSSMERR_TP_IN_DARK_WAKE = -2147409690,
-};
+pub const anon2931 = i32;
+pub const anon2931_CSSMERR_CSSM_NO_USER_INTERACTION: i32 = -2147417888;
+pub const anon2931_CSSMERR_AC_NO_USER_INTERACTION: i32 = -2147405600;
+pub const anon2931_CSSMERR_CSP_NO_USER_INTERACTION: i32 = -2147415840;
+pub const anon2931_CSSMERR_CL_NO_USER_INTERACTION: i32 = -2147411744;
+pub const anon2931_CSSMERR_DL_NO_USER_INTERACTION: i32 = -2147413792;
+pub const anon2931_CSSMERR_TP_NO_USER_INTERACTION: i32 = -2147409696;
+pub const anon2931_CSSMERR_CSSM_USER_CANCELED: i32 = -2147417887;
+pub const anon2931_CSSMERR_AC_USER_CANCELED: i32 = -2147405599;
+pub const anon2931_CSSMERR_CSP_USER_CANCELED: i32 = -2147415839;
+pub const anon2931_CSSMERR_CL_USER_CANCELED: i32 = -2147411743;
+pub const anon2931_CSSMERR_DL_USER_CANCELED: i32 = -2147413791;
+pub const anon2931_CSSMERR_TP_USER_CANCELED: i32 = -2147409695;
+pub const anon2931_CSSMERR_CSSM_SERVICE_NOT_AVAILABLE: i32 = -2147417886;
+pub const anon2931_CSSMERR_AC_SERVICE_NOT_AVAILABLE: i32 = -2147405598;
+pub const anon2931_CSSMERR_CSP_SERVICE_NOT_AVAILABLE: i32 = -2147415838;
+pub const anon2931_CSSMERR_CL_SERVICE_NOT_AVAILABLE: i32 = -2147411742;
+pub const anon2931_CSSMERR_DL_SERVICE_NOT_AVAILABLE: i32 = -2147413790;
+pub const anon2931_CSSMERR_TP_SERVICE_NOT_AVAILABLE: i32 = -2147409694;
+pub const anon2931_CSSMERR_CSSM_INSUFFICIENT_CLIENT_IDENTIFICATION: i32 = -2147417885;
+pub const anon2931_CSSMERR_AC_INSUFFICIENT_CLIENT_IDENTIFICATION: i32 = -2147405597;
+pub const anon2931_CSSMERR_CSP_INSUFFICIENT_CLIENT_IDENTIFICATION: i32 = -2147415837;
+pub const anon2931_CSSMERR_CL_INSUFFICIENT_CLIENT_IDENTIFICATION: i32 = -2147411741;
+pub const anon2931_CSSMERR_DL_INSUFFICIENT_CLIENT_IDENTIFICATION: i32 = -2147413789;
+pub const anon2931_CSSMERR_TP_INSUFFICIENT_CLIENT_IDENTIFICATION: i32 = -2147409693;
+pub const anon2931_CSSMERR_CSSM_DEVICE_RESET: i32 = -2147417884;
+pub const anon2931_CSSMERR_AC_DEVICE_RESET: i32 = -2147405596;
+pub const anon2931_CSSMERR_CSP_DEVICE_RESET: i32 = -2147415836;
+pub const anon2931_CSSMERR_CL_DEVICE_RESET: i32 = -2147411740;
+pub const anon2931_CSSMERR_DL_DEVICE_RESET: i32 = -2147413788;
+pub const anon2931_CSSMERR_TP_DEVICE_RESET: i32 = -2147409692;
+pub const anon2931_CSSMERR_CSSM_DEVICE_FAILED: i32 = -2147417883;
+pub const anon2931_CSSMERR_AC_DEVICE_FAILED: i32 = -2147405595;
+pub const anon2931_CSSMERR_CSP_DEVICE_FAILED: i32 = -2147415835;
+pub const anon2931_CSSMERR_CL_DEVICE_FAILED: i32 = -2147411739;
+pub const anon2931_CSSMERR_DL_DEVICE_FAILED: i32 = -2147413787;
+pub const anon2931_CSSMERR_TP_DEVICE_FAILED: i32 = -2147409691;
+pub const anon2931_CSSMERR_CSSM_IN_DARK_WAKE: i32 = -2147417882;
+pub const anon2931_CSSMERR_AC_IN_DARK_WAKE: i32 = -2147405594;
+pub const anon2931_CSSMERR_CSP_IN_DARK_WAKE: i32 = -2147415834;
+pub const anon2931_CSSMERR_CL_IN_DARK_WAKE: i32 = -2147411738;
+pub const anon2931_CSSMERR_DL_IN_DARK_WAKE: i32 = -2147413786;
+pub const anon2931_CSSMERR_TP_IN_DARK_WAKE: i32 = -2147409690;
 
-pub const anon3451 = enum(i32) {
-    CSSMERR_CSP_APPLE_ADD_APPLICATION_ACL_SUBJECT = -2147415040,
-    CSSMERR_CSP_APPLE_PUBLIC_KEY_INCOMPLETE = -2147415039,
-    CSSMERR_CSP_APPLE_SIGNATURE_MISMATCH = -2147415038,
-    CSSMERR_CSP_APPLE_INVALID_KEY_START_DATE = -2147415037,
-    CSSMERR_CSP_APPLE_INVALID_KEY_END_DATE = -2147415036,
-    CSSMERR_CSPDL_APPLE_DL_CONVERSION_ERROR = -2147415035,
-    CSSMERR_CSP_APPLE_SSLv2_ROLLBACK = -2147415034,
-};
+pub const anon3451 = i32;
+pub const anon3451_CSSMERR_CSP_APPLE_ADD_APPLICATION_ACL_SUBJECT: i32 = -2147415040;
+pub const anon3451_CSSMERR_CSP_APPLE_PUBLIC_KEY_INCOMPLETE: i32 = -2147415039;
+pub const anon3451_CSSMERR_CSP_APPLE_SIGNATURE_MISMATCH: i32 = -2147415038;
+pub const anon3451_CSSMERR_CSP_APPLE_INVALID_KEY_START_DATE: i32 = -2147415037;
+pub const anon3451_CSSMERR_CSP_APPLE_INVALID_KEY_END_DATE: i32 = -2147415036;
+pub const anon3451_CSSMERR_CSPDL_APPLE_DL_CONVERSION_ERROR: i32 = -2147415035;
+pub const anon3451_CSSMERR_CSP_APPLE_SSLv2_ROLLBACK: i32 = -2147415034;
 
-pub const anon3831 = enum(u32) {
-    CSSM_APPLEFILEDL_TOGGLE_AUTOCOMMIT = 0,
-    CSSM_APPLEFILEDL_COMMIT = 1,
-    CSSM_APPLEFILEDL_ROLLBACK = 2,
-    CSSM_APPLEFILEDL_TAKE_FILE_LOCK = 3,
-    CSSM_APPLEFILEDL_MAKE_BACKUP = 4,
-    CSSM_APPLEFILEDL_MAKE_COPY = 5,
-    CSSM_APPLEFILEDL_DELETE_FILE = 6,
-};
+pub const anon3831 = u32;
+pub const anon3831_CSSM_APPLEFILEDL_TOGGLE_AUTOCOMMIT: u32 = 0;
+pub const anon3831_CSSM_APPLEFILEDL_COMMIT: u32 = 1;
+pub const anon3831_CSSM_APPLEFILEDL_ROLLBACK: u32 = 2;
+pub const anon3831_CSSM_APPLEFILEDL_TAKE_FILE_LOCK: u32 = 3;
+pub const anon3831_CSSM_APPLEFILEDL_MAKE_BACKUP: u32 = 4;
+pub const anon3831_CSSM_APPLEFILEDL_MAKE_COPY: u32 = 5;
+pub const anon3831_CSSM_APPLEFILEDL_DELETE_FILE: u32 = 6;
 
-pub const anon4101 = enum(u32) {
-    CSSM_APPLE_UNLOCK_TYPE_KEY_DIRECT = 1,
-    CSSM_APPLE_UNLOCK_TYPE_WRAPPED_PRIVATE = 2,
-    CSSM_APPLE_UNLOCK_TYPE_KEYBAG = 3,
-};
+pub const anon4101 = u32;
+pub const anon4101_CSSM_APPLE_UNLOCK_TYPE_KEY_DIRECT: u32 = 1;
+pub const anon4101_CSSM_APPLE_UNLOCK_TYPE_WRAPPED_PRIVATE: u32 = 2;
+pub const anon4101_CSSM_APPLE_UNLOCK_TYPE_KEYBAG: u32 = 3;
 
-pub const anon4171 = enum(i32) {
-    CSSMERR_APPLEDL_INVALID_OPEN_PARAMETERS = -2147412992,
-    CSSMERR_APPLEDL_DISK_FULL = -2147412991,
-    CSSMERR_APPLEDL_QUOTA_EXCEEDED = -2147412990,
-    CSSMERR_APPLEDL_FILE_TOO_BIG = -2147412989,
-    CSSMERR_APPLEDL_INVALID_DATABASE_BLOB = -2147412988,
-    CSSMERR_APPLEDL_INVALID_KEY_BLOB = -2147412987,
-    CSSMERR_APPLEDL_INCOMPATIBLE_DATABASE_BLOB = -2147412986,
-    CSSMERR_APPLEDL_INCOMPATIBLE_KEY_BLOB = -2147412985,
-};
+pub const anon4171 = i32;
+pub const anon4171_CSSMERR_APPLEDL_INVALID_OPEN_PARAMETERS: i32 = -2147412992;
+pub const anon4171_CSSMERR_APPLEDL_DISK_FULL: i32 = -2147412991;
+pub const anon4171_CSSMERR_APPLEDL_QUOTA_EXCEEDED: i32 = -2147412990;
+pub const anon4171_CSSMERR_APPLEDL_FILE_TOO_BIG: i32 = -2147412989;
+pub const anon4171_CSSMERR_APPLEDL_INVALID_DATABASE_BLOB: i32 = -2147412988;
+pub const anon4171_CSSMERR_APPLEDL_INVALID_KEY_BLOB: i32 = -2147412987;
+pub const anon4171_CSSMERR_APPLEDL_INCOMPATIBLE_DATABASE_BLOB: i32 = -2147412986;
+pub const anon4171_CSSMERR_APPLEDL_INCOMPATIBLE_KEY_BLOB: i32 = -2147412985;
 
-pub const anon4471 = enum(i32) {
-    CSSMERR_APPLETP_HOSTNAME_MISMATCH = -2147408896,
-    CSSMERR_APPLETP_UNKNOWN_CRITICAL_EXTEN = -2147408895,
-    CSSMERR_APPLETP_NO_BASIC_CONSTRAINTS = -2147408894,
-    CSSMERR_APPLETP_INVALID_CA = -2147408893,
-    CSSMERR_APPLETP_INVALID_AUTHORITY_ID = -2147408892,
-    CSSMERR_APPLETP_INVALID_SUBJECT_ID = -2147408891,
-    CSSMERR_APPLETP_INVALID_KEY_USAGE = -2147408890,
-    CSSMERR_APPLETP_INVALID_EXTENDED_KEY_USAGE = -2147408889,
-    CSSMERR_APPLETP_INVALID_ID_LINKAGE = -2147408888,
-    CSSMERR_APPLETP_PATH_LEN_CONSTRAINT = -2147408887,
-    CSSMERR_APPLETP_INVALID_ROOT = -2147408886,
-    CSSMERR_APPLETP_CRL_EXPIRED = -2147408885,
-    CSSMERR_APPLETP_CRL_NOT_VALID_YET = -2147408884,
-    CSSMERR_APPLETP_CRL_NOT_FOUND = -2147408883,
-    CSSMERR_APPLETP_CRL_SERVER_DOWN = -2147408882,
-    CSSMERR_APPLETP_CRL_BAD_URI = -2147408881,
-    CSSMERR_APPLETP_UNKNOWN_CERT_EXTEN = -2147408880,
-    CSSMERR_APPLETP_UNKNOWN_CRL_EXTEN = -2147408879,
-    CSSMERR_APPLETP_CRL_NOT_TRUSTED = -2147408878,
-    CSSMERR_APPLETP_CRL_INVALID_ANCHOR_CERT = -2147408877,
-    CSSMERR_APPLETP_CRL_POLICY_FAIL = -2147408876,
-    CSSMERR_APPLETP_IDP_FAIL = -2147408875,
-    CSSMERR_APPLETP_CERT_NOT_FOUND_FROM_ISSUER = -2147408874,
-    CSSMERR_APPLETP_BAD_CERT_FROM_ISSUER = -2147408873,
-    CSSMERR_APPLETP_SMIME_EMAIL_ADDRS_NOT_FOUND = -2147408872,
-    CSSMERR_APPLETP_SMIME_BAD_EXT_KEY_USE = -2147408871,
-    CSSMERR_APPLETP_SMIME_BAD_KEY_USE = -2147408870,
-    CSSMERR_APPLETP_SMIME_KEYUSAGE_NOT_CRITICAL = -2147408869,
-    CSSMERR_APPLETP_SMIME_NO_EMAIL_ADDRS = -2147408868,
-    CSSMERR_APPLETP_SMIME_SUBJ_ALT_NAME_NOT_CRIT = -2147408867,
-    CSSMERR_APPLETP_SSL_BAD_EXT_KEY_USE = -2147408866,
-    CSSMERR_APPLETP_OCSP_BAD_RESPONSE = -2147408865,
-    CSSMERR_APPLETP_OCSP_BAD_REQUEST = -2147408864,
-    CSSMERR_APPLETP_OCSP_UNAVAILABLE = -2147408863,
-    CSSMERR_APPLETP_OCSP_STATUS_UNRECOGNIZED = -2147408862,
-    CSSMERR_APPLETP_INCOMPLETE_REVOCATION_CHECK = -2147408861,
-    CSSMERR_APPLETP_NETWORK_FAILURE = -2147408860,
-    CSSMERR_APPLETP_OCSP_NOT_TRUSTED = -2147408859,
-    CSSMERR_APPLETP_OCSP_INVALID_ANCHOR_CERT = -2147408858,
-    CSSMERR_APPLETP_OCSP_SIG_ERROR = -2147408857,
-    CSSMERR_APPLETP_OCSP_NO_SIGNER = -2147408856,
-    CSSMERR_APPLETP_OCSP_RESP_MALFORMED_REQ = -2147408855,
-    CSSMERR_APPLETP_OCSP_RESP_INTERNAL_ERR = -2147408854,
-    CSSMERR_APPLETP_OCSP_RESP_TRY_LATER = -2147408853,
-    CSSMERR_APPLETP_OCSP_RESP_SIG_REQUIRED = -2147408852,
-    CSSMERR_APPLETP_OCSP_RESP_UNAUTHORIZED = -2147408851,
-    CSSMERR_APPLETP_OCSP_NONCE_MISMATCH = -2147408850,
-    CSSMERR_APPLETP_CS_BAD_CERT_CHAIN_LENGTH = -2147408849,
-    CSSMERR_APPLETP_CS_NO_BASIC_CONSTRAINTS = -2147408848,
-    CSSMERR_APPLETP_CS_BAD_PATH_LENGTH = -2147408847,
-    CSSMERR_APPLETP_CS_NO_EXTENDED_KEY_USAGE = -2147408846,
-    CSSMERR_APPLETP_CODE_SIGN_DEVELOPMENT = -2147408845,
-    CSSMERR_APPLETP_RS_BAD_CERT_CHAIN_LENGTH = -2147408844,
-    CSSMERR_APPLETP_RS_BAD_EXTENDED_KEY_USAGE = -2147408843,
-    CSSMERR_APPLETP_TRUST_SETTING_DENY = -2147408842,
-    CSSMERR_APPLETP_INVALID_EMPTY_SUBJECT = -2147408841,
-    CSSMERR_APPLETP_UNKNOWN_QUAL_CERT_STATEMENT = -2147408840,
-    CSSMERR_APPLETP_MISSING_REQUIRED_EXTENSION = -2147408839,
-    CSSMERR_APPLETP_EXT_KEYUSAGE_NOT_CRITICAL = -2147408838,
-    CSSMERR_APPLETP_IDENTIFIER_MISSING = -2147408837,
-    CSSMERR_APPLETP_CA_PIN_MISMATCH = -2147408836,
-    CSSMERR_APPLETP_LEAF_PIN_MISMATCH = -2147408835,
-};
+pub const anon4471 = i32;
+pub const anon4471_CSSMERR_APPLETP_HOSTNAME_MISMATCH: i32 = -2147408896;
+pub const anon4471_CSSMERR_APPLETP_UNKNOWN_CRITICAL_EXTEN: i32 = -2147408895;
+pub const anon4471_CSSMERR_APPLETP_NO_BASIC_CONSTRAINTS: i32 = -2147408894;
+pub const anon4471_CSSMERR_APPLETP_INVALID_CA: i32 = -2147408893;
+pub const anon4471_CSSMERR_APPLETP_INVALID_AUTHORITY_ID: i32 = -2147408892;
+pub const anon4471_CSSMERR_APPLETP_INVALID_SUBJECT_ID: i32 = -2147408891;
+pub const anon4471_CSSMERR_APPLETP_INVALID_KEY_USAGE: i32 = -2147408890;
+pub const anon4471_CSSMERR_APPLETP_INVALID_EXTENDED_KEY_USAGE: i32 = -2147408889;
+pub const anon4471_CSSMERR_APPLETP_INVALID_ID_LINKAGE: i32 = -2147408888;
+pub const anon4471_CSSMERR_APPLETP_PATH_LEN_CONSTRAINT: i32 = -2147408887;
+pub const anon4471_CSSMERR_APPLETP_INVALID_ROOT: i32 = -2147408886;
+pub const anon4471_CSSMERR_APPLETP_CRL_EXPIRED: i32 = -2147408885;
+pub const anon4471_CSSMERR_APPLETP_CRL_NOT_VALID_YET: i32 = -2147408884;
+pub const anon4471_CSSMERR_APPLETP_CRL_NOT_FOUND: i32 = -2147408883;
+pub const anon4471_CSSMERR_APPLETP_CRL_SERVER_DOWN: i32 = -2147408882;
+pub const anon4471_CSSMERR_APPLETP_CRL_BAD_URI: i32 = -2147408881;
+pub const anon4471_CSSMERR_APPLETP_UNKNOWN_CERT_EXTEN: i32 = -2147408880;
+pub const anon4471_CSSMERR_APPLETP_UNKNOWN_CRL_EXTEN: i32 = -2147408879;
+pub const anon4471_CSSMERR_APPLETP_CRL_NOT_TRUSTED: i32 = -2147408878;
+pub const anon4471_CSSMERR_APPLETP_CRL_INVALID_ANCHOR_CERT: i32 = -2147408877;
+pub const anon4471_CSSMERR_APPLETP_CRL_POLICY_FAIL: i32 = -2147408876;
+pub const anon4471_CSSMERR_APPLETP_IDP_FAIL: i32 = -2147408875;
+pub const anon4471_CSSMERR_APPLETP_CERT_NOT_FOUND_FROM_ISSUER: i32 = -2147408874;
+pub const anon4471_CSSMERR_APPLETP_BAD_CERT_FROM_ISSUER: i32 = -2147408873;
+pub const anon4471_CSSMERR_APPLETP_SMIME_EMAIL_ADDRS_NOT_FOUND: i32 = -2147408872;
+pub const anon4471_CSSMERR_APPLETP_SMIME_BAD_EXT_KEY_USE: i32 = -2147408871;
+pub const anon4471_CSSMERR_APPLETP_SMIME_BAD_KEY_USE: i32 = -2147408870;
+pub const anon4471_CSSMERR_APPLETP_SMIME_KEYUSAGE_NOT_CRITICAL: i32 = -2147408869;
+pub const anon4471_CSSMERR_APPLETP_SMIME_NO_EMAIL_ADDRS: i32 = -2147408868;
+pub const anon4471_CSSMERR_APPLETP_SMIME_SUBJ_ALT_NAME_NOT_CRIT: i32 = -2147408867;
+pub const anon4471_CSSMERR_APPLETP_SSL_BAD_EXT_KEY_USE: i32 = -2147408866;
+pub const anon4471_CSSMERR_APPLETP_OCSP_BAD_RESPONSE: i32 = -2147408865;
+pub const anon4471_CSSMERR_APPLETP_OCSP_BAD_REQUEST: i32 = -2147408864;
+pub const anon4471_CSSMERR_APPLETP_OCSP_UNAVAILABLE: i32 = -2147408863;
+pub const anon4471_CSSMERR_APPLETP_OCSP_STATUS_UNRECOGNIZED: i32 = -2147408862;
+pub const anon4471_CSSMERR_APPLETP_INCOMPLETE_REVOCATION_CHECK: i32 = -2147408861;
+pub const anon4471_CSSMERR_APPLETP_NETWORK_FAILURE: i32 = -2147408860;
+pub const anon4471_CSSMERR_APPLETP_OCSP_NOT_TRUSTED: i32 = -2147408859;
+pub const anon4471_CSSMERR_APPLETP_OCSP_INVALID_ANCHOR_CERT: i32 = -2147408858;
+pub const anon4471_CSSMERR_APPLETP_OCSP_SIG_ERROR: i32 = -2147408857;
+pub const anon4471_CSSMERR_APPLETP_OCSP_NO_SIGNER: i32 = -2147408856;
+pub const anon4471_CSSMERR_APPLETP_OCSP_RESP_MALFORMED_REQ: i32 = -2147408855;
+pub const anon4471_CSSMERR_APPLETP_OCSP_RESP_INTERNAL_ERR: i32 = -2147408854;
+pub const anon4471_CSSMERR_APPLETP_OCSP_RESP_TRY_LATER: i32 = -2147408853;
+pub const anon4471_CSSMERR_APPLETP_OCSP_RESP_SIG_REQUIRED: i32 = -2147408852;
+pub const anon4471_CSSMERR_APPLETP_OCSP_RESP_UNAUTHORIZED: i32 = -2147408851;
+pub const anon4471_CSSMERR_APPLETP_OCSP_NONCE_MISMATCH: i32 = -2147408850;
+pub const anon4471_CSSMERR_APPLETP_CS_BAD_CERT_CHAIN_LENGTH: i32 = -2147408849;
+pub const anon4471_CSSMERR_APPLETP_CS_NO_BASIC_CONSTRAINTS: i32 = -2147408848;
+pub const anon4471_CSSMERR_APPLETP_CS_BAD_PATH_LENGTH: i32 = -2147408847;
+pub const anon4471_CSSMERR_APPLETP_CS_NO_EXTENDED_KEY_USAGE: i32 = -2147408846;
+pub const anon4471_CSSMERR_APPLETP_CODE_SIGN_DEVELOPMENT: i32 = -2147408845;
+pub const anon4471_CSSMERR_APPLETP_RS_BAD_CERT_CHAIN_LENGTH: i32 = -2147408844;
+pub const anon4471_CSSMERR_APPLETP_RS_BAD_EXTENDED_KEY_USAGE: i32 = -2147408843;
+pub const anon4471_CSSMERR_APPLETP_TRUST_SETTING_DENY: i32 = -2147408842;
+pub const anon4471_CSSMERR_APPLETP_INVALID_EMPTY_SUBJECT: i32 = -2147408841;
+pub const anon4471_CSSMERR_APPLETP_UNKNOWN_QUAL_CERT_STATEMENT: i32 = -2147408840;
+pub const anon4471_CSSMERR_APPLETP_MISSING_REQUIRED_EXTENSION: i32 = -2147408839;
+pub const anon4471_CSSMERR_APPLETP_EXT_KEYUSAGE_NOT_CRITICAL: i32 = -2147408838;
+pub const anon4471_CSSMERR_APPLETP_IDENTIFIER_MISSING: i32 = -2147408837;
+pub const anon4471_CSSMERR_APPLETP_CA_PIN_MISMATCH: i32 = -2147408836;
+pub const anon4471_CSSMERR_APPLETP_LEAF_PIN_MISMATCH: i32 = -2147408835;
 
-pub const anon5781 = enum(i32) {
-    CSSMERR_APPLE_DOTMAC_REQ_QUEUED = -2147408796,
-    CSSMERR_APPLE_DOTMAC_REQ_REDIRECT = -2147408795,
-    CSSMERR_APPLE_DOTMAC_REQ_SERVER_ERR = -2147408794,
-    CSSMERR_APPLE_DOTMAC_REQ_SERVER_PARAM = -2147408793,
-    CSSMERR_APPLE_DOTMAC_REQ_SERVER_AUTH = -2147408792,
-    CSSMERR_APPLE_DOTMAC_REQ_SERVER_UNIMPL = -2147408791,
-    CSSMERR_APPLE_DOTMAC_REQ_SERVER_NOT_AVAIL = -2147408790,
-    CSSMERR_APPLE_DOTMAC_REQ_SERVER_ALREADY_EXIST = -2147408789,
-    CSSMERR_APPLE_DOTMAC_REQ_SERVER_SERVICE_ERROR = -2147408788,
-    CSSMERR_APPLE_DOTMAC_REQ_IS_PENDING = -2147408787,
-    CSSMERR_APPLE_DOTMAC_NO_REQ_PENDING = -2147408786,
-    CSSMERR_APPLE_DOTMAC_CSR_VERIFY_FAIL = -2147408785,
-    CSSMERR_APPLE_DOTMAC_FAILED_CONSISTENCY_CHECK = -2147408784,
-};
+pub const anon5781 = i32;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_QUEUED: i32 = -2147408796;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_REDIRECT: i32 = -2147408795;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_ERR: i32 = -2147408794;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_PARAM: i32 = -2147408793;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_AUTH: i32 = -2147408792;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_UNIMPL: i32 = -2147408791;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_NOT_AVAIL: i32 = -2147408790;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_ALREADY_EXIST: i32 = -2147408789;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_SERVER_SERVICE_ERROR: i32 = -2147408788;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_REQ_IS_PENDING: i32 = -2147408787;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_NO_REQ_PENDING: i32 = -2147408786;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_CSR_VERIFY_FAIL: i32 = -2147408785;
+pub const anon5781_CSSMERR_APPLE_DOTMAC_FAILED_CONSISTENCY_CHECK: i32 = -2147408784;
 
-pub const anon6081 = enum(u32) {
-    CSSM_APPLEDL_OPEN_PARAMETERS_VERSION = 1,
-};
+pub const anon6081 = u32;
+pub const anon6081_CSSM_APPLEDL_OPEN_PARAMETERS_VERSION: u32 = 1;
 
-pub const cssm_appledl_open_parameters_mask = enum(u32) {
-    CSSM_APPLEDL_MASK_MODE = 1,
-};
+pub const cssm_appledl_open_parameters_mask = u32;
+pub const cssm_appledl_open_parameters_mask_CSSM_APPLEDL_MASK_MODE: u32 = 1;
 
 pub const cssm_appledl_open_parameters = extern struct {
     length: uint32,
@@ -4814,38 +4707,37 @@ pub const CSSM_APPLEDL_OPEN_PARAMETERS = cssm_appledl_open_parameters;
 
 pub const CSSM_APPLEDL_OPEN_PARAMETERS_PTR = ?*cssm_appledl_open_parameters;
 
-pub const anon6451 = enum(u32) {
-    CSSM_APPLECSPDL_DB_LOCK = 0,
-    CSSM_APPLECSPDL_DB_UNLOCK = 1,
-    CSSM_APPLECSPDL_DB_GET_SETTINGS = 2,
-    CSSM_APPLECSPDL_DB_SET_SETTINGS = 3,
-    CSSM_APPLECSPDL_DB_IS_LOCKED = 4,
-    CSSM_APPLECSPDL_DB_CHANGE_PASSWORD = 5,
-    CSSM_APPLECSPDL_DB_GET_HANDLE = 6,
-    CSSM_APPLESCPDL_CSP_GET_KEYHANDLE = 7,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_8 = 8,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_9 = 9,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_10 = 10,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_11 = 11,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_12 = 12,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_13 = 13,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_14 = 14,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_15 = 15,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_16 = 16,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_17 = 17,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_18 = 18,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_19 = 19,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_20 = 20,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_21 = 21,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_22 = 22,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_23 = 23,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_24 = 24,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_25 = 25,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_26 = 26,
-    CSSM_APPLE_PRIVATE_CSPDL_CODE_27 = 27,
-    CSSM_APPLECSP_KEYDIGEST = 256,
-    CSSM_APPLECSP_PUBKEY = 257,
-};
+pub const anon6451 = u32;
+pub const anon6451_CSSM_APPLECSPDL_DB_LOCK: u32 = 0;
+pub const anon6451_CSSM_APPLECSPDL_DB_UNLOCK: u32 = 1;
+pub const anon6451_CSSM_APPLECSPDL_DB_GET_SETTINGS: u32 = 2;
+pub const anon6451_CSSM_APPLECSPDL_DB_SET_SETTINGS: u32 = 3;
+pub const anon6451_CSSM_APPLECSPDL_DB_IS_LOCKED: u32 = 4;
+pub const anon6451_CSSM_APPLECSPDL_DB_CHANGE_PASSWORD: u32 = 5;
+pub const anon6451_CSSM_APPLECSPDL_DB_GET_HANDLE: u32 = 6;
+pub const anon6451_CSSM_APPLESCPDL_CSP_GET_KEYHANDLE: u32 = 7;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_8: u32 = 8;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_9: u32 = 9;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_10: u32 = 10;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_11: u32 = 11;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_12: u32 = 12;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_13: u32 = 13;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_14: u32 = 14;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_15: u32 = 15;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_16: u32 = 16;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_17: u32 = 17;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_18: u32 = 18;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_19: u32 = 19;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_20: u32 = 20;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_21: u32 = 21;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_22: u32 = 22;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_23: u32 = 23;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_24: u32 = 24;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_25: u32 = 25;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_26: u32 = 26;
+pub const anon6451_CSSM_APPLE_PRIVATE_CSPDL_CODE_27: u32 = 27;
+pub const anon6451_CSSM_APPLECSP_KEYDIGEST: u32 = 256;
+pub const anon6451_CSSM_APPLECSP_PUBKEY: u32 = 257;
 
 pub const cssm_applecspdl_db_settings_parameters = extern struct {
     idleTimeout: uint32,
@@ -4872,49 +4764,43 @@ pub const CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS = cssm_applecspdl_db_cha
 
 pub const CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS_PTR = ?*cssm_applecspdl_db_change_password_parameters;
 
-pub const anon7791 = enum(u32) {
-    CSSM_ATTRIBUTE_VENDOR_DEFINED = 8388608,
-};
+pub const anon7791 = u32;
+pub const anon7791_CSSM_ATTRIBUTE_VENDOR_DEFINED: u32 = 8388608;
 
-pub const anon7831 = enum(u32) {
-    CSSM_ATTRIBUTE_PUBLIC_KEY = 1082130432,
-    CSSM_ATTRIBUTE_FEE_PRIME_TYPE = 276824065,
-    CSSM_ATTRIBUTE_FEE_CURVE_TYPE = 276824066,
-    CSSM_ATTRIBUTE_ASC_OPTIMIZATION = 276824067,
-    CSSM_ATTRIBUTE_RSA_BLINDING = 276824068,
-    CSSM_ATTRIBUTE_PARAM_KEY = 1082130437,
-    CSSM_ATTRIBUTE_PROMPT = 545259526,
-    CSSM_ATTRIBUTE_ALERT_TITLE = 545259527,
-    CSSM_ATTRIBUTE_VERIFY_PASSPHRASE = 276824072,
-};
+pub const anon7831 = u32;
+pub const anon7831_CSSM_ATTRIBUTE_PUBLIC_KEY: u32 = 1082130432;
+pub const anon7831_CSSM_ATTRIBUTE_FEE_PRIME_TYPE: u32 = 276824065;
+pub const anon7831_CSSM_ATTRIBUTE_FEE_CURVE_TYPE: u32 = 276824066;
+pub const anon7831_CSSM_ATTRIBUTE_ASC_OPTIMIZATION: u32 = 276824067;
+pub const anon7831_CSSM_ATTRIBUTE_RSA_BLINDING: u32 = 276824068;
+pub const anon7831_CSSM_ATTRIBUTE_PARAM_KEY: u32 = 1082130437;
+pub const anon7831_CSSM_ATTRIBUTE_PROMPT: u32 = 545259526;
+pub const anon7831_CSSM_ATTRIBUTE_ALERT_TITLE: u32 = 545259527;
+pub const anon7831_CSSM_ATTRIBUTE_VERIFY_PASSPHRASE: u32 = 276824072;
 
-pub const anon8461 = enum(u32) {
-    CSSM_FEE_PRIME_TYPE_DEFAULT = 0,
-    CSSM_FEE_PRIME_TYPE_MERSENNE = 1,
-    CSSM_FEE_PRIME_TYPE_FEE = 2,
-    CSSM_FEE_PRIME_TYPE_GENERAL = 3,
-};
+pub const anon8461 = u32;
+pub const anon8461_CSSM_FEE_PRIME_TYPE_DEFAULT: u32 = 0;
+pub const anon8461_CSSM_FEE_PRIME_TYPE_MERSENNE: u32 = 1;
+pub const anon8461_CSSM_FEE_PRIME_TYPE_FEE: u32 = 2;
+pub const anon8461_CSSM_FEE_PRIME_TYPE_GENERAL: u32 = 3;
 
-pub const anon8581 = enum(u32) {
-    CSSM_FEE_CURVE_TYPE_DEFAULT = 0,
-    CSSM_FEE_CURVE_TYPE_MONTGOMERY = 1,
-    CSSM_FEE_CURVE_TYPE_WEIERSTRASS = 2,
-    CSSM_FEE_CURVE_TYPE_ANSI_X9_62 = 3,
-};
+pub const anon8581 = u32;
+pub const anon8581_CSSM_FEE_CURVE_TYPE_DEFAULT: u32 = 0;
+pub const anon8581_CSSM_FEE_CURVE_TYPE_MONTGOMERY: u32 = 1;
+pub const anon8581_CSSM_FEE_CURVE_TYPE_WEIERSTRASS: u32 = 2;
+pub const anon8581_CSSM_FEE_CURVE_TYPE_ANSI_X9_62: u32 = 3;
 
-pub const anon8681 = enum(u32) {
-    CSSM_ASC_OPTIMIZE_DEFAULT = 0,
-    CSSM_ASC_OPTIMIZE_SIZE = 1,
-    CSSM_ASC_OPTIMIZE_SECURITY = 2,
-    CSSM_ASC_OPTIMIZE_TIME = 3,
-    CSSM_ASC_OPTIMIZE_TIME_SIZE = 4,
-    CSSM_ASC_OPTIMIZE_ASCII = 5,
-};
+pub const anon8681 = u32;
+pub const anon8681_CSSM_ASC_OPTIMIZE_DEFAULT: u32 = 0;
+pub const anon8681_CSSM_ASC_OPTIMIZE_SIZE: u32 = 1;
+pub const anon8681_CSSM_ASC_OPTIMIZE_SECURITY: u32 = 2;
+pub const anon8681_CSSM_ASC_OPTIMIZE_TIME: u32 = 3;
+pub const anon8681_CSSM_ASC_OPTIMIZE_TIME_SIZE: u32 = 4;
+pub const anon8681_CSSM_ASC_OPTIMIZE_ASCII: u32 = 5;
 
-pub const anon8801 = enum(u32) {
-    CSSM_KEYATTR_PARTIAL = 65536,
-    CSSM_KEYATTR_PUBLIC_KEY_ENCRYPT = 131072,
-};
+pub const anon8801 = u32;
+pub const anon8801_CSSM_KEYATTR_PARTIAL: u32 = 65536;
+pub const anon8801_CSSM_KEYATTR_PUBLIC_KEY_ENCRYPT: u32 = 131072;
 
 pub const CSSM_APPLE_TP_NAME_OID = extern struct {
     string: ?*i8,
@@ -4950,12 +4836,11 @@ pub const CSSM_APPLE_TP_SSL_OPTIONS = extern struct {
 
 pub const CSSM_APPLE_TP_CRL_OPT_FLAGS = uint32;
 
-pub const anon9821 = enum(u32) {
-    CSSM_TP_ACTION_REQUIRE_CRL_PER_CERT = 1,
-    CSSM_TP_ACTION_FETCH_CRL_FROM_NET = 2,
-    CSSM_TP_ACTION_CRL_SUFFICIENT = 4,
-    CSSM_TP_ACTION_REQUIRE_CRL_IF_PRESENT = 8,
-};
+pub const anon9821 = u32;
+pub const anon9821_CSSM_TP_ACTION_REQUIRE_CRL_PER_CERT: u32 = 1;
+pub const anon9821_CSSM_TP_ACTION_FETCH_CRL_FROM_NET: u32 = 2;
+pub const anon9821_CSSM_TP_ACTION_CRL_SUFFICIENT: u32 = 4;
+pub const anon9821_CSSM_TP_ACTION_REQUIRE_CRL_IF_PRESENT: u32 = 8;
 
 pub const CSSM_APPLE_TP_CRL_OPTIONS = extern struct {
     Version: uint32,
@@ -4972,15 +4857,14 @@ pub const CSSM_APPLE_TP_SMIME_OPTIONS = extern struct {
 
 pub const CSSM_APPLE_TP_ACTION_FLAGS = uint32;
 
-pub const anon10411 = enum(u32) {
-    CSSM_TP_ACTION_ALLOW_EXPIRED = 1,
-    CSSM_TP_ACTION_LEAF_IS_CA = 2,
-    CSSM_TP_ACTION_FETCH_CERT_FROM_NET = 4,
-    CSSM_TP_ACTION_ALLOW_EXPIRED_ROOT = 8,
-    CSSM_TP_ACTION_REQUIRE_REV_PER_CERT = 16,
-    CSSM_TP_ACTION_TRUST_SETTINGS = 32,
-    CSSM_TP_ACTION_IMPLICIT_ANCHORS = 64,
-};
+pub const anon10411 = u32;
+pub const anon10411_CSSM_TP_ACTION_ALLOW_EXPIRED: u32 = 1;
+pub const anon10411_CSSM_TP_ACTION_LEAF_IS_CA: u32 = 2;
+pub const anon10411_CSSM_TP_ACTION_FETCH_CERT_FROM_NET: u32 = 4;
+pub const anon10411_CSSM_TP_ACTION_ALLOW_EXPIRED_ROOT: u32 = 8;
+pub const anon10411_CSSM_TP_ACTION_REQUIRE_REV_PER_CERT: u32 = 16;
+pub const anon10411_CSSM_TP_ACTION_TRUST_SETTINGS: u32 = 32;
+pub const anon10411_CSSM_TP_ACTION_IMPLICIT_ANCHORS: u32 = 64;
 
 pub const CSSM_APPLE_TP_ACTION_DATA = extern struct {
     Version: uint32,
@@ -4989,20 +4873,19 @@ pub const CSSM_APPLE_TP_ACTION_DATA = extern struct {
 
 pub const CSSM_TP_APPLE_CERT_STATUS = uint32;
 
-pub const anon10701 = enum(u32) {
-    CSSM_CERT_STATUS_EXPIRED = 1,
-    CSSM_CERT_STATUS_NOT_VALID_YET = 2,
-    CSSM_CERT_STATUS_IS_IN_INPUT_CERTS = 4,
-    CSSM_CERT_STATUS_IS_IN_ANCHORS = 8,
-    CSSM_CERT_STATUS_IS_ROOT = 16,
-    CSSM_CERT_STATUS_IS_FROM_NET = 32,
-    CSSM_CERT_STATUS_TRUST_SETTINGS_FOUND_USER = 64,
-    CSSM_CERT_STATUS_TRUST_SETTINGS_FOUND_ADMIN = 128,
-    CSSM_CERT_STATUS_TRUST_SETTINGS_FOUND_SYSTEM = 256,
-    CSSM_CERT_STATUS_TRUST_SETTINGS_TRUST = 512,
-    CSSM_CERT_STATUS_TRUST_SETTINGS_DENY = 1024,
-    CSSM_CERT_STATUS_TRUST_SETTINGS_IGNORED_ERROR = 2048,
-};
+pub const anon10701 = u32;
+pub const anon10701_CSSM_CERT_STATUS_EXPIRED: u32 = 1;
+pub const anon10701_CSSM_CERT_STATUS_NOT_VALID_YET: u32 = 2;
+pub const anon10701_CSSM_CERT_STATUS_IS_IN_INPUT_CERTS: u32 = 4;
+pub const anon10701_CSSM_CERT_STATUS_IS_IN_ANCHORS: u32 = 8;
+pub const anon10701_CSSM_CERT_STATUS_IS_ROOT: u32 = 16;
+pub const anon10701_CSSM_CERT_STATUS_IS_FROM_NET: u32 = 32;
+pub const anon10701_CSSM_CERT_STATUS_TRUST_SETTINGS_FOUND_USER: u32 = 64;
+pub const anon10701_CSSM_CERT_STATUS_TRUST_SETTINGS_FOUND_ADMIN: u32 = 128;
+pub const anon10701_CSSM_CERT_STATUS_TRUST_SETTINGS_FOUND_SYSTEM: u32 = 256;
+pub const anon10701_CSSM_CERT_STATUS_TRUST_SETTINGS_TRUST: u32 = 512;
+pub const anon10701_CSSM_CERT_STATUS_TRUST_SETTINGS_DENY: u32 = 1024;
+pub const anon10701_CSSM_CERT_STATUS_TRUST_SETTINGS_IGNORED_ERROR: u32 = 2048;
 
 pub const CSSM_TP_APPLE_EVIDENCE_INFO = extern struct {
     StatusBits: CSSM_TP_APPLE_CERT_STATUS,
@@ -5017,16 +4900,14 @@ pub const CSSM_TP_APPLE_EVIDENCE_HEADER = extern struct {
     Version: uint32,
 };
 
-pub const anon11371 = enum(u32) {
-    CSSM_EVIDENCE_FORM_APPLE_HEADER = -2147483648,
-    CSSM_EVIDENCE_FORM_APPLE_CERTGROUP = -2147483647,
-    CSSM_EVIDENCE_FORM_APPLE_CERT_INFO = -2147483646,
-};
+pub const anon11371 = u32;
+pub const anon11371_CSSM_EVIDENCE_FORM_APPLE_HEADER: u32 = -2147483648;
+pub const anon11371_CSSM_EVIDENCE_FORM_APPLE_CERTGROUP: u32 = -2147483647;
+pub const anon11371_CSSM_EVIDENCE_FORM_APPLE_CERT_INFO: u32 = -2147483646;
 
-pub const anon11451 = enum(u32) {
-    CSSM_APPLEX509CL_OBTAIN_CSR = 0,
-    CSSM_APPLEX509CL_VERIFY_CSR = 1,
-};
+pub const anon11451 = u32;
+pub const anon11451_CSSM_APPLEX509CL_OBTAIN_CSR: u32 = 0;
+pub const anon11451_CSSM_APPLEX509CL_VERIFY_CSR: u32 = 1;
 
 pub const CSSM_APPLE_CL_CSR_REQUEST = extern struct {
     subjectNameX509: CSSM_X509_NAME_PTR,
@@ -5044,11 +4925,10 @@ pub extern "Security" fn cssmOidToAlg() callconv(.C) i32;
 
 pub extern "Security" fn cssmAlgToOid(algId: CSSM_ALGORITHMS) callconv(.C) ?*Asn1Oid;
 
-pub const anon541 = enum(objc.UInt32) {
-    SecUnlockStateStatus = 1,
-    SecReadPermStatus = 2,
-    SecWritePermStatus = 4,
-};
+pub const anon541 = objc.UInt32;
+pub const anon541_SecUnlockStateStatus: objc.UInt32 = 1;
+pub const anon541_SecReadPermStatus: objc.UInt32 = 2;
+pub const anon541_SecWritePermStatus: objc.UInt32 = 4;
 
 pub const KeychainSettings = extern struct {
     version: objc.UInt32,
@@ -5057,82 +4937,78 @@ pub const KeychainSettings = extern struct {
     lockInterval: objc.UInt32,
 };
 
-pub const AuthenticationType = enum(objc.FourCharCode) {
-    NTLM = 1835824238,
-    MSN = 1634628461,
-    DPA = 1633775716,
-    RPA = 1633775730,
-    HTTPBasic = 1886680168,
-    HTTPDigest = 1685353576,
-    HTMLForm = 1836216166,
-    Default = 1953261156,
-    Any = 0,
-};
+pub const AuthenticationType = objc.FourCharCode;
+pub const AuthenticationType_NTLM: objc.FourCharCode = 1835824238;
+pub const AuthenticationType_MSN: objc.FourCharCode = 1634628461;
+pub const AuthenticationType_DPA: objc.FourCharCode = 1633775716;
+pub const AuthenticationType_RPA: objc.FourCharCode = 1633775730;
+pub const AuthenticationType_HTTPBasic: objc.FourCharCode = 1886680168;
+pub const AuthenticationType_HTTPDigest: objc.FourCharCode = 1685353576;
+pub const AuthenticationType_HTMLForm: objc.FourCharCode = 1836216166;
+pub const AuthenticationType_Default: objc.FourCharCode = 1953261156;
+pub const AuthenticationType_Any: objc.FourCharCode = 0;
 
-pub const ProtocolType = enum(objc.FourCharCode) {
-    FTP = 1718906912,
-    FTPAccount = 1718906977,
-    HTTP = 1752462448,
-    IRC = 1769104160,
-    NNTP = 1852732528,
-    POP3 = 1886351411,
-    SMTP = 1936553072,
-    SOCKS = 1936685088,
-    IMAP = 1768776048,
-    LDAP = 1818517872,
-    AppleTalk = 1635019883,
-    AFP = 1634103328,
-    Telnet = 1952803950,
-    SSH = 1936943136,
-    FTPS = 1718906995,
-    HTTPS = 1752461427,
-    HTTPProxy = 1752461432,
-    HTTPSProxy = 1752462200,
-    FTPProxy = 1718907000,
-    CIFS = 1667851891,
-    SMB = 1936548384,
-    RTSP = 1920234352,
-    RTSPProxy = 1920234360,
-    DAAP = 1684103536,
-    EPPC = 1701867619,
-    IPP = 1768976416,
-    NNTPS = 1853124723,
-    LDAPS = 1818521715,
-    TelnetS = 1952803955,
-    IMAPS = 1768779891,
-    IRCS = 1769104243,
-    POP3S = 1886351475,
-    CVSpserver = 1668707184,
-    SVN = 1937141280,
-    Any = 0,
-};
+pub const ProtocolType = objc.FourCharCode;
+pub const ProtocolType_FTP: objc.FourCharCode = 1718906912;
+pub const ProtocolType_FTPAccount: objc.FourCharCode = 1718906977;
+pub const ProtocolType_HTTP: objc.FourCharCode = 1752462448;
+pub const ProtocolType_IRC: objc.FourCharCode = 1769104160;
+pub const ProtocolType_NNTP: objc.FourCharCode = 1852732528;
+pub const ProtocolType_POP3: objc.FourCharCode = 1886351411;
+pub const ProtocolType_SMTP: objc.FourCharCode = 1936553072;
+pub const ProtocolType_SOCKS: objc.FourCharCode = 1936685088;
+pub const ProtocolType_IMAP: objc.FourCharCode = 1768776048;
+pub const ProtocolType_LDAP: objc.FourCharCode = 1818517872;
+pub const ProtocolType_AppleTalk: objc.FourCharCode = 1635019883;
+pub const ProtocolType_AFP: objc.FourCharCode = 1634103328;
+pub const ProtocolType_Telnet: objc.FourCharCode = 1952803950;
+pub const ProtocolType_SSH: objc.FourCharCode = 1936943136;
+pub const ProtocolType_FTPS: objc.FourCharCode = 1718906995;
+pub const ProtocolType_HTTPS: objc.FourCharCode = 1752461427;
+pub const ProtocolType_HTTPProxy: objc.FourCharCode = 1752461432;
+pub const ProtocolType_HTTPSProxy: objc.FourCharCode = 1752462200;
+pub const ProtocolType_FTPProxy: objc.FourCharCode = 1718907000;
+pub const ProtocolType_CIFS: objc.FourCharCode = 1667851891;
+pub const ProtocolType_SMB: objc.FourCharCode = 1936548384;
+pub const ProtocolType_RTSP: objc.FourCharCode = 1920234352;
+pub const ProtocolType_RTSPProxy: objc.FourCharCode = 1920234360;
+pub const ProtocolType_DAAP: objc.FourCharCode = 1684103536;
+pub const ProtocolType_EPPC: objc.FourCharCode = 1701867619;
+pub const ProtocolType_IPP: objc.FourCharCode = 1768976416;
+pub const ProtocolType_NNTPS: objc.FourCharCode = 1853124723;
+pub const ProtocolType_LDAPS: objc.FourCharCode = 1818521715;
+pub const ProtocolType_TelnetS: objc.FourCharCode = 1952803955;
+pub const ProtocolType_IMAPS: objc.FourCharCode = 1768779891;
+pub const ProtocolType_IRCS: objc.FourCharCode = 1769104243;
+pub const ProtocolType_POP3S: objc.FourCharCode = 1886351475;
+pub const ProtocolType_CVSpserver: objc.FourCharCode = 1668707184;
+pub const ProtocolType_SVN: objc.FourCharCode = 1937141280;
+pub const ProtocolType_Any: objc.FourCharCode = 0;
 
-pub const KeychainEvent = enum(objc.UInt32) {
-    LockEvent = 1,
-    UnlockEvent = 2,
-    AddEvent = 3,
-    DeleteEvent = 4,
-    UpdateEvent = 5,
-    PasswordChangedEvent = 6,
-    DefaultChangedEvent = 9,
-    DataAccessEvent = 10,
-    ListChangedEvent = 11,
-    TrustSettingsChangedEvent = 12,
-};
+pub const KeychainEvent = objc.UInt32;
+pub const KeychainEvent_LockEvent: objc.UInt32 = 1;
+pub const KeychainEvent_UnlockEvent: objc.UInt32 = 2;
+pub const KeychainEvent_AddEvent: objc.UInt32 = 3;
+pub const KeychainEvent_DeleteEvent: objc.UInt32 = 4;
+pub const KeychainEvent_UpdateEvent: objc.UInt32 = 5;
+pub const KeychainEvent_PasswordChangedEvent: objc.UInt32 = 6;
+pub const KeychainEvent_DefaultChangedEvent: objc.UInt32 = 9;
+pub const KeychainEvent_DataAccessEvent: objc.UInt32 = 10;
+pub const KeychainEvent_ListChangedEvent: objc.UInt32 = 11;
+pub const KeychainEvent_TrustSettingsChangedEvent: objc.UInt32 = 12;
 
-pub const KeychainEventMask = enum(objc.UInt32) {
-    LockEventMask = 2,
-    UnlockEventMask = 4,
-    AddEventMask = 8,
-    DeleteEventMask = 16,
-    UpdateEventMask = 32,
-    PasswordChangedEventMask = 64,
-    DefaultChangedEventMask = 512,
-    DataAccessEventMask = 1024,
-    ListChangedMask = 2048,
-    TrustSettingsChangedEventMask = 4096,
-    EveryEventMask = -1,
-};
+pub const KeychainEventMask = objc.UInt32;
+pub const KeychainEventMask_LockEventMask: objc.UInt32 = 2;
+pub const KeychainEventMask_UnlockEventMask: objc.UInt32 = 4;
+pub const KeychainEventMask_AddEventMask: objc.UInt32 = 8;
+pub const KeychainEventMask_DeleteEventMask: objc.UInt32 = 16;
+pub const KeychainEventMask_UpdateEventMask: objc.UInt32 = 32;
+pub const KeychainEventMask_PasswordChangedEventMask: objc.UInt32 = 64;
+pub const KeychainEventMask_DefaultChangedEventMask: objc.UInt32 = 512;
+pub const KeychainEventMask_DataAccessEventMask: objc.UInt32 = 1024;
+pub const KeychainEventMask_ListChangedMask: objc.UInt32 = 2048;
+pub const KeychainEventMask_TrustSettingsChangedEventMask: objc.UInt32 = 4096;
+pub const KeychainEventMask_EveryEventMask: objc.UInt32 = -1;
 
 pub const KeychainCallbackInfo = extern struct {
     version: objc.UInt32,
@@ -5195,12 +5071,11 @@ pub const keychainCopySearchList = SecKeychainCopySearchList;
 extern "Security" fn SecKeychainSetSearchList(searchList: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 pub const keychainSetSearchList = SecKeychainSetSearchList;
 
-pub const PreferencesDomain = enum(i32) {
-    User = 0,
-    System = 1,
-    Common = 2,
-    Dynamic = 3,
-};
+pub const PreferencesDomain = i32;
+pub const PreferencesDomain_User: i32 = 0;
+pub const PreferencesDomain_System: i32 = 1;
+pub const PreferencesDomain_Common: i32 = 2;
+pub const PreferencesDomain_Dynamic: i32 = 3;
 
 extern "Security" fn SecKeychainCopyDomainDefault(domain: PreferencesDomain, keychain: ?*KeychainRef) callconv(.C) objc.OSStatus;
 pub const keychainCopyDomainDefault = SecKeychainCopyDomainDefault;
@@ -5232,7 +5107,7 @@ pub const keychainAttributeInfoForItemID = SecKeychainAttributeInfoForItemID;
 extern "Security" fn SecKeychainFreeAttributeInfo(info: ?*KeychainAttributeInfo) callconv(.C) objc.OSStatus;
 pub const keychainFreeAttributeInfo = SecKeychainFreeAttributeInfo;
 
-pub const KeychainCallback = ?*const fn (KeychainEvent, ?*KeychainCallbackInfo, ?*anyopaque) callconv(.C) objc.OSStatus;
+pub const KeychainCallback = objc.OSStatus;
 
 extern "Security" fn SecKeychainAddCallback(callbackFunction: KeychainCallback, eventMask: KeychainEventMask, userContext: ?*anyopaque) callconv(.C) objc.OSStatus;
 pub const keychainAddCallback = SecKeychainAddCallback;
@@ -5320,42 +5195,38 @@ pub const keychainCopyAccess = SecKeychainCopyAccess;
 extern "Security" fn SecKeychainSetAccess(keychain: KeychainRef, access: AccessRef) callconv(.C) objc.OSStatus;
 pub const keychainSetAccess = SecKeychainSetAccess;
 
-pub const ExternalFormat = enum(objc.uint32_t) {
-    FormatUnknown = 0,
-    FormatOpenSSL = 1,
-    FormatSSH = 2,
-    FormatBSAFE = 3,
-    FormatRawKey = 4,
-    FormatWrappedPKCS8 = 5,
-    FormatWrappedOpenSSL = 6,
-    FormatWrappedSSH = 7,
-    FormatWrappedLSH = 8,
-    FormatX509Cert = 9,
-    FormatPEMSequence = 10,
-    FormatPKCS7 = 11,
-    FormatPKCS12 = 12,
-    FormatNetscapeCertSequence = 13,
-    FormatSSHv2 = 14,
-};
+pub const ExternalFormat = objc.uint32_t;
+pub const ExternalFormat_FormatUnknown: objc.uint32_t = 0;
+pub const ExternalFormat_FormatOpenSSL: objc.uint32_t = 1;
+pub const ExternalFormat_FormatSSH: objc.uint32_t = 2;
+pub const ExternalFormat_FormatBSAFE: objc.uint32_t = 3;
+pub const ExternalFormat_FormatRawKey: objc.uint32_t = 4;
+pub const ExternalFormat_FormatWrappedPKCS8: objc.uint32_t = 5;
+pub const ExternalFormat_FormatWrappedOpenSSL: objc.uint32_t = 6;
+pub const ExternalFormat_FormatWrappedSSH: objc.uint32_t = 7;
+pub const ExternalFormat_FormatWrappedLSH: objc.uint32_t = 8;
+pub const ExternalFormat_FormatX509Cert: objc.uint32_t = 9;
+pub const ExternalFormat_FormatPEMSequence: objc.uint32_t = 10;
+pub const ExternalFormat_FormatPKCS7: objc.uint32_t = 11;
+pub const ExternalFormat_FormatPKCS12: objc.uint32_t = 12;
+pub const ExternalFormat_FormatNetscapeCertSequence: objc.uint32_t = 13;
+pub const ExternalFormat_FormatSSHv2: objc.uint32_t = 14;
 
-pub const ExternalItemType = enum(objc.uint32_t) {
-    ItemTypeUnknown = 0,
-    ItemTypePrivateKey = 1,
-    ItemTypePublicKey = 2,
-    ItemTypeSessionKey = 3,
-    ItemTypeCertificate = 4,
-    ItemTypeAggregate = 5,
-};
+pub const ExternalItemType = objc.uint32_t;
+pub const ExternalItemType_ItemTypeUnknown: objc.uint32_t = 0;
+pub const ExternalItemType_ItemTypePrivateKey: objc.uint32_t = 1;
+pub const ExternalItemType_ItemTypePublicKey: objc.uint32_t = 2;
+pub const ExternalItemType_ItemTypeSessionKey: objc.uint32_t = 3;
+pub const ExternalItemType_ItemTypeCertificate: objc.uint32_t = 4;
+pub const ExternalItemType_ItemTypeAggregate: objc.uint32_t = 5;
 
-pub const ItemImportExportFlags = enum(objc.uint32_t) {
-    PemArmour = 1,
-};
+pub const ItemImportExportFlags = objc.uint32_t;
+pub const ItemImportExportFlags_PemArmour: objc.uint32_t = 1;
 
-pub const KeyImportExportFlags = enum(objc.uint32_t) {
-    OnlyOne = 1,
-    SecurePassphrase = 2,
-    NoAccessControl = 4,
-};
+pub const KeyImportExportFlags = objc.uint32_t;
+pub const KeyImportExportFlags_OnlyOne: objc.uint32_t = 1;
+pub const KeyImportExportFlags_SecurePassphrase: objc.uint32_t = 2;
+pub const KeyImportExportFlags_NoAccessControl: objc.uint32_t = 4;
 
 pub const KeyImportExportParameters = extern struct {
     version: objc.uint32_t,
@@ -5424,20 +5295,19 @@ pub const itemImport = SecItemImport;
 extern "Security" fn SecPKCS12Import(pkcs12_data: core_foundation.DataRef, options: core_foundation.DictionaryRef, items: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 pub const pkcs12Import = SecPKCS12Import;
 
-pub const TrustResultType = enum(objc.uint32_t) {
-    Invalid = 0,
-    Proceed = 1,
-    Confirm = 2,
-    Deny = 3,
-    Unspecified = 4,
-    RecoverableTrustFailure = 5,
-    FatalTrustFailure = 6,
-    OtherError = 7,
-};
+pub const TrustResultType = objc.uint32_t;
+pub const TrustResultType_Invalid: objc.uint32_t = 0;
+pub const TrustResultType_Proceed: objc.uint32_t = 1;
+pub const TrustResultType_Confirm: objc.uint32_t = 2;
+pub const TrustResultType_Deny: objc.uint32_t = 3;
+pub const TrustResultType_Unspecified: objc.uint32_t = 4;
+pub const TrustResultType_RecoverableTrustFailure: objc.uint32_t = 5;
+pub const TrustResultType_FatalTrustFailure: objc.uint32_t = 6;
+pub const TrustResultType_OtherError: objc.uint32_t = 7;
 
 pub const __SecTrust = extern struct {};
 
-pub const TrustRef = ?*__SecTrust;
+pub const TrustRef = __SecTrust;
 
 pub const TrustCallback = *const fn (TrustRef, TrustResultType) callconv(.C) void;
 
@@ -5526,15 +5396,14 @@ pub const trustCopyCertificateChain = SecTrustCopyCertificateChain;
 
 pub const TrustUserSetting = TrustResultType;
 
-pub const TrustOptionFlags = enum(objc.uint32_t) {
-    AllowExpired = 1,
-    LeafIsCA = 2,
-    FetchIssuerFromNet = 4,
-    AllowExpiredRoot = 8,
-    RequireRevPerCert = 16,
-    UseTrustSettings = 32,
-    ImplicitAnchors = 64,
-};
+pub const TrustOptionFlags = objc.uint32_t;
+pub const TrustOptionFlags_AllowExpired: objc.uint32_t = 1;
+pub const TrustOptionFlags_LeafIsCA: objc.uint32_t = 2;
+pub const TrustOptionFlags_FetchIssuerFromNet: objc.uint32_t = 4;
+pub const TrustOptionFlags_AllowExpiredRoot: objc.uint32_t = 8;
+pub const TrustOptionFlags_RequireRevPerCert: objc.uint32_t = 16;
+pub const TrustOptionFlags_UseTrustSettings: objc.uint32_t = 32;
+pub const TrustOptionFlags_ImplicitAnchors: objc.uint32_t = 64;
 
 extern "Security" fn SecTrustSetOptions(trustRef: TrustRef, options: TrustOptionFlags) callconv(.C) objc.OSStatus;
 pub const trustSetOptions = SecTrustSetOptions;
@@ -5585,13 +5454,13 @@ pub extern "Security" fn sec_release(obj: ?*anyopaque) callconv(.C) void;
 
 /// https://developer.apple.com/documentation/Security/OS_sec_object?language=objc
 pub const OS_sec_object = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -5599,39 +5468,39 @@ pub const OS_sec_object = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -5639,7 +5508,7 @@ pub const OS_sec_object = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -5664,29 +5533,196 @@ pub const sec_object_t = ?*anyopaque;
 
 pub const SSLCipherSuite = objc.uint16_t;
 
-pub const anon471 = enum(u32) {
-    CSSM_CONTEXT_EVENT_CREATE = 1,
-    CSSM_CONTEXT_EVENT_DELETE = 2,
-    CSSM_CONTEXT_EVENT_UPDATE = 3,
-};
+pub const anon471 = SSLCipherSuite;
+pub const anon471_SSL_NULL_WITH_NULL_NULL: SSLCipherSuite = 0;
+pub const anon471_SSL_RSA_WITH_NULL_MD5: SSLCipherSuite = 1;
+pub const anon471_SSL_RSA_WITH_NULL_SHA: SSLCipherSuite = 2;
+pub const anon471_SSL_RSA_EXPORT_WITH_RC4_40_MD5: SSLCipherSuite = 3;
+pub const anon471_SSL_RSA_WITH_RC4_128_MD5: SSLCipherSuite = 4;
+pub const anon471_SSL_RSA_WITH_RC4_128_SHA: SSLCipherSuite = 5;
+pub const anon471_SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5: SSLCipherSuite = 6;
+pub const anon471_SSL_RSA_WITH_IDEA_CBC_SHA: SSLCipherSuite = 7;
+pub const anon471_SSL_RSA_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite = 8;
+pub const anon471_SSL_RSA_WITH_DES_CBC_SHA: SSLCipherSuite = 9;
+pub const anon471_SSL_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 10;
+pub const anon471_SSL_DH_DSS_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite = 11;
+pub const anon471_SSL_DH_DSS_WITH_DES_CBC_SHA: SSLCipherSuite = 12;
+pub const anon471_SSL_DH_DSS_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 13;
+pub const anon471_SSL_DH_RSA_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite = 14;
+pub const anon471_SSL_DH_RSA_WITH_DES_CBC_SHA: SSLCipherSuite = 15;
+pub const anon471_SSL_DH_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 16;
+pub const anon471_SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite = 17;
+pub const anon471_SSL_DHE_DSS_WITH_DES_CBC_SHA: SSLCipherSuite = 18;
+pub const anon471_SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 19;
+pub const anon471_SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite = 20;
+pub const anon471_SSL_DHE_RSA_WITH_DES_CBC_SHA: SSLCipherSuite = 21;
+pub const anon471_SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 22;
+pub const anon471_SSL_DH_anon_EXPORT_WITH_RC4_40_MD5: SSLCipherSuite = 23;
+pub const anon471_SSL_DH_anon_WITH_RC4_128_MD5: SSLCipherSuite = 24;
+pub const anon471_SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite = 25;
+pub const anon471_SSL_DH_anon_WITH_DES_CBC_SHA: SSLCipherSuite = 26;
+pub const anon471_SSL_DH_anon_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 27;
+pub const anon471_SSL_FORTEZZA_DMS_WITH_NULL_SHA: SSLCipherSuite = 28;
+pub const anon471_SSL_FORTEZZA_DMS_WITH_FORTEZZA_CBC_SHA: SSLCipherSuite = 29;
+pub const anon471_TLS_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite = 47;
+pub const anon471_TLS_DH_DSS_WITH_AES_128_CBC_SHA: SSLCipherSuite = 48;
+pub const anon471_TLS_DH_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite = 49;
+pub const anon471_TLS_DHE_DSS_WITH_AES_128_CBC_SHA: SSLCipherSuite = 50;
+pub const anon471_TLS_DHE_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite = 51;
+pub const anon471_TLS_DH_anon_WITH_AES_128_CBC_SHA: SSLCipherSuite = 52;
+pub const anon471_TLS_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite = 53;
+pub const anon471_TLS_DH_DSS_WITH_AES_256_CBC_SHA: SSLCipherSuite = 54;
+pub const anon471_TLS_DH_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite = 55;
+pub const anon471_TLS_DHE_DSS_WITH_AES_256_CBC_SHA: SSLCipherSuite = 56;
+pub const anon471_TLS_DHE_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite = 57;
+pub const anon471_TLS_DH_anon_WITH_AES_256_CBC_SHA: SSLCipherSuite = 58;
+pub const anon471_TLS_ECDH_ECDSA_WITH_NULL_SHA: SSLCipherSuite = -16383;
+pub const anon471_TLS_ECDH_ECDSA_WITH_RC4_128_SHA: SSLCipherSuite = -16382;
+pub const anon471_TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = -16381;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA: SSLCipherSuite = -16380;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA: SSLCipherSuite = -16379;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_NULL_SHA: SSLCipherSuite = -16378;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_RC4_128_SHA: SSLCipherSuite = -16377;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = -16376;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA: SSLCipherSuite = -16375;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA: SSLCipherSuite = -16374;
+pub const anon471_TLS_ECDH_RSA_WITH_NULL_SHA: SSLCipherSuite = -16373;
+pub const anon471_TLS_ECDH_RSA_WITH_RC4_128_SHA: SSLCipherSuite = -16372;
+pub const anon471_TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = -16371;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite = -16370;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite = -16369;
+pub const anon471_TLS_ECDHE_RSA_WITH_NULL_SHA: SSLCipherSuite = -16368;
+pub const anon471_TLS_ECDHE_RSA_WITH_RC4_128_SHA: SSLCipherSuite = -16367;
+pub const anon471_TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = -16366;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite = -16365;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite = -16364;
+pub const anon471_TLS_ECDH_anon_WITH_NULL_SHA: SSLCipherSuite = -16363;
+pub const anon471_TLS_ECDH_anon_WITH_RC4_128_SHA: SSLCipherSuite = -16362;
+pub const anon471_TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = -16361;
+pub const anon471_TLS_ECDH_anon_WITH_AES_128_CBC_SHA: SSLCipherSuite = -16360;
+pub const anon471_TLS_ECDH_anon_WITH_AES_256_CBC_SHA: SSLCipherSuite = -16359;
+pub const anon471_TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA: SSLCipherSuite = -16331;
+pub const anon471_TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA: SSLCipherSuite = -16330;
+pub const anon471_TLS_PSK_WITH_CHACHA20_POLY1305_SHA256: SSLCipherSuite = -13141;
+pub const anon471_TLS_NULL_WITH_NULL_NULL: SSLCipherSuite = 0;
+pub const anon471_TLS_RSA_WITH_NULL_MD5: SSLCipherSuite = 1;
+pub const anon471_TLS_RSA_WITH_NULL_SHA: SSLCipherSuite = 2;
+pub const anon471_TLS_RSA_WITH_RC4_128_MD5: SSLCipherSuite = 4;
+pub const anon471_TLS_RSA_WITH_RC4_128_SHA: SSLCipherSuite = 5;
+pub const anon471_TLS_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 10;
+pub const anon471_TLS_RSA_WITH_NULL_SHA256: SSLCipherSuite = 59;
+pub const anon471_TLS_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite = 60;
+pub const anon471_TLS_RSA_WITH_AES_256_CBC_SHA256: SSLCipherSuite = 61;
+pub const anon471_TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 13;
+pub const anon471_TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 16;
+pub const anon471_TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 19;
+pub const anon471_TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 22;
+pub const anon471_TLS_DH_DSS_WITH_AES_128_CBC_SHA256: SSLCipherSuite = 62;
+pub const anon471_TLS_DH_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite = 63;
+pub const anon471_TLS_DHE_DSS_WITH_AES_128_CBC_SHA256: SSLCipherSuite = 64;
+pub const anon471_TLS_DHE_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite = 103;
+pub const anon471_TLS_DH_DSS_WITH_AES_256_CBC_SHA256: SSLCipherSuite = 104;
+pub const anon471_TLS_DH_RSA_WITH_AES_256_CBC_SHA256: SSLCipherSuite = 105;
+pub const anon471_TLS_DHE_DSS_WITH_AES_256_CBC_SHA256: SSLCipherSuite = 106;
+pub const anon471_TLS_DHE_RSA_WITH_AES_256_CBC_SHA256: SSLCipherSuite = 107;
+pub const anon471_TLS_DH_anon_WITH_RC4_128_MD5: SSLCipherSuite = 24;
+pub const anon471_TLS_DH_anon_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 27;
+pub const anon471_TLS_DH_anon_WITH_AES_128_CBC_SHA256: SSLCipherSuite = 108;
+pub const anon471_TLS_DH_anon_WITH_AES_256_CBC_SHA256: SSLCipherSuite = 109;
+pub const anon471_TLS_PSK_WITH_RC4_128_SHA: SSLCipherSuite = 138;
+pub const anon471_TLS_PSK_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 139;
+pub const anon471_TLS_PSK_WITH_AES_128_CBC_SHA: SSLCipherSuite = 140;
+pub const anon471_TLS_PSK_WITH_AES_256_CBC_SHA: SSLCipherSuite = 141;
+pub const anon471_TLS_DHE_PSK_WITH_RC4_128_SHA: SSLCipherSuite = 142;
+pub const anon471_TLS_DHE_PSK_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 143;
+pub const anon471_TLS_DHE_PSK_WITH_AES_128_CBC_SHA: SSLCipherSuite = 144;
+pub const anon471_TLS_DHE_PSK_WITH_AES_256_CBC_SHA: SSLCipherSuite = 145;
+pub const anon471_TLS_RSA_PSK_WITH_RC4_128_SHA: SSLCipherSuite = 146;
+pub const anon471_TLS_RSA_PSK_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite = 147;
+pub const anon471_TLS_RSA_PSK_WITH_AES_128_CBC_SHA: SSLCipherSuite = 148;
+pub const anon471_TLS_RSA_PSK_WITH_AES_256_CBC_SHA: SSLCipherSuite = 149;
+pub const anon471_TLS_PSK_WITH_NULL_SHA: SSLCipherSuite = 44;
+pub const anon471_TLS_DHE_PSK_WITH_NULL_SHA: SSLCipherSuite = 45;
+pub const anon471_TLS_RSA_PSK_WITH_NULL_SHA: SSLCipherSuite = 46;
+pub const anon471_TLS_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite = 156;
+pub const anon471_TLS_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite = 157;
+pub const anon471_TLS_DHE_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite = 158;
+pub const anon471_TLS_DHE_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite = 159;
+pub const anon471_TLS_DH_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite = 160;
+pub const anon471_TLS_DH_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite = 161;
+pub const anon471_TLS_DHE_DSS_WITH_AES_128_GCM_SHA256: SSLCipherSuite = 162;
+pub const anon471_TLS_DHE_DSS_WITH_AES_256_GCM_SHA384: SSLCipherSuite = 163;
+pub const anon471_TLS_DH_DSS_WITH_AES_128_GCM_SHA256: SSLCipherSuite = 164;
+pub const anon471_TLS_DH_DSS_WITH_AES_256_GCM_SHA384: SSLCipherSuite = 165;
+pub const anon471_TLS_DH_anon_WITH_AES_128_GCM_SHA256: SSLCipherSuite = 166;
+pub const anon471_TLS_DH_anon_WITH_AES_256_GCM_SHA384: SSLCipherSuite = 167;
+pub const anon471_TLS_PSK_WITH_AES_128_GCM_SHA256: SSLCipherSuite = 168;
+pub const anon471_TLS_PSK_WITH_AES_256_GCM_SHA384: SSLCipherSuite = 169;
+pub const anon471_TLS_DHE_PSK_WITH_AES_128_GCM_SHA256: SSLCipherSuite = 170;
+pub const anon471_TLS_DHE_PSK_WITH_AES_256_GCM_SHA384: SSLCipherSuite = 171;
+pub const anon471_TLS_RSA_PSK_WITH_AES_128_GCM_SHA256: SSLCipherSuite = 172;
+pub const anon471_TLS_RSA_PSK_WITH_AES_256_GCM_SHA384: SSLCipherSuite = 173;
+pub const anon471_TLS_PSK_WITH_AES_128_CBC_SHA256: SSLCipherSuite = 174;
+pub const anon471_TLS_PSK_WITH_AES_256_CBC_SHA384: SSLCipherSuite = 175;
+pub const anon471_TLS_PSK_WITH_NULL_SHA256: SSLCipherSuite = 176;
+pub const anon471_TLS_PSK_WITH_NULL_SHA384: SSLCipherSuite = 177;
+pub const anon471_TLS_DHE_PSK_WITH_AES_128_CBC_SHA256: SSLCipherSuite = 178;
+pub const anon471_TLS_DHE_PSK_WITH_AES_256_CBC_SHA384: SSLCipherSuite = 179;
+pub const anon471_TLS_DHE_PSK_WITH_NULL_SHA256: SSLCipherSuite = 180;
+pub const anon471_TLS_DHE_PSK_WITH_NULL_SHA384: SSLCipherSuite = 181;
+pub const anon471_TLS_RSA_PSK_WITH_AES_128_CBC_SHA256: SSLCipherSuite = 182;
+pub const anon471_TLS_RSA_PSK_WITH_AES_256_CBC_SHA384: SSLCipherSuite = 183;
+pub const anon471_TLS_RSA_PSK_WITH_NULL_SHA256: SSLCipherSuite = 184;
+pub const anon471_TLS_RSA_PSK_WITH_NULL_SHA384: SSLCipherSuite = 185;
+pub const anon471_TLS_AES_128_GCM_SHA256: SSLCipherSuite = 4865;
+pub const anon471_TLS_AES_256_GCM_SHA384: SSLCipherSuite = 4866;
+pub const anon471_TLS_CHACHA20_POLY1305_SHA256: SSLCipherSuite = 4867;
+pub const anon471_TLS_AES_128_CCM_SHA256: SSLCipherSuite = 4868;
+pub const anon471_TLS_AES_128_CCM_8_SHA256: SSLCipherSuite = 4869;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite = -16349;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384: SSLCipherSuite = -16348;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite = -16347;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384: SSLCipherSuite = -16346;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite = -16345;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384: SSLCipherSuite = -16344;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite = -16343;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384: SSLCipherSuite = -16342;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite = -16341;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite = -16340;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite = -16339;
+pub const anon471_TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite = -16338;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite = -16337;
+pub const anon471_TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite = -16336;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite = -16335;
+pub const anon471_TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite = -16334;
+pub const anon471_TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256: SSLCipherSuite = -13144;
+pub const anon471_TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256: SSLCipherSuite = -13143;
+pub const anon471_TLS_EMPTY_RENEGOTIATION_INFO_SCSV: SSLCipherSuite = 255;
+pub const anon471_SSL_RSA_WITH_RC2_CBC_MD5: SSLCipherSuite = -128;
+pub const anon471_SSL_RSA_WITH_IDEA_CBC_MD5: SSLCipherSuite = -127;
+pub const anon471_SSL_RSA_WITH_DES_CBC_MD5: SSLCipherSuite = -126;
+pub const anon471_SSL_RSA_WITH_3DES_EDE_CBC_MD5: SSLCipherSuite = -125;
+pub const anon471_SSL_NO_SUCH_CIPHERSUITE: SSLCipherSuite = -1;
+pub const anon471_CSSM_CONTEXT_EVENT_CREATE: SSLCipherSuite = 1;
+pub const anon471_CSSM_CONTEXT_EVENT_DELETE: SSLCipherSuite = 2;
+pub const anon471_CSSM_CONTEXT_EVENT_UPDATE: SSLCipherSuite = 3;
 
-pub const SSLCiphersuiteGroup = enum(i32) {
-    Default = 0,
-    Compatibility = 1,
-    Legacy = 2,
-    ATS = 3,
-    ATSCompatibility = 4,
-};
+pub const SSLCiphersuiteGroup = i32;
+pub const SSLCiphersuiteGroup_Default: i32 = 0;
+pub const SSLCiphersuiteGroup_Compatibility: i32 = 1;
+pub const SSLCiphersuiteGroup_Legacy: i32 = 2;
+pub const SSLCiphersuiteGroup_ATS: i32 = 3;
+pub const SSLCiphersuiteGroup_ATSCompatibility: i32 = 4;
 
 /// https://developer.apple.com/documentation/Security/OS_sec_trust?language=objc
 pub const OS_sec_trust = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -5694,39 +5730,39 @@ pub const OS_sec_trust = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -5734,7 +5770,7 @@ pub const OS_sec_trust = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -5759,13 +5795,13 @@ pub const sec_trust_t = ?*anyopaque;
 
 /// https://developer.apple.com/documentation/Security/OS_sec_identity?language=objc
 pub const OS_sec_identity = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -5773,39 +5809,39 @@ pub const OS_sec_identity = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -5813,7 +5849,7 @@ pub const OS_sec_identity = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -5838,13 +5874,13 @@ pub const sec_identity_t = ?*anyopaque;
 
 /// https://developer.apple.com/documentation/Security/OS_sec_certificate?language=objc
 pub const OS_sec_certificate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -5852,39 +5888,39 @@ pub const OS_sec_certificate = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -5892,7 +5928,7 @@ pub const OS_sec_certificate = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -5915,67 +5951,63 @@ pub const OS_sec_certificate = opaque {
 
 pub const sec_certificate_t = ?*anyopaque;
 
-pub const tls_protocol_version_t = enum(objc.uint16_t) {
-    TLSv10 = 769,
-    TLSv11 = 770,
-    TLSv12 = 771,
-    TLSv13 = 772,
-    DTLSv10 = -257,
-    DTLSv12 = -259,
-};
+pub const tls_protocol_version_t = objc.uint16_t;
+pub const tls_protocol_version_t_TLSv10: objc.uint16_t = 769;
+pub const tls_protocol_version_t_TLSv11: objc.uint16_t = 770;
+pub const tls_protocol_version_t_TLSv12: objc.uint16_t = 771;
+pub const tls_protocol_version_t_TLSv13: objc.uint16_t = 772;
+pub const tls_protocol_version_t_DTLSv10: objc.uint16_t = -257;
+pub const tls_protocol_version_t_DTLSv12: objc.uint16_t = -259;
 
-pub const tls_ciphersuite_t = enum(objc.uint16_t) {
-    RSA_WITH_3DES_EDE_CBC_SHA = 10,
-    RSA_WITH_AES_128_CBC_SHA = 47,
-    RSA_WITH_AES_256_CBC_SHA = 53,
-    RSA_WITH_AES_128_GCM_SHA256 = 156,
-    RSA_WITH_AES_256_GCM_SHA384 = 157,
-    RSA_WITH_AES_128_CBC_SHA256 = 60,
-    RSA_WITH_AES_256_CBC_SHA256 = 61,
-    ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA = -16376,
-    ECDHE_ECDSA_WITH_AES_128_CBC_SHA = -16375,
-    ECDHE_ECDSA_WITH_AES_256_CBC_SHA = -16374,
-    ECDHE_RSA_WITH_3DES_EDE_CBC_SHA = -16366,
-    ECDHE_RSA_WITH_AES_128_CBC_SHA = -16365,
-    ECDHE_RSA_WITH_AES_256_CBC_SHA = -16364,
-    ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 = -16349,
-    ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 = -16348,
-    ECDHE_RSA_WITH_AES_128_CBC_SHA256 = -16345,
-    ECDHE_RSA_WITH_AES_256_CBC_SHA384 = -16344,
-    ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 = -16341,
-    ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 = -16340,
-    ECDHE_RSA_WITH_AES_128_GCM_SHA256 = -16337,
-    ECDHE_RSA_WITH_AES_256_GCM_SHA384 = -16336,
-    ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 = -13144,
-    ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 = -13143,
-    AES_128_GCM_SHA256 = 4865,
-    AES_256_GCM_SHA384 = 4866,
-    CHACHA20_POLY1305_SHA256 = 4867,
-};
+pub const tls_ciphersuite_t = objc.uint16_t;
+pub const tls_ciphersuite_t_RSA_WITH_3DES_EDE_CBC_SHA: objc.uint16_t = 10;
+pub const tls_ciphersuite_t_RSA_WITH_AES_128_CBC_SHA: objc.uint16_t = 47;
+pub const tls_ciphersuite_t_RSA_WITH_AES_256_CBC_SHA: objc.uint16_t = 53;
+pub const tls_ciphersuite_t_RSA_WITH_AES_128_GCM_SHA256: objc.uint16_t = 156;
+pub const tls_ciphersuite_t_RSA_WITH_AES_256_GCM_SHA384: objc.uint16_t = 157;
+pub const tls_ciphersuite_t_RSA_WITH_AES_128_CBC_SHA256: objc.uint16_t = 60;
+pub const tls_ciphersuite_t_RSA_WITH_AES_256_CBC_SHA256: objc.uint16_t = 61;
+pub const tls_ciphersuite_t_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA: objc.uint16_t = -16376;
+pub const tls_ciphersuite_t_ECDHE_ECDSA_WITH_AES_128_CBC_SHA: objc.uint16_t = -16375;
+pub const tls_ciphersuite_t_ECDHE_ECDSA_WITH_AES_256_CBC_SHA: objc.uint16_t = -16374;
+pub const tls_ciphersuite_t_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA: objc.uint16_t = -16366;
+pub const tls_ciphersuite_t_ECDHE_RSA_WITH_AES_128_CBC_SHA: objc.uint16_t = -16365;
+pub const tls_ciphersuite_t_ECDHE_RSA_WITH_AES_256_CBC_SHA: objc.uint16_t = -16364;
+pub const tls_ciphersuite_t_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256: objc.uint16_t = -16349;
+pub const tls_ciphersuite_t_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384: objc.uint16_t = -16348;
+pub const tls_ciphersuite_t_ECDHE_RSA_WITH_AES_128_CBC_SHA256: objc.uint16_t = -16345;
+pub const tls_ciphersuite_t_ECDHE_RSA_WITH_AES_256_CBC_SHA384: objc.uint16_t = -16344;
+pub const tls_ciphersuite_t_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256: objc.uint16_t = -16341;
+pub const tls_ciphersuite_t_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384: objc.uint16_t = -16340;
+pub const tls_ciphersuite_t_ECDHE_RSA_WITH_AES_128_GCM_SHA256: objc.uint16_t = -16337;
+pub const tls_ciphersuite_t_ECDHE_RSA_WITH_AES_256_GCM_SHA384: objc.uint16_t = -16336;
+pub const tls_ciphersuite_t_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256: objc.uint16_t = -13144;
+pub const tls_ciphersuite_t_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256: objc.uint16_t = -13143;
+pub const tls_ciphersuite_t_AES_128_GCM_SHA256: objc.uint16_t = 4865;
+pub const tls_ciphersuite_t_AES_256_GCM_SHA384: objc.uint16_t = 4866;
+pub const tls_ciphersuite_t_CHACHA20_POLY1305_SHA256: objc.uint16_t = 4867;
 
-pub const tls_ciphersuite_group_t = enum(objc.uint16_t) {
-    tls_ciphersuite_group_default = 0,
-    tls_ciphersuite_group_compatibility = 1,
-    tls_ciphersuite_group_legacy = 2,
-    tls_ciphersuite_group_ats = 3,
-    tls_ciphersuite_group_ats_compatibility = 4,
-};
+pub const tls_ciphersuite_group_t = objc.uint16_t;
+pub const tls_ciphersuite_group_t_tls_ciphersuite_group_default: objc.uint16_t = 0;
+pub const tls_ciphersuite_group_t_tls_ciphersuite_group_compatibility: objc.uint16_t = 1;
+pub const tls_ciphersuite_group_t_tls_ciphersuite_group_legacy: objc.uint16_t = 2;
+pub const tls_ciphersuite_group_t_tls_ciphersuite_group_ats: objc.uint16_t = 3;
+pub const tls_ciphersuite_group_t_tls_ciphersuite_group_ats_compatibility: objc.uint16_t = 4;
 
-pub const SSLProtocol = enum(i32) {
-    Unknown = 0,
-    TLSProtocol1 = 4,
-    TLSProtocol11 = 7,
-    TLSProtocol12 = 8,
-    DTLSProtocol1 = 9,
-    TLSProtocol13 = 10,
-    DTLSProtocol12 = 11,
-    TLSProtocolMaxSupported = 999,
-    _2 = 1,
-    _3 = 2,
-    _3Only = 3,
-    TLSProtocol1Only = 5,
-    All = 6,
-};
+pub const SSLProtocol = i32;
+pub const SSLProtocol_Unknown: i32 = 0;
+pub const SSLProtocol_TLSProtocol1: i32 = 4;
+pub const SSLProtocol_TLSProtocol11: i32 = 7;
+pub const SSLProtocol_TLSProtocol12: i32 = 8;
+pub const SSLProtocol_DTLSProtocol1: i32 = 9;
+pub const SSLProtocol_TLSProtocol13: i32 = 10;
+pub const SSLProtocol_DTLSProtocol12: i32 = 11;
+pub const SSLProtocol_TLSProtocolMaxSupported: i32 = 999;
+pub const SSLProtocol_2: i32 = 1;
+pub const SSLProtocol_3: i32 = 2;
+pub const SSLProtocol_3Only: i32 = 3;
+pub const SSLProtocol_TLSProtocol1Only: i32 = 5;
+pub const SSLProtocol_All: i32 = 6;
 
 pub extern "Security" fn sec_trust_create(trust: TrustRef) callconv(.C) sec_trust_t;
 
@@ -5997,13 +6029,13 @@ pub extern "Security" fn sec_certificate_copy_ref(certificate: sec_certificate_t
 
 /// https://developer.apple.com/documentation/Security/OS_sec_protocol_metadata?language=objc
 pub const OS_sec_protocol_metadata = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -6011,39 +6043,39 @@ pub const OS_sec_protocol_metadata = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -6051,7 +6083,7 @@ pub const OS_sec_protocol_metadata = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -6122,13 +6154,13 @@ pub extern "Security" fn sec_protocol_metadata_create_secret_with_context(
 
 /// https://developer.apple.com/documentation/Security/OS_sec_protocol_options?language=objc
 pub const OS_sec_protocol_options = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -6136,39 +6168,39 @@ pub const OS_sec_protocol_options = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -6176,7 +6208,7 @@ pub const OS_sec_protocol_options = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -6287,42 +6319,39 @@ pub extern "Security" fn sec_protocol_options_set_challenge_block(options: sec_p
 
 pub extern "Security" fn sec_protocol_options_set_verify_block(options: sec_protocol_options_t, verify_block: sec_protocol_verify_t, verify_block_queue: objc.dispatch_queue_t) callconv(.C) void;
 
-pub const anon871 = enum(objc.OSStatus) {
-    errAuthorizationSuccess = 0,
-    errAuthorizationInvalidSet = -60001,
-    errAuthorizationInvalidRef = -60002,
-    errAuthorizationInvalidTag = -60003,
-    errAuthorizationInvalidPointer = -60004,
-    errAuthorizationDenied = -60005,
-    errAuthorizationCanceled = -60006,
-    errAuthorizationInteractionNotAllowed = -60007,
-    errAuthorizationInternal = -60008,
-    errAuthorizationExternalizeNotAllowed = -60009,
-    errAuthorizationInternalizeNotAllowed = -60010,
-    errAuthorizationInvalidFlags = -60011,
-    errAuthorizationToolExecuteFailure = -60031,
-    errAuthorizationToolEnvironmentError = -60032,
-    errAuthorizationBadAddress = -60033,
-};
+pub const anon871 = objc.OSStatus;
+pub const anon871_errAuthorizationSuccess: objc.OSStatus = 0;
+pub const anon871_errAuthorizationInvalidSet: objc.OSStatus = -60001;
+pub const anon871_errAuthorizationInvalidRef: objc.OSStatus = -60002;
+pub const anon871_errAuthorizationInvalidTag: objc.OSStatus = -60003;
+pub const anon871_errAuthorizationInvalidPointer: objc.OSStatus = -60004;
+pub const anon871_errAuthorizationDenied: objc.OSStatus = -60005;
+pub const anon871_errAuthorizationCanceled: objc.OSStatus = -60006;
+pub const anon871_errAuthorizationInteractionNotAllowed: objc.OSStatus = -60007;
+pub const anon871_errAuthorizationInternal: objc.OSStatus = -60008;
+pub const anon871_errAuthorizationExternalizeNotAllowed: objc.OSStatus = -60009;
+pub const anon871_errAuthorizationInternalizeNotAllowed: objc.OSStatus = -60010;
+pub const anon871_errAuthorizationInvalidFlags: objc.OSStatus = -60011;
+pub const anon871_errAuthorizationToolExecuteFailure: objc.OSStatus = -60031;
+pub const anon871_errAuthorizationToolEnvironmentError: objc.OSStatus = -60032;
+pub const anon871_errAuthorizationBadAddress: objc.OSStatus = -60033;
 
-pub const AuthorizationFlags = enum(objc.UInt32) {
-    Defaults = 0,
-    InteractionAllowed = 1,
-    ExtendRights = 2,
-    PartialRights = 4,
-    DestroyRights = 8,
-    PreAuthorize = 16,
-    SkipInternalAuth = 512,
-    NoData = 1048576,
-};
+pub const AuthorizationFlags = objc.UInt32;
+pub const AuthorizationFlags_Defaults: objc.UInt32 = 0;
+pub const AuthorizationFlags_InteractionAllowed: objc.UInt32 = 1;
+pub const AuthorizationFlags_ExtendRights: objc.UInt32 = 2;
+pub const AuthorizationFlags_PartialRights: objc.UInt32 = 4;
+pub const AuthorizationFlags_DestroyRights: objc.UInt32 = 8;
+pub const AuthorizationFlags_PreAuthorize: objc.UInt32 = 16;
+pub const AuthorizationFlags_SkipInternalAuth: objc.UInt32 = 512;
+pub const AuthorizationFlags_NoData: objc.UInt32 = 1048576;
 
-pub const anon1291 = enum(u32) {
-    AuthorizationFlagCanNotPreAuthorize = 1,
-};
+pub const anon1291 = u32;
+pub const anon1291_AuthorizationFlagCanNotPreAuthorize: u32 = 1;
 
 pub const AuthorizationOpaqueRef = extern struct {};
 
-pub const AuthorizationRef = ?*AuthorizationOpaqueRef;
+pub const AuthorizationRef = AuthorizationOpaqueRef;
 
 pub const AuthorizationString = ?*i8;
 
@@ -6393,21 +6422,18 @@ pub extern "Security" fn AuthorizationCopyPrivilegedReference(authorization: ?*A
 
 pub const uritySessionId = objc.UInt32;
 
-pub const anon811 = enum(uritySessionId) {
-    noSecuritySession = 0,
-    callerSecuritySession = -1,
-};
+pub const anon811 = uritySessionId;
+pub const anon811_noSecuritySession: uritySessionId = 0;
+pub const anon811_callerSecuritySession: uritySessionId = -1;
 
-pub const SessionAttributeBits = enum(objc.UInt32) {
-    sessionIsRoot = 1,
-    sessionHasGraphicAccess = 16,
-    sessionHasTTY = 32,
-    sessionIsRemote = 4096,
-};
+pub const SessionAttributeBits = objc.UInt32;
+pub const SessionAttributeBits_sessionIsRoot: objc.UInt32 = 1;
+pub const SessionAttributeBits_sessionHasGraphicAccess: objc.UInt32 = 16;
+pub const SessionAttributeBits_sessionHasTTY: objc.UInt32 = 32;
+pub const SessionAttributeBits_sessionIsRemote: objc.UInt32 = 4096;
 
-pub const SessionCreationFlags = enum(objc.UInt32) {
-    sessionKeepCurrentBootstrap = 32768,
-};
+pub const SessionCreationFlags = objc.UInt32;
+pub const SessionCreationFlags_sessionKeepCurrentBootstrap: objc.UInt32 = 32768;
 
 pub extern "Security" fn SessionGetInfo(session: uritySessionId, sessionId: ?*uritySessionId, attributes: ?*SessionAttributeBits) callconv(.C) objc.OSStatus;
 
@@ -7660,13 +7686,7 @@ pub const CSSM_SPI_CL_FUNCS = cssm_spi_cl_funcs;
 
 pub const CSSM_SPI_CL_FUNCS_PTR = ?*cssm_spi_cl_funcs;
 
-pub const CSSM_SPI_ModuleEventHandler = ?*const fn (
-    ?*CSSM_GUID,
-    ?*anyopaque,
-    uint32,
-    CSSM_SERVICE_TYPE,
-    CSSM_MODULE_EVENT,
-) callconv(.C) CSSM_RETURN;
+pub const CSSM_SPI_ModuleEventHandler = CSSM_RETURN;
 
 pub const CSSM_CONTEXT_EVENT = uint32;
 
@@ -8122,9 +8142,9 @@ pub const cssm_kr_name = extern struct {
 
 pub const CSSM_KR_NAME = cssm_kr_name;
 
-pub const CSSM_KR_PROFILE = cssm_kr_profile;
+pub const CSSM_KR_PROFILE = cssm_context_attribute._value.cssm_kr_profile;
 
-pub const CSSM_KR_PROFILE_PTR = ?*cssm_kr_profile;
+pub const CSSM_KR_PROFILE_PTR = ?*cssm_context_attribute._value.cssm_kr_profile;
 
 pub const cssm_kr_wrappedproductinfo = extern struct {
     StandardVersion: CSSM_VERSION,
@@ -8154,7 +8174,9 @@ pub const CSSM_KR_POLICY_TYPE = uint32;
 pub const CSSM_KR_POLICY_FLAGS = uint32;
 
 pub const cssm_kr_policy_list_item = extern struct {
-    next: ?*kr_policy_list_item,
+    pub const kr_policy_list_item = extern struct {};
+
+    next: ?*cssm_kr_policy_list_item.kr_policy_list_item,
     AlgorithmId: CSSM_ALGORITHMS,
     Mode: CSSM_ENCRYPT_MODE,
     MaxKeyLength: uint32,
@@ -8163,8 +8185,6 @@ pub const cssm_kr_policy_list_item = extern struct {
     PolicyFlags: CSSM_KR_POLICY_FLAGS,
     AlgClass: CSSM_CONTEXT_TYPE,
 };
-
-pub const kr_policy_list_item = extern struct {};
 
 pub const CSSM_KR_POLICY_LIST_ITEM = cssm_kr_policy_list_item;
 
@@ -8573,13 +8593,12 @@ pub extern "Security" fn MDS_Install(MdsHandle: MDS_HANDLE) callconv(.C) CSSM_RE
 
 pub extern "Security" fn MDS_Uninstall(MdsHandle: MDS_HANDLE) callconv(.C) CSSM_RETURN;
 
-pub const KeychainPromptSelector = enum(uint16) {
-    RequirePassphase = 1,
-    Unsigned = 16,
-    UnsignedAct = 32,
-    Invalid = 64,
-    InvalidAct = 128,
-};
+pub const KeychainPromptSelector = uint16;
+pub const KeychainPromptSelector_RequirePassphase: uint16 = 1;
+pub const KeychainPromptSelector_Unsigned: uint16 = 16;
+pub const KeychainPromptSelector_UnsignedAct: uint16 = 32;
+pub const KeychainPromptSelector_Invalid: uint16 = 64;
+pub const KeychainPromptSelector_InvalidAct: uint16 = 128;
 
 extern "Security" fn SecACLGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const aclGetTypeID = SecACLGetTypeID;
@@ -8651,7 +8670,7 @@ pub const aclUpdateAuthorizations = SecACLUpdateAuthorizations;
 
 pub const OpaqueSecIdentitySearchRef = extern struct {};
 
-pub const IdentitySearchRef = ?*OpaqueSecIdentitySearchRef;
+pub const IdentitySearchRef = OpaqueSecIdentitySearchRef;
 
 extern "Security" fn SecIdentitySearchGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const identitySearchGetTypeID = SecIdentitySearchGetTypeID;
@@ -8662,50 +8681,48 @@ pub const identitySearchCreate = SecIdentitySearchCreate;
 extern "Security" fn SecIdentitySearchCopyNext(searchRef: IdentitySearchRef, identity: ?*IdentityRef) callconv(.C) objc.OSStatus;
 pub const identitySearchCopyNext = SecIdentitySearchCopyNext;
 
-pub const ItemClass = enum(objc.FourCharCode) {
-    InternetPasswordItemClass = 1768842612,
-    GenericPasswordItemClass = 1734700656,
-    AppleSharePasswordItemClass = 1634953328,
-    CertificateItemClass = -2147479552,
-    PublicKeyItemClass = 15,
-    PrivateKeyItemClass = 16,
-    SymmetricKeyItemClass = 17,
-};
+pub const ItemClass = objc.FourCharCode;
+pub const ItemClass_InternetPasswordItemClass: objc.FourCharCode = 1768842612;
+pub const ItemClass_GenericPasswordItemClass: objc.FourCharCode = 1734700656;
+pub const ItemClass_AppleSharePasswordItemClass: objc.FourCharCode = 1634953328;
+pub const ItemClass_CertificateItemClass: objc.FourCharCode = -2147479552;
+pub const ItemClass_PublicKeyItemClass: objc.FourCharCode = 15;
+pub const ItemClass_PrivateKeyItemClass: objc.FourCharCode = 16;
+pub const ItemClass_SymmetricKeyItemClass: objc.FourCharCode = 17;
 
-pub const ItemAttr = enum(objc.FourCharCode) {
-    CreationDateItemAttr = 1667522932,
-    ModDateItemAttr = 1835295092,
-    DescriptionItemAttr = 1684370275,
-    CommentItemAttr = 1768123764,
-    CreatorItemAttr = 1668445298,
-    TypeItemAttr = 1954115685,
-    ScriptCodeItemAttr = 1935897200,
-    LabelItemAttr = 1818321516,
-    InvisibleItemAttr = 1768846953,
-    NegativeItemAttr = 1852139361,
-    CustomIconItemAttr = 1668641641,
-    AccountItemAttr = 1633903476,
-    ServiceItemAttr = 1937138533,
-    GenericItemAttr = 1734700641,
-    SecurityDomainItemAttr = 1935961454,
-    ServerItemAttr = 1936881266,
-    AuthenticationTypeItemAttr = 1635023216,
-    PortItemAttr = 1886351988,
-    PathItemAttr = 1885434984,
-    VolumeItemAttr = 1986817381,
-    AddressItemAttr = 1633969266,
-    SignatureItemAttr = 1936943463,
-    ProtocolItemAttr = 1886675820,
-    CertificateType = 1668577648,
-    CertificateEncoding = 1667591779,
-    CrlType = 1668445296,
-    CrlEncoding = 1668443747,
-    Alias = 1634494835,
-};
+pub const ItemAttr = objc.FourCharCode;
+pub const ItemAttr_CreationDateItemAttr: objc.FourCharCode = 1667522932;
+pub const ItemAttr_ModDateItemAttr: objc.FourCharCode = 1835295092;
+pub const ItemAttr_DescriptionItemAttr: objc.FourCharCode = 1684370275;
+pub const ItemAttr_CommentItemAttr: objc.FourCharCode = 1768123764;
+pub const ItemAttr_CreatorItemAttr: objc.FourCharCode = 1668445298;
+pub const ItemAttr_TypeItemAttr: objc.FourCharCode = 1954115685;
+pub const ItemAttr_ScriptCodeItemAttr: objc.FourCharCode = 1935897200;
+pub const ItemAttr_LabelItemAttr: objc.FourCharCode = 1818321516;
+pub const ItemAttr_InvisibleItemAttr: objc.FourCharCode = 1768846953;
+pub const ItemAttr_NegativeItemAttr: objc.FourCharCode = 1852139361;
+pub const ItemAttr_CustomIconItemAttr: objc.FourCharCode = 1668641641;
+pub const ItemAttr_AccountItemAttr: objc.FourCharCode = 1633903476;
+pub const ItemAttr_ServiceItemAttr: objc.FourCharCode = 1937138533;
+pub const ItemAttr_GenericItemAttr: objc.FourCharCode = 1734700641;
+pub const ItemAttr_SecurityDomainItemAttr: objc.FourCharCode = 1935961454;
+pub const ItemAttr_ServerItemAttr: objc.FourCharCode = 1936881266;
+pub const ItemAttr_AuthenticationTypeItemAttr: objc.FourCharCode = 1635023216;
+pub const ItemAttr_PortItemAttr: objc.FourCharCode = 1886351988;
+pub const ItemAttr_PathItemAttr: objc.FourCharCode = 1885434984;
+pub const ItemAttr_VolumeItemAttr: objc.FourCharCode = 1986817381;
+pub const ItemAttr_AddressItemAttr: objc.FourCharCode = 1633969266;
+pub const ItemAttr_SignatureItemAttr: objc.FourCharCode = 1936943463;
+pub const ItemAttr_ProtocolItemAttr: objc.FourCharCode = 1886675820;
+pub const ItemAttr_CertificateType: objc.FourCharCode = 1668577648;
+pub const ItemAttr_CertificateEncoding: objc.FourCharCode = 1667591779;
+pub const ItemAttr_CrlType: objc.FourCharCode = 1668445296;
+pub const ItemAttr_CrlEncoding: objc.FourCharCode = 1668443747;
+pub const ItemAttr_Alias: objc.FourCharCode = 1634494835;
 
-pub const AFPServerSignature = [16]objc.UInt8;
+pub const AFPServerSignature = objc.UInt8;
 
-pub const PublicKeyHash = [20]objc.UInt8;
+pub const PublicKeyHash = objc.UInt8;
 
 extern "Security" fn SecKeychainItemGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const keychainItemGetTypeID = SecKeychainItemGetTypeID;
@@ -8810,7 +8827,7 @@ pub const keychainSearchCopyNext = SecKeychainSearchCopyNext;
 
 pub const OpaquePolicySearchRef = extern struct {};
 
-pub const PolicySearchRef = ?*OpaquePolicySearchRef;
+pub const PolicySearchRef = OpaquePolicySearchRef;
 
 extern "Security" fn SecPolicySearchGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const policySearchGetTypeID = SecPolicySearchGetTypeID;
@@ -8838,29 +8855,26 @@ pub const trustedApplicationCopyData = SecTrustedApplicationCopyData;
 extern "Security" fn SecTrustedApplicationSetData(appRef: TrustedApplicationRef, data: core_foundation.DataRef) callconv(.C) objc.OSStatus;
 pub const trustedApplicationSetData = SecTrustedApplicationSetData;
 
-pub const TrustSettingsKeyUsage = enum(objc.uint32_t) {
-    UseSignature = 1,
-    UseEnDecryptData = 2,
-    UseEnDecryptKey = 4,
-    UseSignCert = 8,
-    UseSignRevocation = 16,
-    UseKeyExchange = 32,
-    UseAny = -1,
-};
+pub const TrustSettingsKeyUsage = objc.uint32_t;
+pub const TrustSettingsKeyUsage_UseSignature: objc.uint32_t = 1;
+pub const TrustSettingsKeyUsage_UseEnDecryptData: objc.uint32_t = 2;
+pub const TrustSettingsKeyUsage_UseEnDecryptKey: objc.uint32_t = 4;
+pub const TrustSettingsKeyUsage_UseSignCert: objc.uint32_t = 8;
+pub const TrustSettingsKeyUsage_UseSignRevocation: objc.uint32_t = 16;
+pub const TrustSettingsKeyUsage_UseKeyExchange: objc.uint32_t = 32;
+pub const TrustSettingsKeyUsage_UseAny: objc.uint32_t = -1;
 
-pub const TrustSettingsResult = enum(objc.uint32_t) {
-    Invalid = 0,
-    TrustRoot = 1,
-    TrustAsRoot = 2,
-    Deny = 3,
-    Unspecified = 4,
-};
+pub const TrustSettingsResult = objc.uint32_t;
+pub const TrustSettingsResult_Invalid: objc.uint32_t = 0;
+pub const TrustSettingsResult_TrustRoot: objc.uint32_t = 1;
+pub const TrustSettingsResult_TrustAsRoot: objc.uint32_t = 2;
+pub const TrustSettingsResult_Deny: objc.uint32_t = 3;
+pub const TrustSettingsResult_Unspecified: objc.uint32_t = 4;
 
-pub const TrustSettingsDomain = enum(objc.uint32_t) {
-    User = 0,
-    Admin = 1,
-    System = 2,
-};
+pub const TrustSettingsDomain = objc.uint32_t;
+pub const TrustSettingsDomain_User: objc.uint32_t = 0;
+pub const TrustSettingsDomain_Admin: objc.uint32_t = 1;
+pub const TrustSettingsDomain_System: objc.uint32_t = 2;
 
 extern "Security" fn SecTrustSettingsCopyTrustSettings(certRef: CertificateRef, domain: TrustSettingsDomain, trustSettings: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 pub const trustSettingsCopyTrustSettings = SecTrustSettingsCopyTrustSettings;
@@ -8883,161 +8897,154 @@ pub const trustSettingsCreateExternalRepresentation = SecTrustSettingsCreateExte
 extern "Security" fn SecTrustSettingsImportExternalRepresentation(domain: TrustSettingsDomain, trustSettings: core_foundation.DataRef) callconv(.C) objc.OSStatus;
 pub const trustSettingsImportExternalRepresentation = SecTrustSettingsImportExternalRepresentation;
 
-pub const anon631 = enum(objc.OSStatus) {
-    errSecCSUnimplemented = -67072,
-    errSecCSInvalidObjectRef = -67071,
-    errSecCSInvalidFlags = -67070,
-    errSecCSObjectRequired = -67069,
-    errSecCSStaticCodeNotFound = -67068,
-    errSecCSUnsupportedGuestAttributes = -67067,
-    errSecCSInvalidAttributeValues = -67066,
-    errSecCSNoSuchCode = -67065,
-    errSecCSMultipleGuests = -67064,
-    errSecCSGuestInvalid = -67063,
-    errSecCSUnsigned = -67062,
-    errSecCSSignatureFailed = -67061,
-    errSecCSSignatureNotVerifiable = -67060,
-    errSecCSSignatureUnsupported = -67059,
-    errSecCSBadDictionaryFormat = -67058,
-    errSecCSResourcesNotSealed = -67057,
-    errSecCSResourcesNotFound = -67056,
-    errSecCSResourcesInvalid = -67055,
-    errSecCSBadResource = -67054,
-    errSecCSResourceRulesInvalid = -67053,
-    errSecCSReqInvalid = -67052,
-    errSecCSReqUnsupported = -67051,
-    errSecCSReqFailed = -67050,
-    errSecCSBadObjectFormat = -67049,
-    errSecCSInternalError = -67048,
-    errSecCSHostReject = -67047,
-    errSecCSNotAHost = -67046,
-    errSecCSSignatureInvalid = -67045,
-    errSecCSHostProtocolRelativePath = -67044,
-    errSecCSHostProtocolContradiction = -67043,
-    errSecCSHostProtocolDedicationError = -67042,
-    errSecCSHostProtocolNotProxy = -67041,
-    errSecCSHostProtocolStateError = -67040,
-    errSecCSHostProtocolUnrelated = -67039,
-    errSecCSNotSupported = -67037,
-    errSecCSCMSTooLarge = -67036,
-    errSecCSHostProtocolInvalidHash = -67035,
-    errSecCSStaticCodeChanged = -67034,
-    errSecCSDBDenied = -67033,
-    errSecCSDBAccess = -67032,
-    errSecCSSigDBDenied = -67033,
-    errSecCSSigDBAccess = -67032,
-    errSecCSHostProtocolInvalidAttribute = -67031,
-    errSecCSInfoPlistFailed = -67030,
-    errSecCSNoMainExecutable = -67029,
-    errSecCSBadBundleFormat = -67028,
-    errSecCSNoMatches = -67027,
-    errSecCSFileHardQuarantined = -67026,
-    errSecCSOutdated = -67025,
-    errSecCSDbCorrupt = -67024,
-    errSecCSResourceDirectoryFailed = -67023,
-    errSecCSUnsignedNestedCode = -67022,
-    errSecCSBadNestedCode = -67021,
-    errSecCSBadCallbackValue = -67020,
-    errSecCSHelperFailed = -67019,
-    errSecCSVetoed = -67018,
-    errSecCSBadLVArch = -67017,
-    errSecCSResourceNotSupported = -67016,
-    errSecCSRegularFile = -67015,
-    errSecCSUnsealedAppRoot = -67014,
-    errSecCSWeakResourceRules = -67013,
-    errSecCSDSStoreSymlink = -67012,
-    errSecCSAmbiguousBundleFormat = -67011,
-    errSecCSBadMainExecutable = -67010,
-    errSecCSBadFrameworkVersion = -67009,
-    errSecCSUnsealedFrameworkRoot = -67008,
-    errSecCSWeakResourceEnvelope = -67007,
-    errSecCSCancelled = -67006,
-    errSecCSInvalidPlatform = -67005,
-    errSecCSTooBig = -67004,
-    errSecCSInvalidSymlink = -67003,
-    errSecCSNotAppLike = -67002,
-    errSecCSBadDiskImageFormat = -67001,
-    errSecCSUnsupportedDigestAlgorithm = -67000,
-    errSecCSInvalidAssociatedFileData = -66999,
-    errSecCSInvalidTeamIdentifier = -66998,
-    errSecCSBadTeamIdentifier = -66997,
-    errSecCSSignatureUntrusted = -66996,
-    errSecMultipleExecSegments = -66995,
-    errSecCSInvalidEntitlements = -66994,
-    errSecCSInvalidRuntimeVersion = -66993,
-    errSecCSRevokedNotarization = -66992,
-    errSecCSCMSConstructionFailed = -66991,
-    errSecCSRemoteSignerFailed = -66990,
-};
+pub const anon631 = objc.OSStatus;
+pub const anon631_errSecCSUnimplemented: objc.OSStatus = -67072;
+pub const anon631_errSecCSInvalidObjectRef: objc.OSStatus = -67071;
+pub const anon631_errSecCSInvalidFlags: objc.OSStatus = -67070;
+pub const anon631_errSecCSObjectRequired: objc.OSStatus = -67069;
+pub const anon631_errSecCSStaticCodeNotFound: objc.OSStatus = -67068;
+pub const anon631_errSecCSUnsupportedGuestAttributes: objc.OSStatus = -67067;
+pub const anon631_errSecCSInvalidAttributeValues: objc.OSStatus = -67066;
+pub const anon631_errSecCSNoSuchCode: objc.OSStatus = -67065;
+pub const anon631_errSecCSMultipleGuests: objc.OSStatus = -67064;
+pub const anon631_errSecCSGuestInvalid: objc.OSStatus = -67063;
+pub const anon631_errSecCSUnsigned: objc.OSStatus = -67062;
+pub const anon631_errSecCSSignatureFailed: objc.OSStatus = -67061;
+pub const anon631_errSecCSSignatureNotVerifiable: objc.OSStatus = -67060;
+pub const anon631_errSecCSSignatureUnsupported: objc.OSStatus = -67059;
+pub const anon631_errSecCSBadDictionaryFormat: objc.OSStatus = -67058;
+pub const anon631_errSecCSResourcesNotSealed: objc.OSStatus = -67057;
+pub const anon631_errSecCSResourcesNotFound: objc.OSStatus = -67056;
+pub const anon631_errSecCSResourcesInvalid: objc.OSStatus = -67055;
+pub const anon631_errSecCSBadResource: objc.OSStatus = -67054;
+pub const anon631_errSecCSResourceRulesInvalid: objc.OSStatus = -67053;
+pub const anon631_errSecCSReqInvalid: objc.OSStatus = -67052;
+pub const anon631_errSecCSReqUnsupported: objc.OSStatus = -67051;
+pub const anon631_errSecCSReqFailed: objc.OSStatus = -67050;
+pub const anon631_errSecCSBadObjectFormat: objc.OSStatus = -67049;
+pub const anon631_errSecCSInternalError: objc.OSStatus = -67048;
+pub const anon631_errSecCSHostReject: objc.OSStatus = -67047;
+pub const anon631_errSecCSNotAHost: objc.OSStatus = -67046;
+pub const anon631_errSecCSSignatureInvalid: objc.OSStatus = -67045;
+pub const anon631_errSecCSHostProtocolRelativePath: objc.OSStatus = -67044;
+pub const anon631_errSecCSHostProtocolContradiction: objc.OSStatus = -67043;
+pub const anon631_errSecCSHostProtocolDedicationError: objc.OSStatus = -67042;
+pub const anon631_errSecCSHostProtocolNotProxy: objc.OSStatus = -67041;
+pub const anon631_errSecCSHostProtocolStateError: objc.OSStatus = -67040;
+pub const anon631_errSecCSHostProtocolUnrelated: objc.OSStatus = -67039;
+pub const anon631_errSecCSNotSupported: objc.OSStatus = -67037;
+pub const anon631_errSecCSCMSTooLarge: objc.OSStatus = -67036;
+pub const anon631_errSecCSHostProtocolInvalidHash: objc.OSStatus = -67035;
+pub const anon631_errSecCSStaticCodeChanged: objc.OSStatus = -67034;
+pub const anon631_errSecCSDBDenied: objc.OSStatus = -67033;
+pub const anon631_errSecCSDBAccess: objc.OSStatus = -67032;
+pub const anon631_errSecCSSigDBDenied: objc.OSStatus = -67033;
+pub const anon631_errSecCSSigDBAccess: objc.OSStatus = -67032;
+pub const anon631_errSecCSHostProtocolInvalidAttribute: objc.OSStatus = -67031;
+pub const anon631_errSecCSInfoPlistFailed: objc.OSStatus = -67030;
+pub const anon631_errSecCSNoMainExecutable: objc.OSStatus = -67029;
+pub const anon631_errSecCSBadBundleFormat: objc.OSStatus = -67028;
+pub const anon631_errSecCSNoMatches: objc.OSStatus = -67027;
+pub const anon631_errSecCSFileHardQuarantined: objc.OSStatus = -67026;
+pub const anon631_errSecCSOutdated: objc.OSStatus = -67025;
+pub const anon631_errSecCSDbCorrupt: objc.OSStatus = -67024;
+pub const anon631_errSecCSResourceDirectoryFailed: objc.OSStatus = -67023;
+pub const anon631_errSecCSUnsignedNestedCode: objc.OSStatus = -67022;
+pub const anon631_errSecCSBadNestedCode: objc.OSStatus = -67021;
+pub const anon631_errSecCSBadCallbackValue: objc.OSStatus = -67020;
+pub const anon631_errSecCSHelperFailed: objc.OSStatus = -67019;
+pub const anon631_errSecCSVetoed: objc.OSStatus = -67018;
+pub const anon631_errSecCSBadLVArch: objc.OSStatus = -67017;
+pub const anon631_errSecCSResourceNotSupported: objc.OSStatus = -67016;
+pub const anon631_errSecCSRegularFile: objc.OSStatus = -67015;
+pub const anon631_errSecCSUnsealedAppRoot: objc.OSStatus = -67014;
+pub const anon631_errSecCSWeakResourceRules: objc.OSStatus = -67013;
+pub const anon631_errSecCSDSStoreSymlink: objc.OSStatus = -67012;
+pub const anon631_errSecCSAmbiguousBundleFormat: objc.OSStatus = -67011;
+pub const anon631_errSecCSBadMainExecutable: objc.OSStatus = -67010;
+pub const anon631_errSecCSBadFrameworkVersion: objc.OSStatus = -67009;
+pub const anon631_errSecCSUnsealedFrameworkRoot: objc.OSStatus = -67008;
+pub const anon631_errSecCSWeakResourceEnvelope: objc.OSStatus = -67007;
+pub const anon631_errSecCSCancelled: objc.OSStatus = -67006;
+pub const anon631_errSecCSInvalidPlatform: objc.OSStatus = -67005;
+pub const anon631_errSecCSTooBig: objc.OSStatus = -67004;
+pub const anon631_errSecCSInvalidSymlink: objc.OSStatus = -67003;
+pub const anon631_errSecCSNotAppLike: objc.OSStatus = -67002;
+pub const anon631_errSecCSBadDiskImageFormat: objc.OSStatus = -67001;
+pub const anon631_errSecCSUnsupportedDigestAlgorithm: objc.OSStatus = -67000;
+pub const anon631_errSecCSInvalidAssociatedFileData: objc.OSStatus = -66999;
+pub const anon631_errSecCSInvalidTeamIdentifier: objc.OSStatus = -66998;
+pub const anon631_errSecCSBadTeamIdentifier: objc.OSStatus = -66997;
+pub const anon631_errSecCSSignatureUntrusted: objc.OSStatus = -66996;
+pub const anon631_errSecMultipleExecSegments: objc.OSStatus = -66995;
+pub const anon631_errSecCSInvalidEntitlements: objc.OSStatus = -66994;
+pub const anon631_errSecCSInvalidRuntimeVersion: objc.OSStatus = -66993;
+pub const anon631_errSecCSRevokedNotarization: objc.OSStatus = -66992;
+pub const anon631_errSecCSCMSConstructionFailed: objc.OSStatus = -66991;
+pub const anon631_errSecCSRemoteSignerFailed: objc.OSStatus = -66990;
 
 pub const __SecCode = extern struct {};
 
-pub const CodeRef = ?*__SecCode;
+pub const CodeRef = __SecCode;
 
-pub const StaticCodeRef = ?*__SecCode;
+pub const StaticCodeRef = __SecCode;
 
 pub const __SecRequirement = extern struct {};
 
-pub const RequirementRef = ?*__SecRequirement;
+pub const RequirementRef = __SecRequirement;
 
 pub const GuestRef = objc.u_int32_t;
 
-pub const anon2051 = enum(GuestRef) {
-    SecNoGuest = 0,
-};
+pub const anon2051 = GuestRef;
+pub const anon2051_SecNoGuest: GuestRef = 0;
 
-pub const CSFlags = enum(objc.uint32_t) {
-    DefaultFlags = 0,
-    ConsiderExpiration = -2147483648,
-    EnforceRevocationChecks = 1073741824,
-    NoNetworkAccess = 536870912,
-    ReportProgress = 268435456,
-    CheckTrustedAnchors = 134217728,
-    QuickCheck = 67108864,
-    ApplyEmbeddedPolicy = 33554432,
-    StripDisallowedXattrs = 16777216,
-    MatchGuestRequirementInKernel = 8388608,
-};
+pub const CSFlags = objc.uint32_t;
+pub const CSFlags_DefaultFlags: objc.uint32_t = 0;
+pub const CSFlags_ConsiderExpiration: objc.uint32_t = -2147483648;
+pub const CSFlags_EnforceRevocationChecks: objc.uint32_t = 1073741824;
+pub const CSFlags_NoNetworkAccess: objc.uint32_t = 536870912;
+pub const CSFlags_ReportProgress: objc.uint32_t = 268435456;
+pub const CSFlags_CheckTrustedAnchors: objc.uint32_t = 134217728;
+pub const CSFlags_QuickCheck: objc.uint32_t = 67108864;
+pub const CSFlags_ApplyEmbeddedPolicy: objc.uint32_t = 33554432;
+pub const CSFlags_StripDisallowedXattrs: objc.uint32_t = 16777216;
+pub const CSFlags_MatchGuestRequirementInKernel: objc.uint32_t = 8388608;
 
-pub const CodeSignatureFlags = enum(objc.uint32_t) {
-    Host = 1,
-    Adhoc = 2,
-    ForceHard = 256,
-    ForceKill = 512,
-    ForceExpiration = 1024,
-    Restrict = 2048,
-    Enforcement = 4096,
-    LibraryValidation = 8192,
-    Runtime = 65536,
-    LinkerSigned = 131072,
-};
+pub const CodeSignatureFlags = objc.uint32_t;
+pub const CodeSignatureFlags_Host: objc.uint32_t = 1;
+pub const CodeSignatureFlags_Adhoc: objc.uint32_t = 2;
+pub const CodeSignatureFlags_ForceHard: objc.uint32_t = 256;
+pub const CodeSignatureFlags_ForceKill: objc.uint32_t = 512;
+pub const CodeSignatureFlags_ForceExpiration: objc.uint32_t = 1024;
+pub const CodeSignatureFlags_Restrict: objc.uint32_t = 2048;
+pub const CodeSignatureFlags_Enforcement: objc.uint32_t = 4096;
+pub const CodeSignatureFlags_LibraryValidation: objc.uint32_t = 8192;
+pub const CodeSignatureFlags_Runtime: objc.uint32_t = 65536;
+pub const CodeSignatureFlags_LinkerSigned: objc.uint32_t = 131072;
 
-pub const CodeStatus = enum(objc.uint32_t) {
-    Valid = 1,
-    Hard = 256,
-    Kill = 512,
-    Debugged = 268435456,
-    Platform = 67108864,
-};
+pub const CodeStatus = objc.uint32_t;
+pub const CodeStatus_Valid: objc.uint32_t = 1;
+pub const CodeStatus_Hard: objc.uint32_t = 256;
+pub const CodeStatus_Kill: objc.uint32_t = 512;
+pub const CodeStatus_Debugged: objc.uint32_t = 268435456;
+pub const CodeStatus_Platform: objc.uint32_t = 67108864;
 
-pub const RequirementType = enum(objc.uint32_t) {
-    HostRequirementType = 1,
-    GuestRequirementType = 2,
-    DesignatedRequirementType = 3,
-    LibraryRequirementType = 4,
-    PluginRequirementType = 5,
-    InvalidRequirementType = 6,
-    Count = 6,
-};
+pub const RequirementType = objc.uint32_t;
+pub const RequirementType_HostRequirementType: objc.uint32_t = 1;
+pub const RequirementType_GuestRequirementType: objc.uint32_t = 2;
+pub const RequirementType_DesignatedRequirementType: objc.uint32_t = 3;
+pub const RequirementType_LibraryRequirementType: objc.uint32_t = 4;
+pub const RequirementType_PluginRequirementType: objc.uint32_t = 5;
+pub const RequirementType_InvalidRequirementType: objc.uint32_t = 6;
+pub const RequirementType_Count: objc.uint32_t = 6;
 
-pub const CSDigestAlgorithm = enum(objc.uint32_t) {
-    CodeSignatureNoHash = 0,
-    CodeSignatureHashSHA1 = 1,
-    CodeSignatureHashSHA256 = 2,
-    CodeSignatureHashSHA256Truncated = 3,
-    CodeSignatureHashSHA384 = 4,
-    CodeSignatureHashSHA512 = 5,
-};
+pub const CSDigestAlgorithm = objc.uint32_t;
+pub const CSDigestAlgorithm_CodeSignatureNoHash: objc.uint32_t = 0;
+pub const CSDigestAlgorithm_CodeSignatureHashSHA1: objc.uint32_t = 1;
+pub const CSDigestAlgorithm_CodeSignatureHashSHA256: objc.uint32_t = 2;
+pub const CSDigestAlgorithm_CodeSignatureHashSHA256Truncated: objc.uint32_t = 3;
+pub const CSDigestAlgorithm_CodeSignatureHashSHA384: objc.uint32_t = 4;
+pub const CSDigestAlgorithm_CodeSignatureHashSHA512: objc.uint32_t = 5;
 
 extern "Security" fn SecStaticCodeGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const staticCodeGetTypeID = SecStaticCodeGetTypeID;
@@ -9053,24 +9060,23 @@ extern "Security" fn SecStaticCodeCreateWithPathAndAttributes(
 ) callconv(.C) objc.OSStatus;
 pub const staticCodeCreateWithPathAndAttributes = SecStaticCodeCreateWithPathAndAttributes;
 
-pub const anon1751 = enum(objc.uint32_t) {
-    SecCSCheckAllArchitectures = 1,
-    SecCSDoNotValidateExecutable = 2,
-    SecCSDoNotValidateResources = 4,
-    SecCSBasicValidateOnly = 6,
-    SecCSCheckNestedCode = 8,
-    SecCSStrictValidate = 16,
-    SecCSFullReport = 32,
-    SecCSCheckGatekeeperArchitectures = 65,
-    SecCSRestrictSymlinks = 128,
-    SecCSRestrictToAppLike = 256,
-    SecCSRestrictSidebandData = 512,
-    SecCSUseSoftwareSigningCert = 1024,
-    SecCSValidatePEH = 2048,
-    SecCSSingleThreaded = 4096,
-    SecCSAllowNetworkAccess = 65536,
-    SecCSFastExecutableValidation = 131072,
-};
+pub const anon1751 = objc.uint32_t;
+pub const anon1751_SecCSCheckAllArchitectures: objc.uint32_t = 1;
+pub const anon1751_SecCSDoNotValidateExecutable: objc.uint32_t = 2;
+pub const anon1751_SecCSDoNotValidateResources: objc.uint32_t = 4;
+pub const anon1751_SecCSBasicValidateOnly: objc.uint32_t = 6;
+pub const anon1751_SecCSCheckNestedCode: objc.uint32_t = 8;
+pub const anon1751_SecCSStrictValidate: objc.uint32_t = 16;
+pub const anon1751_SecCSFullReport: objc.uint32_t = 32;
+pub const anon1751_SecCSCheckGatekeeperArchitectures: objc.uint32_t = 65;
+pub const anon1751_SecCSRestrictSymlinks: objc.uint32_t = 128;
+pub const anon1751_SecCSRestrictToAppLike: objc.uint32_t = 256;
+pub const anon1751_SecCSRestrictSidebandData: objc.uint32_t = 512;
+pub const anon1751_SecCSUseSoftwareSigningCert: objc.uint32_t = 1024;
+pub const anon1751_SecCSValidatePEH: objc.uint32_t = 2048;
+pub const anon1751_SecCSSingleThreaded: objc.uint32_t = 4096;
+pub const anon1751_SecCSAllowNetworkAccess: objc.uint32_t = 65536;
+pub const anon1751_SecCSFastExecutableValidation: objc.uint32_t = 131072;
 
 extern "Security" fn SecStaticCodeCheckValidity(staticCode: StaticCodeRef, flags: CSFlags, requirement: RequirementRef) callconv(.C) objc.OSStatus;
 pub const staticCodeCheckValidity = SecStaticCodeCheckValidity;
@@ -9089,9 +9095,8 @@ pub const codeGetTypeID = SecCodeGetTypeID;
 extern "Security" fn SecCodeCopySelf(flags: CSFlags, self: ?*CodeRef) callconv(.C) objc.OSStatus;
 pub const codeCopySelf = SecCodeCopySelf;
 
-pub const anon991 = enum(objc.uint32_t) {
-    SecCSUseAllArchitectures = 1,
-};
+pub const anon991 = objc.uint32_t;
+pub const anon991_SecCSUseAllArchitectures: objc.uint32_t = 1;
 
 extern "Security" fn SecCodeCopyStaticCode(code: CodeRef, flags: CSFlags, staticCode: ?*StaticCodeRef) callconv(.C) objc.OSStatus;
 pub const codeCopyStaticCode = SecCodeCopyStaticCode;
@@ -9135,15 +9140,14 @@ pub const codeCopyPath = SecCodeCopyPath;
 extern "Security" fn SecCodeCopyDesignatedRequirement(code: StaticCodeRef, flags: CSFlags, requirement: ?*RequirementRef) callconv(.C) objc.OSStatus;
 pub const codeCopyDesignatedRequirement = SecCodeCopyDesignatedRequirement;
 
-pub const anon4671 = enum(objc.uint32_t) {
-    SecCSInternalInformation = 1,
-    SecCSSigningInformation = 2,
-    SecCSRequirementInformation = 4,
-    SecCSDynamicInformation = 8,
-    SecCSContentInformation = 16,
-    SecCSSkipResourceDirectory = 32,
-    SecCSCalculateCMSDigest = 64,
-};
+pub const anon4671 = objc.uint32_t;
+pub const anon4671_SecCSInternalInformation: objc.uint32_t = 1;
+pub const anon4671_SecCSSigningInformation: objc.uint32_t = 2;
+pub const anon4671_SecCSRequirementInformation: objc.uint32_t = 4;
+pub const anon4671_SecCSDynamicInformation: objc.uint32_t = 8;
+pub const anon4671_SecCSContentInformation: objc.uint32_t = 16;
+pub const anon4671_SecCSSkipResourceDirectory: objc.uint32_t = 32;
+pub const anon4671_SecCSCalculateCMSDigest: objc.uint32_t = 64;
 
 extern "Security" fn SecCodeCopySigningInformation(code: StaticCodeRef, flags: CSFlags, information: ?*core_foundation.DictionaryRef) callconv(.C) objc.OSStatus;
 pub const codeCopySigningInformation = SecCodeCopySigningInformation;
@@ -9151,10 +9155,9 @@ pub const codeCopySigningInformation = SecCodeCopySigningInformation;
 extern "Security" fn SecCodeMapMemory(code: StaticCodeRef, flags: CSFlags) callconv(.C) objc.OSStatus;
 pub const codeMapMemory = SecCodeMapMemory;
 
-pub const anon351 = enum(objc.uint32_t) {
-    SecCSDedicatedHost = 1,
-    SecCSGenerateGuestHash = 2,
-};
+pub const anon351 = objc.uint32_t;
+pub const anon351_SecCSDedicatedHost: objc.uint32_t = 1;
+pub const anon351_SecCSGenerateGuestHash: objc.uint32_t = 2;
 
 extern "Security" fn SecHostCreateGuest(
     host: GuestRef,
@@ -9211,7 +9214,7 @@ pub const requirementCopyString = SecRequirementCopyString;
 
 pub const __SecTask = extern struct {};
 
-pub const TaskRef = ?*__SecTask;
+pub const TaskRef = __SecTask;
 
 extern "Security" fn SecTaskGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const taskGetTypeID = SecTaskGetTypeID;
@@ -9249,18 +9252,17 @@ pub extern "Security" fn AuthorizationRightRemove(authRef: AuthorizationRef, rig
 
 pub const _CMSDecoder = extern struct {};
 
-pub const CMSDecoderRef = ?*_CMSDecoder;
+pub const CMSDecoderRef = _CMSDecoder;
 
 pub extern "Security" fn CMSDecoderGetTypeID() callconv(.C) core_foundation.TypeID;
 
-pub const CMSSignerStatus = enum(objc.uint32_t) {
-    Unsigned = 0,
-    Valid = 1,
-    NeedsDetachedContent = 2,
-    InvalidSignature = 3,
-    InvalidCert = 4,
-    InvalidIndex = 5,
-};
+pub const CMSSignerStatus = objc.uint32_t;
+pub const CMSSignerStatus_Unsigned: objc.uint32_t = 0;
+pub const CMSSignerStatus_Valid: objc.uint32_t = 1;
+pub const CMSSignerStatus_NeedsDetachedContent: objc.uint32_t = 2;
+pub const CMSSignerStatus_InvalidSignature: objc.uint32_t = 3;
+pub const CMSSignerStatus_InvalidCert: objc.uint32_t = 4;
+pub const CMSSignerStatus_InvalidIndex: objc.uint32_t = 5;
 
 pub extern "Security" fn CMSDecoderCreate(cmsDecoderOut: ?*CMSDecoderRef) callconv(.C) objc.OSStatus;
 
@@ -9313,7 +9315,7 @@ pub extern "Security" fn CMSDecoderCopySignerTimestampCertificates(cmsDecoder: C
 
 pub const _CMSEncoder = extern struct {};
 
-pub const CMSEncoderRef = ?*_CMSEncoder;
+pub const CMSEncoderRef = _CMSEncoder;
 
 pub extern "Security" fn CMSEncoderGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -9343,26 +9345,24 @@ pub extern "Security" fn CMSEncoderAddSupportingCerts(cmsEncoder: CMSEncoderRef,
 
 pub extern "Security" fn CMSEncoderCopySupportingCerts(cmsEncoder: CMSEncoderRef, certsOut: ?*core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-pub const CMSSignedAttributes = enum(objc.uint32_t) {
-    AttrNone = 0,
-    AttrSmimeCapabilities = 1,
-    AttrSmimeEncryptionKeyPrefs = 2,
-    AttrSmimeMSEncryptionKeyPrefs = 4,
-    AttrSigningTime = 8,
-    AttrAppleCodesigningHashAgility = 16,
-    AttrAppleCodesigningHashAgilityV2 = 32,
-    AttrAppleExpirationTime = 64,
-};
+pub const CMSSignedAttributes = objc.uint32_t;
+pub const CMSSignedAttributes_AttrNone: objc.uint32_t = 0;
+pub const CMSSignedAttributes_AttrSmimeCapabilities: objc.uint32_t = 1;
+pub const CMSSignedAttributes_AttrSmimeEncryptionKeyPrefs: objc.uint32_t = 2;
+pub const CMSSignedAttributes_AttrSmimeMSEncryptionKeyPrefs: objc.uint32_t = 4;
+pub const CMSSignedAttributes_AttrSigningTime: objc.uint32_t = 8;
+pub const CMSSignedAttributes_AttrAppleCodesigningHashAgility: objc.uint32_t = 16;
+pub const CMSSignedAttributes_AttrAppleCodesigningHashAgilityV2: objc.uint32_t = 32;
+pub const CMSSignedAttributes_AttrAppleExpirationTime: objc.uint32_t = 64;
 
 pub extern "Security" fn CMSEncoderAddSignedAttributes(cmsEncoder: CMSEncoderRef, signedAttributes: CMSSignedAttributes) callconv(.C) objc.OSStatus;
 
-pub const CMSCertificateChainMode = enum(objc.uint32_t) {
-    None = 0,
-    SignerOnly = 1,
-    Chain = 2,
-    WithRoot = 3,
-    WithRootOrFail = 4,
-};
+pub const CMSCertificateChainMode = objc.uint32_t;
+pub const CMSCertificateChainMode_None: objc.uint32_t = 0;
+pub const CMSCertificateChainMode_SignerOnly: objc.uint32_t = 1;
+pub const CMSCertificateChainMode_Chain: objc.uint32_t = 2;
+pub const CMSCertificateChainMode_WithRoot: objc.uint32_t = 3;
+pub const CMSCertificateChainMode_WithRootOrFail: objc.uint32_t = 4;
 
 pub extern "Security" fn CMSEncoderSetCertificateChainMode(cmsEncoder: CMSEncoderRef, chainMode: CMSCertificateChainMode) callconv(.C) objc.OSStatus;
 
@@ -9405,51 +9405,46 @@ pub extern "Security" fn CMSEncoderCopySignerTimestampWithPolicy(
 
 pub const SSLContext = extern struct {};
 
-pub const SSLContextRef = ?*SSLContext;
+pub const SSLContextRef = SSLContext;
 
 pub const SSLConnectionRef = ?*anyopaque;
 
-pub const SSLSessionOption = enum(i32) {
-    BreakOnServerAuth = 0,
-    BreakOnCertRequested = 1,
-    BreakOnClientAuth = 2,
-    FalseStart = 3,
-    SendOneByteRecord = 4,
-    AllowServerIdentityChange = 5,
-    Fallback = 6,
-    BreakOnClientHello = 7,
-    AllowRenegotiation = 8,
-    EnableSessionTickets = 9,
-};
+pub const SSLSessionOption = i32;
+pub const SSLSessionOption_BreakOnServerAuth: i32 = 0;
+pub const SSLSessionOption_BreakOnCertRequested: i32 = 1;
+pub const SSLSessionOption_BreakOnClientAuth: i32 = 2;
+pub const SSLSessionOption_FalseStart: i32 = 3;
+pub const SSLSessionOption_SendOneByteRecord: i32 = 4;
+pub const SSLSessionOption_AllowServerIdentityChange: i32 = 5;
+pub const SSLSessionOption_Fallback: i32 = 6;
+pub const SSLSessionOption_BreakOnClientHello: i32 = 7;
+pub const SSLSessionOption_AllowRenegotiation: i32 = 8;
+pub const SSLSessionOption_EnableSessionTickets: i32 = 9;
 
-pub const SSLSessionState = enum(i32) {
-    Idle = 0,
-    Handshake = 1,
-    Connected = 2,
-    Closed = 3,
-    Aborted = 4,
-};
+pub const SSLSessionState = i32;
+pub const SSLSessionState_Idle: i32 = 0;
+pub const SSLSessionState_Handshake: i32 = 1;
+pub const SSLSessionState_Connected: i32 = 2;
+pub const SSLSessionState_Closed: i32 = 3;
+pub const SSLSessionState_Aborted: i32 = 4;
 
-pub const SSLClientCertificateState = enum(i32) {
-    None = 0,
-    Requested = 1,
-    Sent = 2,
-    Rejected = 3,
-};
+pub const SSLClientCertificateState = i32;
+pub const SSLClientCertificateState_None: i32 = 0;
+pub const SSLClientCertificateState_Requested: i32 = 1;
+pub const SSLClientCertificateState_Sent: i32 = 2;
+pub const SSLClientCertificateState_Rejected: i32 = 3;
 
-pub const SSLReadFunc = ?*const fn (SSLConnectionRef, ?*anyopaque, ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const SSLReadFunc = objc.OSStatus;
 
-pub const SSLWriteFunc = ?*const fn (SSLConnectionRef, ?*anyopaque, ?*objc.size_t) callconv(.C) objc.OSStatus;
+pub const SSLWriteFunc = objc.OSStatus;
 
-pub const SSLProtocolSide = enum(i32) {
-    ServerSide = 0,
-    ClientSide = 1,
-};
+pub const SSLProtocolSide = i32;
+pub const SSLProtocolSide_ServerSide: i32 = 0;
+pub const SSLProtocolSide_ClientSide: i32 = 1;
 
-pub const SSLConnectionType = enum(i32) {
-    StreamType = 0,
-    DatagramType = 1,
-};
+pub const SSLConnectionType = i32;
+pub const SSLConnectionType_StreamType: i32 = 0;
+pub const SSLConnectionType_DatagramType: i32 = 1;
 
 pub extern "Security" fn SSLContextGetTypeID() callconv(.C) core_foundation.TypeID;
 
@@ -9559,11 +9554,10 @@ pub extern "Security" fn SSLSetOCSPResponse(context: SSLContextRef, response: co
 
 pub extern "Security" fn SSLSetEncryptionCertificate(context: SSLContextRef, certRefs: core_foundation.ArrayRef) callconv(.C) objc.OSStatus;
 
-pub const SSLAuthenticate = enum(i32) {
-    NeverAuthenticate = 0,
-    AlwaysAuthenticate = 1,
-    TryAuthenticate = 2,
-};
+pub const SSLAuthenticate = i32;
+pub const SSLAuthenticate_NeverAuthenticate: i32 = 0;
+pub const SSLAuthenticate_AlwaysAuthenticate: i32 = 1;
+pub const SSLAuthenticate_TryAuthenticate: i32 = 2;
 
 pub extern "Security" fn SSLSetClientSideAuthenticate(context: SSLContextRef, auth: SSLAuthenticate) callconv(.C) objc.OSStatus;
 
@@ -9611,28 +9605,27 @@ pub extern "Security" fn SSLClose(context: SSLContextRef) callconv(.C) objc.OSSt
 
 pub extern "Security" fn SSLSetError(context: SSLContextRef, status: objc.OSStatus) callconv(.C) objc.OSStatus;
 
-pub const anon1791 = enum(core_foundation.Index) {
-    SecTransformErrorAttributeNotFound = 1,
-    SecTransformErrorInvalidOperation = 2,
-    SecTransformErrorNotInitializedCorrectly = 3,
-    SecTransformErrorMoreThanOneOutput = 4,
-    SecTransformErrorInvalidInputDictionary = 5,
-    SecTransformErrorInvalidAlgorithm = 6,
-    SecTransformErrorInvalidLength = 7,
-    SecTransformErrorInvalidType = 8,
-    SecTransformErrorInvalidInput = 10,
-    SecTransformErrorNameAlreadyRegistered = 11,
-    SecTransformErrorUnsupportedAttribute = 12,
-    SecTransformOperationNotSupportedOnGroup = 13,
-    SecTransformErrorMissingParameter = 14,
-    SecTransformErrorInvalidConnection = 15,
-    SecTransformTransformIsExecuting = 16,
-    SecTransformInvalidOverride = 17,
-    SecTransformTransformIsNotRegistered = 18,
-    SecTransformErrorAbortInProgress = 19,
-    SecTransformErrorAborted = 20,
-    SecTransformInvalidArgument = 21,
-};
+pub const anon1791 = core_foundation.Index;
+pub const anon1791_SecTransformErrorAttributeNotFound: core_foundation.Index = 1;
+pub const anon1791_SecTransformErrorInvalidOperation: core_foundation.Index = 2;
+pub const anon1791_SecTransformErrorNotInitializedCorrectly: core_foundation.Index = 3;
+pub const anon1791_SecTransformErrorMoreThanOneOutput: core_foundation.Index = 4;
+pub const anon1791_SecTransformErrorInvalidInputDictionary: core_foundation.Index = 5;
+pub const anon1791_SecTransformErrorInvalidAlgorithm: core_foundation.Index = 6;
+pub const anon1791_SecTransformErrorInvalidLength: core_foundation.Index = 7;
+pub const anon1791_SecTransformErrorInvalidType: core_foundation.Index = 8;
+pub const anon1791_SecTransformErrorInvalidInput: core_foundation.Index = 10;
+pub const anon1791_SecTransformErrorNameAlreadyRegistered: core_foundation.Index = 11;
+pub const anon1791_SecTransformErrorUnsupportedAttribute: core_foundation.Index = 12;
+pub const anon1791_SecTransformOperationNotSupportedOnGroup: core_foundation.Index = 13;
+pub const anon1791_SecTransformErrorMissingParameter: core_foundation.Index = 14;
+pub const anon1791_SecTransformErrorInvalidConnection: core_foundation.Index = 15;
+pub const anon1791_SecTransformTransformIsExecuting: core_foundation.Index = 16;
+pub const anon1791_SecTransformInvalidOverride: core_foundation.Index = 17;
+pub const anon1791_SecTransformTransformIsNotRegistered: core_foundation.Index = 18;
+pub const anon1791_SecTransformErrorAbortInProgress: core_foundation.Index = 19;
+pub const anon1791_SecTransformErrorAborted: core_foundation.Index = 20;
+pub const anon1791_SecTransformInvalidArgument: core_foundation.Index = 21;
 
 pub const TransformRef = core_foundation.TypeRef;
 
@@ -9685,35 +9678,34 @@ pub const MessageBlock = *const fn (core_foundation.TypeRef, core_foundation.Err
 extern "Security" fn SecTransformExecuteAsync(transformRef: TransformRef, deliveryQueue: objc.dispatch_queue_t, deliveryBlock: MessageBlock) callconv(.C) void;
 pub const transformExecuteAsync = SecTransformExecuteAsync;
 
-pub const TransformMetaAttributeType = enum(core_foundation.Index) {
-    Value = 0,
-    Name = 1,
-    Ref = 2,
-    Required = 3,
-    RequiresOutboundConnection = 4,
-    Deferred = 5,
-    Stream = 6,
-    CanCycle = 7,
-    Externalize = 8,
-    HasOutboundConnections = 9,
-    HasInboundConnection = 10,
-};
+pub const TransformMetaAttributeType = core_foundation.Index;
+pub const TransformMetaAttributeType_Value: core_foundation.Index = 0;
+pub const TransformMetaAttributeType_Name: core_foundation.Index = 1;
+pub const TransformMetaAttributeType_Ref: core_foundation.Index = 2;
+pub const TransformMetaAttributeType_Required: core_foundation.Index = 3;
+pub const TransformMetaAttributeType_RequiresOutboundConnection: core_foundation.Index = 4;
+pub const TransformMetaAttributeType_Deferred: core_foundation.Index = 5;
+pub const TransformMetaAttributeType_Stream: core_foundation.Index = 6;
+pub const TransformMetaAttributeType_CanCycle: core_foundation.Index = 7;
+pub const TransformMetaAttributeType_Externalize: core_foundation.Index = 8;
+pub const TransformMetaAttributeType_HasOutboundConnections: core_foundation.Index = 9;
+pub const TransformMetaAttributeType_HasInboundConnection: core_foundation.Index = 10;
 
 pub const TransformAttributeRef = core_foundation.TypeRef;
 
 pub const TransformStringOrAttributeRef = core_foundation.TypeRef;
 
-pub const TransformActionBlock = *const fn () callconv(.C) core_foundation.TypeRef;
+pub const TransformActionBlock = core_foundation.TypeRef;
 
-pub const TransformAttributeActionBlock = *const fn (TransformAttributeRef, core_foundation.TypeRef) callconv(.C) core_foundation.TypeRef;
+pub const TransformAttributeActionBlock = core_foundation.TypeRef;
 
-pub const TransformDataBlock = *const fn (core_foundation.TypeRef) callconv(.C) core_foundation.TypeRef;
+pub const TransformDataBlock = core_foundation.TypeRef;
 
-pub const TransformInstanceBlock = *const fn () callconv(.C) core_foundation.ErrorRef;
+pub const TransformInstanceBlock = core_foundation.ErrorRef;
 
 pub const OpaqueSecTransformImplementation = extern struct {};
 
-pub const TransformImplementationRef = ?*OpaqueSecTransformImplementation;
+pub const TransformImplementationRef = OpaqueSecTransformImplementation;
 
 extern "Security" fn SecTransformSetAttributeAction(
     ref: TransformImplementationRef,
@@ -9746,7 +9738,7 @@ pub const transformCustomSetAttribute = SecTransformCustomSetAttribute;
 extern "Security" fn SecTransformPushbackAttribute(ref: TransformImplementationRef, attribute: TransformStringOrAttributeRef, value: core_foundation.TypeRef) callconv(.C) core_foundation.TypeRef;
 pub const transformPushbackAttribute = SecTransformPushbackAttribute;
 
-pub const TransformCreateFP = ?*const fn (core_foundation.StringRef, TransformRef, TransformImplementationRef) callconv(.C) TransformInstanceBlock;
+pub const TransformCreateFP = TransformInstanceBlock;
 
 extern "Security" fn SecTransformRegister(uniqueName: core_foundation.StringRef, createTransformFunction: TransformCreateFP, @"error": ?*core_foundation.ErrorRef) callconv(.C) objc.Boolean;
 pub const transformRegister = SecTransformRegister;

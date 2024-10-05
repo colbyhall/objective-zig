@@ -9,24 +9,23 @@ const quartz_core = @import("quartz_core.zig"); // Framework dependency QuartzCo
 const core_image = @import("core_image.zig"); // Framework dependency CoreImage.
 const intents = @import("intents.zig"); // Framework dependency Intents.
 
-pub const AddVoiceShortcutButtonStyle = enum(objc.NSUInteger) {
-    White = 0,
-    WhiteOutline = 1,
-    Black = 2,
-    BlackOutline = 3,
-    Automatic = 4,
-    AutomaticOutline = 5,
-};
+pub const AddVoiceShortcutButtonStyle = objc.NSUInteger;
+pub const AddVoiceShortcutButtonStyle_White: objc.NSUInteger = 0;
+pub const AddVoiceShortcutButtonStyle_WhiteOutline: objc.NSUInteger = 1;
+pub const AddVoiceShortcutButtonStyle_Black: objc.NSUInteger = 2;
+pub const AddVoiceShortcutButtonStyle_BlackOutline: objc.NSUInteger = 3;
+pub const AddVoiceShortcutButtonStyle_Automatic: objc.NSUInteger = 4;
+pub const AddVoiceShortcutButtonStyle_AutomaticOutline: objc.NSUInteger = 5;
 
 /// https://developer.apple.com/documentation/IntentsUI/INUIAddVoiceShortcutButtonDelegate?language=objc
 pub const AddVoiceShortcutButtonDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -34,39 +33,39 @@ pub const AddVoiceShortcutButtonDelegate = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -74,7 +73,7 @@ pub const AddVoiceShortcutButtonDelegate = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -105,16 +104,15 @@ pub const AddVoiceShortcutButtonDelegate = opaque {
 
 /// https://developer.apple.com/documentation/IntentsUI/INUIAddVoiceShortcutButton?language=objc
 pub const AddVoiceShortcutButton = opaque {
-    pub const InternalInfo = objc.ExternClass("INUIAddVoiceShortcutButton", @This(), app_kit.Button, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("INUIAddVoiceShortcutButton", @This(), app_kit.Button, &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -122,39 +120,39 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -162,7 +160,7 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -182,20 +180,20 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -206,52 +204,52 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -262,16 +260,16 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -282,7 +280,7 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
     }
 
-    pub fn tryToPerformWith(_self: *@This(), _action: *objc.SEL, _object: *objc.Id) objc.BOOL {
+    pub fn tryToPerformWith(_self: *@This(), _action: objc.Selector, _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "tryToPerform:with:", objc.BOOL, .{ _action, _object });
     }
 
@@ -290,8 +288,8 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "performKeyEquivalent:", objc.BOOL, .{_event});
     }
 
-    pub fn validRequestorForSendTypeReturnType(_self: *@This(), _sendType: app_kit.PasteboardType, _returnType: app_kit.PasteboardType) *objc.Id {
-        return objc.msgSend(_self, "validRequestorForSendType:returnType:", *objc.Id, .{ _sendType, _returnType });
+    pub fn validRequestorForSendTypeReturnType(_self: *@This(), _sendType: app_kit.PasteboardType, _returnType: app_kit.PasteboardType) ?objc.Id {
+        return objc.msgSend(_self, "validRequestorForSendType:returnType:", ?objc.Id, .{ _sendType, _returnType });
     }
 
     pub fn mouseDown(_self: *@This(), _event: ?*app_kit.Event) void {
@@ -426,7 +424,7 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "contextMenuKeyDown:", void, .{_event});
     }
 
-    pub fn noResponderFor(_self: *@This(), _eventSelector: *objc.SEL) void {
+    pub fn noResponderFor(_self: *@This(), _eventSelector: objc.Selector) void {
         return objc.msgSend(_self, "noResponderFor:", void, .{_eventSelector});
     }
 
@@ -446,7 +444,7 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "flushBufferedKeyEvents", void, .{});
     }
 
-    pub fn showContextHelp(_self: *@This(), _sender: *objc.Id) void {
+    pub fn showContextHelp(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "showContextHelp:", void, .{_sender});
     }
 
@@ -466,8 +464,8 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "wantsForwardedScrollEventsForAxis:", objc.BOOL, .{_axis});
     }
 
-    pub fn supplementalTargetForActionSender(_self: *@This(), _action: *objc.SEL, _sender: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "supplementalTargetForAction:sender:", *objc.Id, .{ _action, _sender });
+    pub fn supplementalTargetForActionSender(_self: *@This(), _action: objc.Selector, _sender: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "supplementalTargetForAction:sender:", ?objc.Id, .{ _action, _sender });
     }
 
     pub fn nextResponder(_self: *@This()) ?*app_kit.Responder {
@@ -494,12 +492,12 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "animator", *@This(), .{});
     }
 
-    pub fn animationForKey(_self: *@This(), _key: app_kit.AnimatablePropertyKey) *objc.Id {
-        return objc.msgSend(_self, "animationForKey:", *objc.Id, .{_key});
+    pub fn animationForKey(_self: *@This(), _key: app_kit.AnimatablePropertyKey) ?objc.Id {
+        return objc.msgSend(_self, "animationForKey:", ?objc.Id, .{_key});
     }
 
-    pub fn defaultAnimationForKey(_self: *@This(), _key: app_kit.AnimatablePropertyKey) *objc.Id {
-        return objc.msgSend(_self, "defaultAnimationForKey:", *objc.Id, .{_key});
+    pub fn defaultAnimationForKey(_key: app_kit.AnimatablePropertyKey) ?objc.Id {
+        return objc.msgSend(Internal.class(), "defaultAnimationForKey:", ?objc.Id, .{_key});
     }
 
     pub fn animations(_self: *@This()) ?*anyopaque {
@@ -570,8 +568,8 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "accessibilityFrame", foundation.Rect, .{});
     }
 
-    pub fn accessibilityParent(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityParent", *objc.Id, .{});
+    pub fn accessibilityParent(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityParent", ?objc.Id, .{});
     }
 
     pub fn isAccessibilityFocused(_self: *@This()) objc.BOOL {
@@ -598,8 +596,8 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "accessibilityScreenSizeForLayoutSize:", foundation.Size, .{_size});
     }
 
-    pub fn accessibilityCellForColumnRow(_self: *@This(), _column: objc.NSInteger, _row: objc.NSInteger) *objc.Id {
-        return objc.msgSend(_self, "accessibilityCellForColumn:row:", *objc.Id, .{ _column, _row });
+    pub fn accessibilityCellForColumnRow(_self: *@This(), _column: objc.NSInteger, _row: objc.NSInteger) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityCellForColumn:row:", ?objc.Id, .{ _column, _row });
     }
 
     pub fn accessibilityAttributedStringForRange(_self: *@This(), _range: foundation.Range) ?*foundation.AttributedString {
@@ -682,7 +680,7 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "accessibilityPerformShowMenu", objc.BOOL, .{});
     }
 
-    pub fn isAccessibilitySelectorAllowed(_self: *@This(), _selector: *objc.SEL) objc.BOOL {
+    pub fn isAccessibilitySelectorAllowed(_self: *@This(), _selector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "isAccessibilitySelectorAllowed:", objc.BOOL, .{_selector});
     }
 
@@ -710,11 +708,11 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityActivationPoint:", void, .{_accessibilityActivationPoint});
     }
 
-    pub fn accessibilityTopLevelUIElement(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityTopLevelUIElement", *objc.Id, .{});
+    pub fn accessibilityTopLevelUIElement(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityTopLevelUIElement", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityTopLevelUIElement(_self: *@This(), _accessibilityTopLevelUIElement: *objc.Id) void {
+    pub fn setAccessibilityTopLevelUIElement(_self: *@This(), _accessibilityTopLevelUIElement: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityTopLevelUIElement:", void, .{_accessibilityTopLevelUIElement});
     }
 
@@ -726,11 +724,11 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityURL:", void, .{_accessibilityURL});
     }
 
-    pub fn accessibilityValue(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityValue", *objc.Id, .{});
+    pub fn accessibilityValue(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityValue", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityValue(_self: *@This(), _accessibilityValue: *objc.Id) void {
+    pub fn setAccessibilityValue(_self: *@This(), _accessibilityValue: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityValue:", void, .{_accessibilityValue});
     }
 
@@ -766,11 +764,11 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityTitle:", void, .{_accessibilityTitle});
     }
 
-    pub fn accessibilityTitleUIElement(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityTitleUIElement", *objc.Id, .{});
+    pub fn accessibilityTitleUIElement(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityTitleUIElement", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityTitleUIElement(_self: *@This(), _accessibilityTitleUIElement: *objc.Id) void {
+    pub fn setAccessibilityTitleUIElement(_self: *@This(), _accessibilityTitleUIElement: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityTitleUIElement:", void, .{_accessibilityTitleUIElement});
     }
 
@@ -790,15 +788,15 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityOrientation:", void, .{_accessibilityOrientation});
     }
 
-    pub fn accessibilityOverflowButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityOverflowButton", *objc.Id, .{});
+    pub fn accessibilityOverflowButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityOverflowButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityOverflowButton(_self: *@This(), _accessibilityOverflowButton: *objc.Id) void {
+    pub fn setAccessibilityOverflowButton(_self: *@This(), _accessibilityOverflowButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityOverflowButton:", void, .{_accessibilityOverflowButton});
     }
 
-    pub fn setAccessibilityParent(_self: *@This(), _accessibilityParent: *objc.Id) void {
+    pub fn setAccessibilityParent(_self: *@This(), _accessibilityParent: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityParent:", void, .{_accessibilityParent});
     }
 
@@ -834,19 +832,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityRoleDescription:", void, .{_accessibilityRoleDescription});
     }
 
-    pub fn accessibilitySearchButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilitySearchButton", *objc.Id, .{});
+    pub fn accessibilitySearchButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilitySearchButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilitySearchButton(_self: *@This(), _accessibilitySearchButton: *objc.Id) void {
+    pub fn setAccessibilitySearchButton(_self: *@This(), _accessibilitySearchButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilitySearchButton:", void, .{_accessibilitySearchButton});
     }
 
-    pub fn accessibilitySearchMenu(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilitySearchMenu", *objc.Id, .{});
+    pub fn accessibilitySearchMenu(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilitySearchMenu", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilitySearchMenu(_self: *@This(), _accessibilitySearchMenu: *objc.Id) void {
+    pub fn setAccessibilitySearchMenu(_self: *@This(), _accessibilitySearchMenu: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilitySearchMenu:", void, .{_accessibilitySearchMenu});
     }
 
@@ -874,27 +872,27 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityServesAsTitleForUIElements:", void, .{_accessibilityServesAsTitleForUIElements});
     }
 
-    pub fn accessibilityShownMenu(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityShownMenu", *objc.Id, .{});
+    pub fn accessibilityShownMenu(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityShownMenu", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityShownMenu(_self: *@This(), _accessibilityShownMenu: *objc.Id) void {
+    pub fn setAccessibilityShownMenu(_self: *@This(), _accessibilityShownMenu: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityShownMenu:", void, .{_accessibilityShownMenu});
     }
 
-    pub fn accessibilityMinValue(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityMinValue", *objc.Id, .{});
+    pub fn accessibilityMinValue(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityMinValue", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityMinValue(_self: *@This(), _accessibilityMinValue: *objc.Id) void {
+    pub fn setAccessibilityMinValue(_self: *@This(), _accessibilityMinValue: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityMinValue:", void, .{_accessibilityMinValue});
     }
 
-    pub fn accessibilityMaxValue(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityMaxValue", *objc.Id, .{});
+    pub fn accessibilityMaxValue(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityMaxValue", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityMaxValue(_self: *@This(), _accessibilityMaxValue: *objc.Id) void {
+    pub fn setAccessibilityMaxValue(_self: *@This(), _accessibilityMaxValue: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityMaxValue:", void, .{_accessibilityMaxValue});
     }
 
@@ -906,11 +904,11 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityLinkedUIElements:", void, .{_accessibilityLinkedUIElements});
     }
 
-    pub fn accessibilityWindow(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityWindow", *objc.Id, .{});
+    pub fn accessibilityWindow(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityWindow", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityWindow(_self: *@This(), _accessibilityWindow: *objc.Id) void {
+    pub fn setAccessibilityWindow(_self: *@This(), _accessibilityWindow: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityWindow:", void, .{_accessibilityWindow});
     }
 
@@ -974,19 +972,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityChildrenInNavigationOrder:", void, .{_accessibilityChildrenInNavigationOrder});
     }
 
-    pub fn accessibilityClearButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityClearButton", *objc.Id, .{});
+    pub fn accessibilityClearButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityClearButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityClearButton(_self: *@This(), _accessibilityClearButton: *objc.Id) void {
+    pub fn setAccessibilityClearButton(_self: *@This(), _accessibilityClearButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityClearButton:", void, .{_accessibilityClearButton});
     }
 
-    pub fn accessibilityCancelButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityCancelButton", *objc.Id, .{});
+    pub fn accessibilityCancelButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityCancelButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityCancelButton(_self: *@This(), _accessibilityCancelButton: *objc.Id) void {
+    pub fn setAccessibilityCancelButton(_self: *@This(), _accessibilityCancelButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityCancelButton:", void, .{_accessibilityCancelButton});
     }
 
@@ -1062,19 +1060,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityAttributedUserInputLabels:", void, .{_accessibilityAttributedUserInputLabels});
     }
 
-    pub fn accessibilityApplicationFocusedUIElement(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityApplicationFocusedUIElement", *objc.Id, .{});
+    pub fn accessibilityApplicationFocusedUIElement(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityApplicationFocusedUIElement", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityApplicationFocusedUIElement(_self: *@This(), _accessibilityApplicationFocusedUIElement: *objc.Id) void {
+    pub fn setAccessibilityApplicationFocusedUIElement(_self: *@This(), _accessibilityApplicationFocusedUIElement: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityApplicationFocusedUIElement:", void, .{_accessibilityApplicationFocusedUIElement});
     }
 
-    pub fn accessibilityMainWindow(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityMainWindow", *objc.Id, .{});
+    pub fn accessibilityMainWindow(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityMainWindow", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityMainWindow(_self: *@This(), _accessibilityMainWindow: *objc.Id) void {
+    pub fn setAccessibilityMainWindow(_self: *@This(), _accessibilityMainWindow: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityMainWindow:", void, .{_accessibilityMainWindow});
     }
 
@@ -1094,11 +1092,11 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityFrontmost:", void, .{_accessibilityFrontmost});
     }
 
-    pub fn accessibilityFocusedWindow(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityFocusedWindow", *objc.Id, .{});
+    pub fn accessibilityFocusedWindow(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityFocusedWindow", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityFocusedWindow(_self: *@This(), _accessibilityFocusedWindow: *objc.Id) void {
+    pub fn setAccessibilityFocusedWindow(_self: *@This(), _accessibilityFocusedWindow: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityFocusedWindow:", void, .{_accessibilityFocusedWindow});
     }
 
@@ -1110,19 +1108,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityWindows:", void, .{_accessibilityWindows});
     }
 
-    pub fn accessibilityExtrasMenuBar(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityExtrasMenuBar", *objc.Id, .{});
+    pub fn accessibilityExtrasMenuBar(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityExtrasMenuBar", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityExtrasMenuBar(_self: *@This(), _accessibilityExtrasMenuBar: *objc.Id) void {
+    pub fn setAccessibilityExtrasMenuBar(_self: *@This(), _accessibilityExtrasMenuBar: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityExtrasMenuBar:", void, .{_accessibilityExtrasMenuBar});
     }
 
-    pub fn accessibilityMenuBar(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityMenuBar", *objc.Id, .{});
+    pub fn accessibilityMenuBar(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityMenuBar", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityMenuBar(_self: *@This(), _accessibilityMenuBar: *objc.Id) void {
+    pub fn setAccessibilityMenuBar(_self: *@This(), _accessibilityMenuBar: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityMenuBar:", void, .{_accessibilityMenuBar});
     }
 
@@ -1182,19 +1180,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityHandles:", void, .{_accessibilityHandles});
     }
 
-    pub fn accessibilityWarningValue(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityWarningValue", *objc.Id, .{});
+    pub fn accessibilityWarningValue(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityWarningValue", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityWarningValue(_self: *@This(), _accessibilityWarningValue: *objc.Id) void {
+    pub fn setAccessibilityWarningValue(_self: *@This(), _accessibilityWarningValue: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityWarningValue:", void, .{_accessibilityWarningValue});
     }
 
-    pub fn accessibilityCriticalValue(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityCriticalValue", *objc.Id, .{});
+    pub fn accessibilityCriticalValue(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityCriticalValue", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityCriticalValue(_self: *@This(), _accessibilityCriticalValue: *objc.Id) void {
+    pub fn setAccessibilityCriticalValue(_self: *@This(), _accessibilityCriticalValue: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityCriticalValue:", void, .{_accessibilityCriticalValue});
     }
 
@@ -1206,19 +1204,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityDisclosed:", void, .{_accessibilityDisclosed});
     }
 
-    pub fn accessibilityDisclosedByRow(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityDisclosedByRow", *objc.Id, .{});
+    pub fn accessibilityDisclosedByRow(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityDisclosedByRow", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityDisclosedByRow(_self: *@This(), _accessibilityDisclosedByRow: *objc.Id) void {
+    pub fn setAccessibilityDisclosedByRow(_self: *@This(), _accessibilityDisclosedByRow: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityDisclosedByRow:", void, .{_accessibilityDisclosedByRow});
     }
 
-    pub fn accessibilityDisclosedRows(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityDisclosedRows", *objc.Id, .{});
+    pub fn accessibilityDisclosedRows(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityDisclosedRows", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityDisclosedRows(_self: *@This(), _accessibilityDisclosedRows: *objc.Id) void {
+    pub fn setAccessibilityDisclosedRows(_self: *@This(), _accessibilityDisclosedRows: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityDisclosedRows:", void, .{_accessibilityDisclosedRows});
     }
 
@@ -1238,19 +1236,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityMarkerUIElements:", void, .{_accessibilityMarkerUIElements});
     }
 
-    pub fn accessibilityMarkerValues(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityMarkerValues", *objc.Id, .{});
+    pub fn accessibilityMarkerValues(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityMarkerValues", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityMarkerValues(_self: *@This(), _accessibilityMarkerValues: *objc.Id) void {
+    pub fn setAccessibilityMarkerValues(_self: *@This(), _accessibilityMarkerValues: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityMarkerValues:", void, .{_accessibilityMarkerValues});
     }
 
-    pub fn accessibilityMarkerGroupUIElement(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityMarkerGroupUIElement", *objc.Id, .{});
+    pub fn accessibilityMarkerGroupUIElement(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityMarkerGroupUIElement", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityMarkerGroupUIElement(_self: *@This(), _accessibilityMarkerGroupUIElement: *objc.Id) void {
+    pub fn setAccessibilityMarkerGroupUIElement(_self: *@This(), _accessibilityMarkerGroupUIElement: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityMarkerGroupUIElement:", void, .{_accessibilityMarkerGroupUIElement});
     }
 
@@ -1286,19 +1284,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityMarkerTypeDescription:", void, .{_accessibilityMarkerTypeDescription});
     }
 
-    pub fn accessibilityHorizontalScrollBar(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityHorizontalScrollBar", *objc.Id, .{});
+    pub fn accessibilityHorizontalScrollBar(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityHorizontalScrollBar", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityHorizontalScrollBar(_self: *@This(), _accessibilityHorizontalScrollBar: *objc.Id) void {
+    pub fn setAccessibilityHorizontalScrollBar(_self: *@This(), _accessibilityHorizontalScrollBar: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityHorizontalScrollBar:", void, .{_accessibilityHorizontalScrollBar});
     }
 
-    pub fn accessibilityVerticalScrollBar(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityVerticalScrollBar", *objc.Id, .{});
+    pub fn accessibilityVerticalScrollBar(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityVerticalScrollBar", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityVerticalScrollBar(_self: *@This(), _accessibilityVerticalScrollBar: *objc.Id) void {
+    pub fn setAccessibilityVerticalScrollBar(_self: *@This(), _accessibilityVerticalScrollBar: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityVerticalScrollBar:", void, .{_accessibilityVerticalScrollBar});
     }
 
@@ -1334,19 +1332,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilitySplitters:", void, .{_accessibilitySplitters});
     }
 
-    pub fn accessibilityDecrementButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityDecrementButton", *objc.Id, .{});
+    pub fn accessibilityDecrementButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityDecrementButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityDecrementButton(_self: *@This(), _accessibilityDecrementButton: *objc.Id) void {
+    pub fn setAccessibilityDecrementButton(_self: *@This(), _accessibilityDecrementButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityDecrementButton:", void, .{_accessibilityDecrementButton});
     }
 
-    pub fn accessibilityIncrementButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityIncrementButton", *objc.Id, .{});
+    pub fn accessibilityIncrementButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityIncrementButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityIncrementButton(_self: *@This(), _accessibilityIncrementButton: *objc.Id) void {
+    pub fn setAccessibilityIncrementButton(_self: *@This(), _accessibilityIncrementButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityIncrementButton:", void, .{_accessibilityIncrementButton});
     }
 
@@ -1358,11 +1356,11 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityTabs:", void, .{_accessibilityTabs});
     }
 
-    pub fn accessibilityHeader(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityHeader", *objc.Id, .{});
+    pub fn accessibilityHeader(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityHeader", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityHeader(_self: *@This(), _accessibilityHeader: *objc.Id) void {
+    pub fn setAccessibilityHeader(_self: *@This(), _accessibilityHeader: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityHeader:", void, .{_accessibilityHeader});
     }
 
@@ -1558,11 +1556,11 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilitySelectedTextRanges:", void, .{_accessibilitySelectedTextRanges});
     }
 
-    pub fn accessibilityToolbarButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityToolbarButton", *objc.Id, .{});
+    pub fn accessibilityToolbarButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityToolbarButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityToolbarButton(_self: *@This(), _accessibilityToolbarButton: *objc.Id) void {
+    pub fn setAccessibilityToolbarButton(_self: *@This(), _accessibilityToolbarButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityToolbarButton:", void, .{_accessibilityToolbarButton});
     }
 
@@ -1574,11 +1572,11 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityModal:", void, .{_accessibilityModal});
     }
 
-    pub fn accessibilityProxy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityProxy", *objc.Id, .{});
+    pub fn accessibilityProxy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityProxy", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityProxy(_self: *@This(), _accessibilityProxy: *objc.Id) void {
+    pub fn setAccessibilityProxy(_self: *@This(), _accessibilityProxy: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityProxy:", void, .{_accessibilityProxy});
     }
 
@@ -1590,19 +1588,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityMain:", void, .{_accessibilityMain});
     }
 
-    pub fn accessibilityFullScreenButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityFullScreenButton", *objc.Id, .{});
+    pub fn accessibilityFullScreenButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityFullScreenButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityFullScreenButton(_self: *@This(), _accessibilityFullScreenButton: *objc.Id) void {
+    pub fn setAccessibilityFullScreenButton(_self: *@This(), _accessibilityFullScreenButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityFullScreenButton:", void, .{_accessibilityFullScreenButton});
     }
 
-    pub fn accessibilityGrowArea(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityGrowArea", *objc.Id, .{});
+    pub fn accessibilityGrowArea(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityGrowArea", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityGrowArea(_self: *@This(), _accessibilityGrowArea: *objc.Id) void {
+    pub fn setAccessibilityGrowArea(_self: *@This(), _accessibilityGrowArea: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityGrowArea:", void, .{_accessibilityGrowArea});
     }
 
@@ -1614,35 +1612,35 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setAccessibilityDocument:", void, .{_accessibilityDocument});
     }
 
-    pub fn accessibilityDefaultButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityDefaultButton", *objc.Id, .{});
+    pub fn accessibilityDefaultButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityDefaultButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityDefaultButton(_self: *@This(), _accessibilityDefaultButton: *objc.Id) void {
+    pub fn setAccessibilityDefaultButton(_self: *@This(), _accessibilityDefaultButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityDefaultButton:", void, .{_accessibilityDefaultButton});
     }
 
-    pub fn accessibilityCloseButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityCloseButton", *objc.Id, .{});
+    pub fn accessibilityCloseButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityCloseButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityCloseButton(_self: *@This(), _accessibilityCloseButton: *objc.Id) void {
+    pub fn setAccessibilityCloseButton(_self: *@This(), _accessibilityCloseButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityCloseButton:", void, .{_accessibilityCloseButton});
     }
 
-    pub fn accessibilityZoomButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityZoomButton", *objc.Id, .{});
+    pub fn accessibilityZoomButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityZoomButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityZoomButton(_self: *@This(), _accessibilityZoomButton: *objc.Id) void {
+    pub fn setAccessibilityZoomButton(_self: *@This(), _accessibilityZoomButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityZoomButton:", void, .{_accessibilityZoomButton});
     }
 
-    pub fn accessibilityMinimizeButton(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "accessibilityMinimizeButton", *objc.Id, .{});
+    pub fn accessibilityMinimizeButton(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityMinimizeButton", ?objc.Id, .{});
     }
 
-    pub fn setAccessibilityMinimizeButton(_self: *@This(), _accessibilityMinimizeButton: *objc.Id) void {
+    pub fn setAccessibilityMinimizeButton(_self: *@This(), _accessibilityMinimizeButton: ?objc.Id) void {
         return objc.msgSend(_self, "setAccessibilityMinimizeButton:", void, .{_accessibilityMinimizeButton});
     }
 
@@ -1998,7 +1996,7 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "didCloseMenu:withEvent:", void, .{ _menu, _event });
     }
 
-    pub fn addToolTipRectOwnerUserData(_self: *@This(), _rect: foundation.Rect, _owner: *objc.Id, _data: ?*anyopaque) app_kit.ToolTipTag {
+    pub fn addToolTipRectOwnerUserData(_self: *@This(), _rect: foundation.Rect, _owner: ?objc.Id, _data: ?*anyopaque) app_kit.ToolTipTag {
         return objc.msgSend(_self, "addToolTipRect:owner:userData:", app_kit.ToolTipTag, .{ _rect, _owner, _data });
     }
 
@@ -2174,8 +2172,8 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setNeedsDisplay:", void, .{_needsDisplay});
     }
 
-    pub fn focusView(_self: *@This()) ?*app_kit.View {
-        return objc.msgSend(_self, "focusView", ?*app_kit.View, .{});
+    pub fn focusView() ?*app_kit.View {
+        return objc.msgSend(Internal.class(), "focusView", ?*app_kit.View, .{});
     }
 
     pub fn visibleRect(_self: *@This()) foundation.Rect {
@@ -2330,8 +2328,8 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "enclosingScrollView", ?*app_kit.ScrollView, .{});
     }
 
-    pub fn defaultMenu(_self: *@This()) ?*app_kit.Menu {
-        return objc.msgSend(_self, "defaultMenu", ?*app_kit.Menu, .{});
+    pub fn defaultMenu() ?*app_kit.Menu {
+        return objc.msgSend(Internal.class(), "defaultMenu", ?*app_kit.Menu, .{});
     }
 
     pub fn toolTip(_self: *@This()) ?*foundation.String {
@@ -2366,8 +2364,8 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setUserInterfaceLayoutDirection:", void, .{_userInterfaceLayoutDirection});
     }
 
-    pub fn isCompatibleWithResponsiveScrolling(_self: *@This()) objc.BOOL {
-        return objc.msgSend(_self, "isCompatibleWithResponsiveScrolling", objc.BOOL, .{});
+    pub fn isCompatibleWithResponsiveScrolling() objc.BOOL {
+        return objc.msgSend(Internal.class(), "isCompatibleWithResponsiveScrolling", objc.BOOL, .{});
     }
 
     pub fn preparedContentRect(_self: *@This()) foundation.Rect {
@@ -2394,35 +2392,35 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "sendActionOn:", objc.NSInteger, .{_mask});
     }
 
-    pub fn sendActionTo(_self: *@This(), _action: *objc.SEL, _target: *objc.Id) objc.BOOL {
+    pub fn sendActionTo(_self: *@This(), _action: objc.Selector, _target: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "sendAction:to:", objc.BOOL, .{ _action, _target });
     }
 
-    pub fn takeIntValueFrom(_self: *@This(), _sender: *objc.Id) void {
+    pub fn takeIntValueFrom(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "takeIntValueFrom:", void, .{_sender});
     }
 
-    pub fn takeFloatValueFrom(_self: *@This(), _sender: *objc.Id) void {
+    pub fn takeFloatValueFrom(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "takeFloatValueFrom:", void, .{_sender});
     }
 
-    pub fn takeDoubleValueFrom(_self: *@This(), _sender: *objc.Id) void {
+    pub fn takeDoubleValueFrom(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "takeDoubleValueFrom:", void, .{_sender});
     }
 
-    pub fn takeStringValueFrom(_self: *@This(), _sender: *objc.Id) void {
+    pub fn takeStringValueFrom(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "takeStringValueFrom:", void, .{_sender});
     }
 
-    pub fn takeObjectValueFrom(_self: *@This(), _sender: *objc.Id) void {
+    pub fn takeObjectValueFrom(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "takeObjectValueFrom:", void, .{_sender});
     }
 
-    pub fn takeIntegerValueFrom(_self: *@This(), _sender: *objc.Id) void {
+    pub fn takeIntegerValueFrom(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "takeIntegerValueFrom:", void, .{_sender});
     }
 
-    pub fn performClick(_self: *@This(), _sender: *objc.Id) void {
+    pub fn performClick(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "performClick:", void, .{_sender});
     }
 
@@ -2434,19 +2432,19 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "drawWithExpansionFrame:inView:", void, .{ _contentFrame, _view });
     }
 
-    pub fn target(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "target", *objc.Id, .{});
+    pub fn target(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "target", ?objc.Id, .{});
     }
 
-    pub fn setTarget(_self: *@This(), _target: *objc.Id) void {
+    pub fn setTarget(_self: *@This(), _target: ?objc.Id) void {
         return objc.msgSend(_self, "setTarget:", void, .{_target});
     }
 
-    pub fn action(_self: *@This()) *objc.SEL {
-        return objc.msgSend(_self, "action", *objc.SEL, .{});
+    pub fn action(_self: *@This()) objc.Selector {
+        return objc.msgSend(_self, "action", objc.Selector, .{});
     }
 
-    pub fn setAction(_self: *@This(), _action: *objc.SEL) void {
+    pub fn setAction(_self: *@This(), _action: objc.Selector) void {
         return objc.msgSend(_self, "setAction:", void, .{_action});
     }
 
@@ -2510,11 +2508,11 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setFormatter:", void, .{_formatter});
     }
 
-    pub fn objectValue(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "objectValue", *objc.Id, .{});
+    pub fn objectValue(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "objectValue", ?objc.Id, .{});
     }
 
-    pub fn setObjectValue(_self: *@This(), _objectValue: *objc.Id) void {
+    pub fn setObjectValue(_self: *@This(), _objectValue: ?objc.Id) void {
         return objc.msgSend(_self, "setObjectValue:", void, .{_objectValue});
     }
 
@@ -2631,13 +2629,12 @@ pub const AddVoiceShortcutButton = opaque {
     }
 
     pub fn buttonWithTitleImageTargetAction(
-        _self: *@This(),
         _title: ?*foundation.String,
         _image: ?*app_kit.Image,
-        _target: *objc.Id,
-        _action: *objc.SEL,
+        _target: ?objc.Id,
+        _action: objc.Selector,
     ) *@This() {
-        return objc.msgSend(_self, "buttonWithTitle:image:target:action:", *@This(), .{
+        return objc.msgSend(Internal.class(), "buttonWithTitle:image:target:action:", *@This(), .{
             _title,
             _image,
             _target,
@@ -2645,20 +2642,20 @@ pub const AddVoiceShortcutButton = opaque {
         });
     }
 
-    pub fn buttonWithTitleTargetAction(_self: *@This(), _title: ?*foundation.String, _target: *objc.Id, _action: *objc.SEL) *@This() {
-        return objc.msgSend(_self, "buttonWithTitle:target:action:", *@This(), .{ _title, _target, _action });
+    pub fn buttonWithTitleTargetAction(_title: ?*foundation.String, _target: ?objc.Id, _action: objc.Selector) *@This() {
+        return objc.msgSend(Internal.class(), "buttonWithTitle:target:action:", *@This(), .{ _title, _target, _action });
     }
 
-    pub fn buttonWithImageTargetAction(_self: *@This(), _image: ?*app_kit.Image, _target: *objc.Id, _action: *objc.SEL) *@This() {
-        return objc.msgSend(_self, "buttonWithImage:target:action:", *@This(), .{ _image, _target, _action });
+    pub fn buttonWithImageTargetAction(_image: ?*app_kit.Image, _target: ?objc.Id, _action: objc.Selector) *@This() {
+        return objc.msgSend(Internal.class(), "buttonWithImage:target:action:", *@This(), .{ _image, _target, _action });
     }
 
-    pub fn checkboxWithTitleTargetAction(_self: *@This(), _title: ?*foundation.String, _target: *objc.Id, _action: *objc.SEL) *@This() {
-        return objc.msgSend(_self, "checkboxWithTitle:target:action:", *@This(), .{ _title, _target, _action });
+    pub fn checkboxWithTitleTargetAction(_title: ?*foundation.String, _target: ?objc.Id, _action: objc.Selector) *@This() {
+        return objc.msgSend(Internal.class(), "checkboxWithTitle:target:action:", *@This(), .{ _title, _target, _action });
     }
 
-    pub fn radioButtonWithTitleTargetAction(_self: *@This(), _title: ?*foundation.String, _target: *objc.Id, _action: *objc.SEL) *@This() {
-        return objc.msgSend(_self, "radioButtonWithTitle:target:action:", *@This(), .{ _title, _target, _action });
+    pub fn radioButtonWithTitleTargetAction(_title: ?*foundation.String, _target: ?objc.Id, _action: objc.Selector) *@This() {
+        return objc.msgSend(Internal.class(), "radioButtonWithTitle:target:action:", *@This(), .{ _title, _target, _action });
     }
 
     pub fn setButtonType(_self: *@This(), _type: app_kit.ButtonType) void {
@@ -2912,16 +2909,15 @@ pub const AddVoiceShortcutButton = opaque {
 
 /// https://developer.apple.com/documentation/IntentsUI/INUIAddVoiceShortcutViewController?language=objc
 pub const AddVoiceShortcutViewController = opaque {
-    pub const InternalInfo = objc.ExternClass("INUIAddVoiceShortcutViewController", @This(), app_kit.ViewController, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("INUIAddVoiceShortcutViewController", @This(), app_kit.ViewController, &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -2929,39 +2925,39 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -2969,7 +2965,7 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -2989,20 +2985,20 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -3013,52 +3009,52 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -3069,16 +3065,16 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -3089,7 +3085,7 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
     }
 
-    pub fn tryToPerformWith(_self: *@This(), _action: *objc.SEL, _object: *objc.Id) objc.BOOL {
+    pub fn tryToPerformWith(_self: *@This(), _action: objc.Selector, _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "tryToPerform:with:", objc.BOOL, .{ _action, _object });
     }
 
@@ -3097,8 +3093,8 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "performKeyEquivalent:", objc.BOOL, .{_event});
     }
 
-    pub fn validRequestorForSendTypeReturnType(_self: *@This(), _sendType: app_kit.PasteboardType, _returnType: app_kit.PasteboardType) *objc.Id {
-        return objc.msgSend(_self, "validRequestorForSendType:returnType:", *objc.Id, .{ _sendType, _returnType });
+    pub fn validRequestorForSendTypeReturnType(_self: *@This(), _sendType: app_kit.PasteboardType, _returnType: app_kit.PasteboardType) ?objc.Id {
+        return objc.msgSend(_self, "validRequestorForSendType:returnType:", ?objc.Id, .{ _sendType, _returnType });
     }
 
     pub fn mouseDown(_self: *@This(), _event: ?*app_kit.Event) void {
@@ -3233,7 +3229,7 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "contextMenuKeyDown:", void, .{_event});
     }
 
-    pub fn noResponderFor(_self: *@This(), _eventSelector: *objc.SEL) void {
+    pub fn noResponderFor(_self: *@This(), _eventSelector: objc.Selector) void {
         return objc.msgSend(_self, "noResponderFor:", void, .{_eventSelector});
     }
 
@@ -3253,7 +3249,7 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "flushBufferedKeyEvents", void, .{});
     }
 
-    pub fn showContextHelp(_self: *@This(), _sender: *objc.Id) void {
+    pub fn showContextHelp(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "showContextHelp:", void, .{_sender});
     }
 
@@ -3273,8 +3269,8 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "wantsForwardedScrollEventsForAxis:", objc.BOOL, .{_axis});
     }
 
-    pub fn supplementalTargetForActionSender(_self: *@This(), _action: *objc.SEL, _sender: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "supplementalTargetForAction:sender:", *objc.Id, .{ _action, _sender });
+    pub fn supplementalTargetForActionSender(_self: *@This(), _action: objc.Selector, _sender: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "supplementalTargetForAction:sender:", ?objc.Id, .{ _action, _sender });
     }
 
     pub fn nextResponder(_self: *@This()) ?*app_kit.Responder {
@@ -3305,7 +3301,7 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "commitEditing", objc.BOOL, .{});
     }
 
-    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(_self: *@This(), _delegate: *objc.Id, _didCommitSelector: *objc.SEL, _contextInfo: ?*anyopaque) void {
+    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(_self: *@This(), _delegate: ?objc.Id, _didCommitSelector: objc.Selector, _contextInfo: ?*anyopaque) void {
         return objc.msgSend(_self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", void, .{ _delegate, _didCommitSelector, _contextInfo });
     }
 
@@ -3313,15 +3309,15 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "commitEditingAndReturnError:", objc.BOOL, .{_error});
     }
 
-    pub fn prepareForSegueSender(_self: *@This(), _segue: ?*app_kit.StoryboardSegue, _sender: *objc.Id) void {
+    pub fn prepareForSegueSender(_self: *@This(), _segue: ?*app_kit.StoryboardSegue, _sender: ?objc.Id) void {
         return objc.msgSend(_self, "prepareForSegue:sender:", void, .{ _segue, _sender });
     }
 
-    pub fn performSegueWithIdentifierSender(_self: *@This(), _identifier: app_kit.StoryboardSegueIdentifier, _sender: *objc.Id) void {
+    pub fn performSegueWithIdentifierSender(_self: *@This(), _identifier: app_kit.StoryboardSegueIdentifier, _sender: ?objc.Id) void {
         return objc.msgSend(_self, "performSegueWithIdentifier:sender:", void, .{ _identifier, _sender });
     }
 
-    pub fn shouldPerformSegueWithIdentifierSender(_self: *@This(), _identifier: app_kit.StoryboardSegueIdentifier, _sender: *objc.Id) objc.BOOL {
+    pub fn shouldPerformSegueWithIdentifierSender(_self: *@This(), _identifier: app_kit.StoryboardSegueIdentifier, _sender: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "shouldPerformSegueWithIdentifier:sender:", objc.BOOL, .{ _identifier, _sender });
     }
 
@@ -3385,11 +3381,11 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "nibBundle", ?*foundation.Bundle, .{});
     }
 
-    pub fn representedObject(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "representedObject", *objc.Id, .{});
+    pub fn representedObject(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "representedObject", ?objc.Id, .{});
     }
 
-    pub fn setRepresentedObject(_self: *@This(), _representedObject: *objc.Id) void {
+    pub fn setRepresentedObject(_self: *@This(), _representedObject: ?objc.Id) void {
         return objc.msgSend(_self, "setRepresentedObject:", void, .{_representedObject});
     }
 
@@ -3440,13 +3436,13 @@ pub const AddVoiceShortcutViewController = opaque {
 
 /// https://developer.apple.com/documentation/IntentsUI/INUIAddVoiceShortcutViewControllerDelegate?language=objc
 pub const AddVoiceShortcutViewControllerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -3454,39 +3450,39 @@ pub const AddVoiceShortcutViewControllerDelegate = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -3494,7 +3490,7 @@ pub const AddVoiceShortcutViewControllerDelegate = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -3525,16 +3521,15 @@ pub const AddVoiceShortcutViewControllerDelegate = opaque {
 
 /// https://developer.apple.com/documentation/IntentsUI/INUIEditVoiceShortcutViewController?language=objc
 pub const EditVoiceShortcutViewController = opaque {
-    pub const InternalInfo = objc.ExternClass("INUIEditVoiceShortcutViewController", @This(), app_kit.ViewController, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
+    pub const Internal = objc.ExternClass("INUIEditVoiceShortcutViewController", @This(), app_kit.ViewController, &.{});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
+    pub const new = Internal.new;
+    pub const alloc = Internal.alloc;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -3542,39 +3537,39 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -3582,7 +3577,7 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 
@@ -3602,20 +3597,20 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "debugDescription", ?*foundation.String, .{});
     }
 
-    pub fn load(_self: *@This()) void {
-        return objc.msgSend(_self, "load", void, .{});
+    pub fn load() void {
+        return objc.msgSend(Internal.class(), "load", void, .{});
     }
 
-    pub fn initialize(_self: *@This()) void {
-        return objc.msgSend(_self, "initialize", void, .{});
+    pub fn initialize() void {
+        return objc.msgSend(Internal.class(), "initialize", void, .{});
     }
 
     pub fn init(_self: *@This()) *@This() {
         return objc.msgSend(_self, "init", *@This(), .{});
     }
 
-    pub fn allocWithZone(_self: *@This(), _zone: ?*objc._NSZone) *@This() {
-        return objc.msgSend(_self, "allocWithZone:", *@This(), .{_zone});
+    pub fn allocWithZone(_zone: ?*objc._NSZone) *@This() {
+        return objc.msgSend(Internal.class(), "allocWithZone:", *@This(), .{_zone});
     }
 
     pub fn dealloc(_self: *@This()) void {
@@ -3626,52 +3621,52 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "finalize", void, .{});
     }
 
-    pub fn copy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "copy", *objc.Id, .{});
+    pub fn copy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "copy", ?objc.Id, .{});
     }
 
-    pub fn mutableCopy(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "mutableCopy", *objc.Id, .{});
+    pub fn mutableCopy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "mutableCopy", ?objc.Id, .{});
     }
 
-    pub fn copyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "copyWithZone:", *objc.Id, .{_zone});
+    pub fn copyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "copyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn mutableCopyWithZone(_self: *@This(), _zone: ?*objc._NSZone) *objc.Id {
-        return objc.msgSend(_self, "mutableCopyWithZone:", *objc.Id, .{_zone});
+    pub fn mutableCopyWithZone(_zone: ?*objc._NSZone) ?objc.Id {
+        return objc.msgSend(Internal.class(), "mutableCopyWithZone:", ?objc.Id, .{_zone});
     }
 
-    pub fn instancesRespondToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
+    pub fn instancesRespondToSelector(_aSelector: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "instancesRespondToSelector:", objc.BOOL, .{_aSelector});
     }
 
-    pub fn methodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
+    pub fn methodForSelector(_self: *@This(), _aSelector: objc.Selector) objc.IMP {
         return objc.msgSend(_self, "methodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn instanceMethodForSelector(_self: *@This(), _aSelector: *objc.SEL) objc.IMP {
-        return objc.msgSend(_self, "instanceMethodForSelector:", objc.IMP, .{_aSelector});
+    pub fn instanceMethodForSelector(_aSelector: objc.Selector) objc.IMP {
+        return objc.msgSend(Internal.class(), "instanceMethodForSelector:", objc.IMP, .{_aSelector});
     }
 
-    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: *objc.SEL) void {
+    pub fn doesNotRecognizeSelector(_self: *@This(), _aSelector: objc.Selector) void {
         return objc.msgSend(_self, "doesNotRecognizeSelector:", void, .{_aSelector});
     }
 
-    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "forwardingTargetForSelector:", *objc.Id, .{_aSelector});
+    pub fn forwardingTargetForSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "forwardingTargetForSelector:", ?objc.Id, .{_aSelector});
     }
 
     pub fn forwardInvocation(_self: *@This(), _anInvocation: ?*foundation.Invocation) void {
         return objc.msgSend(_self, "forwardInvocation:", void, .{_anInvocation});
     }
 
-    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
+    pub fn methodSignatureForSelector(_self: *@This(), _aSelector: objc.Selector) ?*foundation.MethodSignature {
         return objc.msgSend(_self, "methodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
-    pub fn instanceMethodSignatureForSelector(_self: *@This(), _aSelector: *objc.SEL) ?*foundation.MethodSignature {
-        return objc.msgSend(_self, "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
+    pub fn instanceMethodSignatureForSelector(_aSelector: objc.Selector) ?*foundation.MethodSignature {
+        return objc.msgSend(Internal.class(), "instanceMethodSignatureForSelector:", ?*foundation.MethodSignature, .{_aSelector});
     }
 
     pub fn allowsWeakReference(_self: *@This()) objc.BOOL {
@@ -3682,16 +3677,16 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "retainWeakReference", objc.BOOL, .{});
     }
 
-    pub fn isSubclassOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
-        return objc.msgSend(_self, "isSubclassOfClass:", objc.BOOL, .{_aClass});
+    pub fn isSubclassOfClass(_aClass: objc.Class) objc.BOOL {
+        return objc.msgSend(Internal.class(), "isSubclassOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn resolveClassMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveClassMethod:", objc.BOOL, .{_sel});
+    pub fn resolveClassMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveClassMethod:", objc.BOOL, .{_sel});
     }
 
-    pub fn resolveInstanceMethod(_self: *@This(), _sel: *objc.SEL) objc.BOOL {
-        return objc.msgSend(_self, "resolveInstanceMethod:", objc.BOOL, .{_sel});
+    pub fn resolveInstanceMethod(_sel: objc.Selector) objc.BOOL {
+        return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
@@ -3702,7 +3697,7 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
     }
 
-    pub fn tryToPerformWith(_self: *@This(), _action: *objc.SEL, _object: *objc.Id) objc.BOOL {
+    pub fn tryToPerformWith(_self: *@This(), _action: objc.Selector, _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "tryToPerform:with:", objc.BOOL, .{ _action, _object });
     }
 
@@ -3710,8 +3705,8 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "performKeyEquivalent:", objc.BOOL, .{_event});
     }
 
-    pub fn validRequestorForSendTypeReturnType(_self: *@This(), _sendType: app_kit.PasteboardType, _returnType: app_kit.PasteboardType) *objc.Id {
-        return objc.msgSend(_self, "validRequestorForSendType:returnType:", *objc.Id, .{ _sendType, _returnType });
+    pub fn validRequestorForSendTypeReturnType(_self: *@This(), _sendType: app_kit.PasteboardType, _returnType: app_kit.PasteboardType) ?objc.Id {
+        return objc.msgSend(_self, "validRequestorForSendType:returnType:", ?objc.Id, .{ _sendType, _returnType });
     }
 
     pub fn mouseDown(_self: *@This(), _event: ?*app_kit.Event) void {
@@ -3846,7 +3841,7 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "contextMenuKeyDown:", void, .{_event});
     }
 
-    pub fn noResponderFor(_self: *@This(), _eventSelector: *objc.SEL) void {
+    pub fn noResponderFor(_self: *@This(), _eventSelector: objc.Selector) void {
         return objc.msgSend(_self, "noResponderFor:", void, .{_eventSelector});
     }
 
@@ -3866,7 +3861,7 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "flushBufferedKeyEvents", void, .{});
     }
 
-    pub fn showContextHelp(_self: *@This(), _sender: *objc.Id) void {
+    pub fn showContextHelp(_self: *@This(), _sender: ?objc.Id) void {
         return objc.msgSend(_self, "showContextHelp:", void, .{_sender});
     }
 
@@ -3886,8 +3881,8 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "wantsForwardedScrollEventsForAxis:", objc.BOOL, .{_axis});
     }
 
-    pub fn supplementalTargetForActionSender(_self: *@This(), _action: *objc.SEL, _sender: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "supplementalTargetForAction:sender:", *objc.Id, .{ _action, _sender });
+    pub fn supplementalTargetForActionSender(_self: *@This(), _action: objc.Selector, _sender: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "supplementalTargetForAction:sender:", ?objc.Id, .{ _action, _sender });
     }
 
     pub fn nextResponder(_self: *@This()) ?*app_kit.Responder {
@@ -3918,7 +3913,7 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "commitEditing", objc.BOOL, .{});
     }
 
-    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(_self: *@This(), _delegate: *objc.Id, _didCommitSelector: *objc.SEL, _contextInfo: ?*anyopaque) void {
+    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(_self: *@This(), _delegate: ?objc.Id, _didCommitSelector: objc.Selector, _contextInfo: ?*anyopaque) void {
         return objc.msgSend(_self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", void, .{ _delegate, _didCommitSelector, _contextInfo });
     }
 
@@ -3926,15 +3921,15 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "commitEditingAndReturnError:", objc.BOOL, .{_error});
     }
 
-    pub fn prepareForSegueSender(_self: *@This(), _segue: ?*app_kit.StoryboardSegue, _sender: *objc.Id) void {
+    pub fn prepareForSegueSender(_self: *@This(), _segue: ?*app_kit.StoryboardSegue, _sender: ?objc.Id) void {
         return objc.msgSend(_self, "prepareForSegue:sender:", void, .{ _segue, _sender });
     }
 
-    pub fn performSegueWithIdentifierSender(_self: *@This(), _identifier: app_kit.StoryboardSegueIdentifier, _sender: *objc.Id) void {
+    pub fn performSegueWithIdentifierSender(_self: *@This(), _identifier: app_kit.StoryboardSegueIdentifier, _sender: ?objc.Id) void {
         return objc.msgSend(_self, "performSegueWithIdentifier:sender:", void, .{ _identifier, _sender });
     }
 
-    pub fn shouldPerformSegueWithIdentifierSender(_self: *@This(), _identifier: app_kit.StoryboardSegueIdentifier, _sender: *objc.Id) objc.BOOL {
+    pub fn shouldPerformSegueWithIdentifierSender(_self: *@This(), _identifier: app_kit.StoryboardSegueIdentifier, _sender: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "shouldPerformSegueWithIdentifier:sender:", objc.BOOL, .{ _identifier, _sender });
     }
 
@@ -3998,11 +3993,11 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "nibBundle", ?*foundation.Bundle, .{});
     }
 
-    pub fn representedObject(_self: *@This()) *objc.Id {
-        return objc.msgSend(_self, "representedObject", *objc.Id, .{});
+    pub fn representedObject(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "representedObject", ?objc.Id, .{});
     }
 
-    pub fn setRepresentedObject(_self: *@This(), _representedObject: *objc.Id) void {
+    pub fn setRepresentedObject(_self: *@This(), _representedObject: ?objc.Id) void {
         return objc.msgSend(_self, "setRepresentedObject:", void, .{_representedObject});
     }
 
@@ -4053,13 +4048,13 @@ pub const EditVoiceShortcutViewController = opaque {
 
 /// https://developer.apple.com/documentation/IntentsUI/INUIEditVoiceShortcutViewControllerDelegate?language=objc
 pub const EditVoiceShortcutViewControllerDelegate = opaque {
-    pub const InternalInfo = objc.ExternProtocol(@This(), &.{objc.NSObject});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
+    pub const Internal = objc.ExternProtocol(@This(), &.{objc.NSObject});
+    pub const as = Internal.as;
+    pub const retain = Internal.retain;
+    pub const release = Internal.release;
+    pub const autorelease = Internal.autorelease;
 
-    pub fn isEqual(_self: *@This(), _object: *objc.Id) objc.BOOL {
+    pub fn isEqual(_self: *@This(), _object: ?objc.Id) objc.BOOL {
         return objc.msgSend(_self, "isEqual:", objc.BOOL, .{_object});
     }
 
@@ -4067,39 +4062,39 @@ pub const EditVoiceShortcutViewControllerDelegate = opaque {
         return objc.msgSend(_self, "hash", objc.NSUInteger, .{});
     }
 
-    pub fn superclass(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "superclass", *objc.Class, .{});
+    pub fn superclass(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "superclass", objc.Class, .{});
     }
 
-    pub fn class(_self: *@This()) *objc.Class {
-        return objc.msgSend(_self, "class", *objc.Class, .{});
+    pub fn class(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "class", objc.Class, .{});
     }
 
     pub fn self(_self: *@This()) *@This() {
         return objc.msgSend(_self, "self", *@This(), .{});
     }
 
-    pub fn performSelector(_self: *@This(), _aSelector: *objc.SEL) *objc.Id {
-        return objc.msgSend(_self, "performSelector:", *objc.Id, .{_aSelector});
+    pub fn performSelector(_self: *@This(), _aSelector: objc.Selector) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:", ?objc.Id, .{_aSelector});
     }
 
-    pub fn performSelectorWithObject(_self: *@This(), _aSelector: *objc.SEL, _object: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:", *objc.Id, .{ _aSelector, _object });
+    pub fn performSelectorWithObject(_self: *@This(), _aSelector: objc.Selector, _object: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:", ?objc.Id, .{ _aSelector, _object });
     }
 
-    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: *objc.SEL, _object1: *objc.Id, _object2: *objc.Id) *objc.Id {
-        return objc.msgSend(_self, "performSelector:withObject:withObject:", *objc.Id, .{ _aSelector, _object1, _object2 });
+    pub fn performSelectorWithObjectWithObject(_self: *@This(), _aSelector: objc.Selector, _object1: ?objc.Id, _object2: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "performSelector:withObject:withObject:", ?objc.Id, .{ _aSelector, _object1, _object2 });
     }
 
     pub fn isProxy(_self: *@This()) objc.BOOL {
         return objc.msgSend(_self, "isProxy", objc.BOOL, .{});
     }
 
-    pub fn isKindOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isKindOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isKindOfClass:", objc.BOOL, .{_aClass});
     }
 
-    pub fn isMemberOfClass(_self: *@This(), _aClass: *objc.Class) objc.BOOL {
+    pub fn isMemberOfClass(_self: *@This(), _aClass: objc.Class) objc.BOOL {
         return objc.msgSend(_self, "isMemberOfClass:", objc.BOOL, .{_aClass});
     }
 
@@ -4107,7 +4102,7 @@ pub const EditVoiceShortcutViewControllerDelegate = opaque {
         return objc.msgSend(_self, "conformsToProtocol:", objc.BOOL, .{_aProtocol});
     }
 
-    pub fn respondsToSelector(_self: *@This(), _aSelector: *objc.SEL) objc.BOOL {
+    pub fn respondsToSelector(_self: *@This(), _aSelector: objc.Selector) objc.BOOL {
         return objc.msgSend(_self, "respondsToSelector:", objc.BOOL, .{_aSelector});
     }
 

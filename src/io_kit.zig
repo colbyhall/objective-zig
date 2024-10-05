@@ -73,119 +73,108 @@ pub const io_service_t = io_object_t;
 
 pub const uext_object_t = io_object_t;
 
-pub const anon331 = enum(u32) {
-    IODefaultMemoryType = 0,
-};
+pub const anon331 = u32;
+pub const anon331_IODefaultMemoryType: u32 = 0;
 
-pub const anon371 = enum(u32) {
-    IODefaultCache = 0,
-    IOInhibitCache = 1,
-    IOWriteThruCache = 2,
-    IOCopybackCache = 3,
-    IOWriteCombineCache = 4,
-    IOCopybackInnerCache = 5,
-    IOPostedWrite = 6,
-    IORealTimeCache = 7,
-    IOPostedReordered = 8,
-    IOPostedCombinedReordered = 9,
-};
+pub const anon371 = u32;
+pub const anon371_IODefaultCache: u32 = 0;
+pub const anon371_IOInhibitCache: u32 = 1;
+pub const anon371_IOWriteThruCache: u32 = 2;
+pub const anon371_IOCopybackCache: u32 = 3;
+pub const anon371_IOWriteCombineCache: u32 = 4;
+pub const anon371_IOCopybackInnerCache: u32 = 5;
+pub const anon371_IOPostedWrite: u32 = 6;
+pub const anon371_IORealTimeCache: u32 = 7;
+pub const anon371_IOPostedReordered: u32 = 8;
+pub const anon371_IOPostedCombinedReordered: u32 = 9;
 
-pub const anon511 = enum(u32) {
-    IOMapAnywhere = 1,
-    IOMapCacheMask = 3840,
-    IOMapCacheShift = 8,
-    IOMapDefaultCache = 0,
-    IOMapInhibitCache = 256,
-    IOMapWriteThruCache = 512,
-    IOMapCopybackCache = 768,
-    IOMapWriteCombineCache = 1024,
-    IOMapCopybackInnerCache = 1280,
-    IOMapPostedWrite = 1536,
-    IOMapRealTimeCache = 1792,
-    IOMapPostedReordered = 2048,
-    IOMapPostedCombinedReordered = 2304,
-    IOMapUserOptionsMask = 4095,
-    IOMapReadOnly = 4096,
-    IOMapStatic = 16777216,
-    IOMapReference = 33554432,
-    IOMapUnique = 67108864,
-    IOMapPrefault = 268435456,
-    IOMapOverwrite = 536870912,
-    IOMapGuardedMask = -1073741824,
-    IOMapGuardedSmall = 1073741824,
-    IOMapGuardedLarge = -2147483648,
-};
+pub const anon511 = u32;
+pub const anon511_IOMapAnywhere: u32 = 1;
+pub const anon511_IOMapCacheMask: u32 = 3840;
+pub const anon511_IOMapCacheShift: u32 = 8;
+pub const anon511_IOMapDefaultCache: u32 = 0;
+pub const anon511_IOMapInhibitCache: u32 = 256;
+pub const anon511_IOMapWriteThruCache: u32 = 512;
+pub const anon511_IOMapCopybackCache: u32 = 768;
+pub const anon511_IOMapWriteCombineCache: u32 = 1024;
+pub const anon511_IOMapCopybackInnerCache: u32 = 1280;
+pub const anon511_IOMapPostedWrite: u32 = 1536;
+pub const anon511_IOMapRealTimeCache: u32 = 1792;
+pub const anon511_IOMapPostedReordered: u32 = 2048;
+pub const anon511_IOMapPostedCombinedReordered: u32 = 2304;
+pub const anon511_IOMapUserOptionsMask: u32 = 4095;
+pub const anon511_IOMapReadOnly: u32 = 4096;
+pub const anon511_IOMapStatic: u32 = 16777216;
+pub const anon511_IOMapReference: u32 = 33554432;
+pub const anon511_IOMapUnique: u32 = 67108864;
+pub const anon511_IOMapPrefault: u32 = 268435456;
+pub const anon511_IOMapOverwrite: u32 = 536870912;
+pub const anon511_IOMapGuardedMask: u32 = -1073741824;
+pub const anon511_IOMapGuardedSmall: u32 = 1073741824;
+pub const anon511_IOMapGuardedLarge: u32 = -2147483648;
 
-pub const anon2001 = enum(u32) {
-    NanosecondScale = 1,
-    MicrosecondScale = 1000,
-    MillisecondScale = 1000000,
-    SecondScale = 1000000000,
-    TickScale = 10000000,
-};
+pub const anon2001 = u32;
+pub const anon2001_NanosecondScale: u32 = 1;
+pub const anon2001_MicrosecondScale: u32 = 1000;
+pub const anon2001_MillisecondScale: u32 = 1000000;
+pub const anon2001_SecondScale: u32 = 1000000000;
+pub const anon2001_TickScale: u32 = 10000000;
 
-pub const anon2081 = enum(i32) {
-    IOConnectMethodVarOutputSize = -3,
-};
+pub const anon2081 = i32;
+pub const anon2081_IOConnectMethodVarOutputSize: i32 = -3;
 
 pub const DeviceNumber = u32;
 
-pub const anon2231 = enum(u32) {
-    IOMaxBusStall40usec = 40000,
-    IOMaxBusStall30usec = 30000,
-    IOMaxBusStall25usec = 25000,
-    IOMaxBusStall20usec = 20000,
-    IOMaxBusStall10usec = 10000,
-    IOMaxBusStall5usec = 5000,
-    IOMaxBusStallNone = 0,
-};
+pub const anon2231 = u32;
+pub const anon2231_IOMaxBusStall40usec: u32 = 40000;
+pub const anon2231_IOMaxBusStall30usec: u32 = 30000;
+pub const anon2231_IOMaxBusStall25usec: u32 = 25000;
+pub const anon2231_IOMaxBusStall20usec: u32 = 20000;
+pub const anon2231_IOMaxBusStall10usec: u32 = 10000;
+pub const anon2231_IOMaxBusStall5usec: u32 = 5000;
+pub const anon2231_IOMaxBusStallNone: u32 = 0;
 
-pub const anon2931 = enum(u32) {
-    IOSystemStateSleepDescriptionHibernateStateInactive = 0,
-    IOSystemStateSleepDescriptionHibernateStateHibernating = 1,
-    IOSystemStateSleepDescriptionHibernateStateWakingFromHibernate = 2,
-};
+pub const anon2931 = u32;
+pub const anon2931_IOSystemStateSleepDescriptionHibernateStateInactive: u32 = 0;
+pub const anon2931_IOSystemStateSleepDescriptionHibernateStateHibernating: u32 = 1;
+pub const anon2931_IOSystemStateSleepDescriptionHibernateStateWakingFromHibernate: u32 = 2;
 
-pub const anon461 = enum(u32) {
-    FirstIOKitNotificationType = 100,
-    IOServicePublishNotificationType = 100,
-    IOServiceMatchedNotificationType = 101,
-    IOServiceTerminatedNotificationType = 102,
-    IOAsyncCompletionNotificationType = 150,
-    IOServiceMessageNotificationType = 160,
-    LastIOKitNotificationType = 199,
-    IOKitNoticationTypeMask = 4095,
-    IOKitNoticationTypeSizeAdjShift = 30,
-    IOKitNoticationMsgSizeMask = 3,
-};
+pub const anon461 = u32;
+pub const anon461_FirstIOKitNotificationType: u32 = 100;
+pub const anon461_IOServicePublishNotificationType: u32 = 100;
+pub const anon461_IOServiceMatchedNotificationType: u32 = 101;
+pub const anon461_IOServiceTerminatedNotificationType: u32 = 102;
+pub const anon461_IOAsyncCompletionNotificationType: u32 = 150;
+pub const anon461_IOServiceMessageNotificationType: u32 = 160;
+pub const anon461_LastIOKitNotificationType: u32 = 199;
+pub const anon461_IOKitNoticationTypeMask: u32 = 4095;
+pub const anon461_IOKitNoticationTypeSizeAdjShift: u32 = 30;
+pub const anon461_IOKitNoticationMsgSizeMask: u32 = 3;
 
-pub const anon611 = enum(u32) {
-    OSNotificationMessageID = 53,
-    OSAsyncCompleteMessageID = 57,
-    MaxAsyncArgs = 16,
-};
+pub const anon611 = u32;
+pub const anon611_OSNotificationMessageID: u32 = 53;
+pub const anon611_OSAsyncCompleteMessageID: u32 = 57;
+pub const anon611_MaxAsyncArgs: u32 = 16;
 
-pub const anon671 = enum(u32) {
-    IOAsyncReservedIndex = 0,
-    IOAsyncReservedCount = 1,
-    IOAsyncCalloutFuncIndex = 1,
-    IOAsyncCalloutRefconIndex = 2,
-    IOAsyncCalloutCount = 3,
-    IOMatchingCalloutFuncIndex = 1,
-    IOMatchingCalloutRefconIndex = 2,
-    IOMatchingCalloutCount = 3,
-    IOInterestCalloutFuncIndex = 1,
-    IOInterestCalloutRefconIndex = 2,
-    IOInterestCalloutServiceIndex = 3,
-    IOInterestCalloutCount = 4,
-};
+pub const anon671 = u32;
+pub const anon671_IOAsyncReservedIndex: u32 = 0;
+pub const anon671_IOAsyncReservedCount: u32 = 1;
+pub const anon671_IOAsyncCalloutFuncIndex: u32 = 1;
+pub const anon671_IOAsyncCalloutRefconIndex: u32 = 2;
+pub const anon671_IOAsyncCalloutCount: u32 = 3;
+pub const anon671_IOMatchingCalloutFuncIndex: u32 = 1;
+pub const anon671_IOMatchingCalloutRefconIndex: u32 = 2;
+pub const anon671_IOMatchingCalloutCount: u32 = 3;
+pub const anon671_IOInterestCalloutFuncIndex: u32 = 1;
+pub const anon671_IOInterestCalloutRefconIndex: u32 = 2;
+pub const anon671_IOInterestCalloutServiceIndex: u32 = 3;
+pub const anon671_IOInterestCalloutCount: u32 = 4;
 
-pub const anon881 = enum(u32) {
-    OSAsyncRef64Count = 8,
-    OSAsyncRef64Size = 64,
-};
+pub const anon881 = u32;
+pub const anon881_OSAsyncRef64Count: u32 = 8;
+pub const anon881_OSAsyncRef64Size: u32 = 64;
 
-pub const OSAsyncReference64 = [8]objc.io_user_reference_t;
+pub const OSAsyncReference64 = objc.io_user_reference_t;
 
 pub const OSNotificationHeader64 = extern struct {
     size: objc.mach_msg_size_t,
@@ -199,12 +188,11 @@ pub const ServiceInterestContent64 = extern struct {
     messageArgument: [1]objc.io_user_reference_t,
 };
 
-pub const anon1161 = enum(u32) {
-    OSAsyncRefCount = 8,
-    OSAsyncRefSize = 32,
-};
+pub const anon1161 = u32;
+pub const anon1161_OSAsyncRefCount: u32 = 8;
+pub const anon1161_OSAsyncRefSize: u32 = 32;
 
-pub const OSAsyncReference = [8]objc.natural_t;
+pub const OSAsyncReference = objc.natural_t;
 
 pub const OSNotificationHeader = extern struct {
     size: objc.mach_msg_size_t,
@@ -225,7 +213,7 @@ pub const AsyncCompletionContent = extern struct {
 
 pub const NotificationPort = extern struct {};
 
-pub const NotificationPortRef = ?*NotificationPort;
+pub const NotificationPortRef = NotificationPort;
 
 pub const ServiceMatchingCallback = ?*const fn (?*anyopaque, io_iterator_t) callconv(.C) void;
 
@@ -373,9 +361,8 @@ pub const serviceOpen = IOServiceOpen;
 extern "IOKit" fn IOServiceRequestProbe(service: io_service_t, options: objc.uint32_t) callconv(.C) objc.kern_return_t;
 pub const serviceRequestProbe = IOServiceRequestProbe;
 
-pub const anon6101 = enum(u32) {
-    IOServiceInteractionAllowed = 1,
-};
+pub const anon6101 = u32;
+pub const anon6101_IOServiceInteractionAllowed: u32 = 1;
 
 extern "IOKit" fn IOServiceAuthorize(service: io_service_t, options: objc.uint32_t) callconv(.C) objc.kern_return_t;
 pub const serviceAuthorize = IOServiceAuthorize;
@@ -590,10 +577,9 @@ pub const registryEntryFromPath = IORegistryEntryFromPath;
 extern "IOKit" fn IORegistryEntryCopyFromPath(mainPort: objc.mach_port_t, path: core_foundation.StringRef) callconv(.C) io_registry_entry_t;
 pub const registryEntryCopyFromPath = IORegistryEntryCopyFromPath;
 
-pub const anon10121 = enum(u32) {
-    IORegistryIterateRecursively = 1,
-    IORegistryIterateParents = 2,
-};
+pub const anon10121 = u32;
+pub const anon10121_IORegistryIterateRecursively: u32 = 1;
+pub const anon10121_IORegistryIterateParents: u32 = 2;
 
 extern "IOKit" fn IORegistryCreateIterator(
     mainPort: objc.mach_port_t,

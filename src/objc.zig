@@ -1,9 +1,8 @@
-// NOTE: This file is basically an exact copy of https://github.com/hexops/mach-objc/blob/main/src/objc.zig which is under the Apache 2 license
-
 const builtin = @import("builtin");
 const std = @import("std");
+const mem = std.mem;
+const Allocator = mem.Allocator;
 
-// LLVM's documented ARC APIs that technically aren't part of libobjc's public API.
 pub const AutoreleasePool = opaque {};
 extern "objc" fn objc_autoreleasePoolPop(pool: *AutoreleasePool) void;
 extern "objc" fn objc_autoreleasePoolPush() *AutoreleasePool;
@@ -11,36 +10,70 @@ extern "objc" fn objc_autoreleasePoolPush() *AutoreleasePool;
 pub const autoreleasePoolPop = objc_autoreleasePoolPop;
 pub const autoreleasePoolPush = objc_autoreleasePoolPush;
 
-extern "objc" fn objc_autorelease(*Id) *Id; // Same as `[object autorelease]`.
-extern "objc" fn objc_release(*Id) void; // Same as `[object release]`.
-extern "objc" fn objc_retain(*Id) *Id; // Same as `[object retain]`.
+extern "objc" fn objc_autorelease(Id) Id;
+extern "objc" fn objc_release(Id) void;
+extern "objc" fn objc_retain(Id) Id;
 
 pub const autorelease = objc_autorelease;
 pub const release = objc_release;
 pub const retain = objc_retain;
 
-// APIs that are part of libobjc's public ABI, but not its public API.
-extern "objc" fn objc_alloc(class: *Class) ?*Id; // Same as `[Class alloc]`.
-extern "objc" fn objc_alloc_init(class: *Class) ?*Id; // Same as `[[Class alloc] init]`.
-extern "objc" fn objc_opt_new(class: *Class) ?*Id; // Same as `[Class new]`.
-extern "objc" fn objc_opt_class(object: ?*Id) ?*Class; // Same as `[object class]`.
-extern "objc" fn objc_opt_isKindOfClass(object: ?*Id, class: ?*Class) bool; // Same as `[object isKindOfClass:class]`.
+extern "objc" fn objc_alloc(class: Class) ?Id;
+extern "objc" fn objc_opt_new(class: Class) ?Id;
+extern "objc" fn objc_opt_class(object: ?Id) ?Class;
+extern "objc" fn objc_opt_isKindOfClass(object: ?Id, class: ?Class) bool;
+extern "objc" fn objc_getClass([*c]const u8) ?Class;
+extern "objc" fn class_getName(Class) [*c]const u8;
+extern "objc" fn class_copyMethodList(Class, *c_uint) [*c]Method;
+extern "objc" fn class_copyIvarList(Class, *c_uint) [*c]IVar;
+extern "objc" fn method_getName(Method) Selector;
+extern "objc" fn sel_getName(Selector) [*:0]const u8;
+extern "objc" fn ivar_getName(IVar) [*:0]const u8;
+extern "objc" fn class_getClassVariable(Class, [*:0]const u8) ?IVar;
+extern "objc" fn object_getIvar(Id, IVar) ?Id;
+extern "objc" fn sel_registerName([*:0]const u8) Selector;
+extern "objc" fn object_getClass(Id) Class;
 
-pub const alloc = objc_alloc_init;
-pub const alloc_init = objc_alloc_init;
+pub const alloc = objc_alloc;
 pub const opt_new = objc_opt_new;
 pub const opt_class = objc_opt_class;
 pub const opt_isKindOfClass = objc_opt_isKindOfClass;
 
 // APIs that are part of libobjc's public API.
-pub const Class = opaque {};
-pub const Id = opaque {
+pub const Class = *opaque {
+    pub fn getMethods(self: *@This(), allocator: Allocator) ![]const Method {
+        var count: c_uint = 0;
+        const methods = class_copyMethodList(self, &count);
+        defer std.c.free(@ptrCast(methods));
+
+        const as_slice = methods[0..count];
+        return allocator.dupe(Method, as_slice);
+    }
+
+    pub fn getIvars(self: *@This(), allocator: Allocator) ![]const IVar {
+        var count: c_uint = 0;
+        const ivars = class_copyIvarList(self, &count);
+        defer std.c.free(@ptrCast(ivars));
+
+        const as_slice = ivars[0..count];
+        return allocator.dupe(IVar, as_slice);
+    }
+
+    pub fn getClassVariable(self: *@This(), name: []const u8) ?IVar {
+        return class_getClassVariable(self, @ptrCast(name));
+    }
+
+    pub fn getIvar(self: *@This(), ivar: IVar) ?Id {
+        return object_getIvar(@ptrCast(self), ivar);
+    }
+};
+pub const Id = *opaque {
     pub const InternalInfo = struct {
         pub fn canCastTo(comptime Base: type) bool {
             return Base == Id;
         }
 
-        pub fn as(self: *Id, comptime Base: type) *Base {
+        pub fn as(self: *@This(), comptime Base: type) *Base {
             if (comptime Base == Id) return self;
             @compileError("Cannot cast `Id` to `" ++ @typeName(Base) ++ "`");
         }
@@ -49,28 +82,30 @@ pub const Id = opaque {
     pub const retain = objc_retain;
     pub const release = objc_release;
     pub const autorelease = objc_autorelease;
-};
-pub const SEL = opaque {};
-pub const Protocol = Class;
 
-/// Calls `objc_msgSend(receiver, selector, args...)` (or `objc_msgSend_stret` if needed).
-///
-/// Be careful. The return type and argument types *must* match the Objective-C method's signature.
-/// No compile-time verification is performed.
-pub fn msgSend(receiver: anytype, comptime selector: []const u8, return_type: type, args: anytype) return_type {
-    const n_colons = comptime std.mem.count(u8, selector, ":");
-    if (comptime n_colons != args.len) {
-        @compileError(std.fmt.comptimePrint(
-            "Selector `{s}` has {} argument{s}, but {} were given",
-            .{ selector, n_colons, (if (n_colons == 1) "" else "s"), args.len },
-        ));
+    pub fn getIvar(self: *@This(), ivar: IVar) ?Id {
+        return object_getIvar(self, ivar);
     }
+};
+pub const Selector = *opaque {
+    pub fn getName(self: *@This()) [*:0]const u8 {
+        return sel_getName(self);
+    }
+};
+pub const Protocol = *opaque {};
+pub const Method = *opaque {
+    pub fn getSelector(self: *@This()) Selector {
+        return method_getName(self);
+    }
+};
+pub const IVar = *opaque {
+    pub fn getName(self: *@This()) [*:0]const u8 {
+        return ivar_getName(self);
+    }
+};
 
-    // TODO: Consider run-time signature verification if `builtin.mode == .Debug` (or use some other
-    // toggle). Register the selector, then call `class_getInstanceMethod()` or
-    // `class_getClassMethod()`, then call `method_getTypeEncoding()`, and then parse the string and
-    // validate it against `receiver` and `args`.
-
+// This is a modified version of https://github.com/hexops/mach-objc/blob/main/src/objc.zig
+pub fn msgSend(receiver: anytype, comptime selector: [*:0]const u8, return_type: type, args: anytype) return_type {
     const fn_type = comptime init: {
         var params: []const std.builtin.Type.Fn.Param = &.{
             .{
@@ -81,7 +116,7 @@ pub fn msgSend(receiver: anytype, comptime selector: []const u8, return_type: ty
             .{
                 .is_generic = false,
                 .is_noalias = false,
-                .type = [*:0]c_char,
+                .type = Selector,
             },
         };
         for (@typeInfo(@TypeOf(args)).Struct.fields) |field| {
@@ -106,13 +141,14 @@ pub fn msgSend(receiver: anytype, comptime selector: []const u8, return_type: ty
     const needs_fpret = comptime builtin.target.cpu.arch == .x86_64 and (return_type == f32 or return_type == f64);
     const needs_stret = comptime builtin.target.cpu.arch == .x86_64 and @sizeOf(return_type) > 16;
     const msg_send_fn_name = comptime if (needs_stret) "objc_msgSend_stret" else if (needs_fpret) "objc_msgSend_fpret" else "objc_msgSend";
-    const msg_send_fn = @extern(*const @Type(fn_type), .{ .name = msg_send_fn_name ++ "$" ++ selector });
-    return @call(.auto, msg_send_fn, .{ receiver, undefined } ++ args);
+    const msg_send_fn = @extern(*const @Type(fn_type), .{ .name = msg_send_fn_name });
+    return @call(.auto, msg_send_fn, .{ receiver, sel_registerName(@ptrCast(selector)) } ++ args);
 }
 
 pub fn ExternClass(comptime name: []const u8, T: type, SuperType: type, comptime protocols: []const type) type {
     return struct {
-        pub fn class() *Class {
+        pub fn class() Class {
+            // This is copied from https://github.com/hexops/mach-objc/blob/main/src/objc.zig
             // This global asm lives inside the `class()` function so we only generate it if `class()` is actually called.
             const GlobalAsm = struct {
                 comptime {
@@ -169,10 +205,6 @@ pub fn ExternClass(comptime name: []const u8, T: type, SuperType: type, comptime
             return @ptrCast(objc_alloc(class()));
         }
 
-        pub fn allocInit() *T {
-            return @ptrCast(alloc_init(class()));
-        }
-
         pub fn retain(self: *T) *T {
             return @ptrCast(objc_retain(@ptrCast(self)));
         }
@@ -215,3 +247,10 @@ pub fn ExternProtocol(T: type, comptime super_protocols: []const type) type {
         }
     };
 }
+
+pub const NSUInteger = u64;
+pub const NSInteger = i64;
+pub const BOOL = enum(i8) {
+    NO,
+    YES,
+};

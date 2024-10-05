@@ -5,200 +5,191 @@ const objc = @import("objc.zig"); // Objective-C Runtime in zig.
 
 pub const _CGLContextObject = extern struct {};
 
-pub const ContextObj = ?*_CGLContextObject;
+pub const ContextObj = _CGLContextObject;
 
 pub const _CGLPixelFormatObject = extern struct {};
 
-pub const PixelFormatObj = ?*_CGLPixelFormatObject;
+pub const PixelFormatObj = _CGLPixelFormatObject;
 
 pub const _CGLRendererInfoObject = extern struct {};
 
-pub const RendererInfoObj = ?*_CGLRendererInfoObject;
+pub const RendererInfoObj = _CGLRendererInfoObject;
 
 pub const _CGLPBufferObject = extern struct {};
 
-pub const PBufferObj = ?*_CGLPBufferObject;
+pub const PBufferObj = _CGLPBufferObject;
 
-pub const _CGLPixelFormatAttribute = enum(u32) {
-    CGLPFAAllRenderers = 1,
-    CGLPFATripleBuffer = 3,
-    CGLPFADoubleBuffer = 5,
-    CGLPFAColorSize = 8,
-    CGLPFAAlphaSize = 11,
-    CGLPFADepthSize = 12,
-    CGLPFAStencilSize = 13,
-    CGLPFAMinimumPolicy = 51,
-    CGLPFAMaximumPolicy = 52,
-    CGLPFASampleBuffers = 55,
-    CGLPFASamples = 56,
-    CGLPFAColorFloat = 58,
-    CGLPFAMultisample = 59,
-    CGLPFASupersample = 60,
-    CGLPFASampleAlpha = 61,
-    CGLPFARendererID = 70,
-    CGLPFANoRecovery = 72,
-    CGLPFAAccelerated = 73,
-    CGLPFAClosestPolicy = 74,
-    CGLPFABackingStore = 76,
-    CGLPFABackingVolatile = 77,
-    CGLPFADisplayMask = 84,
-    CGLPFAAllowOfflineRenderers = 96,
-    CGLPFAAcceleratedCompute = 97,
-    CGLPFAOpenGLProfile = 99,
-    CGLPFASupportsAutomaticGraphicsSwitching = 101,
-    CGLPFAVirtualScreenCount = 128,
-    CGLPFAAuxBuffers = 7,
-    CGLPFAAccumSize = 14,
-    CGLPFAAuxDepthStencil = 57,
-    CGLPFAStereo = 6,
-    CGLPFAOffScreen = 53,
-    CGLPFAWindow = 80,
-    CGLPFACompliant = 83,
-    CGLPFAPBuffer = 90,
-    CGLPFARemotePBuffer = 91,
-    CGLPFASingleRenderer = 71,
-    CGLPFARobust = 75,
-    CGLPFAMPSafe = 78,
-    CGLPFAMultiScreen = 81,
-    CGLPFAFullScreen = 54,
-};
+pub const _CGLPixelFormatAttribute = u32;
+pub const _CGLPixelFormatAttribute_CGLPFAAllRenderers: u32 = 1;
+pub const _CGLPixelFormatAttribute_CGLPFATripleBuffer: u32 = 3;
+pub const _CGLPixelFormatAttribute_CGLPFADoubleBuffer: u32 = 5;
+pub const _CGLPixelFormatAttribute_CGLPFAColorSize: u32 = 8;
+pub const _CGLPixelFormatAttribute_CGLPFAAlphaSize: u32 = 11;
+pub const _CGLPixelFormatAttribute_CGLPFADepthSize: u32 = 12;
+pub const _CGLPixelFormatAttribute_CGLPFAStencilSize: u32 = 13;
+pub const _CGLPixelFormatAttribute_CGLPFAMinimumPolicy: u32 = 51;
+pub const _CGLPixelFormatAttribute_CGLPFAMaximumPolicy: u32 = 52;
+pub const _CGLPixelFormatAttribute_CGLPFASampleBuffers: u32 = 55;
+pub const _CGLPixelFormatAttribute_CGLPFASamples: u32 = 56;
+pub const _CGLPixelFormatAttribute_CGLPFAColorFloat: u32 = 58;
+pub const _CGLPixelFormatAttribute_CGLPFAMultisample: u32 = 59;
+pub const _CGLPixelFormatAttribute_CGLPFASupersample: u32 = 60;
+pub const _CGLPixelFormatAttribute_CGLPFASampleAlpha: u32 = 61;
+pub const _CGLPixelFormatAttribute_CGLPFARendererID: u32 = 70;
+pub const _CGLPixelFormatAttribute_CGLPFANoRecovery: u32 = 72;
+pub const _CGLPixelFormatAttribute_CGLPFAAccelerated: u32 = 73;
+pub const _CGLPixelFormatAttribute_CGLPFAClosestPolicy: u32 = 74;
+pub const _CGLPixelFormatAttribute_CGLPFABackingStore: u32 = 76;
+pub const _CGLPixelFormatAttribute_CGLPFABackingVolatile: u32 = 77;
+pub const _CGLPixelFormatAttribute_CGLPFADisplayMask: u32 = 84;
+pub const _CGLPixelFormatAttribute_CGLPFAAllowOfflineRenderers: u32 = 96;
+pub const _CGLPixelFormatAttribute_CGLPFAAcceleratedCompute: u32 = 97;
+pub const _CGLPixelFormatAttribute_CGLPFAOpenGLProfile: u32 = 99;
+pub const _CGLPixelFormatAttribute_CGLPFASupportsAutomaticGraphicsSwitching: u32 = 101;
+pub const _CGLPixelFormatAttribute_CGLPFAVirtualScreenCount: u32 = 128;
+pub const _CGLPixelFormatAttribute_CGLPFAAuxBuffers: u32 = 7;
+pub const _CGLPixelFormatAttribute_CGLPFAAccumSize: u32 = 14;
+pub const _CGLPixelFormatAttribute_CGLPFAAuxDepthStencil: u32 = 57;
+pub const _CGLPixelFormatAttribute_CGLPFAStereo: u32 = 6;
+pub const _CGLPixelFormatAttribute_CGLPFAOffScreen: u32 = 53;
+pub const _CGLPixelFormatAttribute_CGLPFAWindow: u32 = 80;
+pub const _CGLPixelFormatAttribute_CGLPFACompliant: u32 = 83;
+pub const _CGLPixelFormatAttribute_CGLPFAPBuffer: u32 = 90;
+pub const _CGLPixelFormatAttribute_CGLPFARemotePBuffer: u32 = 91;
+pub const _CGLPixelFormatAttribute_CGLPFASingleRenderer: u32 = 71;
+pub const _CGLPixelFormatAttribute_CGLPFARobust: u32 = 75;
+pub const _CGLPixelFormatAttribute_CGLPFAMPSafe: u32 = 78;
+pub const _CGLPixelFormatAttribute_CGLPFAMultiScreen: u32 = 81;
+pub const _CGLPixelFormatAttribute_CGLPFAFullScreen: u32 = 54;
 
 pub const PixelFormatAttribute = _CGLPixelFormatAttribute;
 
-pub const _CGLRendererProperty = enum(u32) {
-    CGLRPOffScreen = 53,
-    CGLRPRendererID = 70,
-    CGLRPAccelerated = 73,
-    CGLRPBackingStore = 76,
-    CGLRPWindow = 80,
-    CGLRPCompliant = 83,
-    CGLRPDisplayMask = 84,
-    CGLRPBufferModes = 100,
-    CGLRPColorModes = 103,
-    CGLRPAccumModes = 104,
-    CGLRPDepthModes = 105,
-    CGLRPStencilModes = 106,
-    CGLRPMaxAuxBuffers = 107,
-    CGLRPMaxSampleBuffers = 108,
-    CGLRPMaxSamples = 109,
-    CGLRPSampleModes = 110,
-    CGLRPSampleAlpha = 111,
-    CGLRPGPUVertProcCapable = 122,
-    CGLRPGPUFragProcCapable = 123,
-    CGLRPRendererCount = 128,
-    CGLRPOnline = 129,
-    CGLRPAcceleratedCompute = 130,
-    CGLRPVideoMemoryMegabytes = 131,
-    CGLRPTextureMemoryMegabytes = 132,
-    CGLRPMajorGLVersion = 133,
-    CGLRPRegistryIDLow = 140,
-    CGLRPRegistryIDHigh = 141,
-    CGLRPRemovable = 142,
-    CGLRPRobust = 75,
-    CGLRPMPSafe = 78,
-    CGLRPMultiScreen = 81,
-    CGLRPFullScreen = 54,
-    CGLRPVideoMemory = 120,
-    CGLRPTextureMemory = 121,
-};
+pub const _CGLRendererProperty = u32;
+pub const _CGLRendererProperty_CGLRPOffScreen: u32 = 53;
+pub const _CGLRendererProperty_CGLRPRendererID: u32 = 70;
+pub const _CGLRendererProperty_CGLRPAccelerated: u32 = 73;
+pub const _CGLRendererProperty_CGLRPBackingStore: u32 = 76;
+pub const _CGLRendererProperty_CGLRPWindow: u32 = 80;
+pub const _CGLRendererProperty_CGLRPCompliant: u32 = 83;
+pub const _CGLRendererProperty_CGLRPDisplayMask: u32 = 84;
+pub const _CGLRendererProperty_CGLRPBufferModes: u32 = 100;
+pub const _CGLRendererProperty_CGLRPColorModes: u32 = 103;
+pub const _CGLRendererProperty_CGLRPAccumModes: u32 = 104;
+pub const _CGLRendererProperty_CGLRPDepthModes: u32 = 105;
+pub const _CGLRendererProperty_CGLRPStencilModes: u32 = 106;
+pub const _CGLRendererProperty_CGLRPMaxAuxBuffers: u32 = 107;
+pub const _CGLRendererProperty_CGLRPMaxSampleBuffers: u32 = 108;
+pub const _CGLRendererProperty_CGLRPMaxSamples: u32 = 109;
+pub const _CGLRendererProperty_CGLRPSampleModes: u32 = 110;
+pub const _CGLRendererProperty_CGLRPSampleAlpha: u32 = 111;
+pub const _CGLRendererProperty_CGLRPGPUVertProcCapable: u32 = 122;
+pub const _CGLRendererProperty_CGLRPGPUFragProcCapable: u32 = 123;
+pub const _CGLRendererProperty_CGLRPRendererCount: u32 = 128;
+pub const _CGLRendererProperty_CGLRPOnline: u32 = 129;
+pub const _CGLRendererProperty_CGLRPAcceleratedCompute: u32 = 130;
+pub const _CGLRendererProperty_CGLRPVideoMemoryMegabytes: u32 = 131;
+pub const _CGLRendererProperty_CGLRPTextureMemoryMegabytes: u32 = 132;
+pub const _CGLRendererProperty_CGLRPMajorGLVersion: u32 = 133;
+pub const _CGLRendererProperty_CGLRPRegistryIDLow: u32 = 140;
+pub const _CGLRendererProperty_CGLRPRegistryIDHigh: u32 = 141;
+pub const _CGLRendererProperty_CGLRPRemovable: u32 = 142;
+pub const _CGLRendererProperty_CGLRPRobust: u32 = 75;
+pub const _CGLRendererProperty_CGLRPMPSafe: u32 = 78;
+pub const _CGLRendererProperty_CGLRPMultiScreen: u32 = 81;
+pub const _CGLRendererProperty_CGLRPFullScreen: u32 = 54;
+pub const _CGLRendererProperty_CGLRPVideoMemory: u32 = 120;
+pub const _CGLRendererProperty_CGLRPTextureMemory: u32 = 121;
 
 pub const RendererProperty = _CGLRendererProperty;
 
-pub const _CGLContextEnable = enum(u32) {
-    CGLCESwapRectangle = 201,
-    CGLCESwapLimit = 203,
-    CGLCERasterization = 221,
-    CGLCEStateValidation = 301,
-    CGLCESurfaceBackingSize = 305,
-    CGLCEDisplayListOptimization = 307,
-    CGLCEMPEngine = 313,
-    CGLCECrashOnRemovedFunctions = 316,
-};
+pub const _CGLContextEnable = u32;
+pub const _CGLContextEnable_CGLCESwapRectangle: u32 = 201;
+pub const _CGLContextEnable_CGLCESwapLimit: u32 = 203;
+pub const _CGLContextEnable_CGLCERasterization: u32 = 221;
+pub const _CGLContextEnable_CGLCEStateValidation: u32 = 301;
+pub const _CGLContextEnable_CGLCESurfaceBackingSize: u32 = 305;
+pub const _CGLContextEnable_CGLCEDisplayListOptimization: u32 = 307;
+pub const _CGLContextEnable_CGLCEMPEngine: u32 = 313;
+pub const _CGLContextEnable_CGLCECrashOnRemovedFunctions: u32 = 316;
 
 pub const ContextEnable = _CGLContextEnable;
 
-pub const _CGLGPURestartStatus = enum(u32) {
-    CGLCPGPURestartStatusNone = 0,
-    CGLCPGPURestartStatusCaused = 1,
-    CGLCPGPURestartStatusBlacklisted = 2,
-    CGLCPGPURestartStatusDenied = 2,
-};
+pub const _CGLGPURestartStatus = u32;
+pub const _CGLGPURestartStatus_CGLCPGPURestartStatusNone: u32 = 0;
+pub const _CGLGPURestartStatus_CGLCPGPURestartStatusCaused: u32 = 1;
+pub const _CGLGPURestartStatus_CGLCPGPURestartStatusBlacklisted: u32 = 2;
+pub const _CGLGPURestartStatus_CGLCPGPURestartStatusDenied: u32 = 2;
 
 pub const GPURestartStatus = _CGLGPURestartStatus;
 
-pub const _CGLContextParameter = enum(u32) {
-    CGLCPSwapRectangle = 200,
-    CGLCPSwapInterval = 222,
-    CGLCPDispatchTableSize = 224,
-    CGLCPClientStorage = 226,
-    CGLCPSurfaceTexture = 228,
-    CGLCPSurfaceOrder = 235,
-    CGLCPSurfaceOpacity = 236,
-    CGLCPSurfaceBackingSize = 304,
-    CGLCPSurfaceSurfaceVolatile = 306,
-    CGLCPReclaimResources = 308,
-    CGLCPCurrentRendererID = 309,
-    CGLCPGPUVertexProcessing = 310,
-    CGLCPGPUFragmentProcessing = 311,
-    CGLCPHasDrawable = 314,
-    CGLCPMPSwapsInFlight = 315,
-    CGLCPGPURestartStatus = 317,
-    CGLCPAbortOnGPURestartStatusBlacklisted = 318,
-    CGLCPAbortOnGPURestartStatusDenied = 318,
-    CGLCPSupportGPURestart = 319,
-    CGLCPSupportSeparateAddressSpace = 320,
-    CGLCPContextPriorityRequest = 608,
-};
+pub const _CGLContextParameter = u32;
+pub const _CGLContextParameter_CGLCPSwapRectangle: u32 = 200;
+pub const _CGLContextParameter_CGLCPSwapInterval: u32 = 222;
+pub const _CGLContextParameter_CGLCPDispatchTableSize: u32 = 224;
+pub const _CGLContextParameter_CGLCPClientStorage: u32 = 226;
+pub const _CGLContextParameter_CGLCPSurfaceTexture: u32 = 228;
+pub const _CGLContextParameter_CGLCPSurfaceOrder: u32 = 235;
+pub const _CGLContextParameter_CGLCPSurfaceOpacity: u32 = 236;
+pub const _CGLContextParameter_CGLCPSurfaceBackingSize: u32 = 304;
+pub const _CGLContextParameter_CGLCPSurfaceSurfaceVolatile: u32 = 306;
+pub const _CGLContextParameter_CGLCPReclaimResources: u32 = 308;
+pub const _CGLContextParameter_CGLCPCurrentRendererID: u32 = 309;
+pub const _CGLContextParameter_CGLCPGPUVertexProcessing: u32 = 310;
+pub const _CGLContextParameter_CGLCPGPUFragmentProcessing: u32 = 311;
+pub const _CGLContextParameter_CGLCPHasDrawable: u32 = 314;
+pub const _CGLContextParameter_CGLCPMPSwapsInFlight: u32 = 315;
+pub const _CGLContextParameter_CGLCPGPURestartStatus: u32 = 317;
+pub const _CGLContextParameter_CGLCPAbortOnGPURestartStatusBlacklisted: u32 = 318;
+pub const _CGLContextParameter_CGLCPAbortOnGPURestartStatusDenied: u32 = 318;
+pub const _CGLContextParameter_CGLCPSupportGPURestart: u32 = 319;
+pub const _CGLContextParameter_CGLCPSupportSeparateAddressSpace: u32 = 320;
+pub const _CGLContextParameter_CGLCPContextPriorityRequest: u32 = 608;
 
 pub const ContextParameter = _CGLContextParameter;
 
-pub const CPContextPriorityRequest = enum(u32) {
-    High = 0,
-    Normal = 1,
-    Low = 2,
-};
+pub const CPContextPriorityRequest = u32;
+pub const CPContextPriorityRequest_High: u32 = 0;
+pub const CPContextPriorityRequest_Normal: u32 = 1;
+pub const CPContextPriorityRequest_Low: u32 = 2;
 
-pub const _CGLGlobalOption = enum(u32) {
-    CGLGOFormatCacheSize = 501,
-    CGLGOClearFormatCache = 502,
-    CGLGORetainRenderers = 503,
-    CGLGOUseBuildCache = 506,
-    CGLGOResetLibrary = 504,
-    CGLGOUseErrorHandler = 505,
-};
+pub const _CGLGlobalOption = u32;
+pub const _CGLGlobalOption_CGLGOFormatCacheSize: u32 = 501;
+pub const _CGLGlobalOption_CGLGOClearFormatCache: u32 = 502;
+pub const _CGLGlobalOption_CGLGORetainRenderers: u32 = 503;
+pub const _CGLGlobalOption_CGLGOUseBuildCache: u32 = 506;
+pub const _CGLGlobalOption_CGLGOResetLibrary: u32 = 504;
+pub const _CGLGlobalOption_CGLGOUseErrorHandler: u32 = 505;
 
 pub const GlobalOption = _CGLGlobalOption;
 
-pub const _CGLOpenGLProfile = enum(u32) {
-    CGLOGLPVersion_Legacy = 4096,
-    CGLOGLPVersion_3_2_Core = 12800,
-    CGLOGLPVersion_GL3_Core = 12800,
-    CGLOGLPVersion_GL4_Core = 16640,
-};
+pub const _CGLOpenGLProfile = u32;
+pub const _CGLOpenGLProfile_CGLOGLPVersion_Legacy: u32 = 4096;
+pub const _CGLOpenGLProfile_CGLOGLPVersion_3_2_Core: u32 = 12800;
+pub const _CGLOpenGLProfile_CGLOGLPVersion_GL3_Core: u32 = 12800;
+pub const _CGLOpenGLProfile_CGLOGLPVersion_GL4_Core: u32 = 16640;
 
 pub const OpenGLProfile = _CGLOpenGLProfile;
 
-pub const _CGLError = enum(u32) {
-    CGLNoError = 0,
-    CGLBadAttribute = 10000,
-    CGLBadProperty = 10001,
-    CGLBadPixelFormat = 10002,
-    CGLBadRendererInfo = 10003,
-    CGLBadContext = 10004,
-    CGLBadDrawable = 10005,
-    CGLBadDisplay = 10006,
-    CGLBadState = 10007,
-    CGLBadValue = 10008,
-    CGLBadMatch = 10009,
-    CGLBadEnumeration = 10010,
-    CGLBadOffScreen = 10011,
-    CGLBadFullScreen = 10012,
-    CGLBadWindow = 10013,
-    CGLBadAddress = 10014,
-    CGLBadCodeModule = 10015,
-    CGLBadAlloc = 10016,
-    CGLBadConnection = 10017,
-};
+pub const _CGLError = u32;
+pub const _CGLError_CGLNoError: u32 = 0;
+pub const _CGLError_CGLBadAttribute: u32 = 10000;
+pub const _CGLError_CGLBadProperty: u32 = 10001;
+pub const _CGLError_CGLBadPixelFormat: u32 = 10002;
+pub const _CGLError_CGLBadRendererInfo: u32 = 10003;
+pub const _CGLError_CGLBadContext: u32 = 10004;
+pub const _CGLError_CGLBadDrawable: u32 = 10005;
+pub const _CGLError_CGLBadDisplay: u32 = 10006;
+pub const _CGLError_CGLBadState: u32 = 10007;
+pub const _CGLError_CGLBadValue: u32 = 10008;
+pub const _CGLError_CGLBadMatch: u32 = 10009;
+pub const _CGLError_CGLBadEnumeration: u32 = 10010;
+pub const _CGLError_CGLBadOffScreen: u32 = 10011;
+pub const _CGLError_CGLBadFullScreen: u32 = 10012;
+pub const _CGLError_CGLBadWindow: u32 = 10013;
+pub const _CGLError_CGLBadAddress: u32 = 10014;
+pub const _CGLError_CGLBadCodeModule: u32 = 10015;
+pub const _CGLError_CGLBadAlloc: u32 = 10016;
+pub const _CGLError_CGLBadConnection: u32 = 10017;
 
 pub const Error = _CGLError;
 
@@ -254,7 +245,7 @@ pub const GLint64 = objc.int64_t;
 
 pub const __GLsync = extern struct {};
 
-pub const GLsync = ?*__GLsync;
+pub const GLsync = __GLsync;
 
 pub const GLuint64 = objc.uint64_t;
 
@@ -272,48 +263,47 @@ pub const GLsizeiptrARB = objc.intptr_t;
 
 pub const ShareGroupRec = extern struct {};
 
-pub const ShareGroupObj = ?*ShareGroupRec;
+pub const ShareGroupObj = ShareGroupRec;
 
 extern "OpenGL" fn CGLGetShareGroup(ctx: ContextObj) callconv(.C) ShareGroupObj;
 pub const getShareGroup = CGLGetShareGroup;
 
 pub const _cl_device_id = extern struct {};
 
-pub const cl_device_id = ?*_cl_device_id;
+pub const cl_device_id = _cl_device_id;
 
 extern "OpenGL" fn CGLGetDeviceFromGLRenderer(rendererID: GLint) callconv(.C) cl_device_id;
 pub const getDeviceFromGLRenderer = CGLGetDeviceFromGLRenderer;
 
-pub const anon131 = enum(u32) {
-    CGLRendererGenericID = 131584,
-    CGLRendererGenericFloatID = 132096,
-    CGLRendererAppleSWID = 132608,
-    CGLRendererATIRage128ID = 135168,
-    CGLRendererATIRadeonID = 135680,
-    CGLRendererATIRageProID = 136192,
-    CGLRendererATIRadeon8500ID = 136704,
-    CGLRendererATIRadeon9700ID = 137216,
-    CGLRendererATIRadeonX1000ID = 137472,
-    CGLRendererATIRadeonX2000ID = 137728,
-    CGLRendererATIRadeonX3000ID = 137984,
-    CGLRendererATIRadeonX4000ID = 138240,
-    CGLRendererGeForce2MXID = 139264,
-    CGLRendererGeForce3ID = 139776,
-    CGLRendererGeForceFXID = 140288,
-    CGLRendererGeForce8xxxID = 140800,
-    CGLRendererGeForceID = 141056,
-    CGLRendererVTBladeXP2ID = 143360,
-    CGLRendererIntel900ID = 147456,
-    CGLRendererIntelX3100ID = 147968,
-    CGLRendererIntelHDID = 148224,
-    CGLRendererIntelHD4000ID = 148480,
-    CGLRendererIntelHD5000ID = 148736,
-    CGLRendererMesa3DFXID = 262144,
-};
+pub const anon131 = u32;
+pub const anon131_CGLRendererGenericID: u32 = 131584;
+pub const anon131_CGLRendererGenericFloatID: u32 = 132096;
+pub const anon131_CGLRendererAppleSWID: u32 = 132608;
+pub const anon131_CGLRendererATIRage128ID: u32 = 135168;
+pub const anon131_CGLRendererATIRadeonID: u32 = 135680;
+pub const anon131_CGLRendererATIRageProID: u32 = 136192;
+pub const anon131_CGLRendererATIRadeon8500ID: u32 = 136704;
+pub const anon131_CGLRendererATIRadeon9700ID: u32 = 137216;
+pub const anon131_CGLRendererATIRadeonX1000ID: u32 = 137472;
+pub const anon131_CGLRendererATIRadeonX2000ID: u32 = 137728;
+pub const anon131_CGLRendererATIRadeonX3000ID: u32 = 137984;
+pub const anon131_CGLRendererATIRadeonX4000ID: u32 = 138240;
+pub const anon131_CGLRendererGeForce2MXID: u32 = 139264;
+pub const anon131_CGLRendererGeForce3ID: u32 = 139776;
+pub const anon131_CGLRendererGeForceFXID: u32 = 140288;
+pub const anon131_CGLRendererGeForce8xxxID: u32 = 140800;
+pub const anon131_CGLRendererGeForceID: u32 = 141056;
+pub const anon131_CGLRendererVTBladeXP2ID: u32 = 143360;
+pub const anon131_CGLRendererIntel900ID: u32 = 147456;
+pub const anon131_CGLRendererIntelX3100ID: u32 = 147968;
+pub const anon131_CGLRendererIntelHDID: u32 = 148224;
+pub const anon131_CGLRendererIntelHD4000ID: u32 = 148480;
+pub const anon131_CGLRendererIntelHD5000ID: u32 = 148736;
+pub const anon131_CGLRendererMesa3DFXID: u32 = 262144;
 
 pub const __IOSurface = extern struct {};
 
-pub const IOSurfaceRef = ?*__IOSurface;
+pub const IOSurfaceRef = __IOSurface;
 
 extern "OpenGL" fn CGLTexImageIOSurface2D(
     ctx: ContextObj,

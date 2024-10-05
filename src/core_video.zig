@@ -22,25 +22,22 @@ pub const SMPTETime = extern struct {
     frames: objc.SInt16,
 };
 
-pub const SMPTETimeType = enum(objc.uint32_t) {
-    _24 = 0,
-    _25 = 1,
-    _30Drop = 2,
-    _30 = 3,
-    _2997 = 4,
-    _2997Drop = 5,
-    _60 = 6,
-    _5994 = 7,
-};
+pub const SMPTETimeType = objc.uint32_t;
+pub const SMPTETimeType_24: objc.uint32_t = 0;
+pub const SMPTETimeType_25: objc.uint32_t = 1;
+pub const SMPTETimeType_30Drop: objc.uint32_t = 2;
+pub const SMPTETimeType_30: objc.uint32_t = 3;
+pub const SMPTETimeType_2997: objc.uint32_t = 4;
+pub const SMPTETimeType_2997Drop: objc.uint32_t = 5;
+pub const SMPTETimeType_60: objc.uint32_t = 6;
+pub const SMPTETimeType_5994: objc.uint32_t = 7;
 
-pub const SMPTETimeFlags = enum(objc.uint32_t) {
-    Valid = 1,
-    Running = 2,
-};
+pub const SMPTETimeFlags = objc.uint32_t;
+pub const SMPTETimeFlags_Valid: objc.uint32_t = 1;
+pub const SMPTETimeFlags_Running: objc.uint32_t = 2;
 
-pub const TimeFlags = enum(objc.int32_t) {
-    IsIndefinite = 1,
-};
+pub const TimeFlags = objc.int32_t;
+pub const TimeFlags_IsIndefinite: objc.int32_t = 1;
 
 pub const Time = extern struct {
     timeValue: objc.int64_t,
@@ -60,42 +57,40 @@ pub const TimeStamp = extern struct {
     reserved: objc.uint64_t,
 };
 
-pub const TimeStampFlags = enum(objc.uint64_t) {
-    VideoTimeValid = 1,
-    HostTimeValid = 2,
-    SMPTETimeValid = 4,
-    VideoRefreshPeriodValid = 8,
-    RateScalarValid = 16,
-    TopField = 65536,
-    BottomField = 131072,
-    VideoHostTimeValid = 3,
-    IsInterlaced = 196608,
-};
+pub const TimeStampFlags = objc.uint64_t;
+pub const TimeStampFlags_VideoTimeValid: objc.uint64_t = 1;
+pub const TimeStampFlags_HostTimeValid: objc.uint64_t = 2;
+pub const TimeStampFlags_SMPTETimeValid: objc.uint64_t = 4;
+pub const TimeStampFlags_VideoRefreshPeriodValid: objc.uint64_t = 8;
+pub const TimeStampFlags_RateScalarValid: objc.uint64_t = 16;
+pub const TimeStampFlags_TopField: objc.uint64_t = 65536;
+pub const TimeStampFlags_BottomField: objc.uint64_t = 131072;
+pub const TimeStampFlags_VideoHostTimeValid: objc.uint64_t = 3;
+pub const TimeStampFlags_IsInterlaced: objc.uint64_t = 196608;
 
 pub const Return = objc.int32_t;
 
-pub const anon561 = enum(Return) {
-    CVReturnSuccess = 0,
-    CVReturnFirst = -6660,
-    CVReturnError = -6660,
-    CVReturnInvalidArgument = -6661,
-    CVReturnAllocationFailed = -6662,
-    CVReturnUnsupported = -6663,
-    CVReturnInvalidDisplay = -6670,
-    CVReturnDisplayLinkAlreadyRunning = -6671,
-    CVReturnDisplayLinkNotRunning = -6672,
-    CVReturnDisplayLinkCallbacksNotSet = -6673,
-    CVReturnInvalidPixelFormat = -6680,
-    CVReturnInvalidSize = -6681,
-    CVReturnInvalidPixelBufferAttributes = -6682,
-    CVReturnPixelBufferNotOpenGLCompatible = -6683,
-    CVReturnPixelBufferNotMetalCompatible = -6684,
-    CVReturnWouldExceedAllocationThreshold = -6689,
-    CVReturnPoolAllocationFailed = -6690,
-    CVReturnInvalidPoolAttributes = -6691,
-    CVReturnRetry = -6692,
-    CVReturnLast = -6699,
-};
+pub const anon561 = Return;
+pub const anon561_CVReturnSuccess: Return = 0;
+pub const anon561_CVReturnFirst: Return = -6660;
+pub const anon561_CVReturnError: Return = -6660;
+pub const anon561_CVReturnInvalidArgument: Return = -6661;
+pub const anon561_CVReturnAllocationFailed: Return = -6662;
+pub const anon561_CVReturnUnsupported: Return = -6663;
+pub const anon561_CVReturnInvalidDisplay: Return = -6670;
+pub const anon561_CVReturnDisplayLinkAlreadyRunning: Return = -6671;
+pub const anon561_CVReturnDisplayLinkNotRunning: Return = -6672;
+pub const anon561_CVReturnDisplayLinkCallbacksNotSet: Return = -6673;
+pub const anon561_CVReturnInvalidPixelFormat: Return = -6680;
+pub const anon561_CVReturnInvalidSize: Return = -6681;
+pub const anon561_CVReturnInvalidPixelBufferAttributes: Return = -6682;
+pub const anon561_CVReturnPixelBufferNotOpenGLCompatible: Return = -6683;
+pub const anon561_CVReturnPixelBufferNotMetalCompatible: Return = -6684;
+pub const anon561_CVReturnWouldExceedAllocationThreshold: Return = -6689;
+pub const anon561_CVReturnPoolAllocationFailed: Return = -6690;
+pub const anon561_CVReturnInvalidPoolAttributes: Return = -6691;
+pub const anon561_CVReturnRetry: Return = -6692;
+pub const anon561_CVReturnLast: Return = -6699;
 
 extern "CoreVideo" fn CVGetCurrentHostTime() callconv(.C) objc.uint64_t;
 pub const getCurrentHostTime = CVGetCurrentHostTime;
@@ -108,24 +103,11 @@ pub const getHostClockMinimumTimeDelta = CVGetHostClockMinimumTimeDelta;
 
 pub const __CVDisplayLink = extern struct {};
 
-pub const DisplayLinkRef = ?*__CVDisplayLink;
+pub const DisplayLinkRef = __CVDisplayLink;
 
-pub const DisplayLinkOutputCallback = ?*const fn (
-    DisplayLinkRef,
-    ?*TimeStamp,
-    ?*TimeStamp,
-    OptionFlags,
-    ?*OptionFlags,
-    ?*anyopaque,
-) callconv(.C) Return;
+pub const DisplayLinkOutputCallback = Return;
 
-pub const DisplayLinkOutputHandler = *const fn (
-    DisplayLinkRef,
-    ?*TimeStamp,
-    ?*TimeStamp,
-    OptionFlags,
-    ?*OptionFlags,
-) callconv(.C) Return;
+pub const DisplayLinkOutputHandler = Return;
 
 extern "CoreVideo" fn CVDisplayLinkGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const displayLinkGetTypeID = CVDisplayLinkGetTypeID;
@@ -187,14 +169,13 @@ pub const displayLinkRetain = CVDisplayLinkRetain;
 extern "CoreVideo" fn CVDisplayLinkRelease(displayLink: DisplayLinkRef) callconv(.C) void;
 pub const displayLinkRelease = CVDisplayLinkRelease;
 
-pub const AttachmentMode = enum(objc.uint32_t) {
-    _ShouldNotPropagate = 0,
-    _ShouldPropagate = 1,
-};
+pub const AttachmentMode = objc.uint32_t;
+pub const AttachmentMode__ShouldNotPropagate: objc.uint32_t = 0;
+pub const AttachmentMode__ShouldPropagate: objc.uint32_t = 1;
 
 pub const __CVBuffer = extern struct {};
 
-pub const BufferRef = ?*__CVBuffer;
+pub const BufferRef = __CVBuffer;
 
 extern "CoreVideo" fn CVBufferRetain(buffer: BufferRef) callconv(.C) BufferRef;
 pub const bufferRetain = CVBufferRetain;
@@ -237,117 +218,6 @@ pub const bufferCopyAttachment = CVBufferCopyAttachment;
 extern "CoreVideo" fn CVBufferHasAttachment(buffer: BufferRef, key: core_foundation.StringRef) callconv(.C) objc.Boolean;
 pub const bufferHasAttachment = CVBufferHasAttachment;
 
-pub const anon2531 = enum(u32) {
-    CVVersatileBayer_BayerPattern_RGGB = 0,
-    CVVersatileBayer_BayerPattern_GRBG = 1,
-    CVVersatileBayer_BayerPattern_GBRG = 2,
-    CVVersatileBayer_BayerPattern_BGGR = 3,
-};
-
-pub const anon1431 = enum(objc.OSType) {
-    CVPixelFormatType_Lossless_32BGRA = 641877825,
-    CVPixelFormatType_Lossless_64RGBAHalf = 642934849,
-    CVPixelFormatType_Lossless_420YpCbCr8BiPlanarVideoRange = 641234480,
-    CVPixelFormatType_Lossless_420YpCbCr8BiPlanarFullRange = 641230384,
-    CVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarVideoRange = 645428784,
-    CVPixelFormatType_Lossless_422YpCbCr10PackedBiPlanarVideoRange = 645428786,
-    CVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarFullRange = 645424688,
-};
-
-pub const anon1741 = enum(objc.OSType) {
-    CVPixelFormatType_Lossy_32BGRA = 759318337,
-    CVPixelFormatType_Lossy_420YpCbCr8BiPlanarVideoRange = 758674992,
-    CVPixelFormatType_Lossy_420YpCbCr8BiPlanarFullRange = 758670896,
-    CVPixelFormatType_Lossy_420YpCbCr10PackedBiPlanarVideoRange = 762869296,
-    CVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange = 762869298,
-};
-
-pub const anon351 = enum(objc.OSType) {
-    CVPixelFormatType_1Monochrome = 1,
-    CVPixelFormatType_2Indexed = 2,
-    CVPixelFormatType_4Indexed = 4,
-    CVPixelFormatType_8Indexed = 8,
-    CVPixelFormatType_1IndexedGray_WhiteIsZero = 33,
-    CVPixelFormatType_2IndexedGray_WhiteIsZero = 34,
-    CVPixelFormatType_4IndexedGray_WhiteIsZero = 36,
-    CVPixelFormatType_8IndexedGray_WhiteIsZero = 40,
-    CVPixelFormatType_16BE555 = 16,
-    CVPixelFormatType_16LE555 = 1278555445,
-    CVPixelFormatType_16LE5551 = 892679473,
-    CVPixelFormatType_16BE565 = 1110783541,
-    CVPixelFormatType_16LE565 = 1278555701,
-    CVPixelFormatType_24RGB = 24,
-    CVPixelFormatType_24BGR = 842285639,
-    CVPixelFormatType_32ARGB = 32,
-    CVPixelFormatType_32BGRA = 1111970369,
-    CVPixelFormatType_32ABGR = 1094862674,
-    CVPixelFormatType_32RGBA = 1380401729,
-    CVPixelFormatType_64ARGB = 1647719521,
-    CVPixelFormatType_64RGBALE = 1815491698,
-    CVPixelFormatType_48RGB = 1647589490,
-    CVPixelFormatType_32AlphaGray = 1647522401,
-    CVPixelFormatType_16Gray = 1647392359,
-    CVPixelFormatType_30RGB = 1378955371,
-    CVPixelFormatType_30RGB_r210 = 1915892016,
-    CVPixelFormatType_422YpCbCr8 = 846624121,
-    CVPixelFormatType_4444YpCbCrA8 = 1983131704,
-    CVPixelFormatType_4444YpCbCrA8R = 1916022840,
-    CVPixelFormatType_4444AYpCbCr8 = 2033463352,
-    CVPixelFormatType_4444AYpCbCr16 = 2033463606,
-    CVPixelFormatType_4444AYpCbCrFloat = 1916036716,
-    CVPixelFormatType_444YpCbCr8 = 1983066168,
-    CVPixelFormatType_422YpCbCr16 = 1983000886,
-    CVPixelFormatType_422YpCbCr10 = 1983000880,
-    CVPixelFormatType_444YpCbCr10 = 1983131952,
-    CVPixelFormatType_420YpCbCr8Planar = 2033463856,
-    CVPixelFormatType_420YpCbCr8PlanarFullRange = 1714696752,
-    CVPixelFormatType_422YpCbCr_4A_8BiPlanar = 1630697081,
-    CVPixelFormatType_420YpCbCr8BiPlanarVideoRange = 875704438,
-    CVPixelFormatType_420YpCbCr8BiPlanarFullRange = 875704422,
-    CVPixelFormatType_422YpCbCr8BiPlanarVideoRange = 875704950,
-    CVPixelFormatType_422YpCbCr8BiPlanarFullRange = 875704934,
-    CVPixelFormatType_444YpCbCr8BiPlanarVideoRange = 875836534,
-    CVPixelFormatType_444YpCbCr8BiPlanarFullRange = 875836518,
-    CVPixelFormatType_422YpCbCr8_yuvs = 2037741171,
-    CVPixelFormatType_422YpCbCr8FullRange = 2037741158,
-    CVPixelFormatType_OneComponent8 = 1278226488,
-    CVPixelFormatType_TwoComponent8 = 843264056,
-    CVPixelFormatType_30RGBLEPackedWideGamut = 1999843442,
-    CVPixelFormatType_ARGB2101010LEPacked = 1815162994,
-    CVPixelFormatType_40ARGBLEWideGamut = 1999908961,
-    CVPixelFormatType_40ARGBLEWideGamutPremultiplied = 1999908973,
-    CVPixelFormatType_OneComponent10 = 1278226736,
-    CVPixelFormatType_OneComponent12 = 1278226738,
-    CVPixelFormatType_OneComponent16 = 1278226742,
-    CVPixelFormatType_TwoComponent16 = 843264310,
-    CVPixelFormatType_OneComponent16Half = 1278226536,
-    CVPixelFormatType_OneComponent32Float = 1278226534,
-    CVPixelFormatType_TwoComponent16Half = 843264104,
-    CVPixelFormatType_TwoComponent32Float = 843264102,
-    CVPixelFormatType_64RGBAHalf = 1380411457,
-    CVPixelFormatType_128RGBAFloat = 1380410945,
-    CVPixelFormatType_14Bayer_GRBG = 1735549492,
-    CVPixelFormatType_14Bayer_RGGB = 1919379252,
-    CVPixelFormatType_14Bayer_BGGR = 1650943796,
-    CVPixelFormatType_14Bayer_GBRG = 1734505012,
-    CVPixelFormatType_DisparityFloat16 = 1751411059,
-    CVPixelFormatType_DisparityFloat32 = 1717856627,
-    CVPixelFormatType_DepthFloat16 = 1751410032,
-    CVPixelFormatType_DepthFloat32 = 1717855600,
-    CVPixelFormatType_420YpCbCr10BiPlanarVideoRange = 2016686640,
-    CVPixelFormatType_422YpCbCr10BiPlanarVideoRange = 2016686642,
-    CVPixelFormatType_444YpCbCr10BiPlanarVideoRange = 2016687156,
-    CVPixelFormatType_420YpCbCr10BiPlanarFullRange = 2019963440,
-    CVPixelFormatType_422YpCbCr10BiPlanarFullRange = 2019963442,
-    CVPixelFormatType_444YpCbCr10BiPlanarFullRange = 2019963956,
-    CVPixelFormatType_420YpCbCr8VideoRange_8A_TriPlanar = 1982882104,
-    CVPixelFormatType_16VersatileBayer = 1651519798,
-    CVPixelFormatType_64RGBA_DownscaledProResRAW = 1651521076,
-    CVPixelFormatType_422YpCbCr16BiPlanarVideoRange = 1937125938,
-    CVPixelFormatType_444YpCbCr16BiPlanarVideoRange = 1937126452,
-    CVPixelFormatType_444YpCbCr16VideoRange_16A_TriPlanar = 1932812659,
-};
-
 extern "CoreVideo" fn CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString: core_foundation.StringRef) callconv(.C) i32;
 pub const yCbCrMatrixGetIntegerCodePointForString = CVYCbCrMatrixGetIntegerCodePointForString;
 
@@ -386,9 +256,8 @@ pub const imageBufferGetColorSpace = CVImageBufferGetColorSpace;
 extern "CoreVideo" fn CVImageBufferCreateColorSpaceFromAttachments(attachments: core_foundation.DictionaryRef) callconv(.C) core_graphics.ColorSpaceRef;
 pub const imageBufferCreateColorSpaceFromAttachments = CVImageBufferCreateColorSpaceFromAttachments;
 
-pub const PixelBufferLockFlags = enum(OptionFlags) {
-    Lock_ReadOnly = 1,
-};
+pub const PixelBufferLockFlags = OptionFlags;
+pub const PixelBufferLockFlags_Lock_ReadOnly: OptionFlags = 1;
 
 pub const PlanarComponentInfo = extern struct {
     offset: objc.int32_t,
@@ -534,12 +403,12 @@ pub const pixelBufferFillExtendedPixels = CVPixelBufferFillExtendedPixels;
 extern "CoreVideo" fn CVPixelBufferCopyCreationAttributes(pixelBuffer: PixelBufferRef) callconv(.C) core_foundation.DictionaryRef;
 pub const pixelBufferCopyCreationAttributes = CVPixelBufferCopyCreationAttributes;
 
-extern "CoreVideo" fn CVPixelBufferGetIOSurface(pixelBuffer: PixelBufferRef) callconv(.C) io_surface.Ref;
+extern "CoreVideo" fn CVPixelBufferGetIOSurface(pixelBuffer: PixelBufferRef) callconv(.C) core_graphics.IOSurfaceRef;
 pub const pixelBufferGetIOSurface = CVPixelBufferGetIOSurface;
 
 extern "CoreVideo" fn CVPixelBufferCreateWithIOSurface(
     allocator: core_foundation.AllocatorRef,
-    surface: io_surface.Ref,
+    surface: core_graphics.IOSurfaceRef,
     pixelBufferAttributes: core_foundation.DictionaryRef,
     pixelBufferOut: ?*PixelBufferRef,
 ) callconv(.C) Return;
@@ -547,7 +416,7 @@ pub const pixelBufferCreateWithIOSurface = CVPixelBufferCreateWithIOSurface;
 
 pub const __CVPixelBufferPool = extern struct {};
 
-pub const PixelBufferPoolRef = ?*__CVPixelBufferPool;
+pub const PixelBufferPoolRef = __CVPixelBufferPool;
 
 extern "CoreVideo" fn CVPixelBufferPoolGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const pixelBufferPoolGetTypeID = CVPixelBufferPoolGetTypeID;
@@ -583,9 +452,8 @@ extern "CoreVideo" fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
 ) callconv(.C) Return;
 pub const pixelBufferPoolCreatePixelBufferWithAuxAttributes = CVPixelBufferPoolCreatePixelBufferWithAuxAttributes;
 
-pub const PixelBufferPoolFlushFlags = enum(OptionFlags) {
-    ExcessBuffers = 1,
-};
+pub const PixelBufferPoolFlushFlags = OptionFlags;
+pub const PixelBufferPoolFlushFlags_ExcessBuffers: OptionFlags = 1;
 
 extern "CoreVideo" fn CVPixelBufferPoolFlush(pool: PixelBufferPoolRef, options: PixelBufferPoolFlushFlags) callconv(.C) void;
 pub const pixelBufferPoolFlush = CVPixelBufferPoolFlush;
@@ -624,7 +492,7 @@ pub const openGLBufferAttach = CVOpenGLBufferAttach;
 
 pub const __CVOpenGLBufferPool = extern struct {};
 
-pub const OpenGLBufferPoolRef = ?*__CVOpenGLBufferPool;
+pub const OpenGLBufferPoolRef = __CVOpenGLBufferPool;
 
 extern "CoreVideo" fn CVOpenGLBufferPoolGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const openGLBufferPoolGetTypeID = CVOpenGLBufferPoolGetTypeID;
@@ -683,7 +551,7 @@ pub const openGLTextureGetCleanTexCoords = CVOpenGLTextureGetCleanTexCoords;
 
 pub const __CVOpenGLTextureCache = extern struct {};
 
-pub const OpenGLTextureCacheRef = ?*__CVOpenGLTextureCache;
+pub const OpenGLTextureCacheRef = __CVOpenGLTextureCache;
 
 extern "CoreVideo" fn CVOpenGLTextureCacheGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const openGLTextureCacheGetTypeID = CVOpenGLTextureCacheGetTypeID;
@@ -738,7 +606,7 @@ pub const metalTextureGetCleanTexCoords = CVMetalTextureGetCleanTexCoords;
 
 pub const __CVMetalTextureCache = extern struct {};
 
-pub const MetalTextureCacheRef = ?*__CVMetalTextureCache;
+pub const MetalTextureCacheRef = __CVMetalTextureCache;
 
 extern "CoreVideo" fn CVMetalTextureCacheGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const metalTextureCacheGetTypeID = CVMetalTextureCacheGetTypeID;
@@ -778,7 +646,7 @@ pub const metalBufferGetBuffer = CVMetalBufferGetBuffer;
 
 pub const __CVMetalBufferCache = extern struct {};
 
-pub const MetalBufferCacheRef = ?*__CVMetalBufferCache;
+pub const MetalBufferCacheRef = __CVMetalBufferCache;
 
 extern "CoreVideo" fn CVMetalBufferCacheGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const metalBufferCacheGetTypeID = CVMetalBufferCacheGetTypeID;
@@ -802,7 +670,7 @@ pub const metalBufferCacheCreateBufferFromImage = CVMetalBufferCacheCreateBuffer
 extern "CoreVideo" fn CVMetalBufferCacheFlush(bufferCache: MetalBufferCacheRef, options: OptionFlags) callconv(.C) void;
 pub const metalBufferCacheFlush = CVMetalBufferCacheFlush;
 
-pub const FillExtendedPixelsCallBack = ?*const fn (PixelBufferRef, ?*anyopaque) callconv(.C) objc.Boolean;
+pub const FillExtendedPixelsCallBack = objc.Boolean;
 
 pub const FillExtendedPixelsCallBackData = extern struct {
     version: core_foundation.Index,
