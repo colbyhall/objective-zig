@@ -45,7 +45,7 @@ pub const DiskRef = __DADisk;
 extern "DiskArbitration" fn DADiskGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const diskGetTypeID = DADiskGetTypeID;
 
-extern "DiskArbitration" fn DADiskCreateFromBSDName(allocator: core_foundation.AllocatorRef, session: SessionRef, name: ?*i8) callconv(.C) DiskRef;
+extern "DiskArbitration" fn DADiskCreateFromBSDName(allocator: core_foundation.AllocatorRef, session: SessionRef, name: [*:0]const u8) callconv(.C) DiskRef;
 pub const diskCreateFromBSDName = DADiskCreateFromBSDName;
 
 extern "DiskArbitration" fn DADiskCreateFromIOMedia(allocator: core_foundation.AllocatorRef, session: SessionRef, media: io_kit.io_service_t) callconv(.C) DiskRef;
@@ -54,7 +54,7 @@ pub const diskCreateFromIOMedia = DADiskCreateFromIOMedia;
 extern "DiskArbitration" fn DADiskCreateFromVolumePath(allocator: core_foundation.AllocatorRef, session: SessionRef, path: core_foundation.URLRef) callconv(.C) DiskRef;
 pub const diskCreateFromVolumePath = DADiskCreateFromVolumePath;
 
-extern "DiskArbitration" fn DADiskGetBSDName(disk: DiskRef) callconv(.C) ?*i8;
+extern "DiskArbitration" fn DADiskGetBSDName(disk: DiskRef) callconv(.C) [*:0]const u8;
 pub const diskGetBSDName = DADiskGetBSDName;
 
 extern "DiskArbitration" fn DADiskCopyIOMedia(disk: DiskRef) callconv(.C) io_kit.io_service_t;

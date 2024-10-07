@@ -30,6 +30,10 @@ pub fn main() void {
         .NO,
     );
 
+    // Allocate a string and set the title of the window
+    const title = foundation.String.alloc().initWithUTF8String("Hello World");
+    window.setTitle(title);
+
     // Show the window and bring out.
     window.makeKeyAndOrderFront(null);
 

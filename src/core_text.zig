@@ -147,10 +147,10 @@ pub const FontRef = __CTFont;
 extern "CoreText" fn CTFontGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const fontGetTypeID = CTFontGetTypeID;
 
-extern "CoreText" fn CTFontCreateWithName(name: core_foundation.StringRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateWithName(name: core_foundation.StringRef, size: core_foundation.CGFloat, matrix: ?*const core_foundation.CGAffineTransform) callconv(.C) FontRef;
 pub const fontCreateWithName = CTFontCreateWithName;
 
-extern "CoreText" fn CTFontCreateWithFontDescriptor(descriptor: FontDescriptorRef, size: core_foundation.CGFloat, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) FontRef;
+extern "CoreText" fn CTFontCreateWithFontDescriptor(descriptor: FontDescriptorRef, size: core_foundation.CGFloat, matrix: ?*const core_foundation.CGAffineTransform) callconv(.C) FontRef;
 pub const fontCreateWithFontDescriptor = CTFontCreateWithFontDescriptor;
 
 pub const FontOptions = core_foundation.OptionFlags;
@@ -162,7 +162,7 @@ pub const FontOptions_PreferSystemFont: core_foundation.OptionFlags = 4;
 extern "CoreText" fn CTFontCreateWithNameAndOptions(
     name: core_foundation.StringRef,
     size: core_foundation.CGFloat,
-    matrix: ?*core_foundation.CGAffineTransform,
+    matrix: ?*const core_foundation.CGAffineTransform,
     options: FontOptions,
 ) callconv(.C) FontRef;
 pub const fontCreateWithNameAndOptions = CTFontCreateWithNameAndOptions;
@@ -170,7 +170,7 @@ pub const fontCreateWithNameAndOptions = CTFontCreateWithNameAndOptions;
 extern "CoreText" fn CTFontCreateWithFontDescriptorAndOptions(
     descriptor: FontDescriptorRef,
     size: core_foundation.CGFloat,
-    matrix: ?*core_foundation.CGAffineTransform,
+    matrix: ?*const core_foundation.CGAffineTransform,
     options: FontOptions,
 ) callconv(.C) FontRef;
 pub const fontCreateWithFontDescriptorAndOptions = CTFontCreateWithFontDescriptorAndOptions;
@@ -239,7 +239,7 @@ pub const fontCreateUIFontForLanguage = CTFontCreateUIFontForLanguage;
 extern "CoreText" fn CTFontCreateCopyWithAttributes(
     font: FontRef,
     size: core_foundation.CGFloat,
-    matrix: ?*core_foundation.CGAffineTransform,
+    matrix: ?*const core_foundation.CGAffineTransform,
     attributes: FontDescriptorRef,
 ) callconv(.C) FontRef;
 pub const fontCreateCopyWithAttributes = CTFontCreateCopyWithAttributes;
@@ -247,7 +247,7 @@ pub const fontCreateCopyWithAttributes = CTFontCreateCopyWithAttributes;
 extern "CoreText" fn CTFontCreateCopyWithSymbolicTraits(
     font: FontRef,
     size: core_foundation.CGFloat,
-    matrix: ?*core_foundation.CGAffineTransform,
+    matrix: ?*const core_foundation.CGAffineTransform,
     symTraitValue: FontSymbolicTraits,
     symTraitMask: FontSymbolicTraits,
 ) callconv(.C) FontRef;
@@ -256,7 +256,7 @@ pub const fontCreateCopyWithSymbolicTraits = CTFontCreateCopyWithSymbolicTraits;
 extern "CoreText" fn CTFontCreateCopyWithFamily(
     font: FontRef,
     size: core_foundation.CGFloat,
-    matrix: ?*core_foundation.CGAffineTransform,
+    matrix: ?*const core_foundation.CGAffineTransform,
     family: core_foundation.StringRef,
 ) callconv(.C) FontRef;
 pub const fontCreateCopyWithFamily = CTFontCreateCopyWithFamily;
@@ -365,7 +365,7 @@ pub const fontCopyNameForGlyph = CTFontCopyNameForGlyph;
 extern "CoreText" fn CTFontGetBoundingRectsForGlyphs(
     font: FontRef,
     orientation: FontOrientation,
-    glyphs: ?*core_graphics.Glyph,
+    glyphs: ?*const core_graphics.Glyph,
     boundingRects: ?*core_foundation.CGRect,
     count: core_foundation.Index,
 ) callconv(.C) core_foundation.CGRect;
@@ -373,7 +373,7 @@ pub const fontGetBoundingRectsForGlyphs = CTFontGetBoundingRectsForGlyphs;
 
 extern "CoreText" fn CTFontGetOpticalBoundsForGlyphs(
     font: FontRef,
-    glyphs: ?*core_graphics.Glyph,
+    glyphs: ?*const core_graphics.Glyph,
     boundingRects: ?*core_foundation.CGRect,
     count: core_foundation.Index,
     options: core_foundation.OptionFlags,
@@ -383,7 +383,7 @@ pub const fontGetOpticalBoundsForGlyphs = CTFontGetOpticalBoundsForGlyphs;
 extern "CoreText" fn CTFontGetAdvancesForGlyphs(
     font: FontRef,
     orientation: FontOrientation,
-    glyphs: ?*core_graphics.Glyph,
+    glyphs: ?*const core_graphics.Glyph,
     advances: ?*core_foundation.CGSize,
     count: core_foundation.Index,
 ) callconv(.C) f64;
@@ -391,13 +391,13 @@ pub const fontGetAdvancesForGlyphs = CTFontGetAdvancesForGlyphs;
 
 extern "CoreText" fn CTFontGetVerticalTranslationsForGlyphs(
     font: FontRef,
-    glyphs: ?*core_graphics.Glyph,
+    glyphs: ?*const core_graphics.Glyph,
     translations: ?*core_foundation.CGSize,
     count: core_foundation.Index,
 ) callconv(.C) void;
 pub const fontGetVerticalTranslationsForGlyphs = CTFontGetVerticalTranslationsForGlyphs;
 
-extern "CoreText" fn CTFontCreatePathForGlyph(font: FontRef, glyph: core_graphics.Glyph, matrix: ?*core_foundation.CGAffineTransform) callconv(.C) core_graphics.PathRef;
+extern "CoreText" fn CTFontCreatePathForGlyph(font: FontRef, glyph: core_graphics.Glyph, matrix: ?*const core_foundation.CGAffineTransform) callconv(.C) core_graphics.PathRef;
 pub const fontCreatePathForGlyph = CTFontCreatePathForGlyph;
 
 extern "CoreText" fn CTFontCopyVariationAxes(font: FontRef) callconv(.C) core_foundation.ArrayRef;
@@ -418,7 +418,7 @@ pub const fontCopyGraphicsFont = CTFontCopyGraphicsFont;
 extern "CoreText" fn CTFontCreateWithGraphicsFont(
     graphicsFont: core_graphics.FontRef,
     size: core_foundation.CGFloat,
-    matrix: ?*core_foundation.CGAffineTransform,
+    matrix: ?*const core_foundation.CGAffineTransform,
     attributes: FontDescriptorRef,
 ) callconv(.C) FontRef;
 pub const fontCreateWithGraphicsFont = CTFontCreateWithGraphicsFont;
@@ -431,7 +431,7 @@ pub const fontGetPlatformFont = CTFontGetPlatformFont;
 extern "CoreText" fn CTFontCreateWithPlatformFont(
     platformFont: ATSFontRef,
     size: core_foundation.CGFloat,
-    matrix: ?*core_foundation.CGAffineTransform,
+    matrix: ?*const core_foundation.CGAffineTransform,
     attributes: FontDescriptorRef,
 ) callconv(.C) FontRef;
 pub const fontCreateWithPlatformFont = CTFontCreateWithPlatformFont;
@@ -537,8 +537,8 @@ pub const fontCopyTable = CTFontCopyTable;
 
 extern "CoreText" fn CTFontDrawGlyphs(
     font: FontRef,
-    glyphs: ?*core_graphics.Glyph,
-    positions: ?*core_foundation.CGPoint,
+    glyphs: ?*const core_graphics.Glyph,
+    positions: ?*const core_foundation.CGPoint,
     count: objc.size_t,
     context: core_graphics.ContextRef,
 ) callconv(.C) void;
@@ -649,7 +649,7 @@ pub const fontManagerCopyAvailableFontFamilyNames = CTFontManagerCopyAvailableFo
 extern "CoreText" fn CTFontManagerCopyAvailableFontURLs() callconv(.C) core_foundation.ArrayRef;
 pub const fontManagerCopyAvailableFontURLs = CTFontManagerCopyAvailableFontURLs;
 
-extern "CoreText" fn CTFontManagerCompareFontFamilyNames(family1: ?*anyopaque, family2: ?*anyopaque, context: ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
+extern "CoreText" fn CTFontManagerCompareFontFamilyNames(family1: ?*const anyopaque, family2: ?*const anyopaque, context: ?*anyopaque) callconv(.C) core_foundation.ComparisonResult;
 pub const fontManagerCompareFontFamilyNames = CTFontManagerCompareFontFamilyNames;
 
 extern "CoreText" fn CTFontManagerCreateFontDescriptorsFromURL(fileURL: core_foundation.URLRef) callconv(.C) core_foundation.ArrayRef;
@@ -1036,10 +1036,10 @@ pub const ParagraphStyleSpecifier_Count: objc.uint32_t = 18;
 pub const ParagraphStyleSetting = extern struct {
     spec: ParagraphStyleSpecifier,
     valueSize: objc.size_t,
-    value: ?*anyopaque,
+    value: ?*const anyopaque,
 };
 
-extern "CoreText" fn CTParagraphStyleCreate(settings: ?*ParagraphStyleSetting, settingCount: objc.size_t) callconv(.C) ParagraphStyleRef;
+extern "CoreText" fn CTParagraphStyleCreate(settings: ?*const ParagraphStyleSetting, settingCount: objc.size_t) callconv(.C) ParagraphStyleRef;
 pub const paragraphStyleCreate = CTParagraphStyleCreate;
 
 extern "CoreText" fn CTParagraphStyleCreateCopy(paragraphStyle: ParagraphStyleRef) callconv(.C) ParagraphStyleRef;
@@ -1133,25 +1133,25 @@ pub const runGetAttributes = CTRunGetAttributes;
 extern "CoreText" fn CTRunGetStatus(run: RunRef) callconv(.C) RunStatus;
 pub const runGetStatus = CTRunGetStatus;
 
-extern "CoreText" fn CTRunGetGlyphsPtr(run: RunRef) callconv(.C) ?*core_graphics.Glyph;
+extern "CoreText" fn CTRunGetGlyphsPtr(run: RunRef) callconv(.C) ?*const core_graphics.Glyph;
 pub const runGetGlyphsPtr = CTRunGetGlyphsPtr;
 
 extern "CoreText" fn CTRunGetGlyphs(run: RunRef, range: core_foundation.Range, buffer: ?*core_graphics.Glyph) callconv(.C) void;
 pub const runGetGlyphs = CTRunGetGlyphs;
 
-extern "CoreText" fn CTRunGetPositionsPtr(run: RunRef) callconv(.C) ?*core_foundation.CGPoint;
+extern "CoreText" fn CTRunGetPositionsPtr(run: RunRef) callconv(.C) ?*const core_foundation.CGPoint;
 pub const runGetPositionsPtr = CTRunGetPositionsPtr;
 
 extern "CoreText" fn CTRunGetPositions(run: RunRef, range: core_foundation.Range, buffer: ?*core_foundation.CGPoint) callconv(.C) void;
 pub const runGetPositions = CTRunGetPositions;
 
-extern "CoreText" fn CTRunGetAdvancesPtr(run: RunRef) callconv(.C) ?*core_foundation.CGSize;
+extern "CoreText" fn CTRunGetAdvancesPtr(run: RunRef) callconv(.C) ?*const core_foundation.CGSize;
 pub const runGetAdvancesPtr = CTRunGetAdvancesPtr;
 
 extern "CoreText" fn CTRunGetAdvances(run: RunRef, range: core_foundation.Range, buffer: ?*core_foundation.CGSize) callconv(.C) void;
 pub const runGetAdvances = CTRunGetAdvances;
 
-extern "CoreText" fn CTRunGetStringIndicesPtr(run: RunRef) callconv(.C) ?*core_foundation.Index;
+extern "CoreText" fn CTRunGetStringIndicesPtr(run: RunRef) callconv(.C) ?*const core_foundation.Index;
 pub const runGetStringIndicesPtr = CTRunGetStringIndicesPtr;
 
 extern "CoreText" fn CTRunGetStringIndices(run: RunRef, range: core_foundation.Range, buffer: ?*core_foundation.Index) callconv(.C) void;
@@ -1213,7 +1213,7 @@ pub const anon1441 = u32;
 pub const anon1441_CTRunDelegateVersion1: u32 = 1;
 pub const anon1441_CTRunDelegateCurrentVersion: u32 = 1;
 
-extern "CoreText" fn CTRunDelegateCreate(callbacks: ?*RunDelegateCallbacks, refCon: ?*anyopaque) callconv(.C) RunDelegateRef;
+extern "CoreText" fn CTRunDelegateCreate(callbacks: ?*const RunDelegateCallbacks, refCon: ?*anyopaque) callconv(.C) RunDelegateRef;
 pub const runDelegateCreate = CTRunDelegateCreate;
 
 extern "CoreText" fn CTRunDelegateGetRefCon(runDelegate: RunDelegateRef) callconv(.C) ?*anyopaque;

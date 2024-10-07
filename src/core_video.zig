@@ -160,7 +160,7 @@ pub const displayLinkIsRunning = CVDisplayLinkIsRunning;
 extern "CoreVideo" fn CVDisplayLinkGetCurrentTime(displayLink: DisplayLinkRef, outTime: ?*TimeStamp) callconv(.C) Return;
 pub const displayLinkGetCurrentTime = CVDisplayLinkGetCurrentTime;
 
-extern "CoreVideo" fn CVDisplayLinkTranslateTime(displayLink: DisplayLinkRef, inTime: ?*TimeStamp, outTime: ?*TimeStamp) callconv(.C) Return;
+extern "CoreVideo" fn CVDisplayLinkTranslateTime(displayLink: DisplayLinkRef, inTime: ?*const TimeStamp, outTime: ?*TimeStamp) callconv(.C) Return;
 pub const displayLinkTranslateTime = CVDisplayLinkTranslateTime;
 
 extern "CoreVideo" fn CVDisplayLinkRetain(displayLink: DisplayLinkRef) callconv(.C) DisplayLinkRef;
@@ -303,7 +303,7 @@ extern "CoreVideo" fn CVPixelBufferCreate(
 ) callconv(.C) Return;
 pub const pixelBufferCreate = CVPixelBufferCreate;
 
-pub const PixelBufferReleaseBytesCallback = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const PixelBufferReleaseBytesCallback = ?*const fn (?*anyopaque, ?*const anyopaque) callconv(.C) void;
 
 extern "CoreVideo" fn CVPixelBufferCreateWithBytes(
     allocator: core_foundation.AllocatorRef,
@@ -321,10 +321,10 @@ pub const pixelBufferCreateWithBytes = CVPixelBufferCreateWithBytes;
 
 pub const PixelBufferReleasePlanarBytesCallback = ?*const fn (
     ?*anyopaque,
-    ?*anyopaque,
+    ?*const anyopaque,
     objc.size_t,
     objc.size_t,
-    ?*?*anyopaque,
+    ?*?*const anyopaque,
 ) callconv(.C) void;
 
 extern "CoreVideo" fn CVPixelBufferCreateWithPlanarBytes(

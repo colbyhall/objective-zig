@@ -52,7 +52,7 @@ pub const AddressRange = VirtualRange;
 
 pub const NamedValue = extern struct {
     value: i32,
-    name: ?*i8,
+    name: [*:0]const u8,
 };
 
 pub const Alignment = u32;
@@ -435,9 +435,9 @@ pub const connectSetCFProperty = IOConnectSetCFProperty;
 extern "IOKit" fn IOConnectCallMethod(
     connection: objc.mach_port_t,
     selector: objc.uint32_t,
-    input: ?*objc.uint64_t,
+    input: ?*const objc.uint64_t,
     inputCnt: objc.uint32_t,
-    inputStruct: ?*anyopaque,
+    inputStruct: ?*const anyopaque,
     inputStructCnt: objc.size_t,
     output: ?*objc.uint64_t,
     outputCnt: ?*objc.uint32_t,
@@ -452,9 +452,9 @@ extern "IOKit" fn IOConnectCallAsyncMethod(
     wake_port: objc.mach_port_t,
     reference: ?*objc.uint64_t,
     referenceCnt: objc.uint32_t,
-    input: ?*objc.uint64_t,
+    input: ?*const objc.uint64_t,
     inputCnt: objc.uint32_t,
-    inputStruct: ?*anyopaque,
+    inputStruct: ?*const anyopaque,
     inputStructCnt: objc.size_t,
     output: ?*objc.uint64_t,
     outputCnt: ?*objc.uint32_t,
@@ -466,7 +466,7 @@ pub const connectCallAsyncMethod = IOConnectCallAsyncMethod;
 extern "IOKit" fn IOConnectCallStructMethod(
     connection: objc.mach_port_t,
     selector: objc.uint32_t,
-    inputStruct: ?*anyopaque,
+    inputStruct: ?*const anyopaque,
     inputStructCnt: objc.size_t,
     outputStruct: ?*anyopaque,
     outputStructCnt: ?*objc.size_t,
@@ -479,7 +479,7 @@ extern "IOKit" fn IOConnectCallAsyncStructMethod(
     wake_port: objc.mach_port_t,
     reference: ?*objc.uint64_t,
     referenceCnt: objc.uint32_t,
-    inputStruct: ?*anyopaque,
+    inputStruct: ?*const anyopaque,
     inputStructCnt: objc.size_t,
     outputStruct: ?*anyopaque,
     outputStructCnt: ?*objc.size_t,
@@ -489,7 +489,7 @@ pub const connectCallAsyncStructMethod = IOConnectCallAsyncStructMethod;
 extern "IOKit" fn IOConnectCallScalarMethod(
     connection: objc.mach_port_t,
     selector: objc.uint32_t,
-    input: ?*objc.uint64_t,
+    input: ?*const objc.uint64_t,
     inputCnt: objc.uint32_t,
     output: ?*objc.uint64_t,
     outputCnt: ?*objc.uint32_t,
@@ -502,7 +502,7 @@ extern "IOKit" fn IOConnectCallAsyncScalarMethod(
     wake_port: objc.mach_port_t,
     reference: ?*objc.uint64_t,
     referenceCnt: objc.uint32_t,
-    input: ?*objc.uint64_t,
+    input: ?*const objc.uint64_t,
     inputCnt: objc.uint32_t,
     output: ?*objc.uint64_t,
     outputCnt: ?*objc.uint32_t,
@@ -675,16 +675,16 @@ pub const registryEntryGetParentEntry = IORegistryEntryGetParentEntry;
 extern "IOKit" fn IORegistryEntryInPlane(entry: io_registry_entry_t, plane: objc.io_name_t) callconv(.C) objc.boolean_t;
 pub const registryEntryInPlane = IORegistryEntryInPlane;
 
-extern "IOKit" fn IOServiceMatching(name: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+extern "IOKit" fn IOServiceMatching(name: [*:0]const u8) callconv(.C) core_foundation.MutableDictionaryRef;
 pub const serviceMatching = IOServiceMatching;
 
-extern "IOKit" fn IOServiceNameMatching(name: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+extern "IOKit" fn IOServiceNameMatching(name: [*:0]const u8) callconv(.C) core_foundation.MutableDictionaryRef;
 pub const serviceNameMatching = IOServiceNameMatching;
 
-extern "IOKit" fn IOBSDNameMatching(mainPort: objc.mach_port_t, options: objc.uint32_t, bsdName: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+extern "IOKit" fn IOBSDNameMatching(mainPort: objc.mach_port_t, options: objc.uint32_t, bsdName: [*:0]const u8) callconv(.C) core_foundation.MutableDictionaryRef;
 pub const bsdNameMatching = IOBSDNameMatching;
 
-extern "IOKit" fn IOOpenFirmwarePathMatching(mainPort: objc.mach_port_t, options: objc.uint32_t, path: ?*i8) callconv(.C) core_foundation.MutableDictionaryRef;
+extern "IOKit" fn IOOpenFirmwarePathMatching(mainPort: objc.mach_port_t, options: objc.uint32_t, path: [*:0]const u8) callconv(.C) core_foundation.MutableDictionaryRef;
 pub const openFirmwarePathMatching = IOOpenFirmwarePathMatching;
 
 extern "IOKit" fn IORegistryEntryIDMatching(entryID: objc.uint64_t) callconv(.C) core_foundation.MutableDictionaryRef;
@@ -723,7 +723,7 @@ pub extern "IOKit" fn OSGetNotificationFromMessage(
 extern "IOKit" fn IOCatalogueSendData(
     mainPort: objc.mach_port_t,
     flag: objc.uint32_t,
-    buffer: ?*i8,
+    buffer: [*:0]const u8,
     size: objc.uint32_t,
 ) callconv(.C) objc.kern_return_t;
 pub const catalogueSendData = IOCatalogueSendData;
@@ -734,7 +734,7 @@ pub const catalogueTerminate = IOCatalogueTerminate;
 extern "IOKit" fn IOCatalogueGetData(
     mainPort: objc.mach_port_t,
     flag: objc.uint32_t,
-    buffer: ?*?*i8,
+    buffer: ?*?*c_char,
     size: ?*objc.uint32_t,
 ) callconv(.C) objc.kern_return_t;
 pub const catalogueGetData = IOCatalogueGetData;

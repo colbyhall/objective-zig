@@ -272,12 +272,1237 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
+    pub fn version() objc.NSInteger {
+        return objc.msgSend(Internal.class(), "version", objc.NSInteger, .{});
+    }
+
+    pub fn setVersion(_aVersion: objc.NSInteger) void {
+        return objc.msgSend(Internal.class(), "setVersion:", void, .{_aVersion});
+    }
+
+    pub fn replacementObjectForCoder(_self: *@This(), _coder: ?*foundation.Coder) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForCoder:", ?objc.Id, .{_coder});
+    }
+
+    pub fn awakeAfterUsingCoder(_self: *@This(), _coder: ?*foundation.Coder) ?objc.Id {
+        return objc.msgSend(_self, "awakeAfterUsingCoder:", ?objc.Id, .{_coder});
+    }
+
+    pub fn classForCoder(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForCoder", objc.Class, .{});
+    }
+
+    pub fn poseAsClass(_aClass: objc.Class) void {
+        return objc.msgSend(Internal.class(), "poseAsClass:", void, .{_aClass});
+    }
+
+    pub fn autoContentAccessingProxy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "autoContentAccessingProxy", ?objc.Id, .{});
+    }
+
+    pub fn attemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(
+        _self: *@This(),
+        _error: ?*foundation.Error,
+        _recoveryOptionIndex: objc.NSUInteger,
+        _delegate: ?objc.Id,
+        _didRecoverSelector: objc.Selector,
+        _contextInfo: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:", void, .{
+            _error,
+            _recoveryOptionIndex,
+            _delegate,
+            _didRecoverSelector,
+            _contextInfo,
+        });
+    }
+
+    pub fn attemptRecoveryFromErrorOptionIndex(_self: *@This(), _error: ?*foundation.Error, _recoveryOptionIndex: objc.NSUInteger) objc.BOOL {
+        return objc.msgSend(_self, "attemptRecoveryFromError:optionIndex:", objc.BOOL, .{ _error, _recoveryOptionIndex });
+    }
+
+    pub fn performSelectorWithObjectAfterDelayInModes(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _anArgument: ?objc.Id,
+        _delay: foundation.TimeInterval,
+        _modes: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "performSelector:withObject:afterDelay:inModes:", void, .{
+            _aSelector,
+            _anArgument,
+            _delay,
+            _modes,
+        });
+    }
+
+    pub fn performSelectorWithObjectAfterDelay(_self: *@This(), _aSelector: objc.Selector, _anArgument: ?objc.Id, _delay: foundation.TimeInterval) void {
+        return objc.msgSend(_self, "performSelector:withObject:afterDelay:", void, .{ _aSelector, _anArgument, _delay });
+    }
+
+    pub fn cancelPreviousPerformRequestsWithTargetSelectorObject(_aTarget: ?objc.Id, _aSelector: objc.Selector, _anArgument: ?objc.Id) void {
+        return objc.msgSend(Internal.class(), "cancelPreviousPerformRequestsWithTarget:selector:object:", void, .{ _aTarget, _aSelector, _anArgument });
+    }
+
+    pub fn cancelPreviousPerformRequestsWithTarget(_aTarget: ?objc.Id) void {
+        return objc.msgSend(Internal.class(), "cancelPreviousPerformRequestsWithTarget:", void, .{_aTarget});
+    }
+
+    pub fn urlResourceDataDidBecomeAvailable(_self: *@This(), _sender: ?*foundation.URL, _newBytes: ?*foundation.Data) void {
+        return objc.msgSend(_self, "URL:resourceDataDidBecomeAvailable:", void, .{ _sender, _newBytes });
+    }
+
+    pub fn urlResourceDidFinishLoading(_self: *@This(), _sender: ?*foundation.URL) void {
+        return objc.msgSend(_self, "URLResourceDidFinishLoading:", void, .{_sender});
+    }
+
+    pub fn urlResourceDidCancelLoading(_self: *@This(), _sender: ?*foundation.URL) void {
+        return objc.msgSend(_self, "URLResourceDidCancelLoading:", void, .{_sender});
+    }
+
+    pub fn urlResourceDidFailLoadingWithReason(_self: *@This(), _sender: ?*foundation.URL, _reason: ?*foundation.String) void {
+        return objc.msgSend(_self, "URL:resourceDidFailLoadingWithReason:", void, .{ _sender, _reason });
+    }
+
+    pub fn fileManagerShouldProceedAfterError(_self: *@This(), _fm: ?*foundation.FileManager, _errorInfo: ?*foundation.Dictionary) objc.BOOL {
+        return objc.msgSend(_self, "fileManager:shouldProceedAfterError:", objc.BOOL, .{ _fm, _errorInfo });
+    }
+
+    pub fn fileManagerWillProcessPath(_self: *@This(), _fm: ?*foundation.FileManager, _path: ?*foundation.String) void {
+        return objc.msgSend(_self, "fileManager:willProcessPath:", void, .{ _fm, _path });
+    }
+
+    pub fn valueForKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn setValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "setValue:forKey:", void, .{ _value, _key });
+    }
+
+    pub fn validateValueForKeyError(_self: *@This(), _ioValue: ?*?objc.Id, _inKey: ?*foundation.String, _outError: ?*?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "validateValue:forKey:error:", objc.BOOL, .{ _ioValue, _inKey, _outError });
+    }
+
+    pub fn mutableArrayValueForKey(_self: *@This(), _key: ?*foundation.String) ?*foundation.MutableArray {
+        return objc.msgSend(_self, "mutableArrayValueForKey:", ?*foundation.MutableArray, .{_key});
+    }
+
+    pub fn mutableOrderedSetValueForKey(_self: *@This(), _key: ?*foundation.String) ?*foundation.MutableOrderedSet {
+        return objc.msgSend(_self, "mutableOrderedSetValueForKey:", ?*foundation.MutableOrderedSet, .{_key});
+    }
+
+    pub fn mutableSetValueForKey(_self: *@This(), _key: ?*foundation.String) ?*foundation.MutableSet {
+        return objc.msgSend(_self, "mutableSetValueForKey:", ?*foundation.MutableSet, .{_key});
+    }
+
+    pub fn valueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForKeyPath:", ?objc.Id, .{_keyPath});
+    }
+
+    pub fn setValueForKeyPath(_self: *@This(), _value: ?objc.Id, _keyPath: ?*foundation.String) void {
+        return objc.msgSend(_self, "setValue:forKeyPath:", void, .{ _value, _keyPath });
+    }
+
+    pub fn validateValueForKeyPathError(_self: *@This(), _ioValue: ?*?objc.Id, _inKeyPath: ?*foundation.String, _outError: ?*?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "validateValue:forKeyPath:error:", objc.BOOL, .{ _ioValue, _inKeyPath, _outError });
+    }
+
+    pub fn mutableArrayValueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?*foundation.MutableArray {
+        return objc.msgSend(_self, "mutableArrayValueForKeyPath:", ?*foundation.MutableArray, .{_keyPath});
+    }
+
+    pub fn mutableOrderedSetValueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?*foundation.MutableOrderedSet {
+        return objc.msgSend(_self, "mutableOrderedSetValueForKeyPath:", ?*foundation.MutableOrderedSet, .{_keyPath});
+    }
+
+    pub fn mutableSetValueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?*foundation.MutableSet {
+        return objc.msgSend(_self, "mutableSetValueForKeyPath:", ?*foundation.MutableSet, .{_keyPath});
+    }
+
+    pub fn valueForUndefinedKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForUndefinedKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn setValueForUndefinedKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "setValue:forUndefinedKey:", void, .{ _value, _key });
+    }
+
+    pub fn setNilValueForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "setNilValueForKey:", void, .{_key});
+    }
+
+    pub fn dictionaryWithValuesForKeys(_self: *@This(), _keys: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(_self, "dictionaryWithValuesForKeys:", ?*anyopaque, .{_keys});
+    }
+
+    pub fn setValuesForKeysWithDictionary(_self: *@This(), _keyedValues: ?*anyopaque) void {
+        return objc.msgSend(_self, "setValuesForKeysWithDictionary:", void, .{_keyedValues});
+    }
+
+    pub fn accessInstanceVariablesDirectly() objc.BOOL {
+        return objc.msgSend(Internal.class(), "accessInstanceVariablesDirectly", objc.BOOL, .{});
+    }
+
+    pub fn useStoredAccessor() objc.BOOL {
+        return objc.msgSend(Internal.class(), "useStoredAccessor", objc.BOOL, .{});
+    }
+
+    pub fn storedValueForKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "storedValueForKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn takeStoredValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "takeStoredValue:forKey:", void, .{ _value, _key });
+    }
+
+    pub fn takeValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "takeValue:forKey:", void, .{ _value, _key });
+    }
+
+    pub fn takeValueForKeyPath(_self: *@This(), _value: ?objc.Id, _keyPath: ?*foundation.String) void {
+        return objc.msgSend(_self, "takeValue:forKeyPath:", void, .{ _value, _keyPath });
+    }
+
+    pub fn handleQueryWithUnboundKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "handleQueryWithUnboundKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn handleTakeValueForUnboundKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "handleTakeValue:forUnboundKey:", void, .{ _value, _key });
+    }
+
+    pub fn unableToSetNilForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "unableToSetNilForKey:", void, .{_key});
+    }
+
+    pub fn valuesForKeys(_self: *@This(), _keys: ?*foundation.Array) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "valuesForKeys:", ?*foundation.Dictionary, .{_keys});
+    }
+
+    pub fn takeValuesFromDictionary(_self: *@This(), _properties: ?*foundation.Dictionary) void {
+        return objc.msgSend(_self, "takeValuesFromDictionary:", void, .{_properties});
+    }
+
+    pub fn observeValueForKeyPathOfObjectChangeContext(
+        _self: *@This(),
+        _keyPath: ?*foundation.String,
+        _object: ?objc.Id,
+        _change: ?*anyopaque,
+        _context: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "observeValueForKeyPath:ofObject:change:context:", void, .{
+            _keyPath,
+            _object,
+            _change,
+            _context,
+        });
+    }
+
+    pub fn addObserverForKeyPathOptionsContext(
+        _self: *@This(),
+        _observer: ?*objc.NSObject,
+        _keyPath: ?*foundation.String,
+        _options: foundation.KeyValueObservingOptions,
+        _context: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "addObserver:forKeyPath:options:context:", void, .{
+            _observer,
+            _keyPath,
+            _options,
+            _context,
+        });
+    }
+
+    pub fn removeObserverForKeyPathContext(_self: *@This(), _observer: ?*objc.NSObject, _keyPath: ?*foundation.String, _context: ?*anyopaque) void {
+        return objc.msgSend(_self, "removeObserver:forKeyPath:context:", void, .{ _observer, _keyPath, _context });
+    }
+
+    pub fn removeObserverForKeyPath(_self: *@This(), _observer: ?*objc.NSObject, _keyPath: ?*foundation.String) void {
+        return objc.msgSend(_self, "removeObserver:forKeyPath:", void, .{ _observer, _keyPath });
+    }
+
+    pub fn willChangeValueForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "willChangeValueForKey:", void, .{_key});
+    }
+
+    pub fn didChangeValueForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "didChangeValueForKey:", void, .{_key});
+    }
+
+    pub fn willChangeValuesAtIndexesForKey(_self: *@This(), _changeKind: foundation.KeyValueChange, _indexes: ?*foundation.IndexSet, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "willChange:valuesAtIndexes:forKey:", void, .{ _changeKind, _indexes, _key });
+    }
+
+    pub fn didChangeValuesAtIndexesForKey(_self: *@This(), _changeKind: foundation.KeyValueChange, _indexes: ?*foundation.IndexSet, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "didChange:valuesAtIndexes:forKey:", void, .{ _changeKind, _indexes, _key });
+    }
+
+    pub fn willChangeValueForKeyWithSetMutationUsingObjects(_self: *@This(), _key: ?*foundation.String, _mutationKind: foundation.KeyValueSetMutationKind, _objects: ?*foundation.Set) void {
+        return objc.msgSend(_self, "willChangeValueForKey:withSetMutation:usingObjects:", void, .{ _key, _mutationKind, _objects });
+    }
+
+    pub fn didChangeValueForKeyWithSetMutationUsingObjects(_self: *@This(), _key: ?*foundation.String, _mutationKind: foundation.KeyValueSetMutationKind, _objects: ?*foundation.Set) void {
+        return objc.msgSend(_self, "didChangeValueForKey:withSetMutation:usingObjects:", void, .{ _key, _mutationKind, _objects });
+    }
+
+    pub fn keyPathsForValuesAffectingValueForKey(_key: ?*foundation.String) ?*anyopaque {
+        return objc.msgSend(Internal.class(), "keyPathsForValuesAffectingValueForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn automaticallyNotifiesObserversForKey(_key: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(Internal.class(), "automaticallyNotifiesObserversForKey:", objc.BOOL, .{_key});
+    }
+
+    pub fn observationInfo(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "observationInfo", ?*anyopaque, .{});
+    }
+
+    pub fn setObservationInfo(_self: *@This(), _observationInfo: ?*anyopaque) void {
+        return objc.msgSend(_self, "setObservationInfo:", void, .{_observationInfo});
+    }
+
+    pub fn setKeysTriggerChangeNotificationsForDependentKey(_keys: ?*foundation.Array, _dependentKey: ?*foundation.String) void {
+        return objc.msgSend(Internal.class(), "setKeys:triggerChangeNotificationsForDependentKey:", void, .{ _keys, _dependentKey });
+    }
+
+    pub fn setSharedObservers(_self: *@This(), _sharedObservers: ?*foundation.KeyValueSharedObserversSnapshot) void {
+        return objc.msgSend(_self, "setSharedObservers:", void, .{_sharedObservers});
+    }
+
+    pub fn replacementObjectForKeyedArchiver(_self: *@This(), _archiver: ?*foundation.KeyedArchiver) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForKeyedArchiver:", ?objc.Id, .{_archiver});
+    }
+
+    pub fn classFallbacksForKeyedArchiver() ?*anyopaque {
+        return objc.msgSend(Internal.class(), "classFallbacksForKeyedArchiver", ?*anyopaque, .{});
+    }
+
+    pub fn classForKeyedArchiver(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForKeyedArchiver", objc.Class, .{});
+    }
+
+    pub fn classForKeyedUnarchiver() objc.Class {
+        return objc.msgSend(Internal.class(), "classForKeyedUnarchiver", objc.Class, .{});
+    }
+
+    pub fn performSelectorOnMainThreadWithObjectWaitUntilDoneModes(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _arg: ?objc.Id,
+        _wait: objc.BOOL,
+        _array: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "performSelectorOnMainThread:withObject:waitUntilDone:modes:", void, .{
+            _aSelector,
+            _arg,
+            _wait,
+            _array,
+        });
+    }
+
+    pub fn performSelectorOnMainThreadWithObjectWaitUntilDone(_self: *@This(), _aSelector: objc.Selector, _arg: ?objc.Id, _wait: objc.BOOL) void {
+        return objc.msgSend(_self, "performSelectorOnMainThread:withObject:waitUntilDone:", void, .{ _aSelector, _arg, _wait });
+    }
+
+    pub fn performSelectorOnThreadWithObjectWaitUntilDoneModes(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _thr: ?*foundation.Thread,
+        _arg: ?objc.Id,
+        _wait: objc.BOOL,
+        _array: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "performSelector:onThread:withObject:waitUntilDone:modes:", void, .{
+            _aSelector,
+            _thr,
+            _arg,
+            _wait,
+            _array,
+        });
+    }
+
+    pub fn performSelectorOnThreadWithObjectWaitUntilDone(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _thr: ?*foundation.Thread,
+        _arg: ?objc.Id,
+        _wait: objc.BOOL,
+    ) void {
+        return objc.msgSend(_self, "performSelector:onThread:withObject:waitUntilDone:", void, .{
+            _aSelector,
+            _thr,
+            _arg,
+            _wait,
+        });
+    }
+
+    pub fn performSelectorInBackgroundWithObject(_self: *@This(), _aSelector: objc.Selector, _arg: ?objc.Id) void {
+        return objc.msgSend(_self, "performSelectorInBackground:withObject:", void, .{ _aSelector, _arg });
+    }
+
+    pub fn replacementObjectForArchiver(_self: *@This(), _archiver: ?*foundation.Archiver) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForArchiver:", ?objc.Id, .{_archiver});
+    }
+
+    pub fn classForArchiver(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForArchiver", objc.Class, .{});
+    }
+
+    pub fn replacementObjectForPortCoder(_self: *@This(), _coder: ?*foundation.PortCoder) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForPortCoder:", ?objc.Id, .{_coder});
+    }
+
+    pub fn classForPortCoder(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForPortCoder", objc.Class, .{});
+    }
+
+    pub fn inverseForRelationshipKey(_self: *@This(), _relationshipKey: ?*foundation.String) ?*foundation.String {
+        return objc.msgSend(_self, "inverseForRelationshipKey:", ?*foundation.String, .{_relationshipKey});
+    }
+
+    pub fn classDescription(_self: *@This()) ?*foundation.ClassDescription {
+        return objc.msgSend(_self, "classDescription", ?*foundation.ClassDescription, .{});
+    }
+
+    pub fn attributeKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "attributeKeys", ?*anyopaque, .{});
+    }
+
+    pub fn toOneRelationshipKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "toOneRelationshipKeys", ?*anyopaque, .{});
+    }
+
+    pub fn toManyRelationshipKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "toManyRelationshipKeys", ?*anyopaque, .{});
+    }
+
+    pub fn scriptingValueForSpecifier(_self: *@This(), _objectSpecifier: ?*foundation.ScriptObjectSpecifier) ?objc.Id {
+        return objc.msgSend(_self, "scriptingValueForSpecifier:", ?objc.Id, .{_objectSpecifier});
+    }
+
+    pub fn copyScriptingValueForKeyWithProperties(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String, _properties: ?*anyopaque) ?objc.Id {
+        return objc.msgSend(_self, "copyScriptingValue:forKey:withProperties:", ?objc.Id, .{ _value, _key, _properties });
+    }
+
+    pub fn newScriptingObjectOfClassForValueForKeyWithContentsValueProperties(
+        _self: *@This(),
+        _objectClass: objc.Class,
+        _key: ?*foundation.String,
+        _contentsValue: ?objc.Id,
+        _properties: ?*anyopaque,
+    ) ?objc.Id {
+        return objc.msgSend(_self, "newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:", ?objc.Id, .{
+            _objectClass,
+            _key,
+            _contentsValue,
+            _properties,
+        });
+    }
+
+    pub fn scriptingProperties(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "scriptingProperties", ?*anyopaque, .{});
+    }
+
+    pub fn setScriptingProperties(_self: *@This(), _scriptingProperties: ?*anyopaque) void {
+        return objc.msgSend(_self, "setScriptingProperties:", void, .{_scriptingProperties});
+    }
+
+    pub fn classCode(_self: *@This()) objc.FourCharCode {
+        return objc.msgSend(_self, "classCode", objc.FourCharCode, .{});
+    }
+
+    pub fn className(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "className", ?*foundation.String, .{});
+    }
+
+    pub fn valueAtIndexInPropertyWithKey(_self: *@This(), _index: objc.NSUInteger, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueAtIndex:inPropertyWithKey:", ?objc.Id, .{ _index, _key });
+    }
+
+    pub fn valueWithNameInPropertyWithKey(_self: *@This(), _name: ?*foundation.String, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueWithName:inPropertyWithKey:", ?objc.Id, .{ _name, _key });
+    }
+
+    pub fn valueWithUniqueIDInPropertyWithKey(_self: *@This(), _uniqueID: ?objc.Id, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueWithUniqueID:inPropertyWithKey:", ?objc.Id, .{ _uniqueID, _key });
+    }
+
+    pub fn insertValueAtIndexInPropertyWithKey(_self: *@This(), _value: ?objc.Id, _index: objc.NSUInteger, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "insertValue:atIndex:inPropertyWithKey:", void, .{ _value, _index, _key });
+    }
+
+    pub fn removeValueAtIndexFromPropertyWithKey(_self: *@This(), _index: objc.NSUInteger, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "removeValueAtIndex:fromPropertyWithKey:", void, .{ _index, _key });
+    }
+
+    pub fn replaceValueAtIndexInPropertyWithKeyWithValue(_self: *@This(), _index: objc.NSUInteger, _key: ?*foundation.String, _value: ?objc.Id) void {
+        return objc.msgSend(_self, "replaceValueAtIndex:inPropertyWithKey:withValue:", void, .{ _index, _key, _value });
+    }
+
+    pub fn insertValueInPropertyWithKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "insertValue:inPropertyWithKey:", void, .{ _value, _key });
+    }
+
+    pub fn coerceValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "coerceValue:forKey:", ?objc.Id, .{ _value, _key });
+    }
+
+    pub fn indicesOfObjectsByEvaluatingObjectSpecifier(_self: *@This(), _specifier: ?*foundation.ScriptObjectSpecifier) ?*anyopaque {
+        return objc.msgSend(_self, "indicesOfObjectsByEvaluatingObjectSpecifier:", ?*anyopaque, .{_specifier});
+    }
+
+    pub fn objectSpecifier(_self: *@This()) ?*foundation.ScriptObjectSpecifier {
+        return objc.msgSend(_self, "objectSpecifier", ?*foundation.ScriptObjectSpecifier, .{});
+    }
+
+    pub fn isEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn isLessThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isLessThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn isLessThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isLessThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn isGreaterThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isGreaterThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn isGreaterThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isGreaterThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn isNotEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isNotEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn doesContain(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "doesContain:", objc.BOOL, .{_object});
+    }
+
+    pub fn isLike(_self: *@This(), _object: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "isLike:", objc.BOOL, .{_object});
+    }
+
+    pub fn isCaseInsensitiveLike(_self: *@This(), _object: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "isCaseInsensitiveLike:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsLessThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsLessThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsLessThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsLessThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsGreaterThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsGreaterThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsGreaterThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsGreaterThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingBeginsWith(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingBeginsWith:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingEndsWith(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingEndsWith:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingContains(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingContains:", objc.BOOL, .{_object});
+    }
+
+    pub fn accessibilityAttributeNames(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "accessibilityAttributeNames", ?*anyopaque, .{});
+    }
+
+    pub fn accessibilityAttributeValue(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityAttributeValue:", ?objc.Id, .{_attribute});
+    }
+
+    pub fn accessibilityIsAttributeSettable(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName) objc.BOOL {
+        return objc.msgSend(_self, "accessibilityIsAttributeSettable:", objc.BOOL, .{_attribute});
+    }
+
+    pub fn accessibilitySetValueForAttribute(_self: *@This(), _value: ?objc.Id, _attribute: app_kit.AccessibilityAttributeName) void {
+        return objc.msgSend(_self, "accessibilitySetValue:forAttribute:", void, .{ _value, _attribute });
+    }
+
+    pub fn accessibilityParameterizedAttributeNames(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "accessibilityParameterizedAttributeNames", ?*anyopaque, .{});
+    }
+
+    pub fn accessibilityAttributeValueForParameter(_self: *@This(), _attribute: app_kit.AccessibilityParameterizedAttributeName, _parameter: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityAttributeValue:forParameter:", ?objc.Id, .{ _attribute, _parameter });
+    }
+
+    pub fn accessibilityActionNames(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "accessibilityActionNames", ?*anyopaque, .{});
+    }
+
+    pub fn accessibilityActionDescription(_self: *@This(), _action: app_kit.AccessibilityActionName) ?*foundation.String {
+        return objc.msgSend(_self, "accessibilityActionDescription:", ?*foundation.String, .{_action});
+    }
+
+    pub fn accessibilityPerformAction(_self: *@This(), _action: app_kit.AccessibilityActionName) void {
+        return objc.msgSend(_self, "accessibilityPerformAction:", void, .{_action});
+    }
+
+    pub fn accessibilityIsIgnored(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "accessibilityIsIgnored", objc.BOOL, .{});
+    }
+
+    pub fn accessibilityHitTest(_self: *@This(), _point: foundation.Point) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityHitTest:", ?objc.Id, .{_point});
+    }
+
+    pub fn accessibilityIndexOfChild(_self: *@This(), _child: ?objc.Id) objc.NSUInteger {
+        return objc.msgSend(_self, "accessibilityIndexOfChild:", objc.NSUInteger, .{_child});
+    }
+
+    pub fn accessibilityArrayAttributeCount(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName) objc.NSUInteger {
+        return objc.msgSend(_self, "accessibilityArrayAttributeCount:", objc.NSUInteger, .{_attribute});
+    }
+
+    pub fn accessibilityArrayAttributeValuesIndexMaxCount(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName, _index: objc.NSUInteger, _maxCount: objc.NSUInteger) ?*foundation.Array {
+        return objc.msgSend(_self, "accessibilityArrayAttributeValues:index:maxCount:", ?*foundation.Array, .{ _attribute, _index, _maxCount });
+    }
+
+    pub fn accessibilityFocusedUIElement(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityFocusedUIElement", ?objc.Id, .{});
+    }
+
+    pub fn accessibilityNotifiesWhenDestroyed(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "accessibilityNotifiesWhenDestroyed", objc.BOOL, .{});
+    }
+
+    pub fn accessibilitySetOverrideValueForAttribute(_self: *@This(), _value: ?objc.Id, _attribute: app_kit.AccessibilityAttributeName) objc.BOOL {
+        return objc.msgSend(_self, "accessibilitySetOverrideValue:forAttribute:", objc.BOOL, .{ _value, _attribute });
+    }
+
+    pub fn pasteboardProvideDataForType(_self: *@This(), _sender: ?*app_kit.Pasteboard, _type: app_kit.PasteboardType) void {
+        return objc.msgSend(_self, "pasteboard:provideDataForType:", void, .{ _sender, _type });
+    }
+
+    pub fn pasteboardChangedOwner(_self: *@This(), _sender: ?*app_kit.Pasteboard) void {
+        return objc.msgSend(_self, "pasteboardChangedOwner:", void, .{_sender});
+    }
+
+    pub fn namesOfPromisedFilesDroppedAtDestination(_self: *@This(), _dropDestination: ?*foundation.URL) ?*anyopaque {
+        return objc.msgSend(_self, "namesOfPromisedFilesDroppedAtDestination:", ?*anyopaque, .{_dropDestination});
+    }
+
+    pub fn draggingSourceOperationMaskForLocal(_self: *@This(), _flag: objc.BOOL) app_kit.DragOperation {
+        return objc.msgSend(_self, "draggingSourceOperationMaskForLocal:", app_kit.DragOperation, .{_flag});
+    }
+
+    pub fn draggedImageBeganAt(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point) void {
+        return objc.msgSend(_self, "draggedImage:beganAt:", void, .{ _image, _screenPoint });
+    }
+
+    pub fn draggedImageEndedAtOperation(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point, _operation: app_kit.DragOperation) void {
+        return objc.msgSend(_self, "draggedImage:endedAt:operation:", void, .{ _image, _screenPoint, _operation });
+    }
+
+    pub fn draggedImageMovedTo(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point) void {
+        return objc.msgSend(_self, "draggedImage:movedTo:", void, .{ _image, _screenPoint });
+    }
+
+    pub fn ignoreModifierKeysWhileDragging(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "ignoreModifierKeysWhileDragging", objc.BOOL, .{});
+    }
+
+    pub fn draggedImageEndedAtDeposited(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point, _flag: objc.BOOL) void {
+        return objc.msgSend(_self, "draggedImage:endedAt:deposited:", void, .{ _image, _screenPoint, _flag });
+    }
+
+    pub fn layerShouldInheritContentsScaleFromWindow(_self: *@This(), _layer: ?*quartz_core.Layer, _newScale: core_foundation.CGFloat, _window: ?*app_kit.Window) objc.BOOL {
+        return objc.msgSend(_self, "layer:shouldInheritContentsScale:fromWindow:", objc.BOOL, .{ _layer, _newScale, _window });
+    }
+
+    pub fn viewStringForToolTipPointUserData(
+        _self: *@This(),
+        _view: ?*app_kit.View,
+        _tag: app_kit.ToolTipTag,
+        _point: foundation.Point,
+        _data: ?*anyopaque,
+    ) ?*foundation.String {
+        return objc.msgSend(_self, "view:stringForToolTip:point:userData:", ?*foundation.String, .{
+            _view,
+            _tag,
+            _point,
+            _data,
+        });
+    }
+
+    pub fn validateMenuItem(_self: *@This(), _menuItem: ?*app_kit.MenuItem) objc.BOOL {
+        return objc.msgSend(_self, "validateMenuItem:", objc.BOOL, .{_menuItem});
+    }
+
+    pub fn exposeBinding(_binding: app_kit.BindingName) void {
+        return objc.msgSend(Internal.class(), "exposeBinding:", void, .{_binding});
+    }
+
+    pub fn valueClassForBinding(_self: *@This(), _binding: app_kit.BindingName) objc.Class {
+        return objc.msgSend(_self, "valueClassForBinding:", objc.Class, .{_binding});
+    }
+
+    pub fn bindToObjectWithKeyPathOptions(
+        _self: *@This(),
+        _binding: app_kit.BindingName,
+        _observable: ?objc.Id,
+        _keyPath: ?*foundation.String,
+        _options: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "bind:toObject:withKeyPath:options:", void, .{
+            _binding,
+            _observable,
+            _keyPath,
+            _options,
+        });
+    }
+
+    pub fn unbind(_self: *@This(), _binding: app_kit.BindingName) void {
+        return objc.msgSend(_self, "unbind:", void, .{_binding});
+    }
+
+    pub fn infoForBinding(_self: *@This(), _binding: app_kit.BindingName) ?*anyopaque {
+        return objc.msgSend(_self, "infoForBinding:", ?*anyopaque, .{_binding});
+    }
+
+    pub fn optionDescriptionsForBinding(_self: *@This(), _binding: app_kit.BindingName) ?*anyopaque {
+        return objc.msgSend(_self, "optionDescriptionsForBinding:", ?*anyopaque, .{_binding});
+    }
+
+    pub fn exposedBindings(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "exposedBindings", ?*anyopaque, .{});
+    }
+
+    pub fn setDefaultPlaceholderForMarkerWithBinding(_placeholder: ?objc.Id, _marker: ?objc.Id, _binding: app_kit.BindingName) void {
+        return objc.msgSend(Internal.class(), "setDefaultPlaceholder:forMarker:withBinding:", void, .{ _placeholder, _marker, _binding });
+    }
+
+    pub fn defaultPlaceholderForMarkerWithBinding(_marker: ?objc.Id, _binding: app_kit.BindingName) ?objc.Id {
+        return objc.msgSend(Internal.class(), "defaultPlaceholderForMarker:withBinding:", ?objc.Id, .{ _marker, _binding });
+    }
+
+    pub fn discardEditing(_self: *@This()) void {
+        return objc.msgSend(_self, "discardEditing", void, .{});
+    }
+
+    pub fn commitEditing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "commitEditing", objc.BOOL, .{});
+    }
+
+    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(_self: *@This(), _delegate: ?objc.Id, _didCommitSelector: objc.Selector, _contextInfo: ?*anyopaque) void {
+        return objc.msgSend(_self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", void, .{ _delegate, _didCommitSelector, _contextInfo });
+    }
+
+    pub fn commitEditingAndReturnError(_self: *@This(), _error: ?*?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "commitEditingAndReturnError:", objc.BOOL, .{_error});
+    }
+
+    pub fn objectDidBeginEditing(_self: *@This(), _editor: ?*anyopaque) void {
+        return objc.msgSend(_self, "objectDidBeginEditing:", void, .{_editor});
+    }
+
+    pub fn objectDidEndEditing(_self: *@This(), _editor: ?*anyopaque) void {
+        return objc.msgSend(_self, "objectDidEndEditing:", void, .{_editor});
+    }
+
+    pub fn controlTextDidBeginEditing(_self: *@This(), _obj: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "controlTextDidBeginEditing:", void, .{_obj});
+    }
+
+    pub fn controlTextDidEndEditing(_self: *@This(), _obj: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "controlTextDidEndEditing:", void, .{_obj});
+    }
+
+    pub fn controlTextDidChange(_self: *@This(), _obj: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "controlTextDidChange:", void, .{_obj});
+    }
+
+    pub fn fontManagerWillIncludeFont(_self: *@This(), _sender: ?objc.Id, _fontName: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "fontManager:willIncludeFont:", objc.BOOL, .{ _sender, _fontName });
+    }
+
+    pub fn changeFont(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "changeFont:", void, .{_sender});
+    }
+
+    pub fn validModesForFontPanel(_self: *@This(), _fontPanel: ?*app_kit.FontPanel) app_kit.FontPanelModeMask {
+        return objc.msgSend(_self, "validModesForFontPanel:", app_kit.FontPanelModeMask, .{_fontPanel});
+    }
+
+    pub fn changeColor(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "changeColor:", void, .{_sender});
+    }
+
+    pub fn awakeFromNib(_self: *@This()) void {
+        return objc.msgSend(_self, "awakeFromNib", void, .{});
+    }
+
+    pub fn prepareForInterfaceBuilder(_self: *@This()) void {
+        return objc.msgSend(_self, "prepareForInterfaceBuilder", void, .{});
+    }
+
+    pub fn panelIsValidFilename(_self: *@This(), _sender: ?objc.Id, _filename: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "panel:isValidFilename:", objc.BOOL, .{ _sender, _filename });
+    }
+
+    pub fn panelDirectoryDidChange(_self: *@This(), _sender: ?objc.Id, _path: ?*foundation.String) void {
+        return objc.msgSend(_self, "panel:directoryDidChange:", void, .{ _sender, _path });
+    }
+
+    pub fn panelCompareFilenameWithCaseSensitive(
+        _self: *@This(),
+        _sender: ?objc.Id,
+        _name1: ?*foundation.String,
+        _name2: ?*foundation.String,
+        _caseSensitive: objc.BOOL,
+    ) foundation.ComparisonResult {
+        return objc.msgSend(_self, "panel:compareFilename:with:caseSensitive:", foundation.ComparisonResult, .{
+            _sender,
+            _name1,
+            _name2,
+            _caseSensitive,
+        });
+    }
+
+    pub fn panelShouldShowFilename(_self: *@This(), _sender: ?objc.Id, _filename: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "panel:shouldShowFilename:", objc.BOOL, .{ _sender, _filename });
+    }
+
+    pub fn textStorageWillProcessEditing(_self: *@This(), _notification: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "textStorageWillProcessEditing:", void, .{_notification});
+    }
+
+    pub fn textStorageDidProcessEditing(_self: *@This(), _notification: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "textStorageDidProcessEditing:", void, .{_notification});
+    }
+
+    pub fn validateToolbarItem(_self: *@This(), _item: ?*app_kit.ToolbarItem) objc.BOOL {
+        return objc.msgSend(_self, "validateToolbarItem:", objc.BOOL, .{_item});
+    }
+
+    pub fn tableViewWriteRowsToPasteboard(_self: *@This(), _tableView: ?*app_kit.TableView, _rows: ?*foundation.Array, _pboard: ?*app_kit.Pasteboard) objc.BOOL {
+        return objc.msgSend(_self, "tableView:writeRows:toPasteboard:", objc.BOOL, .{ _tableView, _rows, _pboard });
+    }
+
+    pub fn applicationDelegateHandlesKey(_self: *@This(), _sender: ?*app_kit.Application, _key: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "application:delegateHandlesKey:", objc.BOOL, .{ _sender, _key });
+    }
+
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
         return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
     }
 
     pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn insertText(_self: *@This(), _insertString: ?objc.Id) void {
+        return objc.msgSend(_self, "insertText:", void, .{_insertString});
+    }
+
+    pub fn doCommandBySelector(_self: *@This(), _selector: objc.Selector) void {
+        return objc.msgSend(_self, "doCommandBySelector:", void, .{_selector});
+    }
+
+    pub fn moveForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveForward:", void, .{_sender});
+    }
+
+    pub fn moveRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveRight:", void, .{_sender});
+    }
+
+    pub fn moveBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveBackward:", void, .{_sender});
+    }
+
+    pub fn moveLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveLeft:", void, .{_sender});
+    }
+
+    pub fn moveUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveUp:", void, .{_sender});
+    }
+
+    pub fn moveDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveDown:", void, .{_sender});
+    }
+
+    pub fn moveWordForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordForward:", void, .{_sender});
+    }
+
+    pub fn moveWordBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordBackward:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfParagraph:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfParagraph:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfDocument:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfDocument:", void, .{_sender});
+    }
+
+    pub fn pageDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageDown:", void, .{_sender});
+    }
+
+    pub fn pageUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageUp:", void, .{_sender});
+    }
+
+    pub fn centerSelectionInVisibleArea(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "centerSelectionInVisibleArea:", void, .{_sender});
+    }
+
+    pub fn moveBackwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveBackwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveForwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveForwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordForwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordForwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordBackwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordBackwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveUpAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveUpAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveDownAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveDownAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfParagraphAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfParagraphAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfParagraphAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfParagraphAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfDocumentAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfDocumentAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfDocumentAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfDocumentAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn pageDownAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageDownAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn pageUpAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageUpAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveParagraphForwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveParagraphForwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveParagraphBackwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveParagraphBackwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordRight:", void, .{_sender});
+    }
+
+    pub fn moveWordLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordLeft:", void, .{_sender});
+    }
+
+    pub fn moveRightAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveRightAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveLeftAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveLeftAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordRightAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordRightAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordLeftAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordLeftAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToLeftEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToLeftEndOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToRightEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToRightEndOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToLeftEndOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToLeftEndOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToRightEndOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToRightEndOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn scrollPageUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollPageUp:", void, .{_sender});
+    }
+
+    pub fn scrollPageDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollPageDown:", void, .{_sender});
+    }
+
+    pub fn scrollLineUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollLineUp:", void, .{_sender});
+    }
+
+    pub fn scrollLineDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollLineDown:", void, .{_sender});
+    }
+
+    pub fn scrollToBeginningOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollToBeginningOfDocument:", void, .{_sender});
+    }
+
+    pub fn scrollToEndOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollToEndOfDocument:", void, .{_sender});
+    }
+
+    pub fn transpose(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "transpose:", void, .{_sender});
+    }
+
+    pub fn transposeWords(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "transposeWords:", void, .{_sender});
+    }
+
+    pub fn selectAll(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectAll:", void, .{_sender});
+    }
+
+    pub fn selectParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectParagraph:", void, .{_sender});
+    }
+
+    pub fn selectLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectLine:", void, .{_sender});
+    }
+
+    pub fn selectWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectWord:", void, .{_sender});
+    }
+
+    pub fn indent(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "indent:", void, .{_sender});
+    }
+
+    pub fn insertTab(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertTab:", void, .{_sender});
+    }
+
+    pub fn insertBacktab(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertBacktab:", void, .{_sender});
+    }
+
+    pub fn insertNewline(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertNewline:", void, .{_sender});
+    }
+
+    pub fn insertParagraphSeparator(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertParagraphSeparator:", void, .{_sender});
+    }
+
+    pub fn insertNewlineIgnoringFieldEditor(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertNewlineIgnoringFieldEditor:", void, .{_sender});
+    }
+
+    pub fn insertTabIgnoringFieldEditor(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertTabIgnoringFieldEditor:", void, .{_sender});
+    }
+
+    pub fn insertLineBreak(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertLineBreak:", void, .{_sender});
+    }
+
+    pub fn insertContainerBreak(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertContainerBreak:", void, .{_sender});
+    }
+
+    pub fn insertSingleQuoteIgnoringSubstitution(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertSingleQuoteIgnoringSubstitution:", void, .{_sender});
+    }
+
+    pub fn insertDoubleQuoteIgnoringSubstitution(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertDoubleQuoteIgnoringSubstitution:", void, .{_sender});
+    }
+
+    pub fn changeCaseOfLetter(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "changeCaseOfLetter:", void, .{_sender});
+    }
+
+    pub fn uppercaseWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "uppercaseWord:", void, .{_sender});
+    }
+
+    pub fn lowercaseWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "lowercaseWord:", void, .{_sender});
+    }
+
+    pub fn capitalizeWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "capitalizeWord:", void, .{_sender});
+    }
+
+    pub fn deleteForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteForward:", void, .{_sender});
+    }
+
+    pub fn deleteBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteBackward:", void, .{_sender});
+    }
+
+    pub fn deleteBackwardByDecomposingPreviousCharacter(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteBackwardByDecomposingPreviousCharacter:", void, .{_sender});
+    }
+
+    pub fn deleteWordForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteWordForward:", void, .{_sender});
+    }
+
+    pub fn deleteWordBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteWordBackward:", void, .{_sender});
+    }
+
+    pub fn deleteToBeginningOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToBeginningOfLine:", void, .{_sender});
+    }
+
+    pub fn deleteToEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToEndOfLine:", void, .{_sender});
+    }
+
+    pub fn deleteToBeginningOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToBeginningOfParagraph:", void, .{_sender});
+    }
+
+    pub fn deleteToEndOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToEndOfParagraph:", void, .{_sender});
+    }
+
+    pub fn yank(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "yank:", void, .{_sender});
+    }
+
+    pub fn complete(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "complete:", void, .{_sender});
+    }
+
+    pub fn setMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "setMark:", void, .{_sender});
+    }
+
+    pub fn deleteToMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToMark:", void, .{_sender});
+    }
+
+    pub fn selectToMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectToMark:", void, .{_sender});
+    }
+
+    pub fn swapWithMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "swapWithMark:", void, .{_sender});
+    }
+
+    pub fn cancelOperation(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "cancelOperation:", void, .{_sender});
+    }
+
+    pub fn makeBaseWritingDirectionNatural(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeBaseWritingDirectionNatural:", void, .{_sender});
+    }
+
+    pub fn makeBaseWritingDirectionLeftToRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeBaseWritingDirectionLeftToRight:", void, .{_sender});
+    }
+
+    pub fn makeBaseWritingDirectionRightToLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeBaseWritingDirectionRightToLeft:", void, .{_sender});
+    }
+
+    pub fn makeTextWritingDirectionNatural(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeTextWritingDirectionNatural:", void, .{_sender});
+    }
+
+    pub fn makeTextWritingDirectionLeftToRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeTextWritingDirectionLeftToRight:", void, .{_sender});
+    }
+
+    pub fn makeTextWritingDirectionRightToLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeTextWritingDirectionRightToLeft:", void, .{_sender});
+    }
+
+    pub fn quickLookPreviewItems(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "quickLookPreviewItems:", void, .{_sender});
+    }
+
+    pub fn showContextMenuForSelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "showContextMenuForSelection:", void, .{_sender});
+    }
+
+    pub fn restoreUserActivityState(_self: *@This(), _userActivity: ?*foundation.UserActivity) void {
+        return objc.msgSend(_self, "restoreUserActivityState:", void, .{_userActivity});
+    }
+
+    pub fn touchBar(_self: *@This()) ?*app_kit.TouchBar {
+        return objc.msgSend(_self, "touchBar", ?*app_kit.TouchBar, .{});
     }
 
     pub fn tryToPerformWith(_self: *@This(), _action: objc.Selector, _object: ?objc.Id) objc.BOOL {
@@ -486,6 +1711,103 @@ pub const AddVoiceShortcutButton = opaque {
 
     pub fn setMenu(_self: *@This(), _menu: ?*app_kit.Menu) void {
         return objc.msgSend(_self, "setMenu:", void, .{_menu});
+    }
+
+    pub fn undoManager(_self: *@This()) ?*foundation.UndoManager {
+        return objc.msgSend(_self, "undoManager", ?*foundation.UndoManager, .{});
+    }
+
+    pub fn validateProposedFirstResponderForEvent(_self: *@This(), _responder: ?*app_kit.Responder, _event: ?*app_kit.Event) objc.BOOL {
+        return objc.msgSend(_self, "validateProposedFirstResponder:forEvent:", objc.BOOL, .{ _responder, _event });
+    }
+
+    pub fn presentErrorModalForWindowDelegateDidPresentSelectorContextInfo(
+        _self: *@This(),
+        _error: ?*foundation.Error,
+        _window: ?*app_kit.Window,
+        _delegate: ?objc.Id,
+        _didPresentSelector: objc.Selector,
+        _contextInfo: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "presentError:modalForWindow:delegate:didPresentSelector:contextInfo:", void, .{
+            _error,
+            _window,
+            _delegate,
+            _didPresentSelector,
+            _contextInfo,
+        });
+    }
+
+    pub fn presentError(_self: *@This(), _error: ?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "presentError:", objc.BOOL, .{_error});
+    }
+
+    pub fn willPresentError(_self: *@This(), _error: ?*foundation.Error) ?*foundation.Error {
+        return objc.msgSend(_self, "willPresentError:", ?*foundation.Error, .{_error});
+    }
+
+    pub fn performTextFinderAction(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "performTextFinderAction:", void, .{_sender});
+    }
+
+    pub fn newWindowForTab(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "newWindowForTab:", void, .{_sender});
+    }
+
+    pub fn performMnemonic(_self: *@This(), _string: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "performMnemonic:", objc.BOOL, .{_string});
+    }
+
+    pub fn updateUserActivityState(_self: *@This(), _userActivity: ?*foundation.UserActivity) void {
+        return objc.msgSend(_self, "updateUserActivityState:", void, .{_userActivity});
+    }
+
+    pub fn userActivity(_self: *@This()) ?*foundation.UserActivity {
+        return objc.msgSend(_self, "userActivity", ?*foundation.UserActivity, .{});
+    }
+
+    pub fn setUserActivity(_self: *@This(), _userActivity: ?*foundation.UserActivity) void {
+        return objc.msgSend(_self, "setUserActivity:", void, .{_userActivity});
+    }
+
+    pub fn makeTouchBar(_self: *@This()) ?*app_kit.TouchBar {
+        return objc.msgSend(_self, "makeTouchBar", ?*app_kit.TouchBar, .{});
+    }
+
+    pub fn setTouchBar(_self: *@This(), _touchBar: ?*app_kit.TouchBar) void {
+        return objc.msgSend(_self, "setTouchBar:", void, .{_touchBar});
+    }
+
+    pub fn interfaceStyle(_self: *@This()) app_kit.InterfaceStyle {
+        return objc.msgSend(_self, "interfaceStyle", app_kit.InterfaceStyle, .{});
+    }
+
+    pub fn setInterfaceStyle(_self: *@This(), _interfaceStyle: app_kit.InterfaceStyle) void {
+        return objc.msgSend(_self, "setInterfaceStyle:", void, .{_interfaceStyle});
+    }
+
+    pub fn encodeRestorableStateWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeRestorableStateWithCoder:", void, .{_coder});
+    }
+
+    pub fn encodeRestorableStateWithCoderBackgroundQueue(_self: *@This(), _coder: ?*foundation.Coder, _queue: ?*foundation.OperationQueue) void {
+        return objc.msgSend(_self, "encodeRestorableStateWithCoder:backgroundQueue:", void, .{ _coder, _queue });
+    }
+
+    pub fn restoreStateWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "restoreStateWithCoder:", void, .{_coder});
+    }
+
+    pub fn invalidateRestorableState(_self: *@This()) void {
+        return objc.msgSend(_self, "invalidateRestorableState", void, .{});
+    }
+
+    pub fn allowedClassesForRestorableStateKeyPath(_keyPath: ?*foundation.String) ?*anyopaque {
+        return objc.msgSend(Internal.class(), "allowedClassesForRestorableStateKeyPath:", ?*anyopaque, .{_keyPath});
+    }
+
+    pub fn restorableStateKeyPaths() ?*anyopaque {
+        return objc.msgSend(Internal.class(), "restorableStateKeyPaths", ?*anyopaque, .{});
     }
 
     pub fn animator(_self: *@This()) *@This() {
@@ -1672,7 +2994,7 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "ancestorSharedWithView:", ?*app_kit.View, .{_view});
     }
 
-    pub fn getRectsBeingDrawnCount(_self: *@This(), _rects: ?*?*foundation.Rect, _count: ?*objc.NSInteger) void {
+    pub fn getRectsBeingDrawnCount(_self: *@This(), _rects: ?*?*const foundation.Rect, _count: ?*objc.NSInteger) void {
         return objc.msgSend(_self, "getRectsBeingDrawn:count:", void, .{ _rects, _count });
     }
 
@@ -2380,6 +3702,695 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "allowsVibrancy", objc.BOOL, .{});
     }
 
+    pub fn setKeyboardFocusRingNeedsDisplayInRect(_self: *@This(), _rect: foundation.Rect) void {
+        return objc.msgSend(_self, "setKeyboardFocusRingNeedsDisplayInRect:", void, .{_rect});
+    }
+
+    pub fn drawFocusRingMask(_self: *@This()) void {
+        return objc.msgSend(_self, "drawFocusRingMask", void, .{});
+    }
+
+    pub fn noteFocusRingMaskChanged(_self: *@This()) void {
+        return objc.msgSend(_self, "noteFocusRingMaskChanged", void, .{});
+    }
+
+    pub fn nextKeyView(_self: *@This()) ?*app_kit.View {
+        return objc.msgSend(_self, "nextKeyView", ?*app_kit.View, .{});
+    }
+
+    pub fn setNextKeyView(_self: *@This(), _nextKeyView: ?*app_kit.View) void {
+        return objc.msgSend(_self, "setNextKeyView:", void, .{_nextKeyView});
+    }
+
+    pub fn previousKeyView(_self: *@This()) ?*app_kit.View {
+        return objc.msgSend(_self, "previousKeyView", ?*app_kit.View, .{});
+    }
+
+    pub fn nextValidKeyView(_self: *@This()) ?*app_kit.View {
+        return objc.msgSend(_self, "nextValidKeyView", ?*app_kit.View, .{});
+    }
+
+    pub fn previousValidKeyView(_self: *@This()) ?*app_kit.View {
+        return objc.msgSend(_self, "previousValidKeyView", ?*app_kit.View, .{});
+    }
+
+    pub fn canBecomeKeyView(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "canBecomeKeyView", objc.BOOL, .{});
+    }
+
+    pub fn focusRingType(_self: *@This()) app_kit.FocusRingType {
+        return objc.msgSend(_self, "focusRingType", app_kit.FocusRingType, .{});
+    }
+
+    pub fn setFocusRingType(_self: *@This(), _focusRingType: app_kit.FocusRingType) void {
+        return objc.msgSend(_self, "setFocusRingType:", void, .{_focusRingType});
+    }
+
+    pub fn defaultFocusRingType() app_kit.FocusRingType {
+        return objc.msgSend(Internal.class(), "defaultFocusRingType", app_kit.FocusRingType, .{});
+    }
+
+    pub fn focusRingMaskBounds(_self: *@This()) foundation.Rect {
+        return objc.msgSend(_self, "focusRingMaskBounds", foundation.Rect, .{});
+    }
+
+    pub fn writeEPSInsideRectToPasteboard(_self: *@This(), _rect: foundation.Rect, _pasteboard: ?*app_kit.Pasteboard) void {
+        return objc.msgSend(_self, "writeEPSInsideRect:toPasteboard:", void, .{ _rect, _pasteboard });
+    }
+
+    pub fn dataWithEPSInsideRect(_self: *@This(), _rect: foundation.Rect) ?*foundation.Data {
+        return objc.msgSend(_self, "dataWithEPSInsideRect:", ?*foundation.Data, .{_rect});
+    }
+
+    pub fn writePDFInsideRectToPasteboard(_self: *@This(), _rect: foundation.Rect, _pasteboard: ?*app_kit.Pasteboard) void {
+        return objc.msgSend(_self, "writePDFInsideRect:toPasteboard:", void, .{ _rect, _pasteboard });
+    }
+
+    pub fn dataWithPDFInsideRect(_self: *@This(), _rect: foundation.Rect) ?*foundation.Data {
+        return objc.msgSend(_self, "dataWithPDFInsideRect:", ?*foundation.Data, .{_rect});
+    }
+
+    pub fn print(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "print:", void, .{_sender});
+    }
+
+    pub fn knowsPageRange(_self: *@This(), _range: foundation.RangePointer) objc.BOOL {
+        return objc.msgSend(_self, "knowsPageRange:", objc.BOOL, .{_range});
+    }
+
+    pub fn adjustPageWidthNewLeftRightLimit(
+        _self: *@This(),
+        _newRight: ?*core_foundation.CGFloat,
+        _oldLeft: core_foundation.CGFloat,
+        _oldRight: core_foundation.CGFloat,
+        _rightLimit: core_foundation.CGFloat,
+    ) void {
+        return objc.msgSend(_self, "adjustPageWidthNew:left:right:limit:", void, .{
+            _newRight,
+            _oldLeft,
+            _oldRight,
+            _rightLimit,
+        });
+    }
+
+    pub fn adjustPageHeightNewTopBottomLimit(
+        _self: *@This(),
+        _newBottom: ?*core_foundation.CGFloat,
+        _oldTop: core_foundation.CGFloat,
+        _oldBottom: core_foundation.CGFloat,
+        _bottomLimit: core_foundation.CGFloat,
+    ) void {
+        return objc.msgSend(_self, "adjustPageHeightNew:top:bottom:limit:", void, .{
+            _newBottom,
+            _oldTop,
+            _oldBottom,
+            _bottomLimit,
+        });
+    }
+
+    pub fn rectForPage(_self: *@This(), _page: objc.NSInteger) foundation.Rect {
+        return objc.msgSend(_self, "rectForPage:", foundation.Rect, .{_page});
+    }
+
+    pub fn locationOfPrintRect(_self: *@This(), _rect: foundation.Rect) foundation.Point {
+        return objc.msgSend(_self, "locationOfPrintRect:", foundation.Point, .{_rect});
+    }
+
+    pub fn drawPageBorderWithSize(_self: *@This(), _borderSize: foundation.Size) void {
+        return objc.msgSend(_self, "drawPageBorderWithSize:", void, .{_borderSize});
+    }
+
+    pub fn drawSheetBorderWithSize(_self: *@This(), _borderSize: foundation.Size) void {
+        return objc.msgSend(_self, "drawSheetBorderWithSize:", void, .{_borderSize});
+    }
+
+    pub fn beginDocument(_self: *@This()) void {
+        return objc.msgSend(_self, "beginDocument", void, .{});
+    }
+
+    pub fn endDocument(_self: *@This()) void {
+        return objc.msgSend(_self, "endDocument", void, .{});
+    }
+
+    pub fn beginPageInRectAtPlacement(_self: *@This(), _rect: foundation.Rect, _location: foundation.Point) void {
+        return objc.msgSend(_self, "beginPageInRect:atPlacement:", void, .{ _rect, _location });
+    }
+
+    pub fn endPage(_self: *@This()) void {
+        return objc.msgSend(_self, "endPage", void, .{});
+    }
+
+    pub fn heightAdjustLimit(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "heightAdjustLimit", core_foundation.CGFloat, .{});
+    }
+
+    pub fn widthAdjustLimit(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "widthAdjustLimit", core_foundation.CGFloat, .{});
+    }
+
+    pub fn pageHeader(_self: *@This()) ?*foundation.AttributedString {
+        return objc.msgSend(_self, "pageHeader", ?*foundation.AttributedString, .{});
+    }
+
+    pub fn pageFooter(_self: *@This()) ?*foundation.AttributedString {
+        return objc.msgSend(_self, "pageFooter", ?*foundation.AttributedString, .{});
+    }
+
+    pub fn printJobTitle(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "printJobTitle", ?*foundation.String, .{});
+    }
+
+    pub fn beginDraggingSessionWithItemsEventSource(_self: *@This(), _items: ?*anyopaque, _event: ?*app_kit.Event, _source: ?*anyopaque) ?*app_kit.DraggingSession {
+        return objc.msgSend(_self, "beginDraggingSessionWithItems:event:source:", ?*app_kit.DraggingSession, .{ _items, _event, _source });
+    }
+
+    pub fn registerForDraggedTypes(_self: *@This(), _newTypes: ?*anyopaque) void {
+        return objc.msgSend(_self, "registerForDraggedTypes:", void, .{_newTypes});
+    }
+
+    pub fn unregisterDraggedTypes(_self: *@This()) void {
+        return objc.msgSend(_self, "unregisterDraggedTypes", void, .{});
+    }
+
+    pub fn registeredDraggedTypes(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "registeredDraggedTypes", ?*anyopaque, .{});
+    }
+
+    pub fn enterFullScreenModeWithOptions(_self: *@This(), _screen: ?*app_kit.Screen, _options: ?*anyopaque) objc.BOOL {
+        return objc.msgSend(_self, "enterFullScreenMode:withOptions:", objc.BOOL, .{ _screen, _options });
+    }
+
+    pub fn exitFullScreenModeWithOptions(_self: *@This(), _options: ?*anyopaque) void {
+        return objc.msgSend(_self, "exitFullScreenModeWithOptions:", void, .{_options});
+    }
+
+    pub fn isInFullScreenMode(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isInFullScreenMode", objc.BOOL, .{});
+    }
+
+    pub fn showDefinitionForAttributedStringAtPoint(_self: *@This(), _attrString: ?*foundation.AttributedString, _textBaselineOrigin: foundation.Point) void {
+        return objc.msgSend(_self, "showDefinitionForAttributedString:atPoint:", void, .{ _attrString, _textBaselineOrigin });
+    }
+
+    pub fn showDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(
+        _self: *@This(),
+        _attrString: ?*foundation.AttributedString,
+        _targetRange: foundation.Range,
+        _options: ?*anyopaque,
+        _originProvider: *const fn (foundation.Range) callconv(.C) foundation.Point,
+    ) void {
+        return objc.msgSend(_self, "showDefinitionForAttributedString:range:options:baselineOriginProvider:", void, .{
+            _attrString,
+            _targetRange,
+            _options,
+            _originProvider,
+        });
+    }
+
+    pub fn isDrawingFindIndicator(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isDrawingFindIndicator", objc.BOOL, .{});
+    }
+
+    pub fn addGestureRecognizer(_self: *@This(), _gestureRecognizer: ?*app_kit.GestureRecognizer) void {
+        return objc.msgSend(_self, "addGestureRecognizer:", void, .{_gestureRecognizer});
+    }
+
+    pub fn removeGestureRecognizer(_self: *@This(), _gestureRecognizer: ?*app_kit.GestureRecognizer) void {
+        return objc.msgSend(_self, "removeGestureRecognizer:", void, .{_gestureRecognizer});
+    }
+
+    pub fn gestureRecognizers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "gestureRecognizers", ?*anyopaque, .{});
+    }
+
+    pub fn setGestureRecognizers(_self: *@This(), _gestureRecognizers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setGestureRecognizers:", void, .{_gestureRecognizers});
+    }
+
+    pub fn allowedTouchTypes(_self: *@This()) app_kit.TouchTypeMask {
+        return objc.msgSend(_self, "allowedTouchTypes", app_kit.TouchTypeMask, .{});
+    }
+
+    pub fn setAllowedTouchTypes(_self: *@This(), _allowedTouchTypes: app_kit.TouchTypeMask) void {
+        return objc.msgSend(_self, "setAllowedTouchTypes:", void, .{_allowedTouchTypes});
+    }
+
+    pub fn safeAreaInsets(_self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(_self, "safeAreaInsets", foundation.EdgeInsets, .{});
+    }
+
+    pub fn additionalSafeAreaInsets(_self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(_self, "additionalSafeAreaInsets", foundation.EdgeInsets, .{});
+    }
+
+    pub fn setAdditionalSafeAreaInsets(_self: *@This(), _additionalSafeAreaInsets: foundation.EdgeInsets) void {
+        return objc.msgSend(_self, "setAdditionalSafeAreaInsets:", void, .{_additionalSafeAreaInsets});
+    }
+
+    pub fn safeAreaLayoutGuide(_self: *@This()) ?*app_kit.LayoutGuide {
+        return objc.msgSend(_self, "safeAreaLayoutGuide", ?*app_kit.LayoutGuide, .{});
+    }
+
+    pub fn safeAreaRect(_self: *@This()) foundation.Rect {
+        return objc.msgSend(_self, "safeAreaRect", foundation.Rect, .{});
+    }
+
+    pub fn layoutMarginsGuide(_self: *@This()) ?*app_kit.LayoutGuide {
+        return objc.msgSend(_self, "layoutMarginsGuide", ?*app_kit.LayoutGuide, .{});
+    }
+
+    pub fn addTrackingArea(_self: *@This(), _trackingArea: ?*app_kit.TrackingArea) void {
+        return objc.msgSend(_self, "addTrackingArea:", void, .{_trackingArea});
+    }
+
+    pub fn removeTrackingArea(_self: *@This(), _trackingArea: ?*app_kit.TrackingArea) void {
+        return objc.msgSend(_self, "removeTrackingArea:", void, .{_trackingArea});
+    }
+
+    pub fn updateTrackingAreas(_self: *@This()) void {
+        return objc.msgSend(_self, "updateTrackingAreas", void, .{});
+    }
+
+    pub fn addCursorRectCursor(_self: *@This(), _rect: foundation.Rect, _object: ?*app_kit.Cursor) void {
+        return objc.msgSend(_self, "addCursorRect:cursor:", void, .{ _rect, _object });
+    }
+
+    pub fn removeCursorRectCursor(_self: *@This(), _rect: foundation.Rect, _object: ?*app_kit.Cursor) void {
+        return objc.msgSend(_self, "removeCursorRect:cursor:", void, .{ _rect, _object });
+    }
+
+    pub fn discardCursorRects(_self: *@This()) void {
+        return objc.msgSend(_self, "discardCursorRects", void, .{});
+    }
+
+    pub fn resetCursorRects(_self: *@This()) void {
+        return objc.msgSend(_self, "resetCursorRects", void, .{});
+    }
+
+    pub fn addTrackingRectOwnerUserDataAssumeInside(
+        _self: *@This(),
+        _rect: foundation.Rect,
+        _owner: ?objc.Id,
+        _data: ?*anyopaque,
+        _flag: objc.BOOL,
+    ) app_kit.TrackingRectTag {
+        return objc.msgSend(_self, "addTrackingRect:owner:userData:assumeInside:", app_kit.TrackingRectTag, .{
+            _rect,
+            _owner,
+            _data,
+            _flag,
+        });
+    }
+
+    pub fn removeTrackingRect(_self: *@This(), _tag: app_kit.TrackingRectTag) void {
+        return objc.msgSend(_self, "removeTrackingRect:", void, .{_tag});
+    }
+
+    pub fn trackingAreas(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "trackingAreas", ?*anyopaque, .{});
+    }
+
+    pub fn displayLinkWithTargetSelector(_self: *@This(), _target: ?objc.Id, _selector: objc.Selector) ?*quartz_core.DisplayLink {
+        return objc.msgSend(_self, "displayLinkWithTarget:selector:", ?*quartz_core.DisplayLink, .{ _target, _selector });
+    }
+
+    pub fn dragImageAtOffsetEventPasteboardSourceSlideBack(
+        _self: *@This(),
+        _image: ?*app_kit.Image,
+        _viewLocation: foundation.Point,
+        _initialOffset: foundation.Size,
+        _event: ?*app_kit.Event,
+        _pboard: ?*app_kit.Pasteboard,
+        _sourceObj: ?objc.Id,
+        _slideFlag: objc.BOOL,
+    ) void {
+        return objc.msgSend(_self, "dragImage:at:offset:event:pasteboard:source:slideBack:", void, .{
+            _image,
+            _viewLocation,
+            _initialOffset,
+            _event,
+            _pboard,
+            _sourceObj,
+            _slideFlag,
+        });
+    }
+
+    pub fn dragFileFromRectSlideBackEvent(
+        _self: *@This(),
+        _filename: ?*foundation.String,
+        _rect: foundation.Rect,
+        _flag: objc.BOOL,
+        _event: ?*app_kit.Event,
+    ) objc.BOOL {
+        return objc.msgSend(_self, "dragFile:fromRect:slideBack:event:", objc.BOOL, .{
+            _filename,
+            _rect,
+            _flag,
+            _event,
+        });
+    }
+
+    pub fn dragPromisedFilesOfTypesFromRectSourceSlideBackEvent(
+        _self: *@This(),
+        _typeArray: ?*anyopaque,
+        _rect: foundation.Rect,
+        _sourceObject: ?objc.Id,
+        _flag: objc.BOOL,
+        _event: ?*app_kit.Event,
+    ) objc.BOOL {
+        return objc.msgSend(_self, "dragPromisedFilesOfTypes:fromRect:source:slideBack:event:", objc.BOOL, .{
+            _typeArray,
+            _rect,
+            _sourceObject,
+            _flag,
+            _event,
+        });
+    }
+
+    pub fn convertPointToBase(_self: *@This(), _point: foundation.Point) foundation.Point {
+        return objc.msgSend(_self, "convertPointToBase:", foundation.Point, .{_point});
+    }
+
+    pub fn convertPointFromBase(_self: *@This(), _point: foundation.Point) foundation.Point {
+        return objc.msgSend(_self, "convertPointFromBase:", foundation.Point, .{_point});
+    }
+
+    pub fn convertSizeToBase(_self: *@This(), _size: foundation.Size) foundation.Size {
+        return objc.msgSend(_self, "convertSizeToBase:", foundation.Size, .{_size});
+    }
+
+    pub fn convertSizeFromBase(_self: *@This(), _size: foundation.Size) foundation.Size {
+        return objc.msgSend(_self, "convertSizeFromBase:", foundation.Size, .{_size});
+    }
+
+    pub fn convertRectToBase(_self: *@This(), _rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(_self, "convertRectToBase:", foundation.Rect, .{_rect});
+    }
+
+    pub fn convertRectFromBase(_self: *@This(), _rect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(_self, "convertRectFromBase:", foundation.Rect, .{_rect});
+    }
+
+    pub fn shouldDrawColor(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "shouldDrawColor", objc.BOOL, .{});
+    }
+
+    pub fn gState(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "gState", objc.NSInteger, .{});
+    }
+
+    pub fn allocateGState(_self: *@This()) void {
+        return objc.msgSend(_self, "allocateGState", void, .{});
+    }
+
+    pub fn releaseGState(_self: *@This()) void {
+        return objc.msgSend(_self, "releaseGState", void, .{});
+    }
+
+    pub fn setUpGState(_self: *@This()) void {
+        return objc.msgSend(_self, "setUpGState", void, .{});
+    }
+
+    pub fn renewGState(_self: *@This()) void {
+        return objc.msgSend(_self, "renewGState", void, .{});
+    }
+
+    pub fn enclosingMenuItem(_self: *@This()) ?*app_kit.MenuItem {
+        return objc.msgSend(_self, "enclosingMenuItem", ?*app_kit.MenuItem, .{});
+    }
+
+    pub fn candidateListTouchBarItem(_self: *@This()) ?*app_kit.CandidateListTouchBarItem {
+        return objc.msgSend(_self, "candidateListTouchBarItem", ?*app_kit.CandidateListTouchBarItem, .{});
+    }
+
+    pub fn reflectScrolledClipView(_self: *@This(), _clipView: ?*app_kit.ClipView) void {
+        return objc.msgSend(_self, "reflectScrolledClipView:", void, .{_clipView});
+    }
+
+    pub fn scrollClipViewToPoint(_self: *@This(), _clipView: ?*app_kit.ClipView, _point: foundation.Point) void {
+        return objc.msgSend(_self, "scrollClipView:toPoint:", void, .{ _clipView, _point });
+    }
+
+    pub fn addConstraint(_self: *@This(), _constraint: ?*app_kit.LayoutConstraint) void {
+        return objc.msgSend(_self, "addConstraint:", void, .{_constraint});
+    }
+
+    pub fn addConstraints(_self: *@This(), _constraints: ?*anyopaque) void {
+        return objc.msgSend(_self, "addConstraints:", void, .{_constraints});
+    }
+
+    pub fn removeConstraint(_self: *@This(), _constraint: ?*app_kit.LayoutConstraint) void {
+        return objc.msgSend(_self, "removeConstraint:", void, .{_constraint});
+    }
+
+    pub fn removeConstraints(_self: *@This(), _constraints: ?*anyopaque) void {
+        return objc.msgSend(_self, "removeConstraints:", void, .{_constraints});
+    }
+
+    pub fn leadingAnchor(_self: *@This()) ?*app_kit.LayoutXAxisAnchor {
+        return objc.msgSend(_self, "leadingAnchor", ?*app_kit.LayoutXAxisAnchor, .{});
+    }
+
+    pub fn trailingAnchor(_self: *@This()) ?*app_kit.LayoutXAxisAnchor {
+        return objc.msgSend(_self, "trailingAnchor", ?*app_kit.LayoutXAxisAnchor, .{});
+    }
+
+    pub fn leftAnchor(_self: *@This()) ?*app_kit.LayoutXAxisAnchor {
+        return objc.msgSend(_self, "leftAnchor", ?*app_kit.LayoutXAxisAnchor, .{});
+    }
+
+    pub fn rightAnchor(_self: *@This()) ?*app_kit.LayoutXAxisAnchor {
+        return objc.msgSend(_self, "rightAnchor", ?*app_kit.LayoutXAxisAnchor, .{});
+    }
+
+    pub fn topAnchor(_self: *@This()) ?*app_kit.LayoutYAxisAnchor {
+        return objc.msgSend(_self, "topAnchor", ?*app_kit.LayoutYAxisAnchor, .{});
+    }
+
+    pub fn bottomAnchor(_self: *@This()) ?*app_kit.LayoutYAxisAnchor {
+        return objc.msgSend(_self, "bottomAnchor", ?*app_kit.LayoutYAxisAnchor, .{});
+    }
+
+    pub fn widthAnchor(_self: *@This()) ?*app_kit.LayoutDimension {
+        return objc.msgSend(_self, "widthAnchor", ?*app_kit.LayoutDimension, .{});
+    }
+
+    pub fn heightAnchor(_self: *@This()) ?*app_kit.LayoutDimension {
+        return objc.msgSend(_self, "heightAnchor", ?*app_kit.LayoutDimension, .{});
+    }
+
+    pub fn centerXAnchor(_self: *@This()) ?*app_kit.LayoutXAxisAnchor {
+        return objc.msgSend(_self, "centerXAnchor", ?*app_kit.LayoutXAxisAnchor, .{});
+    }
+
+    pub fn centerYAnchor(_self: *@This()) ?*app_kit.LayoutYAxisAnchor {
+        return objc.msgSend(_self, "centerYAnchor", ?*app_kit.LayoutYAxisAnchor, .{});
+    }
+
+    pub fn firstBaselineAnchor(_self: *@This()) ?*app_kit.LayoutYAxisAnchor {
+        return objc.msgSend(_self, "firstBaselineAnchor", ?*app_kit.LayoutYAxisAnchor, .{});
+    }
+
+    pub fn lastBaselineAnchor(_self: *@This()) ?*app_kit.LayoutYAxisAnchor {
+        return objc.msgSend(_self, "lastBaselineAnchor", ?*app_kit.LayoutYAxisAnchor, .{});
+    }
+
+    pub fn constraints(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "constraints", ?*anyopaque, .{});
+    }
+
+    pub fn updateConstraintsForSubtreeIfNeeded(_self: *@This()) void {
+        return objc.msgSend(_self, "updateConstraintsForSubtreeIfNeeded", void, .{});
+    }
+
+    pub fn updateConstraints(_self: *@This()) void {
+        return objc.msgSend(_self, "updateConstraints", void, .{});
+    }
+
+    pub fn needsUpdateConstraints(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "needsUpdateConstraints", objc.BOOL, .{});
+    }
+
+    pub fn setNeedsUpdateConstraints(_self: *@This(), _needsUpdateConstraints: objc.BOOL) void {
+        return objc.msgSend(_self, "setNeedsUpdateConstraints:", void, .{_needsUpdateConstraints});
+    }
+
+    pub fn translatesAutoresizingMaskIntoConstraints(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "translatesAutoresizingMaskIntoConstraints", objc.BOOL, .{});
+    }
+
+    pub fn setTranslatesAutoresizingMaskIntoConstraints(_self: *@This(), _translatesAutoresizingMaskIntoConstraints: objc.BOOL) void {
+        return objc.msgSend(_self, "setTranslatesAutoresizingMaskIntoConstraints:", void, .{_translatesAutoresizingMaskIntoConstraints});
+    }
+
+    pub fn requiresConstraintBasedLayout() objc.BOOL {
+        return objc.msgSend(Internal.class(), "requiresConstraintBasedLayout", objc.BOOL, .{});
+    }
+
+    pub fn alignmentRectForFrame(_self: *@This(), _frame: foundation.Rect) foundation.Rect {
+        return objc.msgSend(_self, "alignmentRectForFrame:", foundation.Rect, .{_frame});
+    }
+
+    pub fn frameForAlignmentRect(_self: *@This(), _alignmentRect: foundation.Rect) foundation.Rect {
+        return objc.msgSend(_self, "frameForAlignmentRect:", foundation.Rect, .{_alignmentRect});
+    }
+
+    pub fn alignmentRectInsets(_self: *@This()) foundation.EdgeInsets {
+        return objc.msgSend(_self, "alignmentRectInsets", foundation.EdgeInsets, .{});
+    }
+
+    pub fn firstBaselineOffsetFromTop(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "firstBaselineOffsetFromTop", core_foundation.CGFloat, .{});
+    }
+
+    pub fn lastBaselineOffsetFromBottom(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "lastBaselineOffsetFromBottom", core_foundation.CGFloat, .{});
+    }
+
+    pub fn baselineOffsetFromBottom(_self: *@This()) core_foundation.CGFloat {
+        return objc.msgSend(_self, "baselineOffsetFromBottom", core_foundation.CGFloat, .{});
+    }
+
+    pub fn intrinsicContentSize(_self: *@This()) foundation.Size {
+        return objc.msgSend(_self, "intrinsicContentSize", foundation.Size, .{});
+    }
+
+    pub fn invalidateIntrinsicContentSize(_self: *@This()) void {
+        return objc.msgSend(_self, "invalidateIntrinsicContentSize", void, .{});
+    }
+
+    pub fn contentHuggingPriorityForOrientation(_self: *@This(), _orientation: app_kit.LayoutConstraintOrientation) app_kit.LayoutPriority {
+        return objc.msgSend(_self, "contentHuggingPriorityForOrientation:", app_kit.LayoutPriority, .{_orientation});
+    }
+
+    pub fn setContentHuggingPriorityForOrientation(_self: *@This(), _priority: app_kit.LayoutPriority, _orientation: app_kit.LayoutConstraintOrientation) void {
+        return objc.msgSend(_self, "setContentHuggingPriority:forOrientation:", void, .{ _priority, _orientation });
+    }
+
+    pub fn contentCompressionResistancePriorityForOrientation(_self: *@This(), _orientation: app_kit.LayoutConstraintOrientation) app_kit.LayoutPriority {
+        return objc.msgSend(_self, "contentCompressionResistancePriorityForOrientation:", app_kit.LayoutPriority, .{_orientation});
+    }
+
+    pub fn setContentCompressionResistancePriorityForOrientation(_self: *@This(), _priority: app_kit.LayoutPriority, _orientation: app_kit.LayoutConstraintOrientation) void {
+        return objc.msgSend(_self, "setContentCompressionResistancePriority:forOrientation:", void, .{ _priority, _orientation });
+    }
+
+    pub fn isHorizontalContentSizeConstraintActive(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isHorizontalContentSizeConstraintActive", objc.BOOL, .{});
+    }
+
+    pub fn setHorizontalContentSizeConstraintActive(_self: *@This(), _horizontalContentSizeConstraintActive: objc.BOOL) void {
+        return objc.msgSend(_self, "setHorizontalContentSizeConstraintActive:", void, .{_horizontalContentSizeConstraintActive});
+    }
+
+    pub fn isVerticalContentSizeConstraintActive(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "isVerticalContentSizeConstraintActive", objc.BOOL, .{});
+    }
+
+    pub fn setVerticalContentSizeConstraintActive(_self: *@This(), _verticalContentSizeConstraintActive: objc.BOOL) void {
+        return objc.msgSend(_self, "setVerticalContentSizeConstraintActive:", void, .{_verticalContentSizeConstraintActive});
+    }
+
+    pub fn fittingSize(_self: *@This()) foundation.Size {
+        return objc.msgSend(_self, "fittingSize", foundation.Size, .{});
+    }
+
+    pub fn constraintsAffectingLayoutForOrientation(_self: *@This(), _orientation: app_kit.LayoutConstraintOrientation) ?*anyopaque {
+        return objc.msgSend(_self, "constraintsAffectingLayoutForOrientation:", ?*anyopaque, .{_orientation});
+    }
+
+    pub fn exerciseAmbiguityInLayout(_self: *@This()) void {
+        return objc.msgSend(_self, "exerciseAmbiguityInLayout", void, .{});
+    }
+
+    pub fn hasAmbiguousLayout(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "hasAmbiguousLayout", objc.BOOL, .{});
+    }
+
+    pub fn addLayoutGuide(_self: *@This(), _guide: ?*app_kit.LayoutGuide) void {
+        return objc.msgSend(_self, "addLayoutGuide:", void, .{_guide});
+    }
+
+    pub fn removeLayoutGuide(_self: *@This(), _guide: ?*app_kit.LayoutGuide) void {
+        return objc.msgSend(_self, "removeLayoutGuide:", void, .{_guide});
+    }
+
+    pub fn layoutGuides(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "layoutGuides", ?*anyopaque, .{});
+    }
+
+    pub fn rulerViewShouldMoveMarker(_self: *@This(), _ruler: ?*app_kit.RulerView, _marker: ?*app_kit.RulerMarker) objc.BOOL {
+        return objc.msgSend(_self, "rulerView:shouldMoveMarker:", objc.BOOL, .{ _ruler, _marker });
+    }
+
+    pub fn rulerViewWillMoveMarkerToLocation(_self: *@This(), _ruler: ?*app_kit.RulerView, _marker: ?*app_kit.RulerMarker, _location: core_foundation.CGFloat) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rulerView:willMoveMarker:toLocation:", core_foundation.CGFloat, .{ _ruler, _marker, _location });
+    }
+
+    pub fn rulerViewDidMoveMarker(_self: *@This(), _ruler: ?*app_kit.RulerView, _marker: ?*app_kit.RulerMarker) void {
+        return objc.msgSend(_self, "rulerView:didMoveMarker:", void, .{ _ruler, _marker });
+    }
+
+    pub fn rulerViewShouldRemoveMarker(_self: *@This(), _ruler: ?*app_kit.RulerView, _marker: ?*app_kit.RulerMarker) objc.BOOL {
+        return objc.msgSend(_self, "rulerView:shouldRemoveMarker:", objc.BOOL, .{ _ruler, _marker });
+    }
+
+    pub fn rulerViewDidRemoveMarker(_self: *@This(), _ruler: ?*app_kit.RulerView, _marker: ?*app_kit.RulerMarker) void {
+        return objc.msgSend(_self, "rulerView:didRemoveMarker:", void, .{ _ruler, _marker });
+    }
+
+    pub fn rulerViewShouldAddMarker(_self: *@This(), _ruler: ?*app_kit.RulerView, _marker: ?*app_kit.RulerMarker) objc.BOOL {
+        return objc.msgSend(_self, "rulerView:shouldAddMarker:", objc.BOOL, .{ _ruler, _marker });
+    }
+
+    pub fn rulerViewWillAddMarkerAtLocation(_self: *@This(), _ruler: ?*app_kit.RulerView, _marker: ?*app_kit.RulerMarker, _location: core_foundation.CGFloat) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rulerView:willAddMarker:atLocation:", core_foundation.CGFloat, .{ _ruler, _marker, _location });
+    }
+
+    pub fn rulerViewDidAddMarker(_self: *@This(), _ruler: ?*app_kit.RulerView, _marker: ?*app_kit.RulerMarker) void {
+        return objc.msgSend(_self, "rulerView:didAddMarker:", void, .{ _ruler, _marker });
+    }
+
+    pub fn rulerViewHandleMouseDown(_self: *@This(), _ruler: ?*app_kit.RulerView, _event: ?*app_kit.Event) void {
+        return objc.msgSend(_self, "rulerView:handleMouseDown:", void, .{ _ruler, _event });
+    }
+
+    pub fn rulerViewWillSetClientView(_self: *@This(), _ruler: ?*app_kit.RulerView, _newClient: ?*app_kit.View) void {
+        return objc.msgSend(_self, "rulerView:willSetClientView:", void, .{ _ruler, _newClient });
+    }
+
+    pub fn rulerViewLocationForPoint(_self: *@This(), _ruler: ?*app_kit.RulerView, _point: foundation.Point) core_foundation.CGFloat {
+        return objc.msgSend(_self, "rulerView:locationForPoint:", core_foundation.CGFloat, .{ _ruler, _point });
+    }
+
+    pub fn rulerViewPointForLocation(_self: *@This(), _ruler: ?*app_kit.RulerView, _point: core_foundation.CGFloat) foundation.Point {
+        return objc.msgSend(_self, "rulerView:pointForLocation:", foundation.Point, .{ _ruler, _point });
+    }
+
+    pub fn wantsBestResolutionOpenGLSurface(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsBestResolutionOpenGLSurface", objc.BOOL, .{});
+    }
+
+    pub fn setWantsBestResolutionOpenGLSurface(_self: *@This(), _wantsBestResolutionOpenGLSurface: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsBestResolutionOpenGLSurface:", void, .{_wantsBestResolutionOpenGLSurface});
+    }
+
+    pub fn wantsExtendedDynamicRangeOpenGLSurface(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "wantsExtendedDynamicRangeOpenGLSurface", objc.BOOL, .{});
+    }
+
+    pub fn setWantsExtendedDynamicRangeOpenGLSurface(_self: *@This(), _wantsExtendedDynamicRangeOpenGLSurface: objc.BOOL) void {
+        return objc.msgSend(_self, "setWantsExtendedDynamicRangeOpenGLSurface:", void, .{_wantsExtendedDynamicRangeOpenGLSurface});
+    }
+
+    pub fn pressureConfiguration(_self: *@This()) ?*app_kit.PressureConfiguration {
+        return objc.msgSend(_self, "pressureConfiguration", ?*app_kit.PressureConfiguration, .{});
+    }
+
+    pub fn setPressureConfiguration(_self: *@This(), _pressureConfiguration: ?*app_kit.PressureConfiguration) void {
+        return objc.msgSend(_self, "setPressureConfiguration:", void, .{_pressureConfiguration});
+    }
+
     pub fn sizeThatFits(_self: *@This(), _size: foundation.Size) foundation.Size {
         return objc.msgSend(_self, "sizeThatFits:", foundation.Size, .{_size});
     }
@@ -2610,6 +4621,114 @@ pub const AddVoiceShortcutButton = opaque {
 
     pub fn setAllowsExpansionToolTips(_self: *@This(), _allowsExpansionToolTips: objc.BOOL) void {
         return objc.msgSend(_self, "setAllowsExpansionToolTips:", void, .{_allowsExpansionToolTips});
+    }
+
+    pub fn currentEditor(_self: *@This()) ?*app_kit.Text {
+        return objc.msgSend(_self, "currentEditor", ?*app_kit.Text, .{});
+    }
+
+    pub fn abortEditing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "abortEditing", objc.BOOL, .{});
+    }
+
+    pub fn validateEditing(_self: *@This()) void {
+        return objc.msgSend(_self, "validateEditing", void, .{});
+    }
+
+    pub fn editWithFrameEditorDelegateEvent(
+        _self: *@This(),
+        _rect: foundation.Rect,
+        _textObj: ?*app_kit.Text,
+        _delegate: ?objc.Id,
+        _event: ?*app_kit.Event,
+    ) void {
+        return objc.msgSend(_self, "editWithFrame:editor:delegate:event:", void, .{
+            _rect,
+            _textObj,
+            _delegate,
+            _event,
+        });
+    }
+
+    pub fn selectWithFrameEditorDelegateStartLength(
+        _self: *@This(),
+        _rect: foundation.Rect,
+        _textObj: ?*app_kit.Text,
+        _delegate: ?objc.Id,
+        _selStart: objc.NSInteger,
+        _selLength: objc.NSInteger,
+    ) void {
+        return objc.msgSend(_self, "selectWithFrame:editor:delegate:start:length:", void, .{
+            _rect,
+            _textObj,
+            _delegate,
+            _selStart,
+            _selLength,
+        });
+    }
+
+    pub fn endEditing(_self: *@This(), _textObj: ?*app_kit.Text) void {
+        return objc.msgSend(_self, "endEditing:", void, .{_textObj});
+    }
+
+    pub fn setFloatingPointFormatLeftRight(_self: *@This(), _autoRange: objc.BOOL, _leftDigits: objc.NSUInteger, _rightDigits: objc.NSUInteger) void {
+        return objc.msgSend(_self, "setFloatingPointFormat:left:right:", void, .{ _autoRange, _leftDigits, _rightDigits });
+    }
+
+    pub fn selectedCell(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "selectedCell", ?*anyopaque, .{});
+    }
+
+    pub fn selectedTag(_self: *@This()) objc.NSInteger {
+        return objc.msgSend(_self, "selectedTag", objc.NSInteger, .{});
+    }
+
+    pub fn setNeedsDisplay2(_self: *@This()) void {
+        return objc.msgSend(_self, "setNeedsDisplay", void, .{});
+    }
+
+    pub fn calcSize(_self: *@This()) void {
+        return objc.msgSend(_self, "calcSize", void, .{});
+    }
+
+    pub fn updateCell(_self: *@This(), _cell: ?*app_kit.Cell) void {
+        return objc.msgSend(_self, "updateCell:", void, .{_cell});
+    }
+
+    pub fn updateCellInside(_self: *@This(), _cell: ?*app_kit.Cell) void {
+        return objc.msgSend(_self, "updateCellInside:", void, .{_cell});
+    }
+
+    pub fn drawCellInside(_self: *@This(), _cell: ?*app_kit.Cell) void {
+        return objc.msgSend(_self, "drawCellInside:", void, .{_cell});
+    }
+
+    pub fn drawCell(_self: *@This(), _cell: ?*app_kit.Cell) void {
+        return objc.msgSend(_self, "drawCell:", void, .{_cell});
+    }
+
+    pub fn selectCell(_self: *@This(), _cell: ?*app_kit.Cell) void {
+        return objc.msgSend(_self, "selectCell:", void, .{_cell});
+    }
+
+    pub fn cellClass() objc.Class {
+        return objc.msgSend(Internal.class(), "cellClass", objc.Class, .{});
+    }
+
+    pub fn setCellClass(_cellClass: objc.Class) void {
+        return objc.msgSend(Internal.class(), "setCellClass:", void, .{_cellClass});
+    }
+
+    pub fn cell(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "cell", ?*anyopaque, .{});
+    }
+
+    pub fn setCell(_self: *@This(), _cell: ?*anyopaque) void {
+        return objc.msgSend(_self, "setCell:", void, .{_cell});
+    }
+
+    pub fn invalidateIntrinsicContentSizeForCell(_self: *@This(), _cell: ?*app_kit.Cell) void {
+        return objc.msgSend(_self, "invalidateIntrinsicContentSizeForCell:", void, .{_cell});
     }
 
     pub fn validateUserInterfaceItem(_self: *@This(), _item: ?*anyopaque) objc.BOOL {
@@ -2870,6 +4989,10 @@ pub const AddVoiceShortcutButton = opaque {
         return objc.msgSend(_self, "setKeyEquivalentModifierMask:", void, .{_keyEquivalentModifierMask});
     }
 
+    pub fn setTitleWithMnemonic(_self: *@This(), _stringWithAmpersand: ?*foundation.String) void {
+        return objc.msgSend(_self, "setTitleWithMnemonic:", void, .{_stringWithAmpersand});
+    }
+
     pub fn initWithStyle(_self: *@This(), _style: AddVoiceShortcutButtonStyle) *@This() {
         return objc.msgSend(_self, "initWithStyle:", *@This(), .{_style});
     }
@@ -3077,12 +5200,1237 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
+    pub fn version() objc.NSInteger {
+        return objc.msgSend(Internal.class(), "version", objc.NSInteger, .{});
+    }
+
+    pub fn setVersion(_aVersion: objc.NSInteger) void {
+        return objc.msgSend(Internal.class(), "setVersion:", void, .{_aVersion});
+    }
+
+    pub fn replacementObjectForCoder(_self: *@This(), _coder: ?*foundation.Coder) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForCoder:", ?objc.Id, .{_coder});
+    }
+
+    pub fn awakeAfterUsingCoder(_self: *@This(), _coder: ?*foundation.Coder) ?objc.Id {
+        return objc.msgSend(_self, "awakeAfterUsingCoder:", ?objc.Id, .{_coder});
+    }
+
+    pub fn classForCoder(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForCoder", objc.Class, .{});
+    }
+
+    pub fn poseAsClass(_aClass: objc.Class) void {
+        return objc.msgSend(Internal.class(), "poseAsClass:", void, .{_aClass});
+    }
+
+    pub fn autoContentAccessingProxy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "autoContentAccessingProxy", ?objc.Id, .{});
+    }
+
+    pub fn attemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(
+        _self: *@This(),
+        _error: ?*foundation.Error,
+        _recoveryOptionIndex: objc.NSUInteger,
+        _delegate: ?objc.Id,
+        _didRecoverSelector: objc.Selector,
+        _contextInfo: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:", void, .{
+            _error,
+            _recoveryOptionIndex,
+            _delegate,
+            _didRecoverSelector,
+            _contextInfo,
+        });
+    }
+
+    pub fn attemptRecoveryFromErrorOptionIndex(_self: *@This(), _error: ?*foundation.Error, _recoveryOptionIndex: objc.NSUInteger) objc.BOOL {
+        return objc.msgSend(_self, "attemptRecoveryFromError:optionIndex:", objc.BOOL, .{ _error, _recoveryOptionIndex });
+    }
+
+    pub fn performSelectorWithObjectAfterDelayInModes(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _anArgument: ?objc.Id,
+        _delay: foundation.TimeInterval,
+        _modes: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "performSelector:withObject:afterDelay:inModes:", void, .{
+            _aSelector,
+            _anArgument,
+            _delay,
+            _modes,
+        });
+    }
+
+    pub fn performSelectorWithObjectAfterDelay(_self: *@This(), _aSelector: objc.Selector, _anArgument: ?objc.Id, _delay: foundation.TimeInterval) void {
+        return objc.msgSend(_self, "performSelector:withObject:afterDelay:", void, .{ _aSelector, _anArgument, _delay });
+    }
+
+    pub fn cancelPreviousPerformRequestsWithTargetSelectorObject(_aTarget: ?objc.Id, _aSelector: objc.Selector, _anArgument: ?objc.Id) void {
+        return objc.msgSend(Internal.class(), "cancelPreviousPerformRequestsWithTarget:selector:object:", void, .{ _aTarget, _aSelector, _anArgument });
+    }
+
+    pub fn cancelPreviousPerformRequestsWithTarget(_aTarget: ?objc.Id) void {
+        return objc.msgSend(Internal.class(), "cancelPreviousPerformRequestsWithTarget:", void, .{_aTarget});
+    }
+
+    pub fn urlResourceDataDidBecomeAvailable(_self: *@This(), _sender: ?*foundation.URL, _newBytes: ?*foundation.Data) void {
+        return objc.msgSend(_self, "URL:resourceDataDidBecomeAvailable:", void, .{ _sender, _newBytes });
+    }
+
+    pub fn urlResourceDidFinishLoading(_self: *@This(), _sender: ?*foundation.URL) void {
+        return objc.msgSend(_self, "URLResourceDidFinishLoading:", void, .{_sender});
+    }
+
+    pub fn urlResourceDidCancelLoading(_self: *@This(), _sender: ?*foundation.URL) void {
+        return objc.msgSend(_self, "URLResourceDidCancelLoading:", void, .{_sender});
+    }
+
+    pub fn urlResourceDidFailLoadingWithReason(_self: *@This(), _sender: ?*foundation.URL, _reason: ?*foundation.String) void {
+        return objc.msgSend(_self, "URL:resourceDidFailLoadingWithReason:", void, .{ _sender, _reason });
+    }
+
+    pub fn fileManagerShouldProceedAfterError(_self: *@This(), _fm: ?*foundation.FileManager, _errorInfo: ?*foundation.Dictionary) objc.BOOL {
+        return objc.msgSend(_self, "fileManager:shouldProceedAfterError:", objc.BOOL, .{ _fm, _errorInfo });
+    }
+
+    pub fn fileManagerWillProcessPath(_self: *@This(), _fm: ?*foundation.FileManager, _path: ?*foundation.String) void {
+        return objc.msgSend(_self, "fileManager:willProcessPath:", void, .{ _fm, _path });
+    }
+
+    pub fn valueForKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn setValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "setValue:forKey:", void, .{ _value, _key });
+    }
+
+    pub fn validateValueForKeyError(_self: *@This(), _ioValue: ?*?objc.Id, _inKey: ?*foundation.String, _outError: ?*?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "validateValue:forKey:error:", objc.BOOL, .{ _ioValue, _inKey, _outError });
+    }
+
+    pub fn mutableArrayValueForKey(_self: *@This(), _key: ?*foundation.String) ?*foundation.MutableArray {
+        return objc.msgSend(_self, "mutableArrayValueForKey:", ?*foundation.MutableArray, .{_key});
+    }
+
+    pub fn mutableOrderedSetValueForKey(_self: *@This(), _key: ?*foundation.String) ?*foundation.MutableOrderedSet {
+        return objc.msgSend(_self, "mutableOrderedSetValueForKey:", ?*foundation.MutableOrderedSet, .{_key});
+    }
+
+    pub fn mutableSetValueForKey(_self: *@This(), _key: ?*foundation.String) ?*foundation.MutableSet {
+        return objc.msgSend(_self, "mutableSetValueForKey:", ?*foundation.MutableSet, .{_key});
+    }
+
+    pub fn valueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForKeyPath:", ?objc.Id, .{_keyPath});
+    }
+
+    pub fn setValueForKeyPath(_self: *@This(), _value: ?objc.Id, _keyPath: ?*foundation.String) void {
+        return objc.msgSend(_self, "setValue:forKeyPath:", void, .{ _value, _keyPath });
+    }
+
+    pub fn validateValueForKeyPathError(_self: *@This(), _ioValue: ?*?objc.Id, _inKeyPath: ?*foundation.String, _outError: ?*?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "validateValue:forKeyPath:error:", objc.BOOL, .{ _ioValue, _inKeyPath, _outError });
+    }
+
+    pub fn mutableArrayValueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?*foundation.MutableArray {
+        return objc.msgSend(_self, "mutableArrayValueForKeyPath:", ?*foundation.MutableArray, .{_keyPath});
+    }
+
+    pub fn mutableOrderedSetValueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?*foundation.MutableOrderedSet {
+        return objc.msgSend(_self, "mutableOrderedSetValueForKeyPath:", ?*foundation.MutableOrderedSet, .{_keyPath});
+    }
+
+    pub fn mutableSetValueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?*foundation.MutableSet {
+        return objc.msgSend(_self, "mutableSetValueForKeyPath:", ?*foundation.MutableSet, .{_keyPath});
+    }
+
+    pub fn valueForUndefinedKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForUndefinedKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn setValueForUndefinedKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "setValue:forUndefinedKey:", void, .{ _value, _key });
+    }
+
+    pub fn setNilValueForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "setNilValueForKey:", void, .{_key});
+    }
+
+    pub fn dictionaryWithValuesForKeys(_self: *@This(), _keys: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(_self, "dictionaryWithValuesForKeys:", ?*anyopaque, .{_keys});
+    }
+
+    pub fn setValuesForKeysWithDictionary(_self: *@This(), _keyedValues: ?*anyopaque) void {
+        return objc.msgSend(_self, "setValuesForKeysWithDictionary:", void, .{_keyedValues});
+    }
+
+    pub fn accessInstanceVariablesDirectly() objc.BOOL {
+        return objc.msgSend(Internal.class(), "accessInstanceVariablesDirectly", objc.BOOL, .{});
+    }
+
+    pub fn useStoredAccessor() objc.BOOL {
+        return objc.msgSend(Internal.class(), "useStoredAccessor", objc.BOOL, .{});
+    }
+
+    pub fn storedValueForKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "storedValueForKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn takeStoredValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "takeStoredValue:forKey:", void, .{ _value, _key });
+    }
+
+    pub fn takeValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "takeValue:forKey:", void, .{ _value, _key });
+    }
+
+    pub fn takeValueForKeyPath(_self: *@This(), _value: ?objc.Id, _keyPath: ?*foundation.String) void {
+        return objc.msgSend(_self, "takeValue:forKeyPath:", void, .{ _value, _keyPath });
+    }
+
+    pub fn handleQueryWithUnboundKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "handleQueryWithUnboundKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn handleTakeValueForUnboundKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "handleTakeValue:forUnboundKey:", void, .{ _value, _key });
+    }
+
+    pub fn unableToSetNilForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "unableToSetNilForKey:", void, .{_key});
+    }
+
+    pub fn valuesForKeys(_self: *@This(), _keys: ?*foundation.Array) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "valuesForKeys:", ?*foundation.Dictionary, .{_keys});
+    }
+
+    pub fn takeValuesFromDictionary(_self: *@This(), _properties: ?*foundation.Dictionary) void {
+        return objc.msgSend(_self, "takeValuesFromDictionary:", void, .{_properties});
+    }
+
+    pub fn observeValueForKeyPathOfObjectChangeContext(
+        _self: *@This(),
+        _keyPath: ?*foundation.String,
+        _object: ?objc.Id,
+        _change: ?*anyopaque,
+        _context: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "observeValueForKeyPath:ofObject:change:context:", void, .{
+            _keyPath,
+            _object,
+            _change,
+            _context,
+        });
+    }
+
+    pub fn addObserverForKeyPathOptionsContext(
+        _self: *@This(),
+        _observer: ?*objc.NSObject,
+        _keyPath: ?*foundation.String,
+        _options: foundation.KeyValueObservingOptions,
+        _context: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "addObserver:forKeyPath:options:context:", void, .{
+            _observer,
+            _keyPath,
+            _options,
+            _context,
+        });
+    }
+
+    pub fn removeObserverForKeyPathContext(_self: *@This(), _observer: ?*objc.NSObject, _keyPath: ?*foundation.String, _context: ?*anyopaque) void {
+        return objc.msgSend(_self, "removeObserver:forKeyPath:context:", void, .{ _observer, _keyPath, _context });
+    }
+
+    pub fn removeObserverForKeyPath(_self: *@This(), _observer: ?*objc.NSObject, _keyPath: ?*foundation.String) void {
+        return objc.msgSend(_self, "removeObserver:forKeyPath:", void, .{ _observer, _keyPath });
+    }
+
+    pub fn willChangeValueForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "willChangeValueForKey:", void, .{_key});
+    }
+
+    pub fn didChangeValueForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "didChangeValueForKey:", void, .{_key});
+    }
+
+    pub fn willChangeValuesAtIndexesForKey(_self: *@This(), _changeKind: foundation.KeyValueChange, _indexes: ?*foundation.IndexSet, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "willChange:valuesAtIndexes:forKey:", void, .{ _changeKind, _indexes, _key });
+    }
+
+    pub fn didChangeValuesAtIndexesForKey(_self: *@This(), _changeKind: foundation.KeyValueChange, _indexes: ?*foundation.IndexSet, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "didChange:valuesAtIndexes:forKey:", void, .{ _changeKind, _indexes, _key });
+    }
+
+    pub fn willChangeValueForKeyWithSetMutationUsingObjects(_self: *@This(), _key: ?*foundation.String, _mutationKind: foundation.KeyValueSetMutationKind, _objects: ?*foundation.Set) void {
+        return objc.msgSend(_self, "willChangeValueForKey:withSetMutation:usingObjects:", void, .{ _key, _mutationKind, _objects });
+    }
+
+    pub fn didChangeValueForKeyWithSetMutationUsingObjects(_self: *@This(), _key: ?*foundation.String, _mutationKind: foundation.KeyValueSetMutationKind, _objects: ?*foundation.Set) void {
+        return objc.msgSend(_self, "didChangeValueForKey:withSetMutation:usingObjects:", void, .{ _key, _mutationKind, _objects });
+    }
+
+    pub fn keyPathsForValuesAffectingValueForKey(_key: ?*foundation.String) ?*anyopaque {
+        return objc.msgSend(Internal.class(), "keyPathsForValuesAffectingValueForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn automaticallyNotifiesObserversForKey(_key: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(Internal.class(), "automaticallyNotifiesObserversForKey:", objc.BOOL, .{_key});
+    }
+
+    pub fn observationInfo(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "observationInfo", ?*anyopaque, .{});
+    }
+
+    pub fn setObservationInfo(_self: *@This(), _observationInfo: ?*anyopaque) void {
+        return objc.msgSend(_self, "setObservationInfo:", void, .{_observationInfo});
+    }
+
+    pub fn setKeysTriggerChangeNotificationsForDependentKey(_keys: ?*foundation.Array, _dependentKey: ?*foundation.String) void {
+        return objc.msgSend(Internal.class(), "setKeys:triggerChangeNotificationsForDependentKey:", void, .{ _keys, _dependentKey });
+    }
+
+    pub fn setSharedObservers(_self: *@This(), _sharedObservers: ?*foundation.KeyValueSharedObserversSnapshot) void {
+        return objc.msgSend(_self, "setSharedObservers:", void, .{_sharedObservers});
+    }
+
+    pub fn replacementObjectForKeyedArchiver(_self: *@This(), _archiver: ?*foundation.KeyedArchiver) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForKeyedArchiver:", ?objc.Id, .{_archiver});
+    }
+
+    pub fn classFallbacksForKeyedArchiver() ?*anyopaque {
+        return objc.msgSend(Internal.class(), "classFallbacksForKeyedArchiver", ?*anyopaque, .{});
+    }
+
+    pub fn classForKeyedArchiver(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForKeyedArchiver", objc.Class, .{});
+    }
+
+    pub fn classForKeyedUnarchiver() objc.Class {
+        return objc.msgSend(Internal.class(), "classForKeyedUnarchiver", objc.Class, .{});
+    }
+
+    pub fn performSelectorOnMainThreadWithObjectWaitUntilDoneModes(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _arg: ?objc.Id,
+        _wait: objc.BOOL,
+        _array: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "performSelectorOnMainThread:withObject:waitUntilDone:modes:", void, .{
+            _aSelector,
+            _arg,
+            _wait,
+            _array,
+        });
+    }
+
+    pub fn performSelectorOnMainThreadWithObjectWaitUntilDone(_self: *@This(), _aSelector: objc.Selector, _arg: ?objc.Id, _wait: objc.BOOL) void {
+        return objc.msgSend(_self, "performSelectorOnMainThread:withObject:waitUntilDone:", void, .{ _aSelector, _arg, _wait });
+    }
+
+    pub fn performSelectorOnThreadWithObjectWaitUntilDoneModes(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _thr: ?*foundation.Thread,
+        _arg: ?objc.Id,
+        _wait: objc.BOOL,
+        _array: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "performSelector:onThread:withObject:waitUntilDone:modes:", void, .{
+            _aSelector,
+            _thr,
+            _arg,
+            _wait,
+            _array,
+        });
+    }
+
+    pub fn performSelectorOnThreadWithObjectWaitUntilDone(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _thr: ?*foundation.Thread,
+        _arg: ?objc.Id,
+        _wait: objc.BOOL,
+    ) void {
+        return objc.msgSend(_self, "performSelector:onThread:withObject:waitUntilDone:", void, .{
+            _aSelector,
+            _thr,
+            _arg,
+            _wait,
+        });
+    }
+
+    pub fn performSelectorInBackgroundWithObject(_self: *@This(), _aSelector: objc.Selector, _arg: ?objc.Id) void {
+        return objc.msgSend(_self, "performSelectorInBackground:withObject:", void, .{ _aSelector, _arg });
+    }
+
+    pub fn replacementObjectForArchiver(_self: *@This(), _archiver: ?*foundation.Archiver) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForArchiver:", ?objc.Id, .{_archiver});
+    }
+
+    pub fn classForArchiver(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForArchiver", objc.Class, .{});
+    }
+
+    pub fn replacementObjectForPortCoder(_self: *@This(), _coder: ?*foundation.PortCoder) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForPortCoder:", ?objc.Id, .{_coder});
+    }
+
+    pub fn classForPortCoder(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForPortCoder", objc.Class, .{});
+    }
+
+    pub fn inverseForRelationshipKey(_self: *@This(), _relationshipKey: ?*foundation.String) ?*foundation.String {
+        return objc.msgSend(_self, "inverseForRelationshipKey:", ?*foundation.String, .{_relationshipKey});
+    }
+
+    pub fn classDescription(_self: *@This()) ?*foundation.ClassDescription {
+        return objc.msgSend(_self, "classDescription", ?*foundation.ClassDescription, .{});
+    }
+
+    pub fn attributeKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "attributeKeys", ?*anyopaque, .{});
+    }
+
+    pub fn toOneRelationshipKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "toOneRelationshipKeys", ?*anyopaque, .{});
+    }
+
+    pub fn toManyRelationshipKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "toManyRelationshipKeys", ?*anyopaque, .{});
+    }
+
+    pub fn scriptingValueForSpecifier(_self: *@This(), _objectSpecifier: ?*foundation.ScriptObjectSpecifier) ?objc.Id {
+        return objc.msgSend(_self, "scriptingValueForSpecifier:", ?objc.Id, .{_objectSpecifier});
+    }
+
+    pub fn copyScriptingValueForKeyWithProperties(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String, _properties: ?*anyopaque) ?objc.Id {
+        return objc.msgSend(_self, "copyScriptingValue:forKey:withProperties:", ?objc.Id, .{ _value, _key, _properties });
+    }
+
+    pub fn newScriptingObjectOfClassForValueForKeyWithContentsValueProperties(
+        _self: *@This(),
+        _objectClass: objc.Class,
+        _key: ?*foundation.String,
+        _contentsValue: ?objc.Id,
+        _properties: ?*anyopaque,
+    ) ?objc.Id {
+        return objc.msgSend(_self, "newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:", ?objc.Id, .{
+            _objectClass,
+            _key,
+            _contentsValue,
+            _properties,
+        });
+    }
+
+    pub fn scriptingProperties(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "scriptingProperties", ?*anyopaque, .{});
+    }
+
+    pub fn setScriptingProperties(_self: *@This(), _scriptingProperties: ?*anyopaque) void {
+        return objc.msgSend(_self, "setScriptingProperties:", void, .{_scriptingProperties});
+    }
+
+    pub fn classCode(_self: *@This()) objc.FourCharCode {
+        return objc.msgSend(_self, "classCode", objc.FourCharCode, .{});
+    }
+
+    pub fn className(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "className", ?*foundation.String, .{});
+    }
+
+    pub fn valueAtIndexInPropertyWithKey(_self: *@This(), _index: objc.NSUInteger, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueAtIndex:inPropertyWithKey:", ?objc.Id, .{ _index, _key });
+    }
+
+    pub fn valueWithNameInPropertyWithKey(_self: *@This(), _name: ?*foundation.String, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueWithName:inPropertyWithKey:", ?objc.Id, .{ _name, _key });
+    }
+
+    pub fn valueWithUniqueIDInPropertyWithKey(_self: *@This(), _uniqueID: ?objc.Id, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueWithUniqueID:inPropertyWithKey:", ?objc.Id, .{ _uniqueID, _key });
+    }
+
+    pub fn insertValueAtIndexInPropertyWithKey(_self: *@This(), _value: ?objc.Id, _index: objc.NSUInteger, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "insertValue:atIndex:inPropertyWithKey:", void, .{ _value, _index, _key });
+    }
+
+    pub fn removeValueAtIndexFromPropertyWithKey(_self: *@This(), _index: objc.NSUInteger, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "removeValueAtIndex:fromPropertyWithKey:", void, .{ _index, _key });
+    }
+
+    pub fn replaceValueAtIndexInPropertyWithKeyWithValue(_self: *@This(), _index: objc.NSUInteger, _key: ?*foundation.String, _value: ?objc.Id) void {
+        return objc.msgSend(_self, "replaceValueAtIndex:inPropertyWithKey:withValue:", void, .{ _index, _key, _value });
+    }
+
+    pub fn insertValueInPropertyWithKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "insertValue:inPropertyWithKey:", void, .{ _value, _key });
+    }
+
+    pub fn coerceValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "coerceValue:forKey:", ?objc.Id, .{ _value, _key });
+    }
+
+    pub fn indicesOfObjectsByEvaluatingObjectSpecifier(_self: *@This(), _specifier: ?*foundation.ScriptObjectSpecifier) ?*anyopaque {
+        return objc.msgSend(_self, "indicesOfObjectsByEvaluatingObjectSpecifier:", ?*anyopaque, .{_specifier});
+    }
+
+    pub fn objectSpecifier(_self: *@This()) ?*foundation.ScriptObjectSpecifier {
+        return objc.msgSend(_self, "objectSpecifier", ?*foundation.ScriptObjectSpecifier, .{});
+    }
+
+    pub fn isEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn isLessThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isLessThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn isLessThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isLessThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn isGreaterThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isGreaterThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn isGreaterThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isGreaterThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn isNotEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isNotEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn doesContain(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "doesContain:", objc.BOOL, .{_object});
+    }
+
+    pub fn isLike(_self: *@This(), _object: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "isLike:", objc.BOOL, .{_object});
+    }
+
+    pub fn isCaseInsensitiveLike(_self: *@This(), _object: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "isCaseInsensitiveLike:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsLessThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsLessThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsLessThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsLessThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsGreaterThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsGreaterThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsGreaterThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsGreaterThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingBeginsWith(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingBeginsWith:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingEndsWith(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingEndsWith:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingContains(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingContains:", objc.BOOL, .{_object});
+    }
+
+    pub fn accessibilityAttributeNames(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "accessibilityAttributeNames", ?*anyopaque, .{});
+    }
+
+    pub fn accessibilityAttributeValue(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityAttributeValue:", ?objc.Id, .{_attribute});
+    }
+
+    pub fn accessibilityIsAttributeSettable(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName) objc.BOOL {
+        return objc.msgSend(_self, "accessibilityIsAttributeSettable:", objc.BOOL, .{_attribute});
+    }
+
+    pub fn accessibilitySetValueForAttribute(_self: *@This(), _value: ?objc.Id, _attribute: app_kit.AccessibilityAttributeName) void {
+        return objc.msgSend(_self, "accessibilitySetValue:forAttribute:", void, .{ _value, _attribute });
+    }
+
+    pub fn accessibilityParameterizedAttributeNames(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "accessibilityParameterizedAttributeNames", ?*anyopaque, .{});
+    }
+
+    pub fn accessibilityAttributeValueForParameter(_self: *@This(), _attribute: app_kit.AccessibilityParameterizedAttributeName, _parameter: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityAttributeValue:forParameter:", ?objc.Id, .{ _attribute, _parameter });
+    }
+
+    pub fn accessibilityActionNames(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "accessibilityActionNames", ?*anyopaque, .{});
+    }
+
+    pub fn accessibilityActionDescription(_self: *@This(), _action: app_kit.AccessibilityActionName) ?*foundation.String {
+        return objc.msgSend(_self, "accessibilityActionDescription:", ?*foundation.String, .{_action});
+    }
+
+    pub fn accessibilityPerformAction(_self: *@This(), _action: app_kit.AccessibilityActionName) void {
+        return objc.msgSend(_self, "accessibilityPerformAction:", void, .{_action});
+    }
+
+    pub fn accessibilityIsIgnored(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "accessibilityIsIgnored", objc.BOOL, .{});
+    }
+
+    pub fn accessibilityHitTest(_self: *@This(), _point: foundation.Point) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityHitTest:", ?objc.Id, .{_point});
+    }
+
+    pub fn accessibilityIndexOfChild(_self: *@This(), _child: ?objc.Id) objc.NSUInteger {
+        return objc.msgSend(_self, "accessibilityIndexOfChild:", objc.NSUInteger, .{_child});
+    }
+
+    pub fn accessibilityArrayAttributeCount(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName) objc.NSUInteger {
+        return objc.msgSend(_self, "accessibilityArrayAttributeCount:", objc.NSUInteger, .{_attribute});
+    }
+
+    pub fn accessibilityArrayAttributeValuesIndexMaxCount(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName, _index: objc.NSUInteger, _maxCount: objc.NSUInteger) ?*foundation.Array {
+        return objc.msgSend(_self, "accessibilityArrayAttributeValues:index:maxCount:", ?*foundation.Array, .{ _attribute, _index, _maxCount });
+    }
+
+    pub fn accessibilityFocusedUIElement(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityFocusedUIElement", ?objc.Id, .{});
+    }
+
+    pub fn accessibilityNotifiesWhenDestroyed(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "accessibilityNotifiesWhenDestroyed", objc.BOOL, .{});
+    }
+
+    pub fn accessibilitySetOverrideValueForAttribute(_self: *@This(), _value: ?objc.Id, _attribute: app_kit.AccessibilityAttributeName) objc.BOOL {
+        return objc.msgSend(_self, "accessibilitySetOverrideValue:forAttribute:", objc.BOOL, .{ _value, _attribute });
+    }
+
+    pub fn pasteboardProvideDataForType(_self: *@This(), _sender: ?*app_kit.Pasteboard, _type: app_kit.PasteboardType) void {
+        return objc.msgSend(_self, "pasteboard:provideDataForType:", void, .{ _sender, _type });
+    }
+
+    pub fn pasteboardChangedOwner(_self: *@This(), _sender: ?*app_kit.Pasteboard) void {
+        return objc.msgSend(_self, "pasteboardChangedOwner:", void, .{_sender});
+    }
+
+    pub fn namesOfPromisedFilesDroppedAtDestination(_self: *@This(), _dropDestination: ?*foundation.URL) ?*anyopaque {
+        return objc.msgSend(_self, "namesOfPromisedFilesDroppedAtDestination:", ?*anyopaque, .{_dropDestination});
+    }
+
+    pub fn draggingSourceOperationMaskForLocal(_self: *@This(), _flag: objc.BOOL) app_kit.DragOperation {
+        return objc.msgSend(_self, "draggingSourceOperationMaskForLocal:", app_kit.DragOperation, .{_flag});
+    }
+
+    pub fn draggedImageBeganAt(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point) void {
+        return objc.msgSend(_self, "draggedImage:beganAt:", void, .{ _image, _screenPoint });
+    }
+
+    pub fn draggedImageEndedAtOperation(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point, _operation: app_kit.DragOperation) void {
+        return objc.msgSend(_self, "draggedImage:endedAt:operation:", void, .{ _image, _screenPoint, _operation });
+    }
+
+    pub fn draggedImageMovedTo(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point) void {
+        return objc.msgSend(_self, "draggedImage:movedTo:", void, .{ _image, _screenPoint });
+    }
+
+    pub fn ignoreModifierKeysWhileDragging(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "ignoreModifierKeysWhileDragging", objc.BOOL, .{});
+    }
+
+    pub fn draggedImageEndedAtDeposited(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point, _flag: objc.BOOL) void {
+        return objc.msgSend(_self, "draggedImage:endedAt:deposited:", void, .{ _image, _screenPoint, _flag });
+    }
+
+    pub fn layerShouldInheritContentsScaleFromWindow(_self: *@This(), _layer: ?*quartz_core.Layer, _newScale: core_foundation.CGFloat, _window: ?*app_kit.Window) objc.BOOL {
+        return objc.msgSend(_self, "layer:shouldInheritContentsScale:fromWindow:", objc.BOOL, .{ _layer, _newScale, _window });
+    }
+
+    pub fn viewStringForToolTipPointUserData(
+        _self: *@This(),
+        _view: ?*app_kit.View,
+        _tag: app_kit.ToolTipTag,
+        _point: foundation.Point,
+        _data: ?*anyopaque,
+    ) ?*foundation.String {
+        return objc.msgSend(_self, "view:stringForToolTip:point:userData:", ?*foundation.String, .{
+            _view,
+            _tag,
+            _point,
+            _data,
+        });
+    }
+
+    pub fn validateMenuItem(_self: *@This(), _menuItem: ?*app_kit.MenuItem) objc.BOOL {
+        return objc.msgSend(_self, "validateMenuItem:", objc.BOOL, .{_menuItem});
+    }
+
+    pub fn exposeBinding(_binding: app_kit.BindingName) void {
+        return objc.msgSend(Internal.class(), "exposeBinding:", void, .{_binding});
+    }
+
+    pub fn valueClassForBinding(_self: *@This(), _binding: app_kit.BindingName) objc.Class {
+        return objc.msgSend(_self, "valueClassForBinding:", objc.Class, .{_binding});
+    }
+
+    pub fn bindToObjectWithKeyPathOptions(
+        _self: *@This(),
+        _binding: app_kit.BindingName,
+        _observable: ?objc.Id,
+        _keyPath: ?*foundation.String,
+        _options: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "bind:toObject:withKeyPath:options:", void, .{
+            _binding,
+            _observable,
+            _keyPath,
+            _options,
+        });
+    }
+
+    pub fn unbind(_self: *@This(), _binding: app_kit.BindingName) void {
+        return objc.msgSend(_self, "unbind:", void, .{_binding});
+    }
+
+    pub fn infoForBinding(_self: *@This(), _binding: app_kit.BindingName) ?*anyopaque {
+        return objc.msgSend(_self, "infoForBinding:", ?*anyopaque, .{_binding});
+    }
+
+    pub fn optionDescriptionsForBinding(_self: *@This(), _binding: app_kit.BindingName) ?*anyopaque {
+        return objc.msgSend(_self, "optionDescriptionsForBinding:", ?*anyopaque, .{_binding});
+    }
+
+    pub fn exposedBindings(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "exposedBindings", ?*anyopaque, .{});
+    }
+
+    pub fn setDefaultPlaceholderForMarkerWithBinding(_placeholder: ?objc.Id, _marker: ?objc.Id, _binding: app_kit.BindingName) void {
+        return objc.msgSend(Internal.class(), "setDefaultPlaceholder:forMarker:withBinding:", void, .{ _placeholder, _marker, _binding });
+    }
+
+    pub fn defaultPlaceholderForMarkerWithBinding(_marker: ?objc.Id, _binding: app_kit.BindingName) ?objc.Id {
+        return objc.msgSend(Internal.class(), "defaultPlaceholderForMarker:withBinding:", ?objc.Id, .{ _marker, _binding });
+    }
+
+    pub fn discardEditing(_self: *@This()) void {
+        return objc.msgSend(_self, "discardEditing", void, .{});
+    }
+
+    pub fn commitEditing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "commitEditing", objc.BOOL, .{});
+    }
+
+    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(_self: *@This(), _delegate: ?objc.Id, _didCommitSelector: objc.Selector, _contextInfo: ?*anyopaque) void {
+        return objc.msgSend(_self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", void, .{ _delegate, _didCommitSelector, _contextInfo });
+    }
+
+    pub fn commitEditingAndReturnError(_self: *@This(), _error: ?*?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "commitEditingAndReturnError:", objc.BOOL, .{_error});
+    }
+
+    pub fn objectDidBeginEditing(_self: *@This(), _editor: ?*anyopaque) void {
+        return objc.msgSend(_self, "objectDidBeginEditing:", void, .{_editor});
+    }
+
+    pub fn objectDidEndEditing(_self: *@This(), _editor: ?*anyopaque) void {
+        return objc.msgSend(_self, "objectDidEndEditing:", void, .{_editor});
+    }
+
+    pub fn controlTextDidBeginEditing(_self: *@This(), _obj: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "controlTextDidBeginEditing:", void, .{_obj});
+    }
+
+    pub fn controlTextDidEndEditing(_self: *@This(), _obj: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "controlTextDidEndEditing:", void, .{_obj});
+    }
+
+    pub fn controlTextDidChange(_self: *@This(), _obj: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "controlTextDidChange:", void, .{_obj});
+    }
+
+    pub fn fontManagerWillIncludeFont(_self: *@This(), _sender: ?objc.Id, _fontName: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "fontManager:willIncludeFont:", objc.BOOL, .{ _sender, _fontName });
+    }
+
+    pub fn changeFont(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "changeFont:", void, .{_sender});
+    }
+
+    pub fn validModesForFontPanel(_self: *@This(), _fontPanel: ?*app_kit.FontPanel) app_kit.FontPanelModeMask {
+        return objc.msgSend(_self, "validModesForFontPanel:", app_kit.FontPanelModeMask, .{_fontPanel});
+    }
+
+    pub fn changeColor(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "changeColor:", void, .{_sender});
+    }
+
+    pub fn awakeFromNib(_self: *@This()) void {
+        return objc.msgSend(_self, "awakeFromNib", void, .{});
+    }
+
+    pub fn prepareForInterfaceBuilder(_self: *@This()) void {
+        return objc.msgSend(_self, "prepareForInterfaceBuilder", void, .{});
+    }
+
+    pub fn panelIsValidFilename(_self: *@This(), _sender: ?objc.Id, _filename: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "panel:isValidFilename:", objc.BOOL, .{ _sender, _filename });
+    }
+
+    pub fn panelDirectoryDidChange(_self: *@This(), _sender: ?objc.Id, _path: ?*foundation.String) void {
+        return objc.msgSend(_self, "panel:directoryDidChange:", void, .{ _sender, _path });
+    }
+
+    pub fn panelCompareFilenameWithCaseSensitive(
+        _self: *@This(),
+        _sender: ?objc.Id,
+        _name1: ?*foundation.String,
+        _name2: ?*foundation.String,
+        _caseSensitive: objc.BOOL,
+    ) foundation.ComparisonResult {
+        return objc.msgSend(_self, "panel:compareFilename:with:caseSensitive:", foundation.ComparisonResult, .{
+            _sender,
+            _name1,
+            _name2,
+            _caseSensitive,
+        });
+    }
+
+    pub fn panelShouldShowFilename(_self: *@This(), _sender: ?objc.Id, _filename: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "panel:shouldShowFilename:", objc.BOOL, .{ _sender, _filename });
+    }
+
+    pub fn textStorageWillProcessEditing(_self: *@This(), _notification: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "textStorageWillProcessEditing:", void, .{_notification});
+    }
+
+    pub fn textStorageDidProcessEditing(_self: *@This(), _notification: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "textStorageDidProcessEditing:", void, .{_notification});
+    }
+
+    pub fn validateToolbarItem(_self: *@This(), _item: ?*app_kit.ToolbarItem) objc.BOOL {
+        return objc.msgSend(_self, "validateToolbarItem:", objc.BOOL, .{_item});
+    }
+
+    pub fn tableViewWriteRowsToPasteboard(_self: *@This(), _tableView: ?*app_kit.TableView, _rows: ?*foundation.Array, _pboard: ?*app_kit.Pasteboard) objc.BOOL {
+        return objc.msgSend(_self, "tableView:writeRows:toPasteboard:", objc.BOOL, .{ _tableView, _rows, _pboard });
+    }
+
+    pub fn applicationDelegateHandlesKey(_self: *@This(), _sender: ?*app_kit.Application, _key: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "application:delegateHandlesKey:", objc.BOOL, .{ _sender, _key });
+    }
+
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
         return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
     }
 
     pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn insertText(_self: *@This(), _insertString: ?objc.Id) void {
+        return objc.msgSend(_self, "insertText:", void, .{_insertString});
+    }
+
+    pub fn doCommandBySelector(_self: *@This(), _selector: objc.Selector) void {
+        return objc.msgSend(_self, "doCommandBySelector:", void, .{_selector});
+    }
+
+    pub fn moveForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveForward:", void, .{_sender});
+    }
+
+    pub fn moveRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveRight:", void, .{_sender});
+    }
+
+    pub fn moveBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveBackward:", void, .{_sender});
+    }
+
+    pub fn moveLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveLeft:", void, .{_sender});
+    }
+
+    pub fn moveUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveUp:", void, .{_sender});
+    }
+
+    pub fn moveDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveDown:", void, .{_sender});
+    }
+
+    pub fn moveWordForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordForward:", void, .{_sender});
+    }
+
+    pub fn moveWordBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordBackward:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfParagraph:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfParagraph:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfDocument:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfDocument:", void, .{_sender});
+    }
+
+    pub fn pageDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageDown:", void, .{_sender});
+    }
+
+    pub fn pageUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageUp:", void, .{_sender});
+    }
+
+    pub fn centerSelectionInVisibleArea(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "centerSelectionInVisibleArea:", void, .{_sender});
+    }
+
+    pub fn moveBackwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveBackwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveForwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveForwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordForwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordForwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordBackwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordBackwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveUpAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveUpAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveDownAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveDownAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfParagraphAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfParagraphAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfParagraphAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfParagraphAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfDocumentAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfDocumentAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfDocumentAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfDocumentAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn pageDownAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageDownAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn pageUpAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageUpAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveParagraphForwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveParagraphForwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveParagraphBackwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveParagraphBackwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordRight:", void, .{_sender});
+    }
+
+    pub fn moveWordLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordLeft:", void, .{_sender});
+    }
+
+    pub fn moveRightAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveRightAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveLeftAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveLeftAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordRightAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordRightAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordLeftAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordLeftAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToLeftEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToLeftEndOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToRightEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToRightEndOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToLeftEndOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToLeftEndOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToRightEndOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToRightEndOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn scrollPageUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollPageUp:", void, .{_sender});
+    }
+
+    pub fn scrollPageDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollPageDown:", void, .{_sender});
+    }
+
+    pub fn scrollLineUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollLineUp:", void, .{_sender});
+    }
+
+    pub fn scrollLineDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollLineDown:", void, .{_sender});
+    }
+
+    pub fn scrollToBeginningOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollToBeginningOfDocument:", void, .{_sender});
+    }
+
+    pub fn scrollToEndOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollToEndOfDocument:", void, .{_sender});
+    }
+
+    pub fn transpose(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "transpose:", void, .{_sender});
+    }
+
+    pub fn transposeWords(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "transposeWords:", void, .{_sender});
+    }
+
+    pub fn selectAll(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectAll:", void, .{_sender});
+    }
+
+    pub fn selectParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectParagraph:", void, .{_sender});
+    }
+
+    pub fn selectLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectLine:", void, .{_sender});
+    }
+
+    pub fn selectWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectWord:", void, .{_sender});
+    }
+
+    pub fn indent(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "indent:", void, .{_sender});
+    }
+
+    pub fn insertTab(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertTab:", void, .{_sender});
+    }
+
+    pub fn insertBacktab(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertBacktab:", void, .{_sender});
+    }
+
+    pub fn insertNewline(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertNewline:", void, .{_sender});
+    }
+
+    pub fn insertParagraphSeparator(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertParagraphSeparator:", void, .{_sender});
+    }
+
+    pub fn insertNewlineIgnoringFieldEditor(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertNewlineIgnoringFieldEditor:", void, .{_sender});
+    }
+
+    pub fn insertTabIgnoringFieldEditor(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertTabIgnoringFieldEditor:", void, .{_sender});
+    }
+
+    pub fn insertLineBreak(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertLineBreak:", void, .{_sender});
+    }
+
+    pub fn insertContainerBreak(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertContainerBreak:", void, .{_sender});
+    }
+
+    pub fn insertSingleQuoteIgnoringSubstitution(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertSingleQuoteIgnoringSubstitution:", void, .{_sender});
+    }
+
+    pub fn insertDoubleQuoteIgnoringSubstitution(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertDoubleQuoteIgnoringSubstitution:", void, .{_sender});
+    }
+
+    pub fn changeCaseOfLetter(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "changeCaseOfLetter:", void, .{_sender});
+    }
+
+    pub fn uppercaseWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "uppercaseWord:", void, .{_sender});
+    }
+
+    pub fn lowercaseWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "lowercaseWord:", void, .{_sender});
+    }
+
+    pub fn capitalizeWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "capitalizeWord:", void, .{_sender});
+    }
+
+    pub fn deleteForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteForward:", void, .{_sender});
+    }
+
+    pub fn deleteBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteBackward:", void, .{_sender});
+    }
+
+    pub fn deleteBackwardByDecomposingPreviousCharacter(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteBackwardByDecomposingPreviousCharacter:", void, .{_sender});
+    }
+
+    pub fn deleteWordForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteWordForward:", void, .{_sender});
+    }
+
+    pub fn deleteWordBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteWordBackward:", void, .{_sender});
+    }
+
+    pub fn deleteToBeginningOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToBeginningOfLine:", void, .{_sender});
+    }
+
+    pub fn deleteToEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToEndOfLine:", void, .{_sender});
+    }
+
+    pub fn deleteToBeginningOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToBeginningOfParagraph:", void, .{_sender});
+    }
+
+    pub fn deleteToEndOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToEndOfParagraph:", void, .{_sender});
+    }
+
+    pub fn yank(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "yank:", void, .{_sender});
+    }
+
+    pub fn complete(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "complete:", void, .{_sender});
+    }
+
+    pub fn setMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "setMark:", void, .{_sender});
+    }
+
+    pub fn deleteToMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToMark:", void, .{_sender});
+    }
+
+    pub fn selectToMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectToMark:", void, .{_sender});
+    }
+
+    pub fn swapWithMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "swapWithMark:", void, .{_sender});
+    }
+
+    pub fn cancelOperation(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "cancelOperation:", void, .{_sender});
+    }
+
+    pub fn makeBaseWritingDirectionNatural(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeBaseWritingDirectionNatural:", void, .{_sender});
+    }
+
+    pub fn makeBaseWritingDirectionLeftToRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeBaseWritingDirectionLeftToRight:", void, .{_sender});
+    }
+
+    pub fn makeBaseWritingDirectionRightToLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeBaseWritingDirectionRightToLeft:", void, .{_sender});
+    }
+
+    pub fn makeTextWritingDirectionNatural(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeTextWritingDirectionNatural:", void, .{_sender});
+    }
+
+    pub fn makeTextWritingDirectionLeftToRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeTextWritingDirectionLeftToRight:", void, .{_sender});
+    }
+
+    pub fn makeTextWritingDirectionRightToLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeTextWritingDirectionRightToLeft:", void, .{_sender});
+    }
+
+    pub fn quickLookPreviewItems(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "quickLookPreviewItems:", void, .{_sender});
+    }
+
+    pub fn showContextMenuForSelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "showContextMenuForSelection:", void, .{_sender});
+    }
+
+    pub fn restoreUserActivityState(_self: *@This(), _userActivity: ?*foundation.UserActivity) void {
+        return objc.msgSend(_self, "restoreUserActivityState:", void, .{_userActivity});
+    }
+
+    pub fn touchBar(_self: *@This()) ?*app_kit.TouchBar {
+        return objc.msgSend(_self, "touchBar", ?*app_kit.TouchBar, .{});
     }
 
     pub fn tryToPerformWith(_self: *@This(), _action: objc.Selector, _object: ?objc.Id) objc.BOOL {
@@ -3293,20 +6641,101 @@ pub const AddVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "setMenu:", void, .{_menu});
     }
 
-    pub fn discardEditing(_self: *@This()) void {
-        return objc.msgSend(_self, "discardEditing", void, .{});
+    pub fn undoManager(_self: *@This()) ?*foundation.UndoManager {
+        return objc.msgSend(_self, "undoManager", ?*foundation.UndoManager, .{});
     }
 
-    pub fn commitEditing(_self: *@This()) objc.BOOL {
-        return objc.msgSend(_self, "commitEditing", objc.BOOL, .{});
+    pub fn validateProposedFirstResponderForEvent(_self: *@This(), _responder: ?*app_kit.Responder, _event: ?*app_kit.Event) objc.BOOL {
+        return objc.msgSend(_self, "validateProposedFirstResponder:forEvent:", objc.BOOL, .{ _responder, _event });
     }
 
-    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(_self: *@This(), _delegate: ?objc.Id, _didCommitSelector: objc.Selector, _contextInfo: ?*anyopaque) void {
-        return objc.msgSend(_self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", void, .{ _delegate, _didCommitSelector, _contextInfo });
+    pub fn presentErrorModalForWindowDelegateDidPresentSelectorContextInfo(
+        _self: *@This(),
+        _error: ?*foundation.Error,
+        _window: ?*app_kit.Window,
+        _delegate: ?objc.Id,
+        _didPresentSelector: objc.Selector,
+        _contextInfo: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "presentError:modalForWindow:delegate:didPresentSelector:contextInfo:", void, .{
+            _error,
+            _window,
+            _delegate,
+            _didPresentSelector,
+            _contextInfo,
+        });
     }
 
-    pub fn commitEditingAndReturnError(_self: *@This(), _error: ?*?*foundation.Error) objc.BOOL {
-        return objc.msgSend(_self, "commitEditingAndReturnError:", objc.BOOL, .{_error});
+    pub fn presentError(_self: *@This(), _error: ?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "presentError:", objc.BOOL, .{_error});
+    }
+
+    pub fn willPresentError(_self: *@This(), _error: ?*foundation.Error) ?*foundation.Error {
+        return objc.msgSend(_self, "willPresentError:", ?*foundation.Error, .{_error});
+    }
+
+    pub fn performTextFinderAction(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "performTextFinderAction:", void, .{_sender});
+    }
+
+    pub fn newWindowForTab(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "newWindowForTab:", void, .{_sender});
+    }
+
+    pub fn performMnemonic(_self: *@This(), _string: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "performMnemonic:", objc.BOOL, .{_string});
+    }
+
+    pub fn updateUserActivityState(_self: *@This(), _userActivity: ?*foundation.UserActivity) void {
+        return objc.msgSend(_self, "updateUserActivityState:", void, .{_userActivity});
+    }
+
+    pub fn userActivity(_self: *@This()) ?*foundation.UserActivity {
+        return objc.msgSend(_self, "userActivity", ?*foundation.UserActivity, .{});
+    }
+
+    pub fn setUserActivity(_self: *@This(), _userActivity: ?*foundation.UserActivity) void {
+        return objc.msgSend(_self, "setUserActivity:", void, .{_userActivity});
+    }
+
+    pub fn makeTouchBar(_self: *@This()) ?*app_kit.TouchBar {
+        return objc.msgSend(_self, "makeTouchBar", ?*app_kit.TouchBar, .{});
+    }
+
+    pub fn setTouchBar(_self: *@This(), _touchBar: ?*app_kit.TouchBar) void {
+        return objc.msgSend(_self, "setTouchBar:", void, .{_touchBar});
+    }
+
+    pub fn interfaceStyle(_self: *@This()) app_kit.InterfaceStyle {
+        return objc.msgSend(_self, "interfaceStyle", app_kit.InterfaceStyle, .{});
+    }
+
+    pub fn setInterfaceStyle(_self: *@This(), _interfaceStyle: app_kit.InterfaceStyle) void {
+        return objc.msgSend(_self, "setInterfaceStyle:", void, .{_interfaceStyle});
+    }
+
+    pub fn encodeRestorableStateWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeRestorableStateWithCoder:", void, .{_coder});
+    }
+
+    pub fn encodeRestorableStateWithCoderBackgroundQueue(_self: *@This(), _coder: ?*foundation.Coder, _queue: ?*foundation.OperationQueue) void {
+        return objc.msgSend(_self, "encodeRestorableStateWithCoder:backgroundQueue:", void, .{ _coder, _queue });
+    }
+
+    pub fn restoreStateWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "restoreStateWithCoder:", void, .{_coder});
+    }
+
+    pub fn invalidateRestorableState(_self: *@This()) void {
+        return objc.msgSend(_self, "invalidateRestorableState", void, .{});
+    }
+
+    pub fn allowedClassesForRestorableStateKeyPath(_keyPath: ?*foundation.String) ?*anyopaque {
+        return objc.msgSend(Internal.class(), "allowedClassesForRestorableStateKeyPath:", ?*anyopaque, .{_keyPath});
+    }
+
+    pub fn restorableStateKeyPaths() ?*anyopaque {
+        return objc.msgSend(Internal.class(), "restorableStateKeyPaths", ?*anyopaque, .{});
     }
 
     pub fn prepareForSegueSender(_self: *@This(), _segue: ?*app_kit.StoryboardSegue, _sender: ?objc.Id) void {
@@ -3327,6 +6756,10 @@ pub const AddVoiceShortcutViewController = opaque {
 
     pub fn setIdentifier(_self: *@This(), _identifier: app_kit.UserInterfaceItemIdentifier) void {
         return objc.msgSend(_self, "setIdentifier:", void, .{_identifier});
+    }
+
+    pub fn beginRequestWithExtensionContext(_self: *@This(), _context: ?*foundation.ExtensionContext) void {
+        return objc.msgSend(_self, "beginRequestWithExtensionContext:", void, .{_context});
     }
 
     pub fn initWithNibNameBundle(_self: *@This(), _nibNameOrNil: app_kit.NibName, _nibBundleOrNil: ?*foundation.Bundle) *@This() {
@@ -3419,6 +6852,153 @@ pub const AddVoiceShortcutViewController = opaque {
 
     pub fn setPreferredContentSize(_self: *@This(), _preferredContentSize: foundation.Size) void {
         return objc.msgSend(_self, "setPreferredContentSize:", void, .{_preferredContentSize});
+    }
+
+    pub fn presentViewControllerAnimator(_self: *@This(), _viewController: ?*app_kit.ViewController, _animator: ?*anyopaque) void {
+        return objc.msgSend(_self, "presentViewController:animator:", void, .{ _viewController, _animator });
+    }
+
+    pub fn dismissViewController(_self: *@This(), _viewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "dismissViewController:", void, .{_viewController});
+    }
+
+    pub fn dismissController(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "dismissController:", void, .{_sender});
+    }
+
+    pub fn presentedViewControllers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "presentedViewControllers", ?*anyopaque, .{});
+    }
+
+    pub fn presentingViewController(_self: *@This()) ?*app_kit.ViewController {
+        return objc.msgSend(_self, "presentingViewController", ?*app_kit.ViewController, .{});
+    }
+
+    pub fn presentViewControllerAsSheet(_self: *@This(), _viewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "presentViewControllerAsSheet:", void, .{_viewController});
+    }
+
+    pub fn presentViewControllerAsModalWindow(_self: *@This(), _viewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "presentViewControllerAsModalWindow:", void, .{_viewController});
+    }
+
+    pub fn presentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(
+        _self: *@This(),
+        _viewController: ?*app_kit.ViewController,
+        _positioningRect: foundation.Rect,
+        _positioningView: ?*app_kit.View,
+        _preferredEdge: foundation.RectEdge,
+        _behavior: app_kit.PopoverBehavior,
+    ) void {
+        return objc.msgSend(_self, "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:", void, .{
+            _viewController,
+            _positioningRect,
+            _positioningView,
+            _preferredEdge,
+            _behavior,
+        });
+    }
+
+    pub fn presentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(
+        _self: *@This(),
+        _viewController: ?*app_kit.ViewController,
+        _positioningRect: foundation.Rect,
+        _positioningView: ?*app_kit.View,
+        _preferredEdge: foundation.RectEdge,
+        _behavior: app_kit.PopoverBehavior,
+        _hasFullSizeContent: objc.BOOL,
+    ) void {
+        return objc.msgSend(_self, "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:", void, .{
+            _viewController,
+            _positioningRect,
+            _positioningView,
+            _preferredEdge,
+            _behavior,
+            _hasFullSizeContent,
+        });
+    }
+
+    pub fn transitionFromViewControllerToViewControllerOptionsCompletionHandler(
+        _self: *@This(),
+        _fromViewController: ?*app_kit.ViewController,
+        _toViewController: ?*app_kit.ViewController,
+        _options: app_kit.ViewControllerTransitionOptions,
+        _completion: *const fn () callconv(.C) void,
+    ) void {
+        return objc.msgSend(_self, "transitionFromViewController:toViewController:options:completionHandler:", void, .{
+            _fromViewController,
+            _toViewController,
+            _options,
+            _completion,
+        });
+    }
+
+    pub fn addChildViewController(_self: *@This(), _childViewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "addChildViewController:", void, .{_childViewController});
+    }
+
+    pub fn removeFromParentViewController(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromParentViewController", void, .{});
+    }
+
+    pub fn insertChildViewControllerAtIndex(_self: *@This(), _childViewController: ?*app_kit.ViewController, _index: objc.NSInteger) void {
+        return objc.msgSend(_self, "insertChildViewController:atIndex:", void, .{ _childViewController, _index });
+    }
+
+    pub fn removeChildViewControllerAtIndex(_self: *@This(), _index: objc.NSInteger) void {
+        return objc.msgSend(_self, "removeChildViewControllerAtIndex:", void, .{_index});
+    }
+
+    pub fn preferredContentSizeDidChangeForViewController(_self: *@This(), _viewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "preferredContentSizeDidChangeForViewController:", void, .{_viewController});
+    }
+
+    pub fn viewWillTransitionToSize(_self: *@This(), _newSize: foundation.Size) void {
+        return objc.msgSend(_self, "viewWillTransitionToSize:", void, .{_newSize});
+    }
+
+    pub fn parentViewController(_self: *@This()) ?*app_kit.ViewController {
+        return objc.msgSend(_self, "parentViewController", ?*app_kit.ViewController, .{});
+    }
+
+    pub fn childViewControllers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "childViewControllers", ?*anyopaque, .{});
+    }
+
+    pub fn setChildViewControllers(_self: *@This(), _childViewControllers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setChildViewControllers:", void, .{_childViewControllers});
+    }
+
+    pub fn storyboard(_self: *@This()) ?*app_kit.Storyboard {
+        return objc.msgSend(_self, "storyboard", ?*app_kit.Storyboard, .{});
+    }
+
+    pub fn extensionContext(_self: *@This()) ?*foundation.ExtensionContext {
+        return objc.msgSend(_self, "extensionContext", ?*foundation.ExtensionContext, .{});
+    }
+
+    pub fn sourceItemView(_self: *@This()) ?*app_kit.View {
+        return objc.msgSend(_self, "sourceItemView", ?*app_kit.View, .{});
+    }
+
+    pub fn setSourceItemView(_self: *@This(), _sourceItemView: ?*app_kit.View) void {
+        return objc.msgSend(_self, "setSourceItemView:", void, .{_sourceItemView});
+    }
+
+    pub fn preferredScreenOrigin(_self: *@This()) foundation.Point {
+        return objc.msgSend(_self, "preferredScreenOrigin", foundation.Point, .{});
+    }
+
+    pub fn setPreferredScreenOrigin(_self: *@This(), _preferredScreenOrigin: foundation.Point) void {
+        return objc.msgSend(_self, "setPreferredScreenOrigin:", void, .{_preferredScreenOrigin});
+    }
+
+    pub fn preferredMinimumSize(_self: *@This()) foundation.Size {
+        return objc.msgSend(_self, "preferredMinimumSize", foundation.Size, .{});
+    }
+
+    pub fn preferredMaximumSize(_self: *@This()) foundation.Size {
+        return objc.msgSend(_self, "preferredMaximumSize", foundation.Size, .{});
     }
 
     pub fn initWithShortcut(_self: *@This(), _shortcut: ?*intents.Shortcut) *@This() {
@@ -3689,12 +7269,1237 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(Internal.class(), "resolveInstanceMethod:", objc.BOOL, .{_sel});
     }
 
+    pub fn version() objc.NSInteger {
+        return objc.msgSend(Internal.class(), "version", objc.NSInteger, .{});
+    }
+
+    pub fn setVersion(_aVersion: objc.NSInteger) void {
+        return objc.msgSend(Internal.class(), "setVersion:", void, .{_aVersion});
+    }
+
+    pub fn replacementObjectForCoder(_self: *@This(), _coder: ?*foundation.Coder) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForCoder:", ?objc.Id, .{_coder});
+    }
+
+    pub fn awakeAfterUsingCoder(_self: *@This(), _coder: ?*foundation.Coder) ?objc.Id {
+        return objc.msgSend(_self, "awakeAfterUsingCoder:", ?objc.Id, .{_coder});
+    }
+
+    pub fn classForCoder(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForCoder", objc.Class, .{});
+    }
+
+    pub fn poseAsClass(_aClass: objc.Class) void {
+        return objc.msgSend(Internal.class(), "poseAsClass:", void, .{_aClass});
+    }
+
+    pub fn autoContentAccessingProxy(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "autoContentAccessingProxy", ?objc.Id, .{});
+    }
+
+    pub fn attemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(
+        _self: *@This(),
+        _error: ?*foundation.Error,
+        _recoveryOptionIndex: objc.NSUInteger,
+        _delegate: ?objc.Id,
+        _didRecoverSelector: objc.Selector,
+        _contextInfo: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:", void, .{
+            _error,
+            _recoveryOptionIndex,
+            _delegate,
+            _didRecoverSelector,
+            _contextInfo,
+        });
+    }
+
+    pub fn attemptRecoveryFromErrorOptionIndex(_self: *@This(), _error: ?*foundation.Error, _recoveryOptionIndex: objc.NSUInteger) objc.BOOL {
+        return objc.msgSend(_self, "attemptRecoveryFromError:optionIndex:", objc.BOOL, .{ _error, _recoveryOptionIndex });
+    }
+
+    pub fn performSelectorWithObjectAfterDelayInModes(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _anArgument: ?objc.Id,
+        _delay: foundation.TimeInterval,
+        _modes: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "performSelector:withObject:afterDelay:inModes:", void, .{
+            _aSelector,
+            _anArgument,
+            _delay,
+            _modes,
+        });
+    }
+
+    pub fn performSelectorWithObjectAfterDelay(_self: *@This(), _aSelector: objc.Selector, _anArgument: ?objc.Id, _delay: foundation.TimeInterval) void {
+        return objc.msgSend(_self, "performSelector:withObject:afterDelay:", void, .{ _aSelector, _anArgument, _delay });
+    }
+
+    pub fn cancelPreviousPerformRequestsWithTargetSelectorObject(_aTarget: ?objc.Id, _aSelector: objc.Selector, _anArgument: ?objc.Id) void {
+        return objc.msgSend(Internal.class(), "cancelPreviousPerformRequestsWithTarget:selector:object:", void, .{ _aTarget, _aSelector, _anArgument });
+    }
+
+    pub fn cancelPreviousPerformRequestsWithTarget(_aTarget: ?objc.Id) void {
+        return objc.msgSend(Internal.class(), "cancelPreviousPerformRequestsWithTarget:", void, .{_aTarget});
+    }
+
+    pub fn urlResourceDataDidBecomeAvailable(_self: *@This(), _sender: ?*foundation.URL, _newBytes: ?*foundation.Data) void {
+        return objc.msgSend(_self, "URL:resourceDataDidBecomeAvailable:", void, .{ _sender, _newBytes });
+    }
+
+    pub fn urlResourceDidFinishLoading(_self: *@This(), _sender: ?*foundation.URL) void {
+        return objc.msgSend(_self, "URLResourceDidFinishLoading:", void, .{_sender});
+    }
+
+    pub fn urlResourceDidCancelLoading(_self: *@This(), _sender: ?*foundation.URL) void {
+        return objc.msgSend(_self, "URLResourceDidCancelLoading:", void, .{_sender});
+    }
+
+    pub fn urlResourceDidFailLoadingWithReason(_self: *@This(), _sender: ?*foundation.URL, _reason: ?*foundation.String) void {
+        return objc.msgSend(_self, "URL:resourceDidFailLoadingWithReason:", void, .{ _sender, _reason });
+    }
+
+    pub fn fileManagerShouldProceedAfterError(_self: *@This(), _fm: ?*foundation.FileManager, _errorInfo: ?*foundation.Dictionary) objc.BOOL {
+        return objc.msgSend(_self, "fileManager:shouldProceedAfterError:", objc.BOOL, .{ _fm, _errorInfo });
+    }
+
+    pub fn fileManagerWillProcessPath(_self: *@This(), _fm: ?*foundation.FileManager, _path: ?*foundation.String) void {
+        return objc.msgSend(_self, "fileManager:willProcessPath:", void, .{ _fm, _path });
+    }
+
+    pub fn valueForKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn setValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "setValue:forKey:", void, .{ _value, _key });
+    }
+
+    pub fn validateValueForKeyError(_self: *@This(), _ioValue: ?*?objc.Id, _inKey: ?*foundation.String, _outError: ?*?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "validateValue:forKey:error:", objc.BOOL, .{ _ioValue, _inKey, _outError });
+    }
+
+    pub fn mutableArrayValueForKey(_self: *@This(), _key: ?*foundation.String) ?*foundation.MutableArray {
+        return objc.msgSend(_self, "mutableArrayValueForKey:", ?*foundation.MutableArray, .{_key});
+    }
+
+    pub fn mutableOrderedSetValueForKey(_self: *@This(), _key: ?*foundation.String) ?*foundation.MutableOrderedSet {
+        return objc.msgSend(_self, "mutableOrderedSetValueForKey:", ?*foundation.MutableOrderedSet, .{_key});
+    }
+
+    pub fn mutableSetValueForKey(_self: *@This(), _key: ?*foundation.String) ?*foundation.MutableSet {
+        return objc.msgSend(_self, "mutableSetValueForKey:", ?*foundation.MutableSet, .{_key});
+    }
+
+    pub fn valueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForKeyPath:", ?objc.Id, .{_keyPath});
+    }
+
+    pub fn setValueForKeyPath(_self: *@This(), _value: ?objc.Id, _keyPath: ?*foundation.String) void {
+        return objc.msgSend(_self, "setValue:forKeyPath:", void, .{ _value, _keyPath });
+    }
+
+    pub fn validateValueForKeyPathError(_self: *@This(), _ioValue: ?*?objc.Id, _inKeyPath: ?*foundation.String, _outError: ?*?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "validateValue:forKeyPath:error:", objc.BOOL, .{ _ioValue, _inKeyPath, _outError });
+    }
+
+    pub fn mutableArrayValueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?*foundation.MutableArray {
+        return objc.msgSend(_self, "mutableArrayValueForKeyPath:", ?*foundation.MutableArray, .{_keyPath});
+    }
+
+    pub fn mutableOrderedSetValueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?*foundation.MutableOrderedSet {
+        return objc.msgSend(_self, "mutableOrderedSetValueForKeyPath:", ?*foundation.MutableOrderedSet, .{_keyPath});
+    }
+
+    pub fn mutableSetValueForKeyPath(_self: *@This(), _keyPath: ?*foundation.String) ?*foundation.MutableSet {
+        return objc.msgSend(_self, "mutableSetValueForKeyPath:", ?*foundation.MutableSet, .{_keyPath});
+    }
+
+    pub fn valueForUndefinedKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueForUndefinedKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn setValueForUndefinedKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "setValue:forUndefinedKey:", void, .{ _value, _key });
+    }
+
+    pub fn setNilValueForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "setNilValueForKey:", void, .{_key});
+    }
+
+    pub fn dictionaryWithValuesForKeys(_self: *@This(), _keys: ?*anyopaque) ?*anyopaque {
+        return objc.msgSend(_self, "dictionaryWithValuesForKeys:", ?*anyopaque, .{_keys});
+    }
+
+    pub fn setValuesForKeysWithDictionary(_self: *@This(), _keyedValues: ?*anyopaque) void {
+        return objc.msgSend(_self, "setValuesForKeysWithDictionary:", void, .{_keyedValues});
+    }
+
+    pub fn accessInstanceVariablesDirectly() objc.BOOL {
+        return objc.msgSend(Internal.class(), "accessInstanceVariablesDirectly", objc.BOOL, .{});
+    }
+
+    pub fn useStoredAccessor() objc.BOOL {
+        return objc.msgSend(Internal.class(), "useStoredAccessor", objc.BOOL, .{});
+    }
+
+    pub fn storedValueForKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "storedValueForKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn takeStoredValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "takeStoredValue:forKey:", void, .{ _value, _key });
+    }
+
+    pub fn takeValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "takeValue:forKey:", void, .{ _value, _key });
+    }
+
+    pub fn takeValueForKeyPath(_self: *@This(), _value: ?objc.Id, _keyPath: ?*foundation.String) void {
+        return objc.msgSend(_self, "takeValue:forKeyPath:", void, .{ _value, _keyPath });
+    }
+
+    pub fn handleQueryWithUnboundKey(_self: *@This(), _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "handleQueryWithUnboundKey:", ?objc.Id, .{_key});
+    }
+
+    pub fn handleTakeValueForUnboundKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "handleTakeValue:forUnboundKey:", void, .{ _value, _key });
+    }
+
+    pub fn unableToSetNilForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "unableToSetNilForKey:", void, .{_key});
+    }
+
+    pub fn valuesForKeys(_self: *@This(), _keys: ?*foundation.Array) ?*foundation.Dictionary {
+        return objc.msgSend(_self, "valuesForKeys:", ?*foundation.Dictionary, .{_keys});
+    }
+
+    pub fn takeValuesFromDictionary(_self: *@This(), _properties: ?*foundation.Dictionary) void {
+        return objc.msgSend(_self, "takeValuesFromDictionary:", void, .{_properties});
+    }
+
+    pub fn observeValueForKeyPathOfObjectChangeContext(
+        _self: *@This(),
+        _keyPath: ?*foundation.String,
+        _object: ?objc.Id,
+        _change: ?*anyopaque,
+        _context: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "observeValueForKeyPath:ofObject:change:context:", void, .{
+            _keyPath,
+            _object,
+            _change,
+            _context,
+        });
+    }
+
+    pub fn addObserverForKeyPathOptionsContext(
+        _self: *@This(),
+        _observer: ?*objc.NSObject,
+        _keyPath: ?*foundation.String,
+        _options: foundation.KeyValueObservingOptions,
+        _context: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "addObserver:forKeyPath:options:context:", void, .{
+            _observer,
+            _keyPath,
+            _options,
+            _context,
+        });
+    }
+
+    pub fn removeObserverForKeyPathContext(_self: *@This(), _observer: ?*objc.NSObject, _keyPath: ?*foundation.String, _context: ?*anyopaque) void {
+        return objc.msgSend(_self, "removeObserver:forKeyPath:context:", void, .{ _observer, _keyPath, _context });
+    }
+
+    pub fn removeObserverForKeyPath(_self: *@This(), _observer: ?*objc.NSObject, _keyPath: ?*foundation.String) void {
+        return objc.msgSend(_self, "removeObserver:forKeyPath:", void, .{ _observer, _keyPath });
+    }
+
+    pub fn willChangeValueForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "willChangeValueForKey:", void, .{_key});
+    }
+
+    pub fn didChangeValueForKey(_self: *@This(), _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "didChangeValueForKey:", void, .{_key});
+    }
+
+    pub fn willChangeValuesAtIndexesForKey(_self: *@This(), _changeKind: foundation.KeyValueChange, _indexes: ?*foundation.IndexSet, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "willChange:valuesAtIndexes:forKey:", void, .{ _changeKind, _indexes, _key });
+    }
+
+    pub fn didChangeValuesAtIndexesForKey(_self: *@This(), _changeKind: foundation.KeyValueChange, _indexes: ?*foundation.IndexSet, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "didChange:valuesAtIndexes:forKey:", void, .{ _changeKind, _indexes, _key });
+    }
+
+    pub fn willChangeValueForKeyWithSetMutationUsingObjects(_self: *@This(), _key: ?*foundation.String, _mutationKind: foundation.KeyValueSetMutationKind, _objects: ?*foundation.Set) void {
+        return objc.msgSend(_self, "willChangeValueForKey:withSetMutation:usingObjects:", void, .{ _key, _mutationKind, _objects });
+    }
+
+    pub fn didChangeValueForKeyWithSetMutationUsingObjects(_self: *@This(), _key: ?*foundation.String, _mutationKind: foundation.KeyValueSetMutationKind, _objects: ?*foundation.Set) void {
+        return objc.msgSend(_self, "didChangeValueForKey:withSetMutation:usingObjects:", void, .{ _key, _mutationKind, _objects });
+    }
+
+    pub fn keyPathsForValuesAffectingValueForKey(_key: ?*foundation.String) ?*anyopaque {
+        return objc.msgSend(Internal.class(), "keyPathsForValuesAffectingValueForKey:", ?*anyopaque, .{_key});
+    }
+
+    pub fn automaticallyNotifiesObserversForKey(_key: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(Internal.class(), "automaticallyNotifiesObserversForKey:", objc.BOOL, .{_key});
+    }
+
+    pub fn observationInfo(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "observationInfo", ?*anyopaque, .{});
+    }
+
+    pub fn setObservationInfo(_self: *@This(), _observationInfo: ?*anyopaque) void {
+        return objc.msgSend(_self, "setObservationInfo:", void, .{_observationInfo});
+    }
+
+    pub fn setKeysTriggerChangeNotificationsForDependentKey(_keys: ?*foundation.Array, _dependentKey: ?*foundation.String) void {
+        return objc.msgSend(Internal.class(), "setKeys:triggerChangeNotificationsForDependentKey:", void, .{ _keys, _dependentKey });
+    }
+
+    pub fn setSharedObservers(_self: *@This(), _sharedObservers: ?*foundation.KeyValueSharedObserversSnapshot) void {
+        return objc.msgSend(_self, "setSharedObservers:", void, .{_sharedObservers});
+    }
+
+    pub fn replacementObjectForKeyedArchiver(_self: *@This(), _archiver: ?*foundation.KeyedArchiver) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForKeyedArchiver:", ?objc.Id, .{_archiver});
+    }
+
+    pub fn classFallbacksForKeyedArchiver() ?*anyopaque {
+        return objc.msgSend(Internal.class(), "classFallbacksForKeyedArchiver", ?*anyopaque, .{});
+    }
+
+    pub fn classForKeyedArchiver(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForKeyedArchiver", objc.Class, .{});
+    }
+
+    pub fn classForKeyedUnarchiver() objc.Class {
+        return objc.msgSend(Internal.class(), "classForKeyedUnarchiver", objc.Class, .{});
+    }
+
+    pub fn performSelectorOnMainThreadWithObjectWaitUntilDoneModes(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _arg: ?objc.Id,
+        _wait: objc.BOOL,
+        _array: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "performSelectorOnMainThread:withObject:waitUntilDone:modes:", void, .{
+            _aSelector,
+            _arg,
+            _wait,
+            _array,
+        });
+    }
+
+    pub fn performSelectorOnMainThreadWithObjectWaitUntilDone(_self: *@This(), _aSelector: objc.Selector, _arg: ?objc.Id, _wait: objc.BOOL) void {
+        return objc.msgSend(_self, "performSelectorOnMainThread:withObject:waitUntilDone:", void, .{ _aSelector, _arg, _wait });
+    }
+
+    pub fn performSelectorOnThreadWithObjectWaitUntilDoneModes(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _thr: ?*foundation.Thread,
+        _arg: ?objc.Id,
+        _wait: objc.BOOL,
+        _array: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "performSelector:onThread:withObject:waitUntilDone:modes:", void, .{
+            _aSelector,
+            _thr,
+            _arg,
+            _wait,
+            _array,
+        });
+    }
+
+    pub fn performSelectorOnThreadWithObjectWaitUntilDone(
+        _self: *@This(),
+        _aSelector: objc.Selector,
+        _thr: ?*foundation.Thread,
+        _arg: ?objc.Id,
+        _wait: objc.BOOL,
+    ) void {
+        return objc.msgSend(_self, "performSelector:onThread:withObject:waitUntilDone:", void, .{
+            _aSelector,
+            _thr,
+            _arg,
+            _wait,
+        });
+    }
+
+    pub fn performSelectorInBackgroundWithObject(_self: *@This(), _aSelector: objc.Selector, _arg: ?objc.Id) void {
+        return objc.msgSend(_self, "performSelectorInBackground:withObject:", void, .{ _aSelector, _arg });
+    }
+
+    pub fn replacementObjectForArchiver(_self: *@This(), _archiver: ?*foundation.Archiver) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForArchiver:", ?objc.Id, .{_archiver});
+    }
+
+    pub fn classForArchiver(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForArchiver", objc.Class, .{});
+    }
+
+    pub fn replacementObjectForPortCoder(_self: *@This(), _coder: ?*foundation.PortCoder) ?objc.Id {
+        return objc.msgSend(_self, "replacementObjectForPortCoder:", ?objc.Id, .{_coder});
+    }
+
+    pub fn classForPortCoder(_self: *@This()) objc.Class {
+        return objc.msgSend(_self, "classForPortCoder", objc.Class, .{});
+    }
+
+    pub fn inverseForRelationshipKey(_self: *@This(), _relationshipKey: ?*foundation.String) ?*foundation.String {
+        return objc.msgSend(_self, "inverseForRelationshipKey:", ?*foundation.String, .{_relationshipKey});
+    }
+
+    pub fn classDescription(_self: *@This()) ?*foundation.ClassDescription {
+        return objc.msgSend(_self, "classDescription", ?*foundation.ClassDescription, .{});
+    }
+
+    pub fn attributeKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "attributeKeys", ?*anyopaque, .{});
+    }
+
+    pub fn toOneRelationshipKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "toOneRelationshipKeys", ?*anyopaque, .{});
+    }
+
+    pub fn toManyRelationshipKeys(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "toManyRelationshipKeys", ?*anyopaque, .{});
+    }
+
+    pub fn scriptingValueForSpecifier(_self: *@This(), _objectSpecifier: ?*foundation.ScriptObjectSpecifier) ?objc.Id {
+        return objc.msgSend(_self, "scriptingValueForSpecifier:", ?objc.Id, .{_objectSpecifier});
+    }
+
+    pub fn copyScriptingValueForKeyWithProperties(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String, _properties: ?*anyopaque) ?objc.Id {
+        return objc.msgSend(_self, "copyScriptingValue:forKey:withProperties:", ?objc.Id, .{ _value, _key, _properties });
+    }
+
+    pub fn newScriptingObjectOfClassForValueForKeyWithContentsValueProperties(
+        _self: *@This(),
+        _objectClass: objc.Class,
+        _key: ?*foundation.String,
+        _contentsValue: ?objc.Id,
+        _properties: ?*anyopaque,
+    ) ?objc.Id {
+        return objc.msgSend(_self, "newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:", ?objc.Id, .{
+            _objectClass,
+            _key,
+            _contentsValue,
+            _properties,
+        });
+    }
+
+    pub fn scriptingProperties(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "scriptingProperties", ?*anyopaque, .{});
+    }
+
+    pub fn setScriptingProperties(_self: *@This(), _scriptingProperties: ?*anyopaque) void {
+        return objc.msgSend(_self, "setScriptingProperties:", void, .{_scriptingProperties});
+    }
+
+    pub fn classCode(_self: *@This()) objc.FourCharCode {
+        return objc.msgSend(_self, "classCode", objc.FourCharCode, .{});
+    }
+
+    pub fn className(_self: *@This()) ?*foundation.String {
+        return objc.msgSend(_self, "className", ?*foundation.String, .{});
+    }
+
+    pub fn valueAtIndexInPropertyWithKey(_self: *@This(), _index: objc.NSUInteger, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueAtIndex:inPropertyWithKey:", ?objc.Id, .{ _index, _key });
+    }
+
+    pub fn valueWithNameInPropertyWithKey(_self: *@This(), _name: ?*foundation.String, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueWithName:inPropertyWithKey:", ?objc.Id, .{ _name, _key });
+    }
+
+    pub fn valueWithUniqueIDInPropertyWithKey(_self: *@This(), _uniqueID: ?objc.Id, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "valueWithUniqueID:inPropertyWithKey:", ?objc.Id, .{ _uniqueID, _key });
+    }
+
+    pub fn insertValueAtIndexInPropertyWithKey(_self: *@This(), _value: ?objc.Id, _index: objc.NSUInteger, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "insertValue:atIndex:inPropertyWithKey:", void, .{ _value, _index, _key });
+    }
+
+    pub fn removeValueAtIndexFromPropertyWithKey(_self: *@This(), _index: objc.NSUInteger, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "removeValueAtIndex:fromPropertyWithKey:", void, .{ _index, _key });
+    }
+
+    pub fn replaceValueAtIndexInPropertyWithKeyWithValue(_self: *@This(), _index: objc.NSUInteger, _key: ?*foundation.String, _value: ?objc.Id) void {
+        return objc.msgSend(_self, "replaceValueAtIndex:inPropertyWithKey:withValue:", void, .{ _index, _key, _value });
+    }
+
+    pub fn insertValueInPropertyWithKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) void {
+        return objc.msgSend(_self, "insertValue:inPropertyWithKey:", void, .{ _value, _key });
+    }
+
+    pub fn coerceValueForKey(_self: *@This(), _value: ?objc.Id, _key: ?*foundation.String) ?objc.Id {
+        return objc.msgSend(_self, "coerceValue:forKey:", ?objc.Id, .{ _value, _key });
+    }
+
+    pub fn indicesOfObjectsByEvaluatingObjectSpecifier(_self: *@This(), _specifier: ?*foundation.ScriptObjectSpecifier) ?*anyopaque {
+        return objc.msgSend(_self, "indicesOfObjectsByEvaluatingObjectSpecifier:", ?*anyopaque, .{_specifier});
+    }
+
+    pub fn objectSpecifier(_self: *@This()) ?*foundation.ScriptObjectSpecifier {
+        return objc.msgSend(_self, "objectSpecifier", ?*foundation.ScriptObjectSpecifier, .{});
+    }
+
+    pub fn isEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn isLessThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isLessThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn isLessThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isLessThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn isGreaterThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isGreaterThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn isGreaterThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isGreaterThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn isNotEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "isNotEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn doesContain(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "doesContain:", objc.BOOL, .{_object});
+    }
+
+    pub fn isLike(_self: *@This(), _object: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "isLike:", objc.BOOL, .{_object});
+    }
+
+    pub fn isCaseInsensitiveLike(_self: *@This(), _object: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "isCaseInsensitiveLike:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsLessThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsLessThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsLessThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsLessThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsGreaterThanOrEqualTo(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsGreaterThanOrEqualTo:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingIsGreaterThan(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingIsGreaterThan:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingBeginsWith(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingBeginsWith:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingEndsWith(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingEndsWith:", objc.BOOL, .{_object});
+    }
+
+    pub fn scriptingContains(_self: *@This(), _object: ?objc.Id) objc.BOOL {
+        return objc.msgSend(_self, "scriptingContains:", objc.BOOL, .{_object});
+    }
+
+    pub fn accessibilityAttributeNames(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "accessibilityAttributeNames", ?*anyopaque, .{});
+    }
+
+    pub fn accessibilityAttributeValue(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityAttributeValue:", ?objc.Id, .{_attribute});
+    }
+
+    pub fn accessibilityIsAttributeSettable(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName) objc.BOOL {
+        return objc.msgSend(_self, "accessibilityIsAttributeSettable:", objc.BOOL, .{_attribute});
+    }
+
+    pub fn accessibilitySetValueForAttribute(_self: *@This(), _value: ?objc.Id, _attribute: app_kit.AccessibilityAttributeName) void {
+        return objc.msgSend(_self, "accessibilitySetValue:forAttribute:", void, .{ _value, _attribute });
+    }
+
+    pub fn accessibilityParameterizedAttributeNames(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "accessibilityParameterizedAttributeNames", ?*anyopaque, .{});
+    }
+
+    pub fn accessibilityAttributeValueForParameter(_self: *@This(), _attribute: app_kit.AccessibilityParameterizedAttributeName, _parameter: ?objc.Id) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityAttributeValue:forParameter:", ?objc.Id, .{ _attribute, _parameter });
+    }
+
+    pub fn accessibilityActionNames(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "accessibilityActionNames", ?*anyopaque, .{});
+    }
+
+    pub fn accessibilityActionDescription(_self: *@This(), _action: app_kit.AccessibilityActionName) ?*foundation.String {
+        return objc.msgSend(_self, "accessibilityActionDescription:", ?*foundation.String, .{_action});
+    }
+
+    pub fn accessibilityPerformAction(_self: *@This(), _action: app_kit.AccessibilityActionName) void {
+        return objc.msgSend(_self, "accessibilityPerformAction:", void, .{_action});
+    }
+
+    pub fn accessibilityIsIgnored(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "accessibilityIsIgnored", objc.BOOL, .{});
+    }
+
+    pub fn accessibilityHitTest(_self: *@This(), _point: foundation.Point) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityHitTest:", ?objc.Id, .{_point});
+    }
+
+    pub fn accessibilityIndexOfChild(_self: *@This(), _child: ?objc.Id) objc.NSUInteger {
+        return objc.msgSend(_self, "accessibilityIndexOfChild:", objc.NSUInteger, .{_child});
+    }
+
+    pub fn accessibilityArrayAttributeCount(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName) objc.NSUInteger {
+        return objc.msgSend(_self, "accessibilityArrayAttributeCount:", objc.NSUInteger, .{_attribute});
+    }
+
+    pub fn accessibilityArrayAttributeValuesIndexMaxCount(_self: *@This(), _attribute: app_kit.AccessibilityAttributeName, _index: objc.NSUInteger, _maxCount: objc.NSUInteger) ?*foundation.Array {
+        return objc.msgSend(_self, "accessibilityArrayAttributeValues:index:maxCount:", ?*foundation.Array, .{ _attribute, _index, _maxCount });
+    }
+
+    pub fn accessibilityFocusedUIElement(_self: *@This()) ?objc.Id {
+        return objc.msgSend(_self, "accessibilityFocusedUIElement", ?objc.Id, .{});
+    }
+
+    pub fn accessibilityNotifiesWhenDestroyed(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "accessibilityNotifiesWhenDestroyed", objc.BOOL, .{});
+    }
+
+    pub fn accessibilitySetOverrideValueForAttribute(_self: *@This(), _value: ?objc.Id, _attribute: app_kit.AccessibilityAttributeName) objc.BOOL {
+        return objc.msgSend(_self, "accessibilitySetOverrideValue:forAttribute:", objc.BOOL, .{ _value, _attribute });
+    }
+
+    pub fn pasteboardProvideDataForType(_self: *@This(), _sender: ?*app_kit.Pasteboard, _type: app_kit.PasteboardType) void {
+        return objc.msgSend(_self, "pasteboard:provideDataForType:", void, .{ _sender, _type });
+    }
+
+    pub fn pasteboardChangedOwner(_self: *@This(), _sender: ?*app_kit.Pasteboard) void {
+        return objc.msgSend(_self, "pasteboardChangedOwner:", void, .{_sender});
+    }
+
+    pub fn namesOfPromisedFilesDroppedAtDestination(_self: *@This(), _dropDestination: ?*foundation.URL) ?*anyopaque {
+        return objc.msgSend(_self, "namesOfPromisedFilesDroppedAtDestination:", ?*anyopaque, .{_dropDestination});
+    }
+
+    pub fn draggingSourceOperationMaskForLocal(_self: *@This(), _flag: objc.BOOL) app_kit.DragOperation {
+        return objc.msgSend(_self, "draggingSourceOperationMaskForLocal:", app_kit.DragOperation, .{_flag});
+    }
+
+    pub fn draggedImageBeganAt(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point) void {
+        return objc.msgSend(_self, "draggedImage:beganAt:", void, .{ _image, _screenPoint });
+    }
+
+    pub fn draggedImageEndedAtOperation(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point, _operation: app_kit.DragOperation) void {
+        return objc.msgSend(_self, "draggedImage:endedAt:operation:", void, .{ _image, _screenPoint, _operation });
+    }
+
+    pub fn draggedImageMovedTo(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point) void {
+        return objc.msgSend(_self, "draggedImage:movedTo:", void, .{ _image, _screenPoint });
+    }
+
+    pub fn ignoreModifierKeysWhileDragging(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "ignoreModifierKeysWhileDragging", objc.BOOL, .{});
+    }
+
+    pub fn draggedImageEndedAtDeposited(_self: *@This(), _image: ?*app_kit.Image, _screenPoint: foundation.Point, _flag: objc.BOOL) void {
+        return objc.msgSend(_self, "draggedImage:endedAt:deposited:", void, .{ _image, _screenPoint, _flag });
+    }
+
+    pub fn layerShouldInheritContentsScaleFromWindow(_self: *@This(), _layer: ?*quartz_core.Layer, _newScale: core_foundation.CGFloat, _window: ?*app_kit.Window) objc.BOOL {
+        return objc.msgSend(_self, "layer:shouldInheritContentsScale:fromWindow:", objc.BOOL, .{ _layer, _newScale, _window });
+    }
+
+    pub fn viewStringForToolTipPointUserData(
+        _self: *@This(),
+        _view: ?*app_kit.View,
+        _tag: app_kit.ToolTipTag,
+        _point: foundation.Point,
+        _data: ?*anyopaque,
+    ) ?*foundation.String {
+        return objc.msgSend(_self, "view:stringForToolTip:point:userData:", ?*foundation.String, .{
+            _view,
+            _tag,
+            _point,
+            _data,
+        });
+    }
+
+    pub fn validateMenuItem(_self: *@This(), _menuItem: ?*app_kit.MenuItem) objc.BOOL {
+        return objc.msgSend(_self, "validateMenuItem:", objc.BOOL, .{_menuItem});
+    }
+
+    pub fn exposeBinding(_binding: app_kit.BindingName) void {
+        return objc.msgSend(Internal.class(), "exposeBinding:", void, .{_binding});
+    }
+
+    pub fn valueClassForBinding(_self: *@This(), _binding: app_kit.BindingName) objc.Class {
+        return objc.msgSend(_self, "valueClassForBinding:", objc.Class, .{_binding});
+    }
+
+    pub fn bindToObjectWithKeyPathOptions(
+        _self: *@This(),
+        _binding: app_kit.BindingName,
+        _observable: ?objc.Id,
+        _keyPath: ?*foundation.String,
+        _options: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "bind:toObject:withKeyPath:options:", void, .{
+            _binding,
+            _observable,
+            _keyPath,
+            _options,
+        });
+    }
+
+    pub fn unbind(_self: *@This(), _binding: app_kit.BindingName) void {
+        return objc.msgSend(_self, "unbind:", void, .{_binding});
+    }
+
+    pub fn infoForBinding(_self: *@This(), _binding: app_kit.BindingName) ?*anyopaque {
+        return objc.msgSend(_self, "infoForBinding:", ?*anyopaque, .{_binding});
+    }
+
+    pub fn optionDescriptionsForBinding(_self: *@This(), _binding: app_kit.BindingName) ?*anyopaque {
+        return objc.msgSend(_self, "optionDescriptionsForBinding:", ?*anyopaque, .{_binding});
+    }
+
+    pub fn exposedBindings(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "exposedBindings", ?*anyopaque, .{});
+    }
+
+    pub fn setDefaultPlaceholderForMarkerWithBinding(_placeholder: ?objc.Id, _marker: ?objc.Id, _binding: app_kit.BindingName) void {
+        return objc.msgSend(Internal.class(), "setDefaultPlaceholder:forMarker:withBinding:", void, .{ _placeholder, _marker, _binding });
+    }
+
+    pub fn defaultPlaceholderForMarkerWithBinding(_marker: ?objc.Id, _binding: app_kit.BindingName) ?objc.Id {
+        return objc.msgSend(Internal.class(), "defaultPlaceholderForMarker:withBinding:", ?objc.Id, .{ _marker, _binding });
+    }
+
+    pub fn discardEditing(_self: *@This()) void {
+        return objc.msgSend(_self, "discardEditing", void, .{});
+    }
+
+    pub fn commitEditing(_self: *@This()) objc.BOOL {
+        return objc.msgSend(_self, "commitEditing", objc.BOOL, .{});
+    }
+
+    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(_self: *@This(), _delegate: ?objc.Id, _didCommitSelector: objc.Selector, _contextInfo: ?*anyopaque) void {
+        return objc.msgSend(_self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", void, .{ _delegate, _didCommitSelector, _contextInfo });
+    }
+
+    pub fn commitEditingAndReturnError(_self: *@This(), _error: ?*?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "commitEditingAndReturnError:", objc.BOOL, .{_error});
+    }
+
+    pub fn objectDidBeginEditing(_self: *@This(), _editor: ?*anyopaque) void {
+        return objc.msgSend(_self, "objectDidBeginEditing:", void, .{_editor});
+    }
+
+    pub fn objectDidEndEditing(_self: *@This(), _editor: ?*anyopaque) void {
+        return objc.msgSend(_self, "objectDidEndEditing:", void, .{_editor});
+    }
+
+    pub fn controlTextDidBeginEditing(_self: *@This(), _obj: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "controlTextDidBeginEditing:", void, .{_obj});
+    }
+
+    pub fn controlTextDidEndEditing(_self: *@This(), _obj: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "controlTextDidEndEditing:", void, .{_obj});
+    }
+
+    pub fn controlTextDidChange(_self: *@This(), _obj: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "controlTextDidChange:", void, .{_obj});
+    }
+
+    pub fn fontManagerWillIncludeFont(_self: *@This(), _sender: ?objc.Id, _fontName: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "fontManager:willIncludeFont:", objc.BOOL, .{ _sender, _fontName });
+    }
+
+    pub fn changeFont(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "changeFont:", void, .{_sender});
+    }
+
+    pub fn validModesForFontPanel(_self: *@This(), _fontPanel: ?*app_kit.FontPanel) app_kit.FontPanelModeMask {
+        return objc.msgSend(_self, "validModesForFontPanel:", app_kit.FontPanelModeMask, .{_fontPanel});
+    }
+
+    pub fn changeColor(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "changeColor:", void, .{_sender});
+    }
+
+    pub fn awakeFromNib(_self: *@This()) void {
+        return objc.msgSend(_self, "awakeFromNib", void, .{});
+    }
+
+    pub fn prepareForInterfaceBuilder(_self: *@This()) void {
+        return objc.msgSend(_self, "prepareForInterfaceBuilder", void, .{});
+    }
+
+    pub fn panelIsValidFilename(_self: *@This(), _sender: ?objc.Id, _filename: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "panel:isValidFilename:", objc.BOOL, .{ _sender, _filename });
+    }
+
+    pub fn panelDirectoryDidChange(_self: *@This(), _sender: ?objc.Id, _path: ?*foundation.String) void {
+        return objc.msgSend(_self, "panel:directoryDidChange:", void, .{ _sender, _path });
+    }
+
+    pub fn panelCompareFilenameWithCaseSensitive(
+        _self: *@This(),
+        _sender: ?objc.Id,
+        _name1: ?*foundation.String,
+        _name2: ?*foundation.String,
+        _caseSensitive: objc.BOOL,
+    ) foundation.ComparisonResult {
+        return objc.msgSend(_self, "panel:compareFilename:with:caseSensitive:", foundation.ComparisonResult, .{
+            _sender,
+            _name1,
+            _name2,
+            _caseSensitive,
+        });
+    }
+
+    pub fn panelShouldShowFilename(_self: *@This(), _sender: ?objc.Id, _filename: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "panel:shouldShowFilename:", objc.BOOL, .{ _sender, _filename });
+    }
+
+    pub fn textStorageWillProcessEditing(_self: *@This(), _notification: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "textStorageWillProcessEditing:", void, .{_notification});
+    }
+
+    pub fn textStorageDidProcessEditing(_self: *@This(), _notification: ?*foundation.Notification) void {
+        return objc.msgSend(_self, "textStorageDidProcessEditing:", void, .{_notification});
+    }
+
+    pub fn validateToolbarItem(_self: *@This(), _item: ?*app_kit.ToolbarItem) objc.BOOL {
+        return objc.msgSend(_self, "validateToolbarItem:", objc.BOOL, .{_item});
+    }
+
+    pub fn tableViewWriteRowsToPasteboard(_self: *@This(), _tableView: ?*app_kit.TableView, _rows: ?*foundation.Array, _pboard: ?*app_kit.Pasteboard) objc.BOOL {
+        return objc.msgSend(_self, "tableView:writeRows:toPasteboard:", objc.BOOL, .{ _tableView, _rows, _pboard });
+    }
+
+    pub fn applicationDelegateHandlesKey(_self: *@This(), _sender: ?*app_kit.Application, _key: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "application:delegateHandlesKey:", objc.BOOL, .{ _sender, _key });
+    }
+
     pub fn encodeWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
         return objc.msgSend(_self, "encodeWithCoder:", void, .{_coder});
     }
 
     pub fn initWithCoder(_self: *@This(), _coder: ?*foundation.Coder) *@This() {
         return objc.msgSend(_self, "initWithCoder:", *@This(), .{_coder});
+    }
+
+    pub fn insertText(_self: *@This(), _insertString: ?objc.Id) void {
+        return objc.msgSend(_self, "insertText:", void, .{_insertString});
+    }
+
+    pub fn doCommandBySelector(_self: *@This(), _selector: objc.Selector) void {
+        return objc.msgSend(_self, "doCommandBySelector:", void, .{_selector});
+    }
+
+    pub fn moveForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveForward:", void, .{_sender});
+    }
+
+    pub fn moveRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveRight:", void, .{_sender});
+    }
+
+    pub fn moveBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveBackward:", void, .{_sender});
+    }
+
+    pub fn moveLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveLeft:", void, .{_sender});
+    }
+
+    pub fn moveUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveUp:", void, .{_sender});
+    }
+
+    pub fn moveDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveDown:", void, .{_sender});
+    }
+
+    pub fn moveWordForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordForward:", void, .{_sender});
+    }
+
+    pub fn moveWordBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordBackward:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfParagraph:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfParagraph:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfDocument:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfDocument:", void, .{_sender});
+    }
+
+    pub fn pageDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageDown:", void, .{_sender});
+    }
+
+    pub fn pageUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageUp:", void, .{_sender});
+    }
+
+    pub fn centerSelectionInVisibleArea(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "centerSelectionInVisibleArea:", void, .{_sender});
+    }
+
+    pub fn moveBackwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveBackwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveForwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveForwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordForwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordForwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordBackwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordBackwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveUpAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveUpAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveDownAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveDownAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfParagraphAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfParagraphAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfParagraphAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfParagraphAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToEndOfDocumentAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToEndOfDocumentAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToBeginningOfDocumentAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToBeginningOfDocumentAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn pageDownAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageDownAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn pageUpAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "pageUpAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveParagraphForwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveParagraphForwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveParagraphBackwardAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveParagraphBackwardAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordRight:", void, .{_sender});
+    }
+
+    pub fn moveWordLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordLeft:", void, .{_sender});
+    }
+
+    pub fn moveRightAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveRightAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveLeftAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveLeftAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordRightAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordRightAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveWordLeftAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveWordLeftAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToLeftEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToLeftEndOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToRightEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToRightEndOfLine:", void, .{_sender});
+    }
+
+    pub fn moveToLeftEndOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToLeftEndOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn moveToRightEndOfLineAndModifySelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "moveToRightEndOfLineAndModifySelection:", void, .{_sender});
+    }
+
+    pub fn scrollPageUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollPageUp:", void, .{_sender});
+    }
+
+    pub fn scrollPageDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollPageDown:", void, .{_sender});
+    }
+
+    pub fn scrollLineUp(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollLineUp:", void, .{_sender});
+    }
+
+    pub fn scrollLineDown(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollLineDown:", void, .{_sender});
+    }
+
+    pub fn scrollToBeginningOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollToBeginningOfDocument:", void, .{_sender});
+    }
+
+    pub fn scrollToEndOfDocument(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "scrollToEndOfDocument:", void, .{_sender});
+    }
+
+    pub fn transpose(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "transpose:", void, .{_sender});
+    }
+
+    pub fn transposeWords(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "transposeWords:", void, .{_sender});
+    }
+
+    pub fn selectAll(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectAll:", void, .{_sender});
+    }
+
+    pub fn selectParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectParagraph:", void, .{_sender});
+    }
+
+    pub fn selectLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectLine:", void, .{_sender});
+    }
+
+    pub fn selectWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectWord:", void, .{_sender});
+    }
+
+    pub fn indent(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "indent:", void, .{_sender});
+    }
+
+    pub fn insertTab(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertTab:", void, .{_sender});
+    }
+
+    pub fn insertBacktab(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertBacktab:", void, .{_sender});
+    }
+
+    pub fn insertNewline(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertNewline:", void, .{_sender});
+    }
+
+    pub fn insertParagraphSeparator(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertParagraphSeparator:", void, .{_sender});
+    }
+
+    pub fn insertNewlineIgnoringFieldEditor(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertNewlineIgnoringFieldEditor:", void, .{_sender});
+    }
+
+    pub fn insertTabIgnoringFieldEditor(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertTabIgnoringFieldEditor:", void, .{_sender});
+    }
+
+    pub fn insertLineBreak(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertLineBreak:", void, .{_sender});
+    }
+
+    pub fn insertContainerBreak(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertContainerBreak:", void, .{_sender});
+    }
+
+    pub fn insertSingleQuoteIgnoringSubstitution(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertSingleQuoteIgnoringSubstitution:", void, .{_sender});
+    }
+
+    pub fn insertDoubleQuoteIgnoringSubstitution(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "insertDoubleQuoteIgnoringSubstitution:", void, .{_sender});
+    }
+
+    pub fn changeCaseOfLetter(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "changeCaseOfLetter:", void, .{_sender});
+    }
+
+    pub fn uppercaseWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "uppercaseWord:", void, .{_sender});
+    }
+
+    pub fn lowercaseWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "lowercaseWord:", void, .{_sender});
+    }
+
+    pub fn capitalizeWord(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "capitalizeWord:", void, .{_sender});
+    }
+
+    pub fn deleteForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteForward:", void, .{_sender});
+    }
+
+    pub fn deleteBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteBackward:", void, .{_sender});
+    }
+
+    pub fn deleteBackwardByDecomposingPreviousCharacter(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteBackwardByDecomposingPreviousCharacter:", void, .{_sender});
+    }
+
+    pub fn deleteWordForward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteWordForward:", void, .{_sender});
+    }
+
+    pub fn deleteWordBackward(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteWordBackward:", void, .{_sender});
+    }
+
+    pub fn deleteToBeginningOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToBeginningOfLine:", void, .{_sender});
+    }
+
+    pub fn deleteToEndOfLine(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToEndOfLine:", void, .{_sender});
+    }
+
+    pub fn deleteToBeginningOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToBeginningOfParagraph:", void, .{_sender});
+    }
+
+    pub fn deleteToEndOfParagraph(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToEndOfParagraph:", void, .{_sender});
+    }
+
+    pub fn yank(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "yank:", void, .{_sender});
+    }
+
+    pub fn complete(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "complete:", void, .{_sender});
+    }
+
+    pub fn setMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "setMark:", void, .{_sender});
+    }
+
+    pub fn deleteToMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "deleteToMark:", void, .{_sender});
+    }
+
+    pub fn selectToMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "selectToMark:", void, .{_sender});
+    }
+
+    pub fn swapWithMark(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "swapWithMark:", void, .{_sender});
+    }
+
+    pub fn cancelOperation(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "cancelOperation:", void, .{_sender});
+    }
+
+    pub fn makeBaseWritingDirectionNatural(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeBaseWritingDirectionNatural:", void, .{_sender});
+    }
+
+    pub fn makeBaseWritingDirectionLeftToRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeBaseWritingDirectionLeftToRight:", void, .{_sender});
+    }
+
+    pub fn makeBaseWritingDirectionRightToLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeBaseWritingDirectionRightToLeft:", void, .{_sender});
+    }
+
+    pub fn makeTextWritingDirectionNatural(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeTextWritingDirectionNatural:", void, .{_sender});
+    }
+
+    pub fn makeTextWritingDirectionLeftToRight(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeTextWritingDirectionLeftToRight:", void, .{_sender});
+    }
+
+    pub fn makeTextWritingDirectionRightToLeft(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "makeTextWritingDirectionRightToLeft:", void, .{_sender});
+    }
+
+    pub fn quickLookPreviewItems(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "quickLookPreviewItems:", void, .{_sender});
+    }
+
+    pub fn showContextMenuForSelection(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "showContextMenuForSelection:", void, .{_sender});
+    }
+
+    pub fn restoreUserActivityState(_self: *@This(), _userActivity: ?*foundation.UserActivity) void {
+        return objc.msgSend(_self, "restoreUserActivityState:", void, .{_userActivity});
+    }
+
+    pub fn touchBar(_self: *@This()) ?*app_kit.TouchBar {
+        return objc.msgSend(_self, "touchBar", ?*app_kit.TouchBar, .{});
     }
 
     pub fn tryToPerformWith(_self: *@This(), _action: objc.Selector, _object: ?objc.Id) objc.BOOL {
@@ -3905,20 +8710,101 @@ pub const EditVoiceShortcutViewController = opaque {
         return objc.msgSend(_self, "setMenu:", void, .{_menu});
     }
 
-    pub fn discardEditing(_self: *@This()) void {
-        return objc.msgSend(_self, "discardEditing", void, .{});
+    pub fn undoManager(_self: *@This()) ?*foundation.UndoManager {
+        return objc.msgSend(_self, "undoManager", ?*foundation.UndoManager, .{});
     }
 
-    pub fn commitEditing(_self: *@This()) objc.BOOL {
-        return objc.msgSend(_self, "commitEditing", objc.BOOL, .{});
+    pub fn validateProposedFirstResponderForEvent(_self: *@This(), _responder: ?*app_kit.Responder, _event: ?*app_kit.Event) objc.BOOL {
+        return objc.msgSend(_self, "validateProposedFirstResponder:forEvent:", objc.BOOL, .{ _responder, _event });
     }
 
-    pub fn commitEditingWithDelegateDidCommitSelectorContextInfo(_self: *@This(), _delegate: ?objc.Id, _didCommitSelector: objc.Selector, _contextInfo: ?*anyopaque) void {
-        return objc.msgSend(_self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", void, .{ _delegate, _didCommitSelector, _contextInfo });
+    pub fn presentErrorModalForWindowDelegateDidPresentSelectorContextInfo(
+        _self: *@This(),
+        _error: ?*foundation.Error,
+        _window: ?*app_kit.Window,
+        _delegate: ?objc.Id,
+        _didPresentSelector: objc.Selector,
+        _contextInfo: ?*anyopaque,
+    ) void {
+        return objc.msgSend(_self, "presentError:modalForWindow:delegate:didPresentSelector:contextInfo:", void, .{
+            _error,
+            _window,
+            _delegate,
+            _didPresentSelector,
+            _contextInfo,
+        });
     }
 
-    pub fn commitEditingAndReturnError(_self: *@This(), _error: ?*?*foundation.Error) objc.BOOL {
-        return objc.msgSend(_self, "commitEditingAndReturnError:", objc.BOOL, .{_error});
+    pub fn presentError(_self: *@This(), _error: ?*foundation.Error) objc.BOOL {
+        return objc.msgSend(_self, "presentError:", objc.BOOL, .{_error});
+    }
+
+    pub fn willPresentError(_self: *@This(), _error: ?*foundation.Error) ?*foundation.Error {
+        return objc.msgSend(_self, "willPresentError:", ?*foundation.Error, .{_error});
+    }
+
+    pub fn performTextFinderAction(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "performTextFinderAction:", void, .{_sender});
+    }
+
+    pub fn newWindowForTab(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "newWindowForTab:", void, .{_sender});
+    }
+
+    pub fn performMnemonic(_self: *@This(), _string: ?*foundation.String) objc.BOOL {
+        return objc.msgSend(_self, "performMnemonic:", objc.BOOL, .{_string});
+    }
+
+    pub fn updateUserActivityState(_self: *@This(), _userActivity: ?*foundation.UserActivity) void {
+        return objc.msgSend(_self, "updateUserActivityState:", void, .{_userActivity});
+    }
+
+    pub fn userActivity(_self: *@This()) ?*foundation.UserActivity {
+        return objc.msgSend(_self, "userActivity", ?*foundation.UserActivity, .{});
+    }
+
+    pub fn setUserActivity(_self: *@This(), _userActivity: ?*foundation.UserActivity) void {
+        return objc.msgSend(_self, "setUserActivity:", void, .{_userActivity});
+    }
+
+    pub fn makeTouchBar(_self: *@This()) ?*app_kit.TouchBar {
+        return objc.msgSend(_self, "makeTouchBar", ?*app_kit.TouchBar, .{});
+    }
+
+    pub fn setTouchBar(_self: *@This(), _touchBar: ?*app_kit.TouchBar) void {
+        return objc.msgSend(_self, "setTouchBar:", void, .{_touchBar});
+    }
+
+    pub fn interfaceStyle(_self: *@This()) app_kit.InterfaceStyle {
+        return objc.msgSend(_self, "interfaceStyle", app_kit.InterfaceStyle, .{});
+    }
+
+    pub fn setInterfaceStyle(_self: *@This(), _interfaceStyle: app_kit.InterfaceStyle) void {
+        return objc.msgSend(_self, "setInterfaceStyle:", void, .{_interfaceStyle});
+    }
+
+    pub fn encodeRestorableStateWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "encodeRestorableStateWithCoder:", void, .{_coder});
+    }
+
+    pub fn encodeRestorableStateWithCoderBackgroundQueue(_self: *@This(), _coder: ?*foundation.Coder, _queue: ?*foundation.OperationQueue) void {
+        return objc.msgSend(_self, "encodeRestorableStateWithCoder:backgroundQueue:", void, .{ _coder, _queue });
+    }
+
+    pub fn restoreStateWithCoder(_self: *@This(), _coder: ?*foundation.Coder) void {
+        return objc.msgSend(_self, "restoreStateWithCoder:", void, .{_coder});
+    }
+
+    pub fn invalidateRestorableState(_self: *@This()) void {
+        return objc.msgSend(_self, "invalidateRestorableState", void, .{});
+    }
+
+    pub fn allowedClassesForRestorableStateKeyPath(_keyPath: ?*foundation.String) ?*anyopaque {
+        return objc.msgSend(Internal.class(), "allowedClassesForRestorableStateKeyPath:", ?*anyopaque, .{_keyPath});
+    }
+
+    pub fn restorableStateKeyPaths() ?*anyopaque {
+        return objc.msgSend(Internal.class(), "restorableStateKeyPaths", ?*anyopaque, .{});
     }
 
     pub fn prepareForSegueSender(_self: *@This(), _segue: ?*app_kit.StoryboardSegue, _sender: ?objc.Id) void {
@@ -3939,6 +8825,10 @@ pub const EditVoiceShortcutViewController = opaque {
 
     pub fn setIdentifier(_self: *@This(), _identifier: app_kit.UserInterfaceItemIdentifier) void {
         return objc.msgSend(_self, "setIdentifier:", void, .{_identifier});
+    }
+
+    pub fn beginRequestWithExtensionContext(_self: *@This(), _context: ?*foundation.ExtensionContext) void {
+        return objc.msgSend(_self, "beginRequestWithExtensionContext:", void, .{_context});
     }
 
     pub fn initWithNibNameBundle(_self: *@This(), _nibNameOrNil: app_kit.NibName, _nibBundleOrNil: ?*foundation.Bundle) *@This() {
@@ -4031,6 +8921,153 @@ pub const EditVoiceShortcutViewController = opaque {
 
     pub fn setPreferredContentSize(_self: *@This(), _preferredContentSize: foundation.Size) void {
         return objc.msgSend(_self, "setPreferredContentSize:", void, .{_preferredContentSize});
+    }
+
+    pub fn presentViewControllerAnimator(_self: *@This(), _viewController: ?*app_kit.ViewController, _animator: ?*anyopaque) void {
+        return objc.msgSend(_self, "presentViewController:animator:", void, .{ _viewController, _animator });
+    }
+
+    pub fn dismissViewController(_self: *@This(), _viewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "dismissViewController:", void, .{_viewController});
+    }
+
+    pub fn dismissController(_self: *@This(), _sender: ?objc.Id) void {
+        return objc.msgSend(_self, "dismissController:", void, .{_sender});
+    }
+
+    pub fn presentedViewControllers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "presentedViewControllers", ?*anyopaque, .{});
+    }
+
+    pub fn presentingViewController(_self: *@This()) ?*app_kit.ViewController {
+        return objc.msgSend(_self, "presentingViewController", ?*app_kit.ViewController, .{});
+    }
+
+    pub fn presentViewControllerAsSheet(_self: *@This(), _viewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "presentViewControllerAsSheet:", void, .{_viewController});
+    }
+
+    pub fn presentViewControllerAsModalWindow(_self: *@This(), _viewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "presentViewControllerAsModalWindow:", void, .{_viewController});
+    }
+
+    pub fn presentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(
+        _self: *@This(),
+        _viewController: ?*app_kit.ViewController,
+        _positioningRect: foundation.Rect,
+        _positioningView: ?*app_kit.View,
+        _preferredEdge: foundation.RectEdge,
+        _behavior: app_kit.PopoverBehavior,
+    ) void {
+        return objc.msgSend(_self, "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:", void, .{
+            _viewController,
+            _positioningRect,
+            _positioningView,
+            _preferredEdge,
+            _behavior,
+        });
+    }
+
+    pub fn presentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(
+        _self: *@This(),
+        _viewController: ?*app_kit.ViewController,
+        _positioningRect: foundation.Rect,
+        _positioningView: ?*app_kit.View,
+        _preferredEdge: foundation.RectEdge,
+        _behavior: app_kit.PopoverBehavior,
+        _hasFullSizeContent: objc.BOOL,
+    ) void {
+        return objc.msgSend(_self, "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:", void, .{
+            _viewController,
+            _positioningRect,
+            _positioningView,
+            _preferredEdge,
+            _behavior,
+            _hasFullSizeContent,
+        });
+    }
+
+    pub fn transitionFromViewControllerToViewControllerOptionsCompletionHandler(
+        _self: *@This(),
+        _fromViewController: ?*app_kit.ViewController,
+        _toViewController: ?*app_kit.ViewController,
+        _options: app_kit.ViewControllerTransitionOptions,
+        _completion: *const fn () callconv(.C) void,
+    ) void {
+        return objc.msgSend(_self, "transitionFromViewController:toViewController:options:completionHandler:", void, .{
+            _fromViewController,
+            _toViewController,
+            _options,
+            _completion,
+        });
+    }
+
+    pub fn addChildViewController(_self: *@This(), _childViewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "addChildViewController:", void, .{_childViewController});
+    }
+
+    pub fn removeFromParentViewController(_self: *@This()) void {
+        return objc.msgSend(_self, "removeFromParentViewController", void, .{});
+    }
+
+    pub fn insertChildViewControllerAtIndex(_self: *@This(), _childViewController: ?*app_kit.ViewController, _index: objc.NSInteger) void {
+        return objc.msgSend(_self, "insertChildViewController:atIndex:", void, .{ _childViewController, _index });
+    }
+
+    pub fn removeChildViewControllerAtIndex(_self: *@This(), _index: objc.NSInteger) void {
+        return objc.msgSend(_self, "removeChildViewControllerAtIndex:", void, .{_index});
+    }
+
+    pub fn preferredContentSizeDidChangeForViewController(_self: *@This(), _viewController: ?*app_kit.ViewController) void {
+        return objc.msgSend(_self, "preferredContentSizeDidChangeForViewController:", void, .{_viewController});
+    }
+
+    pub fn viewWillTransitionToSize(_self: *@This(), _newSize: foundation.Size) void {
+        return objc.msgSend(_self, "viewWillTransitionToSize:", void, .{_newSize});
+    }
+
+    pub fn parentViewController(_self: *@This()) ?*app_kit.ViewController {
+        return objc.msgSend(_self, "parentViewController", ?*app_kit.ViewController, .{});
+    }
+
+    pub fn childViewControllers(_self: *@This()) ?*anyopaque {
+        return objc.msgSend(_self, "childViewControllers", ?*anyopaque, .{});
+    }
+
+    pub fn setChildViewControllers(_self: *@This(), _childViewControllers: ?*anyopaque) void {
+        return objc.msgSend(_self, "setChildViewControllers:", void, .{_childViewControllers});
+    }
+
+    pub fn storyboard(_self: *@This()) ?*app_kit.Storyboard {
+        return objc.msgSend(_self, "storyboard", ?*app_kit.Storyboard, .{});
+    }
+
+    pub fn extensionContext(_self: *@This()) ?*foundation.ExtensionContext {
+        return objc.msgSend(_self, "extensionContext", ?*foundation.ExtensionContext, .{});
+    }
+
+    pub fn sourceItemView(_self: *@This()) ?*app_kit.View {
+        return objc.msgSend(_self, "sourceItemView", ?*app_kit.View, .{});
+    }
+
+    pub fn setSourceItemView(_self: *@This(), _sourceItemView: ?*app_kit.View) void {
+        return objc.msgSend(_self, "setSourceItemView:", void, .{_sourceItemView});
+    }
+
+    pub fn preferredScreenOrigin(_self: *@This()) foundation.Point {
+        return objc.msgSend(_self, "preferredScreenOrigin", foundation.Point, .{});
+    }
+
+    pub fn setPreferredScreenOrigin(_self: *@This(), _preferredScreenOrigin: foundation.Point) void {
+        return objc.msgSend(_self, "setPreferredScreenOrigin:", void, .{_preferredScreenOrigin});
+    }
+
+    pub fn preferredMinimumSize(_self: *@This()) foundation.Size {
+        return objc.msgSend(_self, "preferredMinimumSize", foundation.Size, .{});
+    }
+
+    pub fn preferredMaximumSize(_self: *@This()) foundation.Size {
+        return objc.msgSend(_self, "preferredMaximumSize", foundation.Size, .{});
     }
 
     pub fn initWithVoiceShortcut(_self: *@This(), _voiceShortcut: ?*intents.VoiceShortcut) *@This() {

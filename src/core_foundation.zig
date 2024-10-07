@@ -14,7 +14,7 @@ pub const HashCode = u64;
 
 pub const Index = i64;
 
-pub const TypeRef = ?*anyopaque;
+pub const TypeRef = ?*const anyopaque;
 
 pub const __CFString = extern struct {};
 
@@ -49,9 +49,9 @@ pub const __CFAllocator = extern struct {};
 
 pub const AllocatorRef = __CFAllocator;
 
-pub const AllocatorRetainCallBack = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
+pub const AllocatorRetainCallBack = ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque;
 
-pub const AllocatorReleaseCallBack = ?*const fn (?*anyopaque) callconv(.C) void;
+pub const AllocatorReleaseCallBack = ?*const fn (?*const anyopaque) callconv(.C) void;
 
 pub const AllocatorCopyDescriptionCallBack = StringRef;
 
@@ -173,9 +173,9 @@ pub const getAllocator = CFGetAllocator;
 extern "CoreFoundation" fn CFMakeCollectable(cf: TypeRef) callconv(.C) TypeRef;
 pub const makeCollectable = CFMakeCollectable;
 
-pub const ArrayRetainCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) ?*anyopaque;
+pub const ArrayRetainCallBack = ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) ?*const anyopaque;
 
-pub const ArrayReleaseCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) void;
+pub const ArrayReleaseCallBack = ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) void;
 
 pub const ArrayCopyDescriptionCallBack = StringRef;
 
@@ -189,7 +189,7 @@ pub const ArrayCallBacks = extern struct {
     equal: ArrayEqualCallBack,
 };
 
-pub const ArrayApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const ArrayApplierFunction = ?*const fn (?*const anyopaque, ?*anyopaque) callconv(.C) void;
 
 pub const __CFArray = extern struct {};
 
@@ -202,16 +202,16 @@ pub const arrayGetTypeID = CFArrayGetTypeID;
 
 extern "CoreFoundation" fn CFArrayCreate(
     allocator: AllocatorRef,
-    values: ?*?*anyopaque,
+    values: ?*?*const anyopaque,
     numValues: Index,
-    callBacks: ?*ArrayCallBacks,
+    callBacks: ?*const ArrayCallBacks,
 ) callconv(.C) ArrayRef;
 pub const arrayCreate = CFArrayCreate;
 
 extern "CoreFoundation" fn CFArrayCreateCopy(allocator: AllocatorRef, theArray: ArrayRef) callconv(.C) ArrayRef;
 pub const arrayCreateCopy = CFArrayCreateCopy;
 
-extern "CoreFoundation" fn CFArrayCreateMutable(allocator: AllocatorRef, capacity: Index, callBacks: ?*ArrayCallBacks) callconv(.C) MutableArrayRef;
+extern "CoreFoundation" fn CFArrayCreateMutable(allocator: AllocatorRef, capacity: Index, callBacks: ?*const ArrayCallBacks) callconv(.C) MutableArrayRef;
 pub const arrayCreateMutable = CFArrayCreateMutable;
 
 extern "CoreFoundation" fn CFArrayCreateMutableCopy(allocator: AllocatorRef, capacity: Index, theArray: ArrayRef) callconv(.C) MutableArrayRef;
@@ -220,16 +220,16 @@ pub const arrayCreateMutableCopy = CFArrayCreateMutableCopy;
 extern "CoreFoundation" fn CFArrayGetCount(theArray: ArrayRef) callconv(.C) Index;
 pub const arrayGetCount = CFArrayGetCount;
 
-extern "CoreFoundation" fn CFArrayGetCountOfValue(theArray: ArrayRef, range: Range, value: ?*anyopaque) callconv(.C) Index;
+extern "CoreFoundation" fn CFArrayGetCountOfValue(theArray: ArrayRef, range: Range, value: ?*const anyopaque) callconv(.C) Index;
 pub const arrayGetCountOfValue = CFArrayGetCountOfValue;
 
-extern "CoreFoundation" fn CFArrayContainsValue(theArray: ArrayRef, range: Range, value: ?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFArrayContainsValue(theArray: ArrayRef, range: Range, value: ?*const anyopaque) callconv(.C) objc.Boolean;
 pub const arrayContainsValue = CFArrayContainsValue;
 
-extern "CoreFoundation" fn CFArrayGetValueAtIndex(theArray: ArrayRef, idx: Index) callconv(.C) ?*anyopaque;
+extern "CoreFoundation" fn CFArrayGetValueAtIndex(theArray: ArrayRef, idx: Index) callconv(.C) ?*const anyopaque;
 pub const arrayGetValueAtIndex = CFArrayGetValueAtIndex;
 
-extern "CoreFoundation" fn CFArrayGetValues(theArray: ArrayRef, range: Range, values: ?*?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFArrayGetValues(theArray: ArrayRef, range: Range, values: ?*?*const anyopaque) callconv(.C) void;
 pub const arrayGetValues = CFArrayGetValues;
 
 extern "CoreFoundation" fn CFArrayApplyFunction(
@@ -240,28 +240,28 @@ extern "CoreFoundation" fn CFArrayApplyFunction(
 ) callconv(.C) void;
 pub const arrayApplyFunction = CFArrayApplyFunction;
 
-extern "CoreFoundation" fn CFArrayGetFirstIndexOfValue(theArray: ArrayRef, range: Range, value: ?*anyopaque) callconv(.C) Index;
+extern "CoreFoundation" fn CFArrayGetFirstIndexOfValue(theArray: ArrayRef, range: Range, value: ?*const anyopaque) callconv(.C) Index;
 pub const arrayGetFirstIndexOfValue = CFArrayGetFirstIndexOfValue;
 
-extern "CoreFoundation" fn CFArrayGetLastIndexOfValue(theArray: ArrayRef, range: Range, value: ?*anyopaque) callconv(.C) Index;
+extern "CoreFoundation" fn CFArrayGetLastIndexOfValue(theArray: ArrayRef, range: Range, value: ?*const anyopaque) callconv(.C) Index;
 pub const arrayGetLastIndexOfValue = CFArrayGetLastIndexOfValue;
 
 extern "CoreFoundation" fn CFArrayBSearchValues(
     theArray: ArrayRef,
     range: Range,
-    value: ?*anyopaque,
+    value: ?*const anyopaque,
     comparator: ComparatorFunction,
     context: ?*anyopaque,
 ) callconv(.C) Index;
 pub const arrayBSearchValues = CFArrayBSearchValues;
 
-extern "CoreFoundation" fn CFArrayAppendValue(theArray: MutableArrayRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFArrayAppendValue(theArray: MutableArrayRef, value: ?*const anyopaque) callconv(.C) void;
 pub const arrayAppendValue = CFArrayAppendValue;
 
-extern "CoreFoundation" fn CFArrayInsertValueAtIndex(theArray: MutableArrayRef, idx: Index, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFArrayInsertValueAtIndex(theArray: MutableArrayRef, idx: Index, value: ?*const anyopaque) callconv(.C) void;
 pub const arrayInsertValueAtIndex = CFArrayInsertValueAtIndex;
 
-extern "CoreFoundation" fn CFArraySetValueAtIndex(theArray: MutableArrayRef, idx: Index, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFArraySetValueAtIndex(theArray: MutableArrayRef, idx: Index, value: ?*const anyopaque) callconv(.C) void;
 pub const arraySetValueAtIndex = CFArraySetValueAtIndex;
 
 extern "CoreFoundation" fn CFArrayRemoveValueAtIndex(theArray: MutableArrayRef, idx: Index) callconv(.C) void;
@@ -273,7 +273,7 @@ pub const arrayRemoveAllValues = CFArrayRemoveAllValues;
 extern "CoreFoundation" fn CFArrayReplaceValues(
     theArray: MutableArrayRef,
     range: Range,
-    newValues: ?*?*anyopaque,
+    newValues: ?*?*const anyopaque,
     newCount: Index,
 ) callconv(.C) void;
 pub const arrayReplaceValues = CFArrayReplaceValues;
@@ -292,9 +292,9 @@ pub const arraySortValues = CFArraySortValues;
 extern "CoreFoundation" fn CFArrayAppendArray(theArray: MutableArrayRef, otherArray: ArrayRef, otherRange: Range) callconv(.C) void;
 pub const arrayAppendArray = CFArrayAppendArray;
 
-pub const BagRetainCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) ?*anyopaque;
+pub const BagRetainCallBack = ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) ?*const anyopaque;
 
-pub const BagReleaseCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) void;
+pub const BagReleaseCallBack = ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) void;
 
 pub const BagCopyDescriptionCallBack = StringRef;
 
@@ -311,7 +311,7 @@ pub const BagCallBacks = extern struct {
     hash: BagHashCallBack,
 };
 
-pub const BagApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const BagApplierFunction = ?*const fn (?*const anyopaque, ?*anyopaque) callconv(.C) void;
 
 pub const __CFBag = extern struct {};
 
@@ -324,16 +324,16 @@ pub const bagGetTypeID = CFBagGetTypeID;
 
 extern "CoreFoundation" fn CFBagCreate(
     allocator: AllocatorRef,
-    values: ?*?*anyopaque,
+    values: ?*?*const anyopaque,
     numValues: Index,
-    callBacks: ?*BagCallBacks,
+    callBacks: ?*const BagCallBacks,
 ) callconv(.C) BagRef;
 pub const bagCreate = CFBagCreate;
 
 extern "CoreFoundation" fn CFBagCreateCopy(allocator: AllocatorRef, theBag: BagRef) callconv(.C) BagRef;
 pub const bagCreateCopy = CFBagCreateCopy;
 
-extern "CoreFoundation" fn CFBagCreateMutable(allocator: AllocatorRef, capacity: Index, callBacks: ?*BagCallBacks) callconv(.C) MutableBagRef;
+extern "CoreFoundation" fn CFBagCreateMutable(allocator: AllocatorRef, capacity: Index, callBacks: ?*const BagCallBacks) callconv(.C) MutableBagRef;
 pub const bagCreateMutable = CFBagCreateMutable;
 
 extern "CoreFoundation" fn CFBagCreateMutableCopy(allocator: AllocatorRef, capacity: Index, theBag: BagRef) callconv(.C) MutableBagRef;
@@ -342,34 +342,34 @@ pub const bagCreateMutableCopy = CFBagCreateMutableCopy;
 extern "CoreFoundation" fn CFBagGetCount(theBag: BagRef) callconv(.C) Index;
 pub const bagGetCount = CFBagGetCount;
 
-extern "CoreFoundation" fn CFBagGetCountOfValue(theBag: BagRef, value: ?*anyopaque) callconv(.C) Index;
+extern "CoreFoundation" fn CFBagGetCountOfValue(theBag: BagRef, value: ?*const anyopaque) callconv(.C) Index;
 pub const bagGetCountOfValue = CFBagGetCountOfValue;
 
-extern "CoreFoundation" fn CFBagContainsValue(theBag: BagRef, value: ?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFBagContainsValue(theBag: BagRef, value: ?*const anyopaque) callconv(.C) objc.Boolean;
 pub const bagContainsValue = CFBagContainsValue;
 
-extern "CoreFoundation" fn CFBagGetValue(theBag: BagRef, value: ?*anyopaque) callconv(.C) ?*anyopaque;
+extern "CoreFoundation" fn CFBagGetValue(theBag: BagRef, value: ?*const anyopaque) callconv(.C) ?*const anyopaque;
 pub const bagGetValue = CFBagGetValue;
 
-extern "CoreFoundation" fn CFBagGetValueIfPresent(theBag: BagRef, candidate: ?*anyopaque, value: ?*?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFBagGetValueIfPresent(theBag: BagRef, candidate: ?*const anyopaque, value: ?*?*const anyopaque) callconv(.C) objc.Boolean;
 pub const bagGetValueIfPresent = CFBagGetValueIfPresent;
 
-extern "CoreFoundation" fn CFBagGetValues(theBag: BagRef, values: ?*?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFBagGetValues(theBag: BagRef, values: ?*?*const anyopaque) callconv(.C) void;
 pub const bagGetValues = CFBagGetValues;
 
 extern "CoreFoundation" fn CFBagApplyFunction(theBag: BagRef, applier: BagApplierFunction, context: ?*anyopaque) callconv(.C) void;
 pub const bagApplyFunction = CFBagApplyFunction;
 
-extern "CoreFoundation" fn CFBagAddValue(theBag: MutableBagRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFBagAddValue(theBag: MutableBagRef, value: ?*const anyopaque) callconv(.C) void;
 pub const bagAddValue = CFBagAddValue;
 
-extern "CoreFoundation" fn CFBagReplaceValue(theBag: MutableBagRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFBagReplaceValue(theBag: MutableBagRef, value: ?*const anyopaque) callconv(.C) void;
 pub const bagReplaceValue = CFBagReplaceValue;
 
-extern "CoreFoundation" fn CFBagSetValue(theBag: MutableBagRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFBagSetValue(theBag: MutableBagRef, value: ?*const anyopaque) callconv(.C) void;
 pub const bagSetValue = CFBagSetValue;
 
-extern "CoreFoundation" fn CFBagRemoveValue(theBag: MutableBagRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFBagRemoveValue(theBag: MutableBagRef, value: ?*const anyopaque) callconv(.C) void;
 pub const bagRemoveValue = CFBagRemoveValue;
 
 extern "CoreFoundation" fn CFBagRemoveAllValues(theBag: MutableBagRef) callconv(.C) void;
@@ -378,20 +378,20 @@ pub const bagRemoveAllValues = CFBagRemoveAllValues;
 pub const BinaryHeapCompareContext = extern struct {
     version: Index,
     info: ?*anyopaque,
-    retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
-    release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
+    retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
+    release: ?*const fn (?*const anyopaque) callconv(.C) void,
+    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
 };
 
 pub const BinaryHeapCallBacks = extern struct {
     version: Index,
-    retain: ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) ?*anyopaque,
-    release: ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
-    compare: ?*const fn (?*anyopaque, ?*anyopaque, ?*anyopaque) callconv(.C) ComparisonResult,
+    retain: ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) ?*const anyopaque,
+    release: ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) void,
+    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
+    compare: ?*const fn (?*const anyopaque, ?*const anyopaque, ?*anyopaque) callconv(.C) ComparisonResult,
 };
 
-pub const BinaryHeapApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const BinaryHeapApplierFunction = ?*const fn (?*const anyopaque, ?*anyopaque) callconv(.C) void;
 
 pub const __CFBinaryHeap = extern struct {};
 
@@ -403,8 +403,8 @@ pub const binaryHeapGetTypeID = CFBinaryHeapGetTypeID;
 extern "CoreFoundation" fn CFBinaryHeapCreate(
     allocator: AllocatorRef,
     capacity: Index,
-    callBacks: ?*BinaryHeapCallBacks,
-    compareContext: ?*BinaryHeapCompareContext,
+    callBacks: ?*const BinaryHeapCallBacks,
+    compareContext: ?*const BinaryHeapCompareContext,
 ) callconv(.C) BinaryHeapRef;
 pub const binaryHeapCreate = CFBinaryHeapCreate;
 
@@ -414,25 +414,25 @@ pub const binaryHeapCreateCopy = CFBinaryHeapCreateCopy;
 extern "CoreFoundation" fn CFBinaryHeapGetCount(heap: BinaryHeapRef) callconv(.C) Index;
 pub const binaryHeapGetCount = CFBinaryHeapGetCount;
 
-extern "CoreFoundation" fn CFBinaryHeapGetCountOfValue(heap: BinaryHeapRef, value: ?*anyopaque) callconv(.C) Index;
+extern "CoreFoundation" fn CFBinaryHeapGetCountOfValue(heap: BinaryHeapRef, value: ?*const anyopaque) callconv(.C) Index;
 pub const binaryHeapGetCountOfValue = CFBinaryHeapGetCountOfValue;
 
-extern "CoreFoundation" fn CFBinaryHeapContainsValue(heap: BinaryHeapRef, value: ?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFBinaryHeapContainsValue(heap: BinaryHeapRef, value: ?*const anyopaque) callconv(.C) objc.Boolean;
 pub const binaryHeapContainsValue = CFBinaryHeapContainsValue;
 
-extern "CoreFoundation" fn CFBinaryHeapGetMinimum(heap: BinaryHeapRef) callconv(.C) ?*anyopaque;
+extern "CoreFoundation" fn CFBinaryHeapGetMinimum(heap: BinaryHeapRef) callconv(.C) ?*const anyopaque;
 pub const binaryHeapGetMinimum = CFBinaryHeapGetMinimum;
 
-extern "CoreFoundation" fn CFBinaryHeapGetMinimumIfPresent(heap: BinaryHeapRef, value: ?*?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFBinaryHeapGetMinimumIfPresent(heap: BinaryHeapRef, value: ?*?*const anyopaque) callconv(.C) objc.Boolean;
 pub const binaryHeapGetMinimumIfPresent = CFBinaryHeapGetMinimumIfPresent;
 
-extern "CoreFoundation" fn CFBinaryHeapGetValues(heap: BinaryHeapRef, values: ?*?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFBinaryHeapGetValues(heap: BinaryHeapRef, values: ?*?*const anyopaque) callconv(.C) void;
 pub const binaryHeapGetValues = CFBinaryHeapGetValues;
 
 extern "CoreFoundation" fn CFBinaryHeapApplyFunction(heap: BinaryHeapRef, applier: BinaryHeapApplierFunction, context: ?*anyopaque) callconv(.C) void;
 pub const binaryHeapApplyFunction = CFBinaryHeapApplyFunction;
 
-extern "CoreFoundation" fn CFBinaryHeapAddValue(heap: BinaryHeapRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFBinaryHeapAddValue(heap: BinaryHeapRef, value: ?*const anyopaque) callconv(.C) void;
 pub const binaryHeapAddValue = CFBinaryHeapAddValue;
 
 extern "CoreFoundation" fn CFBinaryHeapRemoveMinimumValue(heap: BinaryHeapRef) callconv(.C) void;
@@ -452,7 +452,7 @@ pub const MutableBitVectorRef = __CFBitVector;
 extern "CoreFoundation" fn CFBitVectorGetTypeID() callconv(.C) TypeID;
 pub const bitVectorGetTypeID = CFBitVectorGetTypeID;
 
-extern "CoreFoundation" fn CFBitVectorCreate(allocator: AllocatorRef, bytes: ?*objc.UInt8, numBits: Index) callconv(.C) BitVectorRef;
+extern "CoreFoundation" fn CFBitVectorCreate(allocator: AllocatorRef, bytes: ?*const objc.UInt8, numBits: Index) callconv(.C) BitVectorRef;
 pub const bitVectorCreate = CFBitVectorCreate;
 
 extern "CoreFoundation" fn CFBitVectorCreateCopy(allocator: AllocatorRef, bv: BitVectorRef) callconv(.C) BitVectorRef;
@@ -518,9 +518,9 @@ pub const SwappedFloat64 = extern struct {
     v: objc.uint64_t,
 };
 
-pub const DictionaryRetainCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) ?*anyopaque;
+pub const DictionaryRetainCallBack = ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) ?*const anyopaque;
 
-pub const DictionaryReleaseCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) void;
+pub const DictionaryReleaseCallBack = ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) void;
 
 pub const DictionaryCopyDescriptionCallBack = StringRef;
 
@@ -545,7 +545,7 @@ pub const DictionaryValueCallBacks = extern struct {
     equal: DictionaryEqualCallBack,
 };
 
-pub const DictionaryApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const DictionaryApplierFunction = ?*const fn (?*const anyopaque, ?*const anyopaque, ?*anyopaque) callconv(.C) void;
 
 pub const __CFDictionary = extern struct {};
 
@@ -558,11 +558,11 @@ pub const dictionaryGetTypeID = CFDictionaryGetTypeID;
 
 extern "CoreFoundation" fn CFDictionaryCreate(
     allocator: AllocatorRef,
-    keys: ?*?*anyopaque,
-    values: ?*?*anyopaque,
+    keys: ?*?*const anyopaque,
+    values: ?*?*const anyopaque,
     numValues: Index,
-    keyCallBacks: ?*DictionaryKeyCallBacks,
-    valueCallBacks: ?*DictionaryValueCallBacks,
+    keyCallBacks: ?*const DictionaryKeyCallBacks,
+    valueCallBacks: ?*const DictionaryValueCallBacks,
 ) callconv(.C) DictionaryRef;
 pub const dictionaryCreate = CFDictionaryCreate;
 
@@ -572,8 +572,8 @@ pub const dictionaryCreateCopy = CFDictionaryCreateCopy;
 extern "CoreFoundation" fn CFDictionaryCreateMutable(
     allocator: AllocatorRef,
     capacity: Index,
-    keyCallBacks: ?*DictionaryKeyCallBacks,
-    valueCallBacks: ?*DictionaryValueCallBacks,
+    keyCallBacks: ?*const DictionaryKeyCallBacks,
+    valueCallBacks: ?*const DictionaryValueCallBacks,
 ) callconv(.C) MutableDictionaryRef;
 pub const dictionaryCreateMutable = CFDictionaryCreateMutable;
 
@@ -583,40 +583,40 @@ pub const dictionaryCreateMutableCopy = CFDictionaryCreateMutableCopy;
 extern "CoreFoundation" fn CFDictionaryGetCount(theDict: DictionaryRef) callconv(.C) Index;
 pub const dictionaryGetCount = CFDictionaryGetCount;
 
-extern "CoreFoundation" fn CFDictionaryGetCountOfKey(theDict: DictionaryRef, key: ?*anyopaque) callconv(.C) Index;
+extern "CoreFoundation" fn CFDictionaryGetCountOfKey(theDict: DictionaryRef, key: ?*const anyopaque) callconv(.C) Index;
 pub const dictionaryGetCountOfKey = CFDictionaryGetCountOfKey;
 
-extern "CoreFoundation" fn CFDictionaryGetCountOfValue(theDict: DictionaryRef, value: ?*anyopaque) callconv(.C) Index;
+extern "CoreFoundation" fn CFDictionaryGetCountOfValue(theDict: DictionaryRef, value: ?*const anyopaque) callconv(.C) Index;
 pub const dictionaryGetCountOfValue = CFDictionaryGetCountOfValue;
 
-extern "CoreFoundation" fn CFDictionaryContainsKey(theDict: DictionaryRef, key: ?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFDictionaryContainsKey(theDict: DictionaryRef, key: ?*const anyopaque) callconv(.C) objc.Boolean;
 pub const dictionaryContainsKey = CFDictionaryContainsKey;
 
-extern "CoreFoundation" fn CFDictionaryContainsValue(theDict: DictionaryRef, value: ?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFDictionaryContainsValue(theDict: DictionaryRef, value: ?*const anyopaque) callconv(.C) objc.Boolean;
 pub const dictionaryContainsValue = CFDictionaryContainsValue;
 
-extern "CoreFoundation" fn CFDictionaryGetValue(theDict: DictionaryRef, key: ?*anyopaque) callconv(.C) ?*anyopaque;
+extern "CoreFoundation" fn CFDictionaryGetValue(theDict: DictionaryRef, key: ?*const anyopaque) callconv(.C) ?*const anyopaque;
 pub const dictionaryGetValue = CFDictionaryGetValue;
 
-extern "CoreFoundation" fn CFDictionaryGetValueIfPresent(theDict: DictionaryRef, key: ?*anyopaque, value: ?*?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFDictionaryGetValueIfPresent(theDict: DictionaryRef, key: ?*const anyopaque, value: ?*?*const anyopaque) callconv(.C) objc.Boolean;
 pub const dictionaryGetValueIfPresent = CFDictionaryGetValueIfPresent;
 
-extern "CoreFoundation" fn CFDictionaryGetKeysAndValues(theDict: DictionaryRef, keys: ?*?*anyopaque, values: ?*?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFDictionaryGetKeysAndValues(theDict: DictionaryRef, keys: ?*?*const anyopaque, values: ?*?*const anyopaque) callconv(.C) void;
 pub const dictionaryGetKeysAndValues = CFDictionaryGetKeysAndValues;
 
 extern "CoreFoundation" fn CFDictionaryApplyFunction(theDict: DictionaryRef, applier: DictionaryApplierFunction, context: ?*anyopaque) callconv(.C) void;
 pub const dictionaryApplyFunction = CFDictionaryApplyFunction;
 
-extern "CoreFoundation" fn CFDictionaryAddValue(theDict: MutableDictionaryRef, key: ?*anyopaque, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFDictionaryAddValue(theDict: MutableDictionaryRef, key: ?*const anyopaque, value: ?*const anyopaque) callconv(.C) void;
 pub const dictionaryAddValue = CFDictionaryAddValue;
 
-extern "CoreFoundation" fn CFDictionarySetValue(theDict: MutableDictionaryRef, key: ?*anyopaque, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFDictionarySetValue(theDict: MutableDictionaryRef, key: ?*const anyopaque, value: ?*const anyopaque) callconv(.C) void;
 pub const dictionarySetValue = CFDictionarySetValue;
 
-extern "CoreFoundation" fn CFDictionaryReplaceValue(theDict: MutableDictionaryRef, key: ?*anyopaque, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFDictionaryReplaceValue(theDict: MutableDictionaryRef, key: ?*const anyopaque, value: ?*const anyopaque) callconv(.C) void;
 pub const dictionaryReplaceValue = CFDictionaryReplaceValue;
 
-extern "CoreFoundation" fn CFDictionaryRemoveValue(theDict: MutableDictionaryRef, key: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFDictionaryRemoveValue(theDict: MutableDictionaryRef, key: ?*const anyopaque) callconv(.C) void;
 pub const dictionaryRemoveValue = CFDictionaryRemoveValue;
 
 extern "CoreFoundation" fn CFDictionaryRemoveAllValues(theDict: MutableDictionaryRef) callconv(.C) void;
@@ -632,7 +632,7 @@ pub const NotificationCallback = ?*const fn (
     NotificationCenterRef,
     ?*anyopaque,
     NotificationName,
-    ?*anyopaque,
+    ?*const anyopaque,
     DictionaryRef,
 ) callconv(.C) void;
 
@@ -656,29 +656,29 @@ pub const notificationCenterGetDarwinNotifyCenter = CFNotificationCenterGetDarwi
 
 extern "CoreFoundation" fn CFNotificationCenterAddObserver(
     center: NotificationCenterRef,
-    observer: ?*anyopaque,
+    observer: ?*const anyopaque,
     callBack: NotificationCallback,
     name: StringRef,
-    object: ?*anyopaque,
+    object: ?*const anyopaque,
     suspensionBehavior: NotificationSuspensionBehavior,
 ) callconv(.C) void;
 pub const notificationCenterAddObserver = CFNotificationCenterAddObserver;
 
 extern "CoreFoundation" fn CFNotificationCenterRemoveObserver(
     center: NotificationCenterRef,
-    observer: ?*anyopaque,
+    observer: ?*const anyopaque,
     name: NotificationName,
-    object: ?*anyopaque,
+    object: ?*const anyopaque,
 ) callconv(.C) void;
 pub const notificationCenterRemoveObserver = CFNotificationCenterRemoveObserver;
 
-extern "CoreFoundation" fn CFNotificationCenterRemoveEveryObserver(center: NotificationCenterRef, observer: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFNotificationCenterRemoveEveryObserver(center: NotificationCenterRef, observer: ?*const anyopaque) callconv(.C) void;
 pub const notificationCenterRemoveEveryObserver = CFNotificationCenterRemoveEveryObserver;
 
 extern "CoreFoundation" fn CFNotificationCenterPostNotification(
     center: NotificationCenterRef,
     name: NotificationName,
-    object: ?*anyopaque,
+    object: ?*const anyopaque,
     userInfo: DictionaryRef,
     deliverImmediately: objc.Boolean,
 ) callconv(.C) void;
@@ -687,7 +687,7 @@ pub const notificationCenterPostNotification = CFNotificationCenterPostNotificat
 extern "CoreFoundation" fn CFNotificationCenterPostNotificationWithOptions(
     center: NotificationCenterRef,
     name: NotificationName,
-    object: ?*anyopaque,
+    object: ?*const anyopaque,
     userInfo: DictionaryRef,
     options: OptionFlags,
 ) callconv(.C) void;
@@ -874,12 +874,12 @@ pub const MutableDataRef = __CFData;
 extern "CoreFoundation" fn CFDataGetTypeID() callconv(.C) TypeID;
 pub const dataGetTypeID = CFDataGetTypeID;
 
-extern "CoreFoundation" fn CFDataCreate(allocator: AllocatorRef, bytes: ?*objc.UInt8, length: Index) callconv(.C) DataRef;
+extern "CoreFoundation" fn CFDataCreate(allocator: AllocatorRef, bytes: ?*const objc.UInt8, length: Index) callconv(.C) DataRef;
 pub const dataCreate = CFDataCreate;
 
 extern "CoreFoundation" fn CFDataCreateWithBytesNoCopy(
     allocator: AllocatorRef,
-    bytes: ?*objc.UInt8,
+    bytes: ?*const objc.UInt8,
     length: Index,
     bytesDeallocator: AllocatorRef,
 ) callconv(.C) DataRef;
@@ -897,7 +897,7 @@ pub const dataCreateMutableCopy = CFDataCreateMutableCopy;
 extern "CoreFoundation" fn CFDataGetLength(theData: DataRef) callconv(.C) Index;
 pub const dataGetLength = CFDataGetLength;
 
-extern "CoreFoundation" fn CFDataGetBytePtr(theData: DataRef) callconv(.C) ?*objc.UInt8;
+extern "CoreFoundation" fn CFDataGetBytePtr(theData: DataRef) callconv(.C) ?*const objc.UInt8;
 pub const dataGetBytePtr = CFDataGetBytePtr;
 
 extern "CoreFoundation" fn CFDataGetMutableBytePtr(theData: MutableDataRef) callconv(.C) ?*objc.UInt8;
@@ -912,13 +912,13 @@ pub const dataSetLength = CFDataSetLength;
 extern "CoreFoundation" fn CFDataIncreaseLength(theData: MutableDataRef, extraLength: Index) callconv(.C) void;
 pub const dataIncreaseLength = CFDataIncreaseLength;
 
-extern "CoreFoundation" fn CFDataAppendBytes(theData: MutableDataRef, bytes: ?*objc.UInt8, length: Index) callconv(.C) void;
+extern "CoreFoundation" fn CFDataAppendBytes(theData: MutableDataRef, bytes: ?*const objc.UInt8, length: Index) callconv(.C) void;
 pub const dataAppendBytes = CFDataAppendBytes;
 
 extern "CoreFoundation" fn CFDataReplaceBytes(
     theData: MutableDataRef,
     range: Range,
-    newBytes: ?*objc.UInt8,
+    newBytes: ?*const objc.UInt8,
     newLength: Index,
 ) callconv(.C) void;
 pub const dataReplaceBytes = CFDataReplaceBytes;
@@ -1045,8 +1045,8 @@ extern "CoreFoundation" fn CFErrorCreateWithUserInfoKeysAndValues(
     allocator: AllocatorRef,
     domain: ErrorDomain,
     code: Index,
-    userInfoKeys: ?*?*const anyopaque,
-    userInfoValues: ?*?*const anyopaque,
+    userInfoKeys: ?*const ?*const anyopaque,
+    userInfoValues: ?*const ?*const anyopaque,
     numUserInfoValues: Index,
 ) callconv(.C) ErrorRef;
 pub const errorCreateWithUserInfoKeysAndValues = CFErrorCreateWithUserInfoKeysAndValues;
@@ -1093,19 +1093,19 @@ pub const stringGetTypeID = CFStringGetTypeID;
 extern "CoreFoundation" fn CFStringCreateWithPascalString(alloc: AllocatorRef, pStr: objc.ConstStr255Param, encoding: StringEncoding) callconv(.C) StringRef;
 pub const stringCreateWithPascalString = CFStringCreateWithPascalString;
 
-extern "CoreFoundation" fn CFStringCreateWithCString(alloc: AllocatorRef, cStr: ?*i8, encoding: StringEncoding) callconv(.C) StringRef;
+extern "CoreFoundation" fn CFStringCreateWithCString(alloc: AllocatorRef, cStr: [*:0]const u8, encoding: StringEncoding) callconv(.C) StringRef;
 pub const stringCreateWithCString = CFStringCreateWithCString;
 
 extern "CoreFoundation" fn CFStringCreateWithBytes(
     alloc: AllocatorRef,
-    bytes: ?*objc.UInt8,
+    bytes: ?*const objc.UInt8,
     numBytes: Index,
     encoding: StringEncoding,
     isExternalRepresentation: objc.Boolean,
 ) callconv(.C) StringRef;
 pub const stringCreateWithBytes = CFStringCreateWithBytes;
 
-extern "CoreFoundation" fn CFStringCreateWithCharacters(alloc: AllocatorRef, chars: ?*objc.UniChar, numChars: Index) callconv(.C) StringRef;
+extern "CoreFoundation" fn CFStringCreateWithCharacters(alloc: AllocatorRef, chars: ?*const objc.UniChar, numChars: Index) callconv(.C) StringRef;
 pub const stringCreateWithCharacters = CFStringCreateWithCharacters;
 
 extern "CoreFoundation" fn CFStringCreateWithPascalStringNoCopy(
@@ -1118,7 +1118,7 @@ pub const stringCreateWithPascalStringNoCopy = CFStringCreateWithPascalStringNoC
 
 extern "CoreFoundation" fn CFStringCreateWithCStringNoCopy(
     alloc: AllocatorRef,
-    cStr: ?*i8,
+    cStr: [*:0]const u8,
     encoding: StringEncoding,
     contentsDeallocator: AllocatorRef,
 ) callconv(.C) StringRef;
@@ -1126,7 +1126,7 @@ pub const stringCreateWithCStringNoCopy = CFStringCreateWithCStringNoCopy;
 
 extern "CoreFoundation" fn CFStringCreateWithBytesNoCopy(
     alloc: AllocatorRef,
-    bytes: ?*objc.UInt8,
+    bytes: ?*const objc.UInt8,
     numBytes: Index,
     encoding: StringEncoding,
     isExternalRepresentation: objc.Boolean,
@@ -1136,7 +1136,7 @@ pub const stringCreateWithBytesNoCopy = CFStringCreateWithBytesNoCopy;
 
 extern "CoreFoundation" fn CFStringCreateWithCharactersNoCopy(
     alloc: AllocatorRef,
-    chars: ?*objc.UniChar,
+    chars: ?*const objc.UniChar,
     numChars: Index,
     contentsDeallocator: AllocatorRef,
 ) callconv(.C) StringRef;
@@ -1212,7 +1212,7 @@ pub const stringGetPascalString = CFStringGetPascalString;
 
 extern "CoreFoundation" fn CFStringGetCString(
     theString: StringRef,
-    buffer: ?*i8,
+    buffer: ?*c_char,
     bufferSize: Index,
     encoding: StringEncoding,
 ) callconv(.C) objc.Boolean;
@@ -1221,10 +1221,10 @@ pub const stringGetCString = CFStringGetCString;
 extern "CoreFoundation" fn CFStringGetPascalStringPtr(theString: StringRef, encoding: StringEncoding) callconv(.C) objc.ConstStringPtr;
 pub const stringGetPascalStringPtr = CFStringGetPascalStringPtr;
 
-extern "CoreFoundation" fn CFStringGetCStringPtr(theString: StringRef, encoding: StringEncoding) callconv(.C) ?*i8;
+extern "CoreFoundation" fn CFStringGetCStringPtr(theString: StringRef, encoding: StringEncoding) callconv(.C) [*:0]const u8;
 pub const stringGetCStringPtr = CFStringGetCStringPtr;
 
-extern "CoreFoundation" fn CFStringGetCharactersPtr(theString: StringRef) callconv(.C) ?*objc.UniChar;
+extern "CoreFoundation" fn CFStringGetCharactersPtr(theString: StringRef) callconv(.C) ?*const objc.UniChar;
 pub const stringGetCharactersPtr = CFStringGetCharactersPtr;
 
 extern "CoreFoundation" fn CFStringGetBytes(
@@ -1262,13 +1262,13 @@ pub const stringGetSystemEncoding = CFStringGetSystemEncoding;
 extern "CoreFoundation" fn CFStringGetMaximumSizeForEncoding(length: Index, encoding: StringEncoding) callconv(.C) Index;
 pub const stringGetMaximumSizeForEncoding = CFStringGetMaximumSizeForEncoding;
 
-extern "CoreFoundation" fn CFStringGetFileSystemRepresentation(string: StringRef, buffer: ?*i8, maxBufLen: Index) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFStringGetFileSystemRepresentation(string: StringRef, buffer: ?*c_char, maxBufLen: Index) callconv(.C) objc.Boolean;
 pub const stringGetFileSystemRepresentation = CFStringGetFileSystemRepresentation;
 
 extern "CoreFoundation" fn CFStringGetMaximumSizeOfFileSystemRepresentation(string: StringRef) callconv(.C) Index;
 pub const stringGetMaximumSizeOfFileSystemRepresentation = CFStringGetMaximumSizeOfFileSystemRepresentation;
 
-extern "CoreFoundation" fn CFStringCreateWithFileSystemRepresentation(alloc: AllocatorRef, buffer: ?*i8) callconv(.C) StringRef;
+extern "CoreFoundation" fn CFStringCreateWithFileSystemRepresentation(alloc: AllocatorRef, buffer: [*:0]const u8) callconv(.C) StringRef;
 pub const stringCreateWithFileSystemRepresentation = CFStringCreateWithFileSystemRepresentation;
 
 pub const StringCompareFlags = OptionFlags;
@@ -1397,13 +1397,13 @@ pub const stringGetDoubleValue = CFStringGetDoubleValue;
 extern "CoreFoundation" fn CFStringAppend(theString: MutableStringRef, appendedString: StringRef) callconv(.C) void;
 pub const stringAppend = CFStringAppend;
 
-extern "CoreFoundation" fn CFStringAppendCharacters(theString: MutableStringRef, chars: ?*objc.UniChar, numChars: Index) callconv(.C) void;
+extern "CoreFoundation" fn CFStringAppendCharacters(theString: MutableStringRef, chars: ?*const objc.UniChar, numChars: Index) callconv(.C) void;
 pub const stringAppendCharacters = CFStringAppendCharacters;
 
 extern "CoreFoundation" fn CFStringAppendPascalString(theString: MutableStringRef, pStr: objc.ConstStr255Param, encoding: StringEncoding) callconv(.C) void;
 pub const stringAppendPascalString = CFStringAppendPascalString;
 
-extern "CoreFoundation" fn CFStringAppendCString(theString: MutableStringRef, cStr: ?*i8, encoding: StringEncoding) callconv(.C) void;
+extern "CoreFoundation" fn CFStringAppendCString(theString: MutableStringRef, cStr: [*:0]const u8, encoding: StringEncoding) callconv(.C) void;
 pub const stringAppendCString = CFStringAppendCString;
 
 extern "CoreFoundation" fn CFStringAppendFormat(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef) callconv(.C) void;
@@ -1492,7 +1492,7 @@ pub const stringTransform = CFStringTransform;
 extern "CoreFoundation" fn CFStringIsEncodingAvailable(encoding: StringEncoding) callconv(.C) objc.Boolean;
 pub const stringIsEncodingAvailable = CFStringIsEncodingAvailable;
 
-extern "CoreFoundation" fn CFStringGetListOfAvailableEncodings() callconv(.C) ?*StringEncoding;
+extern "CoreFoundation" fn CFStringGetListOfAvailableEncodings() callconv(.C) ?*const StringEncoding;
 pub const stringGetListOfAvailableEncodings = CFStringGetListOfAvailableEncodings;
 
 extern "CoreFoundation" fn CFStringGetNameOfEncoding(encoding: StringEncoding) callconv(.C) StringRef;
@@ -1522,8 +1522,8 @@ pub const stringGetMostCompatibleMacStringEncoding = CFStringGetMostCompatibleMa
 pub const StringInlineBuffer = extern struct {
     buffer: [64]objc.UniChar,
     theString: StringRef,
-    directUniCharBuffer: ?*objc.UniChar,
-    directCStringBuffer: ?*i8,
+    directUniCharBuffer: ?*const objc.UniChar,
+    directCStringBuffer: [*:0]const u8,
     rangeToBuffer: Range,
     bufferedRangeStart: Index,
     bufferedRangeEnd: Index,
@@ -1535,7 +1535,7 @@ pub const show = CFShow;
 extern "CoreFoundation" fn CFShowStr(str: StringRef) callconv(.C) void;
 pub const showStr = CFShowStr;
 
-pub extern "CoreFoundation" fn __CFStringMakeConstantString(cStr: ?*i8) callconv(.C) StringRef;
+pub extern "CoreFoundation" fn __CFStringMakeConstantString(cStr: [*:0]const u8) callconv(.C) StringRef;
 
 extern "CoreFoundation" fn CFTimeZoneGetTypeID() callconv(.C) TypeID;
 pub const timeZoneGetTypeID = CFTimeZoneGetTypeID;
@@ -1690,10 +1690,10 @@ extern "CoreFoundation" fn CFCalendarGetTimeRangeOfUnit(
 ) callconv(.C) objc.Boolean;
 pub const calendarGetTimeRangeOfUnit = CFCalendarGetTimeRangeOfUnit;
 
-extern "CoreFoundation" fn CFCalendarComposeAbsoluteTime(calendar: CalendarRef, at: ?*AbsoluteTime, componentDesc: ?*i8) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFCalendarComposeAbsoluteTime(calendar: CalendarRef, at: ?*AbsoluteTime, componentDesc: [*:0]const u8) callconv(.C) objc.Boolean;
 pub const calendarComposeAbsoluteTime = CFCalendarComposeAbsoluteTime;
 
-extern "CoreFoundation" fn CFCalendarDecomposeAbsoluteTime(calendar: CalendarRef, at: AbsoluteTime, componentDesc: ?*i8) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFCalendarDecomposeAbsoluteTime(calendar: CalendarRef, at: AbsoluteTime, componentDesc: [*:0]const u8) callconv(.C) objc.Boolean;
 pub const calendarDecomposeAbsoluteTime = CFCalendarDecomposeAbsoluteTime;
 
 pub const anon1061 = OptionFlags;
@@ -1703,7 +1703,7 @@ extern "CoreFoundation" fn CFCalendarAddComponents(
     calendar: CalendarRef,
     at: ?*AbsoluteTime,
     options: OptionFlags,
-    componentDesc: ?*i8,
+    componentDesc: [*:0]const u8,
 ) callconv(.C) objc.Boolean;
 pub const calendarAddComponents = CFCalendarAddComponents;
 
@@ -1712,7 +1712,7 @@ extern "CoreFoundation" fn CFCalendarGetComponentDifference(
     startingAT: AbsoluteTime,
     resultAT: AbsoluteTime,
     options: OptionFlags,
-    componentDesc: ?*i8,
+    componentDesc: [*:0]const u8,
 ) callconv(.C) objc.Boolean;
 pub const calendarGetComponentDifference = CFCalendarGetComponentDifference;
 
@@ -1890,7 +1890,7 @@ pub const NumberRef = __CFNumber;
 extern "CoreFoundation" fn CFNumberGetTypeID() callconv(.C) TypeID;
 pub const numberGetTypeID = CFNumberGetTypeID;
 
-extern "CoreFoundation" fn CFNumberCreate(allocator: AllocatorRef, theType: NumberType, valuePtr: ?*anyopaque) callconv(.C) NumberRef;
+extern "CoreFoundation" fn CFNumberCreate(allocator: AllocatorRef, theType: NumberType, valuePtr: ?*const anyopaque) callconv(.C) NumberRef;
 pub const numberCreate = CFNumberCreate;
 
 extern "CoreFoundation" fn CFNumberGetType(number: NumberRef) callconv(.C) NumberType;
@@ -1951,7 +1951,7 @@ extern "CoreFoundation" fn CFNumberFormatterCreateStringWithValue(
     allocator: AllocatorRef,
     formatter: NumberFormatterRef,
     numberType: NumberType,
-    valuePtr: ?*anyopaque,
+    valuePtr: ?*const anyopaque,
 ) callconv(.C) StringRef;
 pub const numberFormatterCreateStringWithValue = CFNumberFormatterCreateStringWithValue;
 
@@ -2081,7 +2081,7 @@ pub const urlGetTypeID = CFURLGetTypeID;
 
 extern "CoreFoundation" fn CFURLCreateWithBytes(
     allocator: AllocatorRef,
-    URLBytes: ?*objc.UInt8,
+    URLBytes: ?*const objc.UInt8,
     length: Index,
     encoding: StringEncoding,
     baseURL: URLRef,
@@ -2101,7 +2101,7 @@ pub const urlCreateWithString = CFURLCreateWithString;
 
 extern "CoreFoundation" fn CFURLCreateAbsoluteURLWithBytes(
     alloc: AllocatorRef,
-    relativeURLBytes: ?*objc.UInt8,
+    relativeURLBytes: ?*const objc.UInt8,
     length: Index,
     encoding: StringEncoding,
     baseURL: URLRef,
@@ -2119,7 +2119,7 @@ pub const urlCreateWithFileSystemPath = CFURLCreateWithFileSystemPath;
 
 extern "CoreFoundation" fn CFURLCreateFromFileSystemRepresentation(
     allocator: AllocatorRef,
-    buffer: ?*objc.UInt8,
+    buffer: ?*const objc.UInt8,
     bufLen: Index,
     isDirectory: objc.Boolean,
 ) callconv(.C) URLRef;
@@ -2136,7 +2136,7 @@ pub const urlCreateWithFileSystemPathRelativeToBase = CFURLCreateWithFileSystemP
 
 extern "CoreFoundation" fn CFURLCreateFromFileSystemRepresentationRelativeToBase(
     allocator: AllocatorRef,
-    buffer: ?*objc.UInt8,
+    buffer: ?*const objc.UInt8,
     bufLen: Index,
     isDirectory: objc.Boolean,
     baseURL: URLRef,
@@ -2279,7 +2279,7 @@ pub const urlCreateFilePathURL = CFURLCreateFilePathURL;
 
 pub const FSRef = extern struct {};
 
-extern "CoreFoundation" fn CFURLCreateFromFSRef(allocator: AllocatorRef, fsRef: ?*core_services.FSRef) callconv(.C) URLRef;
+extern "CoreFoundation" fn CFURLCreateFromFSRef(allocator: AllocatorRef, fsRef: ?*const core_services.FSRef) callconv(.C) URLRef;
 pub const urlCreateFromFSRef = CFURLCreateFromFSRef;
 
 extern "CoreFoundation" fn CFURLGetFSRef(url: URLRef, fsRef: ?*core_services.FSRef) callconv(.C) objc.Boolean;
@@ -2486,11 +2486,11 @@ pub const runLoopRemoveTimer = CFRunLoopRemoveTimer;
 pub const RunLoopSourceContext = extern struct {
     version: Index,
     info: ?*anyopaque,
-    retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
-    release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
-    equal: ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) objc.Boolean,
-    hash: ?*const fn (?*anyopaque) callconv(.C) HashCode,
+    retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
+    release: ?*const fn (?*const anyopaque) callconv(.C) void,
+    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
+    equal: ?*const fn (?*const anyopaque, ?*const anyopaque) callconv(.C) objc.Boolean,
+    hash: ?*const fn (?*const anyopaque) callconv(.C) HashCode,
     schedule: ?*const fn (?*anyopaque, RunLoopRef, RunLoopMode) callconv(.C) void,
     cancel: ?*const fn (?*anyopaque, RunLoopRef, RunLoopMode) callconv(.C) void,
     perform: ?*const fn (?*anyopaque) callconv(.C) void,
@@ -2499,11 +2499,11 @@ pub const RunLoopSourceContext = extern struct {
 pub const RunLoopSourceContext1 = extern struct {
     version: Index,
     info: ?*anyopaque,
-    retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
-    release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
-    equal: ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) objc.Boolean,
-    hash: ?*const fn (?*anyopaque) callconv(.C) HashCode,
+    retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
+    release: ?*const fn (?*const anyopaque) callconv(.C) void,
+    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
+    equal: ?*const fn (?*const anyopaque, ?*const anyopaque) callconv(.C) objc.Boolean,
+    hash: ?*const fn (?*const anyopaque) callconv(.C) HashCode,
     getPort: ?*const fn (?*anyopaque) callconv(.C) objc.mach_port_t,
     perform: ?*const fn (
         ?*anyopaque,
@@ -2537,9 +2537,9 @@ pub const runLoopSourceSignal = CFRunLoopSourceSignal;
 pub const RunLoopObserverContext = extern struct {
     version: Index,
     info: ?*anyopaque,
-    retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
-    release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
+    retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
+    release: ?*const fn (?*const anyopaque) callconv(.C) void,
+    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
 };
 
 pub const RunLoopObserverCallBack = ?*const fn (RunLoopObserverRef, RunLoopActivity, ?*anyopaque) callconv(.C) void;
@@ -2587,9 +2587,9 @@ pub const runLoopObserverGetContext = CFRunLoopObserverGetContext;
 pub const RunLoopTimerContext = extern struct {
     version: Index,
     info: ?*anyopaque,
-    retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
-    release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
+    retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
+    release: ?*const fn (?*const anyopaque) callconv(.C) void,
+    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
 };
 
 pub const RunLoopTimerCallBack = ?*const fn (RunLoopTimerRef, ?*anyopaque) callconv(.C) void;
@@ -2683,16 +2683,16 @@ pub const SocketCallBack = ?*const fn (
     SocketRef,
     SocketCallBackType,
     DataRef,
-    ?*anyopaque,
+    ?*const anyopaque,
     ?*anyopaque,
 ) callconv(.C) void;
 
 pub const SocketContext = extern struct {
     version: Index,
     info: ?*anyopaque,
-    retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
-    release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
+    retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
+    release: ?*const fn (?*const anyopaque) callconv(.C) void,
+    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
 };
 
 pub const SocketNativeHandle = i32;
@@ -2707,7 +2707,7 @@ extern "CoreFoundation" fn CFSocketCreate(
     protocol: objc.SInt32,
     callBackTypes: OptionFlags,
     callout: SocketCallBack,
-    context: ?*SocketContext,
+    context: ?*const SocketContext,
 ) callconv(.C) SocketRef;
 pub const socketCreate = CFSocketCreate;
 
@@ -2716,25 +2716,25 @@ extern "CoreFoundation" fn CFSocketCreateWithNative(
     sock: SocketNativeHandle,
     callBackTypes: OptionFlags,
     callout: SocketCallBack,
-    context: ?*SocketContext,
+    context: ?*const SocketContext,
 ) callconv(.C) SocketRef;
 pub const socketCreateWithNative = CFSocketCreateWithNative;
 
 extern "CoreFoundation" fn CFSocketCreateWithSocketSignature(
     allocator: AllocatorRef,
-    signature: ?*SocketSignature,
+    signature: ?*const SocketSignature,
     callBackTypes: OptionFlags,
     callout: SocketCallBack,
-    context: ?*SocketContext,
+    context: ?*const SocketContext,
 ) callconv(.C) SocketRef;
 pub const socketCreateWithSocketSignature = CFSocketCreateWithSocketSignature;
 
 extern "CoreFoundation" fn CFSocketCreateConnectedToSocketSignature(
     allocator: AllocatorRef,
-    signature: ?*SocketSignature,
+    signature: ?*const SocketSignature,
     callBackTypes: OptionFlags,
     callout: SocketCallBack,
-    context: ?*SocketContext,
+    context: ?*const SocketContext,
     timeout: TimeInterval,
 ) callconv(.C) SocketRef;
 pub const socketCreateConnectedToSocketSignature = CFSocketCreateConnectedToSocketSignature;
@@ -2787,7 +2787,7 @@ extern "CoreFoundation" fn CFSocketSendData(
 pub const socketSendData = CFSocketSendData;
 
 extern "CoreFoundation" fn CFSocketRegisterValue(
-    nameServerSignature: ?*SocketSignature,
+    nameServerSignature: ?*const SocketSignature,
     timeout: TimeInterval,
     name: StringRef,
     value: PropertyListRef,
@@ -2795,7 +2795,7 @@ extern "CoreFoundation" fn CFSocketRegisterValue(
 pub const socketRegisterValue = CFSocketRegisterValue;
 
 extern "CoreFoundation" fn CFSocketCopyRegisteredValue(
-    nameServerSignature: ?*SocketSignature,
+    nameServerSignature: ?*const SocketSignature,
     timeout: TimeInterval,
     name: StringRef,
     value: ?*PropertyListRef,
@@ -2804,15 +2804,15 @@ extern "CoreFoundation" fn CFSocketCopyRegisteredValue(
 pub const socketCopyRegisteredValue = CFSocketCopyRegisteredValue;
 
 extern "CoreFoundation" fn CFSocketRegisterSocketSignature(
-    nameServerSignature: ?*SocketSignature,
+    nameServerSignature: ?*const SocketSignature,
     timeout: TimeInterval,
     name: StringRef,
-    signature: ?*SocketSignature,
+    signature: ?*const SocketSignature,
 ) callconv(.C) SocketError;
 pub const socketRegisterSocketSignature = CFSocketRegisterSocketSignature;
 
 extern "CoreFoundation" fn CFSocketCopyRegisteredSocketSignature(
-    nameServerSignature: ?*SocketSignature,
+    nameServerSignature: ?*const SocketSignature,
     timeout: TimeInterval,
     name: StringRef,
     signature: ?*SocketSignature,
@@ -2820,7 +2820,7 @@ extern "CoreFoundation" fn CFSocketCopyRegisteredSocketSignature(
 ) callconv(.C) SocketError;
 pub const socketCopyRegisteredSocketSignature = CFSocketCopyRegisteredSocketSignature;
 
-extern "CoreFoundation" fn CFSocketUnregister(nameServerSignature: ?*SocketSignature, timeout: TimeInterval, name: StringRef) callconv(.C) SocketError;
+extern "CoreFoundation" fn CFSocketUnregister(nameServerSignature: ?*const SocketSignature, timeout: TimeInterval, name: StringRef) callconv(.C) SocketError;
 pub const socketUnregister = CFSocketUnregister;
 
 extern "CoreFoundation" fn CFSocketSetDefaultNameRegistryPortNumber(port: objc.UInt16) callconv(.C) void;
@@ -2882,7 +2882,7 @@ pub const writeStreamGetTypeID = CFWriteStreamGetTypeID;
 
 extern "CoreFoundation" fn CFReadStreamCreateWithBytesNoCopy(
     alloc: AllocatorRef,
-    bytes: ?*objc.UInt8,
+    bytes: ?*const objc.UInt8,
     length: Index,
     bytesDeallocator: AllocatorRef,
 ) callconv(.C) ReadStreamRef;
@@ -2927,7 +2927,7 @@ pub const streamCreatePairWithSocketToHost = CFStreamCreatePairWithSocketToHost;
 
 extern "CoreFoundation" fn CFStreamCreatePairWithPeerSocketSignature(
     alloc: AllocatorRef,
-    signature: ?*SocketSignature,
+    signature: ?*const SocketSignature,
     readStream: ?*ReadStreamRef,
     writeStream: ?*WriteStreamRef,
 ) callconv(.C) void;
@@ -2963,13 +2963,13 @@ pub const readStreamHasBytesAvailable = CFReadStreamHasBytesAvailable;
 extern "CoreFoundation" fn CFReadStreamRead(stream: ReadStreamRef, buffer: ?*objc.UInt8, bufferLength: Index) callconv(.C) Index;
 pub const readStreamRead = CFReadStreamRead;
 
-extern "CoreFoundation" fn CFReadStreamGetBuffer(stream: ReadStreamRef, maxBytesToRead: Index, numBytesRead: ?*Index) callconv(.C) ?*objc.UInt8;
+extern "CoreFoundation" fn CFReadStreamGetBuffer(stream: ReadStreamRef, maxBytesToRead: Index, numBytesRead: ?*Index) callconv(.C) ?*const objc.UInt8;
 pub const readStreamGetBuffer = CFReadStreamGetBuffer;
 
 extern "CoreFoundation" fn CFWriteStreamCanAcceptBytes(stream: WriteStreamRef) callconv(.C) objc.Boolean;
 pub const writeStreamCanAcceptBytes = CFWriteStreamCanAcceptBytes;
 
-extern "CoreFoundation" fn CFWriteStreamWrite(stream: WriteStreamRef, buffer: ?*objc.UInt8, bufferLength: Index) callconv(.C) Index;
+extern "CoreFoundation" fn CFWriteStreamWrite(stream: WriteStreamRef, buffer: ?*const objc.UInt8, bufferLength: Index) callconv(.C) Index;
 pub const writeStreamWrite = CFWriteStreamWrite;
 
 extern "CoreFoundation" fn CFReadStreamCopyProperty(stream: ReadStreamRef, propertyName: StreamPropertyKey) callconv(.C) TypeRef;
@@ -3125,9 +3125,9 @@ extern "CoreFoundation" fn CFPropertyListCreateData(
 ) callconv(.C) DataRef;
 pub const propertyListCreateData = CFPropertyListCreateData;
 
-pub const SetRetainCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) ?*anyopaque;
+pub const SetRetainCallBack = ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) ?*const anyopaque;
 
-pub const SetReleaseCallBack = ?*const fn (AllocatorRef, ?*anyopaque) callconv(.C) void;
+pub const SetReleaseCallBack = ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) void;
 
 pub const SetCopyDescriptionCallBack = StringRef;
 
@@ -3144,7 +3144,7 @@ pub const SetCallBacks = extern struct {
     hash: SetHashCallBack,
 };
 
-pub const SetApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const SetApplierFunction = ?*const fn (?*const anyopaque, ?*anyopaque) callconv(.C) void;
 
 pub const __CFSet = extern struct {};
 
@@ -3157,16 +3157,16 @@ pub const setGetTypeID = CFSetGetTypeID;
 
 extern "CoreFoundation" fn CFSetCreate(
     allocator: AllocatorRef,
-    values: ?*?*anyopaque,
+    values: ?*?*const anyopaque,
     numValues: Index,
-    callBacks: ?*SetCallBacks,
+    callBacks: ?*const SetCallBacks,
 ) callconv(.C) SetRef;
 pub const setCreate = CFSetCreate;
 
 extern "CoreFoundation" fn CFSetCreateCopy(allocator: AllocatorRef, theSet: SetRef) callconv(.C) SetRef;
 pub const setCreateCopy = CFSetCreateCopy;
 
-extern "CoreFoundation" fn CFSetCreateMutable(allocator: AllocatorRef, capacity: Index, callBacks: ?*SetCallBacks) callconv(.C) MutableSetRef;
+extern "CoreFoundation" fn CFSetCreateMutable(allocator: AllocatorRef, capacity: Index, callBacks: ?*const SetCallBacks) callconv(.C) MutableSetRef;
 pub const setCreateMutable = CFSetCreateMutable;
 
 extern "CoreFoundation" fn CFSetCreateMutableCopy(allocator: AllocatorRef, capacity: Index, theSet: SetRef) callconv(.C) MutableSetRef;
@@ -3175,34 +3175,34 @@ pub const setCreateMutableCopy = CFSetCreateMutableCopy;
 extern "CoreFoundation" fn CFSetGetCount(theSet: SetRef) callconv(.C) Index;
 pub const setGetCount = CFSetGetCount;
 
-extern "CoreFoundation" fn CFSetGetCountOfValue(theSet: SetRef, value: ?*anyopaque) callconv(.C) Index;
+extern "CoreFoundation" fn CFSetGetCountOfValue(theSet: SetRef, value: ?*const anyopaque) callconv(.C) Index;
 pub const setGetCountOfValue = CFSetGetCountOfValue;
 
-extern "CoreFoundation" fn CFSetContainsValue(theSet: SetRef, value: ?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFSetContainsValue(theSet: SetRef, value: ?*const anyopaque) callconv(.C) objc.Boolean;
 pub const setContainsValue = CFSetContainsValue;
 
-extern "CoreFoundation" fn CFSetGetValue(theSet: SetRef, value: ?*anyopaque) callconv(.C) ?*anyopaque;
+extern "CoreFoundation" fn CFSetGetValue(theSet: SetRef, value: ?*const anyopaque) callconv(.C) ?*const anyopaque;
 pub const setGetValue = CFSetGetValue;
 
-extern "CoreFoundation" fn CFSetGetValueIfPresent(theSet: SetRef, candidate: ?*anyopaque, value: ?*?*anyopaque) callconv(.C) objc.Boolean;
+extern "CoreFoundation" fn CFSetGetValueIfPresent(theSet: SetRef, candidate: ?*const anyopaque, value: ?*?*const anyopaque) callconv(.C) objc.Boolean;
 pub const setGetValueIfPresent = CFSetGetValueIfPresent;
 
-extern "CoreFoundation" fn CFSetGetValues(theSet: SetRef, values: ?*?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFSetGetValues(theSet: SetRef, values: ?*?*const anyopaque) callconv(.C) void;
 pub const setGetValues = CFSetGetValues;
 
 extern "CoreFoundation" fn CFSetApplyFunction(theSet: SetRef, applier: SetApplierFunction, context: ?*anyopaque) callconv(.C) void;
 pub const setApplyFunction = CFSetApplyFunction;
 
-extern "CoreFoundation" fn CFSetAddValue(theSet: MutableSetRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFSetAddValue(theSet: MutableSetRef, value: ?*const anyopaque) callconv(.C) void;
 pub const setAddValue = CFSetAddValue;
 
-extern "CoreFoundation" fn CFSetReplaceValue(theSet: MutableSetRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFSetReplaceValue(theSet: MutableSetRef, value: ?*const anyopaque) callconv(.C) void;
 pub const setReplaceValue = CFSetReplaceValue;
 
-extern "CoreFoundation" fn CFSetSetValue(theSet: MutableSetRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFSetSetValue(theSet: MutableSetRef, value: ?*const anyopaque) callconv(.C) void;
 pub const setSetValue = CFSetSetValue;
 
-extern "CoreFoundation" fn CFSetRemoveValue(theSet: MutableSetRef, value: ?*anyopaque) callconv(.C) void;
+extern "CoreFoundation" fn CFSetRemoveValue(theSet: MutableSetRef, value: ?*const anyopaque) callconv(.C) void;
 pub const setRemoveValue = CFSetRemoveValue;
 
 extern "CoreFoundation" fn CFSetRemoveAllValues(theSet: MutableSetRef) callconv(.C) void;
@@ -3339,9 +3339,9 @@ pub const StringEncodings_UTF7: Index = 67109120;
 pub const StringEncodings_UTF7_IMAP: Index = 2576;
 pub const StringEncodings_ShiftJIS_X0213_00: Index = 1576;
 
-pub const TreeRetainCallBack = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
+pub const TreeRetainCallBack = ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque;
 
-pub const TreeReleaseCallBack = ?*const fn (?*anyopaque) callconv(.C) void;
+pub const TreeReleaseCallBack = ?*const fn (?*const anyopaque) callconv(.C) void;
 
 pub const TreeCopyDescriptionCallBack = StringRef;
 
@@ -3353,7 +3353,7 @@ pub const TreeContext = extern struct {
     copyDescription: TreeCopyDescriptionCallBack,
 };
 
-pub const TreeApplierFunction = ?*const fn (?*anyopaque, ?*anyopaque) callconv(.C) void;
+pub const TreeApplierFunction = ?*const fn (?*const anyopaque, ?*anyopaque) callconv(.C) void;
 
 pub const __CFTree = extern struct {};
 
@@ -3362,7 +3362,7 @@ pub const TreeRef = __CFTree;
 extern "CoreFoundation" fn CFTreeGetTypeID() callconv(.C) TypeID;
 pub const treeGetTypeID = CFTreeGetTypeID;
 
-extern "CoreFoundation" fn CFTreeCreate(allocator: AllocatorRef, context: ?*TreeContext) callconv(.C) TreeRef;
+extern "CoreFoundation" fn CFTreeCreate(allocator: AllocatorRef, context: ?*const TreeContext) callconv(.C) TreeRef;
 pub const treeCreate = CFTreeCreate;
 
 extern "CoreFoundation" fn CFTreeGetParent(tree: TreeRef) callconv(.C) TreeRef;
@@ -3392,7 +3392,7 @@ pub const treeApplyFunctionToChildren = CFTreeApplyFunctionToChildren;
 extern "CoreFoundation" fn CFTreeFindRoot(tree: TreeRef) callconv(.C) TreeRef;
 pub const treeFindRoot = CFTreeFindRoot;
 
-extern "CoreFoundation" fn CFTreeSetContext(tree: TreeRef, context: ?*TreeContext) callconv(.C) void;
+extern "CoreFoundation" fn CFTreeSetContext(tree: TreeRef, context: ?*const TreeContext) callconv(.C) void;
 pub const treeSetContext = CFTreeSetContext;
 
 extern "CoreFoundation" fn CFTreePrependChild(tree: TreeRef, newChild: TreeRef) callconv(.C) void;
@@ -3757,9 +3757,9 @@ pub const anon231_CFMessagePortBecameInvalidError: objc.SInt32 = -5;
 pub const MessagePortContext = extern struct {
     version: Index,
     info: ?*anyopaque,
-    retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
-    release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
+    retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
+    release: ?*const fn (?*const anyopaque) callconv(.C) void,
+    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
 };
 
 pub const MessagePortCallBack = DataRef;
@@ -3909,9 +3909,9 @@ pub const MachPortRef = __CFMachPort;
 pub const MachPortContext = extern struct {
     version: Index,
     info: ?*anyopaque,
-    retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
-    release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
+    retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
+    release: ?*const fn (?*const anyopaque) callconv(.C) void,
+    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
 };
 
 pub const MachPortCallBack = ?*const fn (
@@ -4253,7 +4253,7 @@ extern "CoreFoundation" fn CFFileDescriptorCreate(
     fd: FileDescriptorNativeDescriptor,
     closeOnInvalidate: objc.Boolean,
     callout: FileDescriptorCallBack,
-    context: ?*FileDescriptorContext,
+    context: ?*const FileDescriptorContext,
 ) callconv(.C) FileDescriptorRef;
 pub const fileDescriptorCreate = CFFileDescriptorCreate;
 
@@ -4393,7 +4393,7 @@ pub const XMLElementInfo = extern struct {
     attributes: DictionaryRef,
     attributeOrder: ArrayRef,
     isEmpty: objc.Boolean,
-    _reserved: [3]i8,
+    _reserved: [3]c_char,
 };
 
 pub const XMLProcessingInstructionInfo = extern struct {
@@ -4458,7 +4458,7 @@ extern "CoreFoundation" fn CFXMLNodeCreate(
     alloc: AllocatorRef,
     xmlType: XMLNodeTypeCode,
     dataString: StringRef,
-    additionalInfoPtr: ?*anyopaque,
+    additionalInfoPtr: ?*const anyopaque,
     version: Index,
 ) callconv(.C) XMLNodeRef;
 pub const xmlNodeCreate = CFXMLNodeCreate;
@@ -4472,7 +4472,7 @@ pub const xmlNodeGetTypeCode = CFXMLNodeGetTypeCode;
 extern "CoreFoundation" fn CFXMLNodeGetString(node: XMLNodeRef) callconv(.C) StringRef;
 pub const xmlNodeGetString = CFXMLNodeGetString;
 
-extern "CoreFoundation" fn CFXMLNodeGetInfoPtr(node: XMLNodeRef) callconv(.C) ?*anyopaque;
+extern "CoreFoundation" fn CFXMLNodeGetInfoPtr(node: XMLNodeRef) callconv(.C) ?*const anyopaque;
 pub const xmlNodeGetInfoPtr = CFXMLNodeGetInfoPtr;
 
 extern "CoreFoundation" fn CFXMLNodeGetVersion(node: XMLNodeRef) callconv(.C) Index;
@@ -4542,9 +4542,9 @@ pub const XMLParserCallBacks = extern struct {
     handleError: XMLParserHandleErrorCallBack,
 };
 
-pub const XMLParserRetainCallBack = ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque;
+pub const XMLParserRetainCallBack = ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque;
 
-pub const XMLParserReleaseCallBack = ?*const fn (?*anyopaque) callconv(.C) void;
+pub const XMLParserReleaseCallBack = ?*const fn (?*const anyopaque) callconv(.C) void;
 
 pub const XMLParserCopyDescriptionCallBack = StringRef;
 

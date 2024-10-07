@@ -254,3 +254,5 @@ pub const BOOL = enum(i8) {
     NO,
     YES,
 };
+
+pub const NSObject = opaque {};

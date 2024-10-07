@@ -2,13 +2,10 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## Please Read 
-These bindings are work in progress. They may not compile to Zig and they may not function correctly. They have not been tested yet. Expect major changes to the runtime and how that impacts the frameworks.
-
----
+> [!IMPORTANT]
+> These bindings are work in progress. They may not function correctly or have a nasty api. Expect major changes to the runtime and how that impacts the frameworks.
 
 `objective-zig` is a work-in-progress Objective-C runtime and auto generated collection of Objective-C frameworks in zig. You can find the bindings generator at [objective-zig-gen](https://github.com/colbyhall/objective-zig-gen/tree/main). These bindings are not ready. See the notice at the bottom of the README.
-
 
 The [runtime](src/objc.zig) is based off of other Zig Objective-C runtimes ([objz](https://github.com/robbielyman/objz), [zig-objc](https://github.com/mitchellh/zig-objc), and [mach_objc](https://github.com/hexops/mach-objc)).
 
@@ -41,6 +38,13 @@ The [runtime](src/objc.zig) is based off of other Zig Objective-C runtimes ([obj
 - [IntentsUI](src/intents_ui.zig)
 - [MapKit](src/map_kit.zig)
 - [UniformTypeIdentifiers](src/uniform_type_identifiers.zig)
+- [UserNotifications](src/user_notifications.zig)
+- [Symbols](src/symbols.zig)
+- [AVFoundation](src/avfoundation.zig)
+- [CoreMedia](src/core_media.zig)
+- [CoreAudioTypes](src/core_audio_types.zig)
+- [CoreAudio](src/core_audio.zig)
+- [MediaToolbox](src/media_toolbox.zig)
 
 ## Example: Creating a window
 ```zig
@@ -75,6 +79,10 @@ pub fn main() void {
         app_kit.BackingStoreType_Retained,
         .NO,
     );
+
+    // Allocate a string and set the title of the window
+    const title = foundation.String.alloc().initWithUTF8String("Hello World");
+    window.setTitle(title);
 
     // Show the window and bring out.
     window.makeKeyAndOrderFront(null);

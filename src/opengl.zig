@@ -225,9 +225,9 @@ pub const GLushort = objc.uint16_t;
 
 pub const GLvoid = void;
 
-pub const GLchar = i8;
+pub const GLchar = c_char;
 
-pub const GLcharARB = i8;
+pub const GLcharARB = c_char;
 
 pub const GLhandleARB = ?*anyopaque;
 
@@ -318,7 +318,7 @@ extern "OpenGL" fn CGLTexImageIOSurface2D(
 ) callconv(.C) Error;
 pub const texImageIOSurface2D = CGLTexImageIOSurface2D;
 
-extern "OpenGL" fn CGLChoosePixelFormat(attribs: ?*PixelFormatAttribute, pix: ?*PixelFormatObj, npix: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLChoosePixelFormat(attribs: ?*const PixelFormatAttribute, pix: ?*PixelFormatObj, npix: ?*GLint) callconv(.C) Error;
 pub const choosePixelFormat = CGLChoosePixelFormat;
 
 extern "OpenGL" fn CGLDestroyPixelFormat(pix: PixelFormatObj) callconv(.C) Error;
@@ -468,7 +468,7 @@ pub const disable = CGLDisable;
 extern "OpenGL" fn CGLIsEnabled(ctx: ContextObj, pname: ContextEnable, enable: ?*GLint) callconv(.C) Error;
 pub const isEnabled = CGLIsEnabled;
 
-extern "OpenGL" fn CGLSetParameter(ctx: ContextObj, pname: ContextParameter, params: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLSetParameter(ctx: ContextObj, pname: ContextParameter, params: ?*const GLint) callconv(.C) Error;
 pub const setParameter = CGLSetParameter;
 
 extern "OpenGL" fn CGLGetParameter(ctx: ContextObj, pname: ContextParameter, params: ?*GLint) callconv(.C) Error;
@@ -483,7 +483,7 @@ pub const getVirtualScreen = CGLGetVirtualScreen;
 extern "OpenGL" fn CGLUpdateContext(ctx: ContextObj) callconv(.C) Error;
 pub const updateContext = CGLUpdateContext;
 
-extern "OpenGL" fn CGLSetGlobalOption(pname: GlobalOption, params: ?*GLint) callconv(.C) Error;
+extern "OpenGL" fn CGLSetGlobalOption(pname: GlobalOption, params: ?*const GLint) callconv(.C) Error;
 pub const setGlobalOption = CGLSetGlobalOption;
 
 extern "OpenGL" fn CGLGetGlobalOption(pname: GlobalOption, params: ?*GLint) callconv(.C) Error;
@@ -504,5 +504,5 @@ pub const unlockContext = CGLUnlockContext;
 extern "OpenGL" fn CGLGetVersion(majorvers: ?*GLint, minorvers: ?*GLint) callconv(.C) void;
 pub const getVersion = CGLGetVersion;
 
-extern "OpenGL" fn CGLErrorString(@"error": Error) callconv(.C) ?*i8;
+extern "OpenGL" fn CGLErrorString(@"error": Error) callconv(.C) [*:0]const u8;
 pub const errorString = CGLErrorString;
