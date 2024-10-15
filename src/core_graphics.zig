@@ -1072,7 +1072,7 @@ pub const PathElementType_CloseSubpath: objc.int32_t = 4;
 
 pub const PathElement = extern struct {
     type: PathElementType,
-    points: ?*core_foundation.CGPoint,
+    points: core_foundation.CGPoint,
 };
 
 pub const PathApplierFunction = ?*const fn (?*anyopaque, ?*const PathElement) callconv(.C) void;
@@ -2109,7 +2109,7 @@ pub const ColorDataFormat = extern struct {
     bits_per_component: objc.size_t,
     bytes_per_row: objc.size_t,
     intent: ColorRenderingIntent,
-    decode: ?*core_foundation.CGFloat,
+    decode: core_foundation.CGFloat,
 };
 
 extern "CoreGraphics" fn CGConvertColorDataWithFormat() callconv(.C) i32;
@@ -3540,5 +3540,5 @@ pub const psConverterGetTypeID = CGPSConverterGetTypeID;
 extern "CoreGraphics" fn CGSessionCopyCurrentDictionary() callconv(.C) core_foundation.DictionaryRef;
 pub const sessionCopyCurrentDictionary = CGSessionCopyCurrentDictionary;
 
-extern "CoreGraphics" fn CGDirectDisplayCopyCurrentMetalDevice(display: DirectDisplayID) callconv(.C) ?*anyopaque;
+extern "CoreGraphics" fn CGDirectDisplayCopyCurrentMetalDevice(display: DirectDisplayID) callconv(.C) ?*objc.id;
 pub const directDisplayCopyCurrentMetalDevice = CGDirectDisplayCopyCurrentMetalDevice;

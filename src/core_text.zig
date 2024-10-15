@@ -552,12 +552,12 @@ extern "CoreText" fn CTFontGetLigatureCaretPositions(
 ) callconv(.C) core_foundation.Index;
 pub const fontGetLigatureCaretPositions = CTFontGetLigatureCaretPositions;
 
-extern "CoreText" fn CTFontGetTypographicBoundsForAdaptiveImageProvider(font: FontRef, provider: ?*anyopaque) callconv(.C) core_foundation.CGRect;
+extern "CoreText" fn CTFontGetTypographicBoundsForAdaptiveImageProvider(font: FontRef, provider: ?*objc.id) callconv(.C) core_foundation.CGRect;
 pub const fontGetTypographicBoundsForAdaptiveImageProvider = CTFontGetTypographicBoundsForAdaptiveImageProvider;
 
 extern "CoreText" fn CTFontDrawImageFromAdaptiveImageProviderAtPoint(
     font: FontRef,
-    provider: ?*anyopaque,
+    provider: ?*objc.id,
     point: core_foundation.CGPoint,
     context: core_graphics.ContextRef,
 ) callconv(.C) void;
@@ -1604,41 +1604,41 @@ pub const SFNTLookupBinarySearchHeader = extern struct {
 };
 
 pub const SFNTLookupArrayHeader = extern struct {
-    lookupValues: [1]SFNTLookupValue,
+    lookupValues: SFNTLookupValue,
 };
 
 pub const SFNTLookupTrimmedArrayHeader = extern struct {
     firstGlyph: objc.UInt16,
     count: objc.UInt16,
-    valueArray: [1]SFNTLookupValue,
+    valueArray: SFNTLookupValue,
 };
 
 pub const SFNTLookupVectorHeader = extern struct {
     valueSize: objc.UInt16,
     firstGlyph: objc.UInt16,
     count: objc.UInt16,
-    values: [1]objc.UInt8,
+    values: objc.UInt8,
 };
 
 pub const SFNTLookupSegment = extern struct {
     lastGlyph: objc.UInt16,
     firstGlyph: objc.UInt16,
-    value: [1]objc.UInt16,
+    value: objc.UInt16,
 };
 
 pub const SFNTLookupSegmentHeader = extern struct {
     binSearch: SFNTLookupBinarySearchHeader,
-    segments: [1]SFNTLookupSegment,
+    segments: SFNTLookupSegment,
 };
 
 pub const SFNTLookupSingle = extern struct {
     glyph: objc.UInt16,
-    value: [1]objc.UInt16,
+    value: objc.UInt16,
 };
 
 pub const SFNTLookupSingleHeader = extern struct {
     binSearch: SFNTLookupBinarySearchHeader,
-    entries: [1]SFNTLookupSingle,
+    entries: SFNTLookupSingle,
 };
 
 pub const SFNTLookupFormatSpecificHeader = extern union {
@@ -1684,7 +1684,7 @@ pub const STHeader = extern struct {
 pub const STClassTable = extern struct {
     firstGlyph: objc.UInt16,
     nGlyphs: objc.UInt16,
-    classes: [1]STClass,
+    classes: STClass,
 };
 
 pub const STEntryZero = extern struct {
@@ -1752,7 +1752,7 @@ pub const anon8281_LCARCtlPointFormat: u32 = 1;
 
 pub const LcarCaretClassEntry = extern struct {
     count: objc.UInt16,
-    partials: [1]objc.UInt16,
+    partials: objc.UInt16,
 };
 
 pub const LcarCaretTable = extern struct {
@@ -1798,7 +1798,7 @@ pub const JustPCDecompositionAction = extern struct {
     upperLimit: objc.Fixed,
     order: objc.UInt16,
     count: objc.UInt16,
-    glyphs: [1]objc.UInt16,
+    glyphs: objc.UInt16,
 };
 
 pub const JustPCUnconditionalAddAction = objc.UInt16;
@@ -1830,7 +1830,7 @@ pub const JustPCActionSubrecord = extern struct {
 
 pub const JustPCAction = extern struct {
     actionCount: objc.UInt32,
-    actions: [1]JustPCActionSubrecord,
+    actions: JustPCActionSubrecord,
 };
 
 pub const JustWidthDeltaEntry = extern struct {
@@ -1845,7 +1845,7 @@ pub const JustWidthDeltaEntry = extern struct {
 
 pub const JustWidthDeltaGroup = extern struct {
     count: objc.UInt32,
-    entries: [1]JustWidthDeltaEntry,
+    entries: JustWidthDeltaEntry,
 };
 
 pub const JustPostcompTable = extern struct {
@@ -1990,13 +1990,13 @@ pub const MortChain = extern struct {
     length: objc.UInt32,
     nFeatures: objc.UInt16,
     nSubtables: objc.UInt16,
-    featureEntries: [1]MortFeatureEntry,
+    featureEntries: MortFeatureEntry,
 };
 
 pub const MortTable = extern struct {
     version: objc.Fixed,
     nChains: objc.UInt32,
-    chains: [1]MortChain,
+    chains: MortChain,
 };
 
 pub const anon11321 = i32;
@@ -2049,13 +2049,13 @@ pub const MorxChain = extern struct {
     length: objc.UInt32,
     nFeatures: objc.UInt32,
     nSubtables: objc.UInt32,
-    featureEntries: [1]MortFeatureEntry,
+    featureEntries: MortFeatureEntry,
 };
 
 pub const MorxTable = extern struct {
     version: objc.Fixed,
     nChains: objc.UInt32,
-    chains: [1]MorxChain,
+    chains: MorxChain,
 };
 
 pub const anon11981 = u32;
@@ -2132,7 +2132,7 @@ pub const TrakTableData = extern struct {
     nTracks: objc.UInt16,
     nSizes: objc.UInt16,
     sizeTableOffset: objc.UInt32,
-    trakTable: [1]TrakTableEntry,
+    trakTable: TrakTableEntry,
 };
 
 pub const TrakTable = extern struct {
@@ -2178,13 +2178,13 @@ pub const KernArrayOffset = objc.UInt16;
 pub const KernVersion0Header = extern struct {
     version: objc.UInt16,
     nTables: objc.UInt16,
-    firstSubtable: [1]objc.UInt16,
+    firstSubtable: objc.UInt16,
 };
 
 pub const KernTableHeader = extern struct {
     version: objc.Fixed,
     nTables: objc.SInt32,
-    firstSubtable: [1]objc.UInt16,
+    firstSubtable: objc.UInt16,
 };
 
 pub const KernTableHeaderPtr = KernTableHeader;
@@ -2208,13 +2208,13 @@ pub const KernOrderedListHeader = extern struct {
     searchRange: objc.UInt16,
     entrySelector: objc.UInt16,
     rangeShift: objc.UInt16,
-    table: [1]objc.UInt16,
+    table: objc.UInt16,
 };
 
 pub const KernStateHeader = extern struct {
     header: STHeader,
     valueTable: objc.UInt16,
-    firstTable: [1]objc.UInt8,
+    firstTable: objc.UInt8,
 };
 
 pub const KernStateEntry = extern struct {
@@ -2225,7 +2225,7 @@ pub const KernStateEntry = extern struct {
 pub const KernOffsetTable = extern struct {
     firstGlyph: objc.UInt16,
     nGlyphs: objc.UInt16,
-    offsetTable: [1]KernArrayOffset,
+    offsetTable: KernArrayOffset,
 };
 
 pub const KernOffsetTablePtr = KernOffsetTable;
@@ -2235,7 +2235,7 @@ pub const KernSimpleArrayHeader = extern struct {
     leftOffsetTable: objc.UInt16,
     rightOffsetTable: objc.UInt16,
     theArray: KernArrayOffset,
-    firstTable: [1]objc.UInt16,
+    firstTable: objc.UInt16,
 };
 
 pub const KernIndexArrayHeader = extern struct {
@@ -2244,10 +2244,10 @@ pub const KernIndexArrayHeader = extern struct {
     leftClassCount: objc.UInt8,
     rightClassCount: objc.UInt8,
     flags: objc.UInt8,
-    kernValue: [1]objc.SInt16,
-    leftClass: [1]objc.UInt8,
-    rightClass: [1]objc.UInt8,
-    kernIndex: [1]objc.UInt8,
+    kernValue: objc.SInt16,
+    leftClass: objc.UInt8,
+    rightClass: objc.UInt8,
+    kernIndex: objc.UInt8,
 };
 
 pub const KernFormatSpecificHeader = extern union {
@@ -2318,7 +2318,7 @@ pub const KerxArrayOffset = objc.UInt32;
 pub const KerxTableHeader = extern struct {
     version: objc.Fixed,
     nTables: objc.UInt32,
-    firstSubtable: [1]objc.UInt32,
+    firstSubtable: objc.UInt32,
 };
 
 pub const KerxTableHeaderPtr = KerxTableHeader;
@@ -2342,13 +2342,13 @@ pub const KerxOrderedListHeader = extern struct {
     searchRange: objc.UInt32,
     entrySelector: objc.UInt32,
     rangeShift: objc.UInt32,
-    table: [1]objc.UInt32,
+    table: objc.UInt32,
 };
 
 pub const KerxStateHeader = extern struct {
     header: STXHeader,
     valueTable: objc.UInt32,
-    firstTable: [1]objc.UInt8,
+    firstTable: objc.UInt8,
 };
 
 pub const KerxStateEntry = extern struct {
@@ -2360,7 +2360,7 @@ pub const KerxStateEntry = extern struct {
 pub const KerxControlPointHeader = extern struct {
     header: STXHeader,
     flags: objc.UInt32,
-    firstTable: [1]objc.UInt8,
+    firstTable: objc.UInt8,
 };
 
 pub const KerxControlPointEntry = extern struct {
@@ -2391,7 +2391,7 @@ pub const KerxSimpleArrayHeader = extern struct {
     leftOffsetTable: objc.UInt32,
     rightOffsetTable: objc.UInt32,
     theArray: KerxArrayOffset,
-    firstTable: [1]objc.UInt32,
+    firstTable: objc.UInt32,
 };
 
 pub const KerxIndexArrayHeader = extern struct {
@@ -2446,22 +2446,22 @@ pub const BslnBaselineClass = objc.UInt32;
 pub const BslnBaselineRecord = objc.Fixed;
 
 pub const BslnFormat0Part = extern struct {
-    deltas: [32]objc.SInt16,
+    deltas: objc.SInt16,
 };
 
 pub const BslnFormat1Part = extern struct {
-    deltas: [32]objc.SInt16,
+    deltas: objc.SInt16,
     mappingData: SFNTLookupTable,
 };
 
 pub const BslnFormat2Part = extern struct {
     stdGlyph: objc.UInt16,
-    ctlPoints: [32]objc.SInt16,
+    ctlPoints: objc.SInt16,
 };
 
 pub const BslnFormat3Part = extern struct {
     stdGlyph: objc.UInt16,
-    ctlPoints: [32]objc.SInt16,
+    ctlPoints: objc.SInt16,
     mappingData: SFNTLookupTable,
 };
 
@@ -2525,7 +2525,7 @@ pub const AnchorPoint = extern struct {
 
 pub const AnchorPointTable = extern struct {
     nPoints: objc.UInt32,
-    points: [1]AnchorPoint,
+    points: AnchorPoint,
 };
 
 pub const AnkrTable = extern struct {
@@ -2547,7 +2547,7 @@ pub const LtagTable = extern struct {
     version: objc.UInt32,
     flags: objc.UInt32,
     numTags: objc.UInt32,
-    tagRange: [1]LtagStringRange,
+    tagRange: LtagStringRange,
 };
 
 pub const sfntDirectoryEntry = extern struct {
@@ -2563,7 +2563,7 @@ pub const sfntDirectory = extern struct {
     searchRange: objc.UInt16,
     entrySelector: objc.UInt16,
     rangeShift: objc.UInt16,
-    table: [1]sfntDirectoryEntry,
+    table: sfntDirectoryEntry,
 };
 
 pub const anon481 = u32;
@@ -2741,7 +2741,7 @@ pub const anon2751_sizeof_sfntCMapEncoding: u32 = 8;
 pub const sfntCMapHeader = extern struct {
     version: objc.UInt16,
     numTables: objc.UInt16,
-    encoding: [1]sfntCMapEncoding,
+    encoding: sfntCMapEncoding,
 };
 
 pub const anon2851 = u32;
@@ -2789,7 +2789,7 @@ pub const sfntNameHeader = extern struct {
     format: objc.UInt16,
     count: objc.UInt16,
     stringOffset: objc.UInt16,
-    rec: [1]sfntNameRecord,
+    rec: sfntNameRecord,
 };
 
 pub const anon3441 = u32;
@@ -2813,7 +2813,7 @@ pub const anon3631_sizeof_sfntVariationAxis: u32 = 20;
 pub const sfntInstance = extern struct {
     nameID: objc.SInt16,
     flags: objc.SInt16,
-    coord: [1]objc.Fixed,
+    coord: objc.Fixed,
 };
 
 pub const anon3751 = u32;
@@ -2827,8 +2827,8 @@ pub const sfntVariationHeader = extern struct {
     axisSize: objc.UInt16,
     instanceCount: objc.UInt16,
     instanceSize: objc.UInt16,
-    axis: [1]sfntVariationAxis,
-    instance: [1]sfntInstance,
+    axis: sfntVariationAxis,
+    instance: sfntInstance,
 };
 
 pub const sfntFontDescriptor = extern struct {
@@ -2839,7 +2839,7 @@ pub const sfntFontDescriptor = extern struct {
 pub const sfntDescriptorHeader = extern struct {
     version: objc.Fixed,
     descriptorCount: objc.SInt32,
-    descriptor: [1]sfntFontDescriptor,
+    descriptor: sfntFontDescriptor,
 };
 
 pub const anon4121 = u32;
@@ -2871,9 +2871,9 @@ pub const sfntFeatureHeader = extern struct {
     featureNameCount: objc.UInt16,
     featureSetCount: objc.UInt16,
     reserved: objc.SInt32,
-    names: [1]sfntFeatureName,
-    settings: [1]sfntFontFeatureSetting,
-    runs: [1]sfntFontRunFeature,
+    names: sfntFeatureName,
+    settings: sfntFontFeatureSetting,
+    runs: sfntFontRunFeature,
 };
 
 pub const anon4501 = u32;

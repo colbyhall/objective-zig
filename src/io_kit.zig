@@ -185,7 +185,7 @@ pub const OSNotificationHeader64 = extern struct {
 
 pub const ServiceInterestContent64 = extern struct {
     messageType: objc.natural_t,
-    messageArgument: [1]objc.io_user_reference_t,
+    messageArgument: objc.io_user_reference_t,
 };
 
 pub const anon1161 = u32;

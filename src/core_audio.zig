@@ -442,7 +442,7 @@ pub const DeviceIOProcID = DeviceIOProc;
 pub const HardwareIOProcStreamUsage = extern struct {
     mIOProc: ?*anyopaque,
     mNumberStreams: objc.UInt32,
-    mStreamIsOn: [1]objc.UInt32,
+    mStreamIsOn: objc.UInt32,
 };
 
 pub const anon8881 = objc.UInt32;

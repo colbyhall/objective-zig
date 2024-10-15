@@ -460,7 +460,7 @@ pub const FolderInfo = extern struct {
 };
 
 pub const ExtendedFileInfo = extern struct {
-    reserved1: [4]objc.SInt16,
+    reserved1: objc.SInt16,
     extendedFinderFlags: objc.UInt16,
     reserved2: objc.SInt16,
     putAwayFolderID: objc.SInt32,
@@ -484,7 +484,7 @@ pub const FInfo = extern struct {
 
 pub const FXInfo = extern struct {
     fdIconID: objc.SInt16,
-    fdReserved: [3]objc.SInt16,
+    fdReserved: objc.SInt16,
     fdScript: objc.SInt8,
     fdXFlags: objc.SInt8,
     fdComment: objc.SInt16,
@@ -772,8 +772,8 @@ pub const Intl0Ptr = Intl0Rec;
 pub const Intl0Hndl = Intl0Ptr;
 
 pub const Intl1Rec = extern struct {
-    days: [7]objc.Str15,
-    months: [12]objc.Str15,
+    days: objc.Str15,
+    months: objc.Str15,
     suppressDay: objc.UInt8,
     lngDateFmt: objc.UInt8,
     dayLeading0: objc.UInt8,
@@ -831,12 +831,12 @@ pub const WideChar = extern union {
 
 pub const WideCharArr = extern struct {
     size: i16,
-    data: [10]WideChar,
+    data: WideChar,
 };
 
 pub const NumberParts = extern struct {
     version: i16,
-    data: [31]WideChar,
+    data: WideChar,
     pePlus: WideCharArr,
     peMinus: WideCharArr,
     peMinusPlus: WideCharArr,
@@ -910,7 +910,7 @@ pub const Itl5Record = extern struct {
     versionNumber: objc.Fixed,
     numberOfTables: u16,
     reserved: [3]u16,
-    tableDirectory: [1]TableDirectoryRecord,
+    tableDirectory: TableDirectoryRecord,
 };
 
 pub const RuleBasedTrslRecord = extern struct {
@@ -933,7 +933,7 @@ pub const ItlcRecord = extern struct {
     itlcIconRsvd: objc.SInt8,
     itlcRegionCode: i16,
     itlcSysFlags: i16,
-    itlcReserved4: [32]objc.SInt8,
+    itlcReserved4: objc.SInt8,
 };
 
 pub const ItlbRecord = extern struct {
@@ -1931,10 +1931,10 @@ pub const TokenBlock = extern struct {
     doAppend: objc.Boolean,
     doAlphanumeric: objc.Boolean,
     doNest: objc.Boolean,
-    leftDelims: [2]ScriptTokenType,
-    rightDelims: [2]ScriptTokenType,
-    leftComment: [4]ScriptTokenType,
-    rightComment: [4]ScriptTokenType,
+    leftDelims: ScriptTokenType,
+    rightDelims: ScriptTokenType,
+    leftComment: ScriptTokenType,
+    rightComment: ScriptTokenType,
     escapeCode: ScriptTokenType,
     decimalCode: ScriptTokenType,
     itlResource: objc.Handle,
@@ -5643,7 +5643,7 @@ pub const RoutineDescriptor = extern struct {
     reserved2: objc.UInt8,
     selectorInfo: objc.UInt8,
     routineCount: objc.UInt16,
-    routineRecords: [1]RoutineRecord,
+    routineRecords: RoutineRecord,
 };
 
 pub const RoutineDescriptorPtr = RoutineDescriptor;
@@ -7847,7 +7847,7 @@ pub const anon551_CSSM_AC_PRIVATE_ERROR: u32 = -2147404800;
 pub const QTypes = objc.SignedByte;
 
 pub const QElem = extern struct {
-    qLink: ?*QElem,
+    qLink: QElem,
     qType: i16,
     qData: [1]i16,
 };
@@ -7865,7 +7865,7 @@ pub const QHdrPtr = QHdr;
 pub const MachineLocation = extern struct {
     pub const anon1145 = extern union {
         pub const anon1199 = extern struct {
-            pad: [3]objc.SInt8,
+            pad: objc.SInt8,
             Delta: objc.SInt8,
         };
 
@@ -8582,11 +8582,11 @@ pub const FSFileSecurityRef = __FSFileSecurity;
 
 pub const CatPositionRec = extern struct {
     initialize: objc.SInt32,
-    priv: [6]objc.SInt16,
+    priv: objc.SInt16,
 };
 
 pub const FSSpec = extern struct {
-    hidden: [70]objc.UInt8,
+    hidden: objc.UInt8,
 };
 
 pub const FSSpecPtr = FSSpec;
@@ -8683,8 +8683,8 @@ pub const FSCatalogInfo = extern struct {
     accessDate: UTCDateTime,
     backupDate: UTCDateTime,
     permissions: FSPermissionInfo,
-    finderInfo: [16]objc.UInt8,
-    extFinderInfo: [16]objc.UInt8,
+    finderInfo: objc.UInt8,
+    extFinderInfo: objc.UInt8,
     dataLogicalSize: objc.UInt64,
     dataPhysicalSize: objc.UInt64,
     rsrcLogicalSize: objc.UInt64,
@@ -8707,17 +8707,17 @@ pub const FSRefParam = extern struct {
     reserved1: objc.SInt16,
     reserved2: objc.UInt8,
     reserved3: objc.UInt8,
-    ref: ?*const FSRef,
+    ref: FSRef,
     whichInfo: FSCatalogInfoBitmap,
-    catInfo: ?*FSCatalogInfo,
+    catInfo: FSCatalogInfo,
     nameLength: objc.UniCharCount,
-    name: ?*const objc.UniChar,
+    name: objc.UniChar,
     ioDirID: objc.UInt32,
     spec: FSSpecPtr,
-    parentRef: ?*FSRef,
-    newRef: ?*FSRef,
+    parentRef: FSRef,
+    newRef: FSRef,
     textEncodingHint: TextEncoding,
-    outName: ?*objc.HFSUniStr255,
+    outName: objc.HFSUniStr255,
 };
 
 pub const FSRefParamPtr = FSRefParam;
@@ -8729,17 +8729,17 @@ pub const FSRefForkIOParam = extern struct {
     ioCmdAddr: objc.Ptr,
     ioCompletion: IOCompletionUPP,
     ioResult: objc.OSErr,
-    parentRef: ?*const FSRef,
+    parentRef: FSRef,
     nameLength: objc.UniCharCount,
-    name: ?*const objc.UniChar,
+    name: objc.UniChar,
     whichInfo: FSCatalogInfoBitmap,
-    catInfo: ?*const FSCatalogInfo,
+    catInfo: FSCatalogInfo,
     forkNameLength: objc.UniCharCount,
-    forkName: ?*const objc.UniChar,
+    forkName: objc.UniChar,
     permissions: objc.SInt8,
     reserved1: objc.UInt8,
     forkRefNum: FSIORefNum,
-    newRef: ?*FSRef,
+    newRef: FSRef,
 };
 
 pub const FSRefForkIOParamPtr = FSRefForkIOParam;
@@ -8760,9 +8760,9 @@ pub const FSSearchParams = extern struct {
     searchTime: objc.Duration,
     searchBits: objc.OptionBits,
     searchNameLength: objc.UniCharCount,
-    searchName: ?*const objc.UniChar,
-    searchInfo1: ?*FSCatalogInfo,
-    searchInfo2: ?*FSCatalogInfo,
+    searchName: objc.UniChar,
+    searchInfo1: FSCatalogInfo,
+    searchInfo2: FSCatalogInfo,
 };
 
 pub const FSSearchParamsPtr = FSSearchParams;
@@ -8778,15 +8778,15 @@ pub const FSCatalogBulkParam = extern struct {
     reserved: objc.UInt8,
     iteratorFlags: FSIteratorFlags,
     iterator: FSIterator,
-    container: ?*const FSRef,
+    container: FSRef,
     maximumItems: objc.ItemCount,
     actualItems: objc.ItemCount,
     whichInfo: FSCatalogInfoBitmap,
-    catalogInfo: ?*FSCatalogInfo,
-    refs: ?*FSRef,
+    catalogInfo: FSCatalogInfo,
+    refs: FSRef,
     specs: FSSpecPtr,
-    names: ?*objc.HFSUniStr255,
-    searchParams: ?*const FSSearchParams,
+    names: objc.HFSUniStr255,
+    searchParams: FSSearchParams,
 };
 
 pub const FSCatalogBulkParamPtr = FSCatalogBulkParam;
@@ -8812,7 +8812,7 @@ pub const FSForkIOParam = extern struct {
     forkRefNum: FSIORefNum,
     reserved3: objc.UInt8,
     permissions: objc.SInt8,
-    ref: ?*const FSRef,
+    ref: FSRef,
     buffer: objc.Ptr,
     requestCount: objc.UInt32,
     actualCount: objc.UInt32,
@@ -8821,9 +8821,9 @@ pub const FSForkIOParam = extern struct {
     allocationFlags: FSAllocationFlags,
     allocationAmount: objc.UInt64,
     forkNameLength: objc.UniCharCount,
-    forkName: ?*const objc.UniChar,
+    forkName: objc.UniChar,
     forkIterator: CatPositionRec,
-    outForkName: ?*objc.HFSUniStr255,
+    outForkName: objc.HFSUniStr255,
 };
 
 pub const FSForkIOParamPtr = FSForkIOParam;
@@ -8856,9 +8856,9 @@ pub const FSForkCBInfoParam = extern struct {
     volumeRefNum: FSVolumeRefNum,
     iterator: FSIORefNum,
     actualRefNum: FSVolumeRefNum,
-    ref: ?*FSRef,
-    forkInfo: ?*FSForkInfo,
-    forkName: ?*objc.HFSUniStr255,
+    ref: FSRef,
+    forkInfo: FSForkInfo,
+    forkName: objc.HFSUniStr255,
 };
 
 pub const FSForkCBInfoParamPtr = FSForkCBInfoParam;
@@ -8930,7 +8930,7 @@ pub const FSVolumeInfo = extern struct {
     rsrcClumpSize: objc.UInt32,
     dataClumpSize: objc.UInt32,
     nextCatalogID: objc.UInt32,
-    finderInfo: [32]objc.UInt8,
+    finderInfo: objc.UInt8,
     flags: objc.UInt16,
     filesystemID: objc.UInt16,
     signature: objc.UInt16,
@@ -8951,9 +8951,9 @@ pub const FSVolumeInfoParam = extern struct {
     ioVRefNum: FSVolumeRefNum,
     volumeIndex: objc.UInt32,
     whichInfo: FSVolumeInfoBitmap,
-    volumeInfo: ?*FSVolumeInfo,
-    volumeName: ?*objc.HFSUniStr255,
-    ref: ?*FSRef,
+    volumeInfo: FSVolumeInfo,
+    volumeName: objc.HFSUniStr255,
+    ref: FSRef,
 };
 
 pub const FSVolumeInfoParamPtr = FSVolumeInfoParam;
@@ -9058,13 +9058,13 @@ pub const anon16971_AFPTagLengthDDP: u32 = 6;
 pub const AFPTagData = extern struct {
     fLength: objc.UInt8,
     fType: objc.UInt8,
-    fData: [1]objc.UInt8,
+    fData: objc.UInt8,
 };
 
 pub const AFPAlternateAddress = extern struct {
     fVersion: objc.UInt8,
     fAddressCount: objc.UInt8,
-    fAddressList: [1]objc.UInt8,
+    fAddressList: objc.UInt8,
 };
 
 pub const anon17171 = u32;
@@ -10621,7 +10621,7 @@ pub const ComponentResourceExtension = extern struct {
 
 pub const ComponentPlatformInfoArray = extern struct {
     count: objc.SInt32,
-    platformArray: [1]ComponentPlatformInfo,
+    platformArray: ComponentPlatformInfo,
 };
 
 pub const ExtComponentResource = extern struct {
@@ -10634,7 +10634,7 @@ pub const ExtComponentResource = extern struct {
     componentRegisterFlags: objc.SInt32,
     componentIconFamily: objc.SInt16,
     count: objc.SInt32,
-    platformArray: [1]ComponentPlatformInfo,
+    platformArray: ComponentPlatformInfo,
 };
 
 pub const ExtComponentResourcePtr = ExtComponentResource;
@@ -11462,7 +11462,7 @@ pub const anon631_LSUnknownType: i32 = 0;
 pub const anon631_LSUnknownCreator: i32 = 0;
 
 pub const AliasRecord = extern struct {
-    hidden: [6]objc.UInt8,
+    hidden: objc.UInt8,
 };
 
 pub const AliasPtr = AliasRecord;
@@ -11922,7 +11922,7 @@ pub const RegisterInformationPowerPC = extern struct {
 };
 
 pub const FPUInformationPowerPC = extern struct {
-    Registers: [32]objc.UnsignedWide,
+    Registers: objc.UnsignedWide,
     FPSCR: u64,
     Reserved: u64,
 };
@@ -11934,7 +11934,7 @@ pub const Vector128 = extern union {
 };
 
 pub const VectorInformationPowerPC = extern struct {
-    Registers: [32]Vector128,
+    Registers: Vector128,
     VSCR: Vector128,
     VRsave: objc.UInt32,
 };
@@ -11971,16 +11971,16 @@ pub const anon1411_DataAlignmentException: u32 = 17;
 pub const ExceptionKind = u64;
 
 pub const ExceptionInfo = extern union {
-    memoryInfo: ?*MemoryExceptionInformation,
+    memoryInfo: MemoryExceptionInformation,
 };
 
 pub const ExceptionInformationPowerPC = extern struct {
     theKind: ExceptionKind,
-    machineState: ?*MachineInformationPowerPC,
-    registerImage: ?*RegisterInformationPowerPC,
-    FPUImage: ?*FPUInformationPowerPC,
+    machineState: MachineInformationPowerPC,
+    registerImage: RegisterInformationPowerPC,
+    FPUImage: FPUInformationPowerPC,
     info: ExceptionInfo,
-    vectorImage: ?*VectorInformationPowerPC,
+    vectorImage: VectorInformationPowerPC,
 };
 
 pub const MachineInformation = extern struct {
@@ -12001,11 +12001,11 @@ pub const VectorInformation = extern struct {
 
 pub const ExceptionInformation = extern struct {
     theKind: ExceptionKind,
-    machineState: ?*MachineInformation,
-    registerImage: ?*RegisterInformation,
-    FPUImage: ?*FPUInformation,
+    machineState: MachineInformation,
+    registerImage: RegisterInformation,
+    FPUImage: FPUInformation,
     info: ExceptionInfo,
-    vectorImage: ?*VectorInformation,
+    vectorImage: VectorInformation,
 };
 
 pub const ExceptionHandlerProcPtr = objc.OSStatus;
@@ -12135,7 +12135,7 @@ pub const UCKeyStateRecord = extern struct {
     stateZeroNextState: objc.UInt16,
     stateEntryCount: objc.UInt16,
     stateEntryFormat: objc.UInt16,
-    stateEntryData: [1]objc.UInt32,
+    stateEntryData: objc.UInt32,
 };
 
 pub const UCKeyStateEntryTerminal = extern struct {
@@ -12166,7 +12166,7 @@ pub const UCKeyboardLayout = extern struct {
     keyLayoutDataVersion: objc.UInt16,
     keyLayoutFeatureInfoOffset: objc.UInt32,
     keyboardTypeCount: objc.UInt32,
-    keyboardTypeList: [1]UCKeyboardTypeHeader,
+    keyboardTypeList: UCKeyboardTypeHeader,
 };
 
 pub const UCKeyLayoutFeatureInfo = extern struct {
@@ -12179,32 +12179,32 @@ pub const UCKeyModifiersToTableNum = extern struct {
     keyModifiersToTableNumFormat: objc.UInt16,
     defaultTableNum: objc.UInt16,
     modifiersCount: objc.UInt32,
-    tableNum: [1]objc.UInt8,
+    tableNum: objc.UInt8,
 };
 
 pub const UCKeyToCharTableIndex = extern struct {
     keyToCharTableIndexFormat: objc.UInt16,
     keyToCharTableSize: objc.UInt16,
     keyToCharTableCount: objc.UInt32,
-    keyToCharTableOffsets: [1]objc.UInt32,
+    keyToCharTableOffsets: objc.UInt32,
 };
 
 pub const UCKeyStateRecordsIndex = extern struct {
     keyStateRecordsIndexFormat: objc.UInt16,
     keyStateRecordCount: objc.UInt16,
-    keyStateRecordOffsets: [1]objc.UInt32,
+    keyStateRecordOffsets: objc.UInt32,
 };
 
 pub const UCKeyStateTerminators = extern struct {
     keyStateTerminatorsFormat: objc.UInt16,
     keyStateTerminatorCount: objc.UInt16,
-    keyStateTerminators: [1]UCKeyCharSeq,
+    keyStateTerminators: UCKeyCharSeq,
 };
 
 pub const UCKeySequenceDataIndex = extern struct {
     keySequenceDataIndexFormat: objc.UInt16,
     charSequenceCount: objc.UInt16,
-    charSequenceOffsets: [1]objc.UInt16,
+    charSequenceOffsets: objc.UInt16,
 };
 
 pub const anon2421 = u32;
@@ -13610,7 +13610,7 @@ pub const MPAddressSpaceInfo = extern struct {
     processID: MPProcessID,
     groupID: MPCoherenceID,
     nTasks: objc.ItemCount,
-    vsid: [16]objc.UInt32,
+    vsid: objc.UInt32,
 };
 
 pub extern "CoreServices" fn LMGetBootDrive() callconv(.C) objc.SInt16;
@@ -13999,7 +13999,7 @@ pub const MarkerChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
     numMarkers: objc.UInt16,
-    Markers: [1]Marker,
+    Markers: Marker,
 };
 
 pub const MarkerChunkPtr = MarkerChunk;
@@ -14029,7 +14029,7 @@ pub const InstrumentChunkPtr = InstrumentChunk;
 pub const MIDIDataChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
-    MIDIdata: [1]objc.UInt8,
+    MIDIdata: objc.UInt8,
 };
 
 pub const MIDIDataChunkPtr = MIDIDataChunk;
@@ -14037,7 +14037,7 @@ pub const MIDIDataChunkPtr = MIDIDataChunk;
 pub const AudioRecordingChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
-    AESChannelStatus: [24]objc.UInt8,
+    AESChannelStatus: objc.UInt8,
 };
 
 pub const AudioRecordingChunkPtr = AudioRecordingChunk;
@@ -14046,7 +14046,7 @@ pub const ApplicationSpecificChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
     applicationSignature: objc.OSType,
-    data: [1]objc.UInt8,
+    data: objc.UInt8,
 };
 
 pub const ApplicationSpecificChunkPtr = ApplicationSpecificChunk;
@@ -14062,7 +14062,7 @@ pub const CommentsChunk = extern struct {
     ckID: objc.UInt32,
     ckSize: objc.SInt32,
     numComments: objc.UInt16,
-    comments: [1]Comment,
+    comments: Comment,
 };
 
 pub const CommentsChunkPtr = CommentsChunk;
@@ -14155,7 +14155,7 @@ pub const TECInternetNameRec = extern struct {
     offset: objc.UInt32,
     searchEncoding: TextEncodingRec,
     encodingNameLength: objc.UInt8,
-    encodingName: [1]objc.UInt8,
+    encodingName: objc.UInt8,
 };
 
 pub const TECInternetNamesRec = extern struct {
@@ -14450,11 +14450,11 @@ pub const AEEventID = objc.FourCharCode;
 pub const AEArrayType = objc.SInt8;
 
 pub const AEArrayData = extern union {
-    kAEDataArray: [1]objc.SInt16,
+    kAEDataArray: objc.SInt16,
     kAEPackedArray: [1]c_char,
-    kAEHandleArray: [1]objc.Handle,
-    kAEDescArray: [1]AEDesc,
-    kAEKeyDescArray: [1]AEKeyDesc,
+    kAEHandleArray: objc.Handle,
+    kAEDescArray: AEDesc,
+    kAEKeyDescArray: AEKeyDesc,
 };
 
 pub const AEArrayDataPointer = AEArrayData;
@@ -15616,7 +15616,7 @@ pub const TextRangeHandle = TextRangePtr;
 
 pub const TextRangeArray = extern struct {
     fNumOfRanges: objc.SInt16,
-    fRange: [1]TextRange,
+    fRange: TextRange,
 };
 
 pub const TextRangeArrayPtr = TextRangeArray;
@@ -15625,7 +15625,7 @@ pub const TextRangeArrayHandle = TextRangeArrayPtr;
 
 pub const OffsetArray = extern struct {
     fNumOfOffsets: objc.SInt16,
-    fOffset: [1]objc.SInt32,
+    fOffset: objc.SInt32,
 };
 
 pub const OffsetArrayPtr = OffsetArray;
@@ -16241,7 +16241,7 @@ pub const IconFamilyElement = extern struct {
 pub const IconFamilyResource = extern struct {
     resourceType: objc.OSType,
     resourceSize: objc.SInt32,
-    elements: [1]IconFamilyElement,
+    elements: IconFamilyElement,
 };
 
 pub const IconFamilyPtr = IconFamilyResource;
@@ -16308,8 +16308,8 @@ pub const KCPublicKeyHash = objc.UInt8;
 pub const KCCallbackInfo = extern struct {
     version: objc.UInt32,
     item: KCItemRef,
-    processID: [2]objc.SInt32,
-    event: [4]objc.SInt32,
+    processID: objc.SInt32,
+    event: objc.SInt32,
     keychain: KCRef,
 };
 
@@ -17020,7 +17020,7 @@ pub const LSLaunchFlags_AndHideOthers: objc.OptionBits = 2097152;
 pub const LSLaunchURLSpec = extern struct {
     appURL: core_foundation.URLRef,
     itemURLs: core_foundation.ArrayRef,
-    passThruParams: ?*const AEDesc,
+    passThruParams: AEDesc,
     launchFlags: LSLaunchFlags,
     asyncRefCon: ?*anyopaque,
 };
@@ -17037,10 +17037,10 @@ pub const anon281_LSLaunchInClassic: u32 = 262144;
 pub const anon281_LSLaunchHasUntrustedContents: u32 = 4194304;
 
 pub const LSLaunchFSRefSpec = extern struct {
-    appRef: ?*const FSRef,
+    appRef: FSRef,
     numDocs: objc.ItemCount,
-    itemRefs: ?*const FSRef,
-    passThruParams: ?*const AEDesc,
+    itemRefs: FSRef,
+    passThruParams: AEDesc,
     launchFlags: LSLaunchFlags,
     asyncRefCon: ?*anyopaque,
 };
@@ -17052,11 +17052,11 @@ pub extern "CoreServices" fn LSOpenFromRefSpec(inLaunchSpec: ?*const LSLaunchFSR
 pub const LSApplicationParameters = extern struct {
     version: core_foundation.Index,
     flags: LSLaunchFlags,
-    application: ?*const FSRef,
+    application: FSRef,
     asyncLaunchRefCon: ?*anyopaque,
     environment: core_foundation.DictionaryRef,
     argv: core_foundation.ArrayRef,
-    initialEvent: ?*AppleEvent,
+    initialEvent: AppleEvent,
 };
 
 pub extern "CoreServices" fn LSOpenApplication(appParams: ?*const LSApplicationParameters, outPSN: ?*objc.ProcessSerialNumber) callconv(.C) objc.OSStatus;

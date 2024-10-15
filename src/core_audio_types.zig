@@ -33,7 +33,7 @@ pub const Buffer = extern struct {
 
 pub const BufferList = extern struct {
     mNumberBuffers: objc.UInt32,
-    mBuffers: [1]Buffer,
+    mBuffers: Buffer,
 };
 
 pub const SampleType = objc.Float32;
@@ -563,14 +563,14 @@ pub const anon11541_AudioChannelLayoutTag_Unknown: ChannelLayoutTag = -65536;
 pub const ChannelDescription = extern struct {
     mChannelLabel: ChannelLabel,
     mChannelFlags: ChannelFlags,
-    mCoordinates: [3]objc.Float32,
+    mCoordinates: objc.Float32,
 };
 
 pub const ChannelLayout = extern struct {
     mChannelLayoutTag: ChannelLayoutTag,
     mChannelBitmap: ChannelBitmap,
     mNumberChannelDescriptions: objc.UInt32,
-    mChannelDescriptions: [1]ChannelDescription,
+    mChannelDescriptions: ChannelDescription,
 };
 
 pub const FormatListItem = extern struct {

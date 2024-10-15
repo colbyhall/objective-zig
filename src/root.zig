@@ -36,3 +36,6 @@ pub const core_media = @import("core_media.zig");
 pub const core_audio_types = @import("core_audio_types.zig");
 pub const core_audio = @import("core_audio.zig");
 pub const media_toolbox = @import("media_toolbox.zig");
+pub const avfaudio = @import("avfaudio.zig");
+pub const audio_toolbox = @import("audio_toolbox.zig");
+pub const core_midi = @import("core_midi.zig");

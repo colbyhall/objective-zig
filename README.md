@@ -45,6 +45,9 @@ The [runtime](src/objc.zig) is based off of other Zig Objective-C runtimes ([obj
 - [CoreAudioTypes](src/core_audio_types.zig)
 - [CoreAudio](src/core_audio.zig)
 - [MediaToolbox](src/media_toolbox.zig)
+- [AudioToolbox](src/audio_toolbox.zig)
+- [AVFAudio](src/avfaudio.zig)
+- [CoreMIDI](src/core_midi.zig)
 
 ## Example: Creating a window
 ```zig

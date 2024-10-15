@@ -380,15 +380,15 @@ pub const BinaryHeapCompareContext = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
     release: ?*const fn (?*const anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
+    copyDescription: StringRef,
 };
 
 pub const BinaryHeapCallBacks = extern struct {
     version: Index,
     retain: ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) ?*const anyopaque,
     release: ?*const fn (AllocatorRef, ?*const anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
-    compare: ?*const fn (?*const anyopaque, ?*const anyopaque, ?*anyopaque) callconv(.C) ComparisonResult,
+    copyDescription: StringRef,
+    compare: ComparisonResult,
 };
 
 pub const BinaryHeapApplierFunction = ?*const fn (?*const anyopaque, ?*anyopaque) callconv(.C) void;
@@ -1520,9 +1520,9 @@ extern "CoreFoundation" fn CFStringGetMostCompatibleMacStringEncoding(encoding: 
 pub const stringGetMostCompatibleMacStringEncoding = CFStringGetMostCompatibleMacStringEncoding;
 
 pub const StringInlineBuffer = extern struct {
-    buffer: [64]objc.UniChar,
+    buffer: objc.UniChar,
     theString: StringRef,
-    directUniCharBuffer: ?*const objc.UniChar,
+    directUniCharBuffer: objc.UniChar,
     directCStringBuffer: [*:0]const u8,
     rangeToBuffer: Range,
     bufferedRangeStart: Index,
@@ -2488,9 +2488,9 @@ pub const RunLoopSourceContext = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
     release: ?*const fn (?*const anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
-    equal: ?*const fn (?*const anyopaque, ?*const anyopaque) callconv(.C) objc.Boolean,
-    hash: ?*const fn (?*const anyopaque) callconv(.C) HashCode,
+    copyDescription: StringRef,
+    equal: objc.Boolean,
+    hash: HashCode,
     schedule: ?*const fn (?*anyopaque, RunLoopRef, RunLoopMode) callconv(.C) void,
     cancel: ?*const fn (?*anyopaque, RunLoopRef, RunLoopMode) callconv(.C) void,
     perform: ?*const fn (?*anyopaque) callconv(.C) void,
@@ -2501,10 +2501,10 @@ pub const RunLoopSourceContext1 = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
     release: ?*const fn (?*const anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
-    equal: ?*const fn (?*const anyopaque, ?*const anyopaque) callconv(.C) objc.Boolean,
-    hash: ?*const fn (?*const anyopaque) callconv(.C) HashCode,
-    getPort: ?*const fn (?*anyopaque) callconv(.C) objc.mach_port_t,
+    copyDescription: StringRef,
+    equal: objc.Boolean,
+    hash: HashCode,
+    getPort: objc.mach_port_t,
     perform: ?*const fn (
         ?*anyopaque,
         Index,
@@ -2539,7 +2539,7 @@ pub const RunLoopObserverContext = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
     release: ?*const fn (?*const anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
+    copyDescription: StringRef,
 };
 
 pub const RunLoopObserverCallBack = ?*const fn (RunLoopObserverRef, RunLoopActivity, ?*anyopaque) callconv(.C) void;
@@ -2589,7 +2589,7 @@ pub const RunLoopTimerContext = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
     release: ?*const fn (?*const anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
+    copyDescription: StringRef,
 };
 
 pub const RunLoopTimerCallBack = ?*const fn (RunLoopTimerRef, ?*anyopaque) callconv(.C) void;
@@ -2692,7 +2692,7 @@ pub const SocketContext = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
     release: ?*const fn (?*const anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
+    copyDescription: StringRef,
 };
 
 pub const SocketNativeHandle = i32;
@@ -2859,7 +2859,7 @@ pub const StreamClientContext = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
     release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
+    copyDescription: StringRef,
 };
 
 pub const __CFReadStream = extern struct {};
@@ -3759,7 +3759,7 @@ pub const MessagePortContext = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
     release: ?*const fn (?*const anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
+    copyDescription: StringRef,
 };
 
 pub const MessagePortCallBack = DataRef;
@@ -3911,7 +3911,7 @@ pub const MachPortContext = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*const anyopaque) callconv(.C) ?*const anyopaque,
     release: ?*const fn (?*const anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*const anyopaque) callconv(.C) StringRef,
+    copyDescription: StringRef,
 };
 
 pub const MachPortCallBack = ?*const fn (
@@ -4242,7 +4242,7 @@ pub const FileDescriptorContext = extern struct {
     info: ?*anyopaque,
     retain: ?*const fn (?*anyopaque) callconv(.C) ?*anyopaque,
     release: ?*const fn (?*anyopaque) callconv(.C) void,
-    copyDescription: ?*const fn (?*anyopaque) callconv(.C) StringRef,
+    copyDescription: StringRef,
 };
 
 extern "CoreFoundation" fn CFFileDescriptorGetTypeID() callconv(.C) TypeID;
@@ -4430,7 +4430,7 @@ pub const XMLAttributeDeclarationInfo = extern struct {
 
 pub const XMLAttributeListDeclarationInfo = extern struct {
     numberOfAttributes: Index,
-    attributes: ?*XMLAttributeDeclarationInfo,
+    attributes: XMLAttributeDeclarationInfo,
 };
 
 pub const XMLEntityTypeCode = Index;

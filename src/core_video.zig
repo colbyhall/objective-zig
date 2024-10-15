@@ -265,7 +265,7 @@ pub const PlanarComponentInfo = extern struct {
 };
 
 pub const PlanarPixelBufferInfo = extern struct {
-    componentInfo: [1]PlanarComponentInfo,
+    componentInfo: PlanarComponentInfo,
 };
 
 pub const PlanarPixelBufferInfo_YCbCrPlanar = extern struct {
@@ -589,7 +589,7 @@ pub const MetalTextureRef = ImageBufferRef;
 extern "CoreVideo" fn CVMetalTextureGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const metalTextureGetTypeID = CVMetalTextureGetTypeID;
 
-extern "CoreVideo" fn CVMetalTextureGetTexture(image: MetalTextureRef) callconv(.C) ?*anyopaque;
+extern "CoreVideo" fn CVMetalTextureGetTexture(image: MetalTextureRef) callconv(.C) ?*objc.id;
 pub const metalTextureGetTexture = CVMetalTextureGetTexture;
 
 extern "CoreVideo" fn CVMetalTextureIsFlipped(image: MetalTextureRef) callconv(.C) objc.Boolean;
@@ -614,7 +614,7 @@ pub const metalTextureCacheGetTypeID = CVMetalTextureCacheGetTypeID;
 extern "CoreVideo" fn CVMetalTextureCacheCreate(
     allocator: core_foundation.AllocatorRef,
     cacheAttributes: core_foundation.DictionaryRef,
-    metalDevice: ?*anyopaque,
+    metalDevice: ?*objc.id,
     textureAttributes: core_foundation.DictionaryRef,
     cacheOut: ?*MetalTextureCacheRef,
 ) callconv(.C) Return;
@@ -641,7 +641,7 @@ pub const MetalBufferRef = BufferRef;
 extern "CoreVideo" fn CVMetalBufferGetTypeID() callconv(.C) core_foundation.TypeID;
 pub const metalBufferGetTypeID = CVMetalBufferGetTypeID;
 
-extern "CoreVideo" fn CVMetalBufferGetBuffer(buffer: MetalBufferRef) callconv(.C) ?*anyopaque;
+extern "CoreVideo" fn CVMetalBufferGetBuffer(buffer: MetalBufferRef) callconv(.C) ?*objc.id;
 pub const metalBufferGetBuffer = CVMetalBufferGetBuffer;
 
 pub const __CVMetalBufferCache = extern struct {};
@@ -654,7 +654,7 @@ pub const metalBufferCacheGetTypeID = CVMetalBufferCacheGetTypeID;
 extern "CoreVideo" fn CVMetalBufferCacheCreate(
     allocator: core_foundation.AllocatorRef,
     cacheAttributes: core_foundation.DictionaryRef,
-    metalDevice: ?*anyopaque,
+    metalDevice: ?*objc.id,
     cacheOut: ?*MetalBufferCacheRef,
 ) callconv(.C) Return;
 pub const metalBufferCacheCreate = CVMetalBufferCacheCreate;
