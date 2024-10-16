@@ -6,8 +6,8 @@ pub fn main() void {
     const autorelease_pool = objz.autoreleasePoolPush();
     defer objz.autoreleasePoolPop(autorelease_pool);
 
-    // Create the shared application. Currently this returns an anyopaque so we have to cast it back.
-    const app: *app_kit.Application = @ptrCast(app_kit.Application.sharedApplication());
+    // Create the shared application.
+    const app = app_kit.Application.sharedApplication().?;
 
     // Spawn a 1280 x 720 window in the bottom left corner.
     const rect = foundation.Rect{
