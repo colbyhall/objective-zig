@@ -5918,12 +5918,12 @@ pub const ComputePassDescriptor = opaque {
 };
 
 pub const DispatchThreadgroupsIndirectArguments = extern struct {
-    threadgroupsPerGrid: objc.uint32_t,
+    threadgroupsPerGrid: [3]objc.uint32_t,
 };
 
 pub const StageInRegionIndirectArguments = extern struct {
-    stageInOrigin: objc.uint32_t,
-    stageInSize: objc.uint32_t,
+    stageInOrigin: [3]objc.uint32_t,
+    stageInSize: [3]objc.uint32_t,
 };
 
 /// https://developer.apple.com/documentation/Metal/MTLComputeCommandEncoder?language=objc
@@ -7619,12 +7619,12 @@ pub const DrawPatchIndirectArguments = extern struct {
 };
 
 pub const QuadTessellationFactorsHalf = extern struct {
-    edgeTessellationFactor: objc.uint16_t,
-    insideTessellationFactor: objc.uint16_t,
+    edgeTessellationFactor: [4]objc.uint16_t,
+    insideTessellationFactor: [2]objc.uint16_t,
 };
 
 pub const TriangleTessellationFactorsHalf = extern struct {
-    edgeTessellationFactor: objc.uint16_t,
+    edgeTessellationFactor: [3]objc.uint16_t,
     insideTessellationFactor: objc.uint16_t,
 };
 
@@ -10313,7 +10313,7 @@ pub const PackedFloatQuaternion = extern struct {
 };
 
 pub const _MTLPackedFloat4x3 = extern struct {
-    columns: PackedFloat3,
+    columns: [4]PackedFloat3,
 };
 
 pub const PackedFloat4x3 = _MTLPackedFloat4x3;

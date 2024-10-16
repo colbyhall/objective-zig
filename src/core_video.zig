@@ -265,7 +265,7 @@ pub const PlanarComponentInfo = extern struct {
 };
 
 pub const PlanarPixelBufferInfo = extern struct {
-    componentInfo: PlanarComponentInfo,
+    componentInfo: [1]PlanarComponentInfo,
 };
 
 pub const PlanarPixelBufferInfo_YCbCrPlanar = extern struct {

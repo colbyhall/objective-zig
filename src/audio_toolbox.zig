@@ -44,9 +44,9 @@ pub const ComponentInstance = ComponentInstanceRecord;
 pub const ComponentMethod = objc.OSStatus;
 
 pub const ComponentPlugInInterface = extern struct {
-    Open: objc.OSStatus,
-    Close: objc.OSStatus,
-    Lookup: ComponentMethod,
+    Open: ?*const fn (?*anyopaque, ComponentInstance) callconv(.C) objc.OSStatus,
+    Close: ?*const fn (?*anyopaque) callconv(.C) objc.OSStatus,
+    Lookup: ?*const fn (objc.SInt16) callconv(.C) ComponentMethod,
     reserved: ?*anyopaque,
 };
 
@@ -1116,7 +1116,7 @@ pub const AUChannelInfo = extern struct {
 };
 
 pub const UnitExternalBuffer = extern struct {
-    buffer: objc.Byte,
+    buffer: ?*objc.Byte,
     size: objc.UInt32,
 };
 
@@ -1169,7 +1169,7 @@ pub const AUDependentParameter = extern struct {
 
 pub const UnitCocoaViewInfo = extern struct {
     mCocoaAUViewBundleLocation: core_foundation.URLRef,
-    mCocoaAUViewClass: core_foundation.StringRef,
+    mCocoaAUViewClass: [1]core_foundation.StringRef,
 };
 
 pub const AUHostVersionIdentifier = extern struct {
@@ -1179,7 +1179,7 @@ pub const AUHostVersionIdentifier = extern struct {
 
 pub const MIDIPacketList = extern struct {
     numPackets: objc.UInt32,
-    packet: core_midi.Packet,
+    packet: [1]core_midi.Packet,
 };
 
 pub const AUMIDIOutputCallback = objc.OSStatus;
@@ -1201,7 +1201,7 @@ pub const UnitParameterHistoryInfo = extern struct {
 
 pub const UnitRenderContext = extern struct {
     workgroup: objc.os_workgroup_t,
-    reserved: objc.uint32_t,
+    reserved: [6]objc.uint32_t,
 };
 
 pub const AURenderContextObserver = *const fn (?*const UnitRenderContext) callconv(.C) void;
@@ -1209,7 +1209,7 @@ pub const AURenderContextObserver = *const fn (?*const UnitRenderContext) callco
 pub const MIDIEventList = extern struct {
     protocol: core_midi.ProtocolID,
     numPackets: objc.UInt32,
-    packet: core_midi.EventPacket,
+    packet: [1]core_midi.EventPacket,
 };
 
 pub const AUEventSampleTime = objc.int64_t;
@@ -1298,7 +1298,7 @@ pub const UnitParameterIDName = UnitParameterNameInfo;
 
 pub const UnitParameterStringFromValue = extern struct {
     inParamID: UnitParameterID,
-    inValue: UnitParameterValue,
+    inValue: ?*const UnitParameterValue,
     outString: core_foundation.StringRef,
 };
 
@@ -1418,7 +1418,7 @@ pub const UnitPresetMAS_SettingData = extern struct {
     isStockSetting: objc.UInt32,
     settingID: objc.UInt32,
     dataLen: objc.UInt32,
-    data: objc.UInt8,
+    data: [1]objc.UInt8,
 };
 
 pub const UnitPresetMAS_Settings = extern struct {
@@ -1427,7 +1427,7 @@ pub const UnitPresetMAS_Settings = extern struct {
     variantID: objc.UInt32,
     settingsVersion: objc.UInt32,
     numberOfSettings: objc.UInt32,
-    settings: UnitPresetMAS_SettingData,
+    settings: [1]UnitPresetMAS_SettingData,
 };
 
 pub const anon24011 = UnitPropertyID;
@@ -1677,7 +1677,7 @@ pub const ScheduledAudioSlice = extern struct {
     mReserved: objc.UInt32,
     mReserved2: ?*anyopaque,
     mNumberFrames: objc.UInt32,
-    mBufferList: core_audio_types.BufferList,
+    mBufferList: ?*core_audio_types.BufferList,
 };
 
 pub const ScheduledAudioSliceCompletionProc = ?*const fn (?*anyopaque, ?*ScheduledAudioSlice) callconv(.C) void;
@@ -1695,7 +1695,7 @@ pub const ScheduledAudioFileRegion = extern struct {
     mTimeStamp: core_audio_types.TimeStamp,
     mCompletionProc: ScheduledAudioFileRegionCompletionProc,
     mCompletionProcUserData: ?*anyopaque,
-    mAudioFile: ScheduledAudioFileRegion.OpaqueAudioFileID,
+    mAudioFile: ?*ScheduledAudioFileRegion.OpaqueAudioFileID,
     mLoopCount: objc.UInt32,
     mStartFrame: objc.SInt64,
     mFramesToPlay: objc.UInt32,
@@ -1827,7 +1827,7 @@ pub const UnitMIDIControlMapping = extern struct {
 
 pub const UnitParameterValueName = extern struct {
     inParamID: UnitParameterID,
-    inValue: objc.Float32,
+    inValue: ?*const objc.Float32,
     outName: core_foundation.StringRef,
 };
 
@@ -2942,34 +2942,34 @@ pub const AURenderEventType_MIDISysEx: objc.uint8_t = 9;
 pub const AURenderEventType_MIDIEventList: objc.uint8_t = 10;
 
 pub const AURenderEventHeader = extern struct {
-    next: AURenderEvent,
+    next: ?*AURenderEvent,
     eventSampleTime: AUEventSampleTime,
     eventType: AURenderEventType,
     reserved: objc.uint8_t,
 };
 
 pub const AUParameterEvent = extern struct {
-    next: AURenderEvent,
+    next: ?*AURenderEvent,
     eventSampleTime: AUEventSampleTime,
     eventType: AURenderEventType,
-    reserved: objc.uint8_t,
+    reserved: [3]objc.uint8_t,
     rampDurationSampleFrames: AUAudioFrameCount,
     parameterAddress: AUParameterAddress,
     value: AUValue,
 };
 
 pub const AUMIDIEvent = extern struct {
-    next: AURenderEvent,
+    next: ?*AURenderEvent,
     eventSampleTime: AUEventSampleTime,
     eventType: AURenderEventType,
     reserved: objc.uint8_t,
     length: objc.uint16_t,
     cable: objc.uint8_t,
-    data: objc.uint8_t,
+    data: [3]objc.uint8_t,
 };
 
 pub const AUMIDIEventList = extern struct {
-    next: AURenderEvent,
+    next: ?*AURenderEvent,
     eventSampleTime: AUEventSampleTime,
     eventType: AURenderEventType,
     reserved: objc.uint8_t,
@@ -3277,7 +3277,7 @@ pub const MusicDeviceNoteParams = extern struct {
     argCount: objc.UInt32,
     mPitch: objc.Float32,
     mVelocity: objc.Float32,
-    mControls: NoteParamsControlValue,
+    mControls: [1]NoteParamsControlValue,
 };
 
 pub const anon1471 = u32;
@@ -3649,7 +3649,7 @@ pub const FileMarker = extern struct {
 pub const FileMarkerList = extern struct {
     mSMPTE_TimeType: objc.UInt32,
     mNumberMarkers: objc.UInt32,
-    mMarkers: FileMarker,
+    mMarkers: [1]FileMarker,
 };
 
 pub const FileRegionFlags = objc.UInt32;
@@ -3662,13 +3662,13 @@ pub const FileRegion = extern struct {
     mName: core_foundation.StringRef,
     mFlags: FileRegionFlags,
     mNumberMarkers: objc.UInt32,
-    mMarkers: FileMarker,
+    mMarkers: [1]FileMarker,
 };
 
 pub const FileRegionList = extern struct {
     mSMPTE_TimeType: objc.UInt32,
     mNumberRegions: objc.UInt32,
-    mRegions: FileRegion,
+    mRegions: [1]FileRegion,
 };
 
 pub const FramePacketTranslation = extern struct {
@@ -4097,9 +4097,9 @@ pub const PanningMode_PanningMode_VectorBasedPanning: objc.UInt32 = 4;
 pub const PanningInfo = extern struct {
     mPanningMode: PanningMode,
     mCoordinateFlags: objc.UInt32,
-    mCoordinates: objc.Float32,
+    mCoordinates: [3]objc.Float32,
     mGainScale: objc.Float32,
-    mOutputChannelMap: core_audio_types.ChannelLayout,
+    mOutputChannelMap: ?*const core_audio_types.ChannelLayout,
 };
 
 pub const BalanceFadeType = objc.UInt32;
@@ -4110,7 +4110,7 @@ pub const BalanceFade = extern struct {
     mLeftRightBalance: objc.Float32,
     mBackFrontFade: objc.Float32,
     mType: BalanceFadeType,
-    mChannelLayout: core_audio_types.ChannelLayout,
+    mChannelLayout: ?*const core_audio_types.ChannelLayout,
 };
 
 pub const FormatInfo = extern struct {
@@ -4241,7 +4241,7 @@ pub const QueueBuffer = extern struct {
     mAudioDataByteSize: objc.UInt32,
     mUserData: ?*anyopaque,
     mPacketDescriptionCapacity: objc.UInt32,
-    mPacketDescriptions: core_audio_types.StreamPacketDescription,
+    mPacketDescriptions: ?*core_audio_types.StreamPacketDescription,
     mPacketDescriptionCount: objc.UInt32,
 };
 
@@ -4745,7 +4745,7 @@ pub const CAFChunkHeader = extern struct {
 
 pub const CAF_UUID_ChunkHeader = extern struct {
     mHeader: CAFChunkHeader,
-    mUUID: objc.UInt8,
+    mUUID: [16]objc.UInt8,
 };
 
 pub const CAFFormatFlags = objc.UInt32;
@@ -4772,12 +4772,12 @@ pub const CAFPacketTableHeader = extern struct {
     mNumberValidFrames: objc.SInt64,
     mPrimingFrames: objc.SInt32,
     mRemainderFrames: objc.SInt32,
-    mPacketDescriptions: objc.UInt8,
+    mPacketDescriptions: [1]objc.UInt8,
 };
 
 pub const CAFDataChunk = extern struct {
     mEditCount: objc.UInt32,
-    mData: objc.UInt8,
+    mData: [1]objc.UInt8,
 };
 
 pub const CAF_SMPTE_Time = extern struct {
@@ -4799,7 +4799,7 @@ pub const CAFMarker = extern struct {
 pub const CAFMarkerChunk = extern struct {
     mSMPTE_TimeType: objc.UInt32,
     mNumberMarkers: objc.UInt32,
-    mMarkers: CAFMarker,
+    mMarkers: [1]CAFMarker,
 };
 
 pub const CAFRegionFlags = objc.UInt32;
@@ -4811,13 +4811,13 @@ pub const CAFRegion = extern struct {
     mRegionID: objc.UInt32,
     mFlags: CAFRegionFlags,
     mNumberMarkers: objc.UInt32,
-    mMarkers: CAFMarker,
+    mMarkers: [1]CAFMarker,
 };
 
 pub const CAFRegionChunk = extern struct {
     mSMPTE_TimeType: objc.UInt32,
     mNumberRegions: objc.UInt32,
-    mRegions: CAFRegion,
+    mRegions: [1]CAFRegion,
 };
 
 pub const CAFInstrumentChunk = extern struct {
@@ -4840,7 +4840,7 @@ pub const CAFStringID = extern struct {
 
 pub const CAFStrings = extern struct {
     mNumEntries: objc.UInt32,
-    mStringsIDs: CAFStringID,
+    mStringsIDs: [1]CAFStringID,
 };
 
 pub const CAFInfoStrings = extern struct {
@@ -4854,7 +4854,7 @@ pub const CAFPositionPeak = extern struct {
 
 pub const CAFPeakChunk = extern struct {
     mEditCount: objc.UInt32,
-    mPeaks: CAFPositionPeak,
+    mPeaks: [1]CAFPositionPeak,
 };
 
 pub const CAFOverviewSample = extern struct {
@@ -4865,11 +4865,11 @@ pub const CAFOverviewSample = extern struct {
 pub const CAFOverviewChunk = extern struct {
     mEditCount: objc.UInt32,
     mNumFramesPerOVWSample: objc.UInt32,
-    mData: CAFOverviewSample,
+    mData: [1]CAFOverviewSample,
 };
 
 pub const CAFUMIDChunk = extern struct {
-    mBytes: objc.UInt8,
+    mBytes: [64]objc.UInt8,
 };
 
 pub extern "AudioToolbox" fn CAShow(inObject: ?*anyopaque) callconv(.C) void;
@@ -4984,7 +4984,7 @@ pub const MIDIChannelMessage = extern struct {
 
 pub const MIDIRawData = extern struct {
     length: objc.UInt32,
-    data: objc.UInt8,
+    data: [1]objc.UInt8,
 };
 
 pub const MIDIMetaEvent = extern struct {
@@ -4993,12 +4993,12 @@ pub const MIDIMetaEvent = extern struct {
     unused2: objc.UInt8,
     unused3: objc.UInt8,
     dataLength: objc.UInt32,
-    data: objc.UInt8,
+    data: [1]objc.UInt8,
 };
 
 pub const MusicEventUserData = extern struct {
     length: objc.UInt32,
-    data: objc.UInt8,
+    data: [1]objc.UInt8,
 };
 
 pub const ExtendedNoteOnEvent = extern struct {

@@ -27,15 +27,15 @@ pub const FMFontFamilyInstance = extern struct {
 };
 
 pub const FMFontFamilyIterator = extern struct {
-    reserved: objc.UInt32,
+    reserved: [16]objc.UInt32,
 };
 
 pub const FMFontIterator = extern struct {
-    reserved: objc.UInt32,
+    reserved: [16]objc.UInt32,
 };
 
 pub const FMFontFamilyInstanceIterator = extern struct {
-    reserved: objc.UInt32,
+    reserved: [16]objc.UInt32,
 };
 
 pub const FMFilterSelector = objc.UInt32;
@@ -78,13 +78,13 @@ pub const CurveType = objc.UInt16;
 
 pub const UCurvePath = extern struct {
     vectors: objc.UInt32,
-    controlBits: objc.UInt32,
-    vector: Point,
+    controlBits: [1]objc.UInt32,
+    vector: [1]Point,
 };
 
 pub const UCurvePaths = extern struct {
     contours: objc.UInt32,
-    contour: UCurvePath,
+    contour: [1]UCurvePath,
 };
 
 pub const GlyphIdealMetrics = extern struct {
@@ -501,7 +501,7 @@ pub const CM2Header = extern struct {
     flags: objc.UInt32,
     deviceManufacturer: objc.OSType,
     deviceModel: objc.UInt32,
-    deviceAttributes: objc.UInt32,
+    deviceAttributes: [2]objc.UInt32,
     renderingIntent: objc.UInt32,
     white: CMFixedXYZColor,
     creator: objc.OSType,
@@ -521,7 +521,7 @@ pub const CM4Header = extern struct {
     flags: objc.UInt32,
     deviceManufacturer: objc.OSType,
     deviceModel: objc.UInt32,
-    deviceAttributes: objc.UInt32,
+    deviceAttributes: [2]objc.UInt32,
     renderingIntent: objc.UInt32,
     white: CMFixedXYZColor,
     creator: objc.OSType,
@@ -537,7 +537,7 @@ pub const CMTagRecord = extern struct {
 
 pub const CMTagElemTable = extern struct {
     count: objc.UInt32,
-    tagList: CMTagRecord,
+    tagList: [1]CMTagRecord,
 };
 
 pub const CM2Profile = extern struct {
@@ -553,14 +553,14 @@ pub const CM2ProfileHandle = ?*?*CM2Profile;
 pub const CMAdaptationMatrixType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    adaptationMatrix: objc.Fixed,
+    adaptationMatrix: [9]objc.Fixed,
 };
 
 pub const CMCurveType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
     countValue: objc.UInt32,
-    data: objc.UInt16,
+    data: [1]objc.UInt16,
 };
 
 pub const CMDataType = extern struct {
@@ -583,10 +583,10 @@ pub const CMLut16Type = extern struct {
     outputChannels: objc.UInt8,
     gridPoints: objc.UInt8,
     reserved2: objc.UInt8,
-    matrix: objc.Fixed,
+    matrix: [3][3]objc.Fixed,
     inputTableEntries: objc.UInt16,
     outputTableEntries: objc.UInt16,
-    inputTable: objc.UInt16,
+    inputTable: [1]objc.UInt16,
 };
 
 pub const CMLut8Type = extern struct {
@@ -596,8 +596,8 @@ pub const CMLut8Type = extern struct {
     outputChannels: objc.UInt8,
     gridPoints: objc.UInt8,
     reserved2: objc.UInt8,
-    matrix: objc.Fixed,
-    inputTable: objc.UInt8,
+    matrix: [3][3]objc.Fixed,
+    inputTable: [1]objc.UInt8,
 };
 
 pub const CMMultiFunctLutType = extern struct {
@@ -611,7 +611,7 @@ pub const CMMultiFunctLutType = extern struct {
     offsetMcurves: objc.UInt32,
     offsetCLUT: objc.UInt32,
     offsetAcurves: objc.UInt32,
-    data: objc.UInt8,
+    data: [1]objc.UInt8,
 };
 
 pub const CMMultiFunctLutA2BType = CMMultiFunctLutType;
@@ -619,10 +619,10 @@ pub const CMMultiFunctLutA2BType = CMMultiFunctLutType;
 pub const CMMultiFunctLutB2AType = CMMultiFunctLutType;
 
 pub const CMMultiFunctCLUTType = extern struct {
-    gridPoints: objc.UInt8,
+    gridPoints: [16]objc.UInt8,
     entrySize: objc.UInt8,
-    reserved: objc.UInt8,
-    data: objc.UInt8,
+    reserved: [3]objc.UInt8,
+    data: [2]objc.UInt8,
 };
 
 pub const CMMeasurementType = extern struct {
@@ -640,13 +640,13 @@ pub const CMNamedColorType = extern struct {
     reserved: objc.UInt32,
     vendorFlag: objc.UInt32,
     count: objc.UInt32,
-    prefixName: objc.UInt8,
+    prefixName: [1]objc.UInt8,
 };
 
 pub const CMNamedColor2EntryType = extern struct {
-    rootName: objc.UInt8,
-    PCSColorCoords: objc.UInt16,
-    DeviceColorCoords: objc.UInt16,
+    rootName: [32]objc.UInt8,
+    PCSColorCoords: [3]objc.UInt16,
+    DeviceColorCoords: [1]objc.UInt16,
 };
 
 pub const CMNamedColor2Type = extern struct {
@@ -655,8 +655,8 @@ pub const CMNamedColor2Type = extern struct {
     vendorFlag: objc.UInt32,
     count: objc.UInt32,
     deviceChannelCount: objc.UInt32,
-    prefixName: objc.UInt8,
-    suffixName: objc.UInt8,
+    prefixName: [32]objc.UInt8,
+    suffixName: [32]objc.UInt8,
     data: [1]c_char,
 };
 
@@ -686,26 +686,26 @@ pub const CMParametricCurveType = extern struct {
     reserved: objc.UInt32,
     functionType: objc.UInt16,
     reserved2: objc.UInt16,
-    value: objc.Fixed,
+    value: [1]objc.Fixed,
 };
 
 pub const CMTextDescriptionType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
     ASCIICount: objc.UInt32,
-    ASCIIName: objc.UInt8,
+    ASCIIName: [2]objc.UInt8,
 };
 
 pub const CMTextType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    text: objc.UInt8,
+    text: [1]objc.UInt8,
 };
 
 pub const CMUnicodeTextType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    text: objc.UniChar,
+    text: [1]objc.UniChar,
 };
 
 pub const CMScreeningChannelRec = extern struct {
@@ -719,7 +719,7 @@ pub const CMScreeningType = extern struct {
     reserved: objc.UInt32,
     screeningFlag: objc.UInt32,
     channelCount: objc.UInt32,
-    channelInfo: CMScreeningChannelRec,
+    channelInfo: [1]CMScreeningChannelRec,
 };
 
 pub const CMSignatureType = extern struct {
@@ -731,37 +731,37 @@ pub const CMSignatureType = extern struct {
 pub const CMS15Fixed16ArrayType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    value: objc.Fixed,
+    value: [1]objc.Fixed,
 };
 
 pub const CMU16Fixed16ArrayType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    value: objc.UInt32,
+    value: [1]objc.UInt32,
 };
 
 pub const CMUInt8ArrayType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    value: objc.UInt8,
+    value: [1]objc.UInt8,
 };
 
 pub const CMUInt16ArrayType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    value: objc.UInt16,
+    value: [1]objc.UInt16,
 };
 
 pub const CMUInt32ArrayType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    value: objc.UInt32,
+    value: [1]objc.UInt32,
 };
 
 pub const CMUInt64ArrayType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    value: objc.UInt32,
+    value: [1]objc.UInt32,
 };
 
 pub const CMViewingConditionsType = extern struct {
@@ -775,7 +775,7 @@ pub const CMViewingConditionsType = extern struct {
 pub const CMXYZType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
-    XYZ: CMFixedXYZColor,
+    XYZ: [1]CMFixedXYZColor,
 };
 
 pub const CMProfileSequenceDescType = extern struct {
@@ -789,7 +789,7 @@ pub const CMUcrBgType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
     ucrCount: objc.UInt32,
-    ucrValues: objc.UInt16,
+    ucrValues: [1]objc.UInt16,
 };
 
 pub const CMIntentCRDVMSize = extern struct {
@@ -801,7 +801,7 @@ pub const CMPS2CRDVMSizeType = extern struct {
     typeDescriptor: objc.OSType,
     reserved: objc.UInt32,
     count: objc.UInt32,
-    intentCRD: CMIntentCRDVMSize,
+    intentCRD: [1]CMIntentCRDVMSize,
 };
 
 pub const CMVideoCardGammaTable = extern struct {
@@ -939,7 +939,7 @@ pub const CMAppleProfileHeader = extern union {
 pub const CMConcatProfileSet = extern struct {
     keyIndex: objc.UInt16,
     count: objc.UInt16,
-    profileSet: CMProfileRef,
+    profileSet: [1]CMProfileRef,
 };
 
 pub const NCMConcatProfileSpec = extern struct {
@@ -953,7 +953,7 @@ pub const NCMConcatProfileSet = extern struct {
     flags: objc.UInt32,
     flagsMask: objc.UInt32,
     profileCount: objc.UInt32,
-    profileSpecs: NCMConcatProfileSpec,
+    profileSpecs: [1]NCMConcatProfileSpec,
 };
 
 pub const CMRGBColor = extern struct {
@@ -1010,19 +1010,19 @@ pub const CMGrayColor = extern struct {
 };
 
 pub const CMMultichannel5Color = extern struct {
-    components: objc.UInt8,
+    components: [5]objc.UInt8,
 };
 
 pub const CMMultichannel6Color = extern struct {
-    components: objc.UInt8,
+    components: [6]objc.UInt8,
 };
 
 pub const CMMultichannel7Color = extern struct {
-    components: objc.UInt8,
+    components: [7]objc.UInt8,
 };
 
 pub const CMMultichannel8Color = extern struct {
-    components: objc.UInt8,
+    components: [8]objc.UInt8,
 };
 
 pub const CMNamedColor = extern struct {
@@ -1055,9 +1055,9 @@ pub const CMMInfo = extern struct {
     ASCIIName: [32]u8,
     ASCIIDesc: [256]u8,
     UniCodeNameCount: objc.UniCharCount,
-    UniCodeName: objc.UniChar,
+    UniCodeName: [32]objc.UniChar,
     UniCodeDescCount: objc.UniCharCount,
-    UniCodeDesc: objc.UniChar,
+    UniCodeDesc: [256]objc.UniChar,
 };
 
 pub const anon13801 = i32;
@@ -1184,10 +1184,10 @@ pub const CMProfileIterateData = extern struct {
     name: objc.Str255,
     location: CMProfileLocation,
     uniCodeNameCount: objc.UniCharCount,
-    uniCodeName: objc.UniChar,
+    uniCodeName: ?*objc.UniChar,
     asciiName: ?*u8,
-    makeAndModel: CMMakeAndModel,
-    digest: CMProfileMD5,
+    makeAndModel: ?*CMMakeAndModel,
+    digest: ?*CMProfileMD5,
 };
 
 pub const CMProfileIterateProcPtr = objc.OSErr;
@@ -1274,7 +1274,7 @@ pub const CMDeviceInfo = extern struct {
     deviceScope: CMDeviceScope,
     deviceState: CMDeviceState,
     defaultProfileID: CMDeviceProfileID,
-    deviceName: core_foundation.DictionaryRef,
+    deviceName: ?*core_foundation.DictionaryRef,
     profileCount: objc.UInt32,
     reserved: objc.UInt32,
 };
@@ -1300,7 +1300,7 @@ pub const NCMDeviceProfileInfo = extern struct {
 
 pub const CMDeviceProfileArray = extern struct {
     profileCount: objc.UInt32,
-    profiles: CMDeviceProfileInfo,
+    profiles: [1]CMDeviceProfileInfo,
 };
 
 pub const CMDeviceProfileArrayPtr = ?*CMDeviceProfileArray;
@@ -1380,7 +1380,7 @@ pub const PixMapPtr = PixMap;
 pub const PixMapHandle = PixMapPtr;
 
 pub const Pattern = extern struct {
-    pat: objc.UInt8,
+    pat: [8]objc.UInt8,
 };
 
 pub const PatPtr = Pattern;
@@ -1496,7 +1496,7 @@ pub const VDGamRecPtr = VDGammaRecord;
 pub const MacPolygon = extern struct {
     polySize: i16,
     polyBBox: objc.Rect,
-    polyPoints: objc.Point,
+    polyPoints: [1]objc.Point,
 };
 
 pub const Polygon = MacPolygon;
@@ -1851,7 +1851,7 @@ pub const ICAppSpecHandle = ICAppSpecPtr;
 
 pub const ICAppSpecList = extern struct {
     numberOfItems: objc.SInt16,
-    appSpecs: ICAppSpec,
+    appSpecs: [1]ICAppSpec,
 };
 
 pub const ICAppSpecListPtr = ICAppSpecList;
@@ -1906,7 +1906,7 @@ pub const ICServiceEntryHandle = ICServiceEntryPtr;
 
 pub const ICServices = extern struct {
     count: objc.SInt16,
-    services: ICServiceEntry,
+    services: [1]ICServiceEntry,
 };
 
 pub const ICServicesPtr = ICServices;
@@ -3236,8 +3236,8 @@ pub const FamRec = extern struct {
     ffWTabOff: objc.SInt32,
     ffKernOff: objc.SInt32,
     ffStylOff: objc.SInt32,
-    ffProperty: objc.SInt16,
-    ffIntl: objc.SInt16,
+    ffProperty: [9]objc.SInt16,
+    ffIntl: [2]objc.SInt16,
     ffVersion: objc.SInt16,
 };
 
@@ -3393,7 +3393,7 @@ pub const UGlyphInfo = extern struct {
 pub const UGlyphInfoArray = extern struct {
     layout: UTextLayout,
     numGlyphs: objc.ItemCount,
-    glyphs: UGlyphInfo,
+    glyphs: [1]UGlyphInfo,
 };
 
 pub const UHighlightMethod = objc.UInt32;
@@ -3500,12 +3500,12 @@ pub const FlatDataTextLayoutDataHeader = extern struct {
 
 pub const FlatDataTextLayoutHeader = extern struct {
     numFlattenedTextLayouts: objc.UInt32,
-    flattenedTextLayouts: FlatDataTextLayoutDataHeader,
+    flattenedTextLayouts: [1]FlatDataTextLayoutDataHeader,
 };
 
 pub const FlatDataLayoutControlsDataHeader = extern struct {
     numberOfLayoutControls: objc.UInt32,
-    controlArray: UAttributeInfo,
+    controlArray: [1]UAttributeInfo,
 };
 
 pub const FlatDataLineInfoData = extern struct {
@@ -3515,12 +3515,12 @@ pub const FlatDataLineInfoData = extern struct {
 
 pub const FlatDataLineInfoHeader = extern struct {
     numberOfLines: objc.UInt32,
-    lineInfoArray: FlatDataLineInfoData,
+    lineInfoArray: [1]FlatDataLineInfoData,
 };
 
 pub const FlatDataStyleRunDataHeader = extern struct {
     numberOfStyleRuns: objc.UInt32,
-    styleRunArray: UStyleRunInfo,
+    styleRunArray: [1]UStyleRunInfo,
 };
 
 pub const FlatDataStyleListStyleDataHeader = extern struct {
@@ -3532,7 +3532,7 @@ pub const FlatDataStyleListStyleDataHeader = extern struct {
 
 pub const FlatDataStyleListHeader = extern struct {
     numberOfStyles: objc.UInt32,
-    styleDataArray: FlatDataStyleListStyleDataHeader,
+    styleDataArray: [1]FlatDataStyleListStyleDataHeader,
 };
 
 pub const FlatDataStyleListFeatureData = extern struct {
@@ -3562,7 +3562,7 @@ pub const FlatDataFontSpecRawNameData = extern struct {
 
 pub const FlatDataFontSpecRawNameDataHeader = extern struct {
     numberOfFlattenedNames: objc.UInt32,
-    nameDataArray: FlatDataFontSpecRawNameData,
+    nameDataArray: [1]FlatDataFontSpecRawNameData,
 };
 
 pub const UDirectDataSelector = objc.UInt32;
@@ -3600,7 +3600,7 @@ pub const VoiceDescription = extern struct {
     script: objc.SInt16,
     language: objc.SInt16,
     region: objc.SInt16,
-    reserved: objc.SInt32,
+    reserved: [4]objc.SInt32,
 };
 
 pub const VoiceFileInfo = extern struct {
@@ -3641,17 +3641,17 @@ pub const PhonemeInfo = extern struct {
 
 pub const PhonemeDescriptor = extern struct {
     phonemeCount: objc.SInt16,
-    thePhonemes: PhonemeInfo,
+    thePhonemes: [1]PhonemeInfo,
 };
 
 pub const SpeechXtndData = extern struct {
     synthCreator: objc.OSType,
-    synthData: objc.Byte,
+    synthData: [2]objc.Byte,
 };
 
 pub const DelimiterInfo = extern struct {
-    startDelimiter: objc.Byte,
-    endDelimiter: objc.Byte,
+    startDelimiter: [2]objc.Byte,
+    endDelimiter: [2]objc.Byte,
 };
 
 pub const SpeechTextDoneProcPtr = ?*const fn (

@@ -60,27 +60,27 @@ pub const ProtocolID_Protocol_2_0: objc.SInt32 = 2;
 pub const EventList = extern struct {
     protocol: ProtocolID,
     numPackets: objc.UInt32,
-    packet: EventPacket,
+    packet: [1]EventPacket,
 };
 
 pub const PacketList = extern struct {
     numPackets: objc.UInt32,
-    packet: Packet,
+    packet: [1]Packet,
 };
 
 pub const SysexSendRequest = extern struct {
     destination: EndpointRef,
-    data: objc.Byte,
+    data: ?*const objc.Byte,
     bytesToSend: objc.UInt32,
     complete: objc.Boolean,
-    reserved: objc.Byte,
+    reserved: [3]objc.Byte,
     completionProc: CompletionProc,
     completionRefCon: ?*anyopaque,
 };
 
 pub const SysexSendRequestUMP = extern struct {
     destination: EndpointRef,
-    words: objc.UInt32,
+    words: ?*objc.UInt32,
     wordsToSend: objc.UInt32,
     complete: objc.Boolean,
     completionProc: CompletionProcUMP,
@@ -109,13 +109,13 @@ pub const CompletionProcUMP = ?*const fn (?*SysexSendRequestUMP) callconv(.C) vo
 pub const EventPacket = extern struct {
     timeStamp: TimeStamp,
     wordCount: objc.UInt32,
-    words: objc.UInt32,
+    words: [64]objc.UInt32,
 };
 
 pub const Packet = extern struct {
     timeStamp: TimeStamp,
     length: objc.UInt16,
-    data: objc.Byte,
+    data: [256]objc.Byte,
 };
 
 pub const NotificationMessageID = objc.SInt32;
@@ -460,7 +460,7 @@ pub const externalDeviceCreate = MIDIExternalDeviceCreate;
 pub const ThruConnectionRef = ObjectRef;
 
 pub const ValueMap = extern struct {
-    value: objc.UInt8,
+    value: [128]objc.UInt8,
 };
 
 pub const TransformType = objc.UInt16;
@@ -509,10 +509,10 @@ pub const ThruConnectionEndpoint = extern struct {
 pub const ThruConnectionParams = extern struct {
     version: objc.UInt32,
     numSources: objc.UInt32,
-    sources: ThruConnectionEndpoint,
+    sources: [8]ThruConnectionEndpoint,
     numDestinations: objc.UInt32,
-    destinations: ThruConnectionEndpoint,
-    channelMap: objc.UInt8,
+    destinations: [8]ThruConnectionEndpoint,
+    channelMap: [16]objc.UInt8,
     lowVelocity: objc.UInt8,
     highVelocity: objc.UInt8,
     lowNote: objc.UInt8,
@@ -527,11 +527,11 @@ pub const ThruConnectionParams = extern struct {
     filterOutMTC: objc.UInt8,
     filterOutBeatClock: objc.UInt8,
     filterOutTuneRequest: objc.UInt8,
-    reserved2: objc.UInt8,
+    reserved2: [3]objc.UInt8,
     filterOutAllControls: objc.UInt8,
     numControlTransforms: objc.UInt16,
     numMaps: objc.UInt16,
-    reserved3: objc.UInt16,
+    reserved3: [4]objc.UInt16,
 };
 
 extern "CoreMIDI" fn MIDIThruConnectionParamsInitialize(inConnectionParams: ?*ThruConnectionParams) callconv(.C) void;
@@ -554,19 +554,34 @@ pub const thruConnectionFind = MIDIThruConnectionFind;
 
 pub const DriverInterface = extern struct {
     _reserved: ?*anyopaque,
-    QueryInterface: core_foundation.HRESULT,
-    AddRef: core_foundation.ULONG,
-    Release: core_foundation.ULONG,
-    FindDevices: objc.OSStatus,
-    Start: objc.OSStatus,
-    Stop: objc.OSStatus,
-    Configure: objc.OSStatus,
-    Send: objc.OSStatus,
-    EnableSource: objc.OSStatus,
-    Flush: objc.OSStatus,
-    Monitor: objc.OSStatus,
-    SendPackets: objc.OSStatus,
-    MonitorEvents: objc.OSStatus,
+    QueryInterface: ?*const fn (?*anyopaque, core_foundation.REFIID, ?*core_foundation.LPVOID) callconv(.C) core_foundation.HRESULT,
+    AddRef: ?*const fn (?*anyopaque) callconv(.C) core_foundation.ULONG,
+    Release: ?*const fn (?*anyopaque) callconv(.C) core_foundation.ULONG,
+    FindDevices: ?*const fn (DriverRef, DeviceListRef) callconv(.C) objc.OSStatus,
+    Start: ?*const fn (DriverRef, DeviceListRef) callconv(.C) objc.OSStatus,
+    Stop: ?*const fn (DriverRef) callconv(.C) objc.OSStatus,
+    Configure: ?*const fn (DriverRef, DeviceRef) callconv(.C) objc.OSStatus,
+    Send: ?*const fn (
+        DriverRef,
+        ?*const PacketList,
+        ?*anyopaque,
+        ?*anyopaque,
+    ) callconv(.C) objc.OSStatus,
+    EnableSource: ?*const fn (DriverRef, EndpointRef, objc.Boolean) callconv(.C) objc.OSStatus,
+    Flush: ?*const fn (
+        DriverRef,
+        EndpointRef,
+        ?*anyopaque,
+        ?*anyopaque,
+    ) callconv(.C) objc.OSStatus,
+    Monitor: ?*const fn (DriverRef, EndpointRef, ?*const PacketList) callconv(.C) objc.OSStatus,
+    SendPackets: ?*const fn (
+        DriverRef,
+        ?*const EventList,
+        ?*anyopaque,
+        ?*anyopaque,
+    ) callconv(.C) objc.OSStatus,
+    MonitorEvents: ?*const fn (DriverRef, EndpointRef, ?*const EventList) callconv(.C) objc.OSStatus,
 };
 
 pub const DriverRef = DriverInterface;
@@ -807,13 +822,13 @@ pub const UniversalMessage = extern struct {
 
             status: CVStatus,
             channel: objc.UInt8,
-            reserved: objc.UInt8,
+            reserved: [3]objc.UInt8,
         };
 
         pub const anon6433 = extern struct {
             status: SysExStatus,
             channel: objc.UInt8,
-            data: objc.UInt8,
+            data: [6]objc.UInt8,
             reserved: objc.UInt8,
         };
 
@@ -841,18 +856,18 @@ pub const UniversalMessage = extern struct {
                 pub const anon6755 = extern struct {
                     options: ProgramChangeOptions,
                     program: objc.UInt8,
-                    reserved: objc.UInt8,
+                    reserved: [2]objc.UInt8,
                     bank: objc.UInt16,
                 };
 
                 pub const anon6825 = extern struct {
                     data: objc.UInt32,
-                    reserved: objc.UInt8,
+                    reserved: [2]objc.UInt8,
                 };
 
                 pub const anon6875 = extern struct {
                     data: objc.UInt32,
-                    reserved: objc.UInt8,
+                    reserved: [2]objc.UInt8,
                 };
 
                 pub const anon6925 = extern struct {
@@ -876,7 +891,7 @@ pub const UniversalMessage = extern struct {
                 pub const anon7105 = extern struct {
                     note: objc.UInt8,
                     options: PerNoteManagementOptions,
-                    reserved: objc.UInt8,
+                    reserved: [4]objc.UInt8,
                 };
 
                 note: UniversalMessage.anon5982.anon6503.anon6544.anon6555,
@@ -893,7 +908,7 @@ pub const UniversalMessage = extern struct {
 
             status: CVStatus,
             channel: objc.UInt8,
-            reserved: objc.UInt8,
+            reserved: [3]objc.UInt8,
         };
 
         pub const anon7183 = extern struct {
@@ -901,13 +916,13 @@ pub const UniversalMessage = extern struct {
                 pub const anon7215 = extern struct {
                     byteCount: objc.UInt8,
                     streamID: objc.UInt8,
-                    data: objc.UInt8,
+                    data: [13]objc.UInt8,
                     reserved: objc.UInt8,
                 };
 
                 pub const anon7285 = extern struct {
                     mdsID: objc.UInt8,
-                    data: objc.UInt8,
+                    data: [14]objc.UInt8,
                     reserved: objc.UInt8,
                 };
 
@@ -919,7 +934,7 @@ pub const UniversalMessage = extern struct {
         };
 
         pub const anon7363 = extern struct {
-            words: objc.UInt32,
+            words: [4]objc.UInt32,
         };
 
         utility: UniversalMessage.anon5982.anon5993,
@@ -933,7 +948,7 @@ pub const UniversalMessage = extern struct {
 
     type: MessageType,
     group: objc.UInt8,
-    reserved: objc.UInt8,
+    reserved: [3]objc.UInt8,
 };
 
 pub const EventVisitor = ?*const fn (?*anyopaque, TimeStamp, UniversalMessage) callconv(.C) void;
@@ -948,11 +963,11 @@ extern "CoreMIDI" fn MIDIBluetoothDriverDisconnect(uuid: core_foundation.StringR
 pub const bluetoothDriverDisconnect = MIDIBluetoothDriverDisconnect;
 
 pub const MIDI2DeviceManufacturer = extern struct {
-    sysExIDByte: objc.Byte,
+    sysExIDByte: [3]objc.Byte,
 };
 
 pub const MIDI2DeviceRevisionLevel = extern struct {
-    revisionLevel: objc.Byte,
+    revisionLevel: [4]objc.Byte,
 };
 
 pub const CICategoryOptions = UInteger7;
@@ -1636,11 +1651,11 @@ pub const CIDeviceManager = opaque {
 };
 
 pub const CIDeviceIdentification = extern struct {
-    manufacturer: objc.uint8_t,
-    family: objc.uint8_t,
-    modelNumber: objc.uint8_t,
-    revisionLevel: objc.uint8_t,
-    reserved: objc.uint8_t,
+    manufacturer: [3]objc.uint8_t,
+    family: [2]objc.uint8_t,
+    modelNumber: [2]objc.uint8_t,
+    revisionLevel: [4]objc.uint8_t,
+    reserved: [5]objc.uint8_t,
 };
 
 pub const CIInitiatiorMUID = ?*foundation.Number;

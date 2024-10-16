@@ -245,7 +245,7 @@ pub const extraRefCount = NSExtraRefCount;
 
 pub const FastEnumerationState = extern struct {
     state: u64,
-    itemsPtr: objc.id,
+    itemsPtr: ?*?objc.Id,
     mutationsPtr: ?*u64,
     extra: [5]u64,
 };
@@ -13535,8 +13535,8 @@ extern "Foundation" fn NSAllHashTableObjects(table: ?*HashTable) callconv(.C) ?*
 pub const allHashTableObjects = NSAllHashTableObjects;
 
 pub const HashTableCallBacks = extern struct {
-    hash: objc.NSUInteger,
-    isEqual: objc.BOOL,
+    hash: ?*const fn (?*HashTable, ?*const anyopaque) callconv(.C) objc.NSUInteger,
+    isEqual: ?*const fn (?*HashTable, ?*const anyopaque, ?*const anyopaque) callconv(.C) objc.BOOL,
     retain: ?*const fn (?*HashTable, ?*const anyopaque) callconv(.C) void,
     release: ?*const fn (?*HashTable, ?*anyopaque) callconv(.C) void,
     describe: ?*const fn (?*HashTable, ?*const anyopaque) callconv(.C) ?*String,
@@ -15599,8 +15599,8 @@ extern "Foundation" fn NSAllMapTableValues(table: ?*MapTable) callconv(.C) ?*Arr
 pub const allMapTableValues = NSAllMapTableValues;
 
 pub const MapTableKeyCallBacks = extern struct {
-    hash: objc.NSUInteger,
-    isEqual: objc.BOOL,
+    hash: ?*const fn (?*MapTable, ?*const anyopaque) callconv(.C) objc.NSUInteger,
+    isEqual: ?*const fn (?*MapTable, ?*const anyopaque, ?*const anyopaque) callconv(.C) objc.BOOL,
     retain: ?*const fn (?*MapTable, ?*const anyopaque) callconv(.C) void,
     release: ?*const fn (?*MapTable, ?*anyopaque) callconv(.C) void,
     describe: ?*const fn (?*MapTable, ?*const anyopaque) callconv(.C) ?*String,

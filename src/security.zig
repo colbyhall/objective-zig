@@ -55,7 +55,7 @@ pub const KeychainAttributePtr = KeychainAttribute;
 
 pub const KeychainAttributeList = extern struct {
     count: objc.UInt32,
-    attr: KeychainAttribute,
+    attr: ?*KeychainAttribute,
 };
 
 pub const KeychainStatus = objc.UInt32;
@@ -80,8 +80,8 @@ pub const PasswordRef = __SecPassword;
 
 pub const KeychainAttributeInfo = extern struct {
     count: objc.UInt32,
-    tag: objc.UInt32,
-    format: objc.UInt32,
+    tag: ?*objc.UInt32,
+    format: ?*objc.UInt32,
 };
 
 extern "Security" fn SecCopyErrorMessageString(status: objc.OSStatus, reserved: ?*anyopaque) callconv(.C) core_foundation.StringRef;
@@ -570,7 +570,7 @@ pub const CSSM_SIZE = objc.size_t;
 
 pub const cssm_data = extern struct {
     Length: objc.size_t,
-    Data: objc.uint8_t,
+    Data: ?*objc.uint8_t,
 };
 
 pub const Asn1Item = cssm_data;
@@ -661,7 +661,7 @@ pub const cssm_guid = extern struct {
     Data1: uint32,
     Data2: uint16,
     Data3: uint16,
-    Data4: uint8,
+    Data4: [8]uint8,
 };
 
 pub const CSSM_GUID = cssm_guid;
@@ -995,7 +995,7 @@ pub const cssm_list_element = extern struct {
         Word: Asn1Item,
     };
 
-    NextElement: cssm_list_element,
+    NextElement: ?*cssm_list_element,
     WordID: CSSM_WORDID_TYPE,
     ElementType: CSSM_LIST_ELEMENT_TYPE,
     Element: cssm_list_element.anon3945,
@@ -1050,7 +1050,7 @@ pub const anon4141_CSSM_SAMPLE_TYPE_THRESHOLD: u32 = 123;
 
 pub const cssm_sample = extern struct {
     TypedSample: CSSM_LIST,
-    Verifier: CSSM_SUBSERVICE_UID,
+    Verifier: ?*const CSSM_SUBSERVICE_UID,
 };
 
 pub const CSSM_SAMPLE = cssm_sample;
@@ -1059,7 +1059,7 @@ pub const CSSM_SAMPLE_PTR = ?*cssm_sample;
 
 pub const cssm_samplegroup = extern struct {
     NumberOfSamples: uint32,
-    Samples: CSSM_SAMPLE,
+    Samples: ?*const CSSM_SAMPLE,
 };
 
 pub const CSSM_SAMPLEGROUP = cssm_samplegroup;
@@ -1267,7 +1267,7 @@ pub const anon6061_CSSM_ACL_AUTHORIZATION_DB_DELETE: u32 = 17;
 
 pub const cssm_authorizationgroup = extern struct {
     NumberOfAuthTags: uint32,
-    AuthTags: CSSM_ACL_AUTHORIZATION_TAG,
+    AuthTags: ?*CSSM_ACL_AUTHORIZATION_TAG,
 };
 
 pub const CSSM_AUTHORIZATIONGROUP = cssm_authorizationgroup;
@@ -1346,7 +1346,7 @@ pub const anon6831_CSSM_ACL_EDIT_MODE_REPLACE: u32 = 3;
 pub const cssm_acl_edit = extern struct {
     EditMode: CSSM_ACL_EDIT_MODE,
     OldEntryHandle: CSSM_ACL_HANDLE,
-    NewEntry: CSSM_ACL_ENTRY_INPUT,
+    NewEntry: ?*const CSSM_ACL_ENTRY_INPUT,
 };
 
 pub const CSSM_ACL_EDIT = cssm_acl_edit;
@@ -1367,9 +1367,9 @@ pub const CSSM_FUNC_NAME_ADDR = cssm_func_name_addr;
 pub const CSSM_FUNC_NAME_ADDR_PTR = ?*cssm_func_name_addr;
 
 pub const cssm_date = extern struct {
-    Year: uint8,
-    Month: uint8,
-    Day: uint8,
+    Year: [4]uint8,
+    Month: [2]uint8,
+    Day: [2]uint8,
 };
 
 pub const CSSM_DATE = cssm_date;
@@ -1822,7 +1822,7 @@ pub const cssm_context_attribute = extern struct {
         CryptoData: CSSM_CRYPTO_DATA_PTR,
         Version: CSSM_VERSION_PTR,
         DLDBHandle: CSSM_DL_DB_HANDLE_PTR,
-        KRProfile: cssm_context_attribute._value.cssm_kr_profile,
+        KRProfile: ?*cssm_context_attribute._value.cssm_kr_profile,
     };
 
     AttributeType: CSSM_ATTRIBUTE_TYPE,
@@ -1958,7 +1958,7 @@ pub const CSSM_KEA_DERIVE_PARAMS = cssm_kea_derive_params;
 pub const CSSM_KEA_DERIVE_PARAMS_PTR = ?*cssm_kea_derive_params;
 
 pub const cssm_tp_authority_id = extern struct {
-    AuthorityCert: Asn1Item,
+    AuthorityCert: ?*Asn1Item,
     AuthorityLocation: CSSM_NET_ADDRESS_PTR,
 };
 
@@ -2938,9 +2938,9 @@ pub const CSSM_X509EXT_PAIR_PTR = ?*cssm_x509ext_pair;
 
 pub const cssm_x509_extension = extern struct {
     pub const cssm_x509ext_value = extern union {
-        tagAndValue: CSSM_X509EXT_TAGandVALUE,
+        tagAndValue: ?*CSSM_X509EXT_TAGandVALUE,
         parsedValue: ?*anyopaque,
-        valuePair: CSSM_X509EXT_PAIR,
+        valuePair: ?*CSSM_X509EXT_PAIR,
     };
 
     extnId: Asn1Oid,
@@ -3009,7 +3009,7 @@ pub const CSSM_X509EXT_POLICYQUALIFIERINFO_PTR = ?*cssm_x509ext_policyQualifierI
 
 pub const cssm_x509ext_policyQualifiers = extern struct {
     numberOfPolicyQualifiers: uint32,
-    policyQualifier: CSSM_X509EXT_POLICYQUALIFIERINFO,
+    policyQualifier: ?*CSSM_X509EXT_POLICYQUALIFIERINFO,
 };
 
 pub const CSSM_X509EXT_POLICYQUALIFIERS = cssm_x509ext_policyQualifiers;
@@ -4123,7 +4123,7 @@ pub const CE_GeneralName = __CE_GeneralName;
 
 pub const __CE_GeneralNames = extern struct {
     numNames: uint32,
-    generalName: CE_GeneralName,
+    generalName: ?*CE_GeneralName,
 };
 
 pub const CE_GeneralNames = __CE_GeneralNames;
@@ -4132,7 +4132,7 @@ pub const __CE_AuthorityKeyID = extern struct {
     keyIdentifierPresent: CSSM_BOOL,
     keyIdentifier: Asn1Item,
     generalNamesPresent: CSSM_BOOL,
-    generalNames: CE_GeneralNames,
+    generalNames: ?*CE_GeneralNames,
     serialNumberPresent: CSSM_BOOL,
     serialNumber: Asn1Item,
 };
@@ -4170,14 +4170,14 @@ pub const CE_PolicyQualifierInfo = __CE_PolicyQualifierInfo;
 pub const __CE_PolicyInformation = extern struct {
     certPolicyId: Asn1Oid,
     numPolicyQualifiers: uint32,
-    policyQualifiers: CE_PolicyQualifierInfo,
+    policyQualifiers: ?*CE_PolicyQualifierInfo,
 };
 
 pub const CE_PolicyInformation = __CE_PolicyInformation;
 
 pub const __CE_CertPolicies = extern struct {
     numPolicies: uint32,
-    policies: CE_PolicyInformation,
+    policies: ?*CE_PolicyInformation,
 };
 
 pub const CE_CertPolicies = __CE_CertPolicies;
@@ -4194,7 +4194,7 @@ pub const CE_CrlDistributionPointNameType = __CE_CrlDistributionPointNameType;
 
 pub const __CE_DistributionPointName = extern struct {
     pub const anon5372 = extern union {
-        fullName: CE_GeneralNames,
+        fullName: ?*CE_GeneralNames,
         rdn: CSSM_X509_RDN_PTR,
     };
 
@@ -4205,17 +4205,17 @@ pub const __CE_DistributionPointName = extern struct {
 pub const CE_DistributionPointName = __CE_DistributionPointName;
 
 pub const __CE_CRLDistributionPoint = extern struct {
-    distPointName: CE_DistributionPointName,
+    distPointName: ?*CE_DistributionPointName,
     reasonsPresent: CSSM_BOOL,
     reasons: CE_CrlDistReasonFlags,
-    crlIssuer: CE_GeneralNames,
+    crlIssuer: ?*CE_GeneralNames,
 };
 
 pub const CE_CRLDistributionPoint = __CE_CRLDistributionPoint;
 
 pub const __CE_CRLDistPointsSyntax = extern struct {
     numDistPoints: uint32,
-    distPoints: CE_CRLDistributionPoint,
+    distPoints: ?*CE_CRLDistributionPoint,
 };
 
 pub const CE_CRLDistPointsSyntax = __CE_CRLDistPointsSyntax;
@@ -4229,7 +4229,7 @@ pub const CE_AccessDescription = __CE_AccessDescription;
 
 pub const __CE_AuthorityInfoAccess = extern struct {
     numAccessDescriptions: uint32,
-    accessDescriptions: CE_AccessDescription,
+    accessDescriptions: ?*CE_AccessDescription,
 };
 
 pub const CE_AuthorityInfoAccess = __CE_AuthorityInfoAccess;
@@ -4237,23 +4237,23 @@ pub const CE_AuthorityInfoAccess = __CE_AuthorityInfoAccess;
 pub const CE_NameRegistrationAuthorities = CE_GeneralNames;
 
 pub const __CE_SemanticsInformation = extern struct {
-    semanticsIdentifier: Asn1Oid,
-    nameRegistrationAuthorities: CE_NameRegistrationAuthorities,
+    semanticsIdentifier: ?*Asn1Oid,
+    nameRegistrationAuthorities: ?*CE_NameRegistrationAuthorities,
 };
 
 pub const CE_SemanticsInformation = __CE_SemanticsInformation;
 
 pub const __CE_QC_Statement = extern struct {
     statementId: Asn1Oid,
-    semanticsInfo: CE_SemanticsInformation,
-    otherInfo: Asn1Item,
+    semanticsInfo: ?*CE_SemanticsInformation,
+    otherInfo: ?*Asn1Item,
 };
 
 pub const CE_QC_Statement = __CE_QC_Statement;
 
 pub const __CE_QC_Statements = extern struct {
     numQCStatements: uint32,
-    qcStatements: CE_QC_Statement,
+    qcStatements: ?*CE_QC_Statement,
 };
 
 pub const CE_QC_Statements = __CE_QC_Statements;
@@ -4263,7 +4263,7 @@ pub const CE_CrlNumber = uint32;
 pub const CE_DeltaCrl = uint32;
 
 pub const __CE_IssuingDistributionPoint = extern struct {
-    distPointName: CE_DistributionPointName,
+    distPointName: ?*CE_DistributionPointName,
     onlyUserCertsPresent: CSSM_BOOL,
     onlyUserCerts: CSSM_BOOL,
     onlyCACertsPresent: CSSM_BOOL,
@@ -4277,7 +4277,7 @@ pub const __CE_IssuingDistributionPoint = extern struct {
 pub const CE_IssuingDistributionPoint = __CE_IssuingDistributionPoint;
 
 pub const __CE_GeneralSubtree = extern struct {
-    base: CE_GeneralNames,
+    base: ?*CE_GeneralNames,
     minimum: uint32,
     maximumPresent: CSSM_BOOL,
     maximum: uint32,
@@ -4287,14 +4287,14 @@ pub const CE_GeneralSubtree = __CE_GeneralSubtree;
 
 pub const __CE_GeneralSubtrees = extern struct {
     numSubtrees: uint32,
-    subtrees: CE_GeneralSubtree,
+    subtrees: ?*CE_GeneralSubtree,
 };
 
 pub const CE_GeneralSubtrees = __CE_GeneralSubtrees;
 
 pub const __CE_NameConstraints = extern struct {
-    permitted: CE_GeneralSubtrees,
-    excluded: CE_GeneralSubtrees,
+    permitted: ?*CE_GeneralSubtrees,
+    excluded: ?*CE_GeneralSubtrees,
 };
 
 pub const CE_NameConstraints = __CE_NameConstraints;
@@ -4308,7 +4308,7 @@ pub const CE_PolicyMapping = __CE_PolicyMapping;
 
 pub const __CE_PolicyMappings = extern struct {
     numPolicyMappings: uint32,
-    policyMappings: CE_PolicyMapping,
+    policyMappings: ?*CE_PolicyMapping,
 };
 
 pub const CE_PolicyMappings = __CE_PolicyMappings;
@@ -4757,7 +4757,7 @@ pub const CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS = cssm_applecspdl_db_is_locked
 pub const CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS_PTR = ?*cssm_applecspdl_db_is_locked_parameters;
 
 pub const cssm_applecspdl_db_change_password_parameters = extern struct {
-    accessCredentials: CSSM_ACCESS_CREDENTIALS,
+    accessCredentials: ?*CSSM_ACCESS_CREDENTIALS,
 };
 
 pub const CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS = cssm_applecspdl_db_change_password_parameters;
@@ -4804,7 +4804,7 @@ pub const anon8801_CSSM_KEYATTR_PUBLIC_KEY_ENCRYPT: u32 = 131072;
 
 pub const CSSM_APPLE_TP_NAME_OID = extern struct {
     string: [*:0]const u8,
-    oid: Asn1Oid,
+    oid: ?*const Asn1Oid,
 };
 
 pub const CSSM_APPLE_TP_CERT_REQUEST = extern struct {
@@ -4812,18 +4812,18 @@ pub const CSSM_APPLE_TP_CERT_REQUEST = extern struct {
     clHand: CSSM_CL_HANDLE,
     serialNumber: uint32,
     numSubjectNames: uint32,
-    subjectNames: CSSM_APPLE_TP_NAME_OID,
+    subjectNames: ?*CSSM_APPLE_TP_NAME_OID,
     numIssuerNames: uint32,
-    issuerNames: CSSM_APPLE_TP_NAME_OID,
+    issuerNames: ?*CSSM_APPLE_TP_NAME_OID,
     issuerNameX509: CSSM_X509_NAME_PTR,
-    certPublicKey: CSSM_KEY,
-    issuerPrivateKey: CSSM_KEY,
+    certPublicKey: ?*const CSSM_KEY,
+    issuerPrivateKey: ?*const CSSM_KEY,
     signatureAlg: CSSM_ALGORITHMS,
     signatureOid: Asn1Oid,
     notBefore: uint32,
     notAfter: uint32,
     numExtensions: uint32,
-    extensions: CE_DataAndType,
+    extensions: ?*CE_DataAndType,
     challengeString: [*:0]const u8,
 };
 
@@ -4890,7 +4890,7 @@ pub const anon10701_CSSM_CERT_STATUS_TRUST_SETTINGS_IGNORED_ERROR: u32 = 2048;
 pub const CSSM_TP_APPLE_EVIDENCE_INFO = extern struct {
     StatusBits: CSSM_TP_APPLE_CERT_STATUS,
     NumStatusCodes: uint32,
-    StatusCodes: CSSM_RETURN,
+    StatusCodes: ?*CSSM_RETURN,
     Index: uint32,
     DlDbHandle: CSSM_DL_DB_HANDLE,
     UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR,
@@ -4914,8 +4914,8 @@ pub const CSSM_APPLE_CL_CSR_REQUEST = extern struct {
     signatureAlg: CSSM_ALGORITHMS,
     signatureOid: Asn1Oid,
     cspHand: CSSM_CSP_HANDLE,
-    subjectPublicKey: CSSM_KEY,
-    subjectPrivateKey: CSSM_KEY,
+    subjectPublicKey: ?*const CSSM_KEY,
+    subjectPrivateKey: ?*const CSSM_KEY,
     challengeString: [*:0]const u8,
 };
 
@@ -6364,7 +6364,7 @@ pub const AuthorizationItem = extern struct {
 
 pub const AuthorizationItemSet = extern struct {
     count: objc.UInt32,
-    items: AuthorizationItem,
+    items: ?*AuthorizationItem,
 };
 
 pub const AuthorizationExternalForm = extern struct {
@@ -7478,8 +7478,26 @@ pub extern "Security" fn CSSM_DL_PassThrough(
 ) callconv(.C) CSSM_RETURN;
 
 pub const cssm_spi_ac_funcs = extern struct {
-    AuthCompute: CSSM_RETURN,
-    PassThrough: CSSM_RETURN,
+    AuthCompute: ?*const fn (
+        CSSM_AC_HANDLE,
+        ?*const CSSM_TUPLEGROUP,
+        ?*const CSSM_TUPLEGROUP,
+        uint32,
+        ?*const CSSM_LIST,
+        ?*const CSSM_LIST,
+        ?*const CSSM_LIST,
+        CSSM_TUPLEGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_AC_HANDLE,
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_DL_DB_LIST,
+        uint32,
+        ?*const anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
 
 pub const CSSM_SPI_AC_FUNCS = cssm_spi_ac_funcs;
@@ -7487,45 +7505,181 @@ pub const CSSM_SPI_AC_FUNCS = cssm_spi_ac_funcs;
 pub const CSSM_SPI_AC_FUNCS_PTR = ?*cssm_spi_ac_funcs;
 
 pub const cssm_spi_cl_funcs = extern struct {
-    CertCreateTemplate: CSSM_RETURN,
-    CertGetAllTemplateFields: CSSM_RETURN,
-    CertSign: CSSM_RETURN,
-    CertVerify: CSSM_RETURN,
-    CertVerifyWithKey: CSSM_RETURN,
-    CertGetFirstFieldValue: CSSM_RETURN,
-    CertGetNextFieldValue: CSSM_RETURN,
-    CertAbortQuery: CSSM_RETURN,
-    CertGetKeyInfo: CSSM_RETURN,
-    CertGetAllFields: CSSM_RETURN,
-    FreeFields: CSSM_RETURN,
-    FreeFieldValue: CSSM_RETURN,
-    CertCache: CSSM_RETURN,
-    CertGetFirstCachedFieldValue: CSSM_RETURN,
-    CertGetNextCachedFieldValue: CSSM_RETURN,
-    CertAbortCache: CSSM_RETURN,
-    CertGroupToSignedBundle: CSSM_RETURN,
-    CertGroupFromVerifiedBundle: CSSM_RETURN,
-    CertDescribeFormat: CSSM_RETURN,
-    CrlCreateTemplate: CSSM_RETURN,
-    CrlSetFields: CSSM_RETURN,
-    CrlAddCert: CSSM_RETURN,
-    CrlRemoveCert: CSSM_RETURN,
-    CrlSign: CSSM_RETURN,
-    CrlVerify: CSSM_RETURN,
-    CrlVerifyWithKey: CSSM_RETURN,
-    IsCertInCrl: CSSM_RETURN,
-    CrlGetFirstFieldValue: CSSM_RETURN,
-    CrlGetNextFieldValue: CSSM_RETURN,
-    CrlAbortQuery: CSSM_RETURN,
-    CrlGetAllFields: CSSM_RETURN,
-    CrlCache: CSSM_RETURN,
-    IsCertInCachedCrl: CSSM_RETURN,
-    CrlGetFirstCachedFieldValue: CSSM_RETURN,
-    CrlGetNextCachedFieldValue: CSSM_RETURN,
-    CrlGetAllCachedRecordFields: CSSM_RETURN,
-    CrlAbortCache: CSSM_RETURN,
-    CrlDescribeFormat: CSSM_RETURN,
-    PassThrough: CSSM_RETURN,
+    CertCreateTemplate: ?*const fn (
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*const CSSM_FIELD,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGetAllTemplateFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*const Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertSign: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        ?*const CSSM_FIELD,
+        uint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertVerify: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        ?*const Asn1Item,
+        ?*const CSSM_FIELD,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    CertVerifyWithKey: ?*const fn (CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*const Asn1Item) callconv(.C) CSSM_RETURN,
+    CertGetFirstFieldValue: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*const Asn1Item,
+        ?*const Asn1Oid,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+        ?*CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGetNextFieldValue: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CertAbortQuery: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    CertGetKeyInfo: ?*const fn (CSSM_CL_HANDLE, ?*const Asn1Item, ?*CSSM_KEY_PTR) callconv(.C) CSSM_RETURN,
+    CertGetAllFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*const Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FreeFields: ?*const fn (CSSM_CL_HANDLE, uint32, ?*CSSM_FIELD_PTR) callconv(.C) CSSM_RETURN,
+    FreeFieldValue: ?*const fn (CSSM_CL_HANDLE, ?*const Asn1Oid, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CertCache: ?*const fn (CSSM_CL_HANDLE, ?*const Asn1Item, CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN,
+    CertGetFirstCachedFieldValue: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_HANDLE,
+        ?*const Asn1Oid,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+        ?*CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGetNextCachedFieldValue: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CertAbortCache: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    CertGroupToSignedBundle: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_CERT_BUNDLE_HEADER,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupFromVerifiedBundle: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CERT_BUNDLE,
+        ?*const Asn1Item,
+        ?*CSSM_CERTGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertDescribeFormat: ?*const fn (CSSM_CL_HANDLE, ?*uint32, ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN,
+    CrlCreateTemplate: ?*const fn (
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*const CSSM_FIELD,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlSetFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*const CSSM_FIELD,
+        ?*const Asn1Item,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlAddCert: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        uint32,
+        ?*const CSSM_FIELD,
+        ?*const Asn1Item,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlRemoveCert: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*const Asn1Item,
+        ?*const Asn1Item,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlSign: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        ?*const CSSM_FIELD,
+        uint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlVerify: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        ?*const Asn1Item,
+        ?*const CSSM_FIELD,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    CrlVerifyWithKey: ?*const fn (CSSM_CL_HANDLE, CSSM_CC_HANDLE, ?*const Asn1Item) callconv(.C) CSSM_RETURN,
+    IsCertInCrl: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*const Asn1Item,
+        ?*const Asn1Item,
+        ?*CSSM_BOOL,
+    ) callconv(.C) CSSM_RETURN,
+    CrlGetFirstFieldValue: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*const Asn1Item,
+        ?*const Asn1Oid,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+        ?*CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlGetNextFieldValue: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CrlAbortQuery: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    CrlGetAllFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*const Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlCache: ?*const fn (CSSM_CL_HANDLE, ?*const Asn1Item, CSSM_HANDLE_PTR) callconv(.C) CSSM_RETURN,
+    IsCertInCachedCrl: ?*const fn (
+        CSSM_CL_HANDLE,
+        ?*const Asn1Item,
+        CSSM_HANDLE,
+        ?*CSSM_BOOL,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlGetFirstCachedFieldValue: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_HANDLE,
+        ?*const Asn1Item,
+        ?*const Asn1Oid,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+        ?*CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlGetNextCachedFieldValue: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE, ?*CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    CrlGetAllCachedRecordFields: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_HANDLE,
+        ?*const Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlAbortCache: ?*const fn (CSSM_CL_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    CrlDescribeFormat: ?*const fn (CSSM_CL_HANDLE, ?*uint32, ?*CSSM_OID_PTR) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        uint32,
+        ?*const anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
 
 pub const CSSM_SPI_CL_FUNCS = cssm_spi_cl_funcs;
@@ -7539,7 +7693,7 @@ pub const CSSM_CONTEXT_EVENT = uint32;
 pub const cssm_module_funcs = extern struct {
     ServiceType: CSSM_SERVICE_TYPE,
     NumberOfServiceFuncs: uint32,
-    ServiceFuncs: CSSM_PROC_ADDR,
+    ServiceFuncs: ?*const CSSM_PROC_ADDR,
 };
 
 pub const CSSM_MODULE_FUNCS = cssm_module_funcs;
@@ -7559,8 +7713,19 @@ pub const cssm_upcalls = extern struct {
     free_func: CSSM_UPCALLS_FREE,
     realloc_func: CSSM_UPCALLS_REALLOC,
     calloc_func: CSSM_UPCALLS_CALLOC,
-    CcToHandle_func: CSSM_RETURN,
-    GetModuleInfo_func: CSSM_RETURN,
+    CcToHandle_func: ?*const fn (CSSM_CC_HANDLE, CSSM_MODULE_HANDLE_PTR) callconv(.C) CSSM_RETURN,
+    GetModuleInfo_func: ?*const fn (
+        CSSM_MODULE_HANDLE,
+        CSSM_GUID_PTR,
+        CSSM_VERSION_PTR,
+        ?*uint32,
+        ?*CSSM_SERVICE_TYPE,
+        ?*CSSM_ATTACH_FLAGS,
+        ?*CSSM_KEY_HIERARCHY,
+        CSSM_API_MEMORY_FUNCS_PTR,
+        CSSM_FUNC_NAME_ADDR_PTR,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
 };
 
 pub const CSSM_UPCALLS = cssm_upcalls;
@@ -7568,63 +7733,298 @@ pub const CSSM_UPCALLS = cssm_upcalls;
 pub const CSSM_UPCALLS_PTR = ?*cssm_upcalls;
 
 pub const cssm_spi_csp_funcs = extern struct {
-    EventNotify: CSSM_RETURN,
-    QuerySize: CSSM_RETURN,
-    SignData: CSSM_RETURN,
-    SignDataInit: CSSM_RETURN,
-    SignDataUpdate: CSSM_RETURN,
-    SignDataFinal: CSSM_RETURN,
-    VerifyData: CSSM_RETURN,
-    VerifyDataInit: CSSM_RETURN,
-    VerifyDataUpdate: CSSM_RETURN,
-    VerifyDataFinal: CSSM_RETURN,
-    DigestData: CSSM_RETURN,
-    DigestDataInit: CSSM_RETURN,
-    DigestDataUpdate: CSSM_RETURN,
-    DigestDataClone: CSSM_RETURN,
-    DigestDataFinal: CSSM_RETURN,
-    GenerateMac: CSSM_RETURN,
-    GenerateMacInit: CSSM_RETURN,
-    GenerateMacUpdate: CSSM_RETURN,
-    GenerateMacFinal: CSSM_RETURN,
-    VerifyMac: CSSM_RETURN,
-    VerifyMacInit: CSSM_RETURN,
-    VerifyMacUpdate: CSSM_RETURN,
-    VerifyMacFinal: CSSM_RETURN,
-    EncryptData: CSSM_RETURN,
-    EncryptDataInit: CSSM_RETURN,
-    EncryptDataUpdate: CSSM_RETURN,
-    EncryptDataFinal: CSSM_RETURN,
-    DecryptData: CSSM_RETURN,
-    DecryptDataInit: CSSM_RETURN,
-    DecryptDataUpdate: CSSM_RETURN,
-    DecryptDataFinal: CSSM_RETURN,
-    QueryKeySizeInBits: CSSM_RETURN,
-    GenerateKey: CSSM_RETURN,
-    GenerateKeyPair: CSSM_RETURN,
-    GenerateRandom: CSSM_RETURN,
-    GenerateAlgorithmParams: CSSM_RETURN,
-    WrapKey: CSSM_RETURN,
-    UnwrapKey: CSSM_RETURN,
-    DeriveKey: CSSM_RETURN,
-    FreeKey: CSSM_RETURN,
-    PassThrough: CSSM_RETURN,
-    Login: CSSM_RETURN,
-    Logout: CSSM_RETURN,
-    ChangeLoginAcl: CSSM_RETURN,
-    ObtainPrivateKeyFromPublicKey: CSSM_RETURN,
-    RetrieveUniqueId: CSSM_RETURN,
-    RetrieveCounter: CSSM_RETURN,
-    VerifyDevice: CSSM_RETURN,
-    GetTimeValue: CSSM_RETURN,
-    GetOperationalStatistics: CSSM_RETURN,
-    GetLoginAcl: CSSM_RETURN,
-    GetKeyAcl: CSSM_RETURN,
-    ChangeKeyAcl: CSSM_RETURN,
-    GetKeyOwner: CSSM_RETURN,
-    ChangeKeyOwner: CSSM_RETURN,
-    GetLoginOwner: CSSM_RETURN,
-    ChangeLoginOwner: CSSM_RETURN,
+    EventNotify: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CONTEXT_EVENT,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+    ) callconv(.C) CSSM_RETURN,
+    QuerySize: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        CSSM_BOOL,
+        uint32,
+        CSSM_QUERY_SIZE_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    SignData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        uint32,
+        CSSM_ALGORITHMS,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    SignDataInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*const CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    SignDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    SignDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    VerifyData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        uint32,
+        CSSM_ALGORITHMS,
+        ?*const Asn1Item,
+    ) callconv(.C) CSSM_RETURN,
+    VerifyDataInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*const CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    VerifyDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    VerifyDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*const Asn1Item) callconv(.C) CSSM_RETURN,
+    DigestData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DigestDataInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*const CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    DigestDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    DigestDataClone: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_CC_HANDLE) callconv(.C) CSSM_RETURN,
+    DigestDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    GenerateMac: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateMacInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*const CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    GenerateMacUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateMacFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    VerifyMac: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        uint32,
+        ?*const Asn1Item,
+    ) callconv(.C) CSSM_RETURN,
+    VerifyMacInit: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*const CSSM_CONTEXT) callconv(.C) CSSM_RETURN,
+    VerifyMacUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        uint32,
+    ) callconv(.C) CSSM_RETURN,
+    VerifyMacFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, ?*const Asn1Item) callconv(.C) CSSM_RETURN,
+    EncryptData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+        uint32,
+        ?*CSSM_SIZE,
+        CSSM_DATA_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    EncryptDataInit: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    EncryptDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+        uint32,
+        ?*CSSM_SIZE,
+    ) callconv(.C) CSSM_RETURN,
+    EncryptDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    DecryptData: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+        uint32,
+        ?*CSSM_SIZE,
+        CSSM_DATA_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    DecryptDataInit: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    DecryptDataUpdate: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        uint32,
+        CSSM_DATA_PTR,
+        uint32,
+        ?*CSSM_SIZE,
+    ) callconv(.C) CSSM_RETURN,
+    DecryptDataFinal: ?*const fn (CSSM_CSP_HANDLE, CSSM_CC_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    QueryKeySizeInBits: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const CSSM_KEY,
+        CSSM_KEY_SIZE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        uint32,
+        uint32,
+        ?*const Asn1Item,
+        ?*const CSSM_RESOURCE_CONTROL_CONTEXT,
+        CSSM_KEY_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateKeyPair: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        uint32,
+        uint32,
+        ?*const Asn1Item,
+        CSSM_KEY_PTR,
+        uint32,
+        uint32,
+        ?*const Asn1Item,
+        ?*const CSSM_RESOURCE_CONTROL_CONTEXT,
+        CSSM_KEY_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateRandom: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateAlgorithmParams: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        uint32,
+        CSSM_DATA_PTR,
+        ?*uint32,
+        ?*CSSM_CONTEXT_ATTRIBUTE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    WrapKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+        ?*const CSSM_KEY,
+        ?*const Asn1Item,
+        CSSM_WRAP_KEY_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    UnwrapKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const CSSM_KEY,
+        ?*const CSSM_WRAP_KEY,
+        uint32,
+        uint32,
+        ?*const Asn1Item,
+        ?*const CSSM_RESOURCE_CONTROL_CONTEXT,
+        CSSM_KEY_PTR,
+        CSSM_DATA_PTR,
+        CSSM_PRIVILEGE,
+    ) callconv(.C) CSSM_RETURN,
+    DeriveKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        CSSM_DATA_PTR,
+        uint32,
+        uint32,
+        ?*const Asn1Item,
+        ?*const CSSM_RESOURCE_CONTROL_CONTEXT,
+        CSSM_KEY_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FreeKey: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+        CSSM_KEY_PTR,
+        CSSM_BOOL,
+    ) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_CSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        uint32,
+        ?*const anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
+    Login: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+        ?*const Asn1Item,
+        ?*const anyopaque,
+    ) callconv(.C) CSSM_RETURN,
+    Logout: ?*const fn (CSSM_CSP_HANDLE) callconv(.C) CSSM_RETURN,
+    ChangeLoginAcl: ?*const fn (CSSM_CSP_HANDLE, ?*const CSSM_ACCESS_CREDENTIALS, ?*const CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN,
+    ObtainPrivateKeyFromPublicKey: ?*const fn (CSSM_CSP_HANDLE, ?*const CSSM_KEY, CSSM_KEY_PTR) callconv(.C) CSSM_RETURN,
+    RetrieveUniqueId: ?*const fn (CSSM_CSP_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    RetrieveCounter: ?*const fn (CSSM_CSP_HANDLE, CSSM_DATA_PTR) callconv(.C) CSSM_RETURN,
+    VerifyDevice: ?*const fn (CSSM_CSP_HANDLE, ?*const Asn1Item) callconv(.C) CSSM_RETURN,
+    GetTimeValue: ?*const fn (CSSM_CSP_HANDLE, CSSM_ALGORITHMS, ?*Asn1Item) callconv(.C) CSSM_RETURN,
+    GetOperationalStatistics: ?*const fn (CSSM_CSP_HANDLE, ?*CSSM_CSP_OPERATIONAL_STATISTICS) callconv(.C) CSSM_RETURN,
+    GetLoginAcl: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_STRING,
+        ?*uint32,
+        ?*CSSM_ACL_ENTRY_INFO_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GetKeyAcl: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_KEY,
+        ?*const CSSM_STRING,
+        ?*uint32,
+        ?*CSSM_ACL_ENTRY_INFO_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ChangeKeyAcl: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+        ?*const CSSM_ACL_EDIT,
+        ?*const CSSM_KEY,
+    ) callconv(.C) CSSM_RETURN,
+    GetKeyOwner: ?*const fn (CSSM_CSP_HANDLE, ?*const CSSM_KEY, CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN,
+    ChangeKeyOwner: ?*const fn (
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+        ?*const CSSM_KEY,
+        ?*const CSSM_ACL_OWNER_PROTOTYPE,
+    ) callconv(.C) CSSM_RETURN,
+    GetLoginOwner: ?*const fn (CSSM_CSP_HANDLE, CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN,
+    ChangeLoginOwner: ?*const fn (CSSM_CSP_HANDLE, ?*const CSSM_ACCESS_CREDENTIALS, ?*const CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN,
 };
 
 pub const CSSM_SPI_CSP_FUNCS = cssm_spi_csp_funcs;
@@ -7632,29 +8032,100 @@ pub const CSSM_SPI_CSP_FUNCS = cssm_spi_csp_funcs;
 pub const CSSM_SPI_CSP_FUNCS_PTR = ?*cssm_spi_csp_funcs;
 
 pub const cssm_spi_dl_funcs = extern struct {
-    DbOpen: CSSM_RETURN,
-    DbClose: CSSM_RETURN,
-    DbCreate: CSSM_RETURN,
-    DbDelete: CSSM_RETURN,
-    CreateRelation: CSSM_RETURN,
-    DestroyRelation: CSSM_RETURN,
-    Authenticate: CSSM_RETURN,
-    GetDbAcl: CSSM_RETURN,
-    ChangeDbAcl: CSSM_RETURN,
-    GetDbOwner: CSSM_RETURN,
-    ChangeDbOwner: CSSM_RETURN,
-    GetDbNames: CSSM_RETURN,
-    GetDbNameFromHandle: CSSM_RETURN,
-    FreeNameList: CSSM_RETURN,
-    DataInsert: CSSM_RETURN,
-    DataDelete: CSSM_RETURN,
-    DataModify: CSSM_RETURN,
-    DataGetFirst: CSSM_RETURN,
-    DataGetNext: CSSM_RETURN,
-    DataAbortQuery: CSSM_RETURN,
-    DataGetFromUniqueRecordId: CSSM_RETURN,
-    FreeUniqueRecord: CSSM_RETURN,
-    PassThrough: CSSM_RETURN,
+    DbOpen: ?*const fn (
+        CSSM_DL_HANDLE,
+        [*:0]const u8,
+        ?*const CSSM_NET_ADDRESS,
+        CSSM_DB_ACCESS_TYPE,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+        ?*const anyopaque,
+        ?*CSSM_DB_HANDLE,
+    ) callconv(.C) CSSM_RETURN,
+    DbClose: ?*const fn (CSSM_DL_DB_HANDLE) callconv(.C) CSSM_RETURN,
+    DbCreate: ?*const fn (
+        CSSM_DL_HANDLE,
+        [*:0]const u8,
+        ?*const CSSM_NET_ADDRESS,
+        ?*const CSSM_DBINFO,
+        CSSM_DB_ACCESS_TYPE,
+        ?*const CSSM_RESOURCE_CONTROL_CONTEXT,
+        ?*const anyopaque,
+        ?*CSSM_DB_HANDLE,
+    ) callconv(.C) CSSM_RETURN,
+    DbDelete: ?*const fn (
+        CSSM_DL_HANDLE,
+        [*:0]const u8,
+        ?*const CSSM_NET_ADDRESS,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+    ) callconv(.C) CSSM_RETURN,
+    CreateRelation: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        [*:0]const u8,
+        uint32,
+        ?*const CSSM_DB_SCHEMA_ATTRIBUTE_INFO,
+        uint32,
+        ?*const CSSM_DB_SCHEMA_INDEX_INFO,
+    ) callconv(.C) CSSM_RETURN,
+    DestroyRelation: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_DB_RECORDTYPE) callconv(.C) CSSM_RETURN,
+    Authenticate: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_DB_ACCESS_TYPE, ?*const CSSM_ACCESS_CREDENTIALS) callconv(.C) CSSM_RETURN,
+    GetDbAcl: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        ?*const CSSM_STRING,
+        ?*uint32,
+        ?*CSSM_ACL_ENTRY_INFO_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ChangeDbAcl: ?*const fn (CSSM_DL_DB_HANDLE, ?*const CSSM_ACCESS_CREDENTIALS, ?*const CSSM_ACL_EDIT) callconv(.C) CSSM_RETURN,
+    GetDbOwner: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_ACL_OWNER_PROTOTYPE_PTR) callconv(.C) CSSM_RETURN,
+    ChangeDbOwner: ?*const fn (CSSM_DL_DB_HANDLE, ?*const CSSM_ACCESS_CREDENTIALS, ?*const CSSM_ACL_OWNER_PROTOTYPE) callconv(.C) CSSM_RETURN,
+    GetDbNames: ?*const fn (CSSM_DL_HANDLE, ?*CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
+    GetDbNameFromHandle: ?*const fn (CSSM_DL_DB_HANDLE, ?*?*c_char) callconv(.C) CSSM_RETURN,
+    FreeNameList: ?*const fn (CSSM_DL_HANDLE, CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
+    DataInsert: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        ?*const CSSM_DB_RECORD_ATTRIBUTE_DATA,
+        ?*const Asn1Item,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataDelete: ?*const fn (CSSM_DL_DB_HANDLE, ?*const CSSM_DB_UNIQUE_RECORD) callconv(.C) CSSM_RETURN,
+    DataModify: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        CSSM_DB_UNIQUE_RECORD_PTR,
+        ?*const CSSM_DB_RECORD_ATTRIBUTE_DATA,
+        ?*const Asn1Item,
+        CSSM_DB_MODIFY_MODE,
+    ) callconv(.C) CSSM_RETURN,
+    DataGetFirst: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        ?*const CSSM_QUERY,
+        CSSM_HANDLE_PTR,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataGetNext: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        CSSM_HANDLE,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataAbortQuery: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    DataGetFromUniqueRecordId: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        ?*const CSSM_DB_UNIQUE_RECORD,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FreeUniqueRecord: ?*const fn (CSSM_DL_DB_HANDLE, CSSM_DB_UNIQUE_RECORD_PTR) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_DL_DB_HANDLE,
+        uint32,
+        ?*const anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
 
 pub const CSSM_SPI_DL_FUNCS = cssm_spi_dl_funcs;
@@ -7705,7 +8176,7 @@ pub const CSSM_KR_POLICY_FLAGS = uint32;
 pub const cssm_kr_policy_list_item = extern struct {
     pub const kr_policy_list_item = extern struct {};
 
-    next: cssm_kr_policy_list_item.kr_policy_list_item,
+    next: ?*cssm_kr_policy_list_item.kr_policy_list_item,
     AlgorithmId: CSSM_ALGORITHMS,
     Mode: CSSM_ENCRYPT_MODE,
     MaxKeyLength: uint32,
@@ -7722,7 +8193,7 @@ pub const CSSM_KR_POLICY_LIST_ITEM_PTR = ?*cssm_kr_policy_list_item;
 pub const cssm_kr_policy_info = extern struct {
     krbNotAllowed: CSSM_BOOL,
     numberOfEntries: uint32,
-    policyEntry: CSSM_KR_POLICY_LIST_ITEM,
+    policyEntry: ?*CSSM_KR_POLICY_LIST_ITEM,
 };
 
 pub const CSSM_KR_POLICY_INFO = cssm_kr_policy_info;
@@ -7730,15 +8201,79 @@ pub const CSSM_KR_POLICY_INFO = cssm_kr_policy_info;
 pub const CSSM_KR_POLICY_INFO_PTR = ?*cssm_kr_policy_info;
 
 pub const cssm_spi_kr_funcs = extern struct {
-    RegistrationRequest: CSSM_RETURN,
-    RegistrationRetrieve: CSSM_RETURN,
-    GenerateRecoveryFields: CSSM_RETURN,
-    ProcessRecoveryFields: CSSM_RETURN,
-    RecoveryRequest: CSSM_RETURN,
-    RecoveryRetrieve: CSSM_RETURN,
-    GetRecoveredObject: CSSM_RETURN,
-    RecoveryRequestAbort: CSSM_RETURN,
-    PassThrough: CSSM_RETURN,
+    RegistrationRequest: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+        CSSM_KR_POLICY_FLAGS,
+        ?*sint32,
+        CSSM_HANDLE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    RegistrationRetrieve: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_HANDLE,
+        ?*sint32,
+        CSSM_KR_PROFILE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    GenerateRecoveryFields: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        CSSM_KR_POLICY_FLAGS,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ProcessRecoveryFields: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        CSSM_KR_POLICY_FLAGS,
+        ?*const Asn1Item,
+    ) callconv(.C) CSSM_RETURN,
+    RecoveryRequest: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        ?*const Asn1Item,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+        ?*sint32,
+        CSSM_HANDLE_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    RecoveryRetrieve: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_HANDLE,
+        ?*sint32,
+        CSSM_HANDLE_PTR,
+        ?*uint32,
+    ) callconv(.C) CSSM_RETURN,
+    GetRecoveredObject: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_HANDLE,
+        uint32,
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_RESOURCE_CONTROL_CONTEXT,
+        uint32,
+        CSSM_KEY_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    RecoveryRequestAbort: ?*const fn (CSSM_KRSP_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_KRSP_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_CONTEXT,
+        uint32,
+        ?*const anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
 
 pub const CSSM_SPI_KR_FUNCS = cssm_spi_kr_funcs;
@@ -7746,29 +8281,186 @@ pub const CSSM_SPI_KR_FUNCS = cssm_spi_kr_funcs;
 pub const CSSM_SPI_KR_FUNCS_PTR = ?*cssm_spi_kr_funcs;
 
 pub const cssm_spi_tp_funcs = extern struct {
-    SubmitCredRequest: CSSM_RETURN,
-    RetrieveCredResult: CSSM_RETURN,
-    ConfirmCredResult: CSSM_RETURN,
-    ReceiveConfirmation: CSSM_RETURN,
-    CertReclaimKey: CSSM_RETURN,
-    CertReclaimAbort: CSSM_RETURN,
-    FormRequest: CSSM_RETURN,
-    FormSubmit: CSSM_RETURN,
-    CertGroupVerify: CSSM_RETURN,
-    CertCreateTemplate: CSSM_RETURN,
-    CertGetAllTemplateFields: CSSM_RETURN,
-    CertSign: CSSM_RETURN,
-    CrlVerify: CSSM_RETURN,
-    CrlCreateTemplate: CSSM_RETURN,
-    CertRevoke: CSSM_RETURN,
-    CertRemoveFromCrlTemplate: CSSM_RETURN,
-    CrlSign: CSSM_RETURN,
-    ApplyCrlToDb: CSSM_RETURN,
-    CertGroupConstruct: CSSM_RETURN,
-    CertGroupPrune: CSSM_RETURN,
-    CertGroupToTupleGroup: CSSM_RETURN,
-    TupleGroupToCertGroup: CSSM_RETURN,
-    PassThrough: CSSM_RETURN,
+    SubmitCredRequest: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*const CSSM_TP_AUTHORITY_ID,
+        CSSM_TP_AUTHORITY_REQUEST_TYPE,
+        ?*const CSSM_TP_REQUEST_SET,
+        ?*const CSSM_TP_CALLERAUTH_CONTEXT,
+        ?*sint32,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    RetrieveCredResult: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*const Asn1Item,
+        ?*const CSSM_TP_CALLERAUTH_CONTEXT,
+        ?*sint32,
+        ?*CSSM_BOOL,
+        ?*CSSM_TP_RESULT_SET_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ConfirmCredResult: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*const Asn1Item,
+        ?*const CSSM_TP_CALLERAUTH_CONTEXT,
+        ?*const CSSM_TP_CONFIRM_RESPONSE,
+        ?*const CSSM_TP_AUTHORITY_ID,
+    ) callconv(.C) CSSM_RETURN,
+    ReceiveConfirmation: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*const Asn1Item,
+        ?*CSSM_TP_CONFIRM_RESPONSE_PTR,
+        ?*sint32,
+    ) callconv(.C) CSSM_RETURN,
+    CertReclaimKey: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*const CSSM_CERTGROUP,
+        uint32,
+        CSSM_LONG_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_RESOURCE_CONTROL_CONTEXT,
+    ) callconv(.C) CSSM_RETURN,
+    CertReclaimAbort: ?*const fn (CSSM_TP_HANDLE, CSSM_LONG_HANDLE) callconv(.C) CSSM_RETURN,
+    FormRequest: ?*const fn (
+        CSSM_TP_HANDLE,
+        ?*const CSSM_TP_AUTHORITY_ID,
+        CSSM_TP_FORM_TYPE,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FormSubmit: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_TP_FORM_TYPE,
+        ?*const Asn1Item,
+        ?*const CSSM_TP_AUTHORITY_ID,
+        ?*const CSSM_TP_AUTHORITY_ID,
+        CSSM_ACCESS_CREDENTIALS_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupVerify: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertCreateTemplate: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*const CSSM_FIELD,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGetAllTemplateFields: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        ?*const Asn1Item,
+        ?*uint32,
+        ?*CSSM_FIELD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertSign: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const Asn1Item,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlVerify: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_ENCODED_CRL,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlCreateTemplate: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        uint32,
+        ?*const CSSM_FIELD,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertRevoke: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*const Asn1Item,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        CSSM_TP_CERTCHANGE_REASON,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertRemoveFromCrlTemplate: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*const Asn1Item,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CrlSign: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_ENCODED_CRL,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    ApplyCrlToDb: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_ENCODED_CRL,
+        ?*const CSSM_CERTGROUP,
+        ?*const CSSM_TP_VERIFY_CONTEXT,
+        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupConstruct: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CSP_HANDLE,
+        ?*const CSSM_DL_DB_LIST,
+        ?*const anyopaque,
+        ?*const CSSM_CERTGROUP,
+        ?*CSSM_CERTGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupPrune: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        ?*const CSSM_DL_DB_LIST,
+        ?*const CSSM_CERTGROUP,
+        ?*CSSM_CERTGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    CertGroupToTupleGroup: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        ?*const CSSM_CERTGROUP,
+        ?*CSSM_TUPLEGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    TupleGroupToCertGroup: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        ?*const CSSM_TUPLEGROUP,
+        ?*CSSM_CERTGROUP_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    PassThrough: ?*const fn (
+        CSSM_TP_HANDLE,
+        CSSM_CL_HANDLE,
+        CSSM_CC_HANDLE,
+        ?*const CSSM_DL_DB_LIST,
+        uint32,
+        ?*const anyopaque,
+        ?*?*anyopaque,
+    ) callconv(.C) CSSM_RETURN,
 };
 
 pub const CSSM_SPI_TP_FUNCS = cssm_spi_tp_funcs;
@@ -7776,12 +8468,26 @@ pub const CSSM_SPI_TP_FUNCS = cssm_spi_tp_funcs;
 pub const CSSM_SPI_TP_FUNCS_PTR = ?*cssm_spi_tp_funcs;
 
 pub const cssm_state_funcs = extern struct {
-    cssm_GetAttachFunctions: CSSM_RETURN,
-    cssm_ReleaseAttachFunctions: CSSM_RETURN,
-    cssm_GetAppMemoryFunctions: CSSM_RETURN,
-    cssm_IsFuncCallValid: CSSM_RETURN,
-    cssm_DeregisterManagerServices: CSSM_RETURN,
-    cssm_DeliverModuleManagerEvent: CSSM_RETURN,
+    cssm_GetAttachFunctions: ?*const fn (
+        CSSM_MODULE_HANDLE,
+        CSSM_SERVICE_MASK,
+        ?*?*anyopaque,
+        CSSM_GUID_PTR,
+        ?*CSSM_BOOL,
+    ) callconv(.C) CSSM_RETURN,
+    cssm_ReleaseAttachFunctions: ?*const fn (CSSM_MODULE_HANDLE) callconv(.C) CSSM_RETURN,
+    cssm_GetAppMemoryFunctions: ?*const fn (CSSM_MODULE_HANDLE, CSSM_UPCALLS_PTR) callconv(.C) CSSM_RETURN,
+    cssm_IsFuncCallValid: ?*const fn (
+        CSSM_MODULE_HANDLE,
+        CSSM_PROC_ADDR,
+        CSSM_PROC_ADDR,
+        CSSM_PRIVILEGE,
+        ?*CSSM_PRIVILEGE,
+        CSSM_BITMASK,
+        ?*CSSM_BOOL,
+    ) callconv(.C) CSSM_RETURN,
+    cssm_DeregisterManagerServices: ?*const fn (?*const CSSM_GUID) callconv(.C) CSSM_RETURN,
+    cssm_DeliverModuleManagerEvent: ?*const fn (?*const CSSM_MANAGER_EVENT_NOTIFICATION) callconv(.C) CSSM_RETURN,
 };
 
 pub const CSSM_STATE_FUNCS = cssm_state_funcs;
@@ -7789,12 +8495,12 @@ pub const CSSM_STATE_FUNCS = cssm_state_funcs;
 pub const CSSM_STATE_FUNCS_PTR = ?*cssm_state_funcs;
 
 pub const cssm_manager_registration_info = extern struct {
-    Initialize: CSSM_RETURN,
-    Terminate: CSSM_RETURN,
-    RegisterDispatchTable: CSSM_RETURN,
-    DeregisterDispatchTable: CSSM_RETURN,
-    EventNotifyManager: CSSM_RETURN,
-    RefreshFunctionTable: CSSM_RETURN,
+    Initialize: ?*const fn (uint32, uint32) callconv(.C) CSSM_RETURN,
+    Terminate: ?*const fn () callconv(.C) CSSM_RETURN,
+    RegisterDispatchTable: ?*const fn (CSSM_STATE_FUNCS_PTR) callconv(.C) CSSM_RETURN,
+    DeregisterDispatchTable: ?*const fn () callconv(.C) CSSM_RETURN,
+    EventNotifyManager: ?*const fn (?*const CSSM_MANAGER_EVENT_NOTIFICATION) callconv(.C) CSSM_RETURN,
+    RefreshFunctionTable: ?*const fn (CSSM_FUNC_NAME_ADDR_PTR, uint32) callconv(.C) CSSM_RETURN,
 };
 
 pub const CSSM_MANAGER_REGISTRATION_INFO = cssm_manager_registration_info;
@@ -7806,21 +8512,68 @@ pub const MDS_HANDLE = CSSM_DL_HANDLE;
 pub const MDS_DB_HANDLE = CSSM_DL_DB_HANDLE;
 
 pub const mds_funcs = extern struct {
-    DbOpen: CSSM_RETURN,
-    DbClose: CSSM_RETURN,
-    GetDbNames: CSSM_RETURN,
-    GetDbNameFromHandle: CSSM_RETURN,
-    FreeNameList: CSSM_RETURN,
-    DataInsert: CSSM_RETURN,
-    DataDelete: CSSM_RETURN,
-    DataModify: CSSM_RETURN,
-    DataGetFirst: CSSM_RETURN,
-    DataGetNext: CSSM_RETURN,
-    DataAbortQuery: CSSM_RETURN,
-    DataGetFromUniqueRecordId: CSSM_RETURN,
-    FreeUniqueRecord: CSSM_RETURN,
-    CreateRelation: CSSM_RETURN,
-    DestroyRelation: CSSM_RETURN,
+    DbOpen: ?*const fn (
+        MDS_HANDLE,
+        [*:0]const u8,
+        ?*const CSSM_NET_ADDRESS,
+        CSSM_DB_ACCESS_TYPE,
+        ?*const CSSM_ACCESS_CREDENTIALS,
+        ?*const anyopaque,
+        ?*CSSM_DB_HANDLE,
+    ) callconv(.C) CSSM_RETURN,
+    DbClose: ?*const fn (MDS_DB_HANDLE) callconv(.C) CSSM_RETURN,
+    GetDbNames: ?*const fn (MDS_HANDLE, ?*CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
+    GetDbNameFromHandle: ?*const fn (MDS_DB_HANDLE, ?*?*c_char) callconv(.C) CSSM_RETURN,
+    FreeNameList: ?*const fn (MDS_HANDLE, CSSM_NAME_LIST_PTR) callconv(.C) CSSM_RETURN,
+    DataInsert: ?*const fn (
+        MDS_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        ?*const CSSM_DB_RECORD_ATTRIBUTE_DATA,
+        ?*const Asn1Item,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataDelete: ?*const fn (MDS_DB_HANDLE, ?*const CSSM_DB_UNIQUE_RECORD) callconv(.C) CSSM_RETURN,
+    DataModify: ?*const fn (
+        MDS_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        CSSM_DB_UNIQUE_RECORD_PTR,
+        ?*const CSSM_DB_RECORD_ATTRIBUTE_DATA,
+        ?*const Asn1Item,
+        CSSM_DB_MODIFY_MODE,
+    ) callconv(.C) CSSM_RETURN,
+    DataGetFirst: ?*const fn (
+        MDS_DB_HANDLE,
+        ?*const CSSM_QUERY,
+        CSSM_HANDLE_PTR,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataGetNext: ?*const fn (
+        MDS_DB_HANDLE,
+        CSSM_HANDLE,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+        ?*CSSM_DB_UNIQUE_RECORD_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    DataAbortQuery: ?*const fn (MDS_DB_HANDLE, CSSM_HANDLE) callconv(.C) CSSM_RETURN,
+    DataGetFromUniqueRecordId: ?*const fn (
+        MDS_DB_HANDLE,
+        ?*const CSSM_DB_UNIQUE_RECORD,
+        CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,
+        CSSM_DATA_PTR,
+    ) callconv(.C) CSSM_RETURN,
+    FreeUniqueRecord: ?*const fn (MDS_DB_HANDLE, CSSM_DB_UNIQUE_RECORD_PTR) callconv(.C) CSSM_RETURN,
+    CreateRelation: ?*const fn (
+        MDS_DB_HANDLE,
+        CSSM_DB_RECORDTYPE,
+        [*:0]const u8,
+        uint32,
+        ?*const CSSM_DB_SCHEMA_ATTRIBUTE_INFO,
+        uint32,
+        ?*const CSSM_DB_SCHEMA_INDEX_INFO,
+    ) callconv(.C) CSSM_RETURN,
+    DestroyRelation: ?*const fn (MDS_DB_HANDLE, CSSM_DB_RECORDTYPE) callconv(.C) CSSM_RETURN,
 };
 
 pub const MDS_FUNCS = mds_funcs;

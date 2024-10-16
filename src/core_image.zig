@@ -16,8 +16,8 @@ const avfoundation = @import("avfoundation.zig"); // Framework dependency AVFoun
 /// https://developer.apple.com/documentation/CoreImage/CIVector?language=objc
 pub const Vector = opaque {
     pub const anon235 = extern union {
-        vec: core_foundation.CGFloat,
-        ptr: core_foundation.CGFloat,
+        vec: [4]core_foundation.CGFloat,
+        ptr: ?*core_foundation.CGFloat,
     };
 
     pub const Internal = objc.ExternClass("CIVector", @This(), objc.NSObject, &.{ foundation.Copying, foundation.SecureCoding });
