@@ -10,44 +10,44 @@
 The [runtime](src/objc.zig) is based off of other Zig Objective-C runtimes ([objz](https://github.com/robbielyman/objz), [zig-objc](https://github.com/mitchellh/zig-objc), and [mach_objc](https://github.com/hexops/mach-objc)).
 
 ## Frameworks
-- [CoreFoundation](src/core_foundation.zig)
-- [Foundation](src/foundation.zig)
+- [AddressBook](src/address_book.zig)
 - [AppKit](src/app_kit.zig)
-- [Metal](src/metal.zig)
 - [ApplicationServices](src/application_services.zig)
+- [AudioToolbox](src/audio_toolbox.zig)
+- [AVFAudio](src/avfaudio.zig)
+- [AVFoundation](src/avfoundation.zig)
 - [CloudKit](src/cloud_kit.zig)
+- [Contacts](src/contacts.zig)
+- [CoreAudio](src/core_audio.zig)
+- [CoreAudioTypes](src/core_audio_types.zig)
 - [CoreData](src/core_data.zig)
+- [CoreFoundation](src/core_foundation.zig)
 - [CoreGraphics](src/core_graphics.zig)
 - [CoreImage](src/core_image.zig)
+- [CoreLocation](src/core_location.zig)
+- [CoreMedia](src/core_media.zig)
+- [CoreMIDI](src/core_midi.zig)
 - [CoreServices](src/core_services.zig)
+- [CoreSpotlight](src/core_spotlight.zig)
 - [CoreText](src/core_text.zig)
 - [CoreVideo](src/core_video.zig)
 - [DiskArbitration](src/disk_arbitration.zig)
+- [EventKit](src/event_kit.zig)
+- [Foundation](src/foundation.zig)
 - [ImageIO](src/image_io.zig)
+- [Intents](src/intents.zig)
+- [IntentsUI](src/intents_ui.zig)
 - [IOKit](src/io_kit.zig)
 - [IOSurface](src/io_surface.zig)
+- [MapKit](src/map_kit.zig)
+- [MediaToolbox](src/media_toolbox.zig)
+- [Metal](src/metal.zig)
 - [OpenGL](src/opengl.zig)
 - [QuartzCore](src/quartz_core.zig)
 - [Security](src/security.zig)
-- [CoreLocation](src/core_location.zig)
-- [AddressBook](src/address_book.zig)
-- [Contacts](src/contacts.zig)
-- [CoreSpotlight](src/core_spotlight.zig)
-- [EventKit](src/event_kit.zig)
-- [Intents](src/intents.zig)
-- [IntentsUI](src/intents_ui.zig)
-- [MapKit](src/map_kit.zig)
+- [Symbols](src/symbols.zig)
 - [UniformTypeIdentifiers](src/uniform_type_identifiers.zig)
 - [UserNotifications](src/user_notifications.zig)
-- [Symbols](src/symbols.zig)
-- [AVFoundation](src/avfoundation.zig)
-- [CoreMedia](src/core_media.zig)
-- [CoreAudioTypes](src/core_audio_types.zig)
-- [CoreAudio](src/core_audio.zig)
-- [MediaToolbox](src/media_toolbox.zig)
-- [AudioToolbox](src/audio_toolbox.zig)
-- [AVFAudio](src/avfaudio.zig)
-- [CoreMIDI](src/core_midi.zig)
 
 ## Example: Creating a window
 ```zig
@@ -61,6 +61,9 @@ pub fn main() void {
 
     // Create the shared application.
     const app = app_kit.Application.sharedApplication().?;
+
+    // Set the application as the main application
+    app.activate();
 
     // Spawn a 1280 x 720 window in the bottom left corner.
     const rect = foundation.Rect{
@@ -82,10 +85,15 @@ pub fn main() void {
         app_kit.BackingStoreType_Retained,
         .NO,
     );
+    window.release();
 
     // Allocate a string and set the title of the window
     const title = foundation.String.alloc().initWithUTF8String("Hello World");
+    defer title.release();
     window.setTitle(title);
+
+    // Center the window in the screen
+    window.center();
 
     // Show the window and bring out.
     window.makeKeyAndOrderFront(null);

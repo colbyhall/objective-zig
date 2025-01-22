@@ -9,6 +9,9 @@ pub fn main() void {
     // Create the shared application.
     const app = app_kit.Application.sharedApplication().?;
 
+    // Set the application as the main application
+    app.activate();
+
     // Spawn a 1280 x 720 window in the bottom left corner.
     const rect = foundation.Rect{
         .origin = .{
@@ -29,10 +32,15 @@ pub fn main() void {
         app_kit.BackingStoreType_Retained,
         .NO,
     );
+    window.release();
 
     // Allocate a string and set the title of the window
     const title = foundation.String.alloc().initWithUTF8String("Hello World");
+    defer title.release();
     window.setTitle(title);
+
+    // Center the window in the screen
+    window.center();
 
     // Show the window and bring out.
     window.makeKeyAndOrderFront(null);
