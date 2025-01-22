@@ -85,7 +85,7 @@ pub fn main() void {
         app_kit.BackingStoreType_Retained,
         .NO,
     );
-    window.release();
+    defer window.release();
 
     // Allocate a string and set the title of the window
     const title = foundation.String.alloc().initWithUTF8String("Hello World");
